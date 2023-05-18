@@ -3,7 +3,7 @@ import { UploadFileToggler, FlexSpacer } from '@epam/uui-components';
 import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
 import { PlateEditor } from '@udecode/plate';
 
-import css from './AddImageModal.scss';
+import css from './AddImageModal.module.scss';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 
 const {

@@ -4,7 +4,7 @@ import {
     FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, Text,
 } from '@epam/promo';
 import { ContentSection } from '../../common';
-import css from './ProjectsDoc.scss';
+import css from './ProjectsDoc.module.scss';
 
 import { ReactComponent as AssessmentIcon } from '../../icons/assessment.svg';
 import { ReactComponent as AnywhereIcon } from '../../icons/anywhere.svg';

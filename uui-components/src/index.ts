@@ -1,4 +1,4 @@
-import '../assets/styles/index.scss';
+import './index.module.scss';
 
 export * from './Text';
 export * from './layout';

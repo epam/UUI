@@ -32,7 +32,7 @@ const metadata: Metadata<FormState> = {
 
 let savedValue: FormState = { items: {} };
 
-export const ProductsTableDemo: React.FC = () => {
+export function ProductsTableDemo() {
     const svc = useUuiContext<TApi, UuiContexts>();
 
     const {
@@ -92,4 +92,4 @@ export const ProductsTableDemo: React.FC = () => {
             )}
         </Panel>
     );
-};
+}

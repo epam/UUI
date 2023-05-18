@@ -6,11 +6,11 @@ import {
     Text, MainMenu, TextPlaceholder, MainMenuButton,
 } from '@epam/promo';
 import { City } from '@epam/uui-docs';
-import css from './AdvancedExample.scss';
+import css from './AdvancedExample.module.scss';
 
 function Header() {
     return (
-        <MainMenu serverBadge="QA" cx={ css.menuContainer } logoLink={ { pathname: '/' } } appLogoUrl="/static/logo.svg" logoWidth={ 168 }>
+        <MainMenu cx={ css.menuContainer } logoLink={ { pathname: '/' } } appLogoUrl="/static/logo.svg" logoWidth={ 168 }>
             <MainMenuButton caption="Home" />
         </MainMenu>
     );

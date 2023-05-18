@@ -8,7 +8,7 @@ import {
 import sortBy from 'lodash.sortby';
 import { DragHandle } from '@epam/uui-components';
 import { ReactComponent as FileIcon } from '@epam/assets/icons/common/file-file-24.svg';
-import css from './DndMaterial.scss';
+import css from './DndMaterial.module.scss';
 
 export interface MaterialItem {
     id: number;

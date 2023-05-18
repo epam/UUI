@@ -1,0 +1,15 @@
+@use '@epam/promo/assets/styles/typography-mixins.scss' as epamPromoMixins;
+
+.container {
+    a svg {
+        margin-left: 4px;
+    }
+}
+
+.typography-16 {
+    @include epamPromoMixins.typography-16();
+}
+
+.typography-12 {
+    @include epamPromoMixins.typography-12();
+}

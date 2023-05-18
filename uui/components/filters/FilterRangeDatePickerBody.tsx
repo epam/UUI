@@ -8,7 +8,7 @@ import {
 } from '../../index';
 import { i18n } from '../../i18n';
 import cx from 'classnames';
-import css from './FilterRangeDatePickerBody.scss';
+import css from './FilterRangeDatePickerBody.module.scss';
 import { systemIcons } from '../../icons/icons';
 import { RangeDatePickerBody } from '.././';
 
@@ -30,6 +30,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                         filter={ this.props.filter }
                         focusPart={ this.state.inFocus }
                         changeIsOpen={ this.toggleOpening }
+                        presets={ this.props.presets }
                     />
                 </FlexRow>
                 <FlexCell alignSelf="stretch">

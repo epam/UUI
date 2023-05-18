@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlexCell, TextArea } from '@epam/promo';
 import { useState } from 'react';
-import css from './BasicExample.scss';
+import css from './BasicExample.module.scss';
 
 export default function AdvancedExample() {
     const [value, onValueChange] = useState(null);

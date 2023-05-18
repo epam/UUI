@@ -3,7 +3,7 @@ import { withMods, IEditableDebouncer, IEditableDebouncerOptions } from '@epam/u
 import { TextInput as uuiTextInput, TextInputProps as CoreTextInputProps } from '@epam/uui-components';
 import { IHasEditMode, EditMode, ControlSize } from '../types';
 import { systemIcons } from '../../icons/icons';
-import css from './TextInput.scss';
+import css from './TextInput.module.scss';
 
 const defaultSize = '36';
 const defaultMode = EditMode.FORM;

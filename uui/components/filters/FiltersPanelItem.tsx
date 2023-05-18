@@ -13,6 +13,8 @@ import {
     FilterPredicateName,
     getSeparatedValue,
     mobilePopperModifier,
+    DataRowProps,
+    PickerFilterConfig,
 } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { i18n } from '../../i18n';
@@ -24,7 +26,7 @@ import { Text, TextPlaceholder } from '../typography';
 import { FilterItemBody } from './FilterItemBody';
 import { DropdownContainer } from '../overlays';
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/action-deleteforever-12.svg';
-import css from './FiltersPanelItem.scss';
+import css from './FiltersPanelItem.module.scss';
 import { MobileDropdownWrapper } from '../pickers';
 import { Modifier } from 'react-popper';
 
@@ -153,6 +155,18 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         return predicate ? props.value?.[predicate] : props.value;
     };
 
+    const getPickerItemName = (item: DataRowProps<any, any>, config: PickerFilterConfig<any>) => {
+        if (item.isUnknown) {
+            return 'Unknown';
+        }
+
+        if (item.isLoading) {
+            return <TextPlaceholder />;
+        }
+
+        return config.getName ? config.getName(item.value) : item.value.name;
+    };
+
     const getTogglerValue = () => {
         const currentValue = getValue();
         const defaultFormat = 'MMM DD, YYYY';
@@ -167,7 +181,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                     ? currentValue?.slice(0, 2).map((i: any) => {
                         const item = view.getById(i, null);
                         isLoading = item.isLoading;
-                        return item.isLoading ? <TextPlaceholder /> : props.getName ? props.getName(item.value) : item.value.name;
+                        return getPickerItemName(item, props);
                     })
                     : [i18n.filterToolbar.pickerInput.emptyValueCaption];
 
@@ -189,11 +203,13 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
             }
             case 'singlePicker': {
                 const view = props.dataSource.getView({}, forceUpdate);
-                const item = currentValue !== null && currentValue !== undefined && view.getById(currentValue, null);
-                if (!item) {
+                if (currentValue === null || currentValue === undefined) {
                     return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
                 }
-                const selection = item.isLoading ? <TextPlaceholder /> : props.getName ? props.getName(item.value) : item.value.name;
+
+                const item = view.getById(currentValue, null);
+                const selection = getPickerItemName(item, props);
+
                 return { selection };
             }
             case 'datePicker': {

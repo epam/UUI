@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './PromoColorsDoc.scss';
+import css from './PromoColorsDoc.module.scss';
 import {
     FlexCell, FlexRow, NotificationCard, RichTextView, Text, Tooltip,
 } from '@epam/promo';

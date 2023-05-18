@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './AppFooterDemo.scss';
+import css from './AppFooterDemo.module.scss';
 import { FlexRow } from '@epam/promo';
 import { DemoItem } from '../../demo/structure';
 import { DemoToolbar } from './demoToolbar/DemoToolbar';

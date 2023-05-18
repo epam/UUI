@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 import { PlateTableRowElement } from '@udecode/plate';
 
-import css from './Table.scss';
+import css from './Table.module.scss';
 
 const DEFAULT_HEADER_ROW_HEIGHT = 46;
 const DEFAULT_HEIGHT = 50;

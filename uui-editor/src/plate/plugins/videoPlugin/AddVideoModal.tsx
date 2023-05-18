@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
-import css from './AddVideoModal.scss';
+import css from './AddVideoModal.module.scss';
 import { PlateEditor, insertElements } from "@udecode/plate";
 
 import getVideoId from "get-video-id";

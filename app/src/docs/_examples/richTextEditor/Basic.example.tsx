@@ -26,8 +26,7 @@ import {
     EditorValue,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
-import css from './SlateEditorBasicExample.scss';
-import { Descendant } from 'slate';
+import css from './SlateEditorBasicExample.module.scss';
 
 type EditorFontSize = '14' | '16';
 type EditorMode = 'form' | 'inline';

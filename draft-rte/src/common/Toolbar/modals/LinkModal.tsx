@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IModal, UuiContexts } from '@epam/uui-core';
-import css from './LinkModal.scss';
+import css from './LinkModal.module.scss';
 import { TextInput, ModalHeader, ModalBlocker, ModalWindow, FlexRow, FlexSpacer, LabeledInput, Panel, Button } from '@epam/loveship';
 import { i18n } from '../../../i18n';
 
@@ -37,7 +37,7 @@ class LinkModal extends React.Component<LinkModalProps, LinkModalState> {
         };
 
         return (
-            <ModalBlocker blockerShadow='dark' { ...this.props }>
+            <ModalBlocker { ...this.props }>
                 <ModalWindow>
                     <Panel background='white' style={ { overflowY: 'auto', maxHeight: '100%' } } cx='draftRTE__link-modal'>
                         <ModalHeader borderBottom title={ i18n.rte.linkModal.modalHeader } onClose={ () => this.props.abort() } />

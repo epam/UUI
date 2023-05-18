@@ -7,7 +7,7 @@ import { PickerInput, DataPickerRow } from '@epam/uui';
 import { Avatar } from '@epam/uui-components';
 import { Text } from '../typography';
 import { TextPlaceholder } from '@epam/uui';
-import css from './MakeMeItem.scss';
+import css from './MakeMeItem.module.scss';
 
 export interface MakeMeUser {
     externalId: number | string;

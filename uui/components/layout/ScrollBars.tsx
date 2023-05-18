@@ -1,6 +1,6 @@
 import { ScrollBars as uuiScrollBars, ScrollbarProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
-import './ScrollBars.scss';
+import './ScrollBars.module.scss';
 
 function applyScrollBarsMods() {
     return [

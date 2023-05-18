@@ -21,7 +21,7 @@ import { svc } from '../../services';
 import { getColumns } from './columns';
 import { getFilters } from './filters';
 import cx from 'classnames';
-import css from './PersonsTableDemo.scss';
+import css from './PersonsTableDemo.module.scss';
 
 interface PersonsTableState extends DataSourceState {
     isFolded?: boolean;

@@ -1,11 +1,7 @@
 import React from 'react';
-import css from './DropdownMenu.scss';
-import {
-    withMods, IHasIcon, IDropdownToggler, VPanelProps,
-} from '@epam/uui-core';
-import {
-    Button, ButtonProps, VPanel, IconContainer, CheckboxProps, Checkbox, TextInput, TextInputProps,
-} from '@epam/uui-components';
+import css from './DropdownMenu.module.scss';
+import { withMods, IHasIcon, IDropdownToggler, VPanelProps } from '@epam/uui-core';
+import { Button, ButtonProps, VPanel, IconContainer, CheckboxProps, Checkbox, TextInput, TextInputProps } from '@epam/uui-components';
 import { ReactComponent as BtnCross } from '../icons/menu_input_cancel.svg';
 import { ReactComponent as BtnTriangle } from '../icons/folding-arrow-18.svg';
 import { ReactComponent as TickIcon } from '../icons/tick-12.svg';
@@ -39,7 +35,7 @@ export const DropdownMenuButton = withMods<ButtonProps, DropdownMenuItemMods>(
 
 export const DropdownMenuCheckbox = withMods<CheckboxProps, DropdownMenuItemMods>(
     Checkbox,
-    (props) => [css.checkboxRoot],
+    () => [css.checkboxRoot],
     () => ({ icon: TickIcon }),
 );
 

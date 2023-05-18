@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { DatePicker, FlexRow, LinkButton } from '@epam/promo';
-import css from './FormatDateExample.scss';
+import css from './FormatDateExample.module.scss';
 
 export default function DatePickerFormatDateExample() {
     const [value, onValueChange] = useState('');
