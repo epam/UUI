@@ -109,27 +109,25 @@ export const Table = (props: TableElementRootProps) => {
 
     const isCellsSelected = !!useTableStore().get.selectedCells();
     const colSizeOverrides = useTableStore().get.colSizeOverrides();
-    const currentColSizes = element.colSizes.map((size, index) => colSizeOverrides?.get(index) ?? size ?? EMPTY_COL_WIDTH);
+    const currentColSizes = element.colSizes.map((size, index) => colSizeOverrides?.get(index) || size || EMPTY_COL_WIDTH);
 
     const tableWidth = currentColSizes.reduce((acc, cur) => acc + cur, 0);
 
-    const selectedCells = useTableStore().get.selectedCells();
     const [selectedCellsFromUse] = useTableStore().use.selectedCells();
 
-
-    if (selectedCells?.length || !!selectedCellsFromUse?.length) {
-        console.log('compare selected cells', selectedCells, selectedCellsFromUse);
+    if (!!selectedCellsFromUse?.length) {
+        console.log('compare selected cells',selectedCellsFromUse);
     }
 
     return (
         <TableElementRoot
             { ...rootProps }
             onMouseDown={ () => {
-                console.log('my handler used', selectedCells);
+                console.log('my handler used', selectedCellsFromUse);
                 // until cell dnd is supported, we collapse the selection on mouse down
-                // if (selectedCells) {
-                //     collapseSelection(editor);
-                // }
+                if (selectedCellsFromUse) {
+                    collapseSelection(editor);
+                }
             } }
             editor={ editor }
             element={ element }
