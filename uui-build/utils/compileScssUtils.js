@@ -90,6 +90,16 @@ async function compileScssFile({ from, to }) {
     }
 }
 
+/**
+ * Compiles all scss files in the dir.
+ * If some scss file in the dir compiles to empty css, then such empty *.css file will not be created.
+ *
+ * @param from - Absolute path to the source directory.
+ * @param to - Absolute path to the target dir. The dir structure will be automatically created if it doesn't exist.
+ * @param filter - A callback, should return true in order to include a file and false - to exclude it.
+ * @param [recursive=false]
+ * @returns {Promise<void>}
+ */
 async function compileScssDir({ from, to, filter, recursive = false }) {
     const inProgress = [];
     await iterateFilesInDirAsync(from, (filePath) => {
