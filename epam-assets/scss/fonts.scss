@@ -1,7 +1,2 @@
-$font-sans: 'Sans Regular', Arial, sans-serif;
-$font-sans-light: 'Sans Light', Arial, sans-serif;
-$font-sans-bold: 'Sans Bold', Arial, sans-serif;
-$font-sans-semibold: 'Sans Semibold', Arial, sans-serif;
-$font-sans-italic: 'Sans Italic', Arial, sans-serif;
-$font-roboto-condensed: 'Roboto Condensed', Arial, sans-serif;
-$font-redacted: 'Redacted', Arial, sans-serif;
+// this file is deprecated, please use './loveship/fonts' directly instead.
+@forward './loveship/fonts';
