@@ -4,7 +4,7 @@ import {
 } from '@epam/promo';
 import { DataColumnProps, getSeparatedValue } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
-import css from './FilteredTable.scss';
+import css from './FilteredTable.module.scss';
 
 export const personColumns: DataColumnProps<Person, number>[] = [
     {

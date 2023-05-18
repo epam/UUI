@@ -1,4 +1,4 @@
-import css from './MainMenu.scss';
+import css from './MainMenu.module.scss';
 import { withMods } from '@epam/uui-core';
 import { MainMenu as uuiMainMenu, MainMenuProps } from '@epam/uui-components';
 import { Burger, MainMenuDropdown } from '../MainMenu';

@@ -17,7 +17,7 @@ import {
     IHasForwardedRef,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
-import css from './RadioInput.scss';
+import css from './RadioInput.module.scss';
 
 export interface RadioInputProps
     extends IHasCX,

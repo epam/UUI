@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FlexRow, IconButton } from '@epam/promo';
-import css from './TechnologiesBlock.scss';
+import css from './TechnologiesBlock.module.scss';
 import { ReactComponent as CssModulesIcon } from '../icons/css-modules-logo.inkscape.svg';
 import { ReactComponent as SassIcon } from '../icons/sass.svg';
 import { ReactComponent as TsIcon } from '../icons/typescript-icon.svg';

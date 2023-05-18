@@ -1,16 +1,12 @@
-import React, { FC } from 'react';
-import {
-    ApiCallInfo, IHasCX, useUuiContext, useUuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren, ApiRecoveryReason, ApiCallErrorType,
-} from '@epam/uui-core';
-import {
-    ModalBlocker, ModalHeader, ModalWindow, SnackbarCard,
-} from '../overlays';
+import React from 'react';
+import { ApiCallInfo, IHasCX, useUuiContext, useUuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren, ApiRecoveryReason, ApiCallErrorType } from '@epam/uui-core';
+import { ModalBlocker, ModalHeader, ModalWindow } from '../../components';
 import { FlexRow } from '../layout';
 import { Text } from '../typography';
-import { RichTextView, FlexCell, Spinner } from '@epam/uui';
+import { RichTextView, FlexCell, Spinner, ErrorNotification } from '@epam/uui';
 import { ErrorCatch } from '@epam/uui-components';
 import { ErrorPage } from './ErrorPage';
-import css from './ErrorHandler.scss';
+import css from './ErrorHandler.module.scss';
 
 type Theme = 'light' | 'dark';
 
@@ -28,8 +24,6 @@ const imageUrl = {
         502: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages/error-502-dark.svg',
     },
 };
-
-const defaultNotificationErrorMessage = 'Sorry, there\'s a temporary problem. Please try again in a few moments';
 
 export const recoveryWordings: Record<ApiRecoveryReason, { title: string; subtitle: string }> = {
     'auth-lost': {
@@ -89,7 +83,7 @@ export interface ErrorPageProps extends IHasCX, IHasChildren {
     theme?: Theme;
 }
 
-export const ErrorHandler: FC<ErrorPageProps> = (props) => {
+export function ErrorHandler(props: ErrorPageProps) {
     const { uuiNotifications, uuiModals } = useUuiContext();
     const { errorType, errorInfo } = useUuiError({
         getErrorInfo: props.errorPageConfig?.getInfo,
@@ -102,25 +96,25 @@ export const ErrorHandler: FC<ErrorPageProps> = (props) => {
     const showNotifications = (errors: ApiCallInfo[]) => {
         errors.forEach((c) => {
             uuiNotifications.show((props) => (
-                <SnackbarCard { ...props } snackType="danger">
-                    <FlexRow padding="24" vPadding="12">
-                        <Text size="36">{c.responseData?.errorMessage || defaultNotificationErrorMessage}</Text>
-                    </FlexRow>
-                </SnackbarCard>
+                <ErrorNotification { ...props }>
+                    <Text size="36">
+                        {c.responseData && c.responseData.errorMessage}
+                    </Text>
+                </ErrorNotification>
             ));
             c.dismissError();
         });
     };
 
-    const renderRecoveryBlocker = (errorInfo: UuiRecoveryErrorInfo) => {
+    const renderRecoveryBlocker = (errorInformation: UuiRecoveryErrorInfo) => {
         return (
-            <ModalBlocker cx={ css.modalBlocker } blockerShadow="dark" key="auth-lost" isActive={ true } zIndex={ 100500 } success={ () => {} } abort={ () => {} }>
+            <ModalBlocker cx={ css.modalBlocker } key="auth-lost" isActive={ true } zIndex={ 100500 } success={ () => {} } abort={ () => {} }>
                 <ModalWindow>
-                    <ModalHeader borderBottom title={ errorInfo.title } />
+                    <ModalHeader borderBottom title={ errorInformation.title } />
                     <Spinner cx={ css.recoverySpinner } />
                     <FlexRow padding="24" cx={ css.recoveryMessage }>
                         <FlexCell grow={ 1 }>
-                            <RichTextView>{errorInfo.subtitle}</RichTextView>
+                            <RichTextView>{errorInformation.subtitle}</RichTextView>
                         </FlexCell>
                     </FlexRow>
                 </ModalWindow>
@@ -128,23 +122,23 @@ export const ErrorHandler: FC<ErrorPageProps> = (props) => {
         );
     };
 
-    const renderErrorPage = (errorInfo: UuiErrorInfo) => {
-        return <ErrorPage cx={ props.cx } theme={ props.theme } { ...errorInfo } />;
+    const renderErrorPage = (errorInformation: UuiErrorInfo) => {
+        return <ErrorPage cx={ props.cx } theme={ props.theme } { ...errorInformation } />;
     };
 
-    if (errorType == 'error') {
+    if (errorType === 'error') {
         uuiModals.closeAll();
         return renderErrorPage(errorInfo as UuiErrorInfo);
     }
 
-    if (errorType == 'notification') {
+    if (errorType === 'notification') {
         showNotifications(errorInfo as ApiCallInfo[]);
     }
 
     return (
         <ErrorCatch>
             {props.children}
-            {errorType == 'recovery' && renderRecoveryBlocker(errorInfo as UuiRecoveryErrorInfo)}
+            {errorType === 'recovery' && renderRecoveryBlocker(errorInfo as UuiRecoveryErrorInfo)}
         </ErrorCatch>
     );
-};
+}

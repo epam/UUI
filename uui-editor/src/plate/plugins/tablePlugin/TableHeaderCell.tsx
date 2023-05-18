@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './Table.scss';
+import css from './Table.module.scss';
 import cx from 'classnames';
 import { TableCellRenderer } from './TableCellRenderer';
 

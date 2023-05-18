@@ -6,7 +6,7 @@ import {
 import { type TTableElement, useTableStore, TTableRowElement, usePlateEditorRef, HTMLPropsAs, collapseSelection, useElementProps, createComponentAs, createElementAs, useEditorRef, getTableGridAbove } from '@udecode/plate';
 import { cx } from '@epam/uui-core'
 
-import tableCSS from './Table.scss';
+import tableCSS from './Table.module.scss';
 import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
 import { useReadOnly, useSelected } from 'slate-react';
 

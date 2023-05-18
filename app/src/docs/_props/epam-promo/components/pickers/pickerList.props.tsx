@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { PickerListBaseProps } from '@epam/uui-components';
 import { DocBuilder } from '@epam/uui-docs';
-import {
-    PickerList, LinkButton, Button, Text, FlexRow,
-} from '@epam/promo';
+import { PickerList, LinkButton, Button, Text, FlexRow } from '@epam/promo';
 import { PickerListProps } from '@epam/uui';
 import { iEditable, isDisabledDoc } from '../../docs';
 import { DefaultContext, ResizableContext, FormContext } from '../../docs';
@@ -48,13 +46,12 @@ const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseP
         ],
         defaultValue: 50,
     })
-    .prop('isInvalid', { examples: [true] })
     .prop('placeholder', { examples: ['Select Country', 'Select Person'], type: 'string', defaultValue: 'Please select' })
     .prop('renderModalToggler', {
         examples: [
             {
-                name: 'Green Button',
-                value: (props) => <LinkButton color="green" { ...props } />,
+                name: 'Custom Button',
+                value: (props) => <LinkButton { ...props } caption="Custom Button" />,
             },
         ],
     })

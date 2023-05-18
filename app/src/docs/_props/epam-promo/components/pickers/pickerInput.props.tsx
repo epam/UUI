@@ -1,17 +1,12 @@
 import * as React from 'react';
 import { PickerInputBaseProps } from '@epam/uui-components';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
-import { PickerInputProps } from '@epam/uui';
-import {
-    PickerInput, Button, LinkButton, FlexCell, Text, SearchInput,
-} from '@epam/promo';
-import {
-    iconDoc, iconOptionsDoc, iEditable, isDisabledDoc,
-} from '../../docs';
-import {
-    DefaultContext, ResizableContext, IHasEditModeDoc, FormContext, TableContext,
-} from '../../docs';
+import { DataPickerRow, PickerInputProps, PickerItem } from '@epam/uui';
+import { PickerInput, Button, LinkButton, FlexCell, Text, SearchInput } from '@epam/promo';
+import { iconDoc, iconOptionsDoc, iEditable, isDisabledDoc } from '../../docs';
+import { DefaultContext, ResizableContext, IHasEditModeDoc, FormContext, TableContext } from '../../docs';
 import { pickerBaseOptionsDoc } from './common';
+import css from './DataPickerRowDoc.module.scss';
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
     .implements([
@@ -86,6 +81,42 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
                         <Text>Custom Text or Component</Text>
                     </FlexCell>
                 ),
+            },
+        ],
+    })
+    .prop('renderRow', {
+        examples: (ctx) => [
+            {
+                name: 'UserPickerRow',
+                value: (props) => (
+                    <DataPickerRow
+                        { ...props }
+                        key={ props.rowKey }
+                        alignActions="center"
+                        padding={ (ctx.getSelectedProps() as any).editMode === 'modal' ? '24' : '12' }
+                        renderItem={ (item, rowProps) => <PickerItem { ...rowProps } avatarUrl={ item.avatarUrl } title={ item.name } subtitle={ item.jobTitle } /> }
+                    />
+                ),
+            }, {
+                name: 'Skills',
+                value: (rowProps) => {
+                    const isParent = !rowProps.value.parentId;
+                    return (
+                        <DataPickerRow
+                            { ...rowProps }
+                            depth={ isParent ? 0 : 1 }
+                            cx={ isParent && css.parent }
+                            isFoldable={ isParent }
+                            isChecked={ isParent ? false : rowProps.isChecked }
+                            isChildrenChecked={ false }
+                            isSelectable={ isParent ? false : rowProps.isSelectable }
+                            isFocused={ isParent ? false : rowProps.isFocused }
+                            borderBottom="none"
+                            size="36"
+                            renderItem={ (i) => <Text size="36">{i.name}</Text> }
+                        />
+                    );
+                },
             },
         ],
     })

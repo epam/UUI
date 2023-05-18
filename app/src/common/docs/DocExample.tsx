@@ -6,7 +6,7 @@ import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
 import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
 import { codesandboxService } from '../../data/codesandbox/service';
-import css from './DocExample.scss';
+import css from './DocExample.module.scss';
 import { ReactComponent as AnchorIcon } from '@epam/assets/icons/common/action-external_link-18.svg';
 import { ReactComponent as CodesandboxIcon } from '../../icons/social-network-codesandbox-24.svg';
 
@@ -32,11 +32,14 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
     titleRef: RefObject<HTMLDivElement> = createRef();
 
     componentDidMount(): void {
-        const { path } = this.props;
-        const exPathRelative = `.${path.substring(EXAMPLES_PATH_PREFIX.length)}`;
-        requireContext(exPathRelative).then((module: any) => {
-            this.setState({ component: module.default });
-        });
+        const { path, onlyCode } = this.props;
+
+        if (!onlyCode) {
+            const exPathRelative = `.${path.substring(EXAMPLES_PATH_PREFIX.length)}`;
+            requireContext(exPathRelative).then((module: any) => {
+                this.setState({ component: module.default });
+            });
+        }
 
         if (this.titleRef?.current && window.location?.hash?.includes(this.titleRef.current.id)) {
             this.titleRef.current.scrollIntoView(true);
@@ -70,7 +73,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
 
     private getComponentStylesheet(raw: string): void {
         // Match .example.scss or .scss
-        const matcher = /\.\/\w+(?:.example)?.scss/;
+        const matcher = /\.\/\w+(?:.example)?(?:.module)?.scss/;
         const stylesheets = raw.match(matcher);
         if (stylesheets !== null) {
             stylesheets.forEach((match) => {

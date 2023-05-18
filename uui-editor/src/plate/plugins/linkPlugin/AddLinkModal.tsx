@@ -11,7 +11,7 @@ import {
 
 import { IModal, uuiSkin } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
-import css from './link.scss';
+import css from './link.module.scss';
 import { useEffect, useState } from "react";
 
 const { LabeledInput, ModalBlocker, ModalWindow, ModalHeader, FlexRow, TextInput, ModalFooter, Button } = uuiSkin;

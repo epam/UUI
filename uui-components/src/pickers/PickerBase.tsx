@@ -37,14 +37,16 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         }
     }
 
-    getName = (i: TItem & { name?: string }) => {
-        if (i == null) {
-            return '';
-        } else if (this.props.getName) {
-            return this.props.getName(i);
-        } else {
-            return i.name;
+    getName = (i: (TItem & { name?: string }) | void) => {
+        const unknownStr = 'Unknown';
+        if (this.props.getName) {
+            try {
+                return this.props.getName(i as TItem);
+            } catch (e) {
+                return unknownStr;
+            }
         }
+        return i ? i.name : unknownStr;
     };
 
     getPluralName = () => {

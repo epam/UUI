@@ -1,7 +1,7 @@
 import React, {
     useCallback, useEffect, useMemo, useState,
 } from 'react';
-import css from './FilteredTable.scss';
+import css from './FilteredTable.module.scss';
 import {
     Button, DataTable, FiltersPanel, FlexCell, FlexRow, PresetsPanel, Text,
 } from '@epam/promo';

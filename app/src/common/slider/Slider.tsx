@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './Slider.scss';
+import css from './Slider.module.scss';
 import { Slide, SlideProps } from './';
 import { IconButton } from '@epam/promo';
 import { IAnalyticableOnChange, UuiContext, UuiContexts } from '@epam/uui-core';

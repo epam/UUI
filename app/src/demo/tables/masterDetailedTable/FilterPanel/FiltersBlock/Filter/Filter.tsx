@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import css from './Filter.scss';
+import css from './Filter.module.scss';
 import {
     DatePicker, IconContainer, PickerList, RangeDatePicker,
 } from '@epam/promo';

@@ -1,31 +1,12 @@
-import React, {
-    useRef, useContext, useState, useEffect,
-} from 'react';
+import React, { useRef, useContext, useState, useEffect } from 'react';
 import FocusLock from 'react-focus-lock';
-import {
-    cx,
-    DropdownBodyProps,
-    IDropdownToggler,
-    withMods,
-    uuiMod,
-    UuiContext,
-    IHasChildren,
-    VPanelProps,
-    IHasIcon,
-    ICanRedirect,
-    IHasCaption,
-    IDisableable,
-    IAnalyticableClick,
-    IHasCX,
-    IClickable,
-} from '@epam/uui-core';
-import {
-    Text, FlexRow, Anchor, Dropdown, FlexSpacer, DropdownContainer, IconContainer,
-} from '@epam/uui-components';
+import { cx, DropdownBodyProps, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption,
+    IDisableable, IAnalyticableClick, IHasCX, IClickable } from '@epam/uui-core';
+import { Text, FlexRow, Anchor, Dropdown, FlexSpacer, DropdownContainer, IconContainer } from '@epam/uui-components';
 import { Switch } from '@epam/uui';
 import { IconButton } from '../buttons';
 import { systemIcons } from '../../icons/icons';
-import css from './DropdownMenu.scss';
+import css from './DropdownMenu.module.scss';
 import { ReactComponent as CheckIcon } from '../../icons/accept-18.svg';
 
 const icons = systemIcons['36'];

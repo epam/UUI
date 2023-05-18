@@ -6,7 +6,7 @@ import { DataTableCell } from '../tables';
 import { ReactComponent as TickIcon_24 } from '@epam/assets/icons/common/notification-done-24.svg';
 import { ReactComponent as TickIcon_18 } from '@epam/assets/icons/common/notification-done-18.svg';
 import { ReactComponent as TickIcon_12 } from '@epam/assets/icons/common/notification-done-12.svg';
-import css from './DataPickerRow.scss';
+import css from './DataPickerRow.module.scss';
 
 export interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId> {
     renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): React.ReactNode;

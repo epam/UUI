@@ -27,8 +27,7 @@ import { migrateSchema } from './migration';
 
 import { baseMarksPlugin, paragraphPlugin } from './plate/plugins';
 
-import style from '@epam/assets/scss/promo/typography.scss';
-import css from './SlateEditor.scss';
+import css from './SlateEditor.module.scss';
 
 let components = createPlateUI();
 
@@ -127,8 +126,8 @@ const Editor = (props: PlateEditorProps) => {
                 (!props.isReadonly && isFocused) && uuiMod.focus,
                 props.isReadonly && uuiMod.readonly,
                 props.scrollbars && css.withScrollbars,
-                style.typographyPromo,
-                props.fontSize == '16' ? style.typography16 : style.typography14,
+                css.typographyPromo,
+                props.fontSize == '16' ? css.typography16 : css.typography14,
             ) }
             style={ { minHeight: props.minHeight || 350 } }
             { ...props.rawProps }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlexCell, NotificationCard, Text } from '@epam/promo';
-import css from './BasicExample.scss';
+import css from './BasicExample.module.scss';
 import { ReactComponent as AccountIcon24 } from '@epam/assets/icons/common/action-account-24.svg';
 
 export default function AdvancedExample() {

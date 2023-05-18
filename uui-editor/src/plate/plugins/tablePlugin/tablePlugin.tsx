@@ -51,7 +51,7 @@ import { TableHeaderCell } from "./TableHeaderCell";
 import { TableRow } from "./TableRow";
 import { TableCell } from "./TableCell";
 
-import tableCSS from './Table.scss';
+import tableCSS from './Table.module.scss';
 import { useFocused, useSelected } from 'slate-react';
 import { updateTableStructure } from './util';
 

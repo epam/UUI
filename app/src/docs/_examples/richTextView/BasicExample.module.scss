@@ -1,0 +1,9 @@
+@use '@epam/promo/assets/styles/typography-mixins.scss' as epamPromoMixins;
+
+.typography-16 {
+    @include epamPromoMixins.typography-16();
+}
+
+.typography-12 {
+    @include epamPromoMixins.typography-12();
+}

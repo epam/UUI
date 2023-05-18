@@ -4,7 +4,7 @@ import {
     Panel, Text, FlexRow, LinkButton, DropdownContainer, Badge, IconButton, FlexCell, IconContainer, Avatar,
 } from '@epam/promo';
 import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
-import css from './BasicExample.scss';
+import css from './BasicExample.module.scss';
 import { ReactComponent as pinIcon } from '@epam/assets/icons/common/action-pin_on-18.svg';
 import { ReactComponent as notificationIcon } from '@epam/assets/icons/common/notification-done-12.svg';
 import { ReactComponent as aimIcon } from '@epam/assets/icons/common/action-target-18.svg';
@@ -87,7 +87,6 @@ export default function BasicDropdownExample() {
                                         /* redirect implementation */
                                     } }
                                     size="36"
-                                    color="blue"
                                     caption="+3809324353424"
                                 />
                             </FlexRow>
@@ -98,7 +97,6 @@ export default function BasicDropdownExample() {
                                         /* redirect implementation */
                                     } }
                                     size="36"
-                                    color="blue"
                                     caption="x43059"
                                 />
                             </FlexRow>
@@ -109,7 +107,6 @@ export default function BasicDropdownExample() {
                                         /* redirect implementation */
                                     } }
                                     size="36"
-                                    color="blue"
                                     caption="user@epam.com"
                                 />
                             </FlexRow>
@@ -120,7 +117,6 @@ export default function BasicDropdownExample() {
                                         /* redirect implementation */
                                     } }
                                     size="36"
-                                    color="blue"
                                     caption="https://www.linkedin.com/fakeid/..."
                                 />
                             </FlexRow>

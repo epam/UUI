@@ -6,7 +6,7 @@ import cx from "classnames";
 import { Range } from 'slate';
 
 import { isImageSelected, isTextSelected } from '../helpers';
-import css from './Toolbar.scss';
+import css from './Toolbar.module.scss';
 import type { VirtualElement } from '@popperjs/core/lib/popper';
 
 interface ToolbarProps {

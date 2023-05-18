@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    IHasCX, IHasChildren, IEditable, useArrayDataSource, DataSourceState, DataRowProps,
-} from '@epam/uui-core';
+import { IHasCX, IHasChildren, IEditable, useArrayDataSource, DataSourceState, DataRowProps } from '@epam/uui-core';
 
 export interface TreeListItem {
     id: string;

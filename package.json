@@ -11,7 +11,7 @@
     "build-server-helpers": "tsc --esModuleInterop uui-core/src/data/querying/getFilterPredicate.ts --outDir ./server/helpers/",
     "copy-to-template": "node uui-build/scripts/copyToTemplate",
     "eslint": "yarn --cwd uui-build lint --eslint",
-    "eslint-fix": "yarn --cwd uui-build lint --eslint --fix",
+    "eslint-fix": "yarn eslint --fix",
     "generate-components-api": "yarn --cwd uui-build generate-components-api",
     "lint-staged": "cross-env LINT_STAGED=true npx lint-staged",
     "next:dev": "cd ./next-app && yarn && node ../uui-build/scripts/runNextApp.js && yarn dev",
@@ -22,12 +22,12 @@
     "start": "cd ./app && yarn start",
     "start-server": "cd ./app && yarn server",
     "stylelint": "yarn --cwd uui-build lint --stylelint",
-    "stylelint-fix": "yarn --cwd uui-build lint --stylelint --fix",
+    "stylelint-fix": "yarn stylelint --fix",
     "test": "node uui-build/scripts/runTests.js --config=./jest.config.js",
     "test-report": "yarn test --collectCoverage",
     "test-update": "yarn test --updateSnapshot",
     "track-bundle-size": "yarn --cwd uui-build track-bundle-size",
-    "track-bundle-size-override": "yarn --cwd uui-build track-bundle-size --override-baseline",
+    "track-bundle-size-override": "yarn track-bundle-size --override-baseline",
     "transform-tokens": "yarn --cwd uui-build transform-tokens"
   },
   "repository": {

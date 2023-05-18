@@ -1,20 +1,16 @@
-import React, { FC } from 'react';
-import {
-    ApiCallInfo, IHasCX, INotification, useUuiContext, useUuiError, UuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren,
-} from '@epam/uui-core';
-import {
-    ModalBlocker, ModalHeader, ModalWindow, FlexCell, FlexRow, RichTextView, Text, Spinner, ErrorNotification,
-} from '../../components';
+import React from 'react';
+import { ApiCallInfo, IHasCX, INotification, useUuiContext, useUuiError, UuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren } from '@epam/uui-core';
+import { ModalBlocker, ModalHeader, ModalWindow, FlexCell, FlexRow, RichTextView, Text, Spinner, ErrorNotification } from '../../components';
 import { ErrorCatch } from '@epam/uui-components';
 import { getErrorPageConfig, getRecoveryMessageConfig } from './config';
 import { ErrorPage } from './ErrorPage';
-import css from './ErrorHandler.scss';
+import css from './ErrorHandler.module.scss';
 
 export interface ErrorHandlerProps extends IHasCX, IHasChildren {
     getErrorInfo?: (uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;
 }
 
-export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
+export function ErrorHandler(props: ErrorHandlerProps) {
     const { uuiNotifications, uuiModals } = useUuiContext();
     const { errorType, errorInfo } = useUuiError({
         getErrorInfo: props.getErrorInfo,
@@ -25,7 +21,7 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
         errors.forEach((c) => {
             uuiNotifications.show((notificationProps: INotification) => (
                 <ErrorNotification { ...notificationProps }>
-                    <Text size="36" fontSize="14">
+                    <Text size="36">
                         {c.responseData && c.responseData.errorMessage}
                     </Text>
                 </ErrorNotification>
@@ -34,11 +30,11 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
         });
     };
 
-    const renderRecoveryBlocker = (errorInfo: UuiRecoveryErrorInfo) => {
-        const { title, subtitle } = errorInfo;
+    const renderRecoveryBlocker = (errorInform: UuiRecoveryErrorInfo) => {
+        const { title, subtitle } = errorInform;
 
         return (
-            <ModalBlocker key="recovery-blocker" cx={ css.modalBlocker } blockerShadow="dark" isActive={ true } zIndex={ 100500 } success={ () => {} } abort={ () => {} }>
+            <ModalBlocker key="recovery-blocker" cx={ css.modalBlocker } isActive={ true } zIndex={ 100500 } success={ () => {} } abort={ () => {} }>
                 <ModalWindow>
                     <ModalHeader borderBottom title={ title } />
                     <Spinner cx={ css.recoverySpinner } />
@@ -52,23 +48,23 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
         );
     };
 
-    const renderErrorPage = (errorInfo: UuiErrorInfo) => {
-        return <ErrorPage cx={ props.cx } { ...errorInfo } />;
+    const renderErrorPage = (errorInform: UuiErrorInfo) => {
+        return <ErrorPage cx={ props.cx } { ...errorInform } />;
     };
 
-    if (errorType == 'error') {
+    if (errorType === 'error') {
         uuiModals.closeAll();
         return renderErrorPage(errorInfo as UuiErrorInfo);
     }
 
-    if (errorType == 'notification') {
+    if (errorType === 'notification') {
         showNotifications(errorInfo as ApiCallInfo[]);
     }
 
     return (
         <ErrorCatch>
             {props.children}
-            {errorType == 'recovery' && renderRecoveryBlocker(errorInfo as UuiRecoveryErrorInfo)}
+            {errorType === 'recovery' && renderRecoveryBlocker(errorInfo as UuiRecoveryErrorInfo)}
         </ErrorCatch>
     );
-};
+}

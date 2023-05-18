@@ -1,6 +1,6 @@
 import { withMods } from '@epam/uui-core';
 import { RadioInput as uuiRadioInput, RadioInputProps as UuiRadioInputProps } from '@epam/uui-components';
-import css from './RadioInput.scss';
+import css from './RadioInput.module.scss';
 import { ReactComponent as RadioPoint } from '../../icons/radio-point.svg';
 
 export interface RadioInputMods {
