@@ -1,6 +1,7 @@
 @use 'sass:math';
 @use '../../assets/styles/scss/index' as *;
 @use '../../assets/styles/scss/loveship-colors' as *;
+@use '~@epam/assets/scss/control-layout' as epamAssetsControlLayout;
 
 @mixin panel-shadow() { box-shadow: 0 1px 3px 0 rgba(51, 51, 51, 0.2); }
 
@@ -92,7 +93,7 @@
     font-family: $font-sans;
     font-size: 14px;
     padding-bottom: 5px;
-    border-radius: $panel-border-radius;
+    border-radius: epamAssetsControlLayout.$panel-border-radius;
 
     &.color-white {
         background-color: $white;

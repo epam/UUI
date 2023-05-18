@@ -59,6 +59,7 @@
 @mixin typography-inline() {
     b, strong {
         font-family: $font-sans-semibold;
+        color: $night900;
     }
 
     i, em {
@@ -88,6 +89,10 @@
 }
 
 @mixin typography-block() {
+    b, strong {
+        color: $night900;
+    }
+
     ol, ul {
         padding: 0;
     }
@@ -138,4 +143,3 @@
 @mixin typography-16() {
     font-size: 16px;
 }
-
