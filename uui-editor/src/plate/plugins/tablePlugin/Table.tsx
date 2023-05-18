@@ -8,7 +8,6 @@ import { cx } from '@epam/uui-core'
 
 import tableCSS from './Table.module.scss';
 import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
-import { useReadOnly, useSelected } from 'slate-react';
 
 const getDefaultColWidths = (columnsNumber: number) => Array.from({ length: columnsNumber }, () => DEFAULT_COL_WIDTH);
 
@@ -33,7 +32,7 @@ export const Table = (props: TableElementRootProps) => {
 
     const isCellsSelected = !!useTableStore().get.selectedCells();
     const colSizeOverrides = useTableStore().get.colSizeOverrides();
-    const currentColSizes = element.colSizes.map((size, index) => colSizeOverrides?.get(index) ?? size ?? EMPTY_COL_WIDTH);
+    const currentColSizes = element.colSizes.map((size, index) => colSizeOverrides?.get(index) || size || EMPTY_COL_WIDTH);
 
     const tableWidth = currentColSizes.reduce((acc, cur) => acc + cur, 0);
 
