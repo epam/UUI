@@ -98,7 +98,7 @@ async function compileScssDir({ from, to, filter, recursive = false }) {
         }
         const compileToFile = path.resolve(to, path.relative(from, filePath).replace('.scss', '.css'));
         const promise = compileScssFile({
-            from: path.resolve(filePath),
+            from: filePath,
             to: compileToFile,
         });
         inProgress.push(promise);
