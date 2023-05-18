@@ -1,6 +1,5 @@
 import React, { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-    createTablePlugin,
     ELEMENT_TABLE,
     ELEMENT_TD,
     ELEMENT_TH,
@@ -24,6 +23,8 @@ import {
     selectEditor,
     getStartPoint,
     createNode,
+    TTableElement,
+    createTablePlugin,
 } from "@udecode/plate";
 import cx from "classnames";
 import { Dropdown } from '@epam/uui-components';
@@ -52,6 +53,7 @@ import { TableCell } from "./TableCell";
 
 import tableCSS from './Table.scss';
 import { useFocused, useSelected } from 'slate-react';
+import { updateTableStructure } from './util';
 
 const TableRenderer = (props: any) => {
     const editor = usePlateEditorState();
@@ -59,6 +61,7 @@ const TableRenderer = (props: any) => {
     const ref = useRef(null);
 
     const { element } = props;
+    let tableElem = element as TTableElement;
 
     const cellEntries = getTableGridAbove(editor, { format: 'cell' });
 
@@ -85,8 +88,17 @@ const TableRenderer = (props: any) => {
 
         const colSpan = cellEntries.reduce((acc, [data, path]: any) =>
             (acc += path[2] === cellEntries[0][1][2] ? (data.data?.colSpan || 1) : 0), 0);
-        const rowSpan = cellEntries.reduce((acc, [data, path]: any) =>
-            (acc += path[2] !== cellEntries[0][1][2] ? (data.data?.rowSpan || 1) : 0), 1);
+
+        // define rowSpan
+        const alreadyCounted: number[] = [];
+        const rowSpan = cellEntries.reduce((acc, [data, path]: any) => {
+            const curRowCounted = alreadyCounted.includes(path[2]);
+            if (path[2] !== cellEntries[0][1][2] && !curRowCounted) {
+                alreadyCounted.push(path[2])
+                return acc + (data.data?.rowSpan || 1);
+            }
+            return acc;
+        }, 1);
 
         const emptyCol = {
             "data": { colSpan, rowSpan },
@@ -104,8 +116,8 @@ const TableRenderer = (props: any) => {
             ],
         };
 
+        // cols to remove
         const cols: any = {};
-
         cellEntries.forEach(([, path]) => {
             if (cols[path[2]]) {
                 cols[path[2]].push(path);
@@ -229,6 +241,9 @@ const TableRenderer = (props: any) => {
             </Fragment>
         );
     }, [element, cellPath, rowPath, cellEntries]);
+
+    // assign valid colIndexes in case of merged cells
+    tableElem = updateTableStructure(tableElem);
 
     return (
         <Dropdown
