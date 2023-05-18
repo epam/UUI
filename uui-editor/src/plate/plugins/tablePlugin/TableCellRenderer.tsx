@@ -34,7 +34,12 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
     const cellElement = useElement<ExtendedTTableCellElement>();
     const rowIndex = getTableRowIndex(editor, cellElement);
     const readOnly = useReadOnly();
-    const selected = useIsCellSelected(cellElement);
+
+    const [selectedCells] = useTableStore().use.selectedCells();
+    const selected = React.useMemo(() => !!selectedCells?.includes(cellElement), [
+        cellElement,
+        selectedCells,
+    ]);
 
     const rowSizeOverrides = useTableStore().get.rowSizeOverrides();
     const rowElement = useElement<TTableRowElement>(ELEMENT_TR);
@@ -80,7 +85,7 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
                     <TableCellElement.Handle className={ css.tableCellResizeLeftHandle } />
                 ) }
             </TableCellElement.ResizableWrapper>
-        </TableCellElement.Root >
+        </TableCellElement.Root>
     );
 };
 
