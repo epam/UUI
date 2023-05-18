@@ -208,11 +208,13 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     }
 
     handleValueChange = (newValue: RangeDatePickerValue) => {
-        this.props.onValueChange(newValue);
+        if (this.props.value.from !== newValue.from || this.props.value.to !== newValue.to) {
+            this.props.onValueChange(newValue);
 
-        if (this.props.getValueChangeAnalyticsEvent) {
-            const event = this.props.getValueChangeAnalyticsEvent(newValue, this.props.value);
-            this.context.uuiAnalytics.sendEvent(event);
+            if (this.props.getValueChangeAnalyticsEvent) {
+                const event = this.props.getValueChangeAnalyticsEvent(newValue, this.props.value);
+                this.context.uuiAnalytics.sendEvent(event);
+            }
         }
     };
 
