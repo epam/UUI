@@ -35,11 +35,16 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
     const rowIndex = getTableRowIndex(editor, cellElement);
     const readOnly = useReadOnly();
 
+    const selectedCells1 = useTableStore().get.selectedCells();
     const [selectedCells] = useTableStore().use.selectedCells();
     const selected = React.useMemo(() => !!selectedCells?.includes(cellElement), [
         cellElement,
         selectedCells,
     ]);
+
+    if (selectedCells1?.length || !!selectedCells?.length) {
+        console.log('compare selected cells', selectedCells1, selectedCells, selected);
+    }
 
     const rowSizeOverrides = useTableStore().get.rowSizeOverrides();
     const rowElement = useElement<TTableRowElement>(ELEMENT_TR);
