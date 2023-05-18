@@ -7,7 +7,7 @@ import { Text } from '@epam/uui';
 import { DataPickerRow } from '@epam/uui';
 import { demoData } from '@epam/uui-docs';
 import { PickerItem } from '@epam/uui';
-import css from './DataPickerRowDoc.scss';
+import css from './DataPickerRowDoc.module.scss';
 
 const dataSourcesMap: any = {
     languages: null,

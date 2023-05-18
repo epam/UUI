@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './FlexRow.scss';
+import css from './FlexRow.module.scss';
 import {
     FlexRowProps, uuiMarkers, isClickableChildClicked, cx,
 } from '@epam/uui-core';

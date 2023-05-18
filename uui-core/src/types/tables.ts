@@ -8,6 +8,7 @@ import { DataRowProps, DataSourceState, IDataSource } from './dataSources';
 import { ILens } from '../data';
 import * as CSS from 'csstype';
 import { RangeDatePickerPresets, TooltipCoreProps } from './components';
+import { Dayjs } from 'dayjs';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
@@ -236,17 +237,19 @@ export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
 
 type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: 'datePicker';
+    filter?(day: Dayjs): boolean;
     format?: string;
-};
-
-type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
-    type: 'numeric';
 };
 
 type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: 'rangeDatePicker';
     format?: string;
+    filter?(day: Dayjs): boolean;
     presets?: RangeDatePickerPresets;
+};
+
+type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+    type: 'numeric';
 };
 
 export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter> | DatePickerFilterConfig<TFilter> |

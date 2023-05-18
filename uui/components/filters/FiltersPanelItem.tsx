@@ -26,7 +26,7 @@ import { Text, TextPlaceholder } from '../typography';
 import { FilterItemBody } from './FilterItemBody';
 import { DropdownContainer } from '../overlays';
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/action-deleteforever-12.svg';
-import css from './FiltersPanelItem.scss';
+import css from './FiltersPanelItem.module.scss';
 import { MobileDropdownWrapper } from '../pickers';
 import { Modifier } from 'react-popper';
 

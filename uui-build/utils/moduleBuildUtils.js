@@ -1,8 +1,8 @@
 const fs = require('fs-extra');
 const path = require('path');
-const { getIndexFileRelativePath } = require('./../utils/indexFileUtils');
-const { logger, ModuleBuildProgressLogger } = require('./../utils/loggerUtils');
-const { buildUsingRollup, watchUsingRollup } = require('../rollup/utils/rollupBuildUtils');
+const { getIndexFileRelativePath } = require('./../utils/indexFileUtils.js');
+const { logger, ModuleBuildProgressLogger } = require('./../utils/loggerUtils.js');
+const { buildUsingRollup, watchUsingRollup } = require('../rollup/utils/rollupBuildUtils.js');
 
 const BUILD_FOLDER = 'build';
 

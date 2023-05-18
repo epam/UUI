@@ -40,7 +40,7 @@ exports[`Modals should be rendered correctly 1`] = `
       style={
         Object {
           "height": "auto",
-          "width": "480px",
+          "width": "420px",
         }
       }
     >

@@ -2,7 +2,7 @@ import React from 'react';
 import {
     DataTableCellProps, RenderEditorProps, uuiElement, uuiMod,
 } from '@epam/uui-core';
-import css from './DataTableCell.scss';
+import css from './DataTableCell.module.scss';
 import { FlexCell } from '../layout';
 import { DataTableCellOverlay } from './DataTableCellOverlay';
 

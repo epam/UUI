@@ -1,4 +1,4 @@
-import css from './TabButton.scss';
+import css from './TabButton.module.scss';
 import { TabButton as UuiTabButton, TabButtonProps as UuiTabButtonProps } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
 

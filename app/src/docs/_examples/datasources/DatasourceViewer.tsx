@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { DataPickerRow, VirtualList, Text, Panel, LinkButton } from '@epam/promo';
 import { FlexRow, PickerItem } from '@epam/uui';
 import { DataRowProps, DataSourceState, IDataSource, IEditable } from '@epam/uui-core';
-import css from './DatasourceViewer.scss';
+import css from './DatasourceViewer.module.scss';
 
 interface Props<TItem, TId> extends IEditable<DataSourceState> {
     exampleTitle?: string;

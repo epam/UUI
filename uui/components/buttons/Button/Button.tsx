@@ -2,7 +2,7 @@ import { Button as uuiButton, ButtonProps as uuiButtonProps } from '@epam/uui-co
 import { withMods } from '@epam/uui-core';
 import { ControlSize, ButtonMode } from '../../types';
 import { systemIcons } from '../../../icons/icons';
-import css from './Button.scss';
+import css from './Button.module.scss';
 
 export type ButtonColor = 'accent' | 'primary' | 'secondary' | 'negative';
 export const allButtonColors: ButtonColor[] = [

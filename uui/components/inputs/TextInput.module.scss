@@ -1,0 +1,154 @@
+@use  '../../assets/styles/index.scss' as *;
+
+.root {
+    fill: var(--uui-text-input-icon);
+    border-style: solid;
+    box-sizing: border-box;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: var(--uui-text-input-border-radius);
+
+    :global(.uui-input) {
+        color: var(--uui-text-input-text);
+        font-family: var(--uui-text-input-font);
+        font-weight: var(--uui-text-input-font, normal);
+        padding-left: 6px;
+        padding-right: 6px;
+
+        &::placeholder {
+            color: var(--uui-text-input-placeholder);
+        }
+
+        &:placeholder-shown {
+            text-overflow: ellipsis;
+        }
+
+        &::-moz-placeholder {
+            opacity: 1;
+        }
+    }
+
+    &.mode-form {
+        background-color: var(--uui-text-input-bg);
+        border-color: var(--uui-text-input-border);
+
+        :global(.-clickable) {
+            fill: var(--uui-text-input-icon-clickable);
+
+            &:hover {
+                fill: var(--uui-text-input-icon-clickable-hover);
+            }
+        }
+
+        &:hover {
+            border-color: var(--uui-text-input-border-hover);
+        }
+
+        &:global(.uui-focus) {
+            border-color: var(--uui-text-input-border-active);
+        }
+    }
+
+    &.mode-inline {
+        background-color: transparent;
+        border-color: transparent;
+
+        :global(.-clickable) {
+            fill: var(--uui-text-input-icon-clickable);
+
+            &:hover {
+                fill: var(--uui-text-input-icon-clickable-hover);
+            }
+        }
+
+        &:hover {
+            border-color: var(--uui-text-input-border-hover);
+        }
+
+        &:global(.uui-focus) {
+            border-color: var(--uui-text-input-border-active);
+        }
+    }
+
+    &.mode-cell {
+        background-color: transparent;
+        border-color: transparent;
+
+        :global(.-clickable) {
+            fill: transparent;
+        }
+
+        &:hover {
+            :global(.-clickable) {
+                fill: var(--uui-text-input-icon-clickable);
+
+                &:hover {
+                    fill: var(--uui-text-input-icon-clickable-hover);
+                }
+            }
+        }
+    }
+
+    &:global(.uui-invalid) {
+        &.mode-form {
+            background-color: var(--uui-text-input-bg);
+            border-color: var(--uui-text-input-border-error);
+        }
+    }
+
+    &:global(.uui-readonly) {
+        color: var(--uui-text-input-text);
+        fill: var(--uui-text-input-icon);
+        pointer-events: none;
+
+        &.mode-form {
+            background-color: var(--uui-text-input-bg-readonly);
+            border-color: var(--uui-text-input-border-readonly);
+        }
+    }
+
+    &:global(.uui-disabled) {
+        color: var(--uui-text-input-text-disabled);
+        fill: var(--uui-text-input-icon-disabled);
+        pointer-events: none;
+
+        :global(.uui-input) {
+            color: var(--uui-text-input-text-disabled);
+
+            &::placeholder {
+                color: var(--uui-text-input-placeholder-disabled);
+            }
+        }
+
+        &.mode-form {
+            background-color: var(--uui-text-input-bg-disabled);
+            border-color: var(--uui-text-input-border-disabled);
+        }
+    }
+
+    //Sizes
+    &.size-24 {
+        @include control-vertical-layout(24px, 1px);
+        min-width: 24px;
+    }
+
+    &.size-30 {
+        @include control-vertical-layout(30px, 1px);
+        min-width: 30px;
+    }
+
+    &.size-36 {
+        @include control-vertical-layout(36px, 1px);
+        min-width: 36px;
+    }
+
+    &.size-42 {
+        @include control-vertical-layout(42px, 1px);
+        min-width: 42px;
+    }
+
+    &.size-48 {
+        @include control-vertical-layout(48px, 1px);
+        min-width: 48px;
+    }
+}

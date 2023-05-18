@@ -3,7 +3,7 @@ import {
     FlexCell, FlexRow, IconContainer, Text, Tooltip,
 } from '@epam/promo';
 import { ReactComponent as myIcon } from '@epam/assets/icons/common/notification-warning-outline-18.svg';
-import css from './WithLinkExample.scss';
+import css from './WithLinkExample.module.scss';
 
 export default function LinkTooltipExample() {
     const renderTypesMarkup = () => (

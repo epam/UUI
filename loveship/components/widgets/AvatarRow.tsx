@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './AvatarRow.scss';
+import css from './AvatarRow.module.scss';
 import { Avatar } from '@epam/uui';
 import { AvatarProps } from '@epam/uui-components';
 import cx from 'classnames';

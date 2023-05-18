@@ -3,7 +3,7 @@ import { Dropdown, IconButton, Panel } from '@epam/loveship';
 import { createBlockStyleDropDownItem } from '../../../utils/createBlockStyleDropDownItem';
 import { DraftBlockStyleButton } from '../../..';
 import { ReactComponent as HeaderDropdownIcon } from '../../../icons/header_dropdown.svg';
-import css from './HeaderDropdownButton.scss';
+import css from './HeaderDropdownButton.module.scss';
 import { cx } from '@epam/uui-core';
 
 const buttons: DraftBlockStyleButton[] = [

@@ -1,7 +1,0 @@
-@use '../../../colors' as *;
-
-@mixin globalMenu-color() {
-    --background-color-hover: #{$gray90};
-    --background-color-active: #{$gray90};
-    --fill: white;
-}

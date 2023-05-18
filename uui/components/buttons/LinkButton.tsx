@@ -1,7 +1,7 @@
 import * as types from '../types';
 import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
-import css from './LinkButton.scss';
+import css from './LinkButton.module.scss';
 import { systemIcons } from '../../icons/icons';
 import { getIconClass } from './helper';
 
@@ -15,7 +15,9 @@ export type LinkButtonProps = LinkButtonMods & ButtonProps;
 
 function applyLinkButtonMods(mods: LinkButtonProps) {
     return [
-        css.root, css['size-' + (mods.size || defaultSize)], ...getIconClass(mods),
+        css.root,
+        css['size-' + (mods.size || defaultSize)],
+        ...getIconClass(mods),
     ];
 }
 

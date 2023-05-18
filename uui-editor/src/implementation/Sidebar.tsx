@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import css from "./Sidebar.scss";
+import css from "./Sidebar.module.scss";
 import { Editor, Plugins } from "slate-react";
 import flatten from "lodash.flatten";
 import cx from "classnames";

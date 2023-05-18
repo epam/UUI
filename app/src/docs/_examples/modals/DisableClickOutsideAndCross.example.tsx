@@ -7,7 +7,7 @@ import {
 
 function ModalWithDisabledClickOutsideAndCross(props: IModal<string>) {
     return (
-        <ModalBlocker disallowClickOutside blockerShadow="dark" { ...props } disableCloseByEsc={ true }>
+        <ModalBlocker disallowClickOutside { ...props } disableCloseByEsc={ true }>
             <ModalWindow>
                 <Panel background="white">
                     <ModalHeader title="Simple modal example " />

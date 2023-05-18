@@ -4,7 +4,7 @@ import { TabButton } from '../../buttons';
 import { PresetActionsDropdown } from './PresetActionsDropdown';
 import { PresetInput } from './PresetInput';
 import { FlexCell } from '../../layout';
-import css from './Preset.scss';
+import css from './Preset.module.scss';
 
 interface IPresetProps extends Omit<IPresetsApi, 'presets'> {
     preset: ITablePreset;
