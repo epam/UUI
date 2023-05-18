@@ -3,7 +3,7 @@ import { IEditableDebouncerOptions, withMods } from '@epam/uui-core';
 import { TextInput as uuiTextInput, SearchInput as UuiSearchInput } from '@epam/uui';
 import { TextInputProps } from '@epam/uui-components';
 import { systemIcons } from '../icons/icons';
-import css from './TextInput.scss';
+import css from './TextInput.module.scss';
 
 const defaultSize = '36';
 

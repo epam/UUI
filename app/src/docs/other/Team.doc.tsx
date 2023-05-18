@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './TeamDoc.scss';
+import css from './TeamDoc.module.scss';
 import {
     Button, FlexRow, IconContainer, LinkButton, RichTextView, Text,
 } from '@epam/promo';

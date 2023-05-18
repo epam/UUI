@@ -6,7 +6,7 @@ import { IHasEditMode, SizeMod, EditMode } from '../types';
 import { DropdownContainer } from '../overlays';
 import { TextInput } from '@epam/uui';
 import { TimePickerBody } from './TimePickerBody';
-import css from './TimePicker.scss';
+import css from './TimePicker.module.scss';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 
 dayjs.extend(customParseFormat);

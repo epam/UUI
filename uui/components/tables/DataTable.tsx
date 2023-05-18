@@ -25,7 +25,7 @@ import {
 import { VirtualList } from '../';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from '../typography';
-import css from './DataTable.scss';
+import css from './DataTable.module.scss';
 import { i18n } from '../../i18n';
 
 export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {

@@ -1,15 +1,13 @@
 {
   "name": "@epam/assets",
-  "version": "5.0.0-alpha.3",
+  "version": "5.0.0-alpha.4",
   "description": "EPAM Assets Library",
   "author": "EPAM",
   "license": "MIT",
   "scripts": {
-    "build": "node ../uui-build/scripts/buildModule",
+    "build": "node ../uui-build/scripts/buildModule && yarn buildTheme",
+    "buildTheme": "node ../uui-build/scripts/compileScss.js ./theme:./build/css/theme",
     "prepublish": "yarn build"
-  },
-  "dependencies": {
-    "normalize.css": "^7.0.0"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './Text.scss';
+import css from './Text.module.scss';
 import * as types from '../types';
 import { Text as uuiText, TextProps as UuiTextProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
@@ -8,7 +8,7 @@ import { getTextClasses, TextSettings } from '../../helpers/textLayout';
 export interface TextMods extends TextSettings {
     size?: types.TextSize | '42';
     font?: types.FontStyle;
-    color?: 'brand' | 'primary' | 'secondary' | 'disabled' | 'contrast';
+    color?: 'info' | 'warning' | 'error' | 'success' | 'brand' | 'primary' | 'secondary' | 'disabled' | 'contrast';
 }
 
 export type TextProps = UuiTextProps & TextMods;
@@ -24,7 +24,9 @@ function applyTextMods(mods: TextMods) {
     );
 
     return [
-        `uui-font-${mods.font || 'regular'}`, `uui-text-${mods.color || 'primary'}`, css.root,
+        `uui-font-${mods.font || 'regular'}`,
+        `uui-text-${mods.color || 'primary'}`,
+        css.root,
     ].concat(textClasses);
 }
 

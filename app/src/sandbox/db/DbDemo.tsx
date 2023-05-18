@@ -10,7 +10,7 @@ import {
 import { DemoDbRef, useDemoDbRef, PersonTableRecord } from './state';
 import { svc } from '../../services';
 import { PersonsTable } from './PersonsTable';
-import css from './DbDemo.scss';
+import css from './DbDemo.module.scss';
 
 export function DbDemoImpl() {
     const dbRef = useDemoDbRef();

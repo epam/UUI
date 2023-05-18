@@ -3,12 +3,11 @@ import * as React from 'react';
 import { IEditable, IHasCX, uuiMarkers, uuiElement, ICanBeReadonly } from '@epam/uui-core';
 import { Toolbar } from './common';
 import { linkDecorator } from './decorators';
-import css from './RichTextEditor.scss';
+import css from './RichTextEditor.module.scss';
 import style from '@epam/assets/scss/typography.scss';
 import { convertHtmlToDraftState, convertDraftStateToHtml } from './utils';
 import { ToolbarButton } from './types';
 import * as I from 'immutable';
-import { ScrollBars } from '@epam/loveship';
 import cx from 'classnames';
 import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
 

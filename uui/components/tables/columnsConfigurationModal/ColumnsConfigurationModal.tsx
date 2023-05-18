@@ -1,4 +1,4 @@
-import styles from './ColumnsConfigurationModal.scss';
+import styles from './ColumnsConfigurationModal.module.scss';
 import * as React from 'react';
 import { useCallback, useMemo } from 'react';
 //
@@ -41,7 +41,7 @@ const renderGroupTitle = (title: string, amount: number) => (
         <Text cx={ styles.groupTitleText } font="semibold" lineHeight="24" fontSize="14">
             {title}
         </Text>
-        <Badge cx={ styles.groupTitleBadge } caption={ amount } color="info" size="18" />
+        <Badge cx={ styles.groupTitleBadge } caption={ amount } color="default" size="18" />
     </FlexRow>
 );
 
@@ -148,7 +148,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                 <ModalFooter borderTop>
                     <LinkButton icon={ ResetIcon } caption={ i18nLocal.resetToDefaultButton } onClick={ reset } />
                     <FlexSpacer />
-                    <Button mode="ghost" color="secondary" caption={ i18nLocal.cancelButton } onClick={ close } />
+                    <Button mode="none" color="secondary" caption={ i18nLocal.cancelButton } onClick={ close } />
                     {noVisibleColumns ? (
                         <Tooltip content={ i18nLocal.enableAtLeastOneColumnMessage } placement="top-end" color="critical">
                             {applyButton}

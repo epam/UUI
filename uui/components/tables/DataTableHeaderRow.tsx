@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataTableHeaderRow as uuiDataTableHeaderRow } from '@epam/uui-components';
 import { DataTableHeaderRowProps, withMods } from '@epam/uui-core';
 import { IconButton, DataTableHeaderCell, DataTableHeaderRowMods } from '../';
-import css from './DataTableHeaderRow.scss';
+import css from './DataTableHeaderRow.module.scss';
 import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/action-settings-18.svg';
 
 export const DataTableHeaderRow = withMods<DataTableHeaderRowProps, DataTableHeaderRowMods>(

@@ -1,11 +1,11 @@
 import React from 'react';
-import { setupComponentForTest, screen, fireEvent } from '@epam/uui-test-utils';
+import { setupComponentForTest, screen, fireEvent, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { TextInput } from '@epam/uui';
 
 /** Start: This is some component which we are going to test. It's just an example. */
 export interface SomeComponentProps {
-    value: string;
-    onValueChange: (value: string) => void;
+    value?: string;
+    onValueChange?: (value: string) => void;
 }
 export function SomeComponent(props: SomeComponentProps) {
     return (
@@ -34,6 +34,16 @@ async function setupTestComponent(params: Partial<SomeComponentProps>) {
 }
 
 describe('TestComponent', () => {
+    it('should render with minimum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<SomeComponent />);
+        expect(tree).toMatchSnapshot();
+    });
+
+    it('should render with maximum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<SomeComponent value="monday" onValueChange={ jest.fn() } />);
+        expect(tree).toMatchSnapshot();
+    });
+
     it('should invoke onValuesChange when user types new value', async () => {
         const { mocks, dom } = await setupTestComponent({ value: 'monday' });
         expect(dom.input.value).toEqual('monday');

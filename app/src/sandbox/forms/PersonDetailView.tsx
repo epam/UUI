@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './ComplexForm.scss';
+import css from './ComplexForm.module.scss';
 import {
     Panel, FlexRow, FlexCell, LabeledInput, ControlWrapper, RadioGroup, CheckboxGroup, Rating, Slider, RangeSlider, Blocker, Text,
 } from '@epam/loveship';

@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "5.0.0-alpha.3",
+  "version": "5.0.0-alpha.4",
   "bin": {
     "epam-uui-build": "./bin/cli.js"
   },
@@ -12,6 +12,7 @@
     "lint": "node ../uui-build/scripts/lint"
   },
   "dependencies": {
+    "@csstools/postcss-sass": "^5.0.1",
     "@lerna/package-graph": "6.4.0",
     "@lerna/project": "6.4.0",
     "@rollup/plugin-commonjs": "24.0.0",
@@ -38,13 +39,16 @@
     "jest-resolve": "27.5.1",
     "lodash.defaultsdeep": "4.6.1",
     "lodash.uniqueid": "4.0.1",
-    "postcss-less": "6.0.0",
+    "postcss": "^8.4.19",
+    "postcss-discard-comments": "^5.1.2",
+    "postcss-modules": "^6.0.0",
+    "postcss-scss": "^4.0.6",
     "react-app-polyfill": "3.0.0",
     "replace-in-files": "^2.0.3",
     "rollup": "3.20.2",
     "rollup-plugin-postcss-modules": "2.1.0",
     "rollup-plugin-visualizer": "5.9.0",
-    "sass": "1.57.0",
+    "sass": "^1.62.1",
     "source-map-explorer": "2.5.3",
     "stylelint": "15.3.0",
     "stylelint-config-sass-guidelines": "9.0.1",

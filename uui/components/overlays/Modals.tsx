@@ -1,32 +1,29 @@
 import * as React from 'react';
-import {
-    withMods, ModalFooterCoreProps, ModalWindowProps, ModalBlockerProps, ModalHeaderCoreProps,
-} from '@epam/uui-core';
+import { withMods, ModalFooterCoreProps, ModalWindowProps as UuiModalWindowProps, ModalBlockerProps, ModalHeaderCoreProps } from '@epam/uui-core';
 import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '@epam/uui-components';
-import {
-    FlexRow, FlexSpacer, RowMods, FlexCell,
-} from '../layout';
+import { FlexRow, FlexSpacer, RowMods, FlexCell } from '../layout';
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
 import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg';
-import css from './Modals.scss';
+import css from './Modals.module.scss';
 
 export const ModalBlocker = withMods<ModalBlockerProps>(uuiModalBlocker, () => [css.modalBlocker]);
 
 export interface ModalWindowMods {
     width?: number;
-    height?: number | 'auto';
+    height?: number;
 }
 
-export const ModalWindow = withMods<ModalWindowProps, ModalWindowMods>(
+export type ModalWindowProps = UuiModalWindowProps & ModalWindowMods;
+
+export const ModalWindow = withMods<UuiModalWindowProps, ModalWindowMods>(
     uuiModalWindow,
     () => [css.modal],
     (props) => ({
-        rawProps: {
-            style: {
-                width: `${props.width || 480}px`,
-                height: props.height ? `${props.height}px` : 'auto',
-            },
+        style: {
+            ...props.style,
+            width: `${props.width || 420}px`,
+            height: props.height ? `${props.height}px` : 'auto',
         },
     }),
 );

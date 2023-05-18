@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    Alert, ErrorAlert, HintAlert, SuccessAlert, WarningAlert,
-} from '../Alert';
+import { Alert, ErrorAlert, HintAlert, SuccessAlert, WarningAlert } from '../Alert';
 import { SvgMock, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('Alert', () => {

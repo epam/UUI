@@ -4,7 +4,7 @@ import {
 } from '@epam/uui-core';
 import { FlexRow } from '../layout';
 import { Anchor } from '../navigation';
-import css from './DataTableRowContainer.scss';
+import css from './DataTableRowContainer.module.scss';
 
 export interface DataTableRowContainerProps<TItem, TId, TFilter>
     extends IClickable,

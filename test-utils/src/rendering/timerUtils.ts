@@ -13,6 +13,7 @@ export const delay = (ms: number = 1): Promise<void> => new Promise((resolve) =>
  * https://legacy.reactjs.org/docs/testing-recipes.html#act
  *
  * Use this function only if absolutely necessary. Usually, you may want to consider other alternatives:
+ *  - await find* queries
  *  - waitForElementToBeRemoved
  *  - waitFor
  *

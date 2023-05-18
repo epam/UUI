@@ -54,7 +54,7 @@ const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseP
         examples: [
             {
                 name: 'Green Button',
-                value: (props) => <LinkButton color="green" { ...props } />,
+                value: (props) => <LinkButton { ...props } />,
             },
         ],
     })

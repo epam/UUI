@@ -13,7 +13,7 @@ import App from './App';
 import { getApi, TApi } from './data';
 import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
-import './index.scss';
+import './index.module.scss';
 
 const history = createBrowserHistory();
 // @ts-ignore (COMMIT_HASH will be replaced to a real string by Webpack)

@@ -6,7 +6,7 @@ import {
     DataQueryFilter, DataTableState, DataTableSelectedCellData, useArrayDataSource, DataColumnProps,
 } from '@epam/uui-core';
 
-import css from './TablesExamples.scss';
+import css from './TablesExamples.module.scss';
 
 enum Day {
     Monday = 'Monday',

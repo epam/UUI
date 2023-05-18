@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { IHasCX, IHasRawProps } from '@epam/uui-core';
-import css from './ProgressBar.scss';
+import css from './ProgressBar.module.scss';
 
 export interface IProgressBarProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     progress: number;
