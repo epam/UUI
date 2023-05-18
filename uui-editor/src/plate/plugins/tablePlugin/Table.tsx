@@ -3,15 +3,12 @@ import {
     TableElement,
     TableElementRootProps,
 } from '@udecode/plate-table';
-import {
-    type TTableElement,
-    useTableStore,
-    TTableRowElement
-} from '@udecode/plate';
+import { type TTableElement, useTableStore, TTableRowElement, collapseSelection } from '@udecode/plate';
 import { cx } from '@epam/uui-core'
 
 import tableCSS from './Table.module.scss';
 import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
+import { useReadOnly, useSelected } from 'slate-react';
 
 const getDefaultColWidths = (columnsNumber: number) => Array.from({ length: columnsNumber }, () => DEFAULT_COL_WIDTH);
 
@@ -36,20 +33,28 @@ export const Table = (props: TableElementRootProps) => {
 
     const isCellsSelected = !!useTableStore().get.selectedCells();
     const colSizeOverrides = useTableStore().get.colSizeOverrides();
-    const currentColSizes = element.colSizes.map((size, index) => colSizeOverrides?.get(index) || size || EMPTY_COL_WIDTH);
+    const currentColSizes = element.colSizes.map((size, index) => colSizeOverrides?.get(index) ?? size ?? EMPTY_COL_WIDTH);
 
     const tableWidth = currentColSizes.reduce((acc, cur) => acc + cur, 0);
+
+    const selectedCells = useTableStore().get.selectedCells();
+    const [selectedCellsFromUse] = useTableStore().use.selectedCells();
+
+
+    if (selectedCells?.length || !!selectedCellsFromUse?.length) {
+        console.log('compare selected cells', selectedCells, selectedCellsFromUse);
+    }
 
     return (
         <TableElement.Root
             { ...rootProps }
-            // onMouseDown={ () => {
-            //     console.log('my handler used', selectedCellsFromUse);
-            //     // until cell dnd is supported, we collapse the selection on mouse down
-            //     if (selectedCellsFromUse) {
-            //         collapseSelection(editor);
-            //     }
-            // } }
+            onMouseDown={ () => {
+                console.log('my handler used', selectedCells);
+                // until cell dnd is supported, we collapse the selection on mouse down
+                if (selectedCells) {
+                    collapseSelection(editor);
+                }
+            } }
             editor={ editor }
             element={ element }
             className={ cx(
