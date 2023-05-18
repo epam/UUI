@@ -36,8 +36,7 @@ export function useDemoDescriptionEditor(demoItemName: string) {
                     </SuccessNotification>
                 ),
                 { position: 'bot-left', duration: 1 },
-            )
-            .catch(() => null);
+            );
     };
 
     const openModal = React.useCallback(async () => {
