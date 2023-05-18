@@ -9,7 +9,8 @@
     "generate-components-api": "ts-node ./getComponentsPropsSet.ts",
     "prepublish": "yarn build",
     "track-bundle-size": "node scripts/trackBundleSize.js",
-    "lint": "node ../uui-build/scripts/lint"
+    "lint": "node ../uui-build/scripts/lint",
+    "transform-tokens": "npx ts-node -O {\\\"noImplicitAny\\\":false} ./tokens-converter/index.ts"
   },
   "dependencies": {
     "@csstools/postcss-sass": "^5.0.1",
