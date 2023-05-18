@@ -8,6 +8,10 @@ export class DatasourcesArrayDatasourceDoc extends BaseDocsBlock {
         return (
             <>
                 <EditableDocContent fileName="datasources-Array-datasource" />
+                
+                <DocExample title="ArrayDatasourceProps" path="./_examples/datasources/ArrayDatasourceProps.code.example.ts" onlyCode={ true } />
+                <EditableDocContent fileName="datasources-array-datasource-props-overview" />
+
                 <DocExample title="Data" path="./_examples/datasources/ArrayDatasourceData.example.tsx" />
                 <DocExample title="Search" path="./_examples/datasources/ArrayDatasourceSearch.example.tsx" />
                 <DocExample title="Filter" path="./_examples/datasources/ArrayDatasourceFilter.example.tsx" />
