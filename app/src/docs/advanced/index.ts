@@ -12,3 +12,4 @@ export * from './datasources/details/ArrayDatasource.doc';
 export * from './datasources/details/AsyncDatasource.doc';
 export * from './datasources/details/LazyDatasource.doc';
 export * from './datasources/details/Hooks.doc';
+export * from './datasources/details/Usage.doc';

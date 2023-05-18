@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To use the power of datasources it is not required to use UUI components. Users are able to build their own components, based on the datasource functionality. Mostly all examples in the Datasources tutorial are built on top of the DatasourceViewer, a toy component, which was created for the demonstration purpose.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
