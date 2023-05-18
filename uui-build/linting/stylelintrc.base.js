@@ -57,6 +57,10 @@ const SCSS_COMMON_RULES = {
             'rules',
         ],
     ],
+    'scss/at-mixin-pattern': null,
+    'scss/at-import-partial-extension-blacklist': null,
+    'scss/selector-no-redundant-nesting-selector': null,
+    'scss/dollar-variable-pattern': null,
     ...turnOffStylelintRulesToBeFixed(),
 };
 
@@ -70,11 +74,6 @@ module.exports = {
             files: ['**/*.scss'],
             rules: {
                 ...SCSS_COMMON_RULES,
-                // 'scss/partial-no-import': true,
-                'scss/at-mixin-pattern': null,
-                'scss/at-import-partial-extension-blacklist': null,
-                'scss/selector-no-redundant-nesting-selector': null,
-                'scss/dollar-variable-pattern': null,
             },
         },
     ],
