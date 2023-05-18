@@ -94,6 +94,7 @@ import {
     DatasourcesArrayDatasourceDoc,
     DatasourcesAsyncDatasourceDoc,
     DatasourcesLazyDatasourceDoc,
+    DatasourcesHooksDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
@@ -210,6 +211,7 @@ export const items: DocItem[] = [
     { id: 'datasources-array-datasource', name: 'ArrayDatasource', component: DatasourcesArrayDatasourceDoc, parentId: 'datasources-details' },
     { id: 'datasources-async-datasource', name: 'AsyncDatasource', component: DatasourcesAsyncDatasourceDoc, parentId: 'datasources-details' },
     { id: 'datasources-lazy-datasource', name: 'LazyDatasource', component: DatasourcesLazyDatasourceDoc, parentId: 'datasources-details' },
+    { id: 'datasources-hooks', name: 'Hooks', component: DatasourcesHooksDoc, parentId: 'datasources-details' },
     { id: 'contexts', name: 'Contexts' },
     { id: 'contextProvider', name: 'Context Provider', component: ContextProviderDoc, parentId: 'contexts', tags: ['contexts'] },
     { id: 'apiContext', name: 'Api Context and Error Handling', component: ApiContextDoc, parentId: 'contexts', tags: ['contexts'] },
