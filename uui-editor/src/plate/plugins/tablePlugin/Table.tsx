@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     TableElement,
     TableElementRootProps,
 } from '@udecode/plate-table';
-import { type TTableElement, useTableStore, TTableRowElement } from '@udecode/plate';
+import { type TTableElement, useTableStore, TTableRowElement, usePlateEditorRef, HTMLPropsAs, collapseSelection, useElementProps, createComponentAs, createElementAs, useEditorRef, getTableGridAbove } from '@udecode/plate';
 import { cx } from '@epam/uui-core'
 
 import tableCSS from './Table.scss';
 import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
+import { useReadOnly, useSelected } from 'slate-react';
 
 const getDefaultColWidths = (columnsNumber: number) => Array.from({ length: columnsNumber }, () => DEFAULT_COL_WIDTH);
 
@@ -23,6 +24,82 @@ const getTableColumnCount = (element: TTableElement) => {
     return colCount;
 }
 
+/**
+ * Many grid cells above and diff -> set
+ * No many grid cells above and diff -> unset
+ * No selection -> unset
+ */
+export const useSelectedCells = () => {
+    const readOnly = useReadOnly();
+    const selected = useSelected();
+    const editor = useEditorRef();
+
+    const [selectedCells, setSelectedCells] = useTableStore().use.selectedCells();
+
+    useEffect(() => {
+        if (!selected || readOnly) {
+            console.log('set selected cells to null')
+            setSelectedCells(null);
+        }
+    }, [selected, editor, setSelectedCells, readOnly]);
+
+    useEffect(() => {
+        console.log('readOnly', readOnly);
+        if (readOnly) return;
+
+        const cellEntries = getTableGridAbove(editor, { format: 'cell' });
+        console.log('cellEntries', cellEntries);
+        if (cellEntries.length > 1) {
+            const cells = cellEntries.map((entry) => entry[0]);
+            console.log('cells', cells);
+
+            console.log(
+                'JSON.stringify(cells)',
+                JSON.stringify(cells),
+                'JSON.stringify(selectedCells)',
+                JSON.stringify(selectedCells)
+            );
+            if (JSON.stringify(cells) !== JSON.stringify(selectedCells)) {
+                console.log('setting selected cells', cells)
+                setSelectedCells(cells);
+            }
+        } else if (selectedCells) {
+            console.log('selectedCells 2', selectedCells);
+            setSelectedCells(null);
+        }
+    }, [editor, editor.selection, readOnly, selectedCells, setSelectedCells]);
+
+    return selectedCells;
+};
+
+export const useTableElementRootProps = (
+    props: TableElementRootProps
+): HTMLPropsAs<'table'> => {
+    const editor = usePlateEditorRef();
+
+    const selectedCells = useSelectedCells();
+
+    return {
+        onMouseDown: () => {
+            // until cell dnd is supported, we collapse the selection on mouse down
+            console.log('onMouseDown selectedCells', selectedCells);
+            if (selectedCells) {
+                console.log('collapseSelection', editor);
+                collapseSelection(editor);
+            }
+        },
+        ...useElementProps(props),
+    };
+};
+
+export const TableElementRoot = createComponentAs<TableElementRootProps>(
+    (props) => {
+        const htmlProps = useTableElementRootProps(props);
+
+        return createElementAs('table', htmlProps);
+    }
+);
+
 export const Table = (props: TableElementRootProps) => {
     const { as, children, element, editor, ...rootProps } = props;
 
@@ -35,9 +112,25 @@ export const Table = (props: TableElementRootProps) => {
     const currentColSizes = element.colSizes.map((size, index) => colSizeOverrides?.get(index) ?? size ?? EMPTY_COL_WIDTH);
 
     const tableWidth = currentColSizes.reduce((acc, cur) => acc + cur, 0);
+
+    const selectedCells = useTableStore().get.selectedCells();
+    const [selectedCellsFromUse] = useTableStore().use.selectedCells();
+
+
+    if (selectedCells?.length || !!selectedCellsFromUse?.length) {
+        console.log('compare selected cells', selectedCells, selectedCellsFromUse);
+    }
+
     return (
-        <TableElement.Root
+        <TableElementRoot
             { ...rootProps }
+            onMouseDown={ () => {
+                console.log('my handler used', selectedCells);
+                // until cell dnd is supported, we collapse the selection on mouse down
+                // if (selectedCells) {
+                //     collapseSelection(editor);
+                // }
+            } }
             editor={ editor }
             element={ element }
             className={ cx(
@@ -56,6 +149,6 @@ export const Table = (props: TableElementRootProps) => {
             </TableElement.ColGroup>
 
             <TableElement.TBody className={ tableCSS.tbody }>{ children }</TableElement.TBody>
-        </TableElement.Root>
+        </TableElementRoot>
     );
 };
