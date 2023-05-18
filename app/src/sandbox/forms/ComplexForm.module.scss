@@ -3,6 +3,14 @@
 .form-panel {
     flex: 1 1 auto;
     position: relative;
+
+    .save-panel-button-wrapper {
+        display: flex;
+
+        button {
+            flex-grow: 1;
+        }
+    }
 }
 
 .horizontal {

@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { INotification, Metadata, IFormApi } from '@epam/uui-core';
+import { INotification, Metadata, IFormApi, cx } from '@epam/uui-core';
 import { Spinner } from '@epam/uui-components';
 import { PersonDetails } from '@epam/uui-docs';
-import {
-    LabeledInput, Button, Switch, FlexRow, FlexCell, Panel, Text, FlexSpacer, SuccessNotification, Form, MultiSwitch,
-} from '@epam/loveship';
+import { LabeledInput, Button, Switch, FlexRow, FlexCell, Panel, Text, FlexSpacer, SuccessNotification, Form, MultiSwitch } from '@epam/loveship';
 import { svc } from '../../services';
 import { PersonDetailEditor } from './PersonDetailEditor';
 import { PersonDetailView } from './PersonDetailView';
@@ -130,25 +128,25 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
     renderSavePanel(props: IFormApi<PersonDetails>) {
         return (
             <>
-                <FlexCell minWidth={ 100 }>
+                <FlexCell minWidth={ 100 } cx={ css.savePanelButtonWrapper }>
                     <Button onClick={ () => props.save() } isDisabled={ this.state.isDisabled || !props.isChanged } caption="Save" color="grass" />
                 </FlexCell>
-                <FlexCell minWidth={ 100 }>
+                <FlexCell minWidth={ 100 } cx={ css.savePanelButtonWrapper }>
                     <Button caption="Undo" color="night500" isDisabled={ !props.canUndo } onClick={ props.undo } />
                 </FlexCell>
-                <FlexCell minWidth={ 100 }>
+                <FlexCell minWidth={ 100 } cx={ css.savePanelButtonWrapper }>
                     <Button caption="Redo" color="night500" isDisabled={ !props.canRedo } onClick={ props.redo } />
                 </FlexCell>
-                <FlexCell minWidth={ 100 }>
-                    <Button caption="Revert" color="sun" fill="none" isDisabled={ !props.canRevert } onClick={ props.revert } />
+                <FlexCell minWidth={ 100 } cx={ css.savePanelButtonWrapper }>
+                    <Button caption="Revert" color="fire" fill="none" isDisabled={ !props.canRevert } onClick={ props.revert } />
                 </FlexCell>
-                <FlexCell minWidth={ 100 }>
+                <FlexCell minWidth={ 100 } cx={ css.savePanelButtonWrapper }>
                     <Button caption="Reload" color="sky" onClick={ () => this.loadForm() } />
                 </FlexCell>
-                <FlexCell minWidth={ 100 }>
+                <FlexCell minWidth={ 100 } cx={ css.savePanelButtonWrapper }>
                     <Button caption="Load default" color="fire" onClick={ () => this.loadDefaultPerson } />
                 </FlexCell>
-                <FlexCell minWidth={ 100 }>
+                <FlexCell minWidth={ 100 } cx={ css.savePanelButtonWrapper }>
                     <Button caption="Clear" fill="none" color="fire" isDisabled={ this.state.isDisabled } onClick={ () => this.setState({ person: {} }) } />
                 </FlexCell>
             </>
@@ -159,7 +157,7 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
         const background = this.state.hasBackground ? 'white' : 'night50';
 
         return (
-            <Panel margin="24" background={ background } cx={ css.formPanel }>
+            <Panel margin="24" background={ background } cx={ cx('uui-theme-loveship', css.formPanel) }>
                 <FlexRow size="48" padding="24">
                     <Text size="48" font="sans-semibold">
                         Complex Form
