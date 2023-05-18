@@ -110,6 +110,7 @@ export function RichTextEditorDemo() {
                     key={ contentName }
                     autoFocus={ true }
                     plugins={ plugins }
+                    isReadonly={ isReadonly }
                     placeholder="Add description"
                     minHeight={ 300 }
                 />
