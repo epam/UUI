@@ -19,7 +19,7 @@ export function DatasourceViewer<TItem, TId>(props: Props<TItem, TId>) {
         return (
             <PickerItem
                 title={ props.getName?.(item) ?? (item as { name: string }).name }
-                size="24"
+                size="36"
                 { ...rowProps }
             />
         );
@@ -30,7 +30,6 @@ export function DatasourceViewer<TItem, TId>(props: Props<TItem, TId>) {
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                borderBottom="none"
                 padding="12"
                 renderItem={ renderItem }
             />

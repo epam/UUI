@@ -25,12 +25,6 @@ export const textColumns: DataColumnProps<{ name: string }, number, any>[] = [
         caption: 'Name',
         width: 290,
         fix: 'left',
-        renderCell: (props) => (
-            <DataTableCell
-                { ...props.rowLens.prop('name').toProps() }
-                renderEditor={ (props) => <Text>{props.value }</Text> }
-                { ...props }
-            />
-        ),
+        render: (props) => <Text>{props.name}</Text>,
     },
 ];
