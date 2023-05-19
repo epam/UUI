@@ -1,4 +1,29 @@
+@use 'sass:math';
 @use '../../assets/styles/scss/index'  as *;
+
+@mixin button-colors($bg, $fg, $brd) {
+    background-color: $bg;
+    color: $fg;
+    fill: $fg;
+    border-color: $brd;
+}
+
+@mixin control-size($size, $borderWidth) {
+    $padding: math.div($size, 6) - $borderWidth;
+    min-width: $size;
+    padding-left: $padding;
+    padding-right: $padding;
+}
+
+@mixin control-horizontal-layout($size, $borderWidth) {
+    $paddingStep: math.div($size, 6);
+    @include control-size($size, $borderWidth);
+
+    :global(.uui-caption), :global(.uui-input) {
+        padding-left: $paddingStep;
+        padding-right: $paddingStep;
+    }
+}
 
 .root {
     &.size-12 {
