@@ -17,6 +17,7 @@ import {
 } from '@udecode/plate';
 import { useReadOnly } from 'slate-react';
 import { ExtendedTTableCellElement } from './types';
+import { TableCellElementResizable } from './Resizable';
 
 interface PlateTableCellElementProps extends TableCellElementRootProps {
     hideBorder?: boolean;
@@ -44,6 +45,7 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
     const rowElement = useElement<TTableRowElement>(ELEMENT_TR);
     const rowSize = rowSizeOverrides.get(rowIndex) ?? rowElement?.size ?? undefined;
 
+    // TODO: move to plate
     const colIndex = cellElement.colIndex;
     const tableElement = useElement<TTableElement>(ELEMENT_TABLE);
 
@@ -70,7 +72,7 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
             </TableCellElement.Content>
 
             <TableCellElement.ResizableWrapper className={ css.tableCellResizable }>
-                <TableCellElement.Resizable
+                <TableCellElementResizable
                     colIndex={ colIndex }
                     rowIndex={ rowIndex }
                     readOnly={ readOnly }
