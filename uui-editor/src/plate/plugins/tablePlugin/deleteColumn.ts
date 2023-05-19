@@ -45,6 +45,10 @@ export const deleteColumn = <V extends Value>(editor: PlateEditor<V>) => {
         ) {
             const [tableNode, tablePath] = tableEntry;
 
+            // TODO: check entire column. if there are cells with colSpan > 1.
+            // Then we need to remove squize that column or divide into two smaller once.
+            // It depends on particular case.
+            // Use colIndex assigned from uui-editor/src/plate/plugins/tablePlugin/util.ts
             const tdPath = tdEntry[1];
             const colIndex = tdPath[tdPath.length - 1];
 

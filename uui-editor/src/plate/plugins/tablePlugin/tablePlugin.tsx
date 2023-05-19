@@ -1,4 +1,11 @@
-import React, { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+    Fragment,
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+    useState
+} from 'react';
 import {
     ELEMENT_TABLE,
     ELEMENT_TD,
@@ -54,6 +61,7 @@ import { TableCell } from "./TableCell";
 import tableCSS from './Table.module.scss';
 import { useFocused, useSelected } from 'slate-react';
 import { updateTableStructure } from './util';
+import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 
 const TableRenderer = (props: any) => {
     const editor = usePlateEditorState();
@@ -86,8 +94,13 @@ const TableRenderer = (props: any) => {
         const rowArray: any[] = [];
         cellEntries.forEach(([, path]) => rowArray.push(path[2]));
 
-        const colSpan = cellEntries.reduce((acc, [data, path]: any) =>
-            (acc += path[2] === cellEntries[0][1][2] ? (data.data?.colSpan || 1) : 0), 0);
+        // define colSpan
+        const colSpan = cellEntries.reduce((acc, [data, path]: any) => {
+            if (path[2] === cellEntries[0][1][2]) {
+                return acc + (data.data?.colSpan || 1);
+            }
+            return acc;
+        }, 0);
 
         // define rowSpan
         const alreadyCounted: number[] = [];
@@ -212,6 +225,7 @@ const TableRenderer = (props: any) => {
                     icon={ InsertColumnAfter }
                 />
                 <ToolbarButton
+                    // TODO: improve column removal when we have merged cells in this column
                     onClick={ () => deleteColumn(editor) }
                     icon={ RemoveColumn }
                 />
@@ -311,17 +325,19 @@ const createInitialTable = (editor: PlateEditor) => {
                 children: [editor.blockFactory()],
             }],
         },
-
     ];
 
     return [
         {
-            type: getPluginType(editor, ELEMENT_TABLE),
-            children: rows,
-            data: { cellSizes: [DEFAULT_COL_WIDTH, DEFAULT_COL_WIDTH] },
+            type: PARAGRAPH_TYPE,
+            children: [{
+                type: getPluginType(editor, ELEMENT_TABLE),
+                children: rows,
+                data: { cellSizes: [DEFAULT_COL_WIDTH, DEFAULT_COL_WIDTH] },
+            }],
         },
-        createNode(),
-    ];
+        createNode()
+    ]
 }
 
 const selectFirstCell = (editor: PlateEditor) => {

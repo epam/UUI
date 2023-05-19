@@ -47,6 +47,9 @@ export const Table = (props: TableElementRootProps) => {
     return (
         <TableElement.Root
             { ...rootProps }
+            // overriding onMouseDown by dummy handler fixes bug with blue background when selecting cells.
+            // basically avoiding collapseSelection call fixes this bug.
+            // reproducible on non dev envinonment only.
             onMouseDown={ () => {
                 console.log('my handler used', selectedCells);
                 // until cell dnd is supported, we collapse the selection on mouse down
