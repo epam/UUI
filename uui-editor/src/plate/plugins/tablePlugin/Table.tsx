@@ -3,7 +3,7 @@ import {
     TableElement,
     TableElementRootProps,
 } from '@udecode/plate-table';
-import { type TTableElement, useTableStore, TTableRowElement, collapseSelection } from '@udecode/plate';
+import { type TTableElement, useTableStore, TTableRowElement, HTMLPropsAs, useSelectedCells, useElementProps, createComponentAs, createElementAs } from '@udecode/plate';
 import { cx } from '@epam/uui-core'
 
 import tableCSS from './Table.module.scss';
@@ -23,6 +23,21 @@ const getTableColumnCount = (element: TTableElement) => {
     return colCount;
 }
 
+export const useTableElementRootProps = (
+    props: TableElementRootProps
+): HTMLPropsAs<'table'> => {
+    useSelectedCells();
+
+    return { ...useElementProps(props) };
+};
+
+export const TableElementRoot = createComponentAs<TableElementRootProps>(
+    (props) => {
+        const htmlProps = useTableElementRootProps(props);
+        return createElementAs('table', htmlProps);
+    }
+);
+
 export const Table = (props: TableElementRootProps) => {
     const { as, children, element, editor, ...rootProps } = props;
 
@@ -36,27 +51,9 @@ export const Table = (props: TableElementRootProps) => {
 
     const tableWidth = currentColSizes.reduce((acc, cur) => acc + cur, 0);
 
-    const selectedCells = useTableStore().get.selectedCells();
-    const [selectedCellsFromUse] = useTableStore().use.selectedCells();
-
-
-    if (selectedCells?.length || !!selectedCellsFromUse?.length) {
-        console.log('compare selected cells', selectedCells, selectedCellsFromUse);
-    }
-
     return (
-        <TableElement.Root
+        <TableElementRoot
             { ...rootProps }
-            // overriding onMouseDown by dummy handler fixes bug with blue background when selecting cells.
-            // basically avoiding collapseSelection call fixes this bug.
-            // reproducible on non dev envinonment only.
-            onMouseDown={ () => {
-                console.log('my handler used', selectedCells);
-                // until cell dnd is supported, we collapse the selection on mouse down
-                // if (selectedCells) {
-                //     collapseSelection(editor);
-                // }
-            } }
             editor={ editor }
             element={ element }
             className={ cx(
@@ -75,6 +72,6 @@ export const Table = (props: TableElementRootProps) => {
             </TableElement.ColGroup>
 
             <TableElement.TBody className={ tableCSS.tbody }>{ children }</TableElement.TBody>
-        </TableElement.Root>
+        </TableElementRoot>
     );
 };

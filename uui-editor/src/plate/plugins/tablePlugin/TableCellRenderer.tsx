@@ -10,7 +10,6 @@ import {
     usePlateEditorRef,
     useElement,
     getTableRowIndex,
-    useIsCellSelected,
     TTableRowElement,
     ELEMENT_TR,
     TTableElement,
