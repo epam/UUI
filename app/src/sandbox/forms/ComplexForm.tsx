@@ -27,8 +27,30 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
         isBlocked: true,
     };
 
+    componentWillUnmount() {
+        this.removeRootThemeClass();
+    }
+
+    removeRootThemeClass() {
+        const rootEl = document.getElementById('root');
+        const rootClasses = rootEl.getAttribute('class')
+            ? rootEl.getAttribute('class').split(' ').filter((v) => v !== 'uui-theme-loveship').join(' ')
+            : '';
+        if (rootClasses.length) {
+            rootEl.setAttribute('class', rootClasses);
+        } else rootEl.removeAttribute('class');
+    }
+
     componentDidMount() {
         this.loadForm();
+        this.setRootThemeClass();
+    }
+
+    setRootThemeClass() {
+        setTimeout(() => {
+            const rootEl = document.getElementById('root');
+            rootEl.setAttribute('class', 'uui-theme-loveship');
+        }, 0);
     }
 
     loadForm() {
@@ -157,7 +179,7 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
         const background = this.state.hasBackground ? 'white' : 'night50';
 
         return (
-            <Panel margin="24" background={ background } cx={ cx('uui-theme-loveship', css.formPanel) }>
+            <Panel margin="24" background={ background } cx={ css.formPanel }>
                 <FlexRow size="48" padding="24">
                     <Text size="48" font="sans-semibold">
                         Complex Form
