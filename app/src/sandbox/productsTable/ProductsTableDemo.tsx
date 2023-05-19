@@ -1,15 +1,12 @@
-import {
-    DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer,
-} from '@epam/loveship';
+import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer } from '@epam/loveship';
 import React from 'react';
-import {
-    Metadata, useList, useUuiContext, UuiContexts,
-} from '@epam/uui-core';
+import { Metadata, useList, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Product } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import { productColumns } from './columns';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
+import { SetRootThemeClass } from '../../helpers/setRootThemeClass';
 
 interface FormState {
     items: Record<number, Product>;
@@ -34,6 +31,7 @@ let savedValue: FormState = { items: {} };
 
 export const ProductsTableDemo: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
+    SetRootThemeClass('uui-theme-loveship');
 
     const {
         lens, save, isChanged, revert, undo, canUndo, redo, canRedo,
