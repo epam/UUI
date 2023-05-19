@@ -13,7 +13,11 @@ const items2 = Array(100).fill(0).map((_, index) => ({
 }));
 
 export default function ArrayDatasourceSortingExample() {
-    const [value, onValueChange] = useState<DataSourceState>({
+    const [value1, onValueChange1] = useState<DataSourceState>({
+        sorting: [{ field: 'name', direction: 'desc' }],
+    });
+
+    const [value2, onValueChange2] = useState<DataSourceState>({
         sorting: [{ field: 'name', direction: 'desc' }],
     });
 
@@ -37,14 +41,14 @@ export default function ArrayDatasourceSortingExample() {
         <>
             <DatasourceViewer
                 exampleTitle="Sorting by name desc"
-                value={ value }
-                onValueChange={ onValueChange }
+                value={ value1 }
+                onValueChange={ onValueChange1 }
                 datasource={ datasource1 }
             />
             <DatasourceViewer
                 exampleTitle="Sorting by id desc, overridden by sortBy"
-                value={ value }
-                onValueChange={ onValueChange }
+                value={ value2 }
+                onValueChange={ onValueChange2 }
                 datasource={ datasource2 }
             />
         </>
