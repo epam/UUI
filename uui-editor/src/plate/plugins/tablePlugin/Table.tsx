@@ -50,9 +50,9 @@ export const Table = (props: TableElementRootProps) => {
             onMouseDown={ () => {
                 console.log('my handler used', selectedCells);
                 // until cell dnd is supported, we collapse the selection on mouse down
-                if (selectedCells) {
-                    collapseSelection(editor);
-                }
+                // if (selectedCells) {
+                //     collapseSelection(editor);
+                // }
             } }
             editor={ editor }
             element={ element }
