@@ -1,4 +1,7 @@
-@use '../../assets/styles/layout-mixins' as *;
+@mixin padding($size) {
+    padding-left: $size + px;
+    padding-right: $size + px;
+}
 
 .root {
     :global(.uui-accordion-toggler) {

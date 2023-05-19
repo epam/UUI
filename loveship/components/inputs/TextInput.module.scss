@@ -1,5 +1,12 @@
 @use '../../assets/styles/scss' as *;
 
+@mixin control-vertical-layout($size, $borderWidth) {
+    &:global(.uui-button-box), &:global(.uui-input-box) {
+        min-height: $size;
+        border-width: $borderWidth;
+    }
+}
+
 .size-60 {
     @include control-vertical-layout(60px, 1px);
 }
