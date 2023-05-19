@@ -55,8 +55,7 @@
             padding-left: 3px;
             padding-right: 3px;
             min-width: 6px;
-            max-width: fit-content;
-            flex-basis: 200px;
+            flex-shrink: 0;
         }
 
         :global(.uui-count):not(:first-child) {
@@ -123,8 +122,7 @@
             font-size: 14px;
             border-radius: 12px;
             min-width: 12px;
-            max-width: fit-content;
-            flex-basis: 200px;
+            flex-shrink: 0;
         }
     }
 
@@ -145,8 +143,7 @@
             font-size: 14px;
             border-radius: 12px;
             min-width: 12px;
-            max-width: fit-content;
-            flex-basis: 200px;
+            flex-shrink: 0;
         }
     }
 }
