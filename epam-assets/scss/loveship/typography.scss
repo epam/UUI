@@ -11,27 +11,17 @@
         margin: 0;
     }
 
+    :global(.hero-header), h2 {
+        font-family: $font-sans-bold;
+    }
+
     :global(.hero-header) {
-        font-family: $font-museo-slab;
         margin: 30px 0;
-        font-size: 66px;
+        font-size: 72px;
         line-height: 72px;
     }
 
-    :global(.hero-header), :global(.promo-header) {
-        color: $gray90;
-        text-align: center;
-    }
-
-    :global(.promo-header), h1, h2, h3 {
-        font-family: $font-museo-sans;
-    }
-
-    :global(.promo-header) {
-        text-transform: uppercase;
-    }
-
-    h4, h5, h6 {
+    h3, h4, h5, h6 {
         font-family: $font-sans-semibold;
     }
 
@@ -42,16 +32,11 @@
     }
 
     h1 {
-        font-size: 36px;
+        font-size: 42px;
     }
 
     h2 {
         font-size: 30px;
-        letter-spacing: 0.1px;
-
-        &:global(.promo-header) {
-            letter-spacing: 2px;
-        }
     }
 
     h3 {
@@ -60,7 +45,6 @@
 
     h4 {
         font-size: 18px;
-        letter-spacing: 0.1px;
     }
 
     h5 {
@@ -75,6 +59,7 @@
 @mixin typography-inline() {
     b, strong {
         font-family: $font-sans-semibold;
+        color: $night900;
     }
 
     i, em {
@@ -84,33 +69,30 @@
     a {
         display: inline-flex;
         align-items: center;
-        color: $blue;
+        color: $sky;
         text-decoration: underline;
 
-        &:visited {
-            color: #5214CC;
-
-            &:hover {
-                color: #3F0F9E;
-            }
-        }
-
         &:hover {
-            color: $blue-dark;
+            color: darken($sky, 10%);
         }
     }
 
     code {
         padding: 0.125em 0.25em;
-        color: $gray80;
-        background-color: $gray30;
-        font-family: $font-roboto-mono;
+        color: $night50;
+        background-color: $night700;
+        border-radius: 3px;
+        font-family: monospace;
         white-space: pre-wrap;
         word-wrap: normal;
     }
 }
 
 @mixin typography-block() {
+    b, strong {
+        color: $night900;
+    }
+
     ol, ul {
         padding: 0;
     }
@@ -122,8 +104,9 @@
 
     pre {
         padding: 1.25em;
-        color: $gray10;
-        background-color: $gray70;
+        color: $night50;
+        background-color: $night700;
+        border-radius: 3px;
         font-family: monospace;
         white-space: pre-wrap;
         word-wrap: normal;

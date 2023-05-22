@@ -32,8 +32,7 @@ export function Form<T>(props: FormProps<T>) {
                     </WarningNotification>
                 ),
                 { duration: 5, position: 'bot-left' },
-            )
-            .catch(() => null);
+            );
     };
 
     return <UuiForm<T> loadUnsavedChanges={ loadUnsavedChanges } beforeLeave={ beforeLeave } { ...props } />;

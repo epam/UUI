@@ -1,5 +1,5 @@
 @use  '../../assets/styles/index' as *;
-@use  '~@epam/assets/scss/dnd' as *;
+@use  '../../assets/styles/dnd' as *;
 
 .root {
     &:global(.uui-dt-row-border.uui-table-row) {
