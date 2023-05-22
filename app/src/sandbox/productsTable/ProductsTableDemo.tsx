@@ -6,7 +6,7 @@ import type { TApi } from '../../data';
 import { productColumns } from './columns';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
-import { SetRootThemeClass } from '../../helpers/setRootThemeClass';
+import { useTheme } from '../../helpers/useTheme';
 
 interface FormState {
     items: Record<number, Product>;
@@ -31,7 +31,7 @@ let savedValue: FormState = { items: {} };
 
 export const ProductsTableDemo: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
-    SetRootThemeClass('uui-theme-loveship');
+    useTheme('uui-theme-loveship');
 
     const {
         lens, save, isChanged, revert, undo, canUndo, redo, canRedo,
