@@ -13,7 +13,6 @@ import {
     WithPlatePlugin,
     LinkPlugin,
     upsertLink,
-    isEditorReadOnly,
 } from "@udecode/plate";
 import { useUuiContext } from '@epam/uui-core';
 import { sanitizeUrl } from "@braintree/sanitize-url";
@@ -66,15 +65,8 @@ export const linkPlugin = () => createLinkPlugin({
     type: 'link',
     withOverrides: withOurLink,
     then: () => ({
-        props: ({ element, editor }) => ({
+        props: () => ({
             style: { display: 'inline' }, // fixes a bug with keyboard navigation through symbols in the link
-            ...(!isEditorReadOnly(editor) ? {} : {
-                onClick: (e: Event) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    window.open(sanitizeUrl(`${ element.url }`), '_blank');
-                }
-            }),
         }),
     }),
 });

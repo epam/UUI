@@ -58,7 +58,7 @@ export const AddLinkModal = (props: AddLinkModalProps) => {
                         props.abort();
                     } } />
                     <Button type='success' caption='Save' onClick={ () => {
-                        link && insertLink(props.editor, { url: link, text: getSelectionText(props.editor) });
+                        link && insertLink(props.editor, { url: link, text: getSelectionText(props.editor), target: '_blank' });
                         props.success(true);
                     } } />
                 </ModalFooter>
