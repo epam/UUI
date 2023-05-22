@@ -20,11 +20,6 @@
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
               }
@@ -43,11 +38,6 @@
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
               }
             ]
           },
@@ -64,38 +54,12 @@
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": " return ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "configuration",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ".",
+            "text": " return configuration.",
             "marks": []
           }
         ]

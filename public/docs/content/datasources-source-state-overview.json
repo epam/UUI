@@ -144,24 +144,8 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Provides ",
+                            "text": "Provides a string to search in the rows.",
                             "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "a string to search in the rows.",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
                           }
                         ]
                       }
@@ -180,18 +164,7 @@
                           {
                             "object": "text",
                             "text": "''",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
+                            "marks": []
                           }
                         ]
                       }
@@ -241,28 +214,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Provides ids of",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": " checked rows",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
+                            "text": "Provides ids of checked rows.",
                             "marks": []
                           }
                         ]
@@ -334,28 +286,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Provides a record of",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": " folded rows",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
+                            "text": "Provides a record of folded rows.",
                             "marks": []
                           }
                         ]
@@ -436,28 +367,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Provides ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "a filter",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
+                            "text": "Provides a filter.",
                             "marks": []
                           }
                         ]
@@ -527,28 +437,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Provides ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "sorting configuration",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
+                            "text": "Provides sorting configuration.",
                             "marks": []
                           }
                         ]
@@ -618,24 +507,8 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Provides ",
+                            "text": "Provides selected row Id.",
                             "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "selected row Id.",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
                           }
                         ]
                       }
@@ -715,56 +588,8 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Provides an ",
+                            "text": "Provides an index a list should be scrolled to.",
                             "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "index",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "a list should be scrolled to",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
                           }
                         ]
                       }
@@ -844,24 +669,8 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Provides an index of the ",
+                            "text": "Provides an index of the focused element.",
                             "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "focused element.",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
                           }
                         ]
                       }
@@ -941,44 +750,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "The start index",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " of the records' ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "range",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " should be shown.",
+                            "text": "The start index of the records' range should be shown.",
                             "marks": []
                           }
                         ]
@@ -1048,23 +820,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "A number of rows",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " to be shown.",
+                            "text": "A number of rows to be shown.",
                             "marks": []
                           }
                         ]
@@ -1134,40 +890,8 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "A number of the page",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " to be ",
+                            "text": "A number of the page to be requested/shown.",
                             "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "requested/shown.",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
                           }
                         ]
                       }
@@ -1236,70 +960,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "A ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "number",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " of records a ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "page",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " should ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "contain",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
+                            "text": "A number of records a page should contain.",
                             "marks": []
                           }
                         ]
@@ -1328,93 +989,6 @@
                 ]
               }
             ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "uui-richTextEditor-header-2",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Conclusion",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "After the overview of all those properties of ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "Datasource Input",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", it's time to dig into the practical usage. The rest of the articles added to the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "Details ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "section will make the usage of Datasources clear for understanding. It is worth using the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "Overview",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " article as the reference page.",
-            "marks": []
           }
         ]
       }

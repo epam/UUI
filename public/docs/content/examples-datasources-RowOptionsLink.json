@@ -20,11 +20,6 @@
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
               }
@@ -41,11 +36,6 @@
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
               }
@@ -60,11 +50,6 @@
             "object": "text",
             "text": "rowOptions part",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",

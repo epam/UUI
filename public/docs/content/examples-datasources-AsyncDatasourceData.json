@@ -11,65 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To represent ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "some",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": " data",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " with ArrayDatasource, it ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "should be fetched",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "  by the datasource via ",
+            "text": "To represent some data with ArrayDatasource, it should be fetched  by the datasource via ",
             "marks": []
           },
           {
@@ -79,11 +21,6 @@
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
                 "data": {}
               }
             ]

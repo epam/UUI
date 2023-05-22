@@ -22,11 +22,6 @@
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
               }
             ]
           },
@@ -39,11 +34,6 @@
             "object": "text",
             "text": "value/onValueChange",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
@@ -64,49 +54,18 @@
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": ". Usually, at the ",
+            "text": ". Usually, at the UUI ecosystem ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "UUI ecosystem",
+            "text": "value/onValueChange",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "value/onValueChange ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
@@ -116,18 +75,13 @@
           },
           {
             "object": "text",
-            "text": "is taken from the ",
+            "text": " is taken from the ",
             "marks": []
           },
           {
             "object": "text",
             "text": "lens",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
@@ -147,11 +101,6 @@
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
                 "data": {}
               }
             ]

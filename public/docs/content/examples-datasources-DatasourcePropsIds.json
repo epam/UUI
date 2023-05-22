@@ -11,44 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "By default",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", datasources are ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "looking for the id ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "at the ",
+            "text": "By default, datasources are looking for the id at the ",
             "marks": []
           },
           {
@@ -64,28 +27,7 @@
           },
           {
             "object": "text",
-            "text": " field and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "for the parent id ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "at the ",
+            "text": " field and for the parent id at the ",
             "marks": []
           },
           {
@@ -113,128 +55,13 @@
         "nodes": [
           {
             "object": "text",
-            "text": "As shown in the following example, ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "to render a list/tree",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " for the records with ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "custom",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "id",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "parent id",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " fields, it is required to ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "specify getters",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " for them bypassing ",
+            "text": "As shown in the following example, to render a list/tree for the records with custom id and parent id fields, it is required to specify getters for them bypassing ",
             "marks": []
           },
           {
             "object": "text",
             "text": "getId",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
@@ -251,16 +78,6 @@
             "object": "text",
             "text": "getParentId",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",

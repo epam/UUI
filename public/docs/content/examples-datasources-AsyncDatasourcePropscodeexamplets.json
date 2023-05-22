@@ -22,11 +22,6 @@
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
               }
             ]
           },
@@ -39,11 +34,6 @@
             "object": "text",
             "text": "AsyncDatasourceProps",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
@@ -62,11 +52,6 @@
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
               }
@@ -74,28 +59,7 @@
           },
           {
             "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "chapter",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", so, only the specific one will be described.",
+            "text": " chapter, so, only the specific one will be described.",
             "marks": []
           }
         ]

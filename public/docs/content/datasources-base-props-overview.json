@@ -14,8 +14,8 @@
             "type": "table",
             "data": {
               "cellSizes": [
-                199.48037719726562,
-                465.3027038574219,
+                199.17083740234375,
+                465.61224365234375,
                 259.08740234375
               ]
             },
@@ -151,29 +151,8 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Returns a value of the record's ",
+                            "text": "Returns a value of the record's 'id' property",
                             "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "'id' property",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-underlined",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
                           },
                           {
                             "object": "text",
@@ -250,23 +229,7 @@
                           },
                           {
                             "object": "text",
-                            "text": "It is used for ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "rendering tree data structures",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ". ",
+                            "text": "It is used for rendering tree data structures. ",
                             "marks": []
                           }
                         ]
@@ -285,29 +248,8 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Returns a value of the record's ",
+                            "text": "Returns a value of the record's 'parentId' property",
                             "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "'parentId' property",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-underlined",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
                           },
                           {
                             "object": "text",
@@ -368,65 +310,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Enables stringifying IDs. It is used when ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "IDs are not able to act as javascript Map keys ",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": "(they are ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "represented",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " as ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "objects or arrays)",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
+                            "text": "Enables stringifying IDs. It is used when IDs are not able to act as javascript Map keys (they are represented as objects or arrays).",
                             "marks": []
                           }
                         ]
@@ -496,49 +380,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Specifies if ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "rows",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " are ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "selectable, editable, checkable, draggable, clickable,",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " and more.",
+                            "text": "Specifies if rows are selectable, editable, checkable, draggable, clickable, and more.",
                             "marks": []
                           }
                         ]
@@ -608,49 +450,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "For ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "each row",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " specifies if it is ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "selectable, editable, checkable, draggable, clickable",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ", and more.",
+                            "text": "For each row specifies if it is selectable, editable, checkable, draggable, clickable, and more.",
                             "marks": []
                           }
                         ]
@@ -720,28 +520,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Specifies if some row is ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "folded/unfolded by default",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ". ",
+                            "text": "Specifies if some row is folded/unfolded by default. ",
                             "marks": []
                           }
                         ]
@@ -827,11 +606,6 @@
                             "marks": [
                               {
                                 "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
                                 "type": "uui-richTextEditor-code",
                                 "data": {}
                               }
@@ -848,11 +622,6 @@
                             "marks": [
                               {
                                 "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
                                 "type": "uui-richTextEditor-code",
                                 "data": {}
                               }
@@ -867,11 +636,6 @@
                             "object": "text",
                             "text": "'implicit'",
                             "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
                               {
                                 "object": "mark",
                                 "type": "uui-richTextEditor-code",
@@ -963,28 +727,12 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Enables/disables",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
+                            "text": "Enables/disables ",
                             "marks": []
                           },
                           {
                             "object": "text",
-                            "text": "\"select all\"",
+                            "text": "'select all'",
                             "marks": [
                               {
                                 "object": "mark",

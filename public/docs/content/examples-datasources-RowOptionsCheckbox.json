@@ -17,11 +17,6 @@
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
               }
             ]
           },
@@ -34,11 +29,6 @@
             "object": "text",
             "text": "rowOptions",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",

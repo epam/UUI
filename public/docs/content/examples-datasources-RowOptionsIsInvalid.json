@@ -11,28 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "If it is necessary to ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "highlight the row as invalid",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", simply bypass the ",
+            "text": "If it is necessary to highlight the row as invalid, simply bypass the ",
             "marks": []
           },
           {
@@ -42,11 +21,6 @@
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
                 "data": {}
               }
             ]
@@ -60,11 +34,6 @@
             "object": "text",
             "text": "rowOptions props",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",

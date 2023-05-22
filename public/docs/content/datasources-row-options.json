@@ -11,49 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In this chapter, ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "row options",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " will be described ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "in detail",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ". Potentially, all the further props can be passed to the datasource as part of ",
+            "text": "In this chapter, row options will be described in detail. Potentially, all the further props can be passed to the datasource as part of ",
             "marks": []
           },
           {
@@ -63,11 +21,6 @@
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
                 "data": {}
               }
             ]
@@ -85,11 +38,6 @@
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
               }
             ]
           },
@@ -102,11 +50,6 @@
             "object": "text",
             "text": "value/onValueChange",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
@@ -127,11 +70,6 @@
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
               }
             ]
           },
@@ -146,11 +84,6 @@
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
               }
@@ -158,18 +91,24 @@
           },
           {
             "object": "text",
-            "text": " it makes sense to pass by ",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "it makes sense to pass by ",
             "marks": []
           },
           {
             "object": "text",
             "text": "getRowOptions",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",

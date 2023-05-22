@@ -15,11 +15,6 @@
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
               }
@@ -27,149 +22,13 @@
           },
           {
             "object": "text",
-            "text": " parameter is representing ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "a number of records",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "shown",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " by datasource. Unfortunately, it is just representing the count, ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "calculated",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " by the list component, and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "passing some value",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "is not changing",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-underlined",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " the actual number of rows ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "to be shown",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ". The same about ",
+            "text": " parameter is representing a number of records, shown by datasource. Unfortunately, it is just representing the count, calculated by the list component, and passing some value is not changing the actual number of rows to be shown. The same about ",
             "marks": []
           },
           {
             "object": "text",
             "text": "topIndex",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",

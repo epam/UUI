@@ -17,38 +17,12 @@
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": " flag is used when ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "IDs are not able to act as javascript Map keys",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " (they are represented as objects or arrays). Datasources handle ids as numbers and strings correctly by default.",
+            "text": " flag is used when IDs are not able to act as javascript Map keys (they are represented as objects or arrays). Datasources handle ids as numbers and strings correctly by default.",
             "marks": []
           }
         ]

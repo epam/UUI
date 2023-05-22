@@ -132,28 +132,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "A function to ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "retrieve the data, asynchronously",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
+                            "text": "A function to retrieve the data, asynchronously.",
                             "marks": []
                           }
                         ]
@@ -165,207 +144,13 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "This function usually ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "performs a REST API call",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ". API is used to ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "retrieve lists of items",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ". It is expected to:\n- be able to handle ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "paging",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " (via from/count params);\n- be able to ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "retrieve",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "specific",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "items",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "by",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " the list of their ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "ids;",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": "\n- be able to ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "retrieve children by parents",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " (when ",
+                            "text": "This function usually performs a REST API call. API is used to retrieve lists of items. It is expected to:\n- be able to handle paging (via from/count params);\n- be able to retrieve specific items by the list of their ids;\n- be able to retrieve children by parents (when ",
                             "marks": []
                           },
                           {
                             "object": "text",
                             "text": "getChildCount",
                             "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
                               {
                                 "object": "mark",
                                 "type": "uui-richTextEditor-code",
@@ -382,11 +167,6 @@
                             "object": "text",
                             "text": "context.parentId",
                             "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
                               {
                                 "object": "mark",
                                 "type": "uui-richTextEditor-code",
@@ -408,49 +188,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "This property will be ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "overviewed in deep",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " in ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "the next paragraph",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
+                            "text": "This property will be overviewed in deep in the next paragraph.",
                             "marks": []
                           }
                         ]
@@ -520,60 +258,13 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Should return ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "a number",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "of item's children",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ". If it ",
+                            "text": "Should return a number of item's children. If it ",
                             "marks": []
                           },
                           {
                             "object": "text",
                             "text": "returns > 0",
                             "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
                               {
                                 "object": "mark",
                                 "type": "uui-richTextEditor-code",
@@ -583,133 +274,7 @@
                           },
                           {
                             "object": "text",
-                            "text": ", the item ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "is assumed to have children",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " and ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "to be foldable",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ". Usually, this value should be returned from API. If you ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "can't get a number of children",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " via API, you can ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "return a guess value ",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": "(avg number of children for this type of entity). Note, that this ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "can lead to more API calls",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " and ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "increased load times",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " in the ",
+                            "text": ", the item is assumed to have children and to be foldable. Usually, this value should be returned from API. If you can't get a number of children via API, you can return a guess value (avg number of children for this type of entity). Note, that this can lead to more API calls and increased load times in the ",
                             "marks": []
                           },
                           {
@@ -720,38 +285,12 @@
                                 "object": "mark",
                                 "type": "uui-richTextEditor-code",
                                 "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
                               }
                             ]
                           },
                           {
                             "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "fetch mode",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
+                            "text": " fetch mode.",
                             "marks": []
                           }
                         ]
@@ -821,44 +360,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "A ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "filter",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " to pass to ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "API",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
+                            "text": "A filter to pass to API.",
                             "marks": []
                           }
                         ]
@@ -879,11 +381,6 @@
                             "marks": [
                               {
                                 "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
                                 "type": "uui-richTextEditor-code",
                                 "data": {}
                               }
@@ -891,239 +388,13 @@
                           },
                           {
                             "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "also",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "has",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " a",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": " filter field",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ". These two ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "filters",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " are ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "merged",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " before API calls. ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "Use",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "this prop",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " if you ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "need",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " to ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "apply",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " some ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "filter",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "in any case",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ". Prefer to use a filter in the ",
+                            "text": " also has a filter field. These two filters are merged before API calls. Use this prop if you need to apply some filter in any case. Prefer to use a filter in the ",
                             "marks": []
                           },
                           {
                             "object": "text",
                             "text": "DataSourceState",
                             "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
                               {
                                 "object": "mark",
                                 "type": "uui-richTextEditor-code",
@@ -1203,28 +474,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Defines ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "how to fetch children",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ":",
+                            "text": "Defines how to fetch children:",
                             "marks": []
                           }
                         ]
@@ -1245,11 +495,6 @@
                             "marks": [
                               {
                                 "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
                                 "type": "uui-richTextEditor-code",
                                 "data": {}
                               }
@@ -1257,133 +502,7 @@
                           },
                           {
                             "object": "text",
-                            "text": ": ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "fetch children",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " for each parent ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "one by one.",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " Makes ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "minimal over-querying",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ", at the ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "cost of",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "some",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "speed",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ";\n- ",
+                            "text": ": fetch children for each parent one by one. Makes minimal over-querying, at the cost of some speed;\n- ",
                             "marks": []
                           },
                           {
@@ -1392,11 +511,6 @@
                             "marks": [
                               {
                                 "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
                                 "type": "uui-richTextEditor-code",
                                 "data": {}
                               }
@@ -1404,254 +518,7 @@
                           },
                           {
                             "object": "text",
-                            "text": ": ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "fetch children",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " for",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": " several parents",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "simultaneously",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ". Can make ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "a lot of over-querying",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "for",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "deep",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "trees",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ". ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "Recommended for ",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": "2-level",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-underlined",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " trees",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " (grouping), as it makes ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "no over-querying",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " in this case, and ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "is faster than sequential strategy",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
+                            "text": ": fetch children for several parents simultaneously. Can make a lot of over-querying for deep trees. Recommended for 2-level trees (grouping), as it makes no over-querying in this case, and is faster than sequential strategy.",
                             "marks": []
                           }
                         ]
@@ -1721,133 +588,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Falls back ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "to a plain list from a tree",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ", ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "if",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "there's a search",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ". If ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "enabled",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ", and the ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "search",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "is active",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ":\n- ",
+                            "text": "Falls back to a plain list from a tree, if there's a search. If enabled, and the search is active:\n- ",
                             "marks": []
                           },
                           {
@@ -1856,11 +597,6 @@
                             "marks": [
                               {
                                 "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
                                 "type": "uui-richTextEditor-code",
                                 "data": {}
                               }
@@ -1868,49 +604,7 @@
                           },
                           {
                             "object": "text",
-                            "text": " will be called with ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "parentId",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " and ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "parent - undefined;",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": "\n- ",
+                            "text": " will be called with parentId and parent - undefined;\n- ",
                             "marks": []
                           },
                           {
@@ -1919,11 +613,6 @@
                             "marks": [
                               {
                                 "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
                                 "type": "uui-richTextEditor-code",
                                 "data": {}
                               }
@@ -1931,49 +620,7 @@
                           },
                           {
                             "object": "text",
-                            "text": " is ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "ignored",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ", all nodes are assumed ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "to have no children",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
+                            "text": " is ignored, all nodes are assumed to have no children.",
                             "marks": []
                           }
                         ]
@@ -2074,70 +721,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "This option is added for the purpose of ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "supporting",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "the legacy ",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": "behavior of ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "fetching data",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " on ",
+                            "text": "This option is added for the purpose of supporting the legacy behavior of fetching data on ",
                             "marks": []
                           },
                           {
@@ -2147,11 +731,6 @@
                               {
                                 "object": "mark",
                                 "type": "uui-richTextEditor-code",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
                                 "data": {}
                               }
                             ]
@@ -2167,11 +746,6 @@
                             "marks": [
                               {
                                 "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
                                 "type": "uui-richTextEditor-code",
                                 "data": {}
                               }
@@ -2179,49 +753,7 @@
                           },
                           {
                             "object": "text",
-                            "text": ", ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "not to break users'",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "own implementation",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " of datasources.",
+                            "text": ", not to break users' own implementation of datasources.",
                             "marks": []
                           }
                         ]

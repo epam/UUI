@@ -20,11 +20,6 @@
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
               }
@@ -32,28 +27,7 @@
           },
           {
             "object": "text",
-            "text": " function to the LazyDatasource props. This function is used to retrieve the data asynchronously. \nAPI is used to retrieve lists of items.\nIt is expected to be able to:\n- handle ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "paging",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " (via ",
+            "text": " function to the LazyDatasource props. This function is used to retrieve the data asynchronously. \nAPI is used to retrieve lists of items.\nIt is expected to be able to:\n- handle paging (via ",
             "marks": []
           },
           {
@@ -64,76 +38,13 @@
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": " params);\n- ",
+            "text": " params);\n- retrieve specific items by the list of their ",
             "marks": []
-          },
-          {
-            "object": "text",
-            "text": "retrieve",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " specific ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "items",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "by the list of their ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
           },
           {
             "object": "text",
@@ -143,70 +54,18 @@
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": ";\n- ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "retrieve",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "children",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " by parents (when ",
+            "text": ";\n- retrieve children by parents (when ",
             "marks": []
           },
           {
             "object": "text",
             "text": "getChildCount",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
@@ -223,11 +82,6 @@
             "object": "text",
             "text": "ctx.parentId",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",

@@ -11,55 +11,13 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Multi-select: checked",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " elements are ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "controlled by ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "the ",
+            "text": "Multi-select: checked elements are controlled by the ",
             "marks": []
           },
           {
             "object": "text",
             "text": "checked",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
@@ -79,11 +37,6 @@
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
                 "data": {}
               }
             ]

@@ -144,44 +144,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Disables",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " editing, and ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "visually de-emphasizes ",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": "the value of the row.",
+                            "text": "Disables editing, and visually de-emphasizes the value of the row.",
                             "marks": []
                           }
                         ]
@@ -201,18 +164,7 @@
                           {
                             "object": "text",
                             "text": "false",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
+                            "marks": []
                           }
                         ]
                       }
@@ -262,44 +214,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Configures",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " the ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "checkboxes",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " of the rows.",
+                            "text": "Configures the checkboxes of the rows.",
                             "marks": []
                           }
                         ]
@@ -369,23 +284,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Enabling selection",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " of a row on click.",
+                            "text": "Enabling selection of a row on click.",
                             "marks": []
                           }
                         ]
@@ -405,18 +304,7 @@
                           {
                             "object": "text",
                             "text": "false",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
+                            "marks": []
                           }
                         ]
                       }
@@ -466,28 +354,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Row ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "click handler",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
+                            "text": "Row click handler.",
                             "marks": []
                           }
                         ]
@@ -557,28 +424,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Makes the row ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "act as a link",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " (plain or SPA).",
+                            "text": "Makes the row act as a link (plain or SPA).",
                             "marks": []
                           }
                         ]
@@ -648,23 +494,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Disables editing",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ". Unlike isDisabled, keeps the component's value readable.",
+                            "text": "Disables editing. Unlike isDisabled, keeps the component's value readable.",
                             "marks": []
                           }
                         ]
@@ -684,18 +514,7 @@
                           {
                             "object": "text",
                             "text": "false",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
+                            "marks": []
                           }
                         ]
                       }
@@ -745,35 +564,8 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Marks that the component's ",
+                            "text": "Marks that the component's value is required.",
                             "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "value is required",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
                           }
                         ]
                       }
@@ -792,18 +584,7 @@
                           {
                             "object": "text",
                             "text": "false",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
+                            "marks": []
                           }
                         ]
                       }
@@ -853,24 +634,8 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Showing if a row ",
+                            "text": "Showing if a row contains invalid input.",
                             "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "contains invalid input.",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
                           }
                         ]
                       }
@@ -889,18 +654,7 @@
                           {
                             "object": "text",
                             "text": "false",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
+                            "marks": []
                           }
                         ]
                       }
@@ -950,28 +704,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Reason for the state of ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "the row input to be invalid",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
+                            "text": "Reason for the state of the row input to be invalid.",
                             "marks": []
                           }
                         ]
@@ -1041,28 +774,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Contains ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "validation states of inner items",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": ".",
+                            "text": "Contains validation states of inner items.",
                             "marks": []
                           }
                         ]
@@ -1132,49 +844,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Provides",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": " row value",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " and ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "possibilities to change",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " it.",
+                            "text": "Provides row value and possibilities to change it.",
                             "marks": []
                           }
                         ]
@@ -1244,28 +914,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Configures row",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": " drag-n-drop options",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " - if it can be dragged, can rows be dropped into it, etc.",
+                            "text": "Configures row drag-n-drop options - if it can be dragged, can rows be dropped into it, etc.",
                             "marks": []
                           }
                         ]
@@ -1292,107 +941,6 @@
                     ]
                   }
                 ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "But it is obvious, that the ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "rowOptions",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-underlined",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " configuration is pretty complicated, so to understand how to use it, please, visit the ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "/documents?id=datasources-row-options&mode=doc&skin=UUI4_promo&category=datasources-details"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "Row Options",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-bold",
-                    "data": {}
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-italic",
-                    "data": {}
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " page.",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
               }
             ]
           }
