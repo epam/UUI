@@ -4,6 +4,7 @@ import { createParagraphPlugin, ELEMENT_DEFAULT } from "@udecode/plate";
 export const PARAGRAPH_TYPE = 'paragraph';
 export const paragraphPlugin = () => {
     return createParagraphPlugin({
+        type: PARAGRAPH_TYPE,
         overrideByKey: {
             [ELEMENT_DEFAULT]: {
                 component: (props): JSX.Element => {
@@ -13,6 +14,6 @@ export const paragraphPlugin = () => {
                 },
                 type: PARAGRAPH_TYPE,
             }
-        }
+        },
     })
 };
