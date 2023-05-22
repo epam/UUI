@@ -7,7 +7,7 @@ import { DemoDbRef, useDemoDbRef, PersonTableRecord } from './state';
 import { svc } from '../../services';
 import { PersonsTable } from './PersonsTable';
 import css from './DbDemo.module.scss';
-import { SetRootThemeClass } from '../../helpers/setRootThemeClass';
+import { useTheme } from '../../helpers/useTheme';
 
 export function DbDemoImpl() {
     const dbRef = useDemoDbRef();
@@ -112,7 +112,7 @@ export function DbDemoImpl() {
 
 export function DbDemo() {
     const demoDbRef = React.useMemo(() => new DemoDbRef(), []);
-    SetRootThemeClass('uui-theme-loveship');
+    useTheme('uui-theme-loveship');
 
     return (
         <DbContext.Provider value={ demoDbRef }>

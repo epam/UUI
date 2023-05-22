@@ -7,7 +7,7 @@ import { svc } from '../../services';
 import { getColumns } from './columns';
 import { getFilters } from './filters';
 import cx from 'classnames';
-import { SetRootThemeClass } from '../../helpers/setRootThemeClass';
+import { useTheme } from '../../helpers/useTheme';
 import css from './PersonsTableDemo.module.scss';
 
 interface PersonsTableState extends DataSourceState {
@@ -33,7 +33,7 @@ const formatCurrency = (value: number) => {
 
 export function PersonsTableDemo() {
     const { personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
-    SetRootThemeClass('uui-theme-loveship');
+    useTheme('uui-theme-loveship');
 
     const [summary, setSummary] = React.useState<PersonsSummary & Pick<PersonsApiResponse, 'totalCount'>>({
         totalCount: undefined,

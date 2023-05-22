@@ -15,6 +15,7 @@ interface ComplexFormState {
     isReadOnly: boolean;
     isEditMode: boolean;
     isBlocked: boolean;
+    bodyClass: string;
 }
 
 export class ComplexForm extends React.Component<any, ComplexFormState> {
@@ -25,6 +26,7 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
         isReadOnly: false,
         isEditMode: true,
         isBlocked: true,
+        bodyClass: '',
     };
 
     componentWillUnmount() {
@@ -32,13 +34,12 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
     }
 
     removeRootThemeClass() {
-        const rootEl = document.getElementById('root');
-        const rootClasses = rootEl.getAttribute('class')
-            ? rootEl.getAttribute('class').split(' ').filter((v) => v !== 'uui-theme-loveship').join(' ')
-            : '';
-        if (rootClasses.length) {
-            rootEl.setAttribute('class', rootClasses);
-        } else rootEl.removeAttribute('class');
+        const rootEl = document.querySelector('body');
+        if (this.state.bodyClass) {
+            rootEl.classList.replace('uui-theme-loveship', this.state.bodyClass);
+        } else {
+            rootEl.classList.remove('uui-theme-loveship');
+        }
     }
 
     componentDidMount() {
@@ -48,8 +49,14 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
 
     setRootThemeClass() {
         setTimeout(() => {
-            const rootEl = document.getElementById('root');
-            rootEl.setAttribute('class', 'uui-theme-loveship');
+            const rootEl = document.querySelector('body');
+            const tempClass = [...rootEl.classList].find((val) => val.includes('uui-theme'));
+            tempClass && this.setState({ bodyClass: tempClass });
+            if (tempClass) {
+                rootEl.classList.replace(tempClass, 'uui-theme-loveship');
+            } else {
+                rootEl.classList.add('uui-theme-loveship');
+            }
         }, 0);
     }
 
