@@ -1,5 +1,5 @@
 @use '~@epam/promo/assets/styles/index' as *;
-@use '~@epam/assets/scss/contrast' as *;
+@use '../contrast' as *;
 
 @each $name, $color in $epam-basic-color-names {
     .basic-color-#{$name} {
