@@ -1,5 +1,12 @@
 @use '../../assets/styles/scss/index'  as *;
 
+@mixin button-colors($bg, $fg, $brd) {
+    background-color: $bg;
+    color: $fg;
+    fill: $fg;
+    border-color: $brd;
+}
+
 @mixin borderStyle {
     border-width: 1px;
     border-style: solid;

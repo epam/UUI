@@ -1,5 +1,5 @@
 @use '~@epam/promo/assets/styles/colors' as *;
-@use  '~@epam/assets/scss/dnd' as *;
+@use  '~@epam/uui/assets/styles/dnd' as *;
 @use './mixins.module' as *;
 
 .drag-element {
