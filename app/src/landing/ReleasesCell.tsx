@@ -4,7 +4,7 @@ import { UuiReactMarkdown } from '../documents/uuiReactMarkdown';
 import { cx } from '@epam/uui-core';
 import { FlexRow, LinkButton, RichTextView } from '@epam/promo';
 import { analyticsEvents } from '../analyticsEvents';
-import css from './ReleasesCell.scss';
+import css from './ReleasesCell.module.scss';
 
 export interface ReleasesCellProps {
     content: string;

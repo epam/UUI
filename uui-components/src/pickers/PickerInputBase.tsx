@@ -51,12 +51,6 @@ IHasIcon & {
     /** Sets focus to component when it's mounted */
     autoFocus?: boolean;
 
-    /** Prefix text to add to the input */
-    prefix?: React.ReactNode;
-
-    /** Suffix text to add to the input */
-    suffix?: React.ReactNode;
-
     /** HTML attributes to put directly to the input and body elements */
     rawProps?: {
         input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];

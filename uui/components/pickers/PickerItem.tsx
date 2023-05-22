@@ -5,7 +5,7 @@ import { FlexCell, FlexRow } from '../layout';
 import { Text, TextPlaceholder } from '../typography';
 import { Avatar } from '../widgets';
 import { SizeMod } from '../types';
-import css from './PickerItem.scss';
+import css from './PickerItem.module.scss';
 
 const defaultSize = '36';
 

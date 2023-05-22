@@ -1,6 +1,6 @@
 import { Checkbox as uuiCheckbox, CheckboxProps, CheckboxMods as UuiCheckboxMods } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
-import css from './Checkbox.scss';
+import css from './Checkbox.module.scss';
 
 export interface CheckboxMods extends UuiCheckboxMods {
     theme?: 'light' | 'dark';

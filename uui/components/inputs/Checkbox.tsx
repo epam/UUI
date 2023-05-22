@@ -4,7 +4,7 @@ import { ReactComponent as Check_12 } from '../../icons/check-12.svg';
 import { ReactComponent as Check_18 } from '../../icons/check-18.svg';
 import { ReactComponent as PartlySelect_12 } from '../../icons/partly-select-12.svg';
 import { ReactComponent as PartlySelect_18 } from '../../icons/partly-select-18.svg';
-import css from './Checkbox.scss';
+import css from './Checkbox.module.scss';
 
 export interface CheckboxMods {
     size?: '12' | '18';

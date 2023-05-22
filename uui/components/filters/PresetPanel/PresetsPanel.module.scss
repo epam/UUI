@@ -1,0 +1,34 @@
+.divider {
+    margin-right: 3px;
+    border-left: 1px solid var(--uui-divider);
+    height: 24px;
+}
+
+.dropdownDeleteIcon {
+    :global(.uui-icon) {
+        visibility: hidden;
+    }
+
+    &:hover {
+        :global(.uui-icon) {
+            visibility: visible;
+        }
+    }
+}
+
+.presetsWrapper {
+    min-height: 60px;
+
+    :not(:first-child) {
+        &.addPresetContainer {
+            padding-left: 6px;
+        }
+    }
+}
+
+.dropContainer {
+    &:global(.uui-dropdown-body) {
+        overflow: auto;
+        max-height: 400px;
+    }
+}

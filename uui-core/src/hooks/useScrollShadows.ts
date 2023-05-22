@@ -85,7 +85,12 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
 
     React.useEffect(() => {
         if (!root) return;
-        resizeObserver.current = new ResizeObserver(updateScrollShadows);
+        resizeObserver.current = new ResizeObserver((entries) => {
+            requestAnimationFrame(() => {
+                if (!Array.isArray(entries) || !entries.length) return;
+                updateScrollShadows();
+            });
+        });
         resizeObserver.current.observe(root);
         return () => resizeObserver.current.disconnect();
     }, [root, resizeObserver.current]);

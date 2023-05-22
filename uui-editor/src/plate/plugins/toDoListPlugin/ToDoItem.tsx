@@ -5,7 +5,7 @@ import {
     findNodePath,
 } from '@udecode/plate';
 
-import css from './ToDoItem.scss';
+import css from './ToDoItem.module.scss';
 
 const { Checkbox, FlexRow } = uuiSkin;
 

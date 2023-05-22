@@ -22,7 +22,7 @@ import {
 
 import { FileUploadResponse } from "@epam/uui-core";
 
-import css from './ImageBlock.scss';
+import css from './ImageBlock.module.scss';
 import { ImgToolbar } from './Toolbar';
 
 export type PlateImgAlign = 'left' | 'center' | 'right';

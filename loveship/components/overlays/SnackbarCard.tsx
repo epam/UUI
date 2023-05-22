@@ -7,7 +7,7 @@ import { ReactComponent as CrossIcon } from './../icons/snackbar/cross.svg';
 import { ReactComponent as InfoIcon } from './../icons/snackbar/info.svg';
 import { ReactComponent as WarningIcon } from './../icons/snackbar/warning.svg';
 import { ReactComponent as SuccessIcon } from './../icons/snackbar/success.svg';
-import css from './SnackbarCard.scss';
+import css from './SnackbarCard.module.scss';
 
 export interface SnackbarCardProps extends INotification, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     snackType: 'success' | 'warning' | 'info' | 'danger';

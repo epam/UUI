@@ -5,20 +5,20 @@
  */
 export * from './src/extensions/testingLibraryReactExt';
 // Utility function to mock adaptive panel items width
-export { mockAdaptivePanelLayout } from './src/mockUtils/adaptivePanelMockUtils';
+export { mockAdaptivePanelLayout } from './src/mocks/adaptivePanelMockUtils';
 // mocks
-export { mockReactPortalsForSnapshots } from './src/mockUtils/reactPortalsMockUtils';
-export { SvgMock } from './src/mockUtils/svgrMock';
+export { mockReactPortalsForSnapshots } from './src/mocks/reactPortalsMockUtils';
+export { SvgMock } from './src/mocks/svgrMock';
 // renderers
 export {
     renderSnapshotWithContextAsync,
-    renderHookToJsdomWithContextAsync,
-    renderToJsdomWithContextAsync,
+    renderHookWithContextAsync,
+    renderWithContextAsync,
     getDefaultUUiContextWrapper,
     renderer, // re-export of react-test-renderer
-} from './src/utils/renderingWithContextUtils';
-export type { CustomWrapperType } from './src/utils/renderingWithContextUtils';
+} from './src/rendering/renderingWithContextUtils';
+export type { CustomWrapperType } from './src/rendering/renderingWithContextUtils';
 // setup
-export { setupComponentForTest } from './src/utils/setupComponentUtils';
+export { setupComponentForTest } from './src/rendering/setupComponentUtils';
 // delay
-export { delayWrapInAct, delay } from './src/utils/timerUtils';
+export { delayAct, delay } from './src/rendering/timerUtils';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './LabeledInput.scss';
+import css from './LabeledInput.module.scss';
 import {
     Icon, uuiElement, labelMod, LabeledInputCoreProps, cx,
 } from '@epam/uui-core';

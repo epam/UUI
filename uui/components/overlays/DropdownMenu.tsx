@@ -1,31 +1,12 @@
-import React, {
-    useRef, useContext, useState, useEffect,
-} from 'react';
+import React, { useRef, useContext, useState, useEffect } from 'react';
 import FocusLock from 'react-focus-lock';
-import {
-    cx,
-    IDropdownToggler,
-    withMods,
-    uuiMod,
-    UuiContext,
-    IHasChildren,
-    VPanelProps,
-    IHasIcon,
-    ICanRedirect,
-    IHasCaption,
-    IDisableable,
-    IAnalyticableClick,
-    IHasCX,
-    IClickable,
-    DropdownBodyProps,
-} from '@epam/uui-core';
-import {
-    Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer,
-} from '@epam/uui-components';
+import { cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
+    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps } from '@epam/uui-core';
+import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer } from '@epam/uui-components';
 import { Switch } from '../inputs';
 import { IconButton } from '../buttons';
 import { systemIcons } from '../../icons/icons';
-import css from './DropdownMenu.scss';
+import css from './DropdownMenu.module.scss';
 
 const icons = systemIcons['36'];
 export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick, IDropdownToggler {

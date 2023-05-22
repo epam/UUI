@@ -20,7 +20,7 @@ import {
 } from '@epam/promo';
 import { FlexSpacer } from '@epam/uui-components';
 import { ReactComponent as deleteIcon } from '@epam/assets/icons/common/content-clear-18.svg';
-import css from './TablesExamples.scss';
+import css from './TablesExamples.module.scss';
 
 // Define interface describe data for each row
 interface ToDoItem {

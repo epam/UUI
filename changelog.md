@@ -6,7 +6,9 @@
 
 # 5.0.0 - xx.xx.20203
 **What's New**
-* "EcmaScript" modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
+* EcmaScript modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
+* New package is published to NPM: @epam/uui-test-utils. It provides a set of helpers which facilitate creation of unit tests for UUI components.
+* Documentation related to unit testing was added to the [UUI site](https://uui.epam.com/) (a set of pages under the Testing section). It contains general guidelines, best practices and tools we use to create unit tests for UUI components. Also, it contains a Cookbook describing typical use cases with code examples as well as frequent questions & answers.     
 * [ContextProvider]: removed support of legacy React context API, as it were announced in 4.1.0 version. `enableLegacyContext` prop was deleted.
 * [useTableState]:
   - [BreakingChange]: removed `initialFilter` prop, if you need to provide any initial state for hook, pre-generate a link with this state on you side.
@@ -27,11 +29,14 @@
 
 * [MainMenuDropdown]: added callback renderBody with dropdownBodyProps to renderBody method of MainMenuDropdown.
 * [Dropdown]: added a 400ms delay to the submenu's close and open triggers
-* [FiltersPanel]: hide 'Add filter' button, if all filters `isAlwaysVisible`
+* [FiltersPanel]: 
+  - hide 'Add filter' button, if all filters `isAlwaysVisible`
+  - added `presets` prop to rangeDatePicker filter
+  - added `filter` prop for datePicker and rangeDatePicker filters
 * [TimePicker]: added max values to hours and minutes inputs
 * [Tooltip]: added possibility to pass raw-props to the tooltip body
 * [RangeDatePicker]: added new 'onOpenChange' prop
-* [PickerModal]: added a docs page
+* [ErrorHandler]: now in Loveship used `NotificationCard` component instead of `SnackbarCard` for notification type errors
 
 **What's Fixed**
 * [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column
@@ -45,6 +50,10 @@
 * [Button]: colors 'night500' and 'gray50' are deprecated and will be removed in the future release. Use 'gray' in both skins instead.
 * [Slider]: deprecated all colors except 'sky' by default.
 * [RangeSlider]: deprecated all colors except 'sky' by default.
+* [Tooltip]: fixed max-width - removed default 300px max-width value from styles, you can set max-with using property 'maxWidth'.
+* [RichTextView]: h1 font-size in promo skin changed from 36px to 42px.
+* [ModalBlocker]: removed property 'blockerShadow'.
+* [ModalWindow]: to types of properties 'width' and 'height' was added type number.
 
 * [Datasources]: datasources rework
   - Moved sort/search/filter logic to the `Tree` from views.
@@ -53,8 +62,6 @@
   - Datatable demos were added/updated.
   - `implicit` cascade selection mode was added.
   - `Show only selected` order was fixed.
-
-**What's Fixed**
 * [PickerInput]: fixes Hover doesn't appear on "parent" when pointing the mouse.
 * [FilterPanel]: fixed issue with "show only selected" toggle not being visible, when selectAll was disabled via DataSource
 * [PickerInput]: added a default footer component for single pickers that includes a "Clear" button

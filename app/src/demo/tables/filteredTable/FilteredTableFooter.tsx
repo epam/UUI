@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import css from './FilteredTableFooter.scss';
+import css from './FilteredTableFooter.module.scss';
 import {
     FlexCell, LabeledInput, TextInput, Text, PickerInput,
 } from '@epam/uui';

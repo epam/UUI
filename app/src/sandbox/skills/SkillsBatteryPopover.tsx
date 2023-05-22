@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import css from './SkillsBatteryPopover.scss';
+import css from './SkillsBatteryPopover.module.scss';
 import { SmallBattery } from './components/SmallBattery';
 import { BigBattery } from './components/BigBattery';
 import { IInnerSkill, ISkill, ISkillLevel } from './index';

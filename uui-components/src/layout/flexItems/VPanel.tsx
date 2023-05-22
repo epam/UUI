@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './VPanel.scss';
+import css from './VPanel.module.scss';
 import {
     isClickableChildClicked, uuiMarkers, VPanelProps, UuiContexts, cx, UuiContext,
 } from '@epam/uui-core';

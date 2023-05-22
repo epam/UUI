@@ -15,7 +15,7 @@ import { ToolbarButton } from '../../../implementation/ToolbarButton';
 
 import { ReactComponent as QuoteIcon } from '../../icons/quote.svg';
 
-import css from './quote.scss';
+import css from './quote.module.scss';
 
 const noop = () => {};
 const KEY = 'uui-richTextEditor-quote';

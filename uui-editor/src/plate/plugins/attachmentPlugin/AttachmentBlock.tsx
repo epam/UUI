@@ -17,7 +17,7 @@ import { ReactComponent as TableIcon } from '../../icons/file-file_table-24.svg'
 import { ReactComponent as TextIcon } from '../../icons/file-file_text-24.svg';
 import { ReactComponent as MailIcon } from '../../icons/file-file_eml-24.svg';
 
-import css from './AttachmentBlock.scss';
+import css from './AttachmentBlock.module.scss';
 
 const { FlexRow, FlexCell, TextInput, Spinner } = uuiSkin;
 
