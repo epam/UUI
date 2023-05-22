@@ -15,11 +15,6 @@
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
               }
@@ -27,28 +22,7 @@
           },
           {
             "object": "text",
-            "text": " properties enable the possibility ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "to control data paging",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ". Usually, they are used along with ",
+            "text": " properties enable the possibility to control data paging. Usually, they are used along with ",
             "marks": []
           },
           {
@@ -58,11 +32,6 @@
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
                 "data": {}
               }
             ]

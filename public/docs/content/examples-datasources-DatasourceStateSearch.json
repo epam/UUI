@@ -11,28 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To enable ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "the search feature",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", it is required to pass the ",
+            "text": "To enable the search feature, it is required to pass the ",
             "marks": []
           },
           {
@@ -42,11 +21,6 @@
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
                 "data": {}
               }
             ]
@@ -62,11 +36,6 @@
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
                 "type": "uui-richTextEditor-code",
                 "data": {}
               }
@@ -74,49 +43,7 @@
           },
           {
             "object": "text",
-            "text": ". You may also ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "need to pass some other properties,",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " depending on the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "specific",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
+            "text": ". You may also need to pass some other properties, depending on the specific ",
             "marks": []
           },
           {
@@ -126,11 +53,6 @@
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
                 "data": {}
               }
             ]

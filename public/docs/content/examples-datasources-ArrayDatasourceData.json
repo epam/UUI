@@ -11,7 +11,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To represent ",
+            "text": "To represent",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": " ",
             "marks": [
               {
                 "object": "mark",
@@ -32,7 +37,7 @@
           },
           {
             "object": "text",
-            "text": " data",
+            "text": " ",
             "marks": [
               {
                 "object": "mark",
@@ -48,28 +53,7 @@
           },
           {
             "object": "text",
-            "text": " with ArrayDatasource, it ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "should be passed",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " to the datasource via ",
+            "text": "data with ArrayDatasource, it should be passed to the datasource via ",
             "marks": []
           },
           {
@@ -79,11 +63,6 @@
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
                 "data": {}
               }
             ]

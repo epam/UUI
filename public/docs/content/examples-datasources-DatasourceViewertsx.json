@@ -61,11 +61,6 @@
                     "marks": [
                       {
                         "object": "mark",
-                        "type": "uui-richTextEditor-bold",
-                        "data": {}
-                      },
-                      {
-                        "object": "mark",
                         "type": "uui-richTextEditor-code",
                         "data": {}
                       }
@@ -82,11 +77,6 @@
                     "marks": [
                       {
                         "object": "mark",
-                        "type": "uui-richTextEditor-bold",
-                        "data": {}
-                      },
-                      {
-                        "object": "mark",
                         "type": "uui-richTextEditor-code",
                         "data": {}
                       }
@@ -101,11 +91,6 @@
                     "object": "text",
                     "text": "state change handler",
                     "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-bold",
-                        "data": {}
-                      },
                       {
                         "object": "mark",
                         "type": "uui-richTextEditor-code",
@@ -143,11 +128,6 @@
                     "marks": [
                       {
                         "object": "mark",
-                        "type": "uui-richTextEditor-bold",
-                        "data": {}
-                      },
-                      {
-                        "object": "mark",
                         "type": "uui-richTextEditor-code",
                         "data": {}
                       }
@@ -181,11 +161,6 @@
                     "object": "text",
                     "text": "getListOptions",
                     "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-bold",
-                        "data": {}
-                      },
                       {
                         "object": "mark",
                         "type": "uui-richTextEditor-code",
@@ -225,11 +200,6 @@
                         "object": "mark",
                         "type": "uui-richTextEditor-code",
                         "data": {}
-                      },
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-bold",
-                        "data": {}
                       }
                     ]
                   },
@@ -246,11 +216,6 @@
                         "object": "mark",
                         "type": "uui-richTextEditor-code",
                         "data": {}
-                      },
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-bold",
-                        "data": {}
                       }
                     ]
                   },
@@ -263,11 +228,6 @@
                     "object": "text",
                     "text": "value.selectAll",
                     "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-bold",
-                        "data": {}
-                      },
                       {
                         "object": "mark",
                         "type": "uui-richTextEditor-code",

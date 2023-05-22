@@ -11,39 +11,13 @@
         "nodes": [
           {
             "object": "text",
-            "text": "E﻿nables/disables",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
+            "text": "E﻿nables/disables ",
             "marks": []
           },
           {
             "object": "text",
             "text": "select all",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
@@ -81,49 +55,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "S﻿elect All",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": " relies ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "on the",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": " cascade selection ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "mode.",
+            "text": "S﻿elect All relies on the cascade selection mode.",
             "marks": []
           }
         ]
