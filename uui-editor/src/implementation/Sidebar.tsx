@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { isBlock, usePlateEditorState } from '@udecode/plate';
 import cx from "classnames";
 
-import css from "./Sidebar.scss";
+import css from "./Sidebar.module.scss";
 
 interface SidebarProps {
     isReadonly: boolean;

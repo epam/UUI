@@ -10,8 +10,7 @@ import { Anchor, TextInput } from '@epam/loveship';
 import { Svg } from '@epam/uui-components';
 import { ReactComponent as Calendar } from '@epam/assets/icons/common/action-calendar-18.svg';
 import cx from 'classnames';
-import css from '@epam/loveship/assets/styles/scss/typography.scss';
-import style from './richTextViewDoc.scss';
+import style from './richTextViewDoc.module.scss';
 
 const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'RichTextView', component: RichTextView })
     .prop('htmlContent', {
@@ -194,12 +193,12 @@ const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'Ri
                         <h4>{'<Pre>'}</h4>
                         <pre>
                             {`import * as React from 'react';
-import css from './MyComponent.scss';
+import css from './MyComponent.module.scss';
 
 export const MyComponent = <div className={ css.myHeader }>`}
                         </pre>
                         <h4>Text with size 16</h4>
-                        <p className={ cx(css.typography16) }>
+                        <p className={ cx(style.typography16) }>
                             Lorem ipsum dolor sit amet,
                             {' '}
                             <Anchor href="/">
@@ -216,7 +215,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
                         <h4>Text with size 12</h4>
-                        <p className={ cx(css.typography12) }>
+                        <p className={ cx(style.typography12) }>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
                             veniam,
                             {' '}

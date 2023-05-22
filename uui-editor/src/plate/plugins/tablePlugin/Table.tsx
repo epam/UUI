@@ -3,10 +3,10 @@ import {
     TableElement,
     TableElementRootProps,
 } from '@udecode/plate-table';
-import { type TTableElement, useTableStore, TTableRowElement } from '@udecode/plate';
+import { type TTableElement, useTableStore, TTableRowElement, HTMLPropsAs, useSelectedCells, useElementProps, createComponentAs, createElementAs } from '@udecode/plate';
 import { cx } from '@epam/uui-core'
 
-import tableCSS from './Table.scss';
+import tableCSS from './Table.module.scss';
 import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
 
 const getDefaultColWidths = (columnsNumber: number) => Array.from({ length: columnsNumber }, () => DEFAULT_COL_WIDTH);
@@ -23,6 +23,21 @@ const getTableColumnCount = (element: TTableElement) => {
     return colCount;
 }
 
+export const useTableElementRootProps = (
+    props: TableElementRootProps
+): HTMLPropsAs<'table'> => {
+    useSelectedCells();
+
+    return { ...useElementProps(props) };
+};
+
+export const TableElementRoot = createComponentAs<TableElementRootProps>(
+    (props) => {
+        const htmlProps = useTableElementRootProps(props);
+        return createElementAs('table', htmlProps);
+    }
+);
+
 export const Table = (props: TableElementRootProps) => {
     const { as, children, element, editor, ...rootProps } = props;
 
@@ -32,11 +47,12 @@ export const Table = (props: TableElementRootProps) => {
 
     const isCellsSelected = !!useTableStore().get.selectedCells();
     const colSizeOverrides = useTableStore().get.colSizeOverrides();
-    const currentColSizes = element.colSizes.map((size, index) => colSizeOverrides?.get(index) ?? size ?? EMPTY_COL_WIDTH);
+    const currentColSizes = element.colSizes.map((size, index) => colSizeOverrides?.get(index) || size || EMPTY_COL_WIDTH);
 
     const tableWidth = currentColSizes.reduce((acc, cur) => acc + cur, 0);
+
     return (
-        <TableElement.Root
+        <TableElementRoot
             { ...rootProps }
             editor={ editor }
             element={ element }
@@ -56,6 +72,6 @@ export const Table = (props: TableElementRootProps) => {
             </TableElement.ColGroup>
 
             <TableElement.TBody className={ tableCSS.tbody }>{ children }</TableElement.TBody>
-        </TableElement.Root>
+        </TableElementRoot>
     );
 };

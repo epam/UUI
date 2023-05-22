@@ -3,7 +3,7 @@ import {
     Icon, IHasCX, NotificationOperation, NotificationContext, UuiContext, cx, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import css from './Snackbar.scss';
+import css from './Snackbar.module.scss';
 
 const itemsOffset = 12;
 const offset = 30;

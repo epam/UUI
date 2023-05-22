@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './PlaceholderPlugin.scss';
+import css from './PlaceholderPlugin.module.scss';
 import cx from 'classnames';
 import { useSelected } from "slate-react";
 import { uuiMod } from "@epam/uui-core";

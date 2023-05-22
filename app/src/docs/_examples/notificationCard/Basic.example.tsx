@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlexCell, NotificationCard, Text } from '@epam/promo';
-import css from './BasicExample.scss';
+import css from './BasicExample.module.scss';
 
 export default function BasicNotificationCardExample() {
     return (

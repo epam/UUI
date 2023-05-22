@@ -7,7 +7,7 @@ import {
 } from '@epam/uui-core';
 import { FlexRow } from '@epam/uui';
 import { DataTable } from '@epam/promo';
-import css from './DemoTable.scss';
+import css from './DemoTable.module.scss';
 import type { TApi } from '../../../data';
 import { getFilters } from './filters';
 import { personColumns } from './columns';
@@ -16,7 +16,7 @@ import { InfoSidebarPanel } from './InfoSidebarPanel';
 import { SlidingPanel } from './SlidingPanel';
 import { FilterPanelOpener } from './FilterPanelOpener';
 
-export const MasterDetailedTable: React.FC = () => {
+export function MasterDetailedTable() {
     const svc = useUuiContext<TApi, UuiContexts>();
     const [isFilterPanelOpened, setIsFilterPanelOpened] = useState(false);
     const [isInfoPanelOpened, setIsInfoPanelOpened] = useState(false);
@@ -89,4 +89,4 @@ export const MasterDetailedTable: React.FC = () => {
             />
         </div>
     );
-};
+}

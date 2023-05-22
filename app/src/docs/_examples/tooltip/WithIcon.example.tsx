@@ -3,7 +3,7 @@ import {
     FlexCell, FlexRow, IconContainer, Text, Tooltip,
 } from '@epam/promo';
 import { ReactComponent as myIcon } from '@epam/assets/icons/common/action-target-18.svg';
-import css from './WithIconExample.scss';
+import css from './WithIconExample.module.scss';
 
 export default function IconTooltipExample() {
     const renderIconMarkup = () => (

@@ -4,7 +4,7 @@ import {
 } from '@epam/promo';
 
 import { ReactComponent as notificationIcon } from '@epam/assets/icons/common/notification-done-12.svg';
-import css from './AttributesExample.scss';
+import css from './AttributesExample.module.scss';
 
 export default function AttributesExample() {
     return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './Responsive.scss';
+import css from './Responsive.module.scss';
 import { PromoPickerInput } from './PromoPickerInput';
 import { LoveshipPickerInput } from './LoveshipPickerInput';
 

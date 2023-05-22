@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import css from './FilterPanelOpener.scss';
+import css from './FilterPanelOpener.module.scss';
 import { FlexRow, IconButton } from '@epam/promo';
 import { ReactComponent as FilterIcon } from '@epam/assets/icons/common/content-filter_list-24.svg';
 

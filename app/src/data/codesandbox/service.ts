@@ -49,7 +49,7 @@ class CodesandboxService {
 
     public getCodesandboxParameters(code: string, stylesheets?: FilesRecord): string {
         return getParameters({
-            files: getCodesandboxConfig(this.processCodeContent(code), this.processStylesheets(stylesheets), this.files),
+            files: getCodesandboxConfig(this.processCodeContent(code), stylesheets || {}, this.files),
         });
     }
 
@@ -74,24 +74,12 @@ class CodesandboxService {
                 .map((line) => {
                     if (iconFiles.includes(line)) {
                         return line.replace(/import\s\*\sas\s(\w+)/, 'import { ReactComponent as $1 }');
-                    } else if (stylesheetFiles.includes(line)) {
-                        return line.replace(/(.example)?(.scss)/, '$1.module.scss');
-                    } else return line;
+                    } else {
+                        return line;
+                    }
                 })
                 .join(separator);
         } else return code;
-    }
-
-    private processStylesheets(stylesheets: FilesRecord): FilesRecord {
-        if (Object.keys(stylesheets).length === 0) return {};
-        const processedStylesheets = {};
-        for (const [path, stylesheet] of Object.entries(stylesheets)) {
-            const pathSplitArr = path.split('.');
-            const extension = pathSplitArr.pop();
-            const file = pathSplitArr.join('.');
-            Object.assign(processedStylesheets, { [`${file}.module.${extension}`]: stylesheet });
-        }
-        return processedStylesheets;
     }
 }
 

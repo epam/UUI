@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import css from './SmallBattery.scss';
+import css from './SmallBattery.module.scss';
 import { Text, IconContainer } from '@epam/promo';
 import { ISkillLevel } from '../index';
 import { ReactComponent as CrossIcon } from '../icons/navigation-close_popup-7.svg';

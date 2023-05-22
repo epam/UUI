@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import css from './ColumnHeaderDropdown.scss';
+import css from './ColumnHeaderDropdown.module.scss';
 import { Modifier } from 'react-popper';
 import {
     IDropdownToggler, DropdownBodyProps, isMobile, mobilePopperModifier,

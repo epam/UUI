@@ -1,7 +1,8 @@
 import { buildQueries, within } from '@testing-library/react';
 
 function queryAllByRoleAndText(container: HTMLElement, params: { role: string, text: string }) {
-    return within(container).queryAllByRole(params.role).filter((e) => e.textContent === params.text);
+    const arr = within(container).queryAllByRole(params.role);
+    return arr.filter((e) => e.textContent.trim() === params.text);
 }
 
 function buildQueryByRoleAndText() {

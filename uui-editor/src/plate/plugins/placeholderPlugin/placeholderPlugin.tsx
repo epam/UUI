@@ -15,7 +15,7 @@ import { ToolbarButton } from '../../../implementation/ToolbarButton';
 
 import { PlaceholderBlock } from './PlaceholderBlock';
 
-import css from './PlaceholderPlugin.scss';
+import css from './PlaceholderPlugin.module.scss';
 
 const KEY = 'placeholder';
 const noop = () => {};

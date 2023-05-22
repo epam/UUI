@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './Table.scss';
+import css from './Table.module.scss';
 import cx from 'classnames';
 
 import {
@@ -10,7 +10,6 @@ import {
     usePlateEditorRef,
     useElement,
     getTableRowIndex,
-    useIsCellSelected,
     TTableRowElement,
     ELEMENT_TR,
     TTableElement,
@@ -18,6 +17,7 @@ import {
 } from '@udecode/plate';
 import { useReadOnly } from 'slate-react';
 import { ExtendedTTableCellElement } from './types';
+import { TableCellElementResizable } from './Resizable';
 
 interface PlateTableCellElementProps extends TableCellElementRootProps {
     hideBorder?: boolean;
@@ -34,12 +34,18 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
     const cellElement = useElement<ExtendedTTableCellElement>();
     const rowIndex = getTableRowIndex(editor, cellElement);
     const readOnly = useReadOnly();
-    const selected = useIsCellSelected(cellElement);
+
+    const [selectedCells] = useTableStore().use.selectedCells();
+    const selected = React.useMemo(() => !!selectedCells?.includes(cellElement), [
+        cellElement,
+        selectedCells,
+    ]);
 
     const rowSizeOverrides = useTableStore().get.rowSizeOverrides();
     const rowElement = useElement<TTableRowElement>(ELEMENT_TR);
     const rowSize = rowSizeOverrides.get(rowIndex) ?? rowElement?.size ?? undefined;
 
+    // TODO: move to plate
     const colIndex = cellElement.colIndex;
     const tableElement = useElement<TTableElement>(ELEMENT_TABLE);
 
@@ -66,7 +72,7 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
             </TableCellElement.Content>
 
             <TableCellElement.ResizableWrapper className={ css.tableCellResizable }>
-                <TableCellElement.Resizable
+                <TableCellElementResizable
                     colIndex={ colIndex }
                     rowIndex={ rowIndex }
                     readOnly={ readOnly }
@@ -80,7 +86,7 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
                     <TableCellElement.Handle className={ css.tableCellResizeLeftHandle } />
                 ) }
             </TableCellElement.ResizableWrapper>
-        </TableCellElement.Root >
+        </TableCellElement.Root>
     );
 };
 

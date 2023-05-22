@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, cx, IHasRawProps, ICanFocus } from '@epam/uui-core';
 import { IconContainer } from '../layout';
-import css from './PickerToggler.scss';
+import css from './PickerToggler.module.scss';
 import { i18n } from '../i18n';
 import { useCallback } from 'react';
 import { getMaxItems } from './helpers';

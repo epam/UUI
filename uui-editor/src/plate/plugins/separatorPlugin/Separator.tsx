@@ -5,7 +5,7 @@ import { uuiMod } from '@epam/uui-core';
 
 import { StyledElementProps } from '@udecode/plate';
 
-import css from './Separator.scss';
+import css from './Separator.module.scss';
 
 export function Separator(props: StyledElementProps) {
     const { children, attributes } = props;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     cx, IDisableable, IEditable, ICanBeReadonly, IHasCX, uuiMod, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';
-import css from './BaseRating.scss';
+import css from './BaseRating.module.scss';
 
 export interface BaseRatingProps<TValue>
     extends IHasCX,

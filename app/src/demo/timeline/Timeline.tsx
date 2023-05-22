@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './Timeline.scss';
+import css from './Timeline.module.scss';
 import {
     msPerDay, TimelineController, TimelineScale, TimelineNav, TimelineGrid, Item,
 } from '@epam/uui-timeline';

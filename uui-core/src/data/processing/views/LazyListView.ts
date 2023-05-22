@@ -12,7 +12,7 @@ import isEqual from 'lodash.isequal';
 import { BaseListView } from './BaseListView';
 import { ListApiCache } from '../ListApiCache';
 import {
-    Tree, LoadTreeOptions, ITree, ROOT_ID,
+    Tree, LoadTreeOptions, ITree, ROOT_ID, NOT_FOUND_RECORD,
 } from './tree';
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
@@ -76,7 +76,7 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
     legacyLoadDataBehavior?: boolean;
 }
 
-interface LoadResult<TItem, TId, TFilter> {
+interface LoadResult<TItem, TId> {
     isUpdated: boolean;
     isOutdated: boolean;
     tree: ITree<TItem, TId>;
@@ -177,7 +177,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             this.rebuildRows();
         }
 
-        if (!prevValue || this.value.focusedIndex != prevValue.focusedIndex) {
+        if (!prevValue || this.value.focusedIndex !== prevValue.focusedIndex) {
             this.updateFocusedItem();
         }
 
@@ -217,11 +217,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     public getById = (id: TId, index: number) => {
         const item = this.cache.byId(id);
-        if (item !== null) {
-            return this.getRowProps(item, index);
-        } else {
-            return this.getLoadingRow('_loading_' + id, index, []);
+        if (item === NOT_FOUND_RECORD) {
+            return this.getUnknownRow(id, index, []);
         }
+
+        if (item === null) {
+            return this.getLoadingRow(id, index, []);
+        }
+
+        return this.getRowProps(item, index);
     };
 
     // Wrap props.api to update items in the items store
@@ -231,7 +235,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             const missingIds: TId[] = [];
             rq.ids.forEach((id) => {
                 const cachedItem = this.cache.byId(id, false);
-                if (cachedItem) {
+                if (cachedItem !== NOT_FOUND_RECORD) {
                     cachedItems.push(cachedItem);
                 } else {
                     missingIds.push(id);
@@ -261,12 +265,13 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     // Loads node. Returns promise to a loaded node.
 
-    private inProgressPromise: Promise<LoadResult<TItem, TId, TFilter>> = null;
+    private inProgressPromise: Promise<LoadResult<TItem, TId>> = null;
+
     private loadMissing(
         abortInProgress: boolean,
         options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>,
         withNestedChildren?: boolean,
-    ): Promise<LoadResult<TItem, TId, TFilter>> {
+    ): Promise<LoadResult<TItem, TId>> {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
 
         if (this.inProgressPromise === null || abortInProgress) {
@@ -278,7 +283,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         return this.inProgressPromise;
     }
 
-    private async loadMissingImpl(options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>, withNestedChildren?: boolean): Promise<LoadResult<TItem, TId, TFilter>> {
+    private async loadMissingImpl(options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>, withNestedChildren?: boolean): Promise<LoadResult<TItem, TId>> {
         const loadingTree = this.tree;
 
         try {
@@ -298,7 +303,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
             // If this.tree is changed during this load, than there was reset occurred (new value arrived)
             // We need to tell caller to reject this result
-            const isOutdated = this.tree != loadingTree;
+            const isOutdated = this.tree !== loadingTree;
             const isUpdated = this.tree !== newTree;
 
             if (!isOutdated) {

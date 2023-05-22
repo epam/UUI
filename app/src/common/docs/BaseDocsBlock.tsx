@@ -7,7 +7,7 @@ import { ComponentEditor } from './ComponentEditor';
 import { svc } from '../../services';
 import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
-import css from './BaseDocsBlock.scss';
+import css from './BaseDocsBlock.module.scss';
 
 export type UUI3 = 'UUI3_loveship';
 export type UUI4 = 'UUI4_promo';

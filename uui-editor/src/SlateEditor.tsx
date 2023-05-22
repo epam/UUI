@@ -14,7 +14,6 @@ import {
     createSoftBreakPlugin,
     createExitBreakPlugin,
     PlateProvider,
-    createDeserializeDocxPlugin,
     useEventEditorSelectors,
     isElementEmpty,
     Value,
@@ -27,8 +26,8 @@ import { migrateSchema } from './migration';
 
 import { baseMarksPlugin, paragraphPlugin } from './plate/plugins';
 
-import style from '@epam/assets/scss/promo/typography.scss';
-import css from './SlateEditor.scss';
+import css from './SlateEditor.module.scss';
+import { createDeserializeDocxPlugin } from './plate/plugins/deserializeDocxPlugin/deserializeDocxPlugin';
 
 let components = createPlateUI();
 
@@ -98,8 +97,9 @@ const Editor = (props: PlateEditorProps) => {
                         const shouldShowPlaceholder = isElementEmpty(editor, editor.children[0]) && editor.children[0].type === 'paragraph';
                         return shouldShowPlaceholder && <div { ...attributes }>{ props.placeholder }</div>
                     },
-                    style: { padding: '0 24px' }
+                    style: { padding: '0 24px', minHeight: props.minHeight }
                 } }
+
                 // we override plate core insertData plugin
                 // so, we need to disable default implementation
                 disableCorePlugins={ { insertData: true } }
@@ -126,8 +126,8 @@ const Editor = (props: PlateEditorProps) => {
                 (!props.isReadonly && isFocused) && uuiMod.focus,
                 props.isReadonly && uuiMod.readonly,
                 props.scrollbars && css.withScrollbars,
-                style.typographyPromo,
-                props.fontSize == '16' ? style.typography16 : style.typography14,
+                css.typographyPromo,
+                props.fontSize == '16' ? css.typography16 : css.typography14,
             ) }
             style={ { minHeight: props.minHeight || 350 } }
             { ...props.rawProps }

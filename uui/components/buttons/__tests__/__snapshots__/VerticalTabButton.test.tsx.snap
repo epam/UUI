@@ -2,7 +2,7 @@
 
 exports[`VerticalTabButton should be rendered correctly 1`] = `
 <button
-  className="container uui-button-box uui-enabled root informer-color-default size-48 uui-no-left-icon uui-no-right-icon root"
+  className="container uui-button-box uui-enabled root informer-default size-48 uui-no-left-icon uui-no-right-icon root"
   onClick={[Function]}
   role="tab"
   tabIndex={-1}
@@ -13,7 +13,7 @@ exports[`VerticalTabButton should be rendered correctly 1`] = `
 exports[`VerticalTabButton should be rendered correctly with props 1`] = `
 <button
   aria-disabled={false}
-  className="container uui-button-box uui-enabled -clickable root informer-color-default size-48 uuiNotification uui-has-left-icon uui-no-right-icon root"
+  className="container uui-button-box uui-enabled -clickable root informer-default size-48 uuiNotification uui-has-left-icon uui-no-right-icon root"
   onClick={[Function]}
   role="tab"
   tabIndex={0}

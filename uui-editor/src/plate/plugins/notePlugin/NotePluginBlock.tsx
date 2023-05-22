@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 import { StyledElementProps } from '@udecode/plate';
 
-import css from './NotePluginBlock.scss';
+import css from './NotePluginBlock.module.scss';
 
 interface NotePluginBlock extends StyledElementProps {
     type: string;

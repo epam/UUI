@@ -10,7 +10,7 @@ import { ReactComponent as FullWidth } from '../../../icons/align-full-width.svg
 import { ImageElement, PlateImgAlign } from "./ImageBlock";
 import { ToolbarButton } from '../../../implementation/ToolbarButton';
 
-import css from './ImageBlock.scss';
+import css from './ImageBlock.module.scss';
 
 export const ImgToolbar = ({
     editor,
