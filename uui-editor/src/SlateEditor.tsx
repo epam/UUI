@@ -14,7 +14,6 @@ import {
     createSoftBreakPlugin,
     createExitBreakPlugin,
     PlateProvider,
-    createDeserializeDocxPlugin,
     useEventEditorSelectors,
     isElementEmpty,
     Value,
@@ -28,6 +27,7 @@ import { migrateSchema } from './migration';
 import { baseMarksPlugin, paragraphPlugin } from './plate/plugins';
 
 import css from './SlateEditor.module.scss';
+import { createDeserializeDocxPlugin } from './plate/plugins/deserializeDocxPlugin/deserializeDocxPlugin';
 
 let components = createPlateUI();
 

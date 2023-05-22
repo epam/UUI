@@ -2,8 +2,7 @@ import React, { MouseEventHandler, useEffect, useState } from "react";
 import {
     ELEMENT_TABLE,
     HTMLPropsAs,
-    ResizeDirection,
-    ResizeEvent,
+    ResizeHandleProps,
     TTableElement,
     TableCellElementResizableProps,
     TablePlugin,
@@ -18,19 +17,7 @@ import {
 } from "@udecode/plate";
 import { ExtendedTTableCellElement } from "./types";
 
-export type ResizeHandleProps = HTMLPropsAs<"div"> & {
-    direction: ResizeDirection;
-    width?: number;
-    startMargin?: number;
-    endMargin?: number;
-    zIndex?: number;
-    onResize?: (event: ResizeEvent) => void;
-    onMouseDown?: MouseEventHandler;
-    onHover?: () => void;
-    onHoverEnd?: () => void;
-};
-
-export const useResizeHandleProps = ({
+export const useResizeHandleProps: (props: ResizeHandleProps) => HTMLPropsAs<"div"> = ({
     direction,
     width = 10,
     startMargin = 0,
@@ -42,14 +29,14 @@ export const useResizeHandleProps = ({
     onHoverEnd,
     style,
     ...props
-}: ResizeHandleProps) => {
+}) => {
     const [isResizing, setIsResizing] = useState(false);
     const [initialPosition, setInitialPosition] = useState(0);
     const [initialSize, setInitialSize] = useState(0);
     const editor = usePlateEditorState();
 
     const cellElement = useElement<ExtendedTTableCellElement>();
-    const { cell, row, table } = getTableEntries(editor) || {};
+    const { table } = getTableEntries(editor) || {};
 
     const isHorizontal = direction === "left" || direction === "right";
 
