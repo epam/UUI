@@ -15,6 +15,7 @@ import {
     getPluginType
 } from "@udecode/plate";
 import { useUuiContext } from '@epam/uui-core';
+import { sanitizeUrl } from "@braintree/sanitize-url";
 
 import { ToolbarButton } from '../../../implementation/ToolbarButton';
 
