@@ -1,5 +1,48 @@
 @use 'sass:math';
-@use '../../assets/styles/scss/index'  as *;
+@use '../../assets/styles/scss/index' as *;
+@use '../../assets/styles/scss/loveship-colors' as *;
+
+@mixin panel-shadow() { box-shadow: 0 1px 3px 0 rgba(51, 51, 51, 0.2); }
+
+@mixin disabled-input() {
+    @include input-colors($night50, $night500, $night500, $night300);
+    cursor: default;
+    pointer-events: none;
+
+    &:hover, &:active, &:focus {
+        @include input-colors($night50, $night500, $night500, $night300);
+        box-shadow: none;
+    }
+
+    &::placeholder {
+        color: $night300;
+    }
+}
+
+@mixin input-colors($background, $color, $fill, $border) {
+    background-color: $background;
+    color: $color;
+    fill: $fill;
+    border-color: $border;
+
+    // override more selective selector on input tag in browsers stylesheets
+    :global(.uui-input) {
+        color: $color;
+
+        &::placeholder {
+            color: $night500;
+        }
+    }
+}
+
+@mixin icon-layout($size) {
+    :global(.uui-icon) {
+        svg {
+            height: math.div($size, 36) * 24;
+            max-width: math.div($size, 36) * 24;
+        }
+    }
+}
 
 @mixin icon-sizes($size, $font-size, $line-height) {
     $vpadding: math.div(($line-height - $size), 2);
@@ -42,6 +85,7 @@
         border-bottom: 1px solid;
     }
 }
+$panel-border-radius: 6px;
 
 .bodyRoot {
     @include icon-layout(24px);
