@@ -50,7 +50,8 @@ export const useResizeHandleProps: (props: ResizeHandleProps) => HTMLPropsAs<"di
         let size;
         if (isHorizontal) {
             size = element.offsetWidth;
-            if (table && cellElement && cellElement.colSpan > 1) {
+            const isMergedCell = table && cellElement && cellElement.colSpan > 1;
+            if (isMergedCell) {
                 const tableElem = table[0] as TTableElement;
                 size = tableElem.colSizes[cellElement.colIndex!]!;
             }
