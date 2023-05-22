@@ -12,6 +12,12 @@
 
 :local(.typography-promo) {
     @include typography-promo();
+    //We need to highlight visited links only in readonly mode
+    &:not(:global(.uui-readonly)) {
+        a:visited {
+            color: $blue;
+        }
+    }
 }
 
 .container {

@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    getPluginType,
     createLinkPlugin,
     someNode,
     LinkToolbarButton,
@@ -13,6 +12,7 @@ import {
     WithPlatePlugin,
     LinkPlugin,
     upsertLink,
+    getPluginType
 } from "@udecode/plate";
 import { useUuiContext } from '@epam/uui-core';
 
@@ -60,27 +60,32 @@ const withOurLink = <
     return editor;
 }
 
+const LINK_ELEMENT = 'link';
+
 export const linkPlugin = () => createLinkPlugin({
-    type: 'link',
+    type: LINK_ELEMENT,
     withOverrides: withOurLink,
-    then: () => ({
-        props: () => ({
-            style: { display: 'inline' }, // fixes a bug with keyboard navigation through symbols in the link
-        }),
-    }),
+    overrideByKey: {
+        [ELEMENT_LINK]: {
+            component: (props) => (
+                <a { ...props.attributes } style={ { display: 'inline' } } target='_blank' href={ props.element.url }>{ props.children }</a>
+            ),
+        }
+    },
 });
 
-interface ToolbarButton {
+interface ToolbarLinkButtonProps {
     editor: PlateEditor;
 }
 
-export const LinkButton = ({ editor }: ToolbarButton) => {
+export const LinkButton = ({ editor }: ToolbarLinkButtonProps) => {
     const context = useUuiContext();
 
     const type = getPluginType(editor, ELEMENT_LINK);
-    const isLink = !!editor?.selection && someNode(editor, { match: { type } });
 
     if (!isPluginActive(ELEMENT_LINK)) return null;
+
+    const isLink = !!editor?.selection && someNode(editor, { match: { type: LINK_ELEMENT } });
 
     return (
         <LinkToolbarButton
