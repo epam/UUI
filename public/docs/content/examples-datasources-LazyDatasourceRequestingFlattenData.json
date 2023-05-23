@@ -1,0 +1,284 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "To enable lazy loading it is enough to return ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "items",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " of ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "count",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " length with a gap, taken from a ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "from",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " field.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "To reduce the number of requests it is required to return the total count of elements, matching the current filter, as a part of the ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "response",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " in a ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "count",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " field.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "To return all elements at once it is required to pass ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "from: 0",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " and a total count of elements, matching the current filter, as a part of the ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "response",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " in a ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "count",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " field.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "To align the ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "response",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " to the paging or to return more items, than requested in ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "request.range",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ", it is required to set a ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "from",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " field as a part of the ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "response",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ".",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

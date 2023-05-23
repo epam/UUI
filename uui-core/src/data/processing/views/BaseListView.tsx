@@ -411,7 +411,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     private getEstimatedChildrenCount = (id: TId) => {
-        if (!id) return undefined;
+        if (id === undefined) return undefined;
 
         const item = this.tree.getById(id);
         if (item === NOT_FOUND_RECORD) return undefined;
@@ -441,7 +441,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
         const lastIndex = this.getLastRecordIndex();
         // estimatedChildCount = undefined for top-level rows only.
-        if (!id && totalRowsCount < lastIndex) {
+        if (id === undefined && totalRowsCount < lastIndex) {
             return lastIndex - totalRowsCount; // let's put placeholders down to the bottom of visible list
         }
 

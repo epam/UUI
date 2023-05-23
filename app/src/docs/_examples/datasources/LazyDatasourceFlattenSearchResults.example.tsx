@@ -17,6 +17,7 @@ export default function LazyDatasourceFlattenSearchResultsExample() {
             const filter = search ? {} : { parentId: ctx?.parentId };
             return svc.api.demo.locations({ ...request, search, filter });
         },
+        getParentId: ({ parentId }) => parentId,
         getChildCount: (l) => l.childCount,
         flattenSearchResults: true,
     }, []);

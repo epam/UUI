@@ -1,0 +1,94 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To request tree-like data lazily, it is required to write an api function, which:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "will be able to handle two types of requests, fetching parents and fetching children by parent id;",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "will be able to fetch data by ids.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Also, to enable fetching of nested items, ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "getChildCount",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " should return value, more than 0. It can be real count of children by filter, or assumed one.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
