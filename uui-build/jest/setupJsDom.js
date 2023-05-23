@@ -10,6 +10,10 @@ global.navigator.clipboard = {
     writeText: () => {},
 };
 
+Object.assign(global.Element.prototype, {
+    scrollTo: () => {},
+});
+
 const consoleErrorPrev = console.error;
 console.error = (...args) => {
     const [first] = args;
