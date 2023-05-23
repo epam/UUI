@@ -61,7 +61,7 @@ export default function LazyDatasourceRequestingTreeLikeDataExample() {
     return (
         <>
             <DatasourceViewer
-                exampleTitle="Renders flatten list if getChildCount returns 0"
+                exampleTitle="Renders flatten structure, if getChildCount returns 0"
                 value={ value1 }
                 onValueChange={ onValueChange1 }
                 datasource={ datasource1 }
