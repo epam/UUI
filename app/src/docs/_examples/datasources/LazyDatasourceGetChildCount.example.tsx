@@ -17,6 +17,7 @@ export default function LazyDatasourceGetChildCountExample() {
             return svc.api.demo.locations({ ...request, search, filter });
         },
         getChildCount: () => 0,
+        getParentId: (i) => i.parentId,
     }, []);
 
     const [value2, onValueChange2] = useState<DataSourceState>({});
