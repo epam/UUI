@@ -1,8 +1,9 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useMemo, useRef, useEffect } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { IEditable, uuiMod, IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import { ScrollBars } from '@epam/uui-components';
+import { useForceUpdate } from '@epam/uui-core';
 
 import {
     Plate,
@@ -72,9 +73,17 @@ interface PlateEditorProps extends SlateEditorProps {
 
 const Editor = (props: PlateEditorProps) => {
     const editor = usePlateEditorState();
+    const forceUpdate = useForceUpdate();
 
     const focusedEditorId = useEventEditorSelectors.focus();
     const isFocused = editor.id === focusedEditorId;
+
+    const initializedRef = useRef(false);
+    if(!initializedRef.current && props.initialValue) {
+        editor.children = props.initialValue;
+        forceUpdate();
+        initializedRef.current = true;
+    }
 
     const renderEditor = () => (
         <DndProvider backend={ HTML5Backend }>
