@@ -49,7 +49,7 @@
     &:global(.uui-active) {
         background-color: var(--uui-main_menu-hover);
         border-bottom: 3px solid var(--uui-main_menu-border-active);
-        color: var(--uui-main_menu-text);
+        color: var(--uui-main_menu-text-active);
         fill: var(--uui-main_menu-icon-active);
     }
 }
