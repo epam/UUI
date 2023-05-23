@@ -4,6 +4,7 @@
       "@epam/assets": "latest",
       "@epam/promo": "latest",
       "@epam/uui-core": "latest",
+      "@epam/uui": "latest",
       "@epam/uui-components": "latest",
       "history": "4.10.1",
       "react-router-dom": "5.3.4",
