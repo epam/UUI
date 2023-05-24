@@ -6,8 +6,11 @@ import ReactDOM from 'react-dom';
  * Use this mock for snapshot testing only.
  */
 export function mockReactPortalsForSnapshots() {
-    (ReactDOM.createPortal as any) = jest.fn((element) => element);
+    const prevMethod = ReactDOM.createPortal;
+    ReactDOM.createPortal = ((elem: any) => elem) as any;
     return {
-        mockClear: (ReactDOM.createPortal as any).mockClear(),
+        mockClear: () => {
+            ReactDOM.createPortal = prevMethod;
+        },
     };
 }
