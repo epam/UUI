@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource, AsyncDataSource } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct,
 } from '@epam/uui-test-utils';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { PickerInputBaseProps } from '@epam/uui-components';
@@ -23,20 +23,21 @@ jest.mock('react-popper', () => ({
 type TestItemType = {
     id: number;
     level: string;
+    name: string;
 };
 
 const languageLevels: TestItemType[] = [
-    { id: 2, level: 'A1' },
-    { id: 3, level: 'A1+' },
-    { id: 4, level: 'A2' },
-    { id: 5, level: 'A2+' },
-    { id: 6, level: 'B1' },
-    { id: 7, level: 'B1+' },
-    { id: 8, level: 'B2' },
-    { id: 9, level: 'B2+' },
-    { id: 10, level: 'C1' },
-    { id: 11, level: 'C1+' },
-    { id: 12, level: 'C2' },
+    { id: 2, level: 'A1', name: 'Elementary' },
+    { id: 3, level: 'A1+', name: 'Elementary+' },
+    { id: 4, level: 'A2', name: 'Pre-Intermediate' },
+    { id: 5, level: 'A2+', name: 'Pre-Intermediate+' },
+    { id: 6, level: 'B1', name: 'Intermediate' },
+    { id: 7, level: 'B1+', name: 'Intermediate+' },
+    { id: 8, level: 'B2', name: 'Upper-Intermediate' },
+    { id: 9, level: 'B2+', name: 'Upper-Intermediate+' },
+    { id: 10, level: 'C1', name: 'Advanced' },
+    { id: 11, level: 'C1+', name: 'Advanced+' },
+    { id: 12, level: 'C2', name: 'Proficiency' },
 ];
 
 const mockDataSource = new ArrayDataSource({
@@ -197,5 +198,43 @@ describe('PickerInput', () => {
 
         fireEvent.click(dom.input as Element);
         expect(screen.queryByRole('dialog')).toBeNull();
+    });
+    
+    it('[selectionMode single] should render names of items by getName', async () => {
+        const { mocks, dom } = await setupPickerInputForTest({
+            value: 3,
+            selectionMode: 'single',
+            getName: ({ name }) => name,
+        });
+
+        expect(dom.input?.getAttribute('placeholder')?.trim()).toBeUndefined();
+        
+        await delayAct(100);
+       
+        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual(languageLevels[1].name);
+        
+        fireEvent.click(dom.input as Element);
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        const optionC2 = await screen.findByText('Proficiency');
+        fireEvent.click(optionC2);
+        expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
+    });
+    
+    it('[selectionMode multi] should render names of items by getName', async () => {
+        const { dom } = await setupPickerInputForTest({
+            value: [3, 4],
+            selectionMode: 'multi',
+            getName: ({ name }) => name,
+        });
+
+        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select');
+   
+        await delayAct(100);
+
+        const selectedItemsNames = screen.queryAllByRole('button')
+            .filter((button) => button.getAttribute('aria-label') !== 'Clear')
+            .map((button) => button.textContent);
+        
+        expect(selectedItemsNames).toEqual(['Elementary+', 'Pre-Intermediate']);
     });
 });

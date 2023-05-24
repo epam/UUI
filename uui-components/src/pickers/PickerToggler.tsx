@@ -190,7 +190,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                             icon={ props.cancelIcon }
                             tabIndex={ -1 }
                             onClick={ handleCrossIconClick }
-                            rawProps={ { role: 'button' } }
+                            rawProps={ { role: 'button', 'aria-label': 'Clear' } }
                         />
                     )}
                     {props.isDropdown && <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" onClick={ closeOpenedPickerBody } />}
