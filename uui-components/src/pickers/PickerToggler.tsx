@@ -97,7 +97,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const renderInput = () => {
         const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
-
         let placeholder: string;
         if (!isSinglePickerSelected) {
             placeholder = props.placeholder;
