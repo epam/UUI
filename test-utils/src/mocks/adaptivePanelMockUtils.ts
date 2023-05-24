@@ -1,6 +1,9 @@
 import { mockGetBoundingClientRect } from '../internal/jsdomMockUtils';
 
-const isAdaptivePanelRootDefault = (elem: HTMLElement) => {
+const isAdaptivePanelRootDefault = (elem: HTMLElement | null) => {
+    if (!elem) {
+        return false;
+    }
     return elem.getAttribute('data-testid') === 'adaptive-panel';
 };
 
@@ -19,14 +22,15 @@ const isAdaptivePanelRootDefault = (elem: HTMLElement) => {
 export function mockAdaptivePanelLayout(params: {
     width: number,
     itemWidth: number,
-    isAdaptivePanelRoot?: (element: HTMLElement) => boolean,
+    isAdaptivePanelRoot?: (element: HTMLElement | null) => boolean,
 }) {
     const isAdaptivePanel = params.isAdaptivePanelRoot || isAdaptivePanelRootDefault;
-    return mockGetBoundingClientRect((elem) => {
+    mockGetBoundingClientRect((elem: HTMLElement) => {
         if (isAdaptivePanel(elem)) {
-            return { width: params.width };
-        } else if (isAdaptivePanel(elem.parentElement.parentElement)) {
-            return { width: params.itemWidth };
+            return typeof params.width !== 'undefined' ? { width: params.width } : {};
+        } else if (isAdaptivePanel(elem.parentElement ? elem.parentElement.parentElement : null)) {
+            return typeof params.width !== 'undefined' ? { width: params.itemWidth } : {};
         }
+        return {};
     });
 }
