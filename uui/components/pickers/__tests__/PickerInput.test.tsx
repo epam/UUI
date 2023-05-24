@@ -184,4 +184,18 @@ describe('PickerInput', () => {
         fireEvent.click(dom.input as Element);
         expect(screen.queryByRole('dialog')).toBeNull();
     });
+
+    it('should make an input readonly', async () => {
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'single',
+            isReadonly: true,
+        });
+        
+        expect(dom.input?.hasAttribute('readonly')).toBeTruthy();
+        expect(dom.input?.getAttribute('aria-readonly')?.trim()).toEqual('true');
+
+        fireEvent.click(dom.input as Element);
+        expect(screen.queryByRole('dialog')).toBeNull();
+    });
 });
