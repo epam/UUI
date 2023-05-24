@@ -4,8 +4,10 @@ import {
 import { FlexSpacer } from '@epam/uui-components';
 import React, { useCallback, useEffect, useState } from 'react';
 import { IModal } from '@epam/uui-core';
-import { EditableDocContent } from '../../docs';
-import { SlateEditor } from '@epam/uui-editor';
+import { SlateEditor, basePlugins, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin, linkPlugin, iframePlugin,
+    notePlugin, separatorPlugin, headerPlugin, colorPlugin, superscriptPlugin, listPlugin, quotePlugin, tablePlugin,
+    codeBlockPlugin,
+} from '@epam/uui-editor';
 
 interface IDemoItemDescriptionModal {
     modalProps: IModal<any>;
@@ -33,6 +35,25 @@ export function DescriptionModal(props: IDemoItemDescriptionModal) {
         modalProps.success(valueLocal);
     }, [modalProps, valueLocal]);
 
+    const plugins = [
+        ...basePlugins,
+        headerPlugin(),
+        colorPlugin(),
+        superscriptPlugin(),
+        listPlugin(),
+        toDoListPlugin(),
+        linkPlugin(),
+        quotePlugin(),
+        attachmentPlugin(),
+        imagePlugin(),
+        videoPlugin(),
+        iframePlugin(),
+        notePlugin(),
+        separatorPlugin(),
+        tablePlugin(),
+        codeBlockPlugin(),
+    ];
+
     return (
         <ModalBlocker { ...modalProps }>
             <ModalWindow width={ 600 } height="auto">
@@ -40,7 +61,7 @@ export function DescriptionModal(props: IDemoItemDescriptionModal) {
                 <ScrollBars hasTopShadow hasBottomShadow>
                     <SlateEditor
                         placeholder="Please type"
-                        plugins={ EditableDocContent.plugins }
+                        plugins={ plugins }
                         mode="inline"
                         isReadonly={ isReadOnly() }
                         minHeight={ 400 }

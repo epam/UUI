@@ -2,23 +2,8 @@ import * as React from 'react';
 import { Descendant } from 'slate';
 import { IEditableDebouncer } from '@epam/uui-core';
 import { Blocker } from '@epam/loveship';
-import {
-    SlateEditor,
-    basePlugins,
-    toDoListPlugin,
-    attachmentPlugin,
-    imagePlugin,
-    videoPlugin,
-    linkPlugin,
-    iframePlugin,
-    notePlugin,
-    separatorPlugin,
-    headerPlugin,
-    colorPlugin,
-    superscriptPlugin,
-    listPlugin,
-    quotePlugin,
-    tablePlugin,
+import { SlateEditor, basePlugins, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin, linkPlugin, iframePlugin,
+    notePlugin, separatorPlugin, headerPlugin, colorPlugin, superscriptPlugin, listPlugin, quotePlugin, tablePlugin,
     codeBlockPlugin,
 } from '@epam/uui-editor';
 import { svc } from '../../services';
@@ -33,31 +18,36 @@ interface EditableDocContentState {
     isLoading: boolean;
 }
 
-const plugins = [
-    ...basePlugins,
-    headerPlugin(),
-    colorPlugin(),
-    superscriptPlugin(),
-    listPlugin(),
-    toDoListPlugin(),
-    linkPlugin(),
-    quotePlugin(),
-    attachmentPlugin(),
-    imagePlugin(),
-    videoPlugin(),
-    iframePlugin(),
-    notePlugin(),
-    separatorPlugin(),
-    tablePlugin(),
-    codeBlockPlugin(),
-];
-
 export class EditableDocContent extends React.Component<EditableDocContentProps, EditableDocContentState> {
-    static plugins = plugins;
     state: EditableDocContentState = {
         content: null,
         isLoading: true,
     };
+
+    uploadFile = (file: File, onProgress: (progress: number) => any): any => {
+        return svc.uuiApi.uploadFile('/uploadFileMock', file, {
+            onProgress,
+        });
+    };
+
+    plugins = [
+        ...basePlugins,
+        headerPlugin(),
+        colorPlugin(),
+        superscriptPlugin(),
+        listPlugin(),
+        toDoListPlugin(),
+        linkPlugin(),
+        quotePlugin(),
+        attachmentPlugin(),
+        imagePlugin(),
+        videoPlugin(),
+        iframePlugin(),
+        notePlugin(),
+        separatorPlugin(),
+        tablePlugin(),
+        codeBlockPlugin(),
+    ];
 
     componentDidMount() {
         svc.uuiApi.processRequest('/api/get-doc-content', 'POST', { name: this.props.fileName })
@@ -88,7 +78,7 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
                     render={ (props) => (
                         <SlateEditor
                             placeholder="Please type"
-                            plugins={ plugins }
+                            plugins={ this.plugins }
                             cx={ css.container }
                             mode="inline"
                             isReadonly={ !window.location.host.includes('localhost') }

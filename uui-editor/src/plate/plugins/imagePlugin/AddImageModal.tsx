@@ -52,7 +52,6 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
                     <Button type='cancel' caption='Cancel' onClick={ abort } />
                     <Button type='success' caption='Ok' isDisabled={ !imageURL } onClick={ () => {
                         focusEditor();
-
                         if (files && files.length) {
                             onFilesAdded(files);
                         } else {
