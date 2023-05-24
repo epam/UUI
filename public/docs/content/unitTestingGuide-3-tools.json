@@ -1389,6 +1389,86 @@
                     ]
                   }
                 ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "setupJsDom",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Invoke this function in the jest setup in order to mock certain ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "jsdom",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": " properties required for UUI components.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }

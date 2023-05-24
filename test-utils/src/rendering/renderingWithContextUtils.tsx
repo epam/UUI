@@ -33,10 +33,11 @@ export const getDefaultUUiContextWrapper = () => {
  *
  * @param hook
  * @param initialProps
- * @param customWrapper
+ * @param [options]
+ * @param [options.wrapper]
  */
-export async function renderHookWithContextAsync<TProps, TResult>(hook: (props: TProps) => TResult, initialProps?: TProps, customWrapper?: CustomWrapperType) {
-    const wrapper = customWrapper || getDefaultUUiContextWrapper().wrapper;
+export async function renderHookWithContextAsync<TProps, TResult>(hook: (props: TProps) => TResult, initialProps?: TProps, options?: { wrapper?: CustomWrapperType }) {
+    const wrapper = options?.wrapper || getDefaultUUiContextWrapper().wrapper;
     const result = renderHook<TResult, TProps>(hook, { wrapper, initialProps });
     await delayAct();
     return {
@@ -52,10 +53,11 @@ export async function renderHookWithContextAsync<TProps, TResult>(hook: (props: 
  * It has no dependency on DOM.
  *
  * @param reactElement
- * @param customWrapper
+ * @param [options]
+ * @param [options.wrapper]
  */
-export const renderSnapshotWithContextAsync = async (reactElement: ReactElement, customWrapper?: CustomWrapperType) => {
-    const wrapper = customWrapper || getDefaultUUiContextWrapper().wrapper;
+export const renderSnapshotWithContextAsync = async (reactElement: ReactElement, options?: { wrapper?: CustomWrapperType }) => {
+    const wrapper = options?.wrapper || getDefaultUUiContextWrapper().wrapper;
     const result = renderer.create(React.createElement(wrapper, { children: reactElement }));
     await delayAct();
     return result.toJSON();
@@ -65,10 +67,11 @@ export const renderSnapshotWithContextAsync = async (reactElement: ReactElement,
  * Wraps the component with context and renders it to the test environment.
  *
  * @param reactElement
- * @param customWrapper
+ * @param [options]
+ * @param [options.wrapper]
  */
-export const renderWithContextAsync = async (reactElement: ReactElement, customWrapper?: CustomWrapperType) => {
-    const wrapper = customWrapper || getDefaultUUiContextWrapper().wrapper;
+export const renderWithContextAsync = async (reactElement: ReactElement, options?: { wrapper?: CustomWrapperType }) => {
+    const wrapper = options?.wrapper || getDefaultUUiContextWrapper().wrapper;
     const result = render(reactElement, { wrapper });
     await delayAct();
     return {
