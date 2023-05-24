@@ -2,7 +2,9 @@ import { devLogger, withMods } from '@epam/uui-core';
 import { Tooltip as uuiTooltip, TooltipProps as UuiTooltipProps } from '@epam/uui';
 
 export interface TooltipMods {
-    /** Tooltip color. */
+    /** Tooltip color.
+     *  'gray90' is deprecated and will be removed in future release, use 'gray' instead.
+     * */
     color?: 'white' | 'gray90' | 'gray' | 'red';
 }
 

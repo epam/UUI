@@ -5,6 +5,9 @@ import { EpamPrimaryColor } from '../types';
 import css from './IconContainer.module.scss';
 
 export interface IconContainerMods {
+    /** IconContainer color.
+     *  @deprecated Property color is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via cx or style prop.
+     * */
     color?: EpamPrimaryColor | 'night400' | 'night500' | 'night600';
 }
 
