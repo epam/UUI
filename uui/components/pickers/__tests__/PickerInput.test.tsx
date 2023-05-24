@@ -227,14 +227,20 @@ describe('PickerInput', () => {
             getName: ({ name }) => name,
         });
 
+        const selectedItemsNames1 = screen.queryAllByRole('button')
+            .filter((button) => button.getAttribute('aria-label') !== 'Clear')
+            .map((button) => button.textContent?.trim());
+        
+        expect(selectedItemsNames1).toEqual(['', '']);
+
         expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select');
    
         await delayAct(100);
 
-        const selectedItemsNames = screen.queryAllByRole('button')
+        const selectedItemsNames2 = screen.queryAllByRole('button')
             .filter((button) => button.getAttribute('aria-label') !== 'Clear')
-            .map((button) => button.textContent);
+            .map((button) => button.textContent?.trim());
         
-        expect(selectedItemsNames).toEqual(['Elementary+', 'Pre-Intermediate']);
+        expect(selectedItemsNames2).toEqual(['Elementary+', 'Pre-Intermediate']);
     });
 });
