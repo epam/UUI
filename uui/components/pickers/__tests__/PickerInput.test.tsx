@@ -250,7 +250,7 @@ describe('PickerInput', () => {
         expect(selectedItemsNames2).toEqual(['Elementary+', 'Pre-Intermediate']);
     });
 
-    it('should render entity name in placeholder', async () => {
+    it('[selectionMode single] should render entity name in placeholder', async () => {
         const { dom } = await setupPickerInputForTest({
             value: undefined,
             selectionMode: 'single',
@@ -258,5 +258,37 @@ describe('PickerInput', () => {
         });
         
         expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Language Level');
+    });
+    
+    it('[selectionMode single] should ignore plural entity name in placeholder', async () => {
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'single',
+            entityName: 'Language Level',
+            entityPluralName: 'Multiple Language Levels',
+        });
+        
+        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Language Level');
+    });
+
+    it('[selectionMode multi] should render entity name with \'s\' in placeholder', async () => {
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'multi',
+            entityName: 'Language Level',
+        });
+        
+        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Language Levels');
+    });
+
+    it('[selectionMode multi] should render plural entity name in placeholder', async () => {
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'multi',
+            entityName: 'Language Level',
+            entityPluralName: 'Multiple Language Levels',
+        });
+        
+        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Multiple Language Levels');
     });
 });
