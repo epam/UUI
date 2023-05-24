@@ -5,14 +5,14 @@ import {
     createPluginFactory,
     focusEditor,
     getBlockAbove,
-    getPluginType,
     ImagePlugin,
     PlateEditor,
     ToolbarButton as PlateToolbarButton,
     TImageElement,
-    insertNodes,
     createNode,
     insertNode,
+    insertNodes,
+    insertEmptyElement,
 } from '@udecode/plate';
 
 import { isPluginActive, isTextSelected } from '../../../helpers';
@@ -24,6 +24,7 @@ import { ToolbarButton } from '../../../implementation/ToolbarButton';
 
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
+import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 
 export const IMAGE_PLUGIN_KEY = 'image';
 
@@ -49,6 +50,9 @@ export const imagePlugin = () => {
 
                 if (event.key === 'Enter') {
                     insertNode(editor, createNode());
+                }
+                if ((event.key === 'Backspace' || event.key === 'Delete')) {
+                    return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
             },
         },
@@ -77,12 +81,12 @@ export const ImageButton = ({ editor }: IImageButton) => {
 
         const image: TImageElement = {
             align: 'left',
-            type: getPluginType(editor, IMAGE_PLUGIN_KEY),
-            url: url as any,
+            type: IMAGE_PLUGIN_KEY,
+            url: url,
             children: [text],
         };
+
         insertNodes<TImageElement>(editor, image);
-        context.uuiModals.closeAll();
     };
 
     if (!isPluginActive(IMAGE_PLUGIN_KEY)) return null;
