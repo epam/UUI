@@ -243,4 +243,14 @@ describe('PickerInput', () => {
         
         expect(selectedItemsNames2).toEqual(['Elementary+', 'Pre-Intermediate']);
     });
+
+    it('should render entity name in placeholder', async () => {
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'single',
+            entityName: 'Language Level',
+        });
+        
+        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Language Level');
+    });
 });
