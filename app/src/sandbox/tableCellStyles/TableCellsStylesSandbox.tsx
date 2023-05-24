@@ -230,7 +230,7 @@ export default function TableCellsStylesSandbox() {
                     renderCell: (props) => (
                         <SkinDataTableCell
                             { ...props.rowLens.prop('textArea').toProps() }
-                            renderEditor={ (props) => <skin.TextInput { ...props } /> }
+                            renderEditor={ (props) => <skin.TextArea { ...props } /> }
                             { ...props }
                             background={ getCellBackground(props) }
                         />
