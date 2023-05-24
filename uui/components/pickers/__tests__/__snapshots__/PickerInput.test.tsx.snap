@@ -59,6 +59,7 @@ exports[`PickerInput should render with maximum props 1`] = `
     className="actions"
   >
     <div
+      aria-label="Clear"
       className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
       onClick={[Function]}
       role="button"
