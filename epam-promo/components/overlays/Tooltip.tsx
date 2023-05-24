@@ -19,7 +19,7 @@ export const Tooltip = withMods<Omit<UuiTooltipProps, 'color'>, TooltipMods>(
             condition: () => ['gray90'].indexOf(props.color) !== -1,
         });
         return {
-            color: props.color === 'gray90' ? 'gray' : props.color ?? 'gray',
+            color: props.color === 'gray90' ? 'gray' : props.color,
         } as TooltipProps;
     },
 );

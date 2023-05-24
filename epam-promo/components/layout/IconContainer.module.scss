@@ -1,0 +1,29 @@
+.root {
+    &.icon-container-blue {
+        fill: var(--blue);
+    }
+
+    &.icon-container-green {
+        fill: var(--green);
+    }
+
+    &.icon-container-amber {
+        fill: var(--amber);
+    }
+
+    &.icon-container-red {
+        fill: var(--red);
+    }
+
+    &.icon-container-gray30 {
+        fill: var(--gray30);
+    }
+
+    &.icon-container-gray50 {
+        fill: var(--gray50);
+    }
+
+    &.icon-container-gray60 {
+        fill: var(--gray60);
+    }
+}
