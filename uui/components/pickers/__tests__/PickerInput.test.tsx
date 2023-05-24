@@ -3,7 +3,8 @@ import { ArrayDataSource, AsyncDataSource } from '@epam/uui-core';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay,
 } from '@epam/uui-test-utils';
-import { PickerInput } from '../PickerInput';
+import { PickerInput, PickerInputProps } from '../PickerInput';
+import { PickerInputBaseProps } from '@epam/uui-components';
 
 jest.mock('react-popper', () => ({
     ...jest.requireActual('react-popper'),
@@ -49,31 +50,32 @@ const mockDataSourceAsync = new AsyncDataSource({
     },
 });
 
-type PickerInputComponentProps = React.ComponentProps<typeof PickerInput<TestItemType, number>>;
+type PickerInputComponentProps = PickerInputBaseProps<TestItemType, number> & PickerInputProps;
 
 async function setupPickerInputForTest(params: Partial<PickerInputComponentProps>) {
     const { result, mocks } = await setupComponentForTest<PickerInputComponentProps>(
         (context): PickerInputComponentProps => {
             if (params.selectionMode === 'single') {
-                return {
-                    value: params.value as number,
-                    selectionMode: params.selectionMode,
-                    onValueChange: jest.fn().mockImplementation((newValue) => context.current.setProperty('value', newValue)),
+                return Object.assign({
+                    onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('value', newValue)),
                     dataSource: mockDataSourceAsync,
                     disableClear: false,
                     searchPosition: 'input',
                     getName: (item) => item.level,
-                };
+                    value: params.value as number,
+                    selectionMode: 'single',
+                }, params);
             }
-            return {
-                value: params.value as number[],
-                selectionMode: params.selectionMode,
-                onValueChange: jest.fn().mockImplementation((newValue) => context.current.setProperty('value', newValue)),
+
+            return Object.assign({
+                onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('value', newValue)),
                 dataSource: mockDataSourceAsync,
                 disableClear: false,
                 searchPosition: 'input',
                 getName: (item) => item.level,
-            };
+                value: params.value as number[],
+                selectionMode: 'multi',
+            }, params) as PickerInputComponentProps;
         },
         (props) => <PickerInput { ...props } />,
     );
@@ -167,5 +169,19 @@ describe('PickerInput', () => {
         const clear = screen.getByRole('button');
         fireEvent.click(clear);
         expect(screen.queryByText('C2')).not.toBeInTheDocument();
+    });
+    
+    it('should disable input', async () => {
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'single',
+            isDisabled: true,
+        });
+        
+        expect(dom.input?.hasAttribute('disabled')).toBeTruthy();
+        expect(dom.input?.getAttribute('aria-disabled')?.trim()).toEqual('true');
+
+        fireEvent.click(dom.input as Element);
+        expect(screen.queryByRole('dialog')).toBeNull();
     });
 });
