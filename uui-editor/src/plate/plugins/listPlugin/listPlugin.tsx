@@ -18,23 +18,54 @@ import { ReactComponent as NumberedList } from "../../icons/numbered-list.svg";
 
 const noop = () => {};
 
+export const ELEMENT_UL_CUSTOM = 'unordered-list';
+export const ELEMENT_OL_CUSTOM = 'ordered-list';
+export const ELEMENT_LI_CUSTOM = 'list-item';
+export const ELEMENT_LI_TEXT_CUSTOM = 'list-item-child';
+
 export const List = (props: any) => {
     const { attributes, children, element } = props;
     switch (element.type) {
-        case ELEMENT_OL:
-            return <ol { ...attributes } style={ { margin: '12px 0px' } }>{ children }</ol>;
-        case ELEMENT_UL:
-            return <ul { ...attributes } style={ { margin: '12px 0px' } }>{ children }</ul>;
-        case ELEMENT_LI:
+        case ELEMENT_OL_CUSTOM:
+            return <ol { ...attributes }>{ children }</ol>;
+        case ELEMENT_UL_CUSTOM:
+            return <ul { ...attributes }>{ children }</ul>;
+        case ELEMENT_LI_CUSTOM:
             return <li className={ element.type } { ...attributes }>{ children }</li>;
-        case ELEMENT_LIC:
+        case ELEMENT_LI_TEXT_CUSTOM:
             return <div { ...attributes }>{ children }</div>;
         default:
             return <div { ...attributes }>{ children }</div>;
     }
 };
 
-export const listPlugin = () => createListPlugin();
+export const listPlugin = () => createListPlugin({
+    overrideByKey: {
+        [ELEMENT_OL]: {
+            type: ELEMENT_OL_CUSTOM,
+            isElement: true,
+            deserializeHtml: { rules: [{ validNodeName: 'OL' }] },
+            component: List,
+        },
+        [ELEMENT_UL]: {
+            type: ELEMENT_UL_CUSTOM,
+            isElement: true,
+            deserializeHtml: { rules: [{ validNodeName: 'UL' }] },
+            component: List,
+        },
+        [ELEMENT_LI]: {
+            type: ELEMENT_LI_CUSTOM,
+            isElement: true,
+            component: List,
+            deserializeHtml: { rules: [{ validNodeName: 'LI' }] },
+        },
+        [ELEMENT_LIC]: {
+            type: ELEMENT_LI_TEXT_CUSTOM,
+            isElement: true,
+            component: List,
+        },
+    },
+});
 
 interface IToolbarButton {
     editor: PlateEditor;
@@ -51,7 +82,7 @@ export const ListButton = ({ editor }: IToolbarButton) => {
     return (
         <>
             <ListToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+                styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
                 type={ getPluginType(editor, ELEMENT_OL) }
                 actionHandler='onMouseDown'
                 icon={ <ToolbarButton
@@ -61,7 +92,7 @@ export const ListButton = ({ editor }: IToolbarButton) => {
                 /> }
             />
             <ListToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+                styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
                 type={ getPluginType(editor, ELEMENT_UL) }
                 actionHandler='onMouseDown'
                 icon={ <ToolbarButton

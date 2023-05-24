@@ -8,8 +8,6 @@
  * https://github.com/react-page/react-page/blob/b6c83a8650cfe9089e0c3eaf471ab58a0f7db761/packages/plugins/content/slate/src/migrations/v004.ts
  */
 
-import { ELEMENT_LI, ELEMENT_LIC, ELEMENT_OL, ELEMENT_UL } from "@udecode/plate";
-
 const migrateTextNode = (oldNode: any) => {
     return {
         text: oldNode.text,
@@ -34,14 +32,6 @@ const migrateElementNode = (node: any) => {
         newType = "th";
     } else if (node.type === "table_cell") {
         newType = "td";
-    } else if (node.type === "unordered-list") {
-        newType = ELEMENT_UL;
-    } else if (node.type === "ordered-list") {
-        newType = ELEMENT_OL;
-    } else if (node.type === "list-item") {
-        newType = ELEMENT_LI;
-    } else if (node.type === "list-item-child") {
-        newType = ELEMENT_LIC;
     } else {
         newType = node.type;
     }
