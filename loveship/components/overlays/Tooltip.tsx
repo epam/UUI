@@ -8,7 +8,7 @@ export interface TooltipMods {
 
 export type TooltipProps = Omit<UuiTooltipProps, 'color'> & TooltipMods;
 
-export const Tooltip = withMods< Omit<UuiTooltipProps, 'color'>, TooltipMods>(
+export const Tooltip = withMods<Omit<UuiTooltipProps, 'color'>, TooltipMods>(
     uuiTooltip,
     () => [],
     (props) => {
@@ -19,7 +19,7 @@ export const Tooltip = withMods< Omit<UuiTooltipProps, 'color'>, TooltipMods>(
             condition: () => ['night900'].indexOf(props.color) !== -1,
         });
         return {
-            color: props.color === 'night900' ? 'gray' : props.color ?? 'gray',
+            color: (!props.color || props.color === 'night900') ? 'gray' : props.color,
         } as TooltipProps;
     },
 );
