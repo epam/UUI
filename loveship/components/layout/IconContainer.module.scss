@@ -1,0 +1,29 @@
+.root {
+    &.icon-container-sky {
+        fill: var(--sky);
+    }
+
+    &.icon-container-grass {
+        fill: var(--grass);
+    }
+
+    &.icon-container-sun {
+        fill: var(--sun);
+    }
+
+    &.icon-container-fire {
+        fill: var(--fire);
+    }
+
+    &.icon-container-night400 {
+        fill: var(--night400);
+    }
+
+    &.icon-container-night500 {
+        fill: var(--night500);
+    }
+
+    &.icon-container-night600 {
+        fill: var(--night600);
+    }
+}
