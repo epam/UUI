@@ -14,6 +14,7 @@ import { isPluginActive } from "../../../helpers";
 import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { ReactComponent as UnorderedList } from "../../icons/bullet-list.svg";
 import { ReactComponent as NumberedList } from "../../icons/numbered-list.svg";
+import { withOurList } from "./withList";
 
 const noop = () => {};
 
@@ -52,6 +53,8 @@ export const listPlugin = () => createListPlugin({
             isElement: true,
             deserializeHtml: { rules: [{ validNodeName: 'UL' }] },
             component: List,
+            // TODO: move to plate
+            withOverrides: withOurList,
         },
         [ELEMENT_LI]: {
             type: ELEMENT_LI_CUSTOM,
@@ -84,8 +87,8 @@ export const ListButton = ({ editor }: IToolbarButton) => {
     return (
         <>
             <ListToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
-                type={ getPluginType(editor, ELEMENT_OL_CUSTOM) }
+                styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
+                type={ getPluginType(editor, ELEMENT_OL) }
                 actionHandler='onMouseDown'
                 icon={ <ToolbarButton
                     onClick={ noop }
@@ -94,8 +97,8 @@ export const ListButton = ({ editor }: IToolbarButton) => {
                 /> }
             />
             <ListToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
-                type={ getPluginType(editor, ELEMENT_UL_CUSTOM) }
+                styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
+                type={ getPluginType(editor, ELEMENT_UL) }
                 actionHandler='onMouseDown'
                 icon={ <ToolbarButton
                     onClick={ noop }
