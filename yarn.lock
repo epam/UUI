@@ -3880,6 +3880,13 @@
   dependencies:
     "@types/lodash" "*"
 
+"@types/lodash.debounce@4.0.7":
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/@types/lodash.debounce/-/lodash.debounce-4.0.7.tgz#0285879defb7cdb156ae633cecd62d5680eded9f"
+  integrity sha512-X1T4wMZ+gT000M2/91SYj0d/7JfeNZ9PeeOldSNoE/lunLeQXKvkmIumI29IaKMotU/ln/McOIvgzZcQ/3TrSA==
+  dependencies:
+    "@types/lodash" "*"
+
 "@types/lodash.defaultsdeep@4.6.6":
   version "4.6.6"
   resolved "https://registry.yarnpkg.com/@types/lodash.defaultsdeep/-/lodash.defaultsdeep-4.6.6.tgz#d2e87c07ec8d0361e4b79aa000815732b210be04"
@@ -3915,6 +3922,13 @@
   dependencies:
     "@types/lodash" "*"
 
+"@types/lodash.invert@4.3.7":
+  version "4.3.7"
+  resolved "https://registry.yarnpkg.com/@types/lodash.invert/-/lodash.invert-4.3.7.tgz#93b6123af67d7aea17ba7f18ad5a9ea5e060dd64"
+  integrity sha512-bTLbk1It49+zo/zF4TYGs1gNxwhtJLjyIOcFaAPx6kyq+lh7sAmLhyMIXIYcDX1ykZYPb8Dx6Acr2v8B6Hu3pQ==
+  dependencies:
+    "@types/lodash" "*"
+
 "@types/lodash.isempty@4.4.6":
   version "4.4.6"
   resolved "https://registry.yarnpkg.com/@types/lodash.isempty/-/lodash.isempty-4.4.6.tgz#48a5576985727d9b85d59a60199d6b11ac756a3e"
@@ -3926,6 +3940,13 @@
   version "4.5.5"
   resolved "https://registry.yarnpkg.com/@types/lodash.isequal/-/lodash.isequal-4.5.5.tgz#4fed1b1b00bef79e305de0352d797e9bb816c8ff"
   integrity sha512-4IKbinG7MGP131wRfceK6W4E/Qt3qssEFLF30LnJbjYiSfHGGRU/Io8YxXrZX109ir+iDETC8hw8QsDijukUVg==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash.isequal@4.5.6":
+  version "4.5.6"
+  resolved "https://registry.yarnpkg.com/@types/lodash.isequal/-/lodash.isequal-4.5.6.tgz#ff42a1b8e20caa59a97e446a77dc57db923bc02b"
+  integrity sha512-Ww4UGSe3DmtvLLJm2F16hDwEQSv7U0Rr8SujLUA2wHI2D2dm8kPu6Et+/y303LfjTIwSBKXB/YTUcAKpem/XEg==
   dependencies:
     "@types/lodash" "*"
 
@@ -12259,6 +12280,11 @@ lodash.groupby@4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.groupby/-/lodash.groupby-4.6.0.tgz#0b08a1dcf68397c397855c3239783832df7403d1"
   integrity sha512-5dcWxm23+VAoz+awKmBaiBvzox8+RqMgFhi7UvX9DHZr2HdxHXM/Wrf8cfKpsW37RNrvtPn6hSwNqurSILbmJw==
+
+lodash.invert@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/lodash.invert/-/lodash.invert-4.3.0.tgz#8ffe20d4b616f56bea8f1aa0c6ebd80dcf742aee"
+  integrity sha512-3CJmOxN5y47rd+g5XjdZNcq2SorJkvlSqBwPomT094p6LZ4p7b5bUoRzYYMjwsTGWTW77z/dFZlCzeVQxBrZVg==
 
 lodash.isempty@4.4.0:
   version "4.4.0"
