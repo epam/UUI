@@ -5,7 +5,7 @@ import {
     getPluginType,
     isMarkActive,
     PlateEditor,
-    createPluginFactory,
+    createPluginFactory, insertEmptyElement,
 } from '@udecode/plate';
 
 import { isPluginActive, isTextSelected } from '../../../helpers';
@@ -15,16 +15,30 @@ import { ToolbarButton } from '../../../implementation/ToolbarButton';
 import { ReactComponent as SeparateIcon } from '../../../icons/breakline.svg';
 
 import { Separator } from './Separator';
+import { getBlockAboveByType } from "../../utils/getAboveBlock";
+import { PARAGRAPH_TYPE } from "../paragraphPlugin/paragraphPlugin";
 
-const KEY = 'separatorBLock';
+const SEPARATOR_TYPE = 'separatorBLock';
 const noop = () => {};
 
 export const separatorPlugin = () => {
     const createSeparatorPlugin = createPluginFactory({
-        key: KEY,
+        key: SEPARATOR_TYPE,
         isElement: true,
         isVoid: true,
         component: Separator,
+        handlers: {
+            onKeyDown: (editor) => (event) => {
+                if (!getBlockAboveByType(editor, [SEPARATOR_TYPE])) return;
+
+                if (event.key === 'Enter') {
+                    return insertEmptyElement(editor, PARAGRAPH_TYPE);
+                }
+                if ((event.key === 'Backspace' || event.key === 'Delete')) {
+                    return insertEmptyElement(editor, PARAGRAPH_TYPE);
+                }
+            },
+        },
         deserializeHtml: {
             rules: [
                 {
@@ -42,18 +56,18 @@ interface ToolbarButton {
 }
 
 export const SeparatorButton = ({ editor }: ToolbarButton) => {
-    if (!isPluginActive(KEY)) return null;
+    if (!isPluginActive(SEPARATOR_TYPE)) return null;
 
     return (
         <BlockToolbarButton
             styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
-            type={ getPluginType(editor, KEY) }
+            type={ getPluginType(editor, SEPARATOR_TYPE) }
             actionHandler='onMouseDown'
             icon={ <ToolbarButton
                 isDisabled={ isTextSelected(editor, true) }
                 onClick={ noop }
                 icon={ SeparateIcon }
-                isActive={ !!editor?.selection && isMarkActive(editor, KEY!) }
+                isActive={ !!editor?.selection && isMarkActive(editor, SEPARATOR_TYPE!) }
             /> }
         />
     );

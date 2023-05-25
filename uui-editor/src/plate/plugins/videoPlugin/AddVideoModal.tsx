@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
 import css from './AddVideoModal.module.scss';
-import { PlateEditor, insertElements } from "@udecode/plate";
+import { PlateEditor, setElements } from "@udecode/plate";
 
 import getVideoId from "get-video-id";
 import { useState } from "react";
@@ -55,16 +55,11 @@ export function AddVideoModal({ editor, success, abort, ...props }: AddVideoModa
 
     const createVideoBlock = () => {
         const formattedSrc = getVideoSrc(src);
-        insertElements(
-            editor,
-            {
-                type: 'iframe',
-                data: { src: formattedSrc },
-                url: formattedSrc,
-                children: []
-            },
-            { at: editor.selection.anchor.path }
-        );
+        setElements(editor, {
+            type: 'iframe',
+            data: { src: formattedSrc },
+            url: formattedSrc,
+        });
 
         success(true);
     };
