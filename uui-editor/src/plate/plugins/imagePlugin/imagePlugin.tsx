@@ -9,8 +9,6 @@ import {
     PlateEditor,
     ToolbarButton as PlateToolbarButton,
     TImageElement,
-    createNode,
-    insertNode,
     insertNodes,
     insertEmptyElement,
 } from '@udecode/plate';
@@ -49,7 +47,7 @@ export const imagePlugin = () => {
                 if (!getBlockAboveByType(editor, ['image'])) return;
 
                 if (event.key === 'Enter') {
-                    insertNode(editor, createNode());
+                    return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
                 if ((event.key === 'Backspace' || event.key === 'Delete')) {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
