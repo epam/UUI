@@ -3,7 +3,7 @@
  * Any declarations which aren't common for "all" modules should be added to
  * the respective module-level 'global.d.ts'
  */
-declare const __DEV__: boolean;
+declare let __DEV__: boolean;
 
 /**
  * This is SCSS module.
