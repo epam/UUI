@@ -14,6 +14,7 @@ exports[`PickerInput should render with maximum props 1`] = `
   >
     <button
       className="container uui-button-box uui-enabled size-42 root"
+      data-testid="uui-PickerToggler-item-2"
       onClick={[Function]}
       tabIndex={-1}
       type="button"
@@ -35,6 +36,7 @@ exports[`PickerInput should render with maximum props 1`] = `
     </button>
     <button
       className="container uui-button-box uui-enabled size-42 root"
+      data-testid="uui-PickerToggler-item-3"
       onClick={[Function]}
       tabIndex={-1}
       type="button"

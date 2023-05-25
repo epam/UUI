@@ -227,8 +227,7 @@ describe('PickerInput', () => {
             getName: ({ name }) => name,
         });
 
-        const selectedItemsNames1 = screen.queryAllByRole('button')
-            .filter((button) => button.getAttribute('aria-label') !== 'Clear')
+        const selectedItemsNames1 = screen.queryAllByTestId(/uui-PickerToggler-item/)
             .map((button) => button.textContent?.trim());
         
         expect(selectedItemsNames1).toEqual(['', '']);
@@ -237,8 +236,7 @@ describe('PickerInput', () => {
    
         await delayAct(100);
 
-        const selectedItemsNames2 = screen.queryAllByRole('button')
-            .filter((button) => button.getAttribute('aria-label') !== 'Clear')
+        const selectedItemsNames2 = screen.queryAllByTestId(/uui-PickerToggler-item/)
             .map((button) => button.textContent?.trim());
         
         expect(selectedItemsNames2).toEqual(['Elementary+', 'Pre-Intermediate']);
