@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { ArrayDataSource, AsyncDataSource } from '@epam/uui-core';
+import { ArrayDataSource, AsyncDataSource, CascadeSelection } from '@epam/uui-core';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, waitFor,
     queryHelpers,
@@ -41,6 +41,27 @@ const languageLevels: TestItemType[] = [
     { id: 12, level: 'C2', name: 'Proficiency' },
 ];
 
+type TestTreeItem = {
+    id: number;
+    name: string;
+    parentId?: number;
+};
+
+const treeLikeData: TestTreeItem[] = [
+    { id: 1, name: 'Parent 1' },
+    { id: 1.1, parentId: 1, name: 'Child 1.1' },
+    { id: 1.2, parentId: 1, name: 'Child 1.2' },
+    { id: 1.3, parentId: 1, name: 'Child 1.3' },
+    { id: 2, name: 'Parent 2' },
+    { id: 2.1, parentId: 2, name: 'Child 2.1' },
+    { id: 2.2, parentId: 2, name: 'Child 2.2' },
+    { id: 2.3, parentId: 2, name: 'Child 2.3' },
+    { id: 3, name: 'Parent 3' },
+    { id: 3.1, parentId: 3, name: 'Child 3.1' },
+    { id: 3.2, parentId: 3, name: 'Child 3.2' },
+    { id: 3.3, parentId: 3, name: 'Child 3.3' },
+];
+
 const mockDataSource = new ArrayDataSource({
     items: languageLevels,
 });
@@ -52,11 +73,19 @@ const mockDataSourceAsync = new AsyncDataSource({
     },
 });
 
-type PickerInputComponentProps = PickerInputBaseProps<TestItemType, number> & PickerInputProps;
+const mockTreeLikeDataSourceAsync = new AsyncDataSource<TestTreeItem, number, any>({
+    api: async () => {
+        await delay(100);
+        return treeLikeData;
+    },
+    getParentId: ({ parentId }) => parentId,
+});
 
-async function setupPickerInputForTest(params: Partial<PickerInputComponentProps>) {
-    const { result, mocks } = await setupComponentForTest<PickerInputComponentProps>(
-        (context): PickerInputComponentProps => {
+type PickerInputComponentProps<TItem, TId> = PickerInputBaseProps<TItem, TId> & PickerInputProps;
+
+async function setupPickerInputForTest<TItem = TestItemType, TId = number>(params: Partial<PickerInputComponentProps<TItem, TId>>) {
+    const { result, mocks } = await setupComponentForTest<PickerInputComponentProps<TItem, TId>>(
+        (context): PickerInputComponentProps<TItem, TId> => {
             if (params.selectionMode === 'single') {
                 return Object.assign({
                     onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('value', newValue)),
@@ -64,9 +93,9 @@ async function setupPickerInputForTest(params: Partial<PickerInputComponentProps
                     disableClear: false,
                     searchPosition: 'input',
                     getName: (item) => item.level,
-                    value: params.value as number,
+                    value: params.value as TId,
                     selectionMode: 'single',
-                }, params);
+                }, params) as PickerInputComponentProps<TItem, TId>;
             }
 
             return Object.assign({
@@ -77,7 +106,7 @@ async function setupPickerInputForTest(params: Partial<PickerInputComponentProps
                 getName: (item) => item.level,
                 value: params.value as number[],
                 selectionMode: 'multi',
-            }, params) as PickerInputComponentProps;
+            }, params) as PickerInputComponentProps<TItem, TId>;
         },
         (props) => <PickerInput { ...props } />,
     );
@@ -288,5 +317,27 @@ describe('PickerInput', () => {
         });
         
         expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Multiple Language Levels');
+    });
+
+    it.each<[CascadeSelection]>(
+        [[false], [true], ['implicit'], ['explicit']],
+    )
+    ('[selectionMode single] should pick single element with cascadeSelection = %s', async (cascadeSelection) => {
+        const { mocks, dom } = await setupPickerInputForTest({
+            value: undefined,
+            getName: ({ name }) => name,
+            selectionMode: 'single',
+            cascadeSelection,
+            dataSource: mockTreeLikeDataSourceAsync,
+        });
+
+        fireEvent.click(dom.input as HTMLElement);
+        await delayAct(100);
+
+        const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+        fireEvent.click(second);
+
+        expect(mocks.onValueChange).toHaveBeenLastCalledWith(2);
+        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Parent 2');
     });
 });

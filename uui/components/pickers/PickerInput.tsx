@@ -62,6 +62,10 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         ) : (
             <DataPickerRow
                 { ...rowProps }
+                rawProps={ {
+                    ...rowProps.rawProps,
+                    'data-testid': `uui-PickerInput-item-${rowProps.rowKey}`,
+                } }
                 key={ rowProps.rowKey }
                 borderBottom="none"
                 size={ this.getRowSize() }
