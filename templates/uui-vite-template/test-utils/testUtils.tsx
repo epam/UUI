@@ -38,8 +38,7 @@ export * from '@epam/uui-test-utils';
 
 // Override method from UUI test utils
 export const renderWithContextAsync = async (reactElement: ReactElement) => {
-    return uuiTestUtils.renderWithContextAsync(
-        reactElement,
-        TestContextWrapper
-    );
+    return uuiTestUtils.renderWithContextAsync(reactElement, {
+        wrapper: TestContextWrapper,
+    });
 };
