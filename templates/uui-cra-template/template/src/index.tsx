@@ -1,3 +1,7 @@
+import '@epam/uui-components/styles.css';
+import '@epam/uui/styles.css';
+import '@epam/promo/styles.css';
+//
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
@@ -5,8 +9,6 @@ import { createBrowserHistory } from 'history';
 import { ContextProvider } from '@epam/uui-core';
 import { Snackbar, Modals } from '@epam/uui-components';
 import { ErrorHandler } from '@epam/promo';
-import '@epam/uui-components/styles.css';
-import '@epam/promo/styles.css';
 import { App } from './App';
 import { svc } from './services';
 
