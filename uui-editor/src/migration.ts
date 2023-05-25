@@ -8,11 +8,6 @@
  * https://github.com/react-page/react-page/blob/b6c83a8650cfe9089e0c3eaf471ab58a0f7db761/packages/plugins/content/slate/src/migrations/v004.ts
  */
 
-const imageAlignValues: any = {
-    'align-left': 'left',
-    'align-right': 'right',
-    'align-center': 'center',
-};
 const migrateTextNode = (oldNode: any) => {
     return {
         text: oldNode.text,
@@ -22,16 +17,17 @@ const migrateTextNode = (oldNode: any) => {
                 ...(mark?.data?.style ? mark.data.style : {}),
                 [mark.type || mark]: true,
             }),
-            {},
+            {}
         ),
     };
 };
 
 const migrateElementNode = (node: any) => {
-    const mediaTypes = ['image', 'iframe'];
+    const mediaTypes = ["image", "iframe"];
+
     return {
         data: node.data ?? {},
-        type: node.type === 'table_row' ? 'tr' : node.type === 'table_header_cell' ? 'th' : node.type === 'table_cell' ? 'td' : node.type,
+        type: node.type,
         ...(mediaTypes.includes(node.type) ? { url: node.data?.src } : {}),
         ...(node?.data?.url ? { url: node.data.url } : {}),
         children: node.nodes?.map(migrateNode).flat() ?? [],
@@ -39,7 +35,7 @@ const migrateElementNode = (node: any) => {
 };
 
 const migrateNode = (oldNode: any) => {
-    if (oldNode.object === 'text') {
+    if (oldNode.object === "text") {
         return migrateTextNode(oldNode);
     } else {
         return migrateElementNode(oldNode);

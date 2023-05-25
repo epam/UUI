@@ -17,6 +17,8 @@ import {
     useEventEditorSelectors,
     isElementEmpty,
     Value,
+    createTextIndentPlugin,
+    createIndentListPlugin,
 } from '@udecode/plate';
 
 import { createJuicePlugin } from '@udecode/plate-juice';
@@ -40,6 +42,8 @@ export type EditorValue = Value;
  * https://github.com/udecode/plate/blob/main/docs/BREAKING_CHANGES.md#general
  */
 export const defaultPlugins: any = [
+    createIndentListPlugin(),
+    createTextIndentPlugin(),
     createSoftBreakPlugin(),
     createExitBreakPlugin(),
     createDeserializeDocxPlugin(),
