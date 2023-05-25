@@ -364,4 +364,36 @@ describe('PickerInput', () => {
         expect(checkbox).toBeChecked();
         expect(selectedItemsNames1).toEqual(['Parent 2']);
     });
+    
+    it.each<[CascadeSelection]>(
+        [[true], ['explicit']],
+    )
+    ('[selectionMode multi] should pick multiple elements with cascadeSelection = %s', async (cascadeSelection) => {
+        const { mocks, dom } = await setupPickerInputForTest({
+            value: undefined,
+            getName: ({ name }) => name,
+            selectionMode: 'multi',
+            cascadeSelection,
+            dataSource: mockTreeLikeDataSourceAsync,
+        });
+
+        fireEvent.click(dom.input as HTMLElement);
+        await delayAct(100);
+
+        const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+        const checkbox = await within(second).findByRole('checkbox');
+        fireEvent.click(checkbox);
+
+        const checked = [2, 2.1, 2.2, 2.3];
+        expect(mocks.onValueChange).toHaveBeenLastCalledWith(checked);
+        const selectedItemsNames1 = screen.queryAllByTestId(/uui-PickerToggler-item/)
+            .map((button) => button.textContent?.trim());
+        
+        expect(checkbox).toBeChecked();
+        expect(selectedItemsNames1).toEqual(['Parent 2', 'Child 2.1', 'Child 2.2', 'Child 2.3']);
+        
+        const [first] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+        const firstCheckbox = await within(first).findByRole('checkbox');
+        expect(firstCheckbox).not.toBeChecked();
+    });
 });
