@@ -9,6 +9,7 @@ import {
     ListToolbarButton,
     getPluginType,
     getListItemEntry,
+    ELEMENT_LIC,
 } from "@udecode/plate";
 import { isPluginActive } from "../../../helpers";
 import { ToolbarButton } from "../../implementation/ToolbarButton";
@@ -26,9 +27,9 @@ export const List = (props: any) => {
     const { attributes, children, element } = props;
     switch (element.type) {
         case ELEMENT_OL_CUSTOM:
-            return <ol { ...attributes } style={ { margin: '12px 0px' } }>{ children }</ol>;
+            return <ol { ...attributes }>{ children }</ol>;
         case ELEMENT_UL_CUSTOM:
-            return <ul { ...attributes } style={ { margin: '12px 0px' } }>{ children }</ul>;
+            return <ul { ...attributes }>{ children }</ul>;
         case ELEMENT_LI_CUSTOM:
             return <li className={ element.type } { ...attributes }>{ children }</li>;
         case ELEMENT_LI_TEXT_CUSTOM:
@@ -37,7 +38,6 @@ export const List = (props: any) => {
             return <div { ...attributes }>{ children }</div>;
     }
 };
-
 
 export const listPlugin = () => createListPlugin({
     overrideByKey: {
@@ -57,16 +57,14 @@ export const listPlugin = () => createListPlugin({
             type: ELEMENT_LI_CUSTOM,
             isElement: true,
             component: List,
+            deserializeHtml: { rules: [{ validNodeName: 'LI' }] },
         },
-    },
-    plugins: [
-        {
-            key: ELEMENT_LI_TEXT_CUSTOM,
+        [ELEMENT_LIC]: {
             type: ELEMENT_LI_TEXT_CUSTOM,
             isElement: true,
             component: List,
         },
-    ],
+    },
 });
 
 interface IToolbarButton {
@@ -84,8 +82,8 @@ export const ListButton = ({ editor }: IToolbarButton) => {
     return (
         <>
             <ListToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
-                type={ getPluginType(editor, ELEMENT_OL_CUSTOM) }
+                styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
+                type={ getPluginType(editor, ELEMENT_OL) }
                 actionHandler='onMouseDown'
                 icon={ <ToolbarButton
                     onClick={ noop }
@@ -94,8 +92,8 @@ export const ListButton = ({ editor }: IToolbarButton) => {
                 /> }
             />
             <ListToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
-                type={ getPluginType(editor, ELEMENT_UL_CUSTOM) }
+                styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
+                type={ getPluginType(editor, ELEMENT_UL) }
                 actionHandler='onMouseDown'
                 icon={ <ToolbarButton
                     onClick={ noop }
