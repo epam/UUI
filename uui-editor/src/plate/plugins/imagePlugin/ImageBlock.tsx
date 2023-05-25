@@ -5,7 +5,8 @@ import { Dropdown } from '@epam/uui-components';
 import { uuiSkin } from "@epam/uui-core";
 
 import { useFocused, useSelected } from 'slate-react';
-import { invert, debounce } from 'lodash';
+import invert from 'lodash.invert';
+import debounce from 'lodash.debounce';
 
 import {
     getBlockAbove,
