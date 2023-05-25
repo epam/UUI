@@ -115,7 +115,7 @@ const TableRenderer = (props: any) => {
 
         const emptyCol = {
             "data": { colSpan, rowSpan },
-            "type": "td",
+            "type": "table_cell",
             "children": [
                 {
                     "data": {},
@@ -152,7 +152,7 @@ const TableRenderer = (props: any) => {
         const [item]: any[] = cellEntries;
         const emptyCol = {
             "data": { colSpan: 1, rowSpan: 1 },
-            "type": "td",
+            "type": "table_cell",
             "children": [
                 {
                     "data": {},
@@ -167,7 +167,7 @@ const TableRenderer = (props: any) => {
         };
         const emptyColWithoutText = {
             "data": { colSpan: 1, rowSpan: 1 },
-            "type": "td",
+            "type": "table_cell",
             "children": [
                 {
                     "data": {},
@@ -284,18 +284,23 @@ const TableRenderer = (props: any) => {
 };
 
 
+
 export const tablePlugin = () => createTablePlugin({
     overrideByKey: {
         [ELEMENT_TABLE]: {
+            type: 'table',
             component: TableRenderer,
         },
         [ELEMENT_TR]: {
+            type: 'table_row',
             component: TableRow,
         },
         [ELEMENT_TD]: {
+            type: 'table_cell',
             component: TableCell,
         },
         [ELEMENT_TH]: {
+            type: 'table_header_cell',
             component: TableHeaderCell,
         },
     },
