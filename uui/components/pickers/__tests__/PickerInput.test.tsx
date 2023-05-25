@@ -340,4 +340,28 @@ describe('PickerInput', () => {
         expect(mocks.onValueChange).toHaveBeenLastCalledWith(2);
         expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Parent 2');
     });
+    
+    it('[selectionMode multi] should pick single element with cascadeSelection = false', async () => {
+        const { mocks, dom } = await setupPickerInputForTest({
+            value: undefined,
+            getName: ({ name }) => name,
+            selectionMode: 'multi',
+            cascadeSelection: false,
+            dataSource: mockTreeLikeDataSourceAsync,
+        });
+
+        fireEvent.click(dom.input as HTMLElement);
+        await delayAct(100);
+
+        const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+        const checkbox = await within(second).findByRole('checkbox');
+        fireEvent.click(checkbox);
+
+        expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+        const selectedItemsNames1 = screen.queryAllByTestId(/uui-PickerToggler-item/)
+            .map((button) => button.textContent?.trim());
+        
+        expect(checkbox).toBeChecked();
+        expect(selectedItemsNames1).toEqual(['Parent 2']);
+    });
 });
