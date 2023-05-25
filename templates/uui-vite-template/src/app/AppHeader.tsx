@@ -1,5 +1,5 @@
 import logo from '../icons/logo.svg';
-import { MainMenu, MainMenuButton } from '@epam/promo';
+import { MainMenu, MainMenuButton } from '@epam/uui';
 
 export const AppHeader = () => {
     return (
