@@ -209,6 +209,7 @@
     --uui-text-secondary: var(--gray60);
     --uui-text-disabled: var(--gray50);
     --uui-text-contrast: var(--gray5);
+    --uui-text-white: var(--white);
 
     --uui-control-bg: var(--white);
     --uui-control-bg-checked: var(--uui-primary);
@@ -1092,6 +1093,10 @@
     .uui-text-contrast,
     .uui-text-gray5 {
         --uui-text: var(--uui-text-contrast);
+    }
+
+    .uui-text-white {
+        --uui-text: var(--uui-text-white);
     }
 
     .uui-font-regular,
