@@ -1,0 +1,21 @@
+<svg width="192" height="192" xmlns="http://www.w3.org/2000/svg">
+ <title>Miscellaneous/Logotypes/colored/UUI</title>
+ <defs>
+  <linearGradient id="linearGradient-1" y2="10.6570508%" x2="73.7914454%" y1="88.008125%" x1="28.6083908%">
+   <stop offset="0%" stop-color="#467EC0"/>
+   <stop offset="49.1568917%" stop-color="#1B9AD2"/>
+   <stop offset="100%" stop-color="#41C3DE"/>
+  </linearGradient>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" fill-rule="evenodd" fill="none" id="Miscellaneous/Logotypes/colored/UUI">
+   <rect stroke="null" height="145.999994" width="143.000003" y="27" x="22.5" id="area"/>
+   <path stroke="null" fill="url(#linearGradient-1)" id="Shape" d="m147.625003,103.041663l0,27.374999l-53.625001,30.416665l-53.625001,-30.416665l0,-27.374999l13.40625,7.3l0,12.021427l40.218751,22.812499l40.218751,-22.813259l0,-12.020666l13.40625,-7.3zm-53.625001,-27.374999l22.34375,12.166666l0,24.333332l-22.34375,12.166666l-22.34375,-12.166666l0,-24.333332l22.34375,-12.166666zm0,-36.499998l53.625001,30.416665l0,18.249999l-13.40625,7.3l0,-17.496426l-40.218751,-22.813259l-40.218751,22.812499l0,17.497187l-13.40625,-7.3l0,-18.249999l53.625001,-30.416665z"/>
+  </g>
+ </g>
+</svg>
