@@ -25,20 +25,9 @@ const migrateTextNode = (oldNode: any) => {
 const migrateElementNode = (node: any) => {
     const mediaTypes = ["image", "iframe"];
 
-    let newType;
-    if (node.type === "table_row") {
-        newType = "tr";
-    } else if (node.type === "table_header_cell") {
-        newType = "th";
-    } else if (node.type === "table_cell") {
-        newType = "td";
-    } else {
-        newType = node.type;
-    }
-
     return {
         data: node.data ?? {},
-        type: newType,
+        type: node.type,
         ...(mediaTypes.includes(node.type) ? { url: node.data?.src } : {}),
         ...(node?.data?.url ? { url: node.data.url } : {}),
         children: node.nodes?.map(migrateNode).flat() ?? [],

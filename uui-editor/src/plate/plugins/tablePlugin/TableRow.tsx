@@ -12,7 +12,7 @@ export function TableRow(props: any) {
     const { attributes, children, element } = props;
 
     const isHeaderRow = () => {
-        return element.children[0]?.type === 'th';
+        return element.children[0]?.type === 'table_header_cell';
     };
 
     if (!element.size) {
