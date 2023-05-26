@@ -5,6 +5,7 @@ import { ErrorHandler, FlexRow, skinContext as promoSkinContext } from '@epam/pr
 import { ApiCallOptions, ContextProvider, UuiContexts } from '@epam/uui-core';
 import { Modals, Snackbar } from '@epam/uui-components';
 import '@epam/uui-components/styles.css';
+// eslint-disable-next-line import/no-unresolved
 import '@epam/uui/styles.css';
 import '@epam/promo/styles.css';
 import '@epam/loveship/styles.css';
