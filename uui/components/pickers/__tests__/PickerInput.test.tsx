@@ -238,6 +238,30 @@ describe('PickerInput', () => {
             expect(mocks.onValueChange).toHaveBeenLastCalledWith(2);
             expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Parent 2');
         });
+        
+        it('should work with maxItems properly', async () => {
+            const { mocks, dom } = await setupPickerInputForTest({
+                value: undefined,
+                maxItems: 1,
+                selectionMode: 'single',
+            });
+    
+            fireEvent.click(dom.input as HTMLElement);
+            await delayAct(100);
+    
+            // Check parent
+            const [first] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+            fireEvent.click(first);
+
+            fireEvent.click(dom.input as HTMLElement);
+            const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+
+            fireEvent.click(second);
+    
+            const checked = 3;
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith(checked);
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('A1+');
+        });
     });
 
     describe('[selectionMode multi]', () => {
@@ -486,6 +510,39 @@ describe('PickerInput', () => {
             }
             requiredCheckboxes2.forEach((cb) => expect(cb).toBeChecked());
             restOfCheckboxes2.forEach((cb) => expect(cb).not.toBeChecked());
+        });
+
+        it('should wrap up if number of elements is greater than maxItems', async () => {
+            const { mocks, dom } = await setupPickerInputForTest({
+                value: undefined,
+                maxItems: 3,
+                entityPluralName: 'languages',
+                selectionMode: 'multi',
+            });
+    
+            fireEvent.click(dom.input as HTMLElement);
+            await delayAct(100);
+    
+            // Check parent
+            const [first, second, third, forth] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+            fireEvent.click(first);
+            fireEvent.click(second);
+    
+            const checked = [2, 3];
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith(checked);
+            const selectedItemsNames = screen.queryAllByTestId(/uui-PickerToggler-item/)
+                .map((button) => button.textContent?.trim());
+            
+            expect(selectedItemsNames).toEqual(['A1', 'A1+']);
+            
+            fireEvent.click(third);
+            fireEvent.click(forth);
+            const newChecked = [2, 3, 4, 5];
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith(newChecked);
+            const selectedItemsNames2 = screen.queryAllByTestId(/uui-PickerToggler-item/)
+                .map((button) => button.textContent?.trim());
+            
+            expect(selectedItemsNames2).toEqual(['4 languages selected']);
         });
     });
     
