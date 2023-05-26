@@ -2,10 +2,13 @@ const Project = require('@lerna/project');
 const { PackageGraph } = require('@lerna/package-graph');
 const fs = require('fs');
 const path = require('path');
-const { readPackageJsonContentSync } = require('./packageJsonUtils');
-const { isRollupModule } = require('./moduleBuildUtils');
+const { readPackageJsonContentSync } = require('./packageJsonUtils.js');
+const { isRollupModule } = require('./moduleBuildUtils.js');
+const { readJsonFileSync } = require('./fileUtils.js');
+const { uuiRoot } = require('./constants.js');
 
 module.exports = {
+    getUuiVersion,
     assertRunFromModule,
     getAllLocalDependenciesInfo,
     getAllMonorepoPackages,
@@ -102,4 +105,12 @@ function isAllLocalDependenciesBuilt(moduleName) {
         modulesBuilt,
         modulesNotBuilt,
     };
+}
+
+/**
+ * Version of UUI
+ * @returns {string}
+ */
+function getUuiVersion() {
+    return readJsonFileSync(path.resolve(uuiRoot, 'lerna.json')).version;
 }
