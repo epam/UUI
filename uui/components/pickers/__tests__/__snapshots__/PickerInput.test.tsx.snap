@@ -103,6 +103,7 @@ exports[`PickerInput should render with minimum props 1`] = `
       aria-haspopup={true}
       autoComplete="no"
       className="uui-input singleInput cursorText"
+      data-testid="uui-PickerToggler-input"
       onChange={[Function]}
       placeholder="Please select "
       readOnly={true}

@@ -5,6 +5,7 @@ import {
 } from '@epam/uui-test-utils';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { PickerInputBaseProps } from '@epam/uui-components';
+
 import { IHasEditMode } from '../../types';
 
 jest.mock('react-popper', () => ({
@@ -527,5 +528,53 @@ describe('PickerInput', () => {
         const target = screen.queryByTestId(/uui-PickerInput-target/);
         
         expect(target?.getAttribute('class')?.trim().includes(`mode-${mode ?? 'form'}`)).toBeTruthy();
+    });
+    
+    it('should render icon', async () => {
+        await setupPickerInputForTest({
+            value: undefined,
+            icon: () => <div data-testid = "icon" />,
+        });
+        
+        const target = screen.queryByTestId(/uui-PickerInput-target/);
+        const icon = within(target as HTMLElement).queryByTestId('icon');
+        expect(icon).toBeDefined();
+    });
+    
+    it.each<['left' | undefined]>(
+        [[undefined], ['left']],
+    )('should render icon to the left', async (iconPosition) => {
+        await setupPickerInputForTest({
+            value: undefined,
+            icon: () => <div data-testid = "uui-PickerToggler-icon" />,
+            iconPosition,
+        });
+        
+        const target = screen.queryByTestId(/uui-PickerInput-target/);
+        const icon = within(target as HTMLElement).queryByTestId(/uui-PickerToggler-icon/);
+        expect(icon).toBeDefined();
+        
+        const elements = within(target as HTMLElement).queryAllByTestId(/uui-PickerToggler-/);
+        expect(elements.length).toBe(2);
+        expect(elements[0]).toEqual(icon);
+        
+        expect(elements[1]).toEqual(within(target as HTMLElement).queryByTestId(/uui-PickerToggler-input/));
+    });
+    
+    it('should render icon to the right', async () => {
+        await setupPickerInputForTest({
+            value: undefined,
+            icon: () => <div data-testid = "uui-PickerToggler-icon" />,
+            iconPosition: 'right',
+        });
+        
+        const target = screen.queryByTestId(/uui-PickerInput-target/);
+        const icon = within(target as HTMLElement).queryByTestId(/uui-PickerToggler-icon/);
+        expect(icon).toBeDefined();
+        
+        const elements = within(target as HTMLElement).queryAllByTestId(/uui-PickerToggler-/);
+        expect(elements.length).toBe(2);
+        expect(elements[0]).toEqual(within(target as HTMLElement).queryByTestId(/uui-PickerToggler-input/));
+        expect(elements[1]).toEqual(icon);
     });
 });
