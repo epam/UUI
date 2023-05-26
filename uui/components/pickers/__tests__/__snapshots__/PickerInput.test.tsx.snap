@@ -3,6 +3,7 @@
 exports[`PickerInput should render with maximum props 1`] = `
 <div
   className="container uui-input-box -clickable root size-48 mode-form"
+  data-testid="uui-PickerInput-target"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -88,6 +89,7 @@ exports[`PickerInput should render with maximum props 1`] = `
 exports[`PickerInput should render with minimum props 1`] = `
 <div
   className="container uui-input-box -clickable root size-36 mode-form"
+  data-testid="uui-PickerInput-target"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
