@@ -153,7 +153,13 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         [props.isOpen, props.closePickerBody],
     );
 
-    const icon = props.icon && <IconContainer icon={ props.icon } onClick={ props.onIconClick } />;
+    const icon = props.icon && (
+        <IconContainer
+            icon={ props.icon }
+            onClick={ props.onIconClick }
+            rawProps={ { 'data-testid': 'uui-PickerToggler-iconContainer' } }
+        />
+    );
 
     return (
         <div
