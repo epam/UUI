@@ -1,14 +1,13 @@
 import React, { RefObject, createRef } from 'react';
 import {
-    Switch, FlexRow, IconButton, Button,
+    Switch, FlexRow, IconButton,
 } from '@epam/promo';
 import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
 import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
-import { codesandboxService } from '../../data/codesandbox/service';
 import css from './DocExample.module.scss';
 import { ReactComponent as AnchorIcon } from '@epam/assets/icons/common/action-external_link-18.svg';
-import { ReactComponent as CodesandboxIcon } from '../../icons/social-network-codesandbox-24.svg';
+import { CodesandboxLink } from './CodesandboxLink';
 
 interface DocExampleProps {
     path: string;
@@ -49,9 +48,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
             .getCode({ path })
             .then((r) => {
                 this.setState({ code: r.highlighted, raw: r.raw });
-                return r.raw;
-            })
-            .then((raw) => this.getComponentStylesheet(raw));
+            });
     }
 
     state: DocExampleState = {
@@ -71,29 +68,6 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
         return name.substring(1);
     }
 
-    private getComponentStylesheet(raw: string): void {
-        // Match .example.scss or .scss
-        const matcher = /\.\/\w+(?:.example)?(?:.module)?.scss/;
-        const stylesheets = raw.match(matcher);
-        if (stylesheets !== null) {
-            stylesheets.forEach((match) => {
-                // Compose path from match and current directory path
-                const [, filePath] = match.split('/');
-                const dirPath = this.props.path.split('/').slice(0, -1);
-                const path = dirPath.concat(filePath).join('/');
-                svc.api.getCode({ path }).then((stylesheet) => {
-                    this.setState((prevState) => ({
-                        ...prevState,
-                        stylesheets: {
-                            ...prevState.stylesheets,
-                            [filePath]: { content: stylesheet.raw, isBinary: false },
-                        },
-                    }));
-                });
-            });
-        }
-    }
-
     private onSwitchValueChange = (val: boolean) => {
         this.setState({ showCode: val });
     };
@@ -103,10 +77,8 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
     }
 
     private renderPreview() {
-        const { raw, stylesheets } = this.state;
-        const codesandboxLink = codesandboxService.getCodesandboxLink();
-        const codesandboxParameters = codesandboxService.getCodesandboxParameters(raw, stylesheets);
-
+        const { raw } = this.state;
+        const dirPath = this.props.path.split('/').slice(0, -1);
         return (
             <>
                 <FlexRow size={ null } vPadding="48" padding="24" borderBottom alignItems="top" spacing="12">
@@ -114,19 +86,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                 </FlexRow>
                 <FlexRow padding="12" vPadding="12" cx={ css.containerFooter }>
                     <Switch value={ this.state.showCode } onValueChange={ this.onSwitchValueChange } label="View code" />
-                    {codesandboxLink && (
-                        <form action={ codesandboxLink } method="POST" target="_blank">
-                            <input type="hidden" name="parameters" value={ codesandboxParameters } />
-                            <Button
-                                cx={ css.externalLink }
-                                rawProps={ { type: 'submit' } }
-                                fill="light"
-                                icon={ CodesandboxIcon }
-                                iconPosition="right"
-                                caption="Open in Codesandbox"
-                            />
-                        </form>
-                    )}
+                    <CodesandboxLink raw={ raw } dirPath={ dirPath } />
                 </FlexRow>
                 {this.state.showCode && this.renderCode()}
             </>
