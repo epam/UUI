@@ -244,6 +244,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableClear: propDisableClear,
             icon,
             iconPosition,
+            onIconClick,
         } = this.props;
         const searchPosition = this.getSearchPosition();
         const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRowsCount);
@@ -265,6 +266,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             autoFocus,
             icon,
             iconPosition,
+            onIconClick,
             onFocus: this.props.onFocus,
             onClear: this.handleClearSelection,
             onBlur: this.props.onBlur,
