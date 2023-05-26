@@ -4,6 +4,7 @@
  * the respective module-level 'global.d.ts'
  */
 declare let __DEV__: boolean;
+declare let __PACKAGE_VERSION__: string;
 
 /**
  * This is SCSS module.
