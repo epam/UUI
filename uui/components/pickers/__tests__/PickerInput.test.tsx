@@ -5,6 +5,7 @@ import {
 } from '@epam/uui-test-utils';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { PickerInputBaseProps } from '@epam/uui-components';
+import { IHasEditMode } from '../../types';
 
 jest.mock('react-popper', () => ({
     ...jest.requireActual('react-popper'),
@@ -513,5 +514,18 @@ describe('PickerInput', () => {
 
         fireEvent.click(dom.input as Element);
         expect(screen.queryByRole('dialog')).toBeNull();
+    });
+
+    it.each<[IHasEditMode['mode'] | undefined]>(
+        [[undefined], ['form'], ['cell'], ['inline']],
+    )('should apply mode = %s to a toggler', async (mode) => {
+        await setupPickerInputForTest({
+            value: undefined,
+            mode,
+        });
+        
+        const target = screen.queryByTestId(/uui-PickerInput-target/);
+        
+        expect(target?.getAttribute('class')?.trim().includes(`mode-${mode ?? 'form'}`)).toBeTruthy();
     });
 });
