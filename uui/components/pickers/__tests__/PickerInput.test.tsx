@@ -137,7 +137,7 @@ describe('PickerInput', () => {
                 maxItems={ 20 }
                 editMode="modal"
                 valueType="id"
-                getName={ (item) => item.level }
+                getName={ (item) => item?.level ?? '' }
                 autoFocus
                 placeholder="Test placeholder"
                 filter={ (item: any) => item.level === 'A1' }
@@ -153,52 +153,338 @@ describe('PickerInput', () => {
         );
         expect(tree).toMatchSnapshot();
     });
-
-    it('[selectionMode multi] should select & clear several options', async () => {
-        const { dom, mocks } = await setupPickerInputForTest({
-            value: undefined,
-            selectionMode: 'multi',
+    
+    describe('[selectionMode single]', () => {
+        it('should select & clear option', async () => {
+            const { dom, mocks } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'single',
+            });
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select');
+            fireEvent.click(dom.input as HTMLElement);
+            expect(screen.getByRole('dialog')).toBeInTheDocument();
+            const optionC2 = await screen.findByText('C2');
+            fireEvent.click(optionC2);
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
+            fireEvent.click(window.document.body);
+            expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+            expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
+            const clear = screen.getByRole('button');
+            fireEvent.click(clear);
+            expect(screen.queryByText('C2')).not.toBeInTheDocument();
         });
-        expect(dom.input.getAttribute('placeholder').trim()).toEqual('Please select');
-        fireEvent.click(dom.input);
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
-        const [cb1, cb2] = await within(screen.getByRole('dialog')).findAllByRole('checkbox');
-        fireEvent.click(cb1);
-        expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
-        fireEvent.click(cb2);
-        expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
-        expect(cb1).toBeChecked();
-        expect(cb2).toBeChecked();
-        fireEvent.click(window.document.body);
-        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-        expect(screen.queryAllByRole('button')).toHaveLength(3); // 2 tags and 1 clear button
-        const a1 = screen.getByText('A1');
-        const a1Clear = a1.nextElementSibling;
-        const a1plus = screen.getByText('A1+');
-        const a1plusClear = a1plus.nextElementSibling;
-        fireEvent.click(a1Clear);
-        expect(screen.queryAllByRole('button')).toHaveLength(2); // 1 tag and 1 clear button
-        fireEvent.click(a1plusClear);
-        expect(screen.queryAllByRole('button')).toHaveLength(0);
+           
+        it('should render names of items by getName', async () => {
+            const { mocks, dom } = await setupPickerInputForTest<TestItemType, number>({
+                value: 3,
+                selectionMode: 'single',
+                getName: ({ name }) => name,
+            });
+
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toBeUndefined();
+            
+            await delayAct(100);
+        
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual(languageLevels[1].name);
+            
+            fireEvent.click(dom.input as Element);
+            expect(screen.getByRole('dialog')).toBeInTheDocument();
+            const optionC2 = await screen.findByText('Proficiency');
+            fireEvent.click(optionC2);
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
+        });
+        
+        it('should render entity name in placeholder', async () => {
+            const { dom } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'single',
+                entityName: 'Language Level',
+            });
+            
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Language Level');
+        });
+        
+        it('should ignore plural entity name in placeholder', async () => {
+            const { dom } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'single',
+                entityName: 'Language Level',
+                entityPluralName: 'Multiple Language Levels',
+            });
+            
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Language Level');
+        });
+        
+        it.each<[CascadeSelection]>(
+            [[false], [true], ['implicit'], ['explicit']],
+        )
+        ('should pick single element with cascadeSelection = %s', async (cascadeSelection) => {
+            const { mocks, dom } = await setupPickerInputForTest({
+                value: undefined,
+                getName: ({ name }) => name,
+                selectionMode: 'single',
+                cascadeSelection,
+                dataSource: mockTreeLikeDataSourceAsync,
+            });
+    
+            fireEvent.click(dom.input as HTMLElement);
+            await delayAct(100);
+    
+            const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+            fireEvent.click(second);
+    
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith(2);
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Parent 2');
+        });
     });
 
-    it('[selectionMode single] should select & clear option', async () => {
-        const { dom, mocks } = await setupPickerInputForTest({
-            value: undefined,
-            selectionMode: 'single',
+    describe('[selectionMode multi]', () => {
+        it('should select & clear several options', async () => {
+            const { dom, mocks } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'multi',
+            });
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select');
+            fireEvent.click(dom.input as HTMLElement);
+            expect(screen.getByRole('dialog')).toBeInTheDocument();
+            const [cb1, cb2] = await within(screen.getByRole('dialog')).findAllByRole('checkbox');
+            fireEvent.click(cb1);
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+            fireEvent.click(cb2);
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
+            expect(cb1).toBeChecked();
+            expect(cb2).toBeChecked();
+            fireEvent.click(window.document.body);
+            expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+            expect(screen.queryAllByRole('button')).toHaveLength(3); // 2 tags and 1 clear button
+            const a1 = screen.getByText('A1');
+            const a1Clear = a1.nextElementSibling;
+            const a1plus = screen.getByText('A1+');
+            const a1plusClear = a1plus.nextElementSibling;
+            fireEvent.click(a1Clear as HTMLElement);
+            expect(screen.queryAllByRole('button')).toHaveLength(2); // 1 tag and 1 clear button
+            fireEvent.click(a1plusClear as HTMLElement);
+            expect(screen.queryAllByRole('button')).toHaveLength(0);
         });
-        expect(dom.input.getAttribute('placeholder').trim()).toEqual('Please select');
-        fireEvent.click(dom.input);
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
-        const optionC2 = await screen.findByText('C2');
-        fireEvent.click(optionC2);
-        expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
-        fireEvent.click(window.document.body);
-        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-        expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
-        const clear = screen.getByRole('button');
-        fireEvent.click(clear);
-        expect(screen.queryByText('C2')).not.toBeInTheDocument();
+        
+        it('should render names of items by getName', async () => {
+            const { dom } = await setupPickerInputForTest<TestItemType, number>({
+                value: [3, 4],
+                selectionMode: 'multi',
+                getName: ({ name }) => name,
+            });
+    
+            const selectedItemsNames1 = screen.queryAllByTestId(/uui-PickerToggler-item/)
+                .map((button) => button.textContent?.trim());
+            
+            expect(selectedItemsNames1).toEqual(['', '']);
+    
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select');
+       
+            await delayAct(100);
+    
+            const selectedItemsNames2 = screen.queryAllByTestId(/uui-PickerToggler-item/)
+                .map((button) => button.textContent?.trim());
+            
+            expect(selectedItemsNames2).toEqual(['Elementary+', 'Pre-Intermediate']);
+        });
+    
+        it('should render entity name with \'s\' in placeholder', async () => {
+            const { dom } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'multi',
+                entityName: 'Language Level',
+            });
+            
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Language Levels');
+        });
+    
+        it('should render plural entity name in placeholder', async () => {
+            const { dom } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'multi',
+                entityName: 'Language Level',
+                entityPluralName: 'Multiple Language Levels',
+            });
+            
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Multiple Language Levels');
+        });
+        
+        it('should pick single element with cascadeSelection = false', async () => {
+            const { mocks, dom } = await setupPickerInputForTest({
+                value: undefined,
+                getName: ({ name }) => name,
+                selectionMode: 'multi',
+                cascadeSelection: false,
+                dataSource: mockTreeLikeDataSourceAsync,
+            });
+    
+            fireEvent.click(dom.input as HTMLElement);
+            await delayAct(100);
+    
+            const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+            const checkbox = await within(second).findByRole('checkbox');
+            fireEvent.click(checkbox);
+    
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+            const selectedItemsNames1 = screen.queryAllByTestId(/uui-PickerToggler-item/)
+                .map((button) => button.textContent?.trim());
+            
+            expect(checkbox).toBeChecked();
+            expect(selectedItemsNames1).toEqual(['Parent 2']);
+        });
+        
+        it.each<[CascadeSelection]>(
+            [[true], ['explicit']],
+        )
+        ('should pick multiple elements with cascadeSelection = %s', async (cascadeSelection) => {
+            const { mocks, dom } = await setupPickerInputForTest({
+                value: undefined,
+                getName: ({ name }) => name,
+                selectionMode: 'multi',
+                cascadeSelection,
+                dataSource: mockTreeLikeDataSourceAsync,
+            });
+    
+            fireEvent.click(dom.input as HTMLElement);
+            await delayAct(100);
+    
+            // Check parent
+            const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+            const checkbox = await within(second).findByRole('checkbox');
+            fireEvent.click(checkbox);
+            
+            // Unfold parent
+            const foldButton = await within(second).findByTestId(/uui-DataTableRowAddons-folding-arrow/);
+            fireEvent.click(foldButton);
+    
+            // Test if checkboxes are checked/unchecked
+            const checked = [2, 2.1, 2.2, 2.3];
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith(checked);
+            const selectedItemsNames1 = screen.queryAllByTestId(/uui-PickerToggler-item/)
+                .map((button) => button.textContent?.trim());
+            
+            expect(checkbox).toBeChecked();
+            expect(selectedItemsNames1).toEqual(['Parent 2', 'Child 2.1', 'Child 2.2', 'Child 2.3']);
+            
+            const rows = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+            
+            const requiredCheckboxes = [];
+            const restOfCheckboxes = [];
+            for (const row of rows) {
+                if (!checked.some((id) => `uui-PickerInput-item-${id}` === row.getAttribute('data-testid')?.trim())) {
+                    restOfCheckboxes.push(await within(row).findByRole('checkbox'));
+                } else {
+                    requiredCheckboxes.push(await within(row).findByRole('checkbox'));
+                }
+            }
+            requiredCheckboxes.forEach((cb) => expect(cb).toBeChecked());
+            restOfCheckboxes.forEach((cb) => expect(cb).not.toBeChecked());
+    
+            // Check child
+            const child = within(screen.getByRole('dialog')).queryByTestId(/uui-PickerInput-item-2.2/);
+            
+            const childCheckbox = await within(child as HTMLElement).findByRole('checkbox');
+            fireEvent.click(childCheckbox);
+           
+            // Test if checkboxes are checked/unchecked
+            const newChecked = [2.1, 2.3];
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith(newChecked);
+            const selectedItemsNames3 = screen.queryAllByTestId(/uui-PickerToggler-item/)
+                .map((button) => button.textContent?.trim());
+            
+            expect(childCheckbox).not.toBeChecked();
+            expect(selectedItemsNames3).toEqual(['Child 2.1', 'Child 2.3']);
+            
+            const rows2 = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+        
+            const requiredCheckboxes2 = [];
+            const restOfCheckboxes2 = [];
+            for (const row of rows2) {
+                if (!newChecked.some((id) => `uui-PickerInput-item-${id}` === row.getAttribute('data-testid')?.trim())) {
+                    restOfCheckboxes2.push(await within(row).findByRole('checkbox'));
+                } else {
+                    requiredCheckboxes2.push(await within(row).findByRole('checkbox'));
+                }
+            }
+            requiredCheckboxes2.forEach((cb) => expect(cb).toBeChecked());
+            restOfCheckboxes2.forEach((cb) => expect(cb).not.toBeChecked());
+        });
+    
+        it('should pick single element with cascadeSelection = implicit', async () => {
+            const { mocks, dom } = await setupPickerInputForTest({
+                value: undefined,
+                getName: ({ name }) => name,
+                selectionMode: 'multi',
+                cascadeSelection: 'implicit',
+                dataSource: mockTreeLikeDataSourceAsync,
+            });
+    
+            fireEvent.click(dom.input as HTMLElement);
+    
+            await delayAct(100);
+            
+            // Check parent
+            const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+            const checkbox = await within(second).findByRole('checkbox');
+            fireEvent.click(checkbox);
+    
+            // Unfold parent
+            const foldButton = await within(second).findByTestId(/uui-DataTableRowAddons-folding-arrow/);
+            fireEvent.click(foldButton);
+    
+            const checked = [2, 2.1, 2.2, 2.3];
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+            const selectedItemsNames1 = screen.queryAllByTestId(/uui-PickerToggler-item/)
+                .map((button) => button.textContent?.trim());
+            
+            expect(checkbox).toBeChecked();
+            expect(selectedItemsNames1).toEqual(['Parent 2']);
+            
+            const rows = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+        
+            // Test if checkboxes are checked/unchecked
+            const requiredCheckboxes = [];
+            const restOfCheckboxes = [];
+            for (const row of rows) {
+                if (!checked.some((id) => `uui-PickerInput-item-${id}` === row.getAttribute('data-testid')?.trim())) {
+                    restOfCheckboxes.push(await within(row).findByRole('checkbox'));
+                } else {
+                    requiredCheckboxes.push(await within(row).findByRole('checkbox'));
+                }
+            }
+            requiredCheckboxes.forEach((cb) => expect(cb).toBeChecked());
+            restOfCheckboxes.forEach((cb) => expect(cb).not.toBeChecked());
+            
+            // Check child
+            const child = within(screen.getByRole('dialog')).queryByTestId(/uui-PickerInput-item-2.2/);
+            
+            const childCheckbox = await within(child as HTMLElement).findByRole('checkbox');
+            fireEvent.click(childCheckbox);
+           
+            // Test if checkboxes are checked/unchecked
+            const newChecked = [2.1, 2.3];
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith(newChecked);
+            const selectedItemsNames3 = screen.queryAllByTestId(/uui-PickerToggler-item/)
+                .map((button) => button.textContent?.trim());
+            
+            expect(childCheckbox).not.toBeChecked();
+            expect(selectedItemsNames3).toEqual(['Child 2.1', 'Child 2.3']);
+            
+            const rows2 = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+        
+            const requiredCheckboxes2 = [];
+            const restOfCheckboxes2 = [];
+            for (const row of rows2) {
+                if (!newChecked.some((id) => `uui-PickerInput-item-${id}` === row.getAttribute('data-testid')?.trim())) {
+                    restOfCheckboxes2.push(await within(row).findByRole('checkbox'));
+                } else {
+                    requiredCheckboxes2.push(await within(row).findByRole('checkbox'));
+                }
+            }
+            requiredCheckboxes2.forEach((cb) => expect(cb).toBeChecked());
+            restOfCheckboxes2.forEach((cb) => expect(cb).not.toBeChecked());
+        });
     });
     
     it('should disable input', async () => {
@@ -227,287 +513,5 @@ describe('PickerInput', () => {
 
         fireEvent.click(dom.input as Element);
         expect(screen.queryByRole('dialog')).toBeNull();
-    });
-    
-    it('[selectionMode single] should render names of items by getName', async () => {
-        const { mocks, dom } = await setupPickerInputForTest({
-            value: 3,
-            selectionMode: 'single',
-            getName: ({ name }) => name,
-        });
-
-        expect(dom.input?.getAttribute('placeholder')?.trim()).toBeUndefined();
-        
-        await delayAct(100);
-       
-        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual(languageLevels[1].name);
-        
-        fireEvent.click(dom.input as Element);
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
-        const optionC2 = await screen.findByText('Proficiency');
-        fireEvent.click(optionC2);
-        expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
-    });
-    
-    it('[selectionMode multi] should render names of items by getName', async () => {
-        const { dom } = await setupPickerInputForTest({
-            value: [3, 4],
-            selectionMode: 'multi',
-            getName: ({ name }) => name,
-        });
-
-        const selectedItemsNames1 = screen.queryAllByTestId(/uui-PickerToggler-item/)
-            .map((button) => button.textContent?.trim());
-        
-        expect(selectedItemsNames1).toEqual(['', '']);
-
-        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select');
-   
-        await delayAct(100);
-
-        const selectedItemsNames2 = screen.queryAllByTestId(/uui-PickerToggler-item/)
-            .map((button) => button.textContent?.trim());
-        
-        expect(selectedItemsNames2).toEqual(['Elementary+', 'Pre-Intermediate']);
-    });
-
-    it('[selectionMode single] should render entity name in placeholder', async () => {
-        const { dom } = await setupPickerInputForTest({
-            value: undefined,
-            selectionMode: 'single',
-            entityName: 'Language Level',
-        });
-        
-        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Language Level');
-    });
-    
-    it('[selectionMode single] should ignore plural entity name in placeholder', async () => {
-        const { dom } = await setupPickerInputForTest({
-            value: undefined,
-            selectionMode: 'single',
-            entityName: 'Language Level',
-            entityPluralName: 'Multiple Language Levels',
-        });
-        
-        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Language Level');
-    });
-
-    it('[selectionMode multi] should render entity name with \'s\' in placeholder', async () => {
-        const { dom } = await setupPickerInputForTest({
-            value: undefined,
-            selectionMode: 'multi',
-            entityName: 'Language Level',
-        });
-        
-        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Language Levels');
-    });
-
-    it('[selectionMode multi] should render plural entity name in placeholder', async () => {
-        const { dom } = await setupPickerInputForTest({
-            value: undefined,
-            selectionMode: 'multi',
-            entityName: 'Language Level',
-            entityPluralName: 'Multiple Language Levels',
-        });
-        
-        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Multiple Language Levels');
-    });
-
-    it.each<[CascadeSelection]>(
-        [[false], [true], ['implicit'], ['explicit']],
-    )
-    ('[selectionMode single] should pick single element with cascadeSelection = %s', async (cascadeSelection) => {
-        const { mocks, dom } = await setupPickerInputForTest({
-            value: undefined,
-            getName: ({ name }) => name,
-            selectionMode: 'single',
-            cascadeSelection,
-            dataSource: mockTreeLikeDataSourceAsync,
-        });
-
-        fireEvent.click(dom.input as HTMLElement);
-        await delayAct(100);
-
-        const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
-        fireEvent.click(second);
-
-        expect(mocks.onValueChange).toHaveBeenLastCalledWith(2);
-        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Parent 2');
-    });
-    
-    it('[selectionMode multi] should pick single element with cascadeSelection = false', async () => {
-        const { mocks, dom } = await setupPickerInputForTest({
-            value: undefined,
-            getName: ({ name }) => name,
-            selectionMode: 'multi',
-            cascadeSelection: false,
-            dataSource: mockTreeLikeDataSourceAsync,
-        });
-
-        fireEvent.click(dom.input as HTMLElement);
-        await delayAct(100);
-
-        const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
-        const checkbox = await within(second).findByRole('checkbox');
-        fireEvent.click(checkbox);
-
-        expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
-        const selectedItemsNames1 = screen.queryAllByTestId(/uui-PickerToggler-item/)
-            .map((button) => button.textContent?.trim());
-        
-        expect(checkbox).toBeChecked();
-        expect(selectedItemsNames1).toEqual(['Parent 2']);
-    });
-    
-    it.each<[CascadeSelection]>(
-        [[true], ['explicit']],
-    )
-    ('[selectionMode multi] should pick multiple elements with cascadeSelection = %s', async (cascadeSelection) => {
-        const { mocks, dom } = await setupPickerInputForTest({
-            value: undefined,
-            getName: ({ name }) => name,
-            selectionMode: 'multi',
-            cascadeSelection,
-            dataSource: mockTreeLikeDataSourceAsync,
-        });
-
-        fireEvent.click(dom.input as HTMLElement);
-        await delayAct(100);
-
-        // Check parent
-        const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
-        const checkbox = await within(second).findByRole('checkbox');
-        fireEvent.click(checkbox);
-        
-        // Unfold parent
-        const foldButton = await within(second).findByTestId(/uui-DataTableRowAddons-folding-arrow/);
-        fireEvent.click(foldButton);
-
-        // Test if checkboxes are checked/unchecked
-        const checked = [2, 2.1, 2.2, 2.3];
-        expect(mocks.onValueChange).toHaveBeenLastCalledWith(checked);
-        const selectedItemsNames1 = screen.queryAllByTestId(/uui-PickerToggler-item/)
-            .map((button) => button.textContent?.trim());
-        
-        expect(checkbox).toBeChecked();
-        expect(selectedItemsNames1).toEqual(['Parent 2', 'Child 2.1', 'Child 2.2', 'Child 2.3']);
-        
-        const rows = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
-        
-        const requiredCheckboxes = [];
-        const restOfCheckboxes = [];
-        for (const row of rows) {
-            if (!checked.some((id) => `uui-PickerInput-item-${id}` === row.getAttribute('data-testid')?.trim())) {
-                restOfCheckboxes.push(await within(row).findByRole('checkbox'));
-            } else {
-                requiredCheckboxes.push(await within(row).findByRole('checkbox'));
-            }
-        }
-        requiredCheckboxes.forEach((cb) => expect(cb).toBeChecked());
-        restOfCheckboxes.forEach((cb) => expect(cb).not.toBeChecked());
-
-        // Check child
-        const child = within(screen.getByRole('dialog')).queryByTestId(/uui-PickerInput-item-2.2/);
-        
-        const childCheckbox = await within(child as HTMLElement).findByRole('checkbox');
-        fireEvent.click(childCheckbox);
-       
-        // Test if checkboxes are checked/unchecked
-        const newChecked = [2.1, 2.3];
-        expect(mocks.onValueChange).toHaveBeenLastCalledWith(newChecked);
-        const selectedItemsNames3 = screen.queryAllByTestId(/uui-PickerToggler-item/)
-            .map((button) => button.textContent?.trim());
-        
-        expect(childCheckbox).not.toBeChecked();
-        expect(selectedItemsNames3).toEqual(['Child 2.1', 'Child 2.3']);
-        
-        const rows2 = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
-    
-        const requiredCheckboxes2 = [];
-        const restOfCheckboxes2 = [];
-        for (const row of rows2) {
-            if (!newChecked.some((id) => `uui-PickerInput-item-${id}` === row.getAttribute('data-testid')?.trim())) {
-                restOfCheckboxes2.push(await within(row).findByRole('checkbox'));
-            } else {
-                requiredCheckboxes2.push(await within(row).findByRole('checkbox'));
-            }
-        }
-        requiredCheckboxes2.forEach((cb) => expect(cb).toBeChecked());
-        restOfCheckboxes2.forEach((cb) => expect(cb).not.toBeChecked());
-    });
-
-    it('[selectionMode multi] should pick single element with cascadeSelection = implicit', async () => {
-        const { mocks, dom } = await setupPickerInputForTest({
-            value: undefined,
-            getName: ({ name }) => name,
-            selectionMode: 'multi',
-            cascadeSelection: 'implicit',
-            dataSource: mockTreeLikeDataSourceAsync,
-        });
-
-        fireEvent.click(dom.input as HTMLElement);
-
-        await delayAct(100);
-        
-        // Check parent
-        const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
-        const checkbox = await within(second).findByRole('checkbox');
-        fireEvent.click(checkbox);
-
-        // Unfold parent
-        const foldButton = await within(second).findByTestId(/uui-DataTableRowAddons-folding-arrow/);
-        fireEvent.click(foldButton);
-
-        const checked = [2, 2.1, 2.2, 2.3];
-        expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
-        const selectedItemsNames1 = screen.queryAllByTestId(/uui-PickerToggler-item/)
-            .map((button) => button.textContent?.trim());
-        
-        expect(checkbox).toBeChecked();
-        expect(selectedItemsNames1).toEqual(['Parent 2']);
-        
-        const rows = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
-    
-        // Test if checkboxes are checked/unchecked
-        const requiredCheckboxes = [];
-        const restOfCheckboxes = [];
-        for (const row of rows) {
-            if (!checked.some((id) => `uui-PickerInput-item-${id}` === row.getAttribute('data-testid')?.trim())) {
-                restOfCheckboxes.push(await within(row).findByRole('checkbox'));
-            } else {
-                requiredCheckboxes.push(await within(row).findByRole('checkbox'));
-            }
-        }
-        requiredCheckboxes.forEach((cb) => expect(cb).toBeChecked());
-        restOfCheckboxes.forEach((cb) => expect(cb).not.toBeChecked());
-        
-        // Check child
-        const child = within(screen.getByRole('dialog')).queryByTestId(/uui-PickerInput-item-2.2/);
-        
-        const childCheckbox = await within(child as HTMLElement).findByRole('checkbox');
-        fireEvent.click(childCheckbox);
-       
-        // Test if checkboxes are checked/unchecked
-        const newChecked = [2.1, 2.3];
-        expect(mocks.onValueChange).toHaveBeenLastCalledWith(newChecked);
-        const selectedItemsNames3 = screen.queryAllByTestId(/uui-PickerToggler-item/)
-            .map((button) => button.textContent?.trim());
-        
-        expect(childCheckbox).not.toBeChecked();
-        expect(selectedItemsNames3).toEqual(['Child 2.1', 'Child 2.3']);
-        
-        const rows2 = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
-    
-        const requiredCheckboxes2 = [];
-        const restOfCheckboxes2 = [];
-        for (const row of rows2) {
-            if (!newChecked.some((id) => `uui-PickerInput-item-${id}` === row.getAttribute('data-testid')?.trim())) {
-                restOfCheckboxes2.push(await within(row).findByRole('checkbox'));
-            } else {
-                requiredCheckboxes2.push(await within(row).findByRole('checkbox'));
-            }
-        }
-        requiredCheckboxes2.forEach((cb) => expect(cb).toBeChecked());
-        restOfCheckboxes2.forEach((cb) => expect(cb).not.toBeChecked());
     });
 });
