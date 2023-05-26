@@ -293,10 +293,6 @@
     --uui-btn-font: var(--font-semibold);
 
     /*  LinkButton vars   */
-    --uui-link-button-text: var(--uui-primary);
-    --uui-link-button-text-hover: var(--uui-primary-dark);
-    --uui-link-button-text-active: var(--uui-primary-darkest);
-    --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
     --uui-link-button-font: var(--font-semibold);
 
     /*  DatePicker vars   */
@@ -906,6 +902,51 @@
         --uui-btn-caption: var(--uui-contrast);
         --uui-btn-caption-halftone: var(--uui-secondary-dark);
         --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-primary,
+    .link-button-blue {
+        --uui-link-button-text: var(--blue);
+        --uui-link-button-text-hover: var(--blue-dark);
+        --uui-link-button-text-active: var(--blue-darkest);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-secondary,
+    .link-button-gray60 {
+        --uui-link-button-text: var(--gray60);
+        --uui-link-button-text-hover: var(--gray70);
+        --uui-link-button-text-active: var(--gray80);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-contrast,
+    .link-button-gray10 {
+        --uui-link-button-text: var(--gray10);
+        --uui-link-button-text-hover: var(--gray20);
+        --uui-link-button-text-active: var(--gray30);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-green {
+        --uui-link-button-text: var(--green);
+        --uui-link-button-text-hover: var(--green-dark);
+        --uui-link-button-text-active: var(--green-darkest);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-amber {
+        --uui-link-button-text: var(--amber);
+        --uui-link-button-text-hover: var(--amber-dark);
+        --uui-link-button-text-active: var(--amber-darkest);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-red {
+        --uui-link-button-text: var(--red);
+        --uui-link-button-text-hover: var(--red-dark);
+        --uui-link-button-text-active: var(--red-darkest);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
     }
 
     .icon-button-blue,
