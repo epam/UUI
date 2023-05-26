@@ -99,7 +99,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             <IEditableDebouncer
                 value={ targetProps.value }
                 onValueChange={ this.handleTogglerSearchChange }
-                render={ (editableProps) => renderTarget({ ...this.getTogglerMods(), ...targetProps, ...editableProps }) }
+                render={ (editableProps) => renderTarget({ ...this.getTogglerMods(), ...targetProps, ...editableProps, rawProps: { ...targetProps.rawProps, 'data-testid': 'uui-PickerInput-target' } }) }
             />
         );
     }
