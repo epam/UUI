@@ -25,10 +25,8 @@ import {
     Text,
     Tooltip,
 } from '../../../.';
-import { i18n } from '../../../i18n';
+import { i18n as uuiI18n } from '../../../i18n';
 import { ColumnRow } from './ColumnRow';
-
-const i18nLocal = i18n.tables.columnsConfigurationModal;
 
 interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IModal<ColumnsConfig> {
     columnsConfig?: ColumnsConfig;
@@ -46,6 +44,8 @@ const renderGroupTitle = (title: string, amount: number) => (
 );
 
 export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) {
+    const i18n = uuiI18n.tables.columnsConfigurationModal;
+
     const {
         columns, columnsConfig: initialColumnsConfig, defaultConfig, ...modalProps
     } = props;
@@ -69,7 +69,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         const hasDivider = !!(amountPinned && amountUnPinned);
         return (
             <>
-                {renderGroupTitle(i18nLocal.displayedSectionTitle, amountPinned + amountUnPinned)}
+                {renderGroupTitle(i18n.displayedSectionTitle, amountPinned + amountUnPinned)}
                 {!!amountPinned && (
                     <FlexRow cx={ styles.groupItems } size="30">
                         {groupedColumns.displayedPinned.map((c) => (
@@ -95,7 +95,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         }
         return (
             <>
-                {renderGroupTitle(i18nLocal.hiddenSectionTitle, amountHidden)}
+                {renderGroupTitle(i18n.hiddenSectionTitle, amountHidden)}
                 <FlexRow cx={ styles.groupItems } size="30">
                     {groupedColumns.hidden.map((c) => (
                         <ColumnRow column={ c } key={ c.key } />
@@ -110,20 +110,20 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         [groupedColumns.displayedPinned, groupedColumns.displayedUnpinned],
     );
 
-    const applyButton = <Button caption={ i18nLocal.applyButton } isDisabled={ noVisibleColumns } color="accent" onClick={ apply } />;
+    const applyButton = <Button caption={ i18n.applyButton } isDisabled={ noVisibleColumns } color="accent" onClick={ apply } />;
 
     return (
         <ModalBlocker { ...modalProps }>
             <ModalWindow height={ 700 }>
-                <ModalHeader title={ i18nLocal.configureColumnsTitle } onClose={ close } />
+                <ModalHeader title={ i18n.configureColumnsTitle } onClose={ close } />
                 <FlexRow padding="24" borderBottom={ true } spacing="12" cx={ styles.searchArea }>
-                    <SearchInput size="30" value={ searchValue } onValueChange={ setSearchValue } placeholder={ i18nLocal.searchPlaceholder } />
+                    <SearchInput size="30" value={ searchValue } onValueChange={ setSearchValue } placeholder={ i18n.searchPlaceholder } />
                     <Dropdown
                         closeOnTargetClick={ true }
                         renderBody={ () => (
                             <Panel shadow={ true }>
-                                <DropdownMenuButton caption={ i18nLocal.clearAllButton } onClick={ uncheckAll } />
-                                <DropdownMenuButton caption={ i18nLocal.selectAllButton } onClick={ checkAll } />
+                                <DropdownMenuButton caption={ i18n.clearAllButton } onClick={ uncheckAll } />
+                                <DropdownMenuButton caption={ i18n.selectAllButton } onClick={ checkAll } />
                             </Panel>
                         ) }
                         renderTarget={ (props) => <Button { ...props } mode="none" icon={ MenuIcon } size="30" color="secondary" isDropdown={ false } /> }
@@ -136,21 +136,21 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                         {isNoData && (
                             <FlexRow cx={ styles.noData }>
                                 <Text fontSize="24" lineHeight="30" color="primary" font="semibold">
-                                    {i18nLocal.noResultsFound.text}
+                                    {i18n.noResultsFound.text}
                                 </Text>
                                 <Text fontSize="16" lineHeight="24" font="regular" color="primary">
-                                    {i18nLocal.noResultsFound.subText}
+                                    {i18n.noResultsFound.subText}
                                 </Text>
                             </FlexRow>
                         )}
                     </ScrollBars>
                 </Panel>
                 <ModalFooter borderTop>
-                    <LinkButton icon={ ResetIcon } caption={ i18nLocal.resetToDefaultButton } onClick={ reset } />
+                    <LinkButton icon={ ResetIcon } caption={ i18n.resetToDefaultButton } onClick={ reset } />
                     <FlexSpacer />
-                    <Button mode="none" color="secondary" caption={ i18nLocal.cancelButton } onClick={ close } />
+                    <Button mode="none" color="secondary" caption={ i18n.cancelButton } onClick={ close } />
                     {noVisibleColumns ? (
-                        <Tooltip content={ i18nLocal.enableAtLeastOneColumnMessage } placement="top-end" color="critical">
+                        <Tooltip content={ i18n.enableAtLeastOneColumnMessage } placement="top-end" color="critical">
                             {applyButton}
                         </Tooltip>
                     ) : (
