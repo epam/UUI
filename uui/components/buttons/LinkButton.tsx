@@ -6,9 +6,12 @@ import { systemIcons } from '../../icons/icons';
 import { getIconClass } from './helper';
 
 const defaultSize = '36';
+export type LinkButtonColorType = 'primary' | 'secondary' | 'contrast';
+export const allLinkButtonColors: LinkButtonColorType[] = ['primary', 'secondary', 'contrast'];
 
 export interface LinkButtonMods {
     size?: types.ControlSize | '42';
+    color?: LinkButtonColorType;
 }
 
 export type LinkButtonProps = LinkButtonMods & ButtonProps;
@@ -18,6 +21,7 @@ function applyLinkButtonMods(mods: LinkButtonProps) {
         css.root,
         css['size-' + (mods.size || defaultSize)],
         ...getIconClass(mods),
+        `link-button-${mods.color || 'primary'}`,
     ];
 }
 
