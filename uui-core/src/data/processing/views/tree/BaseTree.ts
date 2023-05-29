@@ -173,7 +173,11 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
             shouldStop = true;
         };
 
-        const options = { direction: 'top-down', parentId: undefined, ...optionsParam };
+        const options: {
+            direction?: 'bottom-up' | 'top-down';
+            parentId?: TId;
+            includeParent?: boolean;
+        } = { direction: 'top-down', parentId: undefined, ...optionsParam };
         if (options.includeParent == null) {
             options.includeParent = options.parentId != null;
         }
