@@ -18,7 +18,7 @@ describe('uuiLogger', () => {
         });
         expect(mockedConsoleError.mock.lastCall[0])
             .toContain(
-                '[UUI Warning]: (TestComponent) The value1 value of property1 is deprecated and will be removed in future versions, please use value2 value instead.',
+                '[UUI Warning]: (TestComponent) The value1 value of property1 is deprecated and will be removed in future versions. Please use value2 value instead.',
             );
         mockedConsoleError.mockClear();
     });

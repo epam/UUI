@@ -446,7 +446,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         }
       >
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 uui-has-left-icon uui-no-right-icon"
+          className="container uui-button-box uui-enabled -clickable root size-36 uui-has-left-icon uui-no-right-icon link-button-primary"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -942,7 +942,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         }
       >
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 uui-has-left-icon uui-no-right-icon"
+          className="container uui-button-box uui-enabled -clickable root size-36 uui-has-left-icon uui-no-right-icon link-button-primary"
           onClick={[Function]}
           tabIndex={0}
           type="button"
