@@ -23,6 +23,7 @@ export const Button = withMods<Omit<UuiButtonProps, 'color'>, ButtonMods>(
     () => [],
     (props) => {
         devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
+            component: 'Button',
             propName: 'color',
             propValue: props.color,
             propValueUseInstead: 'gray',

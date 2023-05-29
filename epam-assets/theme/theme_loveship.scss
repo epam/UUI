@@ -139,6 +139,12 @@
     --uui-color-white-800: #E6E6E6;
     --uui-color-white-900: #CCCCCC;
 
+    --uui-color-night50-800: #DADAE9;
+    --uui-color-night50-900: #BABAD6;
+
+    --uui-color-night100-800: #D3D7E9;
+    --uui-color-night100-900: #B1B9D8;
+
     --uui-color-night200-700: #E6E8F2;
     --uui-color-night200-800: #C9CEE4;
     --uui-color-night200-900: #A7B0D3;
@@ -158,6 +164,15 @@
     --uui-color-night600-700: #595B6D;
     --uui-color-night600-800: #555764;
     --uui-color-night600-900: #3D3F49;
+
+    --uui-color-night700-800: #30323D;
+    --uui-color-night700-900: #1A1B20;
+
+    --uui-color-night800-800: #1A1B23;
+    --uui-color-night800-900: #040406;
+
+    --uui-color-night900-800: #070709;
+    --uui-color-night900-900: #000000;
     /* end Loveship old colors */
 
     /* core variables start */
@@ -347,10 +362,6 @@
     --uui-btn-font: var(--font-semibold);
 
     /*  LinkButton vars   */
-    --uui-link-button-text: var(--uui-primary);
-    --uui-link-button-text-hover: var(--uui-primary-dark);
-    --uui-link-button-text-active: var(--uui-primary-darkest);
-    --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
     --uui-link-button-font: var(--font-semibold);
 
     /*  DatePicker vars   */
@@ -861,6 +872,135 @@
         --uui-btn-caption: var(--night800);
         --uui-btn-caption-halftone: var(--uui-secondary-dark);
         --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-primary,
+    .link-button-sky {
+        --uui-link-button-text: var(--uui-primary);
+        --uui-link-button-text-hover: var(--uui-primary-dark);
+        --uui-link-button-text-active: var(--uui-primary-darkest);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-secondary,
+    .link-button-night600 {
+        --uui-link-button-text: var(--uui-secondary);
+        --uui-link-button-text-hover: var(--uui-secondary-dark);
+        --uui-link-button-text-active: var(--uui-secondary-darkest);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-contrast,
+    .link-button-night100 {
+        --uui-link-button-text: var(--night100);
+        --uui-link-button-text-hover: var(--uui-color-night100-800);
+        --uui-link-button-text-active: var(--uui-color-night100-900);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-grass {
+        --uui-link-button-text: var(--grass);
+        --uui-link-button-text-hover: var(--grass-dark);
+        --uui-link-button-text-active: var(--grass-darkest);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-sun {
+        --uui-link-button-text: var(--sun);
+        --uui-link-button-text-hover: var(--sun-dark);
+        --uui-link-button-text-active: var(--sun-darkest);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-fire {
+        --uui-link-button-text: var(--fire);
+        --uui-link-button-text-hover: var(--fire-dark);
+        --uui-link-button-text-active: var(--fire-darkest);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-cobalt {
+        --uui-link-button-text: var(--uui-color-cobalt-700);
+        --uui-link-button-text-hover: var(--uui-color-cobalt-800);
+        --uui-link-button-text-active: var(--uui-color-cobalt-900);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-lavanda {
+        --uui-link-button-text: var(--uui-color-lavanda-700);
+        --uui-link-button-text-hover: var(--uui-color-lavanda-800);
+        --uui-link-button-text-active: var(--uui-color-lavanda-900);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-fuchsia {
+        --uui-link-button-text: var(--uui-color-fuchsia-700);
+        --uui-link-button-text-hover: var(--uui-color-fuchsia-800);
+        --uui-link-button-text-active: var(--uui-color-fuchsia-900);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-white {
+        --uui-link-button-text: var(--white);
+        --uui-link-button-text-hover: var(--uui-color-white-800);
+        --uui-link-button-text-active: var(--uui-color-white-900);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-night50 {
+        --uui-link-button-text: var(--night50);
+        --uui-link-button-text-hover: var(--uui-color-night50-800);
+        --uui-link-button-text-active: var(--uui-color-night50-900);
+        --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .link-button-night200 {
+        --uui-link-button-text: var(--night200);
+        --uui-link-button-text-hover: var(--uui-color-night200-800);
+        --uui-link-button-text-active: var(--uui-color-night200-900);
+        --uui-link-button-text-disabled: var(--uui-icon-disabled);
+    }
+
+    .link-button-night300 {
+        --uui-link-button-text: var(--night300);
+        --uui-link-button-text-hover: var(--uui-color-night300-800);
+        --uui-link-button-text-active: var(--uui-color-night300-900);
+        --uui-link-button-text-disabled: var(--uui-icon-disabled);
+    }
+
+    .link-button-night400 {
+        --uui-link-button-text: var(--night400);
+        --uui-link-button-text-hover: var(--uui-color-night400-800);
+        --uui-link-button-text-active: var(--uui-color-night400-900);
+        --uui-link-button-text-disabled: var(--uui-icon-disabled);
+    }
+
+    .link-button-night500 {
+        --uui-link-button-text: var(--night500);
+        --uui-link-button-text-hover: var(--uui-color-night500-800);
+        --uui-link-button-text-active: var(--uui-color-night500-900);
+        --uui-link-button-text-disabled: var(--uui-icon-disabled);
+    }
+
+    .link-button-night700 {
+        --uui-link-button-text: var(--night700);
+        --uui-link-button-text-hover: var(--uui-color-night700-800);
+        --uui-link-button-text-active: var(--uui-color-night700-900);
+        --uui-link-button-text-disabled: var(--uui-icon-disabled);
+    }
+
+    .link-button-night800 {
+        --uui-link-button-text: var(--night800);
+        --uui-link-button-text-hover: var(--uui-color-night800-800);
+        --uui-link-button-text-active: var(--uui-color-night800-900);
+        --uui-link-button-text-disabled: var(--uui-icon-disabled);
+    }
+
+    .link-button-night900 {
+        --uui-link-button-text: var(--night900);
+        --uui-link-button-text-hover: var(--uui-color-night900-800);
+        --uui-link-button-text-active: var(--uui-color-night900-900);
+        --uui-link-button-text-disabled: var(--uui-icon-disabled);
     }
 
     .icon-button-sky,
