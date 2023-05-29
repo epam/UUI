@@ -33,7 +33,7 @@ export interface LoadTreeOptions<TItem, TId, TFilter>
 }
 
 export interface TreeParams<TItem, TId> {
-    getId(item: TItem): TId;
+    getId?(item: TItem): TId;
     getParentId?(item: TItem): TId | undefined;
     complexIds?: boolean;
 }
