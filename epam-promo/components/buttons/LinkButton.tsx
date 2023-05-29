@@ -14,8 +14,12 @@ export const LinkButton = withMods<Omit<UuiLinkButtonProps, 'color'>, LinkButton
     UuiLinkButton,
     () => [],
     (props) => {
-        const isWarn = ['green', 'amber', 'red'].includes(props.color);
-        isWarn && devLogger.warn('LinkButton: color properties "green", "amber" and "red" are deprecated and will be removed in future release. Please use "blue", "gray60" or "gray10", instead.');
+        devLogger.warnAboutDeprecatedPropValue<LinkButtonProps, 'color'>({
+            component: 'LinkButton',
+            propName: 'color',
+            propValue: props.color,
+            condition: () => ['green', 'amber', 'red'].indexOf(props.color) !== -1,
+        });
         return {
             color: props.color ?? 'blue',
         } as LinkButtonProps;

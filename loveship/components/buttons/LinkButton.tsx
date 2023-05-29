@@ -14,8 +14,12 @@ export const LinkButton = withMods<Omit<UuiLinkButtonProps, 'color'>, LinkButton
     UuiLinkButton,
     () => [],
     (props) => {
-        const isWarn = ['grass', 'sun', 'fire', 'cobalt', 'lavanda', 'fuchsia', 'white', 'night50', 'night200', 'night300', 'night400', 'night500', 'night700', 'night800', 'night900'].includes(props.color);
-        isWarn && devLogger.warn('LinkButton: color properties \'grass\', \'sun\', \'fire\', \'cobalt\', \'lavanda\', \'fuchsia\', \'white\', \'night50\', \'night200\', \'night300\', \'night400\', \'night500\', \'night700\', \'night800\', \'night900\' are deprecated and will be removed in future release. Please use "sky", "night100" or "night600", instead.');
+        devLogger.warnAboutDeprecatedPropValue<LinkButtonProps, 'color'>({
+            component: 'LinkButton',
+            propName: 'color',
+            propValue: props.color,
+            condition: () => ['grass', 'sun', 'fire', 'cobalt', 'lavanda', 'fuchsia', 'white', 'night50', 'night200', 'night300', 'night400', 'night500', 'night700', 'night800', 'night900'].indexOf(props.color) !== -1,
+        });
         return {
             color: props.color ?? 'sky',
         } as LinkButtonProps;
