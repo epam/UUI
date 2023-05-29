@@ -884,9 +884,9 @@
 
     .link-button-secondary,
     .link-button-night600 {
-        --uui-link-button-text: var(--night600);
-        --uui-link-button-text-hover: var(--night700);
-        --uui-link-button-text-active: var(--night800);
+        --uui-link-button-text: var(--uui-secondary);
+        --uui-link-button-text-hover: var(--uui-secondary-dark);
+        --uui-link-button-text-active: var(--uui-secondary-darkest);
         --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
     }
 

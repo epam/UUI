@@ -915,9 +915,9 @@
 
     .link-button-secondary,
     .link-button-gray60 {
-        --uui-link-button-text: var(--gray60);
-        --uui-link-button-text-hover: var(--gray70);
-        --uui-link-button-text-active: var(--gray80);
+        --uui-link-button-text: var(--uui-secondary);
+        --uui-link-button-text-hover: var(--uui-secondary-dark);
+        --uui-link-button-text-active: var(--uui-secondary-darkest);
         --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
     }
 
