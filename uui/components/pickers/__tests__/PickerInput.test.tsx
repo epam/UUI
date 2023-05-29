@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource, AsyncDataSource, CascadeSelection } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct, act,
 } from '@epam/uui-test-utils';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { PickerInputBaseProps } from '@epam/uui-components';
@@ -649,5 +649,33 @@ describe('PickerInput', () => {
 
         fireEvent.click(icon as HTMLElement);
         expect(onIconClick).toBeCalledTimes(1);
+    });
+    
+    it('should open dialog only when minCharsToSearch is reached', async () => {
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            minCharsToSearch: 1,
+            
+        });
+
+        fireEvent.click(dom.input as Element);
+
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        
+        act(() => {
+            jest.useFakeTimers();
+        });
+
+        fireEvent.change(dom.input as Element, { target: { value: 'A' } });
+
+        act(() => {
+            jest.runAllTimers();
+        });
+
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+        act(() =>{
+            jest.useRealTimers();
+        });
     });
 });
