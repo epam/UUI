@@ -656,4 +656,32 @@ describe('PickerInput', () => {
         fireEvent.click(icon as HTMLElement);
         expect(onIconClick).toBeCalledTimes(1);
     });
+    
+    it('should open dialog only when minCharsToSearch is reached', async () => {
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            minCharsToSearch: 1,
+            
+        });
+
+        fireEvent.click(dom.input as Element);
+
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        
+        act(() => {
+            jest.useFakeTimers();
+        });
+
+        fireEvent.change(dom.input as Element, { target: { value: 'A' } });
+
+        act(() => {
+            jest.runAllTimers();
+        });
+
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+        act(() =>{
+            jest.useRealTimers();
+        });
+    });
 });
