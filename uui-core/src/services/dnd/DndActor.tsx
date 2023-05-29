@@ -6,7 +6,7 @@ import { mouseCoords } from '../../helpers';
 import { getSector } from './helpers';
 import { uuiDndState, uuiMarkers, uuiElement } from '../../constants';
 import { isChildHasClass } from '../../helpers';
-import { UuiContext } from '../ContextProvider';
+import { UuiContext } from '../UuiContext';
 
 export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
     render(props: DndActorRenderParams): React.ReactNode;
@@ -269,7 +269,7 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
                     this.props.onDrop && this.props.onDrop({ ...this.getDropParams(e), position: this.state.position });
                 }
                 this.context.uuiDnD.endDrag();
-                this.setState((s) => initialState);
+                this.setState(() => initialState);
             } else {
                 // TBD: investigate. Should blur inputs, but doesn't work so far.
                 // if (this.state.pendingMouseDownTarget) {

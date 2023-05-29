@@ -3,9 +3,10 @@ import { ICanBeInvalid } from '../../types';
 export function validateServerErrorState<T extends any>(currentFormState: T, lastSentFormState: T, serverValidation: ICanBeInvalid) {
     let result: ICanBeInvalid = { isInvalid: false };
 
-    if (serverValidation.validationProps) {
-        Object.keys(serverValidation.validationProps).forEach((key) => {
-            const childProps = serverValidation.validationProps[key];
+    const svp = serverValidation.validationProps;
+    if (svp) {
+        Object.keys(svp).forEach((key) => {
+            const childProps = svp[key];
             validateItem(key, currentFormState[key as keyof typeof currentFormState], lastSentFormState[key as keyof typeof lastSentFormState], childProps, result);
         });
     } else {

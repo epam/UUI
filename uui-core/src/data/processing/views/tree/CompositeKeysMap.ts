@@ -1,7 +1,7 @@
 import { IMap } from '../../../../types';
 
 export class CompositeKeysMap<TKey, TValue> implements IMap<TKey, TValue> {
-    map: Map<string, TValue>;
+    map: Map<string | undefined, TValue>;
     constructor(original?: CompositeKeysMap<TKey, TValue>) {
         if (original) {
             this.map = new Map(original.map);
@@ -10,12 +10,13 @@ export class CompositeKeysMap<TKey, TValue> implements IMap<TKey, TValue> {
         }
     }
 
-    private keyToString(key: TKey) {
+    private keyToString(key?: TKey) {
         return key === undefined ? undefined : JSON.stringify(key);
     }
 
     public get(key: TKey) {
-        return this.map.get(this.keyToString(key));
+        const k = this.keyToString(key);
+        return k !== undefined ? this.map.get(k) : undefined;
     }
 
     public set(key: TKey, value: TValue) {

@@ -35,7 +35,7 @@ export type Icon = React.FC<any>;
 export interface IMap<TKey, TValue> {
     constructor: Function;
     [Symbol.iterator](): IterableIterator<[TKey, TValue]>;
-    get(key: TKey): TValue;
+    get(key: TKey): TValue | undefined;
     set(key: TKey, value: TValue): IMap<TKey, TValue>;
     has(key: TKey): boolean;
     delete(key: TKey): boolean;

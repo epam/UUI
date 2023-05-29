@@ -15,11 +15,11 @@ export type ApiCallErrorType = 'permissionDenied' | 'notFound' | 'serverError' |
 
 export interface UseUuiErrorOptions {
     errorConfig?: Record<ApiCallErrorType, UuiErrorInfo>;
-    recoveryConfig?: Record<ApiRecoveryReason, UuiRecoveryErrorInfo>;
+    recoveryConfig?: Record<NonNullable<ApiRecoveryReason>, UuiRecoveryErrorInfo>;
 }
 
 export interface UseUuiErrorProps {
-    getErrorInfo: (error: any, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;
+    getErrorInfo: (error: any, defaultErrorInfo?: UuiErrorInfo) => UuiErrorInfo;
     options?: UseUuiErrorOptions;
 }
 
@@ -63,7 +63,7 @@ export const useUuiError = (props: UseUuiErrorProps) => {
         };
     }, []);
 
-    const getDefaultErrorInfo = (errorCode: number): UuiErrorInfo => {
+    const getDefaultErrorInfo = (errorCode?: number): UuiErrorInfo | undefined => {
         switch (errorCode) {
             case 403:
                 return errorConfig?.permissionDenied;
@@ -78,15 +78,15 @@ export const useUuiError = (props: UseUuiErrorProps) => {
         }
     };
 
-    const getError = (error: any, errorInfo: UuiErrorInfo) => {
+    const getError = (error: any, errorInfo?: UuiErrorInfo) => {
         const resultError = getErrorInfo ? getErrorInfo(error, errorInfo) : errorInfo;
         return { errorType: 'error', errorInfo: resultError };
     };
 
     uuiApi.getActiveCalls().forEach((c) => {
-        if (c.status === 'error' && c.options.errorHandling === 'page') {
+        if (c.status === 'error' && c.options?.errorHandling === 'page') {
             apiErrors.push(c);
-        } else if (c.options.errorHandling === 'notification') {
+        } else if (c.options?.errorHandling === 'notification') {
             apiNotifications.push(c);
         }
     });
@@ -97,7 +97,7 @@ export const useUuiError = (props: UseUuiErrorProps) => {
     } else if (apiNotifications.length) {
         return { errorType: 'notification', errorInfo: apiNotifications };
     } else if (uuiApi.status === 'recovery') {
-        return { errorType: 'recovery', errorInfo: recoveryConfig[uuiApi.recoveryReason] };
+        return { errorType: 'recovery', errorInfo: typeof uuiApi.recoveryReason === 'string' ? recoveryConfig?.[uuiApi.recoveryReason] : undefined };
     } else if (uuiErrors.currentError != null) {
         const error = uuiErrors.currentError;
         let status;

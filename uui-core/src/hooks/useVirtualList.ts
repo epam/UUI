@@ -146,7 +146,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         (index: number, behavior?: ScrollBehavior) => {
             const indexToScroll = Math.min(index, rowsCount - 1);
             const topCoordinate = rowOffsets.current[indexToScroll] - listOffset;
-            scrollContainer.current.scrollTo({ top: topCoordinate, behavior });
+            scrollContainer.current?.scrollTo({ top: topCoordinate, behavior });
         },
         [scrollContainer.current, rowOffsets.current],
     );

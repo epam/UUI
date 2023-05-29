@@ -12,7 +12,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     private ghostOffsetX: number = 0;
     private ghostOffsetY: number = 0;
     private ghostWidth: number = 300;
-    private renderGhostCallback: () => React.ReactNode = null;
+    private renderGhostCallback?: () => React.ReactNode;
     private lastScrollTime = new Date().getTime();
     constructor() {
         super();
@@ -56,14 +56,14 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
             this.update({ isDragging: false });
             res();
         }).then(() => {
-            this.renderGhostCallback = null;
+            this.renderGhostCallback = undefined;
             this.dragData = null;
             this.isDragging = false;
         });
     }
 
-    xScrollNode: HTMLElement = null;
-    yScrollNode: HTMLElement = null;
+    xScrollNode?: HTMLElement;
+    yScrollNode?: HTMLElement;
     private windowPointerMoveHandler = (e: PointerEvent) => {
         if (this.isDragging) {
             this.xScrollNode = getScrollParent(e.target as HTMLElement, 'x');
@@ -71,7 +71,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
         }
     };
 
-    private windowPointerUpHandler = (e: PointerEvent) => {
+    private windowPointerUpHandler = () => {
         this.isDragging && this.endDrag();
     };
 
@@ -94,7 +94,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
             scrollDir = Math.max(0, (scrollZoneSize - endToMouse) / scrollZoneSize);
         }
 
-        if (scrollDir != 0) {
+        if (scrollDir !== 0) {
             const step = ((now - this.lastScrollTime) / 1000) * maxScrollSpeed * scrollDir;
             return nodeScroll + step;
         }
@@ -139,24 +139,24 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     }
 }
 
-function getScrollParent(node: HTMLElement, dimension: 'x' | 'y'): HTMLElement {
+function getScrollParent(node: HTMLElement, dimension: 'x' | 'y'): HTMLElement | undefined {
     if (node == null) {
-        return null;
+        return;
     }
 
     const isElement = node instanceof HTMLElement;
     const style = isElement && window.getComputedStyle(node);
 
-    let overflow: string;
+    let overflow: string | undefined;
     let scrollSize: number;
     let clientSize: number;
 
     if (dimension === 'x') {
-        overflow = style && style.overflowX;
+        overflow = style ? style.overflowX : undefined;
         scrollSize = node.scrollWidth;
         clientSize = node.clientWidth;
     } else {
-        overflow = style && style.overflowY;
+        overflow = style ? style.overflowY : undefined;
         scrollSize = node.scrollHeight;
         clientSize = node.clientHeight;
     }

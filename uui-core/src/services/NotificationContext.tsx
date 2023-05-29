@@ -26,7 +26,7 @@ export class NotificationContext extends BaseContext implements INotificationCon
             }
         };
 
-        const params: NotificationParams = {
+        const params: Required<NotificationParams> = {
             duration: 7,
             position: 'bot-left',
             ...notificationParams,
@@ -36,7 +36,7 @@ export class NotificationContext extends BaseContext implements INotificationCon
             const layer = this.layoutCtx.getLayer();
             let durationTimer: ReturnType<typeof setTimeout>;
 
-            const notificationProps: INotification = {
+            const notificationProps: Required<INotification> = {
                 onClose: () => {
                     this.remove(layer.id);
                     this.layoutCtx.releaseLayer(layer);

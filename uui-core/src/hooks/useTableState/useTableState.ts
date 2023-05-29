@@ -181,15 +181,15 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
 
     const createNewPreset = useCallback(
         (name: string) => {
-            const tableStateValue = getTableStateValue();
+            const tsv = getTableStateValue();
             const newPreset: ITablePreset<TFilter, TViewState> = {
-                id: null,
+                id: undefined,
                 name: name,
-                filter: tableStateValue.filter,
-                columnsConfig: tableStateValue.columnsConfig,
-                filtersConfig: tableStateValue.filtersConfig,
-                sorting: tableStateValue.sorting,
-                viewState: tableStateValue.viewState,
+                filter: tsv?.filter,
+                columnsConfig: tsv?.columnsConfig,
+                filtersConfig: tsv?.filtersConfig,
+                sorting: tsv?.sorting,
+                viewState: tsv?.viewState,
                 isReadonly: false,
                 order: getNewPresetOrder(),
             };
@@ -201,12 +201,12 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
 
     const hasPresetChanged = useCallback(
         (preset: ITablePreset<TFilter, TViewState>) => {
-            const tableStateValue = getTableStateValue();
+            const tsv = getTableStateValue();
             return (
-                !isEqual(preset.filter, tableStateValue.filter)
-                || !isEqual(preset.columnsConfig, tableStateValue.columnsConfig)
-                || !isEqual(preset.sorting, tableStateValue.sorting)
-                || !isEqual(preset.viewState, tableStateValue.viewState)
+                !isEqual(preset.filter, tsv?.filter)
+                || !isEqual(preset.columnsConfig, tsv?.columnsConfig)
+                || !isEqual(preset.sorting, tsv?.sorting)
+                || !isEqual(preset.viewState, tsv?.viewState)
             );
         },
         [getTableStateValue],
@@ -217,7 +217,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
             const newPreset: ITablePreset<TFilter, TViewState> = {
                 ...preset,
                 isReadonly: false,
-                id: null,
+                id: undefined,
                 name: preset.name + '_copy',
                 order: getNewPresetOrder(),
             };

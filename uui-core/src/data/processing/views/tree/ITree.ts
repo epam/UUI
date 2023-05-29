@@ -33,7 +33,7 @@ export interface LoadTreeOptions<TItem, TId, TFilter>
 }
 
 export interface TreeParams<TItem, TId> {
-    getId?(item: TItem): TId;
+    getId(item: TItem): TId;
     getParentId?(item: TItem): TId | undefined;
     complexIds?: boolean;
 }
@@ -45,14 +45,14 @@ export interface ITree<TItem, TId> {
     getRootIds(): TId[];
     getRootItems(): TItem[];
     getById(id: TId): TItem | typeof NOT_FOUND_RECORD;
-    getChildren(item: TItem): TItem[];
-    getChildrenByParentId(parentId: TId): TItem[];
-    getChildrenIdsByParentId(parentId: TId): TId[];
+    getChildren(item: TItem): (TItem | undefined)[];
+    getChildrenByParentId(parentId: TId): (TItem | undefined)[];
+    getChildrenIdsByParentId(parentId: TId | undefined): TId[];
     getParentIdsRecursive(id: TId): TId[];
     getParents(id: TId): TItem[];
-    getPathById(id: TId): DataRowPathItem<TId, TItem>[];
+    getPathById(id: TId | undefined): DataRowPathItem<TId, TItem>[];
     getPathItem(item: TItem): DataRowPathItem<TId, TItem>;
-    getNodeInfo(id: TId): TreeNodeInfo;
+    getNodeInfo(id: TId | undefined): TreeNodeInfo;
     isFlatList(): boolean;
 
     patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: ItemsComparator<TItem>): ITree<TItem, TId>;

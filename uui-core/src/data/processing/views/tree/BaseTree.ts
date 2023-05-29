@@ -15,7 +15,7 @@ export function newMap<TKey, TValue>(params: TreeParams<any, any>) {
 
 export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     protected getId: (item: TItem) => TId;
-    protected getParentId: (item: TItem) => TId;
+    protected getParentId: (item: TItem) => TId | undefined;
     protected constructor(
         protected params: TreeParams<TItem, TId>,
         protected readonly byId: IMap<TId, TItem>,
@@ -23,7 +23,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         protected readonly nodeInfoById: IMap<TId, TreeNodeInfo>,
     ) {
         this.getId = params.getId;
-        this.getParentId = params.getParentId ? (item: TItem) => params.getParentId(item) ?? undefined : () => undefined;
+        this.getParentId = (item: TItem) => params.getParentId?.(item);
     }
 
     public clearStructure(): ITree<TItem, TId> {
@@ -124,7 +124,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
     public getPathItem(item: TItem): DataRowPathItem<TId, TItem> {
         const parentId = this.getParentId?.(item);
-        const id = this.getId?.(item);
+        const id = this.getId(item);
 
         const ids = this.getChildrenIdsByParentId(parentId);
         const nodeInfo = this.getNodeInfo(parentId);
@@ -162,7 +162,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
     public forEach(
         action: (item: TItem, id: TId, parentId: TId, stop: () => void) => void,
-        options?: {
+        optionsParam?: {
             direction?: 'bottom-up' | 'top-down';
             parentId?: TId;
             includeParent?: boolean;
@@ -173,7 +173,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
             shouldStop = true;
         };
 
-        options = { direction: 'top-down', parentId: undefined, ...options };
+        const options = { direction: 'top-down', parentId: undefined, ...optionsParam };
         if (options.includeParent == null) {
             options.includeParent = options.parentId != null;
         }
@@ -207,15 +207,16 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     }
 
     public computeSubtotals<TSubtotals>(get: (item: TItem, hasChildren: boolean) => TSubtotals, add: (a: TSubtotals, b: TSubtotals) => TSubtotals) {
-        const subtotalsMap = this.newMap<TId | undefined, TSubtotals>();
+        const subtotalsMap = this.newMap<TId, TSubtotals>();
 
         this.forEach(
             (item, id, parentId) => {
                 let itemSubtotals = get(item, this.byParentId.has(id));
 
                 // add already computed children subtotals
-                if (subtotalsMap.has(id)) {
-                    itemSubtotals = add(itemSubtotals, subtotalsMap.get(id));
+                const stItem = subtotalsMap.has(id) ? subtotalsMap.get(id) : undefined;
+                if (stItem !== undefined) {
+                    itemSubtotals = add(itemSubtotals, stItem);
                 }
 
                 // store
@@ -223,10 +224,11 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
                 // add value to parent
                 let parentSubtotals: TSubtotals;
-                if (!subtotalsMap.has(parentId)) {
+                const stParent = subtotalsMap.has(parentId) ? subtotalsMap.get(parentId) : undefined;
+                if (stParent === undefined) {
                     parentSubtotals = itemSubtotals;
                 } else {
-                    parentSubtotals = add(itemSubtotals, subtotalsMap.get(parentId));
+                    parentSubtotals = add(itemSubtotals, stParent);
                 }
                 subtotalsMap.set(parentId, parentSubtotals);
             },

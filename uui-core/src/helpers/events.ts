@@ -9,10 +9,10 @@ export function isChildFocusable(e: React.FocusEvent<HTMLElement>): boolean {
     return isChildHasClass(e.relatedTarget, e.target as unknown as Node, [uuiMarkers.lockFocus]);
 }
 
-export function isChildHasClass(target: EventTarget, currentTarget: Node, classNames: string[]): boolean {
-    let el = target as HTMLElement;
-    while (el && currentTarget != el) {
-        if (el.classList && classNames.some((className) => el.classList.contains(className))) {
+export function isChildHasClass(target: EventTarget | null, currentTarget: Node, classNames: string[]): boolean {
+    let el: HTMLElement | null = target as HTMLElement;
+    while (el && currentTarget !== el) {
+        if (el.classList && classNames.some((className) => el?.classList.contains(className))) {
             return true;
         }
         el = el.parentElement;

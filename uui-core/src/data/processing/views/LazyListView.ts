@@ -84,10 +84,10 @@ interface LoadResult<TItem, TId> {
 
 export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     public props: LazyListViewProps<TItem, TId, TFilter>;
-    public value: DataSourceState<TFilter, TId> = null;
+    public value: DataSourceState<TFilter, TId>;
     private cache: ListApiCache<TItem, TId, TFilter>;
     private isUpdatePending = false;
-    private loadedValue: DataSourceState<TFilter, TId> = null;
+    private loadedValue: DataSourceState<TFilter, TId>;
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
     private reloading: boolean = false;
     constructor(

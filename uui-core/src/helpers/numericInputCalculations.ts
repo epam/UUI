@@ -45,7 +45,7 @@ export const getDecimalLength = (value: number): number => {
     return splitedValue[1].length;
 };
 
-export const getSeparatedValue = (value: number, formatOptions: Intl.NumberFormatOptions = {}, locale?: string): string => {
+export const getSeparatedValue = (value: number | undefined, formatOptions: Intl.NumberFormatOptions = {}, locale?: string): string | null => {
     if (!value && value !== 0) return null;
     return value.toLocaleString(locale, formatOptions);
 };

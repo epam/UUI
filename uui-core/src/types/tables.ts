@@ -257,7 +257,7 @@ NumericFilterConfig<TFilter> | RangeDatePickerFilterConfig<TFilter>;
 
 export interface ITablePreset<TFilter = any, TViewState = any> {
     name: string;
-    id: number | null;
+    id?: number;
     filter?: TFilter;
     isReadonly?: boolean;
     columnsConfig?: ColumnsConfig;
@@ -268,9 +268,9 @@ export interface ITablePreset<TFilter = any, TViewState = any> {
 }
 
 export interface IPresetsApi<TFilter = any, TViewState = any> {
-    activePresetId: number | null;
+    activePresetId?: number;
     choosePreset(preset: ITablePreset): void;
-    createNewPreset(name: string): Promise<number>;
+    createNewPreset(name: string): Promise<number | undefined>;
     hasPresetChanged(preset: ITablePreset): boolean;
     duplicatePreset(preset: ITablePreset): void;
     deletePreset(preset: ITablePreset): Promise<void>;
@@ -280,7 +280,7 @@ export interface IPresetsApi<TFilter = any, TViewState = any> {
 }
 
 export interface ITableState<TFilter = Record<string, any>, TViewState = any> extends IPresetsApi<TFilter, TViewState> {
-    tableState: DataTableState<TFilter, TViewState>;
+    tableState?: DataTableState<TFilter, TViewState>;
     setTableState(newState: DataTableState<TFilter, TViewState>): void;
     setFilter(filter: TFilter): void;
     setColumnsConfig(columnsConfig: ColumnsConfig): void;

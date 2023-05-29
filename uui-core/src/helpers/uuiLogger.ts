@@ -5,7 +5,7 @@ enum MsgLevel {
 }
 
 function getCurrentStack(cutItems: number = 0) {
-    let stack = new Error().stack;
+    let stack = new Error().stack || '';
     if (cutItems > 0) {
         const rest = stack.slice(1).split('\n');
         stack = rest.slice(cutItems).join('\n');

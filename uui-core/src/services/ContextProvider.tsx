@@ -1,5 +1,5 @@
 import React, {
-    createContext, useContext, useEffect, useState,
+    useContext, useEffect, useState,
 } from 'react';
 import { CommonContexts, IHasChildren } from '../types';
 import { IProcessRequest } from './index';
@@ -8,6 +8,7 @@ import { DragGhost } from './dnd';
 import { ISkin } from './SkinContext';
 import { useUuiServices } from '../hooks';
 import { GAListener } from './analytics';
+import { UuiContext } from './UuiContext';
 
 export interface ApiContextProps {
     apiReloginPath?: string;
@@ -26,8 +27,6 @@ export interface ContextProviderProps<TApi, TAppContext> extends IUuiServicesPro
     history?: IHistory4;
     gaCode?: string;
 }
-
-export const UuiContext = createContext({} as CommonContexts<any, any>);
 
 export function ContextProvider<TApi, TAppContext>(props: ContextProviderProps<TApi, TAppContext>) {
     const [isLoaded, setIsLoaded] = useState(false);
