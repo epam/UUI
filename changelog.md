@@ -17,7 +17,6 @@ Also in the process of this work, we brought the components in accordance with o
 **Loveship skin changes**
 
 * [Badge]: removed deprecated color 'carbon', removed deprecated props `lineHeight`, `fontSize`
-* [Button]: color 'gray50' is deprecated and will be removed in the future release. Use 'gray' instead.
 * [Blocker]: removed deprecated prop `color`, now it is configurable via theme variable, standard 'night100' is used by default
 * [Button]: removed deprecated props `lineHeight`, `fontSize`, color 'night500' has been changed to 'night600' (following design), but prop `color` now named as 'gray'
 * [Checkbox]: removed deprecated prop `color`, now it is configurable via theme variable, standard blue is used by default
@@ -51,7 +50,7 @@ Also in the process of this work, we brought the components in accordance with o
 
 **Promo skin changes**
 
-* [Button]: color 'night500' is deprecated and will be removed in the future release. Use 'gray' instead.
+* [Button]: color 'gray50' is deprecated and will be removed in the future release. Use 'gray' instead.
 * [FlexRow]: type 'borderBottom' changed to `boolean`
 * [IconButton]: default color changed to 'gray60'
 * [LabeledInput]: removed deprecated prop `color`, now it is configurable via theme variable, standard 'gray80' is used by default
