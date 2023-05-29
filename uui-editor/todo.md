@@ -12,4 +12,5 @@ const ALLOWED_EMPTY_ELEMENTS = ['BR', 'IMG'];
 - Create issue about resizing merged cells `uui-editor/src/plate/plugins/tablePlugin/Resizable.tsx`. [Video](https://epam-my.sharepoint.com/personal/dzmitry_tamashevich_epam_com/_layouts/15/stream.aspx?id=%2Fpersonal%2Fdzmitry%5Ftamashevich%5Fepam%5Fcom%2FDocuments%2FMicrosoft%20Teams%20Chat%20Files%2FScreen%20Recording%202023%2D05%2D19%20at%2018%2E42%2E38%2Emov&referrer=Teams%2ETEAMS%2DELECTRON&referrerScenario=p2p%5Fns%2Dbim&ga=1)
 - Create issue to improve list plugin. Now it causes bug with separator. [Video](https://epam-my.sharepoint.com/:v:/r/personal/natallia_alieva_epam_com/Documents/Microsoft%20Teams%20Chat%20Files/2023-02-08_12h08_43.mp4?csf=1&web=1&e=wT5iVq). Investigation here
 [https://github.com/epam/UUI/pull/1366](https://github.com/epam/UUI/pull/1366)
+- Create issue about copying unordered lists from Word. Each item wrapped inside paragraph node after pasting. Ordered lists works as expected.
 - Add vertical cell division
