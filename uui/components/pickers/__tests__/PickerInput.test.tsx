@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource, AsyncDataSource, CascadeSelection } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct, act,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct, act, prettyDOM,
 } from '@epam/uui-test-utils';
 import { PickerInput, PickerInputProps } from '../PickerInput';
-import { PickerInputBaseProps } from '@epam/uui-components';
+import { Modals, PickerInputBaseProps } from '@epam/uui-components';
 
 import { IHasEditMode } from '../../types';
 
@@ -85,7 +85,7 @@ const mockTreeLikeDataSourceAsync = new AsyncDataSource<TestTreeItem, number, an
 type PickerInputComponentProps<TItem, TId> = PickerInputBaseProps<TItem, TId> & PickerInputProps;
 
 async function setupPickerInputForTest<TItem = TestItemType, TId = number>(params: Partial<PickerInputComponentProps<TItem, TId>>) {
-    const { result, mocks } = await setupComponentForTest<PickerInputComponentProps<TItem, TId>>(
+    const { result, mocks, setProps } = await setupComponentForTest<PickerInputComponentProps<TItem, TId>>(
         (context): PickerInputComponentProps<TItem, TId> => {
             if (params.selectionMode === 'single') {
                 return Object.assign({
@@ -109,11 +109,17 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
                 selectionMode: 'multi',
             }, params) as PickerInputComponentProps<TItem, TId>;
         },
-        (props) => <PickerInput { ...props } />,
+        (props) => (
+            <>
+                <PickerInput { ...props } />
+                <Modals />
+            </>
+        ),
     );
     const input = screen.queryByRole('textbox');
 
     return {
+        setProps,
         result,
         mocks,
         dom: { input },
@@ -612,10 +618,10 @@ describe('PickerInput', () => {
         expect(icon).toBeDefined();
         
         const elements = within(target as HTMLElement).queryAllByTestId(/uui-PickerToggler-/);
-        expect(elements.length).toBe(2);
-        expect(elements[0]).toEqual(icon);
+        expect(elements.length).toBe(3);
+        expect(elements[1]).toEqual(icon);
         
-        expect(elements[1]).toEqual(within(target as HTMLElement).queryByTestId(/uui-PickerToggler-input/));
+        expect(elements[2]).toEqual(within(target as HTMLElement).queryByTestId(/uui-PickerToggler-input/));
     });
     
     it('should render icon to the right', async () => {
@@ -630,9 +636,9 @@ describe('PickerInput', () => {
         expect(icon).toBeDefined();
         
         const elements = within(target as HTMLElement).queryAllByTestId(/uui-PickerToggler-/);
-        expect(elements.length).toBe(2);
-        expect(elements[0]).toEqual(within(target as HTMLElement).queryByTestId(/uui-PickerToggler-input/));
-        expect(elements[1]).toEqual(icon);
+        expect(elements.length).toBe(3);
+        expect(elements[1]).toEqual(within(target as HTMLElement).queryByTestId(/uui-PickerToggler-input/));
+        expect(elements[2]).toEqual(icon);
     });
 
     it('should pass onClick to the icon', async () => {
@@ -677,5 +683,55 @@ describe('PickerInput', () => {
         act(() =>{
             jest.useRealTimers();
         });
+    });
+    
+    it('should use modal edit mode', async () => {
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'single',
+            editMode: 'modal',
+        });
+
+        fireEvent.click(dom.input as HTMLElement);
+         
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        expect(screen.getByRole('modal')).toBeInTheDocument();
+
+        await delayAct(100);
+
+        const rows = within(screen.getByRole('modal')).queryAllByTestId(/uui-PickerInput-item/);
+        const names = rows.map((row) => row.textContent);
+        expect(names).toEqual(['A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C1+', 'C2']);
+    });
+
+    it('should mark input as invalid', async () => {
+        const { setProps } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'single',
+        });
+
+        const target = screen.queryByTestId(/uui-PickerInput-target/);
+        expect(target?.getAttribute('class')?.trim().includes('uui-invalid')).toBeFalsy();
+
+        setProps({ isInvalid: true });
+
+        const target1 = screen.queryByTestId(/uui-PickerInput-target/);
+        expect(target1?.getAttribute('class')?.trim().includes('uui-invalid')).toBeTruthy();
+    });
+    
+    it('should support single line', async () => {
+        const { setProps } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'multi',
+            isSingleLine: false,
+        });
+
+        const togglerBody = screen.queryByTestId(/uui-PickerToggler-body/);
+        expect(togglerBody).toHaveClass('multiline');
+
+        setProps({ isSingleLine: true });
+
+        const togglerBody1 = screen.queryByTestId(/uui-PickerToggler-body/);
+        expect(togglerBody1).not.toHaveClass('multiline');
     });
 });
