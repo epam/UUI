@@ -68,6 +68,7 @@ but only the checked parent is present in the Picker's value or DataSourceState.
 * [ErrorHandler]: now in Loveship used `NotificationCard` component instead of `SnackbarCard` for notification type errors
 * [ErrorHandler]: added additional property `onNotificationError` to render notifications with custom markup and configured the notification duration.
 * Added `inputCx` and `bodyCx` props for composed components like PickerInput and DatePickers
+* [FiltersPanel]: added picker title to the header in mobile view.
 
 **What's Fixed**
 * [PickerInput]:
