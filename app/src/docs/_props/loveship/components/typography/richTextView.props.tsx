@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { RichTextView } from '@epam/loveship';
-import { RichTextViewMods } from '@epam/uui';
+import { RichTextView, RichTextViewMods } from '@epam/loveship';
 import { DefaultContext } from '../../docs';
 import { FlexRow, LabeledInput, ControlWrapper } from '@epam/loveship';
 import { LinkButton } from '@epam/loveship';
@@ -12,7 +11,7 @@ import { ReactComponent as Calendar } from '@epam/assets/icons/common/action-cal
 import cx from 'classnames';
 import style from './richTextViewDoc.module.scss';
 
-const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'RichTextView', component: RichTextView })
+const richTextViewDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'RichTextView', component: RichTextView })
     .prop('htmlContent', {
         examples: [
             { value: '<h1>Hello</h1>', isDefault: false, name: '<h1>' }, {
@@ -251,4 +250,4 @@ export const MyComponent = <div className={ css.myHeader }>`}
     })
     .withContexts(DefaultContext);
 
-export default textDoc;
+export default richTextViewDoc;

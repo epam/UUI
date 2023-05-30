@@ -8,7 +8,7 @@ exports[`Text should be rendered correctly 1`] = `
 </div>
 `;
 
-exports[`Text should be rendered correctly 2`] = `
+exports[`Text should be rendered correctly with extra props 1`] = `
 <div
   className="uui-font-museo-slab uui-text-gray60 root line-height-30 font-size-24 v-padding-9 container"
   onClick={[Function]}

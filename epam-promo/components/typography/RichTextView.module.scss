@@ -1,9 +1,6 @@
-@use '../../assets/styles/typography' as *;
-
-@mixin overflow-ellipsis() {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+@use '../../assets/styles/typography.scss' as *;
+@use '../../assets/styles/colors' as *;
+@use '../../assets/styles/fonts' as *;
 
 :local(.typography-header) {
     @include typography-header();
@@ -29,10 +26,6 @@
     @include typography-12();
 }
 
-:local(.typography-uui) {
-    font-family: var(--font-regular);
-    color: var(--uui-text-primary);
-    composes: typography-header;
-    composes: typography-block;
-    composes: typography-inline;
+:local(.typography-promo) {
+    @include typography-promo();
 }
