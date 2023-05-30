@@ -9,3 +9,10 @@
 .text-container {
     flex-grow: 1;
 }
+
+.checkbox-element {
+    input {
+        // fixes issue with cursor inside checkbox
+        caret-color: transparent;
+    }
+}
