@@ -13,3 +13,4 @@ const ALLOWED_EMPTY_ELEMENTS = ['BR', 'IMG'];
 - Create issue to improve list plugin. Now it causes bug with separator. [Video](https://epam-my.sharepoint.com/:v:/r/personal/natallia_alieva_epam_com/Documents/Microsoft%20Teams%20Chat%20Files/2023-02-08_12h08_43.mp4?csf=1&web=1&e=wT5iVq). Investigation here
 [https://github.com/epam/UUI/pull/1366](https://github.com/epam/UUI/pull/1366)
 - Add vertical cell division
+- Move to plate email links validation `uui-editor/src/plate/plugins/linkPlugin/isUrl.ts`
