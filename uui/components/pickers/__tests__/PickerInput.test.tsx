@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource, AsyncDataSource, CascadeSelection } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct, act,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct, act, prettyDOM,
 } from '@epam/uui-test-utils';
-import { PickerInput, PickerInputProps } from '../PickerInput';
 import { Modals, PickerInputBaseProps } from '@epam/uui-components';
-
+import { Button } from '@epam/promo';
+import { PickerInput, PickerInputProps } from '../PickerInput';
 import { IHasEditMode } from '../../types';
 
 jest.mock('react-popper', () => ({
@@ -776,5 +776,42 @@ describe('PickerInput', () => {
         
         const dialogBody = dialog.firstElementChild?.firstElementChild;
         expect(dialogBody).toHaveStyle('max-height: 100px');
+    });
+
+    it('should render custom toggler', async () => {
+        const { mocks } = await setupPickerInputForTest<TestItemType, number>({
+            value: undefined,
+            selectionMode: 'multi',
+            renderToggler: (props) => (
+                <Button
+                    rawProps={ props.rawProps }
+                    size="36"
+                    onClick={ props.onClick }
+                    ref={ props.ref }
+                    iconPosition="left"
+                    mode="ghost"
+                    caption={ props.selection?.map((s) => s.value?.name).join(', ') }
+                />
+            ),
+        });
+
+        const target = screen.getByTestId('uui-PickerInput-target');
+        expect(target).toBeInTheDocument();
+        expect(target.getAttribute('type')).toBe('button');
+        
+        fireEvent.click(target);
+        
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+        await delayAct(100);
+
+        const [cb1, cb2] = await within(screen.getByRole('dialog')).findAllByRole('checkbox');
+        fireEvent.click(cb1);
+        expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+        fireEvent.click(cb2);
+        expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
+        expect(cb1).toBeChecked();
+        expect(cb2).toBeChecked();
+        expect(target.textContent).toBe('Elementary, Elementary+');
     });
 });
