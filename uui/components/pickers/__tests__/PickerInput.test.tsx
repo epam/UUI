@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource, AsyncDataSource, CascadeSelection } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct, act, prettyDOM,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct, act,
 } from '@epam/uui-test-utils';
 import { Modals, PickerInputBaseProps } from '@epam/uui-components';
 import { Button } from '@epam/promo';
@@ -661,7 +661,6 @@ describe('PickerInput', () => {
         const { dom } = await setupPickerInputForTest({
             value: undefined,
             minCharsToSearch: 1,
-            
         });
 
         fireEvent.click(dom.input as Element);
@@ -813,5 +812,60 @@ describe('PickerInput', () => {
         expect(cb1).toBeChecked();
         expect(cb2).toBeChecked();
         expect(target.textContent).toBe('Elementary, Elementary+');
+    });
+    
+    it('should render search in input', async () => {
+        await setupPickerInputForTest<TestItemType, number>({
+            value: undefined,
+            selectionMode: 'multi',
+            searchPosition: 'input',
+        });
+
+        const togglerBody = screen.getByTestId('uui-PickerToggler-body');
+        expect(togglerBody).toBeInTheDocument();
+        const input = within(togglerBody).getByTestId('uui-PickerToggler-input');
+        expect(input).toBeInTheDocument();
+        
+        fireEvent.click(input);
+        
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
+    });
+
+    it('should render search in body', async () => {
+        await setupPickerInputForTest<TestItemType, number>({
+            value: undefined,
+            selectionMode: 'multi',
+            searchPosition: 'body',
+        });
+
+        const togglerBody = screen.getByTestId('uui-PickerToggler-body');
+        expect(togglerBody).toBeInTheDocument();
+        const togglerInput = within(togglerBody).getByTestId('uui-PickerToggler-input');
+        expect(togglerInput.hasAttribute('readonly')).toBeTruthy();
+        
+        fireEvent.click(togglerBody);
+
+        const dialog = screen.getByRole('dialog');
+        const bodyInput = within(dialog).getByPlaceholderText('Search');
+        expect(bodyInput).toBeInTheDocument();
+        expect(bodyInput.hasAttribute('readonly')).toBeFalsy();
+    });
+    
+    it('should not render search in none mode', async () => {
+        await setupPickerInputForTest<TestItemType, number>({
+            value: undefined,
+            selectionMode: 'multi',
+            searchPosition: 'none',
+        });
+
+        const togglerBody = screen.getByTestId('uui-PickerToggler-body');
+        expect(togglerBody).toBeInTheDocument();
+        const togglerInput = within(togglerBody).getByTestId('uui-PickerToggler-input');
+        expect(togglerInput.hasAttribute('readonly')).toBeTruthy();
+        
+        fireEvent.click(togglerBody);
+
+        const dialog = screen.getByRole('dialog');
+        expect(within(dialog).queryByPlaceholderText('Search')).not.toBeInTheDocument();
     });
 });
