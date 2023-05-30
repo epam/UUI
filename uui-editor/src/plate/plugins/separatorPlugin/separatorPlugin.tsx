@@ -35,21 +35,6 @@ export const separatorPlugin = () => {
                 if (event.key === 'Enter') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
-
-                /**
-                 * TODO: How it might be solved with deleteBackward / deleteForward methods of plate
-                 */
-                if (event.key === 'Backspace') {
-                    Editor.deleteBackward(editor as any);
-                    insertEmptyElement(editor, PARAGRAPH_TYPE);
-                    return true;
-                }
-
-                if (event.key === 'Delete') {
-                    Editor.deleteForward(editor as any);
-                    insertEmptyElement(editor, PARAGRAPH_TYPE);
-                    return true;
-                }
             },
         },
         deserializeHtml: {
