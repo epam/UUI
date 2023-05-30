@@ -136,7 +136,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
             <Panel cx={ css.panel }>
                 <>
                     {isPickersType ? (
-                        <MobileDropdownWrapper close={ () => isOpenChange(false) }>
+                        <MobileDropdownWrapper title={ props.title } close={ () => isOpenChange(false) }>
                             {renderHeader()}
                             <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange } />
                         </MobileDropdownWrapper>
