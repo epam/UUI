@@ -1,7 +1,8 @@
 import React from 'react';
 import { UploadFileToggler } from '@epam/uui-components';
 
-import { createPluginFactory, insertEmptyElement, getBlockAbove, getEndPoint, getPluginType, PlateEditor,
+import {
+    createPluginFactory, insertEmptyElement, getBlockAbove, getEndPoint, getPluginType, PlateEditor,
     ToolbarButton as PlateToolbarButton, selectEditor,
 } from '@udecode/plate';
 
@@ -56,6 +57,7 @@ export const iframePlugin = () => {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
 
+                // empty element needs to be added when we have only iframe element in editor content
                 if ((event.key === 'Backspace' || event.key === 'Delete')) {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
