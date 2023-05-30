@@ -115,7 +115,7 @@ Also in the process of this work, we brought the components in accordance with o
   - `Show only selected` order was fixed.
 * [FilterPanel]: fixed issue with "show only selected" toggle not being visible, when selectAll was disabled via DataSource
 * [PickerInput]: added a default footer component for single pickers that includes a "Clear" button
-* [ErrorHandler]: added additional properties to render notifications with custom markup and configured the notification duration.
+* [ErrorHandler]: added additional property `onNotificationError` to render notifications with custom markup and configured the notification duration.
 
 # 4.10.2 - 24.03.2023
 
