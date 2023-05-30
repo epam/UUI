@@ -5,24 +5,23 @@ import {
     LinkToolbarButton,
     ELEMENT_LINK,
     PlateEditor,
-    validateUrl,
     Value,
     TElement,
     withLink,
     WithPlatePlugin,
     LinkPlugin,
     upsertLink,
-    getPluginType
+    getPluginType,
+    validateUrl,
 } from "@udecode/plate";
 import { useUuiContext } from '@epam/uui-core';
-import { sanitizeUrl } from "@braintree/sanitize-url";
 
 import { ToolbarButton } from '../../../implementation/ToolbarButton';
 
 import { ReactComponent as LinkIcon } from "../../icons/link.svg";
 import { AddLinkModal } from "./AddLinkModal";
 import { isPluginActive } from '../../../helpers';
-
+import { isUrl } from './isUrl';
 
 export interface LinkElement extends TElement {
     href: string;
@@ -66,6 +65,7 @@ const LINK_ELEMENT = 'link';
 export const linkPlugin = () => createLinkPlugin({
     type: LINK_ELEMENT,
     withOverrides: withOurLink,
+    then: () => ({ options: { isUrl, } }),
     overrideByKey: {
         [ELEMENT_LINK]: {
             component: (props) => (

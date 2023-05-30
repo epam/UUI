@@ -14,3 +14,4 @@ const ALLOWED_EMPTY_ELEMENTS = ['BR', 'IMG'];
 [https://github.com/epam/UUI/pull/1366](https://github.com/epam/UUI/pull/1366)
 - Create issue about copying unordered lists from Word. Each item wrapped inside paragraph node after pasting. Ordered lists works as expected.
 - Add vertical cell division
+- Move to plate email links validation `uui-editor/src/plate/plugins/linkPlugin/isUrl.ts`
