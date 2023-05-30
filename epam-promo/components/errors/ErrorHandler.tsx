@@ -8,6 +8,7 @@ import css from './ErrorHandler.module.scss';
 
 export interface ErrorHandlerProps extends IHasCX, IHasChildren {
     getErrorInfo?: (uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;
+    onNotificationError?: (errors: ApiCallInfo) => void;
 }
 
 export function ErrorHandler(props: ErrorHandlerProps) {
@@ -19,13 +20,17 @@ export function ErrorHandler(props: ErrorHandlerProps) {
 
     const showNotifications = (errors: ApiCallInfo[]) => {
         errors.forEach((c) => {
-            uuiNotifications.show((notificationProps: INotification) => (
-                <ErrorNotification { ...notificationProps }>
-                    <Text size="36">
-                        {c.responseData && c.responseData.errorMessage}
-                    </Text>
-                </ErrorNotification>
-            ));
+            props.onNotificationError ? (
+                props.onNotificationError(c)
+            ) : (
+                uuiNotifications.show((notificationProps: INotification) => (
+                    <ErrorNotification { ...notificationProps }>
+                        <Text size="36">
+                            {c.responseData && c.responseData.errorMessage}
+                        </Text>
+                    </ErrorNotification>
+                ))
+            );
             c.dismissError();
         });
     };
