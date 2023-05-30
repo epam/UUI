@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LinkButton } from '@epam/loveship';
+import { LinkButton } from '@epam/promo';
 import { useUuiContext, UuiError } from '@epam/uui-core';
 
 /**
@@ -30,7 +30,7 @@ export default function ErrorsExample() {
     }
 
     return (
-        <div className="uui-theme-loveship">
+        <div>
             <LinkButton caption="Plain Error" onClick={ () => setState(1) } />
             <LinkButton caption="UUI Error" onClick={ () => setState(2) } />
             <LinkButton caption="UUI Error - custom" onClick={ () => setState(3) } />
