@@ -34,7 +34,9 @@ export const separatorPlugin = () => {
                 if (event.key === 'Enter') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
-                if ((event.key === 'Backspace' || event.key === 'Delete')) {
+
+                // empty element needs to be added when we have only attachment in editor content
+                if (event.key === 'Backspace' || event.key === 'Delete') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
             },
@@ -60,7 +62,7 @@ export const SeparatorButton = ({ editor }: ToolbarButton) => {
 
     return (
         <BlockToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+            styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
             type={ getPluginType(editor, SEPARATOR_TYPE) }
             actionHandler='onMouseDown'
             icon={ <ToolbarButton
