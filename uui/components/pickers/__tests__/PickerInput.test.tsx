@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource, AsyncDataSource, CascadeSelection } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, waitFor,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct, act,
     queryHelpers,
 } from '@epam/uui-test-utils';
 import { PickerInput, PickerInputProps } from '../PickerInput';
@@ -739,5 +739,16 @@ describe('PickerInput', () => {
 
         const togglerBody1 = screen.queryByTestId(/uui-PickerToggler-body/);
         expect(togglerBody1).not.toHaveClass('multiline');
+    });
+
+    it('should provide custom placeholder', async () => {
+        const customPlaceholder = 'Custom placeholder';
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'multi',
+            placeholder: customPlaceholder,
+        });
+
+        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual(customPlaceholder);
     });
 });
