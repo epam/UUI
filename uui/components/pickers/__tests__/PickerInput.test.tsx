@@ -268,6 +268,35 @@ describe('PickerInput', () => {
             expect(mocks.onValueChange).toHaveBeenLastCalledWith(checked);
             expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('A1+');
         });
+
+        it('should disable clear', async () => {
+            const { dom, setProps } = await setupPickerInputForTest({
+                value: 2,
+                selectionMode: 'single',
+                disableClear: false,
+            });
+
+            await delayAct(100);
+
+            const target = screen.getByTestId('uui-PickerInput-target');
+    
+            const [clearButton] = within(target).getAllByRole('button').filter((el) => el.getAttribute('aria-label') === 'Clear');
+            
+            expect(clearButton).toBeInTheDocument();
+            
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('A1');
+
+            fireEvent.click(clearButton);
+            
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select');
+            
+            setProps({ disableClear: true, value: 2 });
+            
+            const [clearButton2] = within(target).queryAllByRole('button').filter((el) => el.getAttribute('aria-label') === 'Clear');
+            
+            expect(clearButton2).toBeUndefined();
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('A1');
+        });
     });
 
     describe('[selectionMode multi]', () => {
@@ -549,6 +578,44 @@ describe('PickerInput', () => {
                 .map((button) => button.textContent?.trim());
             
             expect(selectedItemsNames2).toEqual(['4 languages selected']);
+        });
+        
+        it('should disable clear', async () => {
+            const { setProps } = await setupPickerInputForTest({
+                value: [2, 3],
+                selectionMode: 'multi',
+                disableClear: false,
+            });
+
+            await delayAct(100);
+
+            const target = screen.getByTestId('uui-PickerInput-target');
+    
+            const [clearButton] = within(target).getAllByRole('button').filter((el) => el.getAttribute('aria-label') === 'Clear');
+            
+            expect(clearButton).toBeInTheDocument();
+            
+            const selectedItemsNames = screen.queryAllByTestId(/uui-PickerToggler-item/)
+                .map((button) => button.textContent?.trim());
+
+            expect(selectedItemsNames).toEqual(['A1', 'A1+']);
+
+            fireEvent.click(clearButton);
+            
+            const selectedItemsNames2 = screen.queryAllByTestId(/uui-PickerToggler-item/)
+                .map((button) => button.textContent?.trim());
+
+            expect(selectedItemsNames2).toEqual([]);
+            
+            setProps({ disableClear: true, value: [2, 3] });
+            
+            const [clearButton2] = within(target).queryAllByRole('button').filter((el) => el.getAttribute('aria-label') === 'Clear');
+            
+            expect(clearButton2).toBeUndefined();
+            const selectedItemsNames3 = screen.queryAllByTestId(/uui-PickerToggler-item/)
+                .map((button) => button.textContent?.trim());
+
+            expect(selectedItemsNames3).toEqual(['A1', 'A1+']);
         });
     });
     
