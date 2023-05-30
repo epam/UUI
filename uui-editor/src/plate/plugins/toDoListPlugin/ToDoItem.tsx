@@ -17,11 +17,9 @@ export function ToDoItem(
     const { element, editor, attributes, children } = props;
     const [checked, setChecked] = useState(element.data?.checked ?? false);
 
-    const onChange = (event: React.MouseEvent<Element, MouseEvent>) => {
+    const onClick = (event: React.MouseEvent<Element, MouseEvent>) => {
         const targetElem = event.target as unknown as Element;
         if (targetElem.tagName !== 'DIV') return;
-        event.preventDefault();
-        event.stopPropagation();
 
         editor.selection = {
             focus: { offset: 0, path: [findNodePath(editor, element)[0], 0] },
@@ -36,7 +34,12 @@ export function ToDoItem(
         });
     };
 
-    const rawProps = { onClick: onChange }
+    /**
+     * TODO: Improve event handling.
+     * Input onChange event is not fired in Firefox for some reason.
+     * That is why onClick used here instead onValueChange.
+     */
+    const rawProps = { onClick }
 
     return (
         <FlexRow rawProps={ attributes }  >
