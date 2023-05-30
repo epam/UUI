@@ -10,7 +10,7 @@ export * from './fileUpload';
 export * from './errors';
 export { FiltersPanel, PresetsPanel, defaultPredicates, TabButton, VerticalTabButton, Calendar, NumericInput, Switch, TextArea, Dropdown, TextPlaceholder,
     Tag, RadioInput, MainMenu, GlobalMenu, Burger, BurgerButton, BurgerSearch, MainMenuAvatar, MainMenuSearch, MainMenuIcon, MainMenuDropdown, MainMenuButton,
-    Accordion, RichTextView, Form, useForm, PickerInput, PickerItem, DataPickerRow, PickerToggler, PickerList, Blocker, CheckboxGroup, ControlGroup,
+    Accordion, Form, useForm, PickerInput, PickerItem, DataPickerRow, PickerToggler, PickerList, Blocker, CheckboxGroup, ControlGroup,
     ConfirmationModal, RadioGroup, Anchor, Avatar, AvatarStack, Paginator, DataTable, DataTableCell, DataTableRow, DataTableHeaderRow, ColumnsConfigurationModal,
     WarningNotification, SuccessNotification, HintNotification, ErrorNotification, ClearNotification, DatePicker, RangeDatePicker, Checkbox, FlexSpacer, FlexCell,
     Spinner, DataPickerBody, PickerModal, ModalBlocker, ModalHeader, ModalFooter,

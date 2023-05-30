@@ -143,3 +143,11 @@
 @mixin typography-16() {
     font-size: 16px;
 }
+
+@mixin typography-loveship() {
+    font-family: $font-sans;
+    color: $night700;
+    composes: typography-header;
+    composes: typography-block;
+    composes: typography-inline;
+}
