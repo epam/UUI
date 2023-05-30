@@ -57,7 +57,7 @@ export const iframePlugin = () => {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
 
-                // needs for the case when only image element in editor content
+                // empty element needs to be added when we have only iframe element in editor content
                 if ((event.key === 'Backspace' || event.key === 'Delete')) {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }

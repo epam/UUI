@@ -20,7 +20,8 @@ export const attachmentPlugin = () => {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
 
-                // insertEmptyElement needs for the case when editor is empty
+                // delete methods explicitly invoked since onDomBeforeInput event isn't fired in case of attachment
+                // empty element needs to be added when we have only attachment in editor content
                 if (event.key === 'Backspace') {
                     Editor.deleteBackward(editor as any);
                     insertEmptyElement(editor, PARAGRAPH_TYPE);
