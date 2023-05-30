@@ -96,6 +96,7 @@ Also in the process of this work, we brought the components in accordance with o
 * [RangeDatePicker]: added new 'onOpenChange' prop
 * [PickerInput]: added a default footer component for single pickers that includes a "Clear" button
 * [ErrorHandler]: now in Loveship used `NotificationCard` component instead of `SnackbarCard` for notification type errors
+* [ErrorHandler]: added additional property `onNotificationError` to render notifications with custom markup and configured the notification duration.
 
 **What's Fixed**
 * [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column
@@ -114,8 +115,6 @@ Also in the process of this work, we brought the components in accordance with o
   - `implicit` cascade selection mode was added.
   - `Show only selected` order was fixed.
 * [FilterPanel]: fixed issue with "show only selected" toggle not being visible, when selectAll was disabled via DataSource
-* [PickerInput]: added a default footer component for single pickers that includes a "Clear" button
-* [ErrorHandler]: added additional property `onNotificationError` to render notifications with custom markup and configured the notification duration.
 
 # 4.10.2 - 24.03.2023
 
