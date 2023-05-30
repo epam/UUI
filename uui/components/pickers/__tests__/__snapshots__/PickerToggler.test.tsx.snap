@@ -10,6 +10,7 @@ exports[`PickerToggler should be rendered correctly 1`] = `
 >
   <div
     className="body"
+    data-testid="uui-PickerToggler-body"
   >
     <input
       aria-haspopup={true}
@@ -39,6 +40,7 @@ exports[`PickerToggler should be rendered correctly 2`] = `
 >
   <div
     className="body multiline"
+    data-testid="uui-PickerToggler-body"
   >
     <button
       className="container uui-button-box uui-enabled size-42 root"
