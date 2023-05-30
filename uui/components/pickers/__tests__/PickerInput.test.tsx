@@ -751,4 +751,36 @@ describe('PickerInput', () => {
 
         expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual(customPlaceholder);
     });
+    
+    it('should define minBodyWidth', async () => {
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'multi',
+            minBodyWidth: 300,
+        });
+
+        fireEvent.click(dom.input as Element);
+
+        const dialog = screen.getByRole('dialog');
+        expect(dialog).toBeInTheDocument();
+        
+        const dialogBody = dialog.firstElementChild;
+        expect(dialogBody).toHaveStyle('width: 300px');
+    });
+    
+    it('should define dropdownHeight', async () => {
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'multi',
+            dropdownHeight: 100,
+        });
+
+        fireEvent.click(dom.input as Element);
+
+        const dialog = screen.getByRole('dialog');
+        expect(dialog).toBeInTheDocument();
+        
+        const dialogBody = dialog.firstElementChild?.firstElementChild;
+        expect(dialogBody).toHaveStyle('max-height: 100px');
+    });
 });
