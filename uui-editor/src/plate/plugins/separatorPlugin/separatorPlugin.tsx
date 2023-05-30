@@ -17,6 +17,7 @@ import { ReactComponent as SeparateIcon } from '../../../icons/breakline.svg';
 import { Separator } from './Separator';
 import { getBlockAboveByType } from "../../utils/getAboveBlock";
 import { PARAGRAPH_TYPE } from "../paragraphPlugin/paragraphPlugin";
+import { Editor } from 'slate';
 
 const SEPARATOR_TYPE = 'separatorBLock';
 const noop = () => {};
@@ -34,8 +35,20 @@ export const separatorPlugin = () => {
                 if (event.key === 'Enter') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
-                if ((event.key === 'Backspace' || event.key === 'Delete')) {
-                    return insertEmptyElement(editor, PARAGRAPH_TYPE);
+
+                /**
+                 * TODO: How it might be solved with deleteBackward / deleteForward methods of plate
+                 */
+                if (event.key === 'Backspace') {
+                    Editor.deleteBackward(editor as any);
+                    insertEmptyElement(editor, PARAGRAPH_TYPE);
+                    return true;
+                }
+
+                if (event.key === 'Delete') {
+                    Editor.deleteForward(editor as any);
+                    insertEmptyElement(editor, PARAGRAPH_TYPE);
+                    return true;
                 }
             },
         },
@@ -60,7 +73,7 @@ export const SeparatorButton = ({ editor }: ToolbarButton) => {
 
     return (
         <BlockToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+            styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
             type={ getPluginType(editor, SEPARATOR_TYPE) }
             actionHandler='onMouseDown'
             icon={ <ToolbarButton
