@@ -30,7 +30,7 @@ export default function ErrorsExample() {
     }
 
     return (
-        <div>
+        <div className="uui-theme-loveship">
             <LinkButton caption="Plain Error" onClick={ () => setState(1) } />
             <LinkButton caption="UUI Error" onClick={ () => setState(2) } />
             <LinkButton caption="UUI Error - custom" onClick={ () => setState(3) } />
