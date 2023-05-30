@@ -20,9 +20,7 @@ export const attachmentPlugin = () => {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
 
-                /**
-                 * TODO: How it might be solved with deleteBackward / deleteForward methods of plate
-                 */
+                // insertEmptyElement needs for the case when editor is empty
                 if (event.key === 'Backspace') {
                     Editor.deleteBackward(editor as any);
                     insertEmptyElement(editor, PARAGRAPH_TYPE);
@@ -30,7 +28,6 @@ export const attachmentPlugin = () => {
                 }
 
                 if (event.key === 'Delete') {
-
                     Editor.deleteForward(editor as any);
                     insertEmptyElement(editor, PARAGRAPH_TYPE);
                     return true;

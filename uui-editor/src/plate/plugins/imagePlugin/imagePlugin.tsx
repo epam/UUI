@@ -49,7 +49,9 @@ export const imagePlugin = () => {
                 if (event.key === 'Enter') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
-                if ((event.key === 'Backspace' || event.key === 'Delete')) {
+
+                // needs for the case when only image element in editor content
+                if (event.key === 'Backspace' || event.key === 'Delete') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
             },
