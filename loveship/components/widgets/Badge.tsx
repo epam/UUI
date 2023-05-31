@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui-core';
+import { devLogger, withMods } from '@epam/uui-core';
 import * as types from '../../components/types';
 import { Badge as UuiBadge, BadgeMods as UuiBadgeMods, BadgeProps as UuiBadgeProps } from '@epam/uui';
 import { EpamAdditionalColor, EpamPrimaryColor, allEpamAdditionalColors, allEpamPrimaryColors } from '../types';
@@ -27,9 +27,16 @@ export type BadgeProps = Omit<UuiBadgeProps, 'color' | 'fill' | 'size'> & BadgeM
 export const Badge = withMods<Omit<UuiBadgeProps, 'color' | 'fill' | 'size'>, BadgeMods>(
     UuiBadge,
     applyBadgeMods,
-    (props) =>
-        ({
+    (props) => {
+        devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'color'>({
+            component: 'Badge',
+            propName: 'color',
+            propValue: props.color,
+            condition: () => ['night200', 'night400', 'night500'].indexOf(props.color) !== -1,
+        });
+        return {
             color: props.color || 'sky',
             size: props.size || defaultSize,
-        } as BadgeProps),
+        } as BadgeProps;
+    },
 );
