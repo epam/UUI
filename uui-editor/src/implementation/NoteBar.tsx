@@ -26,9 +26,19 @@ interface NoteBarProps extends DropdownBodyProps {
 }
 
 export function NoteBar({ editor, type }: NoteBarProps) {
+    const prevElementType = React.useRef(type);
 
-    const toggleBlock = (type: string) => {
-        setElements(editor, { type, children: [{ text: '' }] });
+    const toggleBlock = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, type: string) => {
+        // fixes a bug with toolbar removal
+        e.preventDefault();
+
+        let newType = type;
+        if (type === prevElementType.current) {
+            newType = 'paragraph';
+        }
+        prevElementType.current = newType;
+
+        setElements(editor, { type: newType, children: [{ text: '' }] });
     };
 
     const clearBlock = () => {
@@ -38,6 +48,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
     return (
         <FlexRow rawProps={ { style: { background: '#303240' } } }>
             <PlateToolbarButton
+                key='default'
                 styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: 42, padding: 0 } } }
                 icon={ <ToolbarButton
                     onClick={ noop }
@@ -47,6 +58,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
                 onMouseDown={ clearBlock }
             />
             <PlateToolbarButton
+                key='note-quote'
                 styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: 42, padding: 0 } } }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-quote' }
@@ -54,9 +66,10 @@ export function NoteBar({ editor, type }: NoteBarProps) {
                     icon={ NoteIconQuote }
                     iconColor='gray60'
                 /> }
-                onMouseDown={ () => toggleBlock('note-quote') }
+                onMouseDown={ (e) => toggleBlock(e, 'note-quote') }
             />
             <PlateToolbarButton
+                key='note-error'
                 styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: 42, padding: 0 } } }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-error' }
@@ -64,9 +77,10 @@ export function NoteBar({ editor, type }: NoteBarProps) {
                     icon={ NoteIconError }
                     iconColor='red'
                 /> }
-                onMouseDown={ () => toggleBlock('note-error') }
+                onMouseDown={ (e) => toggleBlock(e, 'note-error') }
             />
             <PlateToolbarButton
+                key='note-warning'
                 styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: 42, padding: 0 } } }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-warning' }
@@ -74,9 +88,10 @@ export function NoteBar({ editor, type }: NoteBarProps) {
                     icon={ NoteIconWarning }
                     iconColor='amber'
                 /> }
-                onMouseDown={ () => toggleBlock('note-warning') }
+                onMouseDown={ (e) => toggleBlock(e, 'note-warning') }
             />
             <PlateToolbarButton
+                key='note-link'
                 styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: 42, padding: 0 } } }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-link' }
@@ -84,7 +99,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
                     icon={ NoteIconLink }
                     iconColor='blue'
                 /> }
-                onMouseDown={ () => toggleBlock('note-link') }
+                onMouseDown={ (e) => toggleBlock(e, 'note-link') }
             />
         </FlexRow>
     );
