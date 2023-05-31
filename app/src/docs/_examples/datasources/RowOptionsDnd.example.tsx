@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { DataSourceState, useArrayDataSource, useForm } from '@epam/uui-core';
-import DatasourceTableViewer from './DatasourceTableViewer';
-import { textColumns } from './columns';
+import { DatasourceTableViewer, datasourceTextColumns } from '@epam/uui-docs';
 
 interface Item {
     id: string;
@@ -60,7 +59,7 @@ export default function RowOptionsDndExample() {
             value={ value1 }
             onValueChange={ onValueChange1 }
             datasource={ datasource1 }
-            columns={ textColumns }
+            columns={ datasourceTextColumns }
         />
     );
 }

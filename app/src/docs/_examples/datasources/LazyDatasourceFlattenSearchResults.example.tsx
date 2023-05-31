@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Panel, TextInput, FlexRow } from '@epam/promo';
 import { DataQueryFilter, DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
-import { DatasourceViewer } from './DatasourceViewer';
+import { DatasourceViewer } from '@epam/uui-docs';
 import { TApi } from '../../../data';
 
 export default function LazyDatasourceFlattenSearchResultsExample() {

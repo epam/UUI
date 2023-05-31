@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { DataSourceState, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
-import { DatasourceViewer } from './DatasourceViewer';
+import { DatasourceViewer } from '@epam/uui-docs';
 import { FlexRow, Paginator, Panel } from '@epam/promo';
 import { Person } from '@epam/uui-docs';
 import { TApi } from '../../../data';

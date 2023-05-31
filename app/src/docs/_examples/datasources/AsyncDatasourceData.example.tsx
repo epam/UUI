@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataSourceState, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
-import { DatasourceViewer } from './DatasourceViewer';
+import { DatasourceViewer } from '@epam/uui-docs';
 import { TApi } from '../../../data';
 
 export default function AsyncDatasourceDataExample() {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataQueryFilter, DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
-import { DatasourceViewer } from './DatasourceViewer';
+import { DatasourceViewer } from '@epam/uui-docs';
 import { TApi } from '../../../data';
 import { City } from '@epam/uui-docs';
 
