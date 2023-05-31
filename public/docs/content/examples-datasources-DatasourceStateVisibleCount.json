@@ -11,6 +11,11 @@
         "nodes": [
           {
             "object": "text",
+            "text": "A ",
+            "marks": []
+          },
+          {
+            "object": "text",
             "text": "visibleCount",
             "marks": [
               {
@@ -22,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " parameter is representing a number of records, shown by datasource. Unfortunately, it is just representing the count, calculated by the list component, and passing some value is not changing the actual number of rows to be shown. The same about ",
+            "text": " parameter is representing a number of records, shown by datasource. A ",
             "marks": []
           },
           {
@@ -38,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": ".",
+            "text": " parameter is representing an index of the start record, which is actually rendered.",
             "marks": []
           }
         ]

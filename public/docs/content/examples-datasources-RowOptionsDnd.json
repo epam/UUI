@@ -59,7 +59,26 @@
           },
           {
             "object": "text",
-            "text": " return configuration.",
+            "text": " return configuration. You can read more about drag'n'drop ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?id=dragAndDrop&mode=doc&skin=UUI4_promo&category=advanced"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "here",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". ",
             "marks": []
           }
         ]
