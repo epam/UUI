@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "noEmit": true,
+    "noImplicitAny": false
+  },
+  "include": [
+    "./**/__tests__/**/*.test.ts*",
+    "./uui_globals.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
