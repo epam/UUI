@@ -13,6 +13,7 @@
         padding-right: 6px;
         min-width: 6px;
         text-align: center;
+        flex-shrink: 0;
     }
 
     :global(.uui-count):not(:first-child) {
