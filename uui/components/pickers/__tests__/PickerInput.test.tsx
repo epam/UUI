@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react';
-import { ArrayDataSource, AsyncDataSource, CascadeSelection } from '@epam/uui-core';
+import { ArrayDataSource, AsyncDataSource, CascadeSelection, IDataSource } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct, act,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct, act, prettyDOM,
     queryHelpers,
 } from '@epam/uui-test-utils';
 import { Modals, PickerInputBaseProps } from '@epam/uui-components';
-import { Button } from '@epam/promo';
+import { Button, DataPickerRow, FlexCell, PickerItem, Text } from '@epam/promo';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { IHasEditMode } from '../../types';
 
@@ -940,5 +940,65 @@ describe('PickerInput', () => {
 
         const dialog = screen.getByRole('dialog');
         expect(within(dialog).queryByPlaceholderText('Search')).not.toBeInTheDocument();
+    });
+
+    it('should render custom not found', async () => {
+        const mockEmptyDS = new ArrayDataSource<TestItemType, number, any>({
+            items: [],
+            getId: ({ id }) => id,
+        });
+
+        const customText = 'Custom Text or Component';
+
+        const { dom } = await setupPickerInputForTest<TestItemType, number>({
+            value: undefined,
+            selectionMode: 'multi',
+            dataSource: mockEmptyDS as IDataSource<TestItemType, number, any>,
+            renderNotFound: () => (
+                <FlexCell grow={ 1 } textAlign="center" rawProps={ { 'data-testid': 'custom-not-found' } }>
+                    <Text>{customText}</Text>
+                </FlexCell>
+            ),
+        });
+
+        fireEvent.click(dom.input as Element);
+
+        const dialog = screen.getByRole('dialog');
+        expect(dialog).toBeInTheDocument();
+        
+        const notFound = within(dialog).getByTestId('custom-not-found');
+        expect(notFound).toBeInTheDocument();
+
+        const text = notFound.textContent;
+        expect(text).toBe(customText);
+    });
+
+    it('should render custom row', async () => {
+        const { dom } = await setupPickerInputForTest<TestItemType, number>({
+            value: undefined,
+            selectionMode: 'multi',
+            renderRow: (props) => (
+                <DataPickerRow
+                    { ...props }
+                    rawProps={ { ...props.rawProps, 'data-testid': `custom-row-${props.rowKey}` } }
+                    key={ props.rowKey }
+                    alignActions="center"
+                    renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.name } /> }
+                />
+            ),
+        });
+
+        fireEvent.click(dom.input as Element);
+
+        await delayAct(100);
+
+        const dialog = screen.getByRole('dialog');
+        expect(dialog).toBeInTheDocument();
+        
+        const rows = within(dialog).getAllByTestId(/custom-row/);
+        expect(rows.length).toBe(languageLevels.length);
+        rows.forEach((row) => {
+            expect(row).toBeInTheDocument();
+        });
     });
 });
