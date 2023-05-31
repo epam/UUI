@@ -16,7 +16,7 @@
           },
           {
             "object": "text",
-            "text": "AsyncDatasourceProps",
+            "text": "AsyncDataSourceProps",
             "marks": [
               {
                 "object": "mark",
@@ -32,7 +32,7 @@
           },
           {
             "object": "text",
-            "text": "AsyncDatasourceProps",
+            "text": "AsyncDataSourceProps",
             "marks": [
               {
                 "object": "mark",
@@ -48,7 +48,7 @@
           },
           {
             "object": "text",
-            "text": "DatasourceProps",
+            "text": "DataSourceProps",
             "marks": [
               {
                 "object": "mark",

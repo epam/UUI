@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "BaseDatasourceProps",
+            "text": "Common DataSource Props",
             "marks": [
               {
                 "object": "mark",

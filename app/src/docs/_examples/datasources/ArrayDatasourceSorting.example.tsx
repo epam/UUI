@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
-import { DatasourceViewer } from '@epam/uui-docs';
+import { DataSourceViewer } from '@epam/uui-docs';
 
 const items = [{
     id: 0,
@@ -23,7 +23,7 @@ const items = [{
     statusCode: 500,
 }];
 
-export default function ArrayDatasourceSortingExample() {
+export default function ArrayDataSourceSortingExample() {
     const [value1, onValueChange1] = useState<DataSourceState>({
         sorting: [{ field: 'status', direction: 'desc' }],
     });
@@ -32,11 +32,11 @@ export default function ArrayDatasourceSortingExample() {
         sorting: [{ field: 'status', direction: 'desc' }],
     });
 
-    const datasource1 = useArrayDataSource({
+    const dataSource1 = useArrayDataSource({
         items,
     }, []);
 
-    const datasource2 = useArrayDataSource({
+    const dataSource2 = useArrayDataSource({
         items,
         sortBy: (item, sorting) => {
             switch (sorting.field) {
@@ -50,18 +50,18 @@ export default function ArrayDatasourceSortingExample() {
 
     return (
         <>
-            <DatasourceViewer
+            <DataSourceViewer
                 exampleTitle="Sorting by status name desc"
                 value={ value1 }
                 onValueChange={ onValueChange1 }
-                datasource={ datasource1 }
+                dataSource={ dataSource1 }
                 getName={ ({ status }) => status }
             />
-            <DatasourceViewer
+            <DataSourceViewer
                 exampleTitle="Sorting by status code desc, overridden by sortBy"
                 value={ value2 }
                 onValueChange={ onValueChange2 }
-                datasource={ datasource2 }
+                dataSource={ dataSource2 }
                 getName={ ({ status }) => status }
             />
         </>

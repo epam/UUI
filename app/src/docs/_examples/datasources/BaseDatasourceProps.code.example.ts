@@ -1,6 +1,6 @@
 import { DataRowOptions } from '@epam/uui-core';
 
-export interface BaseDatasourceProps<TItem, TId, TFilter> {
+export interface Props<TItem, TId, TFilter> {
     getId?(item: TItem): TId;
     getParentId?(item: TItem): TId | undefined;
     complexIds?: boolean;

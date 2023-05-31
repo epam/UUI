@@ -38,7 +38,7 @@
           },
           {
             "object": "text",
-            "text": " of datasource props controls checkboxes visibility and interactivity.",
+            "text": " of dataSource props controls checkboxes visibility and interactivity.",
             "marks": []
           }
         ]

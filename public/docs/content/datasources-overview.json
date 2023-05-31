@@ -16,7 +16,7 @@
           },
           {
             "object": "text",
-            "text": "Datasources",
+            "text": "DataSources",
             "marks": [
               {
                 "object": "mark",
@@ -44,7 +44,7 @@
           },
           {
             "object": "text",
-            "text": "BaseDatasourceProps",
+            "text": "BaseDataSourceProps",
             "marks": [
               {
                 "object": "mark",
@@ -60,7 +60,7 @@
           },
           {
             "object": "text",
-            "text": "DatasourceState",
+            "text": "DataSourceState",
             "marks": [
               {
                 "object": "mark",

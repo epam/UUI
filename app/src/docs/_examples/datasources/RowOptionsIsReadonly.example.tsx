@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataSourceState, useArrayDataSource, useForm } from '@epam/uui-core';
-import { DatasourceTableViewer, datasourceColumns } from '@epam/uui-docs';
+import { DataSourceTableViewer, dataSourceColumns } from '@epam/uui-docs';
 
 interface Item {
     id: string;
@@ -38,7 +38,7 @@ export default function RowOptionsIsReadonlyExample() {
     });
 
     const [value1, onValueChange1] = useState<DataSourceState>({});
-    const datasource1 = useArrayDataSource({
+    const dataSource1 = useArrayDataSource({
         items: formValue1.items,
         getRowOptions: (item, index) => ({
             ...lens1.prop('items').index(index).toProps(),
@@ -46,7 +46,7 @@ export default function RowOptionsIsReadonlyExample() {
     }, []);
 
     const [value2, onValueChange2] = useState<DataSourceState>({});
-    const datasource2 = useArrayDataSource({
+    const dataSource2 = useArrayDataSource({
         items: formValue2.items,
         getRowOptions: (item, index) => ({
             ...lens2.prop('items').index(index).toProps(),
@@ -56,19 +56,19 @@ export default function RowOptionsIsReadonlyExample() {
 
     return (
         <>
-            <DatasourceTableViewer
+            <DataSourceTableViewer
                 exampleTitle="Editable rows"
                 value={ value1 }
                 onValueChange={ onValueChange1 }
-                datasource={ datasource1 }
-                columns={ datasourceColumns }
+                dataSource={ dataSource1 }
+                columns={ dataSourceColumns }
             />
-            <DatasourceTableViewer
+            <DataSourceTableViewer
                 exampleTitle="Readonly rows"
                 value={ value2 }
                 onValueChange={ onValueChange2 }
-                datasource={ datasource2 }
-                columns={ datasourceColumns }
+                dataSource={ dataSource2 }
+                columns={ dataSourceColumns }
             />
         </>
     );

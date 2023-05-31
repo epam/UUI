@@ -32,7 +32,7 @@
           },
           {
             "object": "text",
-            "text": "Datasource",
+            "text": "DataSource",
             "marks": [
               {
                 "object": "mark",
@@ -85,7 +85,7 @@
           },
           {
             "object": "text",
-            "text": "Datasource",
+            "text": "DataSource",
             "marks": [
               {
                 "object": "mark",
@@ -143,7 +143,7 @@
           },
           {
             "object": "text",
-            "text": ". So, one datasource can return ",
+            "text": ". So, one dataSource can return ",
             "marks": []
           },
           {
@@ -185,7 +185,7 @@
           },
           {
             "object": "text",
-            "text": "DatasourceState's",
+            "text": "DataSourceState's",
             "marks": [
               {
                 "object": "mark",

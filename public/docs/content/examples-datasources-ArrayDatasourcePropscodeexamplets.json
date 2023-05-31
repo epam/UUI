@@ -16,7 +16,7 @@
           },
           {
             "object": "text",
-            "text": "ArrayDatasourceProps",
+            "text": "ArrayDataSourceProps",
             "marks": [
               {
                 "object": "mark",

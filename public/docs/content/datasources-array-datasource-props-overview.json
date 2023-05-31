@@ -132,7 +132,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Data, which should be represented by a datasource.",
+                            "text": "Data, which should be represented by a dataSource.",
                             "marks": []
                           }
                         ]

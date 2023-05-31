@@ -43,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": " object to the datasource state.",
+            "text": " object to the dataSource state.",
             "marks": []
           }
         ]

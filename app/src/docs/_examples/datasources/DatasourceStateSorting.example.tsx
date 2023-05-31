@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
-import { DatasourceViewer } from '@epam/uui-docs';
+import { DataSourceViewer } from '@epam/uui-docs';
 
 interface Item {
     id: string;
@@ -22,21 +22,21 @@ const items: Item[] = [
     { id: '3.1', name: 'Child 3.1', parentId: '3' },
 ];
 
-export default function DatasourceStateSortingExample() {
+export default function DataSourceStateSortingExample() {
     const [value1, onValueChange1] = useState<DataSourceState>({
         sorting: [{ field: 'name', direction: 'desc' }],
     });
 
-    const datasource1 = useArrayDataSource({
+    const dataSource1 = useArrayDataSource({
         items,
     }, []);
     
     return (
-        <DatasourceViewer
+        <DataSourceViewer
             exampleTitle="Predefined sorting"
             value={ value1 }
             onValueChange={ onValueChange1 }
-            datasource={ datasource1 }
+            dataSource={ dataSource1 }
         />
     );
 }

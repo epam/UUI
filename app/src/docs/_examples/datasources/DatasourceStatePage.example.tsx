@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import { DataSourceState, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
-import { DatasourceViewer } from '@epam/uui-docs';
+import { DataSourceViewer } from '@epam/uui-docs';
 import { FlexRow, Paginator, Panel } from '@epam/promo';
 import { Person } from '@epam/uui-docs';
 import { TApi } from '../../../data';
 
-export default function DatasourceStatePageExample() {
+export default function DataSourceStatePageExample() {
     const svc = useUuiContext<TApi, UuiContexts>();
 
     const [value1, onValueChange1] = useState<DataSourceState>({
@@ -39,10 +39,10 @@ export default function DatasourceStatePageExample() {
     return (
         <Panel>
             <FlexRow>
-                <DatasourceViewer
+                <DataSourceViewer
                     value={ value1 }
                     onValueChange={ onValueChange1 }
-                    datasource={ dataSource }
+                    dataSource={ dataSource }
                 />
             </FlexRow>
             <FlexRow>

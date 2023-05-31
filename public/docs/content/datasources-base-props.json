@@ -16,7 +16,7 @@
           },
           {
             "object": "text",
-            "text": "BaseDatasourceProps",
+            "text": "BaseDataSourceProps",
             "marks": [
               {
                 "object": "mark",
@@ -66,7 +66,7 @@
             "object": "inline",
             "type": "link",
             "data": {
-              "url": "/documents?id=datasources-row-options&mode=doc&skin=UUI4_promo&category=datasources"
+              "url": "/documents?id=dataSources-row-options&mode=doc&skin=UUI4_promo&category=dataSources"
             },
             "nodes": [
               {

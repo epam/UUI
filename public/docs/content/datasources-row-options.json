@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In this chapter, row options will be described in detail. Potentially, all the further props can be passed to the datasource as part of ",
+            "text": "In this chapter, row options will be described in detail. Potentially, all the further props can be passed to the dataSource as part of ",
             "marks": []
           },
           {

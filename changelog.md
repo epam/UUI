@@ -107,7 +107,7 @@ Also in the process of this work, we brought the components in accordance with o
   - fixes Hover doesn't appear on "parent" when pointing the mouse.
 * [Tooltip]: fixed max-width - removed default 300px max-width value from styles, you can set max-with using property 'maxWidth'.
 * [RichTextView]: h1 font-size in promo skin changed from 36px to 42px.
-* [Datasources]: datasources rework
+* [DataSources]: dataSources rework
   - Moved sort/search/filter logic to the `Tree` from views.
   - `rebuildRows` was unified.
   - `patch` functionality was added to `Tree`.
@@ -729,7 +729,7 @@ fix UUI context multiple creation
 # 4.1.0 - 30.06.2021
 
 **What’s New**
-* [DataSources][Breaking Change]: Added required 'deps' argument for all DataSources hooks. Please review all your datasources hooks usage and decide which deps do you need or set '[]'.
+* [DataSources][Breaking Change]: Added required 'deps' argument for all DataSources hooks. Please review all your dataSources hooks usage and decide which deps do you need or set '[]'.
 * [React Context]: added support for new React Context API. Consider switching to new context APIs in your components (or keep using the global ctx variable pattern). In class components you can use "static contextType = UuiContext", in function components you can use the hook "useUuiContext". Legacy context API still works in parallel with the new API. We'll keep support for legacy context API for at least 3 month (can be extended if projects would ask to prolong the support). You can explicitly disable legacy contexts with enableLegacyContexts={ false } prop on the ContextProvider. It is recommended if you don't use legacy contexts
 * removed legacy lifecycle methods
 * [NumericInput]: Now NumericInput supports transfer of formatter function. The function responds to the onBlur action.

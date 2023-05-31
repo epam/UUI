@@ -2,18 +2,18 @@ import React, { useCallback } from 'react';
 import { DataPickerRow, VirtualList, Text, Panel, LinkButton } from '@epam/promo';
 import { FlexRow, PickerItem } from '@epam/uui';
 import { DataRowProps, DataSourceState, IDataSource, IEditable } from '@epam/uui-core';
-import css from './DatasourceViewer.module.scss';
+import css from './DataSourceViewer.module.scss';
 
 interface Props<TItem, TId> extends IEditable<DataSourceState> {
     exampleTitle?: string;
     selectAll?: boolean;
     getName?: (item: TItem) => string;
-    datasource: IDataSource<TItem, TId, any>;
+    dataSource: IDataSource<TItem, TId, any>;
 }
 
-export function DatasourceViewer<TItem, TId>(props: Props<TItem, TId>) {
-    const { value, onValueChange, datasource, exampleTitle, selectAll: showSelectAll } = props;
-    const view = datasource.useView(value, onValueChange);
+export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {
+    const { value, onValueChange, dataSource, exampleTitle, selectAll: showSelectAll } = props;
+    const view = dataSource.useView(value, onValueChange);
 
     const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
         return (

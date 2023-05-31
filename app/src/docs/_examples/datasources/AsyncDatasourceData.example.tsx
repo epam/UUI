@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { DataSourceState, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
-import { DatasourceViewer } from '@epam/uui-docs';
+import { DataSourceViewer } from '@epam/uui-docs';
 import { TApi } from '../../../data';
 
-export default function AsyncDatasourceDataExample() {
+export default function AsyncDataSourceDataExample() {
     const svc = useUuiContext<TApi>();
 
     const [value, onValueChange] = useState<DataSourceState>({});
-    const datasource = useAsyncDataSource({
+    const dataSource = useAsyncDataSource({
         api: () => svc.api.demo.countries({}).then((res) => res.items),
     }, []);
     
     return (
-        <DatasourceViewer
+        <DataSourceViewer
             value={ value }
             onValueChange={ onValueChange }
-            datasource={ datasource }
+            dataSource={ dataSource }
         />
     );
 }

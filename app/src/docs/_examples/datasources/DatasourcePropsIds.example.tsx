@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DatasourceViewer } from '@epam/uui-docs';
+import { DataSourceViewer } from '@epam/uui-docs';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
 
 const items1 = [
@@ -50,54 +50,54 @@ const items4 = [
     { id: '3.2', name: 'Child 3.2', customParentId: '3' },
 ];
 
-export default function DatasourcePropsIdsExample() {
+export default function DataSourcePropsIdsExample() {
     const [value1, onValueChange1] = useState<DataSourceState>({});
-    const datasource1 = useArrayDataSource({
+    const dataSource1 = useArrayDataSource({
         items: items1,
         getId: ({ customId }) => customId,
     }, []);
 
     const [value2, onValueChange2] = useState<DataSourceState>({});
-    const datasource2 = useArrayDataSource({
+    const dataSource2 = useArrayDataSource({
         items: items2,
     }, []);
 
     const [value3, onValueChange3] = useState<DataSourceState>({});
-    const datasource3 = useArrayDataSource({
+    const dataSource3 = useArrayDataSource({
         items: items3,
     }, []);
 
     const [value4, onValueChange4] = useState<DataSourceState>({});
-    const datasource4 = useArrayDataSource({
+    const dataSource4 = useArrayDataSource({
         items: items4,
         getParentId: (item) => item.customParentId,
     }, []);
 
     return (
         <>
-            <DatasourceViewer
+            <DataSourceViewer
                 exampleTitle="When id field is custom"
                 value={ value1 }
                 onValueChange={ onValueChange1 }
-                datasource={ datasource1 }
+                dataSource={ dataSource1 }
             />
-            <DatasourceViewer
+            <DataSourceViewer
                 exampleTitle="When parent id field is parentId"
                 value={ value2 }
                 onValueChange={ onValueChange2 }
-                datasource={ datasource2 }
+                dataSource={ dataSource2 }
             />
-            <DatasourceViewer
+            <DataSourceViewer
                 exampleTitle="When parentId is undefined"
                 value={ value3 }
                 onValueChange={ onValueChange3 }
-                datasource={ datasource3 }
+                dataSource={ dataSource3 }
             />
-            <DatasourceViewer
+            <DataSourceViewer
                 exampleTitle="When custom getParentId is specified"
                 value={ value4 }
                 onValueChange={ onValueChange4 }
-                datasource={ datasource4 }
+                dataSource={ dataSource4 }
             />
         </>
     );

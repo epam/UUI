@@ -3,19 +3,19 @@ import {
     DataColumnProps, DataTableState, IDataSource, IEditable,
 } from '@epam/uui-core';
 import { DataTable, Panel, Text } from '@epam/promo';
-import css from './DatasourceTableViewer.module.scss';
+import css from './DataSourceTableViewer.module.scss';
 
 interface Props<TItem, TId> extends IEditable<DataTableState> {
     exampleTitle?: string;
     selectAll?: boolean;
     getName?: (item: TItem) => string;
     columns: DataColumnProps<TItem>[];
-    datasource: IDataSource<TItem, TId, any>;
+    dataSource: IDataSource<TItem, TId, any>;
 }
 
-export function DatasourceTableViewer<TItem, TId>(props: Props<TItem, TId>) {
-    const { value, onValueChange, datasource, columns, exampleTitle } = props;
-    const view = datasource.useView(value, onValueChange);
+export function DataSourceTableViewer<TItem, TId>(props: Props<TItem, TId>) {
+    const { value, onValueChange, dataSource, columns, exampleTitle } = props;
+    const view = dataSource.useView(value, onValueChange);
 
     return (
         <Panel shadow>

@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "By default, datasources are looking for the id at the ",
+            "text": "By default, dataSources are looking for the id at the ",
             "marks": []
           },
           {
@@ -50,12 +50,12 @@
             "object": "inline",
             "type": "link",
             "data": {
-              "url": "/documents?id=datasources-lazy-datasource&mode=doc&skin=UUI4_promo&category=datasources"
+              "url": "/documents?id=dataSources-lazy-dataSource&mode=doc&skin=UUI4_promo&category=dataSources"
             },
             "nodes": [
               {
                 "object": "text",
-                "text": "LazyDatasource",
+                "text": "LazyDataSource",
                 "marks": [
                   {
                     "object": "mark",
@@ -128,7 +128,7 @@
           },
           {
             "object": "text",
-            "text": " to the datasource props.",
+            "text": " to the dataSource props.",
             "marks": []
           }
         ]

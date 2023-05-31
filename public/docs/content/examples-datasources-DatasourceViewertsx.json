@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To use the power of a datasource it is required to: ",
+            "text": "To use the power of a dataSource it is required to: ",
             "marks": []
           }
         ]
@@ -33,7 +33,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": " define a datasource;",
+                    "text": " define a dataSource;",
                     "marks": []
                   }
                 ]
@@ -73,7 +73,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "DatasourceState",
+                    "text": "DataSourceState",
                     "marks": [
                       {
                         "object": "mark",

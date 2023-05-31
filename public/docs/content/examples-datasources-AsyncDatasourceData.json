@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To represent some data with ArrayDatasource, it should be fetched  by the datasource via ",
+            "text": "To represent some data with ArrayDataSource, it should be fetched  by the dataSource via ",
             "marks": []
           },
           {

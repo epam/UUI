@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In this chapter, specific props of the AsyncDatasource will be overviewed in detail.",
+            "text": "In this chapter, specific props of the AsyncDataSource will be overviewed in detail.",
             "marks": []
           }
         ]
@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "AsyncDatasource",
+            "text": "AsyncDataSource",
             "marks": [
               {
                 "object": "mark",
@@ -39,7 +39,7 @@
           },
           {
             "object": "text",
-            "text": "ArrayDatasource",
+            "text": "ArrayDataSource",
             "marks": [
               {
                 "object": "mark",
@@ -69,12 +69,12 @@
             "object": "inline",
             "type": "link",
             "data": {
-              "url": "/documents?id=datasources-array-datasource&mode=doc&skin=UUI4_promo&category=datasources-details"
+              "url": "/documents?id=dataSources-array-dataSource&mode=doc&skin=UUI4_promo&category=dataSources-details"
             },
             "nodes": [
               {
                 "object": "text",
-                "text": "ArrayDatasource",
+                "text": "ArrayDataSource",
                 "marks": [
                   {
                     "object": "mark",
@@ -111,7 +111,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "AsyncDatasourceProps",
+            "text": "AsyncDataSourceProps",
             "marks": [
               {
                 "object": "mark",
@@ -127,7 +127,7 @@
           },
           {
             "object": "text",
-            "text": "DatasourceProps",
+            "text": "DataSourceProps",
             "marks": [
               {
                 "object": "mark",
@@ -138,7 +138,7 @@
           },
           {
             "object": "text",
-            "text": " chapter, so, only the specific one will be described. You can read about base props and a datasource state at:",
+            "text": " chapter, so, only the specific one will be described. You can read about base props and a dataSource state at:",
             "marks": []
           }
         ]
@@ -167,12 +167,12 @@
                     "object": "inline",
                     "type": "link",
                     "data": {
-                      "url": "/documents?id=datasources-base-props&mode=doc&skin=UUI4_promo&category=datasources-details"
+                      "url": "/documents?id=dataSources-base-props&mode=doc&skin=UUI4_promo&category=dataSources-details"
                     },
                     "nodes": [
                       {
                         "object": "text",
-                        "text": "Datasource Props",
+                        "text": "DataSource Props",
                         "marks": [
                           {
                             "object": "mark",
@@ -217,7 +217,7 @@
                     "object": "inline",
                     "type": "link",
                     "data": {
-                      "url": "/documents?id=datasources-base-props&mode=doc&skin=UUI4_promo&category=datasources-details"
+                      "url": "/documents?id=dataSources-base-props&mode=doc&skin=UUI4_promo&category=dataSources-details"
                     },
                     "nodes": [
                       {
@@ -242,7 +242,7 @@
                     "object": "inline",
                     "type": "link",
                     "data": {
-                      "url": "/documents?id=datasources-row-options&mode=doc&skin=UUI4_promo&category=datasources-details"
+                      "url": "/documents?id=dataSources-row-options&mode=doc&skin=UUI4_promo&category=dataSources-details"
                     },
                     "nodes": [
                       {
@@ -298,7 +298,7 @@
                     "object": "inline",
                     "type": "link",
                     "data": {
-                      "url": "/documents?id=datasources-datasource-state&mode=doc&skin=UUI4_promo&category=datasources-details"
+                      "url": "/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources-details"
                     },
                     "nodes": [
                       {

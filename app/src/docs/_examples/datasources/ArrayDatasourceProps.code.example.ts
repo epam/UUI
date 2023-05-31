@@ -1,6 +1,6 @@
 import { BaseListViewProps, ITree } from '@epam/uui-core';
 
-export interface ArrayDatasourceProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
+export interface ArrayDataSourceProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     items?: TItem[] | ITree<TItem, TId>;
     getSearchFields?(item: TItem): string[];
     sortBy?(

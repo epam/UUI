@@ -753,7 +753,7 @@
                           },
                           {
                             "object": "text",
-                            "text": ", not to break users' own implementation of datasources.",
+                            "text": ", not to break users' own implementation of dataSources.",
                             "marks": []
                           }
                         ]

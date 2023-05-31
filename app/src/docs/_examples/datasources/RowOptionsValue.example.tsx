@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataSourceState, useArrayDataSource, useForm } from '@epam/uui-core';
-import { DatasourceTableViewer, datasourceColumns } from '@epam/uui-docs';
+import { DataSourceTableViewer, dataSourceColumns } from '@epam/uui-docs';
 
 interface Item {
     id: string;
@@ -20,7 +20,7 @@ export default function RowOptionsValueExample() {
     // under the hood
     const [item, onItemChange] = useState(items[0]);
     const [value1, onValueChange1] = useState<DataSourceState>({});
-    const datasource1 = useArrayDataSource({
+    const dataSource1 = useArrayDataSource({
         items: items,
         getRowOptions: () => ({
             value: item,
@@ -34,7 +34,7 @@ export default function RowOptionsValueExample() {
         onSave: () => Promise.resolve(),
     });
     const [value2, onValueChange2] = useState<DataSourceState>({});
-    const datasource2 = useArrayDataSource({
+    const dataSource2 = useArrayDataSource({
         items: formValue2.items,
         getRowOptions: (_, index) => ({
             ...lens2.prop('items').index(index).toProps(),
@@ -43,19 +43,19 @@ export default function RowOptionsValueExample() {
 
     return (
         <>
-            <DatasourceTableViewer
+            <DataSourceTableViewer
                 exampleTitle="Under the hood"
                 value={ value1 }
                 onValueChange={ onValueChange1 }
-                datasource={ datasource1 }
-                columns={ datasourceColumns }
+                dataSource={ dataSource1 }
+                columns={ dataSourceColumns }
             />
-            <DatasourceTableViewer
+            <DataSourceTableViewer
                 exampleTitle="How it is usually used"
                 value={ value2 }
                 onValueChange={ onValueChange2 }
-                datasource={ datasource2 }
-                columns={ datasourceColumns }
+                dataSource={ dataSource2 }
+                columns={ dataSourceColumns }
             />
         </>
     );

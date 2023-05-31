@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
-import { DatasourceTableViewer, datasourceTextColumns } from '@epam/uui-docs';
+import { DataSourceTableViewer, dataSourceTextColumns } from '@epam/uui-docs';
 
 const items = [
     { id: '1', name: 'Parent 1' },
@@ -18,45 +18,45 @@ const items = [
 
 export default function RowOptionsCheckboxExample() {
     const [value1, onValueChange1] = useState<DataSourceState>({});
-    const datasource1 = useArrayDataSource({
+    const dataSource1 = useArrayDataSource({
         items,
         rowOptions: { checkbox: { isVisible: false } },
     }, []);
 
     const [value2, onValueChange2] = useState<DataSourceState>({});
-    const datasource2 = useArrayDataSource({
+    const dataSource2 = useArrayDataSource({
         items,
         rowOptions: { checkbox: { isVisible: true } },
     }, []);
 
     const [value3, onValueChange3] = useState<DataSourceState>({});
-    const datasource3 = useArrayDataSource({
+    const dataSource3 = useArrayDataSource({
         items,
         rowOptions: { checkbox: { isVisible: true, isDisabled: true } },
     }, []);
 
     return (
         <>
-            <DatasourceTableViewer
+            <DataSourceTableViewer
                 exampleTitle="Without checkboxes"
                 value={ value1 }
                 onValueChange={ onValueChange1 }
-                datasource={ datasource1 }
-                columns={ datasourceTextColumns }
+                dataSource={ dataSource1 }
+                columns={ dataSourceTextColumns }
             />
-            <DatasourceTableViewer
+            <DataSourceTableViewer
                 exampleTitle="With visible checkboxes"
                 value={ value2 }
                 onValueChange={ onValueChange2 }
-                datasource={ datasource2 }
-                columns={ datasourceTextColumns }
+                dataSource={ dataSource2 }
+                columns={ dataSourceTextColumns }
             />
-            <DatasourceTableViewer
+            <DataSourceTableViewer
                 exampleTitle="With visible disabled checkboxes"
                 value={ value3 }
                 onValueChange={ onValueChange3 }
-                datasource={ datasource3 }
-                columns={ datasourceTextColumns }
+                dataSource={ dataSource3 }
+                columns={ dataSourceTextColumns }
             />
         </>
     );

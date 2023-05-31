@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataSourceState, useArrayDataSource, useForm } from '@epam/uui-core';
-import { DatasourceTableViewer, datasourceTextColumns } from '@epam/uui-docs';
+import { DataSourceTableViewer, dataSourceTextColumns } from '@epam/uui-docs';
 
 interface Item {
     id: string;
@@ -27,7 +27,7 @@ export default function RowOptionsDndExample() {
         onSave: () => Promise.resolve(),
     });
 
-    const datasource1 = useArrayDataSource({
+    const dataSource1 = useArrayDataSource({
         items: value.items,
         getRowOptions: (item, dstIndex) => ({
             dnd: {
@@ -54,12 +54,12 @@ export default function RowOptionsDndExample() {
     }, []);
 
     return (
-        <DatasourceTableViewer
+        <DataSourceTableViewer
             exampleTitle="Drag'n'drop handling"
             value={ value1 }
             onValueChange={ onValueChange1 }
-            datasource={ datasource1 }
-            columns={ datasourceTextColumns }
+            dataSource={ dataSource1 }
+            columns={ dataSourceTextColumns }
         />
     );
 }
