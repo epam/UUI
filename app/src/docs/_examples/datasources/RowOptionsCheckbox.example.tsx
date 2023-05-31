@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
-import DatasourceTableViewer from './DatasourceTableViewer';
-import { textColumns } from './columns';
+import { DatasourceTableViewer, datasourceTextColumns } from '@epam/uui-docs';
 
 const items = [
     { id: '1', name: 'Parent 1' },
@@ -43,21 +42,21 @@ export default function RowOptionsCheckboxExample() {
                 value={ value1 }
                 onValueChange={ onValueChange1 }
                 datasource={ datasource1 }
-                columns={ textColumns }
+                columns={ datasourceTextColumns }
             />
             <DatasourceTableViewer
                 exampleTitle="With visible checkboxes"
                 value={ value2 }
                 onValueChange={ onValueChange2 }
                 datasource={ datasource2 }
-                columns={ textColumns }
+                columns={ datasourceTextColumns }
             />
             <DatasourceTableViewer
                 exampleTitle="With visible disabled checkboxes"
                 value={ value3 }
                 onValueChange={ onValueChange3 }
                 datasource={ datasource3 }
-                columns={ textColumns }
+                columns={ datasourceTextColumns }
             />
         </>
     );

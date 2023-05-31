@@ -2,7 +2,7 @@ import React from 'react';
 import { DataColumnProps } from '@epam/uui-core';
 import { DataTableCell, TextInput, Text } from '@epam/promo';
 
-export const columns: DataColumnProps<{ name: string }, number, any>[] = [
+export const datasourceColumns: DataColumnProps<{ name: string }, number, any>[] = [
     {
         key: 'name',
         caption: 'Name',
@@ -19,7 +19,7 @@ export const columns: DataColumnProps<{ name: string }, number, any>[] = [
     },
 ];
 
-export const textColumns: DataColumnProps<{ name: string }, number, any>[] = [
+export const datasourceTextColumns: DataColumnProps<{ name: string }, number, any>[] = [
     {
         key: 'name',
         caption: 'Name',

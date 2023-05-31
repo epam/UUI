@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataQueryFilter, DataSourceState, LazyDataSourceApiRequest, LazyDataSourceApiRequestContext, useLazyDataSource } from '@epam/uui-core';
-import { DatasourceViewer } from './DatasourceViewer';
+import { DatasourceViewer } from '@epam/uui-docs';
 
 interface Item {
     id: string;

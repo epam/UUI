@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { DataSourceState, useArrayDataSource, useForm } from '@epam/uui-core';
-import DatasourceTableViewer from './DatasourceTableViewer';
-import { columns } from './columns';
+import { DatasourceTableViewer, datasourceColumns } from '@epam/uui-docs';
 
 interface Item {
     id: string;
@@ -49,14 +48,14 @@ export default function RowOptionsValueExample() {
                 value={ value1 }
                 onValueChange={ onValueChange1 }
                 datasource={ datasource1 }
-                columns={ columns }
+                columns={ datasourceColumns }
             />
             <DatasourceTableViewer
                 exampleTitle="How it is usually used"
                 value={ value2 }
                 onValueChange={ onValueChange2 }
                 datasource={ datasource2 }
-                columns={ columns }
+                columns={ datasourceColumns }
             />
         </>
     );

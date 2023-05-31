@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DatasourceViewer } from './DatasourceViewer';
+import { DatasourceViewer } from '@epam/uui-docs';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
 
 const items1 = [

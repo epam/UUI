@@ -13,7 +13,7 @@ interface Props<TItem, TId> extends IEditable<DataTableState> {
     datasource: IDataSource<TItem, TId, any>;
 }
 
-export default function DatasourceTableViewer<TItem, TId>(props: Props<TItem, TId>) {
+export function DatasourceTableViewer<TItem, TId>(props: Props<TItem, TId>) {
     const { value, onValueChange, datasource, columns, exampleTitle } = props;
     const view = datasource.useView(value, onValueChange);
 

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { SuccessNotification, Text } from '@epam/promo';
 import { DataSourceState, INotification, useArrayDataSource, useUuiContext } from '@epam/uui-core';
-import DatasourceTableViewer from './DatasourceTableViewer';
-import { textColumns } from './columns';
+import { DatasourceTableViewer, datasourceTextColumns } from '@epam/uui-docs';
 
 const items = [
     { id: '1', name: 'Parent 1' },
@@ -53,7 +52,7 @@ export default function RowOptionsOnClickExample() {
             value={ value }
             onValueChange={ onValueChange }
             datasource={ datasource1 }
-            columns={ textColumns }
+            columns={ datasourceTextColumns }
         />
     );
 }

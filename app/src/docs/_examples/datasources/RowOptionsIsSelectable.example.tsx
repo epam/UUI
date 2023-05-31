@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
-import DatasourceTableViewer from './DatasourceTableViewer';
-import { textColumns } from './columns';
+import { DatasourceTableViewer, datasourceTextColumns } from '@epam/uui-docs';
 
 const items = [
     { id: '1', name: 'Parent 1' },
@@ -30,7 +29,7 @@ export default function RowOptionsIsSelectableExample() {
             value={ value1 }
             onValueChange={ onValueChange1 }
             datasource={ datasource1 }
-            columns={ textColumns }
+            columns={ datasourceTextColumns }
         />
     );
 }
