@@ -1,5 +1,7 @@
 /// <reference path="../uui_globals.d.ts" />
 
+declare let __COMMIT_HASH__: string;
+
 // TBD: react-measure is abandoned, and it's typings are not compatible with modern react versions. We need to find a replacement.
 // declare module 'react-measure';
 

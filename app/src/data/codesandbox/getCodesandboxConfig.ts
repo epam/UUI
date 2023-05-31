@@ -1,6 +1,5 @@
-import { CodesandboxFilesRecord } from './service';
-
 export type FilesRecord = Record<string, { isBinary: boolean; content: string }>;
+export type CodesandboxFilesRecord = Record<string, string>;
 
 export const getCodesandboxConfig = (content: string, stylesheets: FilesRecord, initialFiles: CodesandboxFilesRecord) => ({
     ...stylesheets,

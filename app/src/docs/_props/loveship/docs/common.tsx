@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IHasIcon, Icon } from '@epam/uui-core';
 import { ColorPicker, IconPicker } from './index';
 import { DocBuilder } from '@epam/uui-docs';
-import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, commonControlColors, allEpamBadgeColors } from '@epam/loveship';
+import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, allEpamBadgeColors, commonControlColors } from '@epam/loveship';
 import { TextMods, IHasEditMode } from '@epam/uui';
 import { getIconList } from '../../../../documents/iconListHelpers';
 import { colors } from './helpers/colorMap';

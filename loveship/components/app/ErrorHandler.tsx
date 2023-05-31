@@ -81,6 +81,7 @@ export interface ErrorConfig {
 export interface ErrorPageProps extends IHasCX, IHasChildren {
     errorPageConfig?: ErrorConfig;
     theme?: Theme;
+    onNotificationError?: (errors: ApiCallInfo) => void;
 }
 
 export function ErrorHandler(props: ErrorPageProps) {
@@ -95,13 +96,17 @@ export function ErrorHandler(props: ErrorPageProps) {
 
     const showNotifications = (errors: ApiCallInfo[]) => {
         errors.forEach((c) => {
-            uuiNotifications.show((props) => (
-                <ErrorNotification { ...props }>
-                    <Text size="36">
-                        {c.responseData && c.responseData.errorMessage}
-                    </Text>
-                </ErrorNotification>
-            ));
+            props.onNotificationError ? (
+                props.onNotificationError(c)
+            ) : (
+                uuiNotifications.show((props) => (
+                    <ErrorNotification { ...props }>
+                        <Text size="36">
+                            {c.responseData && c.responseData.errorMessage}
+                        </Text>
+                    </ErrorNotification>
+                ))
+            );
             c.dismissError();
         });
     };
