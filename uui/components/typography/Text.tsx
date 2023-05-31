@@ -1,4 +1,3 @@
-import * as React from 'react';
 import css from './Text.module.scss';
 import * as types from '../types';
 import { Text as uuiText, TextProps as UuiTextProps } from '@epam/uui-components';
@@ -8,7 +7,7 @@ import { getTextClasses, TextSettings } from '../../helpers/textLayout';
 export interface TextMods extends TextSettings {
     size?: types.TextSize | '42';
     font?: types.FontStyle;
-    color?: 'info' | 'warning' | 'error' | 'success' | 'brand' | 'primary' | 'secondary' | 'disabled' | 'contrast';
+    color?: 'info' | 'warning' | 'error' | 'success' | 'brand' | 'primary' | 'secondary' | 'disabled' | 'contrast' | 'white';
 }
 
 export type TextProps = UuiTextProps & TextMods;

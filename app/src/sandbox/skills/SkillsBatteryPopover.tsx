@@ -92,7 +92,7 @@ export function SkillsBatteryPopover(props: ISkillsBatteryProps) {
 
     const TargetBody = React.forwardRef<unknown, { isOpen: boolean }>((bodyProps, ref) => (
         <FlexRow ref={ ref } cx={ cx([css.targetBodyContainer, { [css.targetBodyContainerHover]: bodyProps.isOpen }]) } size="30">
-            <IconContainer icon={ isFavorite?.status ? heartIconFilled : heartIconOutline } cx={ isFavorite?.status ? css.iconRed : css.iconGray50 } />
+            <IconContainer icon={ isFavorite?.status ? heartIconFilled : heartIconOutline } cx={ isFavorite?.status ? css.iconRed : css.iconGray40 } />
             <SmallBattery rating={ level } />
             <Text cx={ cx(css.skillText) } fontSize="14" lineHeight="18" font="sans">
                 {props.data?.caption}

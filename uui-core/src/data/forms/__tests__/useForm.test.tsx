@@ -315,7 +315,7 @@ describe('useForm', () => {
                     onError: jest.fn(),
                     getMetadata: () => testMetadata,
                 });
-            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, wrapper);
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, { wrapper });
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
@@ -459,7 +459,7 @@ describe('useForm', () => {
                 beforeLeave: () => Promise.resolve(false),
                 getMetadata: () => testMetadata,
             });
-            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, wrapper);
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, { wrapper });
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
@@ -479,7 +479,7 @@ describe('useForm', () => {
                     beforeLeave: beforeLeaveMock,
                     getMetadata: () => testMetadata,
                 });
-            const { result, unmount } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, wrapper);
+            const { result, unmount } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, { wrapper });
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
@@ -500,7 +500,7 @@ describe('useForm', () => {
                     beforeLeave: () => Promise.resolve(false),
                     getMetadata: () => testMetadata,
                 });
-            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, wrapper);
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, { wrapper });
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(testUuiCtx.uuiUserSettings.get<IFoo>(settingsKey).dummy).toBe('hi');
@@ -523,7 +523,7 @@ describe('useForm', () => {
                     onError: onErrorSpy,
                     getMetadata: () => testMetadata,
                 });
-            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, wrapper);
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, { wrapper });
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(testUuiCtx.uuiUserSettings.get<IFoo>(settingsKey).dummy).toBe('hi');
