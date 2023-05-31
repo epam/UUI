@@ -208,7 +208,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     }
 
     handleValueChange = (newValue: RangeDatePickerValue) => {
-        if (this.props.value.from !== newValue.from || this.props.value.to !== newValue.to) {
+        if (this.props.value?.from !== newValue.from || this.props.value?.to !== newValue.to) {
             this.props.onValueChange(newValue);
 
             if (this.props.getValueChangeAnalyticsEvent) {

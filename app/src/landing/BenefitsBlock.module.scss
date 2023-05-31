@@ -1,6 +1,10 @@
 @use '~@epam/promo/assets/styles/colors' as *;
 @use '~@epam/promo/assets/styles/fonts' as *;
-@use '~@epam/promo/assets/styles/controlColors' as *;
+
+@mixin control-focus($width: 2px, $offset: 2px) {
+    outline: $blue auto $width;
+    outline-offset: $offset;
+}
 
 .layout {
     margin: 0 auto;

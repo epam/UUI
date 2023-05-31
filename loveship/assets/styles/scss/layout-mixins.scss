@@ -1,9 +1,0 @@
-@mixin padding($size) {
-    padding-left: $size + px;
-    padding-right: $size + px;
-}
-
-@mixin vPadding($size) {
-    padding-top: $size + px;
-    padding-bottom: $size + px;
-}

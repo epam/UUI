@@ -16,8 +16,8 @@ import '@epam/assets/theme/theme_vanilla_thunder.scss';
 import './index.module.scss';
 
 const history = createBrowserHistory();
-// @ts-ignore (COMMIT_HASH will be replaced to a real string by Webpack)
-window.BUILD_INFO = { hash: COMMIT_HASH };
+// __COMMIT_HASH__ & __PACKAGE_VERSION__ will be replaced to a real string by Webpack
+(window as any).BUILD_INFO = { hash: __COMMIT_HASH__ };
 
 export class UuiEnhancedApp extends React.Component {
     onInitCompleted = (context: CommonContexts<TApi, UuiContexts>, ampCode: string) => {

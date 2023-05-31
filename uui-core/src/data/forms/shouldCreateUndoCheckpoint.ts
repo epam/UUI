@@ -22,6 +22,7 @@ export function shouldCreateUndoCheckpoint(a: any, b: any, c: any): boolean {
         // - we'll find this on the next level of recursion
         a = a || {};
         b = b || {};
+        c = c || {};
         const keys: any[] = Object.keys({ ...a, ...b, ...c });
         return keys.some((key) => shouldCreateUndoCheckpoint(a[key], b[key], c[key]));
     }
