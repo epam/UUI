@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { DataSourceState, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { DatasourceViewer } from './DatasourceViewer';
+import { FlexRow, Paginator, Panel } from '@epam/promo';
 import { Person } from '@epam/uui-docs';
 import { TApi } from '../../../data';
 
@@ -36,10 +37,17 @@ export default function DatasourceStatePageExample() {
     );
 
     return (
-        <DatasourceViewer
-            value={ value1 }
-            onValueChange={ onValueChange1 }
-            datasource={ dataSource }
-        />
+        <Panel>
+            <FlexRow>
+                <DatasourceViewer
+                    value={ value1 }
+                    onValueChange={ onValueChange1 }
+                    datasource={ dataSource }
+                />
+            </FlexRow>
+            <FlexRow>
+                <Paginator size="30" value={ value1.page } onValueChange={ (page) => onValueChange1({ ...value1, page }) } totalPages={ 100 } />
+            </FlexRow>
+        </Panel>
     );
 }
