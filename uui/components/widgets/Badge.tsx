@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { EpamBadgeSemanticColor } from '../types';
 import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
