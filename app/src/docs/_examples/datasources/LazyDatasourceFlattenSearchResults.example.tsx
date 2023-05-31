@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { Panel, TextInput, FlexRow } from '@epam/promo';
 import { DataQueryFilter, DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
-import { DatasourceViewer } from '@epam/uui-docs';
+import { DataSourceViewer } from '@epam/uui-docs';
 import { TApi } from '../../../data';
 
-export default function LazyDatasourceFlattenSearchResultsExample() {
+export default function LazyDataSourceFlattenSearchResultsExample() {
     const svc = useUuiContext<TApi>();
 
     const [value1, onValueChange1] = useState<DataSourceState>({});
-    const datasource1 = useLazyDataSource<Location, string, DataQueryFilter<Location>>({
+    const dataSource1 = useLazyDataSource<Location, string, DataQueryFilter<Location>>({
         api: (request, ctx) => {
             const { search } = request;
             // if search is specified, it is required to search over all the children,
@@ -34,10 +34,10 @@ export default function LazyDatasourceFlattenSearchResultsExample() {
                 />
             </FlexRow>
             <FlexRow>
-                <DatasourceViewer
+                <DataSourceViewer
                     value={ value1 }
                     onValueChange={ onValueChange1 }
-                    datasource={ datasource1 }
+                    dataSource={ dataSource1 }
                 />
             </FlexRow>
         </Panel>

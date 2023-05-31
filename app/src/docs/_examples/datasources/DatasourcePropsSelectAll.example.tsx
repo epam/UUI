@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DatasourceViewer } from '@epam/uui-docs';
+import { DataSourceViewer } from '@epam/uui-docs';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
 
 const items = [
@@ -16,9 +16,9 @@ const items = [
     { id: '3.1', name: 'Child 3.1', parentId: '3' },
 ];
 
-export default function DatasourcePropsSelectAllExample() {
+export default function DataSourcePropsSelectAllExample() {
     const [value1, onValueChange1] = useState<DataSourceState>({});
-    const datasource1 = useArrayDataSource({
+    const dataSource1 = useArrayDataSource({
         items,
         rowOptions: { checkbox: { isVisible: true } },
         isFoldedByDefault: () => false,
@@ -27,7 +27,7 @@ export default function DatasourcePropsSelectAllExample() {
     }, []);
 
     const [value2, onValueChange2] = useState<DataSourceState>({});
-    const datasource2 = useArrayDataSource({
+    const dataSource2 = useArrayDataSource({
         items,
         rowOptions: { checkbox: { isVisible: true } },
         isFoldedByDefault: () => false,
@@ -38,18 +38,18 @@ export default function DatasourcePropsSelectAllExample() {
 
     return (
         <>
-            <DatasourceViewer
+            <DataSourceViewer
                 exampleTitle="Select all in 'explicit' mode"
                 value={ value1 }
                 onValueChange={ onValueChange1 }
-                datasource={ datasource1 }
+                dataSource={ dataSource1 }
                 selectAll={ true }
             />
-            <DatasourceViewer
+            <DataSourceViewer
                 exampleTitle="Select all in 'implicit' mode"
                 value={ value2 }
                 onValueChange={ onValueChange2 }
-                datasource={ datasource2 }
+                dataSource={ dataSource2 }
                 selectAll={ true }
             />
         </>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DatasourceViewer } from '@epam/uui-docs';
+import { DataSourceViewer } from '@epam/uui-docs';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
 
 const items = [
@@ -16,18 +16,18 @@ const items = [
     { id: '3.1', name: 'Child 3.1', parentId: '3' },
 ];
 
-export default function DatasourcePropsIsFoldedByDefaultExample() {
+export default function DataSourcePropsIsFoldedByDefaultExample() {
     const [value, onValueChange] = useState<DataSourceState>({});
-    const datasource1 = useArrayDataSource({
+    const dataSource1 = useArrayDataSource({
         items: items,
         isFoldedByDefault: ({ id }) => id !== '2',
     }, []);
 
     return (
-        <DatasourceViewer
+        <DataSourceViewer
             value={ value }
             onValueChange={ onValueChange }
-            datasource={ datasource1 }
+            dataSource={ dataSource1 }
         />
     );
 }

@@ -1,6 +1,6 @@
 import { BaseListViewProps } from '@epam/uui-core';
 
-export interface AsyncDatasourceProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
+export interface AsyncDataSourceProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     api(): Promise<TItem[]>;
     getSearchFields?(item: TItem): string[];
     sortBy?(

@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "This chapter contains an overview of a datasource state.",
+            "text": "This chapter contains an overview of a dataSource state.",
             "marks": []
           }
         ]

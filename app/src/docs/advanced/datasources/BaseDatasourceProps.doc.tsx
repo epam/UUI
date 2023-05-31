@@ -1,22 +1,22 @@
 import * as React from 'react';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../../common';
 
-export class DatasourcesBaseDatasourcePropsDoc extends BaseDocsBlock {
-    title = 'Datasource Props';
+export class DataSourcesBaseDataSourcePropsDoc extends BaseDocsBlock {
+    title = 'DataSource Props';
 
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName="datasources-base-props" />
+                <EditableDocContent fileName="dataSources-base-props" />
 
-                <DocExample title="BaseDatasourceProps" path="./_examples/datasources/BaseDatasourceProps.code.example.ts" onlyCode={ true } />
-                <EditableDocContent fileName="datasources-base-props-overview" />
+                <DocExample title="Common DataSource Props" path="./_examples/dataSources/BaseDataSourceProps.code.example.ts" onlyCode={ true } />
+                <EditableDocContent fileName="dataSources-base-props-overview" />
                 
-                <DocExample title="getId and getParentId" path="./_examples/datasources/DatasourcePropsIds.example.tsx" />
-                <DocExample title="complexIds" path="./_examples/datasources/DatasourcePropsComplexIds.example.tsx" />
-                <DocExample title="isFoldedByDefault" path="./_examples/datasources/DatasourcePropsIsFoldedByDefault.example.tsx" />
-                <DocExample title="cascadeSelection" path="./_examples/datasources/DatasourcePropsCascadeSelection.example.tsx" />
-                <DocExample title="selectAll" path="./_examples/datasources/DatasourcePropsSelectAll.example.tsx" />
+                <DocExample title="getId and getParentId" path="./_examples/dataSources/DataSourcePropsIds.example.tsx" />
+                <DocExample title="complexIds" path="./_examples/dataSources/DataSourcePropsComplexIds.example.tsx" />
+                <DocExample title="isFoldedByDefault" path="./_examples/dataSources/DataSourcePropsIsFoldedByDefault.example.tsx" />
+                <DocExample title="cascadeSelection" path="./_examples/dataSources/DataSourcePropsCascadeSelection.example.tsx" />
+                <DocExample title="selectAll" path="./_examples/dataSources/DataSourcePropsSelectAll.example.tsx" />
             </>
         );
     }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
-import { DatasourceViewer } from '@epam/uui-docs';
+import { DataSourceViewer } from '@epam/uui-docs';
 
 interface Item {
     id: string;
@@ -29,7 +29,7 @@ interface Filter {
     };
 }
 
-export default function DatasourceStateFoldedExample() {
+export default function DataSourceStateFoldedExample() {
     const [value1, onValueChange1] = useState<DataSourceState<Filter>>({
         filter: {
             not: {
@@ -38,18 +38,18 @@ export default function DatasourceStateFoldedExample() {
             },
         },
     });
-    const datasource1 = useArrayDataSource<Item, string, Filter>({
+    const dataSource1 = useArrayDataSource<Item, string, Filter>({
         items,
         getFilter: (filter) => ({ id, parentId }) =>
             id !== filter.not.id && parentId !== filter.not.parentId,
     }, []);
     
     return (
-        <DatasourceViewer
+        <DataSourceViewer
             exampleTitle="Predefined filter"
             value={ value1 }
             onValueChange={ onValueChange1 }
-            datasource={ datasource1 }
+            dataSource={ dataSource1 }
         />
     );
 }

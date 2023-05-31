@@ -32,7 +32,7 @@
           },
           {
             "object": "text",
-            "text": "Datasource state",
+            "text": "DataSource state",
             "marks": [
               {
                 "object": "mark",
@@ -48,7 +48,7 @@
           },
           {
             "object": "text",
-            "text": "Datasource",
+            "text": "DataSource",
             "marks": [
               {
                 "object": "mark",

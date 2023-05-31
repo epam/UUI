@@ -53,7 +53,7 @@
           },
           {
             "object": "text",
-            "text": "data with ArrayDatasource, it should be passed to the datasource via ",
+            "text": "data with ArrayDataSource, it should be passed to the dataSource via ",
             "marks": []
           },
           {

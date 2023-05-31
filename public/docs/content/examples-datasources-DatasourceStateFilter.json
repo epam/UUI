@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To enable a filter at the Datasource, it is required to pass it as a part of the Datasource state. ",
+            "text": "To enable a filter at the DataSource, it is required to pass it as a part of the DataSource state. ",
             "marks": []
           }
         ]

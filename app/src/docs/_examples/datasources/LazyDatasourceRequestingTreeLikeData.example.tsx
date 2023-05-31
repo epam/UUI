@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataQueryFilter, DataSourceState, LazyDataSourceApiRequest, LazyDataSourceApiRequestContext, useLazyDataSource } from '@epam/uui-core';
-import { DatasourceViewer } from '@epam/uui-docs';
+import { DataSourceViewer } from '@epam/uui-docs';
 
 interface Item {
     id: string;
@@ -43,16 +43,16 @@ async function api(
             })),
     };
 }
-export default function LazyDatasourceRequestingTreeLikeDataExample() {
+export default function LazyDataSourceRequestingTreeLikeDataExample() {
     const [value1, onValueChange1] = useState<DataSourceState>({});
-    const datasource1 = useLazyDataSource<Item, string, DataQueryFilter<Item>>({
+    const dataSource1 = useLazyDataSource<Item, string, DataQueryFilter<Item>>({
         api,
         getParentId: ({ parentId }) => parentId,
         getChildCount: () => 0,
     }, []);
 
     const [value2, onValueChange2] = useState<DataSourceState>({});
-    const datasource2 = useLazyDataSource<Item, string, DataQueryFilter<Item>>({
+    const dataSource2 = useLazyDataSource<Item, string, DataQueryFilter<Item>>({
         api,
         getParentId: ({ parentId }) => parentId,
         getChildCount: ({ childCount }) => childCount,
@@ -60,17 +60,17 @@ export default function LazyDatasourceRequestingTreeLikeDataExample() {
 
     return (
         <>
-            <DatasourceViewer
+            <DataSourceViewer
                 exampleTitle="Renders flatten structure, if getChildCount returns 0"
                 value={ value1 }
                 onValueChange={ onValueChange1 }
-                datasource={ datasource1 }
+                dataSource={ dataSource1 }
             />
-            <DatasourceViewer
+            <DataSourceViewer
                 exampleTitle="Renders tree-like structure, if getChildCount returns > 0"
                 value={ value2 }
                 onValueChange={ onValueChange2 }
-                datasource={ datasource2 }
+                dataSource={ dataSource2 }
             />
         </>
     );

@@ -40,7 +40,7 @@
           },
           {
             "object": "text",
-            "text": "Datasources",
+            "text": "DataSources",
             "marks": [
               {
                 "object": "mark",
@@ -115,7 +115,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "Datasource",
+                    "text": "DataSource",
                     "marks": [
                       {
                         "object": "mark",
@@ -230,7 +230,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "While explaining this part of the Datasources concept, it is necessary to keep the right level of abstraction. Instead of digging into the realization details, let us observe ways Datasource can be controlled by input.",
+            "text": "While explaining this part of the DataSources concept, it is necessary to keep the right level of abstraction. Instead of digging into the realization details, let us observe ways DataSource can be controlled by input.",
             "marks": []
           }
         ]
@@ -239,7 +239,7 @@
         "object": "block",
         "type": "image",
         "data": {
-          "src": "http://static.cdn.epam.com/uploads/4677cc268a04664255f99b470b345dca/uui/datasources/datasources.png",
+          "src": "http://static.cdn.epam.com/uploads/4677cc268a04664255f99b470b345dca/uui/dataSources/dataSources.png",
           "imageSize": {
             "width": 813,
             "height": 227
@@ -261,12 +261,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Datasource input can be split into two groups of params, ",
+            "text": "DataSource input can be split into two groups of params, ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "DatasourceProps",
+            "text": "DataSourceProps",
             "marks": [
               {
                 "object": "mark",
@@ -282,7 +282,7 @@
           },
           {
             "object": "text",
-            "text": "DatasourceState",
+            "text": "DataSourceState",
             "marks": [
               {
                 "object": "mark",
@@ -317,7 +317,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "DatasourceProps",
+            "text": "DataSourceProps",
             "marks": [
               {
                 "object": "mark",
@@ -460,7 +460,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "DatasourceState",
+            "text": "DataSourceState",
             "marks": [
               {
                 "object": "mark",
@@ -672,7 +672,7 @@
           },
           {
             "object": "text",
-            "text": "Datasource",
+            "text": "DataSource",
             "marks": [
               {
                 "object": "mark",
@@ -699,12 +699,12 @@
           },
           {
             "object": "text",
-            "text": "ch are displayed (returned by Datasource). That is a common pattern to change ",
+            "text": "ch are displayed (returned by DataSource). That is a common pattern to change ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "DatasourceState",
+            "text": "DataSourceState",
             "marks": [
               {
                 "object": "mark",
@@ -739,7 +739,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Datasources don't produce rows themselves and they don't contain any information about the state of rows. They return views, which contain that information.  Think about ",
+            "text": "DataSources don't produce rows themselves and they don't contain any information about the state of rows. They return views, which contain that information.  Think about ",
             "marks": []
           },
           {
@@ -755,12 +755,12 @@
           },
           {
             "object": "text",
-            "text": " as about factories of rows. Each datasource can return multiple views. Each view has to have its own ",
+            "text": " as about factories of rows. Each dataSource can return multiple views. Each view has to have its own ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "DatasourceState",
+            "text": "DataSourceState",
             "marks": [
               {
                 "object": "mark",
@@ -803,14 +803,14 @@
           },
           {
             "object": "text",
-            "text": " function of the datasource instance. You can see how views can be created by a datasource ",
+            "text": " function of the dataSource instance. You can see how views can be created by a dataSource ",
             "marks": []
           },
           {
             "object": "inline",
             "type": "link",
             "data": {
-              "url": "/documents?id=datasources-usage&mode=doc&skin=UUI4_promo&category=datasources"
+              "url": "/documents?id=dataSources-usage&mode=doc&skin=UUI4_promo&category=dataSources"
             },
             "nodes": [
               {
@@ -834,7 +834,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Types of datasources",
+            "text": "Types of dataSources",
             "marks": []
           }
         ]
@@ -846,7 +846,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Depending on the task, it is necessary to use different datasources:",
+            "text": "Depending on the task, it is necessary to use different dataSources:",
             "marks": []
           }
         ]
@@ -868,7 +868,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "ArrayDatasource",
+                    "text": "ArrayDataSource",
                     "marks": [
                       {
                         "object": "mark",
@@ -884,7 +884,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "ArrayDatasource",
+                    "text": "ArrayDataSource",
                     "marks": [
                       {
                         "object": "mark",
@@ -902,7 +902,7 @@
                     "object": "inline",
                     "type": "link",
                     "data": {
-                      "url": "/documents?id=datasources-array-datasource&mode=doc&skin=UUI4_promo&category=datasources"
+                      "url": "/documents?id=dataSources-array-dataSource&mode=doc&skin=UUI4_promo&category=dataSources"
                     },
                     "nodes": [
                       {
@@ -933,7 +933,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "AsyncDatasource",
+                    "text": "AsyncDataSource",
                     "marks": [
                       {
                         "object": "mark",
@@ -949,7 +949,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "AsyncDatasource",
+                    "text": "AsyncDataSource",
                     "marks": [
                       {
                         "object": "mark",
@@ -967,7 +967,7 @@
                     "object": "inline",
                     "type": "link",
                     "data": {
-                      "url": "http://localhost:3000/documents?id=datasources-async-datasource&mode=doc&skin=UUI4_promo&category=datasources"
+                      "url": "http://localhost:3000/documents?id=dataSources-async-dataSource&mode=doc&skin=UUI4_promo&category=dataSources"
                     },
                     "nodes": [
                       {
@@ -986,7 +986,7 @@
                     "object": "inline",
                     "type": "link",
                     "data": {
-                      "url": "/documents?id=datasources-async-datasource&mode=doc&skin=UUI4_promo&category=datasources"
+                      "url": "/documents?id=dataSources-async-dataSource&mode=doc&skin=UUI4_promo&category=dataSources"
                     },
                     "nodes": [
                       {
@@ -1017,7 +1017,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "LazyDatasource",
+                    "text": "LazyDataSource",
                     "marks": [
                       {
                         "object": "mark",
@@ -1033,7 +1033,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "LazyDatasource",
+                    "text": "LazyDataSource",
                     "marks": [
                       {
                         "object": "mark",
@@ -1051,7 +1051,7 @@
                     "object": "inline",
                     "type": "link",
                     "data": {
-                      "url": "/documents?id=datasources-lazy-datasource&mode=doc&skin=UUI4_promo&category=datasources"
+                      "url": "/documents?id=dataSources-lazy-dataSource&mode=doc&skin=UUI4_promo&category=dataSources"
                     },
                     "nodes": [
                       {
@@ -1079,12 +1079,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Each datasource accepts ",
+            "text": "Each dataSource accepts ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "DatasourceProps",
+            "text": "DataSourceProps",
             "marks": [
               {
                 "object": "mark",
@@ -1100,7 +1100,7 @@
           },
           {
             "object": "text",
-            "text": "DatasourceState",
+            "text": "DataSourceState",
             "marks": [
               {
                 "object": "mark",
@@ -1116,7 +1116,7 @@
           },
           {
             "object": "text",
-            "text": "DatasourceProps",
+            "text": "DataSourceProps",
             "marks": [
               {
                 "object": "mark",
@@ -1134,7 +1134,7 @@
             "object": "inline",
             "type": "link",
             "data": {
-              "url": "/documents?id=datasources-base-props&mode=doc&skin=UUI4_promo&category=datasources"
+              "url": "/documents?id=dataSources-base-props&mode=doc&skin=UUI4_promo&category=dataSources"
             },
             "nodes": [
               {
@@ -1151,7 +1151,7 @@
           },
           {
             "object": "text",
-            "text": "DatasourceState",
+            "text": "DataSourceState",
             "marks": [
               {
                 "object": "mark",
@@ -1169,7 +1169,7 @@
             "object": "inline",
             "type": "link",
             "data": {
-              "url": "/documents?id=datasources-datasource-state&mode=doc&skin=UUI4_promo&category=datasources"
+              "url": "/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources"
             },
             "nodes": [
               {
@@ -1205,7 +1205,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Datasources are used in ",
+            "text": "DataSources are used in ",
             "marks": []
           },
           {

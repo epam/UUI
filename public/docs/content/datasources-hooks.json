@@ -16,7 +16,7 @@
           },
           {
             "object": "text",
-            "text": "Datasource",
+            "text": "DataSource",
             "marks": [
               {
                 "object": "mark",
@@ -183,7 +183,7 @@
           },
           {
             "object": "text",
-            "text": " have changed, datasource is destroyed and recreated with new props, which came from the args of the hook.",
+            "text": " have changed, dataSource is destroyed and recreated with new props, which came from the args of the hook.",
             "marks": []
           }
         ]

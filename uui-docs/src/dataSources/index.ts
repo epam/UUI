@@ -1,3 +1,3 @@
-export * from './DatasourceViewer';
-export * from './DatasourceTableViewer';
+export * from './DataSourceViewer';
+export * from './DataSourceTableViewer';
 export * from './columns';

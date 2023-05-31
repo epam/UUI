@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DatasourceViewer } from '@epam/uui-docs';
+import { DataSourceViewer } from '@epam/uui-docs';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
 
 const items = [
@@ -8,9 +8,9 @@ const items = [
     { id: ['task', { complexId: 3 }], name: 'Record 3' },
 ];
 
-export default function DatasourcePropsComplexIdsExample() {
+export default function DataSourcePropsComplexIdsExample() {
     const [value, onValueChange] = useState<DataSourceState>({});
-    const datasource1 = useArrayDataSource({
+    const dataSource1 = useArrayDataSource({
         items: items,
         complexIds: true,
         rowOptions: {
@@ -19,10 +19,10 @@ export default function DatasourcePropsComplexIdsExample() {
     }, []);
 
     return (
-        <DatasourceViewer
+        <DataSourceViewer
             value={ value }
             onValueChange={ onValueChange }
-            datasource={ datasource1 }
+            dataSource={ dataSource1 }
         />
     );
 }

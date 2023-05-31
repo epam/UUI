@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { DataQueryFilter, DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
-import { DatasourceViewer } from '@epam/uui-docs';
+import { DataSourceViewer } from '@epam/uui-docs';
 import { TApi } from '../../../data';
 import { Location } from '@epam/uui-docs';
 
-export default function LazyDatasourceGetChildCountExample() {
+export default function LazyDataSourceGetChildCountExample() {
     const svc = useUuiContext<TApi>();
 
     const [value1, onValueChange1] = useState<DataSourceState>({});
-    const datasource1 = useLazyDataSource<Location, string, DataQueryFilter<Location>>({
+    const dataSource1 = useLazyDataSource<Location, string, DataQueryFilter<Location>>({
         api: (request, ctx) => {
             const { search } = request;
             // if search is specified, it is required to search over all the children,
@@ -21,7 +21,7 @@ export default function LazyDatasourceGetChildCountExample() {
     }, []);
 
     const [value2, onValueChange2] = useState<DataSourceState>({});
-    const datasource2 = useLazyDataSource<Location, string, DataQueryFilter<Location>>({
+    const dataSource2 = useLazyDataSource<Location, string, DataQueryFilter<Location>>({
         api: (request, ctx) => {
             const { search } = request;
             // if search is specified, it is required to search over all the children,
@@ -37,18 +37,18 @@ export default function LazyDatasourceGetChildCountExample() {
     
     return (
         <>
-            <DatasourceViewer
+            <DataSourceViewer
                 exampleTitle="getChildCount returns 0"
                 value={ value1 }
                 onValueChange={ onValueChange1 }
-                datasource={ datasource1 }
+                dataSource={ dataSource1 }
             />
     
-            <DatasourceViewer
+            <DataSourceViewer
                 exampleTitle="getChildCount returns real child count"
                 value={ value2 }
                 onValueChange={ onValueChange2 }
-                datasource={ datasource2 }
+                dataSource={ dataSource2 }
             />
         </>
     );

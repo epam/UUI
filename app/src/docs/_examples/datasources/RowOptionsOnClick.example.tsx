@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SuccessNotification, Text } from '@epam/promo';
 import { DataSourceState, INotification, useArrayDataSource, useUuiContext } from '@epam/uui-core';
-import { DatasourceTableViewer, datasourceTextColumns } from '@epam/uui-docs';
+import { DataSourceTableViewer, dataSourceTextColumns } from '@epam/uui-docs';
 
 const items = [
     { id: '1', name: 'Parent 1' },
@@ -36,7 +36,7 @@ export default function RowOptionsOnClickExample() {
             .catch(() => null);
     };
 
-    const datasource1 = useArrayDataSource({
+    const dataSource1 = useArrayDataSource({
         items,
         rowOptions: {
             isSelectable: true,
@@ -47,12 +47,12 @@ export default function RowOptionsOnClickExample() {
     }, []);
 
     return (
-        <DatasourceTableViewer
+        <DataSourceTableViewer
             exampleTitle="Handling click on the row"
             value={ value }
             onValueChange={ onValueChange }
-            datasource={ datasource1 }
-            columns={ datasourceTextColumns }
+            dataSource={ dataSource1 }
+            columns={ dataSourceTextColumns }
         />
     );
 }

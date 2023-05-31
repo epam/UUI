@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
-import { DatasourceViewer } from '@epam/uui-docs';
+import { DataSourceViewer } from '@epam/uui-docs';
 
 const items = [
     { id: '1', name: 'Parent 1' },
@@ -16,11 +16,11 @@ const items = [
     { id: '3.1', name: 'Child 3.1', parentId: '3' },
 ];
 
-export default function DatasourceStateFoldedExample() {
+export default function DataSourceStateFoldedExample() {
     const [value1, onValueChange1] = useState<DataSourceState>({
         folded: { 2: false },
     });
-    const datasource1 = useArrayDataSource({
+    const dataSource1 = useArrayDataSource({
         items,
         rowOptions: {
             checkbox: { isVisible: true },
@@ -28,11 +28,11 @@ export default function DatasourceStateFoldedExample() {
     }, []);
     
     return (
-        <DatasourceViewer
+        <DataSourceViewer
             exampleTitle="Predefined folding"
             value={ value1 }
             onValueChange={ onValueChange1 }
-            datasource={ datasource1 }
+            dataSource={ dataSource1 }
         />
     );
 }

@@ -16,7 +16,7 @@
           },
           {
             "object": "text",
-            "text": "LazyDatasourceProps",
+            "text": "LazyDataSourceProps",
             "marks": [
               {
                 "object": "mark",

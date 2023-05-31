@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { DataQueryFilter, DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
-import { DatasourceViewer } from '@epam/uui-docs';
+import { DataSourceViewer } from '@epam/uui-docs';
 import { TApi } from '../../../data';
 import { City } from '@epam/uui-docs';
 
-export default function LazyDatasourceDataExample() {
+export default function LazyDataSourceDataExample() {
     const svc = useUuiContext<TApi>();
 
     const [value, onValueChange] = useState<DataSourceState>({});
-    const datasource = useLazyDataSource<City, string, DataQueryFilter<City>>({
+    const dataSource = useLazyDataSource<City, string, DataQueryFilter<City>>({
         api: (req) => svc.api.demo.cities(req),
     }, []);
     
     return (
-        <DatasourceViewer
+        <DataSourceViewer
             value={ value }
             onValueChange={ onValueChange }
-            datasource={ datasource }
+            dataSource={ dataSource }
         />
     );
 }

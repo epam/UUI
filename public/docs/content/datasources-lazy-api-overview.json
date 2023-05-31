@@ -217,7 +217,7 @@
                           },
                           {
                             "object": "text",
-                            "text": "DatasourceState",
+                            "text": "DataSourceState",
                             "marks": [
                               {
                                 "object": "mark",
@@ -303,7 +303,7 @@
                           },
                           {
                             "object": "text",
-                            "text": "DatasourceState",
+                            "text": "DataSourceState",
                             "marks": [
                               {
                                 "object": "mark",
@@ -599,7 +599,7 @@
                           },
                           {
                             "object": "text",
-                            "text": "DatasourceState",
+                            "text": "DataSourceState",
                             "marks": [
                               {
                                 "object": "mark",
@@ -685,7 +685,7 @@
                           },
                           {
                             "object": "text",
-                            "text": "DatasourceState",
+                            "text": "DataSourceState",
                             "marks": [
                               {
                                 "object": "mark",

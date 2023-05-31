@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../../common';
 
-export class DatasourcesOverviewDoc extends BaseDocsBlock {
+export class DataSourcesOverviewDoc extends BaseDocsBlock {
     title = 'Overview';
 
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName="datasources-overview" />
+                <EditableDocContent fileName="dataSources-overview" />
                 
-                <DocExample title="useView" path="./_examples/datasources/UseView.code.example.ts" onlyCode={ true } />
+                <DocExample title="useView" path="./_examples/dataSources/UseView.code.example.ts" onlyCode={ true } />
             </>
         );
     }
