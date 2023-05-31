@@ -250,7 +250,7 @@
                     "nodes": [
                       {
                         "object": "text",
-                        "text": "Datasoruce State",
+                        "text": "Datasource State",
                         "marks": [
                           {
                             "object": "mark",
