@@ -64,10 +64,11 @@ class UuiLogger {
      */
     public warnAboutDeprecatedPropValue = <T1, T2 extends keyof T1>(
         props: {
+            component?: string,
             propName: T2,
             propValue: T1[T2],
-            propValueUseInstead: T1[T2],
-            condition: () => boolean,
+            propValueUseInstead?: T1[T2],
+            condition?: () => boolean,
         },
     ) => {
         const {
@@ -75,9 +76,14 @@ class UuiLogger {
             propValue,
             propValueUseInstead,
             condition,
+            component,
         } = props;
-        const shouldWarn = condition();
-        shouldWarn && this.warn(`The ${propValue} value of ${String(propName)} is deprecated and will be removed in future versions, please use ${propValueUseInstead} value instead.`);
+        const shouldWarn = condition ? condition() : true;
+        if (shouldWarn) {
+            const comp = component ? `(${component}) ` : '';
+            const instead = propValueUseInstead ? `Please use ${propValueUseInstead} value instead.` : '';
+            this.warn(`${comp}The ${propValue} value of ${String(propName)} is deprecated and will be removed in future versions. ${instead}`);
+        }
     };
 }
 

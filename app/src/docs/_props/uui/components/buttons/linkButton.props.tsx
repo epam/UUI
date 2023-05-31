@@ -1,12 +1,11 @@
-import { LinkButton, LinkButtonMods } from '@epam/uui';
-import { DocBuilder } from '@epam/uui-docs';
-import { ButtonProps } from '@epam/uui-components';
+import { allLinkButtonColors, LinkButton, LinkButtonProps } from '@epam/uui';
+import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { DefaultContext } from '../../docs';
-import {
-    onClickDoc, sizeDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iconOptionsDoc, iCanRedirectDoc,
+import { onClickDoc, sizeDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iconOptionsDoc, iCanRedirectDoc,
 } from '../../docs';
+import * as React from 'react';
 
-const LinkButtonDoc = new DocBuilder<ButtonProps & LinkButtonMods>({ name: 'LinkButton', component: LinkButton })
+const LinkButtonDoc = new DocBuilder<LinkButtonProps>({ name: 'LinkButton', component: LinkButton })
     .implements([
         onClickDoc, sizeDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iconOptionsDoc, iCanRedirectDoc,
     ] as any)
@@ -16,6 +15,7 @@ const LinkButtonDoc = new DocBuilder<ButtonProps & LinkButtonMods>({ name: 'Link
         ],
         type: 'string',
     })
+    .prop('color', { renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i })) } { ...editable } />, examples: allLinkButtonColors })
     .withContexts(DefaultContext);
 
 export default LinkButtonDoc;

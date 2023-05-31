@@ -5,7 +5,7 @@ const {
 } = require('./utils/configUtils');
 const {
     DIRS_FOR_BABEL, CSS_URL_ROOT_PATH, ENTRY_WITH_EXTRACTED_DEPS_CSS,
-    LIBS_WITHOUT_SOURCE_MAPS,
+    LIBS_WITHOUT_SOURCE_MAPS, UUI_VERSION,
 } = require('./constants');
 const { uuiCustomFormatter } = require('./formatters/issueFormatter');
 const { assertAppDepsAreBuilt } = require('./utils/appDepsUtils');
@@ -101,7 +101,8 @@ function configureWebpack(config, { paths }) {
     }
 
     changePluginByName(config, 'DefinePlugin', (plugin) => {
-        plugin.definitions.COMMIT_HASH = `"${headCommitHash}"`;
+        plugin.definitions.__COMMIT_HASH__ = `"${headCommitHash}"`;
+        plugin.definitions.__PACKAGE_VERSION__ = `"${UUI_VERSION}"`; // keep it in sync with rollup config replacements
         plugin.definitions.__DEV__ = process.env.NODE_ENV !== 'production';
     });
 
