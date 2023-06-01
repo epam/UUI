@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { RichTextView } from '@epam/promo';
-import { RichTextViewMods } from '@epam/uui';
+import { RichTextView, RichTextViewMods } from '@epam/promo';
 import { DefaultContext } from '../../docs';
 import { FlexRow, LabeledInput, ControlWrapper } from '@epam/promo';
 import { LinkButton } from '@epam/promo';
@@ -13,7 +12,7 @@ import { TextInput } from '@epam/promo';
 import cx from 'classnames';
 import style from './richTextViewDoc.module.scss';
 
-const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'RichTextView', component: RichTextView })
+const richTextViewDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'RichTextView', component: RichTextView })
     .prop('htmlContent', {
         examples: [
             { value: '<h1>Hello</h1>', isDefault: false, name: '<h1>' }, {
@@ -202,7 +201,7 @@ const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'Ri
                             </LabeledInput>
                         </FlexRow>
                         <h4>LinkButton</h4>
-                        <FlexRow>
+                        <FlexRow spacing="6">
                             <LinkButton caption="BUTTON-LINK"></LinkButton>
                             <LinkButton caption="SHARE"></LinkButton>
                             <LinkButton caption="ADD"></LinkButton>
@@ -268,4 +267,4 @@ export const MyComponent = <div className={ css.myHeader }>`}
     })
     .withContexts(DefaultContext);
 
-export default textDoc;
+export default richTextViewDoc;
