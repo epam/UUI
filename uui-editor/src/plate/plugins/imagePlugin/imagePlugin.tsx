@@ -23,6 +23,7 @@ import { ToolbarButton } from '../../../implementation/ToolbarButton';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
+import { Editor } from 'slate';
 
 export const IMAGE_PLUGIN_KEY = 'image';
 
@@ -51,8 +52,13 @@ export const imagePlugin = () => {
                 }
 
                 // empty element needs to be added when we have only image element in editor content
-                if (event.key === 'Backspace' || event.key === 'Delete') {
-                    return insertEmptyElement(editor, PARAGRAPH_TYPE);
+                if (event.key === 'Backspace') {
+                    insertEmptyElement(editor, PARAGRAPH_TYPE);
+                }
+
+                if (event.key === 'Delete') {
+                    Editor.deleteForward(editor as any);
+                    insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
             },
         },

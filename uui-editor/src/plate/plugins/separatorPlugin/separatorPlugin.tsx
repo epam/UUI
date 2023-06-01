@@ -17,6 +17,7 @@ import { ReactComponent as SeparateIcon } from '../../../icons/breakline.svg';
 import { Separator } from './Separator';
 import { getBlockAboveByType } from "../../utils/getAboveBlock";
 import { PARAGRAPH_TYPE } from "../paragraphPlugin/paragraphPlugin";
+import { Editor } from 'slate';
 
 const SEPARATOR_TYPE = 'separatorBLock';
 const noop = () => {};
@@ -36,8 +37,13 @@ export const separatorPlugin = () => {
                 }
 
                 // empty element needs to be added when we have only attachment in editor content
-                if (event.key === 'Backspace' || event.key === 'Delete') {
-                    return insertEmptyElement(editor, PARAGRAPH_TYPE);
+                if (event.key === 'Backspace') {
+                    insertEmptyElement(editor, PARAGRAPH_TYPE);
+                }
+
+                if (event.key === 'Delete') {
+                    Editor.deleteForward(editor as any);
+                    insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
             },
         },
