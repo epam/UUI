@@ -7,5 +7,6 @@ export type ExtendedTTableCellElement = TTableCellElement & {
         colSpan?: number;
         rowSpan?: number;
         colIndex?: number;
+        style?: string;
     }
 }

@@ -23,15 +23,12 @@ export const attachmentPlugin = () => {
                 // delete methods explicitly invoked since onDomBeforeInput event isn't fired in case of attachment
                 // empty element needs to be added when we have only attachment in editor content
                 if (event.key === 'Backspace') {
-                    Editor.deleteBackward(editor as any);
                     insertEmptyElement(editor, PARAGRAPH_TYPE);
-                    return true;
                 }
 
                 if (event.key === 'Delete') {
                     Editor.deleteForward(editor as any);
                     insertEmptyElement(editor, PARAGRAPH_TYPE);
-                    return true;
                 }
             },
         },

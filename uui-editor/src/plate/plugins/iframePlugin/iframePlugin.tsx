@@ -16,6 +16,7 @@ import { IframeBlock } from './IframeBlock';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from "../paragraphPlugin/paragraphPlugin";
+import { Editor } from 'slate';
 
 export const IFRAME_PLUGIN_KEY = 'iframe';
 
@@ -58,8 +59,13 @@ export const iframePlugin = () => {
                 }
 
                 // empty element needs to be added when we have only iframe element in editor content
-                if ((event.key === 'Backspace' || event.key === 'Delete')) {
-                    return insertEmptyElement(editor, PARAGRAPH_TYPE);
+                if (event.key === 'Backspace') {
+                    insertEmptyElement(editor, PARAGRAPH_TYPE);
+                }
+
+                if (event.key === 'Delete') {
+                    Editor.deleteForward(editor as any);
+                    insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
             },
         },

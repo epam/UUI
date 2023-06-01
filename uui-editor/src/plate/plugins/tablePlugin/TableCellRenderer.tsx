@@ -56,6 +56,9 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
     const hovered = hoveredColIndex === colIndex;
     const hoveredLeft = isFirstCell(colIndex, cellElement) && hoveredColIndex === -1;
 
+    // TODO: we can potentially get rid of function in util folder by using display: none of merged cells
+    // const displayNone = cellElement.data?.style === 'none' ? { display: 'none' } : undefined;
+
     return (
         <TableCellElement.Root
             { ...rootProps }
@@ -66,6 +69,7 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
                 isFirstRow && css.tableCellBorderTop,
                 selected && css.tableCellSelected
             ) }
+            // style={ displayNone }
         >
             <TableCellElement.Content style={ { minHeight: rowSize } } className={ css.tableCellContent }>
                 { children }
