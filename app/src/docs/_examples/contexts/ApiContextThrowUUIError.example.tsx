@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LinkButton } from '@epam/loveship';
+import { LinkButton } from '@epam/promo';
 import { useUuiContext, UuiError } from '@epam/uui-core';
 
 /**
