@@ -135,7 +135,39 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Authentication lost scenario. The server is required to return 401 with the custom 'x-session-lost: true' header if auth cookie is not found or is invalid during the XHR call. This is required because ordinary login redirect responses can't be detected from JS during XHR calls. ApiContext will open /auth/login page in such case. The page should process the usual login process before opening. After the auth process, the page opens, and the script inside it should send Cross Window Message to the app. Upon receiving the message, failed requests are retried. A splash screen will be shown until the problem is recovered.",
+                    "text": "Authentication lost scenario. Authentication/session lost is detected by 401 server response. ApiContext will open ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "/auth/login",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " page in such case. The page should process the usual login process before opening. After the auth process, the page opens, and the script inside it should send Cross Window Message to the app - ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "window.opener.postMessage(\"authSuccess\", \"*\")",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ". Upon receiving the message, auth page is closed and failed requests are retried. A splash screen will be shown until the problem is recovered.",
                     "marks": []
                   }
                 ]

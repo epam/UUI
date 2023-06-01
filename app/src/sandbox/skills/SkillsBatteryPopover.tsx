@@ -75,7 +75,7 @@ export function SkillsBatteryPopover(props: ISkillsBatteryProps) {
                 <div className={ css.infoBlock }>
                     {Object.entries(props?.data.options).map((val, index) => (
                         <FlexRow key={ `${index}-option` } spacing="6" cx={ css.infoBlockRow }>
-                            <IconContainer cx={ [css.infoItem, css.iconGray60] } icon={ val[1].icon } />
+                            <IconContainer cx={ css.infoItem } icon={ val[1].icon } />
                             <Text cx={ css.infoItem } color="gray80">
                                 {val[1].prefix}
                             </Text>
@@ -92,13 +92,13 @@ export function SkillsBatteryPopover(props: ISkillsBatteryProps) {
 
     const TargetBody = React.forwardRef<unknown, { isOpen: boolean }>((bodyProps, ref) => (
         <FlexRow ref={ ref } cx={ cx([css.targetBodyContainer, { [css.targetBodyContainerHover]: bodyProps.isOpen }]) } size="30">
-            <IconContainer icon={ isFavorite?.status ? heartIconFilled : heartIconOutline } cx={ isFavorite?.status ? css.iconRed : css.iconGray40 } />
+            <IconContainer icon={ isFavorite?.status ? heartIconFilled : heartIconOutline } style={ isFavorite?.status && { fill: '#DB3A1A' } } />
             <SmallBattery rating={ level } />
             <Text cx={ cx(css.skillText) } fontSize="14" lineHeight="18" font="sans">
                 {props.data?.caption}
             </Text>
             {Object.entries(props?.data.options).map((val) => (
-                <IconContainer cx={ [css.infoItem, css[`icon-${val[1].activeColor}`]] } icon={ val[1].icon } />
+                <IconContainer cx={ css.infoItem } style={ { fill: `${val[1].activeColor}` } } icon={ val[1].icon } />
             ))}
         </FlexRow>
     ));

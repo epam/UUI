@@ -62,7 +62,6 @@
             flex-grow: 1;
             height: 100%;
 
-
             &:hover, &:active, &:focus {
                 background-color: var(--gray20);
                 border-color: var(--gray20);
@@ -132,28 +131,4 @@
             padding: 3px 0 3px;
         }
     }
-}
-
-.icon-cyan {
-    fill: var(--cyan-30);
-}
-
-.icon-amber {
-    fill: var(--amber);
-}
-
-.icon-gray40 {
-    fill: var(--gray40);
-}
-
-.icon-blue {
-    fill: var(--blue);
-}
-
-.icon-gray60 {
-    fill: var(--gray60);
-}
-
-.icon-red {
-    fill: var(--uui-error);
 }
