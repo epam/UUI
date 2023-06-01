@@ -1,14 +1,16 @@
 import { IconContainer as uuiIconContainer } from '@epam/uui';
 import { ControlIconProps } from '@epam/uui-components';
 import { devLogger, withMods } from '@epam/uui-core';
-import { EpamPrimaryColor } from '../types';
 import css from './IconContainer.module.scss';
+
+export type IconContainerColors = 'sky' | 'grass' | 'sun' | 'fire' | 'carbon' | 'cobalt' | 'lavanda' | 'fuchsia' | 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';
+export const allIconContainerColors: IconContainerColors[] = ['sky', 'grass', 'sun', 'fire', 'carbon', 'cobalt', 'lavanda', 'fuchsia', 'white', 'night50', 'night100', 'night200', 'night300', 'night400', 'night500', 'night600', 'night700', 'night800', 'night900'];
 
 export interface IconContainerMods {
     /** IconContainer color.
      *  @deprecated Property color is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via cx or style prop.
      * */
-    color?: EpamPrimaryColor | 'night400' | 'night500' | 'night600';
+    color?: IconContainerColors;
 }
 
 export function applyIconContainerMods(mods: IconContainerMods) {
