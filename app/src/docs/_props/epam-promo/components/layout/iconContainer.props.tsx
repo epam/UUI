@@ -2,14 +2,13 @@ import React from 'react';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { DefaultContext, FormContext, onClickDoc, iconDoc } from '../../docs';
 import { ControlIconProps } from '@epam/uui-components';
-import { IconContainer, IconContainerMods } from '@epam/promo';
-import { allIconColors } from '@epam/promo';
+import { IconContainer, IconContainerMods, allIconContainerColors } from '@epam/promo';
 import { colors } from '../../docs/helpers/colorMap';
 
 const iconContainerDoc = new DocBuilder<ControlIconProps & IconContainerMods>({ name: 'IconContainer', component: IconContainer })
     .implements([onClickDoc, iconDoc])
     .prop('color', {
-        examples: [...allIconColors],
+        examples: [...allIconContainerColors],
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
     })
     .prop('size', {
