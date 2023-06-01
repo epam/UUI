@@ -38,7 +38,7 @@ export default function LazyDataSourceRequestingFlattenDataExample() {
     const [value3, onValueChange3] = useState<DataSourceState>({});
     const dataSource3 = useLazyDataSource<Item, string, DataQueryFilter<Item>>({
         api: async () => {
-            const newCount = 5;
+            const newCount = 50;
             const newFrom = 0;
             return {
                 from: newFrom,
@@ -77,7 +77,7 @@ export default function LazyDataSourceRequestingFlattenDataExample() {
                 dataSource={ dataSource2 }
             />
             <DataSourceViewer
-                exampleTitle="from: 0, count: 5. Will request only 5 elements once."
+                exampleTitle="from: 0, count: 50. Will request only 50 elements once."
                 value={ value3 }
                 onValueChange={ onValueChange3 }
                 dataSource={ dataSource3 }
