@@ -8,6 +8,7 @@ const defaultSize = '18';
 
 export type EpamBadgeColorType = EpamPrimaryColor | EpamAdditionalColor | 'white' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600';
 export const allEpamBadgeColors: EpamBadgeColorType[] = [...allEpamPrimaryColors, ...allEpamAdditionalColors, 'white', 'night200', 'night300', 'night400', 'night500', 'night600'];
+export const deprecatedBadgeColors = ['night200', 'night400', 'night500'];
 
 export interface BadgeMods {
     color?: EpamBadgeColorType;
@@ -32,7 +33,7 @@ export const Badge = withMods<Omit<UuiBadgeProps, 'color' | 'fill' | 'size'>, Ba
             component: 'Badge',
             propName: 'color',
             propValue: props.color,
-            condition: () => ['night200', 'night400', 'night500'].indexOf(props.color) !== -1,
+            condition: () => deprecatedBadgeColors.indexOf(props.color) !== -1,
         });
         return {
             color: props.color || 'sky',

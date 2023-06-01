@@ -3,6 +3,7 @@ import { LinkButton as UuiLinkButton, LinkButtonProps as UuiLinkButtonProps } fr
 
 export type LinkButtonColorType = 'blue' | 'green' | 'amber' | 'red' | 'gray60' | 'gray10';
 export const allLinkButtonColors: LinkButtonColorType[] = ['blue', 'green', 'amber', 'red', 'gray60', 'gray10'];
+export const deprecatedLinkButtonColors: LinkButtonColorType[] = ['green', 'amber', 'red'];
 
 export interface LinkButtonMods {
     color?: LinkButtonColorType;
@@ -18,7 +19,7 @@ export const LinkButton = withMods<Omit<UuiLinkButtonProps, 'color'>, LinkButton
             component: 'LinkButton',
             propName: 'color',
             propValue: props.color,
-            condition: () => ['green', 'amber', 'red'].indexOf(props.color) !== -1,
+            condition: () => deprecatedLinkButtonColors.indexOf(props.color) !== -1,
         });
         return {
             color: props.color ?? 'blue',
