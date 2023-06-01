@@ -1,31 +1,17 @@
 @use '../../assets/styles/typography.scss' as *;
-@use '../../assets/styles/colors' as *;
-@use '../../assets/styles/fonts' as *;
 
-:local(.typography-header) {
-    @include typography-header();
-}
-
-:local(.typography-block) {
-    @include typography-block();
-}
-
-:local(.typography-inline) {
-    @include typography-inline();
-}
-
-:local(.typography-16) {
+.typography-16 {
     @include typography-16();
 }
 
-:local(.typography-14) {
+.typography-14 {
     @include typography-14();
 }
 
-:local(.typography-12) {
+.typography-12 {
     @include typography-12();
 }
 
-:local(.typography-promo) {
+.typography-promo {
     @include typography-promo();
 }
