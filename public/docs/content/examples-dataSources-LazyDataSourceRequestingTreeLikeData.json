@@ -11,7 +11,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To request tree-like data lazily, it is required to write an api function, which:",
+            "text": "To request tree-like data lazily, it is required to write an ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "api",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " function, which:",
             "marks": []
           }
         ]
@@ -68,7 +84,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Also, to enable fetching of nested items, ",
+            "text": "Also, to enable the fetching of nested items, ",
             "marks": []
           },
           {
@@ -84,7 +100,19 @@
           },
           {
             "object": "text",
-            "text": " should return value, more than 0. It can be real count of children by filter, or assumed one.",
+            "text": " should return a value, greater than 0. It can be a real count of children by filter, or an assumed one.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To overview the requests/responses content, please, open the Console in DevTools.",
             "marks": []
           }
         ]

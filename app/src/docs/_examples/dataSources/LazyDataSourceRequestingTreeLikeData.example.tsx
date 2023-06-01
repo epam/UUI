@@ -9,51 +9,62 @@ interface Item {
     childCount: number;
 }
 
-async function api(
-    req: LazyDataSourceApiRequest<Item, string, DataQueryFilter<Item>>,
-    context: LazyDataSourceApiRequestContext<Item, string>,
-) {
-    const { parentId } = context;
-    if (parentId !== null) {
-        const newChildCount = 10;
-        return {
-            count: newChildCount,
-            items: Array(newChildCount)
+function api(tag: string) {
+    return async (
+        request: LazyDataSourceApiRequest<Item, string, DataQueryFilter<Item>>,
+        context: LazyDataSourceApiRequestContext<Item, string>,
+    ) => {
+        const { parentId } = context;
+        if (parentId !== null) {
+            const response = {
+                count: 5,
+                items: Array(5)
+                    .fill(0)
+                    .map((_, index) => ({
+                        parentId,
+                        id: `${parentId}.${index}`,
+                        name: `Child ${parentId}.${index}`,
+                        childCount: 5,
+                    })),
+            };
+            
+            console.log(`request #${tag}:`, request);
+            console.log(`context #${tag}:`, context);
+            console.log(`response #${tag}:`, response);
+            return response;
+        }
+
+        const response = {
+            from: 0,
+            count: request.range.count,
+            items: Array(request.range.count)
                 .fill(0)
                 .map((_, index) => ({
-                    parentId,
-                    id: `${parentId}.${index}`,
-                    name: `Child ${parentId}.${index}`,
-                    childCount: newChildCount,
+                    parentId: null,
+                    id: `${index}`,
+                    name: `Parent ${index}`,
+                    childCount: 20,
                 })),
         };
-    }
-
-    const newCount = 30;
-    return {
-        from: 0,
-        count: newCount,
-        items: Array(newCount)
-            .fill(0)
-            .map((_, index) => ({
-                parentId: null,
-                id: `${index}`,
-                name: `Parent ${index}`,
-                childCount: 20,
-            })),
+                    
+        console.log(`request #${tag}:`, request);
+        console.log(`context #${tag}:`, context);
+        console.log(`response #${tag}:`, response);
+        return response;
     };
 }
+
 export default function LazyDataSourceRequestingTreeLikeDataExample() {
     const [value1, onValueChange1] = useState<DataSourceState>({});
     const dataSource1 = useLazyDataSource<Item, string, DataQueryFilter<Item>>({
-        api,
+        api: api('Without children'),
         getParentId: ({ parentId }) => parentId,
         getChildCount: () => 0,
     }, []);
 
     const [value2, onValueChange2] = useState<DataSourceState>({});
     const dataSource2 = useLazyDataSource<Item, string, DataQueryFilter<Item>>({
-        api,
+        api: api('With children'),
         getParentId: ({ parentId }) => parentId,
         getChildCount: ({ childCount }) => childCount,
     }, []);
