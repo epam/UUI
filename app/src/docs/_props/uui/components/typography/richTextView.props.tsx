@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { RichTextView, RichTextViewMods } from '@epam/loveship';
+import { RichTextView, RichTextViewMods } from '@epam/uui';
 import { DefaultContext } from '../../docs';
-import { FlexRow, LabeledInput, ControlWrapper } from '@epam/loveship';
-import { LinkButton } from '@epam/loveship';
+import { FlexRow, LabeledInput } from '@epam/uui';
+import { LinkButton } from '@epam/uui';
 import { DocBuilder } from '@epam/uui-docs';
 import { RichTextViewProps } from '@epam/uui-components';
-import { Anchor, TextInput } from '@epam/loveship';
+import { Anchor } from '@epam/uui';
 import { Svg } from '@epam/uui-components';
 import { ReactComponent as Calendar } from '@epam/assets/icons/common/action-calendar-18.svg';
+import { TextInput } from '@epam/uui';
 import cx from 'classnames';
 import style from './richTextViewDoc.module.scss';
 
@@ -31,6 +32,7 @@ const richTextViewDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ n
             {
                 value: (
                     <div style={ { maxWidth: '1100px' } } className={ style.container }>
+                        <h2>Promo Headlines</h2>
                         <div className="hero-header">
                             Hero HEADING — Hero
                             {' '}
@@ -38,15 +40,30 @@ const richTextViewDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ n
                             {' '}
                             for super-promo screens
                         </div>
+                        <h2 className="promo-header">
+                            Promo heading — H2
+                            {' '}
+                            <br />
+                            {' '}
+                            for page hero-headers
+                        </h2>
+                        <h3 className="promo-header">
+                            Promo heading — H3
+                            {' '}
+                            <br />
+                            {' '}
+                            for areas smaller than hero-headers
+                        </h3>
+                        <h2>Headlines</h2>
                         <h1>
-                            Promo heading — H1
+                            Heading — H1
                             {' '}
                             <br />
                             {' '}
                             for page hero-headers
                         </h1>
                         <h2>
-                            Promo heading — H2
+                            Heading — H2
                             {' '}
                             <br />
                             {' '}
@@ -74,13 +91,13 @@ const richTextViewDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ n
                             for small cards as attention drawer
                         </h5>
                         <h6>
-                            Super small heading or acsent — Emphasis
+                            Super small heading or accent — Emphasis
                             {' '}
                             <br />
                             {' '}
-                            for title or lable of lists
+                            for title or label of lists
                         </h6>
-                        <h4>Example text</h4>
+                        <h2>Example text</h2>
                         <p>
                             <b>Main text</b>
                             {' '}
@@ -174,9 +191,7 @@ const richTextViewDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ n
                                     </>
                                 }
                             >
-                                <ControlWrapper size="36">
-                                    <TextInput value="" onValueChange={ () => {} }></TextInput>
-                                </ControlWrapper>
+                                <TextInput value="" size="36" onValueChange={ () => {} }></TextInput>
                                 If you have no goals to choose, add them on
                                 {' '}
                                 <Anchor href="/">Home</Anchor>
@@ -184,7 +199,7 @@ const richTextViewDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ n
                             </LabeledInput>
                         </FlexRow>
                         <h4>LinkButton</h4>
-                        <FlexRow>
+                        <FlexRow spacing="6">
                             <LinkButton caption="BUTTON-LINK"></LinkButton>
                             <LinkButton caption="SHARE"></LinkButton>
                             <LinkButton caption="ADD"></LinkButton>

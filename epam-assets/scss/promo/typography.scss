@@ -165,7 +165,6 @@
     @include typography-header();
     @include typography-block();
     @include typography-inline();
-    font-family: $font-sans;
     color: $gray80;
+    font-family: $font-sans;
 }
-
