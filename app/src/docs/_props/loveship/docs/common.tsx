@@ -25,11 +25,6 @@ export const colorDoc = new DocBuilder<ColorMod>({ name: 'Color' }).prop('color'
     examples: commonControlColors,
 });
 
-export const badgeColorDoc = new DocBuilder<ColorMod>({ name: 'Color' }).prop('color', {
-    renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
-    examples: allEpamBadgeColors,
-});
-
 export const iconDoc = new DocBuilder<IHasIcon>({ name: 'Icon' }).prop('icon', {
     renderEditor: (editable: any, examples) => <IconPicker icons={ examples } { ...editable } />,
     examples: getIconList<Icon>(true).map((i) => ({ value: i as any })),

@@ -4,6 +4,7 @@ import { commonControlColors } from '../types';
 
 export type IconColor = (typeof commonControlColors)[number];
 export const allIconColors: IconColor[] = commonControlColors;
+export const deprecatedIconButtonColors = ['night200', 'night300', 'night400'];
 
 export interface IconButtonMods {
     color?: IconColor;
@@ -19,7 +20,7 @@ export const IconButton = withMods<Omit<UuiIconButtonProps, 'color'>, IconButton
             component: 'IconButton',
             propName: 'color',
             propValue: props.color,
-            condition: () => ['night200', 'night300', 'night400'].indexOf(props.color) !== -1,
+            condition: () => deprecatedIconButtonColors.indexOf(props.color) !== -1,
         });
         return {
             color: props.color ?? 'night600',
