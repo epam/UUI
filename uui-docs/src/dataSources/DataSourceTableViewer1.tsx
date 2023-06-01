@@ -3,7 +3,7 @@ import {
     DataColumnProps, DataTableState, IDataSource, IEditable,
 } from '@epam/uui-core';
 import { DataTable, Panel, Text } from '@epam/promo';
-import css from './DataSourceTableViewer.module.scss';
+import css from './DataSourceTableViewer1.module.scss';
 
 interface Props<TItem, TId> extends IEditable<DataTableState> {
     exampleTitle?: string;
