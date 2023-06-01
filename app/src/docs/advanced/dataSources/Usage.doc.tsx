@@ -9,7 +9,7 @@ export class DataSourcesUsageDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName="dataSources-usage-in-components" />
 
-                <DocExample title="DataSourceViewer" path="./_examples/dataSources/DataSourceViewer.tsx" onlyCode={ true } />
+                <DocExample title="DataSourceViewer" path="./_examples/dataSources/DataSourceViewer.code.example.tsx" onlyCode={ true } />
             </>
         );
     }

@@ -239,12 +239,11 @@
         "object": "block",
         "type": "image",
         "data": {
-          "src": "http://static.cdn.epam.com/uploads/4677cc268a04664255f99b470b345dca/uui/dataSources/dataSources.png",
+          "src": "http://static.cdn.epam.com/uploads/4677cc268a04664255f99b470b345dca/uui/datasources/dataSources.png",
           "imageSize": {
-            "width": 813,
-            "height": 227
-          },
-          "align": "align-center"
+            "width": 884,
+            "height": 241
+          }
         },
         "nodes": [
           {
