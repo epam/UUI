@@ -1,4 +1,4 @@
-@use '../../assets/styles/typography' as *;
+@use '../../assets/styles/typography.scss' as *;
 
 .typography-16 {
     @include typography-16();
@@ -12,6 +12,6 @@
     @include typography-12();
 }
 
-.typography-uui {
-    @include typography-uui();
+.typography-promo {
+    @include typography-promo();
 }
