@@ -55,7 +55,7 @@ export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {
 
     return (
         <Panel cx={ css.panel }>
-            <Text fontSize="14">{exampleTitle}</Text>
+            <Text fontSize="14" cx={ css.text }>{exampleTitle}</Text>
             <FlexRow cx={ css.row }>
                 <VirtualList
                     value={ value }

@@ -278,6 +278,18 @@
             ]
           }
         ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To overview the requests/responses content, please, open the Console in DevTools.",
+            "marks": []
+          }
+        ]
       }
     ]
   }
