@@ -219,16 +219,16 @@ export const items: DocItem[] = [
     { id: 'notificationContextDoc', name: 'Notification Context', component: NotificationContextDoc, parentId: 'contexts', tags: ['contexts'] },
     { id: 'lockContextDoc', name: 'Lock Context', component: LockContextDoc, parentId: 'contexts', tags: ['contexts'] },
 
+    { id: 'testing', name: 'Testing' },
+    { id: 'testing-basics', name: 'Basics', component: UtGuideBasicsDoc, parentId: 'testing' },
+    { id: 'testing-cookbook', name: 'Cookbook', component: UtGuideCookbookDoc, parentId: 'testing' },
+    { id: 'testing-tools', name: 'Tools', component: UtGuideToolsDoc, parentId: 'testing' },
+
     { id: 'advanced', name: 'Advanced' },
     { id: 'localization', name: 'Internationalization', component: InternationalizationDoc, parentId: 'advanced' },
     { id: 'dragAndDrop', name: 'Drag And Drop', component: DragAndDropDoc, parentId: 'advanced' },
 
     { id: 'projects', name: 'Projects', component: ProjectsDoc },
-
-    { id: 'testing', name: 'Testing' },
-    { id: 'testing-basics', name: 'Basics', component: UtGuideBasicsDoc, parentId: 'testing' },
-    { id: 'testing-cookbook', name: 'Cookbook', component: UtGuideCookbookDoc, parentId: 'testing' },
-    { id: 'testing-tools', name: 'Tools', component: UtGuideToolsDoc, parentId: 'testing' },
 
     { id: 'team', name: 'Team', component: TeamDoc },
     { id: 'releaseNotes', name: 'Release Notes', component: ReleaseNotesDoc },
