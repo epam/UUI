@@ -32,6 +32,12 @@ import {
     createNode,
     TTableElement,
     createTablePlugin,
+    setNodes,
+    withTable,
+    Value,
+    WithPlatePlugin,
+    TablePlugin,
+    isElement,
 } from "@udecode/plate";
 import cx from "classnames";
 import { Dropdown } from '@epam/uui-components';
@@ -60,8 +66,26 @@ import { TableCell } from "./TableCell";
 
 import tableCSS from './Table.module.scss';
 import { useFocused, useSelected } from 'slate-react';
-import { updateTableStructure } from './util';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
+import { ExtendedTTableCellElement } from './types';
+
+const empt = {
+    "data": { style: 'none', colSpan: 0, rowSpan: 0, },
+    "type": "table_cell",
+    colSpan: 0,
+    rowSpan: 0,
+    "children": [
+        {
+            "data": {},
+            "type": "paragraph",
+            "children": [
+                {
+                    "text": "",
+                },
+            ],
+        },
+    ],
+}
 
 const TableRenderer = (props: any) => {
     const editor = usePlateEditorState();
@@ -139,13 +163,15 @@ const TableRenderer = (props: any) => {
             }
         });
 
-        Object.values(cols).forEach((paths: any) => {
-            paths?.forEach((path: []) => {
-                removeNodes(editor, { at: paths[0] });
+        Object.values(cols).forEach((paths: any, i) => {
+            paths?.forEach((path: [], j: number) => {
+                if (i === 0 && j === paths.length - 1) {
+                    setNodes(editor, emptyCol, { at: paths[j] }); // setting root
+                    return;
+                }
+                setNodes(editor, empt, { at: paths[j] }); // set display: none to all others
             });
         });
-
-        insertElements(editor, emptyCol, { at: cellEntries[0][1] });
     };
 
     const unmergeCells = () => {
@@ -256,9 +282,6 @@ const TableRenderer = (props: any) => {
         );
     }, [element, cellPath, rowPath, cellEntries]);
 
-    // assign valid colIndexes in case of merged cells
-    tableElem = updateTableStructure(tableElem);
-
     return (
         <Dropdown
             renderTarget={ (innerProps: any) => (
@@ -284,12 +307,76 @@ const TableRenderer = (props: any) => {
 };
 
 
+const withOurNormalizeTable = <
+    V extends Value = Value,
+    E extends PlateEditor<V> = PlateEditor<V>
+>(
+    editor: E,
+    plugin: WithPlatePlugin<TablePlugin<V>, V, E>
+) => {
+
+    const { normalizeNode } = editor;
+
+    editor.normalizeNode = ([node, path]) => {
+        if (isElement(node)) {
+            if (node.type === getPluginType(editor, ELEMENT_TR)) {
+                const colNumber = node.children
+                    .reduce((acc, cur) => {
+                        const cellElem = cur as ExtendedTTableCellElement;
+                        const attrColSpan = (cellElem.attributes as { colspan?: number })?.colspan;
+                        const colSpan = isNaN(attrColSpan) ? 1 : Number(attrColSpan);
+                        // const colSpan = (cellElem?.attributes as any)?.colspan ?? 1;
+                        // const rowSpan = (cellElem?.attributes as any)?.rowspan ?? 1,
+                        return acc + colSpan;
+                    }, 0);
+                console.log('colNumber', colNumber);
+
+                const shiftIndexes: number[] = [];
+                console.log('before', JSON.stringify(node.children));
+                node.children.forEach((cur, index) => {
+
+                    const cellElem = cur as ExtendedTTableCellElement;
+                    const attrColSpan = (cellElem.attributes as { colspan?: number })?.colspan;
+                    const colSpan = isNaN(attrColSpan) ? 1 : Number(attrColSpan);
+
+                    if (colSpan > 1) {
+                        shiftIndexes.splice(index, 0, ...Array(colSpan - 1).fill(1));
+
+                        if (colNumber !== node.children.length) {
+                            node.children.splice(index, 0, ...Array(colSpan - 1).fill(empt));
+                        }
+                    }
+                });
+                console.log('shiftIndexes', shiftIndexes, 'after', JSON.stringify(node.children));
+            }
+        }
+
+        return normalizeNode([node, path]);
+    }
+
+
+    return editor;
+}
+
+export const withOurTable = <
+    V extends Value = Value,
+    E extends PlateEditor<V> = PlateEditor<V>
+>(
+    editor: E,
+    plugin: WithPlatePlugin<TablePlugin<V>, V, E>
+) => {
+    editor = withTable(editor, plugin);
+    editor = withOurNormalizeTable(editor, plugin);
+
+    return editor;
+};
 
 export const tablePlugin = () => createTablePlugin({
     overrideByKey: {
         [ELEMENT_TABLE]: {
             type: 'table',
             component: TableRenderer,
+            withOverrides: withOurTable
         },
         [ELEMENT_TR]: {
             type: 'table_row',

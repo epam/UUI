@@ -6,7 +6,6 @@ export type ExtendedTTableCellElement = TTableCellElement & {
     data: {
         colSpan?: number;
         rowSpan?: number;
-        colIndex?: number;
         style?: string;
     }
 }
