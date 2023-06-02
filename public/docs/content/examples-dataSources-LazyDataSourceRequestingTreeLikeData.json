@@ -128,6 +128,29 @@
         "nodes": [
           {
             "object": "text",
+            "text": "api",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " function has to support requesting data by ids for the purpose of fetching parents.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
             "text": "To overview the requests/responses content, please, open the ",
             "marks": []
           },
