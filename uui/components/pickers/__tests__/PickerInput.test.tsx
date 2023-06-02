@@ -297,6 +297,54 @@ describe('PickerInput', () => {
             expect(clearButton2).toBeUndefined();
             expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('A1');
         });
+        
+        it('should select all', async () => {
+            const { dom } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'single',
+                maxItems: 100,
+            });
+
+            fireEvent.click(dom.input as HTMLElement);
+
+            await delayAct(100);
+
+            const dialog = screen.getByRole('dialog');
+
+            const [clearButton] = within(dialog).getAllByRole('button')
+                .filter((el) => el.getAttribute('aria-label') === 'CLEAR');
+            
+            expect(clearButton).toBeInTheDocument();
+            
+            expect(clearButton.getAttribute('aria-disabled')).toBe('true');
+            
+            const [first] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+
+            fireEvent.click(first);
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('A1');
+
+            fireEvent.click(dom.input as HTMLElement);
+
+            const dialog2 = screen.getByRole('dialog');
+
+            const [clearButton2] = within(dialog2).getAllByRole('button')
+                .filter((el) => el.getAttribute('aria-label') === 'CLEAR');
+            
+            expect(clearButton2.getAttribute('aria-disabled')).toBe('false');
+
+            fireEvent.click(clearButton2);
+
+            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select');
+
+            // fireEvent.click(dom.input as HTMLElement);
+
+            // const dialog3 = screen.getByRole('dialog');
+
+            // const [clearButton3] = within(dialog3).getAllByRole('button')
+            //     .filter((el) => el.getAttribute('aria-label') === 'CLEAR');
+            
+            // expect(clearButton3.getAttribute('aria-disabled')).toBe('true');
+        });
     });
 
     describe('[selectionMode multi]', () => {
@@ -616,6 +664,43 @@ describe('PickerInput', () => {
                 .map((button) => button.textContent?.trim());
 
             expect(selectedItemsNames3).toEqual(['A1', 'A1+']);
+        });
+        
+        it('should select all', async () => {
+            const { dom } = await setupPickerInputForTest({
+                value: [],
+                selectionMode: 'multi',
+                maxItems: 100,
+            });
+
+            fireEvent.click(dom.input as HTMLElement);
+
+            await delayAct(100);
+
+            const dialog = screen.getByRole('dialog');
+
+            const [selectAllButton] = within(dialog).getAllByRole('button')
+                .filter((el) => el.getAttribute('aria-label') === 'SELECT ALL');
+            
+            expect(selectAllButton).toBeInTheDocument();
+            
+            fireEvent.click(selectAllButton);
+
+            const selectedItemsNames = screen.queryAllByTestId(/uui-PickerToggler-item/)
+                .map((button) => button.textContent?.trim());
+
+            expect(selectedItemsNames).toEqual(['A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C1+', 'C2']);
+
+            const [clearAllButton] = within(dialog).getAllByRole('button')
+                .filter((el) => el.getAttribute('aria-label') === 'CLEAR ALL');
+            
+            expect(clearAllButton).toBeInTheDocument();
+            
+            fireEvent.click(clearAllButton);
+            const selectedItemsNames1 = screen.queryAllByTestId(/uui-PickerToggler-item/)
+                .map((button) => button.textContent?.trim());
+            
+            expect(selectedItemsNames1).toEqual([]);
         });
     });
     
