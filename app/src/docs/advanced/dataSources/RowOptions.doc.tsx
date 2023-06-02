@@ -17,10 +17,10 @@ export class DataSourcesRowOptionsDoc extends BaseDocsBlock {
                 <DocExample title="Selectable rows" path="./_examples/dataSources/RowOptionsIsSelectable.example.tsx" />
                 <DocExample title="Click handler" path="./_examples/dataSources/RowOptionsOnClick.example.tsx" />
                 <DocExample title="Links" path="./_examples/dataSources/RowOptionsLink.example.tsx" />
+                <DocExample title="Drag'n'drop" path="./_examples/dataSources/RowOptionsDnd.example.tsx" />
+                <DocExample title="Value/onValueChange" path="./_examples/dataSources/RowOptionsValue.example.tsx" />
                 <DocExample title="Readonly" path="./_examples/dataSources/RowOptionsIsReadonly.example.tsx" />
                 <DocExample title="Invalid" path="./_examples/dataSources/RowOptionsIsInvalid.example.tsx" />
-                <DocExample title="Value/onValueChange" path="./_examples/dataSources/RowOptionsValue.example.tsx" />
-                <DocExample title="Drag'n'drop" path="./_examples/dataSources/RowOptionsDnd.example.tsx" />
             </>
         );
     }
