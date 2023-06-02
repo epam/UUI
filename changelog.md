@@ -3,10 +3,11 @@
 **New themes support**
 
 This release prepares UUI to the Themes support, according to these changes 'Promo' and 'Loveship' skins
-now based on `@epam/uui` package which has set of components which supposed to be used with Themes. Now both skins has the same codebase and only apply different styles. 
+are now based on `@epam/uui` package which has set of components which supposed to be used with Themes. Now both skins has the same codebase and only apply different styles. 
 Regarding these changes we aligned interfaces, functionality and visual appearance between 'Promo' and 'Loveship' skins, as a result, we removed or deprecate some props or their values.
 
-Pay attention that this release required some additional actions for proper library work, please review our migration guide and full list of changes [here](https://github.com/epam/UUI/wiki/Migration-guide-to-UUI-v.5).
+Pay attention that this release required some additional actions for proper library work. 
+You can find migration guide and full list of changes [here](https://github.com/epam/UUI/wiki/Migration-guide-to-UUI-v.5).
 
 Note: Currently, we use Themes internally to remove duplication in our code base. In the future, we allow UUI users to build their own themes, and using Themes variables for customization. However, in this release we haven’t yet finalized this. 
 We can’t yet recommend using Themes internals, e.g. override Themes CSS variables for customization.
@@ -15,6 +16,10 @@ We can’t yet recommend using Themes internals, e.g. override Themes CSS variab
 * Introduced new `@epam/uui-test-utils` package. It provides a set of helpers, utils and mocks which facilitate creation of unit tests for UUI components.
 * Was added Testing [documentation](https://uui.epam.com/documents?id=testing-basics&category=testing). It contains general guidelines, best practices and tools which we are recommending to use for UUI components testing. 
 Also, it contains a Cookbook describing typical use cases with code examples as well as frequent questions & answers.
+
+**DataSources documentation**
+* Introduced the new [DataSources documentation](??), that covers a wide range of topics related to the DataSources approach, accompanied by illustrative examples.
+  Note that this is the first revision of this doc, so we would appreciate your feedback and have plans to continuously improve this documentation.
 
 **ESM modules support**
 * EcmaScript modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
