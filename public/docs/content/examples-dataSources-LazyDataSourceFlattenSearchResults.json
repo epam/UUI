@@ -11,7 +11,26 @@
         "nodes": [
           {
             "object": "text",
-            "text": "For tree-like structures, it is recommended to enable this option.",
+            "text": "Turns off tree/hierarchical display of items while searching. We recommend enabling this option. Read more ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://github.com/epam/UUI/issues/8"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "here",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
             "marks": []
           }
         ]
