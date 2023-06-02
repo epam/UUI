@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In this chapter, row options will be described in detail. Potentially, all the further props can be passed to the ",
+            "text": "In this chapter, row options will be described in detail. Row options specify if rows are selectable, editable, checkable, draggable, clickable, and more. Potentially, all the further props can be passed to the ",
             "marks": []
           },
           {
