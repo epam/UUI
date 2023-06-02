@@ -14,6 +14,25 @@ function api(tag: string) {
         request: LazyDataSourceApiRequest<Item, string, DataQueryFilter<Item>>,
         context: LazyDataSourceApiRequestContext<Item, string>,
     ) => {
+        if (request.ids && request.ids.length) {
+            const items = request.ids.map((id) => {
+                const ids = id.split('.').slice(0, -1);
+                return {
+                    parentId: ids.join('.'),
+                    id,
+                    name: `Child ${id}`,
+                    childCount: 5,
+                };
+            });
+
+            const response = { items };
+
+            console.log(`request #${tag}:`, request);
+            console.log(`context #${tag}:`, context);
+            console.log(`response #${tag}:`, response);
+
+            return response;
+        }
         const { parentId } = context;
         if (parentId !== null) {
             const response = {
@@ -69,6 +88,18 @@ export default function LazyDataSourceRequestingTreeLikeDataExample() {
         getChildCount: ({ childCount }) => childCount,
     }, []);
 
+    const [value3, onValueChange3] = useState<DataSourceState>({
+        checked: ['1.1.1', '2.3.5'],
+    });
+    const dataSource3 = useLazyDataSource<Item, string, DataQueryFilter<Item>>({
+        api: api('With pre-selected children'),
+        getParentId: ({ parentId }) => parentId,
+        getChildCount: ({ childCount }) => childCount,
+        rowOptions: {
+            checkbox: { isVisible: true },
+        },
+    }, []);
+
     return (
         <>
             <DataSourceViewer
@@ -82,6 +113,12 @@ export default function LazyDataSourceRequestingTreeLikeDataExample() {
                 value={ value2 }
                 onValueChange={ onValueChange2 }
                 dataSource={ dataSource2 }
+            />
+            <DataSourceViewer
+                exampleTitle="Preselected items"
+                value={ value3 }
+                onValueChange={ onValueChange3 }
+                dataSource={ dataSource3 }
             />
         </>
     );
