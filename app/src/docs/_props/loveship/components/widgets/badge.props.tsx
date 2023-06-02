@@ -1,17 +1,14 @@
-import { allEpamBadgeColors, Badge, BadgeMods, BadgeProps, deprecatedBadgeColors } from '@epam/loveship';
+import { Badge, BadgeMods, BadgeProps } from '@epam/loveship';
 import { basicPickerTogglerDoc, ColorPicker, DocBuilder, dropdownTogglerDoc, onClickDoc } from '@epam/uui-docs';
 import { DefaultContext, FormContext, iconDoc, iconOptionsDoc, ResizableContext } from '../../docs';
 import { allBorderStyles } from '@epam/loveship';
 import { colors } from '../../docs/helpers/colorMap';
 import * as React from 'react';
 
-// BadgeColors without deprecated colors
-const actualBadgeColors = allEpamBadgeColors.filter((val) => deprecatedBadgeColors.indexOf(val) === -1);
-
 const badgeDoc = new DocBuilder<BadgeProps & BadgeMods>({ name: 'Badge', component: Badge })
     .implements([iconDoc, iconOptionsDoc, dropdownTogglerDoc, onClickDoc, basicPickerTogglerDoc])
     .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
-        examples: actualBadgeColors,
+        examples: ['sky', 'grass', 'sun', 'fire', 'cobalt', 'lavanda', 'fuchsia', 'white', 'night300', 'night600'],
     })
     .prop('caption', {
         examples: [

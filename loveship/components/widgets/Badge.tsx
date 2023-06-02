@@ -1,17 +1,13 @@
 import { devLogger, withMods } from '@epam/uui-core';
 import * as types from '../../components/types';
 import { Badge as UuiBadge, BadgeMods as UuiBadgeMods, BadgeProps as UuiBadgeProps } from '@epam/uui';
-import { EpamAdditionalColor, EpamPrimaryColor, allEpamAdditionalColors, allEpamPrimaryColors } from '../types';
+import { EpamAdditionalColor, EpamPrimaryColor } from '../types';
 import css from './Badge.module.scss';
 
 const defaultSize = '18';
 
-export type EpamBadgeColorType = EpamPrimaryColor | EpamAdditionalColor | 'white' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600';
-export const allEpamBadgeColors: EpamBadgeColorType[] = [...allEpamPrimaryColors, ...allEpamAdditionalColors, 'white', 'night200', 'night300', 'night400', 'night500', 'night600'];
-export const deprecatedBadgeColors = ['night200', 'night400', 'night500'];
-
 export interface BadgeMods {
-    color?: EpamBadgeColorType;
+    color?: EpamPrimaryColor | EpamAdditionalColor | 'white' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600';
     shape?: types.ControlShape;
     fill?: UuiBadgeMods['fill'] | 'white' | 'light' | 'none';
     size?: UuiBadgeMods['size'] | '12';
@@ -33,7 +29,7 @@ export const Badge = withMods<Omit<UuiBadgeProps, 'color' | 'fill' | 'size'>, Ba
             component: 'Badge',
             propName: 'color',
             propValue: props.color,
-            condition: () => deprecatedBadgeColors.indexOf(props.color) !== -1,
+            condition: () => ['night200', 'night400', 'night500'].indexOf(props.color) !== -1,
         });
         return {
             color: props.color || 'sky',
