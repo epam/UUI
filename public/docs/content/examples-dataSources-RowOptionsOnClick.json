@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "It is possible to add an extra click handler to the row bypassing ",
+            "text": "It is possible to add a click handler to the row, passing ",
             "marks": []
           },
           {
@@ -43,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": " part. ",
+            "text": " part. It can be added in addition to the usual handlers for clicking on checkboxes, folding arrows, and rows for selection.",
             "marks": []
           }
         ]
