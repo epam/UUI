@@ -51,6 +51,7 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
 
     const isFirstRow = tableElement.children[0] === rowElement;
 
+    // TODO: cover edge case when there is first merged cell, it's not hovered
     const hoveredColIndex = useTableStore().get.hoveredColIndex();
 
     const hovered = hoveredColIndex === colIndex;
@@ -92,6 +93,6 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
 
 const isFirstCell = (colIndex: number, cellNode: TElement) => {
     const cellColSpan = (cellNode.colSpan as number);
-    const isFirstMergedCell = colIndex + 1 === cellColSpan;
-    return colIndex === 0 || isFirstMergedCell;
+    const isMergedCell = ((colIndex + 1) - cellColSpan === 0);
+    return colIndex === 0 || isMergedCell;
 };
