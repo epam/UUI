@@ -1,13 +1,9 @@
 import { IconButton as uuiIconButton, IconButtonProps as UuiIconButtonProps } from '@epam/uui';
 import { devLogger, withMods } from '@epam/uui-core';
-import { commonControlColors } from '../types';
-
-export type IconColor = (typeof commonControlColors)[number];
-export const allIconColors: IconColor[] = commonControlColors;
-export const deprecatedIconButtonColors = ['night200', 'night300', 'night400'];
+import { EpamAdditionalColor, EpamPrimaryColor } from '../types';
 
 export interface IconButtonMods {
-    color?: IconColor;
+    color?: EpamPrimaryColor | EpamAdditionalColor | 'white'| 'night200'| 'night300'| 'night400'| 'night500'| 'night600';
 }
 
 export type IconButtonProps = Omit<UuiIconButtonProps, 'color'> & IconButtonMods;
@@ -20,7 +16,7 @@ export const IconButton = withMods<Omit<UuiIconButtonProps, 'color'>, IconButton
             component: 'IconButton',
             propName: 'color',
             propValue: props.color,
-            condition: () => deprecatedIconButtonColors.indexOf(props.color) !== -1,
+            condition: () => ['night200', 'night300', 'night400'].indexOf(props.color) !== -1,
         });
         return {
             color: props.color ?? 'night600',
