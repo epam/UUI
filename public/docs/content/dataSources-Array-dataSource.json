@@ -11,7 +11,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In this chapter, specific props of the ArrayDataSource will be overviewed in detail.",
+            "text": "In this chapter, specific props of the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "ArrayDataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " will be overviewed in detail.",
             "marks": []
           }
         ]
@@ -85,7 +101,23 @@
           },
           {
             "object": "text",
-            "text": " chapter, so, only the specific one will be described. You can read about base props and a dataSource state at:",
+            "text": " chapter, so, only the specific one will be described. You can read about base props and a ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " state at:",
             "marks": []
           }
         ]

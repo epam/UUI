@@ -494,7 +494,23 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Disables editing. Unlike isDisabled, keeps the component's value readable.",
+                            "text": "Disables editing. Unlike ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "isDisabled",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": ", keeps the component's value readable.",
                             "marks": []
                           }
                         ]

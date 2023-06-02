@@ -32,7 +32,7 @@
           },
           {
             "object": "text",
-            "text": "DataSource state",
+            "text": "DataSource",
             "marks": [
               {
                 "object": "mark",
@@ -43,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": ". You may also need to pass some other properties, depending on the specific ",
+            "text": " state. You may also need to pass some other properties, depending on the specific ",
             "marks": []
           },
           {

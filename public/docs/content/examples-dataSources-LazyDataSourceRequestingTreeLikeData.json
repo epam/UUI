@@ -128,7 +128,39 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To overview the requests/responses content, please, open the Console in DevTools.",
+            "text": "To overview the requests/responses content, please, open the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Console",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " in ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DevTools",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
             "marks": []
           }
         ]

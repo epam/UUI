@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To enable a ",
+            "text": "To enable a sorting functionality, it is enough to pass a ",
             "marks": []
           },
           {
@@ -27,12 +27,12 @@
           },
           {
             "object": "text",
-            "text": " functionality, it is enough to pass a ",
+            "text": " object to the ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "sorting",
+            "text": "DataSource",
             "marks": [
               {
                 "object": "mark",
@@ -43,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": " object to the dataSource state.",
+            "text": " state.",
             "marks": []
           }
         ]

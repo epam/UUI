@@ -217,7 +217,7 @@
                           },
                           {
                             "object": "text",
-                            "text": "DataSourceState",
+                            "text": "DataSource",
                             "marks": [
                               {
                                 "object": "mark",
@@ -228,7 +228,7 @@
                           },
                           {
                             "object": "text",
-                            "text": ".",
+                            "text": " state.",
                             "marks": []
                           }
                         ]
@@ -303,7 +303,7 @@
                           },
                           {
                             "object": "text",
-                            "text": "DataSourceState",
+                            "text": "DataSource",
                             "marks": [
                               {
                                 "object": "mark",
@@ -314,7 +314,7 @@
                           },
                           {
                             "object": "text",
-                            "text": ".",
+                            "text": " state.",
                             "marks": []
                           }
                         ]
@@ -599,7 +599,7 @@
                           },
                           {
                             "object": "text",
-                            "text": "DataSourceState",
+                            "text": "DataSource",
                             "marks": [
                               {
                                 "object": "mark",
@@ -610,7 +610,7 @@
                           },
                           {
                             "object": "text",
-                            "text": ".",
+                            "text": " state.",
                             "marks": []
                           }
                         ]
@@ -685,7 +685,7 @@
                           },
                           {
                             "object": "text",
-                            "text": "DataSourceState",
+                            "text": "DataSource",
                             "marks": [
                               {
                                 "object": "mark",
@@ -696,7 +696,7 @@
                           },
                           {
                             "object": "text",
-                            "text": ".",
+                            "text": " state.",
                             "marks": []
                           }
                         ]

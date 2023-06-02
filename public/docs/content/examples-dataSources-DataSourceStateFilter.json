@@ -11,7 +11,39 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To enable a filter at the DataSource, it is required to pass it as a part of the DataSource state. ",
+            "text": "To enable a filter at the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", it is required to pass it as a part of the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " state. ",
             "marks": []
           }
         ]

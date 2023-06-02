@@ -27,7 +27,23 @@
           },
           {
             "object": "text",
-            "text": " function to the LazyDataSource props. This function is used to retrieve the data asynchronously. \nAPI is used to retrieve lists of items.\nIt is expected to be able to:\n- handle paging (via ",
+            "text": " function to the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "LazyDataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " props. This function is used to retrieve the data asynchronously. \nAPI is used to retrieve lists of items.\nIt is expected to be able to:\n- handle paging (via ",
             "marks": []
           },
           {

@@ -11,23 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To enable a ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "search",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", it is required to pass ",
+            "text": "To enable a search, it is required to pass ",
             "marks": []
           },
           {

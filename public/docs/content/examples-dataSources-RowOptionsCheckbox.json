@@ -38,7 +38,23 @@
           },
           {
             "object": "text",
-            "text": " of dataSource props controls checkboxes visibility and interactivity.",
+            "text": " of ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " props controls checkboxes visibility and interactivity.",
             "marks": []
           }
         ]

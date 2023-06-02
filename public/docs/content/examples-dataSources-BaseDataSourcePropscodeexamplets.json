@@ -11,7 +11,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Common DataSource Props",
+            "text": "Common ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
             "marks": [
               {
                 "object": "mark",
@@ -22,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " can be split into multiple categories: a configuration of ids, rows, default folding, and selection.",
+            "text": " props can be split into multiple categories: a configuration of ids, rows, default folding, and selection.",
             "marks": []
           }
         ]

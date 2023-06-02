@@ -11,23 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Rows can be represented as ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "links",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " bypassing ",
+            "text": "Rows can be represented as links bypassing ",
             "marks": []
           },
           {
@@ -48,7 +32,7 @@
           },
           {
             "object": "text",
-            "text": "rowOptions part",
+            "text": "rowOptions",
             "marks": [
               {
                 "object": "mark",
@@ -59,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": ".",
+            "text": " part.",
             "marks": []
           }
         ]

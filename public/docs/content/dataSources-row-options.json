@@ -11,7 +11,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In this chapter, row options will be described in detail. Potentially, all the further props can be passed to the dataSource as part of ",
+            "text": "In this chapter, row options will be described in detail. Potentially, all the further props can be passed to the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " as part of ",
             "marks": []
           },
           {
