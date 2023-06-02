@@ -9,10 +9,9 @@ export class DataSourcesAsyncDataSourceDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName="dataSources-Async-dataSource" />
 
+                <DocExample title="useAsyncDataSource" path="./_examples/dataSources/UseAsyncDataSource.code.example.ts" onlyCode={ true } />
                 <DocExample title="AsyncDataSourceProps" path="./_examples/dataSources/AsyncDataSourceProps.code.example.ts" onlyCode={ true } />
                 <EditableDocContent fileName="dataSources-async-dataSource-props-overview" />
-
-                <DocExample title="useAsyncDataSource" path="./_examples/dataSources/UseAsyncDataSource.code.example.ts" onlyCode={ true } />
 
                 <DocExample title="Data" path="./_examples/dataSources/AsyncDataSourceData.example.tsx" />
             </>
