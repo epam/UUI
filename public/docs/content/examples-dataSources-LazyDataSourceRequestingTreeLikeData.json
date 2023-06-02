@@ -49,7 +49,23 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "will be able to handle two types of requests, fetching parents and fetching children by parent id;",
+                    "text": "will be able to handle two types of requests, fetching parents and fetching children by parent id; parent and parentId are passed to the context parameter of the ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "api",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " function",
                     "marks": []
                   }
                 ]
@@ -68,7 +84,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "will be able to fetch data by ids.",
+                    "text": "will be able to fetch data by ids. ",
                     "marks": []
                   }
                 ]
@@ -100,7 +116,7 @@
           },
           {
             "object": "text",
-            "text": " should return a value, greater than 0. It can be a real count of children by filter, or an assumed one.",
+            "text": " should return a value, greater than 0. ",
             "marks": []
           }
         ]

@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "It is impossible to imagine any project without data. Tones of effort are spent to solve the problem of retrieving / grouping / filtering / sorting / visualizing data. Everything becomes even worse when it is necessary to implement the pattern of data lazy-loading, add some folding logic, different strategies for selecting elements with children nodes, etc.",
+            "text": "A lot of UI/UX elements displays list and hierarchical data. For example, tables, selects, catalogs, etc.  A lot of efforts are required to solve problems of retrieving / grouping / filtering / sorting / visualizing such data. Everything becomes even worse when it is necessary to implement the pattern of data lazy-loading, add some folding logic, different strategies for selecting elements with children nodes, etc.",
             "marks": []
           }
         ]
@@ -51,7 +51,7 @@
           },
           {
             "object": "text",
-            "text": " were developed. They are black boxes encapsulating complex solutions to various issues, providing simple abstraction.",
+            "text": " were developed. They are black boxes encapsulating complex solutions to various issues with list/hierarchical data, providing simple abstraction.",
             "marks": []
           }
         ]
@@ -164,7 +164,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "configuring renderable rows;",
+                    "text": "configuring rows options, like selection, DnD, etc.;",
                     "marks": []
                   }
                 ]
@@ -202,7 +202,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "rendering data rows partially, which makes it possible to render an infinite count of records, chunk by chunk.",
+                    "text": "rendering data rows partially, which makes it possible to render only a part of a large amount of records at a time.",
                     "marks": []
                   }
                 ]
@@ -276,7 +276,7 @@
           },
           {
             "object": "text",
-            "text": " (static one) and ",
+            "text": " (static one, provided at creation time) and ",
             "marks": []
           },
           {
@@ -292,7 +292,7 @@
           },
           {
             "object": "text",
-            "text": " (dynamic one).",
+            "text": " (dynamic one, can be changed according to user actions).",
             "marks": []
           }
         ]
@@ -327,7 +327,7 @@
           },
           {
             "object": "text",
-            "text": " contains:",
+            "text": " contains info on how to work with data:",
             "marks": [
               {
                 "object": "mark",
@@ -355,7 +355,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "getters of ids, parent ids, children count, etc.;",
+                    "text": "some info on the data displayed, e.g. how to get ID of an item",
                     "marks": []
                   }
                 ]
@@ -374,7 +374,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "a source of data to be retrieved;",
+                    "text": "how to retrieve data ",
                     "marks": []
                   }
                 ]
@@ -393,7 +393,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "static filtering/searching/sorting configuration;",
+                    "text": "how to filter/sort/search over data, according to current DataSourceState;",
                     "marks": []
                   }
                 ]
@@ -412,7 +412,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "configuration of output rows statically and dynamically with customization possibilities;",
+                    "text": "rows options, e.g. whether a particular row can be selected, checked, or folded",
                     "marks": []
                   }
                 ]
@@ -431,7 +431,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "configuration of selection, such as select all and selection strategies).",
+                    "text": "configuration of selection, such as select selection cascading strategies.",
                     "marks": []
                   }
                 ]
@@ -470,7 +470,7 @@
           },
           {
             "object": "text",
-            "text": " contains:",
+            "text": " contains the current state of the displayed data:",
             "marks": [
               {
                 "object": "mark",
@@ -650,7 +650,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "pagination configuration.",
+                    "text": "current page and page size.",
                     "marks": []
                   }
                 ]
@@ -666,12 +666,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "So, changing the input of the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
+            "text": "DataSourceState",
             "marks": [
               {
                 "object": "mark",
@@ -682,23 +677,7 @@
           },
           {
             "object": "text",
-            "text": " is changin",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "g the rows, whi",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "ch are displayed (returned by DataSource). That is a common pattern to change ",
+            "text": " is usually hold in component's state. Changing the ",
             "marks": []
           },
           {
@@ -714,7 +693,7 @@
           },
           {
             "object": "text",
-            "text": " to retrieve/change the state of the displayed rows.",
+            "text": " causes a change of rows, which are displayed (returned by DataSource). ",
             "marks": []
           }
         ]
@@ -738,7 +717,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "DataSources don't produce rows themselves and they don't contain any information about the state of rows. They return views, which contain that information.  Think about ",
+            "text": "DataSources don't produce rows themselves, and they don't contain any information about the state of rows. They return views, which contain that information. Think about ",
             "marks": []
           },
           {
@@ -754,7 +733,67 @@
           },
           {
             "object": "text",
-            "text": " as about factories of rows. Each dataSource can return multiple views. Each view has to have its own ",
+            "text": " as about factories of rows. Each ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " can return multiple views. This is done to support cases when a single ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " is used by multiple components.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Each Component has to create its own view, and each ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "View",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " has to have its own ",
             "marks": []
           },
           {
@@ -802,8 +841,35 @@
           },
           {
             "object": "text",
-            "text": " function of the dataSource instance. You can see how views can be created by a dataSource ",
+            "text": " function of the ",
             "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " instance. You can see how views can be created by a ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
           },
           {
             "object": "inline",
@@ -833,7 +899,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Types of dataSources",
+            "text": "Types of DataSources",
             "marks": []
           }
         ]
@@ -845,7 +911,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Depending on the task, it is necessary to use different dataSources:",
+            "text": "Depending on the task, it is necessary to use different ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSources",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ":",
             "marks": []
           }
         ]
@@ -943,7 +1025,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " is used when data is located at some endpoint, but its amount is not too large; all the operations, like sorting/filtering/searching are performed on the client side. You can read more about ",
+                    "text": " is used when data is located at some endpoint, but its amount is not too large; all the operations, like sorting/filtering/searching, are performed on the client side. You can read more about ",
                     "marks": []
                   },
                   {
@@ -1027,7 +1109,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " is used to represent a huge amount of data, stored at some endpoint; data is loading lazily, such operations as sorting/filtering/searching are performed on the server side. You can read more about ",
+                    "text": " is used to represent a large amount of data, stored at some endpoint; data is loading lazily, such operations as sorting/filtering/searching are performed on the server side. You can read more about ",
                     "marks": []
                   },
                   {

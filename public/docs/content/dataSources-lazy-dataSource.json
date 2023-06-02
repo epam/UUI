@@ -34,7 +34,7 @@
           },
           {
             "object": "text",
-            "text": " is used to represent a huge amount of data, stored somewhere on a server. This type of dataSource loads data lazily, chunk by chunk.",
+            "text": " is used to represent a large amount of data, stored somewhere on a server. This type of dataSource loads data lazily, chunk by chunk.",
             "marks": []
           }
         ]

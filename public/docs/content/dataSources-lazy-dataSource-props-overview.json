@@ -274,7 +274,7 @@
                           },
                           {
                             "object": "text",
-                            "text": ", the item is assumed to have children and to be foldable. Usually, this value should be returned from API. If you can't get a number of children via API, you can return a guess value (avg number of children for this type of entity). Note, that this can lead to more API calls and increased load times in the ",
+                            "text": ", the item is assumed to have children and to be foldable. This, in turns, tells the DataSource to attempt to fetch item's children via api. Usually, this value should be returned from API, as a field of a parent, e.g. { id: 1, name: 'London', childCount: 12 }. In this case, you can implement getChildCount as (i) => i.childCount. If you can't get a number of children this way, you can return a guess value (avg number of children for this type of entity). Note, that this can lead to more API calls and increased load times in the ",
                             "marks": []
                           },
                           {

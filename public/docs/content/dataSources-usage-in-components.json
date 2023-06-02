@@ -11,7 +11,19 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To use the power of dataSources it is not required to use UUI components. Users are able to build their own components, based on the dataSource functionality. Mostly all examples in the DataSources tutorial are built on top of the DataSourceViewer, a toy component, which was created for the demonstration purpose.",
+            "text": "DataSources are not locked to UUI components. You can use them in your components as well. ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Most examples in the DataSources tutorial are built on top of the DataSourceViewer, a toy component, which was created for the demonstration purpose. It also serves as a good example on how to build your components on top of DataSources.",
             "marks": []
           }
         ]
