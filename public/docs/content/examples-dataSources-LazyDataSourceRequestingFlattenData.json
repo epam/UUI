@@ -120,7 +120,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " field. It's optional, because it's not always possible to efficiency compute this on the server. If it is omitted, the end of the list is detected when ",
+                    "text": " field. It's optional because it's not always possible to efficiently compute this on the server. If it is omitted, the end of the list is detected when ",
                     "marks": []
                   },
                   {
@@ -222,7 +222,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "It is possible to return more items than requested via from/count params. In case you return more items before the requested range, you need to explicitly set the from field in the ",
+                    "text": "It is possible to return more items than requested via from/count params. In case you return more items before the requested range, you need to explicitly set the from the field in the ",
                     "marks": []
                   },
                   {
@@ -254,7 +254,39 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To overview the requests/responses content, please, open the Console in DevTools.",
+            "text": "To overview the requests/responses content, please, open the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Console",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " in ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DevTools",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
             "marks": []
           }
         ]

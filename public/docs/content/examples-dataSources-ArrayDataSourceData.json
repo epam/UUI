@@ -53,7 +53,39 @@
           },
           {
             "object": "text",
-            "text": "data with ArrayDataSource, it should be passed to the dataSource via ",
+            "text": "data with ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "ArrayDataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", it should be passed to the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " via ",
             "marks": []
           },
           {

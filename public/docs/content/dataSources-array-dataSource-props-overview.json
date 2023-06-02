@@ -132,7 +132,23 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "Data, which should be represented by a dataSource.",
+                            "text": "Data, which should be represented by a ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "DataSource",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": ".",
                             "marks": []
                           }
                         ]

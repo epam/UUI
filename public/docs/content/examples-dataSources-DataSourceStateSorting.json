@@ -27,7 +27,23 @@
           },
           {
             "object": "text",
-            "text": " property as a part of the DataSource state.",
+            "text": " property as a part of the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " state.",
             "marks": []
           }
         ]

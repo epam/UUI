@@ -63,7 +63,29 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Problems data sources are solving:",
+            "text": "Problems ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "DataSources",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " are solving:",
             "marks": [
               {
                 "object": "mark",
@@ -126,7 +148,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " is fetching data from an array, some endpoint, or partially loading tonnes of records;",
+                    "text": " is fetching data from an array, some endpoint, or partially loading large amounts of records;",
                     "marks": []
                   }
                 ]
@@ -202,7 +224,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "rendering data rows partially, which makes it possible to render only a part of a large amount of records at a time.",
+                    "text": "rendering data rows partially, which makes it possible to render only a part of a large number of records at a time.",
                     "marks": []
                   }
                 ]
@@ -230,7 +252,39 @@
         "nodes": [
           {
             "object": "text",
-            "text": "While explaining this part of the DataSources concept, it is necessary to keep the right level of abstraction. Instead of digging into the realization details, let us observe ways DataSource can be controlled by input.",
+            "text": "While explaining this part of the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSources",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " concept, it is necessary to keep the right level of abstraction. Instead of digging into the realization details, let us observe ways ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " can be controlled by input.",
             "marks": []
           }
         ]
@@ -260,12 +314,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "DataSource input can be split into two groups of params, ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSourceProps",
+            "text": "DataSource",
             "marks": [
               {
                 "object": "mark",
@@ -276,12 +325,12 @@
           },
           {
             "object": "text",
-            "text": " (static one, provided at creation time) and ",
+            "text": " input can be split into two groups of params, ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "DataSourceState",
+            "text": "DataSource",
             "marks": [
               {
                 "object": "mark",
@@ -292,7 +341,23 @@
           },
           {
             "object": "text",
-            "text": " (dynamic one, can be changed according to user actions).",
+            "text": " props (static one, provided at creation time) and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " state (dynamic one, which can be changed according to user actions).",
             "marks": []
           }
         ]
@@ -355,7 +420,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "some info on the data displayed, e.g. how to get ID of an item",
+                    "text": "some info on the data displayed, e.g. how to get the id of an item;",
                     "marks": []
                   }
                 ]
@@ -374,7 +439,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "how to retrieve data ",
+                    "text": "how to retrieve data;",
                     "marks": []
                   }
                 ]
@@ -393,7 +458,23 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "how to filter/sort/search over data, according to current DataSourceState;",
+                    "text": "how to filter/sort/search over data, according to current ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "DataSource",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " state;",
                     "marks": []
                   }
                 ]
@@ -412,7 +493,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "rows options, e.g. whether a particular row can be selected, checked, or folded",
+                    "text": "rows options, e.g. whether a particular row can be selected, checked, or folded;",
                     "marks": []
                   }
                 ]
@@ -666,7 +747,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "DataSourceState",
+            "text": "DataSource",
             "marks": [
               {
                 "object": "mark",
@@ -677,12 +758,12 @@
           },
           {
             "object": "text",
-            "text": " is usually hold in component's state. Changing the ",
+            "text": " state is usually held in the component's state. Changing the ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "DataSourceState",
+            "text": "DataSource",
             "marks": [
               {
                 "object": "mark",
@@ -693,7 +774,23 @@
           },
           {
             "object": "text",
-            "text": " causes a change of rows, which are displayed (returned by DataSource). ",
+            "text": " state causes a change of rows, which are displayed (returned by ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "). ",
             "marks": []
           }
         ]
@@ -717,7 +814,18 @@
         "nodes": [
           {
             "object": "text",
-            "text": "DataSources don't produce rows themselves, and they don't contain any information about the state of rows. They return views, which contain that information. Think about ",
+            "text": "DataSources",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " don't produce rows themselves, and they don't contain any information about the state of rows. They return views, which contain that information. Think about ",
             "marks": []
           },
           {
@@ -749,7 +857,23 @@
           },
           {
             "object": "text",
-            "text": " can return multiple views. This is done to support cases when a single ",
+            "text": " can return multiple ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Views",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". This is done to support cases when a single ",
             "marks": []
           },
           {
@@ -777,7 +901,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Each Component has to create its own view, and each ",
+            "text": "Each component has to create its own view, and each ",
             "marks": []
           },
           {
@@ -809,7 +933,7 @@
           },
           {
             "object": "text",
-            "text": " instance and its change handler. To create ",
+            "text": " instance and its change handler. To create a ",
             "marks": []
           },
           {
@@ -857,7 +981,23 @@
           },
           {
             "object": "text",
-            "text": " instance. You can see how views can be created by a ",
+            "text": " instance. You can see how ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Views",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " can be created within ",
             "marks": []
           },
           {

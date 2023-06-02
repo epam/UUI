@@ -11,7 +11,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In this chapter, specific props of the AsyncDataSource will be overviewed in detail.",
+            "text": "In this chapter, specific props of the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "AsyncDataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " will be overviewed in detail.",
             "marks": []
           }
         ]
@@ -78,7 +94,7 @@
                 "marks": [
                   {
                     "object": "mark",
-                    "type": "uui-richTextEditor-bold",
+                    "type": "uui-richTextEditor-code",
                     "data": {}
                   }
                 ]
@@ -138,7 +154,23 @@
           },
           {
             "object": "text",
-            "text": " chapter, so, only the specific one will be described. You can read about base props and a dataSource state at:",
+            "text": " chapter, so, only the specific one will be described. You can read about base props and a ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " state at:",
             "marks": []
           }
         ]
@@ -298,12 +330,12 @@
                     "object": "inline",
                     "type": "link",
                     "data": {
-                      "url": "/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources-details"
+                      "url": "/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources"
                     },
                     "nodes": [
                       {
                         "object": "text",
-                        "text": "Datasoruce State",
+                        "text": "Datasource State",
                         "marks": [
                           {
                             "object": "mark",

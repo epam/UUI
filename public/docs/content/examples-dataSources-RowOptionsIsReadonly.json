@@ -11,28 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Editable rows can become ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "readonly",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " if pass ",
+            "text": "Editable rows can become read-only if pass ",
             "marks": []
           },
           {

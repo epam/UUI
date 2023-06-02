@@ -11,7 +11,39 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To represent some data with ArrayDataSource, it should be fetched  by the dataSource via ",
+            "text": "To represent some data with ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "ArrayDataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", it should be fetched  by the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " via ",
             "marks": []
           },
           {

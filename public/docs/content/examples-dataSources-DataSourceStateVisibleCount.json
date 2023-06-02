@@ -27,7 +27,23 @@
           },
           {
             "object": "text",
-            "text": " parameter is representing a number of records, shown by dataSource. A ",
+            "text": " parameter is representing a number of records, shown by ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". A ",
             "marks": []
           },
           {

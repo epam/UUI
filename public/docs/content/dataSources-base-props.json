@@ -11,12 +11,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "This article contains examples of ",
+            "text": "This article contains examples of common ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "BaseDataSourceProps",
+            "text": "DataSource",
             "marks": [
               {
                 "object": "mark",
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " usage. ",
+            "text": " props usage. ",
             "marks": []
           },
           {

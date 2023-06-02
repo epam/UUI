@@ -16,7 +16,7 @@
           },
           {
             "object": "text",
-            "text": "DataSource Input",
+            "text": "DataSource",
             "marks": [
               {
                 "object": "mark",
@@ -27,12 +27,12 @@
           },
           {
             "object": "text",
-            "text": " is a ",
+            "text": " input is a ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "DataSourceState",
+            "text": "DataSource",
             "marks": [
               {
                 "object": "mark",
@@ -43,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": ". It provides control over a search string, filter, sorting options, etc.",
+            "text": " state. It provides control over a search string, filter, sorting options, etc.",
             "marks": []
           }
         ]

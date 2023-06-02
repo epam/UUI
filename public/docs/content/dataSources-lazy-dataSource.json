@@ -11,7 +11,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In this chapter, specific props of the LazyDataSource will be overviewed in detail.",
+            "text": "In this chapter, specific props of the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "LazyDataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " will be overviewed in detail.",
             "marks": []
           }
         ]
@@ -34,7 +50,23 @@
           },
           {
             "object": "text",
-            "text": " is used to represent a large amount of data, stored somewhere on a server. This type of dataSource loads data lazily, chunk by chunk.",
+            "text": " is used to represent a large amount of data, stored somewhere on a server. This type of ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " loads data lazily, chunk by chunk.",
             "marks": []
           }
         ]
@@ -85,7 +117,23 @@
           },
           {
             "object": "text",
-            "text": " chapter, so, only the specific one will be described. You can read about base props and a dataSource state at:",
+            "text": " chapter, so, only the specific one will be described. You can read about base props and a ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " state at:",
             "marks": []
           }
         ]
@@ -245,12 +293,43 @@
                     "object": "inline",
                     "type": "link",
                     "data": {
-                      "url": "/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources-details"
+                      "url": "/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources"
                     },
                     "nodes": [
                       {
                         "object": "text",
-                        "text": "Datasoruce State",
+                        "text": "",
+                        "marks": [
+                          {
+                            "object": "mark",
+                            "type": "uui-richTextEditor-bold",
+                            "data": {}
+                          }
+                        ]
+                      },
+                      {
+                        "object": "inline",
+                        "type": "link",
+                        "data": {
+                          "url": "http://localhost:3000/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources"
+                        },
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Datasource State",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "object": "text",
+                        "text": "",
                         "marks": [
                           {
                             "object": "mark",

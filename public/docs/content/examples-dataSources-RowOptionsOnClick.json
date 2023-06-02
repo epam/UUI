@@ -11,23 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "It is possible to add an ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "extra click handler",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " to the row bypassing ",
+            "text": "It is possible to add an extra click handler to the row bypassing ",
             "marks": []
           },
           {
@@ -48,7 +32,7 @@
           },
           {
             "object": "text",
-            "text": "rowOptions part",
+            "text": "rowOptions",
             "marks": [
               {
                 "object": "mark",
@@ -59,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": ". ",
+            "text": " part. ",
             "marks": []
           }
         ]

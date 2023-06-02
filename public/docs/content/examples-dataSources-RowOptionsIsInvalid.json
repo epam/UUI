@@ -32,7 +32,7 @@
           },
           {
             "object": "text",
-            "text": "rowOptions props",
+            "text": "rowOptions",
             "marks": [
               {
                 "object": "mark",
@@ -43,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": ".",
+            "text": " props.",
             "marks": []
           }
         ]
