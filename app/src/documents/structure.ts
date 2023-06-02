@@ -192,18 +192,17 @@ export const items: DocItem[] = [
     { id: 'loaders', name: 'Loaders', component: LoadersDoc, parentId: 'guidelines' },
     { id: 'validation', name: 'Validation', component: ValidationDoc, parentId: 'guidelines' },
     { id: 'visualExamples', name: 'Visual Examples', component: VisualExamplesDoc, parentId: 'forDesigners' },
+
     { id: 'components', name: 'Components' },
     ...componentsStructure,
-    { id: 'advanced', name: 'Advanced' },
-    { id: 'localization', name: 'Internationalization', component: InternationalizationDoc, parentId: 'advanced' },
-    { id: 'dragAndDrop', name: 'Drag And Drop', component: DragAndDropDoc, parentId: 'advanced' },
-    { id: 'testing', name: 'Testing' },
-    { id: 'testing-basics', name: 'Basics', component: UtGuideBasicsDoc, parentId: 'testing' },
-    { id: 'testing-cookbook', name: 'Cookbook', component: UtGuideCookbookDoc, parentId: 'testing' },
-    { id: 'testing-tools', name: 'Tools', component: UtGuideToolsDoc, parentId: 'testing' },
+
+    { id: 'assets', name: 'Assets' },
+    { id: 'icons', name: 'Icons', component: IconsDoc, parentId: 'assets' },
+    { id: 'promoColors', name: 'Colors', component: ColorsPageDoc, parentId: 'assets' },
+    { id: 'downloads', name: 'Downloads', component: DownloadsDoc, parentId: 'assets' },
+
     { id: 'dataSources', name: 'DataSources' },
     { id: 'dataSources-getting-started', name: 'Getting Started', component: DataSourcesGettingStartedDoc, parentId: 'dataSources' },
-    // { id: 'dataSources-overview', name: 'Getting Started', component: DataSourcesOverviewDoc, parentId: 'dataSources' },
     { id: 'dataSources-base-props', name: 'DataSource Props', component: DataSourcesBaseDataSourcePropsDoc, parentId: 'dataSources' },
     { id: 'dataSources-row-options', name: 'Row Options', component: DataSourcesRowOptionsDoc, parentId: 'dataSources' },
     { id: 'dataSources-dataSource-state', name: 'DataSource State', component: DataSourcesDataSourceStateDoc, parentId: 'dataSources' },
@@ -211,6 +210,7 @@ export const items: DocItem[] = [
     { id: 'dataSources-async-dataSource', name: 'AsyncDataSource', component: DataSourcesAsyncDataSourceDoc, parentId: 'dataSources' },
     { id: 'dataSources-lazy-dataSource', name: 'LazyDataSource', component: DataSourcesLazyDataSourceDoc, parentId: 'dataSources' },
     { id: 'dataSources-usage', name: 'Usage In Components', component: DataSourcesUsageDoc, parentId: 'dataSources' },
+
     { id: 'contexts', name: 'Contexts' },
     { id: 'contextProvider', name: 'Context Provider', component: ContextProviderDoc, parentId: 'contexts', tags: ['contexts'] },
     { id: 'apiContext', name: 'Api Context and Error Handling', component: ApiContextDoc, parentId: 'contexts', tags: ['contexts'] },
@@ -218,11 +218,18 @@ export const items: DocItem[] = [
     { id: 'modalContext', name: 'Modal Context', component: ModalContextDoc, parentId: 'contexts', tags: ['contexts'] },
     { id: 'notificationContextDoc', name: 'Notification Context', component: NotificationContextDoc, parentId: 'contexts', tags: ['contexts'] },
     { id: 'lockContextDoc', name: 'Lock Context', component: LockContextDoc, parentId: 'contexts', tags: ['contexts'] },
-    { id: 'assets', name: 'Assets' },
-    { id: 'icons', name: 'Icons', component: IconsDoc, parentId: 'assets' },
-    { id: 'promoColors', name: 'Colors', component: ColorsPageDoc, parentId: 'assets' },
-    { id: 'downloads', name: 'Downloads', component: DownloadsDoc, parentId: 'assets' },
+
+    { id: 'advanced', name: 'Advanced' },
+    { id: 'localization', name: 'Internationalization', component: InternationalizationDoc, parentId: 'advanced' },
+    { id: 'dragAndDrop', name: 'Drag And Drop', component: DragAndDropDoc, parentId: 'advanced' },
+
     { id: 'projects', name: 'Projects', component: ProjectsDoc },
+
+    { id: 'testing', name: 'Testing' },
+    { id: 'testing-basics', name: 'Basics', component: UtGuideBasicsDoc, parentId: 'testing' },
+    { id: 'testing-cookbook', name: 'Cookbook', component: UtGuideCookbookDoc, parentId: 'testing' },
+    { id: 'testing-tools', name: 'Tools', component: UtGuideToolsDoc, parentId: 'testing' },
+
     { id: 'team', name: 'Team', component: TeamDoc },
     { id: 'releaseNotes', name: 'Release Notes', component: ReleaseNotesDoc },
 ];
