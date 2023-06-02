@@ -1,11 +1,8 @@
 import { devLogger, withMods } from '@epam/uui-core';
 import { LinkButton as UuiLinkButton, LinkButtonProps as UuiLinkButtonProps } from '@epam/uui';
 
-export type LinkButtonColorType = 'blue' | 'green' | 'amber' | 'red' | 'gray60' | 'gray10';
-export const allLinkButtonColors: LinkButtonColorType[] = ['blue', 'green', 'amber', 'red', 'gray60', 'gray10'];
-
 export interface LinkButtonMods {
-    color?: LinkButtonColorType;
+    color?: 'blue' | 'green' | 'amber' | 'red' | 'gray60' | 'gray10';
 }
 
 export type LinkButtonProps = Omit<UuiLinkButtonProps, 'color'> & LinkButtonMods;

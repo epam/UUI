@@ -15,8 +15,44 @@
         fill: var(--red);
     }
 
+    &.icon-container-cyan {
+        fill: var(--cyan-30);
+    }
+
+    &.icon-container-orange {
+        fill: var(--orange-30);
+    }
+
+    &.icon-container-purple {
+        fill: var(--purple-30);
+    }
+
+    &.icon-container-violet {
+        fill: var(--violet-30);
+    }
+
+    &.icon-container-white {
+        fill: var(--white);
+    }
+
+    &.icon-container-gray5 {
+        fill: var(--gray5);
+    }
+
+    &.icon-container-gray10 {
+        fill: var(--gray10);
+    }
+
+    &.icon-container-gray20 {
+        fill: var(--gray20);
+    }
+
     &.icon-container-gray30 {
         fill: var(--gray30);
+    }
+
+    &.icon-container-gray40 {
+        fill: var(--gray40);
     }
 
     &.icon-container-gray50 {
@@ -25,5 +61,17 @@
 
     &.icon-container-gray60 {
         fill: var(--gray60);
+    }
+
+    &.icon-container-gray70 {
+        fill: var(--gray70);
+    }
+
+    &.icon-container-gray80 {
+        fill: var(--gray80);
+    }
+
+    &.icon-container-gray90 {
+        fill: var(--gray90);
     }
 }
