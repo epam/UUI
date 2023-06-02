@@ -30,7 +30,6 @@ import {
     selectEditor,
     getStartPoint,
     createNode,
-    TTableElement,
     createTablePlugin,
     setNodes,
     withTable,
@@ -38,6 +37,9 @@ import {
     WithPlatePlugin,
     TablePlugin,
     isElement,
+    KEY_DESERIALIZE_HTML,
+    TTableRowElement,
+    TDescendant,
 } from "@udecode/plate";
 import cx from "classnames";
 import { Dropdown } from '@epam/uui-components';
@@ -70,7 +72,7 @@ import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { ExtendedTTableCellElement } from './types';
 
 const empt = {
-    "data": { style: 'none', colSpan: 0, rowSpan: 0, },
+    "data": { style: 'none', colSpan: 0, rowSpan: 1, },
     "type": "table_cell",
     colSpan: 0,
     rowSpan: 0,
@@ -93,7 +95,6 @@ const TableRenderer = (props: any) => {
     const ref = useRef(null);
 
     const { element } = props;
-    let tableElem = element as TTableElement;
 
     const cellEntries = getTableGridAbove(editor, { format: 'cell' });
 
@@ -114,6 +115,18 @@ const TableRenderer = (props: any) => {
 
     const onChangeDropDownValue = useCallback((value: boolean) => () => setShowToolbar(value), []);
 
+
+    const selectedCols: any = {};
+    cellEntries.forEach(([, path]) => {
+        if (selectedCols[path[2]]) {
+            selectedCols[path[2]].push(path);
+        } else {
+            selectedCols[path[2]] = [path];
+        }
+    });
+
+    // console.log('selectedCols', selectedCols);
+
     const mergeCells = () => {
         const rowArray: any[] = [];
         cellEntries.forEach(([, path]) => rowArray.push(path[2]));
@@ -121,7 +134,7 @@ const TableRenderer = (props: any) => {
         // define colSpan
         const colSpan = cellEntries.reduce((acc, [data, path]: any) => {
             if (path[2] === cellEntries[0][1][2]) {
-                return acc + (data.data?.colSpan || 1);
+                return acc + (data.data?.colSpan ?? 1);
             }
             return acc;
         }, 0);
@@ -132,12 +145,12 @@ const TableRenderer = (props: any) => {
             const curRowCounted = alreadyCounted.includes(path[2]);
             if (path[2] !== cellEntries[0][1][2] && !curRowCounted) {
                 alreadyCounted.push(path[2])
-                return acc + (data.data?.rowSpan || 1);
+                return acc + (data.data?.rowSpan ?? 1);
             }
             return acc;
         }, 1);
 
-        const emptyCol = {
+        const mergedCol = {
             "data": { colSpan, rowSpan },
             "type": "table_cell",
             "children": [
@@ -163,10 +176,12 @@ const TableRenderer = (props: any) => {
             }
         });
 
+        // console.log('merging cols', cols);
+
         Object.values(cols).forEach((paths: any, i) => {
             paths?.forEach((path: [], j: number) => {
                 if (i === 0 && j === paths.length - 1) {
-                    setNodes(editor, emptyCol, { at: paths[j] }); // setting root
+                    setNodes(editor, mergedCol, { at: paths[j] }); // setting root
                     return;
                 }
                 setNodes(editor, empt, { at: paths[j] }); // set display: none to all others
@@ -314,40 +329,64 @@ const withOurNormalizeTable = <
     editor: E,
     plugin: WithPlatePlugin<TablePlugin<V>, V, E>
 ) => {
-
     const { normalizeNode } = editor;
 
+    /**
+     * Normalize needed for tables pasted from docx.
+     * They don't have cells which are merged.
+     */
     editor.normalizeNode = ([node, path]) => {
         if (isElement(node)) {
-            if (node.type === getPluginType(editor, ELEMENT_TR)) {
-                const colNumber = node.children
+            if (node.type === getPluginType(editor, ELEMENT_TABLE)) {
+                // console.log('table normalize', node);
+
+                const colNumber = (node.children[0].children as TDescendant[])
                     .reduce((acc, cur) => {
                         const cellElem = cur as ExtendedTTableCellElement;
                         const attrColSpan = (cellElem.attributes as { colspan?: number })?.colspan;
                         const colSpan = isNaN(attrColSpan) ? 1 : Number(attrColSpan);
-                        // const colSpan = (cellElem?.attributes as any)?.colspan ?? 1;
-                        // const rowSpan = (cellElem?.attributes as any)?.rowspan ?? 1,
                         return acc + colSpan;
                     }, 0);
-                console.log('colNumber', colNumber);
 
-                const shiftIndexes: number[] = [];
-                console.log('before', JSON.stringify(node.children));
-                node.children.forEach((cur, index) => {
+                // console.log('colNumber', colNumber);
 
-                    const cellElem = cur as ExtendedTTableCellElement;
-                    const attrColSpan = (cellElem.attributes as { colspan?: number })?.colspan;
-                    const colSpan = isNaN(attrColSpan) ? 1 : Number(attrColSpan);
+                node.children.forEach((cur, rowIndex) => {
+                    const rowElem = cur as TTableRowElement;
 
-                    if (colSpan > 1) {
-                        shiftIndexes.splice(index, 0, ...Array(colSpan - 1).fill(1));
+                    rowElem.children.forEach((current, colIndex) => {
+                        const cellElem = current as ExtendedTTableCellElement;
+                        const attrColSpan = (cellElem.attributes as { colspan?: number })?.colspan;
+                        const attrRowSpan = (cellElem.attributes as { rowspan?: number })?.rowspan;
+                        const colSpan = isNaN(attrColSpan) ? 1 : Number(attrColSpan);
+                        const rowSpan = isNaN(attrRowSpan) ? 1 : Number(attrRowSpan);
 
-                        if (colNumber !== node.children.length) {
-                            node.children.splice(index, 0, ...Array(colSpan - 1).fill(empt));
+                        // console.log('current spans', colSpan, rowSpan);
+
+                        // consider horizontal merge
+                        if (colSpan > 1 && colNumber !== rowElem.children.length) {
+                            // pasting empty cells before horizontally merged cell
+                            // since pasted pasted tables from docx don't have it
+                            // console.log('horizontal merge correction', { colIndex, cells: [...Array(colSpan - 1).fill(1)] });
+
+                            rowElem.children.splice(colIndex, 0, ...Array(colSpan - 1).fill(empt));
                         }
-                    }
+
+                        // consider vertical merge
+                        if (rowSpan > 1) {
+                            // affected row indexes
+                            const rows = Array.from({ length: rowSpan - 1 }, (_, index) => index + rowIndex + 1);
+
+                            rows.forEach((rI) => {
+                                const row = node.children[rI] as TTableRowElement;
+                                if (row.children.length !== colNumber) {
+                                    // console.log('vertical merge correction', { colIndex, rowIndex, rI });
+
+                                    row.children.splice(colIndex, 0, empt);
+                                }
+                            });
+                        }
+                    });
                 });
-                console.log('shiftIndexes', shiftIndexes, 'after', JSON.stringify(node.children));
             }
         }
 
@@ -376,7 +415,21 @@ export const tablePlugin = () => createTablePlugin({
         [ELEMENT_TABLE]: {
             type: 'table',
             component: TableRenderer,
-            withOverrides: withOurTable
+            withOverrides: withOurTable,
+            inject: {
+                pluginsByKey: {
+                    [KEY_DESERIALIZE_HTML]: {
+                        editor: {
+                            insertData: {
+                                transformFragment: (fragment) => {
+                                    // wrap into paragraph pasted tables docx content
+                                    return [{ type: PARAGRAPH_TYPE, children: fragment }, createNode()];
+                                }
+                            },
+                        },
+                    },
+                },
+            },
         },
         [ELEMENT_TR]: {
             type: 'table_row',
