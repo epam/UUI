@@ -290,8 +290,6 @@ export default function TableCellsStylesSandbox() {
             getId: ({ id }) => id,
             getRowOptions: (item: Item, index: number) => ({
                 ...lens.prop('items').index(index).toProps(),
-                isSelectable: true,
-                checkbox: { isVisible: true },
             }),
         },
         [],
