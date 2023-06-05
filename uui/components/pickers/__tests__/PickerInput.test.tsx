@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource, AsyncDataSource, CascadeSelection, IDataSource } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct, act, prettyDOM,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct, act,
     queryHelpers,
 } from '@epam/uui-test-utils';
 import { Modals, PickerInputBaseProps } from '@epam/uui-components';
@@ -342,14 +342,12 @@ describe('PickerInput', () => {
 
             expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select');
 
-            // fireEvent.click(dom.input as HTMLElement);
+            const dialog3 = screen.getByRole('dialog');
 
-            // const dialog3 = screen.getByRole('dialog');
-
-            // const [clearButton3] = within(dialog3).getAllByRole('button')
-            //     .filter((el) => el.getAttribute('aria-label') === 'CLEAR');
+            const [clearButton3] = within(dialog3).getAllByRole('button')
+                .filter((el) => el.getAttribute('aria-label') === 'CLEAR');
             
-            // expect(clearButton3.getAttribute('aria-disabled')).toBe('true');
+            expect(clearButton3.getAttribute('aria-disabled')).toBe('true');
         });
     });
 
