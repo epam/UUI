@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "An adaptive panel component is used to layout items inside some adaptive panel. It measures the item's width and tries to fit them inside a container. If some items can't fit, they will be hidden by priorities and can be shown inside a special collapsed container item.",
+            "text": "An adaptive panel component is used to layout items inside some adaptive panel. It measures the item's width and tries to fit them inside a container. If some items can't fit, they will be hidden according to their priorities. Hidden items can then be shown inside a drop-down menu, or other container.",
             "marks": []
           }
         ]

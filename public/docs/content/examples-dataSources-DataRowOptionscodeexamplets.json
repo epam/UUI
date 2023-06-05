@@ -1,0 +1,37 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "It is worth paying attention to ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataRowOptions",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " configuration. This interface provides a lot of possibilities for customization of the rows' behavior. So, it is required to dig into details to understand, how to use it.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
