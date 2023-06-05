@@ -22,7 +22,7 @@
           },
           {
             "object": "text",
-            "text": " flag is used when IDs are not able to act as javascript Map keys (they are represented as objects or arrays). ",
+            "text": " flag is used when IDs are not able to act as JavaScript Map keys (they are represented as objects or arrays). ",
             "marks": []
           },
           {

@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In this chapter, row options will be described in detail. Row options specify if rows are selectable, editable, checkable, draggable, clickable, and more. Potentially, all the further props can be passed to the ",
+            "text": "In this chapter, row options will be described in detail. Row options specify if rows are selectable, editable, checkable, draggable, clickable, and more. Row options can be passed to the ",
             "marks": []
           },
           {
@@ -27,39 +27,96 @@
           },
           {
             "object": "text",
-            "text": " as part of ",
+            "text": " in two ways:",
             "marks": []
-          },
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
           {
-            "object": "text",
-            "text": "rowOptions",
-            "marks": [
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "as an ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "rowOptions",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " object, allowing to pass the same options for all rows",
+                    "marks": []
+                  }
+                ]
               }
             ]
           },
           {
-            "object": "text",
-            "text": " or as a return value of ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "getRowOptions",
-            "marks": [
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "a return value of the",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "getRowOptions",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " callback. The callback is passed with a data item for the row, which allows computing different options for each row.",
+                    "marks": []
+                  }
+                ]
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
           {
             "object": "text",
-            "text": ". But for ",
+            "text": "For props like  ",
             "marks": []
           },
           {
@@ -118,7 +175,7 @@
           },
           {
             "object": "text",
-            "text": "it makes sense to pass by ",
+            "text": "it only makes sense to use ",
             "marks": []
           },
           {
@@ -134,7 +191,7 @@
           },
           {
             "object": "text",
-            "text": " only.  ",
+            "text": " (as these props should depend on a row).",
             "marks": []
           }
         ]

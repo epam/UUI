@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Lock context provides functionality to solve problems when you need to take control(lock) and perform some action when something is trying to get control(lock) for itself. ",
+            "text": "Lock context provides functionality to solve problems when you need to take control(lock) and perform some action when something is trying to get control (lock) for itself. ",
             "marks": []
           }
         ]
@@ -96,7 +96,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " callback, which will be invoked when something tries to take control over. If lock already exists, it tries to release the current lock and then set a new one;\n",
+                    "text": " callback, which will be invoked when something tries to take control over. If a lock already exists, it tries to release the current lock and then set a new one;\n",
                     "marks": []
                   }
                 ]
@@ -184,7 +184,7 @@
                       },
                       {
                         "object": "text",
-                        "text": " callback which was passed to ",
+                        "text": " callback which was passed to the ",
                         "marks": []
                       },
                       {

@@ -45,7 +45,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "rich components, from buttons to tables and rich text editors.",
+                    "text": "Rich components, from buttons to tables and rich text editors.",
                     "marks": []
                   }
                 ]
@@ -64,7 +64,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "common services: modals, notifications, error recovery, forms, data binding, monitoring, and more.",
+                    "text": "Common services: modals, notifications, error recovery, forms, data binding, monitoring, and more.",
                     "marks": []
                   }
                 ]
@@ -102,7 +102,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "open for contribution, actively evolving, supported, and used by dozens of production projects.",
+                    "text": "Open for contribution, actively evolving, supported, and used by dozens of production projects.",
                     "marks": []
                   }
                 ]
@@ -121,7 +121,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "non-opinionated, compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.",
+                    "text": "Non-opinionated, compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.",
                     "marks": []
                   }
                 ]
@@ -211,7 +211,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "The component sets from those early days were growing, traveling via tons of of projects. We tried different approaches, picking the best fit. Finally, at some point in 2016, we extracted them into a separate Git repo. Later, we wholly revisited almost all our shortcomings and mistakes. Twice. We changed the look and feel several times.",
+            "text": "The component sets from those early days were growing, traveling via tons of projects. We tried different approaches, picking the best fit. Finally, at some point in 2016, we extracted them into a separate Git repo. Later, we wholly revisited almost all our shortcomings and mistakes. Twice. We changed the look and feel several times.",
             "marks": []
           }
         ]
@@ -223,7 +223,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "The current code base results from years of evolution - each piece rewritten from scratch 3-4 times. The team behind UUI built three comprehensive UI/UX Design Systems and tens applications.",
+            "text": "The current code base results from years of evolution - each piece rewritten from scratch 3–4 times. The team behind UUI built three comprehensive UI/UX Design Systems and tens applications.",
             "marks": []
           }
         ]
@@ -259,7 +259,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "We watched other evolving UI frameworks (Material UI, Ant Design, and similar) progress to become more stable and mature. Whereas we were always ahead in many aspects, and UUI matches our needs better.",
+            "text": "We watched other evolving UI frameworks (Material UI, Ant Design, and similar) progress to become more stable and mature. Whereas, we were always ahead in many aspects, and UUI matches our needs better.",
             "marks": []
           }
         ]
@@ -524,7 +524,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "We have tons of helpers for:",
+            "text": "Furthermore, we have tons of helpers for:",
             "marks": []
           }
         ]
@@ -565,7 +565,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "List/Table/Tree state management - including lazy-loading, virtualisation, filtering and paging",
+                    "text": "List/Table/Tree state management - including lazy-loading, virtualization, filtering and paging",
                     "marks": []
                   }
                 ]
