@@ -6,9 +6,9 @@
     --font-regular: 'Sans Regular', Arial, sans-serif;
     --font-semibold: 'Sans Semibold', Arial, sans-serif;
     --font-italic: 'Sans Italic', Arial, sans-serif;
-    --font-primary: 'Museo Sans', 'Sans Semibold', Arial, sans-serif;
-    --font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
-    --font-mono: 'Roboto Mono', Arial, sans-serif;
+    --font-primary: 'Sans Semibold', Arial, sans-serif;
+    --font-promo: 'Sans Semibold', Arial, sans-serif;
+    --font-mono: monospace;
     --font-redacted: 'Redacted';
     --font-light: 'Sans Light', Arial, sans-serif;
 
@@ -109,33 +109,7 @@
     --mint-40: #2E9E68;
     --mint-50: #236E4A;
 
-    /* TODO: needs to resolve old colors question */
     /* Loveship old colors */
-    --uui-color-600: #EBECF1;
-
-    --uui-color-carbon-700: #3D404D;
-    --uui-color-carbon-800: #272933;
-    --uui-color-carbon-900: #17181F;
-
-    --uui-color-cobalt-500: #32B2FB;
-    --uui-color-cobalt-600: #2196F3;
-    --uui-color-cobalt-700: #0E74E2;
-    --uui-color-cobalt-800: #0453C7;
-    --uui-color-cobalt-900: #003399;
-
-
-    --uui-color-lavanda-500: #6362C9;
-    --uui-color-lavanda-600: #3F51B5;
-    --uui-color-lavanda-700: #2E3A9D;
-    --uui-color-lavanda-800: #21288D;
-    --uui-color-lavanda-900: #191980;
-
-    --uui-color-fuchsia-500: #F5527B;
-    --uui-color-fuchsia-600: #E91E63;
-    --uui-color-fuchsia-700: #CD0053;
-    --uui-color-fuchsia-800: #B00052;
-    --uui-color-fuchsia-900: #94004C;
-
     --uui-color-white-800: #E6E6E6;
     --uui-color-white-900: #CCCCCC;
 
@@ -163,7 +137,6 @@
 
     --uui-color-night600-700: #595B6D;
     --uui-color-night600-800: #555764;
-    --uui-color-night600-900: #3D3F49;
 
     --uui-color-night700-800: #30323D;
     --uui-color-night700-900: #1A1B20;
@@ -920,23 +893,23 @@
     }
 
     .link-button-cobalt {
-        --uui-link-button-text: var(--uui-color-cobalt-700);
-        --uui-link-button-text-hover: var(--uui-color-cobalt-800);
-        --uui-link-button-text-active: var(--uui-color-cobalt-900);
+        --uui-link-button-text: var(--cobalt-30);
+        --uui-link-button-text-hover: var(--cobalt-40);
+        --uui-link-button-text-active: var(--cobalt-50);
         --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
     }
 
     .link-button-lavanda {
-        --uui-link-button-text: var(--uui-color-lavanda-700);
-        --uui-link-button-text-hover: var(--uui-color-lavanda-800);
-        --uui-link-button-text-active: var(--uui-color-lavanda-900);
+        --uui-link-button-text: var(--lavanda-30);
+        --uui-link-button-text-hover: var(--lavanda-40);
+        --uui-link-button-text-active: var(--lavanda-50);
         --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
     }
 
     .link-button-fuchsia {
-        --uui-link-button-text: var(--uui-color-fuchsia-700);
-        --uui-link-button-text-hover: var(--uui-color-fuchsia-800);
-        --uui-link-button-text-active: var(--uui-color-fuchsia-900);
+        --uui-link-button-text: var(--fuchia-30);
+        --uui-link-button-text-hover: var(--fuchia-40);
+        --uui-link-button-text-active: var(--fuchia-50);
         --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
     }
 
@@ -1035,31 +1008,24 @@
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    .icon-button-carbon {
-        --uui-icon-btn: var(--uui-color-carbon-700);
-        --uui-icon-btn-hover: var(--uui-color-carbon-800);
-        --uui-icon-btn-active: var(--uui-color-carbon-900);
-        --uui-icon-btn-disabled: var(--uui-icon-disabled);
-    }
-
     .icon-button-cobalt {
-        --uui-icon-btn: var(--uui-color-cobalt-700);
-        --uui-icon-btn-hover: var(--uui-color-cobalt-800);
-        --uui-icon-btn-active: var(--uui-color-cobalt-900);
+        --uui-icon-btn: var(--cobalt-30);
+        --uui-icon-btn-hover: var(--cobalt-40);
+        --uui-icon-btn-active: var(--cobalt-50);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
     .icon-button-lavanda {
-        --uui-icon-btn: var(--uui-color-lavanda-700);
-        --uui-icon-btn-hover: var(--uui-color-lavanda-800);
-        --uui-icon-btn-active: var(--uui-color-lavanda-900);
+        --uui-icon-btn: var(--lavanda-30);
+        --uui-icon-btn-hover: var(--lavanda-40);
+        --uui-icon-btn-active: var(--lavanda-50);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
     .icon-button-fuchsia {
-        --uui-icon-btn: var(--uui-color-fuchsia-700);
-        --uui-icon-btn-hover: var(--uui-color-fuchsia-800);
-        --uui-icon-btn-active: var(--uui-color-fuchsia-900);
+        --uui-icon-btn: var(--fuchia-30);
+        --uui-icon-btn-hover: var(--fuchia-40);
+        --uui-icon-btn-active: var(--fuchia-50);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
@@ -1245,42 +1211,42 @@
     }
 
     .badge-cobalt {
-        --uui-badge-bg: var(--uui-color-cobalt-700);
-        --uui-badge-bg-hover: var(--uui-color-cobalt-800);
+        --uui-badge-bg: var(--cobalt-30);
+        --uui-badge-bg-hover: var(--cobalt-40);
         --uui-badge-caption-solid: var(--uui-text-contrast);
         --uui-badge-count-bg: var(--white);
         --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-bg-halftone: var(--uui-color-cobalt-500);
-        --uui-badge-bg-halftone-hover: var(--uui-color-cobalt-600);
-        --uui-badge-border-halftone: var(--uui-color-cobalt-700);
-        --uui-badge-border-halftone-hover: var(--uui-color-cobalt-800);
-        --uui-badge-caption-halftone: var(--uui-color-cobalt-900);
+        --uui-badge-bg-halftone: var(--cobalt-10);
+        --uui-badge-bg-halftone-hover: var(--cobalt-20);
+        --uui-badge-border-halftone: var(--cobalt-30);
+        --uui-badge-border-halftone-hover: var(--cobalt-40);
+        --uui-badge-caption-halftone: var(--cobalt-50);
     }
 
     .badge-lavanda {
-        --uui-badge-bg: var(--uui-color-lavanda-700);
-        --uui-badge-bg-hover: var(--uui-color-lavanda-800);
+        --uui-badge-bg: var(--lavanda-30);
+        --uui-badge-bg-hover: var(--lavanda-40);
         --uui-badge-caption-solid: var(--white);
         --uui-badge-count-bg: var(--white);
         --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-bg-halftone: var(--uui-color-lavanda-500);
-        --uui-badge-bg-halftone-hover: var(--uui-color-lavanda-600);
-        --uui-badge-border-halftone: var(--uui-color-lavanda-700);
-        --uui-badge-border-halftone-hover: var(--uui-color-lavanda-800);
-        --uui-badge-caption-halftone: var(--uui-color-lavanda-900);
+        --uui-badge-bg-halftone: var(--lavanda-10);
+        --uui-badge-bg-halftone-hover: var(--lavanda-20);
+        --uui-badge-border-halftone: var(--lavanda-30);
+        --uui-badge-border-halftone-hover: var(--lavanda-40);
+        --uui-badge-caption-halftone: var(--lavanda-50);
     }
 
     .badge-fuchsia {
-        --uui-badge-bg: var(--uui-color-fuchsia-700);
-        --uui-badge-bg-hover: var(--uui-color-fuchsia-800);
+        --uui-badge-bg: var(--fuchia-30);
+        --uui-badge-bg-hover: var(--fuchia-40);
         --uui-badge-caption-solid: var(--uui-text-contrast);
         --uui-badge-count-bg: var(--white);
         --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-bg-halftone: var(--uui-color-fuchsia-500);
-        --uui-badge-bg-halftone-hover: var(--uui-color-fuchsia-600);
-        --uui-badge-border-halftone: var(--uui-color-fuchsia-700);
-        --uui-badge-border-halftone-hover: var(--uui-color-fuchsia-800);
-        --uui-badge-caption-halftone: var(--uui-color-fuchsia-900);
+        --uui-badge-bg-halftone: var(--fuchia-10);
+        --uui-badge-bg-halftone-hover: var(--fuchia-20);
+        --uui-badge-border-halftone: var(--fuchia-30);
+        --uui-badge-border-halftone-hover: var(--fuchia-40);
+        --uui-badge-caption-halftone: var(--fuchia-50);
     }
 
     .badge-white {

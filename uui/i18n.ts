@@ -20,6 +20,7 @@ export const i18n = {
         clearSelectionButton: 'CLEAR ALL',
         clearSelectionButtonSingle: 'CLEAR',
         selectAllButton: 'SELECT ALL',
+        doneButton: 'DONE',
     },
     notificationCard: {
         closeAllNotificationsButton: 'CLOSE ALL NOTIFICATIONS',
