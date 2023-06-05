@@ -43,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": " props. This function is used to retrieve the data asynchronously. \nAPI is used to retrieve lists of items.\nIt is expected to be able to:\n- handle paging (via ",
+            "text": " props. This function is used to retrieve the data asynchronously. \nAPI is used to retrieve lists of items.\nIt is expected to be able to:\n- retrieve visible chunk of data (via ",
             "marks": []
           },
           {

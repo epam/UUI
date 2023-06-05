@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "A lot of UI/UX elements displays list and hierarchical data. For example, tables, selects, catalogs, etc.  A lot of effort is required to solve problems of retrieving / grouping / filtering / sorting / visualizing such data. Everything becomes even worse when it is necessary to implement the pattern of data lazy-loading, add some folding logic, different strategies for selecting elements with children nodes, etc.",
+            "text": "A lot of UI/UX elements displays list and hierarchical data. For example, tables, selects, catalogs, etc.  A lot of effort is required to solve problems of retrieving / grouping / filtering / sorting / visualizing such data. Everything becomes even more complex when it is necessary to implement the pattern of data lazy-loading, add some folding logic, different strategies for selecting elements with children nodes, etc.",
             "marks": []
           }
         ]
@@ -1312,7 +1312,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Each dataSource accepts ",
+            "text": "Each ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " accepts ",
             "marks": []
           },
           {

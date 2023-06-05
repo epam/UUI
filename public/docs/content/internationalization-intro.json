@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Each UUI package has an i18n variable, which contains all built-in texts from this package. Thus to translate it, you need to import the i18n object into your project and update this object with texts in the desired language.",
+            "text": "Each UUI package has an i18n variable, which contains all built-in texts from this package. Thus, to translate it, you need to import the i18n object into your project and update this object with texts in the desired language.",
             "marks": []
           }
         ]
