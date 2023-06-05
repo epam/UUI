@@ -21,7 +21,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "To enable lazy loading it is enough to return ",
+                    "text": "To enable lazy loading, it is enough to return ",
                     "marks": []
                   },
                   {
@@ -222,7 +222,23 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "It is possible to return more items than requested via from/count params. In case you return more items before the requested range, you need to explicitly set the from the field in the ",
+                    "text": "It is possible to return more items than requested via from/count params. In case you return more items before the requested range, you need to explicitly set the ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "from",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " field in the ",
                     "marks": []
                   },
                   {

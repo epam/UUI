@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Function ",
+            "text": "The ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " provides control over the default state of the folded elements.",
+            "text": " callback provides control over the default state of the folded elements.",
             "marks": []
           }
         ]

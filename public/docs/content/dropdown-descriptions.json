@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Dropdown components provide functionality when opening an overlay by clicking or hovering on the toggler.",
+            "text": "Dropdown is a low-level component which allows opening an overlay component (\"Dropdown body\") by clicking or hovering on another component (\"Target\"). This component is used internally to construct components like DropdownMenu and Tooltip, and is useful in many other cases.",
             "marks": [
               {
                 "object": "mark",

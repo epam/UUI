@@ -348,7 +348,7 @@
           },
           {
             "object": "text",
-            "text": " function to manually scroll to element ",
+            "text": " function to manually scroll to an element",
             "marks": []
           },
           {
@@ -364,7 +364,7 @@
           },
           {
             "object": "text",
-            "text": "where you can provide a desired id and get navigated there(or to the root of the wrapper when not provided). ",
+            "text": "where you can provide a desired id and get navigated there (or to the root of the wrapper when not provided). ",
             "marks": []
           }
         ]
