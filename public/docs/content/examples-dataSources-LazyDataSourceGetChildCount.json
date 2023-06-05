@@ -1,0 +1,128 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "getChildCount",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " should return a number of item's children. If it ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "returns > 0",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", the item is assumed to have children and to be foldable. This, in turn, tells the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " to attempt to fetch the item's children via API. Usually, this value should be returned from API, as a field of a parent, e.g. ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "{ id: 1, name: 'London', childCount: 12 }",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". In this case, you can implement ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "getChildCount",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " as ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "(i) => i.childCount",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". If you can't get a number of children this way, you can return a guess value (avg number of children for this type of entity). Note, that this can lead to more API calls and increased load times in the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "'parallel'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " fetch mode.﻿",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

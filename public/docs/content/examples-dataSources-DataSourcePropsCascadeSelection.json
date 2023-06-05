@@ -1,0 +1,158 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "cascadeSelection",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "false",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": All nodes are selected independently (default).",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "true",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " or ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "'explicit'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent. ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "'implicit'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": Selecting a parent node means that all children are considered checked. The user sees all these nodes as checked on the UI, but only the selected parent is visible in the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "PickerInput",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " tags, and only the checked parent is present in the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Picker's",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " value or ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSourceState.checked",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " array. When the user unchecks the first child of such a parent, its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

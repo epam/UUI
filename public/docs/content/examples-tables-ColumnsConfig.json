@@ -39,7 +39,7 @@
           },
           {
             "object": "text",
-            "text": " prop to enable the columns config dialog. The config button will appear in the last column.",
+            "text": " prop to enable the columns' config dialog. The config button will appear in the last column.",
             "marks": []
           }
         ]

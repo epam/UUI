@@ -1,0 +1,368 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "In this chapter, specific props of the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "AsyncDataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " will be overviewed in detail.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "AsyncDataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " is used to represent data, loaded via API. But, all operations, related to search/sorting/filtering, are performed and configured on the client side. So, they are mostly configured as ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "ArrayDataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". The only difference is a way of receiving data.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "The description of the rest of the props can be found in the chapter about ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?id=dataSources-array-dataSource&mode=doc&skin=UUI4_promo&category=dataSources-details"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "ArrayDataSource",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-code",
+                    "data": {}
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "AsyncDataSourceProps",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " contains all the props, overviewed in the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSourceProps",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " chapter, so, only the specific one will be described. You can read about base props and a ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " state at:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "/documents?id=dataSources-base-props&mode=doc&skin=UUI4_promo&category=dataSources-details"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "DataSource Props",
+                        "marks": [
+                          {
+                            "object": "mark",
+                            "type": "uui-richTextEditor-bold",
+                            "data": {}
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "/documents?id=dataSources-base-props&mode=doc&skin=UUI4_promo&category=dataSources-details"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "/documents?id=dataSources-row-options&mode=doc&skin=UUI4_promo&category=dataSources-details"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "Row Options",
+                        "marks": [
+                          {
+                            "object": "mark",
+                            "type": "uui-richTextEditor-bold",
+                            "data": {}
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "Datasource State",
+                        "marks": [
+                          {
+                            "object": "mark",
+                            "type": "uui-richTextEditor-bold",
+                            "data": {}
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
