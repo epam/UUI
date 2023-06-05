@@ -293,12 +293,24 @@
         "object": "block",
         "type": "image",
         "data": {
-          "src": "http://static.cdn.epam.com/uploads/4677cc268a04664255f99b470b345dca/uui/datasources/dataSources.png",
+          "src": "http://static.cdn.epam.com/uploads/4677cc268a04664255f99b470b345dca/dataSources scheme.png",
           "imageSize": {
-            "width": 884,
-            "height": 241
+            "width": 933,
+            "height": 261
           }
         },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
         "nodes": [
           {
             "object": "text",
