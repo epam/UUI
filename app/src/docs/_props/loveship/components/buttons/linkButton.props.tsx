@@ -1,4 +1,4 @@
-import { allLinkButtonColors, LinkButton, LinkButtonProps } from '@epam/loveship';
+import { LinkButton, LinkButtonProps } from '@epam/loveship';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { DefaultContext, FormContext } from '../../docs';
 import { onClickDoc, sizeDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iconWithInfoDoc, iconOptionsDoc, iCanRedirectDoc } from '../../docs';
@@ -9,7 +9,7 @@ const LinkButtonDoc = new DocBuilder<LinkButtonProps>({ name: 'LinkButton', comp
     .implements([onClickDoc, sizeDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iconWithInfoDoc, iconOptionsDoc, iCanRedirectDoc])
     .prop('color', {
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
-        examples: allLinkButtonColors,
+        examples: ['sky', 'night100', 'night600'],
     })
     .prop('caption', {
         examples: [

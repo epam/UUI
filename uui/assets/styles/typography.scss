@@ -24,10 +24,6 @@
         font-family: var(--font-primary);
     }
 
-    :global(.promo-header) {
-        text-transform: uppercase;
-    }
-
     h4, h5, h6 {
         font-family: var(--font-semibold);
     }
@@ -119,7 +115,7 @@
 
     pre {
         padding: 1.25em;
-        color: var(--gray10);
+        color: var(--uui-text-contrast);
         background-color: var(--uui-secondary-darkest);
         font-family: monospace;
         white-space: pre-wrap;
@@ -156,4 +152,12 @@
 
 @mixin typography-16() {
     font-size: 16px;
+}
+
+@mixin typography-uui() {
+    @include typography-header();
+    @include typography-block();
+    @include typography-inline();
+    font-family: var(--font-regular);
+    color: var(--uui-text-primary);
 }
