@@ -184,7 +184,23 @@
                   },
                   {
                     "object": "text",
-                    "text": ". Implicit selection: selecting a parent node means that all children are considered checked. The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent, its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.",
+                    "text": ". Implicit selection: selecting a parent node means that all children are considered checked. The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked parent is present in the Picker's value or ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "DataSourceState.checked",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " array. When the user unchecks the first child of such a parent, its parents become unchecked and all children, but the unchecked one become checked, making children's selection explicit. If the last unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.",
                     "marks": []
                   }
                 ]

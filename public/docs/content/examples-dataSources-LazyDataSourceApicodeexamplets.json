@@ -1,0 +1,32 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "api",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " is a function, which receives request params as a first argument and a context of the API call as a second one. The type of function in the simple form for reading is represented below.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

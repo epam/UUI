@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop you can provide your own day renderer, if you need to customize calendar day. In this example we add point for all Sundays.",
+            "text": " prop you can provide your own day renderer, if you need to customize the calendar day. In this example, we add a point for all Sundays.",
             "marks": []
           }
         ]

@@ -110,7 +110,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "List virtualisation (only visible rows are in the DOM).",
+                    "text": "List virtualization (only visible rows are rendered).",
                     "marks": []
                   }
                 ]

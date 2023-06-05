@@ -3,18 +3,18 @@
 **New themes support**
 
 This release prepares UUI to the Themes support, according to these changes 'Promo' and 'Loveship' skins
-are now based on `@epam/uui` package which has set of components which supposed to be used with Themes. Now both skins has the same codebase and only apply different styles. 
+are now based on `@epam/uui` package which has set of components which supposed to be used with Themes. Now both skins has the same codebase and only apply different styles.
 Regarding these changes we aligned interfaces, functionality and visual appearance between 'Promo' and 'Loveship' skins, as a result, we removed or deprecate some props or their values.
 
-Pay attention that this release required some additional actions for proper library work. 
+Pay attention that this release required some additional actions for proper library work.
 You can find migration guide and full list of changes [here](https://github.com/epam/UUI/wiki/Migration-guide-to-UUI-v.5).
 
-Note: Currently, we use Themes internally to remove duplication in our code base. In the future, we allow UUI users to build their own themes, and using Themes variables for customization. However, in this release we haven’t yet finalized this. 
+Note: Currently, we use Themes internally to remove duplication in our code base. In the future, we allow UUI users to build their own themes, and using Themes variables for customization. However, in this release we haven’t yet finalized this.
 We can’t yet recommend using Themes internals, e.g. override Themes CSS variables for customization.
 
 **Testing facilities and documentation**
 * Introduced new `@epam/uui-test-utils` package. It provides a set of helpers, utils and mocks which facilitate creation of unit tests for UUI components.
-* Was added Testing [documentation](https://uui.epam.com/documents?id=testing-basics&category=testing). It contains general guidelines, best practices and tools which we are recommending to use for UUI components testing. 
+* Was added Testing [documentation](https://uui.epam.com/documents?id=testing-basics&category=testing). It contains general guidelines, best practices and tools which we are recommending to use for UUI components testing.
 Also, it contains a Cookbook describing typical use cases with code examples as well as frequent questions & answers.
 
 **DataSources documentation**
@@ -46,7 +46,7 @@ Also, it contains a Cookbook describing typical use cases with code examples as 
     - hide 'Add filter' button, if all filters `isAlwaysVisible`
     - added `presets` prop to rangeDatePicker filter
     - added `filter` prop for datePicker and rangeDatePicker filters
-* [PickerInput]: 
+* [PickerInput]:
   - added `implicit` cascade selection mode. In this mode selecting a parent node means that all children are considered checked,
 but only the checked parent is present in the Picker's value or DataSourceState.checked array.
   - now items which present in selection and doesn't exist in DataSource will be shown in picker as '[Unknown]'
@@ -72,7 +72,7 @@ but only the checked parent is present in the Picker's value or DataSourceState.
 * [FilterPanel]:
     - fixed "show only selected" toggle not being visible, when selectAll was disabled via DataSource
     - fixed picker body closing by clicking close button or done in mobile view.
-* [DataTable]: 
+* [DataTable]:
   - fixed first column overlapping second column in case when content can't fit the column
   - set 'undefined' value instead of '[]' for sorting, when sorting removed from column
   - fixed mobile view column filter crashes and when column caption not a string
@@ -83,7 +83,14 @@ but only the checked parent is present in the Picker's value or DataSourceState.
 * [Dropdown]: The delay to close/open the dropdown has been fixed. In previous version the closeDelay being overwritten constantly while the mouse was moving.
 * [Button]: removed 'disabled' attribute if the Button/LinkButton/IconButton is disabled, because it will prevent all events and broke Tooltip at least.
 * [RichTextView]: h1 font-size in promo skin changed from 36px to 42px.
-
+* [DataSources]: dataSources rework
+  - Moved sort/search/filter logic to the `Tree` from views.
+  - `rebuildRows` was unified.
+  - `patch` functionality was added to `Tree`.
+  - Datatable demos were added/updated.
+  - `implicit` cascade selection mode was added.
+  - `Show only selected` order was fixed.
+* [FilterPanel]: fixed issue with "show only selected" toggle not being visible, when selectAll was disabled via DataSource
 
 # 4.10.2 - 24.03.2023
 
@@ -697,7 +704,7 @@ fix UUI context multiple creation
 # 4.1.0 - 30.06.2021
 
 **What’s New**
-* [DataSources][Breaking Change]: Added required 'deps' argument for all DataSources hooks. Please review all your datasources hooks usage and decide which deps do you need or set '[]'.
+* [DataSources][Breaking Change]: Added required 'deps' argument for all DataSources hooks. Please review all your dataSources hooks usage and decide which deps do you need or set '[]'.
 * [React Context]: added support for new React Context API. Consider switching to new context APIs in your components (or keep using the global ctx variable pattern). In class components you can use "static contextType = UuiContext", in function components you can use the hook "useUuiContext". Legacy context API still works in parallel with the new API. We'll keep support for legacy context API for at least 3 month (can be extended if projects would ask to prolong the support). You can explicitly disable legacy contexts with enableLegacyContexts={ false } prop on the ContextProvider. It is recommended if you don't use legacy contexts
 * removed legacy lifecycle methods
 * [NumericInput]: Now NumericInput supports transfer of formatter function. The function responds to the onBlur action.
