@@ -44,6 +44,7 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
                 validateItem(key, meta.all);
             }
         }
+
         return itemResult;
     };
     return validateRec(value, [value], meta, initValue);

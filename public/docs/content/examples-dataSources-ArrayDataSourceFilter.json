@@ -1,0 +1,37 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To enable a filter, it is required to pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "getFilter",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " function, which should return a filter function.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To enable sorting, it is required to pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "sorting",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " property as a part of the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " state.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "It is possible to add a click handler to the row, passing ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "onClick",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " as a ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "rowOptions",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " part. It can be added in addition to the usual handlers for clicking on checkboxes, folding arrows, and rows for selection.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
