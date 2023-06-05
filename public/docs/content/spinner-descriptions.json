@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Spinner is UI a element for displaying a loading state of a page or a section.",
+            "text": "Spinner is an element for displaying a loading state of a page or a section.",
             "marks": []
           }
         ]
