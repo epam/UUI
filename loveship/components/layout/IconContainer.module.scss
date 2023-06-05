@@ -15,6 +15,42 @@
         fill: var(--fire);
     }
 
+    &.icon-container-carbon {
+        fill: #3D404D;
+    }
+
+    &.icon-container-cobalt {
+        fill: var(--cobalt-40);
+    }
+
+    &.icon-container-lavanda {
+        fill: var(--lavanda-50);
+    }
+
+    &.icon-container-fuchsia {
+        fill: var(--fuchia-40);
+    }
+
+    &.icon-container-white {
+        fill: var(--white);
+    }
+
+    &.icon-container-night50 {
+        fill: var(--night50);
+    }
+
+    &.icon-container-night100 {
+        fill: var(--night100);
+    }
+
+    &.icon-container-night200 {
+        fill: var(--night200);
+    }
+
+    &.icon-container-night300 {
+        fill: var(--night300);
+    }
+
     &.icon-container-night400 {
         fill: var(--night400);
     }
@@ -25,5 +61,17 @@
 
     &.icon-container-night600 {
         fill: var(--night600);
+    }
+
+    &.icon-container-night700 {
+        fill: var(--night700);
+    }
+
+    &.icon-container-night800 {
+        fill: var(--night800);
+    }
+
+    &.icon-container-night900 {
+        fill: var(--night900);
     }
 }

@@ -1,80 +1,37 @@
 # 5.0.0 - xx.xx.2023
 
-**What's New**
-
 **New themes support**
 
-In this release, the `@epam/uui` package has been added, which includes themed components.
-Thanks to this, the logic of building code in `@epam/promo` and `@epam/loveship` packages has been redesigned in the direction of reducing duplication.
-Also in the process of this work, we brought the components in accordance with our design specifications.
+This release prepares UUI to the Themes support, according to these changes 'Promo' and 'Loveship' skins
+are now based on `@epam/uui` package which has set of components which supposed to be used with Themes. Now both skins has the same codebase and only apply different styles. 
+Regarding these changes we aligned interfaces, functionality and visual appearance between 'Promo' and 'Loveship' skins, as a result, we removed or deprecate some props or their values.
 
-*How to use*
+Pay attention that this release required some additional actions for proper library work. 
+You can find migration guide and full list of changes [here](https://github.com/epam/UUI/wiki/Migration-guide-to-UUI-v.5).
 
-* Add import styles from `@epam/uui` `import '@epam/uui/styles.css';`
-* Add theme class `uui-theme-promo` or `uui-theme-loveship` to 'body' teg according to the skin you are using
-* If you used types, interfaces, hooks or components from `@epam/uui`, you need to change the import path to `@epam/uui-core` packages
+Note: Currently, we use Themes internally to remove duplication in our code base. In the future, we allow UUI users to build their own themes, and using Themes variables for customization. However, in this release we haven’t yet finalized this. 
+We can’t yet recommend using Themes internals, e.g. override Themes CSS variables for customization.
 
-**Loveship skin changes**
+**Testing facilities and documentation**
+* Introduced new `@epam/uui-test-utils` package. It provides a set of helpers, utils and mocks which facilitate creation of unit tests for UUI components.
+* Was added Testing [documentation](https://uui.epam.com/documents?id=testing-basics&category=testing). It contains general guidelines, best practices and tools which we are recommending to use for UUI components testing. 
+Also, it contains a Cookbook describing typical use cases with code examples as well as frequent questions & answers.
 
-* [Badge]: removed deprecated color 'carbon', removed deprecated props `lineHeight`, `fontSize`
-* [Blocker]: removed deprecated prop `color`, now it is configurable via theme variable, standard 'night100' is used by default
-* [Button]: removed deprecated props `lineHeight`, `fontSize`, color 'night500' has been changed to 'night600' (following design), but prop `color` now named as 'gray'
-* [Checkbox]: removed deprecated prop `color`, now it is configurable via theme variable, standard blue is used by default
-* [DatePicker]: removed deprecated props `suffix`, `prefix`
-* [FlexRow]: type 'borderBottom' changed to `boolean`
-* [IconButton]: removed deprecated color 'carbon', default color changed to 'night600'
-* [IconContainer]: removed deprecated colors `'carbon' | 'cobalt' | 'lavanda' | 'fuchsia' | 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night700' | 'night800' | 'night900'`, prop `color` is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via `cx` or `style` prop.
-* [LabeledInput]: removed deprecated prop 'color', now it is configurable via theme variable, standard 'night800' is used by default
-* [LinkButton]: removed deprecated color 'carbon', removed deprecated props `lineHeight`,`font`, `fontSize`
-* [ModalBlocker]: removed deprecated prop `blockerShadow`, now it is configurable via theme variable
-* [ModalHeader]: removed deprecated prop `background`, prop `borderBottom` changed to `boolean`
-* [NotificationCard]: removed deprecated colors `'carbon' | 'cobalt' | 'lavanda' | 'fuchsia' | 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night700' | 'night800' | 'night900'`
-* [PageButton]: removed, use Button instead
-* [PickerInput]: removed deprecated props `suffix` & `prefix`
-* [PickerList]: removed deprecated props `theme`, now it is configurable via theme class
-* [RadioInput]: removed deprecated prop `color`, now it is configurable via theme variable, standard 'sky' is used by default
-* [Rating]: removed deprecated prop `color`, now it is configurable via theme variable, standard 'sun' is used by default
-* [RichTextView]: removed deprecated prop `theme`, now it is configurable via theme class
-* [Slider]: removed deprecated prop `color`, now it is configurable via theme variable, standard 'sky' is used by default
-* [Spinner]: removed deprecated prop `color`, now it is configurable via theme variable, standard 'sky' is used by default
-* [Switch]: removed deprecated props `theme`, `color`, now it is configurable via theme variable & class, standard 'sky' is used by default
-* [Tag]: removed deprecated prop `color`, now it is configurable via theme variable, standard 'night300' is used by default
-* [Text]: removed deprecated colors `'carbon' | 'cobalt' | 'lavanda' | 'fuchsia' | 'night100' | 'night200'`
-* [TextArea]: removed deprecated props `fontSize`, `lineHeight`
-* [TextInput]: removed deprecated props `suffix`, `prefix`, `fontSize`, `lineHeight`
-* [TextPlaceholder]: removed deprecated prop `color`, now it is configurable via theme variable, standard 'night400' is used by default
-* [Tooltip]: changed type of prop `color` to `'white' | 'fire' | 'gray' | 'night900'`, color 'night900' is deprecated & will be removed in the future release use 'gray' instead
-* [RangeSlider]: removed deprecated prop `color`, now it is configurable via theme variable, standard 'sky' is used by default
+**DataSources documentation**
+* Introduced the new [DataSources documentation](??), that covers a wide range of topics related to the DataSources approach, accompanied by illustrative examples.
+  Note that this is the first revision of this doc, so we would appreciate your feedback and have plans to continuously improve this documentation.
 
-* removed from skin `AvatarRow, ColumnPickerFilter, Carousel`
-
-**Promo skin changes**
-
-* [Button]: color 'gray50' is deprecated and will be removed in the future release. Use 'gray' instead.
-* [FlexRow]: type 'borderBottom' changed to `boolean`
-* [IconButton]: default color changed to 'gray60'
-* [LabeledInput]: removed deprecated prop `color`, now it is configurable via theme variable, standard 'gray80' is used by default
-* [LinkButton]: removed deprecated props `font`, `fontSize`, `lineHeight`, add new colors `'gray10' | 'gray60'`
-* [ModalBlocker]: removed deprecated prop `blockerShadow`, now it is configurable via theme variable
-* [PickerInput]: removed deprecated props `suffix`, `prefix`
-* [Text]: added new colors `'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray50'`
-* [TextPlaceholder]: removed deprecated prop `color`, now it is configurable via theme variable, standard 'gray40' is used by default
-* [Tooltip]: color 'gray90' is deprecated and will be removed in the future release. Use 'gray' instead.
-* [Spinner]: removed deprecated prop `color`, now it is configurable via theme variable, standard 'blue' is used by default
-
-* removed from skin `ColumnPickerFilter`
+**ESM modules support**
+* EcmaScript modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
 
 **Other changes**
-
-* EcmaScript modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
-* New package is published to NPM: @epam/uui-test-utils. It provides a set of helpers which facilitate creation of unit tests for UUI components.
-* Documentation related to unit testing was added to the [UUI site](https://uui.epam.com/) (a set of pages under the Testing section). It contains general guidelines, best practices and tools we use to create unit tests for UUI components. Also, it contains a Cookbook describing typical use cases with code examples as well as frequent questions & answers.
-* The "assets" folders were cleaned up: some "*.scss" files were deleted. Please copy any missing files directly to your project if they are still needed.
-* [ContextProvider]: removed support of legacy React context API, as it were announced in 4.1.0 version. `enableLegacyContext` prop was deleted.
+* Make UUI compatible with Vite build toolchain. You can find template project of UUI + Vite [here](https://github.com/epam/UUI/tree/develop/templates/uui-vite-template).
+* The `@epam/assets` package and "assets" folders inside promo and loveship packages were cleaned up: some "*.scss" files were deleted. Please copy any missing files directly to your project if they are still needed.
 * [useTableState]:
-  - [BreakingChange]: removed `initialFilter` prop, if you need to provide any initial state for hook, pre-generate a link with this state on you side.
+  - [BreakingChange]: removed `initialFilter` prop, if you need to provide any initial state for hook, pre-generate an url link with this state on you side.
   - added storing of sorting, columns config, and paging state into url
   - now hook accepts optional `IEditable` props, use them for cases when you need to store DataTableState by yourself. If passed it assumed that you will handle all state changes on your side and hook will not store any state into url.
+* [ContextProvider]: removed support of legacy React context API, as it were announced in 4.1.0 version. `enableLegacyContext` prop was deleted.
 * [ApiContext]: removed the code which handles `/auth/login` for the apps, which doesn't handle this themselves.
   If an app doesn't handle `/auth/login correctly`, this needs to be implemented implicitly. There are several options:
   - Handle /auth/login path server-side. Server should log in user (via redirects to SSO), and - after success, return the following HTML:
@@ -84,37 +41,49 @@ Also in the process of this work, we brought the components in accordance with o
   - If an app implements UUI-based login pages, they need to run the following code after successful login:
     `window.opener && window.opener.postMessage("authSuccess", "*")`
 * [DataTable]: deprecated column `shrink` property was removed, as it were announced in 4.9.0 version.
-* [MainMenuDropdown]: added callback renderBody with dropdownBodyProps to renderBody method of MainMenuDropdown.
-* [Dropdown]: added a 400ms delay to the submenu's close and open triggers
+* [MainMenuDropdown]: added callback `renderBody` prop.
 * [FiltersPanel]:
-  - hide 'Add filter' button, if all filters `isAlwaysVisible`
-  - added `presets` prop to rangeDatePicker filter
-  - added `filter` prop for datePicker and rangeDatePicker filters
-* [ModalWindow]: to types of properties 'width' and 'height' was added type number.
+    - hide 'Add filter' button, if all filters `isAlwaysVisible`
+    - added `presets` prop to rangeDatePicker filter
+    - added `filter` prop for datePicker and rangeDatePicker filters
+* [PickerInput]: 
+  - added `implicit` cascade selection mode. In this mode selecting a parent node means that all children are considered checked,
+but only the checked parent is present in the Picker's value or DataSourceState.checked array.
+  - now items which present in selection and doesn't exist in DataSource will be shown in picker as '[Unknown]'
+  - added a default footer component for single pickers that includes a "Clear" button
+* [PresetsPanel]: added limitation for new preset input(max length 50)
+* [DropdownMenu]: added a 400ms delay to the submenu's close and open triggers
+* [ModalWindow]: added possibility to provide number for 'width' and 'height' props.
 * [TimePicker]: added max values to hours and minutes inputs
-* [Tooltip]: added possibility to pass raw-props to the tooltip body
-* [RangeDatePicker]: added new 'onOpenChange' prop
-* [PickerInput]: added a default footer component for single pickers that includes a "Clear" button
+* [Tooltip]: added possibility to pass rawProps to the tooltip body
+* [RangeDatePicker]: added new `onOpenChange` prop
 * [ErrorHandler]: now in Loveship used `NotificationCard` component instead of `SnackbarCard` for notification type errors
 * [ErrorHandler]: added additional property `onNotificationError` to render notifications with custom markup and configured the notification duration.
+* Added `inputCx` and `bodyCx` props for composed components like PickerInput and DatePickers
 
 **What's Fixed**
-* [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column
+* [PickerInput]:
+    - fixed partially checked nodes in lazy lists
+    - fixed single select dropdown body closing by the collapse icon if any value was selected.
+    - fixed hover affect doesn't appear on "parent" node, in case when it's not selectable but foldable.
+    - fixed single select window doesn't close by the collapse icon if any value was selected.
+    - fixed renderToggler prop which was used with TextInput / SearchInput
+    - fixed picker body closing by click on clear search icon
+* [FilterPanel]:
+    - fixed "show only selected" toggle not being visible, when selectAll was disabled via DataSource
+    - fixed picker body closing by clicking close button or done in mobile view.
+* [DataTable]: 
+  - fixed first column overlapping second column in case when content can't fit the column
+  - set 'undefined' value instead of '[]' for sorting, when sorting removed from column
+  - fixed mobile view column filter crashes and when column caption not a string
+* [Tooltip]:
+    - removed default 300px max-width value from styles, you can set max-with using property 'maxWidth'.
+    - Fixed a white subpixel line on a tooltip arrow on browsers with zoom >100%.
+* [PresetsPanel]: fixed scroll inside 'N more' dropdown
 * [Dropdown]: The delay to close/open the dropdown has been fixed. In previous version the closeDelay being overwritten constantly while the mouse was moving.
 * [Button]: removed 'disabled' attribute if the Button/LinkButton/IconButton is disabled, because it will prevent all events and broke Tooltip at least.
-* [PickerInput]:
-  - fixed single select dropdown body closing by the collapse icon if any value was selected.
-  - fixes Hover doesn't appear on "parent" when pointing the mouse.
-* [Tooltip]: fixed max-width - removed default 300px max-width value from styles, you can set max-with using property 'maxWidth'.
 * [RichTextView]: h1 font-size in promo skin changed from 36px to 42px.
-* [Datasources]: datasources rework
-  - Moved sort/search/filter logic to the `Tree` from views.
-  - `rebuildRows` was unified.
-  - `patch` functionality was added to `Tree`.
-  - Datatable demos were added/updated.
-  - `implicit` cascade selection mode was added.
-  - `Show only selected` order was fixed.
-* [FilterPanel]: fixed issue with "show only selected" toggle not being visible, when selectAll was disabled via DataSource
+
 
 # 4.10.2 - 24.03.2023
 
@@ -129,7 +98,6 @@ Also in the process of this work, we brought the components in accordance with o
 
 **What's New**
 * Exposed our Rollup build toolchain from @epam/uui-build package that you be able to build and publish your own packages.
-* [Pickers]: `implicit` cascade selection mode for the pickers was added.
 
 **What's Fixed**
 * [Typography]: links now underlined
