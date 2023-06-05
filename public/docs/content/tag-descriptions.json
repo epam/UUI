@@ -1,1 +1,21 @@
-{"object":"value","document":{"object":"document","data":{},"nodes":[{"object":"block","type":"paragraph","data":{},"nodes":[{"object":"text","text":"Tag shows any information (selected user, item, quantity, etc.) can have actions","marks":[]}]}]}}
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Tag shows any information (selected user, item, quantity, etc.) can have actions",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

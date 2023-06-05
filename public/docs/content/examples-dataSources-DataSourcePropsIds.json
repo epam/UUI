@@ -1,0 +1,170 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "By default, ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSources",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " are looking for the id at the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "id",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " field and for the parent id at the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "parentId",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " field (for ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?id=dataSources-lazy-dataSource&mode=doc&skin=UUI4_promo&category=dataSources"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "LazyDataSource",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-code",
+                    "data": {}
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " it is required to pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "getParentId",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ").",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "As shown in the following example, to render a list/tree for the records with custom id and parent id fields, it is required to specify getters for them bypassing ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "getId",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "getParentId",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " to the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " props.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

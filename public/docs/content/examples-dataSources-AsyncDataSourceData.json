@@ -1,0 +1,69 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To represent some data with ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "ArrayDataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", it should be fetched  by the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " via ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "api",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " function.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
