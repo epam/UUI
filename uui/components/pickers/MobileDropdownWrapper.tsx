@@ -4,6 +4,7 @@ import { isMobile, useAppMobileHeight } from '@epam/uui-core';
 import { LinkButton } from '../buttons';
 import { ControlSize } from '../types';
 import { DataPickerHeader } from './DataPickerHeader';
+import { i18n } from '../../i18n';
 
 interface IMobileDropdownWrapperProps {
     children: ReactNode;
@@ -23,7 +24,7 @@ export const MobileDropdownWrapper: React.FC<IMobileDropdownWrapperProps> = (pro
 
             {props.children}
 
-            {isVisible && <LinkButton caption="DONE" onClick={ () => props.close?.() } cx={ css.done } size="48" />}
+            {isVisible && <LinkButton caption={ i18n.pickerInput.doneButton } onClick={ () => props.close?.() } cx={ css.done } size="48" />}
         </>
     );
 };
