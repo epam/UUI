@@ -287,15 +287,14 @@ describe('PickerInput', () => {
                 disableClear: false,
             });
 
-            await delayAct(100);
-
-            const target = screen.getByTestId('uui-PickerInput-target');
+            const target = await screen.findByTestId('uui-PickerInput-target');
+            await waitFor(async () => {
+                expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('A1');
+            });
     
             const [clearButton] = within(target).getAllByRole('button').filter((el) => el.getAttribute('aria-label') === 'Clear');
             
             expect(clearButton).toBeInTheDocument();
-            
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('A1');
 
             fireEvent.click(clearButton);
             
