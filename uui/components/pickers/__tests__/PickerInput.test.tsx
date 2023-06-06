@@ -116,7 +116,7 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
             </>
         ),
     );
-    const input = screen.queryByRole('textbox');
+    const input = screen.queryByRole('textbox') as HTMLElement;
 
     return {
         setProps,
@@ -168,8 +168,8 @@ describe('PickerInput', () => {
                 value: undefined,
                 selectionMode: 'single',
             });
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select');
-            fireEvent.click(dom.input as HTMLElement);
+            expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('Please select');
+            fireEvent.click(dom.input);
             expect(screen.getByRole('dialog')).toBeInTheDocument();
             const optionC2 = await screen.findByText('C2');
             fireEvent.click(optionC2);
@@ -189,12 +189,12 @@ describe('PickerInput', () => {
                 getName: ({ name }) => name,
             });
 
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toBeUndefined();
+            expect(dom.input.getAttribute('placeholder')?.trim()).toBeUndefined();
             await waitFor(async () => {
-                expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual(languageLevels[1].name);
+                expect(dom.input.getAttribute('placeholder')?.trim()).toEqual(languageLevels[1].name);
             });
 
-            fireEvent.click(dom.input as Element);
+            fireEvent.click(dom.input);
             expect(screen.getByRole('dialog')).toBeInTheDocument();
             const optionC2 = await screen.findByText('Proficiency');
             fireEvent.click(optionC2);
@@ -208,7 +208,7 @@ describe('PickerInput', () => {
                 entityName: 'Language Level',
             });
             
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Language Level');
+            expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('Please select Language Level');
         });
         
         it('should ignore plural entity name in placeholder', async () => {
@@ -219,7 +219,7 @@ describe('PickerInput', () => {
                 entityPluralName: 'Multiple Language Levels',
             });
             
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Language Level');
+            expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('Please select Language Level');
         });
         
         it.each<[CascadeSelection]>(
@@ -234,7 +234,7 @@ describe('PickerInput', () => {
                 dataSource: mockTreeLikeDataSourceAsync,
             });
     
-            fireEvent.click(dom.input as HTMLElement);
+            fireEvent.click(dom.input);
             const dialog = await screen.findByRole('dialog');
             expect((await within(dialog).findAllByTestId(/uui-PickerInput-loading-item/)).length).toBeGreaterThan(0);
 
@@ -243,7 +243,7 @@ describe('PickerInput', () => {
             fireEvent.click(second);
     
             expect(mocks.onValueChange).toHaveBeenLastCalledWith(2);
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Parent 2');
+            expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('Parent 2');
         });
         
         it('should work with maxItems properly', async () => {
@@ -253,7 +253,7 @@ describe('PickerInput', () => {
                 selectionMode: 'single',
             });
     
-            fireEvent.click(dom.input as HTMLElement);
+            fireEvent.click(dom.input);
             await waitFor(async () => {
                 expect(await screen.findByRole('dialog')).toBeInTheDocument();
             });
@@ -265,14 +265,14 @@ describe('PickerInput', () => {
             const [first] = await within(screen.getByRole('dialog')).findAllByTestId(/uui-PickerInput-item/);
             fireEvent.click(first);
 
-            fireEvent.click(dom.input as HTMLElement);
+            fireEvent.click(dom.input);
             const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
 
             fireEvent.click(second);
     
             const checked = 3;
             expect(mocks.onValueChange).toHaveBeenLastCalledWith(checked);
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('A1+');
+            expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('A1+');
         });
 
         it('should disable clear', async () => {
@@ -284,7 +284,7 @@ describe('PickerInput', () => {
 
             const target = await screen.findByTestId('uui-PickerInput-target');
             await waitFor(async () => {
-                expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('A1');
+                expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('A1');
             });
     
             const [clearButton] = within(target).getAllByRole('button').filter((el) => el.getAttribute('aria-label') === 'Clear');
@@ -293,14 +293,14 @@ describe('PickerInput', () => {
 
             fireEvent.click(clearButton);
             
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select');
+            expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('Please select');
             
             setProps({ disableClear: true, value: 2 });
             
             const [clearButton2] = within(target).queryAllByRole('button').filter((el) => el.getAttribute('aria-label') === 'Clear');
             
             expect(clearButton2).toBeUndefined();
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('A1');
+            expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('A1');
         });
         
         it('should select all', async () => {
@@ -310,7 +310,7 @@ describe('PickerInput', () => {
                 maxItems: 100,
             });
 
-            fireEvent.click(dom.input as HTMLElement);
+            fireEvent.click(dom.input);
 
             const dialog = await screen.findByRole('dialog');
             expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
@@ -325,9 +325,9 @@ describe('PickerInput', () => {
             const [first] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
 
             fireEvent.click(first);
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('A1');
+            expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('A1');
 
-            fireEvent.click(dom.input as HTMLElement);
+            fireEvent.click(dom.input);
 
             const dialog2 = screen.getByRole('dialog');
 
@@ -338,7 +338,7 @@ describe('PickerInput', () => {
 
             fireEvent.click(clearButton2);
 
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select');
+            expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('Please select');
 
             const dialog3 = screen.getByRole('dialog');
 
@@ -355,8 +355,8 @@ describe('PickerInput', () => {
                 value: undefined,
                 selectionMode: 'multi',
             });
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select');
-            fireEvent.click(dom.input as HTMLElement);
+            expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('Please select');
+            fireEvent.click(dom.input);
             expect(screen.getByRole('dialog')).toBeInTheDocument();
             const [cb1, cb2] = await within(screen.getByRole('dialog')).findAllByRole('checkbox');
             fireEvent.click(cb1);
@@ -390,7 +390,7 @@ describe('PickerInput', () => {
             
             expect(selectedItemsNames1).toEqual(['', '']);
     
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select');
+            expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('Please select');
            
             const selectedItems2 = await screen.findAllByTestId(/uui-PickerToggler-item/);
             const selectedItemsNames2 = selectedItems2.map((button) => button.textContent?.trim());
@@ -405,7 +405,7 @@ describe('PickerInput', () => {
                 entityName: 'Language Level',
             });
             
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Language Levels');
+            expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('Please select Language Levels');
         });
     
         it('should render plural entity name in placeholder', async () => {
@@ -416,7 +416,7 @@ describe('PickerInput', () => {
                 entityPluralName: 'Multiple Language Levels',
             });
             
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select Multiple Language Levels');
+            expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('Please select Multiple Language Levels');
         });
         
         it('should pick single element with cascadeSelection = false', async () => {
@@ -428,7 +428,7 @@ describe('PickerInput', () => {
                 dataSource: mockTreeLikeDataSourceAsync,
             });
     
-            fireEvent.click(dom.input as HTMLElement);
+            fireEvent.click(dom.input);
 
             const dialog = await screen.findByRole('dialog');
             expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
@@ -457,7 +457,7 @@ describe('PickerInput', () => {
                 dataSource: mockTreeLikeDataSourceAsync,
             });
     
-            fireEvent.click(dom.input as HTMLElement);
+            fireEvent.click(dom.input);
 
             const dialog = await screen.findByRole('dialog');
             expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
@@ -533,7 +533,7 @@ describe('PickerInput', () => {
                 dataSource: mockTreeLikeDataSourceAsync,
             });
     
-            fireEvent.click(dom.input as HTMLElement);
+            fireEvent.click(dom.input);
     
             const dialog = await screen.findByRole('dialog');
             expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
@@ -608,7 +608,7 @@ describe('PickerInput', () => {
                 selectionMode: 'multi',
             });
     
-            fireEvent.click(dom.input as HTMLElement);
+            fireEvent.click(dom.input);
 
             const dialog = await screen.findByRole('dialog');
             expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
@@ -678,7 +678,7 @@ describe('PickerInput', () => {
                 maxItems: 100,
             });
 
-            fireEvent.click(dom.input as HTMLElement);
+            fireEvent.click(dom.input);
 
             const dialog = await screen.findByRole('dialog');
             expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
@@ -715,10 +715,10 @@ describe('PickerInput', () => {
             isDisabled: true,
         });
         
-        expect(dom.input?.hasAttribute('disabled')).toBeTruthy();
-        expect(dom.input?.getAttribute('aria-disabled')?.trim()).toEqual('true');
+        expect(dom.input.hasAttribute('disabled')).toBeTruthy();
+        expect(dom.input.getAttribute('aria-disabled')?.trim()).toEqual('true');
 
-        fireEvent.click(dom.input as Element);
+        fireEvent.click(dom.input);
         expect(screen.queryByRole('dialog')).toBeNull();
     });
 
@@ -729,10 +729,10 @@ describe('PickerInput', () => {
             isReadonly: true,
         });
         
-        expect(dom.input?.hasAttribute('readonly')).toBeTruthy();
-        expect(dom.input?.getAttribute('aria-readonly')?.trim()).toEqual('true');
+        expect(dom.input.hasAttribute('readonly')).toBeTruthy();
+        expect(dom.input.getAttribute('aria-readonly')?.trim()).toEqual('true');
 
-        fireEvent.click(dom.input as Element);
+        fireEvent.click(dom.input);
         expect(screen.queryByRole('dialog')).toBeNull();
     });
 
@@ -819,7 +819,7 @@ describe('PickerInput', () => {
             minCharsToSearch: 1,
         });
 
-        fireEvent.click(dom.input as Element);
+        fireEvent.click(dom.input);
 
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
         
@@ -827,7 +827,7 @@ describe('PickerInput', () => {
             jest.useFakeTimers();
         });
 
-        fireEvent.change(dom.input as Element, { target: { value: 'A' } });
+        fireEvent.change(dom.input, { target: { value: 'A' } });
 
         act(() => {
             jest.runAllTimers();
@@ -847,7 +847,7 @@ describe('PickerInput', () => {
             editMode: 'modal',
         });
 
-        fireEvent.click(dom.input as HTMLElement);
+        fireEvent.click(dom.input);
          
         expect(screen.queryByRole('dialog')).toBeNull();
         expect(screen.getByRole('modal')).toBeInTheDocument();
@@ -896,7 +896,7 @@ describe('PickerInput', () => {
             placeholder: customPlaceholder,
         });
 
-        expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual(customPlaceholder);
+        expect(dom.input.getAttribute('placeholder')?.trim()).toEqual(customPlaceholder);
     });
     
     it('should define minBodyWidth', async () => {
@@ -906,7 +906,7 @@ describe('PickerInput', () => {
             minBodyWidth: 300,
         });
 
-        fireEvent.click(dom.input as Element);
+        fireEvent.click(dom.input);
 
         const dialog = await screen.findByRole('dialog');
         expect(dialog).toBeInTheDocument();
@@ -922,7 +922,7 @@ describe('PickerInput', () => {
             dropdownHeight: 100,
         });
 
-        fireEvent.click(dom.input as Element);
+        fireEvent.click(dom.input);
 
         const dialog = await screen.findByRole('dialog');
         expect(dialog).toBeInTheDocument();
@@ -1045,7 +1045,7 @@ describe('PickerInput', () => {
             ),
         });
 
-        fireEvent.click(dom.input as Element);
+        fireEvent.click(dom.input);
 
         const dialog = await screen.findByRole('dialog');
         expect(dialog).toBeInTheDocument();
@@ -1077,7 +1077,7 @@ describe('PickerInput', () => {
             ),
         });
 
-        fireEvent.click(dom.input as Element);
+        fireEvent.click(dom.input);
 
         const dialog = await screen.findByRole('dialog');
         expect(dialog).toBeInTheDocument();
