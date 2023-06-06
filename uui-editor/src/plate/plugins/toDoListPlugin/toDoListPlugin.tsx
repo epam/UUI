@@ -1,13 +1,12 @@
 import React from 'react';
 
 import {
-    createPluginFactory,
     getPluginType,
     BlockToolbarButton,
     PlateEditor,
     getBlockAbove,
-    insertEmptyElement,
-    getAboveNode,
+    createTodoListPlugin,
+    ELEMENT_TODO_LI,
 } from '@udecode/plate';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
@@ -16,31 +15,19 @@ import { isPluginActive } from '../../../helpers';
 import { ReactComponent as ToDoIcon } from '../../icons/to-do.svg';
 
 import { ToDoItem } from './ToDoItem';
-import { getBlockAboveByType } from '../../utils/getAboveBlock';
 
-const KEY = 'toDoItem';
+const TODO_ELEMENT_KEY = 'toDoItem';
 
 export const toDoListPlugin = () => {
-    const createToDoListPlugin = createPluginFactory({
-        key: KEY,
-        isElement: true,
-        component: ToDoItem,
-        handlers: {
-            onKeyDown: (editor) => (e) => {
-                if (!getBlockAboveByType(editor, ['toDoItem'])) return;
-
-                if (e.key === 'Enter') {
-                    const [entries] = getAboveNode(editor);
-                    const textExist = entries.children.some(item => !!item.text);
-                    if (!textExist) {
-                        insertEmptyElement(editor, 'paragraph');
-                    }
-                }
-            },
-        },
+    // TODO: implement withOverrides for toggling between lists and todo lists
+    return createTodoListPlugin({
+        overrideByKey: {
+            [ELEMENT_TODO_LI]: {
+                type: TODO_ELEMENT_KEY,
+                component: ToDoItem
+            }
+        }
     });
-
-    return createToDoListPlugin();
 };
 
 interface ToolbarButton {
@@ -48,19 +35,19 @@ interface ToolbarButton {
 }
 
 export const ToDoListButton = ({ editor }: ToolbarButton) => {
-    if (!isPluginActive(KEY)) return null;
+    if (!isPluginActive(ELEMENT_TODO_LI)) return null;
 
     const block = getBlockAbove(editor);
 
     return (
         <BlockToolbarButton
             styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
-            type={ getPluginType(editor, KEY) }
+            type={ getPluginType(editor, ELEMENT_TODO_LI) }
             actionHandler='onMouseDown'
             icon={ <ToolbarButton
                 onClick={ () => {} }
                 icon={ ToDoIcon }
-                isActive={ !!editor?.selection && block?.length && block[0].type === KEY }
+                isActive={ !!editor?.selection && block?.length && block[0].type === ELEMENT_TODO_LI }
             /> }
         />
     );
