@@ -64,7 +64,9 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 { ...rowProps }
                 rawProps={ {
                     ...rowProps.rawProps,
-                    'data-testid': `uui-PickerInput-item-${rowProps.rowKey}`,
+                    'data-testid': rowProps.isLoading
+                        ? `uui-PickerInput-loading-item-${rowProps.rowKey}`
+                        : `uui-PickerInput-item-${rowProps.rowKey}`,
                 } }
                 key={ rowProps.rowKey }
                 borderBottom="none"
