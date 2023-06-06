@@ -245,7 +245,7 @@ describe('PickerInput', () => {
             expect((await within(dialog).findAllByTestId(/uui-PickerInput-loading-item/)).length).toBeGreaterThan(0);
 
             // Check parent
-            const [, second] = await within(screen.getByRole('dialog')).findAllByTestId(/uui-PickerInput-item/);
+            const second = await within(screen.getByRole('dialog')).findByTestId('uui-PickerInput-item-2');
             fireEvent.click(second);
     
             expect(mocks.onValueChange).toHaveBeenLastCalledWith(2);
@@ -268,11 +268,11 @@ describe('PickerInput', () => {
             expect((await within(dialog).findAllByTestId(/uui-PickerInput-loading-item/)).length).toBeGreaterThan(0);
 
             // Check parent
-            const [first] = await within(screen.getByRole('dialog')).findAllByTestId(/uui-PickerInput-item/);
+            const first = await within(screen.getByRole('dialog')).findByTestId('uui-PickerInput-item-2');
             fireEvent.click(first);
 
             fireEvent.click(dom.input);
-            const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+            const second = await within(screen.getByRole('dialog')).findByTestId('uui-PickerInput-item-3');
 
             fireEvent.click(second);
     
@@ -328,7 +328,7 @@ describe('PickerInput', () => {
             
             expect(clearButton.getAttribute('aria-disabled')).toBe('true');
             
-            const [first] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+            const first = await within(screen.getByRole('dialog')).findByTestId('uui-PickerInput-item-2');
 
             fireEvent.click(first);
             expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('A1');
@@ -439,7 +439,7 @@ describe('PickerInput', () => {
             const dialog = await screen.findByRole('dialog');
             expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
         
-            const [, second] = within(dialog).queryAllByTestId(/uui-PickerInput-item/);
+            const second = await within(dialog).findByTestId('uui-PickerInput-item-2');
             const checkbox = await within(second).findByRole('checkbox');
             fireEvent.click(checkbox);
     
@@ -469,7 +469,7 @@ describe('PickerInput', () => {
             expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
 
             // Check parent
-            const [, second] = within(dialog).queryAllByTestId(/uui-PickerInput-item/);
+            const second = await within(dialog).findByTestId('uui-PickerInput-item-2');
             const checkbox = await within(second).findByRole('checkbox');
             fireEvent.click(checkbox);
             
@@ -545,7 +545,7 @@ describe('PickerInput', () => {
             expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
             
             // Check parent
-            const [, second] = within(dialog).queryAllByTestId(/uui-PickerInput-item/);
+            const second = await within(dialog).findByTestId('uui-PickerInput-item-2');
             const checkbox = await within(second).findByRole('checkbox');
             fireEvent.click(checkbox);
     
