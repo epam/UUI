@@ -1,49 +1,57 @@
 import * as React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
-import dayjs from "dayjs";
-import { DatePickerHeader } from '../..';
+import dayjs from 'dayjs';
+import { fireEvent, setupComponentForTest, screen, within } from '@epam/uui-test-utils';
+import { DatePickerHeader, DatePickerHeaderProps } from '../DatePickerHeader';
+
+async function setupDatePickerHeader(params: { initialDate: string }) {
+    const value = {
+        view: 'DAY_SELECTION' as any,
+        selectedDate: '',
+        displayedDate: dayjs(params.initialDate).startOf('day'),
+    };
+
+    const { result } = await setupComponentForTest<DatePickerHeaderProps>(
+        (context) => ({
+            value,
+            onValueChange: jest.fn().mockImplementation((newValue) => {
+                context.current.setProperty('value', newValue);
+            }),
+        }),
+        (props) => <DatePickerHeader { ...props } />,
+    );
+
+    const [left, title, right] = within(screen.queryByRole('banner')).queryAllByRole('button');
+
+    return {
+        result,
+        dom: { left, right, title },
+    };
+}
 
 describe('DatePickerHeader', () => {
-    let wrapper: ShallowWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
+    it('should change date on arrow click', async () => {
+        const { dom } = await setupDatePickerHeader({ initialDate: '2017-01-22' });
 
-    afterEach(() => {
-        wrapper && wrapper.unmount();
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
+
+        fireEvent.click(dom.left);
+        expect(screen.getByText('December 2016')).toBeInTheDocument();
+
+        fireEvent.click(dom.right);
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
+
+        fireEvent.click(dom.right);
+        expect(screen.getByText('February 2017')).toBeInTheDocument();
     });
 
-    it('should change date on arrow click', () => {
-        let newState: any = {};
-        let currentDay = dayjs().startOf('day');
-        wrapper = shallow(<DatePickerHeader
-            value={ {
-                view: 'DAY_SELECTION',
-                selectedDate: '',
-                displayedDate: currentDay,
-            } }
-            onValueChange={ (nV: any) => newState = nV }
-        />, {});
-        (wrapper.instance() as any).onLeftNavigationArrow();
-        expect(newState.displayedDate).toEqual(currentDay.subtract(1, 'month'));
-        (wrapper.instance() as any).onRightNavigationArrow();
-        (wrapper.instance() as any).onRightNavigationArrow();
-        expect(newState.displayedDate).toEqual(currentDay.add(1, 'month'));
-    });
+    it('should change view on header caption click', async () => {
+        const { dom } = await setupDatePickerHeader({ initialDate: '2017-01-22' });
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
 
-    it('should change view on header caption click', () => {
-        let state: any = { view: 'DAY_SELECTION'};
-        let currentDay = dayjs().startOf('day');
-        wrapper = shallow(<DatePickerHeader
-            value={ {
-                view: 'DAY_SELECTION',
-                selectedDate: '',
-                displayedDate: currentDay,
-            } }
-            onValueChange={ (nV: any) => state = nV }
-        />, {});
-        (wrapper.instance() as any).onCaptionClick(state.view);
-        expect(state.view).toEqual('MONTH_SELECTION');
-        (wrapper.instance() as any).onCaptionClick(state.view);
-        expect(state.view).toEqual('YEAR_SELECTION');
-        (wrapper.instance() as any).onCaptionClick(state.view);
-        expect(state.view).toEqual('DAY_SELECTION');
+        fireEvent.click(dom.title);
+        expect(screen.getByText('2017')).toBeInTheDocument();
+
+        fireEvent.click(dom.title);
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
     });
 });

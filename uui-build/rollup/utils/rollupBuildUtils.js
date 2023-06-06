@@ -1,7 +1,7 @@
-const { createRollupConfigForModule } = require('../rollup.config')
+const { createRollupConfigForModule } = require('../rollup.config.js');
 const rollup = require('rollup');
-const { logger } = require("./../../utils/loggerUtils");
-const {getIndexFileRelativePath} = require("../../utils/indexFileUtils");
+const { logger } = require('./../../utils/loggerUtils.js');
+const { getIndexFileRelativePath } = require('../../utils/indexFileUtils.js');
 
 module.exports = { buildUsingRollup, watchUsingRollup };
 
@@ -20,7 +20,7 @@ async function buildUsingRollup(params) {
     const { output: outputConfig, ...inputConfig } = cfg[0];
     let bundle;
     const cleanup = async () => {
-        bundle && await bundle.close();
+        bundle && (await bundle.close());
     };
     try {
         bundle = await rollup.rollup({ ...inputConfig });
@@ -83,10 +83,16 @@ async function watchUsingRollup(params) {
  * @returns {Promise<import('rollup').RollupOptions[]>}
  */
 async function getConfigEffective(params) {
-    const { moduleRootDir, external, isWatch, packageJsonTransform, copyAsIs } = params;
+    const {
+        moduleRootDir, external, isWatch, packageJsonTransform, copyAsIs,
+    } = params;
     const indexFileRelativePath = await getIndexFileRelativePath(moduleRootDir);
     return await createRollupConfigForModule({
-        moduleRootDir, indexFileRelativePath, external,
-        isWatch, packageJsonTransform, copyAsIs,
+        moduleRootDir,
+        indexFileRelativePath,
+        external,
+        isWatch,
+        packageJsonTransform,
+        copyAsIs,
     });
 }

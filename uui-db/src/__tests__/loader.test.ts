@@ -1,17 +1,23 @@
-import { emptyDb, sampleDb, TaskDbView, TaskDb, Task, TaskDbTables, sampleData, sampleUsers } from './TaskDb';
+import {
+    emptyDb, sampleDb, TaskDbView, TaskDb, Task, TaskDbTables, sampleData, sampleUsers,
+} from './TaskDb';
 import { DbRef } from '../DbRef';
 import { DbSaveResponse, DbPatch } from '../types';
 
-const delay = (t: number) => new Promise(resolve => setTimeout(resolve, 1));
+const delay = (t: number) =>
+    new Promise((resolve) => {
+        setTimeout(resolve, t || 1);
+    });
 
-describe("db - loaders", () => {
+describe('db - loaders', () => {
     class TaskDbRef extends DbRef<TaskDbTables, TaskDb> {
         constructor() {
             super(emptyDb);
         }
 
         public saveCallback = jest.fn(() => Promise.resolve({ submit: {} }));
-        public apiCallback = jest.fn((rq: { ids: string[], t?: number }) => delay(rq?.t).then(() => ({ items: sampleData.users.filter(u => !rq?.ids || rq.ids.includes(u.id)) })));
+        public apiCallback = jest.fn((rq: { ids: string[]; t?: number }) =>
+            delay(rq?.t).then(() => ({ items: sampleData.users.filter((u) => !rq?.ids || rq.ids.includes(u.id)) })));
 
         protected savePatch(patch: DbPatch<TaskDbTables>): Promise<DbSaveResponse<TaskDbTables>> {
             return Promise.resolve({ submit: {} });
@@ -19,7 +25,7 @@ describe("db - loaders", () => {
 
         public tasksLoader = this.makeLoader({
             api: this.apiCallback,
-            convertToPatch: r => ({ users: r.items }),
+            convertToPatch: (r) => ({ users: r.items }),
         });
     }
 

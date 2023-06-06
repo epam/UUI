@@ -1,9 +1,10 @@
 import React from 'react';
-import { Dropdown, DropdownContainer, LinkButton, Panel, Text } from '@epam/promo';
-import { DropdownBodyProps } from '@epam/uui-core';
-import { IDropdownToggler } from '@epam/uui';
+import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
+import {
+    Dropdown, DropdownContainer, LinkButton, Panel, Text,
+} from '@epam/promo';
 import { ReactComponent as navigationBack } from '@epam/assets/icons/common/navigation-back-18.svg';
-import css from './DefaultExample.scss';
+import css from './DefaultExample.module.scss';
 
 export default function DefaultLinkButtonExample() {
     const renderDropdownBody = (props: DropdownBodyProps) => <DropdownContainer { ...props } />;
@@ -11,14 +12,9 @@ export default function DefaultLinkButtonExample() {
     return (
         <>
             <Panel cx={ css.components }>
-                <LinkButton caption='VIEW DETAILS' link={ { pathname: '/' } } />
-                <LinkButton caption='BACK TO CATALOG' link={ { pathname: '/' } }
-                    icon={ navigationBack } />
-                <Dropdown
-                    renderBody={ renderDropdownBody }
-                    renderTarget={ (props: IDropdownToggler) => <LinkButton caption='SORT BY'
-                    { ...props } /> }
-                />
+                <LinkButton caption="VIEW DETAILS" link={ { pathname: '/' } } />
+                <LinkButton caption="BACK TO CATALOG" link={ { pathname: '/' } } icon={ navigationBack } />
+                <Dropdown renderBody={ renderDropdownBody } renderTarget={ (props: IDropdownToggler) => <LinkButton caption="SORT BY" { ...props } /> } />
             </Panel>
 
             <Panel cx={ css.descriptions }>

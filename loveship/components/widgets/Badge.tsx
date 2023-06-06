@@ -1,49 +1,39 @@
-import { withMods } from '@epam/uui-core';
-import { Button, ButtonProps } from '@epam/uui-components';
-import { systemIcons } from '../icons/icons';
+import { devLogger, withMods } from '@epam/uui-core';
 import * as types from '../../components/types';
-import styles from '../../assets/styles/scss/loveship-color-vars.scss';
-import buttonCss from '../buttons/Button.scss';
-import css from './Badge.scss';
+import { Badge as UuiBadge, BadgeMods as UuiBadgeMods, BadgeProps as UuiBadgeProps } from '@epam/uui';
+import { EpamAdditionalColor, EpamPrimaryColor } from '../types';
+import css from './Badge.module.scss';
 
 const defaultSize = '18';
 
-const mapSizeToIconSize = {
-    '48': '48',
-    '42': '48',
-    '36': '36',
-    '30': '30',
-    '24': '30',
-    '18': '18',
-    '12': '18',
-};
-
-export interface BadgeMods extends types.ColorMod {
-    /** Badge shape: square or round */
+export interface BadgeMods {
+    color?: EpamPrimaryColor | EpamAdditionalColor | 'white' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600';
     shape?: types.ControlShape;
-    /** Badge fill style */
-    fill?: types.FillStyle  | 'semitransparent' | 'transparent';
-    /** Badge size */
-    size?: '12' | '18' | '24' | '30' | '36' | '42' | '48';
+    fill?: UuiBadgeMods['fill'] | 'white' | 'light' | 'none';
+    size?: UuiBadgeMods['size'] | '12';
 }
 
 export function applyBadgeMods(mods: BadgeMods) {
     return [
-        buttonCss.root,
-        css['style-' + (mods.shape || 'square')],
-        css['size-' + (mods.size || defaultSize)],
-        css['fill-' + (mods.fill || 'solid')],
-        styles['color-' + (mods.color || 'sky')],
-        css.root,
+        css['style-' + (mods.shape || 'square')], css['fill-' + (mods.fill || 'solid')], css['size-' + (mods.size || defaultSize)], css.root,
     ];
 }
 
-export const Badge = withMods<ButtonProps, BadgeMods>(
-    Button,
+export type BadgeProps = Omit<UuiBadgeProps, 'color' | 'fill' | 'size'> & BadgeMods;
+
+export const Badge = withMods<Omit<UuiBadgeProps, 'color' | 'fill' | 'size'>, BadgeMods>(
+    UuiBadge,
     applyBadgeMods,
-    (props) => ({
-        dropdownIcon: systemIcons[mapSizeToIconSize[props.size || defaultSize]].foldingArrow,
-        clearIcon: systemIcons[mapSizeToIconSize[props.size || defaultSize]].clear,
-        countPosition: 'left',
-    }),
+    (props) => {
+        devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'color'>({
+            component: 'Badge',
+            propName: 'color',
+            propValue: props.color,
+            condition: () => ['night200', 'night400', 'night500'].indexOf(props.color) !== -1,
+        });
+        return {
+            color: props.color || 'sky',
+            size: props.size || defaultSize,
+        } as BadgeProps;
+    },
 );

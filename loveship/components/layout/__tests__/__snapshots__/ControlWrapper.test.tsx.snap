@@ -5,25 +5,25 @@ exports[`ControlWrapper should rendered correctly 1`] = `
   className="root size-36"
 >
   <button
-    className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square"
+    className="container uui-button-box uui-enabled button-primary root size-36 mode-solid size-36 style-square"
     onClick={[Function]}
     tabIndex={-1}
     type="button"
   >
     <div
-      className="uui-caption line-height-18 font-size-14 v-padding-8"
+      className="uui-caption"
     >
       On
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled root size-36 color-sun fill-solid style-square"
+    className="container uui-button-box uui-enabled button-sun root size-36 mode-solid size-36 style-square"
     onClick={[Function]}
     tabIndex={-1}
     type="button"
   >
     <div
-      className="uui-caption line-height-18 font-size-14 v-padding-8"
+      className="uui-caption"
     >
       Off
     </div>

@@ -2,7 +2,7 @@
 
 exports[`RichTextView should be rendered correctly 1`] = `
 <div
-  className="text typographyPromo typography-14"
+  className="typographyPromo typography-14"
 >
   <p>
     Test
@@ -10,12 +10,12 @@ exports[`RichTextView should be rendered correctly 1`] = `
 </div>
 `;
 
-exports[`RichTextView should be rendered correctly 2`] = `
+exports[`RichTextView should be rendered correctly with extra props 1`] = `
 <div
-  className="text typographyPromo typography-16"
+  className="typographyPromo typography-16"
 >
-  <div>
+  <p>
     Test
-  </div>
+  </p>
 </div>
 `;

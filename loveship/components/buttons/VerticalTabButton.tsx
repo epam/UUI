@@ -1,12 +1,10 @@
-import css from "./VerticalTabButton.scss";
-import { withMods } from "@epam/uui-core";
-import { ButtonProps } from "@epam/uui-components";
-import { TabButton, TabButtonMods } from "./TabButton";
+import { withMods } from '@epam/uui-core';
+import { VerticalTabButtonProps } from '@epam/uui';
+import { TabButton, TabButtonMods } from './TabButton';
+import css from './VerticalTabButton.module.scss';
 
 function applyVerticalTabButtonMods() {
-    return [
-        css.root,
-    ];
+    return [css.root];
 }
 
-export const VerticalTabButton = withMods<ButtonProps, TabButtonMods>(TabButton, applyVerticalTabButtonMods);
+export const VerticalTabButton = withMods<VerticalTabButtonProps, TabButtonMods>(TabButton, applyVerticalTabButtonMods);

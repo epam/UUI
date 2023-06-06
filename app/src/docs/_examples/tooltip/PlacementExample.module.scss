@@ -1,0 +1,25 @@
+.placementContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas:
+        '. topLeft top topRight .'
+        'leftTop . . . rightTop'
+        'left . . . right'
+        'leftBottom . . . rightBottom'
+        '. bottomLeft bottom bottomRight .';
+    gap: 12px 12px;
+
+    .top-start { grid-area: topLeft; }
+    .top { grid-area: top; }
+    .top-end { grid-area: topRight; }
+    .left-start { grid-area: leftTop; }
+    .left { grid-area: left; }
+    .left-end { grid-area: leftBottom; }
+    .right-start { grid-area: rightTop; }
+    .right { grid-area: right; }
+    .right-end { grid-area: rightBottom; }
+    .bottom-start { grid-area: bottomLeft; }
+    .bottom { grid-area: bottom; }
+    .bottom-end { grid-area: bottomRight; }
+}

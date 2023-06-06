@@ -1,33 +1,38 @@
 {
   "name": "@epam/uui",
-  "version": "4.10.2",
+  "version": "5.0.0-alpha.4",
   "description": "EPAM UUI components set",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
-  "epam:uui:main": "build/index.js",
+  "epam:uui:main": "build/index.esm.js",
   "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "4.10.2",
-    "@epam/uui-components": "4.10.2",
-    "@epam/uui-core": "4.10.2",
+    "@epam/assets": "5.0.0-alpha.4",
+    "@epam/uui-components": "5.0.0-alpha.4",
+    "@epam/uui-core": "5.0.0-alpha.4",
     "classnames": "2.2.6",
-    "react-focus-lock": "2.9.2"
+    "lodash.sortby": "4.7.0",
+    "react-focus-lock": "2.9.2",
+    "react-popper": "2.3.0"
   },
   "peerDependencies": {
     "prop-types": "*",
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
   },
+  "devDependencies": {
+    "dayjs": "1.10.7"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "41609f0fcd234b99185dfb83a32a54914795f78c",
+  "gitHead": "f0d58123e11e321e4417e3bba7dc6c5c9026998c",
   "publishConfig": {
     "directory": "build"
   }

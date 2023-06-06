@@ -1,91 +1,97 @@
 import React from 'react';
 import cx from 'classnames';
 import { IconContainer } from '@epam/uui-components';
-import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts } from '@epam/uui-core';
+import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, IHasRawProps } from '@epam/uui-core';
 import { IconButton, LinkButton } from '../buttons';
+import { SemanticColor } from '../types';
 import { i18n } from '../../i18n';
 import { ReactComponent as SuccessIcon } from '../../icons/notification-check_circle-fill-24.svg';
 import { ReactComponent as WarningIcon } from '../../icons/notification-warning-fill-24.svg';
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-24.svg';
 import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-24.svg';
 import { ReactComponent as CrossIcon } from '../../icons/snackbar/cross.svg';
-import '../../assets/styles/variables/overlays/notificationCard.scss';
-import css from './NotificationCard.scss';
+import css from './NotificationCard.module.scss';
 
-type notificationAction = {
+interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
     name: string;
     action: () => void;
-};
+}
 
-export interface DefaultNotificationProps extends INotification, IHasChildren, IHasCX {
-    actions?: notificationAction[];
+export interface DefaultNotificationProps extends INotification, IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+    actions?: NotificationAction[];
 }
 
 export interface NotificationCardProps extends DefaultNotificationProps {
     icon?: Icon;
-    color: 'info' | 'success' | 'warning' | 'error';
+    color?: SemanticColor;
 }
 
-export class NotificationCard extends React.Component<NotificationCardProps> {
-    notificationCardNode: HTMLElement | null = null;
+export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCardProps>((props, ref) => {
+    const notificationCardNode = React.useRef(null);
 
-    componentDidMount() {
-        this.notificationCardNode?.addEventListener('mouseenter', this.props.clearTimer);
-        this.notificationCardNode?.addEventListener('mouseleave', this.props.refreshTimer);
-    }
+    React.useImperativeHandle(ref, () => notificationCardNode.current, [notificationCardNode.current]);
 
-    componentWillUnmount() {
-        this.notificationCardNode?.removeEventListener('mouseenter', this.props.clearTimer);
-        this.notificationCardNode?.removeEventListener('mouseleave', this.props.refreshTimer);
-    }
+    React.useLayoutEffect(() => {
+        notificationCardNode.current?.addEventListener('mouseenter', props.clearTimer);
+        notificationCardNode.current?.addEventListener('mouseleave', props.refreshTimer);
+        return () => {
+            notificationCardNode.current?.removeEventListener('mouseenter', props.clearTimer);
+            notificationCardNode.current?.removeEventListener('mouseleave', props.refreshTimer);
+        };
+    }, []);
 
-    render() {
-        return (
-            <div
-                role='alert'
-                className={
-                    cx(css.notificationWrapper, 'notification-card-vars', `notification-card-color-${this.props.color}`, css.root, this.props.cx) }
-                ref={ (el) => this.notificationCardNode = el }
-            >
-                <div className={ css.mainPath }>
-                    {
-                        this.props.icon && <div className={ css.iconWrapper }>
-                            <IconContainer icon={ this.props.icon } cx={ css.actionIcon } />
-                        </div>
-                    }
-                    <div className={ css.content }>
-                        { this.props.children }
-                        { this.props.actions && <div className={ css.actionWrapper }>
-                            { this.props.actions.map((action: notificationAction) => {
-                                return <LinkButton caption={ action.name } onClick={ action.action }
-                                    key={ action.name } cx={ css.actionLink } size='36' />;
-                            }) }
-                        </div> }
+    return (
+        <div role="alert" className={ cx(props.color && `notification-card-${props.color}`, css.root, props.cx) } ref={ notificationCardNode } { ...props.rawProps }>
+            <div className={ css.mainPath }>
+                {props.icon && (
+                    <div className={ css.iconWrapper }>
+                        <IconContainer icon={ props.icon } cx={ css.actionIcon } />
                     </div>
-                    { this.props.onClose && <div className={ css.closeWrapper }><IconButton icon={ CrossIcon } color='default' onClick={ this.props.onClose } cx={ css.closeIcon } /></div> }
+                )}
+                <div className={ css.content }>
+                    {props.children}
+                    {props.actions && (
+                        <div className={ css.actionWrapper }>
+                            {props.actions.map((action) => (
+                                <LinkButton caption={ action.name } onClick={ action.action } key={ action.name } cx={ css.actionLink } size="36" rawProps={ action.rawProps } />
+                            ))}
+                        </div>
+                    )}
                 </div>
+                {props.onClose && (
+                    <div className={ css.closeWrapper }>
+                        <IconButton icon={ CrossIcon } color="default" onClick={ props.onClose } cx={ css.closeIcon } />
+                    </div>
+                )}
             </div>
-        );
-    }
-}
+        </div>
+    );
+});
 
-export const WarningNotification = (props: DefaultNotificationProps) =>
-    <NotificationCard icon={ WarningIcon } color='warning' { ...props } cx={ cx(props.cx) } />;
-export const SuccessNotification = (props: DefaultNotificationProps) =>
-    <NotificationCard icon={ SuccessIcon } color='success' { ...props } cx={ cx(props.cx) } />;
-export const HintNotification = (props: DefaultNotificationProps) =>
-    <NotificationCard icon={ HintIcon } color='info' { ...props } cx={ cx(props.cx) } />;
-export const ErrorNotification = (props: DefaultNotificationProps) =>
-    <NotificationCard icon={ ErrorIcon } color='error' { ...props } cx={ cx(props.cx) } />;
+export const WarningNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
+    <NotificationCard icon={ WarningIcon } color="warning" { ...props } ref={ ref } cx={ props.cx } />
+));
+
+export const SuccessNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
+    <NotificationCard icon={ SuccessIcon } color="success" { ...props } ref={ ref } cx={ props.cx } />
+));
+
+export const HintNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
+    <NotificationCard icon={ HintIcon } color="info" { ...props } ref={ ref } cx={ props.cx } />
+));
+
+export const ErrorNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
+    <NotificationCard icon={ ErrorIcon } color="error" { ...props } ref={ ref } cx={ props.cx } />
+));
 
 export class ClearNotification extends React.Component<{}> {
     public static contextType = UuiContext;
     public context: UuiContexts;
-
     render() {
-        return <div className={ cx(css.notificationWrapper, css.clearButton) }>
-            <LinkButton caption={ i18n.notificationCard.closeAllNotificationsButton }
-                onClick={ () => this.context.uuiNotifications.clearAll() } />
-        </div>;
+        return (
+            <div className={ cx(css.notificationWrapper, css.clearButton) }>
+                <LinkButton caption={ i18n.notificationCard.closeAllNotificationsButton } onClick={ () => this.context.uuiNotifications.clearAll() } />
+            </div>
+        );
     }
 }

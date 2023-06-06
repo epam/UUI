@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    position: relative;
+
+    &:focus-within {
+        outline: none;
+    }
+
+    :global(.uui-radioinput) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+
+        input[type='radio'] {
+            margin: 0;
+            border: none;
+            width: 0;
+            height: 0;
+            appearance: none;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .circle {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}

@@ -15,21 +15,21 @@ module.exports = cssSourcemapPathTransformPlugin;
 function cssSourcemapPathTransformPlugin(config) {
     return {
         name: 'cssSourcemapPathTransformPlugin',
-        writeBundle (opts, bundleInfo) {
+        writeBundle(opts, bundleInfo) {
             // See docs: https://rollupjs.org/guide/en/#writebundle
-            const {outDir, extractedCssFileName, transform } = config;
+            const { outDir, extractedCssFileName, transform } = config;
             const shouldTransform = opts.sourcemap && bundleInfo[extractedCssFileName];
             if (shouldTransform) {
                 const cssSourceMapName = `${extractedCssFileName}.map`;
                 if (bundleInfo[cssSourceMapName]) {
                     const content = JSON.parse(bundleInfo[cssSourceMapName].source);
-                    content.sources = content.sources.map(relativeSourcePath => transform(relativeSourcePath));
+                    content.sources = content.sources.map((relativeSourcePath) => transform(relativeSourcePath));
                     const cssSourceMapPath = path.resolve(outDir, cssSourceMapName);
-                    fs.writeFileSync(cssSourceMapPath, JSON.stringify(content), "utf8")
+                    fs.writeFileSync(cssSourceMapPath, JSON.stringify(content), 'utf8');
                 } else {
-                    console.error(`Unable to find css source map to transform: ${cssSourceMapName}.`)
+                    console.error(`Unable to find css source map to transform: ${cssSourceMapName}.`);
                 }
             }
-        }
+        },
     };
 }

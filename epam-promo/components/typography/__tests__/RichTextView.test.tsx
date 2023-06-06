@@ -1,6 +1,6 @@
 import React from 'react';
+import { renderer } from '@epam/uui-test-utils';
 import { RichTextView } from '../RichTextView';
-import renderer from 'react-test-renderer';
 
 describe('RichTextView', () => {
     it('should be rendered correctly', () => {
@@ -10,16 +10,10 @@ describe('RichTextView', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
+    it('should be rendered correctly with extra props', () => {
         const tree = renderer
-            .create(<RichTextView
-                size='16'
-            >
-                <div>Test</div>
-            </RichTextView>)
+            .create(<RichTextView size="16"><p>Test</p></RichTextView>)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
 });
-
-

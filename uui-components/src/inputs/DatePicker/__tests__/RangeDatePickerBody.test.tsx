@@ -1,254 +1,163 @@
 import * as React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
-import dayjs from "dayjs";
-import {PickerBodyValue, RangeDatePickerBody, RangeDatePickerValue} from '../..';
+import dayjs from 'dayjs';
+import { RangeDatePickerBody, RangeDatePickerBodyProps } from '../RangeDatePickerBody';
+import { fireEvent, screen, setupComponentForTest, within } from '@epam/uui-test-utils';
 
+async function setupRangePickerBody(params: { selectedDate: { from: string; to: string }; focusPart: any }) {
+    const { selectedDate, focusPart } = params;
 
+    const { result, mocks } = await setupComponentForTest<RangeDatePickerBodyProps<any>>(
+        (context) => {
+            return {
+                value: {
+                    view: 'DAY_SELECTION' as any,
+                    selectedDate,
+                    displayedDate: dayjs('2019-10-12').startOf('day'),
+                },
+                focusPart,
+                changeIsOpen: jest.fn(),
+                onValueChange: jest.fn().mockImplementation((newValue) => context.current.setProperty('value', newValue)),
+            };
+        },
+        (props) => (<RangeDatePickerBody { ...props } />),
+    );
+
+    const [leftHeader] = screen.queryAllByRole('banner');
+    const [back, title] = within(leftHeader).queryAllByRole('button');
+
+    return {
+        result,
+        dom: { title },
+        mocks,
+    };
+}
 
 describe('DatePickerBody', () => {
-    let wrapper: ShallowWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
-
-    afterEach(() => {
-        wrapper && wrapper.unmount();
-    });
-
-    it('dummy test', () => expect(true).toBe(true));
-
-    it('should return valid range', () => {
-        let baseValue = { from: '2019-10-12', to: '2019-10-17' };
-        let newState: any = {};
-
-        wrapper = shallow(<RangeDatePickerBody
-            value={ {
-                view: 'DAY_SELECTION',
-                selectedDate: { from: null, to: null },
-                displayedDate: dayjs().startOf('day'),
-            } }
-            onValueChange={ (nV: any) => newState = nV }
-            focusPart={ 'from' }
-        />, {});
-
-        let range = (wrapper.instance() as any).getRange(baseValue.from);
-        expect(range).toEqual({
-            from: baseValue.from,
-            to: null,
+    it('[focusPart:from] should clear "To" only when user selects "From" which is bigger than "To"', async () => {
+        const { mocks } = await setupRangePickerBody({
+            focusPart: 'from',
+            selectedDate: { from: '2019-10-12', to: '2019-10-17' },
         });
-        //return range when select from value
-        wrapper.setProps({ focusPart: 'to' });
 
-        range = (wrapper.instance() as any).getRange(baseValue.to);
-        expect(range).toEqual({
-            from: null,
-            to: baseValue.to,
+        // "To" is not cleared when user selects "From" not bigger than "To"
+        // case-1
+        const [oct13] = screen.getAllByText('13');
+        fireEvent.click(oct13);
+        expect(mocks.onValueChange).toHaveBeenLastCalledWith({
+            displayedDate: expect.anything(),
+            view: expect.anything(),
+            selectedDate: {
+                from: '2019-10-13',
+                to: '2019-10-17',
+            },
         });
-        //return range when select to value
-
-        wrapper.setProps({
-            value: {
-                view: 'DAY_SELECTION',
-                selectedDate: baseValue,
-                displayedDate: dayjs().startOf('day'),
+        // case-2
+        const [oct17] = screen.getAllByText('17');
+        fireEvent.click(oct17);
+        expect(mocks.onValueChange).toHaveBeenLastCalledWith({
+            displayedDate: expect.anything(),
+            view: expect.anything(),
+            selectedDate: {
+                from: '2019-10-17',
+                to: '2019-10-17',
             },
         });
 
-        let newValue = '2019-10-25';
-        range = (wrapper.instance() as any).getRange(newValue);
-
-        expect(range).toEqual({
-            from: baseValue.from,
-            to: newValue,
-        });
-        //return full selected range
-        wrapper.setProps({ focusPart: 'from' });
-        range = (wrapper.instance() as any).getRange(newValue);
-
-        expect(range).toEqual({
-            from: newValue,
-            to: null,
-        });
-        //return range when selected not valid value
-    });
-
-    it('should set new date', () => {
-        let baseValue = { from: '2019-09-10', to: '2019-09-12' };
-
-        const onValueChangeSpy = jest.fn((nV: any) => null);
-        const setStateSpy = jest.fn((nextState) => null);
-
-        const pickerSetState = RangeDatePickerBody.prototype.setState;
-        RangeDatePickerBody.prototype.setState = setStateSpy;
-
-        const defaultValue: PickerBodyValue<RangeDatePickerValue> = {
-            view: 'DAY_SELECTION',
-            selectedDate: { from: null, to: null },
-            displayedDate: dayjs().startOf('day'),
-        };
-
-        wrapper = shallow(<RangeDatePickerBody
-            value={ defaultValue }
-            onValueChange={ onValueChangeSpy }
-            focusPart={ 'from' }
-        />, {});
-        const instance: any = wrapper.instance();
-
-        instance.setSelectedDate(baseValue.from);
-
-        //set from value
-        expect(onValueChangeSpy).toHaveBeenLastCalledWith({
-            ...defaultValue,
+        // "To" is cleared when user tries to select "From" bigger than "To"
+        const [oct18] = screen.getAllByText('18');
+        fireEvent.click(oct18);
+        expect(mocks.onValueChange).toHaveBeenLastCalledWith({
+            displayedDate: expect.anything(),
+            view: expect.anything(),
             selectedDate: {
-                from: baseValue.from,
+                from: '2019-10-18',
                 to: null,
             },
         });
+    });
 
-        //set to value
-        instance.setSelectedDate(baseValue.to);
+    it('[focusPart:to] should select "From" when user selects "To" which is less than "From"', async () => {
+        const { mocks } = await setupRangePickerBody({
+            focusPart: 'to',
+            selectedDate: { from: '2019-10-12', to: '2019-10-17' },
+        });
 
-        expect(onValueChangeSpy).toHaveBeenLastCalledWith({
-            ...defaultValue,
+        // "From" is not cleared user selects "To" equal or bigger than "From"
+        // case-1
+        const [oct16] = screen.getAllByText('16');
+        fireEvent.click(oct16);
+        expect(mocks.onValueChange).toHaveBeenLastCalledWith({
+            displayedDate: expect.anything(),
+            view: expect.anything(),
             selectedDate: {
-                from: baseValue.to,
-                to: null,
+                from: '2019-10-12',
+                to: '2019-10-16',
+            },
+        });
+        // case-2
+        const [oct12] = screen.getAllByText('12');
+        fireEvent.click(oct12);
+        expect(mocks.onValueChange).toHaveBeenLastCalledWith({
+            displayedDate: expect.anything(),
+            view: expect.anything(),
+            selectedDate: {
+                from: '2019-10-12',
+                to: '2019-10-12',
             },
         });
 
-        RangeDatePickerBody.prototype.setState = pickerSetState;
+        // "From" is selected when user selects "To" less than "From" (This is different from how focusPart: from works)
+        const [oct11] = screen.getAllByText('11');
+        fireEvent.click(oct11);
+        expect(mocks.onValueChange).toHaveBeenLastCalledWith({
+            displayedDate: expect.anything(),
+            view: expect.anything(),
+            selectedDate: {
+                from: '2019-10-11',
+                to: null,
+            },
+        });
     });
 
-    it('should set new displayedDate and view', () => {
-        const setStateSpy = jest.fn((nextState) => null);
-        const onValueChangeSpy = jest.fn((nV: any) => null);
+    it('should change view by click on title', async () => {
+        const { dom } = await setupRangePickerBody({
+            focusPart: 'from',
+            selectedDate: { from: '2019-10-12', to: '2019-10-17' },
+        });
+        expect(dom.title.innerHTML).toEqual('October 2019');
+        fireEvent.click(dom.title);
+        expect(screen.getByText('2019')).toBeInTheDocument();
+        expect(screen.getByText('Oct').classList.contains('uui-monthselection-current-month')).toBeTruthy();
+        fireEvent.click(dom.title);
+        expect(screen.getByText('October 2019')).toBeTruthy();
+        expect(screen.getByText('2019').classList.contains('uui-yearselection-current-year')).toBeTruthy();
+    });
 
-
-        const pickerSetState = RangeDatePickerBody.prototype.setState;
-        RangeDatePickerBody.prototype.setState = setStateSpy;
-
-        const defaultValue: PickerBodyValue<RangeDatePickerValue> = {
-            view: 'DAY_SELECTION',
+    it('should have special class names for selected days', async () => {
+        const useCase1 = await setupRangePickerBody({
+            focusPart: 'from',
             selectedDate: { from: null, to: null },
-            displayedDate: dayjs().startOf('day'),
-        };
-
-        wrapper = shallow(<RangeDatePickerBody
-            value={ defaultValue }
-            onValueChange={ onValueChangeSpy }
-            focusPart={ 'from' }
-        />, {});
-        const instance: any = wrapper.instance();
-
-        //set from value
-        instance.setDisplayedDateAndView(dayjs("09-25-2020", "MM-DD-YYYY"), 'MONTH_SELECTION', 'from');
-
-        expect(onValueChangeSpy).toHaveBeenLastCalledWith({
-            ...defaultValue,
-            displayedDate: dayjs("09-25-2020", "MM-DD-YYYY"),
-            view: 'MONTH_SELECTION',
         });
-        expect(setStateSpy).toHaveBeenCalledWith({ activePart: 'from'});
+        expect(useCase1.result.container.querySelectorAll('.uui-calendar-selected-day').length).toBe(0);
+        useCase1.result.unmount();
 
-        //set to value
-        instance.setDisplayedDateAndView(dayjs("09-25-2020", "MM-DD-YYYY"), 'YEAR_SELECTION', 'to');
-
-        expect(onValueChangeSpy).toHaveBeenLastCalledWith({
-            ...defaultValue,
-            displayedDate: dayjs("09-25-2020", "MM-DD-YYYY").subtract(1, 'months'),
-            view: 'YEAR_SELECTION',
+        const useCase2 = await setupRangePickerBody({
+            focusPart: 'from',
+            selectedDate: { from: '2019-10-12', to: '2019-10-14' },
         });
-        expect(setStateSpy).toHaveBeenCalledWith({activePart: 'to'});
+        expect(useCase2.result.container.querySelectorAll('.uui-calendar-selected-day').length).toBe(2);
 
+        const [oct12] = useCase2.result.queryAllByText('12');
+        const [oct13] = useCase2.result.queryAllByText('13');
+        const [oct14] = useCase2.result.queryAllByText('14');
 
-        RangeDatePickerBody.prototype.setState = pickerSetState;
-    });
+        function parentElemContainsClasses(elem: HTMLElement, classesArr: string[]) {
+            const actualList = [...elem.parentElement.classList];
+            return classesArr.every((c: string) => actualList.indexOf(c) !== -1);
+        }
 
-    it('should get styles', () => {
-        let baseValue = { from: '2019-09-10', to: '2019-09-12' };
-        const mockDay = dayjs().startOf('day');
-        wrapper = shallow(<RangeDatePickerBody
-            value={ {
-                view: 'DAY_SELECTION',
-                selectedDate: { from: null, to: null },
-                displayedDate: mockDay,
-            } }
-            onValueChange={ () => { } }
-            focusPart={ 'from' }
-        />, {});
-        const instance: any = wrapper.instance();
-
-        let styles = instance.getDayCX(dayjs(baseValue.from));
-
-        expect(styles).toEqual([false, false, false, false, false, false]);
-        //get styles when date does not selected
-
-        wrapper.setProps({ value: { selectedDate: baseValue, displayedDate: mockDay, } });
-        styles = instance.getDayCX(dayjs(baseValue.from));
-        expect(styles).toEqual([
-            "uui-range-datepicker-in-range",
-            "uui-range-datepicker-first-day-in-range-wrapper",
-            false,
-            false,
-            false,
-            "uui-calendar-selected-day",
-        ]);
-        //get styles for first date
-
-        styles = instance.getDayCX(dayjs(baseValue.to));
-        expect(styles).toEqual([
-            "uui-range-datepicker-in-range",
-            false,
-            false,
-            "uui-range-datepicker-last-day-in-range-wrapper",
-            false,
-            "uui-calendar-selected-day",
-        ]);
-        //get styles for last date;
-    });
-
-    it('should get from value', () => {
-        let baseValue = { from: '2019-09-10', to: '2019-09-12' };
-
-        wrapper = shallow(<RangeDatePickerBody
-            value={ {
-                view: 'DAY_SELECTION',
-                selectedDate: baseValue,
-                displayedDate: dayjs().startOf('day'),
-            } }
-            onValueChange={ () => { } }
-            focusPart={ 'from' }
-        />, {});
-        const instance: any = wrapper.instance();
-
-        let fromValue = instance.getFromValue();
-
-        expect(fromValue).toEqual({
-            view: 'DAY_SELECTION',
-            displayedDate: dayjs().startOf('day'),
-            selectedDate: '2019-09-10',
-        });
-
-    });
-
-    it('should get to value', () => {
-        let baseValue = { from: '2019-09-10', to: '2019-09-12' };
-
-        wrapper = shallow(<RangeDatePickerBody
-            value={ {
-                view: 'DAY_SELECTION',
-                selectedDate: baseValue,
-                displayedDate: dayjs().startOf('day'),
-            } }
-            onValueChange={ () => { } }
-            focusPart={ 'from' }
-        />, {});
-        const instance: any = wrapper.instance();
-
-        let fromValue = instance.getToValue();
-
-        expect(fromValue).toEqual({
-            view: 'DAY_SELECTION',
-            selectedDate: '2019-09-12',
-            displayedDate: dayjs().startOf('day').add(1, 'months'),
-        });
-
+        expect(parentElemContainsClasses(oct12, ['uui-range-datepicker-first-day-in-range-wrapper', 'uui-calendar-selected-day'])).toBeTruthy();
+        expect(parentElemContainsClasses(oct13, ['uui-range-datepicker-in-range'])).toBeTruthy();
+        expect(parentElemContainsClasses(oct14, ['uui-range-datepicker-last-day-in-range-wrapper', 'uui-calendar-selected-day'])).toBeTruthy();
     });
 });

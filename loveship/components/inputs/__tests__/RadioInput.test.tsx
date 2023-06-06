@@ -1,29 +1,18 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import {RadioInput} from "../RadioInput";
+import React from 'react';
+import { renderer } from '@epam/uui-test-utils';
+import { RadioInput } from '../RadioInput';
 
-describe("RadioInput", () => {
+describe('RadioInput', () => {
     const value = true;
     const onChange = jest.fn();
 
-    it("should be rendered correctly", () => {
-        const tree = renderer
-            .create(<RadioInput value={ value } onValueChange={ onChange }/>)
-            .toJSON();
+    it('should be rendered correctly', () => {
+        const tree = renderer.create(<RadioInput value={ value } onValueChange={ onChange } />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
-    it("should be rendered correctly with new props", () => {
-        const tree = renderer
-            .create(<RadioInput
-                value={ value }
-                onValueChange={ onChange }
-                label="open"
-                size="12"
-                color={ "sun" as any }
-                theme="dark"
-            />)
-            .toJSON();
+    it('should be rendered correctly with new props', () => {
+        const tree = renderer.create(<RadioInput value={ value } onValueChange={ onChange } label="open" size="12" color={ 'sun' as any } theme="dark" />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

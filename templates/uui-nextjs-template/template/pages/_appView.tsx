@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import '@epam/uui-components/styles.css';
+import '@epam/uui/styles.css';
 import '@epam/promo/styles.css';
 //
 import { DragGhost } from "@epam/uui-core";

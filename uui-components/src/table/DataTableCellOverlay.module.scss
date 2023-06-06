@@ -1,0 +1,121 @@
+.root {
+    --uui-dt-cell-editor-border-width: 1px;
+    position: absolute;
+
+    &:global(.uui-focus) {
+        --uui-dt-cell-editor-border-width: 2px;
+    }
+
+    &:not(:global(.uui-table-cell-selection-in-progress)) {
+        pointer-events: none;
+    }
+}
+
+.copying-marker {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 7px;
+    height: 7px;
+    cursor: crosshair;
+    pointer-events: all;
+
+    &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        bottom: 0;
+        right: 0;
+        width: 12px;
+        height: 12px;
+    }
+}
+
+.overlay {
+    position: absolute;
+
+    // Overlay the cell's border
+    // if --uui-dt-cell-editor-border-width is bigger - it will inset into the cell
+    top: calc(var(--uui-dt-row-border-width) * -1);
+    bottom: calc(var(--uui-dt-row-border-width) * -1);
+    left: calc(var(--uui-dt-row-border-width) * -1);
+    right: calc(var(--uui-dt-row-border-width) * -1);
+    border-width: var(--uui-dt-cell-editor-border-width);
+    border-style: solid;
+    border-color: transparent;
+    visibility: hidden;
+
+    &:global(.uui-focus) {
+        z-index: 2;
+        visibility: visible;
+        border-color: var(--uui-dt-cell-border-focus);
+    }
+
+    & :global(.uui-copying-marker) {
+        background-color: var(--uui-dt-cell-border-focus);
+    }
+
+    & :global(.uui-copying-marker-hover) {
+        background-color: var(--uui-dt-cell-border-hover);
+    }
+
+    :global(.uui-table-cell):hover & {
+        &:not(:global(.uui-table-cell-selection-in-progress)):not(:global(.uui-focus)) {
+            z-index: 1;
+            visibility: visible;
+            border-color: var(--uui-dt-cell-border-hover);
+        }
+    }
+
+    // This style is required for Safari. If mouse is pressed, `:hover` is not respected.
+    // So, for proper handling of `onPointerEnter` event, it is necessary to apply this style if `.uui-table-cell-selection-in-progress`
+    // class exists.
+    :global(.uui-table-cell) &:global(.uui-table-cell-selection-in-progress) {
+        z-index: 3;
+        visibility: visible;
+    }
+
+    :global(.uui-table-cell) &:global(.uui-table-cell-selected) {
+        z-index: 3;
+        visibility: visible;
+
+        &:global(.uui-table-cell-selected-top) {
+            border-top-color: var(--uui-dt-cell-border-focus);
+        }
+
+        &:global(.uui-table-cell-selected-right) {
+            border-right-color: var(--uui-dt-cell-border-focus);
+        }
+
+        &:global(.uui-table-cell-selected-bottom) {
+            border-bottom-color: var(--uui-dt-cell-border-focus);
+        }
+
+        &:global(.uui-table-cell-selected-left) {
+            border-left-color: var(--uui-dt-cell-border-focus);
+        }
+
+        // to prevent borders to be cut, it is required to set border-{side} = 0px;
+        &:global(.uui-table-cell-selected-top),
+        &:global(.uui-table-cell-selected-bottom) {
+            &:not(:global(.uui-table-cell-selected-right)) {
+                border-right: 0;
+            }
+
+            &:not(:global(.uui-table-cell-selected-left)) {
+                border-left: 0;
+            }
+        }
+
+        &:global(.uui-table-cell-selected-right),
+        &:global(.uui-table-cell-selected-left) {
+            &:not(:global(.uui-table-cell-selected-bottom)) {
+                border-bottom: 0;
+            }
+
+            &:not(:global(.uui-table-cell-selected-top)) {
+                border-top: 0;
+            }
+        }
+    }
+}

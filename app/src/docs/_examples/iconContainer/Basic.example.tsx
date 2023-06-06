@@ -7,8 +7,8 @@ export default function BasicIconContainerExample() {
     return (
         <>
             <IconContainer icon={ AccountIcon24 } />
-            <IconContainer icon={ AccountIcon24 } color='blue' flipY={ true } isDisabled={ true } />
-            <IconContainer icon={ EyeIcon24 } color='violet' style={ { 'transform': 'skew(-15deg, 18deg)' } } />
+            <IconContainer icon={ AccountIcon24 } style={ { fill: '#008ACE' } } flipY={ true } isDisabled={ true } />
+            <IconContainer icon={ EyeIcon24 } style={ { transform: 'skew(-15deg, 18deg)', fill: '#88CC00' } } />
         </>
     );
 }

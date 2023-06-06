@@ -1,12 +1,13 @@
 import React from 'react';
 import { TimePickerBody } from '../TimePickerBody';
-import { renderWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import MockDate from 'mockdate';
-import { systemIcons } from "./../../../icons/icons";
+import { systemIcons } from '../../../icons/icons';
+
 const arrowIcon = systemIcons[30].foldingArrow;
 
 beforeEach(() => {
-    MockDate.set(new Date("2020-12-09T01:02:03+00:00"));
+    MockDate.set(new Date('2020-12-09T01:02:03+00:00'));
 });
 
 afterEach(() => {
@@ -14,19 +15,14 @@ afterEach(() => {
 });
 
 describe('TimePickerBody', () => {
-    it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
-            <TimePickerBody
-                value={ { hours: 12, minutes: 30 } }
-                onValueChange={ jest.fn }
-            />
-        );
+    it('should be rendered with minimum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<TimePickerBody value={ { hours: 12, minutes: 30 } } onValueChange={ jest.fn } />);
 
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
+    it('should be rendered with maximum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(
             <TimePickerBody
                 value={ { hours: 12, minutes: 30 } }
                 onValueChange={ jest.fn }
@@ -34,11 +30,9 @@ describe('TimePickerBody', () => {
                 minutesStep={ 5 }
                 addIcon={ arrowIcon }
                 subtractIcon={ arrowIcon }
-            />
+            />,
         );
 
         expect(tree).toMatchSnapshot();
     });
 });
-
-

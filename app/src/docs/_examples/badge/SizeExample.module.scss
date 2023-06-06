@@ -1,0 +1,8 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 12px 12px;
+    justify-items: center;
+    align-items: start;
+}

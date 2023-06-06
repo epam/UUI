@@ -1,0 +1,10 @@
+.container {
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+  
+    &:global(.uui-disabled) {
+        cursor: default;
+    }
+  
+}

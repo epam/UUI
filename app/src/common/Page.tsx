@@ -1,6 +1,6 @@
 import * as React from 'react';
-import css from './Page.scss';
-import { cx, IHasChildren } from '@epam/uui';
+import css from './Page.module.scss';
+import { cx, IHasChildren } from '@epam/uui-core';
 import { ErrorHandler } from '@epam/promo';
 
 export interface PageProps extends IHasChildren {
@@ -11,20 +11,16 @@ export interface PageProps extends IHasChildren {
 }
 
 export function Page(props: PageProps) {
-    const { renderHeader, renderFooter, contentCx, children, isFullScreen } = props;
+    const {
+        renderHeader, renderFooter, contentCx, children, isFullScreen,
+    } = props;
 
     return (
         <div className={ css.root }>
-            <header>
-                { !isFullScreen && renderHeader?.() }
-            </header>
+            <header>{!isFullScreen && renderHeader?.()}</header>
             <ErrorHandler cx={ css.errorBlock }>
-                <main className={ cx(css.content, contentCx) } >
-                    { children }
-                </main>
-                <footer>
-                    { !isFullScreen && renderFooter?.() }
-                </footer>
+                <main className={ cx(css.content, contentCx) }>{children}</main>
+                <footer>{!isFullScreen && renderFooter?.()}</footer>
             </ErrorHandler>
         </div>
     );

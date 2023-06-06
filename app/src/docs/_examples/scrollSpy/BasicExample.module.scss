@@ -1,0 +1,31 @@
+@import '~@epam/assets/scss/index';
+
+.container {
+    max-width: 100%;
+}
+
+.content {
+    padding: 1rem;
+}
+
+.menu {
+    border: 1px solid $night300;
+    position: sticky;
+    top: 1.5rem;
+    margin: 8px;
+
+    & > * {
+        justify-content: center;
+    }
+}
+
+.header {
+    margin-bottom: 1rem;
+    text-decoration: underline;
+}
+
+.spyLink {
+    &:global(.uui-active) {
+        text-decoration: underline;
+    }
+}

@@ -1,0 +1,148 @@
+@use '~@epam/assets/scss/promo/colors' as *;
+@use '~@epam/assets/scss/promo/fonts' as *;
+@use '~@epam/assets/scss/promo/typography' as *;
+
+:local(.typography-16) {
+    @include typography-16();
+}
+
+:local(.typography-14) {
+    @include typography-14();
+}
+
+:local(.typography-promo) {
+    @include typography-promo();
+}
+
+.container {
+    position: relative;
+    border-width: 1px;
+    width: 100%;
+    box-sizing: border-box;
+
+    :global(.ordered-list),
+    :global(.unordered-list),
+    blockquote {
+        margin: 12px 0;
+    }
+
+    // TODO: remove it when update slate on 0.5+ version
+    .contentEditable {
+        -webkit-user-modify: read-write !important;
+    }
+
+    :global(.ordered-list),
+    :global(.unordered-list) {
+        ul, ol {
+            margin: 3px 0;
+        }
+    }
+
+    blockquote p {
+        margin: 0;
+    }
+}
+
+.mode-form {
+    background-color: $white;
+    border-color: $gray40;
+    border-style: solid;
+
+    &:hover {
+        border-color: $gray60;
+    }
+
+    &:global(.uui-focus) {
+        border-color: $blue;
+    }
+
+    &:global(.uui-readonly) {
+        border-color: $gray40;
+    }
+}
+
+.mode-inline {
+    background-color: transparent;
+    border-color: transparent;
+    border-style: solid;
+
+    &:hover {
+        border-color: $gray60;
+    }
+
+    &:global(.uui-focus) {
+        border-color: $blue;
+    }
+
+    &:global(.uui-readonly) {
+        border-color: transparent;
+    }
+}
+
+.placeholder {
+    pointer-events: none;
+    position: absolute;
+    color: $gray60;
+    font-family: $font-sans;
+    line-height: 1.5;
+    top: 8px;
+    padding: 0 24px;
+}
+
+.placeholder-14 {
+    font-size: 14px;
+}
+
+.placeholder-16 {
+    font-size: 16px;
+}
+
+.scrollbars {
+    :global(.uui-thumb-vertical), :global(.uui-thumb-horizontal) {
+        background: $gray40;
+        border-radius: 1.5px;
+
+        &:hover {
+            border-radius: 3px;
+        }
+
+        &:active {
+            border-radius: 3px;
+            background: $gray60;
+        }
+    }
+
+    :global(.uui-thumb-vertical) {
+        width: 3px;
+        margin-left: 3px;
+
+        &:hover {
+            width: 6px;
+            margin-left: 0;
+        }
+
+        &:active {
+            width: 6px;
+            margin-left: 0;
+        }
+    }
+
+    :global(.uui-thumb-horizontal) {
+        height: 3px;
+        margin-top: 3px;
+
+        &:hover {
+            height: 6px;
+            margin-top: 0;
+        }
+
+        &:active {
+            height: 6px;
+            margin-top: 0;
+        }
+    }
+}
+
+.with-scrollbars {
+    height: 100%;
+}

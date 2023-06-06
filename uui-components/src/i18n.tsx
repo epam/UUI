@@ -6,16 +6,19 @@ export const i18n = {
         locale: 'en',
     },
     pickerList: {
-        rowsSelected: (rows: number) => ` (${ rows } selected)`,
+        rowsSelected: (rows: number) => ` (${rows} selected)`,
         showAll: 'SHOW ALL',
     },
     pickerToggler: {
-        createItemValue: (length: number, entityName: string) => `${ length } ${ entityName } selected`,
+        createItemValue: (length: number, entityName: string) => `${length} ${entityName} selected`,
     },
     pickerInput: {
-        defaultPlaceholder: (entity: string) => `Please select ${ entity }`,
+        defaultPlaceholder: (entity: string) => `Please select ${entity}`,
     },
     labeledInput: {
         optionalFieldLabel: 'This field is optional',
+    },
+    numericInput: {
+        locale: undefined as string,
     },
 };

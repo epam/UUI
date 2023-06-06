@@ -1,0 +1,25 @@
+.container {
+    height: 60px;
+    min-width: 48px;
+    padding-left: 12px;
+    padding-right: 12px;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    fill: var(--uui-main_menu-icon);
+
+    &:global(.-clickable) {
+        &:hover {
+            background: var(--uui-main_menu-hover);
+            fill: var(--uui-main_menu-icon-hover);
+        }
+
+        &:active {
+            background-color: var(--uui-main_menu-active);
+            fill: var(--uui-main_menu-icon-active);
+        }
+    }
+}
+
+

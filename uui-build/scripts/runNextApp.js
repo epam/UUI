@@ -2,25 +2,25 @@
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
 
-const fs = require("fs-extra");
-const chalk = require("chalk");
+const fs = require('fs-extra');
+const chalk = require('chalk');
 
 const modulesNameMap = {
-    ['epam-assets']: 'assets',
-    ['epam-promo']: 'promo',
-    ['uui']: 'uui',
-    ['uui-components']: 'uui-components',
-    ['uui-editor']: 'uui-editor',
-    ['uui-docs']: 'uui-docs',
-    ['uui-core']: 'uui-core'
-}
+    'epam-assets': 'assets',
+    'epam-promo': 'promo',
+    uui: 'uui',
+    'uui-components': 'uui-components',
+    'uui-editor': 'uui-editor',
+    'uui-docs': 'uui-docs',
+    'uui-core': 'uui-core',
+};
 
 async function isModuleBuildExist(module) {
     const isExists = await fs.exists(`../${module}/build`);
     let isEmpty = false;
-    fs.readdir(`../${module}/build`, function(err, files) {
+    fs.readdir(`../${module}/build`, function (err, files) {
         if (err) {
-            console.log(err)
+            console.log(err);
         } else {
             if (!files.length) {
                 isEmpty = true;
@@ -31,7 +31,7 @@ async function isModuleBuildExist(module) {
 }
 
 async function main() {
-    console.log('run NextApp script')
+    console.log('run NextApp script');
     let isAllModulesIsBuilt = false;
     const modulesPath = Object.keys(modulesNameMap);
     for (let i = 0; i < modulesPath.length; i += 1) {
@@ -48,16 +48,16 @@ async function main() {
     if (isAllModulesIsBuilt) {
         try {
             console.log('Start coping current version of modules');
-            for await (module of modulesPath) {
-                await fs.copySync(`../${module}/build/`, `./node_modules/@epam/${modulesNameMap[module]}/`);
+            for await (const mPath of modulesPath) {
+                await fs.copySync(`../${mPath}/build/`, `./node_modules/@epam/${modulesNameMap[mPath]}/`);
             }
-            console.log(chalk.green(`All modules are copied to next app`));
+            console.log(chalk.green('All modules are copied to next app'));
             const DOT_NEXT_DIR = './.next';
             if (fs.existsSync(DOT_NEXT_DIR)) {
                 fs.rmdirSync(DOT_NEXT_DIR, { recursive: true, force: true });
             }
         } catch (err) {
-            console.log(err)
+            console.log(err);
         }
     }
 }

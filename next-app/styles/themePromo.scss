@@ -42,16 +42,11 @@
     --font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
     --font-mono: 'Roboto Mono', Arial, sans-serif;
     --font-redacted: 'Redacted';
-
-
-    @include defineColorsByName('accent', $green);
-    @include defineColorsByName('primary', $blue);
     --secondary-color: #{$gray50};
     --secondary-light-color: #{$gray30};
     --secondary-lightest-color: #{$gray20};
     --secondary-dark-color: #{$gray60};
     --secondary-darkest-color: #{$gray70};
-    @include defineColorsByName('negative', $red, 35%, 40%);
 
     --contrast-color: #{$white};
     --visited-color: #{$violet};
@@ -131,11 +126,16 @@
 
     --overlay-color: rgba(29, 30, 38, 0.8);
 
-    --shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
+    --shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.1), 0 1px 3px 0 rgba(29, 30, 38, 0.1);
 
     // --------------------
 
     --border-radius: 0;
+
+
+    @include defineColorsByName('accent', $green);
+    @include defineColorsByName('primary', $blue);
+    @include defineColorsByName('negative', $red, 35%, 40%);
 
     .button-color-secondary {
         --caption-halftone-color: var(--secondary-dark-color);

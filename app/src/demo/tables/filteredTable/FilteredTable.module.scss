@@ -1,0 +1,87 @@
+@use '~@epam/promo/assets/styles/colors' as *;
+@use '~@epam/promo/assets/styles/fonts' as *;
+
+.wrapper {
+    overflow: hidden;
+    display: flex;
+    position: relative;
+}
+
+.presets-panel {
+    padding: 0 24px;
+    display: flex;
+    flex-shrink: 0;
+    background-color: $white;
+    border-bottom: 1px solid $gray40;
+    overflow-x: auto;
+    overflow-y: hidden;
+    align-items: center;
+
+    .presets-title {
+        flex-shrink: 0;
+        margin-right: 24px;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all 500ms;
+    flex-basis: auto;
+    min-width: 0;
+    flex-grow: 1;
+    font-family: $font-sans;
+
+    .manager-cell {
+        font-family: $font-sans;
+    }
+}
+
+.icon-container {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    border-right: 1px solid $gray30;
+}
+
+.icon {
+    &:global(.uui-button-box) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.presets {
+    padding-left: 50px;
+    transition: 0.5s padding-left;
+    background-color: var(--surface-color, white);
+
+    &-with-filter {
+        padding-left: 0;
+    }
+}
+
+.filter-panel-wrapper {
+    padding: 12px 24px 6px 24px;
+    background-color: var(--grey5);
+    border-bottom: 1px solid var(--grey40);
+
+    .filter-panel {
+        flex-wrap: wrap;
+        padding-right: 12px;
+        width: calc(100% - 295px);
+
+        & > * {
+            margin: 0 6px 6px 0;
+        }
+    }
+
+    .search {
+        align-self: flex-start;
+    }
+}

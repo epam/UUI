@@ -1,15 +1,13 @@
 import { RangeSlider as uuiRangeSlider, SliderBaseProps, RangeSliderValue } from '@epam/uui-components';
-import css from './Slider.scss';
-import styles from '../../../assets/styles/scss/loveship-color-vars.scss';
+import css from './Slider.module.scss';
 import { withMods } from '@epam/uui-core';
 import * as types from '../../types';
 
-export interface RangeSliderMods extends types.ColorMod { }
+export interface RangeSliderMods extends types.ColorMod {}
 
-export function applyRangeSliderMods(mods: RangeSliderMods) {
+export function applyRangeSliderMods() {
     return [
         css.root,
-        styles['color-' + (mods.color || 'sky')],
     ];
 }
 

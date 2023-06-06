@@ -1,13 +1,30 @@
 import * as React from 'react';
 import { Value } from 'slate';
-import { SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin, toDoListPlugin, baseMarksPlugin,
-    linkPlugin, iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin, tablePlugin, quotePlugin, colorPlugin,
-    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, codeBlockPlugin,
-} from "@epam/uui-editor";
+import {
+    SlateEditor,
+    defaultPlugins,
+    imagePlugin,
+    videoPlugin,
+    attachmentPlugin,
+    toDoListPlugin,
+    baseMarksPlugin,
+    linkPlugin,
+    iframePlugin,
+    notePlugin,
+    separatorPlugin,
+    uploadFilePlugin,
+    tablePlugin,
+    quotePlugin,
+    colorPlugin,
+    superscriptPlugin,
+    headerPlugin,
+    listPlugin,
+    placeholderPlugin,
+    codeBlockPlugin,
+} from '@epam/uui-editor';
 import { svc } from '../../services';
 import { demoData } from '@epam/uui-docs';
-import css from './RichTextEditorDemo.scss';
-
+import css from './RichTextEditorDemo.module.scss';
 
 interface SlateEditorBasicExampleState {
     value: Value;
@@ -20,13 +37,13 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
 
     onChange = (value: Value) => {
         this.setState({ value: value });
-    }
+    };
 
     uploadFile = (file: File, onProgress: (progress: number) => any): any => {
         return svc.uuiApi.uploadFile('/uploadFileMock', file, {
             onProgress,
         });
-    }
+    };
 
     plugins = [
         ...defaultPlugins,
@@ -64,7 +81,6 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
     ];
 
     render() {
-
         return (
             <div className={ css.container }>
                 <SlateEditor
@@ -72,8 +88,8 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
                     onValueChange={ this.onChange }
                     autoFocus={ true }
                     plugins={ this.plugins }
-                    placeholder='Add description'
-                    minHeight={ 'none' }
+                    placeholder="Add description"
+                    minHeight="none"
                 />
             </div>
         );

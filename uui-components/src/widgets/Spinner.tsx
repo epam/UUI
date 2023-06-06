@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './Spinner.scss';
+import css from './Spinner.module.scss';
 import { SpinnerCoreProps, cx } from '@epam/uui-core';
 
 export interface SpinnerProps extends SpinnerCoreProps {}
@@ -24,12 +24,8 @@ export class Spinner extends React.Component<SpinnerProps> {
         }
 
         return (
-            <div
-                className={ cx(css.container, uuiSpinner.container, this.props.cx) }
-                ref={ this.props.forwardedRef }
-                { ...this.props.rawProps }
-            >
-                <div className={ uuiSpinner.animation }>{ dots }</div>
+            <div className={ cx(css.container, uuiSpinner.container, this.props.cx) } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
+                <div className={ uuiSpinner.animation }>{dots}</div>
             </div>
         );
     }

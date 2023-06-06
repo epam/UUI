@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './UploadFileToggler.scss';
+import css from './UploadFileToggler.module.scss';
 import { IHasForwardedRef, IHasRawProps } from '@epam/uui-core';
 
 interface UploadFileTogglerRenderParams {
@@ -15,10 +15,9 @@ interface UploadFileTogglerProps extends IHasRawProps<React.HTMLAttributes<HTMLD
 
 export class UploadFileToggler extends React.Component<UploadFileTogglerProps> {
     fileInput = React.createRef<HTMLInputElement>();
-
     onClick = () => {
         this.fileInput.current?.click();
-    }
+    };
 
     render() {
         return (
@@ -26,7 +25,7 @@ export class UploadFileToggler extends React.Component<UploadFileTogglerProps> {
                 <input
                     className={ css.fileInput }
                     ref={ this.fileInput }
-                    onChange={ e => {
+                    onChange={ (e) => {
                         this.props.onFilesAdded(Array.prototype.slice.call(e.currentTarget.files, 0));
                         e.currentTarget.value = null;
                     } }
@@ -34,7 +33,7 @@ export class UploadFileToggler extends React.Component<UploadFileTogglerProps> {
                     multiple={ !this.props.single }
                     accept={ this.props.accept }
                 />
-                { this.props.render({ onClick: this.onClick }) }
+                {this.props.render({ onClick: this.onClick })}
             </div>
         );
     }

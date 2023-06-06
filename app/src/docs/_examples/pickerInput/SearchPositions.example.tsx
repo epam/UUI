@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { FlexRow, PickerInput, FlexCell } from '@epam/promo';
-import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
+import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 
 export default function SearchPositionsExample() {
@@ -14,15 +14,19 @@ export default function SearchPositionsExample() {
     const dataSource = useLazyDataSource({ api: loadPersons }, []);
 
     return (
-        <FlexRow spacing='12'>
-            <FlexCell minWidth={ 295 }>
+        <FlexRow spacing="12">
+            <FlexCell minWidth={ 300 }>
+                <PickerInput dataSource={ dataSource } value={ value } onValueChange={ onValueChange } entityName="person" selectionMode="multi" valueType="id" />
+            </FlexCell>
+            <FlexCell minWidth={ 300 }>
                 <PickerInput
                     dataSource={ dataSource }
                     value={ value }
                     onValueChange={ onValueChange }
-                    entityName='person'
-                    selectionMode='multi'
-                    valueType='id'
+                    entityName="person"
+                    selectionMode="multi"
+                    searchPosition="input"
+                    valueType="id"
                 />
             </FlexCell>
             <FlexCell minWidth={ 295 }>
@@ -30,21 +34,10 @@ export default function SearchPositionsExample() {
                     dataSource={ dataSource }
                     value={ value }
                     onValueChange={ onValueChange }
-                    entityName='person'
-                    selectionMode='multi'
-                    searchPosition='input'
-                    valueType='id'
-                />
-            </FlexCell>
-            <FlexCell minWidth={ 295 }>
-                <PickerInput
-                    dataSource={ dataSource }
-                    value={ value }
-                    onValueChange={ onValueChange }
-                    entityName='person'
-                    selectionMode='multi'
-                    searchPosition='none'
-                    valueType='id'
+                    entityName="person"
+                    selectionMode="multi"
+                    searchPosition="none"
+                    valueType="id"
                 />
             </FlexCell>
         </FlexRow>

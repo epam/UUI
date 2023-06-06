@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { uuiMod, cx } from '@epam/uui-core';
 import { SliderBase, uuiSlider, SliderBaseState } from './SliderBase';
-import css from './SliderBase.scss';
+import css from './SliderBase.module.scss';
 import { SliderHandle } from './SliderHandle';
 import { RangeSliderScale } from './RangeSliderScale';
 
@@ -41,10 +41,14 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
             this.setState({ activeHandle: 'from' });
         }
         switch (this.state.activeHandle) {
-            case 'from': this.props.onValueChange({ from: this.getValue(mouseX, valueWidth), to: this.props.value && this.props.value.to || this.props.min }); break;
-            case 'to': this.props.onValueChange({ from: this.props.value && this.props.value.from || this.props.min, to: this.getValue(mouseX, valueWidth) }); break;
+            case 'from':
+                this.props.onValueChange({ from: this.getValue(mouseX, valueWidth), to: (this.props.value && this.props.value.to) || this.props.min });
+                break;
+            case 'to':
+                this.props.onValueChange({ from: (this.props.value && this.props.value.from) || this.props.min, to: this.getValue(mouseX, valueWidth) });
+                break;
         }
-    }
+    };
 
     handleMouseClick = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
@@ -53,7 +57,7 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
         } else {
             this.props.onValueChange({ from: this.props.value.from, to: this.getValue(e.clientX, this.getValueWidth()) });
         }
-    }
+    };
 
     getValueWidth() {
         return this.slider ? this.slider.offsetWidth / (this.props.max - this.props.min) : 0;
@@ -78,31 +82,23 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
     }
 
     render() {
-        let from = (this.props.value && this.props.value.from != null) ? this.props.value.from : this.props.min;
-        let to = (this.props.value && this.props.value.to != null) ? this.props.value.to : this.props.max;
-        let normValueFrom = this.roundToStep(this.normalize(from), this.props.step);
-        let normValueTo = this.roundToStep(this.normalize(to), this.props.step);
-        let valueWidth = this.getValueWidth();
+        const from = this.props.value && this.props.value.from != null ? this.props.value.from : this.props.min;
+        const to = this.props.value && this.props.value.to != null ? this.props.value.to : this.props.max;
+        const normValueFrom = this.roundToStep(this.normalize(from), this.props.step);
+        const normValueTo = this.roundToStep(this.normalize(to), this.props.step);
+        const valueWidth = this.getValueWidth();
 
         const fromHandleOffset = (normValueFrom - this.props.min) * valueWidth;
         const toHandleOffset = (normValueTo - this.props.min) * valueWidth;
 
         return (
             <div
-                className={ cx(
-                    uuiSlider.container,
-                    css.root,
-                    this.props.isDisabled && uuiMod.disabled,
-                    this.props.cx
-                ) }
+                className={ cx(uuiSlider.container, css.root, this.props.isDisabled && uuiMod.disabled, this.props.cx) }
                 onClick={ this.handleMouseClick }
                 ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
-                <div
-                    ref={ slider => this.slider = slider }
-                    className={ cx(uuiSlider.slider, this.state.activeHandle && uuiMod.active) }
-                />
+                <div ref={ (slider) => (this.slider = slider) } className={ cx(uuiSlider.slider, this.state.activeHandle && uuiMod.active) } />
                 <div
                     className={ uuiSlider.filled }
                     style={ {
@@ -124,7 +120,7 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
                     offset={ fromHandleOffset }
                     tooltipContent={ normValueFrom }
                     onUpdate={ (mouseX) => this.onHandleValueChange(mouseX, 'from', valueWidth) }
-                    onKeyDownUpdate={ type => this.handleKeyDown(type, { from: normValueFrom, to: normValueTo }) }
+                    onKeyDownUpdate={ (type) => this.handleKeyDown(type, { from: normValueFrom, to: normValueTo }) }
                     handleActiveState={ (isActive) => this.setState({ activeHandle: isActive ? 'from' : null }) }
                     rawProps={ {
                         'aria-label': this.props.rawProps && this.props.rawProps['aria-label'] ? this.props.rawProps['aria-label'] : 'From',
@@ -141,7 +137,7 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
                     tooltipContent={ normValueTo }
                     onUpdate={ (mouseX: number) => this.onHandleValueChange(mouseX, 'to', valueWidth) }
                     handleActiveState={ (isActive) => this.setState({ activeHandle: isActive ? 'to' : null }) }
-                    onKeyDownUpdate={ type => this.handleKeyDown(type, { from: normValueFrom, to: normValueTo }) }
+                    onKeyDownUpdate={ (type) => this.handleKeyDown(type, { from: normValueFrom, to: normValueTo }) }
                     rawProps={ {
                         'aria-label': this.props.rawProps && this.props.rawProps['aria-label'] ? this.props.rawProps['aria-label'] : 'To',
                         'aria-valuenow': this.props.value?.to,

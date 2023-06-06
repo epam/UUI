@@ -1,28 +1,20 @@
-import * as React from 'react';
-import css from './Text.scss';
-import * as types from '../types';
-import { Text as uuiText, TextProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
-import { getTextClasses, TextSettings } from '../../helpers/textLayout';
+import { Text as UuiText, TextProps as UuiTextProps } from '@epam/uui';
+import * as types from '../types';
 
-export interface TextMods extends TextSettings {
-    size?: types.TextSize | '42';
+export interface TextMods {
+    color?: 'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray5' | 'gray50' | 'gray60' | 'gray80' | 'gray90';
     font?: types.FontStyle;
-    color?: 'gray5' | 'gray60' | 'gray80' | 'gray90';
 }
 
-function applyTextMods(mods: TextMods) {
-    const textClasses = getTextClasses({
-        size: mods.size || '36',
-        lineHeight: mods.lineHeight,
-        fontSize: mods.fontSize,
-    }, false);
+export type TextProps = Omit<UuiTextProps, 'color' | 'font'> & TextMods;
 
-    return [
-        css.root,
-        css['font-' + (mods.font || 'sans')],
-        css['text-color-' + (mods.color || 'gray80')],
-    ].concat(textClasses);
-}
-
-export const Text = withMods<TextProps, TextMods>(uuiText, applyTextMods);
+export const Text = withMods<Omit<UuiTextProps, 'color' | 'font'>, TextMods>(
+    UuiText,
+    () => [],
+    (props) =>
+        ({
+            color: props.color ?? 'gray80',
+            font: props.font ?? 'sans',
+        } as TextProps),
+);

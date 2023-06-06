@@ -1,0 +1,26 @@
+$text-size-caption: 36px;
+$text-size-count: 24px;
+
+@mixin tab-button-color($bg, $fg, $brd) {
+    color: $fg;
+    fill: $fg;
+
+    &:hover, &:focus {
+        fill: $bg;
+        color: $bg;
+    }
+
+    &:global(.uui-active) {
+        fill: $bg;
+        color: $bg;
+        border-color: $brd;
+    }
+}
+
+.theme-dark {
+    @include tab-button-color(var(--sky), var(--night300), var(--sky));
+
+    &:global(.uui-disabled) {
+        @include tab-button-color(var(--gray60), var(--gray60), var(--gray60));
+    }
+}

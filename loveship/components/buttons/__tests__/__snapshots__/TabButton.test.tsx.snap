@@ -1,20 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TabButton should be rendered correctly 1`] = `
-<button
-  className="container uui-button-box uui-enabled root size-48 theme-light uui-no-left-icon uui-no-right-icon"
-  onClick={[Function]}
-  role="tab"
-  tabIndex={-1}
-  type="button"
-/>
-`;
-
-exports[`TabButton should be rendered correctly with props 1`] = `
+exports[`TabButton should render with maximum props 1`] = `
 <button
   aria-disabled={false}
-  className="container uui-button-box uui-enabled -clickable root size-48 theme-light uui-has-left-icon uui-no-right-icon"
-  disabled={false}
+  className="container uui-button-box uui-enabled -clickable root informer-default size-48 uui-has-left-icon uui-no-right-icon"
   onClick={[Function]}
   role="tab"
   tabIndex={0}
@@ -29,4 +18,14 @@ exports[`TabButton should be rendered correctly with props 1`] = `
     />
   </div>
 </button>
+`;
+
+exports[`TabButton should render with minimum props 1`] = `
+<button
+  className="container uui-button-box uui-enabled root informer-default size-48 uui-no-left-icon uui-no-right-icon"
+  onClick={[Function]}
+  role="tab"
+  tabIndex={-1}
+  type="button"
+/>
 `;

@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 60px);
+    transition: all 500ms;
+    flex-basis: auto;
+    min-width: 0;
+    flex-grow: 1;
+
+    :global(.uui-table-row) {
+        .detailed-icon {
+            visibility: hidden;
+        }
+
+        &:hover {
+            .detailed-icon {
+                visibility: visible;
+            }
+        }
+    }
+}
+
+.apply {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}

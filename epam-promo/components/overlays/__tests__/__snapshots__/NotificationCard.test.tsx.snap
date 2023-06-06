@@ -5,7 +5,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
   className="notificationWrapper clearButton"
 >
   <button
-    className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon"
+    className="container uui-button-box uui-enabled -clickable root size-36 uui-no-left-icon uui-no-right-icon link-button-primary"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -21,7 +21,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
 
 exports[`ErrorNotification should be rendered correctly 1`] = `
 <div
-  className="notificationWrapper color-red root"
+  className="notification-card-error root"
   role="alert"
 >
   <div
@@ -46,7 +46,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
+        className="container uui-button-box uui-enabled -clickable icon-button-default root closeIcon"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -67,7 +67,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
 
 exports[`HintNotification should be rendered correctly 1`] = `
 <div
-  className="notificationWrapper color-blue root"
+  className="notification-card-info root"
   role="alert"
 >
   <div
@@ -92,7 +92,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
+        className="container uui-button-box uui-enabled -clickable icon-button-default root closeIcon"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -111,43 +111,9 @@ exports[`HintNotification should be rendered correctly 1`] = `
 </div>
 `;
 
-exports[`NotificationCard should be rendered correctly 1`] = `
+exports[`NotificationCard should render with maximum props 1`] = `
 <div
-  className="notificationWrapper color-red root"
-  role="alert"
->
-  <div
-    className="mainPath"
-  >
-    <div
-      className="content"
-    />
-    <div
-      className="closeWrapper"
-    >
-      <button
-        className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
-        >
-          <svg
-            className=""
-          />
-        </div>
-      </button>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`NotificationCard should be rendered correctly 2`] = `
-<div
-  className="notificationWrapper color-red root"
+  className="notification-card-red root"
   role="alert"
 >
   <div
@@ -172,7 +138,41 @@ exports[`NotificationCard should be rendered correctly 2`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
+        className="container uui-button-box uui-enabled -clickable icon-button-default root closeIcon"
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+          style={Object {}}
+        >
+          <svg
+            className=""
+          />
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NotificationCard should render with minimum props 1`] = `
+<div
+  className="notification-card-red root"
+  role="alert"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="content"
+    />
+    <div
+      className="closeWrapper"
+    >
+      <button
+        className="container uui-button-box uui-enabled -clickable icon-button-default root closeIcon"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -193,7 +193,7 @@ exports[`NotificationCard should be rendered correctly 2`] = `
 
 exports[`SuccessNotification should be rendered correctly 1`] = `
 <div
-  className="notificationWrapper color-green root"
+  className="notification-card-success root"
   role="alert"
 >
   <div
@@ -218,7 +218,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
+        className="container uui-button-box uui-enabled -clickable icon-button-default root closeIcon"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -239,7 +239,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
 
 exports[`WarningNotification should be rendered correctly 1`] = `
 <div
-  className="notificationWrapper color-amber root"
+  className="notification-card-warning root"
   role="alert"
 >
   <div
@@ -264,7 +264,7 @@ exports[`WarningNotification should be rendered correctly 1`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
+        className="container uui-button-box uui-enabled -clickable icon-button-default root closeIcon"
         onClick={[Function]}
         tabIndex={0}
         type="button"

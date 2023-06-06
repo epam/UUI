@@ -20,7 +20,7 @@
         @include text-size($size, $borderWidth);
 
         @if ($size == 42px or $size == 48px) {
-            font-size: 14px;
+            font-size: 16px;
         }
     }
 }
@@ -28,7 +28,9 @@
 @mixin button-horizontal-layout($size, $borderWidth) {
     min-width: $size;
 
-    @if ($size == 24px) {
+    @if ($size == 18px) {
+        @include button-padding(3px, 3px, $borderWidth);
+    } @else if ($size == 24px) {
         @include button-padding(6px, 6px, $borderWidth);
     } @else if ($size == 30px) {
         @include button-padding(6px, 6px, $borderWidth);
@@ -39,8 +41,7 @@
     } @else if ($size == 48px) {
         @include button-padding(12px, 6px, $borderWidth);
     } @else {
-        @include button-padding(6px, 6px, $borderWidth)
-    }
+        @include button-padding(6px, 6px, $borderWidth); }
 }
 
 @mixin button-padding($controlPadding, $captionPadding, $borderWidth) {

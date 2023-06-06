@@ -1,4 +1,4 @@
-import { SortingOption } from "../../types/dataQuery";
+import { SortingOption } from '../../types/dataQuery';
 
 const eqPredicate = (a: any, b: any) => 0;
 
@@ -24,7 +24,7 @@ export function getOrderComparer<TEntity>(sorting: SortingOption[]): (a: TEntity
         return eqPredicate;
     }
 
-    const sortingOrders = sorting.map(s => s.direction === 'desc' ? -1 : 1);
+    const sortingOrders = sorting.map((s) => (s.direction === 'desc' ? -1 : 1));
 
     const comparer = (a: any, b: any) => {
         for (let n = 0; n < sorting.length; n++) {

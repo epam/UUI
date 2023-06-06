@@ -5,8 +5,8 @@ import { TextPlaceholder } from '../typography';
 import { systemIcons } from '../../icons/icons';
 import { Tag } from '../widgets';
 import * as types from '../types';
-import '../../assets/styles/variables/pickers/pickerToggler.scss';
-import css from './PickerToggler.scss';
+import { getMaxItems } from './helpers';
+import css from './PickerToggler.module.scss';
 
 const defaultSize = '36';
 const defaultMode = types.EditMode.FORM;
@@ -17,7 +17,6 @@ export interface PickerTogglerMods extends types.IHasEditMode {
 
 function applyPickerTogglerMods(mods: PickerTogglerMods) {
     return [
-        'picker-toggler-vars',
         css.root,
         css['size-' + (mods.size || defaultSize)],
         css['mode-' + (mods.mode || defaultMode)],
@@ -41,25 +40,25 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
     };
 
     const getCaption = (row: DataRowProps<TItem, TId>) => {
-        const maxItems = (props.maxItems || props.maxItems === 0) ? props.maxItems : 100;
+        const maxItems = getMaxItems(props.maxItems);
 
         if (row.isLoading) {
             return <TextPlaceholder />;
-        } else if (!props.getName || props.selection?.length > maxItems) {
+        } else if (!props.getName || props.selectedRowsCount > maxItems) {
             return row.value;
         } else {
             return props.getName(row.value);
         }
     };
 
-    const renderItem = (row: DataRowProps<any, any>) => (
+    const renderItem = (row: DataRowProps<TItem, TId>) => (
         <Tag
-            key={ row.id }
+            key={ row.rowKey }
             caption={ getCaption(row) }
             tabIndex={ -1 }
             size={ props.size ? getPickerTogglerButtonSize(props.size) : '30' }
-            onClear={ e => {
-                row.onCheck && row.onCheck(row);
+            onClear={ (e) => {
+                row.onCheck?.(row);
                 e.stopPropagation();
             } }
             isDisabled={ props.isDisabled || props.isReadonly || row?.checkbox?.isDisabled }
@@ -72,11 +71,14 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
             ref={ ref }
             cx={ [applyPickerTogglerMods(props), props.cx] }
             renderItem={ !!props.renderItem ? props.renderItem : renderItem }
-            getName={ (item) => props.getName ? props.getName(item) : item }
+            getName={ (item) => (props.getName ? props.getName(item) : item) }
             cancelIcon={ systemIcons[props.size || defaultSize].clear }
             dropdownIcon={ systemIcons[props.size || defaultSize].foldingArrow }
         />
     );
 }
 
-export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: React.ForwardedRef<HTMLElement>) => JSX.Element;
+export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(
+    props: PickerTogglerProps<TItem, TId> & PickerTogglerMods,
+    ref: React.ForwardedRef<HTMLElement>
+) => JSX.Element;

@@ -1,0 +1,30 @@
+@keyframes skeleton_loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: 0 0; }
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.loading-word {
+    user-select: none;
+    font-family: var(--font-redacted);
+    letter-spacing: -1px;
+    margin: 0 3px 3px 0;
+    color: var(--uui-text-placeholder);
+    vertical-align: 1px; // to fix vertical over-sizing of line
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &.animated-loading {
+        color: transparent;
+        background: var(--uui-text-placeholder-gradient);
+        background-size: 200% 100%;
+        background-clip: border-box;
+        -webkit-background-clip: text;
+        animation: skeleton_loading 1s ease infinite;
+    }
+}

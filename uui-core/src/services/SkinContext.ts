@@ -1,19 +1,31 @@
 import {
-    ButtonCoreProps, CheckboxCoreProps, FlexCellProps, FlexRowProps, TextInputCoreProps, SpinnerCoreProps, ModalWindowProps,
-    ModalBlockerProps, ModalFooterCoreProps, ModalHeaderCoreProps, ButtonSemanticProps, LabeledInputCoreProps, DatePickerCoreProps, RangeDatePickerCoreProps, IFilterItemBodyProps,
-} from "../types";
+    ButtonCoreProps,
+    CheckboxCoreProps,
+    FlexCellProps,
+    FlexRowProps,
+    TextInputCoreProps,
+    SpinnerCoreProps,
+    ModalWindowProps,
+    ModalBlockerProps,
+    ModalFooterCoreProps,
+    ModalHeaderCoreProps,
+    ButtonSemanticProps,
+    LabeledInputCoreProps,
+    DatePickerCoreProps,
+    RangeDatePickerCoreProps,
+} from '../types';
 import * as React from 'react';
 
-interface ISkinComponent<TProps, TSemanticProps= {}> {
+interface ISkinComponent<TProps, TSemanticProps = {}> {
     component: React.ComponentType<TProps>;
     mapProps?(props: SkinContextComponentProps<TProps, TSemanticProps>): TProps;
     render(props: SkinContextComponentProps<TProps, TSemanticProps>): React.ReactElement<SkinContextComponentProps<TProps, TSemanticProps>>;
 }
 
-export type SkinContextComponentProps<TProps, TSemanticProps = {}> = TProps & TSemanticProps & {
+export type SkinContextComponentProps<TProps, TSemanticProps = {}> = TProps &
+TSemanticProps & {
     usageContext?: string[];
 };
-
 
 export function skinComponent<TProps, TSemanticProps = {}>(
     component: React.ComponentType<TProps>,
@@ -22,7 +34,7 @@ export function skinComponent<TProps, TSemanticProps = {}>(
     return {
         component,
         mapProps,
-        render: props => (React.createElement(component, mapProps ? mapProps(props) : props) as any),
+        render: (props) => React.createElement(component, mapProps ? mapProps(props) : props) as any,
     };
 }
 
@@ -39,14 +51,12 @@ export interface ISkin {
     ModalHeader: ISkinComponent<ModalHeaderCoreProps>;
     ModalFooter: ISkinComponent<ModalFooterCoreProps>;
     LabeledInput: ISkinComponent<LabeledInputCoreProps>;
-    FilterItemBody: ISkinComponent<IFilterItemBodyProps<any>>;
     DatePicker: ISkinComponent<DatePickerCoreProps>;
     RangeDatePicker: ISkinComponent<RangeDatePickerCoreProps>;
 }
 
 export class SkinContext {
     skin: ISkin;
-
     public setSkin(skin: ISkin) {
         this.skin = skin;
     }
@@ -63,7 +73,6 @@ export class SkinContext {
     public ModalHeader = (props: ModalHeaderCoreProps) => this.skin.ModalHeader.render(props);
     public ModalFooter = (props: ModalFooterCoreProps) => this.skin.ModalFooter.render(props);
     public LabeledInput = (props: LabeledInputCoreProps) => this.skin.LabeledInput.render(props);
-    public FilterItemBody = <TFilter>(props: IFilterItemBodyProps<TFilter>) => this.skin.FilterItemBody.render(props);
     public DatePicker = (props: DatePickerCoreProps) => this.skin.DatePicker.render(props);
     public RangeDatePicker = (props: RangeDatePickerCoreProps) => this.skin.RangeDatePicker.render(props);
 }

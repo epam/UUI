@@ -1,28 +1,24 @@
-import * as types from '../types';
-import css from './LinkButton.scss';
-import styles from '../../assets/styles/colorvars/buttons/linkButton-colorvars.scss';
-import { withMods } from '@epam/uui-core';
-import { Button, ButtonProps } from '@epam/uui-components';
-import { systemIcons } from '../../icons/icons';
-import { getIconClass } from './helper';
-
-const defaultSize = '36';
+import { devLogger, withMods } from '@epam/uui-core';
+import { LinkButton as UuiLinkButton, LinkButtonProps as UuiLinkButtonProps } from '@epam/uui';
 
 export interface LinkButtonMods {
-    size?: types.ControlSize | '42';
-    color?: types.EpamPrimaryColor;
+    color?: 'blue' | 'green' | 'amber' | 'red' | 'gray60' | 'gray10';
 }
 
-function applyLinkButtonMods(mods: LinkButtonMods & ButtonProps) {
-    return [
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
-        styles['linkButton-color-' + (mods.color || 'blue')],
-        ...getIconClass(mods),
-    ];
-}
+export type LinkButtonProps = Omit<UuiLinkButtonProps, 'color'> & LinkButtonMods;
 
-export const LinkButton = withMods<ButtonProps, LinkButtonMods>(Button, applyLinkButtonMods, (props) => ({
-    dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
-    clearIcon: systemIcons[props.size || defaultSize].clear,
-}));
+export const LinkButton = withMods<Omit<UuiLinkButtonProps, 'color'>, LinkButtonMods>(
+    UuiLinkButton,
+    () => [],
+    (props) => {
+        devLogger.warnAboutDeprecatedPropValue<LinkButtonProps, 'color'>({
+            component: 'LinkButton',
+            propName: 'color',
+            propValue: props.color,
+            condition: () => ['green', 'amber', 'red'].indexOf(props.color) !== -1,
+        });
+        return {
+            color: props.color ?? 'blue',
+        } as LinkButtonProps;
+    },
+);

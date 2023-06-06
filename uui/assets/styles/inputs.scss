@@ -1,43 +1,43 @@
 @mixin disabled-input() {
     &.mode-form {
-        @include input-colors(var(--input-bg-disabled-color), var(--input-text-disabled-color), var(--input-border-disabled-color));
+        @include input-colors(var(--uui-control-bg-disabled), var(--uui-control-text-disabled), var(--uui-control-border-disabled));
         cursor: default;
         pointer-events: none;
 
         &:hover, &:active, &:focus {
-            @include input-colors(var(--input-bg-disabled-color), var(--input-text-disabled-color), var(--input-border-disabled-color));
+            @include input-colors(var(--uui-control-bg-disabled), var(--uui-control-text-disabled), var(--uui-control-border-disabled));
             box-shadow: none;
         }
 
         &::placeholder {
-            color: var(--input-placeholder-disabled-color);
+            color: var(--uui-control-placeholder-disabled);
         }
     }
 
     &.mode-cell {
-        @include input-colors(transparent, var(--input-text-disabled-color), transparent);
+        @include input-colors(transparent, var(--uui-control-text-disabled), transparent);
         cursor: default;
         pointer-events: none;
 
         &:hover, &:active, &:focus {
-            @include input-colors(transparent, var(--input-text-disabled-color), transparent);
+            @include input-colors(transparent, var(--uui-control-text-disabled), transparent);
             box-shadow: none;
         }
 
         &::placeholder {
-            color: var(--input-placeholder-disabled-color);
+            color: var(--uui-control-placeholder-disabled);
         }
     }
 }
 
 @mixin readonly-input() {
     &.mode-form {
-        background-color: var(--input-bg-readonly-color);
-        border-color: var(--input-border-readonly-color);
+        background-color: var(--uui-control-bg-readonly);
+        border-color: var(--uui-control-border-readonly);
         pointer-events: none;
 
         &:hover {
-            border-color: var(--input-border-readonly-color);
+            border-color: var(--uui-control-border-readonly);
         }
     }
 
@@ -64,7 +64,7 @@
         color: $fg;
 
         &::placeholder {
-            color: var(--input-placeholder-disabled-color);
+            color: var(--uui-control-placeholder-disabled);
         }
     }
 }

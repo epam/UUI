@@ -1,0 +1,40 @@
+@use '../../../assets/styles/index' as *;
+
+.row-wrapper {
+    position: relative;
+    padding: 0 24px 0 0;
+    width: 100%;
+    box-sizing: border-box;
+    touch-action: auto;
+
+    &.not-pinned:not(:hover) {
+        .pin-icon-button {
+            visibility: hidden;
+        }
+    }
+
+    &:hover {
+        background-color: var(--uui-surface-hover);
+    }
+
+    .drag-handle {
+        height: 12px;
+        background-position: right;
+        background-repeat: repeat-y;
+        padding: 6px 0 6px 24px;
+        background-position-y: -2px;
+        opacity: 1;
+        touch-action: none;
+
+        &.dnd-disabled {
+            opacity: 0.3;
+            touch-action: auto;
+        }
+
+    }
+
+    &:global(.uui-drag-ghost) {
+        @include dnd-ghost-shadow();
+        background-color: var(--uui-surface);
+    }
+}

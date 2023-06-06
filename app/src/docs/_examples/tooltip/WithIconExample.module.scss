@@ -1,0 +1,26 @@
+.container {
+    padding: 6px 0 6px 3px;
+
+    .header {
+        padding-top: 0;
+        padding-bottom: 3px;
+    }
+
+    .content {
+        padding: 0;
+
+        a {
+            text-decoration: none;
+        }
+    }
+}
+
+.text {
+    color: #6C6F80;
+    border-bottom: 1px dashed #6C6F80;
+    padding: 0;
+}
+
+.icon-blue {
+    fill: var(--uui-primary);
+}

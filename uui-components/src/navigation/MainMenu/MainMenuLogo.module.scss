@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    position: relative;
+    align-items: center;
+    line-height: 0;
+
+}
+
+.logo {
+    display: block;
+    height: 60px;
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 30px 0 30px 13px;
+    border-color: transparent;
+}

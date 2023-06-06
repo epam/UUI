@@ -1,0 +1,23 @@
+.active-button {
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+    color: #222222;
+
+    &:global(.-clickable):hover, &:active {
+        background-color: #FFFFFF;
+        border-color: #FFFFFF;
+        color: #222222;
+    }
+}
+
+.none-button {
+    background-color: transparent;
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+
+    &:global(.-clickable):hover, &:active {
+        background-color: #FFFFFF;
+        border-color: #FFFFFF;
+        color: #222222;
+    }
+}

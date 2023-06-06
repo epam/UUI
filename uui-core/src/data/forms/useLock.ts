@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { Lock, useUuiContext } from "../../services";
+import { useEffect, useRef } from 'react';
+import { Lock, useUuiContext } from '../../services';
 
 export interface UseLockProps {
     handleLeave: () => Promise<boolean>;

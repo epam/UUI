@@ -1,10 +1,12 @@
-import { Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode } from "react";
+import {
+    Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode,
+} from 'react';
 import { Link, CX, Icon } from './objects';
 import * as CSS from 'csstype';
-import { DataRowProps } from "./dataSources";
-import {AnalyticsEvent} from "./contexts";
-import { PopperArrowProps } from "react-popper";
-import { Placement} from '@popperjs/core';
+import { DataRowProps } from './dataSources';
+import { AnalyticsEvent } from './contexts';
+import { PopperArrowProps } from 'react-popper';
+import { Placement } from '@popperjs/core';
 
 /** Component value can be invalid */
 export interface ICanBeInvalid {
@@ -131,8 +133,14 @@ export interface IBasicPickerToggler extends IDropdownToggler {
  * Only IDropdownToggler implementation is necessary for the picker to function.
  * Other props can be implemented for full-featured picker togglers.
  */
-export interface IPickerToggler<TItem = any, TId = any> extends IBasicPickerToggler, Partial<IEditable<string>>, Partial<IHasPlaceholder>, Partial<IDisableable>, Partial<ICanBeInvalid> {
+export interface IPickerToggler<TItem = any, TId = any>
+    extends IBasicPickerToggler,
+    Partial<IEditable<string>>,
+    Partial<IHasPlaceholder>,
+    Partial<IDisableable>,
+    Partial<ICanBeInvalid> {
     selection?: DataRowProps<TItem, TId>[];
+    selectedRowsCount?: number;
 }
 
 /**
@@ -198,7 +206,7 @@ export interface INotification {
     key: string;
 }
 
-export type IHasRawProps<T> =  {
+export type IHasRawProps<T> = {
     /** Any HTML attributes (native or 'data-') to put on the underlying component */
     rawProps?: T & Record<`data-${string}`, string>;
 };
@@ -208,47 +216,51 @@ export interface IHasForwardedRef<T extends HTMLOrSVGElement> {
     forwardedRef?: ForwardedRef<T>;
 }
 
-export type FlexRowProps = IHasCX
-    & IClickable
-    & Attributes
-    & IHasChildren
-    & IHasRawProps<HTMLAttributes<HTMLDivElement>>
-    & {
-        /** Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) */
-        alignItems?: 'top' | 'center' | 'bottom' | 'stretch';
-        /** Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
-        columnGap?: number | '6' | '12' | '18' | '24' | '36';
-        /** Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
-        rowGap?: number | '6' | '12' | '18' | '24' | '36';
-    };
+export type FlexRowProps = IHasCX &
+IClickable &
+Attributes &
+IHasChildren &
+IHasRawProps<HTMLAttributes<HTMLDivElement>> & {
+    /** Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) */
+    alignItems?: 'top' | 'center' | 'bottom' | 'stretch';
+    /** Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
+    columnGap?: number | '6' | '12' | '18' | '24' | '36';
+    /** Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
+    rowGap?: number | '6' | '12' | '18' | '24' | '36';
+};
 
-export type FlexCellProps = IHasCX
-    & IClickable
-    & IHasRawProps<HTMLAttributes<HTMLDivElement>>
-    & Attributes
-    & IHasChildren
-    & {
-        /** CSS width. Set to 'auto' to make FlexCell resize to it's content */
-        width?: number | 'auto' | '100%';
-        /** CSS min-width */
-        minWidth?: number;
-        /** Flexbox flex-grow property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-grow) */
-        grow?: number;
-        /** Flexbox shrink property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-shrink) */
-        shrink?: number;
-        /** CSS text-align property */
-        textAlign?: 'left' | 'center' | 'right';
-        /** Flexbox align-self property. Aligns items vertically for horizontal flexbox. [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-align-self) */
-        alignSelf?: CSS.AlignSelfProperty;
-        /** Standard style attribute. Styles are added to element style, overriding supplied flex styles */
-        style?: React.CSSProperties;
-    };
+export type FlexCellProps = IHasCX &
+IClickable &
+IHasRawProps<HTMLAttributes<HTMLDivElement>> &
+Attributes &
+IHasChildren & {
+    /** CSS width. Set to 'auto' to make FlexCell resize to it's content */
+    width?: number | 'auto' | '100%';
+    /** CSS min-width */
+    minWidth?: number;
+    /** Flexbox flex-grow property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-grow) */
+    grow?: number;
+    /** Flexbox shrink property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-shrink) */
+    shrink?: number;
+    /** CSS text-align property */
+    textAlign?: 'left' | 'center' | 'right';
+    /** Flexbox align-self property. Aligns items vertically for horizontal flexbox. [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-align-self) */
+    alignSelf?: CSS.AlignSelfProperty;
+    /** Standard style attribute. Styles are added to element style, overriding supplied flex styles */
+    style?: React.CSSProperties;
+};
 
-export type VPanelProps = IHasCX & IHasChildren & IClickable & IHasRawProps<HTMLAttributes<HTMLDivElement>> & IHasForwardedRef<HTMLDivElement> & IAnalyticableClick & {
+export type VPanelProps = IHasCX &
+IHasChildren &
+IClickable &
+IHasRawProps<HTMLAttributes<HTMLDivElement>> &
+IHasForwardedRef<HTMLDivElement> &
+IAnalyticableClick & {
     style?: CSSProperties;
 };
 
-export type ICheckable = IEditable<boolean> & IDisableable & {
+export type ICheckable = IEditable<boolean> &
+IDisableable & {
     /** Sets checkbox in indeterminate state (neither checked or unchecked), which usually means that children elements has both values */
     indeterminate?: boolean;
 };

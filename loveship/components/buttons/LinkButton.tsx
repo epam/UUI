@@ -1,36 +1,24 @@
-import * as types from '../types';
-import css from './LinkButton.scss';
-import styles from '../../assets/styles/scss/loveship-color-vars.scss';
-import { withMods } from '@epam/uui-core';
-import { Button, ButtonProps } from '@epam/uui-components';
-import { TextSettings, getTextClasses } from '../../helpers/textLayout';
-import { getIconClass } from './helper';
-import { systemIcons } from '../icons/icons';
+import { devLogger, withMods } from '@epam/uui-core';
+import { LinkButton as UuiLinkButton, LinkButtonProps as UuiLinkButtonProps } from '@epam/uui';
 
-const defaultSize = '36';
-
-export interface LinkButtonMods extends TextSettings {
-    size?: types.ControlSize | '42';
-    color?: types.EpamColor;
-    font?: types.FontStyle;
+export interface LinkButtonMods {
+    color?: 'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'lavanda' | 'fuchsia' | 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';
 }
 
-function applyLinkButtonMods(mods: LinkButtonMods & ButtonProps) {
-    return [
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
-        !mods.isDisabled && styles['color-' + (mods.color || 'sky')],
-        css['font-' + (mods.font || 'sans-semibold')],
-        ...getIconClass(mods),
-    ];
-}
+export type LinkButtonProps = Omit<UuiLinkButtonProps, 'color'> & LinkButtonMods;
 
-export const LinkButton = withMods<ButtonProps, LinkButtonMods>(Button, applyLinkButtonMods, (props) => ({
-    dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
-    clearIcon: systemIcons[props.size || defaultSize].clear,
-    captionCX: getTextClasses({
-        size: props.size || defaultSize,
-        lineHeight: props.lineHeight,
-        fontSize: props.fontSize,
-    }, false),
-}));
+export const LinkButton = withMods<Omit<UuiLinkButtonProps, 'color'>, LinkButtonMods>(
+    UuiLinkButton,
+    () => [],
+    (props) => {
+        devLogger.warnAboutDeprecatedPropValue<LinkButtonProps, 'color'>({
+            component: 'LinkButton',
+            propName: 'color',
+            propValue: props.color,
+            condition: () => ['grass', 'sun', 'fire', 'cobalt', 'lavanda', 'fuchsia', 'white', 'night50', 'night200', 'night300', 'night400', 'night500', 'night700', 'night800', 'night900'].indexOf(props.color) !== -1,
+        });
+        return {
+            color: props.color ?? 'sky',
+        } as LinkButtonProps;
+    },
+);

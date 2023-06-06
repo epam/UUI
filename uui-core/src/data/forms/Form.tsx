@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react';
 import { useForm } from './useForm';
-import { IEditable, ILens, Metadata, ICanBeInvalid, ValidationMode } from '../../../index';
+import {
+    IEditable, ILens, Metadata, ICanBeInvalid, ValidationMode,
+} from '../../../index';
 
 export interface FormSaveResponse<T> {
     form?: T;
@@ -87,7 +89,6 @@ export interface IFormApi<T> extends IEditable<T>, ICanBeInvalid {
      */
     replaceValue: (s: React.SetStateAction<T>) => void;
 
-
     /**
      * Triggers save procedure - validation, calling props.onSave, and processing results
      */
@@ -138,5 +139,5 @@ export interface IFormApi<T> extends IEditable<T>, ICanBeInvalid {
 
 export function Form<T>({ renderForm, ...props }: FormProps<T>) {
     const useFormProps = useForm<T>(props);
-    return <>{ renderForm(useFormProps) }</>;
+    return <>{renderForm(useFormProps)}</>;
 }

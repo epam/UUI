@@ -1,18 +1,25 @@
-import { IconButton as uuiIconButton, IconButtonBaseProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui-core';
-import * as types from '../types';
-import css from './IconButton.scss';
-import styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import { IconButton as uuiIconButton, IconButtonProps as UuiIconButtonProps } from '@epam/uui';
+import { devLogger, withMods } from '@epam/uui-core';
+import { EpamAdditionalColor, EpamPrimaryColor } from '../types';
 
-interface IconButtonMods extends types.ColorMod {};
-
-export interface IconButtonProps extends IconButtonBaseProps, IconButtonMods {};
-
-function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
-    return [
-        css.root,
-        styles['color-' + (mods.color || 'night600')],
-    ];
+export interface IconButtonMods {
+    color?: EpamPrimaryColor | EpamAdditionalColor | 'white'| 'night200'| 'night300'| 'night400'| 'night500'| 'night600';
 }
 
-export const IconButton = withMods<IconButtonProps, IconButtonMods>(uuiIconButton, applyIconButtonMods);
+export type IconButtonProps = Omit<UuiIconButtonProps, 'color'> & IconButtonMods;
+
+export const IconButton = withMods<Omit<UuiIconButtonProps, 'color'>, IconButtonMods>(
+    uuiIconButton,
+    () => [],
+    (props) => {
+        devLogger.warnAboutDeprecatedPropValue<IconButtonProps, 'color'>({
+            component: 'IconButton',
+            propName: 'color',
+            propValue: props.color,
+            condition: () => ['night200', 'night300', 'night400'].indexOf(props.color) !== -1,
+        });
+        return {
+            color: props.color ?? 'night600',
+        } as IconButtonProps;
+    },
+);

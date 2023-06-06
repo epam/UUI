@@ -1,3 +1,5 @@
+import { ClassValue } from '../helpers';
+
 /* Common interface for data items */
 export interface IdAndName {
     id: string;
@@ -25,16 +27,14 @@ export interface TimePickerValue {
     minutes: number;
 }
 
-// It's not currently possible to define recursive type in TypeScript, like this:
-// type CX = string? | CX[] | { [key: string]: CX };
-// So we'll keep this shortcut to 'any' for now, at least this make code more self-explanatory.
-export type CX = any;
+// CX type is a union type that represents the valid values to pass CSS classes
+export type CX = ClassValue;
 
 export type Icon = React.FC<any>;
 
 export interface IMap<TKey, TValue> {
     constructor: Function;
-    [Symbol.iterator](): IterableIterator<[TKey, TValue]>
+    [Symbol.iterator](): IterableIterator<[TKey, TValue]>;
     get(key: TKey): TValue;
     set(key: TKey, value: TValue): IMap<TKey, TValue>;
     has(key: TKey): boolean;

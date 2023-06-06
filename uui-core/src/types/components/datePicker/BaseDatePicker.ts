@@ -1,9 +1,18 @@
-import { ReactElement, ReactNode } from "react";
-import { Dayjs } from "dayjs";
-import { Placement } from "@popperjs/core";
-import { IAnalyticableOnChange, ICanBeReadonly, ICanFocus, IDisableable, IDropdownToggler, IEditable, IHasCX, IHasPlaceholder } from "../../props";
+import React, { ReactElement, ReactNode } from 'react';
+import { Dayjs } from 'dayjs';
+import { Placement } from '@popperjs/core';
+import {
+    IAnalyticableOnChange, ICanBeReadonly, ICanFocus, IDisableable, IDropdownToggler, IEditable, IHasPlaceholder, IHasRawProps,
+} from '../../props';
+import { CX } from '../../objects';
 
-export interface BaseDatePickerProps extends IEditable<string | null>, ICanFocus<HTMLInputElement>, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<string> {
+export interface BaseDatePickerProps
+    extends IEditable<string | null>,
+    ICanFocus<HTMLInputElement>,
+    IDisableable,
+    IHasPlaceholder,
+    ICanBeReadonly,
+    IAnalyticableOnChange<string> {
     /** Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format) */
     format?: string;
 
@@ -27,4 +36,14 @@ export interface BaseDatePickerProps extends IEditable<string | null>, ICanFocus
 
     /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
     placement?: Placement;
+
+    /** Attributes for HTML Element */
+    rawProps?: {
+        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+    };
+
+    /** Styles for input and body components in DatePicker */
+    inputCx?: CX;
+    bodyCx?: CX;
 }

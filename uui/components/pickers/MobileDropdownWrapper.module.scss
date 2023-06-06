@@ -1,0 +1,13 @@
+@use '../../assets/styles/index'  as *;
+
+.done {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid var(--uui-divider);
+
+    &:global(.uui-button-box) {
+        background-color: #FFF;
+        border-width: 1px !important;
+    }
+}

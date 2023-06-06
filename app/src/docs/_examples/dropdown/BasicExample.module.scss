@@ -1,0 +1,18 @@
+@use '~@epam/promo/assets/styles/colors' as *;
+
+.container {
+    width: 360px;
+}
+
+.text {
+    padding: 0;
+}
+
+.divider {
+    border-bottom: 1px solid $gray30;
+    width: 100%;
+}
+
+.icon-gray50 {
+    fill: var(--uui-secondary);
+}

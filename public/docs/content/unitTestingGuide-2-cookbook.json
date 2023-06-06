@@ -1,0 +1,3699 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://github.com/epam/UUI/blob/96bab30480c195b008ef502de2796ebc2e261ad7/uui-build/jest/unit-testing-guide.md#reference-implementation"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Reference implementation",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Below is a list of unit tests in UUI codebase which could be used as a reference. They demonstrate common use cases and usage of tools to implement tests.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(fake timers)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui-core/src/helpers/__tests__/IEditableDebouncer.test.tsx"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "IEditableDebouncer.test.tsx",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(testability: test extracted state management logic)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui-components/src/table/columnsConfigurationModal/__tests__/columnsConfigurationActions.test.ts"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "columnsConfigurationActions.test.ts",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(react-popper mock usage)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui/components/datePickers/__tests__/DatePicker.test.tsx"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "DatePicker.test.tsx",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(snapshots)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui/components/inputs/__tests__/NumericInput.test.tsx"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "NumericInput.test.tsx",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(complex component)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui/components/filters/__tests__/filtersPanel.test.tsx"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "filtersPanel.test.tsx",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(complex component, adaptive panel mock)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui/components/filters/PresetPanel/__tests__/presetsPanel.test.tsx"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "presetsPanel.test.tsx",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(complex component)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui/components/pickers/__tests__/PickerInput.test.tsx"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "PickerInput.test.tsx",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "data-testid",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " usage)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui-components/src/adaptivePanel/__tests__/adaptivePanel.test.tsx"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "adaptivePanel.test.tsx",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://github.com/epam/UUI/blob/96bab30480c195b008ef502de2796ebc2e261ad7/uui-build/jest/unit-testing-guide.md#common-mocks"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Common mocks",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Here is the list of commonly used mocks which can be useful in certain cases.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "react-popper",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "\nThis 3rd party component is used in ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Dropdown",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". As well as in other components which use dropdown internally (e.g. ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DatePicker",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", etc.). It heavily relies on \"layout\" features of browser and therefore, we need to mock it in ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "jsdom",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". This mock needs to be added to the specific test file (feel free to copy/paste it from here). ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "note-quote",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "jest.",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "mock",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "'react-popper'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#008000",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", () => ({\n    ...jest.",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "requireActual",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "'react-popper'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#008000",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "),\n    ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Popper",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#7a7a43",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "function ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "PopperMock",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "({ children }: ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "any",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ") {\n        ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "return ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "children({\n            ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "ref",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": jest.",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "fn",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ",\n            ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "update",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": jest.",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "fn",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(),\n            ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "style",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": {},\n            ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "arrowProps",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": { ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "ref",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": jest.",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "fn ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "},\n            ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "placement",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "'bottom-start'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#008000",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ",\n            ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "isReferenceHidden",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "false",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ",\n        });\n    },\n}));",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "react portal (for snapshots only)",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "\nIt's needed only for snapshots. Use it for components which use React portals internally for snapshot testing.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "note-quote",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "import ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "{ ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "mockReactPortalsForSnapshots",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "renderSnapshotWithContextAsync ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "} ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "from ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "'@epam/uui-test-utils'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#008000",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ";\n...\n",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "it",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "'should render with maximum props'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#008000",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "async ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "() => {\n    ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "const ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "portalMock ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#458383",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "= ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "mockReactPortalsForSnapshots",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "();\n    ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "const ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "tree ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#458383",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "= ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "await ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "renderSnapshotWithContextAsync",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "<",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "background-color": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Test ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "background-color": null,
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "/>",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "background-color": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ");\n    ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "portalMock",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#458383",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "mockClear",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "();\n    ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "expect",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "tree",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#458383",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ").",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "toMatchSnapshot",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#7a7a43",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "();\n});",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "SvgMock",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "It's useful for components which require *.svg as an input",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "note-quote",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "import ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "{ ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "renderSnapshotWithContextAsync",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "SvgMock ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "} ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "from ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "'@epam/uui-test-utils'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#008000",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ";\n...\n",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "it",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "'should render with maximum props'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#008000",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "async ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "() => {\n    ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "const ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "tree ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#458383",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "= ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "await ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "renderSnapshotWithContextAsync",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(\n        ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "<",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "background-color": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Test ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "background-color": null,
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "icon",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#0000ff",
+                    "background-color": null,
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "=",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#008000",
+                    "background-color": null,
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "{ ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "SvgMock ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "}",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": " />",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "background-color": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ",\n    );\n    ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "expect",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "tree",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#458383",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ").",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "toMatchSnapshot",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#7a7a43",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "();\n});",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://github.com/epam/UUI/blob/96bab30480c195b008ef502de2796ebc2e261ad7/uui-build/jest/unit-testing-guide.md#frequent-questions"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Frequent questions",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Q-1",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "How to fix errors like this?",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Warning: An update to inside a test was not wrapped in act",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Answer",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-underlined",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": Please check next article:",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "https://davidwcai.mediu",
+                "marks": []
+              },
+              {
+                "object": "inline",
+                "type": "link",
+                "data": {
+                  "url": "https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b"
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "m.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Q-2",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "How do I test only part of the object/array?",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Answer",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-underlined",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Use partial matchers like ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "objectContaining",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "arrayContaining",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", etc. ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "E.g.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "note-quote",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "expect",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "mocks",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#458383",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "setTableState",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ").",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "lastCalledWith",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#7a7a43",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "expect",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "font-style": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "objectContaining",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#7a7a43",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "({ ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "filter",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": { ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "position",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#660e7a",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": [",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "2",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#0000ff",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "3",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#0000ff",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "] } }));",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Q-3",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Is it OK to",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": " use DOM API (such as ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "querySelectorAll",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ") for testing?",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Answer",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-underlined",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "It's strongly not recommended. Such tests are fragile, e.g. it may fail after some internal changes which doesn't affect functionality of the component (e.g. CSS class renaming). Try other options instead, e.g.: adjust internal implementation of the component (assign role, add title, add label, etc.) or add ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "data-testid",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " attribute (less preferable).",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Q-4",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "How to  add",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "data-testid",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "attribute to UUI component?",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Answer",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-underlined",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "rawProps",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". E.g.:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "note-quote",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "<",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "background-color": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Test ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000080",
+                    "background-color": null,
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "rawProps",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#0000ff",
+                    "background-color": null,
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "=",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#008000",
+                    "background-color": null,
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "{ { ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "'data-testid'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#008000",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "'...' ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#008000",
+                    "font-weight": "bold",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "} }",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": " />",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "background-color": null,
+                    "": null
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

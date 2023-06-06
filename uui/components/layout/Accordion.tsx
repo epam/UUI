@@ -1,8 +1,7 @@
 import { withMods } from '@epam/uui-core';
 import { Accordion as uuiAccordion, AccordionProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
-import '../../assets/styles/variables/layout/accordion.scss';
-import css from './Accordion.scss';
+import css from './Accordion.module.scss';
 
 export interface AccordionMods {
     mode?: 'block' | 'inline';
@@ -11,10 +10,7 @@ export interface AccordionMods {
 
 function applyAccordionMods(mods: AccordionMods & AccordionProps) {
     return [
-        'accordion-vars',
-        css.root,
-        css['mode-' + (mods.mode || 'block')],
-        mods.padding && css['padding-' + mods.padding],
+        css.root, css['mode-' + (mods.mode || 'block')], mods.padding && css['padding-' + mods.padding],
     ];
 }
 

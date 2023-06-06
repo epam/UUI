@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Standalone link button in compact footers is the usual case to place one action, related to a parent component.",
+            "text": "Simple example of using FlexRow",
             "marks": []
           }
         ]

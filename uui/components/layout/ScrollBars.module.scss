@@ -1,0 +1,35 @@
+@use  './prettifyScrollBar' as *;
+
+@include prettifyCustomScroll();
+
+:global(.uui-shadow-top)::before {
+    background: var(--scroll-bars-shadow);
+}
+
+:global(.uui-shadow-bottom)::after {
+    background: var(--scroll-bars-shadow);
+}
+
+:global(.uui-shadow-top)::before {
+    background: var(--scroll-bars-shadow);
+}
+
+:global(.uui-shadow-bottom)::after {
+    background: var(--scroll-bars-shadow);
+}
+
+:global(.uui-shadow-top)::before {
+    background: var(--scroll-bars-shadow);
+}
+
+:global(.uui-shadow-bottom)::after {
+    background: var(--scroll-bars-shadow);
+}
+
+:global(.uui-shadow-top)::before {
+    background: var(--scroll-bars-shadow);
+}
+
+:global(.uui-shadow-bottom)::after {
+    background: var(--scroll-bars-shadow);
+}
