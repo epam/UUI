@@ -49,22 +49,25 @@ interface IPlaceholderButton {
 export const PlaceholderButton = ({ editor }: IPlaceholderButton): any => {
 
     if (!isPluginActive(KEY)) return null;
-    const { params }: { params: PlaceholderPluginParams} = getPluginOptions(editor, KEY);
+    const { params }: { params: PlaceholderPluginParams } = getPluginOptions(editor, KEY);
 
     const renderDropdownBody = () => {
         return (
             <div className={ css.dropdownContainer }>
                 { params.items.map(i =>
                     <div className={ css.dropdownItem }
-                         key={ i.name }
-                         onMouseDown={ () => insertElements(
-                             editor,
-                             {
-                                 data: i,
-                                 type: 'placeholder',
-                                 children: [{ text: '' }] ,
-                             },
-                         ) }
+                        key={ i.name }
+                        onMouseDown={ (event) => {
+                            event.preventDefault();
+                            insertElements(
+                                editor,
+                                {
+                                    data: i,
+                                    type: 'placeholder',
+                                    children: [{ text: '' }],
+                                },
+                            )
+                        } }
                     >
                         { i.name }
                     </div>,
@@ -77,7 +80,7 @@ export const PlaceholderButton = ({ editor }: IPlaceholderButton): any => {
         <Dropdown
             renderTarget={ (props) => (
                 <PlateToolbarButton
-                    styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+                    styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
                     active={ true }
                     onMouseDown={
                         editor
