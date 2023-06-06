@@ -115,18 +115,6 @@ const TableRenderer = (props: any) => {
 
     const onChangeDropDownValue = useCallback((value: boolean) => () => setShowToolbar(value), []);
 
-
-    const selectedCols: any = {};
-    cellEntries.forEach(([, path]) => {
-        if (selectedCols[path[2]]) {
-            selectedCols[path[2]].push(path);
-        } else {
-            selectedCols[path[2]] = [path];
-        }
-    });
-
-    // console.log('selectedCols', selectedCols);
-
     const mergeCells = () => {
         const rowArray: any[] = [];
         cellEntries.forEach(([, path]) => rowArray.push(path[2]));
