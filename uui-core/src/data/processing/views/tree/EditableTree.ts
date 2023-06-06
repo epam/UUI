@@ -128,7 +128,10 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
 
         if (selectedId !== ROOT_ID) {
             selectedIdsMap.delete(selectedId);
+        } else {
+            return this.newMap<TId, boolean>();
         }
+
         return selectedIdsMap;
     }
 
