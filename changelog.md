@@ -18,7 +18,7 @@ We can’t yet recommend using Themes internals, e.g. override Themes CSS variab
 Also, it contains a Cookbook describing typical use cases with code examples as well as frequent questions & answers.
 
 **DataSources documentation**
-* Introduced the new [DataSources documentation](??), that covers a wide range of topics related to the DataSources approach, accompanied by illustrative examples.
+* Introduced the new [DataSources documentation](https://uui.epam.com/documents?id=testing-basics&category=testing), that covers a wide range of topics related to the DataSources approach, accompanied by illustrative examples.
   Note that this is the first revision of this doc, so we would appreciate your feedback and have plans to continuously improve this documentation.
 
 **ESM modules support**
