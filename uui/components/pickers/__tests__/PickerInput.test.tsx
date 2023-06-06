@@ -435,9 +435,11 @@ describe('PickerInput', () => {
             });
     
             fireEvent.click(dom.input as HTMLElement);
-            await delayAct(100);
-    
-            const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+
+            const dialog = await screen.findByRole('dialog');
+            expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
+        
+            const [, second] = within(dialog).queryAllByTestId(/uui-PickerInput-item/);
             const checkbox = await within(second).findByRole('checkbox');
             fireEvent.click(checkbox);
     
@@ -462,10 +464,12 @@ describe('PickerInput', () => {
             });
     
             fireEvent.click(dom.input as HTMLElement);
-            await delayAct(100);
-    
+
+            const dialog = await screen.findByRole('dialog');
+            expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
+
             // Check parent
-            const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+            const [, second] = within(dialog).queryAllByTestId(/uui-PickerInput-item/);
             const checkbox = await within(second).findByRole('checkbox');
             fireEvent.click(checkbox);
             
@@ -537,10 +541,11 @@ describe('PickerInput', () => {
     
             fireEvent.click(dom.input as HTMLElement);
     
-            await delayAct(100);
+            const dialog = await screen.findByRole('dialog');
+            expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
             
             // Check parent
-            const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+            const [, second] = within(dialog).queryAllByTestId(/uui-PickerInput-item/);
             const checkbox = await within(second).findByRole('checkbox');
             fireEvent.click(checkbox);
     
@@ -610,10 +615,12 @@ describe('PickerInput', () => {
             });
     
             fireEvent.click(dom.input as HTMLElement);
-            await delayAct(100);
-    
+
+            const dialog = await screen.findByRole('dialog');
+            expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
+        
             // Check parent
-            const [first, second, third, forth] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+            const [first, second, third, forth] = within(dialog).queryAllByTestId(/uui-PickerInput-item/);
             fireEvent.click(first);
             fireEvent.click(second);
     
@@ -641,18 +648,16 @@ describe('PickerInput', () => {
                 disableClear: false,
             });
 
-            await delayAct(100);
+            const selectedItems = await screen.findAllByTestId(/uui-PickerToggler-item/);
+            const selectedItemsNames = selectedItems.map((button) => button.textContent?.trim());
 
-            const target = screen.getByTestId('uui-PickerInput-target');
+            expect(selectedItemsNames).toEqual(['A1', 'A1+']);
+
+            const target = await screen.findByTestId('uui-PickerInput-target');
     
             const [clearButton] = within(target).getAllByRole('button').filter((el) => el.getAttribute('aria-label') === 'Clear');
             
             expect(clearButton).toBeInTheDocument();
-            
-            const selectedItemsNames = screen.queryAllByTestId(/uui-PickerToggler-item/)
-                .map((button) => button.textContent?.trim());
-
-            expect(selectedItemsNames).toEqual(['A1', 'A1+']);
 
             fireEvent.click(clearButton);
             
@@ -681,9 +686,8 @@ describe('PickerInput', () => {
 
             fireEvent.click(dom.input as HTMLElement);
 
-            await delayAct(100);
-
-            const dialog = screen.getByRole('dialog');
+            const dialog = await screen.findByRole('dialog');
+            expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
 
             const [selectAllButton] = within(dialog).getAllByRole('button')
                 .filter((el) => el.getAttribute('aria-label') === 'SELECT ALL');
@@ -851,12 +855,10 @@ describe('PickerInput', () => {
 
         fireEvent.click(dom.input as HTMLElement);
          
-        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        expect(screen.queryByRole('dialog')).toBeNull();
         expect(screen.getByRole('modal')).toBeInTheDocument();
 
-        await delayAct(100);
-
-        const rows = within(screen.getByRole('modal')).queryAllByTestId(/uui-PickerInput-item/);
+        const rows = await within(await screen.findByRole('modal')).findAllByTestId(/uui-PickerInput-item/);
         const names = rows.map((row) => row.textContent);
         expect(names).toEqual(['A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C1+', 'C2']);
     });
@@ -912,7 +914,7 @@ describe('PickerInput', () => {
 
         fireEvent.click(dom.input as Element);
 
-        const dialog = screen.getByRole('dialog');
+        const dialog = await screen.findByRole('dialog');
         expect(dialog).toBeInTheDocument();
         
         const dialogBody = dialog.firstElementChild;
@@ -928,7 +930,7 @@ describe('PickerInput', () => {
 
         fireEvent.click(dom.input as Element);
 
-        const dialog = screen.getByRole('dialog');
+        const dialog = await screen.findByRole('dialog');
         expect(dialog).toBeInTheDocument();
         
         const dialogBody = dialog.firstElementChild?.firstElementChild;
@@ -958,11 +960,11 @@ describe('PickerInput', () => {
         
         fireEvent.click(target);
         
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        const dialog = await screen.findByRole('dialog');
 
-        await delayAct(100);
+        expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
 
-        const [cb1, cb2] = await within(screen.getByRole('dialog')).findAllByRole('checkbox');
+        const [cb1, cb2] = await within(dialog).findAllByRole('checkbox');
         fireEvent.click(cb1);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
         fireEvent.click(cb2);
@@ -985,8 +987,9 @@ describe('PickerInput', () => {
         expect(input).toBeInTheDocument();
         
         fireEvent.click(input);
-        
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+        const dialog = await screen.findByRole('dialog');
+        expect(dialog).toBeInTheDocument();
     });
 
     it('should render search in body', async () => {
@@ -1003,7 +1006,8 @@ describe('PickerInput', () => {
         
         fireEvent.click(togglerBody);
 
-        const dialog = screen.getByRole('dialog');
+        const dialog = await screen.findByRole('dialog');
+        expect(dialog).toBeInTheDocument();
         const bodyInput = within(dialog).getByPlaceholderText('Search');
         expect(bodyInput).toBeInTheDocument();
         expect(bodyInput.hasAttribute('readonly')).toBeFalsy();
@@ -1023,7 +1027,8 @@ describe('PickerInput', () => {
         
         fireEvent.click(togglerBody);
 
-        const dialog = screen.getByRole('dialog');
+        const dialog = await screen.findByRole('dialog');
+        expect(dialog).toBeInTheDocument();
         expect(within(dialog).queryByPlaceholderText('Search')).not.toBeInTheDocument();
     });
 
@@ -1048,7 +1053,7 @@ describe('PickerInput', () => {
 
         fireEvent.click(dom.input as Element);
 
-        const dialog = screen.getByRole('dialog');
+        const dialog = await screen.findByRole('dialog');
         expect(dialog).toBeInTheDocument();
         
         const notFound = within(dialog).getByTestId('custom-not-found');
@@ -1065,7 +1070,12 @@ describe('PickerInput', () => {
             renderRow: (props) => (
                 <DataPickerRow
                     { ...props }
-                    rawProps={ { ...props.rawProps, 'data-testid': `custom-row-${props.rowKey}` } }
+                    rawProps={ {
+                        ...props.rawProps,
+                        'data-testid': props.isLoading
+                            ? `custom-loading-row-${props.rowKey}`
+                            : `custom-row-${props.rowKey}`,
+                    } }
                     key={ props.rowKey }
                     alignActions="center"
                     renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.name } /> }
@@ -1075,12 +1085,12 @@ describe('PickerInput', () => {
 
         fireEvent.click(dom.input as Element);
 
-        await delayAct(100);
-
-        const dialog = screen.getByRole('dialog');
+        const dialog = await screen.findByRole('dialog');
         expect(dialog).toBeInTheDocument();
         
-        const rows = within(dialog).getAllByTestId(/custom-row/);
+        expect((await within(dialog).findAllByTestId(/custom-loading-row/)).length).toBeGreaterThan(0);
+
+        const rows = await within(dialog).findAllByTestId(/custom-row/);
         expect(rows.length).toBe(languageLevels.length);
         rows.forEach((row) => {
             expect(row).toBeInTheDocument();
