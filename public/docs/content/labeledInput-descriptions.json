@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "LabeledInput adds a label to inputs and validation messages.",
+            "text": "LabeledInput adds a label and validation messages to input components.",
             "marks": []
           }
         ]

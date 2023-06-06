@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": " A blocker spans over the whole area and serves two needs:",
+            "text": " A blocker overlays some area and serves two needs:",
             "marks": []
           }
         ]
@@ -80,7 +80,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Sometimes, you have no UI underneath a blocker. For example, you are loading something and have nothing to render underneath. In this case, use the ",
+            "text": "Sometimes, you have no UI underneath a blocker. For example, you are loading something and have nothing to render underneath. To give the blocker a minimum height, use the ",
             "marks": []
           },
           {

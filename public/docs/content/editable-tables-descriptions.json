@@ -144,7 +144,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "store an editable state somewhere. You can plan ",
+                    "text": "Store an editable state somewhere. You can plan ",
                     "marks": []
                   },
                   {
@@ -195,7 +195,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "pass ",
+                    "text": "Pass ",
                     "marks": []
                   },
                   {
@@ -262,7 +262,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "define the ",
+                    "text": "Define the ",
                     "marks": []
                   },
                   {
@@ -300,7 +300,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "extract ",
+                            "text": "Extract ",
                             "marks": []
                           },
                           {
@@ -335,7 +335,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "render the required input component.",
+                            "text": "Render the required input component.",
                             "marks": []
                           }
                         ]

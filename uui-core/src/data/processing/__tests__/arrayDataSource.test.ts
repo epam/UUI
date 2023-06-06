@@ -15,7 +15,7 @@ type Test_EmployeeFilterType = {
     onlyFromDepartment_A: boolean;
 };
 
-function setupArrayDatasource() {
+function setupArrayDataSource() {
     const items: Test_ItemType[] = [
         { _type: 'department', id: 'Department-A', departmentName: 'Department A' }, {
             _type: 'employee',
@@ -81,7 +81,7 @@ function setupArrayDatasource() {
 
 describe('ArrayDataSource', () => {
     it('should create array data source', () => {
-        const ds = setupArrayDatasource();
+        const ds = setupArrayDataSource();
         const viewFromDepA = ds.getView(
             {
                 search: undefined,
