@@ -24,7 +24,6 @@ export function ToDoItem(props: any): any {
                     isReadonly={ isReadonly }
                     isDisabled={ false }
                     value={ checked }
-                    rawProps={ { style: { userSelect: 'none' } } }
                     onValueChange={ (value) => {
                         if (isReadonly) return;
                         const path = findNodePath(editor, element);
@@ -33,9 +32,7 @@ export function ToDoItem(props: any): any {
                         setNodes<TTodoListItemElement>(
                             editor,
                             { data: { checked: value } },
-                            {
-                                at: path,
-                            }
+                            { at: path }
                         );
                     } }
                 />
