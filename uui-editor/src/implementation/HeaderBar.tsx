@@ -28,7 +28,6 @@ export class HeaderBar extends React.Component<HeaderBarProps> {
         event.preventDefault();
         const block = getBlockAbove(this.props.editor);
 
-        console.log('block', block);
         if (block?.length && block[0].type === blockType) {
             setElements(this.props.editor, {
                 data: {},
