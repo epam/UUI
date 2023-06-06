@@ -391,17 +391,15 @@ describe('PickerInput', () => {
                 getName: ({ name }) => name,
             });
     
-            const selectedItemsNames1 = screen.queryAllByTestId(/uui-PickerToggler-item/)
-                .map((button) => button.textContent?.trim());
+            const selectedItems1 = await screen.findAllByTestId(/uui-PickerToggler-loading-item/);
+            const selectedItemsNames1 = selectedItems1.map((button) => button.textContent?.trim());
             
             expect(selectedItemsNames1).toEqual(['', '']);
     
             expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual('Please select');
-       
-            await delayAct(100);
-    
-            const selectedItemsNames2 = screen.queryAllByTestId(/uui-PickerToggler-item/)
-                .map((button) => button.textContent?.trim());
+           
+            const selectedItems2 = await screen.findAllByTestId(/uui-PickerToggler-item/);
+            const selectedItemsNames2 = selectedItems2.map((button) => button.textContent?.trim());
             
             expect(selectedItemsNames2).toEqual(['Elementary+', 'Pre-Intermediate']);
         });
