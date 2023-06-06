@@ -1,16 +1,15 @@
 # 5.0.0 - 06.06.2023
 
-**New themes support**
+**Themes**
 
-This release prepares UUI to the Themes support, according to these changes 'Promo' and 'Loveship' skins
-are now based on `@epam/uui` package which has set of components which supposed to be used with Themes. Both new skins has the same codebase and only apply different styles.
-Regarding these changes we aligned interfaces, functionality and visual appearance between 'Promo' and 'Loveship' skins, as a result, we removed or deprecate some props or their values.
+This release introduces Themes support. `@epam/uui` package now contains components, which can be styled differently according to an applied Theme - a set of global CSS variables.
+
+`@epam/promo` and `@epam/loveship` packages are re-built on top of `@epam/uui` package. This allows us to unify codebase, and reduce differences between 'loveship' and 'promo'. We also aligned APIs, functionality and visual appearance between 'promo' and 'loveship' skins, as a result, we removed or deprecated some props or their values.
 
 Pay attention that this release requires some additional actions for the library to work properly.
 You can find migration guide and full list of changes [here](https://github.com/epam/UUI/wiki/Migration-guide-to-UUI-v.5).
 
-Note: Currently, we use Themes internally to remove duplication in our code base. In the future, we allow UUI users to build their own themes, and using Themes variables for customization. However, in this release we haven’t yet finalized this.
-We can’t yet recommend using Themes internals, e.g. override Themes CSS variables for customization.
+Note: Currently, we use Themes internally to implement Loveship and Promo. In future, we allow UUI users to build their own themes, and using Themes variables for customization. However, in this release we haven’t yet finalized Themes APIs (CSS variables names). We can’t yet recommend using Themes internals, e.g. override Themes CSS variables for customization.
 
 **Testing facilities and documentation**
 * Introduced new `@epam/uui-test-utils` package. It provides a set of helpers, utils and mocks which facilitate creation of unit tests for UUI components.
