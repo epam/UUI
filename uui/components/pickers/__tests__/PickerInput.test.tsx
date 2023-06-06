@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource, AsyncDataSource, CascadeSelection, IDataSource } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct, act,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, delayAct, act, waitFor,
     queryHelpers,
 } from '@epam/uui-test-utils';
 import { Modals, PickerInputBaseProps } from '@epam/uui-components';
@@ -259,10 +259,15 @@ describe('PickerInput', () => {
             });
     
             fireEvent.click(dom.input as HTMLElement);
-            await delayAct(100);
-    
+            await waitFor(async () => {
+                expect(await screen.findByRole('dialog')).toBeInTheDocument();
+            });
+
+            const dialog = await screen.findByRole('dialog');
+            expect((await within(dialog).findAllByTestId(/uui-PickerInput-loading-item/)).length).toBeGreaterThan(0);
+
             // Check parent
-            const [first] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+            const [first] = await within(screen.getByRole('dialog')).findAllByTestId(/uui-PickerInput-item/);
             fireEvent.click(first);
 
             fireEvent.click(dom.input as HTMLElement);
