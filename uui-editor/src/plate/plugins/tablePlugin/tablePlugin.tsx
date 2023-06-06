@@ -164,8 +164,6 @@ const TableRenderer = (props: any) => {
             }
         });
 
-        // console.log('merging cols', cols);
-
         Object.values(cols).forEach((paths: any, i) => {
             paths?.forEach((path: [], j: number) => {
                 if (i === 0 && j === paths.length - 1) {
@@ -326,7 +324,6 @@ const withOurNormalizeTable = <
     editor.normalizeNode = ([node, path]) => {
         if (isElement(node)) {
             if (node.type === getPluginType(editor, ELEMENT_TABLE)) {
-                // console.log('table normalize', node);
 
                 const colNumber = (node.children[0].children as TDescendant[])
                     .reduce((acc, cur) => {
@@ -335,8 +332,6 @@ const withOurNormalizeTable = <
                         const colSpan = isNaN(attrColSpan) ? 1 : Number(attrColSpan);
                         return acc + colSpan;
                     }, 0);
-
-                // console.log('colNumber', colNumber);
 
                 node.children.forEach((cur, rowIndex) => {
                     const rowElem = cur as TTableRowElement;
@@ -348,13 +343,10 @@ const withOurNormalizeTable = <
                         const colSpan = isNaN(attrColSpan) ? 1 : Number(attrColSpan);
                         const rowSpan = isNaN(attrRowSpan) ? 1 : Number(attrRowSpan);
 
-                        // console.log('current spans', colSpan, rowSpan);
-
                         // consider horizontal merge
                         if (colSpan > 1 && colNumber !== rowElem.children.length) {
                             // pasting empty cells before horizontally merged cell
                             // since pasted pasted tables from docx don't have it
-                            // console.log('horizontal merge correction', { colIndex, cells: [...Array(colSpan - 1).fill(1)] });
 
                             rowElem.children.splice(colIndex, 0, ...Array(colSpan - 1).fill(empt));
                         }
@@ -367,8 +359,6 @@ const withOurNormalizeTable = <
                             rows.forEach((rI) => {
                                 const row = node.children[rI] as TTableRowElement;
                                 if (row.children.length !== colNumber) {
-                                    // console.log('vertical merge correction', { colIndex, rowIndex, rI });
-
                                     row.children.splice(colIndex, 0, empt);
                                 }
                             });
