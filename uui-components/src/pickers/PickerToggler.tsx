@@ -78,6 +78,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     const handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
         if (props.onClear) {
             props.onClear();
+            props.onValueChange('');
         }
         e.stopPropagation();
     };
