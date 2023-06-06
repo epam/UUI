@@ -190,11 +190,10 @@ describe('PickerInput', () => {
             });
 
             expect(dom.input?.getAttribute('placeholder')?.trim()).toBeUndefined();
-            
-            await delayAct(100);
-        
-            expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual(languageLevels[1].name);
-            
+            await waitFor(async () => {
+                expect(dom.input?.getAttribute('placeholder')?.trim()).toEqual(languageLevels[1].name);
+            });
+
             fireEvent.click(dom.input as Element);
             expect(screen.getByRole('dialog')).toBeInTheDocument();
             const optionC2 = await screen.findByText('Proficiency');
@@ -236,9 +235,11 @@ describe('PickerInput', () => {
             });
     
             fireEvent.click(dom.input as HTMLElement);
-            await delayAct(100);
-    
-            const [, second] = within(screen.getByRole('dialog')).queryAllByTestId(/uui-PickerInput-item/);
+            const dialog = await screen.findByRole('dialog');
+            expect((await within(dialog).findAllByTestId(/uui-PickerInput-loading-item/)).length).toBeGreaterThan(0);
+
+            // Check parent
+            const [, second] = await within(screen.getByRole('dialog')).findAllByTestId(/uui-PickerInput-item/);
             fireEvent.click(second);
     
             expect(mocks.onValueChange).toHaveBeenLastCalledWith(2);
@@ -311,9 +312,8 @@ describe('PickerInput', () => {
 
             fireEvent.click(dom.input as HTMLElement);
 
-            await delayAct(100);
-
-            const dialog = screen.getByRole('dialog');
+            const dialog = await screen.findByRole('dialog');
+            expect((await within(dialog).findAllByTestId(/uui-PickerInput-item/)).length).toBeGreaterThan(0);
 
             const [clearButton] = within(dialog).getAllByRole('button')
                 .filter((el) => el.getAttribute('aria-label') === 'CLEAR');
