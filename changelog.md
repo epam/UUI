@@ -1,4 +1,4 @@
-# 5.0.0 - xx.xx.2023
+# 5.0.0 - 06.06.2023
 
 **New themes support**
 
@@ -51,7 +51,7 @@ Also, it contains a Cookbook describing typical use cases with code examples as 
 but only the checked parent is present in the Picker's value or DataSourceState.checked array.
   - now items which present in selection and doesn't exist in DataSource will be shown in picker as '[Unknown]'
   - added a default footer component for single pickers that includes a "Clear" button
-* [PresetsPanel]: added limitation for new preset input(max length 50)
+* [PresetsPanel]:added limitation for new preset input(max length 50)
 * [DropdownMenu]: added a 400ms delay to the submenu's close and open triggers
 * [ModalWindow]: added possibility to provide number for 'width' and 'height' props.
 * [TimePicker]: added max values to hours and minutes inputs
@@ -79,7 +79,7 @@ but only the checked parent is present in the Picker's value or DataSourceState.
 * [Tooltip]:
     - removed default 300px max-width value from styles, you can set max-with using property 'maxWidth'.
     - Fixed a white subpixel line on a tooltip arrow on browsers with zoom >100%.
-* [PresetsPanel]: fixed scroll inside 'N more' dropdown
+* [PresetsPanel]: fixed scroll inside "N more" dropdown
 * [Dropdown]: The delay to close/open the dropdown has been fixed. In previous version the closeDelay being overwritten constantly while the mouse was moving.
 * [Button]: removed 'disabled' attribute if the Button/LinkButton/IconButton is disabled, because it will prevent all events and broke Tooltip at least.
 * [RichTextView]: h1 font-size in promo skin changed from 36px to 42px.
