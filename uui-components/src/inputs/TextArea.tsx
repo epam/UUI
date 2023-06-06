@@ -1,9 +1,30 @@
 import * as React from 'react';
-import { IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, IHasRawProps, IHasForwardedRef, CX, cx, ICanFocus } from '@epam/uui-core';
-import css from './TextArea.scss';
+import {
+    IHasCX,
+    IDisableable,
+    IEditable,
+    IHasPlaceholder,
+    uuiMod,
+    uuiElement,
+    uuiMarkers,
+    ICanBeReadonly,
+    IHasRawProps,
+    IHasForwardedRef,
+    CX,
+    cx,
+    ICanFocus,
+} from '@epam/uui-core';
+import css from './TextArea.module.scss';
 
-export interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholder, IDisableable, ICanBeReadonly,
-    IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, ICanFocus<HTMLTextAreaElement> {
+export interface TextAreaProps
+    extends IHasCX,
+    IEditable<string>,
+    IHasPlaceholder,
+    IDisableable,
+    ICanBeReadonly,
+    IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>,
+    IHasForwardedRef<HTMLDivElement>,
+    ICanFocus<HTMLTextAreaElement> {
     /** Adjust height to fit specified number or text rows. HTML TextArea attribute. */
     rows?: number;
     /** Enables auto-resizing height to fit text. Rows prop is ignored in this mode */
@@ -26,7 +47,6 @@ interface TextAreaState {
 
 export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
     textAreaRef = React.createRef<HTMLTextAreaElement>();
-
     state = {
         inFocus: false,
     };
@@ -56,10 +76,9 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                 node.style.height = 'auto';
                 const borderWidth = node.offsetHeight - node.clientHeight;
                 node.style.height = node.scrollHeight + borderWidth + 'px';
-                overflows.forEach(el => {
+                overflows.forEach((el) => {
                     el.node.scrollTop = el.scrollTop;
                 });
-
             }
         }
     }
@@ -78,19 +97,19 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
 
     handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         this.props.onValueChange(e.target.value);
-    }
+    };
 
     handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
         this.props.onFocus && this.props.onFocus(e);
         this.setState({ inFocus: true });
-    }
+    };
 
     handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
         this.props.onBlur && this.props.onBlur(e);
         this.setState({ inFocus: false });
-    }
+    };
 
-    render () {
+    render() {
         return (
             <div className={ cx(css.container, uuiElement.inputBox, this.props.cx) } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
                 <textarea
@@ -98,18 +117,15 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                     placeholder={ this.props.placeholder }
                     className={ cx(
                         !this.props.isDisabled && uuiMarkers.clickable,
-                        (this.props.autoSize || this.props.isDisabled || this.props.isReadonly) ? css.autoSize : css.noAutoSize,
+                        this.props.autoSize || this.props.isDisabled || this.props.isReadonly ? css.autoSize : css.noAutoSize,
                         uuiElement.input,
-                        (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
+                        !this.props.isReadonly && this.state.inFocus && uuiMod.focus,
                         this.props.isDisabled && uuiMod.disabled,
                         this.props.isReadonly && uuiMod.readonly,
                         this.props.isInvalid && uuiMod.invalid,
                         this.props.inputCx,
                     ) }
-                    rows={ this.props.rows != null
-                            ? this.props.rows
-                            : this.props.autoSize ? 1 : undefined
-                    }
+                    rows={ this.props.rows != null ? this.props.rows : this.props.autoSize ? 1 : undefined }
                     id={ this.props.id }
                     readOnly={ this.props.isReadonly }
                     aria-readonly={ this.props.isReadonly }
@@ -118,20 +134,16 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                     disabled={ this.props.isDisabled }
                     aria-disabled={ this.props.isDisabled }
                     onChange={ this.handleChange }
-                    value={ this.props.value || "" }
+                    value={ this.props.value || '' }
                     maxLength={ this.props.maxLength }
                     onFocus={ this.handleFocus }
                     onBlur={ this.handleBlur }
                     ref={ this.textAreaRef }
                     onKeyDown={ this.props.onKeyDown }
                 />
-                {
-                    !this.props.isInvalid &&
-                    this.props.maxLength &&
-                    <div className={ cx(uuiElement.textareaCounter) }>
-                        {
-                            `${(this.props.value && this.props.value.length) || 0}/${this.props.maxLength}` }
-                    </div> }
+                {!this.props.isInvalid && this.props.maxLength && (
+                    <div className={ cx(uuiElement.textareaCounter) }>{`${(this.props.value && this.props.value.length) || 0}/${this.props.maxLength}`}</div>
+                )}
             </div>
         );
     }

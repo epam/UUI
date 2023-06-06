@@ -1,8 +1,16 @@
 import * as React from 'react';
-import { cx, IDisableable, IEditable, ICanBeInvalid, ICanBeReadonly, IHasCX, uuiMod, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
-import css from './BaseRating.scss';
+import {
+    cx, IDisableable, IEditable, ICanBeReadonly, IHasCX, uuiMod, IHasRawProps, IHasForwardedRef,
+} from '@epam/uui-core';
+import css from './BaseRating.module.scss';
 
-export interface BaseRatingProps<TValue> extends IHasCX, IDisableable, IEditable<TValue>, ICanBeInvalid, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface BaseRatingProps<TValue>
+    extends IHasCX,
+    IDisableable,
+    IEditable<TValue>,
+    ICanBeReadonly,
+    IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
+    IHasForwardedRef<HTMLDivElement> {
     from?: number;
     to?: number;
     step?: 0.5 | 1;
@@ -16,7 +24,6 @@ interface BaseRatingState {
 
 export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRatingState> {
     container: HTMLElement | null;
-
     constructor(props: BaseRatingProps<number>) {
         super(props);
         this.state = {};
@@ -110,15 +117,15 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
         } else if (e.key === 'ArrowRight') {
             if (rating + step > to) return;
             else this.setState({ rating: rating + step });
-        };
+        }
     }
 
     handleRef = (container: HTMLDivElement) => {
         this.container = container;
         (this.props.forwardedRef as React.RefCallback<HTMLDivElement>)?.(container);
-    }
+    };
 
-    render () {
+    render() {
         const isReadonly = this.props.isReadonly || this.props.isDisabled;
 
         return (
@@ -129,7 +136,7 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
                 aria-valuemin={ this.props.from }
                 tabIndex={ 0 }
                 onKeyDown={ (e) => !isReadonly && this.onKeyDown(e) }
-                className={ cx(css.container, this.props.isDisabled && uuiMod.disabled, this.props.isInvalid && uuiMod.invalid, isReadonly && css.containerReadonly, this.props.cx) }
+                className={ cx(css.container, this.props.isDisabled && uuiMod.disabled, isReadonly && css.containerReadonly, this.props.cx) }
                 onMouseMove={ (e) => !isReadonly && this.onMouseMove(e) }
                 onMouseLeave={ () => !isReadonly && this.onMouseLeave() }
                 onMouseUp={ (e) => !isReadonly && this.onMouseUp(e) }
@@ -137,7 +144,7 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
                 ref={ this.handleRef }
                 { ...this.props.rawProps }
             >
-                { this.props.renderRating(this.state.rating, this.getMarkWidth(), this.getNumberOfMarks()) }
+                {this.props.renderRating(this.state.rating, this.getMarkWidth(), this.getNumberOfMarks())}
             </div>
         );
     }

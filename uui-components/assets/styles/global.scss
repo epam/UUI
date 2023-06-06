@@ -1,9 +1,0 @@
-body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-:global(.-draggable) {
-    touch-action: none;
-    user-select: none;
-}

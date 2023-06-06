@@ -1,4 +1,4 @@
-import { FileUploadResponse } from '@epam/uui';
+import { FileUploadResponse } from '@epam/uui-core';
 
 export interface PersonalInfo {
     fullName?: string;
@@ -44,7 +44,7 @@ export interface PersonLanguageInfo {
 
 export interface PersonTravelVisa {
     country?: string;
-    term?: { from: string, to: string };
+    term?: { from: string; to: string };
 }
 
 export interface PersonTravelVisas {

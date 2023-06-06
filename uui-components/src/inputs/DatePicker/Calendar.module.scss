@@ -1,0 +1,23 @@
+.container {
+    &:global(.uui-calendar-container) {
+        :global(.uui-calendar-content) {
+            display: flex;
+            flex-direction: column;
+        }
+
+        :global(.uui-calendar-weekdays-container) {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        :global(.uui-calendar-days) {
+            display: flex;
+            flex-direction: column;
+            transition: height 0.3s ease-in-out;
+
+            & > * {
+                display: flex;
+            }
+        }
+    }
+}

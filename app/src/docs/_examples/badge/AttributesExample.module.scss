@@ -1,0 +1,19 @@
+@use '~@epam/promo/assets/styles/colors' as *;
+
+.container {
+    width: 360px;
+    padding: 12px 18px;
+
+    .containerItem {
+        padding-bottom: 12px;
+    }
+}
+
+.text {
+    padding: 0;
+}
+
+.divider {
+    border-bottom: 1px solid $gray30;
+    width: 100%;
+}

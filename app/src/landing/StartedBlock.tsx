@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { Button, FlexRow, IconContainer, RichTextView, Text } from '@epam/promo';
-import css from './StartedBlock.scss';
+import {
+    Button, FlexRow, IconContainer, RichTextView, Text,
+} from '@epam/promo';
+import css from './StartedBlock.module.scss';
 import { ReactComponent as CrystalIcon } from '../icons/crystal.svg';
 import { ReactComponent as ReactIcon } from '../icons/react_small.svg';
 import { UUI4 } from '../common';
@@ -9,7 +11,6 @@ import { analyticsEvents } from '../analyticsEvents';
 export class StartedBlock extends React.Component {
     private forDevelopersEvent = analyticsEvents.welcome.gettingStarted('For developers');
     private forDesignersEvent = analyticsEvents.welcome.gettingStarted('For designers');
-
     render() {
         return (
             <div className={ css.layout }>
@@ -17,21 +18,22 @@ export class StartedBlock extends React.Component {
                     <RichTextView>
                         <h2 className={ css.header }>Getting Started</h2>
                     </RichTextView>
-                    <FlexRow spacing='18' cx={ css.content }>
+                    <FlexRow spacing="18" cx={ css.content }>
                         <div className={ css.contentColumn }>
                             <div className={ css.contentColumnWrapper }>
-                                <div className={ css.contentIcon } style={ {backgroundColor: '#E3FCFC'} }>
-                                    <IconContainer icon={ ReactIcon }/>
+                                <div className={ css.contentIcon } style={ { backgroundColor: '#E3FCFC' } }>
+                                    <IconContainer icon={ ReactIcon } />
                                 </div>
-                                <Text fontSize='24' lineHeight='30'
-                                      cx={ css.contentText }>{ 'Learn more about React Components, Demos, Packages & Documentation' }</Text>
-                                <FlexRow alignItems='center'>
+                                <Text fontSize="24" lineHeight="30" cx={ css.contentText }>
+                                    Learn more about React Components, Demos, Packages & Documentation
+                                </Text>
+                                <FlexRow alignItems="center">
                                     <Button
                                         rawProps={ { 'aria-label': 'For Developers' } }
-                                        caption='FOR DEVELOPERS'
-                                        fill='white'
-                                        size='48'
-                                        color='blue'
+                                        caption="FOR DEVELOPERS"
+                                        fill="white"
+                                        size="48"
+                                        color="blue"
                                         clickAnalyticsEvent={ this.forDevelopersEvent }
                                         link={ { pathname: 'documents', query: { id: 'gettingStarted' } } }
                                     />
@@ -41,18 +43,19 @@ export class StartedBlock extends React.Component {
 
                         <div className={ css.contentColumn }>
                             <div className={ css.contentColumnWrapper }>
-                                <div className={ css.contentIcon } style={ {backgroundColor: '#FAE4CF'} }>
-                                    <IconContainer icon={ CrystalIcon }/>
+                                <div className={ css.contentIcon } style={ { backgroundColor: '#FAE4CF' } }>
+                                    <IconContainer icon={ CrystalIcon } />
                                 </div>
-                                <Text fontSize='24' lineHeight='30'
-                                      cx={ css.contentText }>{ 'Learn more about Design Library, Specifications, Palettes & Typography' }</Text>
-                                <FlexRow alignItems='center'>
+                                <Text fontSize="24" lineHeight="30" cx={ css.contentText }>
+                                    Learn more about Design Library, Specifications, Palettes & Typography
+                                </Text>
+                                <FlexRow alignItems="center">
                                     <Button
                                         rawProps={ { 'aria-label': 'For Designers' } }
-                                        caption='FOR DESIGNERS'
-                                        fill='white'
-                                        size='48'
-                                        color='blue'
+                                        caption="FOR DESIGNERS"
+                                        fill="white"
+                                        size="48"
+                                        color="blue"
                                         link={ {
                                             pathname: 'documents',
                                             query: {

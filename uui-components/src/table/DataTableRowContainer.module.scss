@@ -1,0 +1,78 @@
+/*
+    Row z-indexes layout.
+
+    Left fixed: 5
+    Center
+    Right fixed: 5
+
+    Cell:
+        Overlay
+        * borders can overlay cell on top, impossible to overlay bottom cells because position: sticky creates isolation context:
+            Hover: 1
+            Focus: 2
+            Invalid: 3
+
+    DropMarker: 10
+*/
+
+.container {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    background: var(--uui-dt-row-bg);
+}
+
+.section {
+    display: flex;
+    border-bottom: var(--uui-dt-row-border-width) solid transparent;
+    background: var(--uui-dt-row-bg);
+    background-clip: content-box;
+    box-sizing: border-box;
+
+    &:has(:global(.uui-table-cell-selection-in-progress)) {
+        cursor: crosshair;
+    }
+}
+
+.scrolling-section {
+    position: relative;
+    align-items: stretch;
+}
+
+.fixed-columns-section-left,
+.fixed-columns-section-right {
+    position: sticky;
+    z-index: 5;
+}
+
+.fixed-columns-section-left {
+    left: 0;
+
+    // Compensate negative padding of cells to overlap borders
+    // W/o this, we'll have additional --uui-cell-border-width pixels at the right
+    // We don't have access to the --uui-cell-border-width var. Hard-coded 1px for now.
+    border-right: 1px solid transparent;
+}
+
+.fixed-columns-section-right {
+    right: 0;
+}
+
+@mixin scroll-shadow($position) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    #{$position}: -5px;
+    width: 5px;
+    pointer-events: none;
+    background: var(--uui-dt-#{$position}-shadow);
+    opacity: 0;
+}
+
+:global(.uui-scroll-shadow-left) {
+    @include scroll-shadow(left);
+}
+
+:global(.uui-scroll-shadow-right) {
+    @include scroll-shadow(right);
+}

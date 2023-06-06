@@ -1,6 +1,6 @@
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
-import css from './ModalBlocker.scss';
+import css from './ModalBlocker.module.scss';
 import { ModalBlockerProps, cx, uuiElement } from '@epam/uui-core';
 
 export class ModalBlocker extends React.Component<ModalBlockerProps> {
@@ -22,25 +22,20 @@ export class ModalBlocker extends React.Component<ModalBlockerProps> {
         if (e.key === 'Escape') {
             this.props.abort();
         }
-    }
+    };
 
     private handleBlockerClick = (e: React.SyntheticEvent<Element>) => {
         if (!this.props.disallowClickOutside) {
             this.props.abort();
         }
-    }
+    };
 
     render() {
         return (
-            <div
-                className={ cx(css.container, this.props.cx) }
-                style={ { zIndex: this.props.zIndex } }
-                ref={ this.props.forwardedRef }
-                { ...this.props.rawProps }
-            >
+            <div className={ cx(css.container, this.props.cx) } style={ { zIndex: this.props.zIndex } } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
                 <div className={ uuiElement.modalBlocker } onClick={ this.handleBlockerClick } />
                 <FocusLock autoFocus={ false } returnFocus disabled={ this.props.disableFocusLock }>
-                    { this.props.children }
+                    {this.props.children}
                 </FocusLock>
             </div>
         );

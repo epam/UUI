@@ -1,0 +1,76 @@
+@use '../../assets/styles/index' as *;
+
+.file-card-wrapper {
+    box-sizing: border-box;
+    min-height: 48px;
+    padding: 5px;
+    border: 1px solid $gray40;
+
+    .file-name {
+        white-space: nowrap;
+    }
+}
+
+.error-card-wrapper {
+    border: 1px solid $red;
+}
+
+:global(.uui-loading) {
+    .default-color,
+    .doc-color,
+    .xls-color,
+    .pdf-color,
+    .movie-color,
+    .img-color {
+        fill: $gray40;
+    }
+}
+
+.default-color {
+    fill: $gray60;
+}
+
+.doc-color {
+    fill: #2B579A;
+}
+
+.xls-color {
+    fill: #217346;
+}
+
+.pdf-color {
+    fill: #FA0F01;
+}
+
+.movie-color {
+    fill: #5214CC;
+}
+
+.img-color {
+    fill: #E67E17;
+}
+
+.drop-start {
+    border: 2px dashed $blue;
+    background-color: $blue-lightest;
+}
+
+.error-block {
+    font-family: $font-sans;
+    font-size: 12px;
+    color: $red-darkest;
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+
+    svg {
+        margin-right: 4px;
+        fill: $red;
+    }
+}
+
+.icons-block {
+    min-width: 18px;
+    flex-basis: 0;
+}

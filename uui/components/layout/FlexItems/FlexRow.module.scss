@@ -1,0 +1,115 @@
+@use 'sass:math';
+@use '../../../assets/styles/index.scss' as *;
+
+@mixin panel-top-shadow() { box-shadow: inset 0 10px 5px -10px rgba(51, 51, 51, 0.2); }
+
+@mixin items-spacing($size) {
+    >*:not(:last-child) {
+        margin-right: math.div($size, 2);
+    }
+
+    >*:not(:first-child) {
+        margin-left: math.div($size, 2);
+    }
+}
+
+.root {
+    // If we have an "border-box" value here, an size-24 row with a bottom border, will have 23px min-height.
+    box-sizing: content-box;
+    background-color: var(--uui-flex-row-bg);
+
+    &.border-bottom {
+        border-bottom: var(--uui-flex-row-border-bottom);
+    }
+
+    &.top-shadow {
+        @include panel-top-shadow();
+    }
+
+    &.size-24 {
+        min-height: 24px;
+    }
+
+    &.size-30 {
+        min-height: 30px;
+    }
+
+    &.size-36 {
+        min-height: 36px;
+    }
+
+    &.size-42 {
+        min-height: 42px;
+    }
+
+    &.size-48 {
+        min-height: 48px;
+    }
+
+    &.padding-6 {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    &.padding-12 {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    &.padding-18 {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    &.padding-24 {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    &.margin-24 {
+        margin: 24px;
+    }
+
+    &.margin-12 {
+        margin: 12px;
+    }
+
+
+    &.vPadding-12 {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    &.vPadding-18 {
+        padding-top: 9px;
+        padding-bottom: 9px;
+    }
+
+    &.vPadding-24 {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    &.vPadding-36 {
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+
+    &.vPadding-48 {
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+
+    &.spacing-6 {
+        @include items-spacing(6px);
+    }
+
+    &.spacing-12 {
+        @include items-spacing(12px);
+    }
+
+    &.spacing-18 {
+        @include items-spacing(18px);
+    }
+}
+

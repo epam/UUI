@@ -5,10 +5,7 @@ import { ILens, ArrayElement } from './types';
 
 export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused> {
     public readonly handleValueChange: (newValue: TFocused) => void = null;
-
-    constructor(
-        public readonly lens: ILensImpl<TRoot, TFocused>,
-    ) {
+    constructor(public readonly lens: ILensImpl<TRoot, TFocused>) {
         this.handleValueChange = (newValue: TFocused) => {
             this.lens.set(null, newValue);
         };
@@ -28,20 +25,19 @@ export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused>
 
     public static MAX_CACHE_SIZE = 1000;
     private cache = new Map();
-
     public compose<TSmall>(lens: ILensImpl<TFocused, TSmall>, cacheKey?: any): LensBuilder<TRoot, TSmall> {
         if (cacheKey != null && this.cache.has(cacheKey)) {
             return this.cache.get(cacheKey);
         }
 
-        let result = new LensBuilder(Impl.compose(this.lens, lens));
+        const result = new LensBuilder(Impl.compose(this.lens, lens));
 
         if (cacheKey != null) {
             this.cache.set(cacheKey, result);
         }
 
         if (this.cache.size > LensBuilder.MAX_CACHE_SIZE) {
-            var { done, value } = this.cache.keys().next();
+            const { done, value } = this.cache.keys().next();
             this.cache.delete(value);
         }
 
@@ -57,7 +53,9 @@ export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused>
     }
 
     public onChange(fn: (oldValue: TFocused, newValue: TFocused) => TFocused): LensBuilder<TRoot, TFocused> {
-        return this.compose({ get: i => i, set: fn, getValidationState: this.lens.getValidationState, getMetadata: this.lens.getMetadata as any }, fn);
+        return this.compose({
+            get: (i) => i, set: fn, getValidationState: this.lens.getValidationState, getMetadata: this.lens.getMetadata as any,
+        }, fn);
     }
 
     public default(value: TFocused): LensBuilder<TRoot, TFocused> {
@@ -65,8 +63,8 @@ export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused>
     }
 
     public toProps(): IEditable<TFocused> {
-        let validationState = this.lens.getValidationState && this.lens.getValidationState(null);
-        let metadata = this.lens.getMetadata && this.lens.getMetadata(null);
+        const validationState = this.lens.getValidationState && this.lens.getValidationState(null);
+        const metadata = this.lens.getMetadata && this.lens.getMetadata(null);
         return {
             value: this.lens.get(null),
             onValueChange: this.handleValueChange,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { uuiSkin } from '@epam/uui-core';
 import { RenderBlockProps } from "slate-react";
-import css from './ToDoItem.scss';
+import css from './ToDoItem.module.scss';
 
 const { Checkbox, FlexRow } = uuiSkin;
 

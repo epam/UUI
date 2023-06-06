@@ -1,4 +1,4 @@
-import css from './ControlGroup.scss';
+import css from './ControlGroup.module.scss';
 import { withMods } from '@epam/uui-core';
 import { ControlGroup as uuiControlGroup, ControlGroupProps } from '@epam/uui-components';
 

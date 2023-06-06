@@ -1,36 +1,39 @@
 import React, { useMemo, useState } from 'react';
-import { DataTable, Panel, Text } from "@epam/promo";
-import { DataColumnProps, DataTableState, getOrderBetween, useArrayDataSource } from '@epam/uui';
-import { demoData, FeatureClass} from '@epam/uui-docs';
-import css from './TablesExamples.scss';
+import {
+    DataColumnProps, DataTableState, getOrderBetween, useArrayDataSource,
+} from '@epam/uui-core';
+import { DataTable, Panel, Text } from '@epam/promo';
+import { demoData, FeatureClass } from '@epam/uui-docs';
+import css from './TablesExamples.module.scss';
 import sortBy from 'lodash.sortby';
 
 export default function TableWithDnDExample() {
     const [value, onValueChange] = useState<DataTableState>({});
     const [items, setItems] = useState(demoData.featureClasses);
 
-    const dataSource = useArrayDataSource<FeatureClass, number, unknown>({
-        items: items,
-    }, [items]);
+    const dataSource = useArrayDataSource<FeatureClass, number, unknown>(
+        {
+            items: items,
+        },
+        [items],
+    );
 
     const view = dataSource.useView(value, onValueChange, {
         getRowOptions: (i, index) => ({
             dnd: {
                 srcData: i,
                 dstData: i,
-                onDrop: data => {
-                    const arrIndex = index - 1;
-
+                onDrop: (data) => {
                     const newOrder = data.position === 'top'
-                        ? getOrderBetween(items[arrIndex - 1]?.order, data.dstData.order)
-                        : getOrderBetween(data.dstData.order, items[arrIndex + 1]?.order);
+                        ? getOrderBetween(items[index - 1]?.order, data.dstData.order)
+                        : getOrderBetween(data.dstData.order, items[index + 1]?.order);
 
-                    const result = items.map(i => i === data.srcData ? { ...data.srcData, order: newOrder } : i);
-                    const sortedResult = sortBy(result, i => i.order);
+                    const result = items.map((item) => (item === data.srcData ? { ...data.srcData, order: newOrder } : item));
+                    const sortedResult = sortBy(result, (item) => item.order);
 
                     setItems(sortedResult);
                 },
-                canAcceptDrop: i => ({
+                canAcceptDrop: () => ({
                     top: true,
                     bottom: true,
                 }),
@@ -38,28 +41,31 @@ export default function TableWithDnDExample() {
         }),
     });
 
-    const productColumns: DataColumnProps<FeatureClass>[] = useMemo(() => [
-        {
-            key: 'id',
-            caption: 'Id',
-            render: item => <Text color='gray80'>{ item.id }</Text>,
-            isSortable: true,
-            isAlwaysVisible: true,
-            width: 100,
-        }, {
-            key: 'name',
-            caption: 'Name',
-            render: item => <Text color='gray80'>{ item.name }</Text>,
-            isSortable: true,
-            width: 300,
-        }, {
-            key: 'description',
-            caption: 'Description',
-            render: item => <Text color='gray80'>{ item.description }</Text>,
-            grow: 1,
-            width: 300,
-        },
-    ], []);
+    const productColumns: DataColumnProps<FeatureClass>[] = useMemo(
+        () => [
+            {
+                key: 'id',
+                caption: 'Id',
+                render: (item) => <Text color="gray80">{item.id}</Text>,
+                isSortable: true,
+                isAlwaysVisible: true,
+                width: 100,
+            }, {
+                key: 'name',
+                caption: 'Name',
+                render: (item) => <Text color="gray80">{item.name}</Text>,
+                isSortable: true,
+                width: 300,
+            }, {
+                key: 'description',
+                caption: 'Description',
+                render: (item) => <Text color="gray80">{item.description}</Text>,
+                grow: 1,
+                width: 300,
+            },
+        ],
+        [],
+    );
 
     return (
         <Panel shadow cx={ css.container }>
@@ -69,9 +75,8 @@ export default function TableWithDnDExample() {
                 value={ value }
                 onValueChange={ onValueChange }
                 columns={ productColumns }
-                headerTextCase='upper'
+                headerTextCase="upper"
             />
         </Panel>
-
     );
 }

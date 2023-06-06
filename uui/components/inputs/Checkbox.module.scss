@@ -1,0 +1,129 @@
+@use  '../../assets/styles/index.scss' as *;
+
+@mixin icon-sizes($size, $font-size, $line-height) {
+    :global(.uui-checkbox) {
+        box-sizing: border-box;
+        width: $size;
+        height: $size;
+
+        :global(.uui-icon) {
+            svg {
+                width: $size;
+            }
+        }
+    }
+
+    :global(.uui-input-label) {
+        font-size: $font-size;
+        line-height: $line-height;
+    }
+}
+
+.root {
+    //Colors
+    &:hover, &:active, &:focus-within {
+        :global(.uui-checkbox) {
+            border-color: var(--uui-checkbox-border-hover);
+        }
+
+        :global(.uui-checked) {
+            background-color: var(--uui-checkbox-bg-checked-hover);
+        }
+    }
+
+    :global(.uui-checkbox) {
+        background-color: var(--uui-checkbox-bg);
+        border: 1px solid var(--uui-checkbox-border);
+        border-radius: var(--uui-checkbox-border-radius);
+    }
+
+    :global(.uui-input-label) {
+        // @include typography-inline(); TODO: ???
+        font-family: var(--uui-checkbox-font);
+        font-weight: var(--uui-checkbox-font-weigth, normal);
+        color: var(--uui-checkbox-label);
+        margin-left: 12px;
+        flex-grow: 1;
+    }
+
+    :global(.uui-checked) {
+        background-color: var(--uui-checkbox-bg-checked);
+        border-color: var(--uui-checkbox-border-checked);
+        fill: var(--uui-checkbox-fill);
+    }
+
+    &:global(.uui-disabled),
+    &:global(.uui-readonly) {
+        cursor: default;
+
+        :global(.uui-checkbox) {
+            cursor: default;
+            background-color: var(--uui-checkbox-bg-disabled);
+            border-color: var(--uui-checkbox-border-disabled);
+        }
+
+        &:hover, &:global(.uui-checked), &:focus-within {
+            &:global(.uui-checkbox) {
+                border-color: var(--uui-checkbox-border-checked-disabled);
+            }
+
+            &:global(.uui-icon) {
+                background-color: var(--uui-checkbox-bg-checked-disabled);
+                border-color: var(--uui-checkbox-border-checked-disabled);
+            }
+        }
+
+        :global(.uui-input-label) {
+            color: var(--uui-checkbox-label-disabled);
+        }
+
+        :global(.uui-checked) {
+            background-color: var(--uui-checkbox-bg-checked-disabled);
+            border-color: var(--uui-checkbox-border-checked-disabled);
+        }
+    }
+
+    &:global(.uui-invalid) {
+        :global(.uui-checkbox) {
+            border-color: var(--uui-checkbox-error);
+            fill: var(--uui-checkbox-error);
+
+            &:hover, &:active, &:focus-within {
+                border-color: var(--uui-checkbox-error);
+                fill: var(--uui-checkbox-error);
+            }
+
+            &:global(.uui-checked) {
+                fill: var(--uui-checkbox-fill);
+                background-color: var(--uui-checkbox-error);
+                border-color: var(--uui-checkbox-error);
+
+                &:hover, &:active, &:focus-within {
+                    background-color: var(--uui-checkbox-error);
+                    border-color: var(--uui-checkbox-error);
+                }
+            }
+        }
+
+        :global(.uui-input-label) {
+            color: var(--uui-checkbox-error);
+        }
+    }
+
+    //Sizes
+    &.size-18 {
+        @include icon-sizes(18px, 14px, 18px);
+    }
+
+    &.size-12 {
+        @include icon-sizes(12px, 12px, 12px);
+
+        :global(.uui-input-label) {
+            margin-left: 6px;
+        }
+    }
+
+    &.mode-cell {
+        justify-content: center;
+    }
+}

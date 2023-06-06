@@ -1,24 +1,17 @@
 import React from 'react';
-import renderer from "react-test-renderer";
-import {TabButton} from '../TabButton';
-import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
+import { TabButton } from '../TabButton';
+import { renderSnapshotWithContextAsync, SvgMock } from '@epam/uui-test-utils';
 
 describe('TabButton', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<TabButton />)
-            .toJSON();
+    it('should render with minimum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<TabButton />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly with props', () => {
-        const tree = renderer
-            .create(<TabButton
-                onClick={ jest.fn() }
-                icon={ AcceptIcon }
-                isDisabled={ false }
-            />)
-            .toJSON();
+    it('should render with maximum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <TabButton onClick={ jest.fn() } icon={ SvgMock } isDisabled={ false } />,
+        );
         expect(tree).toMatchSnapshot();
     });
 });

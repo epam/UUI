@@ -1,8 +1,20 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
-import { DropdownBodyProps, isChildFocusable, IEditable, IDisableable, ICanBeReadonly, IHasPlaceholder, TimePickerValue, IDropdownToggler, IHasRawProps } from '@epam/uui-core';
-import customParseFormat from "dayjs/plugin/customParseFormat.js";
+import {
+    DropdownBodyProps,
+    isChildFocusable,
+    IEditable,
+    IDisableable,
+    ICanBeReadonly,
+    IHasPlaceholder,
+    TimePickerValue,
+    IDropdownToggler,
+    IHasRawProps,
+    CX,
+} from '@epam/uui-core';
+import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import { Dropdown } from '../overlays';
+
 dayjs.extend(customParseFormat);
 
 export interface BaseTimePickerProps extends IEditable<TimePickerValue | null>, IDisableable, ICanBeReadonly, IHasPlaceholder {
@@ -14,6 +26,10 @@ export interface BaseTimePickerProps extends IEditable<TimePickerValue | null>, 
         input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
         body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
+    /** CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details */
+    inputCx?: CX;
+    /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */
+    bodyCx?: CX;
 }
 
 interface TimePickerState {
@@ -23,7 +39,9 @@ interface TimePickerState {
 
 const valueToTimeString = (value: TimePickerValue, format: BaseTimePickerProps['format']) => {
     if (value === null) return null;
-    return dayjs().set(value).format(format === 24 ? 'HH:mm' : 'hh:mm A');
+    return dayjs()
+        .set(value)
+        .format(format === 24 ? 'HH:mm' : 'hh:mm A');
 };
 
 export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends React.Component<TProps, TimePickerState> {
@@ -34,7 +52,6 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
 
     abstract renderInput: (props: IDropdownToggler) => React.ReactNode;
     abstract renderBody: (props: DropdownBodyProps) => React.ReactNode;
-
     componentDidUpdate(prevProps: BaseTimePickerProps) {
         if (this.props.value !== prevProps.value) {
             this.setState({ ...this.state, value: valueToTimeString(this.props.value, this.props.format) });
@@ -43,18 +60,18 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
 
     getFormat = () => {
         return this.props.format === 24 ? 'HH:mm' : 'hh:mm A';
-    }
+    };
 
     onClear = () => {
         this.props.onValueChange(null);
-    }
+    };
 
     onToggle = (value: boolean) => {
         this.setState({ ...this.state, isOpen: value });
-    }
+    };
 
     handleInputChange = (newValue: string) => {
-        if (this.getFormat() === "hh:mm A" && newValue.length < 8) {
+        if (this.getFormat() === 'hh:mm A' && newValue.length < 8) {
             this.setState({ ...this.state, value: newValue });
         } else if (dayjs(newValue, this.getFormat(), true).isValid()) {
             const value = dayjs(newValue, this.getFormat(), true);
@@ -63,11 +80,11 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
         } else {
             this.setState({ ...this.state, value: newValue });
         }
-    }
+    };
 
-    handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    handleFocus = () => {
         this.onToggle(true);
-    }
+    };
 
     handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         if (isChildFocusable(e)) return;
@@ -80,12 +97,12 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
             this.props.onValueChange(this.props.value);
             this.setState({ ...this.state, value: valueToTimeString(this.props.value, this.props.format) });
         }
-    }
+    };
 
     render() {
         return (
             <Dropdown
-                renderTarget={ props => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
+                renderTarget={ (props) => (this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props)) }
                 renderBody={ (props) => !this.props.isDisabled && !this.props.isReadonly && this.renderBody(props) }
                 onValueChange={ !this.props.isDisabled && !this.props.isReadonly ? this.onToggle : null }
                 value={ this.state.isOpen }

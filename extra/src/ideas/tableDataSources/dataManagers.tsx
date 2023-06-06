@@ -24,7 +24,7 @@ function lazy<T>(params: LazyDataManagerProps<T>): DataSource<T> {
     return null;
 }
 
-type DataTableProps<TItem> = { 
+type DataTableProps<TItem> = {
     data: DataSource<TItem>;
     someColor: 'blue' | 'red';
     render(item: TItem): any;
@@ -36,20 +36,21 @@ class DataTable<TItem> extends React.Component<DataTableProps<TItem>> {
     }
 }
 
-interface ArrItemType { id: number; value: string; }
+interface ArrItemType {
+    id: number;
+    value: string;
+}
 
-const arr = [{ id: 1, value: '123 '}];
+const arr = [{ id: 1, value: '123 ' }];
 
-function testLoad() { return [{ key: '123', val: 'test' }]; }
+function testLoad() {
+    return [{ key: '123', val: 'test' }];
+}
 
 const ArrDataTable = DataTable.of<ArrItemType>();
-const t1 = <ArrDataTable    
-    data={ array(arr, { parentField: 'parentId' }) }
-    someColor='blue'
-    render={ x => x.value }
-/>;
+const t1 = <ArrDataTable data={ array(arr, { parentField: 'parentId' }) } someColor="blue" render={ (x) => x.value } />;
 
-// const t2 = <DataTable     
+// const t2 = <DataTable
 //     data={lazy({ getItems: testLoad })}
 //     someColor='blue'
 //     render={x => x.asd}
@@ -62,5 +63,5 @@ function testFac<TItem>(props: DataTableProps<TItem>): null {
 testFac({
     data: array(arr, { parentField: 'parentId' }),
     someColor: 'blue',
-    render: x => x.value,
+    render: (x) => x.value,
 });

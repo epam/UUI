@@ -1,6 +1,8 @@
 import * as React from 'react';
-import css from './DndCriterion.scss';
-import { DndActor, IEditable, cx, DropParams, getOrderBetween } from '@epam/uui';
+import css from './DndCriterion.module.scss';
+import {
+    DndActor, IEditable, cx, DropParams, getOrderBetween,
+} from '@epam/uui-core';
 import { FlexRow, DropMarker, Checkbox } from '@epam/promo';
 import { DragHandle } from '@epam/uui-components';
 
@@ -26,15 +28,13 @@ export class DndCriterion extends React.Component<DndCriterionProps> {
                 bottom: true,
             };
         }
-    }
+    };
 
     handleOnDrop = ({ srcData, dstData, position }: DropParams<CriterionItem, CriterionItem>) => {
-        const newOrder = position === 'bottom'
-            ? getOrderBetween(dstData.order, this.props.nextCriterion?.order)
-            : getOrderBetween(this.props.prevCriterion?.order, dstData.order);
+        const newOrder = position === 'bottom' ? getOrderBetween(dstData.order, this.props.nextCriterion?.order) : getOrderBetween(this.props.prevCriterion?.order, dstData.order);
 
         this.props.onValueChange({ ...srcData, order: newOrder });
-    }
+    };
 
     render() {
         const item = this.props.value;
@@ -45,15 +45,15 @@ export class DndCriterion extends React.Component<DndCriterionProps> {
                 dstData={ item }
                 canAcceptDrop={ this.handleCanAcceptDrop }
                 onDrop={ this.handleOnDrop }
-                render={ props => {
+                render={ (props) => {
                     return (
                         <div ref={ props.ref } { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
                             <div className={ css.dndItem }>
                                 <DragHandle cx={ [css.dragHandle] } />
-                                <FlexRow background='white' vPadding='12' padding='18' cx={ css.row }>
+                                <FlexRow background="white" vPadding="12" padding="18" cx={ css.row }>
                                     <Checkbox
                                         value={ item.isChecked }
-                                        onValueChange={ newValue => this.props.onValueChange({ ...item, isChecked: newValue }) }
+                                        onValueChange={ (newValue) => this.props.onValueChange({ ...item, isChecked: newValue }) }
                                         label={ item.name }
                                     />
                                 </FlexRow>

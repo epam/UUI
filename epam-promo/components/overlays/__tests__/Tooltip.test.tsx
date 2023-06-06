@@ -1,28 +1,20 @@
 import React from 'react';
 import { Tooltip } from '../Tooltip';
-import { renderWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('Tooltip', () => {
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
-            <Tooltip>Test</Tooltip>
-        );
+        const tree = await renderSnapshotWithContextAsync(<Tooltip>Test</Tooltip>);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
-            <Tooltip
-                color='gray90'
-                content='Test'
-                trigger='click'
-            >
-                { 'Test' }
-            </Tooltip>
+    it('should be rendered correctly with props', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <Tooltip color="gray" content="Test" trigger="click">
+                Test
+            </Tooltip>,
         );
 
         expect(tree).toMatchSnapshot();
     });
 });
-
-

@@ -1,7 +1,7 @@
 // Redux mini
 
 type Reducer<TPayload, TState> = (params: TPayload) => (state: TState) => TState;
-type Action<TPayload> = { name: string, payload: TPayload };
+type Action<TPayload> = { name: string; payload: TPayload };
 type ActionFactory<TPayload> = (payload: TPayload) => Action<TPayload>;
 type ActionDispatcher<TPayload> = (payload: TPayload) => void;
 type ReducersSet<TActions, TState> = { [P in keyof TActions]: Reducer<TActions[P], TState> };
@@ -12,15 +12,13 @@ export function createStore<TState, TActions>(initialState: TState, reducers: Re
     let state = initialState;
 
     function dispatch(action: Action<any>) {
-        let reducer = (reducers as any)[action.name as any];
-        // tslint:disable-next-line:no-console
+        const reducer = (reducers as any)[action.name as any];
         console.log(`Dispatching ${action.name}. Payload: ${JSON.stringify(action.payload)}`);
-        let newState = reducer(action.payload)(state);
-        // tslint:disable-next-line:no-console
+        const newState = reducer(action.payload)(state);
         console.log(`State changed: ${JSON.stringify(state)} => ${JSON.stringify(newState)}`);
         state = newState;
     }
-   
+
     function wrapDispatch<TPayload>(name: string) {
         return function (payload: TPayload) {
             dispatch({ name, payload });
@@ -28,7 +26,7 @@ export function createStore<TState, TActions>(initialState: TState, reducers: Re
     }
 
     const store: any = {};
-    Object.keys(reducers).map(name => store[name] = wrapDispatch(name));
+    Object.keys(reducers).map((name) => (store[name] = wrapDispatch(name)));
     return store;
 }
 
@@ -45,9 +43,9 @@ const initialState: AppState = {
 };
 
 const setVal = (stringVal: string) => (state: AppState) => ({ ...state, stringVal });
-const clearVal = ({}) => setVal('');
+const clearVal = () => setVal('');
 
 export const store = createStore(initialState, { setVal, clearVal });
 
-store.setVal("Test");
+store.setVal('Test');
 store.clearVal({});

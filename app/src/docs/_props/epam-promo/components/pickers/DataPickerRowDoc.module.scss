@@ -1,0 +1,8 @@
+@use '~@epam/promo/assets/styles/colors.scss' as *;
+
+.parent {
+    &:global(.uui-table-row.-clickable) {
+        background: $gray5;
+        pointer-events: none;
+    }
+}

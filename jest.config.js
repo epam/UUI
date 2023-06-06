@@ -1,66 +1,102 @@
+const BASE_CONFIG = {
+    testPathIgnorePatterns: ['node_modules'],
+    modulePathIgnorePatterns: ['/build/'],
+    moduleFileExtensions: [
+        'js', 'ts', 'tsx', 'json',
+    ],
+    moduleNameMapper: {
+        '@epam/uui-test-utils': '<rootDir>/test-utils',
+    },
+    transform: {
+        '^.+\\.(js|ts|tsx)$': ['<rootDir>/node_modules/babel-jest'],
+    },
+};
+
+const JSDOM_ENV_CONFIG = {
+    ...BASE_CONFIG,
+    testEnvironment: 'jsdom',
+    setupFiles: ['<rootDir>/node_modules/react-app-polyfill/jsdom'],
+    setupFilesAfterEnv: ['<rootDir>/uui-build/jest/setupJsDom.js'],
+    testMatch: ['<rootDir>/**/__tests__/**/*.test.{js,ts,tsx}'],
+    testURL: 'http://localhost',
+    transform: {
+        ...BASE_CONFIG.transform,
+        '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/uui-build/jest/fileTransform.js',
+        '^.+\\.css$': '<rootDir>/uui-build/jest/cssTransform.js',
+    },
+    transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$', '^.+\\.(sass|scss|less)$'],
+    moduleNameMapper: {
+        ...BASE_CONFIG.moduleNameMapper,
+        '^.+\\.(sass|scss|less)$': '<rootDir>/uui-build/jest/cssModuleTransform.js',
+        '^.+\\.svg$': '<rootDir>/uui-build/jest/svgrMock.js',
+    },
+};
+
+const NODE_ENV_CONFIG = {
+    ...BASE_CONFIG,
+    testEnvironment: 'node',
+    testMatch: ['<rootDir>/**/__tests__/**/*.test.{js,ts}'],
+};
+
+const JSDOM_TESTS_ROOTS = [
+    'uui-core',
+    'uui-components',
+    'uui',
+    'epam-promo',
+    'loveship',
+    'extra',
+    'uui-db',
+    // TODO: uncomment line(s) below as soon as we have any tests in these modules
+    'app',
+    // 'draft-rte',
+    // 'uui-docs',
+    'uui-editor',
+    // 'uui-timeline',
+];
+const NODEJS_TESTS_ROOTS = [
+    // TODO: uncomment line(s) below as soon as we have any tests in these modules
+    'uui-build',
+    // 'server',
+];
+
+const argv = process.argv.slice(2);
+const createHtmlReport = argv.indexOf('--collectCoverage') !== -1;
+
+const reporters = createHtmlReport ? [
+    'default', [
+        'jest-html-reporter', {
+            pageTitle: 'UUI Unit Tests Results',
+            outputPath: '.reports/unit-tests/results.html',
+            executionTimeWarningThreshold: 3,
+            dateFormat: 'yyyy-mm-dd HH:MM:ss',
+            sort: 'status',
+            includeFailureMsg: true,
+            includeSuiteFailure: true,
+        },
+    ],
+] : undefined;
+
+/**
+ * @type {import('@jest/types').Config.GlobalConfig}
+ */
 module.exports = {
-    "collectCoverageFrom": [
-        "**/*.{ts,tsx}",
-        "!src/**/*.d.ts",
-        "!**/*.doc*",
-        "!./app/**/*",
-        "!./infrastructure/**/*"
+    coverageDirectory: '<rootDir>/.reports/unit-tests/coverage',
+    coverageReporters: ['lcov'],
+    collectCoverageFrom: [
+        ...JSDOM_TESTS_ROOTS.map((dir) => `${dir}/**/*.{js,ts,tsx}`), ...NODEJS_TESTS_ROOTS.map((dir) => `${dir}/**/*.{js,ts}`), '!**/__tests__/**', '!**/node_modules/**', '!**/build/**',
     ],
-    coverageReporters: ["html"],
-    "resolver": "jest-pnp-resolver",
-    "setupFiles": [
-        "react-app-polyfill/jsdom",
-        // "<rootDir>/test-utils/helpers.tsx"
+    reporters,
+    projects: [
+        {
+            displayName: 'jsdom',
+            roots: [...JSDOM_TESTS_ROOTS],
+            ...JSDOM_ENV_CONFIG,
+        }, ...(NODEJS_TESTS_ROOTS.length > 0 ? [
+            {
+                displayName: 'nodejs',
+                roots: [...NODEJS_TESTS_ROOTS],
+                ...NODE_ENV_CONFIG,
+            },
+        ] : []),
     ],
-    "setupFilesAfterEnv": ["./setupTests.js"],
-    "testMatch": [
-      '<rootDir>/**/*.{spec,test}.{js,jsx,ts,tsx}',
-    ],
-    "testEnvironment": "jsdom",
-    "testURL": "http://localhost",
-    // "preset": "ts-jest",
-    "transform": {
-        // ...tsjPreset.transform,
-        "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
-        // "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/ts-jest",
-        "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/uui-build/jest/fileTransform.js",
-        "^.+\\.css$": "<rootDir>/uui-build/jest/cssTransform.js",
-    },
-    "transformIgnorePatterns": [
-        "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
-        "^.+\\.(sass|scss|less)$"
-    ],
-    "testPathIgnorePatterns": [
-        "node_modules",
-        "templates",
-        "./next-app"
-    ],
-    "modulePathIgnorePatterns": [
-        "/build/",
-        "./next-app"
-    ],
-    "moduleNameMapper": {
-        "^react-native$": "react-native-web",
-        "^.+\\.(sass|scss|less)$": "<rootDir>/uui-build/jest/cssModuleTransform.js",
-        "@epam/test-utils": "<rootDir>/test-utils",
-        "@epam/uui-core": "<rootDir>/uui-core",
-        "\\.svg": "<rootDir>/test-utils/mocks/svgrMock.js"
-    },
-    "moduleFileExtensions": [
-        "web.js",
-        "js",
-        "web.ts",
-        "ts",
-        "web.tsx",
-        "tsx",
-        "json",
-        "web.jsx",
-        "jsx",
-        "node"
-    ],
-    "globals": {
-        "ts-jest": {
-            "tsconfig": "tsconfig.test.json"
-        }
-    }
-}
+};

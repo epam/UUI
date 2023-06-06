@@ -1,10 +1,10 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
-import { UuiReactMarkdown } from "../documents/uuiReactMarkdown";
-import { cx } from '@epam/uui';
+import { UuiReactMarkdown } from '../documents/uuiReactMarkdown';
+import { cx } from '@epam/uui-core';
 import { FlexRow, LinkButton, RichTextView } from '@epam/promo';
 import { analyticsEvents } from '../analyticsEvents';
-import css from './ReleasesCell.scss';
+import css from './ReleasesCell.module.scss';
 
 export interface ReleasesCellProps {
     content: string;
@@ -36,34 +36,33 @@ export class ReleasesCell extends React.Component<ReleasesCellProps, ReleasesCel
 
     render() {
         const { content, layout } = this.props;
-        const [header, date] = content.split('*')[0].split(' - ').map((i: any) => i.trim());
+        const [header, date] = content
+            .split('*')[0]
+            .split(' - ')
+            .map((i: any) => i.trim());
         const releaseNotes = content.substr(content.search(/\*/), content.length);
 
         return (
-            <div className={ cx(css.wrapper, `${ layout }-width`) }  >
-                <div ref={ this.cellRef } className={ css.column } >
-                    <RichTextView size='16'>
-                        <FlexRow spacing='12'>
-                            <h3>{ header }</h3>
-                            <div className={ css.releaseDate }>
-                                { dayjs(date, 'DD.MM.YYYY').isValid() && dayjs(date, 'DD.MM.YYYY').format('MMM DD, YYYY') }
-                            </div>
+            <div className={ cx(css.wrapper, `${layout}-width`) }>
+                <div ref={ this.cellRef } className={ css.column }>
+                    <RichTextView size="16">
+                        <FlexRow spacing="12">
+                            <h3>{header}</h3>
+                            <div className={ css.releaseDate }>{dayjs(date, 'DD.MM.YYYY').isValid() && dayjs(date, 'DD.MM.YYYY').format('MMM DD, YYYY')}</div>
                         </FlexRow>
                         <UuiReactMarkdown content={ releaseNotes } />
                     </RichTextView>
                 </div>
-                {
-                    this.state.overflow
-                    ? <div className={ css.buttonWrapper } >
+                {this.state.overflow ? (
+                    <div className={ css.buttonWrapper }>
                         <LinkButton
-                            size='36'
-                            caption='Show more'
-                            link={ { pathname: '/documents', query: { id: `releaseNotes`, release: header.split(' ')[1] } } }
+                            size="36"
+                            caption="Show more"
+                            link={ { pathname: '/documents', query: { id: 'releaseNotes', release: header.split(' ')[1] } } }
                             clickAnalyticsEvent={ analyticsEvents.welcome.releaseNotes() }
                         />
                     </div>
-                    : null
-                }
+                ) : null}
             </div>
         );
     }

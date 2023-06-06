@@ -27,8 +27,6 @@ export const uuiElement = {
     modalBlocker: 'uui-modal-blocker',
     modalWindow: 'uui-modal-window',
     textareaCounter: 'uui-textarea-counter',
-    prefixInput: 'uui-input-prefix',
-    suffixInput: 'uui-input-suffix',
 } as const;
 
 export const uuiMod = {
@@ -60,7 +58,8 @@ export const uuiMarkers = {
     draggable: '-draggable',
     scrolledLeft: '-scrolled-left',
     scrolledRight: '-scrolled-right',
-    scrolledVertical: '-scrolled-vertical',
+    scrolledTop: '-scrolled-top',
+    scrolledBottom: '-scrolled-bottom',
 } as const;
 
 export const uuiDndState = {

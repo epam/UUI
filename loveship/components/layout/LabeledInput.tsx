@@ -1,24 +1,9 @@
-import css from './LabeledInput.scss';
-import styles from '../../assets/styles/scss/loveship-color-vars.scss';
-import * as types from '../types';
 import { withMods } from '@epam/uui-core';
-import { LabeledInput as uuiLabeledInput, LabeledInputProps } from '@epam/uui-components';
-import { Tooltip } from '../overlays';
-import { systemIcons } from '../icons/icons';
+import { LabeledInput as uuiLabeledInput, LabeledInputMods } from '@epam/uui';
+import { LabeledInputProps } from '@epam/uui-components';
 
-const defaultSize = '36';
-
-export interface LabeledInputMods extends types.ColorMod, types.SizeMod {}
-
-function applyLabeledInputMods(mods: LabeledInputMods) {
-    return [
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
-        styles['color-' + (mods.color || 'night700')],
-    ];
+function applyLabeledInputMods() {
+    return ['uui-theme-loveship'];
 }
 
-export const LabeledInput = withMods<LabeledInputProps, LabeledInputMods>(uuiLabeledInput, applyLabeledInputMods, (props) => ({
-    Tooltip,
-    infoIcon: systemIcons[props.size || defaultSize].info,
-}));
+export const LabeledInput = withMods<LabeledInputProps, LabeledInputMods>(uuiLabeledInput, applyLabeledInputMods);

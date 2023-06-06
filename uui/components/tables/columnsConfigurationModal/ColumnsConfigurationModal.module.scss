@@ -1,0 +1,54 @@
+@use '../../../assets/styles/index' as *;
+
+.main-panel {
+    height: 100%;
+    padding-top: 6px;
+
+    .group-title {
+        margin-bottom: -6px;
+
+        > .group-title-text {
+            padding-top: 0;
+        }
+
+
+        > .group-title-badge {
+            top: -3px;
+
+            > :global(.uui-caption) {
+                font-family: var(--font-semibold); //TODO: rework component
+            }
+        }
+
+        &:not(:first-child) {
+            padding-top: 12px;
+        }
+    }
+
+    .group-items {
+        flex-direction: column;
+    }
+
+    .no-data {
+        flex-direction: column;
+        top: calc(50% - 35px);
+        position: relative;
+    }
+
+    .h-divider {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 6px 24px;
+
+        &::before {
+            content: '';
+            height: 1px;
+            display: block;
+            background: var(--uui-divider);
+        }
+    }
+}
+
+.search-area {
+    padding-bottom: 6px;
+}

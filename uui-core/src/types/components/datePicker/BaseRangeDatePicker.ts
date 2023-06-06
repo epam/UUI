@@ -1,7 +1,11 @@
-import { ReactElement, ReactNode } from "react";
-import { Dayjs } from "dayjs";
-import { Placement } from "@popperjs/core";
-import { IAnalyticableOnChange, ICanBeReadonly, IDisableable, IDropdownToggler, IEditable, IHasCX } from "../../props";
+import { ReactElement, ReactNode } from 'react';
+import { Dayjs } from 'dayjs';
+import { Placement } from '@popperjs/core';
+import {
+    IAnalyticableOnChange, ICanBeReadonly, IDisableable, IDropdownToggler, IEditable, IHasRawProps,
+} from '../../props';
+import * as React from 'react';
+import { CX } from '../../objects';
 
 export interface RangeDatePickerValue {
     from: string | null;
@@ -10,18 +14,18 @@ export interface RangeDatePickerValue {
 
 export type RangeDatePickerPresets = {
     [key: string]: {
-        name: string,
-        getRange: () => RangeDatePickerPresetValue,
-    },
+        name: string;
+        getRange: () => RangeDatePickerPresetValue;
+    };
 };
 
 export type RangeDatePickerPresetValue = {
-    from: string,
-    to: string,
-    order?: number,
+    from: string;
+    to: string;
+    order?: number;
 };
 
-export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>, IHasCX, IDisableable, ICanBeReadonly, IAnalyticableOnChange<RangeDatePickerValue> {
+export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>, IDisableable, ICanBeReadonly, IAnalyticableOnChange<RangeDatePickerValue> {
     /** Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format) */
     format?: string;
 
@@ -57,4 +61,18 @@ export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue
 
     /** Called when component looses input focus */
     onBlur?: (e: React.FocusEvent<HTMLInputElement>, inputType: 'from' | 'to') => void;
+
+    /** Called when component is opened/closed */
+    onOpenChange?: (isOpen: boolean) => void
+
+    /** rawProps as HTML attributes */
+    rawProps?: {
+        from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+    };
+
+    /** Styles for input and body components in RangeDatePicker */
+    inputCx?: CX;
+    bodyCx?: CX;
 }

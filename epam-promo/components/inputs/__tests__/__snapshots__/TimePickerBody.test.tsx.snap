@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TimePickerBody should be rendered correctly 1`] = `
+exports[`TimePickerBody should be rendered with maximum props 1`] = `
 <div
   className="uui-timepicker-container root"
 >
@@ -27,7 +27,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
         className="uui-input uui-value-in-placeholder"
         inputMode="numeric"
         max={12}
-        min={0}
+        min={1}
         onChange={[Function]}
         placeholder="12"
         tabIndex={0}
@@ -40,11 +40,13 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
           onClick={[Function]}
+          role="button"
           style={Object {}}
         />
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
           onClick={[Function]}
+          role="button"
           style={Object {}}
         />
       </div>
@@ -95,11 +97,13 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
           onClick={[Function]}
+          role="button"
           style={Object {}}
         />
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
           onClick={[Function]}
+          role="button"
           style={Object {}}
         />
       </div>
@@ -156,7 +160,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
 </div>
 `;
 
-exports[`TimePickerBody should be rendered correctly 2`] = `
+exports[`TimePickerBody should be rendered with minimum props 1`] = `
 <div
   className="uui-timepicker-container root"
 >
@@ -183,7 +187,7 @@ exports[`TimePickerBody should be rendered correctly 2`] = `
         className="uui-input uui-value-in-placeholder"
         inputMode="numeric"
         max={12}
-        min={1}
+        min={0}
         onChange={[Function]}
         placeholder="12"
         tabIndex={0}
@@ -196,11 +200,13 @@ exports[`TimePickerBody should be rendered correctly 2`] = `
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
           onClick={[Function]}
+          role="button"
           style={Object {}}
         />
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
           onClick={[Function]}
+          role="button"
           style={Object {}}
         />
       </div>
@@ -251,11 +257,13 @@ exports[`TimePickerBody should be rendered correctly 2`] = `
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
           onClick={[Function]}
+          role="button"
           style={Object {}}
         />
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
           onClick={[Function]}
+          role="button"
           style={Object {}}
         />
       </div>

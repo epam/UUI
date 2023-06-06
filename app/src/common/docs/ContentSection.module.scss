@@ -1,0 +1,11 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 60px);
+
+    .width-wrapper {
+        padding: 0 60px 60px;
+        max-width: 960px;
+    }
+}

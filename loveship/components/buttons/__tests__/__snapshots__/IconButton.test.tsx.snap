@@ -1,24 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IconButton should be rendered correctly 1`] = `
-<button
-  className="container uui-button-box uui-enabled root color-night600"
-  onClick={[Function]}
-  tabIndex={-1}
-  type="button"
->
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
-  />
-</button>
-`;
-
-exports[`IconButton should be rendered correctly with props 1`] = `
+exports[`IconButton should render with maximum props 1`] = `
 <button
   aria-disabled={false}
-  className="container uui-button-box uui-enabled -clickable root color-sun"
-  disabled={false}
+  className="container uui-button-box uui-enabled -clickable icon-button-sun root"
   onClick={[Function]}
   tabIndex={0}
   type="button"
@@ -31,5 +16,19 @@ exports[`IconButton should be rendered correctly with props 1`] = `
       className=""
     />
   </div>
+</button>
+`;
+
+exports[`IconButton should render with minimum props 1`] = `
+<button
+  className="container uui-button-box uui-enabled icon-button-night600 root"
+  onClick={[Function]}
+  tabIndex={-1}
+  type="button"
+>
+  <div
+    className="container uui-icon uui-enabled"
+    style={Object {}}
+  />
 </button>
 `;

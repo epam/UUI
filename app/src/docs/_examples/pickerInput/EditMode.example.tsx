@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { PickerInput } from '@epam/promo';
-import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
+import { FlexCell, PickerInput } from '@epam/promo';
+import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 
 export default function EditModePickerExample() {
@@ -14,16 +14,8 @@ export default function EditModePickerExample() {
     const dataSource = useLazyDataSource({ api: loadPersons }, []);
 
     return (
-        <div>
-            <PickerInput
-                dataSource={ dataSource }
-                value={ value }
-                onValueChange={ onValueChange }
-                entityName='person'
-                selectionMode='multi'
-                valueType='id'
-                editMode='modal'
-            />
-        </div>
+        <FlexCell width={ 300 }>
+            <PickerInput dataSource={ dataSource } value={ value } onValueChange={ onValueChange } entityName="person" selectionMode="multi" valueType="id" editMode="modal" />
+        </FlexCell>
     );
 }

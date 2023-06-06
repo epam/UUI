@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './ToolbarSeparator.scss';
+import css from './ToolbarSeparator.module.scss';
 
 export class ToolbarSeparator extends React.Component {
 

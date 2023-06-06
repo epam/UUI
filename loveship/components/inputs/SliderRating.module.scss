@@ -1,0 +1,134 @@
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.base-rating-container {
+    margin: 0 8px 0 8px;
+}
+
+.scale {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+
+    &.size-18 {
+        width: 152px;
+        height: 16px;
+
+        .scale-icon {
+            width: 152px;
+        }
+    }
+
+    &.size-24 {
+        width: 232px;
+        height: 22px;
+
+        .scale-icon {
+            width: 232px;
+        }
+    }
+}
+
+.short-scale {
+    &.size-18 {
+        width: 115px;
+    }
+
+    &.size-24 {
+        width: 176px;
+    }
+}
+
+.scale-icon {
+    &:global(.uui-icon ) {
+        flex-direction: row;
+    }
+
+    svg {
+        flex-grow: 1;
+        height: auto;
+    }
+}
+
+.handler {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &.size-18 {
+        width: 16px;
+        height: 16px;
+    }
+
+    &.size-24 {
+        width: 22px;
+        height: 22px;
+
+        .handlerIcon svg {
+            width: 22px;
+            height: 22px;
+        }
+    }
+
+    &.hidden {
+        visibility: hidden;
+    }
+}
+
+.na-icon-container {
+    margin-left: 18px;
+}
+
+.na-icon {
+    cursor: pointer;
+    fill: #D9DBE3;
+
+    &:hover {
+        fill: #C0C3CE;
+    }
+
+    &.checked {
+        fill: #6C7283;
+    }
+
+    &.disabled {
+        fill: #D9DBE3;
+        cursor: default;
+    }
+
+    &.size-18 {
+        width: 18px;
+        height: 18px;
+    }
+
+    &.size-24 {
+        width: 24px;
+        height: 24px;
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+}
+
+.tooltipsBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+}
+
+.tooltipsBoxItem {
+    position: fixed;
+    width: 1px;
+}
+
+.tooltip {
+    pointer-events: none;
+}

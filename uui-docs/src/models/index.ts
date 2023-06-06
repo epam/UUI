@@ -1,7 +1,7 @@
-import {FileUploadResponse, TimePickerValue} from "@epam/uui-core";
+import { FileUploadResponse, TimePickerValue } from '@epam/uui-core';
 
 export interface Person {
-    __typename: "Person";
+    __typename: 'Person';
     id: number;
     uid: string;
     name: string;
@@ -39,7 +39,7 @@ export interface Person {
 }
 
 export interface PersonGroup {
-    __typename: "PersonGroup";
+    __typename: 'PersonGroup';
     id: number;
     name: string;
     count: number;
@@ -49,37 +49,37 @@ export interface PersonGroup {
 }
 
 export interface Department {
-    __typename: "Department";
+    __typename: 'Department';
     id: number;
     name: string;
 }
 
 export interface Company {
-    __typename: "Company";
+    __typename: 'Company';
     id: number;
     name: string;
 }
 
 export interface JobTitle {
-    __typename: "JobTitle";
+    __typename: 'JobTitle';
     id: number;
     name: string;
 }
 
 export interface Status {
-    __typename: "Status";
+    __typename: 'Status';
     id: number;
     name: string;
 }
 
 export interface Manager {
-    __typename: "Manager";
+    __typename: 'Manager';
     id: number;
     name: string;
 }
 
 export interface Office {
-    __typename: "Office";
+    __typename: 'Office';
     id: number;
     name: string;
 }
@@ -127,7 +127,6 @@ export interface SalesPerson {
     SalesLastYear: number;
     ModifiedDate: string;
 }
-
 
 /* Geo Data */
 
@@ -189,7 +188,7 @@ export interface Language {
 }
 
 export interface Location {
-    __typename: "Location";
+    __typename: 'Location';
     id: string;
     name: string;
     type: 'city' | 'country' | 'continent';
@@ -230,16 +229,16 @@ export interface LanguageLevel {
 export interface PersonSchedule {
     email: string;
     events: {
-        "startDate": number;
-        "endDate": number;
-        "eventType": string;
-        "status": string;
+        startDate: number;
+        endDate: number;
+        eventType: string;
+        status: string;
     }[];
 }
 
 export interface PersonExperienceItem {
     experienceName?: string;
-    rangeDateValue?: { from: string, to: string };
+    rangeDateValue?: { from: string; to: string };
     startRange?: string;
     endRange?: string;
 }
@@ -257,12 +256,11 @@ export interface PersonDetails {
     vacDays?: number;
     roles?: string[];
     skill?: number;
-    bracket?: { from: number, to: number };
-    rangeDateValue?: { from: string, to: string };
+    bracket?: { from: number; to: number };
+    rangeDateValue?: { from: string; to: string };
     notes?: string;
     numberValue?: number;
     timeValue?: TimePickerValue;
     rating?: number;
-    attachments?: ({progress?: number} & FileUploadResponse)[];
-
+    attachments?: ({ progress?: number } & FileUploadResponse)[];
 }

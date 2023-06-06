@@ -1,0 +1,24 @@
+.container {
+    position: relative;
+    display: flex;
+}
+
+.container-content {
+    &.burger-transition-enter {
+        opacity: 0;
+    }
+
+    &.burger-transition-enter-active {
+        opacity: 1;
+        transition: opacity 200ms ease-in-out;
+    }
+
+    &.burger-transition-exit {
+        opacity: 1;
+    }
+
+    &.burger-transition-exit-active {
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+    }
+}

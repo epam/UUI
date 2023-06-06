@@ -1,8 +1,8 @@
-import { Db } from "./types";
+import { Db } from './types';
 import { DbPatch } from './types';
 import { DbSchema, DbEntitySchema } from './DbSchema';
 import { DbEntityLens } from './DbLenses';
-import * as I from "immutable";
+import * as I from 'immutable';
 import { objectKeys } from './helpers';
 
 export interface DbSaveRequest<T> {
@@ -37,7 +37,6 @@ export class DbRef<T> {
     lastTempId = -1;
     tempIdToId: I.Map<number, any> = I.Map();
     errors: ServerError[] = [];
-
     constructor(private schema: DbSchema<T>, private onUpdate: () => void = () => {}) {
         this.blank = schema.newDb();
         this.base = this.blank;
@@ -85,9 +84,7 @@ export class DbRef<T> {
         this.onUpdate();
     }
 
-    public enqueueFetch(run: () => DbPatch<T>) {
-    }
-
+    public enqueueFetch(run: () => DbPatch<T>) {}
     public entityLens<TEntityName extends keyof T>(name: TEntityName, filter: Partial<T[TEntityName]>): DbEntityLens<T, TEntityName> {
         return new DbEntityLens(this, name, filter);
     }
@@ -96,17 +93,19 @@ export class DbRef<T> {
 
     private isSaveInProgress = false;
     private isSaveThrottled = false;
-
     private enqueueSave() {
         if (!this.isSaveInProgress && !this.isSaveThrottled) {
             this.isSaveInProgress = true;
             const lastLogEntry = this.log.length;
             const logEntriesToSave = this.log.slice(this.savedPoint, lastLogEntry);
             const updatedDb = this.current;
-            const cumulativePatch = this.makeCumulativePatch(updatedDb, logEntriesToSave.map(t => t.patch));
+            const cumulativePatch = this.makeCumulativePatch(
+                updatedDb,
+                logEntriesToSave.map((t) => t.patch),
+            );
             this.onUpdate();
             this.save(cumulativePatch)
-                .then(response => {
+                .then((response) => {
                     this.isSaveInProgress = false;
                     this.errors = response.validationErrors || [];
                     if (this.errors.length == 0) {
@@ -139,17 +138,19 @@ export class DbRef<T> {
     makeCumulativePatch(updatedDb: Db<T>, patches: DbPatch<T>[]): DbPatch<T> {
         const result: DbPatch<T> = {};
 
-        objectKeys(this.schema.entitySchemas).map(entityName => {
+        objectKeys(this.schema.entitySchemas).map((entityName) => {
             const entitySchema = this.schema.entitySchemas[entityName];
             let ids = I.Set();
-            patches.forEach(patch => {
-                ids = ids.union((patch[entityName] || []).map(e => entitySchema.getKey(e as any)));
+            patches.forEach((patch) => {
+                ids = ids.union((patch[entityName] || []).map((e) => entitySchema.getKey(e as any)));
             });
-            result[entityName] = ids.map(id => {
-                const entity = (updatedDb as any)[entityName]().byId(id);
-                const entityWithPatchedIds = this.replaceTempIds(entitySchema, entity);
-                return entityWithPatchedIds as any;
-            }).toArray();
+            result[entityName] = ids
+                .map((id) => {
+                    const entity = (updatedDb as any)[entityName]().byId(id);
+                    const entityWithPatchedIds = this.replaceTempIds(entitySchema, entity);
+                    return entityWithPatchedIds as any;
+                })
+                .toArray();
         });
 
         return result;
@@ -163,14 +164,14 @@ export class DbRef<T> {
 
     protected replaceTempIds(schema: DbEntitySchema<any>, entity: Record<string, any>) {
         const patchedIds: Record<string, any> = {};
-        schema.keyFields.forEach(key => {
+        schema.keyFields.forEach((key) => {
             patchedIds[key.name] = this.tempIdToId.get(entity[key.name], entity[key.name]);
         });
         return { ...entity, ...patchedIds };
     }
 
     protected appendIdsMapping(response: DbSaveResponse<T>) {
-        const idsList = Object.keys(response.clientIdsMapping).map(id => [+id, response.clientIdsMapping[id]] as [number, any]);
+        const idsList = Object.keys(response.clientIdsMapping).map((id) => [+id, response.clientIdsMapping[id]] as [number, any]);
         this.tempIdToId = this.tempIdToId.merge(I.fromJS(idsList));
     }
 

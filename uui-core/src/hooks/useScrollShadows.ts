@@ -1,17 +1,18 @@
-import * as React from "react";
+import * as React from 'react';
 
 interface UseScrollShadowsProps {
     root?: HTMLElement;
 }
 
 interface UseScrollShadowsApi {
-    vertical: boolean;
+    verticalTop: boolean;
+    verticalBottom: boolean;
     horizontalLeft: boolean;
     horizontalRight: boolean;
-};
+}
 
 export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShadowsApi {
-    const [vertical, setVertical] = React.useState({ active: false });
+    const [vertical, setVertical] = React.useState({ top: false, bottom: false });
     const [horizontal, setHorizontal] = React.useState({ left: false, right: false });
     const resizeObserver = React.useRef<ResizeObserver>();
 
@@ -35,13 +36,25 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
         return root.scrollLeft === 0 && horizontal.left;
     }
 
-    function shouldHaveVerticalShadow(root: UseScrollShadowsProps['root']) {
+    function shouldHaveTopShadow(root: UseScrollShadowsProps['root']) {
         if (!root) return false;
-        return root.scrollTop > 0 && !vertical.active;
+        return root.scrollTop > 0 && !vertical.top;
     }
 
-    function shouldNotHaveVerticalShadow(root: UseScrollShadowsProps['root']) {
-        return root.scrollTop === 0 && vertical.active;
+    function shouldNotHaveTopShadow(root: UseScrollShadowsProps['root']) {
+        return root.scrollTop === 0 && vertical.top;
+    }
+
+    function shouldHaveBottomShadow(root: UseScrollShadowsProps['root']) {
+        if (!root) return false;
+        const { scrollHeight, scrollTop, clientHeight } = root;
+        return scrollHeight - clientHeight - scrollTop > 1 && !vertical.bottom;
+    }
+
+    function shouldNotHaveBottomShadow(root: UseScrollShadowsProps['root']) {
+        if (!root) return false;
+        const { scrollHeight, scrollTop, clientHeight } = root;
+        return scrollHeight - clientHeight - scrollTop <= 1 && vertical.bottom;
     }
 
     const updateScrollShadows = React.useCallback(() => {
@@ -54,19 +67,30 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
         else if (shouldNotHaveRightShadow(root)) setHorizontal({ ...horizontal, right: false });
 
         // Vertical shadow states
-        if (shouldHaveVerticalShadow(root)) setVertical({ ...vertical, active: true });
-        else if (shouldNotHaveVerticalShadow(root)) setVertical({ ...vertical, active: false });
-    }, [root, vertical, horizontal, setVertical, setHorizontal]);
+        if (shouldHaveTopShadow(root)) setVertical({ ...vertical, top: true });
+        else if (shouldNotHaveTopShadow(root)) setVertical({ ...vertical, top: false });
+        else if (shouldHaveBottomShadow(root)) setVertical({ ...vertical, bottom: true });
+        else if (shouldNotHaveBottomShadow(root)) setVertical({ ...vertical, bottom: false });
+    }, [
+        root, vertical, horizontal, setVertical, setHorizontal,
+    ]);
 
     React.useEffect(() => {
         if (!root) return;
         root.addEventListener('scroll', updateScrollShadows);
         return () => root.removeEventListener('scroll', updateScrollShadows);
-    }, [root, horizontal, setHorizontal, vertical, setVertical]);
+    }, [
+        root, horizontal, setHorizontal, vertical, setVertical,
+    ]);
 
     React.useEffect(() => {
         if (!root) return;
-        resizeObserver.current = new ResizeObserver(updateScrollShadows);
+        resizeObserver.current = new ResizeObserver((entries) => {
+            requestAnimationFrame(() => {
+                if (!Array.isArray(entries) || !entries.length) return;
+                updateScrollShadows();
+            });
+        });
         resizeObserver.current.observe(root);
         return () => resizeObserver.current.disconnect();
     }, [root, resizeObserver.current]);
@@ -78,8 +102,9 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
     }, [updateScrollShadows, root]);
 
     return {
-        vertical: vertical.active,
+        verticalTop: vertical.top || shouldHaveTopShadow(root),
+        verticalBottom: vertical.bottom || shouldHaveBottomShadow(root),
         horizontalLeft: horizontal.right || shouldHaveRightShadow(root),
         horizontalRight: horizontal.left || shouldHaveLeftShadow(root),
     };
-};
+}

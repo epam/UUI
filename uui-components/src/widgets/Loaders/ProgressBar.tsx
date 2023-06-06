@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { IHasCX, IHasRawProps } from '@epam/uui-core';
-import css from './ProgressBar.scss';
+import css from './ProgressBar.module.scss';
 
 export interface IProgressBarProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     progress: number;
@@ -10,30 +10,27 @@ export interface IProgressBarProps extends IHasCX, IHasRawProps<React.HTMLAttrib
 }
 
 export const ProgressBar = React.forwardRef<HTMLDivElement, IProgressBarProps>((props, ref) => {
-    const { hideLabel = false, progress, label  } = props;
-    const barLabel = label || `${ props.progress || 0 }%`;
+    const { hideLabel = false, progress, label } = props;
+    const barLabel = label || `${props.progress || 0}%`;
 
     return (
         <div ref={ ref } className={ cx(props.cx, css.container) } { ...props.rawProps }>
             <div
-                role='progressbar'
+                role="progressbar"
                 className={ cx(css.bar, 'bar') }
-                style={ { width: `${ props.progress || 0 }%` } }
+                style={ { width: `${props.progress || 0}%` } }
                 aria-valuenow={ progress }
                 aria-valuemin={ 0 }
                 aria-valuemax={ 100 }
             />
-            { !hideLabel && (
+            {!hideLabel && (
                 <>
-                    <div className={ cx(css.label, 'label') } >
-                        { barLabel }
-                    </div>
-                    <div className={ cx(css.label, 'topLabel') } style={ { clipPath: `inset(0 0 0 ${ props.progress }%)` } }>
-                        { barLabel }
+                    <div className={ cx(css.label, 'label') }>{barLabel}</div>
+                    <div className={ cx(css.label, 'topLabel') } style={ { clipPath: `inset(0 0 0 ${props.progress}%)` } }>
+                        {barLabel}
                     </div>
                 </>
-            )
-            }
+            )}
         </div>
     );
 });

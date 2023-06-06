@@ -1,6 +1,8 @@
-import { AcceptDropParams, DataColumnProps, DropParams, DropPositionOptions, IColumnConfig } from "@epam/uui-core";
+import {
+    AcceptDropParams, DataColumnProps, DropParams, DropPositionOptions, IColumnConfig,
+} from '@epam/uui-core';
 
-export type DndDataType = { column: DataColumnProps, columnConfig: IColumnConfig };
+export type DndDataType = { column: DataColumnProps; columnConfig: IColumnConfig };
 export interface ColumnsConfigurationRowProps extends GroupedDataColumnProps {
     toggleVisibility: () => void;
     togglePin: () => void;
@@ -12,9 +14,9 @@ export interface ColumnsConfigurationRowProps extends GroupedDataColumnProps {
     isPinnedAlways: boolean;
 }
 export type GroupedColumnsType = {
-    hidden: ColumnsConfigurationRowProps[],
-    displayedUnpinned: ColumnsConfigurationRowProps[],
-    displayedPinned: ColumnsConfigurationRowProps[],
+    hidden: ColumnsConfigurationRowProps[];
+    displayedUnpinned: ColumnsConfigurationRowProps[];
+    displayedPinned: ColumnsConfigurationRowProps[];
 };
 
 export interface GroupedDataColumnProps extends DataColumnProps {

@@ -5,7 +5,7 @@ import { Editor, Plugins } from 'slate-react';
 import { LayoutContext, LayoutLayer, UuiContext } from '@epam/uui-core';
 import { Portal } from '@epam/uui-components';
 import { isTextSelected } from '../helpers';
-import css from './Toolbar.scss';
+import css from './Toolbar.module.scss';
 
 interface ToolbarProps {
     editor: Editor;

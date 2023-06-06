@@ -1,9 +1,9 @@
 import * as React from 'react';
-import css from './FileCard.scss';
-import { i18n } from '../..';
+import css from './FileCard.module.scss';
+import { i18n } from '../../i18n';
 import { cx, FileUploadResponse, formatBytes, IClickable, IHasCX, uuiMod } from '@epam/uui-core';
-import { SvgCircleProgress } from './';
-import { FlexCell, FlexRow, IconButton, IconContainer, Text, Tooltip } from '../';
+import { SvgCircleProgress } from './SvgCircleProgress';
+import { FlexCell, FlexRow, IconButton, IconContainer, Text, Tooltip } from '../../components';
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/navigation-close-18.svg';
 import { ReactComponent as DocIcon } from '../../icons/fileUpload/file-file_word-24.svg';
 import { ReactComponent as ExelIcon } from '../../icons/fileUpload/file-file_excel-24.svg';
@@ -34,32 +34,48 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
     const getIcon = (extension: string) => {
         switch (extension) {
             case 'doc':
-            case 'docx': return <IconContainer size={ 24 } icon={ DocIcon } cx={ css.docColor } />;
+            case 'docx':
+                return <IconContainer size={ 24 } icon={ DocIcon } cx={ css.docColor } />;
             case 'xls':
-            case 'xlsx': return <IconContainer size={ 24 } icon={ ExelIcon } cx={ css.xlsColor } />;
-            case 'pdf': return <IconContainer size={ 24 } icon={ PdfIcon } cx={ css.pdfColor } />;
+            case 'xlsx':
+                return <IconContainer size={ 24 } icon={ ExelIcon } cx={ css.xlsColor } />;
+            case 'pdf':
+                return <IconContainer size={ 24 } icon={ PdfIcon } cx={ css.pdfColor } />;
             case 'gif':
             case 'jpg':
             case 'jpeg':
             case 'svg':
             case 'png':
-            case 'webp': return <IconContainer size={ 24 } icon={ ImgIcon } cx={ css.imgColor } />;
+            case 'webp':
+                return <IconContainer size={ 24 } icon={ ImgIcon } cx={ css.imgColor } />;
             case 'avi':
             case 'mov':
             case 'mp4':
             case 'wmw':
-            case 'mkv': return <IconContainer size={ 24 } icon={ VideoIcon } cx={ css.movieColor } />;
+            case 'mkv':
+                return <IconContainer size={ 24 } icon={ VideoIcon } cx={ css.movieColor } />;
             case 'csv':
-            case 'xml': return <IconContainer size={ 24 } icon={ TableIcon } cx={ css.xmlColor } />;
+            case 'xml':
+                return <IconContainer size={ 24 } icon={ TableIcon } cx={ css.defaultColor } />;
             case 'rtf':
-            case 'txt': return <IconContainer size={ 24 } icon={ TextIcon } cx={ css.textColor } />;
+            case 'txt':
+                return <IconContainer size={ 24 } icon={ TextIcon } cx={ css.defaultColor } />;
             case 'eml':
-            case 'emlx': return <IconContainer size={ 24 } icon={ MailIcon } cx={ css.emlColor } />;
-            default: return <IconContainer size={ 24 } icon={ FileIcon } cx={ css.defaultColor } />;
+            case 'emlx':
+                return <IconContainer size={ 24 } icon={ MailIcon } cx={ css.defaultColor } />;
+            default:
+                return <IconContainer size={ 24 } icon={ FileIcon } cx={ css.defaultColor } />;
         }
     };
 
-    const { cx: componentCx, width, file: { progress, size, name, extension, error, abortXHR }, onClick } = props;
+    const {
+        cx: componentCx,
+        width,
+        file: {
+            progress, size, name, extension, error, abortXHR,
+        },
+        onClick,
+    } = props;
     const fileExtension = extension || name?.split('.').pop();
     const fileName = name?.split('.').slice(0, -1).join('');
     const isLoading = progress < 100;
@@ -78,46 +94,43 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
     const renderErrorContent = () => (
         <Tooltip trigger="hover" content={ file.error.message } placement="bottom-start">
             <div className={ css.errorBlock }>
-                <ErrorIcon/>
-                { "Upload failed" }
+                <ErrorIcon />
+                Upload failed
             </div>
         </Tooltip>
     );
 
     const renderSuccessfulContent = () => (
         <Text size="18" fontSize="14" lineHeight="18" color="gray60">
-            { fileExtension && `${ fileExtension.toUpperCase() }, ` }
-            { isLoading && formatBytes(size / 100 * progress) + i18n.fileCard.fileSizeProgress }
-            { formatBytes(size) }
+            {fileExtension && `${fileExtension.toUpperCase()}, `}
+            {isLoading && formatBytes((size / 100) * progress) + i18n.fileCard.fileSizeProgress}
+            {formatBytes(size)}
         </Text>
     );
 
     const removeHandler = () => {
-        (progress && progress < 100) && abortXHR();
+        progress && progress < 100 && abortXHR();
         onClick();
     };
 
     return (
         <FlexCell
             ref={ ref }
-            cx={
-                cx(css.fileCardWrapper,
-                    isLoading && uuiMod.loading,
-                    componentCx,
-                    error?.isError && css.errorCardWrapper) }
+            cx={ cx(css.fileCardWrapper, isLoading && uuiMod.loading, componentCx, error?.isError && css.errorCardWrapper) }
             minWidth={ width }
-            width={ !width ? '100%' : undefined }>
+            width={ !width ? '100%' : undefined }
+        >
             <FlexRow cx={ css.fileCardRow } size="36" alignItems="top" spacing="6">
-                { fileExtension && getIcon(fileExtension) }
+                {fileExtension && getIcon(fileExtension)}
                 <FlexCell width="100%">
                     <Text size="18" fontSize="14" lineHeight="18" color={ progress < 100 ? 'gray60' : 'gray80' } cx={ css.fileName }>
-                        { fileName }
+                        {fileName}
                     </Text>
-                    { error?.isError ? renderErrorContent() : renderSuccessfulContent() }
+                    {error?.isError ? renderErrorContent() : renderSuccessfulContent()}
                 </FlexCell>
                 <div className={ cx(css.iconsBlock) } onMouseEnter={ mouseEnterHandler } onMouseLeave={ mouseLeaveHandler }>
-                    { (isLoadingShow && isLoading) && <SvgCircleProgress progress={ progress } size={ 18 }/> }
-                    { isCrossShow && <IconButton icon={ RemoveIcon } onClick={ removeHandler }/> }
+                    {isLoadingShow && isLoading && <SvgCircleProgress progress={ progress } size={ 18 } />}
+                    {isCrossShow && <IconButton icon={ RemoveIcon } onClick={ removeHandler } />}
                 </div>
             </FlexRow>
         </FlexCell>

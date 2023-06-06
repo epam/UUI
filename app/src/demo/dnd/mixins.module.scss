@@ -1,0 +1,37 @@
+@mixin drag-handle($left, $top, $bottom, $bg_size) {
+    .drag-handle {
+        position: absolute;
+        left: $left;
+        top: $top;
+        bottom: $bottom;
+        align-self: stretch;
+        visibility: hidden;
+        background-size: $bg_size;
+    }
+}
+
+@mixin cursor-style {
+    &:hover {
+        cursor: grab;
+    }
+
+    &:active {
+        cursor: grabbing;
+    }
+}
+
+@mixin visibility {
+    .drag-handle {
+        visibility: visible;
+    }
+}
+
+@mixin drag-out {
+    .dnd-item {
+        opacity: 0.25;
+    }
+
+    .drag-handle {
+        visibility: hidden;
+    }
+}

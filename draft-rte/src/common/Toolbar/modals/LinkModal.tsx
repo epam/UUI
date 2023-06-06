@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IModal, UuiContexts } from '@epam/uui-core';
-import css from './LinkModal.scss';
+import css from './LinkModal.module.scss';
 import { TextInput, ModalHeader, ModalBlocker, ModalWindow, FlexRow, FlexSpacer, LabeledInput, Panel, Button } from '@epam/loveship';
 import { i18n } from '../../../i18n';
 
@@ -37,7 +37,7 @@ class LinkModal extends React.Component<LinkModalProps, LinkModalState> {
         };
 
         return (
-            <ModalBlocker blockerShadow='dark' { ...this.props }>
+            <ModalBlocker { ...this.props }>
                 <ModalWindow>
                     <Panel background='white' style={ { overflowY: 'auto', maxHeight: '100%' } } cx='draftRTE__link-modal'>
                         <ModalHeader borderBottom title={ i18n.rte.linkModal.modalHeader } onClose={ () => this.props.abort() } />
@@ -68,12 +68,12 @@ class LinkModal extends React.Component<LinkModalProps, LinkModalState> {
                                         displayText: this.state.displayText,
                                         isRemove: true,
                                     }) }
-                                    color='night200'
+                                    color='white'
                                     caption={ i18n.rte.linkModal.buttonRemove }
                                 />
                             }
                             <FlexSpacer />
-                            <Button onClick={ () => this.props.abort() } color='night200' caption={ i18n.rte.linkModal.buttonCancel } />
+                            <Button onClick={ () => this.props.abort() } color='white' caption={ i18n.rte.linkModal.buttonCancel } />
                             <Button
                                 onClick={ () => this.verifyForm() && this.props.success({ href: this.state.href, displayText: this.state.displayText }) }
                                 color='grass'

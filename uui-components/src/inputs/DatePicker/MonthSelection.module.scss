@@ -1,0 +1,24 @@
+.container {
+    &:global(.uui-monthselection-container) {
+        :global(.uui-monthselection-content) {
+            display: flex;
+            flex-direction: column;
+            font-size: 14px;
+        }
+
+        :global(.uui-monthselection-month-container) {
+            display: flex;
+            flex-direction: column;
+
+            & > * {
+                display: flex;
+            }
+        }
+
+        :global(.uui-monthselection-month) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

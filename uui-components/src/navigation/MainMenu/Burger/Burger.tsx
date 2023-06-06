@@ -1,10 +1,12 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { IHasCX, Icon, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
+import {
+    IHasCX, Icon, IHasRawProps, IHasForwardedRef,
+} from '@epam/uui-core';
 import { IconContainer, Portal, PortalProps } from '../../../index';
-import css from './Burger.scss';
-import { Ref, useCallback, useRef } from "react";
-import { CSSTransition } from "react-transition-group";
+import css from './Burger.module.scss';
+import { Ref, useCallback, useRef } from 'react';
+import { CSSTransition } from 'react-transition-group';
 
 interface BurgerState {
     isOpen: boolean;
@@ -31,7 +33,6 @@ export const uuiBurger = {
     overlayVisible: 'uui-burger-overlay-visible',
     itemsVisible: 'uui-burger-items-visible',
 } as const;
-
 
 const uuiBurgerTransitionTimeout = {
     // Keep the timeouts in sync with the corresponding CSS style transitions.
@@ -65,7 +66,7 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
         } else {
             document.body.style.overflow = null;
         }
-    }
+    };
 
     componentWillUnmount() {
         if (this.state.isOpen) {
@@ -84,20 +85,21 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
                     className={ cx(this.props.cx, uuiBurger.items, uuiBurger.itemsVisible) }
                     onClick={ (e) => e.stopPropagation() } // Temp solution
                 >
-                    { this.props.renderBurgerContent ? this.props.renderBurgerContent(({ onClose: this.toggleBurgerMenu })) : undefined }
+                    {this.props.renderBurgerContent ? this.props.renderBurgerContent({ onClose: this.toggleBurgerMenu }) : undefined}
                 </div>
             </div>
         );
-    }
+    };
 
     render() {
         return (
             <>
-                <div ref={ this.props.forwardedRef } className={ cx(this.props.cx, uuiBurger.menu, css.container, this.state.isOpen && uuiBurger.menuOpen) } { ...this.props.rawProps }>
-                    <div
-                        className={ uuiBurger.button }
-                        onClick={ this.toggleBurgerMenu }
-                    >
+                <div
+                    ref={ this.props.forwardedRef }
+                    className={ cx(this.props.cx, uuiBurger.menu, css.container, this.state.isOpen && uuiBurger.menuOpen) }
+                    { ...this.props.rawProps }
+                >
+                    <div className={ uuiBurger.button } onClick={ this.toggleBurgerMenu }>
                         <IconContainer icon={ this.state.isOpen ? this.props.crossIcon : this.props.burgerIcon } />
                     </div>
                 </div>
@@ -111,7 +113,6 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
         );
     }
 }
-
 
 interface PortalWithCssTransitionProps extends PortalProps {
     renderContent: (nodeRef: React.Ref<HTMLElement>) => React.ReactNode;
@@ -133,26 +134,20 @@ interface PortalWithCssTransitionProps extends PortalProps {
  * The portal is mounted only if isOpen=true so that it's compatible with SSR.
  */
 function PortalWithCssTransition(props: PortalWithCssTransitionProps) {
-    const { isOpen, timeout, cssTransitionClasses, ...portalProps } = props;
+    const {
+        isOpen, timeout, cssTransitionClasses, ...portalProps
+    } = props;
     const nodeRef = useRef<HTMLElement>(null);
-    const renderContentLocal = useCallback((ref: React.Ref<HTMLElement>) => {
-        return (
-            <Portal { ...portalProps }>
-                { props.renderContent(ref) }
-            </Portal>
-        );
-    }, [props.renderContent]);
+    const renderContentLocal = useCallback(
+        (ref: React.Ref<HTMLElement>) => {
+            return <Portal { ...portalProps }>{props.renderContent(ref)}</Portal>;
+        },
+        [props.renderContent],
+    );
 
     return (
-        <CSSTransition
-            nodeRef={ nodeRef }
-            in={ isOpen }
-            timeout={ timeout }
-            mountOnEnter={ true }
-            unmountOnExit={ true }
-            classNames={ cssTransitionClasses }
-        >
-            { renderContentLocal(nodeRef) }
+        <CSSTransition nodeRef={ nodeRef } in={ isOpen } timeout={ timeout } mountOnEnter={ true } unmountOnExit={ true } classNames={ cssTransitionClasses }>
+            {renderContentLocal(nodeRef)}
         </CSSTransition>
     );
 }

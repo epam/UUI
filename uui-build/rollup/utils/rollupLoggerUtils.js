@@ -1,7 +1,7 @@
 const os = require('os');
-const {logger} = require("../../utils/loggerUtils");
+const { logger } = require('../../utils/loggerUtils.js');
 
-module.exports = { onwarn }
+module.exports = { onwarn };
 
 /**
  * Handles Rollup build warnings.
@@ -19,10 +19,10 @@ function onwarn(message) {
                 // we should really print it as an error
                 const { loc } = message;
                 const locFormatted = loc ? `at ${loc.file}:${loc.line}:${loc.column}` : '';
-                const msg = `${message.message}${os.EOL}${locFormatted}`
+                const msg = `${message.message}${os.EOL}${locFormatted}`;
                 logger.error(msg);
             } else {
-                console.warn(message.message, message)
+                console.warn(message.message, message);
             }
             break;
         }

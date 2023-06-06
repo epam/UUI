@@ -1,0 +1,21 @@
+@import '~@epam/promo/assets/styles/colors';
+
+.list {
+    max-height: 300px;
+    border: 1px solid $gray20;
+}
+
+.item-container {
+    padding: 3px 18px 3px 6px;
+}
+
+.item {
+}
+
+.header {
+    padding: 6px;
+}
+
+.body {
+    padding: 12px;
+}

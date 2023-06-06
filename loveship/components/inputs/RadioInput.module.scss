@@ -1,0 +1,50 @@
+.theme-dark {
+    :global(.uui-input-label) {
+        color: var(--night50);
+    }
+
+    &:global(.uui-disabled),
+    &:global(.uui-readonly) {
+        cursor: default;
+
+        &:hover, &:active, &:focus-within {
+            :global(.uui-radioinput) {
+                cursor: default;
+                border-color: var(--night600);
+            }
+        }
+
+        :global(.uui-radioinput) {
+            background-color: var(--night600);
+            border-color: var(--night600);
+            box-shadow: none;
+        }
+
+        :global(.uui-icon) {
+            fill: var(--night500);
+        }
+
+        &:global(.uui-checked) {
+            :global(.uui-radioinput) {
+                background-color: var(--night600);
+                border-color: var(--night600);
+            }
+
+            :global(.uui-icon) {
+                fill: var(--night500);
+            }
+        }
+    }
+
+    &:global(.uui-readonly) {
+        :global(.uui-input-label) {
+            color: var(--night50);;
+        }
+    }
+
+    &:global(.uui-disabled) {
+        :global(.uui-input-label) {
+            color: var(--night500);
+        }
+    }
+}

@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { Icon, IHasCX, IHasForwardedRef, IHasRawProps } from '@epam/uui-core';
+import cx from 'classnames';
+import {
+    Icon, IHasCX, IHasForwardedRef, IHasRawProps,
+} from '@epam/uui-core';
 
 interface ISvgProps {
     className: string;
@@ -18,10 +21,12 @@ interface SvgProps extends IHasCX, IHasRawProps<React.SVGAttributes<SVGSVGElemen
 export const Svg = React.forwardRef<SVGSVGElement, SvgProps>((props, ref) => {
     if (!props.svg) return null;
 
-    const { svg, cx, fillColor, height, width } = props;
+    const {
+        svg, fillColor, height, width,
+    } = props;
 
     const svgProps: ISvgProps = {
-        className: cx,
+        className: cx(props.cx),
         fill: fillColor,
         ...props.rawProps,
     };

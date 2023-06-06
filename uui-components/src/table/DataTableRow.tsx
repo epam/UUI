@@ -1,7 +1,9 @@
-import React, { ReactNode, Component } from "react";
+import React, { ReactNode } from 'react';
 import isEqual from 'lodash.isequal';
-import { DataColumnProps, DataRowProps, FlexRowProps, DataTableCellProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers, DataTableRowProps, Lens, IEditable } from '@epam/uui-core';
-import { DataTableRowContainer } from "./DataTableRowContainer";
+import {
+    DataColumnProps, DataRowProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers, DataTableRowProps, Lens, IEditable,
+} from '@epam/uui-core';
+import { DataTableRowContainer } from './DataTableRowContainer';
 
 const uuiDataTableRow = {
     uuiTableRow: 'uui-table-row',
@@ -48,7 +50,7 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
             isLastColumn,
             rowLens,
         });
-    }
+    };
 
     const renderRow = (params: Partial<DndActorRenderParams>, clickHandler?: (props: DataRowProps<TItem, TId>) => void, overlays?: ReactNode) => {
         return (
@@ -81,12 +83,7 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
     const clickHandler = props.onClick || props.onSelect || props.onFold || props.onCheck;
 
     if (props.dnd && (props.dnd.srcData || props.dnd.canAcceptDrop)) {
-        return (
-            <DndActor
-                { ...props.dnd }
-                render={ params => renderRow(params, clickHandler, props.renderDropMarkers?.(params)) }
-            />
-        );
+        return <DndActor { ...props.dnd } render={ (params) => renderRow(params, clickHandler, props.renderDropMarkers?.(params)) } />;
     } else {
         return renderRow({}, clickHandler);
     }

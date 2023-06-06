@@ -1,0 +1,8 @@
+@import '~@epam/promo/assets/styles/colors.scss';
+
+.footer {
+    width: 100%;
+    border-top: 1px solid $gray40;
+    justify-content: center;
+    z-index: 1;
+}

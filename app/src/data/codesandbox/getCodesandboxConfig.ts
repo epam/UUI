@@ -1,12 +1,7 @@
-import { CodesandboxFilesRecord } from './service';
+export type FilesRecord = Record<string, { isBinary: boolean; content: string }>;
+export type CodesandboxFilesRecord = Record<string, string>;
 
-export type FilesRecord = Record<string, { isBinary: boolean, content: string }>;
-
-export const getCodesandboxConfig = (
-    content: string,
-    stylesheets: FilesRecord,
-    initialFiles: CodesandboxFilesRecord,
-) => ({
+export const getCodesandboxConfig = (content: string, stylesheets: FilesRecord, initialFiles: CodesandboxFilesRecord) => ({
     ...stylesheets,
     'Example.tsx': {
         isBinary: false,
@@ -14,7 +9,7 @@ export const getCodesandboxConfig = (
     },
     'index.tsx': {
         isBinary: false,
-        content: initialFiles.indexTSX
+        content: initialFiles.indexTSX,
     },
     'package.json': {
         isBinary: false,
@@ -39,5 +34,5 @@ export const getCodesandboxConfig = (
     'global.d.ts': {
         isBinary: false,
         content: initialFiles.globalTypings,
-    }
+    },
 });

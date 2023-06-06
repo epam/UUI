@@ -1,5 +1,5 @@
-import * as React from "react";
-import { useCallback, useEffect } from "react";
+import * as React from 'react';
+import { useCallback, useEffect } from 'react';
 
 function isFullScreenAllowed() {
     return Boolean(document.fullscreenEnabled);
@@ -65,10 +65,13 @@ export function useFullScreenApi(): IFullScreenApi {
         await openElementFullScreen(document.body);
     }, []);
 
-    return React.useMemo(() => ({
-        isSupported: isFullScreenAllowed(),
-        isFullScreen,
-        openFullScreen: handleOpenFullScreen,
-        closeFullScreen,
-    }), [isFullScreen, handleOpenFullScreen]);
+    return React.useMemo(
+        () => ({
+            isSupported: isFullScreenAllowed(),
+            isFullScreen,
+            openFullScreen: handleOpenFullScreen,
+            closeFullScreen,
+        }),
+        [isFullScreen, handleOpenFullScreen],
+    );
 }

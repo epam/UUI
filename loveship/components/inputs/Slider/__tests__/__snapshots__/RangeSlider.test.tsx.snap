@@ -2,7 +2,7 @@
 
 exports[`RangeSlider should be rendered correctly 1`] = `
 <div
-  className="uui-slider-container root root color-sky"
+  className="uui-slider-container root root"
   onClick={[Function]}
 >
   <div
@@ -61,7 +61,7 @@ exports[`RangeSlider should be rendered correctly 1`] = `
     aria-label="From"
     aria-valuemax={100}
     aria-valuemin={1}
-    className="uui-slider-handle root color-sky"
+    className="uui-slider-handle root"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
@@ -79,7 +79,7 @@ exports[`RangeSlider should be rendered correctly 1`] = `
     aria-label="To"
     aria-valuemax={100}
     aria-valuemin={1}
-    className="uui-slider-handle root color-sky"
+    className="uui-slider-handle root"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
@@ -98,7 +98,7 @@ exports[`RangeSlider should be rendered correctly 1`] = `
 
 exports[`RangeSlider should be rendered correctly with extra props 1`] = `
 <div
-  className="uui-slider-container root root color-sun"
+  className="uui-slider-container root root"
   onClick={[Function]}
 >
   <div
@@ -157,7 +157,7 @@ exports[`RangeSlider should be rendered correctly with extra props 1`] = `
     aria-label="From"
     aria-valuemax={100}
     aria-valuemin={1}
-    className="uui-slider-handle root color-sun"
+    className="uui-slider-handle root"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
@@ -175,7 +175,7 @@ exports[`RangeSlider should be rendered correctly with extra props 1`] = `
     aria-label="To"
     aria-valuemax={100}
     aria-valuemin={1}
-    className="uui-slider-handle root color-sun"
+    className="uui-slider-handle root"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}

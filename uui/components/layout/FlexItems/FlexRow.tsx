@@ -1,7 +1,7 @@
-import { FlexRowProps as uuiFlexRowProps, withMods } from '@epam/uui-core';
+import { cx, FlexRowProps as uuiFlexRowProps, withMods } from '@epam/uui-core';
 import { FlexRow as uuiFlexRow } from '@epam/uui-components';
 import { RowSizeMod } from '../../types';
-import css from './FlexRow.scss';
+import css from './FlexRow.module.scss';
 
 export interface RowMods extends RowSizeMod {
     borderBottom?: boolean;
@@ -14,17 +14,10 @@ export interface RowMods extends RowSizeMod {
     vPadding?: '12' | '18' | '24' | '36' | '48';
 }
 
-interface FlexRowProps extends Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'> {}
+export interface FlexRowProps extends Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'> {}
 
-export const FlexRow = withMods<FlexRowProps, RowMods>(uuiFlexRow, props => {
+export const FlexRow = withMods<FlexRowProps, RowMods>(uuiFlexRow, (props) => {
     return [
-        css.root,
-        props.size !== null && css['size-' + (props.size || '36')],
-        props.padding && css['padding-' + props.padding],
-        props.vPadding && css['vPadding-' + props.vPadding],
-        props.margin && css['margin-' + props.margin],
-        props.topShadow && css.topShadow,
-        props.borderBottom && css['border-bottom'],
-        props.spacing && css['spacing-' + props.spacing],
+        css.root, props.size !== null && css['size-' + (props.size || '36')], props.padding && css['padding-' + props.padding], props.vPadding && css['vPadding-' + props.vPadding], props.margin && css['margin-' + props.margin], props.topShadow && css.topShadow, props.borderBottom && css.borderBottom, props.spacing && css['spacing-' + props.spacing],
     ];
 });

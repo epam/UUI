@@ -1,0 +1,64 @@
+@use '~@epam/assets/scss/index' as *;
+
+.timeline {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    /* to prevent text selection on canvases */
+    user-select: none;
+}
+
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateZ(0);
+}
+
+.grid {
+    transform: scaleY(100500);
+}
+
+.header {
+    background: white;
+    height: 60px;
+    transform: translateZ(0);
+}
+
+.nav {
+    position: fixed;
+    bottom: 42px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 12px;
+    font-family: $font-sans;
+}
+
+.row {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    transform: translateZ(0);
+    border-bottom: 1px solid rgba(33, 35, 46, 0.05);
+}
+
+.item {
+    background: #AAA;
+    border: #888;
+    position: absolute;
+    width: 100px;
+    height: 12px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 10px;
+    color: white;
+}
+
+.zoom-button {
+    margin-top: 15px;
+}

@@ -1,16 +1,16 @@
 import { ModuleItem } from './DndModule';
 import { SectionItem } from './DndSection';
-import { getOrderBetween } from '@epam/uui';
+import { getOrderBetween } from '@epam/uui-core';
 
-const demoText = 'So you have your new digital camera and clicking away to glory anything and\n' +
-    ' everything in sight. Now you want to print them and you need the best photo printers to\n' +
-    ' print your fantastic photos. Let us talk about the various printers in the market and some\n' +
-    ' tips on choosing the best photo printers. Most of the printers could easily be purchased\n' +
-    ' under $500. While all of them have similar features, it is better to be aware of certain\n' +
-    ' key features that determines their price and print quality. First to look out for is the\n' +
-    ' printing width. It differs among printers. Normally they are available with a width of\n' +
-    ' either 8.5 inches or 13 inches. A 6 color printer is adequate but if you want good black\n' +
-    ' and white images as well it is better to go for 8-color printer.';
+const demoText = 'So you have your new digital camera and clicking away to glory anything and\n'
+    + ' everything in sight. Now you want to print them and you need the best photo printers to\n'
+    + ' print your fantastic photos. Let us talk about the various printers in the market and some\n'
+    + ' tips on choosing the best photo printers. Most of the printers could easily be purchased\n'
+    + ' under $500. While all of them have similar features, it is better to be aware of certain\n'
+    + ' key features that determines their price and print quality. First to look out for is the\n'
+    + ' printing width. It differs among printers. Normally they are available with a width of\n'
+    + ' either 8.5 inches or 13 inches. A 6 color printer is adequate but if you want good black\n'
+    + ' and white images as well it is better to go for 8-color printer.';
 
 const defaultModuleItems: ModuleItem[] = [
     {
@@ -20,32 +20,28 @@ const defaultModuleItems: ModuleItem[] = [
         isCompleted: true,
         isDeleted: false,
         kind: 'module',
-    },
-    {
+    }, {
         id: 2,
         name: 'Module 2',
         tasks: { complete: 5, schedule: 5 },
         isCompleted: true,
         isDeleted: false,
         kind: 'module',
-    },
-    {
+    }, {
         id: 3,
         name: 'Module 3',
         tasks: { complete: 2, schedule: 5 },
         isCompleted: false,
         isDeleted: false,
         kind: 'module',
-    },
-    {
+    }, {
         id: 4,
         name: 'Module 4',
         tasks: { complete: 5, schedule: 5 },
         isCompleted: true,
         isDeleted: false,
         kind: 'module',
-    },
-    {
+    }, {
         id: 5,
         name: 'Module 5',
         tasks: { complete: 0, schedule: 3 },
@@ -70,29 +66,25 @@ const defaultSectionItems: SectionItem[] = [
                 kind: 'criterion',
                 name: 'Criteria #1',
                 isChecked: true,
-            },
-            {
+            }, {
                 id: 12,
                 sectionId: 1,
                 kind: 'criterion',
                 name: 'Criteria #2',
                 isChecked: true,
-            },
-            {
+            }, {
                 id: 13,
                 sectionId: 1,
                 kind: 'criterion',
                 name: 'Criteria #3',
                 isChecked: true,
-            },
-            {
+            }, {
                 id: 14,
                 sectionId: 1,
                 kind: 'criterion',
                 name: 'Criteria #4',
                 isChecked: true,
-            },
-            {
+            }, {
                 id: 15,
                 sectionId: 1,
                 kind: 'criterion',
@@ -107,15 +99,13 @@ const defaultSectionItems: SectionItem[] = [
                 kind: 'material',
                 name: 'File_Name_1_1.suffix',
                 description: 'Additional information',
-            },
-            {
+            }, {
                 id: 112,
                 sectionId: 1,
                 kind: 'material',
                 name: 'File_Name_1_2.suffix',
                 description: 'Additional information',
-            },
-            {
+            }, {
                 id: 113,
                 sectionId: 1,
                 kind: 'material',
@@ -123,8 +113,7 @@ const defaultSectionItems: SectionItem[] = [
                 description: 'Additional information',
             },
         ],
-    },
-    {
+    }, {
         id: 2,
         title: 'Section #2',
         deadline: 'October 29, 2020',
@@ -138,29 +127,25 @@ const defaultSectionItems: SectionItem[] = [
                 kind: 'criterion',
                 name: 'Criteria #1',
                 isChecked: true,
-            },
-            {
+            }, {
                 id: 22,
                 sectionId: 2,
                 kind: 'criterion',
                 name: 'Criteria #2',
                 isChecked: true,
-            },
-            {
+            }, {
                 id: 23,
                 sectionId: 2,
                 kind: 'criterion',
                 name: 'Criteria #3',
                 isChecked: true,
-            },
-            {
+            }, {
                 id: 24,
                 sectionId: 2,
                 kind: 'criterion',
                 name: 'Criteria #4',
                 isChecked: true,
-            },
-            {
+            }, {
                 id: 25,
                 sectionId: 2,
                 kind: 'criterion',
@@ -175,15 +160,13 @@ const defaultSectionItems: SectionItem[] = [
                 kind: 'material',
                 name: 'File_Name_2_1.suffix',
                 description: 'Additional information',
-            },
-            {
+            }, {
                 id: 212,
                 sectionId: 2,
                 kind: 'material',
                 name: 'File_Name_2_2.suffix',
                 description: 'Additional information',
-            },
-            {
+            }, {
                 id: 213,
                 sectionId: 2,
                 kind: 'material',
@@ -191,8 +174,7 @@ const defaultSectionItems: SectionItem[] = [
                 description: 'Additional information',
             },
         ],
-    },
-    {
+    }, {
         id: 3,
         title: 'Section #3',
         deadline: 'November 5, 2020',
@@ -206,15 +188,13 @@ const defaultSectionItems: SectionItem[] = [
                 kind: 'criterion',
                 name: 'Criteria #1',
                 isChecked: false,
-            },
-            {
+            }, {
                 id: 32,
                 sectionId: 3,
                 kind: 'criterion',
                 name: 'Criteria #2',
                 isChecked: false,
-            },
-            {
+            }, {
                 id: 33,
                 sectionId: 3,
                 kind: 'criterion',
@@ -229,15 +209,13 @@ const defaultSectionItems: SectionItem[] = [
                 kind: 'material',
                 name: 'File_Name_3_1.suffix',
                 description: 'Additional information',
-            },
-            {
+            }, {
                 id: 312,
                 sectionId: 3,
                 kind: 'material',
                 name: 'File_Name_3_2.suffix',
                 description: 'Additional information',
-            },
-            {
+            }, {
                 id: 313,
                 sectionId: 3,
                 kind: 'material',
@@ -245,8 +223,7 @@ const defaultSectionItems: SectionItem[] = [
                 description: 'Additional information',
             },
         ],
-    },
-    {
+    }, {
         id: 4,
         title: 'Section #4',
         deadline: 'November 12, 2020',
@@ -260,15 +237,13 @@ const defaultSectionItems: SectionItem[] = [
                 kind: 'criterion',
                 name: 'Criteria #1',
                 isChecked: false,
-            },
-            {
+            }, {
                 id: 42,
                 sectionId: 4,
                 kind: 'criterion',
                 name: 'Criteria #2',
                 isChecked: false,
-            },
-            {
+            }, {
                 id: 43,
                 sectionId: 4,
                 kind: 'criterion',
@@ -283,15 +258,13 @@ const defaultSectionItems: SectionItem[] = [
                 kind: 'material',
                 name: 'File_Name_4_1.suffix',
                 description: 'Additional information',
-            },
-            {
+            }, {
                 id: 412,
                 sectionId: 4,
                 kind: 'material',
                 name: 'File_Name_4_2.suffix',
                 description: 'Additional information',
-            },
-            {
+            }, {
                 id: 413,
                 sectionId: 4,
                 kind: 'material',
@@ -299,8 +272,7 @@ const defaultSectionItems: SectionItem[] = [
                 description: 'Additional information',
             },
         ],
-    },
-    {
+    }, {
         id: 5,
         title: 'Section #5',
         deadline: 'November 22, 2020',
@@ -314,15 +286,13 @@ const defaultSectionItems: SectionItem[] = [
                 kind: 'criterion',
                 name: 'Criteria #1',
                 isChecked: false,
-            },
-            {
+            }, {
                 id: 52,
                 sectionId: 5,
                 kind: 'criterion',
                 name: 'Criteria #2',
                 isChecked: false,
-            },
-            {
+            }, {
                 id: 53,
                 sectionId: 5,
                 kind: 'criterion',
@@ -337,15 +307,13 @@ const defaultSectionItems: SectionItem[] = [
                 kind: 'material',
                 name: 'File_Name_5_1.suffix',
                 description: 'Additional information',
-            },
-            {
+            }, {
                 id: 512,
                 sectionId: 5,
                 kind: 'material',
                 name: 'File_Name_5_2.suffix',
                 description: 'Additional information',
-            },
-            {
+            }, {
                 id: 513,
                 sectionId: 5,
                 kind: 'material',
@@ -357,11 +325,11 @@ const defaultSectionItems: SectionItem[] = [
 ];
 
 const getDefaultOrderConfig = <TItem, TId>(items: any[], initialOrder: string = 'a'): [any[], string] => {
-    let config: any[] = [];
+    const config: any[] = [];
     let prevOrder = initialOrder;
 
     items.forEach((item, index) => {
-        let order = getOrderBetween(prevOrder, null);
+        const order = getOrderBetween(prevOrder, null);
         config[index] = { ...item };
         config[index].order = prevOrder;
         prevOrder = order;

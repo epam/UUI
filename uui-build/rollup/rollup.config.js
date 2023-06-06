@@ -1,27 +1,25 @@
-const {getCliArgValue} = require("../utils/cmdUtils")
-const path = require("path");
-const typescript = require("@rollup/plugin-typescript");
-const svgr = require("@svgr/rollup");
-const commonjs = require("@rollup/plugin-commonjs");
-const nodeResolve = require("@rollup/plugin-node-resolve");
-const replace = require('@rollup/plugin-replace')
-const { visualizer } = require("rollup-plugin-visualizer");
-const postCssDynamicImport = import("rollup-plugin-postcss-modules");
-//
-const {getExternalDeps} = require("./utils/moduleExtDependenciesUtils");
-const {getTsConfigFile} = require("./utils/moduleTsConfigUtils");
-const cssSourcemapPathTransformPlugin = require("./plugins/cssSourceMapTransform");
-const { onwarn } = require("./utils/rollupLoggerUtils");
-const { getSourceMapTransform } = require("./utils/moduleSourceMapsUtils");
-const { beforeRollupBuild } = require("./utils/beforeRollupBuild");
-const { readPackageJsonContentSync } = require("../utils/packageJsonUtils");
+const path = require('path');
+const typescript = require('@rollup/plugin-typescript');
+const svgr = require('@svgr/rollup');
+const commonjs = require('@rollup/plugin-commonjs');
+const nodeResolve = require('@rollup/plugin-node-resolve');
+const replace = require('@rollup/plugin-replace');
+const { visualizer } = require('rollup-plugin-visualizer');
 
-const EXTRACTED_CSS_FILE_NAME = "styles.css";
-const BUILD_OUTPUT_DIR = "build";
+const postCssDynamicImport = import('rollup-plugin-postcss-modules');
+//
+const { getExternalDeps } = require('./utils/moduleExtDependenciesUtils.js');
+const { getTsConfigFile } = require('./utils/moduleTsConfigUtils.js');
+const cssSourcemapPathTransformPlugin = require('./plugins/cssSourceMapTransform.js');
+const { onwarn } = require('./utils/rollupLoggerUtils.js');
+const { getSourceMapTransform } = require('./utils/moduleSourceMapsUtils.js');
+const { beforeRollupBuild } = require('./utils/beforeRollupBuild.js');
+const { readPackageJsonContentSync } = require('../utils/packageJsonUtils.js');
+
+const EXTRACTED_CSS_FILE_NAME = 'styles.css';
+const BUILD_OUTPUT_DIR = 'build';
 
 module.exports = { createRollupConfigForModule };
-
-const monoRepoRootRelativePath = getCliArgValue("--configMonorepoRootRelative") || '..'
 
 /**
  * Creates rollup config for the module.
@@ -36,13 +34,11 @@ const monoRepoRootRelativePath = getCliArgValue("--configMonorepoRootRelative") 
  * @returns {Promise<import('rollup').RollupOptions[]>}
  */
 async function createRollupConfigForModule(options) {
-    const isWatchDefault = !!process.argv.find(a => a === "--watch");
+    const isWatchDefault = !!process.argv.find((a) => a === '--watch');
     const moduleRootDirDefault = process.cwd();
     //
-    const { moduleRootDir = moduleRootDirDefault, indexFileRelativePath,
-        external, isWatch = isWatchDefault,
-        packageJsonTransform,
-        copyAsIs,
+    const {
+        moduleRootDir = moduleRootDirDefault, indexFileRelativePath, external, isWatch = isWatchDefault, packageJsonTransform, copyAsIs,
     } = options;
     const externalEffective = external ? external({ moduleRootDir }) : getExternalDeps({ moduleRootDir });
     const tsconfigFile = getTsConfigFile(moduleRootDir);
@@ -50,28 +46,34 @@ async function createRollupConfigForModule(options) {
     const { name: moduleName, version } = readPackageJsonContentSync(moduleRootDir);
     const moduleFolderName = path.basename(moduleRootDir);
     const outDir = `${moduleRootDir}/${BUILD_OUTPUT_DIR}`;
-    const jsSourceMapTransform = getSourceMapTransform({ type: "js", moduleFolderName, moduleName});
-    const cssSourceMapTransform = getSourceMapTransform({ type: "css", moduleFolderName, moduleName});
+    const jsSourceMapTransform = getSourceMapTransform({ type: 'js', moduleFolderName, moduleName });
+    const cssSourceMapTransform = getSourceMapTransform({ type: 'css', moduleFolderName, moduleName });
 
     // TODO: maybe we need to move it to plugin.
     await beforeRollupBuild({ moduleRootDir, packageJsonTransform, copyAsIs });
 
+    const getOutputParams = ({ file, format }) => {
+        return {
+            file,
+            format,
+            interop: 'auto',
+            sourcemap: true,
+            sourcemapPathTransform: jsSourceMapTransform,
+        };
+    };
+
     /** @type {import('rollup').RollupOptions} */
     const config = {
         input: indexFileRelativePath,
-        output: [{
-            file: `${outDir}/index.js`, format: "cjs", interop: "auto",
-            sourcemap: true, sourcemapPathTransform: jsSourceMapTransform,
-        }],
+        output: [getOutputParams({ file: `${outDir}/index.js`, format: 'cjs' }), getOutputParams({ file: `${outDir}/index.esm.js`, format: 'esm' })],
         external: externalEffective,
         plugins: [
             replace({
-                PACKAGE_VERSION: version,
+                __PACKAGE_VERSION__: `"${version}"`,
+                __DEV__: 'process.env.NODE_ENV !== "production"',
                 preventAssignment: true,
             }),
             nodeResolve({
-                // https://www.npmjs.com/package/@rollup/plugin-node-resolve
-                jail: path.resolve(moduleRootDir, monoRepoRootRelativePath),
                 preferBuiltins: false,
             }),
             commonjs(), // it's needed to import commonjs-only modules without "default" export (the only known example: "draft-js")
@@ -84,21 +86,27 @@ async function createRollupConfigForModule(options) {
                 declarationMap: true,
                 inlineSources: true,
                 noEmitOnError: !isWatch,
+                newLine: 'LF',
             }),
             svgr({
-                ref: true, exportType: "named", jsxRuntime: "classic",
+                ref: true,
+                exportType: 'named',
+                jsxRuntime: 'classic',
                 // list of plugins in "preset-default": https://github.com/svg/svgo/blob/cb1569b2215dda19b0d4b046842344218fd31f06/plugins/preset-default.js
-                svgoConfig: { plugins: [{ name: "preset-default", params: { overrides: { removeViewBox: false } } }] },
+                svgoConfig: { plugins: [{ name: 'preset-default', params: { overrides: { removeViewBox: false } } }] },
             }),
             postcss({
-                sourceMap: true, modules: { hashPrefix: moduleName },
-                extract: path.resolve(outDir, EXTRACTED_CSS_FILE_NAME), to: `${outDir}/${EXTRACTED_CSS_FILE_NAME}`,
+                sourceMap: true,
+                modules: { hashPrefix: moduleName },
+                autoModules: true,
+                extract: path.resolve(outDir, EXTRACTED_CSS_FILE_NAME),
+                to: `${outDir}/${EXTRACTED_CSS_FILE_NAME}`,
             }),
-            cssSourcemapPathTransformPlugin({outDir, extractedCssFileName: EXTRACTED_CSS_FILE_NAME, transform: cssSourceMapTransform }),
+            cssSourcemapPathTransformPlugin({ outDir, extractedCssFileName: EXTRACTED_CSS_FILE_NAME, transform: cssSourceMapTransform }),
             visualizer({
                 // visualizer - must be the last in the list.
                 projectRoot: moduleRootDir,
-                template: "treemap",
+                template: 'treemap',
                 filename: `./${BUILD_OUTPUT_DIR}/stats.html`,
                 gzipSize: true,
                 sourcemap: true,

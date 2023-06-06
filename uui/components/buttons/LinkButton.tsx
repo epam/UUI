@@ -1,23 +1,27 @@
+import * as types from '../types';
 import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
+import css from './LinkButton.module.scss';
 import { systemIcons } from '../../icons/icons';
 import { getIconClass } from './helper';
-import * as types from '../types';
-import css from './LinkButton.scss';
-import '../../assets/styles/variables/buttons/linkButton.scss';
 
 const defaultSize = '36';
+export type LinkButtonColorType = 'primary' | 'secondary' | 'contrast';
+export const allLinkButtonColors: LinkButtonColorType[] = ['primary', 'secondary', 'contrast'];
 
 export interface LinkButtonMods {
     size?: types.ControlSize | '42';
+    color?: LinkButtonColorType;
 }
 
-function applyLinkButtonMods(mods: LinkButtonMods & ButtonProps) {
+export type LinkButtonProps = LinkButtonMods & ButtonProps;
+
+function applyLinkButtonMods(mods: LinkButtonProps) {
     return [
-        'link-button-vars',
         css.root,
         css['size-' + (mods.size || defaultSize)],
         ...getIconClass(mods),
+        `link-button-${mods.color || 'primary'}`,
     ];
 }
 
