@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Static filter to be applied to the request results. It is merged with a filter from a state.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

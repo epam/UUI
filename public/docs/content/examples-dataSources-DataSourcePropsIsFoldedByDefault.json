@@ -1,0 +1,37 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "The ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "isFoldedByDefault",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " callback provides control over the default state of the folded elements.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

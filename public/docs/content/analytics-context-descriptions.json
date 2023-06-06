@@ -132,7 +132,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Also, we provide manual event tracking for user actions like clicks, input changes, etc. You can configure it via corresponding props in components, for example - ",
+            "text": "Also, we provide helpers to simplify sending events for user actions like clicks, input changes, etc. You can configure it via corresponding props in components, for example - ",
             "marks": []
           },
           {

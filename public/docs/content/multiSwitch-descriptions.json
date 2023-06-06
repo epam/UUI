@@ -11,7 +11,37 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Multiswitch is",
+            "text": "MultiSwitch",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " is",
             "marks": [
               {
                 "object": "mark",

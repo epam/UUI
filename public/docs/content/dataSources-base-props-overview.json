@@ -1,0 +1,804 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "table",
+            "data": {
+              "cellSizes": [
+                199.17083740234375,
+                465.61224365234375,
+                259.08740234375
+              ]
+            },
+            "nodes": [
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_header_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Property",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_header_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Description",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_header_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Default",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "getById",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Getter of the record's ID.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Returns a value of the record's 'id' property",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": ".",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "getParentId",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Getter of the record's parent ID.",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": " ",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": "It is used for rendering tree data structures. ",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Returns a value of the record's 'parentId' property",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": ".",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "complexIds",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Enables stringifying IDs. It is used when IDs are not able to act as javascript Map keys (they are represented as objects or arrays).",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "false",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "rowOptions",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Specifies if rows are selectable, editable, checkable, draggable, clickable, and more.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "getRowOptions",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "For each row specifies if it is selectable, editable, checkable, draggable, clickable, and more.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "isFoldedByDefault",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Specifies if some row is folded/unfolded by default. ",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Each row is folded by default.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "cascadeSelection",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
+                            "marks": []
+                          }
+                        ]
+                      },
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "false",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": ": All nodes are selected independently (default).\n",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "true or 'explicit'",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": ": Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.\n",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "'implicit'",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": ": Selecting a parent node means that all children are considered checked. The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent, its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.",
+                            "marks": []
+                          }
+                        ]
+                      },
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "false",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "selectAll",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Enables/disables ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "'select all'",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": " checkbox.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "true",
+                            "marks": []
+                          }
+                        ]
+                      },
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
