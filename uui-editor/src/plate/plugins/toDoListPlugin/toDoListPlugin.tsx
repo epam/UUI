@@ -7,6 +7,9 @@ import {
     getBlockAbove,
     createTodoListPlugin,
     ELEMENT_TODO_LI,
+    getAboveNode,
+    insertEmptyElement,
+    deleteForward,
 } from '@udecode/plate';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
@@ -15,6 +18,8 @@ import { isPluginActive } from '../../../helpers';
 import { ReactComponent as ToDoIcon } from '../../icons/to-do.svg';
 
 import { ToDoItem } from './ToDoItem';
+import { getBlockAboveByType } from '../../utils/getAboveBlock';
+import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 
 const TODO_ELEMENT_KEY = 'toDoItem';
 
@@ -24,7 +29,21 @@ export const toDoListPlugin = () => {
         overrideByKey: {
             [ELEMENT_TODO_LI]: {
                 type: TODO_ELEMENT_KEY,
-                component: ToDoItem
+                component: ToDoItem,
+                handlers: {
+                    onKeyDown: (editor) => (e) => {
+                        if (!getBlockAboveByType(editor, [TODO_ELEMENT_KEY])) return;
+
+                        if (e.key === 'Enter') {
+                            const [entries] = getAboveNode(editor);
+                            const textExist = entries.children.some(item => !!item.text);
+                            if (!textExist) {
+                                deleteForward(editor);
+                                insertEmptyElement(editor, PARAGRAPH_TYPE);
+                            }
+                        }
+                    },
+                },
             }
         }
     });
