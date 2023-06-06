@@ -821,23 +821,11 @@ describe('PickerInput', () => {
 
         fireEvent.click(dom.input);
 
-        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-        
-        act(() => {
-            jest.useFakeTimers();
-        });
+        expect(screen.queryByRole('dialog')).toBeNull();
 
         fireEvent.change(dom.input, { target: { value: 'A' } });
 
-        act(() => {
-            jest.runAllTimers();
-        });
-
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
-
-        act(() =>{
-            jest.useRealTimers();
-        });
+        expect(await screen.findByRole('dialog')).toBeInTheDocument();
     });
     
     it('should use modal edit mode', async () => {
