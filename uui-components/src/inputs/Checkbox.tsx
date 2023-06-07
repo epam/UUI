@@ -62,7 +62,6 @@ export class Checkbox extends React.Component<CheckboxProps> {
                 { ...this.props.rawProps }
             >
                 <div
-                    contentEditable={ false }
                     className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }
                     onFocus={ this.props.onFocus }
                     onBlur={ this.props.onBlur }

@@ -24,6 +24,7 @@ export function ToDoItem(props: any): any {
                     isReadonly={ isReadonly }
                     isDisabled={ false }
                     value={ checked }
+                    rawProps={ { contentEditable: false } }
                     onValueChange={ (value) => {
                         if (isReadonly) return;
                         const path = findNodePath(editor, element);
