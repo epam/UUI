@@ -248,6 +248,10 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         const searchPosition = this.getSearchPosition();
         const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRowsCount);
         const disableClear = forcedDisabledClear || propDisableClear;
+        let searchValue: string | undefined = this.getSearchValue();
+        if (this.isSingleSelect() && selectedRows[0]?.isLoading) {
+            searchValue = undefined;
+        }
 
         return {
             isSingleLine,
@@ -277,7 +281,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             toggleDropdownOpening: this.toggleDropdownOpening,
             closePickerBody: this.closePickerBody,
             rawProps: this.props.rawProps?.input,
-            value: this.getSearchValue(),
+            value: searchValue,
             cx: inputCx,
         };
     }
