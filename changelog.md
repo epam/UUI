@@ -3,7 +3,7 @@
 **What's New**
 
 **What's Fixed**
-* [PickerInput]: fixed `unknown` in a `single` selection mode while data is loading in `AsyncDataSource`
+* [PickerInput]: fixed `unknown` in a `single` selection mode while data is loading in `AsyncDataSource` and removed error of missing ids if data is still loading
 
 
 # 5.0.0 - xx.xx.2023
