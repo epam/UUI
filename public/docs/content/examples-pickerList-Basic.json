@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can configure the number of items to shown initially when nothing is selected via ",
+            "text": "You can configure the number of items to be shown initially when nothing is selected via ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop; by default it 10.",
+            "text": " prop; by default is 10.",
             "marks": []
           }
         ]

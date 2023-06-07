@@ -111,17 +111,23 @@ async function setupPickerListForTest<TItem = TestItemType, TId = number>(params
             </>
         ),
     );
+            
+    const [showAllToggler] = (await screen.findAllByRole('button'))
+        .filter((btn) => btn.textContent?.trim()
+            .toLocaleLowerCase()
+            .includes('show all'));
 
     return {
         setProps,
         result,
         mocks,
+        dom: { showAllToggler },
     };
 }
 
 describe('PickerInput', () => {
     it('should render with minimum props', async () => {
-        await setupPickerListForTest({
+        const { dom } = await setupPickerListForTest({
             value: undefined,
             selectionMode: 'single',
             entityName: 'Language Level',
