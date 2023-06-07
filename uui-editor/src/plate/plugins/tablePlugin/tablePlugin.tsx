@@ -67,7 +67,7 @@ import { TableRow } from "./TableRow";
 import { TableCell } from "./TableCell";
 
 import tableCSS from './Table.module.scss';
-import { useFocused, useSelected } from 'slate-react';
+import { useFocused, useReadOnly, useSelected } from 'slate-react';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { ExtendedTTableCellElement } from './types';
 
@@ -91,6 +91,7 @@ const empt = {
 
 const TableRenderer = (props: any) => {
     const editor = usePlateEditorState();
+    const isReadonly = useReadOnly();
     const { cell, row } = getTableEntries(editor) || {};
     const ref = useRef(null);
 
@@ -108,12 +109,12 @@ const TableRenderer = (props: any) => {
     const isSelected = useSelected();
     useEffect(() => {
         const block = getBlockAbove(editor);
-        setShowToolbar(isSelected && isFocused && block?.length && block[0].type === 'table');
+        setShowToolbar(!isReadonly && isSelected && isFocused && block?.length && block[0].type === 'table');
     }, [isSelected, isFocused]);
 
-    useEffect(() => setShowToolbar(hasEntries), [hasEntries]);
+    useEffect(() => setShowToolbar(!isReadonly && hasEntries), [hasEntries]);
 
-    const onChangeDropDownValue = useCallback((value: boolean) => () => setShowToolbar(value), []);
+    const onChangeDropDownValue = useCallback((value: boolean) => () => setShowToolbar(!isReadonly && value), []);
 
     const mergeCells = () => {
         const rowArray: any[] = [];
