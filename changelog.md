@@ -1,3 +1,11 @@
+# 5.x.x - xx.xx.2023
+
+**What's New**
+
+**What's Fixed**
+* [PickerInput]: fixed `unknown` in a `single` selection mode while data is loading in `AsyncDataSource`
+
+
 # 5.0.0 - xx.xx.2023
 
 **New themes support**
