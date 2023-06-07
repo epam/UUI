@@ -24,6 +24,12 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
+                rawProps={ {
+                    'data-testid': rowProps.isLoading
+                        ? `uui-PickerModal-loading-item-${rowProps.rowKey}`
+                        : `uui-PickerModal-item-${rowProps.rowKey}`, // TODO: discuss
+                    ...rowProps.rawProps,
+                } }
                 borderBottom="none"
                 padding="24"
                 size="36"

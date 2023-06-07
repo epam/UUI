@@ -85,6 +85,14 @@ const mockTreeLikeDataSourceAsync = new AsyncDataSource<TestTreeItem, number, an
 
 type PickerListComponentProps<TItem, TId> = PickerListBaseProps<TItem, TId> & PickerListProps<TItem, TId>;
 
+const getModalToggler = async () => {
+    const [showAllToggler] = (await screen.findAllByRole('button'))
+        .filter((btn) => btn.textContent?.trim()
+            .toLowerCase()
+            .includes('show all'));
+    return showAllToggler;
+};
+
 async function setupPickerListForTest<TItem = TestItemType, TId = number>(params: Partial<PickerListComponentProps<TItem, TId>>) {
     const { result, mocks, setProps } = await setupComponentForTest<PickerListComponentProps<TItem, TId>>(
         (context): PickerListComponentProps<TItem, TId> => {
@@ -111,29 +119,32 @@ async function setupPickerListForTest<TItem = TestItemType, TId = number>(params
             </>
         ),
     );
-            
-    const [showAllToggler] = (await screen.findAllByRole('button'))
-        .filter((btn) => btn.textContent?.trim()
-            .toLocaleLowerCase()
-            .includes('show all'));
 
     return {
         setProps,
         result,
         mocks,
-        dom: { showAllToggler },
     };
 }
 
-describe('PickerInput', () => {
+describe('PickerList', () => {
     it('should render with minimum props', async () => {
-        const { dom } = await setupPickerListForTest({
-            value: undefined,
+        await setupPickerListForTest({
             selectionMode: 'single',
-            entityName: 'Language Level',
-            entityPluralName: 'Multiple Language Levels',
         });
         
-        // expect(dom.input.getAttribute('placeholder')?.trim()).toEqual('Please select Language Level');
+        const listItems = await screen.findAllByTestId(/uui-PickerListItem/);
+        expect(listItems.length).toEqual(10);
+        
+        const toggler = await getModalToggler();
+
+        fireEvent.click(toggler);
+        
+        const modal = await screen.findByRole('modal');
+        expect((await within(modal).findAllByTestId(/uui-PickerModal-loading-item/)).length).toBeGreaterThan(0);
+
+        const modalListItems = await within(modal).findAllByTestId(/uui-PickerModal-item/);
+        
+        expect(modalListItems.length).toBe(11);
     });
 });
