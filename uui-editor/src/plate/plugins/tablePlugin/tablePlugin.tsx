@@ -72,7 +72,7 @@ import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { ExtendedTTableCellElement } from './types';
 
 const empt = {
-    "data": { style: 'none', colSpan: 0, rowSpan: 1, },
+    "data": { merged: true, colSpan: 0, rowSpan: 1, },
     "type": "table_cell",
     colSpan: 0,
     rowSpan: 0,
@@ -123,7 +123,12 @@ const TableRenderer = (props: any) => {
         // define colSpan
         const colSpan = cellEntries.reduce((acc, [data, path]: any) => {
             if (path[2] === cellEntries[0][1][2]) {
-                return acc + (data.data?.colSpan ?? 1);
+                const cellColSpan =
+                    (data?.attributes as any)?.colspan ??
+                    data.data?.colSpan ??
+                    data.colSpan ??
+                    1;
+                return acc + cellColSpan;
             }
             return acc;
         }, 0);
@@ -133,11 +138,23 @@ const TableRenderer = (props: any) => {
         const rowSpan = cellEntries.reduce((acc, [data, path]: any) => {
             const curRowCounted = alreadyCounted.includes(path[2]);
             if (path[2] !== cellEntries[0][1][2] && !curRowCounted) {
-                alreadyCounted.push(path[2])
-                return acc + (data.data?.rowSpan ?? 1);
+                alreadyCounted.push(path[2]);
+                const cellRowSpan =
+                    (data?.attributes as any)?.rowspan ??
+                    data.data?.rowSpan ??
+                    data.rowSpan ??
+                    1;
+                return acc + cellRowSpan;
             }
             return acc;
         }, 1);
+
+        const x = cellEntries.map(([data]: any) => {
+            console.log('data', data, data?.children[0]?.children[0]?.text);
+            return data?.children[0]?.children[0]?.text
+        });
+
+        console.log('x', x.join(' '));
 
         const mergedCol = {
             "data": { colSpan, rowSpan },
@@ -148,7 +165,7 @@ const TableRenderer = (props: any) => {
                     "type": "paragraph",
                     "children": [
                         {
-                            "text": cellEntries.map(([data]: any) => data?.children[0]?.children[0]?.text).join(' '),
+                            text: x.join(' '),
                         },
                     ],
                 },
@@ -165,10 +182,13 @@ const TableRenderer = (props: any) => {
             }
         });
 
+        console.log('cellEntries', cellEntries);
+
         Object.values(cols).forEach((paths: any, i) => {
             paths?.forEach((path: [], j: number) => {
                 if (i === 0 && j === paths.length - 1) {
-                    setNodes(editor, mergedCol, { at: paths[j] }); // setting root
+                    removeNodes(editor, { at: paths[j] });
+                    insertElements(editor, mergedCol, { at: paths[j] }); // setting root
                     return;
                 }
                 setNodes(editor, empt, { at: paths[j] }); // set display: none to all others
@@ -307,7 +327,6 @@ const TableRenderer = (props: any) => {
         />
     );
 };
-
 
 const withOurNormalizeTable = <
     V extends Value = Value,

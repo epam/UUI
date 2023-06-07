@@ -25,16 +25,6 @@ export function Toolbar(props: ToolbarProps): any {
 
     const virtualReferenceElement = (): VirtualElement => ({
         getBoundingClientRect(): DOMRect {
-            if(props.isTable) {
-                const [selectedNode] = findNode(editor, {
-                    at: Range.start(editor.selection),
-                    match: { type: getCellTypes(editor) },
-                });
-
-                const domNode = toDOMNode(editor, selectedNode);
-                return domNode.getBoundingClientRect();
-            }
-
             return getSelectionBoundingClientRect() as DOMRect;
         },
     });
