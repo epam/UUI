@@ -16,7 +16,7 @@ export function TableHeaderCell(props: any) {
     // TODO: think about, should we store colSpan in element
     element.colSpan = appliedSpans.colSpan;
 
-    if (!props.editor) {
+    if (!props.editor || element?.data?.merged) {
         return null;
     }
 

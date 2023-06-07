@@ -8,6 +8,24 @@
  * https://github.com/react-page/react-page/blob/b6c83a8650cfe9089e0c3eaf471ab58a0f7db761/packages/plugins/content/slate/src/migrations/v004.ts
  */
 
+const migrateTable = (oldTable: any) => {
+    oldTable.nodes.forEach((row: any) => {
+        // const newRowNodes: any[] = [];
+        row.nodes.forEach((cell: any) => {
+            if (cell.data?.style === "none") {
+                cell = {
+                    ...cell,
+                    data: { ...(cell.data || {}), merged: true },
+                };
+                // newRowNodes.push(cell);
+            }
+        });
+
+        // row.nodes = newRowNodes;
+    });
+    return oldTable;
+};
+
 const migrateTextNode = (oldNode: any) => {
     return {
         text: oldNode.text,
@@ -24,6 +42,10 @@ const migrateTextNode = (oldNode: any) => {
 
 const migrateElementNode = (node: any) => {
     const mediaTypes = ["image", "iframe"];
+
+    if (node.type === "table") {
+        node = migrateTable(node);
+    }
 
     return {
         data: node.data ?? {},
