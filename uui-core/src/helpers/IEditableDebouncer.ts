@@ -34,7 +34,10 @@ const IEditableDebouncerImpl = <T>(props: IEditableDebouncerProps<T>) => {
     const context = useUuiContext();
 
     useEffect(() => {
-        if (props.value !== lastSentValue.current) setState({ value: props.value });
+        if ((props.value !== lastSentValue.current)) {
+            setState({ value: props.value });
+            lastSentValue.current = props.value;
+        }
     }, [props.value]);
 
     const debouncedOnValueChange = useMemo(() => {
