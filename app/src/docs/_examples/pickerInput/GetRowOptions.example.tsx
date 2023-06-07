@@ -6,7 +6,9 @@ import { TApi } from '../../../data';
 
 export default function GetRowOptionsExample() {
     const svc = useUuiContext<TApi>();
-    const [location, setLocation] = useState<string>();
+    // const [location, setLocation] = useState<string>();
+    const [productsID, setProductsID] = useState<number>(3);
+
     const [productsIDs, setProductsIDs] = useState<number[]>([3]);
 
     const productsDataSource = useAsyncDataSource<Product, Product['ProductID'], unknown>({
@@ -14,18 +16,18 @@ export default function GetRowOptionsExample() {
         getId: (item) => item.ProductID,
     }, []);
 
-    const locationsDataSource = useAsyncDataSource<Location, string, unknown>(
-        {
-            api: () => svc.api.demo.locations({}).then(({ items }) => items),
-            getId: (item) => item.id,
-        },
-        [],
-    );
+    // const locationsDataSource = useAsyncDataSource<Location, string, unknown>(
+    //     {
+    //         api: () => svc.api.demo.locations({}).then(({ items }) => items),
+    //         getId: (item) => item.id,
+    //     },
+    //     [],
+    // );
 
     return (
         <FlexCell width={ 612 }>
             <FlexRow spacing="12">
-                <PickerInput<Location, string>
+                {/* <PickerInput<Location, string>
                     dataSource={ locationsDataSource }
                     value={ location }
                     onValueChange={ setLocation }
@@ -35,6 +37,22 @@ export default function GetRowOptionsExample() {
                     }) }
                     getName={ (item) => item.name }
                     entityName="Location"
+                    selectionMode="single"
+                    valueType="id"
+                /> */}
+                <PickerInput<Product, number>
+                    dataSource={ productsDataSource }
+                    value={ productsID }
+                    onValueChange={ setProductsID }
+                    getRowOptions={ (item) => ({
+                        isDisabled: item.MakeFlag === true,
+                        checkbox: {
+                            isDisabled: item.MakeFlag === true,
+                            isVisible: true,
+                        },
+                    }) }
+                    getName={ (item) => item.Name }
+                    entityName="Product"
                     selectionMode="single"
                     valueType="id"
                 />
