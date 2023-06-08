@@ -32,6 +32,7 @@ import {
     createNode,
     TTableElement,
     createTablePlugin,
+    KEY_DESERIALIZE_HTML,
 } from "@udecode/plate";
 import cx from "classnames";
 import { Dropdown } from '@epam/uui-components';
@@ -59,12 +60,13 @@ import { TableRow } from "./TableRow";
 import { TableCell } from "./TableCell";
 
 import tableCSS from './Table.module.scss';
-import { useFocused, useSelected } from 'slate-react';
+import { useFocused, useReadOnly, useSelected } from 'slate-react';
 import { updateTableStructure } from './util';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 
 const TableRenderer = (props: any) => {
     const editor = usePlateEditorState();
+    const isReadonly = useReadOnly();
     const { cell, row } = getTableEntries(editor) || {};
     const ref = useRef(null);
 
@@ -83,12 +85,12 @@ const TableRenderer = (props: any) => {
     const isSelected = useSelected();
     useEffect(() => {
         const block = getBlockAbove(editor);
-        setShowToolbar(isSelected && isFocused && block?.length && block[0].type === 'table');
+        setShowToolbar(!isReadonly && isSelected && isFocused && block?.length && block[0].type === 'table');
     }, [isSelected, isFocused]);
 
-    useEffect(() => setShowToolbar(hasEntries), [hasEntries]);
+    useEffect(() => setShowToolbar(!isReadonly && hasEntries), [hasEntries]);
 
-    const onChangeDropDownValue = useCallback((value: boolean) => () => setShowToolbar(value), []);
+    const onChangeDropDownValue = useCallback((value: boolean) => () => setShowToolbar(!isReadonly && value), []);
 
     const mergeCells = () => {
         const rowArray: any[] = [];
@@ -97,7 +99,12 @@ const TableRenderer = (props: any) => {
         // define colSpan
         const colSpan = cellEntries.reduce((acc, [data, path]: any) => {
             if (path[2] === cellEntries[0][1][2]) {
-                return acc + (data.data?.colSpan || 1);
+                const cellColSpan =
+                    (data?.attributes as any)?.colspan ??
+                    data.data?.colSpan ??
+                    data.colSpan ??
+                    1;
+                return acc + cellColSpan;
             }
             return acc;
         }, 0);
@@ -107,8 +114,14 @@ const TableRenderer = (props: any) => {
         const rowSpan = cellEntries.reduce((acc, [data, path]: any) => {
             const curRowCounted = alreadyCounted.includes(path[2]);
             if (path[2] !== cellEntries[0][1][2] && !curRowCounted) {
-                alreadyCounted.push(path[2])
-                return acc + (data.data?.rowSpan || 1);
+                alreadyCounted.push(path[2]);
+
+                const cellRowSpan =
+                    (data?.attributes as any)?.rowspan ??
+                    data.data?.rowSpan ??
+                    data.rowSpan ??
+                    1;
+                return acc + cellRowSpan;
             }
             return acc;
         }, 1);
@@ -290,6 +303,20 @@ export const tablePlugin = () => createTablePlugin({
         [ELEMENT_TABLE]: {
             type: 'table',
             component: TableRenderer,
+            inject: {
+                pluginsByKey: {
+                    [KEY_DESERIALIZE_HTML]: {
+                        editor: {
+                            insertData: {
+                                transformFragment: (fragment) => {
+                                    // wrap into paragraph pasted tables docx content
+                                    return [{ type: PARAGRAPH_TYPE, children: fragment }, createNode()];
+                                }
+                            },
+                        },
+                    },
+                },
+            },
         },
         [ELEMENT_TR]: {
             type: 'table_row',
