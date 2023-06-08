@@ -23,6 +23,9 @@ export function PickerListItem<TItem, TId>(props: PickerListItemProps<TItem, TId
         component = (
             <Checkbox
                 { ...props.checkbox }
+                rawProps={ {
+                    'data-testid': `uui-PickerListItem-checkbox${props.isChecked ? '-checked-' : '-'}${props.rowKey}`,
+                } }
                 isDisabled={ props.isLoading || props.checkbox.isDisabled || props.isDisabled }
                 label={ label }
                 value={ props.isChecked }
@@ -43,7 +46,7 @@ export function PickerListItem<TItem, TId>(props: PickerListItemProps<TItem, TId
     return (
         <div
             className={ css.row }
-            data-testid={ `uui-PickerListItem-${props.rowKey}` }
+            data-testid={ `uui-PickerListItem${props.isLoading ? '-loading-' : '-'}row-${props.rowKey}` }
         >
             {component}
         </div>
