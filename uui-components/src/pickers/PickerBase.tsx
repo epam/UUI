@@ -79,14 +79,6 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         return [];
     };
 
-    getValueFromState = (state: DataSourceState) => {
-        if (this.isSingleSelect()) {
-            return state.selectedId;
-        } else {
-            return state.checked;
-        }
-    };
-
     protected handleSelectionValueChange = (newValue: any) => {
         this.props.onValueChange(newValue);
 
