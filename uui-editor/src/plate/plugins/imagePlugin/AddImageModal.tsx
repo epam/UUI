@@ -35,15 +35,16 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
             <ModalWindow >
                 <ModalHeader title="Add image" onClose={ abort } />
                 <FlexRow cx={ css.inputWrapper }>
-                    <LabeledInput  label='Image url' >
-                        <TextInput value={ imageURL }  onValueChange={ (newVal) => setImageURL(newVal) } autoFocus />
+                    <LabeledInput label='Image url' >
+                        <TextInput value={ imageURL } onValueChange={ (newVal) => setImageURL(newVal) } autoFocus />
                     </LabeledInput>
                 </FlexRow>
                 <ModalFooter borderTop >
                     <UploadFileToggler
                         render={ (props) => <Button { ...props } caption='Select file' /> }
-                        onFilesAdded={ (acceptedFiles: any) => {
-                            setImageURL(acceptedFiles[0].name);
+                        onFilesAdded={ (acceptedFiles: File[]) => {
+                            const urlName = acceptedFiles.map(({ name }) => name).join('; ');
+                            setImageURL(urlName);
                             setFiles(acceptedFiles);
                         } }
                         accept='image/*'

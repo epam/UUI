@@ -8,10 +8,12 @@ router.post('/uploadFileMock', function uploadFileMock(req, res) {
     const file = req.files.file;
 
     let fileType = 'attachment';
-    if (file.name.search(/pdf$/) > -1) {
+    const pdfFileRegex = /pdf$/i;
+    if (file.name.search(pdfFileRegex) > -1) {
         fileType = 'iframe';
     }
-    if (file.name.search(/svg|png|jpg$/) > -1) {
+    const imageRegex = /svg|png|jpg|heic|avif$/i;
+    if (file.name.search(imageRegex) > -1) {
         fileType = 'image';
     }
 
