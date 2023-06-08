@@ -22,8 +22,26 @@ const migrateTextNode = (oldNode: any) => {
     };
 };
 
+const migrateTable = (oldTable: any) => {
+    oldTable.nodes.forEach((row: any) => {
+        const newRowNodes: any[] = [];
+        row.nodes.forEach((cell: any) => {
+            if(cell.data?.style !== 'none') {
+                newRowNodes.push(cell);
+            }
+        });
+
+        row.nodes = newRowNodes;
+    });
+    return oldTable;
+}
+
 const migrateElementNode = (node: any) => {
     const mediaTypes = ["image", "iframe"];
+
+    if(node.type === 'table') {
+        node = migrateTable(node);
+    }
 
     return {
         data: node.data ?? {},

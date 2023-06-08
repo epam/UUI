@@ -17,7 +17,7 @@ export const updateTableStructure = (tableElem: TTableElement) => {
         rowElem.children.forEach((current, colIndex) => {
             const cellElem = current as ExtendedTTableCellElement;
             const cellColSpan =
-                (cellElem?.attributes as any)?.cellspan ||
+                (cellElem?.attributes as any)?.colspan ||
                 cellElem.data?.colSpan ||
                 cellElem.colSpan ||
                 1;
@@ -73,7 +73,8 @@ export const updateTableStructure = (tableElem: TTableElement) => {
                 const shiftFrom = colIndex;
                 const shiftRowDepth = cellRowSpan; // vertical depth to shift
 
-                if (shifts[colIndex]) {
+                const hasActualShift = shifts[colIndex]?.length;
+                if (hasActualShift) {
                     // count up here if already exists
                     shifts[colIndex] = [
                         shiftFrom,
@@ -101,21 +102,21 @@ export const updateTableStructure = (tableElem: TTableElement) => {
         });
 
         // count down vertical shifts
-        shifts.map((sh) => {
+        shifts.forEach((sh, index) => {
             if (!sh?.length) {
                 return;
             }
+
             // [rowSpan] depth ended
             if (sh[1] < 2) {
-                return;
+                shifts[index] = [];
             }
 
             // skip count down when row hasn't changed yet
             // (basically skipping first iteration here)
             if (sh[2] < rowIndex) {
-                return [sh[0], --sh[1]];
+                --sh[1];
             }
-            return sh;
         });
     });
 
