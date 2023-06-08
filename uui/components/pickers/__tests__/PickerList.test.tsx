@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource, AsyncDataSource, CascadeSelection, IDataSource } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, act, waitFor,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, act, waitFor, prettyDOM,
 } from '@epam/uui-test-utils';
 import { Modals, PickerListBaseProps } from '@epam/uui-components';
 import { Button, DataPickerRow, FlexCell, PickerItem, Text } from '@epam/promo';
@@ -133,7 +133,7 @@ describe('PickerList', () => {
             selectionMode: 'single',
         });
         
-        const listItems = await screen.findAllByTestId(/uui-PickerListItem/);
+        const listItems = await screen.findAllByTestId(/uui-PickerListItem-row/);
         expect(listItems.length).toEqual(10);
         
         const toggler = await getModalToggler();
@@ -146,5 +146,130 @@ describe('PickerList', () => {
         const modalListItems = await within(modal).findAllByTestId(/uui-PickerModal-item/);
         
         expect(modalListItems.length).toBe(11);
+    });
+    
+    describe('maxDefaultItems & maxTotalItems', () => {
+        it('should render maxDefaultItems initially', async () => {
+            const maxDefaultItems = 5;
+            await setupPickerListForTest({
+                selectionMode: 'single',
+                maxDefaultItems,
+            });
+            
+            const listItems = await screen.findAllByTestId(/uui-PickerListItem-row/);
+            expect(listItems.length).toEqual(maxDefaultItems);
+        });
+    
+        it('should render 10 items initially by default', async () => {
+            await setupPickerListForTest({
+                selectionMode: 'single',
+            });
+            
+            const listItems = await screen.findAllByTestId(/uui-PickerListItem-row/);
+            expect(listItems.length).toEqual(10);
+        });
+    
+        it('should render maxTotalItems', async () => {
+            const maxTotalItems = 5;
+            await setupPickerListForTest({
+                selectionMode: 'single',
+                maxTotalItems,
+            });
+            
+            const listItems = await screen.findAllByTestId(/uui-PickerListItem-row/);
+            expect(listItems.length).toEqual(maxTotalItems);
+        });
+        
+        it('should render maxTotalItems items, when it is less then maxDefaultItems', async () => {
+            const maxTotalItems = 5;
+            await setupPickerListForTest({
+                selectionMode: 'single',
+                maxTotalItems,
+                maxDefaultItems: 10,
+            });
+            
+            const listItems = await screen.findAllByTestId(/uui-PickerListItem-row/);
+            expect(listItems.length).toEqual(maxTotalItems);
+        });
+            
+        it('should render maxDefaultItems items, when it is less then maxTotalItems', async () => {
+            const maxTotalItems = 15;
+            const maxDefaultItems = 5;
+            await setupPickerListForTest({
+                selectionMode: 'single',
+                maxTotalItems,
+                maxDefaultItems,
+            });
+            
+            const listItems = await screen.findAllByTestId(/uui-PickerListItem-row/);
+            expect(listItems.length).toEqual(maxDefaultItems);
+        });
+    
+        it('should render maxDefaultItems elements if selected items count is less then maxDefaultItems', async () => {
+            const maxTotalItems = 15;
+            const maxDefaultItems = 5;
+            const value = [2];
+            await setupPickerListForTest<TestItemType, number>({
+                value,
+                selectionMode: 'multi',
+                maxTotalItems,
+                maxDefaultItems,
+            });
+            
+            const listItems = await screen.findAllByTestId(/uui-PickerListItem-row/);
+            expect(listItems.length).toEqual(maxDefaultItems);
+            
+            const checked = listItems
+                .map((item) => within(item).queryByTestId(/uui-PickerListItem-checkbox-checked/))
+                .filter(Boolean);
+            expect(checked).toHaveLength(value.length);
+        });
+
+        it('should render maxTotalItems elements if selected items count is more then maxTotalItems', async () => {
+            const maxTotalItems = 5;
+            const maxDefaultItems = 2;
+            const value = [2];
+            await setupPickerListForTest<TestItemType, number>({
+                value,
+                selectionMode: 'multi',
+                maxTotalItems,
+                maxDefaultItems,
+            });
+            
+            const listItems = await screen.findAllByTestId(/uui-PickerListItem-row/);
+            expect(listItems.length).toEqual(maxDefaultItems);
+            
+            const checked = listItems
+                .map((item) => within(item).queryByTestId(/uui-PickerListItem-checkbox-checked/))
+                .filter(Boolean);
+            expect(checked).toHaveLength(value.length);
+            
+            const toggler = await getModalToggler();
+
+            fireEvent.click(toggler);
+            
+            const modal = await screen.findByRole('modal');
+            expect((await within(modal).findAllByTestId(/uui-PickerModal-loading-item/)).length).toBeGreaterThan(0);
+
+            const modalListItems = await within(modal).findAllByTestId(/uui-PickerModal-item/);
+            expect(modalListItems.length).toBe(11);
+            
+            const [, ...rest] = await modalListItems.map((item) => within(item).getByRole('checkbox'));
+            
+            rest.forEach((checkbox) => {
+                fireEvent.click(checkbox);
+                expect(checkbox).toBeChecked();
+            });
+
+            const select = await within(modal).findByRoleAndText({ role: 'button', text: 'Select' });
+            fireEvent.click(select);
+            
+            expect(modal).not.toBeInTheDocument();
+             
+            // screen.debug(undefined, Infinity);
+
+            const listItems2 = await screen.findAllByTestId(/uui-PickerListItem-row/);
+            expect(listItems2.length).toEqual(maxTotalItems);
+        });
     });
 });
