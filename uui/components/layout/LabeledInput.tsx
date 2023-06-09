@@ -1,7 +1,7 @@
 import * as types from '../types';
 import { withMods } from '@epam/uui-core';
 import { LabeledInput as uuiLabeledInput, LabeledInputProps } from '@epam/uui-components';
-import { Tooltip } from '../overlays';
+import { Tooltip } from '../overlays/Tooltip';
 import { systemIcons } from '../../icons/icons';
 import css from './LabeledInput.module.scss';
 
