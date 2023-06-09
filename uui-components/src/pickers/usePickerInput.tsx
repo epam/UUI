@@ -1,8 +1,7 @@
 import React, { useMemo, useState, useRef, useEffect } from 'react';
 import { Modifier } from 'react-popper';
-import { DropdownBodyProps, DataRowProps, isMobile, mobilePopperModifier, IDropdownToggler, DataSourceListProps, Lens } from '@epam/uui-core';
+import { DropdownBodyProps, DataRowProps, isMobile, mobilePopperModifier, IDropdownToggler, Lens, PickerFooterProps } from '@epam/uui-core';
 import { PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps, applyValueToDataSourceState, PickerInputBaseProps } from './index';
-import { Dropdown } from '../overlays';
 import { i18n } from '../i18n';
 import { getMaxItems } from './helpers';
 import { usePicker } from './usePicker';
@@ -10,13 +9,11 @@ import { usePickerState } from './usePickerState';
 
 const initialRowsVisible = 20; /* estimated, with some reserve to allow start scrolling without fetching more data */
 
-type PickerInputBaseFn<TItem, TId, TProps> = PickerInputBaseProps<TItem, TId> & TProps & {
+type UsePickerInputProps<TItem, TId, TProps> = PickerInputBaseProps<TItem, TId> & TProps & {
     toggleModalOpening(opened: boolean): void;
-    renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>): React.ReactNode;
-    renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]): React.ReactNode;
 };
 
-export function PickerInputBase<TItem, TId, TProps>(props: PickerInputBaseFn<TItem, TId, TProps>) {
+export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TItem, TId, TProps>) {
     const popperModifiers: Modifier<any>[] = useMemo(() => [
         {
             name: 'offset',
@@ -31,8 +28,10 @@ export function PickerInputBase<TItem, TId, TProps>(props: PickerInputBaseFn<TIt
     const [opened, setOpened] = useState<boolean>(false);
     const [isSearchChanged, setIsSearchChanged] = useState<boolean>(false);
 
+    const picker = usePicker(props, pickerState);
     const {
-        // context,
+        context,
+        dataSourceState,
         getView,
         handleDataSourceValueChange,
         getEntityName,
@@ -41,10 +40,10 @@ export function PickerInputBase<TItem, TId, TProps>(props: PickerInputBaseFn<TIt
         isSingleSelect,
         getListProps,
         getName,
-        // getFooterProps,
         getSelectedRows,
-    } = usePicker(props, pickerState);
-    
+        handleSelectionValueChange,
+    } = picker;
+
     const lens = useMemo(
         () => Lens.onState<PickerBaseState>(pickerState),
         [pickerState.dataSourceState],
@@ -180,21 +179,21 @@ export function PickerInputBase<TItem, TId, TProps>(props: PickerInputBaseFn<TIt
         };
     };
     
-    // const handleTogglerSearchChange = (value: string) => {
-    //     let isOpen = !opened && value.length > 0 ? true : opened;
-    //     if (props.minCharsToSearch) {
-    //         isOpen = value.length >= props.minCharsToSearch;
-    //     }
+    const handleTogglerSearchChange = (value: string) => {
+        let isOpen = !opened && value.length > 0 ? true : opened;
+        if (props.minCharsToSearch) {
+            isOpen = value.length >= props.minCharsToSearch;
+        }
 
-    //     pickerState.setDataSourceState((dsState) => ({
-    //         ...dsState,
-    //         focusedIndex: -1,
-    //         search: value,
-    //     }));
+        pickerState.setDataSourceState((dsState) => ({
+            ...dsState,
+            focusedIndex: -1,
+            search: value,
+        }));
         
-    //     setOpened(isOpen);
-    //     setIsSearchChanged(true);
-    // };
+        setOpened(isOpen);
+        setIsSearchChanged(true);
+    };
     
     const closePickerBody = () => {
         pickerState.setDataSourceState((dsState) => ({
@@ -229,18 +228,18 @@ export function PickerInputBase<TItem, TId, TProps>(props: PickerInputBaseFn<TIt
         });
     };
     
-    // const handleCloseBody = () => {
-    //     toggleBodyOpening(false);
-    // };
+    const handleCloseBody = () => {
+        toggleBodyOpening(false);
+    };
     
-    // const getFooterProps1 = (): PickerFooterProps<TItem, TId> & { onClose: () => void } => {
-    //     const footerProps = getFooterProps();
-    //     return { ...footerProps, onClose: handleCloseBody, selectionMode: props.selectionMode };
-    // };
+    const getFooterProps = (): PickerFooterProps<TItem, TId> & { onClose: () => void } => {
+        const footerProps = picker.getFooterProps();
+        return { ...footerProps, onClose: handleCloseBody, selectionMode: props.selectionMode };
+    };
 
-    // const returnFocusToInput = (): void => {
-    //     togglerRef.current.focus();
-    // };
+    const returnFocusToInput = (): void => {
+        togglerRef.current.focus();
+    };
     
     const getSearchValue = (): string | null => {
         // only for selectionMode = 'single': we're getting current value and put it into search, and when search changed we turn value to dataSourceState.search
@@ -325,23 +324,23 @@ export function PickerInputBase<TItem, TId, TProps>(props: PickerInputBaseFn<TIt
             },
         };
     };
-    
-    const rows = getRows();
 
-    return (
-        <Dropdown
-            renderTarget={ (dropdownProps) => {
-                const targetProps = getTogglerProps(rows, dropdownProps);
-                const targetRef = getTargetRef({ ...targetProps, ...dropdownProps });
-                return props.renderTarget({ ...dropdownProps, ...targetProps, ...targetRef });
-            } }
-            renderBody={ (bodyProps) => props.renderBody({ ...bodyProps, ...getPickerBodyProps(rows), ...getListProps() }, rows) }
-            value={ shouldShowBody() }
-            onValueChange={ !props.isDisabled && toggleBodyOpening }
-            placement={ props.dropdownPlacement }
-            modifiers={ popperModifiers }
-            closeBodyOnTogglerHidden={ !isMobile() }
-            portalTarget={ props.portalTarget }
-        />
-    );
+    return {
+        context,
+        dataSourceState,
+        getPlaceholder,
+        getName,
+        getRows,
+        getTargetRef,
+        getTogglerProps,
+        getFooterProps,
+        returnFocusToInput,
+        shouldShowBody,
+        toggleBodyOpening,
+        popperModifiers,
+        getPickerBodyProps,
+        getListProps,
+        handleTogglerSearchChange,
+        handleSelectionValueChange,
+    };
 }
