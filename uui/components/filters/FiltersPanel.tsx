@@ -3,9 +3,8 @@ import React, {
 } from 'react';
 import sortBy from 'lodash.sortby';
 import { i18n } from '../../i18n';
-import {
-    Button, PickerInput, PickerItem, DataPickerRow,
-} from '../../index';
+import { Button } from '../buttons';
+import { PickerInput, PickerItem, DataPickerRow } from '../pickers';
 import {
     DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter, getOrderBetween, DataTableState, useArrayDataSource,
 } from '@epam/uui-core';
@@ -70,13 +69,13 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
         [],
     );
 
-    const onFiltersChange = (filters: TableFiltersConfig<TFilter>[]) => {
+    const onFiltersChange = (updatedFilters: TableFiltersConfig<TFilter>[]) => {
         const newConfig: FiltersConfig = {};
         const newFilter: any = {};
 
         const sortedOrders = tableState.filtersConfig && sortBy(tableState.filtersConfig, (f) => f?.order);
         let order: string | null = sortedOrders?.length ? sortedOrders[sortedOrders.length - 1]?.order : null;
-        filters.forEach((filter) => {
+        updatedFilters.forEach((filter) => {
             const newOrder = tableState?.filtersConfig?.[filter?.field]?.order || getOrderBetween(order, null);
             order = newOrder;
             newConfig[filter.field] = { isVisible: true, order: newOrder };

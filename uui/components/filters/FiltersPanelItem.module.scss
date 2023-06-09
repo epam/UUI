@@ -6,15 +6,27 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 9px 12px 0 12px;
+    padding: 9px 12px;
 
     button.removeButton {
         padding-left: 24px;
+
+        :global(.uui-caption) {
+            font-size: 14px;
+        }
+    }
+
+    &.with-search {
+        padding-bottom: 0;
     }
 }
 
 .panel {
     @media screen and (max-width: 720px) {
         height: var(--app-mobile-height);
+    }
+
+    :global(.-scrolled-top) {
+        border-top: 1px solid var(--uui-divider);
     }
 }
