@@ -26,6 +26,7 @@ export function TableCell(props: any) {
             { ...props }
             { ...attributes }
             nodeProps={ appliedSpans }
+            style={ element.data?.merged ? { display: 'none' } : undefined }
         />
     );
 }

@@ -33,6 +33,15 @@ import {
     TTableElement,
     createTablePlugin,
     KEY_DESERIALIZE_HTML,
+    setNodes,
+    Value,
+    WithPlatePlugin,
+    TablePlugin,
+    TTableRowElement,
+    isElement,
+    TDescendant,
+    withTable,
+    collapseSelection,
 } from "@udecode/plate";
 import cx from "classnames";
 import { Dropdown } from '@epam/uui-components';
@@ -61,8 +70,26 @@ import { TableCell } from "./TableCell";
 
 import tableCSS from './Table.module.scss';
 import { useFocused, useReadOnly, useSelected } from 'slate-react';
-import { updateTableStructure } from './util';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
+import { ExtendedTTableCellElement } from './types';
+
+const empt = {
+    "data": { merged: true, colSpan: 0, rowSpan: 0, },
+    "type": "table_cell",
+    colSpan: 0,
+    rowSpan: 0,
+    "children": [
+        {
+            "data": {},
+            "type": "paragraph",
+            "children": [
+                {
+                    "text": "",
+                },
+            ],
+        },
+    ],
+}
 
 const TableRenderer = (props: any) => {
     const editor = usePlateEditorState();
@@ -126,16 +153,17 @@ const TableRenderer = (props: any) => {
             return acc;
         }, 1);
 
-        const emptyCol = {
+        const joinedText = cellEntries.map(([data]: any) => data?.children[0]?.children[0]?.text).join(' ');
+        const mergedCol = {
             "data": { colSpan, rowSpan },
             "type": "table_cell",
             "children": [
                 {
                     "data": {},
-                    "type": "paragraph",
+                    "type": PARAGRAPH_TYPE,
                     "children": [
                         {
-                            "text": cellEntries.map(([data]: any) => data?.children[0]?.children[0]?.text).join(' '),
+                            "text": joinedText,
                         },
                     ],
                 },
@@ -152,13 +180,17 @@ const TableRenderer = (props: any) => {
             }
         });
 
-        Object.values(cols).forEach((paths: any) => {
-            paths?.forEach((path: []) => {
-                removeNodes(editor, { at: paths[0] });
+        Object.values(cols).forEach((paths: any, i: number) => {
+            paths?.forEach((path: [], j: number) => {
+                if (i === 0 && j === paths.length - 1) {
+                    removeNodes(editor, { at: paths[j] });
+                    insertElements(editor, mergedCol, { at: paths[j] }); // setting root
+                    collapseSelection(editor);
+                    return;
+                }
+                setNodes(editor, empt, { at: paths[j] }); // set display: none to all others
             });
         });
-
-        insertElements(editor, emptyCol, { at: cellEntries[0][1] });
     };
 
     const unmergeCells = () => {
@@ -269,9 +301,6 @@ const TableRenderer = (props: any) => {
         );
     }, [element, cellPath, rowPath, cellEntries]);
 
-    // assign valid colIndexes in case of merged cells
-    tableElem = updateTableStructure(tableElem);
-
     return (
         <Dropdown
             renderTarget={ (innerProps: any) => (
@@ -296,13 +325,102 @@ const TableRenderer = (props: any) => {
     );
 };
 
+const withOurNormalizeTable = <
+    V extends Value = Value,
+    E extends PlateEditor<V> = PlateEditor<V>
+>(
+    editor: E,
+    plugin: WithPlatePlugin<TablePlugin<V>, V, E>
+) => {
+    const { normalizeNode } = editor;
 
+    /**
+     * Normalize needed for tables pasted from docx.
+     * They don't have cells which are merged.
+     */
+    editor.normalizeNode = ([node, path]) => {
+        if (isElement(node)) {
+            if (node.type === getPluginType(editor, ELEMENT_TABLE)) {
+
+                const colNumber = (node.children[0].children as TDescendant[])
+                    .reduce((acc, cur) => {
+                        const cellElem = cur as ExtendedTTableCellElement;
+                        const attrColSpan = (cellElem.attributes as { colspan?: number })?.colspan;
+                        const colSpan = isNaN(attrColSpan) ? 1 : Number(attrColSpan);
+                        return acc + colSpan;
+                    }, 0);
+
+                const colNumbers = (node.children as TDescendant[])
+                    .map((curRow) => {
+                        const row = curRow as TTableRowElement;
+                        return row.children.length;
+                    });
+
+                const normalized = !colNumbers.some(cur => cur !== colNumber);
+
+                if (!normalized) {
+                    node.children.forEach((cur, rowIndex) => {
+                        const rowElem = cur as TTableRowElement;
+
+                        rowElem.children.forEach((current, colIndex) => {
+                            const cellElem = current as ExtendedTTableCellElement;
+                            const attrColSpan = (cellElem.attributes as { colspan?: number })?.colspan;
+                            const attrRowSpan = (cellElem.attributes as { rowspan?: number })?.rowspan;
+                            const colSpan = isNaN(attrColSpan) ? 1 : Number(attrColSpan);
+                            const rowSpan = isNaN(attrRowSpan) ? 1 : Number(attrRowSpan);
+
+                            // consider horizontal merge
+                            if (colSpan > 1 && colNumber !== rowElem.children.length) {
+                                // pasting empty cells before horizontally merged cell
+                                // since pasted pasted tables from docx don't have it
+
+                                rowElem.children.splice(colIndex, 0, ...Array(colSpan - 1).fill(empt));
+                            }
+
+                            // consider vertical merge
+                            if (rowSpan > 1) {
+                                // affected row indexes
+                                const rows = Array.from({ length: rowSpan - 1 }, (_, index) => index + rowIndex + 1);
+
+                                rows.forEach((rI) => {
+                                    const row = node.children[rI] as TTableRowElement;
+                                    if (row.children.length !== colNumber) {
+                                        row.children.splice(colIndex, 0, empt);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                }
+            }
+        }
+
+        return normalizeNode([node, path]);
+    }
+
+
+    return editor;
+}
+
+export const withOurTable = <
+    V extends Value = Value,
+    E extends PlateEditor<V> = PlateEditor<V>
+>(
+    editor: E,
+    plugin: WithPlatePlugin<TablePlugin<V>, V, E>
+) => {
+    editor = withTable(editor, plugin);
+    editor = withOurNormalizeTable(editor, plugin);
+
+    return editor;
+};
 
 export const tablePlugin = () => createTablePlugin({
     overrideByKey: {
         [ELEMENT_TABLE]: {
             type: 'table',
             component: TableRenderer,
+            withOverrides: withOurTable,
             inject: {
                 pluginsByKey: {
                     [KEY_DESERIALIZE_HTML]: {

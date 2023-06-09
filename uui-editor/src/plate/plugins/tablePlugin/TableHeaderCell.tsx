@@ -30,7 +30,7 @@ export function TableHeaderCell(props: any) {
             className={ cx(css.headerCell) }
             { ...attributes }
             nodeProps={ appliedSpans }
-            style={ { backgroundColor: 'inherit' } }
+            style={ element.data?.merged ? { display: 'none' } : { backgroundColor: 'inherit' } }
         />
     );
 }
