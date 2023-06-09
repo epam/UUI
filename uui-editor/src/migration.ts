@@ -26,15 +26,26 @@ const migrateTable = (oldTable: any) => {
     oldTable.nodes.forEach((row: any) => {
         const newRowNodes: any[] = [];
         row.nodes.forEach((cell: any) => {
-            if(cell.data?.style !== 'none') {
-                newRowNodes.push(cell);
+            let merged = false;
+            if (cell.data?.style === "none") {
+                merged = true;
             }
+            cell = {
+                ...cell,
+                data: {
+                    colSpan: cell.data.colSpan ?? 1,
+                    rowSpan: cell.data.rowSpan ?? 1,
+                    merged,
+                },
+                colSpan: cell.data.colSpan ?? 1,
+                rowSpan: cell.data.rowSpan ?? 1
+            };
+            newRowNodes.push(cell);
         });
-
         row.nodes = newRowNodes;
     });
     return oldTable;
-}
+};
 
 const migrateElementNode = (node: any) => {
     const mediaTypes = ["image", "iframe"];

@@ -14,6 +14,7 @@ import {
     ELEMENT_TR,
     TTableElement,
     ELEMENT_TABLE,
+    getTableColumnIndex,
 } from '@udecode/plate';
 import { useReadOnly } from 'slate-react';
 import { ExtendedTTableCellElement } from './types';
@@ -32,7 +33,12 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
 
     const editor = usePlateEditorRef();
     const cellElement = useElement<ExtendedTTableCellElement>();
-    const rowIndex = getTableRowIndex(editor, cellElement);
+    const cellRowSpan =
+        (cellElement?.attributes as any)?.rowspan ||
+        cellElement.data?.rowSpan ||
+        cellElement.rowSpan ||
+        1;
+    const rowIndex = getTableRowIndex(editor, cellElement) + cellRowSpan - 1;
     const readOnly = useReadOnly();
 
     const [selectedCells] = useTableStore().use.selectedCells();
@@ -46,7 +52,7 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
     const rowSize = rowSizeOverrides.get(rowIndex) ?? rowElement?.size ?? undefined;
 
     // TODO: move to plate
-    const colIndex = cellElement.colIndex;
+    const colIndex = getTableColumnIndex(editor, cellElement);
     const tableElement = useElement<TTableElement>(ELEMENT_TABLE);
 
     const isFirstRow = tableElement.children[0] === rowElement;
