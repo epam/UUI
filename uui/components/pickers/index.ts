@@ -3,7 +3,7 @@ export * from './DataPickerFooter';
 export * from './DataPickerHeader';
 export * from './DataPickerRow';
 export * from './MobileDropdownWrapper';
-export * from './PickerInput';
+export * from './PickerInput.fn';
 export * from './PickerItem';
 export * from './PickerList';
 export * from './PickerListItem';

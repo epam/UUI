@@ -32,7 +32,7 @@ export function usePicker<TItem, TId>(
             const event = getValueChangeAnalyticsEvent(newValue, value);
             context.uuiAnalytics.sendEvent(event);
         }
-    }, [onValueChange, getValueChangeAnalyticsEvent, value]);
+    }, [onValueChange, getValueChangeAnalyticsEvent]);
 
     const handleDataSourceValueChange = useCallback((newDataSourceState: DataSourceState) => {
         if (showSelected && !newDataSourceState.checked?.length) {
@@ -45,15 +45,9 @@ export function usePicker<TItem, TId>(
         if (!isEqual(value, newValue)) {
             handleSelectionValueChange(newValue);
         }
-    }, [
-        handleSelectionValueChange,
-        setDataSourceState,
-        setShowSelected,
-        props,
-        value,
-    ]);
+    }, [showSelected, setShowSelected, setDataSourceState, props, dataSource, handleSelectionValueChange]);
 
-    const getName = useCallback((i: (TItem & { name?: string }) | void) => {
+    const getName = (i: (TItem & { name?: string }) | void) => {
         const unknownStr = 'Unknown';
         if (props.getName) {
             try {
@@ -63,27 +57,24 @@ export function usePicker<TItem, TId>(
             }
         }
         return i ? i.name : unknownStr;
-    }, [props.getName]);
+    };
 
-    const getPluralName = useCallback(() => {
+    const getPluralName = () => {
         if (!entityName) return;
         if (entityName.endsWith('s')) return entityName.concat('es');
         if (entityName.endsWith('y')) return entityName.concat('(s)');
         return entityName.concat('s');
-    }, [entityName]);
+    };
 
-    const getEntityName = useCallback((countSelected?: number) => {
+    const getEntityName = (countSelected?: number) => {
         if ((!entityName && !entityPluralName) || (!entityName && countSelected === 1)) return '';
         if ((countSelected <= 1 && entityName) || selectionMode === 'single') return entityName;
         return entityPluralName || getPluralName();
-    }, [entityName, entityPluralName, selectionMode, getPluralName]);
+    };
 
-    const isSingleSelect = useCallback(
-        () => selectionMode === 'single',
-        [selectionMode],
-    );
+    const isSingleSelect = () => selectionMode === 'single';
 
-    const getSelectedIdsArray = useCallback((selected: TId | TId[] | null | undefined): TId[] => {
+    const getSelectedIdsArray = (selected: TId | TId[] | null | undefined): TId[] => {
         if (selected) {
             if (isSingleSelect()) {
                 return [selected as TId];
@@ -92,14 +83,11 @@ export function usePicker<TItem, TId>(
             }
         }
         return [];
-    }, [isSingleSelect]);
+    };
 
-    const getDataSourceState = useCallback(
-        () => applyValueToDataSourceState(props, dataSourceState, props.value, props.dataSource),
-        [props, dataSourceState],
-    );
+    const getDataSourceState = () => applyValueToDataSourceState(props, dataSourceState, props.value, props.dataSource);
 
-    const getRowOptions = useCallback((item: TItem, index: number) => {
+    const getRowOptions = (item: TItem, index: number) => {
         const options: DataRowOptions<TItem, TId> = {};
         if (isSingleSelect()) {
             options.isSelectable = true;
@@ -110,54 +98,42 @@ export function usePicker<TItem, TId>(
         const externalOptions = props.getRowOptions ? props.getRowOptions(item, index) : {};
 
         return { ...options, ...externalOptions };
-    }, [isSingleSelect, props.getRowOptions]);
+    };
 
-    const clearSelection = useCallback(() => {
+    const clearSelection = () => {
         handleDataSourceValueChange({
             ...dataSourceState,
             selectedId: emptyValue,
             checked: [],
         });
-    }, [handleDataSourceValueChange, emptyValue, dataSourceState]);
+    };
 
-    const hasSelection = useCallback(() => {
+    const hasSelection = () => {
         if (Array.isArray(value)) {
             return value.length !== 0;
         } else {
             return value !== undefined && value !== null;
         }
-    }, [value]);
+    };
 
-    const getView = useCallback(
-        (): IDataSourceView<TItem, TId, any> =>
-            dataSource.getView(getDataSourceState(), handleDataSourceValueChange, {
-                getRowOptions,
-                getSearchFields: getSearchFields || ((item: TItem) => [getName(item)]),
-                isFoldedByDefault,
-                ...(sortBy ? { sortBy } : {}),
-                ...(cascadeSelection ? { cascadeSelection } : {}),
-            }),
-        [
-            getDataSourceState,
-            handleDataSourceValueChange,
+    const getView = (): IDataSourceView<TItem, TId, any> =>
+        dataSource.getView(getDataSourceState(), handleDataSourceValueChange, {
             getRowOptions,
-            getSearchFields,
-            getName,
+            getSearchFields: getSearchFields || ((item: TItem) => [getName(item)]),
             isFoldedByDefault,
-            sortBy,
-            cascadeSelection,
-        ],
-    );
+            ...(sortBy ? { sortBy } : {}),
+            ...(cascadeSelection ? { cascadeSelection } : {}),
+        });
 
-    const getSelectedRows = useCallback((visibleCount?: number) => {
+    const getSelectedRows = (visibleCount?: number) => {
         if (hasSelection()) {
             const view = getView();
             return view.getSelectedRows({ visibleCount });
         }
         return [];
-    }, [getView, hasSelection]);
+    };
 
-    const getListProps = useCallback((): DataSourceListProps => {
+    const getListProps = (): DataSourceListProps => {
         const view = getView();
         const listProps = view.getListProps();
         if (showSelected) {
@@ -172,9 +148,9 @@ export function usePicker<TItem, TId>(
         } else {
             return listProps;
         }
-    }, [getView, getDataSourceState, showSelected]);
+    };
 
-    const getFooterProps = useCallback((): PickerFooterProps<TItem, TId> => ({
+    const getFooterProps = (): PickerFooterProps<TItem, TId> => ({
         view: getView(),
         showSelected: {
             value: showSelected,
@@ -182,7 +158,7 @@ export function usePicker<TItem, TId>(
         },
         clearSelection,
         selectionMode,
-    }), [getView, showSelected, setShowSelected, clearSelection, selectionMode]);
+    });
 
     useEffect(() => {
         return () => {

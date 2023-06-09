@@ -1,16 +1,21 @@
 import React, { useMemo, useState, useRef, useEffect } from 'react';
 import { Modifier } from 'react-popper';
 import { DropdownBodyProps, DataRowProps, isMobile, mobilePopperModifier, IDropdownToggler, Lens, PickerFooterProps } from '@epam/uui-core';
-import { PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps, applyValueToDataSourceState, PickerInputBaseProps } from './index';
+import { PickerTogglerProps } from './PickerToggler';
+import { PickerBaseState } from './PickerBase';
+import { PickerBodyBaseProps } from './PickerBodyBase';
+import { applyValueToDataSourceState } from './bindingHelpers';
+import { handleDataSourceKeyboard, DataSourceKeyboardParams } from './KeyboardUtils';
 import { i18n } from '../i18n';
 import { getMaxItems } from './helpers';
 import { usePicker } from './usePicker';
 import { usePickerState } from './usePickerState';
+import { PickerInputBaseProps } from './PickerInputBase';
 
 const initialRowsVisible = 20; /* estimated, with some reserve to allow start scrolling without fetching more data */
 
 type UsePickerInputProps<TItem, TId, TProps> = PickerInputBaseProps<TItem, TId> & TProps & {
-    toggleModalOpening(opened: boolean): void;
+    toggleModalOpening?(opened: boolean): void;
 };
 
 export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TItem, TId, TProps>) {
@@ -90,9 +95,9 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             return;
         }
         if (props.editMode === 'modal') {
-            props.toggleModalOpening(opened);
+            props.toggleModalOpening?.(newOpened);
         } else {
-            toggleDropdownOpening(opened);
+            toggleDropdownOpening(newOpened);
         }
     };
     
@@ -308,7 +313,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             onKeyDown: (e) => handlePickerInputKeyboard(rows, e),
             disableSearch: !minCharsToSearch && (!dropdownProps.isOpen || searchPosition !== 'input'),
             disableClear: disableClear,
-            toggleDropdownOpening: toggleDropdownOpening,
+            toggleDropdownOpening,
             closePickerBody: closePickerBody,
             rawProps: props.rawProps?.input,
             value: searchValue,

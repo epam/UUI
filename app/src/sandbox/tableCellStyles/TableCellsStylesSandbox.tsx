@@ -139,7 +139,7 @@ export default function TableCellsStylesSandbox() {
 
     // These component types doesn't merge correctly/acceptably between skins
     const SkinDatePicker = skin.DatePicker as unknown as ForwardRefExoticComponent<DatePickerProps & RefAttributes<any>>;
-    const SkinPickerInput = skin.PickerInput as React.ComponentClass<PickerInputBaseProps<any, any>>;
+    const SkinPickerInput = skin.PickerInput as React.FC<PickerInputBaseProps<any, any>>;
     const SkinDataTableCell = skin.DataTableCell as React.FC<DataTableCellProps & { background: any }>;
 
     // Use form to manage state of the editable table

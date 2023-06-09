@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withMods, ModalFooterCoreProps, ModalWindowProps as UuiModalWindowProps, ModalBlockerProps, ModalHeaderCoreProps } from '@epam/uui-core';
 import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '@epam/uui-components';
-import { FlexRow, FlexSpacer, RowMods, FlexCell } from '../layout';
+import { FlexRow, FlexSpacer, RowMods, FlexCell } from '../layout/FlexItems';
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
 import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg';

@@ -1,11 +1,11 @@
 import React from 'react';
-import { PickerBodyBaseProps, PickerInputBaseProps, PickerToggler, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
-import { Dropdown } from '../overlays';
+import { PickerBodyBaseProps, PickerInputBaseProps, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
+import { Dropdown } from '../overlays/Dropdown';
 import { PickerInputProps } from './PickerInput';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
 import { DataRowProps, DataSourceListProps, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
-import { PickerTogglerMods } from './PickerToggler';
+import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import css from './PickerInput.module.scss';
 import { Panel } from '../layout';
 import { MobileDropdownWrapper } from './MobileDropdownWrapper';
@@ -17,30 +17,8 @@ import { PickerItem } from './PickerItem';
 const pickerHeight = 300;
 const pickerWidth = 360;
 
-export function PickerInput<TItem, TId>(props: PickerInputBaseProps<TItem, TId> & SizeMod & IHasEditMode) {
-    const {
-        context,
-        popperModifiers,
-        getName,
-        getPlaceholder,
-        handleSelectionValueChange,
-        returnFocusToInput,
-        getTogglerProps,
-        getRows,
-        getTargetRef,
-        handleTogglerSearchChange,
-        toggleBodyOpening,
-        dataSourceState,
-        getFooterProps,
-        getPickerBodyProps,
-        getListProps,
-        shouldShowBody,
-    } = usePickerInput<TItem, TId, PickerInputProps>({
-        ...props,
-        toggleModalOpening,
-    });
-    
-    function toggleModalOpening() {
+function PickerInput<TItem, TId>(props: PickerInputBaseProps<TItem, TId> & SizeMod & IHasEditMode) {
+    const toggleModalOpening = () => {
         const { renderFooter, rawProps, ...restProps } = props;
         context.uuiModals
             .show((modalProps) => (
@@ -62,8 +40,27 @@ export function PickerInput<TItem, TId>(props: PickerInputBaseProps<TItem, TId> 
             .catch(() => {
                 returnFocusToInput();
             });
-    }
-    
+    };
+
+    const {
+        context,
+        popperModifiers,
+        getName,
+        getPlaceholder,
+        handleSelectionValueChange,
+        returnFocusToInput,
+        getTogglerProps,
+        getRows,
+        getTargetRef,
+        handleTogglerSearchChange,
+        toggleBodyOpening,
+        dataSourceState,
+        getFooterProps,
+        getPickerBodyProps,
+        getListProps,
+        shouldShowBody,
+    } = usePickerInput<TItem, TId, PickerInputProps>({ ...props, toggleModalOpening });
+
     const getTogglerMods = (): PickerTogglerMods => {
         return {
             size: props.size as PickerTogglerMods['size'],
@@ -181,3 +178,8 @@ export function PickerInput<TItem, TId>(props: PickerInputBaseProps<TItem, TId> 
         />
     );
 }
+
+export {
+    type PickerInputProps,
+    PickerInput,
+};
