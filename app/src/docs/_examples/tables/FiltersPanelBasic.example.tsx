@@ -65,9 +65,9 @@ const personColumns: DataColumnProps<Person, number>[] = [
 ];
 
 export default function FiltersPanelExample() {
-    const svc = useUuiContext();
+    const { api } = useUuiContext();
 
-    const filtersConfig: TableFiltersConfig<Person>[] = useMemo(
+    const filtersConfig = useMemo<TableFiltersConfig<Person>[]>(
         () => [
             {
                 field: 'profileStatusId',
@@ -75,14 +75,15 @@ export default function FiltersPanelExample() {
                 title: 'Profile Status',
                 type: 'multiPicker',
                 isAlwaysVisible: true,
-                dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
+                dataSource: new LazyDataSource({ api: api.demo.statuses }),
                 predicates: defaultPredicates.multiPicker,
+                showSearch: false,
             }, {
                 field: 'jobTitleId',
                 columnKey: 'jobTitle',
                 title: 'Title',
                 type: 'multiPicker',
-                dataSource: new LazyDataSource({ api: svc.api.demo.jobTitles }),
+                dataSource: new LazyDataSource({ api: api.demo.jobTitles }),
             }, {
                 field: 'salary',
                 columnKey: 'salary',
@@ -117,7 +118,7 @@ export default function FiltersPanelExample() {
                 },
             },
         ],
-        [],
+        [api.demo.jobTitles, api.demo.statuses],
     );
 
     const { tableState, setTableState } = useTableState({
@@ -127,7 +128,7 @@ export default function FiltersPanelExample() {
 
     const dataSource = useLazyDataSource<Person, number, Person>(
         {
-            api: svc.api.demo.persons,
+            api: api.demo.persons,
         },
         [],
     );
