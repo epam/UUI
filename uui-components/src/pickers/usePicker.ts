@@ -192,6 +192,7 @@ export function usePicker<TItem, TId>(
 
     return {
         context,
+        dataSourceState,
         getName,
         getPluralName,
         getEntityName,
@@ -206,5 +207,6 @@ export function usePicker<TItem, TId>(
         getListProps,
         getFooterProps,
         handleDataSourceValueChange,
+        handleSelectionValueChange,
     };
 }
