@@ -21,14 +21,13 @@ import { TableCellElementResizable } from './Resizable';
 
 interface PlateTableCellElementProps extends TableCellElementRootProps {
     hideBorder?: boolean;
-    isHeader?: boolean;
 }
 
 /**
  * TODO: create issue about merged cells resize functionality
  */
 export const TableCellRenderer = (props: PlateTableCellElementProps) => {
-    const { children, hideBorder, isHeader, ...rootProps } = props;
+    const { children, hideBorder, ...rootProps } = props;
 
     const editor = usePlateEditorRef();
     const cellElement = useElement<ExtendedTTableCellElement>();
@@ -56,16 +55,20 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
     const hovered = hoveredColIndex === colIndex;
     const hoveredLeft = isFirstCell(colIndex, cellElement) && hoveredColIndex === -1;
 
+    const isHeader = cellElement.type === 'table_header_cell';
+    const classNames = cx(
+        css.tableCellWrapper,
+        isHeader && css.headerCell,
+        isFirstCell(colIndex, cellElement) && css.tableCellBorderLeft,
+        isFirstRow && css.tableCellBorderTop,
+        selected && css.tableCellSelected
+    );
+
     return (
         <TableCellElement.Root
             { ...rootProps }
             asAlias={ isHeader ? 'th' : 'td' }
-            className={ cx(
-                css.tableCellWrapper,
-                isFirstCell(colIndex, cellElement) && css.tableCellBorderLeft,
-                isFirstRow && css.tableCellBorderTop,
-                selected && css.tableCellSelected
-            ) }
+            className={ classNames }
         >
             <TableCellElement.Content style={ { minHeight: rowSize } } className={ css.tableCellContent }>
                 { children }

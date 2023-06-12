@@ -12,6 +12,7 @@ export interface ToolbarButtonProps  {
     editor?: Editor;
     isDisabled?: boolean;
     caption?: string;
+    cx?: string;
 }
 
 export const ToolbarButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ToolbarButtonProps>((props, ref) => (
@@ -23,7 +24,7 @@ export const ToolbarButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElem
         icon={ props.icon }
         caption={ props.caption }
         forwardedRef={ ref }
-        cx={ cx(css.toolbarButton, css['color-' + props.iconColor], css[props.isActive ? 'gray90' : 'gray80']) }
+        cx={ cx(css.toolbarButton, css['color-' + props.iconColor], css[props.isActive ? 'gray90' : 'gray80'], props.cx) }
         isDisabled={ props.isDisabled }
     />
 ));
