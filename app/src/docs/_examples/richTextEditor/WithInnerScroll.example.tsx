@@ -22,6 +22,7 @@ import {
     listPlugin,
     placeholderPlugin,
     EditorValue,
+    codeBlockPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 
@@ -66,6 +67,7 @@ export default function WithInnerScrollExample() {
                 },
             ],
         }),
+        codeBlockPlugin(),
     ];
 
     return (
