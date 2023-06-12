@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { DataSourceState } from '@epam/uui-core';
 
-interface UsePickerStateProps {
+export interface UsePickerStateProps {
     dataSourceState?: Partial<DataSourceState>;
 }
 
