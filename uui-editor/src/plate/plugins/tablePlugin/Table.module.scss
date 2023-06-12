@@ -8,6 +8,16 @@
     padding-bottom: 1px;
 }
 
+// center icon
+.remove-table-icon {
+    display: block;
+    margin: auto;
+}
+
+.remove-table-button {
+    display: block;
+}
+
 .table {
     position: relative;
     display: table;
@@ -22,10 +32,6 @@
 
 .tbody {
     min-width: 100%;
-}
-
-.header-row {
-    background-color: $gray5;
 }
 
 .row {
@@ -47,11 +53,7 @@
 }
 
 .header-cell {
-    padding: 1px;
-
-    p {
-        font-family: $font-sans-semibold;
-    }
+    background-color: $gray5;
 }
 
 .cells-selection-active {
@@ -64,7 +66,6 @@
     --tw-bg-opacity: 1;
     position: relative;
     overflow: visible;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
     padding: 0;
     text-align: left;
 

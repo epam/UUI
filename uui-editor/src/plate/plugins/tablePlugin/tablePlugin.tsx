@@ -33,9 +33,13 @@ import {
     TTableElement,
     createTablePlugin,
     KEY_DESERIALIZE_HTML,
+    getCellTypes,
+    findNode,
+    setElements,
 } from "@udecode/plate";
 import cx from "classnames";
 import { Dropdown } from '@epam/uui-components';
+import { Range } from 'slate';
 
 import { ReactComponent as InsertColumnBefore } from "../../icons/table-add-column-left.svg";
 import { ReactComponent as InsertColumnAfter } from "../../../icons/table-add-column-right.svg";
@@ -47,6 +51,7 @@ import { ReactComponent as RemoveTable } from "../../../icons/table-table_remove
 import { ReactComponent as TableIcon } from "../../../icons/table-add.svg";
 import { ReactComponent as TableMerge } from "../../../icons/table-merge.svg";
 import { ReactComponent as UnmergeCellsIcon } from "../../../icons/table-un-merge.svg";
+import { ReactComponent as ClearIcon } from "../../icons/text-color-default.svg";
 import { isPluginActive, isTextSelected } from "../../../helpers";
 
 import { ToolbarButton } from "../../../implementation/ToolbarButton";
@@ -55,7 +60,6 @@ import { deleteColumn } from './deleteColumn';
 import { DEFAULT_COL_WIDTH } from './constants';
 
 import { Table } from './Table';
-import { TableHeaderCell } from "./TableHeaderCell";
 import { TableRow } from "./TableRow";
 import { TableCell } from "./TableCell";
 
@@ -63,6 +67,12 @@ import tableCSS from './Table.module.scss';
 import { useFocused, useReadOnly, useSelected } from 'slate-react';
 import { updateTableStructure } from './util';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
+
+const StyledRemoveTable = () => {
+    return <RemoveTable className={ tableCSS.removeTableIcon } />
+}
+
+const noop = () => {};
 
 const TableRenderer = (props: any) => {
     const editor = usePlateEditorState();
@@ -79,18 +89,10 @@ const TableRenderer = (props: any) => {
     const rowPath = useMemo(() => row && row[1][2] !== 0 && row[1], [row]);
 
     const hasEntries = !!cellEntries?.length;
-    const [showToolbar, setShowToolbar] = useState(hasEntries);
 
     const isFocused = useFocused();
     const isSelected = useSelected();
-    useEffect(() => {
-        const block = getBlockAbove(editor);
-        setShowToolbar(!isReadonly && isSelected && isFocused && block?.length && block[0].type === 'table');
-    }, [isSelected, isFocused]);
-
-    useEffect(() => setShowToolbar(!isReadonly && hasEntries), [hasEntries]);
-
-    const onChangeDropDownValue = useCallback((value: boolean) => () => setShowToolbar(!isReadonly && value), []);
+    const showToolbar = !isReadonly && isSelected && isFocused && hasEntries;
 
     const mergeCells = () => {
         const rowArray: any[] = [];
@@ -126,25 +128,14 @@ const TableRenderer = (props: any) => {
             return acc;
         }, 1);
 
-        const emptyCol = {
-            "data": { colSpan, rowSpan },
-            "type": "table_cell",
-            "children": [
-                {
-                    "data": {},
-                    "type": "paragraph",
-                    "children": [
-                        {
-                            "text": cellEntries.map(([data]: any) => data?.children[0]?.children[0]?.text).join(' '),
-                        },
-                    ],
-                },
-            ],
-        };
 
         // cols to remove
         const cols: any = {};
-        cellEntries.forEach(([, path]) => {
+        let hasHeaderCell = false;
+        cellEntries.forEach(([entry, path]) => {
+            if (!hasHeaderCell && entry.type === 'table_header_cell') {
+                hasHeaderCell = true;
+            }
             if (cols[path[2]]) {
                 cols[path[2]].push(path);
             } else {
@@ -158,14 +149,31 @@ const TableRenderer = (props: any) => {
             });
         });
 
-        insertElements(editor, emptyCol, { at: cellEntries[0][1] });
+        const mergedCell = {
+            "data": { colSpan, rowSpan },
+            "type": hasHeaderCell ? "table_header_cell" : "table_cell",
+            "children": [
+                {
+                    "data": {},
+                    "type": "paragraph",
+                    "children": [
+                        {
+                            "text": cellEntries.map(([data]: any) => data?.children[0]?.children[0]?.text).join(' '),
+                        },
+                    ],
+                },
+            ],
+        };
+
+        insertElements(editor, mergedCell, { at: cellEntries[0][1] });
     };
 
     const unmergeCells = () => {
         const [item]: any[] = cellEntries;
+        const [mergedCellElem] = item;
         const emptyCol = {
             "data": { colSpan: 1, rowSpan: 1 },
-            "type": "table_cell",
+            "type": mergedCellElem.type,
             "children": [
                 {
                     "data": {},
@@ -180,7 +188,7 @@ const TableRenderer = (props: any) => {
         };
         const emptyColWithoutText = {
             "data": { colSpan: 1, rowSpan: 1 },
-            "type": "table_cell",
+            "type": mergedCellElem.type,
             "children": [
                 {
                     "data": {},
@@ -226,41 +234,77 @@ const TableRenderer = (props: any) => {
         );
     }, [cellEntries]);
 
+    let isHeaderCellSelected = false;
+    if (isSelected) {
+        const selectedNodes = findNode(editor, {
+            at: Range.start(editor.selection),
+            match: { type: getCellTypes(editor) },
+        });
+        isHeaderCellSelected = selectedNodes?.[0].type === 'table_header_cell'
+    }
+
+    const fillHeaderStyle = useCallback(() => {
+        const [selectedNode, path] = findNode(editor, {
+            at: Range.start(editor.selection),
+            match: { type: getCellTypes(editor) },
+        });
+        const nextCellType = selectedNode.type === 'table_cell' ? 'table_header_cell' : 'table_cell';
+        setElements(editor, { type: nextCellType }, {
+            at: path,
+            match: (node) => node.type === 'table_cell' || node.type === 'table_header_cell'
+        });
+    }, []);
+
     const renderToolbar = useCallback(() => {
         return (
             <Fragment>
+                {/* <ToolbarButton
+                    key='clear-header'
+                    onClick={ () => fillHeaderStyle() }
+                    isActive={ isHeaderCellSelected }
+                    icon={ ClearIcon }
+                /> */}
                 <ToolbarButton
+                    key='insert-column-before'
                     onClick={ () => insertTableColumn(editor, { at: cellPath }) }
                     icon={ InsertColumnBefore }
                 />
                 <ToolbarButton
+                    key='insert-column-after'
                     onClick={ () => insertTableColumn(editor) }
                     icon={ InsertColumnAfter }
                 />
                 <ToolbarButton
+                    key='remove-column'
                     // TODO: improve column removal when we have merged cells in this column
                     onClick={ () => deleteColumn(editor) }
                     icon={ RemoveColumn }
                 />
                 <ToolbarButton
+                    key='insert-row-before'
                     onClick={ () => insertTableRow(editor, { at: rowPath }) }
                     icon={ InsertRowBefore }
                 />
                 <ToolbarButton
+                    key='insert-row-after'
                     onClick={ () => insertTableRow(editor) }
                     icon={ InsertRowAfter }
                 />
                 <ToolbarButton
+                    key='delete-row'
                     onClick={ () => deleteRow(editor) }
                     icon={ RemoveRow }
                 />
                 <ToolbarButton
+                    key='delete-table'
                     onClick={ () => deleteTable(editor) }
-                    icon={ RemoveTable }
+                    icon={ StyledRemoveTable }
+                    cx={ tableCSS.removeTableButton }
                 />
                 { cellEntries && cellEntries.length === 1
                     && ((cellEntries[0][0]?.data as any)?.colSpan > 1 || (cellEntries[0][0]?.data as any)?.rowSpan > 1)
                     && <ToolbarButton
+                        key='unmerge-cells'
                         onClick={ unmergeCells }
                         icon={ UnmergeCellsIcon }
                     />
@@ -289,14 +333,12 @@ const TableRenderer = (props: any) => {
                     isTable
                 />
             ) }
-            onValueChange={ onChangeDropDownValue }
+            onValueChange={ noop }
             value={ showToolbar }
             placement='top'
         />
     );
 };
-
-
 
 export const tablePlugin = () => createTablePlugin({
     overrideByKey: {
@@ -328,7 +370,7 @@ export const tablePlugin = () => createTablePlugin({
         },
         [ELEMENT_TH]: {
             type: 'table_header_cell',
-            component: TableHeaderCell,
+            component: TableCell,
         },
     },
 });
