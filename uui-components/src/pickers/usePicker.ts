@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useContext, useEffect, useRef } from 'react';
 import isEqual from 'lodash.isequal';
 import { DataRowOptions, DataSourceListProps, DataSourceState, IDataSourceView, PickerFooterProps, UuiContext } from '@epam/uui-core';
 import { PickerInputBaseProps } from './PickerInputBase';
@@ -7,9 +7,10 @@ import { PickerState } from './usePickerState';
 
 export function usePicker<TItem, TId>(
     props: PickerInputBaseProps<TItem, TId>,
-    { showSelected, setShowSelected, dataSourceState, setDataSourceState }: PickerState,
+    pickerState: PickerState,
 ) {
     const context = useContext(UuiContext);
+    const { showSelected, setShowSelected, dataSourceState, setDataSourceState } = pickerState;
     const {
         dataSource,
         emptyValue,
@@ -25,6 +26,26 @@ export function usePicker<TItem, TId>(
         cascadeSelection,
     } = props;
 
+    const propsRef = useRef(props);
+    propsRef.current = props;
+
+    const pickerStateRef = useRef(pickerState);
+    pickerStateRef.current = pickerState;
+
+    const handleDataSourceValueChangeRef = useRef((newDataSourceState: DataSourceState) => {
+        if (pickerStateRef.current.showSelected && !newDataSourceState.checked?.length) {
+            pickerStateRef.current.setShowSelected(false);
+        }
+
+        setDataSourceState(newDataSourceState);
+        const newValue = dataSourceStateToValue(propsRef.current, newDataSourceState, propsRef.current.dataSource);
+        if (!isEqual(propsRef.current.value, newValue)) {
+            handleSelectionValueChange(newValue);
+        }
+    });
+
+    const handleDataSourceValueChange = handleDataSourceValueChangeRef.current;
+
     const handleSelectionValueChange = useCallback((newValue: any) => {
         onValueChange(newValue);
 
@@ -33,19 +54,6 @@ export function usePicker<TItem, TId>(
             context.uuiAnalytics.sendEvent(event);
         }
     }, [onValueChange, getValueChangeAnalyticsEvent]);
-
-    const handleDataSourceValueChange = useCallback((newDataSourceState: DataSourceState) => {
-        if (showSelected && !newDataSourceState.checked?.length) {
-            setShowSelected(false);
-        }
-
-        setDataSourceState(newDataSourceState);
-        const newValue = dataSourceStateToValue(props, newDataSourceState, dataSource);
-
-        if (!isEqual(value, newValue)) {
-            handleSelectionValueChange(newValue);
-        }
-    }, [showSelected, setShowSelected, setDataSourceState, props, dataSource, handleSelectionValueChange]);
 
     const getName = (i: (TItem & { name?: string }) | void) => {
         const unknownStr = 'Unknown';
