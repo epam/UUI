@@ -116,14 +116,16 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         setPredicate(val);
     };
 
-    const renderHeader = () => (
+    const renderHeader = (hideTitle: boolean) => (
         <div className={ cx(css.header) }>
             {props.predicates ? (
                 <MultiSwitch items={ props.predicates.map((i) => ({ id: i.predicate, caption: i.name })) } value={ predicate } onValueChange={ changePredicate } size="24" />
             ) : (
-                <Text color="secondary" fontSize="12">
-                    {props.title}
-                </Text>
+                !hideTitle && (
+                    <Text color="secondary" fontSize="12">
+                        {props.title}
+                    </Text>
+                )
             )}
             {!props?.isAlwaysVisible && (
                 <LinkButton cx={ css.removeButton } caption={ i18n.filterToolbar.datePicker.removeCaption } onClick={ removeOnclickHandler } size="24" icon={ RemoveIcon } />
@@ -131,25 +133,28 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         </div>
     );
 
-    const renderBody = (dropdownProps: DropdownBodyProps) => (
-        <DropdownContainer { ...dropdownProps }>
-            <Panel cx={ css.panel }>
-                <>
-                    {isPickersType ? (
-                        <MobileDropdownWrapper close={ () => isOpenChange(false) }>
-                            {renderHeader()}
-                            <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange } />
-                        </MobileDropdownWrapper>
-                    ) : (
-                        <>
-                            {renderHeader()}
-                            <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange } />
-                        </>
-                    )}
-                </>
-            </Panel>
-        </DropdownContainer>
-    );
+    const renderBody = (dropdownProps: DropdownBodyProps) => {
+        const hideHeaderTitle = isPickersType && isMobileScreen;
+        return (
+            <DropdownContainer { ...dropdownProps }>
+                <Panel cx={ css.panel }>
+                    <>
+                        {isPickersType ? (
+                            <MobileDropdownWrapper title={ props.title } close={ () => isOpenChange(false) }>
+                                {renderHeader(hideHeaderTitle)}
+                                <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange } />
+                            </MobileDropdownWrapper>
+                        ) : (
+                            <>
+                                {renderHeader(hideHeaderTitle)}
+                                <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange } />
+                            </>
+                        )}
+                    </>
+                </Panel>
+            </DropdownContainer>
+        );
+    };
 
     const getValue = () => {
         return predicate ? props.value?.[predicate] : props.value;
