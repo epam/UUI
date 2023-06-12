@@ -24,6 +24,7 @@ import {
     listPlugin,
     placeholderPlugin,
     EditorValue,
+    codeBlockPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.module.scss';
@@ -74,6 +75,7 @@ export default function SlateEditorBasicExample() {
                 },
             ],
         }),
+        codeBlockPlugin(),
     ];
 
     return (

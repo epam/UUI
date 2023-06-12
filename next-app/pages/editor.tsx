@@ -6,7 +6,7 @@ import {
     toDoListPlugin, baseMarksPlugin,
     linkPlugin, iframePlugin, notePlugin, separatorPlugin,
     tablePlugin, quotePlugin, colorPlugin,
-    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin,
+    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, codeBlockPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from '../styles/SlateEditorBasicExample.module.scss';
@@ -37,7 +37,6 @@ export default function SlateEditorBasicExample() {
         quotePlugin(),
         linkPlugin(),
         notePlugin(),
-        // TODO: use arrow function here instead of function by reference
         // uploadFilePlugin({ uploadFile })
         // attachmentPlugin(),
         imagePlugin(),
@@ -57,6 +56,7 @@ export default function SlateEditorBasicExample() {
                 },
             ],
         }),
+        codeBlockPlugin()
     ];
 
     return (
