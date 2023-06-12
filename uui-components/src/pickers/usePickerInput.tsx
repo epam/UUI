@@ -4,7 +4,7 @@ import { DropdownBodyProps, DataRowProps, isMobile, mobilePopperModifier, IDropd
 import { PickerTogglerProps } from './PickerToggler';
 import { PickerBaseState } from './PickerBase';
 import { PickerBodyBaseProps } from './PickerBodyBase';
-import { applyValueToDataSourceState } from './bindingHelpers';
+import { applyValueToDataSourceState, dataSourceStateToValue } from './bindingHelpers';
 import { handleDataSourceKeyboard, DataSourceKeyboardParams } from './KeyboardUtils';
 import { i18n } from '../i18n';
 import { getMaxItems } from './helpers';
@@ -55,21 +55,25 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     );
 
     useEffect(() => {
-        pickerState.setDataSourceState(
-            applyValueToDataSourceState(
-                props,
-                pickerState.dataSourceState,
-                props.value,
-                props.dataSource,
-            ),
-        );
+        const prevValue = dataSourceStateToValue(props, dataSourceState, props.dataSource);
+        if (prevValue !== props.value) {
+            pickerState.setDataSourceState(
+                applyValueToDataSourceState(
+                    props,
+                    pickerState.dataSourceState,
+                    props.value,
+                    props.dataSource,
+                ),
+            );
+        }
     }, [props.value]);
     
     useEffect(() => {
-        if (props.isDisabled && opened) {
+        const prevValue = dataSourceStateToValue(props, dataSourceState, props.dataSource);
+        if (props.value === prevValue && props.isDisabled && opened) {
             setOpened(false);
         }
-    }, [props.isDisabled, opened]);
+    }, [props.isDisabled, opened, props.value]);
     
     const toggleDropdownOpening = (newOpened: boolean) => {
         if (isMobile()) {
