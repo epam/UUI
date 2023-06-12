@@ -12,7 +12,6 @@ import {
     useForceUpdate,
     FilterPredicateName,
     getSeparatedValue,
-    mobilePopperModifier,
     DataRowProps,
     PickerFilterConfig,
 } from '@epam/uui-core';

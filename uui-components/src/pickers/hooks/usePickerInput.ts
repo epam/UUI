@@ -15,6 +15,7 @@ const initialRowsVisible = 20; /* estimated, with some reserve to allow start sc
 
 type UsePickerInputProps<TItem, TId, TProps> = PickerInputBaseProps<TItem, TId> & TProps & {
     toggleModalOpening?(opened: boolean): void;
+    shouldShowBody?(): boolean;
 };
 
 export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TItem, TId, TProps>) {
@@ -127,7 +128,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         clearSelection();
     };
 
-    const shouldShowBody = () => {
+    const defaultShouldShowBody = () => {
         const searchPosition = props.searchPosition || 'input';
         const isOpened = opened && !props.isDisabled;
 
@@ -139,6 +140,8 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         }
         return isOpened;
     };
+
+    const shouldShowBody = () => (props.shouldShowBody ?? defaultShouldShowBody)();
 
     const handlePickerInputKeyboard = (rows: DataSourceKeyboardParams['rows'], e: React.KeyboardEvent<HTMLElement>) => {
         if (props.isDisabled || props.isReadonly) return;
@@ -346,10 +349,12 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         returnFocusToInput,
         shouldShowBody,
         toggleBodyOpening,
+        isSingleSelect,
         popperModifiers,
         getPickerBodyProps,
         getListProps,
         handleTogglerSearchChange,
+        handleDataSourceValueChange,
         handleSelectionValueChange,
     };
 }
