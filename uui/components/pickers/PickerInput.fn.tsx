@@ -6,13 +6,14 @@ import { EditMode, IHasEditMode, SizeMod } from '../types';
 import { DataRowProps, DataSourceListProps, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
-import css from './PickerInput.module.scss';
 import { Panel } from '../layout';
 import { MobileDropdownWrapper } from './MobileDropdownWrapper';
 import { DataPickerBody } from './DataPickerBody';
 import { DataPickerRow } from './DataPickerRow';
 import { DataPickerFooter } from './DataPickerFooter';
 import { PickerItem } from './PickerItem';
+
+import css from './PickerInput.module.scss';
 
 const pickerHeight = 300;
 const pickerWidth = 360;
