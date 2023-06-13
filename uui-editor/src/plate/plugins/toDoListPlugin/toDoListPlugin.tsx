@@ -10,6 +10,7 @@ import {
     getAboveNode,
     insertEmptyElement,
     deleteForward,
+    deleteBackward,
 } from '@udecode/plate';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
@@ -41,6 +42,13 @@ export const toDoListPlugin = () => {
                                 deleteForward(editor);
                                 insertEmptyElement(editor, PARAGRAPH_TYPE);
                             }
+                        }
+
+                        // for smooth remove, replaces checkbox element with empty paragraph
+                        if (e.key === 'Backspace') {
+                            deleteBackward(editor);
+                            insertEmptyElement(editor, PARAGRAPH_TYPE);
+                            return true;
                         }
                     },
                 },

@@ -26,7 +26,7 @@ const migrateTable = (oldTable: any) => {
     oldTable.nodes.forEach((row: any) => {
         const newRowNodes: any[] = [];
         row.nodes.forEach((cell: any) => {
-            if(cell.data?.style !== 'none') {
+            if (cell.data?.style !== "none") {
                 newRowNodes.push(cell);
             }
         });
@@ -34,13 +34,14 @@ const migrateTable = (oldTable: any) => {
         row.nodes = newRowNodes;
     });
     return oldTable;
-}
+};
 
 const migrateElementNode = (node: any) => {
     const mediaTypes = ["image", "iframe"];
 
-    if(node.type === 'table') {
-        node = migrateTable(node);
+    if (node.type === "paragraph" && node.nodes?.[0].type === "table") {
+        let tableNode = node.nodes[0];
+        node = migrateTable(tableNode);
     }
 
     return {
