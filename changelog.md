@@ -1,6 +1,7 @@
 # 5.x.x - xx.xx.2023
 
 **What's New**
+* [FiltersPanel]: added picker title to the header in mobile view.
 
 **What's Fixed**
 * [PickerInput]: fixed `unknown` in a `single` selection mode while data is loading in `AsyncDataSource` and `LazyDataSource`, and removed error of missing ids if data is still loading
