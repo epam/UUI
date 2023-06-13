@@ -70,7 +70,6 @@ import { TableCell } from "./TableCell";
 import tableCSS from './Table.module.scss';
 import { useFocused, useReadOnly, useSelected } from 'slate-react';
 import { updateTableStructure } from './util';
-import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 
 const StyledRemoveTable = () => {
     return <RemoveTable className={ tableCSS.removeTableIcon } />
@@ -104,7 +103,7 @@ const TableRenderer = (props: any) => {
 
         // define colSpan
         const colSpan = cellEntries.reduce((acc, [data, path]: any) => {
-            if (path[2] === cellEntries[0][1][2]) {
+            if (path[1] === cellEntries[0][1][1]) {
                 const cellColSpan =
                     (data?.attributes as any)?.colspan ??
                     data.data?.colSpan ??
@@ -118,9 +117,9 @@ const TableRenderer = (props: any) => {
         // define rowSpan
         const alreadyCounted: number[] = [];
         const rowSpan = cellEntries.reduce((acc, [data, path]: any) => {
-            const curRowCounted = alreadyCounted.includes(path[2]);
-            if (path[2] !== cellEntries[0][1][2] && !curRowCounted) {
-                alreadyCounted.push(path[2]);
+            const curRowCounted = alreadyCounted.includes(path[1]);
+            if (path[1] !== cellEntries[0][1][1] && !curRowCounted) {
+                alreadyCounted.push(path[1]);
 
                 const cellRowSpan =
                     (data?.attributes as any)?.rowspan ??
@@ -132,7 +131,6 @@ const TableRenderer = (props: any) => {
             return acc;
         }, 1);
 
-
         // cols to remove
         const cols: any = {};
         let hasHeaderCell = false;
@@ -140,10 +138,10 @@ const TableRenderer = (props: any) => {
             if (!hasHeaderCell && entry.type === 'table_header_cell') {
                 hasHeaderCell = true;
             }
-            if (cols[path[2]]) {
-                cols[path[2]].push(path);
+            if (cols[path[1]]) {
+                cols[path[1]].push(path);
             } else {
-                cols[path[2]] = [path];
+                cols[path[1]] = [path];
             }
         });
 
@@ -209,10 +207,10 @@ const TableRenderer = (props: any) => {
         const cols: any = {};
 
         cellEntries.forEach(([, path]) => {
-            if (cols[path[2]]) {
-                cols[path[2]].push(path);
+            if (cols[path[1]]) {
+                cols[path[1]].push(path);
             } else {
-                cols[path[2]] = [path];
+                cols[path[1]] = [path];
             }
         });
 
@@ -376,8 +374,8 @@ const wiOurSetFragmentDataTable = <
             const cellContents = selectedCellNode.children;
 
             select(editor, {
-              anchor: getStartPoint(editor, cellPath),
-              focus: getEndPoint(editor, cellPath),
+                anchor: getStartPoint(editor, cellPath),
+                focus: getEndPoint(editor, cellPath),
             });
             // set data from selection
             setFragmentData(data);
@@ -393,7 +391,7 @@ const wiOurSetFragmentDataTable = <
             // set slate fragment
             const selectedFragmentStr = JSON.stringify(cellContents);
             const encodedFragment = window.btoa(
-              encodeURIComponent(selectedFragmentStr)
+                encodeURIComponent(selectedFragmentStr)
             );
             data.setData('application/x-slate-fragment', encodedFragment);
 
@@ -425,20 +423,6 @@ export const tablePlugin = () => createTablePlugin({
             type: 'table',
             component: TableRenderer,
             withOverrides: withOurTable,
-            inject: {
-                pluginsByKey: {
-                    [KEY_DESERIALIZE_HTML]: {
-                        editor: {
-                            insertData: {
-                                transformFragment: (fragment) => {
-                                    // wrap into paragraph pasted tables docx content
-                                    return [{ type: PARAGRAPH_TYPE, children: fragment }, createNode()];
-                                }
-                            },
-                        },
-                    },
-                },
-            },
         },
         [ELEMENT_TR]: {
             type: 'table_row',
@@ -481,17 +465,11 @@ const createInitialTable = (editor: PlateEditor) => {
         },
     ];
 
-    return [
-        {
-            type: PARAGRAPH_TYPE,
-            children: [{
-                type: getPluginType(editor, ELEMENT_TABLE),
-                children: rows,
-                data: { cellSizes: [DEFAULT_COL_WIDTH, DEFAULT_COL_WIDTH] },
-            }],
-        },
-        createNode()
-    ]
+    return {
+        type: getPluginType(editor, ELEMENT_TABLE),
+        children: rows,
+        data: { cellSizes: [DEFAULT_COL_WIDTH, DEFAULT_COL_WIDTH] },
+    };
 }
 
 const selectFirstCell = (editor: PlateEditor) => {
