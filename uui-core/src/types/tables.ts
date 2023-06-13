@@ -233,6 +233,8 @@ export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     getName?: (item: any) => string;
     renderRow?: (props: DataRowProps<any, any>) => ReactNode;
     valueType?: 'id';
+    /** default value: true */
+    showSearch?: boolean;
 };
 
 type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
@@ -269,14 +271,14 @@ export interface ITablePreset<TFilter = any, TViewState = any> {
 
 export interface IPresetsApi<TFilter = any, TViewState = any> {
     activePresetId: number | null;
-    choosePreset(preset: ITablePreset): void;
+    choosePreset(preset: ITablePreset<TFilter, TViewState>): void;
     createNewPreset(name: string): Promise<number>;
-    hasPresetChanged(preset: ITablePreset): boolean;
-    duplicatePreset(preset: ITablePreset): void;
-    deletePreset(preset: ITablePreset): Promise<void>;
-    updatePreset(preset: ITablePreset): Promise<void>;
-    getPresetLink(preset: ITablePreset): string;
-    presets: ITablePreset[];
+    hasPresetChanged(preset: ITablePreset<TFilter, TViewState>): boolean;
+    duplicatePreset(preset: ITablePreset<TFilter, TViewState>): void;
+    deletePreset(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
+    updatePreset(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
+    getPresetLink(preset: ITablePreset<TFilter, TViewState>): string;
+    presets: ITablePreset<TFilter, TViewState>[];
 }
 
 export interface ITableState<TFilter = Record<string, any>, TViewState = any> extends IPresetsApi<TFilter, TViewState> {

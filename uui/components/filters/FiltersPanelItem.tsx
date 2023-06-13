@@ -12,7 +12,6 @@ import {
     useForceUpdate,
     FilterPredicateName,
     getSeparatedValue,
-    mobilePopperModifier,
     DataRowProps,
     PickerFilterConfig,
 } from '@epam/uui-core';
@@ -34,6 +33,7 @@ export type FiltersToolbarItemProps = TableFiltersConfig<any> &
 IEditable<any> & {
     autoFocus?: boolean;
     removeFilter?: (field: any) => void;
+    size?: '24' | '30' | '36' | '42' | '48';
 };
 
 function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
@@ -117,12 +117,12 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     };
 
     const renderHeader = (hideTitle: boolean) => (
-        <div className={ cx(css.header) }>
+        <div className={ cx(css.header, isPickersType && (props.showSearch ?? css.withSearch)) }>
             {props.predicates ? (
                 <MultiSwitch items={ props.predicates.map((i) => ({ id: i.predicate, caption: i.name })) } value={ predicate } onValueChange={ changePredicate } size="24" />
             ) : (
                 !hideTitle && (
-                    <Text color="secondary" fontSize="12">
+                    <Text color="secondary" size="24" fontSize="14">
                         {props.title}
                     </Text>
                 )
@@ -138,19 +138,29 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         return (
             <DropdownContainer { ...dropdownProps }>
                 <Panel cx={ css.panel }>
-                    <>
-                        {isPickersType ? (
-                            <MobileDropdownWrapper title={ props.title } close={ () => isOpenChange(false) }>
-                                {renderHeader(hideHeaderTitle)}
-                                <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange } />
-                            </MobileDropdownWrapper>
-                        ) : (
-                            <>
-                                {renderHeader(hideHeaderTitle)}
-                                <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange } />
-                            </>
-                        )}
-                    </>
+                    { isPickersType ? (
+                        <MobileDropdownWrapper title={ props.title } close={ () => isOpenChange(false) }>
+                            { renderHeader(hideHeaderTitle) }
+                            <FilterItemBody
+                                { ...props }
+                                { ...dropdownProps }
+                                selectedPredicate={ predicate }
+                                value={ getValue() }
+                                onValueChange={ onValueChange }
+                            />
+                        </MobileDropdownWrapper>
+                    ) : (
+                        <>
+                            { renderHeader(hideHeaderTitle) }
+                            <FilterItemBody
+                                { ...props }
+                                { ...dropdownProps }
+                                selectedPredicate={ predicate }
+                                value={ getValue() }
+                                onValueChange={ onValueChange }
+                            />
+                        </>
+                    ) }
                 </Panel>
             </DropdownContainer>
         );
@@ -188,7 +198,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                         isLoading = item.isLoading;
                         return getPickerItemName(item, props);
                     })
-                    : [i18n.filterToolbar.pickerInput.emptyValueCaption];
+                    : [currentValue];
 
                 const selectionText = isLoading ? selection : selection.join(', ');
                 return { selection: selectionText, postfix };
@@ -197,7 +207,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 const isRangePredicate = predicate === 'inRange' || predicate === 'notInRange';
                 const decimalFormat = (val: number) => getSeparatedValue(val, { maximumFractionDigits: 2 });
                 if ((isRangePredicate && !currentValue) || (!isRangePredicate && !currentValue && currentValue !== 0)) {
-                    return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
+                    return { selection: currentValue };
                 }
                 const selection = isRangePredicate
                     ? `${!currentValue?.from && currentValue?.from !== 0 ? 'Min' : decimalFormat(currentValue?.from)} - ${
@@ -209,7 +219,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
             case 'singlePicker': {
                 const view = props.dataSource.getView({}, forceUpdate);
                 if (currentValue === null || currentValue === undefined) {
-                    return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
+                    return { selection: currentValue };
                 }
 
                 const item = view.getById(currentValue, null);
@@ -243,6 +253,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
             title={ props.title }
             predicateName={ props.value ? predicateName : null }
             maxWidth={ props.type === 'datePicker' || props.type === 'rangeDatePicker' ? null : '300' }
+            size={ props.size }
         />
     );
 
