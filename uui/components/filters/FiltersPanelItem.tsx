@@ -117,7 +117,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     };
 
     const renderHeader = (hideTitle: boolean) => (
-        <div className={ cx(css.header) }>
+        <div className={ cx(css.header, isPickersType && (props.showSearch ?? css.withSearch)) }>
             {props.predicates ? (
                 <MultiSwitch items={ props.predicates.map((i) => ({ id: i.predicate, caption: i.name })) } value={ predicate } onValueChange={ changePredicate } size="24" />
             ) : (
@@ -139,7 +139,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
             <DropdownContainer { ...dropdownProps }>
                 <Panel cx={ css.panel }>
                     { isPickersType ? (
-                        <MobileDropdownWrapper close={ () => isOpenChange(false) }>
+                        <MobileDropdownWrapper title={ props.title } close={ () => isOpenChange(false) }>
                             { renderHeader(hideHeaderTitle) }
                             <FilterItemBody
                                 { ...props }
