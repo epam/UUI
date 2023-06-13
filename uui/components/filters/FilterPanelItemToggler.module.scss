@@ -2,12 +2,6 @@
 
 .root {
     &:global(.uui-input-box) {
-
-        @include filterTogglerSize(24);
-        @include filterTogglerSize(30);
-        @include filterTogglerSize(36);
-        @include filterTogglerSize(42);
-        @include filterTogglerSize(48);
         width: 100%;
         box-sizing: border-box;
         min-width: 40px;
@@ -119,5 +113,11 @@
                 }
             }
         }
+
+        @include filterTogglerSize(24);
+        @include filterTogglerSize(30);
+        @include filterTogglerSize(36);
+        @include filterTogglerSize(42);
+        @include filterTogglerSize(48);
     }
 }
