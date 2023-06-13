@@ -6,9 +6,9 @@ import {
 } from '@epam/uui-core';
 import { AdaptiveItemProps, AdaptivePanel, ScrollBars } from '@epam/uui-components';
 import css from './PresetsPanel.module.scss';
-import {
-    Button, Dropdown, DropdownContainer, DropdownMenuButton, FlexCell, FlexRow,
-} from '../../index';
+import { Button } from '../../buttons';
+import { FlexCell, FlexRow } from '../../layout';
+import { Dropdown, DropdownContainer, DropdownMenuButton } from '../../overlays';
 import { Preset } from './Preset';
 import { PresetInput } from './PresetInput';
 import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-deleteforever-18.svg';
@@ -66,15 +66,15 @@ export function PresetsPanel(props: PresetsPanelProps) {
                 renderBody={ () => (
                     <DropdownContainer cx={ cx(css.dropContainer) } width={ 230 }>
                         <ScrollBars>
-                            {hiddenItems.map((item) => (
+                            {hiddenItems.map((hiddenItem) => (
                                 <DropdownMenuButton
-                                    key={ item.preset.id }
-                                    onClick={ () => onPresetDropdownSelect(item) }
-                                    caption={ item.preset.name }
-                                    icon={ !item.preset.isReadonly && DeleteIcon }
+                                    key={ hiddenItem.preset.id }
+                                    onClick={ () => onPresetDropdownSelect(hiddenItem) }
+                                    caption={ hiddenItem.preset.name }
+                                    icon={ !hiddenItem.preset.isReadonly && DeleteIcon }
                                     iconPosition="right"
                                     cx={ css.dropdownDeleteIcon }
-                                    onIconClick={ !item.preset.isReadonly && (() => props.deletePreset(item.preset)) }
+                                    onIconClick={ !hiddenItem.preset.isReadonly && (() => props.deletePreset(hiddenItem.preset)) }
                                 />
                             ))}
                         </ScrollBars>

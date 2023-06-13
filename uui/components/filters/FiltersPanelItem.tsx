@@ -33,6 +33,7 @@ export type FiltersToolbarItemProps = TableFiltersConfig<any> &
 IEditable<any> & {
     autoFocus?: boolean;
     removeFilter?: (field: any) => void;
+    size?: '24' | '30' | '36' | '42' | '48';
 };
 
 function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
@@ -180,7 +181,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                         isLoading = item.isLoading;
                         return getPickerItemName(item, props);
                     })
-                    : [i18n.filterToolbar.pickerInput.emptyValueCaption];
+                    : [currentValue];
 
                 const selectionText = isLoading ? selection : selection.join(', ');
                 return { selection: selectionText, postfix };
@@ -189,7 +190,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 const isRangePredicate = predicate === 'inRange' || predicate === 'notInRange';
                 const decimalFormat = (val: number) => getSeparatedValue(val, { maximumFractionDigits: 2 });
                 if ((isRangePredicate && !currentValue) || (!isRangePredicate && !currentValue && currentValue !== 0)) {
-                    return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
+                    return { selection: currentValue };
                 }
                 const selection = isRangePredicate
                     ? `${!currentValue?.from && currentValue?.from !== 0 ? 'Min' : decimalFormat(currentValue?.from)} - ${
@@ -201,7 +202,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
             case 'singlePicker': {
                 const view = props.dataSource.getView({}, forceUpdate);
                 if (currentValue === null || currentValue === undefined) {
-                    return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
+                    return { selection: currentValue };
                 }
 
                 const item = view.getById(currentValue, null);
@@ -235,6 +236,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
             title={ props.title }
             predicateName={ props.value ? predicateName : null }
             maxWidth={ props.type === 'datePicker' || props.type === 'rangeDatePicker' ? null : '300' }
+            size={ props.size }
         />
     );
 

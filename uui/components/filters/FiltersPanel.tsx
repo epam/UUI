@@ -10,12 +10,13 @@ import {
 } from '@epam/uui-core';
 import { PickerTogglerProps, FlexCell } from '@epam/uui-components';
 import { FiltersPanelItem } from './FiltersPanelItem';
-import { ReactComponent as addIcon } from '@epam/assets/icons/common/content-plus_bold-18.svg';
+import { ReactComponent as addIcon } from '@epam/assets/icons/common/action-add-18.svg';
 
 export interface FiltersPanelProps<TFilter> {
     filters: TableFiltersConfig<TFilter>[];
     tableState: DataTableState;
     setTableState: (newState: DataTableState) => void;
+    size?: '24' | '30' | '36' | '42' | '48';
 }
 
 const normalizeFilterWithPredicates = <TFilter,>(filter: TFilter) => {
@@ -126,12 +127,12 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
         return sortBy(selectedFilters, (f) => tableState.filtersConfig?.[f.field]?.order);
     }, [filters, tableState.filtersConfig]);
 
-    const renderAddFilterToggler = useCallback((props: PickerTogglerProps) => {
+    const renderAddFilterToggler = useCallback((togglerProps: PickerTogglerProps) => {
         return (
             <Button
-                size="36"
-                onClick={ props.onClick }
-                ref={ props.ref }
+                size={ props.size ?? '36' }
+                onClick={ togglerProps.onClick }
+                ref={ togglerProps.ref }
                 caption={ i18n.filterToolbar.addCaption }
                 icon={ addIcon }
                 iconPosition="left"
@@ -170,6 +171,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                         key={ f.field as string }
                         autoFocus={ newFilterId === f.field }
                         removeFilter={ removeFilter }
+                        size={ props.size }
                     />
                 </FlexCell>
             ))}
@@ -198,6 +200,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                     emptyValue={ [] }
                     getRowOptions={ getRowOptions }
                     fixedBodyPosition={ true }
+                    size={ props.size }
                 />
             )}
         </>
