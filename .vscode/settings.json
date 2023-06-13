@@ -90,7 +90,7 @@
         "woff",
         "xlink"
     ],
-    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "typescript.tsdk": "node_modules/typescript/lib",
     "files.trimTrailingWhitespace": true,
     "editor.detectIndentation": false,
     "stylelint.enable": true,
