@@ -116,7 +116,7 @@
     --uui-primary: var(--blue);
     --uui-primary-light: var(--blue-light);
     --uui-primary-lightest: var(--blue-lightest);
-    --uui-primary-halftone: var(--blue-lightest);
+    --uui-primary-halftone: var(--blue-lightest); // TODO: why we have that?
     --uui-primary-dark: var(--blue-dark);
     --uui-primary-darkest: var(--blue-darkest);
 
@@ -632,7 +632,7 @@
     --uui-filters-toggler-bg-hover: var(--uui-surface-light-hover);
     --uui-filters-toggler-text: var(--uui-text-brand);
     --uui-filters-toggler-label: var(--uui-text-secondary);
-    --uui-filters-toggler-icon: var(--uui-text-input-icon-clickable);
+    --uui-filters-toggler-icon: var(--uui-icon-active);
 
     --uui-filters-toggler-font: var(--font-regular);
     --uui-filters-panel-header-font: var(--font-regular);

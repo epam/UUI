@@ -1,13 +1,14 @@
 # 5.x.x - xx.xx.2023
 
 **What's New**
-* [FiltersPanel]: added picker title to the header in mobile view.
+* [FiltersPanel]: added picker title to the header in mobile view, added possibility to hide search for exact filter using
+`showSearch` prop in config, added sizes for panel
 
 **What's Fixed**
 * [PickerInput]: fixed `unknown` in a `single` selection mode while data is loading in `AsyncDataSource` and `LazyDataSource`, and removed error of missing ids if data is still loading
+* [FiltersPanel]: fixed styles for body & toggler according to design
 
-
-# 5.0.0 - xx.xx.2023
+# 5.0.0 - 06.06.2023
 
 **Themes**
 
