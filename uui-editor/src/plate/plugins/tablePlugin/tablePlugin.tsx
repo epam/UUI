@@ -1,10 +1,8 @@
 import React, {
     Fragment,
     useCallback,
-    useEffect,
     useMemo,
     useRef,
-    useState
 } from 'react';
 import {
     ELEMENT_TABLE,
@@ -36,6 +34,12 @@ import {
     getCellTypes,
     findNode,
     setElements,
+    Value,
+    WithPlatePlugin,
+    withTable,
+    TablePlugin,
+    select,
+    getEndPoint,
 } from "@udecode/plate";
 import cx from "classnames";
 import { Dropdown } from '@epam/uui-components';
@@ -51,7 +55,7 @@ import { ReactComponent as RemoveTable } from "../../../icons/table-table_remove
 import { ReactComponent as TableIcon } from "../../../icons/table-add.svg";
 import { ReactComponent as TableMerge } from "../../../icons/table-merge.svg";
 import { ReactComponent as UnmergeCellsIcon } from "../../../icons/table-un-merge.svg";
-import { ReactComponent as ClearIcon } from "../../icons/text-color-default.svg";
+// import { ReactComponent as ClearIcon } from "../../icons/text-color-default.svg";
 import { isPluginActive, isTextSelected } from "../../../helpers";
 
 import { ToolbarButton } from "../../../implementation/ToolbarButton";
@@ -340,11 +344,87 @@ const TableRenderer = (props: any) => {
     );
 };
 
+const wiOurSetFragmentDataTable = <
+    V extends Value = Value,
+    E extends PlateEditor<V> = PlateEditor<V>
+>(
+    editor: E,
+    plugin: WithPlatePlugin<TablePlugin<V>, V, E>
+) => {
+    const { setFragmentData } = editor;
+
+    /**
+     * Overrides behavior for single cell copy | cut operation.
+     * TODO: move to plate
+     */
+    editor.setFragmentData = (
+        data: DataTransfer,
+        originEvent?: 'drag' | 'copy' | 'cut' | undefined
+    ) => {
+        const tableEntry = getTableGridAbove(editor, { format: 'table' })?.[0];
+        const selectedCellEntries = getTableGridAbove(editor, { format: 'cell' });
+        const initialSelection = editor.selection;
+        const CELLS_NUMBER = 1;
+
+        if (
+            tableEntry &&
+            initialSelection &&
+            selectedCellEntries.length === CELLS_NUMBER &&
+            originEvent === 'copy' || originEvent === 'cut'
+        ) {
+            const [[selectedCellNode, cellPath]] = selectedCellEntries;
+            const cellContents = selectedCellNode.children;
+
+            select(editor, {
+              anchor: getStartPoint(editor, cellPath),
+              focus: getEndPoint(editor, cellPath),
+            });
+            // set data from selection
+            setFragmentData(data);
+
+            const plainText = data.getData('text/plain');
+            data.setData('text/csv', plainText);
+            data.setData('text/tsv', plainText);
+            data.setData('text/plain', plainText);
+
+            const htmlContent = data.getData('text/html');
+            data.setData('text/html', htmlContent);
+
+            // set slate fragment
+            const selectedFragmentStr = JSON.stringify(cellContents);
+            const encodedFragment = window.btoa(
+              encodeURIComponent(selectedFragmentStr)
+            );
+            data.setData('application/x-slate-fragment', encodedFragment);
+
+            return;
+        }
+
+        setFragmentData(data, originEvent);
+    }
+
+    return editor;
+}
+
+const withOurTable = <
+    V extends Value = Value,
+    E extends PlateEditor<V> = PlateEditor<V>
+>(
+    editor: E,
+    plugin: WithPlatePlugin<TablePlugin<V>, V, E>
+) => {
+    editor = withTable(editor, plugin);
+    editor = wiOurSetFragmentDataTable(editor, plugin);
+
+    return editor;
+};
+
 export const tablePlugin = () => createTablePlugin({
     overrideByKey: {
         [ELEMENT_TABLE]: {
             type: 'table',
             component: TableRenderer,
+            withOverrides: withOurTable,
             inject: {
                 pluginsByKey: {
                     [KEY_DESERIALIZE_HTML]: {
