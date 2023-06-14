@@ -1,14 +1,6 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-import { PickerState, UsePickerStateProps, usePickerState } from './usePickerState';
-
-export interface UsePickerListStateProps<TId> extends UsePickerStateProps {
-    visibleIds?: TId[];
-}
-
-export interface PickerListState<TId> extends PickerState {
-    visibleIds: TId[];
-    setVisibleIds: Dispatch<SetStateAction<TId[]>>;
-}
+import { useState } from 'react';
+import { usePickerState } from './usePickerState';
+import { PickerListState, UsePickerListStateProps } from './types';
 
 export function usePickerListState<TId>(props: UsePickerListStateProps<TId>): PickerListState<TId> {
     const pickerState = usePickerState(props);

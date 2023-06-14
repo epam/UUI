@@ -2,17 +2,8 @@ import { useMemo } from 'react';
 import { DataRowProps } from '@epam/uui-core';
 import { i18n } from '../../i18n';
 import { usePicker } from './usePicker';
-import { PickerListBaseProps } from '../PickerListBase';
 import { usePickerListState } from './usePickerListState';
-
-type UsePickerListProps<TItem, TId, TProps> = PickerListBaseProps<TItem, TId> & TProps & {};
-
-interface LastUsedRec<TId> {
-    id: TId;
-    /* For possible future uses */
-    sessionStartTime: number;
-    selectionTime: number;
-}
+import { LastUsedRec, UsePickerListProps } from './types';
 
 export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TItem, TId, TProps>) {
     const sessionStartTime = useMemo(() => new Date().getTime(), []);
