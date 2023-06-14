@@ -13,7 +13,6 @@ import {
     cleanHtmlFontElements,
     cleanHtmlLinkElements,
     cleanHtmlTextNodes,
-    copyBlockMarksToSpanChild,
     postCleanHtml,
     preCleanHtml,
 } from "@udecode/plate-common";
@@ -42,7 +41,9 @@ export const cleanDocx = (html: string, rtf: string): string => {
     cleanHtmlLinkElements(body);
     cleanHtmlFontElements(body);
     cleanDocxListElements(body);
-    copyBlockMarksToSpanChild(body);
+    // TODO: Fix on plate
+    // fixes bug with pasting table from word in Safari only
+    // copyBlockMarksToSpanChild(body);
 
     return postCleanHtml(body.innerHTML);
 };

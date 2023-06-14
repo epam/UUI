@@ -1,26 +1,34 @@
 import {
+    ELEMENT_TABLE,
+    ELEMENT_TD,
+    ELEMENT_TH,
+    ELEMENT_TR,
+    PlateEditor,
     TTableCellElement,
     TTableElement,
     TTableRowElement,
+    getBlockAbove,
+    getPluginType,
+    getStartPoint,
+    selectEditor,
 } from "@udecode/plate";
 import { ExtendedTTableCellElement } from "./types";
+import { DEFAULT_COL_WIDTH } from "./constants";
 
 export const getRowSpan = (cellElem: ExtendedTTableCellElement) => {
-    return (
-        (cellElem?.attributes as any)?.rowspan ||
-        cellElem.data?.rowSpan ||
-        cellElem.rowSpan ||
-        1
-    );
+    const attrRowSpan = isNaN((cellElem?.attributes as any)?.rowspan)
+        ? undefined
+        : Number((cellElem?.attributes as any)?.rowspan);
+
+    return attrRowSpan || cellElem.data?.rowSpan || cellElem.rowSpan || 1;
 };
 
 export const getColSpan = (cellElem: ExtendedTTableCellElement) => {
-    return (
-        (cellElem?.attributes as any)?.colspan ||
-        cellElem.data?.colSpan ||
-        cellElem.colSpan ||
-        1
-    );
+    const attrColSpan = isNaN((cellElem?.attributes as any)?.colspan)
+        ? undefined
+        : Number((cellElem?.attributes as any)?.colspan);
+
+    return attrColSpan || cellElem.data?.colSpan || cellElem.colSpan || 1;
 };
 
 export const updateTableStructure = (tableElem: TTableElement) => {
@@ -141,4 +149,76 @@ export const updateTableStructure = (tableElem: TTableElement) => {
     });
 
     return tableElem;
+};
+
+export const createCell = ({
+    colSpan = 1,
+    rowSpan = 1,
+    type = "table_cell",
+    textContent = "",
+}: {
+    type: string;
+    colSpan?: number;
+    rowSpan?: number;
+    textContent?: string;
+}) => {
+    return {
+        data: { colSpan, rowSpan },
+        type,
+        children: [
+            {
+                data: {},
+                type: "paragraph",
+                children: [{ text: textContent }],
+            },
+        ],
+    };
+};
+
+export const selectFirstCell = (editor: PlateEditor) => {
+    if (editor.selection) {
+        const tableEntry = getBlockAbove(editor, {
+            match: { type: getPluginType(editor, ELEMENT_TABLE) },
+        });
+        if (!tableEntry) return;
+
+        selectEditor(editor, { at: getStartPoint(editor, tableEntry[1]) });
+    }
+};
+
+export const createInitialTable = (editor: PlateEditor) => {
+    const rows = [
+        {
+            type: getPluginType(editor, ELEMENT_TR),
+            children: [
+                {
+                    type: getPluginType(editor, ELEMENT_TH),
+                    children: [editor.blockFactory()],
+                },
+                {
+                    type: getPluginType(editor, ELEMENT_TH),
+                    children: [editor.blockFactory()],
+                },
+            ],
+        },
+        {
+            type: getPluginType(editor, ELEMENT_TR),
+            children: [
+                {
+                    type: getPluginType(editor, ELEMENT_TD),
+                    children: [editor.blockFactory()],
+                },
+                {
+                    type: getPluginType(editor, ELEMENT_TD),
+                    children: [editor.blockFactory()],
+                },
+            ],
+        },
+    ];
+
+    return {
+        type: getPluginType(editor, ELEMENT_TABLE),
+        children: rows,
+        data: { cellSizes: [DEFAULT_COL_WIDTH, DEFAULT_COL_WIDTH] },
+    };
 };
