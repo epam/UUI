@@ -1,16 +1,6 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { DataSourceState } from '@epam/uui-core';
-
-export interface UsePickerStateProps {
-    dataSourceState?: Partial<DataSourceState>;
-}
-
-export interface PickerState {
-    dataSourceState: DataSourceState;
-    setDataSourceState: Dispatch<SetStateAction<DataSourceState>>;
-    showSelected: boolean;
-    setShowSelected: Dispatch<SetStateAction<boolean>>;
-}
+import { PickerState, UsePickerStateProps } from './types';
 
 export function usePickerState(props: UsePickerStateProps): PickerState {
     const [dataSourceState, setDataSourceState] = useState<DataSourceState>({

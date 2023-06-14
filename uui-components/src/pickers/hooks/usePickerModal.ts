@@ -1,20 +1,8 @@
 import { useMemo } from 'react';
-import { DataSourceState, IHasCaption, IModal, Lens, PickerBaseOptions, PickerBaseProps, PickerFooterProps } from '@epam/uui-core';
+import { DataSourceState, IHasCaption, IModal, Lens, PickerBaseProps, PickerFooterProps } from '@epam/uui-core';
 import { usePicker } from './usePicker';
-import { PickerModalOptions } from '../PickerModalBase';
 import { usePickerModalState } from './usePickerModalState';
-
-export type PickerModalScalarProps<TId, TItem> =
-    | ({ selectionMode: 'single'; valueType: 'id'; initialValue: TId } & IModal<TId>)
-    | ({ selectionMode: 'single'; valueType: 'entity'; initialValue: TItem } & IModal<TItem>);
-export type PickerModalArrayProps<TId, TItem> =
-    | ({ selectionMode: 'multi'; valueType: 'id'; initialValue: TId[] } & IModal<TId[]>)
-    | ({ selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[] } & IModal<TItem[]>);
-
-export type UsePickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> &
-IHasCaption &
-(PickerModalScalarProps<TId, TItem> | PickerModalArrayProps<TId, TItem>) &
-PickerModalOptions<TItem, TId>;
+import { PickerModalOptions, UsePickerModalProps } from './types';
 
 type PickerProps<TItem, TId> = PickerBaseProps<TItem, TId> & IModal<any> & IHasCaption & PickerModalOptions<TItem, TId>;
 

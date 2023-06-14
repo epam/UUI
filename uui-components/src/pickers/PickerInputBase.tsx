@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
-import { DropdownBodyProps, DropdownState, UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier, IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, PickerFooterProps, ICanFocus, CX } from '@epam/uui-core';
+import {
+    DropdownBodyProps, DropdownState, UuiContexts, UuiContext, DataRowProps, isMobile, mobilePopperModifier,
+    IDropdownToggler, DataSourceListProps, PickerFooterProps,
+} from '@epam/uui-core';
 import { PickerTogglerProps } from './PickerToggler';
 import { PickerBase, PickerBaseState } from './PickerBase';
 import { PickerBodyBaseProps } from './PickerBodyBase';
@@ -10,74 +12,7 @@ import { handleDataSourceKeyboard, DataSourceKeyboardParams } from './KeyboardUt
 import { Dropdown } from '../overlays';
 import { i18n } from '../i18n';
 import { getMaxItems } from './helpers';
-
-export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId>
-& ICanFocus<HTMLElement> &
-IHasPlaceholder &
-IDisableable &
-ICanBeReadonly &
-IHasIcon & {
-    /** dropdown (default) - show selection in dropdown; modal - opens modal window to select items */
-    editMode?: 'dropdown' | 'modal';
-
-    /** Maximum number of tags to display in input, before collapsing to "N items selected" mode */
-    maxItems?: number;
-
-    /** Minimum width of dropdown body */
-    minBodyWidth?: number;
-
-    /** Prevents selected items tags to occupy multiple lines  */
-    isSingleLine?: boolean;
-
-    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
-    dropdownPlacement?: Placement;
-
-    /** Replaces default 'toggler' - an input to which Picker attaches dropdown */
-    renderToggler?: (props: PickerTogglerProps<TItem, TId>) => React.ReactNode;
-
-    /**
-      *  Defines where search field is:
-      * 'input' - try to place search inside the toggler (default for single-select),
-      * 'body' - put search inside the dropdown (default for multi-select)
-      * 'none' - disables search completely
-      */
-    searchPosition?: 'input' | 'body' | 'none';
-
-    /** Disallow to clear Picker value (cross icon) */
-    disableClear?: boolean;
-
-    /** Minimum characters to type, before search will trigger (default is 1) */
-    minCharsToSearch?: number;
-
-    /** Overrides default height of the dropdown body */
-    dropdownHeight?: number;
-
-    /** Sets focus to component when it's mounted */
-    autoFocus?: boolean;
-
-    /** HTML attributes to put directly to the input and body elements */
-    rawProps?: {
-        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
-        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
-    };
-
-    /** Adds custom footer to the dropdown body */
-    renderFooter?: (props: PickerInputFooterProps<TItem, TId>) => React.ReactNode;
-
-    /** Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter. */
-    fixedBodyPosition?: boolean;
-
-    portalTarget?: HTMLElement;
-
-    /** CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details */
-    inputCx?: CX;
-    /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */
-    bodyCx?: CX;
-};
-
-interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
-    onClose: () => void;
-}
+import { PickerInputBaseProps } from './hooks';
 
 interface PickerInputState extends DropdownState, PickerBaseState {
     showSelected: boolean;
