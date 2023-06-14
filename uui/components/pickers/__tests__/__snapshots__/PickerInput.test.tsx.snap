@@ -3,6 +3,7 @@
 exports[`PickerInput should render with maximum props 1`] = `
 <div
   className="container uui-input-box -clickable root size-48 mode-form"
+  data-testid="uui-PickerInput-target"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -11,9 +12,11 @@ exports[`PickerInput should render with maximum props 1`] = `
 >
   <div
     className="body multiline"
+    data-testid="uui-PickerToggler-body"
   >
     <button
       className="container uui-button-box uui-enabled size-42 root"
+      data-testid="uui-PickerToggler-item-2"
       onClick={[Function]}
       tabIndex={-1}
       type="button"
@@ -35,6 +38,7 @@ exports[`PickerInput should render with maximum props 1`] = `
     </button>
     <button
       className="container uui-button-box uui-enabled size-42 root"
+      data-testid="uui-PickerToggler-item-3"
       onClick={[Function]}
       tabIndex={-1}
       type="button"
@@ -59,6 +63,7 @@ exports[`PickerInput should render with maximum props 1`] = `
     className="actions"
   >
     <div
+      aria-label="Clear"
       className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
       onClick={[Function]}
       role="button"
@@ -85,6 +90,7 @@ exports[`PickerInput should render with maximum props 1`] = `
 exports[`PickerInput should render with minimum props 1`] = `
 <div
   className="container uui-input-box -clickable root size-36 mode-form"
+  data-testid="uui-PickerInput-target"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -93,11 +99,13 @@ exports[`PickerInput should render with minimum props 1`] = `
 >
   <div
     className="body"
+    data-testid="uui-PickerToggler-body"
   >
     <input
       aria-haspopup={true}
       autoComplete="no"
       className="uui-input singleInput cursorText"
+      data-testid="uui-PickerToggler-input"
       onChange={[Function]}
       placeholder="Please select "
       readOnly={true}

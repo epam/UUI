@@ -62,6 +62,12 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         ) : (
             <DataPickerRow
                 { ...rowProps }
+                rawProps={ {
+                    ...rowProps.rawProps,
+                    'data-testid': rowProps.isLoading
+                        ? `uui-PickerInput-loading-item-${rowProps.rowKey}`
+                        : `uui-PickerInput-item-${rowProps.rowKey}`,
+                } }
                 key={ rowProps.rowKey }
                 borderBottom="none"
                 size={ this.getRowSize() }
@@ -95,7 +101,15 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             <IEditableDebouncer
                 value={ targetProps.value }
                 onValueChange={ this.handleTogglerSearchChange }
-                render={ (editableProps) => renderTarget({ ...this.getTogglerMods(), ...targetProps, ...editableProps }) }
+                render={ (editableProps) => renderTarget({
+                    ...this.getTogglerMods(),
+                    ...targetProps,
+                    ...editableProps,
+                    rawProps: {
+                        ...targetProps.rawProps,
+                        'data-testid': 'uui-PickerInput-target',
+                    },
+                }) }
             />
         );
     }

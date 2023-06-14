@@ -78,7 +78,15 @@ export function PickerInput<TItem, TId>(props: CompletePickerInputProps<TItem, T
             <IEditableDebouncer
                 value={ targetProps.value }
                 onValueChange={ handleTogglerSearchChange }
-                render={ (editableProps) => renderTargetFn({ ...getTogglerMods(), ...targetProps, ...editableProps }) }
+                render={ (editableProps) => renderTargetFn({
+                    ...getTogglerMods(),
+                    ...targetProps,
+                    ...editableProps,
+                    rawProps: {
+                        ...targetProps.rawProps,
+                        'data-testid': 'uui-PickerInput-target',
+                    },
+                }) }
             />
         );
     };
@@ -110,6 +118,12 @@ export function PickerInput<TItem, TId>(props: CompletePickerInputProps<TItem, T
         ) : (
             <DataPickerRow
                 { ...rowProps }
+                rawProps={ {
+                    ...rowProps.rawProps,
+                    'data-testid': rowProps.isLoading
+                        ? `uui-PickerInput-loading-item-${rowProps.rowKey}`
+                        : `uui-PickerInput-item-${rowProps.rowKey}`,
+                } }
                 key={ rowProps.rowKey }
                 borderBottom="none"
                 size={ getRowSize() }

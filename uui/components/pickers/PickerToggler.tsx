@@ -53,6 +53,11 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
 
     const renderItem = (row: DataRowProps<TItem, TId>) => (
         <Tag
+            rawProps={ {
+                'data-testid': row.isLoading
+                    ? `uui-PickerToggler-loading-item-${row.rowKey}`
+                    : `uui-PickerToggler-item-${row.rowKey}`,
+            } }
             key={ row.rowKey }
             caption={ getCaption(row) }
             tabIndex={ -1 }
