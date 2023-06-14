@@ -2,6 +2,7 @@ import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
 import { BaseArrayListViewProps } from './views/ArrayListView';
 import { DataSourceState, IDataSourceView } from '../../types';
 import { AsyncListView, AsyncListViewProps } from './views/AsyncListView';
+import { useEffect, useMemo, useRef } from 'react';
 
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends AsyncListViewProps<TItem, TId, TFilter> {}
 
@@ -58,5 +59,45 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             this.views.set(onValueChange, newView);
             return newView;
         }
+    }
+    
+    useView(
+        value: DataSourceState<TFilter, TId>,
+        onValueChange: (val: DataSourceState<TFilter, TId>) => void,
+        options?: Partial<AsyncListViewProps<TItem, TId, TFilter>>,
+        deps: any[] = [],
+    ): IDataSourceView<TItem, TId, TFilter> {
+        const onValueChangeRef = useRef(null);
+        onValueChangeRef.current = onValueChange;
+        const viewProps: AsyncListViewProps<TItem, TId, TFilter> = {
+            ...this.props,
+            api: this.api,
+            ...options,
+            // These defaults are added for compatibility reasons.
+            // We'll require getId and getParentId callbacks in other APIs, including the views.
+            getId: this.getId,
+            getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
+        };
+         
+        const view = useMemo(
+            () => new AsyncListView({ value, onValueChange: onValueChangeRef.current }, viewProps),
+            deps,
+        );
+         
+        useEffect(() => {
+            this.subs.set(view, view._forceUpdate);
+            return () => {
+                this.subs.delete(view);
+            };
+        }, [view]);
+
+        view.update(value, viewProps);
+        if (!view.isLoaded) {
+            view.loadData().then((loadedItems) => {
+                this.setProps({ ...this.props, items: loadedItems ?? [] });
+            });
+        }
+    
+        return view;
     }
 }

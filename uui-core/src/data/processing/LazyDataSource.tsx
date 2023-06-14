@@ -1,7 +1,7 @@
 import { LazyListView, LazyListViewProps, NOT_FOUND_RECORD } from './views';
 import { ListApiCache } from './ListApiCache';
 import { BaseDataSource } from './BaseDataSource';
-import { useEffect } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { DataSourceState } from '../../types';
 
 export interface LazyDataSourceProps<TItem, TId, TFilter> extends LazyListViewProps<TItem, TId, TFilter> {}
@@ -14,7 +14,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         this.props = props;
         this.initCache();
     }
-
+     
     public setProps(props: LazyDataSourceProps<TItem, TId, TFilter>) {}
 
     public getById = (id: TId): TItem | void => {
@@ -66,11 +66,31 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
 
     useView<TState extends DataSourceState<any, TId>>(
         value: TState,
-        onValueChange: (value: TState) => any,
+        onValueChange: (val: TState) => void,
         props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
+        deps: any[] = [],
     ): LazyListView<TItem, TId, TFilter> {
-        useEffect(() => () => this.unsubscribeView(onValueChange), [this]);
+        const onValueChangeRef = useRef(null);
+        onValueChangeRef.current = onValueChange;
+        const viewProps: LazyListViewProps<TItem, TId, TFilter> = {
+            ...this.props,
+            getId: this.getId,
+            ...props,
+        };
+         
+        const view = useMemo(
+            () => new LazyListView({ value, onValueChange: onValueChangeRef.current }, viewProps, this.cache),
+            deps,
+        );
+         
+        useEffect(() => {
+            this.subs.set(view, view._forceUpdate);
+            return () => {
+                this.subs.delete(view);
+            };
+        }, [view]);
 
-        return this.getView(value, onValueChange, props);
+        view.update(value, viewProps);
+        return view;
     }
 }
