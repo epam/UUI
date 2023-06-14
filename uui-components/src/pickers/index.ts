@@ -9,3 +9,4 @@ export * from './PickerToggler';
 export * from './DataPickerRow';
 export * from './hooks/usePickerInput';
 export * from './hooks/usePickerList';
+export * from './hooks/usePickerModal';

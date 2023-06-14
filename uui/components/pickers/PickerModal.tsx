@@ -2,7 +2,7 @@ import * as React from 'react';
 import css from './PickerModal.module.scss';
 import { DataRowProps, Lens } from '@epam/uui-core';
 import {
-    PickerModalBase, PickerModalProps, handleDataSourceKeyboard, IconContainer,
+    PickerModalBase, handleDataSourceKeyboard, IconContainer,
 } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
 import { FlexRow, FlexCell, FlexSpacer } from '../layout';
@@ -15,6 +15,7 @@ import { DataPickerRow } from './DataPickerRow';
 import { Text, TextPlaceholder } from '../typography';
 import { i18n } from '../../i18n';
 import { ReactComponent as SearchIcon } from '../../icons/search-with-background.svg';
+import { PickerModalProps } from './PickerModal.fn';
 
 export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
     renderRow(rowProps: DataRowProps<TItem, TId>) {

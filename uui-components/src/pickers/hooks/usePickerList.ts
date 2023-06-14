@@ -34,7 +34,6 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         }
         return [];
     };
-
     const addDistinct = (to: TId[], add: TId[], maxItems: number) => {
         const added: Record<string, boolean> = {};
         to.forEach((id) => {
@@ -72,7 +71,7 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
     });
 
     const { dataSourceState, visibleIds } = pickerListState;
-    const picker = usePicker(props, pickerListState);
+    const picker = usePicker<TItem, TId, UsePickerListProps<TItem, TId, TProps>>(props, pickerListState);
     const {
         context,
         getView,

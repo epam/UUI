@@ -35,7 +35,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         dataSourceState, setDataSourceState, showSelected,
     } = pickerInputState;
 
-    const picker = usePicker(props, pickerInputState);
+    const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>(props, pickerInputState);
     const {
         context,
         getView,
@@ -51,7 +51,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     } = picker;
 
     const lens = useMemo(
-        () => Lens.onState<DataSourceState>(dataSourceState),
+        () => Lens.onEditable<DataSourceState>({ value: dataSourceState, onValueChange: setDataSourceState }),
         [dataSourceState],
     );
 

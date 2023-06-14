@@ -1,7 +1,6 @@
 import React from 'react';
 import { PickerBodyBaseProps, PickerInputBaseProps, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
 import { Dropdown } from '../overlays/Dropdown';
-import { PickerInputProps } from './PickerInput';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
 import { DataRowProps, DataSourceListProps, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
@@ -18,7 +17,10 @@ import css from './PickerInput.module.scss';
 const pickerHeight = 300;
 const pickerWidth = 360;
 
-function PickerInput<TItem, TId>(props: PickerInputBaseProps<TItem, TId> & SizeMod & IHasEditMode) {
+export type PickerInputProps = SizeMod & IHasEditMode & {};
+type CompletePickerInputProps<TItem, TId> = PickerInputProps & PickerInputBaseProps<TItem, TId>;
+
+export function PickerInput<TItem, TId>(props: CompletePickerInputProps<TItem, TId>) {
     const toggleModalOpening = () => {
         const { renderFooter, rawProps, ...restProps } = props;
         context.uuiModals
@@ -60,7 +62,7 @@ function PickerInput<TItem, TId>(props: PickerInputBaseProps<TItem, TId> & SizeM
         getPickerBodyProps,
         getListProps,
         shouldShowBody,
-    } = usePickerInput<TItem, TId, PickerInputProps>({ ...props, toggleModalOpening });
+    } = usePickerInput<TItem, TId, CompletePickerInputProps<TItem, TId>>({ ...props, toggleModalOpening });
 
     const getTogglerMods = (): PickerTogglerMods => {
         return {
@@ -179,8 +181,3 @@ function PickerInput<TItem, TId>(props: PickerInputBaseProps<TItem, TId> & SizeM
         />
     );
 }
-
-export {
-    type PickerInputProps,
-    PickerInput,
-};

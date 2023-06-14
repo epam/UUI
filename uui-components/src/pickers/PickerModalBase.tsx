@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    DataSourceState, IEditable, IHasCaption, IHasRawProps, IModal, Lens, PickerBaseOptions, PickerBaseProps, PickerFooterProps,
+    DataSourceState, IEditable, IHasCaption, IHasRawProps, IModal, Lens, PickerBaseProps, PickerFooterProps,
 } from '@epam/uui-core';
 import { PickerBase, PickerBaseState } from './index';
 
@@ -61,15 +61,3 @@ export class PickerModalBase<TItem, TId> extends PickerBase<TItem, TId, PickerMo
         };
     }
 }
-
-export type PickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> &
-IHasCaption &
-(PickerModalScalarProps<TId, TItem> | PickerModalArrayProps<TId, TItem>) &
-PickerModalOptions<TItem, TId>;
-
-export type PickerModalScalarProps<TId, TItem> =
-    | ({ selectionMode: 'single'; valueType: 'id'; initialValue: TId } & IModal<TId>)
-    | ({ selectionMode: 'single'; valueType: 'entity'; initialValue: TItem } & IModal<TItem>);
-export type PickerModalArrayProps<TId, TItem> =
-    | ({ selectionMode: 'multi'; valueType: 'id'; initialValue: TId[] } & IModal<TId[]>)
-    | ({ selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[] } & IModal<TItem[]>);
