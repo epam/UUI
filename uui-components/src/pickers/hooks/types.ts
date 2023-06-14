@@ -70,7 +70,7 @@ IHasIcon & {
     bodyCx?: CX;
 };
 
-interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
+export interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
     onClose: () => void;
 }
 
