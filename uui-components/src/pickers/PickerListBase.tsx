@@ -1,31 +1,9 @@
-import React from 'react';
 import { PickerBase, PickerBaseState } from './PickerBase';
 import {
-    UuiContexts, DataRowProps, UuiContext, PickerBaseProps, SortingOption,
+    UuiContexts, DataRowProps, UuiContext,
 } from '@epam/uui-core';
 import { i18n } from '../i18n';
-
-export type PickerListBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
-    /**
-     * Number of default items to show initially, when nothing is selected.
-     * Default it 10 items
-     */
-    maxDefaultItems?: number;
-
-    /** Maximum total number of items to show, including selected */
-    maxTotalItems?: number;
-
-    /**
-     * Ids of items to show first.
-     * If not specified, top props.maxDefaultItems will be shown according to the DataSource sorting settings (default is 10)
-     */
-    defaultIds?: TId[];
-
-    /** If provided, top picks will be automatically adjusted based on last user selection, and stored as user setting under provided key */
-    settingsKey?: string;
-
-    sortBy?(item: TItem, sorting: SortingOption): string;
-};
+import { PickerListBaseProps } from './hooks';
 
 // 1. maxItems = 100, always fits => checkbox/radio group
 // 2. maxItems = 5, items > 5, no topPicks => user-filter

@@ -1,6 +1,9 @@
 import React, { useMemo, useRef, useEffect } from 'react';
 import { Modifier } from 'react-popper';
-import { DropdownBodyProps, DataRowProps, isMobile, mobilePopperModifier, IDropdownToggler, Lens, PickerFooterProps, DataSourceState } from '@epam/uui-core';
+import {
+    DropdownBodyProps, DataRowProps, isMobile, mobilePopperModifier, IDropdownToggler, Lens, PickerFooterProps,
+    DataSourceState,
+} from '@epam/uui-core';
 import { PickerTogglerProps } from '../PickerToggler';
 import { PickerBodyBaseProps } from '../PickerBodyBase';
 import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
@@ -8,15 +11,10 @@ import { handleDataSourceKeyboard, DataSourceKeyboardParams } from '../KeyboardU
 import { i18n } from '../../i18n';
 import { getMaxItems } from '../helpers';
 import { usePicker } from './usePicker';
-import { PickerInputBaseProps } from '../PickerInputBase';
 import { usePickerInputState } from './usePickerInputState';
+import { UsePickerInputProps } from './types';
 
 const initialRowsVisible = 20; /* estimated, with some reserve to allow start scrolling without fetching more data */
-
-type UsePickerInputProps<TItem, TId, TProps> = PickerInputBaseProps<TItem, TId> & TProps & {
-    toggleModalOpening?(opened: boolean): void;
-    shouldShowBody?(): boolean;
-};
 
 export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TItem, TId, TProps>) {
     const popperModifiers: Modifier<any>[] = useMemo(() => [
