@@ -5,6 +5,24 @@ import {
 } from "@udecode/plate";
 import { ExtendedTTableCellElement } from "./types";
 
+export const getRowSpan = (cellElem: ExtendedTTableCellElement) => {
+    return (
+        (cellElem?.attributes as any)?.rowspan ||
+        cellElem.data?.rowSpan ||
+        cellElem.rowSpan ||
+        1
+    );
+};
+
+export const getColSpan = (cellElem: ExtendedTTableCellElement) => {
+    return (
+        (cellElem?.attributes as any)?.colspan ||
+        cellElem.data?.colSpan ||
+        cellElem.colSpan ||
+        1
+    );
+};
+
 export const updateTableStructure = (tableElem: TTableElement) => {
     const structure: number[][][] = [];
     let shifts: number[][] = [];
@@ -16,16 +34,8 @@ export const updateTableStructure = (tableElem: TTableElement) => {
 
         rowElem.children.forEach((current, colIndex) => {
             const cellElem = current as ExtendedTTableCellElement;
-            const cellColSpan =
-                (cellElem?.attributes as any)?.colspan ||
-                cellElem.data?.colSpan ||
-                cellElem.colSpan ||
-                1;
-            const cellRowSpan =
-                (cellElem?.attributes as any)?.rowspan ||
-                cellElem.data?.rowSpan ||
-                cellElem.rowSpan ||
-                1;
+            const cellColSpan = getColSpan(cellElem);
+            const cellRowSpan = getRowSpan(cellElem);
             let colIndexToSet = colIndex;
 
             // shifts caused by [rowSpan]
@@ -126,6 +136,7 @@ export const updateTableStructure = (tableElem: TTableElement) => {
         rowElem.children.forEach((curCell, colIndex) => {
             const cellElem = curCell as TTableCellElement;
             cellElem.colIndex = structure[rowIndex][colIndex][0];
+            cellElem.rowIndex = rowIndex;
         });
     });
 
