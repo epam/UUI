@@ -8,5 +8,6 @@ export * from './PickerItem';
 // export * from './PickerList';
 export * from './PickerList.fn';
 export * from './PickerListItem';
-export * from './PickerModal';
+// export * from './PickerModal';
+export * from './PickerModal.fn';
 export * from './PickerToggler';

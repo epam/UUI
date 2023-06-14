@@ -1,7 +1,7 @@
 import React from 'react';
 import { PickerBase, PickerBaseState } from './PickerBase';
 import {
-    UuiContexts, DataRowProps, UuiContext, PickerBaseProps,
+    UuiContexts, DataRowProps, UuiContext, PickerBaseProps, SortingOption,
 } from '@epam/uui-core';
 import { i18n } from '../i18n';
 
@@ -24,7 +24,7 @@ export type PickerListBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
     /** If provided, top picks will be automatically adjusted based on last user selection, and stored as user setting under provided key */
     settingsKey?: string;
 
-    sortBy?(item: TItem): string;
+    sortBy?(item: TItem, sorting: SortingOption): string;
 };
 
 // 1. maxItems = 100, always fits => checkbox/radio group
