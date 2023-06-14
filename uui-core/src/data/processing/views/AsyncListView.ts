@@ -73,13 +73,12 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
     };
 
     public getById = (id: TId, index: number) => {
-        // if originalTree is not created, but blank tree is defined, get item from it
-        const item = (this.originalTree ?? this.tree).getById(id);
-
         if (this.isLoading && !this.isLoaded) {
             return this.getLoadingRow('_loading_' + id, index, []);
         }
 
+        // if originalTree is not created, but blank tree is defined, get item from it
+        const item = (this.originalTree ?? this.tree).getById(id);
         if (item === NOT_FOUND_RECORD) {
             return this.getUnknownRow(id, index, []);
         }

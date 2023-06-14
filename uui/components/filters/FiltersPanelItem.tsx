@@ -12,7 +12,6 @@ import {
     useForceUpdate,
     FilterPredicateName,
     getSeparatedValue,
-    mobilePopperModifier,
     DataRowProps,
     PickerFilterConfig,
 } from '@epam/uui-core';
@@ -34,6 +33,7 @@ export type FiltersToolbarItemProps = TableFiltersConfig<any> &
 IEditable<any> & {
     autoFocus?: boolean;
     removeFilter?: (field: any) => void;
+    size?: '24' | '30' | '36' | '42' | '48';
 };
 
 function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
@@ -116,14 +116,16 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         setPredicate(val);
     };
 
-    const renderHeader = () => (
-        <div className={ cx(css.header) }>
+    const renderHeader = (hideTitle: boolean) => (
+        <div className={ cx(css.header, isPickersType && (props.showSearch ?? css.withSearch)) }>
             {props.predicates ? (
                 <MultiSwitch items={ props.predicates.map((i) => ({ id: i.predicate, caption: i.name })) } value={ predicate } onValueChange={ changePredicate } size="24" />
             ) : (
-                <Text color="secondary" fontSize="12">
-                    {props.title}
-                </Text>
+                !hideTitle && (
+                    <Text color="secondary" size="24" fontSize="14">
+                        {props.title}
+                    </Text>
+                )
             )}
             {!props?.isAlwaysVisible && (
                 <LinkButton cx={ css.removeButton } caption={ i18n.filterToolbar.datePicker.removeCaption } onClick={ removeOnclickHandler } size="24" icon={ RemoveIcon } />
@@ -131,25 +133,38 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         </div>
     );
 
-    const renderBody = (dropdownProps: DropdownBodyProps) => (
-        <DropdownContainer { ...dropdownProps }>
-            <Panel cx={ css.panel }>
-                <>
-                    {isPickersType ? (
-                        <MobileDropdownWrapper close={ () => isOpenChange(false) }>
-                            {renderHeader()}
-                            <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange } />
+    const renderBody = (dropdownProps: DropdownBodyProps) => {
+        const hideHeaderTitle = isPickersType && isMobileScreen;
+        return (
+            <DropdownContainer { ...dropdownProps }>
+                <Panel cx={ css.panel }>
+                    { isPickersType ? (
+                        <MobileDropdownWrapper title={ props.title } close={ () => isOpenChange(false) }>
+                            { renderHeader(hideHeaderTitle) }
+                            <FilterItemBody
+                                { ...props }
+                                { ...dropdownProps }
+                                selectedPredicate={ predicate }
+                                value={ getValue() }
+                                onValueChange={ onValueChange }
+                            />
                         </MobileDropdownWrapper>
                     ) : (
                         <>
-                            {renderHeader()}
-                            <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange } />
+                            { renderHeader(hideHeaderTitle) }
+                            <FilterItemBody
+                                { ...props }
+                                { ...dropdownProps }
+                                selectedPredicate={ predicate }
+                                value={ getValue() }
+                                onValueChange={ onValueChange }
+                            />
                         </>
-                    )}
-                </>
-            </Panel>
-        </DropdownContainer>
-    );
+                    ) }
+                </Panel>
+            </DropdownContainer>
+        );
+    };
 
     const getValue = () => {
         return predicate ? props.value?.[predicate] : props.value;
@@ -183,7 +198,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                         isLoading = item.isLoading;
                         return getPickerItemName(item, props);
                     })
-                    : [i18n.filterToolbar.pickerInput.emptyValueCaption];
+                    : [currentValue];
 
                 const selectionText = isLoading ? selection : selection.join(', ');
                 return { selection: selectionText, postfix };
@@ -192,7 +207,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 const isRangePredicate = predicate === 'inRange' || predicate === 'notInRange';
                 const decimalFormat = (val: number) => getSeparatedValue(val, { maximumFractionDigits: 2 });
                 if ((isRangePredicate && !currentValue) || (!isRangePredicate && !currentValue && currentValue !== 0)) {
-                    return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
+                    return { selection: currentValue };
                 }
                 const selection = isRangePredicate
                     ? `${!currentValue?.from && currentValue?.from !== 0 ? 'Min' : decimalFormat(currentValue?.from)} - ${
@@ -204,7 +219,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
             case 'singlePicker': {
                 const view = props.dataSource.getView({}, forceUpdate);
                 if (currentValue === null || currentValue === undefined) {
-                    return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
+                    return { selection: currentValue };
                 }
 
                 const item = view.getById(currentValue, null);
@@ -238,6 +253,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
             title={ props.title }
             predicateName={ props.value ? predicateName : null }
             maxWidth={ props.type === 'datePicker' || props.type === 'rangeDatePicker' ? null : '300' }
+            size={ props.size }
         />
     );
 
