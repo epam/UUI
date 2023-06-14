@@ -1,6 +1,7 @@
 import React, {
     Fragment,
     useCallback,
+    useEffect,
     useMemo,
     useRef,
 } from 'react';
@@ -37,6 +38,7 @@ import {
     withTable,
     TablePlugin,
     serializeHtml,
+    setNodes,
 } from "@udecode/plate";
 import cx from "classnames";
 import { Dropdown } from '@epam/uui-components';
@@ -66,7 +68,7 @@ import { TableCell } from "./TableCell";
 
 import tableCSS from './Table.module.scss';
 import { useFocused, useReadOnly, useSelected } from 'slate-react';
-import { updateTableStructure } from './util';
+import { getColSpan, getRowSpan, updateTableStructure } from './util';
 
 const StyledRemoveTable = () => {
     return <RemoveTable className={ tableCSS.removeTableIcon } />
@@ -101,11 +103,7 @@ const TableRenderer = (props: any) => {
         // define colSpan
         const colSpan = cellEntries.reduce((acc, [data, path]: any) => {
             if (path[1] === cellEntries[0][1][1]) {
-                const cellColSpan =
-                    (data?.attributes as any)?.colspan ??
-                    data.data?.colSpan ??
-                    data.colSpan ??
-                    1;
+                const cellColSpan = getColSpan(data);
                 return acc + cellColSpan;
             }
             return acc;
@@ -118,11 +116,7 @@ const TableRenderer = (props: any) => {
             if (path[1] !== cellEntries[0][1][1] && !curRowCounted) {
                 alreadyCounted.push(path[1]);
 
-                const cellRowSpan =
-                    (data?.attributes as any)?.rowspan ??
-                    data.data?.rowSpan ??
-                    data.rowSpan ??
-                    1;
+                const cellRowSpan = getRowSpan(data);
                 return acc + cellRowSpan;
             }
             return acc;
