@@ -13,7 +13,7 @@
 const { isCI, isDevServer, isLintStaged } = require('../../utils/envUtils.js');
 
 // Only CI & pre-commit hooks should ignore these rules.
-const shouldTurnOffRulesToBeFixed = isCI() || isDevServer() || isLintStaged();
+const shouldTurnOffRulesToBeFixed = Boolean(isCI() || isDevServer() || isLintStaged());
 
 /**
  * Please make sure that stylistic rules aren't included (especially ones related to spacing, etc.) because it may break formatting after autofix.
@@ -46,6 +46,7 @@ function turnOffStylelintRulesToBeFixed() {
 }
 
 module.exports = {
+    shouldTurnOffRulesToBeFixed,
     eslintRulesToBeFixed,
     stylelintRulesToBeFixed,
     turnOffEslintRulesToBeFixed,
