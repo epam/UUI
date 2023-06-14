@@ -286,6 +286,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             disableClear: propDisableClear,
             icon,
             iconPosition,
+            onIconClick,
         } = props;
         const searchPosition = getSearchPosition();
         const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRowsCount);
@@ -307,6 +308,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             autoFocus,
             icon,
             iconPosition,
+            onIconClick,
             onFocus: props.onFocus,
             onClear: handleClearSelection,
             onBlur: props.onBlur,

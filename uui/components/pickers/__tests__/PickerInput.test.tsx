@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource, AsyncDataSource, CascadeSelection, IDataSource } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, act, waitFor,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, waitFor,
 } from '@epam/uui-test-utils';
 import { Modals, PickerInputBaseProps } from '@epam/uui-components';
 import { Button, DataPickerRow, FlexCell, PickerItem, Text } from '@epam/promo';
-import { PickerInput, PickerInputProps } from '../PickerInput';
+import { PickerInput, PickerInputProps } from '../PickerInput.fn';
 import { IHasEditMode } from '../../types';
 
 jest.mock('react-popper', () => ({
