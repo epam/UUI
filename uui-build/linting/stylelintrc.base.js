@@ -43,17 +43,7 @@ const SCSS_COMMON_RULES = {
                 type: 'at-rule',
                 name: 'extend',
             },
-            {
-                type: 'at-rule',
-                name: 'include',
-                hasBlock: false,
-            },
             'declarations',
-            {
-                type: 'at-rule',
-                name: 'include',
-                hasBlock: true,
-            },
             'rules',
         ],
     ],

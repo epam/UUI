@@ -1,13 +1,13 @@
 import React, {
-    useCallback, useEffect, useMemo, useState,
+    useCallback, useMemo, useState,
 } from 'react';
 import css from './FilteredTable.module.scss';
 import {
-    Button, DataTable, FiltersPanel, FlexCell, FlexRow, PresetsPanel, Text,
+    DataTable, FiltersPanel, FlexCell, FlexRow, PresetsPanel, Text,
 } from '@epam/promo';
 import { getFilters } from './filters';
 import {
-    useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset, DataQueryFilter, DataTableState,
+    useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset, DataQueryFilter,
 } from '@epam/uui-core';
 import { FilteredTableFooter } from './FilteredTableFooter';
 import { Person } from '@epam/uui-docs';
@@ -32,7 +32,7 @@ const defaultPresets: ITablePreset[] = [
     },
 ];
 
-export const FilteredTable: React.FC = () => {
+export function FilteredTable() {
     const svc = useUuiContext<TApi, UuiContexts>();
     const filters = useMemo(getFilters, []);
     const [totalCount, setTotalCount] = useState(0);
@@ -57,7 +57,7 @@ export const FilteredTable: React.FC = () => {
         result.count = result.items.length;
         result.from = 0;
         return result;
-    }, []);
+    }, [svc.api.demo]);
 
     const dataSource = useLazyDataSource<Person, number, Person>(
         {
@@ -109,4 +109,4 @@ export const FilteredTable: React.FC = () => {
             <FilteredTableFooter tableState={ tableStateApi.tableState } setTableState={ tableStateApi.setTableState } totalCount={ totalCount } />
         </div>
     );
-};
+}

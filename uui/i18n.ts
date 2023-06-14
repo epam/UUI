@@ -85,7 +85,6 @@ export const i18n = {
         },
         pickerInput: {
             itemsPlaceholder: 'items',
-            emptyValueCaption: 'ALL',
         },
     },
     presetPanel: {

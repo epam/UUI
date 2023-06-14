@@ -101,11 +101,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (!isSinglePickerSelected) {
             placeholder = props.placeholder;
         }
-         
+
         if (isSinglePickerSelected) {
             placeholder = props.selection[0].isLoading ? undefined : props.getName(props.selection[0]?.value);
         }
-    
         const value = props.disableSearch ? null : props.value;
         if (props.searchPosition !== 'input' && props.pickerMode === 'multi' && props.selectedRowsCount > 0) {
             return null;

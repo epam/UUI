@@ -1,16 +1,27 @@
-# 5.0.0 - xx.xx.2023
+# 5.0.1 - 13.06.2023
 
-**New themes support**
+**What's New**
+* [FiltersPanel]:
+    * added picker title to the header in mobile view
+    * added possibility to hide search for exact filter using `showSearch` prop in config
+    * added 42 and 48 sizes
 
-This release prepares UUI to the Themes support, according to these changes 'Promo' and 'Loveship' skins
-are now based on `@epam/uui` package which has set of components which supposed to be used with Themes. Now both skins has the same codebase and only apply different styles.
-Regarding these changes we aligned interfaces, functionality and visual appearance between 'Promo' and 'Loveship' skins, as a result, we removed or deprecate some props or their values.
+**What's Fixed**
+* [PickerInput]: fixed `unknown` in a `single` selection mode while data is loading in `AsyncDataSource` and `LazyDataSource`, and removed error of missing ids if data is still loading
+* [FiltersPanel]: fixed styles for body & toggler according to design
 
-Pay attention that this release required some additional actions for proper library work.
+# 5.0.0 - 06.06.2023
+
+**Themes**
+
+This release introduces Themes support. `@epam/uui` package now contains components, which can be styled differently according to an applied Theme - a set of global CSS variables.
+
+`@epam/promo` and `@epam/loveship` packages are re-built on top of `@epam/uui` package. This allows us to unify codebase, and reduce differences between 'loveship' and 'promo'. We also aligned APIs, functionality and visual appearance between 'promo' and 'loveship' skins, as a result, we removed or deprecated some props or their values.
+
+Pay attention that this release requires some additional actions for the library to work properly.
 You can find migration guide and full list of changes [here](https://github.com/epam/UUI/wiki/Migration-guide-to-UUI-v.5).
 
-Note: Currently, we use Themes internally to remove duplication in our code base. In the future, we allow UUI users to build their own themes, and using Themes variables for customization. However, in this release we haven’t yet finalized this.
-We can’t yet recommend using Themes internals, e.g. override Themes CSS variables for customization.
+Note: Currently, we use Themes internally to implement Loveship and Promo. In future, we allow UUI users to build their own themes, and using Themes variables for customization. However, in this release we haven’t yet finalized Themes APIs (CSS variables names). We can’t yet recommend using Themes internals, e.g. override Themes CSS variables for customization.
 
 **Testing facilities and documentation**
 * Introduced new `@epam/uui-test-utils` package. It provides a set of helpers, utils and mocks which facilitate creation of unit tests for UUI components.
@@ -18,14 +29,14 @@ We can’t yet recommend using Themes internals, e.g. override Themes CSS variab
 Also, it contains a Cookbook describing typical use cases with code examples as well as frequent questions & answers.
 
 **DataSources documentation**
-* Introduced the new [DataSources documentation](??), that covers a wide range of topics related to the DataSources approach, accompanied by illustrative examples.
+* Introduced the new [DataSources documentation](https://uui.epam.com/documents?id=dataSources-getting-started&category=dataSources), that covers a wide range of topics related to the DataSources, accompanied by illustrative examples.
   Note that this is the first revision of this doc, so we would appreciate your feedback and have plans to continuously improve this documentation.
 
 **ESM modules support**
 * EcmaScript modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
 
 **Other changes**
-* Make UUI compatible with Vite build toolchain. You can find template project of UUI + Vite [here](https://github.com/epam/UUI/tree/develop/templates/uui-vite-template).
+* We made UUI compatible with Vite build toolchain. You can find template project of UUI + Vite [here](https://github.com/epam/UUI/tree/develop/templates/uui-vite-template).
 * The `@epam/assets` package and "assets" folders inside promo and loveship packages were cleaned up: some "*.scss" files were deleted. Please copy any missing files directly to your project if they are still needed.
 * [useTableState]:
   - [BreakingChange]: removed `initialFilter` prop, if you need to provide any initial state for hook, pre-generate an url link with this state on you side.
@@ -40,7 +51,7 @@ Also, it contains a Cookbook describing typical use cases with code examples as 
     `window.opener && window.location.pathname === '/auth/login' && window.opener.postMessage("authSuccess", "*");`
   - If an app implements UUI-based login pages, they need to run the following code after successful login:
     `window.opener && window.opener.postMessage("authSuccess", "*")`
-* [DataTable]: deprecated column `shrink` property was removed, as it were announced in 4.9.0 version.
+* [DataTable]: deprecated column `shrink` property was removed, as it was announced in 4.9.0 version.
 * [MainMenuDropdown]: added callback `renderBody` prop.
 * [FiltersPanel]:
     - hide 'Add filter' button, if all filters `isAlwaysVisible`
@@ -51,7 +62,8 @@ Also, it contains a Cookbook describing typical use cases with code examples as 
 but only the checked parent is present in the Picker's value or DataSourceState.checked array.
   - now items which present in selection and doesn't exist in DataSource will be shown in picker as '[Unknown]'
   - added a default footer component for single pickers that includes a "Clear" button
-* [PresetsPanel]: added limitation for new preset input(max length 50)
+* [DataSources]: DataSources internals are refactored, optimized, and prepared for further improvements
+* [PresetsPanel]: added limitation for new preset input (max length 50)
 * [DropdownMenu]: added a 400ms delay to the submenu's close and open triggers
 * [ModalWindow]: added possibility to provide number for 'width' and 'height' props.
 * [TimePicker]: added max values to hours and minutes inputs
@@ -79,17 +91,10 @@ but only the checked parent is present in the Picker's value or DataSourceState.
 * [Tooltip]:
     - removed default 300px max-width value from styles, you can set max-with using property 'maxWidth'.
     - Fixed a white subpixel line on a tooltip arrow on browsers with zoom >100%.
-* [PresetsPanel]: fixed scroll inside 'N more' dropdown
+* [PresetsPanel]: fixed scroll inside "N more" dropdown
 * [Dropdown]: The delay to close/open the dropdown has been fixed. In previous version the closeDelay being overwritten constantly while the mouse was moving.
 * [Button]: removed 'disabled' attribute if the Button/LinkButton/IconButton is disabled, because it will prevent all events and broke Tooltip at least.
 * [RichTextView]: h1 font-size in promo skin changed from 36px to 42px.
-* [DataSources]: dataSources rework
-  - Moved sort/search/filter logic to the `Tree` from views.
-  - `rebuildRows` was unified.
-  - `patch` functionality was added to `Tree`.
-  - Datatable demos were added/updated.
-  - `implicit` cascade selection mode was added.
-  - `Show only selected` order was fixed.
 * [FilterPanel]: fixed issue with "show only selected" toggle not being visible, when selectAll was disabled via DataSource
 
 # 4.10.2 - 24.03.2023
