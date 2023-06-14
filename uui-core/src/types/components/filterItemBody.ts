@@ -6,4 +6,5 @@ IEditable<any> &
 IDropdownBodyProps & {
     selectedPredicate?: string;
     onClose?: () => void;
+    showSearch?: boolean;
 };
