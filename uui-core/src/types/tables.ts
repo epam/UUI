@@ -1,10 +1,10 @@
 import React, { Attributes, ReactNode } from 'react';
 import {
-    IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps,
+    IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps, DataRowProps,
 } from './props';
 import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
-import { DataRowProps, DataSourceState, IDataSource } from './dataSources';
+import { DataSourceState, IDataSource } from './dataSources';
 import { ILens } from '../data';
 import * as CSS from 'csstype';
 import { RangeDatePickerPresets, TooltipCoreProps } from './components';

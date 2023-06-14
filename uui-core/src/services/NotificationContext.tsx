@@ -1,15 +1,9 @@
 import * as React from 'react';
 import clone from 'lodash.clone';
 import { BaseContext } from './BaseContext';
-import { NotificationParams, INotificationContext } from '../types/contexts';
+import { NotificationParams, INotificationContext, NotificationOperation } from '../types/contexts';
 import { LayoutContext } from './LayoutContext';
 import { INotification } from '../types/props';
-
-export interface NotificationOperation {
-    component: React.ComponentType<any>;
-    props: INotification;
-    config: NotificationParams;
-}
 
 let idCounter = 0;
 

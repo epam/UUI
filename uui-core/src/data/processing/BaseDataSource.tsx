@@ -4,6 +4,8 @@ import {
 
 export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IDataSource<TItem, TId, TFilter> {
     protected views = new Map<any, IDataSourceView<TItem, TId, TFilter>>();
+    protected subs = new Map<IDataSourceView<TItem, TId, TFilter>, () => void>();
+
     constructor(public props: BaseListViewProps<TItem, TId, TFilter>) {}
 
     abstract getById(id: TId): TItem | void;
@@ -17,11 +19,13 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
     abstract useView(
         value: DataSourceState<TFilter, TId>,
         onValueChange: (val: DataSourceState<TFilter, TId>) => void,
-        options?: Partial<BaseListViewProps<TItem, TId, TFilter>>
+        options?: Partial<BaseListViewProps<TItem, TId, TFilter>>,
+        deps?: any[],
     ): IDataSourceView<TItem, TId, TFilter>;
 
     protected updateViews = () => {
         this.views.forEach((view) => view._forceUpdate());
+        this.subs.forEach((onUpdate) => onUpdate());
     };
 
     public abstract setProps(newProps: BaseListViewProps<TItem, TId, TFilter>): void;
@@ -32,6 +36,7 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
     public destroy() {
         this.views.forEach((view) => view.destroy());
         this.views.clear();
+        this.subs.forEach((_, view) => view.destroy());
     }
 
     public getId = (item: TItem & { id?: TId }) => {

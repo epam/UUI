@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { IDataSourceView, DataSourceState } from '../../types';
 import { BaseDataSource } from './BaseDataSource';
 import { ArrayListView, ArrayListViewProps } from './views';
@@ -78,9 +78,34 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         value: DataSourceState<TFilter, TId>,
         onValueChange: (val: DataSourceState<TFilter, TId>) => void,
         options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
+        deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
-        useEffect(() => () => this.unsubscribeView(onValueChange), [this]);
+        const onValueChangeRef = useRef(null);
+        onValueChangeRef.current = onValueChange;
+        const viewProps: ArrayListViewProps<TItem, TId, TFilter> = {
+            ...this.props,
+            items: this.tree,
+            ...options,
+            // These defaults are added for compatibility reasons.
+            // We'll require getId and getParentId callbacks in other APIs, including the views.
+            getId: this.getId,
+            getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
+        };
+         
+        const view = useMemo(
+            () => new ArrayListView({ value, onValueChange: onValueChangeRef.current }, viewProps),
+            deps,
+        );
+         
+        useEffect(() => {
+            this.subs.set(view, view._forceUpdate);
+            return () => {
+                this.subs.delete(view);
+            };
+        }, [view]);
 
-        return this.getView(value, onValueChange, options);
+        view.update(value, viewProps);
+
+        return view;
     }
 }

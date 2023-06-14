@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
-import { IAnalyticableOnChange, IEditable } from '../props';
+import { DataRowOptions, DataRowProps, IAnalyticableOnChange, IEditable } from '../props';
 import {
-    IDataSource, IDataSourceView, DataRowOptions, DataRowProps, DataSourceState, CascadeSelection,
+    IDataSource, IDataSourceView, DataSourceState, CascadeSelection,
 } from '../dataSources';
 import { SortingOption } from '../dataQuery';
 
