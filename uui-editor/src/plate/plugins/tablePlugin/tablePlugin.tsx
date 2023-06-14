@@ -27,10 +27,8 @@ import {
     getBlockAbove,
     selectEditor,
     getStartPoint,
-    createNode,
     TTableElement,
     createTablePlugin,
-    KEY_DESERIALIZE_HTML,
     getCellTypes,
     findNode,
     setElements,
@@ -38,8 +36,7 @@ import {
     WithPlatePlugin,
     withTable,
     TablePlugin,
-    select,
-    getEndPoint,
+    serializeHtml,
 } from "@udecode/plate";
 import cx from "classnames";
 import { Dropdown } from '@epam/uui-components';
@@ -368,25 +365,18 @@ const wiOurSetFragmentDataTable = <
             tableEntry &&
             initialSelection &&
             selectedCellEntries.length === CELLS_NUMBER &&
-            originEvent === 'copy' || originEvent === 'cut'
+            (originEvent === 'copy' || originEvent === 'cut')
         ) {
             const [[selectedCellNode, cellPath]] = selectedCellEntries;
             const cellContents = selectedCellNode.children;
-
-            select(editor, {
-                anchor: getStartPoint(editor, cellPath),
-                focus: getEndPoint(editor, cellPath),
-            });
-            // set data from selection
-            setFragmentData(data);
 
             const plainText = data.getData('text/plain');
             data.setData('text/csv', plainText);
             data.setData('text/tsv', plainText);
             data.setData('text/plain', plainText);
 
-            const htmlContent = data.getData('text/html');
-            data.setData('text/html', htmlContent);
+            const serialized = serializeHtml(editor, { nodes: cellContents as any });
+            data.setData('text/html', serialized);
 
             // set slate fragment
             const selectedFragmentStr = JSON.stringify(cellContents);
