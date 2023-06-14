@@ -36,7 +36,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>(props, pickerInputState);
     const {
         context,
-        getView,
+        view,
         handleDataSourceValueChange,
         getEntityName,
         clearSelection,
@@ -158,7 +158,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             {
                 value: getDataSourceState(),
                 onValueChange: handleDataSourceValueChange,
-                listView: getView(),
+                listView: view,
                 editMode: props.editMode,
                 rows,
             },
@@ -219,8 +219,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
         let preparedRows: DataRowProps<TItem, TId>[];
 
-        const view = getView();
-
         if (!showSelected) {
             preparedRows = view.getVisibleRows();
         } else {
@@ -265,7 +263,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     };
 
     const getTogglerProps = (rows: DataRowProps<TItem, TId>[], dropdownProps: DropdownBodyProps): PickerTogglerProps<TItem, TId> => {
-        const view = getView();
         const selectedRowsCount = view.getSelectedRowsCount();
         const allowedMaxItems = getMaxItems(props.maxItems);
         const itemsToTake = selectedRowsCount > allowedMaxItems ? allowedMaxItems : selectedRowsCount;
