@@ -16,3 +16,4 @@ const ALLOWED_EMPTY_ELEMENTS = ['BR', 'IMG'];
 - Add vertical cell division
 - Move to plate email links validation `uui-editor/src/plate/plugins/linkPlugin/isUrl.ts`
 - Move to plate single table cell copy | cup operation. It should be pasted as a text.
+- Fix pasting tables from Word in Safari only. Root cause in `cleanDocx.ts`, `copyBlockMarksToSpanChild()` function.
