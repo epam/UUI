@@ -97,7 +97,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const renderInput = () => {
         const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
-
         let placeholder: string;
         if (!isSinglePickerSelected) {
             placeholder = props.placeholder;
@@ -118,6 +117,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 ref={ inputContainer }
                 aria-haspopup={ true }
                 autoComplete="no"
+                data-testid="uui-PickerToggler-input"
                 aria-required={ props.isRequired }
                 aria-disabled={ props.isDisabled }
                 aria-readonly={ props.isReadonly }
@@ -153,7 +153,13 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         [props.isOpen, props.closePickerBody],
     );
 
-    const icon = props.icon && <IconContainer icon={ props.icon } onClick={ props.onIconClick } />;
+    const icon = props.icon && (
+        <IconContainer
+            icon={ props.icon }
+            onClick={ props.onIconClick }
+            rawProps={ { 'data-testid': 'uui-PickerToggler-iconContainer' } }
+        />
+    );
 
     return (
         <div
@@ -175,7 +181,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             onKeyDown={ props.onKeyDown }
             { ...props.rawProps }
         >
-            <div className={ cx(css.body, !props.isSingleLine && props.pickerMode !== 'single' && css.multiline) }>
+            <div
+                className={ cx(css.body, !props.isSingleLine && props.pickerMode !== 'single' && css.multiline) }
+                data-testid="uui-PickerToggler-body"
+            >
                 {props.iconPosition !== 'right' && icon}
                 {props.pickerMode !== 'single' && renderItems()}
                 {renderInput()}
@@ -190,7 +199,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                             icon={ props.cancelIcon }
                             tabIndex={ -1 }
                             onClick={ handleCrossIconClick }
-                            rawProps={ { role: 'button' } }
+                            rawProps={ { role: 'button', 'aria-label': 'Clear' } }
                         />
                     )}
                     {props.isDropdown && <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" onClick={ closeOpenedPickerBody } />}
