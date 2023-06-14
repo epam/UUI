@@ -29,6 +29,10 @@
             background-color: var(--uui-filters-toggler-bg-hover);
         }
 
+        :global(.uui-icon-dropdown) {
+            fill: var(--uui-filters-toggler-icon);
+        }
+
         .title-wrapper {
             font-family: var(--uui-filters-toggler-font);
             font-weight: var(--uui-filters-toggler-font-weight, normal);
@@ -38,6 +42,8 @@
             background: none;
             cursor: pointer;
             white-space: nowrap;
+            padding-left: 6px;
+            padding-right: 6px;
 
             .title {
                 text-overflow: initial;
@@ -84,32 +90,34 @@
             }
         }
 
-        &:global(.size-24) {
-            @include control-vertical-layout(24px, 1px);
-            font-size: 12px;
+        @mixin filterTogglerSize($size) {
+            &:global(.size-#{$size}) {
+                @include control-vertical-layout(#{$size}px, 1px);
+                padding-left: 5px;
+                padding-right: 5px;
+
+                @if $size == 24 {
+                    padding-left: 2px;
+                    padding-right: 2px;
+
+                    .title-wrapper {
+                        padding-left: 3px;
+                        padding-right: 3px;
+                    }
+                } @else if $size == 42 {
+                    padding-left: 11px;
+                    padding-right: 11px;
+                } @else if $size == 48 {
+                    padding-left: 11px;
+                    padding-right: 11px;
+                }
+            }
         }
 
-        &:global(.size-30) {
-            @include control-vertical-layout(30px, 1px);
-        }
-
-        &:global(.size-36) {
-            @include control-vertical-layout(36px, 1px);
-        }
-
-        &:global(.size-42) {
-            @include control-vertical-layout(42px, 1px);
-        }
-
-        &:global(.size-48) {
-            @include control-vertical-layout(48px, 1px);
-        }
-
-        :global(.uui-icon-dropdown) {
-            fill: var(--uui-filters-toggler-icon);
-            margin-top: auto;
-            margin-bottom: auto;
-            padding-left: 3px;
-        }
+        @include filterTogglerSize(24);
+        @include filterTogglerSize(30);
+        @include filterTogglerSize(36);
+        @include filterTogglerSize(42);
+        @include filterTogglerSize(48);
     }
 }
