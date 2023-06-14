@@ -21,7 +21,7 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
         getEntityName,
         appendLastSelected,
         getSelectedIdsArray,
-        getView,
+        view,
         buildRowsList,
         getMaxDefaultItems,
         dataSourceState,
@@ -52,7 +52,6 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
     
     const defaultRenderToggler = (props: IClickable) => <LinkButton caption="Show all" { ...props } />;
 
-    const view = getView();
     const viewProps = view.getListProps();
     const selectedRows = view.getSelectedRows();
     const rows = buildRowsList();

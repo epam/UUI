@@ -28,7 +28,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
         dataSourceState,
         getDataSourceState,
         getName,
-        getView,
+        view,
         clearSelection,
         getRows,
         getListProps,
@@ -53,7 +53,6 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
     };
 
     const renderFooter = () => {
-        const view = getView();
         const hasSelection = view.getSelectedRowsCount() > 0;
         return (
             <>
@@ -86,7 +85,6 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
         );
     };
 
-    const view = getView();
     const dataRows = getRows();
     const rows = dataRows.map((row) => renderRow(row));
 
