@@ -1,14 +1,6 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-import { PickerState, UsePickerStateProps, usePickerState } from './usePickerState';
-
-export interface UsePickerModalStateProps<TItem, TId> extends UsePickerStateProps {
-    selection: TItem | TId | TId[] | TItem[];
-}
-
-export interface PickerModalState<TItem, TId> extends PickerState {
-    selection: TItem | TId | TId[] | TItem[];
-    setSelection: Dispatch<SetStateAction<TItem | TId | TId[] | TItem[]>>;
-}
+import { useState } from 'react';
+import { usePickerState } from './usePickerState';
+import { PickerModalState, UsePickerModalStateProps } from './types';
 
 export function usePickerModalState<TItem, TId>(props: UsePickerModalStateProps<TItem, TId>): PickerModalState<TItem, TId> {
     const pickerState = usePickerState(props);

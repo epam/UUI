@@ -1,8 +1,10 @@
 import { useCallback, useContext, useEffect, useRef } from 'react';
 import isEqual from 'lodash.isequal';
-import { DataRowOptions, DataSourceListProps, DataSourceState, IDataSourceView, PickerBaseProps, PickerFooterProps, UuiContext } from '@epam/uui-core';
+import {
+    DataRowOptions, DataSourceListProps, DataSourceState, IDataSourceView, PickerBaseProps, PickerFooterProps, UuiContext,
+} from '@epam/uui-core';
 import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
-import { PickerState } from './usePickerState';
+import { PickerState } from './types';
 
 export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>>(
     props: TProps,
