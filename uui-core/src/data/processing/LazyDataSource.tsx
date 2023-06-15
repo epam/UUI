@@ -1,7 +1,7 @@
+import { useEffect, useMemo } from 'react';
 import { LazyListView, LazyListViewProps, NOT_FOUND_RECORD } from './views';
 import { ListApiCache } from './ListApiCache';
 import { BaseDataSource } from './BaseDataSource';
-import { useEffect, useMemo, useRef } from 'react';
 import { DataSourceState } from '../../types';
 
 export interface LazyDataSourceProps<TItem, TId, TFilter> extends LazyListViewProps<TItem, TId, TFilter> {}
@@ -15,6 +15,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         this.initCache();
     }
      
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public setProps(props: LazyDataSourceProps<TItem, TId, TFilter>) {}
 
     public getById = (id: TId): TItem | void => {
@@ -70,19 +71,19 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
     ): LazyListView<TItem, TId, TFilter> {
-        const onValueChangeRef = useRef(null);
-        onValueChangeRef.current = onValueChange;
         const viewProps: LazyListViewProps<TItem, TId, TFilter> = {
             ...this.props,
             getId: this.getId,
             ...props,
         };
          
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const view = useMemo(
-            () => new LazyListView({ value, onValueChange: onValueChangeRef.current }, viewProps, this.cache),
+            () => new LazyListView({ value, onValueChange }, viewProps, this.cache),
             deps,
         );
          
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             this.subs.set(view, view._forceUpdate);
             return () => {

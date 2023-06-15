@@ -1,8 +1,8 @@
+import { useEffect, useMemo } from 'react';
 import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
 import { BaseArrayListViewProps } from './views/ArrayListView';
 import { DataSourceState, IDataSourceView } from '../../types';
 import { AsyncListView, AsyncListViewProps } from './views/AsyncListView';
-import { useEffect, useMemo, useRef } from 'react';
 
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends AsyncListViewProps<TItem, TId, TFilter> {}
 
@@ -67,8 +67,6 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         options?: Partial<AsyncListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
-        const onValueChangeRef = useRef(null);
-        onValueChangeRef.current = onValueChange;
         const viewProps: AsyncListViewProps<TItem, TId, TFilter> = {
             ...this.props,
             api: this.api,
@@ -79,11 +77,13 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
         };
          
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const view = useMemo(
-            () => new AsyncListView({ value, onValueChange: onValueChangeRef.current }, viewProps),
+            () => new AsyncListView({ value, onValueChange }, viewProps),
             deps,
         );
          
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             this.subs.set(view, view._forceUpdate);
             return () => {
