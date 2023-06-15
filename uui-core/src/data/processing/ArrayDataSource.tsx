@@ -44,9 +44,8 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         return (item as any)['parentId'];
     };
 
-    setItem(item: TItem): void {
-        // TODO
-    }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    setItem(item: TItem): void {}
 
     getView(
         value: DataSourceState<TFilter, TId>,
@@ -90,11 +89,13 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
         };
          
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const view = useMemo(
             () => new ArrayListView({ value, onValueChange }, viewProps),
             deps,
         );
          
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             this.subs.set(view, view._forceUpdate);
             return () => {
