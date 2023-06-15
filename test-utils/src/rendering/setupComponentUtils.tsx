@@ -4,9 +4,14 @@ import { renderWithContextAsync, type CustomWrapperType } from './renderingWithC
 import { act } from '@testing-library/react';
 
 // jest dependency start
-type MockFnJestType = jest.Mock;
 function isMockFunctionJest(fn: () => void) {
-    return jest.isMockFunction(fn);
+    if (jest) {
+        return jest.isMockFunction(fn);
+    } else {
+        throw new Error('Jest is not found. If another test runner is used, '
+            + 'then please pass your custom "isMockFunction" to the setupComponentForTest '
+            + 'e.g.: setupComponentForTest(propsInitializer, componentRenderer, { isMockFunction: vi.isMockFunction })');
+    }
 }
 // jest dependency end
 
@@ -38,7 +43,7 @@ type SetupComponentForTestReturnType<TProps, TMockFn> = Promise<{
  * @param [options.wrapper] optional custom wrapper. Use it if it's necessary to provide custom contexts.
  * @param [options.isMockFunction] optional callback to check whether function is mocked. It uses jest.isMockFunction by default.
  */
-export async function setupComponentForTest<TProps extends PropsAll<TProps>, TMockFn = MockFnJestType>(
+export async function setupComponentForTest<TProps extends PropsAll<TProps>, TMockFn = any>(
     propsInitializer: PropsInitializerCallbackType<TProps>,
     componentRenderer: ComponentRenderCallbackType<TProps>,
     options?: {
