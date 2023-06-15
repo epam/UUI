@@ -42,7 +42,7 @@ const wiOurSetFragmentDataTable = <
             selectedCellEntries.length === CELLS_NUMBER &&
             (originEvent === "copy" || originEvent === "cut")
         ) {
-            const newData = originSetFragment(data) as unknown as
+            const newData = originSetFragment?.(data) as unknown as
                 | DataTransfer
                 | undefined;
 
