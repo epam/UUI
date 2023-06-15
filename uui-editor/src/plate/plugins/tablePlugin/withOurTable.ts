@@ -6,6 +6,9 @@ import {
     Value,
     getTableGridAbove,
     serializeHtml,
+    TTableRowElement,
+    TTableCellElement,
+    TTableElement,
 } from "@udecode/plate";
 
 const wiOurSetFragmentDataTable = <
@@ -13,7 +16,8 @@ const wiOurSetFragmentDataTable = <
     E extends PlateEditor<V> = PlateEditor<V>
 >(
     editor: E,
-    plugin: WithPlatePlugin<TablePlugin<V>, V, E>
+    plugin: WithPlatePlugin<TablePlugin<V>, V, E>,
+    originSetFragment: any
 ) => {
     const { setFragmentData } = editor;
 
@@ -38,25 +42,43 @@ const wiOurSetFragmentDataTable = <
             selectedCellEntries.length === CELLS_NUMBER &&
             (originEvent === "copy" || originEvent === "cut")
         ) {
-            const [[selectedCellNode, cellPath]] = selectedCellEntries;
-            const cellContents = selectedCellNode.children;
+            const newData = originSetFragment(data) as unknown as DataTransfer;
 
-            const plainText = data.getData("text/plain");
-            data.setData("text/csv", plainText);
-            data.setData("text/tsv", plainText);
-            data.setData("text/plain", plainText);
+            const plainData = data.getData("text/plain");
+            newData.setData("text/csv", plainData);
+            newData.setData("text/tsv", plainData);
+            newData.setData("text/plain", plainData);
 
-            const serialized = serializeHtml(editor, {
-                nodes: cellContents as any,
-            });
-            data.setData("text/html", serialized);
+            let plateTable = null;
+            try {
+                const slateFragment = data.getData(
+                    "application/x-slate-fragment"
+                );
+                const [tableNode]: [TTableElement] = JSON.parse(
+                    decodeURIComponent(window.atob(slateFragment))
+                );
+                plateTable = tableNode;
+            } catch (e) {}
 
-            // set slate fragment
-            const selectedFragmentStr = JSON.stringify(cellContents);
-            const encodedFragment = window.btoa(
-                encodeURIComponent(selectedFragmentStr)
-            );
-            data.setData("application/x-slate-fragment", encodedFragment);
+            if (plateTable?.type === "table") {
+                const rowElem = plateTable.children?.[0] as TTableRowElement;
+                const cellElem = rowElem.children?.[0] as TTableCellElement;
+
+                const serialized = serializeHtml(editor, {
+                    nodes: cellElem.children as any,
+                });
+                newData.setData("text/html", serialized);
+
+                // set slate fragment
+                const selectedFragmentStr = JSON.stringify(cellElem.children);
+                const encodedFragment = window.btoa(
+                    encodeURIComponent(selectedFragmentStr)
+                );
+                newData.setData(
+                    "application/x-slate-fragment",
+                    encodedFragment
+                );
+            }
 
             return;
         }
@@ -74,8 +96,10 @@ export const withOurTable = <
     editor: E,
     plugin: WithPlatePlugin<TablePlugin<V>, V, E>
 ) => {
+    // lines order is important
+    const originSetFragment = editor.setFragmentData;
     editor = withTable(editor, plugin);
-    editor = wiOurSetFragmentDataTable(editor, plugin);
+    editor = wiOurSetFragmentDataTable(editor, plugin, originSetFragment);
 
     return editor;
 };
