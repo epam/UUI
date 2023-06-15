@@ -26,19 +26,14 @@ export default function CascadeSelectionModesExample() {
         {
             api: (request, ctx) => {
                 const { search } = request;
-                if (search && ctx.parentId) { // >1 level, search
-                    return Promise.resolve({ items: ctx.parent.children });
-                } else if (search) {
-                    const tree = svc.api.demo.locationsSearch({ ...request, search });
-                    return tree;
-                }
-
-                const filter = { parentId: ctx?.parentId };
-                return svc.api.demo.locations({ ...request, filter });
+                // and since parentId is meaningful value, it is required to exclude it from the filter.
+                const filter = search ? {} : { parentId: ctx?.parentId };
+                return svc.api.demo.locations({ ...request, search, filter });
             },
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
+            flattenSearchResults: true,
         },
         [],
     );
