@@ -1,13 +1,8 @@
-import * as React from 'react';
 import {
     ArrayDataSource, LazyDataSource, AsyncDataSource, PickerBaseOptions,
 } from '@epam/uui-core';
 import { DocBuilder, PropSamplesCreationContext } from '@epam/uui-docs';
-import { Text } from '@epam/promo';
-import { DataPickerRow } from '@epam/promo';
 import { demoData } from '@epam/uui-docs';
-import { PickerItem } from '@epam/promo';
-import css from './DataPickerRowDoc.scss';
 
 const dataSourcesMap: any = {
     languages: null,
@@ -105,42 +100,6 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
         ],
     })
     .prop('entityPluralName', { examples: ['Cities'] })
-    .prop('renderRow', {
-        examples: (ctx) => [
-            {
-                name: 'UserPickerRow',
-                value: (props) => (
-                    <DataPickerRow
-                        { ...props }
-                        key={ props.rowKey }
-                        alignActions="center"
-                        padding={ (ctx.getSelectedProps() as any).editMode === 'modal' ? '24' : '12' }
-                        renderItem={ (item, rowProps) => <PickerItem { ...rowProps } avatarUrl={ item.avatarUrl } title={ item.name } subtitle={ item.jobTitle } /> }
-                    />
-                ),
-            }, {
-                name: 'Skills',
-                value: (rowProps) => {
-                    const isParent = !rowProps.value.parentId;
-                    return (
-                        <DataPickerRow
-                            { ...rowProps }
-                            depth={ isParent ? 0 : 1 }
-                            cx={ isParent && css.parent }
-                            isFoldable={ isParent }
-                            isChecked={ isParent ? false : rowProps.isChecked }
-                            isChildrenChecked={ false }
-                            isSelectable={ isParent ? false : rowProps.isSelectable }
-                            isFocused={ isParent ? false : rowProps.isFocused }
-                            borderBottom="none"
-                            size="36"
-                            renderItem={ (i) => <Text size="36">{i.name}</Text> }
-                        />
-                    );
-                },
-            },
-        ],
-    })
     .prop('cascadeSelection', {
         examples: [
             true, 'explicit', 'implicit',

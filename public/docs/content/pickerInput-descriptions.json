@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Picker Input is used when you need to select some value(s) from alist.",
+            "text": "Picker Input is used when you need to select some value(s) from a list.",
             "marks": []
           }
         ]

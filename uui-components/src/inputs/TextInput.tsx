@@ -3,7 +3,7 @@ import {
     Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
-import css from './TextInput.scss';
+import css from './TextInput.module.scss';
 
 const ENTER = 'Enter';
 const ESCAPE = 'Escape';

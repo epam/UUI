@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
-import { Product } from '@epam/uui-docs';
+import { Location, Product } from '@epam/uui-docs';
 import { useAsyncDataSource, useUuiContext } from '@epam/uui-core';
 import { FlexCell, FlexRow, PickerInput } from '@epam/promo';
+import { TApi } from '../../../data';
 
 export default function GetRowOptionsExample() {
-    const svc = useUuiContext();
-    const [productID, setProductID] = useState<number>(3);
+    const svc = useUuiContext<TApi>();
+    const [location, setLocation] = useState<string>();
     const [productsIDs, setProductsIDs] = useState<number[]>([3]);
 
-    const productsDataSource = useAsyncDataSource<Product, Product['ProductID'], unknown>(
+    const productsDataSource = useAsyncDataSource<Product, Product['ProductID'], unknown>({
+        api: () => svc.api.demo.products({}).then((r: any) => r.items),
+        getId: (item) => item.ProductID,
+    }, []);
+
+    const locationsDataSource = useAsyncDataSource<Location, string, unknown>(
         {
-            api: () => svc.api.demo.products({}).then((r: any) => r.items),
-            getId: (item) => item.ProductID,
+            api: () => svc.api.demo.locations({}).then(({ items }) => items),
+            getId: (item) => item.id,
         },
         [],
     );
@@ -19,16 +25,16 @@ export default function GetRowOptionsExample() {
     return (
         <FlexCell width={ 612 }>
             <FlexRow spacing="12">
-                <PickerInput<Product, number>
-                    dataSource={ productsDataSource }
-                    value={ productID }
-                    onValueChange={ setProductID }
+                <PickerInput<Location, string>
+                    dataSource={ locationsDataSource }
+                    value={ location }
+                    onValueChange={ setLocation }
                     getRowOptions={ (item) => ({
-                        isDisabled: item.MakeFlag === true,
-                        isSelectable: item.MakeFlag !== true,
+                        isDisabled: !item?.parentId,
+                        isSelectable: !!item?.parentId,
                     }) }
-                    getName={ (item) => item.Name }
-                    entityName="Product"
+                    getName={ (item) => item.name }
+                    entityName="Location"
                     selectionMode="single"
                     valueType="id"
                 />

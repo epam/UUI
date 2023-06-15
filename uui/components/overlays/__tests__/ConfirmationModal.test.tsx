@@ -1,6 +1,6 @@
 import React from 'react';
 import { ConfirmationModal } from '../ConfirmationModal';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('ConfirmationModal', () => {
     it('should be rendered correctly', () => {

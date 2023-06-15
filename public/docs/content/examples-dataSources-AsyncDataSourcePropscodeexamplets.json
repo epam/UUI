@@ -1,0 +1,69 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "It is worth paying attention to the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "AsyncDataSourceProps",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " in detail to understand the way it can be used/configured. ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "AsyncDataSourceProps",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " contains all the props, overviewed in the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSourceProps",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " chapter, so, only the specific one will be described.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

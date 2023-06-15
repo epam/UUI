@@ -1,6 +1,6 @@
 import React from 'react';
 import { Panel } from '../Panel';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('Panel', () => {
     it('should be rendered correctly', () => {

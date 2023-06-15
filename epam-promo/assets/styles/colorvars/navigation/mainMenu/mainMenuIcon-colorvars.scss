@@ -1,9 +1,0 @@
-@use  '../../../colors' as *;
-
-@mixin mainMenu-icon-color() {
-    --background-color-hover: #{$gray90};
-    --background-color-active: #{$gray90};
-    --icon-color: white;
-    --icon-color-hover: white;
-    --icon-color-active: white;
-}

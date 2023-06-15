@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextArea } from '../TextArea';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('TextArea', () => {
     it('should be rendered correctly', () => {

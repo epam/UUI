@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Editor } from "slate-react";
 import { Button } from '@epam/uui-components';
-import css from './ToolbarButton.scss';
+import css from './ToolbarButton.module.scss';
 import { Icon, cx } from '@epam/uui-core';
 
 export interface ToolbarButtonProps  {

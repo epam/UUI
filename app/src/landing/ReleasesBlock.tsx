@@ -5,7 +5,7 @@ import {
 } from '@epam/promo';
 import { ReleasesCell } from './ReleasesCell';
 import { svc } from '../services';
-import css from './ReleasesBlock.scss';
+import css from './ReleasesBlock.module.scss';
 import { analyticsEvents } from '../analyticsEvents';
 
 interface LandingReleasesState {

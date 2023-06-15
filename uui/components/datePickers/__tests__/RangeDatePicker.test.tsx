@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, fireEvent, screen, within,
-} from '@epam/test-utils';
+} from '@epam/uui-test-utils';
 
 jest.mock('react-popper', () => ({
     ...jest.requireActual('react-popper'),
@@ -24,7 +24,7 @@ async function setupRangeDatePicker(params: { value: { from: string; to: string 
     const { result, mocks } = await setupComponentForTest<RangeDatePickerProps>(
         (context) => ({
             rawProps: { from: { 'data-testid': 'from' }, to: { 'data-testid': 'to' } },
-            value,
+            value: value ?? { from: null, to: null },
             format,
             onValueChange: jest.fn().mockImplementation((newValue) => {
                 context.current.setProperty('value', newValue);
@@ -47,7 +47,7 @@ async function setupRangeDatePicker(params: { value: { from: string; to: string 
 
 describe('RangeDataPicker', () => {
     it('should be rendered if minimum params and custom format defined', async () => {
-        const tree = await renderSnapshotWithContextAsync(<RangeDatePicker format="MMM D, YYYY" value={ null } onValueChange={ jest.fn } />);
+        const tree = await renderSnapshotWithContextAsync(<RangeDatePicker format="MMM D, YYYY" value={ { from: null, to: null } } onValueChange={ jest.fn } />);
         expect(tree).toMatchSnapshot();
     });
 
@@ -55,7 +55,7 @@ describe('RangeDataPicker', () => {
         const tree = await renderSnapshotWithContextAsync(
             <RangeDatePicker
                 format="MMM D, YYYY"
-                value={ null }
+                value={ { from: null, to: null } }
                 onValueChange={ jest.fn }
                 renderFooter={ ((value: any) => jest.fn(value)) as any }
                 disableClear={ false }

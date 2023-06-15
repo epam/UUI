@@ -7,7 +7,7 @@ import {
     Button, DataPickerRow, IconButton, PickerInput, Text, Tooltip,
 } from '@epam/promo';
 import { SizeInfo } from './index';
-import css from './IconPicker.scss';
+import css from './IconPicker.module.scss';
 import { IconList } from '../../../../../documents/iconListHelpers';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 
@@ -62,7 +62,7 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
     renderInfo() {
         return (
             <div className={ css.infoContainer }>
-                <Tooltip cx={ css.tooltip } placement="top" content={ this.renderTooltip() } color="gray80">
+                <Tooltip cx={ css.tooltip } placement="top" content={ this.renderTooltip() } color="gray">
                     <IconButton icon={ InfoIcon } color="gray60" />
                 </Tooltip>
             </div>

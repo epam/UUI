@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { cx } from '@epam/uui-core';
-import css from './SizeInfo.scss';
+import css from './SizeInfo.module.scss';
 import { FlexRow, FlexCell, Text } from '@epam/loveship';
 
 interface SizeInfoProps {

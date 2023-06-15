@@ -1,7 +1,7 @@
 import { withMods, IHasIcon, IDropdownToggler } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { ReactComponent as SvgTriangle } from '../../../../icons/triangle.svg';
-import css from './BurgerButton.scss';
+import css from './BurgerButton.module.scss';
 
 export interface BurgerButtonMods extends IHasIcon, IDropdownToggler {
     type?: 'primary' | 'secondary';

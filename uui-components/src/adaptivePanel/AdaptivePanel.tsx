@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import css from './AdaptivePanel.scss';
+import css from './AdaptivePanel.module.scss';
 import { FlexRow } from '../layout/flexItems';
 import { measureAdaptiveItems } from './measureItemsUtils';
 import { IHasCX, IHasRawProps, useLayoutEffectSafeForSsr } from '@epam/uui-core';

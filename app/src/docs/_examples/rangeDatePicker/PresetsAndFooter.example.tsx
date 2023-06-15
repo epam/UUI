@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { RangeDatePicker, FlexRow, Text } from '@epam/promo';
 import { rangeDatePickerPresets, RangeDatePickerValue } from '@epam/uui-components';
 import dayjs from 'dayjs';
-import css from './PresetsAndFooter.scss';
+import css from './PresetsAndFooter.module.scss';
 
 export default function DatePickerBaseExample() {
     const [value, onValueChange] = useState({ from: null, to: null });
@@ -18,13 +18,13 @@ export default function DatePickerBaseExample() {
                     last3Days: {
                         name: 'Last 3 days',
                         getRange: () => {
-                            return { from: dayjs().subtract(3, 'day').toString(), to: dayjs().toString(), order: 11 };
+                            return { from: dayjs().subtract(2, 'day').toString(), to: dayjs().toString(), order: 11 };
                         },
                     },
                     last7Days: {
                         name: 'Last 7 days',
                         getRange: () => {
-                            return { from: dayjs().subtract(7, 'day').toString(), to: dayjs().toString(), order: 12 };
+                            return { from: dayjs().subtract(6, 'day').toString(), to: dayjs().toString(), order: 12 };
                         },
                     },
                 } }
@@ -33,6 +33,7 @@ export default function DatePickerBaseExample() {
                         <FlexRow padding="24">
                             <Text>
                                 Range days count:
+                                {' '}
                                 {getRangeLength(value)}
                             </Text>
                         </FlexRow>

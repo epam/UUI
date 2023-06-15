@@ -6,7 +6,7 @@ import {
 import {
     Text, LinkButton, DataTable, Panel,
 } from '@epam/promo';
-import css from './TablesExamples.scss';
+import css from './TablesExamples.module.scss';
 
 export default function TreeTableExample() {
     const svc = useUuiContext();
@@ -43,7 +43,6 @@ export default function TreeTableExample() {
                     location.lat && (
                         <LinkButton
                             caption={ `${location.lat}/${location.lon}` }
-                            color="blue"
                             href={ `https://www.google.com/maps/search/?api=1&query=${location.lat},${location.lon}` }
                             target="_blank"
                         />

@@ -11,7 +11,7 @@ const buttonTypeToColor: { [key: string]: ButtonColorType } = {
 const mapIconButtonProp = (props: SkinContextComponentProps<ButtonCoreProps>): IconButtonProps => {
     const resultProps: IconButtonProps = {
         ...props,
-        color: 'night700',
+        color: 'night600',
     };
 
     if (props.usageContext.includes('RTE-Sidebar')) {

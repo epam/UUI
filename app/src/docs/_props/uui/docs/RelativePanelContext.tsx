@@ -3,7 +3,7 @@ import { DemoComponentProps } from '@epam/uui-docs';
 import {
     Panel, FlexRow, Text, MultiSwitch, FlexSpacer, Button, TextInput, LabeledInput, NumericInput, DatePicker,
 } from '@epam/promo';
-import css from './RelativePanelContext.scss';
+import css from './RelativePanelContext.module.scss';
 
 interface DemoComponentState {
     activeContent: 'form' | 'text';

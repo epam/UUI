@@ -1,13 +1,13 @@
 import React from 'react';
 import {
     renderSnapshotWithContextAsync,
-    renderToJsdomWithContextAsync,
+    renderWithContextAsync,
     screen,
     within,
     fireEvent,
     mockAdaptivePanelLayout,
     waitForElementToBeRemoved,
-} from '@epam/test-utils';
+} from '@epam/uui-test-utils';
 import { PresetsPanel, PresetsPanelProps } from '../PresetsPanel';
 import {
     ColumnsConfig, DataTableState, FiltersConfig, ITablePreset,
@@ -106,7 +106,7 @@ async function setupPresetsPanel({ hasPresetChanged }: Partial<PresetsPanelProps
             'data-testid': 'presets-panel',
         },
     };
-    const result = await renderToJsdomWithContextAsync(<PresetsPanel { ...panelProps } />);
+    const result = await renderWithContextAsync(<PresetsPanel { ...panelProps } />);
     const tabs = await screen.findAllByRole('tab');
     const dom = {
         tabs,

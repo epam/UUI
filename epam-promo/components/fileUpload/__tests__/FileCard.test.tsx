@@ -1,6 +1,6 @@
 import React from 'react';
 import { FileCard } from '../FileCard';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('FileCard', () => {
     it('should be rendered correctly', () => {

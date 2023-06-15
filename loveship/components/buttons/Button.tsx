@@ -1,12 +1,12 @@
 import { FillStyle, ControlShape, EpamPrimaryColor } from '../types';
 import { Button as uuiButton, ButtonMode, ButtonProps as UuiButtonProps, ControlSize } from '@epam/uui';
-import { withMods } from '@epam/uui-core';
+import { devLogger, withMods } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';
-import css from './Button.scss';
+import css from './Button.module.scss';
 
 const defaultSize = '36';
 
-export type ButtonColorType = EpamPrimaryColor | 'white' | 'night500' | 'night600';
+export type ButtonColorType = EpamPrimaryColor | 'white' | 'night500' | 'night600' | 'gray';
 
 export interface ButtonMods {
     color?: ButtonColorType;
@@ -31,8 +31,17 @@ export function applyButtonMods(mods: ButtonProps) {
     ];
 }
 
-export const Button = withMods<Omit<UuiButtonProps, 'color'>, ButtonMods>(uuiButton, applyButtonMods, (props) => ({
-    dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
-    clearIcon: systemIcons[props.size || defaultSize].clear,
-    mode: mapFillToMod[props.fill] || mapFillToMod.solid,
-}));
+export const Button = withMods<Omit<UuiButtonProps, 'color'>, ButtonMods>(uuiButton, applyButtonMods, (props) => {
+    devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
+        component: 'Button',
+        propName: 'color',
+        propValue: props.color,
+        propValueUseInstead: 'gray',
+        condition: () => ['night500', 'night600'].indexOf(props.color) !== -1,
+    });
+    return {
+        dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
+        clearIcon: systemIcons[props.size || defaultSize].clear,
+        mode: mapFillToMod[props.fill] || mapFillToMod.solid,
+    };
+});

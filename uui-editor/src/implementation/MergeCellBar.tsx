@@ -7,7 +7,7 @@ import { Portal } from '@epam/uui-components';
 import { ToolbarButton } from './ToolbarButton';
 import { ReactComponent as UnmergeIcon } from '../icons/table-un-merge.svg';
 import { ReactComponent as MergeIcon } from '../icons/table-merge.svg';
-import css from './Toolbar.scss';
+import css from './Toolbar.module.scss';
 
 interface MergeCellBarProps {
     editor: Editor;

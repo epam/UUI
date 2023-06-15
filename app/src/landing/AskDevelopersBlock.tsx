@@ -3,7 +3,7 @@ import Measure from 'react-measure';
 import { FlexCell, FlexRow, Text } from '@epam/promo';
 import { SlideProps, Slider, SliderProps } from '../common/slider';
 import { analyticsEvents } from '../analyticsEvents';
-import css from './AskDevelopersBlock.scss';
+import css from './AskDevelopersBlock.module.scss';
 
 const feedbacksTexts = {
     'Nadzeya Nikalayonak':

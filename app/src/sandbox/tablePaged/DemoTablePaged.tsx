@@ -1,7 +1,7 @@
 import React, {
     useCallback, useEffect, useMemo, useState,
 } from 'react';
-import css from './DemoTablePaged.scss';
+import css from './DemoTablePaged.module.scss';
 import {
     DataTable, FlexRow, Paginator, FlexSpacer, Button,
 } from '@epam/promo';

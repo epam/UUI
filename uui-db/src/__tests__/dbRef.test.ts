@@ -1,8 +1,8 @@
 import {
-    emptyDb, sampleDb, sampleData, TasksDbRef,
+    sampleDb, sampleData, TasksDbRef,
 } from './TaskDb';
 import { DbRef } from '../index';
-import { delay } from '@epam/test-utils';
+import { delay } from '@epam/uui-test-utils';
 
 describe('db - DbRef query and updates', () => {
     it('Get user by id', () => {

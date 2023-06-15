@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IHasIcon, Icon } from '@epam/uui-core';
 import { ColorPicker, IconPicker } from './index';
 import { DocBuilder } from '@epam/uui-docs';
-import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, commonControlColors, allEpamBadgeColors } from '@epam/loveship';
+import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, commonControlColors } from '@epam/loveship';
 import { TextMods, IHasEditMode } from '@epam/uui';
 import { getIconList } from '../../../../documents/iconListHelpers';
 import { colors } from './helpers/colorMap';
@@ -23,11 +23,6 @@ export const fontDoc = new DocBuilder<FontMod>({ name: 'Font' }).prop('font', { 
 export const colorDoc = new DocBuilder<ColorMod>({ name: 'Color' }).prop('color', {
     renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
     examples: commonControlColors,
-});
-
-export const badgeColorDoc = new DocBuilder<ColorMod>({ name: 'Color' }).prop('color', {
-    renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
-    examples: allEpamBadgeColors,
 });
 
 export const iconDoc = new DocBuilder<IHasIcon>({ name: 'Icon' }).prop('icon', {

@@ -49,13 +49,12 @@ const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseP
         ],
         defaultValue: 50,
     })
-    .prop('isInvalid', { examples: [true] })
     .prop('placeholder', { examples: ['Select Country', 'Select Person'], type: 'string', defaultValue: 'Please select' })
     .prop('renderModalToggler', {
         examples: [
             {
-                name: 'Green Button',
-                value: (props) => <LinkButton { ...props } />,
+                name: 'Custom Button',
+                value: (props) => <LinkButton { ...props } caption="Custom Button" />,
             },
         ],
     })

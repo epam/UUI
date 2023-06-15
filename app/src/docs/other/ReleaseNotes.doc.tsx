@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './ReleaseNotesDoc.scss';
+import css from './ReleaseNotesDoc.module.scss';
 import { svc } from '../../services';
 import {
     FlexCell, FlexRow, RichTextView, Spinner, Text,

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
-import { renderToJsdomWithContextAsync, fireEvent, screen } from '@epam/test-utils';
+import { renderWithContextAsync, fireEvent, screen } from '@epam/uui-test-utils';
 import { DatePickerBody } from '../DatePickerBody';
 
 describe('DatePickerBody', () => {
     it('should change selectedDate on day click', async () => {
         const handleChange = jest.fn();
-        await renderToJsdomWithContextAsync(
+        await renderWithContextAsync(
             <DatePickerBody
                 value={ {
                     view: 'DAY_SELECTION',

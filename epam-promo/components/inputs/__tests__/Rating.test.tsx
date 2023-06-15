@@ -1,6 +1,6 @@
 import React from 'react';
 import { Rating } from '../Rating';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('Rating', () => {
     it('should be rendered correctly', async () => {

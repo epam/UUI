@@ -4,7 +4,7 @@ import {
 } from '@epam/uui-core';
 import { DataTable, Panel, Text } from '@epam/promo';
 import { demoData, FeatureClass } from '@epam/uui-docs';
-import css from './TablesExamples.scss';
+import css from './TablesExamples.module.scss';
 import sortBy from 'lodash.sortby';
 
 export default function TableWithDnDExample() {
@@ -24,18 +24,16 @@ export default function TableWithDnDExample() {
                 srcData: i,
                 dstData: i,
                 onDrop: (data) => {
-                    const arrIndex = index - 1;
-
                     const newOrder = data.position === 'top'
-                        ? getOrderBetween(items[arrIndex - 1]?.order, data.dstData.order)
-                        : getOrderBetween(data.dstData.order, items[arrIndex + 1]?.order);
+                        ? getOrderBetween(items[index - 1]?.order, data.dstData.order)
+                        : getOrderBetween(data.dstData.order, items[index + 1]?.order);
 
-                    const result = items.map((i) => (i === data.srcData ? { ...data.srcData, order: newOrder } : i));
-                    const sortedResult = sortBy(result, (i) => i.order);
+                    const result = items.map((item) => (item === data.srcData ? { ...data.srcData, order: newOrder } : item));
+                    const sortedResult = sortBy(result, (item) => item.order);
 
                     setItems(sortedResult);
                 },
-                canAcceptDrop: (i) => ({
+                canAcceptDrop: () => ({
                     top: true,
                     bottom: true,
                 }),

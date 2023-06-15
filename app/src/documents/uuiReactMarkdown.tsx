@@ -22,6 +22,9 @@ export function UuiReactMarkdown(props: UuiReactMarkdownProps) {
         if (isReplaceStrongToBold) {
             c.strong = ({ node, ...props }) => <b>{props.children[0]}</b>;
         }
+        c.a = ({ node, children, ...props }) => {
+            return <a { ...props } target="_blank">{children}</a>;
+        };
         return c;
     }, [isReplaceStrongToBold]);
     return (

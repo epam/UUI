@@ -3,7 +3,7 @@ import {
     FlexRow, FlexSpacer, Panel, Text, Button, LabeledInput, TextInput, FlexCell, CheckboxGroup,
 } from '@epam/promo';
 
-import css from './FlexCellExample.scss';
+import css from './FlexCellExample.module.scss';
 
 export default function FlexCellExample() {
     const [value, onValueChange] = useState(null);

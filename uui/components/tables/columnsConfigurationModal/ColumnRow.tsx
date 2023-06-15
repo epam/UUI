@@ -5,7 +5,7 @@ import {
 import { FlexRow, Checkbox, DropMarker } from '../../.';
 import { DragHandle, FlexSpacer, ColumnsConfigurationRowProps } from '@epam/uui-components';
 import { PinIconButton } from './PinIconButton';
-import styles from './ColumnRow.scss';
+import styles from './ColumnRow.module.scss';
 
 type DndDataType = { column: DataColumnProps; columnConfig: IColumnConfig };
 

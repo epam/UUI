@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import cx from 'classnames';
 import { Panel } from '@epam/uui';
-import css from './SlidingPanel.scss';
+import css from './SlidingPanel.module.scss';
 
 interface ISlidingPanelProps {
     isVisible: boolean;

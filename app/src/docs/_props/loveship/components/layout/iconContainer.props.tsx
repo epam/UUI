@@ -1,11 +1,9 @@
 import { DocBuilder } from '@epam/uui-docs';
 import { ControlIconProps } from '@epam/uui-components';
-import {
-    DefaultContext, FormContext, onClickDoc, iconDoc,
-} from '../../docs';
-import { IconContainer } from '@epam/loveship';
+import { DefaultContext, FormContext, onClickDoc, iconDoc } from '../../docs';
+import { IconContainer, IconContainerMods } from '@epam/loveship';
 
-const iconContainerDoc = new DocBuilder<ControlIconProps>({ name: 'IconContainer', component: IconContainer })
+const iconContainerDoc = new DocBuilder<ControlIconProps & IconContainerMods>({ name: 'IconContainer', component: IconContainer })
     .implements([onClickDoc, iconDoc])
     .prop('size', {
         examples: [

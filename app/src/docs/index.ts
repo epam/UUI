@@ -15,6 +15,7 @@ export * from './LinkButton.doc';
 export * from './MultiSwitch.doc';
 export * from './NumericInput.doc';
 export * from './PickerInput.doc';
+export * from './PickerModal.doc';
 export * from './RadioGroup.doc';
 export * from './RadioInput.doc';
 export * from './Rating.doc';

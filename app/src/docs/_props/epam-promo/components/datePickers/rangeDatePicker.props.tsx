@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RangeDatePicker } from '@epam/promo';
 import { RangeDatePickerProps } from '@epam/uui';
-import css from './RangeDatePicker.doc.scss';
+import css from './RangeDatePicker.doc.module.scss';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import {
     iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, FormContext, DefaultContext, ResizableContext,
@@ -102,7 +102,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
                     last3Days: {
                         name: 'Last 3 days (custom)',
                         getRange: () => {
-                            return { from: dayjs().subtract(3, 'day').toString(), to: dayjs().toString(), order: 11 };
+                            return { from: dayjs().subtract(2, 'day').toString(), to: dayjs().toString(), order: 11 };
                         },
                     },
                 },

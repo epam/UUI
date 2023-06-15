@@ -21,7 +21,7 @@ const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip',
     .prop('closeOnMouseLeave', { examples: [{ name: 'toggler', value: 'toggler', isDefault: true }, 'boundary'] })
     .prop('color', {
         examples: [
-            'white', { name: 'gray80', value: 'gray80', isDefault: true }, 'red',
+            'white', { name: 'gray', value: 'gray', isDefault: true }, 'red',
         ],
     })
     .prop('closeDelay', {

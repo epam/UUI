@@ -4,7 +4,7 @@ import {
     DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps,
 } from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { delay } from '@epam/test-utils';
+import { delay } from '@epam/uui-test-utils';
 
 interface TestItem {
     id: number;

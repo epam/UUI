@@ -7,7 +7,8 @@ import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceState, IDataSource } from './dataSources';
 import { ILens } from '../data';
 import * as CSS from 'csstype';
-import { TooltipCoreProps } from './components';
+import { RangeDatePickerPresets, TooltipCoreProps } from './components';
+import { Dayjs } from 'dayjs';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
@@ -165,6 +166,8 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     /** Overrides default loading placeholder ('skeleton') rendering  */
     renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
 
+    renderUnknown?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
+
     /**
      * If passed, the cell is rendered as editable - receives focus, show validation errors.
      * All necessary props for the editor are passed as argument:
@@ -224,24 +227,35 @@ type FilterConfigBase<TFilter> = {
     predicates?: IFilterPredicate[];
 };
 
-type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: 'singlePicker' | 'multiPicker';
     dataSource: IDataSource<any, any, any>;
     getName?: (item: any) => string;
     renderRow?: (props: DataRowProps<any, any>) => ReactNode;
     valueType?: 'id';
+    /** default value: true */
+    showSearch?: boolean;
 };
 
 type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
-    type: 'datePicker' | 'rangeDatePicker';
+    type: 'datePicker';
+    filter?(day: Dayjs): boolean;
     format?: string;
+};
+
+type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+    type: 'rangeDatePicker';
+    format?: string;
+    filter?(day: Dayjs): boolean;
+    presets?: RangeDatePickerPresets;
 };
 
 type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: 'numeric';
 };
 
-export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter> | DatePickerFilterConfig<TFilter> | NumericFilterConfig<TFilter>;
+export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter> | DatePickerFilterConfig<TFilter> |
+NumericFilterConfig<TFilter> | RangeDatePickerFilterConfig<TFilter>;
 
 export interface ITablePreset<TFilter = any, TViewState = any> {
     name: string;
@@ -257,14 +271,14 @@ export interface ITablePreset<TFilter = any, TViewState = any> {
 
 export interface IPresetsApi<TFilter = any, TViewState = any> {
     activePresetId: number | null;
-    choosePreset(preset: ITablePreset): void;
+    choosePreset(preset: ITablePreset<TFilter, TViewState>): void;
     createNewPreset(name: string): Promise<number>;
-    hasPresetChanged(preset: ITablePreset): boolean;
-    duplicatePreset(preset: ITablePreset): void;
-    deletePreset(preset: ITablePreset): Promise<void>;
-    updatePreset(preset: ITablePreset): Promise<void>;
-    getPresetLink(preset: ITablePreset): string;
-    presets: ITablePreset[];
+    hasPresetChanged(preset: ITablePreset<TFilter, TViewState>): boolean;
+    duplicatePreset(preset: ITablePreset<TFilter, TViewState>): void;
+    deletePreset(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
+    updatePreset(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
+    getPresetLink(preset: ITablePreset<TFilter, TViewState>): string;
+    presets: ITablePreset<TFilter, TViewState>[];
 }
 
 export interface ITableState<TFilter = Record<string, any>, TViewState = any> extends IPresetsApi<TFilter, TViewState> {

@@ -11,7 +11,7 @@ import {
     arrayToMatrix, cx, IEditable, RangeDatePickerPresets,
 } from '@epam/uui-core';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
-import css from './RangeDatePickerBody.scss';
+import css from './RangeDatePickerBody.module.scss';
 
 dayjs.extend(isoWeek);
 

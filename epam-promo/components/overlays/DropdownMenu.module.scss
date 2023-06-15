@@ -1,0 +1,174 @@
+@use 'sass:math';
+@use  '../../assets/styles/index' as *;
+
+@mixin panel-shadow() { box-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.1), 0 1px 3px 0 rgba(29, 30, 38, 0.1); }
+
+@mixin icon-layout($size) {
+    :global(.uui-icon) {
+        svg {
+            height: math.div($size, 36) * 24;
+            max-width: math.div($size, 36) * 24;
+        }
+    }
+}
+
+@mixin icon-sizes($size, $font-size, $line-height) {
+    $vpadding: math.div(($line-height - $size), 2);
+
+    :global(.uui-checkbox) {
+        width: $size;
+        height: $size;
+        margin: $vpadding 0;
+    }
+
+    :global(.uui-input-label) {
+        font-size: $font-size;
+        line-height: $line-height;
+    }
+
+    :global(.uui-icon) {
+        svg {
+            width: $size;
+        }
+    }
+}
+
+@mixin fillColor($fill, $color: null) {
+    @if ($color) {
+        color: $color;
+        fill: $fill;
+    } @else {
+        color: $fill;
+        fill: $fill;
+    }
+}
+
+@mixin withActive {
+    &:global(.uui-active) {
+        @include fillColor($blue);
+
+        &:hover, &:focus {
+            @include fillColor($blue!important);
+        }
+
+        .iconCheck {
+            @include fillColor($blue);
+        }
+    }
+}
+
+@mixin itemRoot {
+    box-sizing: border-box;
+    font-family: $font-sans;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0.5em 1em;
+    width: 100%;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.menuRoot {
+    padding: 0;
+    margin: 0;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.bodyRoot {
+    @include icon-layout(36px);
+    @include panel-shadow();
+    @include fillColor($gray60, $gray80);
+    font-family: $font-sans;
+    font-size: 14px;
+    padding: 0.5em 0;
+    background-color: $white;
+}
+
+.submenuRootItem {
+    .iconAfter {
+        transform: rotate(-90deg);
+    }
+}
+
+.iconCheck {
+    @include fillColor(transparent);
+}
+
+.splitterRoot {
+    display: flex;
+    width: 100%;
+
+    .splitter {
+        width: 100%;
+        border: 0;
+        border-top: 1px solid $gray40;
+        height: 0;
+    }
+}
+
+.headerRoot {
+    @include fillColor($gray60);
+    @include itemRoot;
+    cursor: default;
+    font-size: 0.9em;
+}
+
+.itemRoot {
+    @include icon-layout(36px);
+    @include withActive;
+    @include itemRoot;
+    @include fillColor($gray60, $gray80);
+
+    .icon {
+        justify-content: flex-start;
+    }
+
+    &.link {
+        @include withActive;
+        display: flex;
+        align-items: center;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &:global(.-clickable:not(.uui-disabled)) {
+        &:hover, &:focus {
+            background-color: $gray30;
+            cursor: pointer;
+        }
+    }
+
+    &:global(.uui-disabled) {
+        @include fillColor($gray50);
+
+        &:hover, &:focus {
+            background-color: transparent;
+            cursor: default;
+        }
+    }
+
+    &:global(.uui-opened) {
+        background-color: $gray30;
+        fill: $gray80;
+    }
+
+    & > *:not(:last-child) {
+        margin: 0 0.5em 0 0;
+    }
+}
+
+.selected-checkmark {
+    margin-left: auto;
+    fill: $blue;
+
+    &:hover, &:focus {
+        fill: $blue;
+    }
+}
