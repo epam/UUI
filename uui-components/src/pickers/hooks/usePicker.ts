@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useContext } from 'react';
 import isEqual from 'lodash.isequal';
 import {
     DataRowOptions, DataSourceListProps, DataSourceState, PickerBaseProps, PickerFooterProps, UuiContext,
@@ -157,12 +157,6 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         clearSelection,
         selectionMode,
     });
-
-    useEffect(() => {
-        return () => {
-            dataSource.unsubscribeView(handleDataSourceValueChange);
-        };
-    }, []);
 
     return {
         context,

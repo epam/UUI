@@ -90,7 +90,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             };
         }, [view]);
 
-        view.update(value, viewProps);
+        view.update({ value, onValueChange }, viewProps);
         return view;
     }
 }

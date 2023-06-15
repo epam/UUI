@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo } from 'react';
 import { IDataSourceView, DataSourceState } from '../../types';
 import { BaseDataSource } from './BaseDataSource';
 import { ArrayListView, ArrayListViewProps } from './views';
@@ -80,8 +80,6 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
-        const onValueChangeRef = useRef(null);
-        onValueChangeRef.current = onValueChange;
         const viewProps: ArrayListViewProps<TItem, TId, TFilter> = {
             ...this.props,
             items: this.tree,
@@ -93,7 +91,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         };
          
         const view = useMemo(
-            () => new ArrayListView({ value, onValueChange: onValueChangeRef.current }, viewProps),
+            () => new ArrayListView({ value, onValueChange }, viewProps),
             deps,
         );
          
@@ -104,8 +102,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             };
         }, [view]);
 
-        view.update(value, viewProps);
-
+        view.update({ value, onValueChange }, viewProps);
         return view;
     }
 }

@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource, AsyncDataSource, CascadeSelection, IDataSource } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, waitFor,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, waitFor, prettyDOM,
 } from '@epam/uui-test-utils';
 import { Modals, PickerInputBaseProps } from '@epam/uui-components';
 import { Button, DataPickerRow, FlexCell, PickerItem, Text } from '@epam/promo';
@@ -368,13 +368,15 @@ describe('PickerInput', () => {
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
             expect(screen.queryAllByRole('button')).toHaveLength(3); // 2 tags and 1 clear button
-            const a1 = screen.getByText('A1');
-            const a1Clear = a1.nextElementSibling;
             const a1plus = screen.getByText('A1+');
             const a1plusClear = a1plus.nextElementSibling;
-            fireEvent.click(a1Clear as HTMLElement);
-            expect(screen.queryAllByRole('button')).toHaveLength(2); // 1 tag and 1 clear button
             fireEvent.click(a1plusClear as HTMLElement);
+            expect(screen.queryAllByRole('button')).toHaveLength(2); // 1 tag and 1 clear button
+
+            const a1 = screen.getByText('A1');
+            const a1Clear = a1.nextElementSibling;
+            fireEvent.click(a1Clear as HTMLElement);
+
             expect(screen.queryAllByRole('button')).toHaveLength(0);
         });
         
