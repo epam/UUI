@@ -34,7 +34,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "It is recommended to use `flatten` search in most cases, bypassing ",
+            "text": "It is recommended to use `flatten` search in most cases, by passing ",
             "marks": []
           },
           {
@@ -50,7 +50,26 @@
           },
           {
             "object": "text",
-            "text": "  as the datasource arg.",
+            "text": "  as the datasource property. While it might look counterintuitive, there are several benefits of this approach. See more details ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://github.com/epam/UUI/issues/8"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "here",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
             "marks": []
           }
         ]
@@ -78,7 +97,7 @@
           },
           {
             "object": "text",
-            "text": " with subtitle.",
+            "text": " with subtitle.\n\n",
             "marks": []
           }
         ]
