@@ -5,13 +5,13 @@ import { act } from '@testing-library/react';
 
 function isMockFunctionGeneric(fn: () => void) {
     // @ts-ignore
-    if (typeof jest !== 'undefined') {
+    if (typeof jest !== 'undefined' && typeof jest.isMockFunction === 'function') {
         // This is for Jest
         // @ts-ignore
         return jest.isMockFunction(fn);
     }
     // @ts-ignore
-    if (typeof vi !== 'undefined') {
+    if (typeof vi !== 'undefined' && typeof vi.isMockFunction === 'function') {
         // This is for Vitest
         // @ts-ignore
         return vi.isMockFunction(fn);
