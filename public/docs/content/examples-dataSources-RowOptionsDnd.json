@@ -1,0 +1,88 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To add ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "drag'n'drop",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " it is necessary to specify a ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "dnd",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " property at the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "getRowOptions",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " return configuration. You can read more about drag'n'drop ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?id=dragAndDrop&mode=doc&skin=UUI4_promo&category=advanced"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "here",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

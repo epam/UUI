@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox } from '../Checkbox';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('Checkbox', () => {
     it('should be rendered correctly', () => {

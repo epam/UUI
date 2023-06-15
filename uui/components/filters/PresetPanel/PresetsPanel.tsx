@@ -2,13 +2,13 @@ import React, { useCallback, useState } from 'react';
 import sortBy from 'lodash.sortby';
 import { i18n } from '../../../i18n';
 import {
-    DataTableState, IHasRawProps, IPresetsApi, ITablePreset,
+    DataTableState, IHasRawProps, IPresetsApi, ITablePreset, cx,
 } from '@epam/uui-core';
-import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
-import css from './PresetsPanel.scss';
-import {
-    Button, Dropdown, DropdownContainer, DropdownMenuButton, FlexCell, FlexRow,
-} from '../../index';
+import { AdaptiveItemProps, AdaptivePanel, ScrollBars } from '@epam/uui-components';
+import css from './PresetsPanel.module.scss';
+import { Button } from '../../buttons';
+import { FlexCell, FlexRow } from '../../layout';
+import { Dropdown, DropdownContainer, DropdownMenuButton } from '../../overlays';
 import { Preset } from './Preset';
 import { PresetInput } from './PresetInput';
 import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-deleteforever-18.svg';
@@ -51,7 +51,6 @@ export function PresetsPanel(props: PresetsPanelProps) {
 
     const onPresetDropdownSelect = (preset: PresetAdaptiveItem) => {
         props.choosePreset(preset.preset);
-        props.updatePreset(preset.preset);
     };
 
     const renderMoreButtonDropdown = (item: PresetAdaptiveItem, hiddenItems: PresetAdaptiveItem[]) => {
@@ -65,18 +64,20 @@ export function PresetsPanel(props: PresetsPanelProps) {
                     </FlexRow>
                 ) }
                 renderBody={ () => (
-                    <DropdownContainer width={ 230 }>
-                        {hiddenItems.map((item) => (
-                            <DropdownMenuButton
-                                key={ item.preset.id }
-                                onClick={ () => onPresetDropdownSelect(item) }
-                                caption={ item.preset.name }
-                                icon={ !item.preset.isReadonly && DeleteIcon }
-                                iconPosition="right"
-                                cx={ css.dropdownDeleteIcon }
-                                onIconClick={ !item.preset.isReadonly && (() => props.deletePreset(item.preset)) }
-                            />
-                        ))}
+                    <DropdownContainer cx={ cx(css.dropContainer) } width={ 230 }>
+                        <ScrollBars>
+                            {hiddenItems.map((hiddenItem) => (
+                                <DropdownMenuButton
+                                    key={ hiddenItem.preset.id }
+                                    onClick={ () => onPresetDropdownSelect(hiddenItem) }
+                                    caption={ hiddenItem.preset.name }
+                                    icon={ !hiddenItem.preset.isReadonly && DeleteIcon }
+                                    iconPosition="right"
+                                    cx={ css.dropdownDeleteIcon }
+                                    onIconClick={ !hiddenItem.preset.isReadonly && (() => props.deletePreset(hiddenItem.preset)) }
+                                />
+                            ))}
+                        </ScrollBars>
                     </DropdownContainer>
                 ) }
             />

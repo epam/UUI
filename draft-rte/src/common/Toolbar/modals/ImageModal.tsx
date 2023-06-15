@@ -45,7 +45,7 @@ class ImageModal extends React.Component<ImageModalProps, ImageModalState> {
             validationMessage: i18n.rte.imageModal.validationInputSource,
         };
         return (
-            <ModalBlocker blockerShadow='dark' { ...this.props }>
+            <ModalBlocker { ...this.props }>
                 <ModalWindow>
                     <Panel background='white' style={ { overflowY: 'auto', maxHeight: '100%' } }>
                         <ModalHeader borderBottom title={ i18n.rte.imageModal.modalHeader } onClose={ () => this.props.abort() } />

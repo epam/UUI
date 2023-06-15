@@ -3,7 +3,7 @@ import { ArrayDataSource, TableFiltersConfig } from '@epam/uui-core';
 import { defaultPredicates } from '../defaultPredicates';
 import {
     setupComponentForTest, screen, within, userEvent,
-} from '@epam/test-utils';
+} from '@epam/uui-test-utils';
 import React from 'react';
 import dayjs from 'dayjs';
 

@@ -5,6 +5,7 @@ import { LazyListViewProps } from '../LazyListView';
 import { CompositeKeysMap } from './CompositeKeysMap';
 
 export const ROOT_ID: undefined = undefined;
+export const NOT_FOUND_RECORD = Symbol('NOT_FOUND_RECORD');
 
 export interface ApplyFilterOptions<TItem, TId, TFilter> {
     filter: DataSourceState<TFilter, TId>['filter'];
@@ -43,7 +44,7 @@ export interface ITree<TItem, TId> {
     clearStructure(): ITree<TItem, TId>;
     getRootIds(): TId[];
     getRootItems(): TItem[];
-    getById(id: TId): TItem;
+    getById(id: TId): TItem | typeof NOT_FOUND_RECORD;
     getChildren(item: TItem): TItem[];
     getChildrenByParentId(parentId: TId): TItem[];
     getChildrenIdsByParentId(parentId: TId): TId[];

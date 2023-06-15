@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar } from '../Avatar';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('Avatar', () => {
     it('should be rendered correctly', () => {

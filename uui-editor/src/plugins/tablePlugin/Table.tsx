@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './Table.scss';
+import css from './Table.module.scss';
 import * as ReactDOM from "react-dom";
 import { Broadcast } from 'react-broadcast';
 import { mouseCoords } from '@epam/uui-core';

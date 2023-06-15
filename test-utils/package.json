@@ -1,23 +1,29 @@
 {
-  "name": "@epam/test-utils",
-  "version": "5.0.0-alpha.1",
+  "name": "@epam/uui-test-utils",
+  "version": "5.0.0",
   "author": "EPAM",
   "license": "MIT",
-  "private": true,
+  "private": false,
+  "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-core": "5.0.0-alpha.1",
-    "@testing-library/react": "14.0.0",
-    "@testing-library/user-event": "14.4.3",
-    "@types/react-dom": "18.0.10",
-    "@types/react-test-renderer": "18.0.0",
-    "react-test-renderer": "18.2.0"
+    "@epam/uui-core": "5.0.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.0.0",
+    "@types/react-test-renderer": "^18.0.0",
+    "react-test-renderer": "^18.0.0"
   },
   "peerDependencies": {
-    "react": ">=16.0.0",
-    "react-dom": ">=16.0.0"
-  }
+    "@types/react-dom": "^18.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "publishConfig": {
+    "directory": "build"
+  },
+  "gitHead": "f0d58123e11e321e4417e3bba7dc6c5c9026998c"
 }

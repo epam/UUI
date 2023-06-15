@@ -28,7 +28,6 @@ const TabButtonDoc = new DocBuilder<TabButtonMods & ButtonProps>({ name: 'TabBut
             0, 1, 5, 88, 123,
         ],
     })
-    .prop('theme', { examples: ['light', 'dark'], defaultValue: 'light' })
     .withContexts(TabButtonContext);
 
 export default TabButtonDoc;

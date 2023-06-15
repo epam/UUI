@@ -3,7 +3,7 @@ import {
     IHasCX, IEditable, IDisableable, IHasForwardedRef, IHasDirection, directionMode, ICanBeReadonly, cx, IHasRawProps,
 } from '@epam/uui-core';
 import { RadioInputProps } from '../inputs/RadioInput';
-import css from './RadioGroup.scss';
+import css from './RadioGroup.module.scss';
 
 export interface RadioGroupItem<TValue> extends IDisableable {
     name?: string;

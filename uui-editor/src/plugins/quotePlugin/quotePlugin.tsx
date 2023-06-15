@@ -1,6 +1,6 @@
 import { RenderBlockProps } from "slate-react";
 import { Editor as CoreEditor } from "slate";
-import css from './quote.scss';
+import css from './quote.module.scss';
 import * as React from "react";
 import { ReactComponent as QuoteIcon } from "../../icons/quote.svg";
 import { ToolbarButton } from "../../implementation/ToolbarButton";

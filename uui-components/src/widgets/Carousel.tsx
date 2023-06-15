@@ -6,7 +6,7 @@ import {
 import {
     FlexRow, VPanel, FlexCell, IconContainer,
 } from '../layout';
-import css from './Carousel.scss';
+import css from './Carousel.module.scss';
 
 export interface CarouselProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     items: Record<string, any>[];

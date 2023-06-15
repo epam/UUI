@@ -1,20 +1,13 @@
 import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
-import { ModalHeader, ModalHeaderProps } from '@epam/promo';
+import { Button, FlexRow, ModalHeader, Text } from '@epam/promo';
+import { ModalHeaderProps } from '@epam/uui';
 import { DefaultContext } from '../../docs';
-import { FlexRow } from '@epam/promo';
-import { Text } from '@epam/promo';
-import { Button } from '@epam/promo';
 
 const ModalHeaderDoc = new DocBuilder<ModalHeaderProps>({ name: 'ModalHeader', component: ModalHeader })
     .prop('title', {
         examples: ['Text', { value: 'Very long text', isDefault: true }],
         type: 'string',
-    })
-    .prop('background', {
-        examples: [
-            'white', 'gray5', 'none',
-        ],
     })
     .prop('borderBottom', { examples: [true, false] })
     .prop('padding', {

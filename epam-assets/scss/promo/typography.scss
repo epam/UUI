@@ -85,6 +85,7 @@
         display: inline-flex;
         align-items: center;
         color: $blue;
+        text-decoration: underline;
 
         &:visited {
             color: #5214CC;
@@ -95,7 +96,6 @@
         }
 
         &:hover {
-            text-decoration: underline;
             color: $blue-dark;
         }
     }
@@ -161,34 +161,10 @@
     font-size: 16px;
 }
 
-:local(.typography-header) {
+@mixin typography-promo() {
     @include typography-header();
-}
-
-:local(.typography-block) {
     @include typography-block();
-}
-
-:local(.typography-inline) {
     @include typography-inline();
-}
-
-:local(.typography-16) {
-    @include typography-16();
-}
-
-:local(.typography-14) {
-    @include typography-14();
-}
-
-:local(.typography-12) {
-    @include typography-12();
-}
-
-:local(.typography-promo) {
-    font-family: $font-sans;
     color: $gray80;
-    composes: typography-header;
-    composes: typography-block;
-    composes: typography-inline;
+    font-family: $font-sans;
 }

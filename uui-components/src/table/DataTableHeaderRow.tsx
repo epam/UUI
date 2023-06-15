@@ -3,7 +3,7 @@ import {
     DataSourceState, DataColumnProps, DataTableHeaderRowProps, DropdownBodyProps, Lens, getColumnsConfig, DropParams, getOrderBetween,
 } from '@epam/uui-core';
 import { DataTableRowContainer } from './DataTableRowContainer';
-import css from './DataTableHeaderRow.scss';
+import css from './DataTableHeaderRow.module.scss';
 
 const uuiDataTableHeaderRow = {
     uuiTableHeaderRow: 'uui-table-header-row',

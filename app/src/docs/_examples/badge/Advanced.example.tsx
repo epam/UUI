@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Badge, FlexCell, FlexRow } from '@epam/promo';
 import { ReactComponent as MyIcon } from '@epam/assets/icons/common/action-eye-18.svg';
-import css from './SizeExample.scss';
+import css from './SizeExample.module.scss';
 
 export default function AdvancedBadgeExample() {
     const [value] = useState<number>(10);

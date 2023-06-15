@@ -210,7 +210,23 @@
           },
           {
             "object": "text",
-            "text": " to add any of your properties to the adaptive item config. For example, if you need a different rendering for hidden items inside collapsedContainer, you can use these props.",
+            "text": " to add any of your properties to the adaptive item config. For example, if you need a different rendering for hidden items inside ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "CollapsedContainer",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", you can use these props.",
             "marks": []
           }
         ]

@@ -1,22 +1,25 @@
 import * as React from 'react';
 import {
-    DataRowProps, DataSourceListProps, DropdownBodyProps, IDisableable, IDropdownToggler, IEditable, isMobile, uuiMarkers,
+    DataRowProps, DataSourceListProps, DropdownBodyProps, IDropdownToggler, isMobile, uuiMarkers,
 } from '@epam/uui-core';
 import { PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
+import { Panel } from '../layout';
 import {
-    Panel, DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, MobileDropdownWrapper, FlexRow, FlexCell, LinkButton,
-} from '../../index';
+    DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter,
+} from '../pickers';
 
 const pickerHeight = 300;
 const pickerWidth = 360;
 
-interface FilterPickerBodyProps extends DropdownBodyProps {}
+interface FilterPickerBodyProps extends DropdownBodyProps {
+    showSearch?: boolean;
+}
 
 export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, FilterPickerBodyProps> {
     shouldShowBody(): boolean {
         return this.props.isOpen;
     }
-
+     
     toggleModalOpening(opened: boolean) {}
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
         return <PickerItem title={ this.getName(item) } size="36" { ...rowProps } />;
@@ -42,7 +45,7 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
     renderFooter = () => {
         return <DataPickerFooter { ...this.getFooterProps() } size="36" />;
     };
-
+     
     renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
         return <div></div>;
     }
@@ -61,7 +64,6 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
                     maxHeight={ maxHeight }
                     searchSize="36"
                     editMode="dropdown"
-                    showSearch={ true }
                 />
                 {this.renderFooter()}
             </Panel>
@@ -71,6 +73,10 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
     render(): JSX.Element {
         const rows = this.getRows();
 
-        return this.renderBody({ ...this.getPickerBodyProps(rows), ...this.getListProps() }, rows);
+        return this.renderBody({
+            ...this.getPickerBodyProps(rows),
+            ...this.getListProps(),
+            showSearch: this.props.showSearch ?? true,
+        }, rows);
     }
 }

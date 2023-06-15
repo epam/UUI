@@ -28,7 +28,7 @@ import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notificati
 import { ReactComponent as CopyIcon } from '../../icons/icon-copy.svg';
 import { ReactComponent as ResetIcon } from '../../icons/reset-icon.svg';
 import { ReactComponent as NotificationIcon } from '../../icons/notification-check-fill-24.svg';
-import css from './ComponentEditor.scss';
+import css from './ComponentEditor.module.scss';
 
 declare let require: any;
 
@@ -183,7 +183,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
             this.setState(newStateValues);
         };
 
-        const getPropsDataSource = (items: any[] | any) => new ArrayDataSource({ items, getId: (i) => i.id });
+        const getPropsDataSource = (exampleItems: any[] | any) => new ArrayDataSource({ items: exampleItems, getId: (i) => i.id });
 
         if (prop.renderEditor) {
             return prop.renderEditor(
@@ -201,13 +201,13 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                         <FlexCell minWidth={ 150 }>
                             <PickerInput
                                 size="24"
-                                dataSource={ getPropsDataSource(prop.examples) }
+                                dataSource={ getPropsDataSource(this.propExamples[prop.name]) }
                                 selectionMode="single"
-                                value={ this.state.inputValues[prop.name] }
+                                value={ this.propExamples[prop.name].find((i) => i.value === this.state.inputValues[prop.name])?.id }
                                 onValueChange={ (inputValue) => onExampleClick(inputValue, this.propExamples[prop.name][Number(inputValue)]?.value) }
                                 valueType="id"
                                 entityName={ prop.name }
-                                placeholder={ this.state.inputValues[prop.name] && this.state.inputValues[prop.name] }
+                                placeholder={ this.state.inputValues?.[prop.name] }
                             />
                         </FlexCell>
                         <FlexCell minWidth={ 150 }>

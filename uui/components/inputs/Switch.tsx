@@ -1,6 +1,6 @@
 import { withMods } from '@epam/uui-core';
 import { Switch as uuiSwitch, SwitchProps } from '@epam/uui-components';
-import css from './Switch.scss';
+import css from './Switch.module.scss';
 
 export interface SwitchMods {
     size?: '12' | '18' | '24';

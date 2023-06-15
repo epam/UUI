@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './Slide.scss';
+import css from './Slide.module.scss';
 import { Text } from '@epam/promo';
 
 export interface SlideProps {

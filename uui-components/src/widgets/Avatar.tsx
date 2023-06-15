@@ -2,7 +2,7 @@ import React from 'react';
 import {
     IHasCX, cx, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';
-import css from './Avatar.scss';
+import css from './Avatar.module.scss';
 
 export interface AvatarProps extends IHasCX, IHasRawProps<React.ImgHTMLAttributes<HTMLImageElement>>, IHasForwardedRef<HTMLImageElement> {
     /** HTML alt attribute value */

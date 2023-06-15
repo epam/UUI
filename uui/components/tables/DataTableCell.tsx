@@ -5,7 +5,7 @@ import { DataTableCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
 import { Checkbox } from '../inputs';
 import { ReactComponent as FoldingArrow } from '../../icons/tree_folding_arrow.svg';
-import css from './DataTableCell.scss';
+import css from './DataTableCell.module.scss';
 import { Tooltip } from '../overlays';
 import { IconContainer } from '../layout';
 
@@ -57,8 +57,15 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
 
     props.renderPlaceholder = props.renderPlaceholder
         || (() => (
-            <Text key="t" size={ props.size != '60' ? props.size : '48' }>
+            <Text key="t" size={ props.size !== '60' ? props.size : '48' }>
                 <TextPlaceholder />
+            </Text>
+        ));
+
+    props.renderUnknown = props.renderUnknown
+        || (() => (
+            <Text key="t" size={ props.size !== '60' ? props.size : '48' }>
+                Unknown
             </Text>
         ));
 
@@ -67,7 +74,15 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     const isEditable = !!props.onValueChange;
 
     props.cx = [
-        'data-table-cell', props.cx, css.cell, css['size-' + (props.size || '36')], css[`padding-${props.padding || (isEditable && !props.rowProps.isLoading && '0') || '12'}`], props.isFirstColumn && css[`padding-left-${props.padding || '24'}`], props.isLastColumn && css['padding-right-24'], css[`align-widgets-${props.alignActions || 'top'}`], (props.border || isEditable) && 'uui-dt-vertical-cell-border',
+        'data-table-cell',
+        props.cx,
+        css.cell,
+        css['size-' + (props.size || '36')],
+        css[`padding-${props.padding || (isEditable && !props.rowProps.isLoading && '0') || '12'}`],
+        props.isFirstColumn && css[`padding-left-${props.padding || '24'}`],
+        props.isLastColumn && css['padding-right-24'],
+        css[`align-widgets-${props.alignActions || 'top'}`],
+        (props.border || isEditable) && 'uui-dt-vertical-cell-border',
     ];
 
     return <UuiDataTableCell { ...props } />;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
 import { RangeDatePickerBody, RangeDatePickerBodyProps } from '../RangeDatePickerBody';
-import { fireEvent, screen, setupComponentForTest, within } from '@epam/test-utils';
+import { fireEvent, screen, setupComponentForTest, within } from '@epam/uui-test-utils';
 
 async function setupRangePickerBody(params: { selectedDate: { from: string; to: string }; focusPart: any }) {
     const { selectedDate, focusPart } = params;

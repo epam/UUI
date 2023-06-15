@@ -1,6 +1,6 @@
 import React from 'react';
 import { AvatarStack } from '../AvatarStack';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('AvatarStack', () => {
     it('should be rendered correctly', () => {

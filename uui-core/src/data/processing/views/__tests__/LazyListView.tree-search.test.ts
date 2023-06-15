@@ -1,7 +1,7 @@
 import { DataQueryFilter, DataSourceState, LazyDataSourceApiRequest } from '../../../../types';
 import { runDataQuery } from '../../../querying';
 import { LazyDataSource } from '../../LazyDataSource';
-import { delay } from '@epam/test-utils';
+import { delay } from '@epam/uui-test-utils';
 
 interface TestItem {
     name: string;

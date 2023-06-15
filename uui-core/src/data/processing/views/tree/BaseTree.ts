@@ -1,7 +1,7 @@
 import { DataSourceState, IMap, DataRowPathItem } from '../../../../types';
 import { CompositeKeysMap } from './CompositeKeysMap';
 import {
-    ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, TreeNodeInfo,
+    ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, NOT_FOUND_RECORD, TreeNodeInfo,
 } from './ITree';
 import { TreeParams } from './ITree';
 
@@ -60,7 +60,11 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         return this.getRootIds().map((id) => this.byId.get(id)!);
     }
 
-    public getById(id: TId) {
+    public getById(id: TId): TItem | typeof NOT_FOUND_RECORD {
+        if (!this.byId.has(id)) {
+            return NOT_FOUND_RECORD;
+        }
+
         return this.byId.get(id);
     }
 
@@ -81,16 +85,17 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
     public getParentIdsRecursive(id: TId) {
         const parentIds: TId[] = [];
+        let parentId = id;
         while (true) {
-            const item = this.byId.get(id);
+            const item = this.byId.get(parentId);
             if (!item) {
                 break;
             }
-            id = this.getParentId(item);
-            if (!id) {
+            parentId = this.getParentId(item);
+            if (!parentId) {
                 break;
             }
-            parentIds.unshift(id);
+            parentIds.unshift(parentId);
         }
         return parentIds;
     }
@@ -144,7 +149,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
     public getTotalRecursiveCount() {
         let count = 0;
-        for (const [id, info] of this.nodeInfoById) {
+        for (const [, info] of this.nodeInfoById) {
             if (info.count == null) {
                 // TBD: getTotalRecursiveCount() is used for totalCount, but we can't have correct count until all branches are loaded
                 // return;

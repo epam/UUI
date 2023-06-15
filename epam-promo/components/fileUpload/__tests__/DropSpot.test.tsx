@@ -1,6 +1,6 @@
 import React from 'react';
 import { DropSpot } from '../DropSpot';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('DropSpot', () => {
     it('should be rendered correctly', () => {

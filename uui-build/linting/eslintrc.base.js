@@ -17,7 +17,7 @@
  *  - No possibility to add JSX attr spaces as described here: https://github.com/prettier/prettier/issues/95
  */
 const pickFromAirbnb = require('./utils/eslintRulesFromAirbnb.js');
-const { turnOffEslintRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
+const { turnOffEslintRulesToBeFixed, shouldTurnOffRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
 
 process.env.NODE_ENV = 'production'; // this line is required by "babel-preset-react-app".
 module.exports = {
@@ -26,7 +26,8 @@ module.exports = {
         es6: true,
         node: true,
     },
-    reportUnusedDisableDirectives: true,
+    // We need to remove such directives only if full set of rules is checked.
+    reportUnusedDisableDirectives: !shouldTurnOffRulesToBeFixed,
     extends: ['react-app'],
     rules: {
         ...uuiJsRules(),
@@ -58,6 +59,13 @@ module.exports = {
             env: { 'jest/globals': true },
             rules: {
                 'import/no-extraneous-dependencies': 0,
+                'no-restricted-imports': ['error', {
+                    paths: [
+                        { name: 'react-test-renderer', message: 'Please use: import { renderer } from \'@epam/uui-test-utils\';' },
+                        { name: '@testing-library/react', message: 'Please use: import { ... } from \'@epam/uui-test-utils\';' },
+                        { name: '@testing-library/user-event', message: 'Please use: import { userEvent } from \'@epam/uui-test-utils\';' },
+                    ],
+                }],
                 /**
                  * Don't want to force usage of userEvent because it slows down the performance of tests (with user-event it's ~3 times slower).
                  * https://github.com/testing-library/user-event/issues/650
@@ -104,7 +112,7 @@ module.exports = {
                     '.js', '.ts', '.tsx', '.d.ts', '.css', '.scss', '.svg',
                 ],
             },
-            alias: { map: [['@epam/test-utils', './test-utils/index.ts']] },
+            alias: { map: [['@epam/uui-test-utils', './test-utils/index.ts']] },
         },
         'import/extensions': [
             '.js', '.ts', '.tsx', '.d.ts',

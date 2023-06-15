@@ -3,7 +3,7 @@ import { Text as UuiText, TextProps as UuiTextProps } from '@epam/uui';
 import * as types from '../types';
 
 export interface TextMods {
-    color?: 'gray5' | 'gray50' | 'gray60' | 'gray80' | 'gray90';
+    color?: 'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray5' | 'gray50' | 'gray60' | 'gray80' | 'gray90';
     font?: types.FontStyle;
 }
 

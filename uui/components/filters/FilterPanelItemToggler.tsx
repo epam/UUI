@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './FilterPanelItemToggler.scss';
+import css from './FilterPanelItemToggler.module.scss';
 import cx from 'classnames';
 import {
     IDropdownToggler, IHasCX, uuiElement, uuiMarkers, uuiMod,
@@ -27,7 +27,7 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
         props.onClick?.();
     };
 
-    const getTitle = props.predicateName ? `${props.title} ${props.predicateName}` : `${props.title}:`;
+    const getTitle = props.predicateName ? `${props.title} ${props.predicateName}` : `${props.title}${props.selection ? ':' : ''}`;
 
     return (
         <FlexRow
@@ -41,17 +41,21 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
             ref={ ref }
         >
             <FlexRow cx={ css.titleWrapper }>
-                <Text cx={ css.title }>{getTitle}</Text>
-                <div className={ css.textWrapper }>
-                    <Text color="brand" cx={ css.selection }>
-                        {props.selection}
-                    </Text>
-                    {props.postfix && (
-                        <Text color="brand" cx={ css.postfix }>
-                            {props.postfix}
-                        </Text>
-                    )}
-                </div>
+                <Text size={ props.size } cx={ css.title }>{getTitle}</Text>
+                {
+                    props.selection && (
+                        <div className={ css.textWrapper }>
+                            <Text color="brand" size={ props.size } cx={ css.selection }>
+                                {props.selection}
+                            </Text>
+                            {props.postfix && (
+                                <Text color="brand" size={ props.size } cx={ css.postfix }>
+                                    {props.postfix}
+                                </Text>
+                            )}
+                        </div>
+                    )
+                }
             </FlexRow>
             {!props.isDisabled && <IconContainer icon={ systemIcons[props.size || defaultSize].foldingArrow } flipY={ props.isOpen } cx="uui-icon-dropdown" />}
         </FlexRow>

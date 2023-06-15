@@ -1,5 +1,6 @@
 import { IEditable, DataSourceState, IDataSourceView } from '../../../types';
 import { ArrayListView, BaseArrayListViewProps } from './ArrayListView';
+import { NOT_FOUND_RECORD } from './tree';
 
 export interface AsyncListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
     api(): Promise<TItem[]>;
@@ -69,6 +70,20 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
             totalCount: this.originalTree?.getTotalRecursiveCount(),
             selectAll: this.selectAll,
         };
+    };
+
+    public getById = (id: TId, index: number) => {
+        if (this.isLoading && !this.isLoaded) {
+            return this.getLoadingRow('_loading_' + id, index, []);
+        }
+
+        // if originalTree is not created, but blank tree is defined, get item from it
+        const item = (this.originalTree ?? this.tree).getById(id);
+        if (item === NOT_FOUND_RECORD) {
+            return this.getUnknownRow(id, index, []);
+        }
+
+        return this.getRowProps(item, index);
     };
 
     get isLoading(): boolean {

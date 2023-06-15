@@ -1,6 +1,4 @@
-import {
-    useCallback, useEffect, useMemo, useState,
-} from 'react';
+import { useCallback, useState } from 'react';
 import isEqual from 'lodash.isequal';
 import {
     ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, IEditable, ITablePreset, ITableState, TableFiltersConfig,

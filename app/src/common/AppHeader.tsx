@@ -6,7 +6,7 @@ import { Anchor, MainMenuLogo } from '@epam/uui-components';
 import { UUI4 } from './docs';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
-import css from './AppHeader.scss';
+import css from './AppHeader.module.scss';
 import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
 
 type Theme = 'promo' | 'loveship' | 'vanilla_thunder';
@@ -70,7 +70,7 @@ export function AppHeader() {
             </>
         );
 
-        return <MainMenuDropdown caption="Select Theme" renderBody={ renderBodyItems } />;
+        return <MainMenuDropdown key="theme-switcher" caption="Select Theme" renderBody={ renderBodyItems } />;
     };
 
     const getMainMenuItems = () => {
@@ -83,11 +83,13 @@ export function AppHeader() {
                 priority: 100500,
                 collapsedContainer: true,
                 render: () => <Burger renderBurgerContent={ renderBurger } logoUrl="/static/logo.svg" key="burger" />,
-            }, {
+            },
+            {
                 id: 'logo',
                 priority: 100499,
                 render: () => <MainMenuLogo link={ { pathname: '/' } } onClick={ () => sendEvent('Welcome') } logoUrl="/static/logo.svg" key="logo" />,
-            }, {
+            },
+            {
                 id: 'documents',
                 priority: 3,
                 render: () => (
@@ -100,7 +102,8 @@ export function AppHeader() {
                         key="documents"
                     />
                 ),
-            }, {
+            },
+            {
                 id: 'assets',
                 priority: 2,
                 render: () => (
@@ -113,7 +116,8 @@ export function AppHeader() {
                         key="assets"
                     />
                 ),
-            }, {
+            },
+            {
                 id: 'components',
                 priority: 2,
                 render: () => (
@@ -131,7 +135,8 @@ export function AppHeader() {
                         key="components"
                     />
                 ),
-            }, {
+            },
+            {
                 id: 'demo',
                 priority: 2,
                 render: () => (
@@ -144,23 +149,15 @@ export function AppHeader() {
                         key="demo"
                     />
                 ),
-            }, window.location.host.includes('localhost') && {
+            },
+            window.location.host.includes('localhost') && {
                 id: 'Sandbox',
                 priority: 1,
                 render: () => <MainMenuButton caption="Sandbox" link={ { pathname: '/sandbox' } } isLinkActive={ pathName === '/sandbox' } key="sandbox" />,
-            }, { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> }, window.location.host.includes('localhost') && { id: 'theme', priority: 3, render: renderThemeSwitcher }, {
-                id: 'survey',
-                priority: 0,
-                render: () => (
-                    <Anchor
-                        rawProps={ { style: { height: '60px' } } }
-                        target="_blank"
-                        href="https://forms.office.com/pages/responsepage.aspx?id=0HIbtJ9OJkyKaflJ82fJHe0Hoi0jIyFGmBEkXWrhi8lURTY3WkFaOUNLR0JMR1UzQjRIUlFYQ1QzNi4u"
-                    >
-                        <img height="60px" src="/static/survey_banner.png" alt="Take part in UUI survey" />
-                    </Anchor>
-                ),
-            }, {
+            },
+            { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> },
+            window.location.host.includes('localhost') && { id: 'theme', priority: 3, render: renderThemeSwitcher },
+            {
                 id: 'git',
                 priority: 0,
                 render: () => (
@@ -171,7 +168,8 @@ export function AppHeader() {
                         </Text>
                     </Anchor>
                 ),
-            }, { id: 'globalMenu', priority: 100500, render: () => <GlobalMenu key="globalMenu" /> },
+            },
+            { id: 'globalMenu', priority: 100500, render: () => <GlobalMenu key="globalMenu" /> },
         ].filter((i) => !!i);
     };
 

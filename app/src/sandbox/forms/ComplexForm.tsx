@@ -1,14 +1,12 @@
 import * as React from 'react';
-import { INotification, Metadata, IFormApi } from '@epam/uui-core';
+import { INotification, Metadata, IFormApi, cx } from '@epam/uui-core';
 import { Spinner } from '@epam/uui-components';
 import { PersonDetails } from '@epam/uui-docs';
-import {
-    LabeledInput, Button, Switch, FlexRow, FlexCell, Panel, Text, FlexSpacer, SuccessNotification, Form, MultiSwitch,
-} from '@epam/loveship';
+import { LabeledInput, Button, Switch, FlexRow, FlexCell, Panel, Text, FlexSpacer, SuccessNotification, Form, MultiSwitch } from '@epam/loveship';
 import { svc } from '../../services';
 import { PersonDetailEditor } from './PersonDetailEditor';
 import { PersonDetailView } from './PersonDetailView';
-import css from './ComplexForm.scss';
+import css from './ComplexForm.module.scss';
 
 interface ComplexFormState {
     person: PersonDetails;
@@ -17,6 +15,7 @@ interface ComplexFormState {
     isReadOnly: boolean;
     isEditMode: boolean;
     isBlocked: boolean;
+    bodyClass: string;
 }
 
 export class ComplexForm extends React.Component<any, ComplexFormState> {
@@ -27,10 +26,38 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
         isReadOnly: false,
         isEditMode: true,
         isBlocked: true,
+        bodyClass: '',
     };
+
+    componentWillUnmount() {
+        this.removeRootThemeClass();
+    }
+
+    removeRootThemeClass() {
+        const rootEl = document.querySelector('body');
+        if (this.state.bodyClass) {
+            rootEl.classList.replace('uui-theme-loveship', this.state.bodyClass);
+        } else {
+            rootEl.classList.remove('uui-theme-loveship');
+        }
+    }
 
     componentDidMount() {
         this.loadForm();
+        this.setRootThemeClass();
+    }
+
+    setRootThemeClass() {
+        setTimeout(() => {
+            const rootEl = document.querySelector('body');
+            const tempClass = [...rootEl.classList].find((val) => val.includes('uui-theme'));
+            tempClass && this.setState({ bodyClass: tempClass });
+            if (tempClass) {
+                rootEl.classList.replace(tempClass, 'uui-theme-loveship');
+            } else {
+                rootEl.classList.add('uui-theme-loveship');
+            }
+        }, 0);
     }
 
     loadForm() {
@@ -130,25 +157,25 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
     renderSavePanel(props: IFormApi<PersonDetails>) {
         return (
             <>
-                <FlexCell minWidth={ 100 }>
+                <FlexCell minWidth={ 100 } cx={ css.savePanelButtonWrapper }>
                     <Button onClick={ () => props.save() } isDisabled={ this.state.isDisabled || !props.isChanged } caption="Save" color="grass" />
                 </FlexCell>
-                <FlexCell minWidth={ 100 }>
+                <FlexCell minWidth={ 100 } cx={ css.savePanelButtonWrapper }>
                     <Button caption="Undo" color="night500" isDisabled={ !props.canUndo } onClick={ props.undo } />
                 </FlexCell>
-                <FlexCell minWidth={ 100 }>
+                <FlexCell minWidth={ 100 } cx={ css.savePanelButtonWrapper }>
                     <Button caption="Redo" color="night500" isDisabled={ !props.canRedo } onClick={ props.redo } />
                 </FlexCell>
-                <FlexCell minWidth={ 100 }>
-                    <Button caption="Revert" color="sun" fill="none" isDisabled={ !props.canRevert } onClick={ props.revert } />
+                <FlexCell minWidth={ 100 } cx={ css.savePanelButtonWrapper }>
+                    <Button caption="Revert" color="fire" fill="none" isDisabled={ !props.canRevert } onClick={ props.revert } />
                 </FlexCell>
-                <FlexCell minWidth={ 100 }>
+                <FlexCell minWidth={ 100 } cx={ css.savePanelButtonWrapper }>
                     <Button caption="Reload" color="sky" onClick={ () => this.loadForm() } />
                 </FlexCell>
-                <FlexCell minWidth={ 100 }>
+                <FlexCell minWidth={ 100 } cx={ css.savePanelButtonWrapper }>
                     <Button caption="Load default" color="fire" onClick={ () => this.loadDefaultPerson } />
                 </FlexCell>
-                <FlexCell minWidth={ 100 }>
+                <FlexCell minWidth={ 100 } cx={ css.savePanelButtonWrapper }>
                     <Button caption="Clear" fill="none" color="fire" isDisabled={ this.state.isDisabled } onClick={ () => this.setState({ person: {} }) } />
                 </FlexCell>
             </>

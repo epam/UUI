@@ -3,7 +3,7 @@ import { MainMenu } from '../MainMenu';
 import { MainMenuButton } from '../MainMenuButton';
 import { BurgerButton } from '../Burger';
 import ReactDOM from 'react-dom';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('MainMenu', () => {
     const oldPortal = ReactDOM.createPortal;

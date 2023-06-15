@@ -1,0 +1,55 @@
+@use  '../../../assets/styles/index' as *;
+
+.root {
+    flex-shrink: 0;
+    color: var(--uui-main_menu-text);
+    fill: var(--uui-main_menu-icon);
+
+    :global(.uui-caption), :global(.uui-input) {
+        padding: 22px 6px;
+        line-height: 16px;
+        margin-bottom: -3px;
+        font-family: var(--uui-main_menu-font);
+        font-weight: var(--uui-main_menu-font-weight, normal);
+    }
+
+    &:global(.uui-button-box), &:global(.uui-input-box) {
+        min-height: 60px;
+        padding-right: 6px;
+        padding-left: 6px;
+    }
+
+    :global(.uui-caption) {
+        white-space: nowrap;
+        font-size: 16px;
+    }
+
+    :global(.uui-icon) {
+        svg {
+            width: 18px;
+        }
+    }
+
+    &.type-primary {
+        @include icon-layout(36px);
+    }
+
+    &.type-secondary {
+        @include icon-layout(36px);
+    }
+
+    &:global(.-clickable) {
+        &:hover, &:focus {
+            background-color: var(--uui-main_menu-hover);
+            color: var(--uui-main_menu-text);
+            fill: var(--uui-main_menu-icon-hover);
+        }
+    }
+
+    &:global(.uui-active) {
+        background-color: var(--uui-main_menu-hover);
+        border-bottom: 3px solid var(--uui-main_menu-border-active);
+        color: var(--uui-main_menu-text-active);
+        fill: var(--uui-main_menu-icon-active);
+    }
+}

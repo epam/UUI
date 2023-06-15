@@ -6,7 +6,7 @@ import {
     DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts,
 } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
-import css from './TablesExamples.scss';
+import css from './TablesExamples.module.scss';
 import { TApi } from '../../../data';
 
 export default function StyledColumnsExample() {

@@ -1,7 +1,0 @@
-@use  '../../../../colors' as *;
-
-@mixin burger-groupHeader-color() {
-    --text-color: #{$gray50};
-    --background-color: #{$gray80};
-    --line-background-color: #{$gray60};
-}

@@ -1,4 +1,4 @@
-import style from '../../assets/styles/scss/typography.scss';
+import style from './RichTextView.module.scss';
 import { RichTextView as uuiRichTextView, RichTextViewProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 

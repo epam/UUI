@@ -4,7 +4,7 @@ import {
 } from '@epam/promo';
 import { DataColumnProps } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
-import css from './DemoTable.scss';
+import css from './DemoTable.module.scss';
 import { ReactComponent as ViewIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 
 export const personColumns: DataColumnProps<Person, number>[] = [
