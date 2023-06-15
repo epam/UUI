@@ -42,7 +42,11 @@ const wiOurSetFragmentDataTable = <
             selectedCellEntries.length === CELLS_NUMBER &&
             (originEvent === "copy" || originEvent === "cut")
         ) {
-            const newData = originSetFragment(data) as unknown as DataTransfer;
+            const newData = originSetFragment(data) as unknown as
+                | DataTransfer
+                | undefined;
+
+            if (!newData) setFragmentData(data, originEvent);
 
             const plainData = data.getData("text/plain");
             newData.setData("text/csv", plainData);
