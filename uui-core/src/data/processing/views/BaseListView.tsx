@@ -179,20 +179,19 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     };
 
     protected isFolded(item: TItem) {
+        const searchIsApplied = !!this.value?.search;
+        if (searchIsApplied) {
+            return false;
+        }
+
         const folded = this.value.folded || {};
         const key = this.idToKey(this.props.getId(item));
-
         if (folded[key] != null) {
             return folded[key];
         }
 
         if (this.props.isFoldedByDefault) {
             return this.props.isFoldedByDefault(item);
-        }
-        const searchIsApplied = !!this.value?.search;
-
-        if (searchIsApplied) {
-            return false;
         }
 
         return true;
