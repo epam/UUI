@@ -5,7 +5,7 @@ import { act } from '@testing-library/react';
 
 // jest dependency start
 function isMockFunctionJest(fn: () => void) {
-    if (jest) {
+    if (typeof jest !== 'undefined') {
         return jest.isMockFunction(fn);
     } else {
         throw new Error('Jest is not found. If another test runner is used, '
