@@ -189,6 +189,11 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         if (this.props.isFoldedByDefault) {
             return this.props.isFoldedByDefault(item);
         }
+        const searchIsApplied = !!this.value?.search;
+
+        if (searchIsApplied) {
+            return false;
+        }
 
         return true;
     }
@@ -292,7 +297,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         const lastIndex = this.getLastRecordIndex();
 
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
-        const searchIsApplied = !!this.value?.search;
         const iterateNode = (
             parentId: TId,
             appendRows: boolean, // Will be false, if we are iterating folded nodes.
@@ -328,11 +332,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                     const childrenIds = this.tree.getChildrenIdsByParentId(id);
 
                     if (estimatedChildrenCount > 0) {
-                        let isFolded = this.isFolded(item);
-                        if (this.shouldUnfoldOnSearch() && searchIsApplied && childrenIds.length > 0) {
-                            isFolded = false;
-                        }
-                        row.isFolded = isFolded;
+                        row.isFolded = this.isFolded(item);
                         row.onFold = row.isFoldable && this.handleOnFold;
 
                         if (childrenIds.length > 0) {
@@ -530,5 +530,4 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected isPartialLoad = () => false;
     public loadData() {}
     public abstract reload(): void;
-    protected abstract shouldUnfoldOnSearch(): boolean;
 }
