@@ -28,9 +28,17 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         this.update(editable.value, props);
     }
 
-    public update(newValue: DataSourceState<TFilter, TId>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
+    public update(newValue: DataSourceState<TFilter, TId> | IEditable<DataSourceState<TFilter, TId>>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
         const currentValue = { ...this.value };
-        this.value = newValue;
+        let extractedValue: DataSourceState<TFilter, TId>;
+        if (this.isValueEditable(newValue)) {
+            this.value = newValue.value;
+            this.onValueChange = newValue.onValueChange;
+            extractedValue = newValue.value;
+        } else {
+            this.value = newValue;
+            extractedValue = newValue;
+        }
         const prevItems = this.props.items;
         const newItems = newProps.items || this.props.items;
         this.props = { ...newProps, items: newItems };
@@ -45,12 +53,12 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             }
         }
 
-        if (this.originalTree && (prevTree !== this.tree || this.isCacheIsOutdated(newValue, currentValue))) {
-            this.updateTree(currentValue, newValue);
+        if (this.originalTree && (prevTree !== this.tree || this.isCacheIsOutdated(extractedValue, currentValue))) {
+            this.updateTree(currentValue, extractedValue);
             this.updateCheckedLookup(this.value.checked);
             this.rebuildRows();
         } else {
-            if (newValue.focusedIndex !== currentValue.focusedIndex) {
+            if (extractedValue.focusedIndex !== currentValue.focusedIndex) {
                 this.updateFocusedItem();
             }
         }
