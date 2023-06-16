@@ -226,12 +226,9 @@ export const createInitialTable = (editor: PlateEditor) => {
         },
     ];
 
-    return [
-        createNode(),
-        {
-            type: getPluginType(editor, ELEMENT_TABLE),
-            children: rows,
-            data: { cellSizes: [DEFAULT_COL_WIDTH, DEFAULT_COL_WIDTH] },
-        },
-    ];
+    return {
+        type: getPluginType(editor, ELEMENT_TABLE),
+        children: rows,
+        data: { cellSizes: [DEFAULT_COL_WIDTH, DEFAULT_COL_WIDTH] },
+    };
 };
