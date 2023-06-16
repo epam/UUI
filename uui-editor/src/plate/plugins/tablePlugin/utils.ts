@@ -7,9 +7,12 @@ import {
     TTableCellElement,
     TTableElement,
     TTableRowElement,
+    createNode,
     getBlockAbove,
     getPluginType,
     getStartPoint,
+    insertElements,
+    isBlockAboveEmpty,
     selectEditor,
 } from "@udecode/plate";
 import { ExtendedTTableCellElement } from "./types";
@@ -182,7 +185,14 @@ export const selectFirstCell = (editor: PlateEditor) => {
         });
         if (!tableEntry) return;
 
-        selectEditor(editor, { at: getStartPoint(editor, tableEntry[1]) });
+        const startPoint = getStartPoint(editor, tableEntry[1]);
+        selectEditor(editor, { at: startPoint });
+
+        const [tablePosition] = getStartPoint(editor, tableEntry[1]).path;
+        insertElements(editor, createNode(), {
+            at: [tablePosition + 1],
+            select: false,
+        });
     }
 };
 
@@ -216,9 +226,12 @@ export const createInitialTable = (editor: PlateEditor) => {
         },
     ];
 
-    return {
-        type: getPluginType(editor, ELEMENT_TABLE),
-        children: rows,
-        data: { cellSizes: [DEFAULT_COL_WIDTH, DEFAULT_COL_WIDTH] },
-    };
+    return [
+        createNode(),
+        {
+            type: getPluginType(editor, ELEMENT_TABLE),
+            children: rows,
+            data: { cellSizes: [DEFAULT_COL_WIDTH, DEFAULT_COL_WIDTH] },
+        },
+    ];
 };
