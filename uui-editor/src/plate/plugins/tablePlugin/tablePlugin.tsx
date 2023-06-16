@@ -104,7 +104,7 @@ export const TableButton = ({ editor, }: { editor: PlateEditor; }) => {
 
     return (
         <PlateToolbarButton
-            styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
             onMouseDown={ onCreateTable }
             icon={ <ToolbarButton
                 isDisabled={ isTextSelected(editor, true) }

@@ -82,7 +82,7 @@ export const BoldButton = ({ editor }: IToolbarButton) => {
     if (!isPluginActive(MARK_BOLD)) return null;
     return (
         <MarkToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
             type={ getPluginType(editor, BOLD_KEY) }
             icon={ <ToolbarButton
                 onClick={ noop }
@@ -97,7 +97,7 @@ export const ItalicButton = ({ editor }: IToolbarButton) => {
     if (!isPluginActive(MARK_ITALIC)) return null;
     return (
         <MarkToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
             type={ getPluginType(editor, ITALIC_KEY) }
             icon={ <ToolbarButton
                 onClick={ noop }
@@ -112,7 +112,7 @@ export const UnderlineButton = ({ editor }: IToolbarButton) => {
     if (!isPluginActive(MARK_UNDERLINE)) return null;
     return (
         <MarkToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
             type={ getPluginType(editor, UNDERLINE_KEY) }
             icon={ <ToolbarButton
                 onClick={ noop }

@@ -90,7 +90,7 @@ export const LinkButton = ({ editor }: ToolbarLinkButtonProps) => {
 
     return (
         <LinkToolbarButton
-            styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
             active={ isLink }
             onMouseDown={ async (event) => {
                 if (!editor) return;

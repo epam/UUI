@@ -103,7 +103,7 @@ export const NoteButton = ({ editor }: IToolbarNote) => {
         <Dropdown
             renderTarget={ (props) => (
                 <PlateToolbarButton
-                    styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
+                    styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
                     active={ true }
                     onMouseDown={
                         editor
