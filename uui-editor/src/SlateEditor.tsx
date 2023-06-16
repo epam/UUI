@@ -82,11 +82,11 @@ const Editor = (props: PlateEditorProps) => {
     const focusedEditorId = useEventEditorSelectors.focus();
     const isFocused = editor.id === focusedEditorId;
 
-    const initializedRef = useRef(false);
-    if(!initializedRef.current && props.initialValue) {
+    const valueRef = useRef(undefined);
+    if (props.initialValue && valueRef.current !== props.initialValue) {
         editor.children = props.initialValue;
+        valueRef.current = props.initialValue;
         forceUpdate();
-        initializedRef.current = true;
     }
 
     const renderEditor = () => (
