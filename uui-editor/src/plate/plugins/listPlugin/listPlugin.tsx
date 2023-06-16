@@ -82,7 +82,7 @@ export const ListButton = ({ editor }: IToolbarButton) => {
     return (
         <>
             <ListToolbarButton
-                styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
+                styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px', } } }
                 type={ getPluginType(editor, ELEMENT_OL) }
                 actionHandler='onMouseDown'
                 icon={ <ToolbarButton
@@ -92,10 +92,11 @@ export const ListButton = ({ editor }: IToolbarButton) => {
                 /> }
             />
             <ListToolbarButton
-                styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
+                styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
                 type={ getPluginType(editor, ELEMENT_UL) }
                 actionHandler='onMouseDown'
                 icon={ <ToolbarButton
+                    // styles={ { root: {  } } }
                     onClick={ noop }
                     icon={ UnorderedList }
                     isActive={ !!editor?.selection && isUnorderedActive }

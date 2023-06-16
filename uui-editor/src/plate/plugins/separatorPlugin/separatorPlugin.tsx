@@ -68,7 +68,7 @@ export const SeparatorButton = ({ editor }: ToolbarButton) => {
 
     return (
         <BlockToolbarButton
-            styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
             type={ getPluginType(editor, SEPARATOR_TYPE) }
             actionHandler='onMouseDown'
             icon={ <ToolbarButton

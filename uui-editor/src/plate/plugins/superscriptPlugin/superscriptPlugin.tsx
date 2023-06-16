@@ -25,7 +25,7 @@ export const SuperscriptButton = ({ editor }: ToolbarButton) => {
     if (!isPluginActive(MARK_SUPERSCRIPT)) return null;
     return (
         <MarkToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
             type={ getPluginType(editor, KEY) }
             icon={ <ToolbarButton
                 onClick={ noop }

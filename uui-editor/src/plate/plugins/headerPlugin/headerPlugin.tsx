@@ -17,7 +17,7 @@ import { isPluginActive } from "../../../helpers";
 import { ToolbarButton } from '../../../implementation/ToolbarButton';
 import { HeaderBar } from '../../../implementation/HeaderBar';
 
-import { ReactComponent as  HeadlinePickerIcon } from '../../icons/heading.svg';
+import { ReactComponent as HeadlinePickerIcon } from '../../icons/heading.svg';
 
 const KEY = 'heading';
 
@@ -56,7 +56,7 @@ export const HeaderButton = ({ editor }: IToolbarButton): any => {
         <Dropdown
             renderTarget={ (props) => (
                 <PlateToolbarButton
-                    styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+                    styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
                     active={ true }
                     onMouseDown={
                         editor

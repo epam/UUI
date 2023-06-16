@@ -68,7 +68,7 @@ export const ToDoListButton = ({ editor }: ToolbarButton) => {
 
     return (
         <BlockToolbarButton
-            styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
             type={ getPluginType(editor, ELEMENT_TODO_LI) }
             actionHandler='onMouseDown'
             icon={ <ToolbarButton
