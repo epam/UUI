@@ -1,4 +1,21 @@
-export function getSearchFilter(searchString: string): (texts: string[]) => boolean {
+const extractRank = (matches: false | Array<false | number[]>) => {
+    if (!matches) return false;
+
+    const [firstMatch = [], ...restMatches] = matches.filter((match): match is number[] => !!match);
+
+    restMatches.forEach((match) => {
+        if (match) {
+            match.forEach((wordMatch, index) => {
+                if (firstMatch[index] === null || (wordMatch !== null && firstMatch[index] > wordMatch)) {
+                    firstMatch[index] = wordMatch;
+                }
+            });
+        }
+    });
+    return firstMatch;
+};
+
+export function getSearchFilter(searchString: string): (texts: string[]) => boolean | number[] {
     if (!searchString) {
         return () => true;
     }
@@ -21,9 +38,7 @@ export function getSearchFilter(searchString: string): (texts: string[]) => bool
             return true;
         }
 
-        // 'asdaseqwr qwe, qwerew qwe qw rew, qwe qrew'
-
-        const ranks = wordGroups.map((wordRegexes) => {
+        const matchesByGroups = wordGroups.map((wordRegexes) => {
             const matches = wordRegexes.map((wordRegex) => {
                 // matching regex word with fields values
                 const wordMatches = texts.map((text) => text.match(wordRegex));
@@ -38,14 +53,15 @@ export function getSearchFilter(searchString: string): (texts: string[]) => bool
                 return false;
             }
 
-            return matches as Array<Array<number | null>>;
+            return matches;
         });
 
         // if every group matching is failed
-        if (ranks.every((rank) => !rank)) {
+        if (matchesByGroups.every((matchByGroup) => matchByGroup === false)) {
             return false;
         }
 
-        return ranks; // TODO: decide how to rank the record.
+        const groupsRanks = matchesByGroups.map(extractRank);
+        return extractRank(groupsRanks);
     };
 }
