@@ -77,15 +77,13 @@ interface PlateEditorProps extends SlateEditorProps {
 
 const Editor = (props: PlateEditorProps) => {
     const editor = usePlateEditorState();
-    const forceUpdate = useForceUpdate();
 
     const focusedEditorId = useEventEditorSelectors.focus();
     const isFocused = editor.id === focusedEditorId;
+    const forceUpdate = useForceUpdate();
 
-    const valueRef = useRef(undefined);
-    if (props.initialValue && valueRef.current !== props.initialValue) {
+    if (props.initialValue && editor.children !== props.initialValue) {
         editor.children = props.initialValue;
-        valueRef.current = props.initialValue;
         forceUpdate();
     }
 
