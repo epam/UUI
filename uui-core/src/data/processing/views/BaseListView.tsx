@@ -219,7 +219,12 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected applyRowOptions(row: DataRowProps<TItem, TId>) {
-        const rowOptions = this.props.getRowOptions && !row.isLoading ? this.props.getRowOptions(row.value, row.index) : this.props.rowOptions;
+        const externalRowOptions = (this.props.getRowOptions && !row.isLoading)
+            ? this.props.getRowOptions(row.value, row.index)
+            : {};
+
+        const rowOptions = { ...this.props.rowOptions, ...externalRowOptions };
+        
         const estimatedChildrenCount = this.getEstimatedChildrenCount(row.id);
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
 
@@ -256,8 +261,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected getLoadingRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
+        const rowProps = this.getEmptyRowProps(id, index, path);
         return {
-            ...this.getEmptyRowProps(id, index, path),
+            ...rowProps,
+            checkbox: { ...rowProps.checkbox, isDisabled: true },
             isLoading: true,
         };
     }
@@ -285,7 +292,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             depth: path ? path.length : 0,
             path: path ?? [],
             checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
-            onCheck: this.handleOnCheck,
             isChecked,
         };
     }
