@@ -378,7 +378,7 @@ describe('Tree', () => {
 
     describe('search', () => {
         it('should return sorted tree', () => {
-            const searchTree = testTree.search({ search: 'item3', getSearchFields: ({ name }) => [name] });
+            const searchTree = testTree.search({ search: 'item3', getSearchFields: ({ name }) => [name!] });
 
             expect(searchTree.getRootIds()).toEqual([300]);
             expect(searchTree.getChildrenByParentId(300).map((n) => n.id)).toEqual([
@@ -390,7 +390,7 @@ describe('Tree', () => {
     describe('filter', () => {
         it('should return filtered tree', () => {
             const searchTree = testTree.filter({
-                filter: ({ value }: TestItem) => value > 3,
+                filter: ({ value }: TestItem) => value! > 3,
                 getFilter: (filter) => (item) => filter(item),
             });
 

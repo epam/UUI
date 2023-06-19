@@ -1,4 +1,4 @@
-const extractRank = (matches: false | Array<false | number[]>) => {
+const extractRank = (matches: false | Array<false | Array<number | null>>) => {
     if (!matches) return false;
 
     const [firstMatch = [], ...restMatches] = matches.filter((match): match is number[] => !!match);
@@ -15,7 +15,7 @@ const extractRank = (matches: false | Array<false | number[]>) => {
     return firstMatch;
 };
 
-export function getSearchFilter(searchString: string): (texts: string[]) => boolean | number[] {
+export function getSearchFilter(searchString: string): (texts: string[]) => boolean | Array<number | null> {
     if (!searchString) {
         return () => true;
     }
@@ -48,6 +48,7 @@ export function getSearchFilter(searchString: string): (texts: string[]) => bool
                 }
                 return wordMatches.map((match) => match !== null ? match.index : null);
             });
+
             // some keyword of a group was not found in fields values
             if (matches.some((match) => !match)) {
                 return false;
