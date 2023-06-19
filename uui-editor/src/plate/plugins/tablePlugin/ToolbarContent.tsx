@@ -20,7 +20,6 @@ import { ReactComponent as InsertRowBefore } from "../../../icons/table-add-row-
 import { ReactComponent as InsertRowAfter } from "../../../icons/table-add-row-after.svg";
 import { ReactComponent as RemoveRow } from "../../../icons/table-delete-row.svg";
 import { ReactComponent as RemoveTable } from "../../../icons/table-table_remove-24.svg";
-// import { ReactComponent as ClearIcon } from "../../icons/text-color-default.svg";
 
 import tableCSS from './Table.module.scss';
 import { ToolbarButton } from "../../../implementation/ToolbarButton";
@@ -33,32 +32,10 @@ const StyledRemoveTable = () => {
 
 export const TableToolbarContent = ({ cellEntries }: { cellEntries: TElementEntry[] }) => {
     const editor = usePlateEditorState();
-    // const isSelected = useSelected();
 
     const { cell, row } = getTableEntries(editor) || {};
     const cellPath = useMemo(() => cell && cell[1], [cell]);
     const rowPath = useMemo(() => row && row[1][2] !== 0 && row[1], [row]);
-
-    // let isHeaderCellSelected = false;
-    // if (isSelected) {
-    //     const selectedNodes = findNode(editor, {
-    //         at: Range.start(editor.selection),
-    //         match: { type: getCellTypes(editor) },
-    //     });
-    //     isHeaderCellSelected = selectedNodes?.[0].type === 'table_header_cell'
-    // }
-
-    // const fillHeaderStyle = useCallback(() => {
-    //     const [selectedNode, path] = findNode(editor, {
-    //         at: Range.start(editor.selection),
-    //         match: { type: getCellTypes(editor) },
-    //     });
-    //     const nextCellType = selectedNode.type === 'table_cell' ? 'table_header_cell' : 'table_cell';
-    //     setElements(editor, { type: nextCellType }, {
-    //         at: path,
-    //         match: (node) => node.type === 'table_cell' || node.type === 'table_header_cell'
-    //     });
-    // }, []);
 
     const unmergeCells = () => {
         const [item]: any[] = cellEntries;
@@ -84,12 +61,6 @@ export const TableToolbarContent = ({ cellEntries }: { cellEntries: TElementEntr
 
     return (
         <Fragment>
-            {/* <ToolbarButton
-                    key='clear-header'
-                    onClick={ () => fillHeaderStyle() }
-                    isActive={ isHeaderCellSelected }
-                    icon={ ClearIcon }
-                /> */}
             <ToolbarButton
                 key="insert-column-before"
                 onClick={ () => insertTableColumn(editor, { at: cellPath }) }
@@ -108,12 +79,18 @@ export const TableToolbarContent = ({ cellEntries }: { cellEntries: TElementEntr
             />
             <ToolbarButton
                 key="insert-row-before"
-                onClick={ () => insertTableRow(editor, { at: rowPath }) }
+                onClick={ () => insertTableRow(editor, {
+                    header: cell[0].type === 'table_header_cell',
+                    at: rowPath,
+                    disableSelect: true
+                }) }
                 icon={ InsertRowBefore }
             />
             <ToolbarButton
                 key="insert-row-after"
-                onClick={ () => insertTableRow(editor) }
+                onClick={ () => insertTableRow(editor, {
+                    header: cell[0].type === 'table_header_cell'
+                }) }
                 icon={ InsertRowAfter }
             />
             <ToolbarButton
