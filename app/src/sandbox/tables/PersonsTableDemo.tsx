@@ -1,26 +1,13 @@
 import * as React from 'react';
-import {
-    FlexRow, FlexCell, FlexSpacer, Text, PickerInput, Button, SearchInput, DataTable, DataTableRow,
-} from '@epam/loveship';
+import { FlexRow, FlexCell, FlexSpacer, Text, PickerInput, Button, SearchInput, DataTable, DataTableRow } from '@epam/loveship';
 import { Person, PersonGroup } from '@epam/uui-docs';
-import {
-    DataSourceState,
-    useArrayDataSource,
-    useList,
-    LazyDataSourceApiRequest,
-    DataQueryFilter,
-    LazyDataSourceApiResponse,
-    Lens,
-    DataColumnProps,
-    LazyDataSourceApi,
-} from '@epam/uui-core';
-import {
-    PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType,
-} from './types';
+import { DataSourceState, useArrayDataSource, useList, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens, DataColumnProps, LazyDataSourceApi } from '@epam/uui-core';
+import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
 import { svc } from '../../services';
 import { getColumns } from './columns';
 import { getFilters } from './filters';
 import cx from 'classnames';
+import { useTheme } from '../../helpers/useTheme';
 import css from './PersonsTableDemo.module.scss';
 
 interface PersonsTableState extends DataSourceState {
@@ -46,6 +33,7 @@ const formatCurrency = (value: number) => {
 
 export function PersonsTableDemo() {
     const { personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
+    useTheme('uui-theme-loveship');
 
     const [summary, setSummary] = React.useState<PersonsSummary & Pick<PersonsApiResponse, 'totalCount'>>({
         totalCount: undefined,

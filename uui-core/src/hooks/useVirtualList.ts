@@ -133,7 +133,6 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     ]);
 
     useLayoutEffectSafeForSsr(() => {
-        if (process.env.JEST_WORKER_ID) return;
         updateRowHeights();
         handleScroll();
     });

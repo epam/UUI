@@ -3,18 +3,36 @@ import { useImperativeHandle, useState } from 'react';
 import { renderWithContextAsync, type CustomWrapperType } from './renderingWithContextUtils';
 import { act } from '@testing-library/react';
 
-type PropsContextType<TProps> = { setProperty: (name: keyof TProps, value: TProps[keyof TProps]) => void; };
+function isMockFunctionGeneric(fn: () => void) {
+    // @ts-ignore
+    if (typeof jest !== 'undefined' && typeof jest.isMockFunction === 'function') {
+        // This is for Jest
+        // @ts-ignore
+        return jest.isMockFunction(fn);
+    }
+    // @ts-ignore
+    if (typeof vi !== 'undefined' && typeof vi.isMockFunction === 'function') {
+        // This is for Vitest
+        // @ts-ignore
+        return vi.isMockFunction(fn);
+    }
+    throw new Error('Neither jest.isMockFunction nor vi.isMockFunction was found in global scope. If another test runner is used, '
+            + 'then please pass your custom "isMockFunction" to the setupComponentForTest '
+            + 'e.g.: setupComponentForTest(propsInitializer, componentRenderer, { isMockFunction: vi.isMockFunction })');
+}
+
+type PropsContextType<TProps> = { setProperty: (name: keyof TProps, value?: TProps[keyof TProps]) => void; };
 export type PropsInitializerCallbackType<TProps> = (contextRef: React.RefObject<PropsContextType<TProps>>) => PropsAll<TProps>;
 export type ComponentRenderCallbackType<TProps> = (props: PropsAll<TProps>) => React.ReactElement;
 
 type PropsAll<TProps> = { [key in keyof TProps]: TProps[key] };
 type PropsSubset<TProps> = { [key in keyof TProps]?: TProps[key] };
-type PropsSubsetMock<TProps> = { [key in keyof TProps]?: jest.Mock };
+type PropsSubsetMock<TProps, TMockFn> = { [key in keyof TProps]?: TMockFn };
 
-type SetupComponentForTestReturnType<TProps> = Promise<{
+type SetupComponentForTestReturnType<TProps, TMockFn> = Promise<{
     result: Awaited<ReturnType<typeof renderWithContextAsync>>,
     setProps: (propsToUpdate: PropsSubset<TProps>) => void,
-    mocks: PropsSubsetMock<TProps>,
+    mocks: PropsSubsetMock<TProps, TMockFn>,
 }>;
 
 /**
@@ -27,22 +45,29 @@ type SetupComponentForTestReturnType<TProps> = Promise<{
  * @param propsInitializer - a callback which prepares initial properties of the component, it defines all mocks including mocks of on-change methods.
  * It should use context.current.setProperty method for the "on-change" workflow implementation.
  * @param componentRenderer - a callback which returns React element. "props" parameter is an object containing all actual parameters of the component.
- * @param [customWrapper] optional custom wrapper. Use it if it's necessary to provide custom contexts.
+ * @param [options]
+ * @param [options.wrapper] optional custom wrapper. Use it if it's necessary to provide custom contexts.
+ * @param [options.isMockFunction] optional callback to check whether function is mocked. It uses jest.isMockFunction or vi.isMockFunction by default
+ *                                  if such functions available in global scope.
  */
-export async function setupComponentForTest<TProps extends PropsAll<TProps>>(
+export async function setupComponentForTest<TProps extends PropsAll<TProps>, TMockFn = any>(
     propsInitializer: PropsInitializerCallbackType<TProps>,
     componentRenderer: ComponentRenderCallbackType<TProps>,
-    customWrapper?: CustomWrapperType,
-): SetupComponentForTestReturnType<TProps> {
+    options?: {
+        wrapper?: CustomWrapperType,
+        isMockFunction?: (fn: () => void) => boolean
+    },
+): SetupComponentForTestReturnType<TProps, TMockFn> {
     const propsContextRef = React.createRef<PropsContextType<TProps>>();
     const propsConfig = propsInitializer(propsContextRef);
-    const mocks: PropsSubsetMock<TProps> = {};
+    const mocks: PropsSubsetMock<TProps, TMockFn> = {};
 
     Object.keys(propsConfig).forEach((name) => {
         const value = propsConfig[name as keyof TProps];
-        if (jest.isMockFunction(value)) {
-            // this is jest mock function
-            mocks[name as keyof TProps] = value as jest.Mock;
+        const isMock = options?.isMockFunction || isMockFunctionGeneric;
+        if (isMock(value)) {
+            // this is mock function
+            mocks[name as keyof TProps] = value as TMockFn;
         }
     });
 
@@ -52,7 +77,7 @@ export async function setupComponentForTest<TProps extends PropsAll<TProps>>(
         });
         useImperativeHandle(compRef, () => {
             return {
-                setProperty: (name: keyof TProps, value: TProps[keyof TProps]) => {
+                setProperty: (name: keyof TProps, value?: TProps[keyof TProps]) => {
                     setAllProps((prevProps) => {
                         return {
                             ...prevProps,
@@ -64,7 +89,7 @@ export async function setupComponentForTest<TProps extends PropsAll<TProps>>(
         }, []);
         return componentRenderer(allProps);
     }
-    const result = await renderWithContextAsync(<TestComponent compRef={ propsContextRef } />, customWrapper);
+    const result = await renderWithContextAsync(<TestComponent compRef={ propsContextRef } />, { wrapper: options?.wrapper });
 
     return {
         result,
@@ -72,7 +97,7 @@ export async function setupComponentForTest<TProps extends PropsAll<TProps>>(
             const propsToUpdateNames = Object.keys(propsToUpdate);
             act(() => {
                 propsToUpdateNames.forEach((name) => {
-                    propsContextRef.current.setProperty(name as keyof TProps, propsToUpdate[name as keyof TProps]);
+                    propsContextRef.current?.setProperty(name as keyof TProps, propsToUpdate[name as keyof TProps]);
                 });
             });
         },

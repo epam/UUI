@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "5.0.0-alpha.4",
+  "version": "5.0.0",
   "bin": {
     "epam-uui-build": "./bin/cli.js"
   },
@@ -42,7 +42,6 @@
     "lodash.uniqueid": "4.0.1",
     "postcss": "^8.4.19",
     "postcss-discard-comments": "^5.1.2",
-    "postcss-modules": "^6.0.0",
     "postcss-scss": "^4.0.6",
     "react-app-polyfill": "3.0.0",
     "replace-in-files": "^2.0.3",

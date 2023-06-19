@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "TextInput is a UI element intended to give user an ability to input text information in one-line manner.",
+            "text": "TextInput is a UI element intended to give a user an ability to input a single line of text.",
             "marks": []
           }
         ]

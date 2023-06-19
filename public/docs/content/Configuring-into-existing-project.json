@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI has full integration with the Create-React-App build toolchain, so we strongly recommended using it in the project, which was created via ",
+            "text": "UUI has full integration with the Create-React-App build tool chain, so we strongly recommended using it in the project, which was created via ",
             "marks": []
           },
           {
@@ -493,7 +493,7 @@
             "nodes": [
               {
                 "object": "text",
-                "text": "Also you can import scss/less ",
+                "text": "Also, you can import scss/less ",
                 "marks": [
                   {
                     "object": "mark",

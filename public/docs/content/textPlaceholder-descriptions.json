@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "This component is used to display loading text blocks while particular data is loading.",
+            "text": "This component is a placeholder for text blocks to show while particular data is loading.",
             "marks": []
           }
         ]

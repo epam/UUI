@@ -1,0 +1,48 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "isSelectable",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " property at the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "rowOptions",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " controls the selectability of the rows.﻿ A row is selected after clicking on it.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

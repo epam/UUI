@@ -1,8 +1,0 @@
-@use 'sass:math';
-
-@mixin control-size($size, $borderWidth) {
-    $padding: math.div($size, 6) - $borderWidth;
-    min-width: $size;
-    padding-left: $padding;
-    padding-right: $padding;
-}

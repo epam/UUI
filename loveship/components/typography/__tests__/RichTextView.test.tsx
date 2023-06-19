@@ -17,7 +17,7 @@ describe('RichTextView', () => {
     it('should be rendered correctly with extra props', () => {
         const tree = renderer
             .create(
-                <RichTextView theme="dark" size="12">
+                <RichTextView size="12">
                     <p>Test text</p>
                 </RichTextView>,
             )

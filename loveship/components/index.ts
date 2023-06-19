@@ -10,10 +10,10 @@ export * from './dnd';
 export * from './dev';
 export { UploadFileToggler } from '@epam/uui-components';
 export { FiltersPanel, PresetsPanel, defaultPredicates, Calendar, NumericInput, Switch, TextArea, Dropdown, TextPlaceholder, RangeDatePicker, DatePicker,
-    MainMenu, GlobalMenu, Burger, BurgerButton, MainMenuAvatar, MainMenuSearch, MainMenuIcon, MainMenuDropdown, MainMenuButton, IconContainer, Accordion,
-    RichTextView, Form, useForm, PickerInput, PickerItem, DataPickerRow, PickerToggler, PickerList, Blocker, CheckboxGroup, ControlGroup, ConfirmationModal,
+    MainMenu, GlobalMenu, Burger, BurgerButton, MainMenuAvatar, MainMenuSearch, MainMenuIcon, MainMenuDropdown, MainMenuButton, Accordion,
+    Form, useForm, PickerInput, PickerItem, DataPickerRow, PickerToggler, PickerList, Blocker, CheckboxGroup, ControlGroup, ConfirmationModal,
     RadioGroup, Anchor, Avatar, AvatarStack, Paginator, DataTable, DataTableCell, DataTableRow, DataTableHeaderRow, ColumnsConfigurationModal, WarningNotification,
-    SuccessNotification, HintNotification, ErrorNotification, ClearNotification, FlexSpacer, FlexCell, Spinner, LinkButton, DataPickerBody, PickerModal,
+    SuccessNotification, HintNotification, ErrorNotification, ClearNotification, FlexSpacer, FlexCell, Spinner, DataPickerBody, PickerModal,
     ModalBlocker, ModalHeader, ModalFooter,
 } from '@epam/uui';
 export { MainMenuLogo, MainMenuCustomElement } from '@epam/uui-components';

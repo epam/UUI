@@ -33,6 +33,7 @@ export default function DatePickerBaseExample() {
                         <FlexRow padding="24">
                             <Text>
                                 Range days count:
+                                {' '}
                                 {getRangeLength(value)}
                             </Text>
                         </FlexRow>
