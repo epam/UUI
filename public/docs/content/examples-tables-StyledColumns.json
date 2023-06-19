@@ -11,39 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI DataTable column represents flex item block, so to set its sizes use flex-box properties:  ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "grow",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ",  ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "shrink",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", ",
+            "text": "UUI DataTable column use several properties to configure its width:  ",
             "marks": []
           },
           {
@@ -59,7 +27,23 @@
           },
           {
             "object": "text",
-            "text": "(flex-basis) and ",
+            "text": "(in pixels), ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "grow",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " (like in FlexBox, to configure how much column grows to occupy spare space), and ",
             "marks": []
           },
           {
@@ -87,7 +71,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To align column content you can use ",
+            "text": "To align column content, you can use ",
             "marks": []
           },
           {

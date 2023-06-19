@@ -1,6 +1,8 @@
 @use 'sass:math';
 @use '../../../assets/styles/index.scss' as *;
 
+@mixin panel-top-shadow() { box-shadow: inset 0 10px 5px -10px rgba(51, 51, 51, 0.2); }
+
 @mixin items-spacing($size) {
     >*:not(:last-child) {
         margin-right: math.div($size, 2);

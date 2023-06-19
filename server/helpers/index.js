@@ -3,4 +3,5 @@ module.exports = {
     ...require('./getOrderComparer'),
     ...require('./getFilterPredicate'),
     ...require('./generateTestData'),
+    ...require('./buildSearchTree'),
 };

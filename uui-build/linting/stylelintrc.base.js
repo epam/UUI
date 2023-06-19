@@ -1,4 +1,4 @@
-const { turnOffStylelintRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
+const { turnOffStylelintRulesToBeFixed, shouldTurnOffRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
 
 const SCSS_COMMON_RULES = {
     'order/properties-alphabetical-order': null,
@@ -43,17 +43,7 @@ const SCSS_COMMON_RULES = {
                 type: 'at-rule',
                 name: 'extend',
             },
-            {
-                type: 'at-rule',
-                name: 'include',
-                hasBlock: false,
-            },
             'declarations',
-            {
-                type: 'at-rule',
-                name: 'include',
-                hasBlock: true,
-            },
             'rules',
         ],
     ],
@@ -66,7 +56,7 @@ const SCSS_COMMON_RULES = {
 
 module.exports = {
     reportInvalidScopeDisables: true,
-    reportNeedlessDisables: true,
+    reportNeedlessDisables: !shouldTurnOffRulesToBeFixed,
     plugins: ['stylelint-order'],
     overrides: [
         {

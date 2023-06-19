@@ -1,0 +1,143 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "LazyDataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " supports two ways of searching items: tree and flatten search.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "It is recommended to use `flatten` search in most cases, by passing ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "flattenSearchResults: true",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "  as the datasource property.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "While it might look counterintuitive, there are several benefits of this approach. See more details ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://github.com/epam/UUI/issues/8"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "here",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "If you opt to display search results as a tree, pay attention that you need to build a specific API, which returns parents who have children matching search. We recommend prefetching children for each parent in this case. Consult the example below, and our demo API implementation, on how to implement this pattern.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "For the purpose of displaying the path to the found item, it is required to pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "renderRow",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " with subtitle.\n",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

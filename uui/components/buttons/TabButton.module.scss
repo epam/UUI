@@ -51,6 +51,10 @@ $text-size-count: 24px;
         }
     }
 
+    &:global(.uui-button-box) {
+        min-width: min-content;
+    }
+
     :global(.uui-count) {
         @include text-size($text-size-count, 0);
         letter-spacing: 0;
@@ -60,6 +64,7 @@ $text-size-count: 24px;
         margin-left: 6px;
         margin-right: 3px;
         border-radius: 9px;
+        flex-shrink: 0;
     }
 
     :global(.uui-caption) {

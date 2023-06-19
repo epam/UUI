@@ -2,13 +2,15 @@ import {
     Text, Checkbox, DatePicker, NumericInput, TextInput, DataTableCell, PickerInput,
 } from '@epam/loveship';
 import React from 'react';
-import {
-    ArrayDataSource, DataColumnProps, DataQueryFilter, IEditable, ILens, Lens,
-} from '@epam/uui-core';
+import { ArrayDataSource, DataColumnProps, DataQueryFilter } from '@epam/uui-core';
 import { Product } from '@epam/uui-docs';
 
 const colors = [
-    { id: 'RED', name: 'Red' }, { id: 'GREEN', name: 'Green' }, { id: 'BLUE', name: 'Blue' }, { id: 'BLACK', name: 'Black' },
+    { id: 'Red', name: 'Red' },
+    { id: 'Green', name: 'Green' },
+    { id: 'Blue', name: 'Blue' },
+    { id: 'Black', name: 'Black' },
+    { id: 'Silver', name: 'Silver' },
 ];
 
 const colorsDataSource = new ArrayDataSource({ items: colors });

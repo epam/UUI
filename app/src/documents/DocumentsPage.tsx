@@ -5,7 +5,7 @@ import { svc } from '../services';
 import { UUI4, UUI3 } from '../common';
 import { items, DocItem } from './structure';
 import { getQuery } from '../helpers';
-import { codesandboxService } from '../data/codesandbox/service';
+import { codesandboxService } from '../data/service';
 import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
 

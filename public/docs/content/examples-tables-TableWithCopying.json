@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI tables have cell copying functionality.",
+            "text": "UUI tables have cell copying via dragging over cells (like in Excel).",
             "marks": []
           }
         ]
@@ -67,7 +67,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "For allowing columns to copy and receive copies use ",
+            "text": "For allowing columns to copy and receive copies, use ",
             "marks": []
           },
           {

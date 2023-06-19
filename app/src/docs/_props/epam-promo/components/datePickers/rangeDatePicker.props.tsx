@@ -102,7 +102,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
                     last3Days: {
                         name: 'Last 3 days (custom)',
                         getRange: () => {
-                            return { from: dayjs().subtract(3, 'day').toString(), to: dayjs().toString(), order: 11 };
+                            return { from: dayjs().subtract(2, 'day').toString(), to: dayjs().toString(), order: 11 };
                         },
                     },
                 },
