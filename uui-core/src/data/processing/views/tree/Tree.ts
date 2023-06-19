@@ -54,7 +54,7 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
         }
 
         return (items: TItem[]) => {
-            if (comparers.length == 0) {
+            if (comparers.length === 0) {
                 return items;
             }
 
@@ -80,18 +80,22 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
         };
     }
 
-    private applyMatchToTree(isMatchingFn: undefined | ((item: TItem) => boolean)) {
+    private applyMatchToTree(isMatchingFn: undefined | ((item: TItem) => boolean | Array<number | null>)) {
         if (!isMatchingFn) return this;
 
         const matchedItems: TItem[] = [];
+        const ranks: Map<TId, Array<number | null>> = new Map();
         const applyMatchRec = (items: TItem[]) => {
-            let isSomeMatching = false;
+            let isSomeMatching: boolean | Array<number | null> = false;
             items.forEach((item) => {
-                const isItemMatching = isMatchingFn?.(item) ?? true;
+                const isItemMatching = isMatchingFn(item);
                 const isSomeChildMatching = applyMatchRec(this.getChildren(item));
                 const isMatching = isItemMatching || isSomeChildMatching;
                 if (isMatching) {
                     matchedItems.push(item);
+                    if (Array.isArray(isMatching)) {
+                        ranks.set(this.getId(item), isMatching);
+                    }
                 }
 
                 if (!isSomeMatching) {
@@ -103,6 +107,23 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
         };
 
         applyMatchRec(this.getRootItems());
+
+        if (ranks.size > 0) {
+            matchedItems.sort((item1, item2) => {
+                const rank1 = ranks.get(this.getId(item1));
+                const rank2 = ranks.get(this.getId(item2));
+                for (const [index, value] of rank1.entries()) {
+                    if (value === rank2[index]) {
+                        continue;
+                    }
+                    if ((value !== null && rank2[index] !== null && rank2[index] < value) || value === null) {
+                        return -1;
+                    }
+                    return 1;
+                }
+                return 0;
+            });
+        }
 
         return Tree.create({ ...this.params }, matchedItems);
     }
