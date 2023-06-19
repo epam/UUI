@@ -112,28 +112,29 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
     }
 
     private sortByRanks = (items: TItem[], ranks: Map<TId, Array<number | null>>) => {
-        if (ranks.size > 0) {
-            items = [...items];
-            items.sort((item1, item2) => {
-                const id1 = this.getId(item1);
-                const id2 = this.getId(item2);
-                if (!ranks.has(id1) || !ranks.has(id2)) {
-                    return 0;
-                }
-                const rank1 = ranks.get(id1);
-                const rank2 = ranks.get(id2);
-                for (const [index, value] of rank1.entries()) {
-                    if (value === rank2[index]) {
-                        continue;
-                    }
-                    if ((value !== null && rank2[index] !== null && rank2[index] < value) || value === null) {
-                        return 1;
-                    }
-                    return -1;
-                }
-                return 0;
-            });
+        if (ranks.size === 0) {
+            return items;
         }
-        return items;
+        const itemsToSort = [...items];
+        itemsToSort.sort((item1, item2) => {
+            const id1 = this.getId(item1);
+            const id2 = this.getId(item2);
+            if (!ranks.has(id1) || !ranks.has(id2)) {
+                return 0;
+            }
+            const rank1 = ranks.get(id1);
+            const rank2 = ranks.get(id2);
+            for (const [index, value] of rank1.entries()) {
+                if (value === rank2[index]) {
+                    continue;
+                }
+                if ((value !== null && rank2[index] !== null && rank2[index] < value) || value === null) {
+                    return 1;
+                }
+                return -1;
+            }
+            return 0;
+        });
+        return itemsToSort;
     };
 }
