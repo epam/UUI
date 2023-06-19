@@ -258,9 +258,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected getLoadingRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
+        const rowProps = this.getEmptyRowProps(id, index, path);
         return {
-            ...this.getEmptyRowProps(id, index, path),
-            checkbox: undefined,
+            ...rowProps,
+            checkbox: { ...rowProps.checkbox, isDisabled: true },
             isLoading: true,
         };
     }
@@ -288,7 +289,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             depth: path ? path.length : 0,
             path: path ?? [],
             checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
-            onCheck: this.handleOnCheck,
             isChecked,
         };
     }
