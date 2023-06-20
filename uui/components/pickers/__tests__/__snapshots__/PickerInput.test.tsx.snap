@@ -1,9 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`PickerInput should render icon at specific position 1`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><div class=\\"container uui-icon uui-enabled\\"><div data-testid=\\"test-icon\\"></div></div><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+
+exports[`PickerInput should render icon at specific position 2`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><div class=\\"container uui-icon uui-enabled\\"><div data-testid=\\"test-icon\\"></div></div><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+
+exports[`PickerInput should render icon at specific position 3`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"><div class=\\"container uui-icon uui-enabled\\"><div data-testid=\\"test-icon\\"></div></div></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+
+exports[`PickerInput should render input as invalid 1`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input singleInput cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+
+exports[`PickerInput should render input as invalid 2`] = `"<div class=\\"container uui-input-box uui-invalid -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input singleInput cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+
 exports[`PickerInput should render with maximum props 1`] = `
 <div
   className="container uui-input-box -clickable root size-48 mode-form"
-  data-testid="uui-PickerInput-target"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -12,11 +21,9 @@ exports[`PickerInput should render with maximum props 1`] = `
 >
   <div
     className="body multiline"
-    data-testid="uui-PickerToggler-body"
   >
     <button
       className="container uui-button-box uui-enabled size-42 root"
-      data-testid="uui-PickerToggler-item-2"
       onClick={[Function]}
       tabIndex={-1}
       type="button"
@@ -38,7 +45,6 @@ exports[`PickerInput should render with maximum props 1`] = `
     </button>
     <button
       className="container uui-button-box uui-enabled size-42 root"
-      data-testid="uui-PickerToggler-item-3"
       onClick={[Function]}
       tabIndex={-1}
       type="button"
@@ -90,7 +96,6 @@ exports[`PickerInput should render with maximum props 1`] = `
 exports[`PickerInput should render with minimum props 1`] = `
 <div
   className="container uui-input-box -clickable root size-36 mode-form"
-  data-testid="uui-PickerInput-target"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -99,13 +104,11 @@ exports[`PickerInput should render with minimum props 1`] = `
 >
   <div
     className="body"
-    data-testid="uui-PickerToggler-body"
   >
     <input
       aria-haspopup={true}
       autoComplete="no"
       className="uui-input singleInput cursorText"
-      data-testid="uui-PickerToggler-input"
       onChange={[Function]}
       placeholder="Please select "
       readOnly={true}
@@ -129,3 +132,15 @@ exports[`PickerInput should render with minimum props 1`] = `
   </div>
 </div>
 `;
+
+exports[`PickerInput should render with mode = cell 1`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-cell\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+
+exports[`PickerInput should render with mode = form 1`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+
+exports[`PickerInput should render with mode = inline 1`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-inline\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+
+exports[`PickerInput should render with mode = undefined 1`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+
+exports[`PickerInput should support single line 1`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+
+exports[`PickerInput should support single line 2`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
