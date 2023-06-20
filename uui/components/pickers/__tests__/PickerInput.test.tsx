@@ -184,6 +184,12 @@ class PickerInputObject {
         return this.getSelectedTags(input).map((b) => b.textContent?.trim());
     }
 
+    static removeSelectedTagByText(input: HTMLElement, text: string) {
+        const tag = this.getSelectedTags(input).find((b) => b.textContent?.trim() === text);
+        const removeTagIcon = tag.lastElementChild;
+        fireEvent.click(removeTagIcon);
+    }
+
     static async clickOptionByText(optionText: string) {
         const opt = await this.getOption(optionText);
         fireEvent.click(opt);
@@ -417,24 +423,23 @@ describe('PickerInput', () => {
             expect(PickerInputObject.getPlaceholderText(dom.input)).toEqual('Please select');
             fireEvent.click(dom.input);
             expect(screen.getByRole('dialog')).toBeInTheDocument();
-            const [cb1, cb2] = await within(screen.getByRole('dialog')).findAllByRole('checkbox');
-            fireEvent.click(cb1);
+
+            await PickerInputObject.clickOptionCheckbox('A1');
             expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
-            fireEvent.click(cb2);
+
+            await PickerInputObject.clickOptionCheckbox('A1+');
             expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
-            expect(cb1).toBeChecked();
-            expect(cb2).toBeChecked();
+            expect(await PickerInputObject.getCheckedOptions()).toEqual(['A1', 'A1+']);
+
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-            expect(screen.queryAllByRole('button')).toHaveLength(3); // 2 tags and 1 clear button
-            const a1 = screen.getByText('A1');
-            const a1Clear = a1.nextElementSibling;
-            const a1plus = screen.getByText('A1+');
-            const a1plusClear = a1plus.nextElementSibling;
-            fireEvent.click(a1Clear as HTMLElement);
-            expect(screen.queryAllByRole('button')).toHaveLength(2); // 1 tag and 1 clear button
-            fireEvent.click(a1plusClear as HTMLElement);
-            expect(screen.queryAllByRole('button')).toHaveLength(0);
+            expect(PickerInputObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
+
+            PickerInputObject.removeSelectedTagByText(dom.input, 'A1+');
+            expect(PickerInputObject.getSelectedTagsText(dom.input)).toEqual(['A1']);
+
+            PickerInputObject.removeSelectedTagByText(dom.input, 'A1');
+            expect(PickerInputObject.getSelectedTagsText(dom.input)).toEqual([]);
         });
 
         it('should render names of items by getName', async () => {
