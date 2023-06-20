@@ -2,7 +2,6 @@ import React, { ReactNode } from 'react';
 import { ArrayDataSource, AsyncDataSource, CascadeSelection, IDataSource } from '@epam/uui-core';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, waitFor,
-    queryHelpers,
 } from '@epam/uui-test-utils';
 import { Modals, PickerInputBaseProps } from '@epam/uui-components';
 import { Button, DataPickerRow, FlexCell, PickerItem, Text } from '@epam/promo';
@@ -265,11 +264,6 @@ describe('PickerInput', () => {
 
     describe('[selectionMode single]', () => {
         it('should select & clear option', async () => {
-
-        const optionC2 = await screen.findByText('C2');
-        expect(optionC2).toBeInTheDocument();
-
-    
             const { dom, mocks } = await setupPickerInputForTest({
                 value: undefined,
                 selectionMode: 'single',
@@ -890,12 +884,6 @@ describe('PickerInput', () => {
             renderRow: (props) => (
                 <DataPickerRow
                     { ...props }
-                    rawProps={ {
-                        ...props.rawProps,
-                        'data-testid': props.isLoading
-                            ? `custom-loading-row-${props.rowKey}`
-                            : `custom-row-${props.rowKey}`,
-                    } }
                     key={ props.rowKey }
                     alignActions="center"
                     renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.name } /> }
