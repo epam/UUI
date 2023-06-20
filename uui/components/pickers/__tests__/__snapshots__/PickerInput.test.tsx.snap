@@ -1,14 +1,188 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PickerInput should render icon at specific position 1`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><div class=\\"container uui-icon uui-enabled\\"><div data-testid=\\"test-icon\\"></div></div><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+exports[`PickerInput should render icon at specific position 1`] = `
+<div
+  className="container uui-input-box -clickable root size-36 mode-form"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="body multiline"
+  >
+    <div
+      className="container uui-icon uui-enabled"
+      style={Object {}}
+    >
+      <div
+        data-testid="test-icon"
+      />
+    </div>
+    <input
+      aria-haspopup={true}
+      autoComplete="no"
+      className="uui-input cursorText"
+      onChange={[Function]}
+      placeholder="Please select "
+      readOnly={true}
+      tabIndex={-1}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="actions"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
+      onClick={[Function]}
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+  </div>
+</div>
+`;
 
-exports[`PickerInput should render icon at specific position 2`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><div class=\\"container uui-icon uui-enabled\\"><div data-testid=\\"test-icon\\"></div></div><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+exports[`PickerInput should render icon at specific position 2`] = `
+<div
+  className="container uui-input-box -clickable root size-36 mode-form"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="body multiline"
+  >
+    <div
+      className="container uui-icon uui-enabled"
+      style={Object {}}
+    >
+      <div
+        data-testid="test-icon"
+      />
+    </div>
+    <input
+      aria-haspopup={true}
+      autoComplete="no"
+      className="uui-input cursorText"
+      onChange={[Function]}
+      placeholder="Please select "
+      readOnly={true}
+      tabIndex={-1}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="actions"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
+      onClick={[Function]}
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+  </div>
+</div>
+`;
 
-exports[`PickerInput should render icon at specific position 3`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"><div class=\\"container uui-icon uui-enabled\\"><div data-testid=\\"test-icon\\"></div></div></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+exports[`PickerInput should render icon at specific position 3`] = `
+<div
+  className="container uui-input-box -clickable root size-36 mode-form"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="body multiline"
+  >
+    <input
+      aria-haspopup={true}
+      autoComplete="no"
+      className="uui-input cursorText"
+      onChange={[Function]}
+      placeholder="Please select "
+      readOnly={true}
+      tabIndex={-1}
+      type="text"
+      value=""
+    />
+    <div
+      className="container uui-icon uui-enabled"
+      style={Object {}}
+    >
+      <div
+        data-testid="test-icon"
+      />
+    </div>
+  </div>
+  <div
+    className="actions"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
+      onClick={[Function]}
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+  </div>
+</div>
+`;
 
-exports[`PickerInput should render input as invalid 1`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input singleInput cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
-
-exports[`PickerInput should render input as invalid 2`] = `"<div class=\\"container uui-input-box uui-invalid -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input singleInput cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+exports[`PickerInput should render input as invalid 1`] = `
+<div
+  className="container uui-input-box uui-invalid -clickable root size-36 mode-form"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="body"
+  >
+    <input
+      aria-haspopup={true}
+      autoComplete="no"
+      className="uui-input singleInput cursorText"
+      onChange={[Function]}
+      placeholder="Please select "
+      readOnly={true}
+      tabIndex={-1}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="actions"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
+      onClick={[Function]}
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+  </div>
+</div>
+`;
 
 exports[`PickerInput should render with maximum props 1`] = `
 <div
@@ -133,14 +307,202 @@ exports[`PickerInput should render with minimum props 1`] = `
 </div>
 `;
 
-exports[`PickerInput should render with mode = cell 1`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-cell\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+exports[`PickerInput should render with mode = cell 1`] = `
+<div
+  className="container uui-input-box -clickable root size-36 mode-cell"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="body multiline"
+  >
+    <input
+      aria-haspopup={true}
+      autoComplete="no"
+      className="uui-input cursorText"
+      onChange={[Function]}
+      placeholder="Please select "
+      readOnly={true}
+      tabIndex={-1}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="actions"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
+      onClick={[Function]}
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+  </div>
+</div>
+`;
 
-exports[`PickerInput should render with mode = form 1`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+exports[`PickerInput should render with mode = form 1`] = `
+<div
+  className="container uui-input-box -clickable root size-36 mode-form"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="body multiline"
+  >
+    <input
+      aria-haspopup={true}
+      autoComplete="no"
+      className="uui-input cursorText"
+      onChange={[Function]}
+      placeholder="Please select "
+      readOnly={true}
+      tabIndex={-1}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="actions"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
+      onClick={[Function]}
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+  </div>
+</div>
+`;
 
-exports[`PickerInput should render with mode = inline 1`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-inline\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+exports[`PickerInput should render with mode = inline 1`] = `
+<div
+  className="container uui-input-box -clickable root size-36 mode-inline"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="body multiline"
+  >
+    <input
+      aria-haspopup={true}
+      autoComplete="no"
+      className="uui-input cursorText"
+      onChange={[Function]}
+      placeholder="Please select "
+      readOnly={true}
+      tabIndex={-1}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="actions"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
+      onClick={[Function]}
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+  </div>
+</div>
+`;
 
-exports[`PickerInput should render with mode = undefined 1`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+exports[`PickerInput should render with mode = undefined 1`] = `
+<div
+  className="container uui-input-box -clickable root size-36 mode-form"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="body multiline"
+  >
+    <input
+      aria-haspopup={true}
+      autoComplete="no"
+      className="uui-input cursorText"
+      onChange={[Function]}
+      placeholder="Please select "
+      readOnly={true}
+      tabIndex={-1}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="actions"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
+      onClick={[Function]}
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+  </div>
+</div>
+`;
 
-exports[`PickerInput should support single line 1`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body multiline\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
-
-exports[`PickerInput should support single line 2`] = `"<div class=\\"container uui-input-box -clickable root size-36 mode-form\\" tabindex=\\"0\\"><div class=\\"body\\"><input type=\\"text\\" tabindex=\\"-1\\" aria-haspopup=\\"true\\" autocomplete=\\"no\\" class=\\"uui-input cursorText\\" placeholder=\\"Please select \\" readonly=\\"\\" value=\\"\\"></div><div class=\\"actions\\"><div class=\\"container uui-icon uui-enabled -clickable uui-icon-dropdown\\"><svg class=\\"\\"></svg></div></div></div>"`;
+exports[`PickerInput should support single line 1`] = `
+<div
+  className="container uui-input-box -clickable root size-36 mode-form"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="body"
+  >
+    <input
+      aria-haspopup={true}
+      autoComplete="no"
+      className="uui-input cursorText"
+      onChange={[Function]}
+      placeholder="Please select "
+      readOnly={true}
+      tabIndex={-1}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="actions"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
+      onClick={[Function]}
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+  </div>
+</div>
+`;
