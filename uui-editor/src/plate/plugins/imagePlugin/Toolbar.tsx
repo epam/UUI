@@ -29,7 +29,7 @@ export const ImgToolbar = ({
 }) => (
     <div className={ cx(css.imageToolbar, 'slate-prevent-blur') }>
         <PlateToolbarButton
-            styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
             active={ true }
             onMouseDown={ editor
                 ? (e) => e.preventDefault()
@@ -40,7 +40,7 @@ export const ImgToolbar = ({
                 onClick={ () => toggleBlockAlignment('left') } /> } />
 
         <PlateToolbarButton
-            styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
             active={ true }
             onMouseDown={ editor
                 ? (e) => e.preventDefault()
@@ -51,7 +51,7 @@ export const ImgToolbar = ({
                 onClick={ () => toggleBlockAlignment('center') } /> } />
 
         <PlateToolbarButton
-            styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
             active={ true }
             onMouseDown={ editor
                 ? (e) => e.preventDefault()
@@ -62,7 +62,7 @@ export const ImgToolbar = ({
                 onClick={ () => toggleBlockAlignment('right') } /> } />
 
         <PlateToolbarButton
-            styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
             active={ true }
             onMouseDown={ editor
                 ? (e) => e.preventDefault()
