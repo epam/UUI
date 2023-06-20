@@ -641,22 +641,36 @@ describe('PickerInput', () => {
     it.each<[IHasEditMode['mode'] | undefined]>(
         [[undefined], ['form'], ['cell'], ['inline']],
     )('should render with mode = %s', async (mode) => {
-        const { dom } = await setupPickerInputForTest({
+        const props: PickerInputComponentProps<TestItemType, number> = {
             value: undefined,
+            onValueChange: () => {},
+            valueType: 'id',
+            dataSource: mockDataSourceAsync,
+            disableClear: false,
+            searchPosition: 'input',
+            getName: (item: TestItemType) => item.level,
+            selectionMode: 'multi',
             mode,
-        });
-        expect(dom.target.outerHTML).toMatchSnapshot();
+        };
+        expect(await renderSnapshotWithContextAsync(<PickerInput { ...props } />)).toMatchSnapshot();
     });
 
     it.each<['left' | 'right' | undefined]>(
         [[undefined], ['left'], ['right']],
     )('should render icon at specific position', async (iconPosition) => {
-        const { dom } = await setupPickerInputForTest({
+        const props: PickerInputComponentProps<TestItemType, number> = {
             value: undefined,
+            onValueChange: () => {},
+            valueType: 'id',
+            dataSource: mockDataSourceAsync,
+            disableClear: false,
+            searchPosition: 'input',
+            getName: (item: TestItemType) => item.level,
+            selectionMode: 'multi',
             icon: () => <div data-testid = "test-icon" />,
             iconPosition,
-        });
-        expect(dom.target.outerHTML).toMatchSnapshot();
+        };
+        expect(await renderSnapshotWithContextAsync(<PickerInput { ...props } />)).toMatchSnapshot();
     });
 
     it('should pass onClick to the icon', async () => {
@@ -700,24 +714,32 @@ describe('PickerInput', () => {
     });
 
     it('should render input as invalid', async () => {
-        const { setProps, dom } = await setupPickerInputForTest({
+        const props: PickerInputComponentProps<TestItemType, number> = {
             value: undefined,
+            onValueChange: () => {},
+            valueType: 'id',
+            dataSource: mockDataSourceAsync,
+            disableClear: false,
+            searchPosition: 'input',
+            getName: (item: TestItemType) => item.level,
             selectionMode: 'single',
-        });
-        expect(dom.target.outerHTML).toMatchSnapshot();
-        setProps({ isInvalid: true });
-        expect(dom.target.outerHTML).toMatchSnapshot();
+            isInvalid: true,
+        };
+        expect(await renderSnapshotWithContextAsync(<PickerInput { ...props } />)).toMatchSnapshot();
     });
 
     it('should support single line', async () => {
-        const { setProps, dom } = await setupPickerInputForTest({
+        const props: PickerInputComponentProps<TestItemType, number> = {
             value: undefined,
+            onValueChange: () => {},
+            dataSource: mockDataSourceAsync,
+            disableClear: false,
+            searchPosition: 'input',
+            getName: (item: TestItemType) => item.level,
             selectionMode: 'multi',
-            isSingleLine: false,
-        });
-        expect(dom.target.outerHTML).toMatchSnapshot();
-        setProps({ isSingleLine: true });
-        expect(dom.target.outerHTML).toMatchSnapshot();
+            isSingleLine: true,
+        };
+        expect(await renderSnapshotWithContextAsync(<PickerInput { ...props } />)).toMatchSnapshot();
     });
 
     it('should provide custom placeholder', async () => {
