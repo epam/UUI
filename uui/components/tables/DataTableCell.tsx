@@ -34,8 +34,8 @@ function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TI
                     {row.isFoldable && (
                         <IconContainer
                             rawProps={ {
-                                'aria-label': 'Fold/Unfold',
-                                'data-testid': `uui-DataTableRowAddons-folding-arrow-${row.rowKey}`,
+                                'aria-label': row.isFolded ? 'Unfold' : 'Fold',
+                                role: 'button',
                             } }
                             key="icon"
                             icon={ FoldingArrow }

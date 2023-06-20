@@ -117,7 +117,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 ref={ inputContainer }
                 aria-haspopup={ true }
                 autoComplete="no"
-                data-testid="uui-PickerToggler-input"
                 aria-required={ props.isRequired }
                 aria-disabled={ props.isDisabled }
                 aria-readonly={ props.isReadonly }
@@ -157,7 +156,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         <IconContainer
             icon={ props.icon }
             onClick={ props.onIconClick }
-            rawProps={ { 'data-testid': 'uui-PickerToggler-iconContainer' } }
         />
     );
 
@@ -183,7 +181,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         >
             <div
                 className={ cx(css.body, !props.isSingleLine && props.pickerMode !== 'single' && css.multiline) }
-                data-testid="uui-PickerToggler-body"
             >
                 {props.iconPosition !== 'right' && icon}
                 {props.pickerMode !== 'single' && renderItems()}
