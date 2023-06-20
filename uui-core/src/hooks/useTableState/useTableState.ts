@@ -70,13 +70,11 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
             return params.value;
         }
 
-        const { topIndex, visibleCount, filtersConfig } = tableStateValue;
-
+        const valueFromUrl = getValueFromUrl();
         return {
-            ...getValueFromUrl(),
-            topIndex,
-            visibleCount,
-            filtersConfig,
+            ...tableStateValue,
+            ...valueFromUrl,
+            filtersConfig: tableStateValue.filtersConfig ?? valueFromUrl.filtersConfig,
         };
     }, [params.value, tableStateValue]);
 
