@@ -38,7 +38,7 @@ export interface VirtualListState extends VirtualListRange {
 
 export interface IDataSource<TItem, TId, TFilter> {
     getId(item: TItem): TId;
-    getById(id: TId): TItem;
+    getById(id: TId): TItem | void;
     setItem(item: TItem): void;
     getView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any): IDataSourceView<TItem, TId, TFilter>;
     useView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any): IDataSourceView<TItem, TId, TFilter>;
@@ -116,7 +116,7 @@ DataRowOptions<TItem, TId> & {
     index: number;
 
     /** The data item (TItem) row displays. Will be undefined if isLoading = true. */
-    value?: TItem;
+    value: TItem | undefined;
 
     /** ID of the parent TItem */
     parentId?: TId;
@@ -137,6 +137,8 @@ DataRowOptions<TItem, TId> & {
 
     /** True if row is in loading state. 'value' is empty in this case */
     isLoading?: boolean;
+
+    isUnknown?: boolean;
 
     /** True if row be folded or unfolded (usually because it contains children) */
     isFoldable?: boolean;

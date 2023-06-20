@@ -6,17 +6,11 @@ import {
 
 export class TimelineTransform {
     public centerMs: number;
-
     public leftMs: number;
-
     public rightMs: number;
-
     public widthMs: number;
-
     public pxPerMs: number;
-
     public widthPx: number;
-
     constructor(private controller: TimelineController, vp: Viewport) {
         this.centerMs = vp.center.getTime();
         this.widthPx = vp.widthPx;

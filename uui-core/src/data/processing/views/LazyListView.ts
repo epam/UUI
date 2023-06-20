@@ -12,7 +12,7 @@ import isEqual from 'lodash.isequal';
 import { BaseListView } from './BaseListView';
 import { ListApiCache } from '../ListApiCache';
 import {
-    Tree, LoadTreeOptions, ITree, ROOT_ID,
+    Tree, LoadTreeOptions, ITree, ROOT_ID, NOT_FOUND_RECORD,
 } from './tree';
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
@@ -70,13 +70,13 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
 
     /**
      * This options is added for the purpose of supporting legacy behavior of fetching data
-     * on `getVisibleRows` and `getListProps`, not to break users' own implementation of datasources.
+     * on `getVisibleRows` and `getListProps`, not to break users' own implementation of dataSources.
      * @default true
      */
     legacyLoadDataBehavior?: boolean;
 }
 
-interface LoadResult<TItem, TId, TFilter> {
+interface LoadResult<TItem, TId> {
     isUpdated: boolean;
     isOutdated: boolean;
     tree: ITree<TItem, TId>;
@@ -84,19 +84,12 @@ interface LoadResult<TItem, TId, TFilter> {
 
 export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     public props: LazyListViewProps<TItem, TId, TFilter>;
-
     public value: DataSourceState<TFilter, TId> = null;
-
     private cache: ListApiCache<TItem, TId, TFilter>;
-
     private isUpdatePending = false;
-
     private loadedValue: DataSourceState<TFilter, TId> = null;
-
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
-
     private reloading: boolean = false;
-
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
         { legacyLoadDataBehavior = true, ...props }: LazyListViewProps<TItem, TId, TFilter>,
@@ -118,7 +111,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     private defaultGetId = (i: any) => i.id;
-
     protected applyDefaultsToProps(props: LazyListViewProps<TItem, TId, TFilter>): LazyListViewProps<TItem, TId, TFilter> {
         if ((props.cascadeSelection || props.flattenSearchResults) && !props.getParentId) {
             console.warn('LazyListView: getParentId prop is mandatory if cascadeSelection or flattenSearchResults are enabled');
@@ -185,7 +177,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             this.rebuildRows();
         }
 
-        if (!prevValue || this.value.focusedIndex != prevValue.focusedIndex) {
+        if (!prevValue || this.value.focusedIndex !== prevValue.focusedIndex) {
             this.updateFocusedItem();
         }
 
@@ -225,11 +217,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     public getById = (id: TId, index: number) => {
         const item = this.cache.byId(id);
-        if (item !== null) {
-            return this.getRowProps(item, index);
-        } else {
-            return this.getLoadingRow('_loading_' + id, index, []);
+        if (item === NOT_FOUND_RECORD) {
+            return this.getUnknownRow(id, index, []);
         }
+
+        if (item === null) {
+            return this.getLoadingRow(id, index, []);
+        }
+
+        return this.getRowProps(item, index);
     };
 
     // Wrap props.api to update items in the items store
@@ -239,7 +235,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             const missingIds: TId[] = [];
             rq.ids.forEach((id) => {
                 const cachedItem = this.cache.byId(id, false);
-                if (cachedItem) {
+                if (cachedItem !== NOT_FOUND_RECORD) {
                     cachedItems.push(cachedItem);
                 } else {
                     missingIds.push(id);
@@ -269,13 +265,13 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     // Loads node. Returns promise to a loaded node.
 
-    private inProgressPromise: Promise<LoadResult<TItem, TId, TFilter>> = null;
+    private inProgressPromise: Promise<LoadResult<TItem, TId>> = null;
 
     private loadMissing(
         abortInProgress: boolean,
         options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>,
         withNestedChildren?: boolean,
-    ): Promise<LoadResult<TItem, TId, TFilter>> {
+    ): Promise<LoadResult<TItem, TId>> {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
 
         if (this.inProgressPromise === null || abortInProgress) {
@@ -287,7 +283,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         return this.inProgressPromise;
     }
 
-    private async loadMissingImpl(options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>, withNestedChildren?: boolean): Promise<LoadResult<TItem, TId, TFilter>> {
+    private async loadMissingImpl(options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>, withNestedChildren?: boolean): Promise<LoadResult<TItem, TId>> {
         const loadingTree = this.tree;
 
         try {
@@ -307,7 +303,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
             // If this.tree is changed during this load, than there was reset occurred (new value arrived)
             // We need to tell caller to reject this result
-            const isOutdated = this.tree != loadingTree;
+            const isOutdated = this.tree !== loadingTree;
             const isUpdated = this.tree !== newTree;
 
             if (!isOutdated) {
@@ -451,7 +447,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     };
 
     protected isPartialLoad = () => true;
-
     private areMoreRowsNeeded = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => {
         const isFetchPositionAndAmountChanged = prevValue?.topIndex !== newValue?.topIndex || prevValue?.visibleCount !== newValue?.visibleCount;
         const lastIndex = this.getLastRecordIndex();

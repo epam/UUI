@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 import { MainMenuIcon } from '../MainMenuIcon';
 import { ReactComponent as CalendarIcon } from '../../../../icons/calendar-18.svg';
 

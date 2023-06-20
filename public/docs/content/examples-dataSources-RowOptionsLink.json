@@ -1,0 +1,53 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Rows can be represented as links bypassing ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "link",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " as a ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "rowOptions",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " part.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

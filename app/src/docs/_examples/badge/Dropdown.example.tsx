@@ -4,7 +4,7 @@ import {
 } from '@epam/promo';
 import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import { DropdownBodyProps } from '@epam/uui-core';
-import css from './DropdownExample.scss';
+import css from './DropdownExample.module.scss';
 
 const dropdownMenuItems = [
     { id: 1, caption: 'In Progress', color: '#E67E17' }, { id: 2, caption: 'Draft', color: 'gray' }, { id: 3, caption: 'Done', color: '#88CC00' },

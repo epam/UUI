@@ -2,7 +2,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Dropdown, MainMenuDropdownProps } from '@epam/uui-components';
 import { MainMenuButton } from './MainMenuButton';
-import css from './MainMenuDropdown.scss';
+import css from './MainMenuDropdown.module.scss';
 
 export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
     render() {

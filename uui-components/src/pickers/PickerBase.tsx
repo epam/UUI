@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps, UuiContexts,
+    DataSourceState, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps, UuiContexts,
 } from '@epam/uui-core';
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';
 import isEqual from 'lodash.isequal';
@@ -12,11 +12,8 @@ export interface PickerBaseState {
 
 export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TItem, TId>, TState extends PickerBaseState> extends React.Component<TProps, TState> {
     public context: UuiContexts;
-
     state: TState = this.getInitialState();
-
     lens = Lens.onState<PickerBaseState>(this);
-
     componentWillUnmount(): void {
         this.props.dataSource.unsubscribeView(this.handleDataSourceValueChange);
     }
@@ -40,14 +37,16 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         }
     }
 
-    getName = (i: TItem & { name?: string }) => {
-        if (i == null) {
-            return '';
-        } else if (this.props.getName) {
-            return this.props.getName(i);
-        } else {
-            return i.name;
+    getName = (i: (TItem & { name?: string }) | void) => {
+        const unknownStr = 'Unknown';
+        if (this.props.getName) {
+            try {
+                return this.props.getName(i as TItem);
+            } catch (e) {
+                return unknownStr;
+            }
         }
+        return i ? i.name : unknownStr;
     };
 
     getPluralName = () => {
@@ -66,7 +65,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     };
 
     isSingleSelect = () => {
-        return this.props.selectionMode == 'single';
+        return this.props.selectionMode === 'single';
     };
 
     getSelectedIdsArray = (value: any): TId[] => {
@@ -100,7 +99,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     protected handleDataSourceValueChange = (newDataSourceState: DataSourceState) => {
         let showSelected = this.state.showSelected;
 
-        if (showSelected && newDataSourceState.checked?.length == 0) {
+        if (showSelected && !newDataSourceState.checked?.length) {
             showSelected = false;
         }
 
@@ -116,17 +115,12 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         return applyValueToDataSourceState(this.props, this.state.dataSourceState, this.props.value, this.props.dataSource);
     };
 
-    getRowOptions = (item: TItem, index: number) => {
-        const options: DataRowOptions<TItem, TId> = {};
+    getRowOptions = () => {
         if (this.isSingleSelect()) {
-            options.isSelectable = true;
-        } else {
-            options.checkbox = { isVisible: true };
+            return { isSelectable: true };
         }
 
-        const externalOptions = this.props.getRowOptions ? this.props.getRowOptions(item, index) : {};
-
-        return { ...options, ...externalOptions };
+        return { checkbox: { isVisible: true } };
     };
 
     clearSelection = () => {
@@ -157,7 +151,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         const view = this.getView();
         const listProps = view.getListProps();
         if (this.state.showSelected) {
-            const checked = this.state.dataSourceState.checked;
+            const checked = this.getDataSourceState().checked;
             const checkedCount = checked ? checked.length : 0;
             return {
                 ...listProps,
@@ -172,19 +166,20 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
 
     getView(): IDataSourceView<TItem, TId, any> {
         return this.props.dataSource.getView(this.getDataSourceState(), this.handleDataSourceValueChange, {
-            getRowOptions: this.getRowOptions,
+            rowOptions: this.getRowOptions(),
             getSearchFields: this.props.getSearchFields || ((item: TItem) => [this.getName(item)]),
             isFoldedByDefault: this.props.isFoldedByDefault,
             ...(this.props.sortBy ? { sortBy: this.props.sortBy } : {}),
             ...(this.props.cascadeSelection ? { cascadeSelection: this.props.cascadeSelection } : {}),
+            ...(this.props.getRowOptions ? { getRowOptions: this.props.getRowOptions } : {}),
         });
     }
 
     private onShowSelectedChange = (nV: boolean) => {
-        this.setState({
+        this.setState((state) => ({
             showSelected: nV,
-            dataSourceState: { ...this.state.dataSourceState },
-        });
+            dataSourceState: { ...state.dataSourceState },
+        }));
     };
 
     getFooterProps(): PickerFooterProps<TItem, TId> {

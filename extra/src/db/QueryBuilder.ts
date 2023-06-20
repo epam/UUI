@@ -4,7 +4,6 @@ import { SortDirection } from '@epam/uui-core';
 
 export class QueryBuilder<T = any> implements IQueryable<T> {
     constructor(private db: DbState, private query: DbQuery) {}
-
     private clone(): this {
         const clone = Object.assign(Object.create(Object.getPrototypeOf(this)), this);
         clone.query = { ...this.query };

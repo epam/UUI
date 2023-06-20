@@ -1,26 +1,8 @@
-import * as React from 'react';
-import {
-    ISkin, skinComponent, SkinContextComponentProps, ButtonCoreProps,
-} from '@epam/uui-core';
-import {
-    DatePicker, RangeDatePicker, FlexCell, Spinner,
-} from '@epam/uui';
-import {
-    Checkbox,
-    FlexRow,
-    TextInput,
-    Button,
-    ModalWindow,
-    ModalBlocker,
-    ModalFooter,
-    ModalHeader,
-    LabeledInput,
-    IconButton,
-    EpamColor,
-    IconButtonProps,
-} from './components';
+import { ISkin, skinComponent, SkinContextComponentProps, ButtonCoreProps } from '@epam/uui-core';
+import { DatePicker, RangeDatePicker, FlexCell, Spinner } from '@epam/uui';
+import { Checkbox, FlexRow, TextInput, Button, ModalWindow, ModalBlocker, ModalFooter, ModalHeader, LabeledInput, IconButton, ButtonColorType, IconButtonProps } from './components';
 
-const buttonTypeToColor: { [key: string]: EpamColor } = {
+const buttonTypeToColor: { [key: string]: ButtonColorType } = {
     success: 'grass',
     cancel: 'night500',
     action: 'sky',
@@ -29,7 +11,7 @@ const buttonTypeToColor: { [key: string]: EpamColor } = {
 const mapIconButtonProp = (props: SkinContextComponentProps<ButtonCoreProps>): IconButtonProps => {
     const resultProps: IconButtonProps = {
         ...props,
-        color: 'night700',
+        color: 'night600',
     };
 
     if (props.usageContext.includes('RTE-Sidebar')) {

@@ -1,0 +1,123 @@
+@use '../../assets/styles/index' as *;
+
+.root {
+    &:global(.uui-input-box) {
+        width: 100%;
+        box-sizing: border-box;
+        min-width: 40px;
+        position: relative;
+        display: flex;
+        outline: none;
+        border: 1px solid var(--uui-filters-toggler-border);
+        border-radius: var(--uui-filters-toggler-border-radius);
+        background-color: var(--uui-filters-toggler-bg);
+        box-shadow: var(--uui-filters-toggler-shadow);
+        padding-left: 6px;
+        padding-right: 6px;
+
+        &:global(.-clickable):hover {
+            cursor: pointer;
+        }
+
+        &:hover {
+            border-color: var(--uui-filters-toggler-border-hover);
+            background-color: var(--uui-filters-toggler-bg-hover);
+        }
+
+        &:global(.uui-opened) {
+            border-color: var(--uui-filters-toggler-border-hover);
+            background-color: var(--uui-filters-toggler-bg-hover);
+        }
+
+        :global(.uui-icon-dropdown) {
+            fill: var(--uui-filters-toggler-icon);
+        }
+
+        .title-wrapper {
+            font-family: var(--uui-filters-toggler-font);
+            font-weight: var(--uui-filters-toggler-font-weight, normal);
+            flex: 1 1 auto;
+            min-width: 0;
+            outline: none;
+            background: none;
+            cursor: pointer;
+            white-space: nowrap;
+            padding-left: 6px;
+            padding-right: 6px;
+
+            .title {
+                text-overflow: initial;
+                overflow: visible;
+                padding-top: 0;
+                padding-bottom: 0;
+                color: var(--uui-filters-toggler-label);
+            }
+
+            .text-wrapper {
+                display: flex;
+                overflow: hidden;
+                justify-content: space-between;
+                align-items: baseline;
+                width: 100%;
+                padding-left: 3px;
+            }
+
+            .selection {
+                padding-top: 0;
+                padding-bottom: 0;
+                color: var(--uui-filters-toggler-text);
+
+                div {
+                    display: inline-block;
+                    margin-right: 3px;
+
+                    :nth-last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+
+            .postfix {
+                padding-top: 0;
+                padding-bottom: 0;
+                padding-left: 6px;
+                overflow: visible;
+                color: var(--uui-filters-toggler-text);
+            }
+
+            .selected {
+                color: var(--uui-filters-toggler-text);
+            }
+        }
+
+        @mixin filterTogglerSize($size) {
+            &:global(.size-#{$size}) {
+                @include control-vertical-layout(#{$size}px, 1px);
+                padding-left: 5px;
+                padding-right: 5px;
+
+                @if $size == 24 {
+                    padding-left: 2px;
+                    padding-right: 2px;
+
+                    .title-wrapper {
+                        padding-left: 3px;
+                        padding-right: 3px;
+                    }
+                } @else if $size == 42 {
+                    padding-left: 11px;
+                    padding-right: 11px;
+                } @else if $size == 48 {
+                    padding-left: 11px;
+                    padding-right: 11px;
+                }
+            }
+        }
+
+        @include filterTogglerSize(24);
+        @include filterTogglerSize(30);
+        @include filterTogglerSize(36);
+        @include filterTogglerSize(42);
+        @include filterTogglerSize(48);
+    }
+}

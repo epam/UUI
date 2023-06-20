@@ -19,7 +19,6 @@ export interface TimelineEventsBarProps {
 
 export class TimelineEventsBar extends BaseTimelineCanvasComponent<TimelineEventsBarProps> {
     protected canvasHeight = 14;
-
     renderTodayLine = (ctx: CanvasRenderingContext2D, t: TimelineTransform, yFrom: number, yTo: number) => {
         ctx.strokeStyle = '#F37B94';
         ctx.beginPath();

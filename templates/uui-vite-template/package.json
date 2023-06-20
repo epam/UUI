@@ -1,0 +1,50 @@
+{
+  "name": "vite-template-react",
+  "version": "1.0.5",
+  "scripts": {
+    "start": "vite --port 3000 --open",
+    "dev": "vite --port 3000 --open",
+    "build": "npm run typecheck && vite build",
+    "serve": "vite preview",
+    "test": "jest --watch",
+    "test:ci": "jest",
+    "lint": "eslint ./src/**/*.{ts,tsx} --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@epam/assets": "latest",
+    "@epam/promo": "latest",
+    "@epam/uui": "latest",
+    "@epam/uui-components": "latest",
+    "@epam/uui-core": "latest",
+    "history": "^4.10.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^5.3.4",
+    "vite-plugin-svgr": "^3.2.0"
+  },
+  "devDependencies": {
+    "@epam/uui-test-utils": "latest",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@types/jest": "^27.5.2",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@types/react-router-dom": "^5.3.3",
+    "@vitejs/plugin-react": "^3.1.0",
+    "jest": "^27.5.1",
+    "prettier": "latest",
+    "sass": "^1.62.1",
+    "typescript": "4.9.3",
+    "vite": "^4.2.1",
+    "identity-obj-proxy": "^3.0.0",
+    "ts-jest": "^27.1.5",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-jest": "^27.2.1",
+    "@typescript-eslint/parser": "^5.59.7",
+    "eslint-plugin-testing-library": "^5.11.0"
+  }
+}

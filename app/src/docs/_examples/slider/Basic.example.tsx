@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { FlexCell } from '@epam/promo';
-import { Slider } from '@epam/loveship';
-import css from './BasicExample.scss';
+import { FlexCell, Slider } from '@epam/loveship';
+import css from './BasicExample.module.scss';
 
 export default function BasicExample() {
     const [value, onValueChange] = useState(0);

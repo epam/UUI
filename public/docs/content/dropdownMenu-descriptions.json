@@ -101,7 +101,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "render a menu item with an icon in the left or right position ('left' as default).",
+                    "text": "Render a menu item with an icon in the left or right position ('left' as default).",
                     "marks": []
                   }
                 ]
@@ -120,7 +120,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "highlight a menu item as selected passing the ",
+                    "text": "Highlight a menu item as selected, passing the ",
                     "marks": []
                   },
                   {
@@ -155,7 +155,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "mark a menu item as checked passing the ",
+                    "text": "Mark a menu item as checked, passing the ",
                     "marks": []
                   },
                   {

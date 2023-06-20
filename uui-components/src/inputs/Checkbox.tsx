@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { cx, IHasTabIndex, uuiMarkers } from '@epam/uui-core';
-import css from './Checkbox.scss';
+import css from './Checkbox.module.scss';
 import {
     Icon, uuiMod, uuiElement, isClickableChildClicked, CheckboxCoreProps, UuiContexts, UuiContext,
 } from '@epam/uui-core';
@@ -17,9 +17,7 @@ export interface CheckboxProps extends CheckboxCoreProps, IHasTabIndex {
 
 export class Checkbox extends React.Component<CheckboxProps> {
     static contextType = UuiContext;
-
     context: UuiContexts;
-
     handleChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
         !isClickableChildClicked(e) && this.props.onValueChange(!this.props.value);
 

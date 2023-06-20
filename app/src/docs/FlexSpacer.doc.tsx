@@ -3,7 +3,6 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common/docs';
 
 export class FlexSpacerDoc extends BaseDocsBlock {
     title = 'FlexSpacer';
-
     renderContent() {
         return (
             <>

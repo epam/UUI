@@ -29,9 +29,7 @@ describe('db - list loaders', () => {
         }
 
         public saveCallback = jest.fn(() => Promise.resolve({ submit: {} }));
-
         public apiCallback = jest.fn((rq: DataQuery<Task> & { t?: number }) => delay(rq?.t).then(() => runDataQuery(testItems, rq)));
-
         protected savePatch(patch: DbPatch<TaskDbTables>): Promise<DbSaveResponse<TaskDbTables>> {
             return Promise.resolve({ submit: {} });
         }

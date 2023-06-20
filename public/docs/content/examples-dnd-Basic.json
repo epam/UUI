@@ -405,7 +405,7 @@
           },
           {
             "object": "text",
-            "text": " callback will be called. In this callback you need to reorder your items based on ",
+            "text": " callback will be called. In this callback, you need to reorder your items based on ",
             "marks": []
           },
           {

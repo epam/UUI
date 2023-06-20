@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { FlexCell } from '@epam/loveship';
-import css from './DefaultContext.scss';
+import css from './DefaultContext.module.scss';
 
 export class DefaultContext extends React.Component<DemoComponentProps, any> {
     public static displayName = 'Default';
-
     render() {
         const { DemoComponent, props } = this.props;
 

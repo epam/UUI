@@ -1,8 +1,0 @@
-@use  '../../../colors' as *;
-
-@mixin mainMenu-color() {
-    --color: white;
-    --fill: white;
-    --server-badge-border-color: white;
-    --background-color: #{$gray80};
-}

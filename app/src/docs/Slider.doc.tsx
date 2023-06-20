@@ -5,7 +5,6 @@ import {
 
 export class SliderDoc extends BaseDocsBlock {
     title = 'Slider';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/Slider/slider.props.ts',

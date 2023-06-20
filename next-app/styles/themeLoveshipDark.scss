@@ -1,4 +1,24 @@
 .uui-theme-loveship_dark {
+    $white: #FFFFFF;
+    $blue: #008ACE;
+    $green: #669900;
+    $amber: #D67B0B;
+    $red: #CC482D;
+    $cyan: #14CCCC;
+    $orange: #E67E17;
+    $purple: #AD14CC;
+    $violet: #5214CC;
+
+    $gray5: #FAFAFC;
+    $gray10: #E1E3EB;
+    $gray20: #ACAFBF;
+    $gray30: #6C6F80;
+    $gray40: #585B69;
+    $gray50: #474A59;
+    $gray60: #383B4A;
+    $gray70: #303240;
+    $gray80: #272833;
+    $gray90: #1D1E26;
 
     --font-regular: 'Sans Regular', Arial, sans-serif;
     --font-semibold: 'Sans Semibold', Arial, sans-serif;
@@ -112,26 +132,6 @@
     // ----------------------------
 
     --border-radius: 3px;
-    $white: #FFFFFF;
-    $blue: #008ACE;
-    $green: #669900;
-    $amber: #D67B0B;
-    $red: #CC482D;
-    $cyan: #14CCCC;
-    $orange: #E67E17;
-    $purple: #AD14CC;
-    $violet: #5214CC;
-
-    $gray5: #FAFAFC;
-    $gray10: #E1E3EB;
-    $gray20: #ACAFBF;
-    $gray30: #6C6F80;
-    $gray40: #585B69;
-    $gray50: #474A59;
-    $gray60: #383B4A;
-    $gray70: #303240;
-    $gray80: #272833;
-    $gray90: #1D1E26;
 
     .button-color-primary {
         --button-bg-color-hover: var(--primary-light-color);

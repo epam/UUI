@@ -69,7 +69,8 @@ async function createRollupConfigForModule(options) {
         external: externalEffective,
         plugins: [
             replace({
-                PACKAGE_VERSION: version,
+                __PACKAGE_VERSION__: `"${version}"`,
+                __DEV__: 'process.env.NODE_ENV !== "production"',
                 preventAssignment: true,
             }),
             nodeResolve({
@@ -97,6 +98,7 @@ async function createRollupConfigForModule(options) {
             postcss({
                 sourceMap: true,
                 modules: { hashPrefix: moduleName },
+                autoModules: true,
                 extract: path.resolve(outDir, EXTRACTED_CSS_FILE_NAME),
                 to: `${outDir}/${EXTRACTED_CSS_FILE_NAME}`,
             }),

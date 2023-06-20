@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './Timeline.scss';
+import css from './Timeline.module.scss';
 import {
     msPerDay, TimelineController, TimelineScale, TimelineNav, TimelineGrid, Item,
 } from '@epam/uui-timeline';
@@ -15,11 +15,8 @@ const selectedDay = new Date(2018, 7, 9, 12, 0, 0);
 
 export class Timeline extends React.Component {
     timeline: any = null;
-
     timelineController = new TimelineController({ center: new Date(2018, 7, 15), pxPerMs: 32 / msPerDay, widthPx: 0 });
-
     dataRows: Row[] = [];
-
     constructor(props: {}, context: {}) {
         super(props, context);
         svc.api.demo.schedules().then((employees) => {

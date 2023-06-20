@@ -5,10 +5,9 @@ import {
 
 export class IconButtonDoc extends BaseDocsBlock {
     title = 'Icon Button';
-
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docs/_props/loveship/components/buttons/iconButton.props.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/buttons/iconButton.props.tsx',
             [UUI4]: './app/src/docs/_props/epam-promo/components/buttons/iconButton.props.tsx',
         };
     }

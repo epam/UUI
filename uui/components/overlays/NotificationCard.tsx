@@ -1,9 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { IconContainer } from '@epam/uui-components';
-import {
-    INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, IHasRawProps,
-} from '@epam/uui-core';
+import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, IHasRawProps } from '@epam/uui-core';
 import { IconButton, LinkButton } from '../buttons';
 import { SemanticColor } from '../types';
 import { i18n } from '../../i18n';
@@ -12,7 +10,7 @@ import { ReactComponent as WarningIcon } from '../../icons/notification-warning-
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-24.svg';
 import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-24.svg';
 import { ReactComponent as CrossIcon } from '../../icons/snackbar/cross.svg';
-import css from './NotificationCard.scss';
+import css from './NotificationCard.module.scss';
 
 interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
     name: string;
@@ -88,9 +86,7 @@ export const ErrorNotification = React.forwardRef<HTMLDivElement, DefaultNotific
 
 export class ClearNotification extends React.Component<{}> {
     public static contextType = UuiContext;
-
     public context: UuiContexts;
-
     render() {
         return (
             <div className={ cx(css.notificationWrapper, css.clearButton) }>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tag } from '../Tag';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('Tag', () => {

@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import {
     cx, ICanBeInvalid, IHasCX, TooltipCoreProps, uuiMod,
 } from '@epam/uui-core';
-import css from './DataTableCellOverlay.scss';
+import css from './DataTableCellOverlay.module.scss';
 import { DataTableSelectionContext } from './tableCellsSelection';
 import { PointerEventHandler, useContext } from 'react';
 

@@ -5,7 +5,7 @@ import {
     FlexRow, IconContainer, LinkButton, Text, Anchor,
 } from '@epam/promo';
 import { analyticsEvents } from '../analyticsEvents';
-import css from './ContactsBlock.scss';
+import css from './ContactsBlock.module.scss';
 import { ReactComponent as MailIcon } from '../icons/outlook-90.svg';
 import { ReactComponent as GitIcon } from '../icons/github-90.svg';
 
@@ -14,9 +14,7 @@ const GIT_LINK = 'https://github.com/epam/UUI/issues';
 
 export class ContactsBlock extends React.Component {
     private emailClickEvent = analyticsEvents.welcome.email();
-
     private submitIssueClickEvent = analyticsEvents.welcome.submitIssue();
-
     render() {
         return (
             <Measure bounds>

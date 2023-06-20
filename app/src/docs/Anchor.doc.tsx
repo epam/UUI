@@ -5,7 +5,6 @@ import {
 
 export class AnchorDoc extends BaseDocsBlock {
     title = 'Anchor';
-
     getPropsDocPath() {
         return {
             [UUI4]: './app/src/docs/_props/epam-promo/components/navigation/anchor.props.tsx',

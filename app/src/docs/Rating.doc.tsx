@@ -5,7 +5,6 @@ import {
 
 export class RatingDoc extends BaseDocsBlock {
     title = 'Rating';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/rating.props.ts',

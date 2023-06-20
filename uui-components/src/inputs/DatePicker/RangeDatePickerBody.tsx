@@ -11,7 +11,7 @@ import {
     arrayToMatrix, cx, IEditable, RangeDatePickerPresets,
 } from '@epam/uui-core';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
-import css from './RangeDatePickerBody.scss';
+import css from './RangeDatePickerBody.module.scss';
 
 dayjs.extend(isoWeek);
 
@@ -168,8 +168,8 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
         });
         this.getContainerHeight(part === 'from' ? displayedDate : displayedDate.subtract(1, 'month'));
     }
-    // activePart для перехода в режимы выбора месяца и года, чтобы ховерить противоположную часть
 
+    // activePart для перехода в режимы выбора месяца и года, чтобы ховерить противоположную часть
     getContainerHeight = (displayedDate: Dayjs) => {
         const numberWeeksOfFirstMonth = weekCount(displayedDate);
         const numberWeeksOfSecondMonth = weekCount(displayedDate.add(1, 'month'));

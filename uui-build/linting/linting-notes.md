@@ -10,7 +10,7 @@ so that we have opportunity to fix such rules iteratively.
 | All                                                   | <ul><li>eslint/stylelint yarn tasks (not in CI)</li><li>in IDE</li></ul>      |
 | Partially<br/>(except rules from "rulesToBeFixed.js") | <ul><li>eslint/stylelint yarn tasks (in CI)</li><li>pre-commit hook</li></ul> |
  
-### Fixing issues related rules from "rulesToBeFixed.js"
+### Fixing "rulesToBeFixed.js"
 - Remove the rule from "rulesToBeFixed.js"
 - Run the corresponding ```yarn``` task. The report will be generated under "./.reports"
 - Review the report - find all files with issues related to this rule

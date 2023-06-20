@@ -1,0 +1,143 @@
+@mixin defineColorsByName(
+    $colorName,
+    $colorHex,
+    $light: 45%,
+    $lightest: 50%,
+    $dark: 5%,
+    $darkest: 10%
+) {
+    --#{$colorName}-color: #{$colorHex};
+    --#{$colorName}-light-color: #{lighten($colorHex, $light)};
+    --#{$colorName}-lightest-color: #{lighten($colorHex, $lightest)};
+    --#{$colorName}-dark-color: #{darken($colorHex, $dark)};
+    --#{$colorName}-darkest-color: #{darken($colorHex, $darkest)};
+}
+
+:global(.uui-theme-promo) {
+    $white: #FFFFFF;
+    $blue: #008ACE;
+    $green: #88CC00;
+    $amber: #FFC000;
+    $red: #E54322;
+    $cyan: #14CCCC;
+    $orange: #E67E17;
+    $purple: #AD14CC;
+    $violet: #5214CC;
+
+    $gray5: #FAFAFC;
+    $gray10: #F5F6FA;
+    $gray20: #EBEDF5;
+    $gray30: #E1E3EB;
+    $gray40: #CED0DB;
+    $gray50: #ACAFBF;
+    $gray60: #6C6F80;
+    $gray70: #474A59;
+    $gray80: #303240;
+    $gray90: #1D1E26;
+
+    --font-regular: 'Sans Regular', Arial, sans-serif;
+    --font-semibold: 'Sans Semibold', Arial, sans-serif;
+    --font-italic: 'Sans Italic', Arial, sans-serif;
+    --font-primary: 'Museo Sans', 'Sans Semibold', Arial, sans-serif;
+    --font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
+    --font-mono: 'Roboto Mono', Arial, sans-serif;
+    --font-redacted: 'Redacted';
+    --secondary-color: #{$gray50};
+    --secondary-light-color: #{$gray30};
+    --secondary-lightest-color: #{$gray20};
+    --secondary-dark-color: #{$gray60};
+    --secondary-darkest-color: #{$gray70};
+
+    --contrast-color: #{$white};
+    --visited-color: #{$violet};
+    --info-color: #{$blue};
+    --info-hover-color: #{darken($blue, 5%)};
+    --info-active-color: #{darken($blue, 10%)};
+    --success-color: #{$green};
+    --success-hover-color: #{darken($green, 5%)};
+    --success-active-color: #{darken($green, 10%)};
+    --warning-color: #{$amber};
+    --warning-hover-color: #{darken($amber, 5%)};
+    --warning-active-color: #{darken($amber, 10%)};
+    --error-color: #{$red};
+    --error-hover-color: #{darken($red, 5%)};
+    --error-active-color: #{darken($red, 10%)};
+    --icon-color: #{$gray60};
+    --icon-hover-color: #{$gray70};
+    --icon-active-color: #{$gray80};
+    --secondary-hover-color: #{$gray60};
+    --secondary-active-color: #{$gray70};
+    --secondary-disabled-color: #{$gray40};
+    --button-disabled-color: #{$gray50};
+    --disabled-color: #{$gray30};
+    --icon-disabled-color: #{$gray50};
+    --surface-color: #{$white};
+    --surface-hover-color: #{$gray20};
+    --surface-dark-color: #{$gray90};
+    --surface-light-color: #{$white};
+    --divider-color: #{$gray40};
+    --tag-color: #{$gray30};
+    --tag-hover-color: #{$gray40};
+
+    --text-brand-color: #{$gray90};
+    --text-primary-color: #{$gray80};
+    --text-secondary-color: #{$gray60};
+    --text-disabled-color: #{$gray50};
+    --text-contrast-color: #{$gray5};
+
+    --button-bg-halftone-color: #{$white};
+    --button-caption-disabled-color: #{$gray50};
+
+    --input-bg-color: #{$white};
+    --input-switch-bg-color: #{$gray40};
+    --input-bg-checked-color: var(--primary-color);
+    --input-bg-checked-hover-color: var(--primary-dark-color);
+    --input-bg-checked-disabled-color: var(--primary-light-color);
+    --input-bg-hover-color: #{$gray60};
+    --input-bg-disabled-color: #{$gray5};
+    --input-bg-readonly-color: #{$gray5};
+    --input-border-color: #{$gray40};
+    --input-border-checked-color: var(--primary-color);
+    --input-border-checked-hover-color: var(--primary-dark-color);
+    --input-border-checked-disabled-color: var(--primary-light-color);
+    --input-border-hover-color: var(--primary-dark-color);
+    --input-switch-border-hover-color: #{$gray60};
+    --input-textinput-border-hover-color: #{$gray60};
+    --input-border-disabled-color: var(--disabled-color);
+    --input-border-readonly-color: var(--disabled-color);
+    --input-rest-color: var(--primary-color);
+    --input-hover-color: var(--primary-dark-color);
+    --input-active-color: var(--primary-darkest-color);
+
+    --input-label-color: var(--text-primary-color);
+    --input-label-disabled-color: var(--text-secondary-color);
+
+    --input-placeholder-color: var(--text-secondary-color);
+    --input-placeholder-disabled-color: var(--text-disabled-color);
+    --input-text-color: var(--text-primary-color);
+    --input-text-disabled-color: var(--text-disabled-color);
+
+    --input-icon-color: #{$gray50};
+    --input-icon-disabled-color: #{$gray50};
+    --input-checkbox-icon-color: #{$white};
+
+    --skeleton-color: #{$gray40};
+    --skeleton-gradient: linear-gradient(to right, #{$gray40} 0%, #{$gray10} 50%, #{$gray40} 100%) repeat;
+
+    --overlay-color: rgba(29, 30, 38, 0.8);
+
+    --shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.1), 0 1px 3px 0 rgba(29, 30, 38, 0.1);
+
+    // --------------------
+
+    --border-radius: 0;
+
+
+    @include defineColorsByName('accent', $green);
+    @include defineColorsByName('primary', $blue);
+    @include defineColorsByName('negative', $red, 35%, 40%);
+
+    :global(.button-color-secondary) {
+        --caption-halftone-color: var(--secondary-dark-color);
+    }
+}

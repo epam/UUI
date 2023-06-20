@@ -5,7 +5,7 @@ import {
 } from '@epam/promo';
 import { BaseDocsBlock, UUI4 } from '../../common/docs';
 import { getQuery } from '../../helpers';
-import css from './DownloadsDoc.scss';
+import css from './DownloadsDoc.module.scss';
 import { ReactComponent as Artbord } from '../../icons/artboard.svg';
 import { ReactComponent as Sketch } from '../../icons/sketch.svg';
 import { ReactComponent as FontIcon } from '../../icons/fonts_icon.svg';
@@ -108,7 +108,6 @@ const assets = {
 
 export class DownloadsDoc extends BaseDocsBlock {
     title = 'Downloads';
-
     renderDocTitle() {
         return (
             <FlexRow>

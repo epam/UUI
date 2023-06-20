@@ -5,7 +5,6 @@ import {
 
 export class FlexCellDoc extends BaseDocsBlock {
     title = 'FlexCell';
-
     getPropsDocPath() {
         return {
             [UUI4]: './app/src/docs/_props/epam-promo/components/layout/FlexItems/flexCell.props.tsx',

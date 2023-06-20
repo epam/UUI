@@ -3,7 +3,6 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common/docs';
 
 export class FormDoc extends BaseDocsBlock {
     title = 'Form';
-
     renderContent() {
         return (
             <>

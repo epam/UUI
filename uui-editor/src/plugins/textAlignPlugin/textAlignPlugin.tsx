@@ -1,6 +1,6 @@
 import { RenderBlockProps, Editor } from "slate-react";
 import { Editor as CoreEditor } from "slate";
-import css from './textAlign.scss';
+import css from './textAlign.module.scss';
 import * as React from "react";
 import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { ReactComponent as AlignLeft } from '../../icons/align-left.svg';

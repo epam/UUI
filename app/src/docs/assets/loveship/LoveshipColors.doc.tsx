@@ -1,31 +1,37 @@
 import * as React from 'react';
-import {
-    FlexCell, FlexRow, NotificationCard, RichTextView, Text, Tooltip,
-} from '@epam/promo';
-import { cx, INotification } from '@epam/uui-core';
-import { copyTextToClipboard } from './../../../helpers';
-import { svc } from './../../../services';
+import { FlexCell, FlexRow, NotificationCard, RichTextView, Text, Tooltip } from '@epam/promo';
+import { arrayToMatrix, cx, INotification } from '@epam/uui-core';
+import { copyTextToClipboard } from '../../../helpers';
+import { svc } from '../../../services';
 import { ReactComponent as NotificationIcon } from './../../../icons/notification-check-fill-24.svg';
-import style from '@epam/loveship/assets/styles/scss/loveship-color-vars.scss';
-import css from './LoveshipColorsDoc.scss';
+import css from './LoveshipColorsDoc.module.scss';
 
-type BasicColorsTypes = 'sun' | 'grass' | 'fire' | 'sky';
-type AdditionalColorsTypes = 'red' | 'pink' | 'purple' | 'indigo' | 'blue' | 'cyan' | 'teal' | 'green' | 'lime' | 'yellow' | 'amber' | 'orange';
-
-const basicColors = {
-    sky: [
-        { hasVariable: false, hex: '#E1F4FA', contrastText: false }, { hasVariable: false, hex: '#C4EAF5', contrastText: false }, { hasVariable: true, hex: '#009ECC', contrastText: true }, { hasVariable: false, hex: '#008ABD', contrastText: true }, { hasVariable: false, hex: '#0079AD', contrastText: true },
-    ],
-    grass: [
-        { hasVariable: false, hex: '#EBF3D8', contrastText: false }, { hasVariable: false, hex: '#D6E6B2', contrastText: false }, { hasVariable: true, hex: '#67A300', contrastText: true }, { hasVariable: false, hex: '#558A00', contrastText: true }, { hasVariable: false, hex: '#428024', contrastText: true },
-    ],
-    sun: [
-        { hasVariable: false, hex: '#FFEDC9', contrastText: false }, { hasVariable: false, hex: '#FFDD96', contrastText: false }, { hasVariable: true, hex: '#FCAA00', contrastText: false }, { hasVariable: false, hex: '#F67E00', contrastText: true }, { hasVariable: false, hex: '#E64C00', contrastText: true },
-    ],
-    fire: [
-        { hasVariable: false, hex: '#FDE1E1', contrastText: false }, { hasVariable: false, hex: '#FCC8C8', contrastText: false }, { hasVariable: true, hex: '#FA4B4B', contrastText: true }, { hasVariable: false, hex: '#CC2929', contrastText: true }, { hasVariable: false, hex: '#B32424', contrastText: true },
-    ],
-};
+const basicColors = [
+    { name: 'sky-soft', hasVariable: true, hex: '#F5FDFF', context: '' },
+    { name: 'sky-lightest', hasVariable: true, hex: '#E1F4FA', context: '' },
+    { name: 'sky-light', hasVariable: true, hex: '#A0DDEE', context: '' },
+    { name: 'sky', hasVariable: true, hex: '#009ECC', context: '' },
+    { name: 'sky-dark', hasVariable: true, hex: '#0086AD', context: '' },
+    { name: 'sky-darkest', hasVariable: true, hex: '#006B8A', context: '' },
+    { name: 'grass-soft', hasVariable: true, hex: '#FCFFF5', context: '' },
+    { name: 'grass-lightest', hasVariable: true, hex: '#EBF3D8', context: '' },
+    { name: 'grass-light', hasVariable: true, hex: '#C1E288', context: '' },
+    { name: 'grass', hasVariable: true, hex: '#67A300', context: '' },
+    { name: 'grass-dark', hasVariable: true, hex: '#528500', context: '' },
+    { name: 'grass-darkest', hasVariable: true, hex: '#396F1F', context: '' },
+    { name: 'sun-soft', hasVariable: true, hex: '#FFFCF5', context: '' },
+    { name: 'sun-lightest', hasVariable: true, hex: '#FFEDC9', context: '' },
+    { name: 'sun-light', hasVariable: true, hex: '#FFD785', context: '' },
+    { name: 'sun', hasVariable: true, hex: '#FCAA00', context: '' },
+    { name: 'sun-dark', hasVariable: true, hex: '#FF9000', context: '' },
+    { name: 'sun-darkest', hasVariable: true, hex: '#BD5800', context: '' },
+    { name: 'fire-soft', hasVariable: true, hex: '#FEF6F6', context: '' },
+    { name: 'fire-lightest', hasVariable: true, hex: '#FDE1E1', context: '' },
+    { name: 'fire-light', hasVariable: true, hex: '#FBB6B6', context: '' },
+    { name: 'fire', hasVariable: true, hex: '#FF4242', context: '' },
+    { name: 'fire-dark', hasVariable: true, hex: '#E22A2A', context: '' },
+    { name: 'fire-darkest', hasVariable: true, hex: '#AD0000', context: '' },
+];
 
 const grayscaleColors = [
     {
@@ -54,44 +60,56 @@ const grayscaleColors = [
     },
 ];
 
-const additionalColors = {
-    red: [
-        { hex: '#FFEADB', contrastText: false }, { hex: '#FFD7BE', contrastText: false }, { hex: '#FFC09E', contrastText: false }, { hex: '#FFA47F', contrastText: false }, { hex: '#FF8561', contrastText: false }, { hex: '#FC6449', contrastText: true }, { hex: '#F44336', contrastText: true }, { hex: '#E02C24', contrastText: true }, { hex: '#C01A17', contrastText: true }, { hex: '#8C0E0E', contrastText: true },
-    ],
-    orange: [
-        { hex: '#FFECD9', contrastText: false }, { hex: '#FFE1BD', contrastText: false }, { hex: '#FFD091', contrastText: false }, { hex: '#FFB851', contrastText: false }, { hex: '#FF9800', contrastText: false }, { hex: '#FB8200', contrastText: false }, { hex: '#F46900', contrastText: true }, { hex: '#E44E00', contrastText: true }, { hex: '#C63100', contrastText: true }, { hex: '#991900', contrastText: true },
-    ],
-    amber: [
-        { hex: '#FFF7E6', contrastText: false }, { hex: '#FFE7B9', contrastText: false }, { hex: '#FFD88E', contrastText: false }, { hex: '#FECB69', contrastText: false }, { hex: '#FDBE4C', contrastText: false }, { hex: '#FBB035', contrastText: false }, { hex: '#F6A024', contrastText: false }, { hex: '#EA8C18', contrastText: true }, { hex: '#D47110', contrastText: true }, { hex: '#B3530B', contrastText: true },
-    ],
-    yellow: [
-        { hex: '#FFFFF2', contrastText: false }, { hex: '#FFFECC', contrastText: false }, { hex: '#FFFCA4', contrastText: false }, { hex: '#FFF57D', contrastText: false }, { hex: '#FEE759', contrastText: false }, { hex: '#FDD63B', contrastText: false }, { hex: '#FCC425', contrastText: false }, { hex: '#FAB516', contrastText: false }, { hex: '#F5AA0E', contrastText: true }, { hex: '#E39B0B', contrastText: true },
-    ],
-    lime: [
-        { hex: '#F7FFCC', contrastText: false }, { hex: '#F0FCA8', contrastText: false }, { hex: '#E8F681', contrastText: false }, { hex: '#DDEC5B', contrastText: false }, { hex: '#CDDC39', contrastText: false }, { hex: '#B3C91F', contrastText: true }, { hex: '#97B20E', contrastText: true }, { hex: '#7B9905', contrastText: true }, { hex: '#627F01', contrastText: true }, { hex: '#4D6600', contrastText: true },
-    ],
-    green: [
-        { hex: '#E8FFE6', contrastText: false }, { hex: '#C7FDC2', contrastText: false }, { hex: '#A8F9A0', contrastText: false }, { hex: '#8EF384', contrastText: false }, { hex: '#78EA70', contrastText: false }, { hex: '#67DE61', contrastText: true }, { hex: '#57CB56', contrastText: true }, { hex: '#4CAF50', contrastText: true }, { hex: '#1E8F2F', contrastText: true }, { hex: '#00661A', contrastText: true },
-    ],
-    teal: [
-        { hex: '#E7FCF7', contrastText: false }, { hex: '#B9FBEC', contrastText: false }, { hex: '#8CF8E0', contrastText: false }, { hex: '#64F4D5', contrastText: false }, { hex: '#43ECCB', contrastText: false }, { hex: '#2AE2C1', contrastText: true }, { hex: '#16D1B5', contrastText: true }, { hex: '#09B9A3', contrastText: true }, { hex: '#009688', contrastText: true }, { hex: '#11736E', contrastText: true },
-    ],
-    cyan: [
-        { hex: '#EBFFFD', contrastText: false }, { hex: '#C2FCF8', contrastText: false }, { hex: '#9BF7F1', contrastText: false }, { hex: '#78EFEA', contrastText: false }, { hex: '#5CE2E3', contrastText: false }, { hex: '#46C8D3', contrastText: true }, { hex: '#35ADBF', contrastText: true }, { hex: '#2791A4', contrastText: true }, { hex: '#1D7586', contrastText: true }, { hex: '#145866', contrastText: true },
-    ],
-    blue: [
-        { hex: '#F3FDFF', contrastText: false }, { hex: '#DCFAFF', contrastText: false }, { hex: '#C5F6FF', contrastText: false }, { hex: '#95EAFF', contrastText: false }, { hex: '#4BC9FF', contrastText: false }, { hex: '#32B2FB', contrastText: true }, { hex: '#2196F3', contrastText: true }, { hex: '#0E74E2', contrastText: true }, { hex: '#0453C7', contrastText: true }, { hex: '#003399', contrastText: true },
-    ],
-    indigo: [
-        { hex: '#F4E6FF', contrastText: false }, { hex: '#F1DEFF', contrastText: false }, { hex: '#E4CFFF', contrastText: false }, { hex: '#CAB5FC', contrastText: false }, { hex: '#9D8FE9', contrastText: false }, { hex: '#6362C9', contrastText: true }, { hex: '#3F51B5', contrastText: true }, { hex: '#2E3A9D', contrastText: true }, { hex: '#21288D', contrastText: true }, { hex: '#191980', contrastText: true },
-    ],
-    purple: [
-        { hex: '#FFDEF6', contrastText: false }, { hex: '#FBDAF3', contrastText: false }, { hex: '#F4C7EA', contrastText: false }, { hex: '#E9A4DF', contrastText: false }, { hex: '#DA76D5', contrastText: false }, { hex: '#C047C7', contrastText: true }, { hex: '#9C27B0', contrastText: true }, { hex: '#8018A0', contrastText: true }, { hex: '#680B8F', contrastText: true }, { hex: '#550080', contrastText: true },
-    ],
-    pink: [
-        { hex: '#FFDEDE', contrastText: false }, { hex: '#FFD7D9', contrastText: false }, { hex: '#FFC6CA', contrastText: false }, { hex: '#FFA9B3', contrastText: false }, { hex: '#FD8197', contrastText: false }, { hex: '#F5527B', contrastText: true }, { hex: '#E91E63', contrastText: true }, { hex: '#CD0053', contrastText: true }, { hex: '#B00052', contrastText: true }, { hex: '#94004C', contrastText: true },
-    ],
-};
+const additionalColors = [
+    { name: 'yellow-5', hasVariable: true, hex: '#FFFFF0', context: '' },
+    { name: 'yellow-10', hasVariable: true, hex: '#FFFECC', context: '' },
+    { name: 'yellow-20', hasVariable: true, hex: '#FFFCA4', context: '' },
+    { name: 'yellow-30', hasVariable: true, hex: '#FDD63B', context: '' },
+    { name: 'yellow-40', hasVariable: true, hex: '#F9B71D', context: '' },
+    { name: 'yellow-50', hasVariable: true, hex: '#D3910C', context: '' },
+    { name: 'orange-5', hasVariable: true, hex: '#FEF8F4', context: '' },
+    { name: 'orange-10', hasVariable: true, hex: '#FFE8D7', context: '' },
+    { name: 'orange-20', hasVariable: true, hex: '#FFCCA7', context: '' },
+    { name: 'orange-30', hasVariable: true, hex: '#FF8B3E', context: '' },
+    { name: 'orange-40', hasVariable: true, hex: '#F76B0D', context: '' },
+    { name: 'orange-50', hasVariable: true, hex: '#BD4B00', context: '' },
+    { name: 'fuchia-5', hasVariable: true, hex: '#FFF7FB', context: '' },
+    { name: 'fuchia-10', hasVariable: true, hex: '#F9D8E7', context: '' },
+    { name: 'fuchia-20', hasVariable: true, hex: '#EDADC8', context: '' },
+    { name: 'fuchia-30', hasVariable: true, hex: '#EA4386', context: '' },
+    { name: 'fuchia-40', hasVariable: true, hex: '#D61E68', context: '' },
+    { name: 'fuchia-50', hasVariable: true, hex: '#AE1955', context: '' },
+    { name: 'purple-5', hasVariable: true, hex: '#FDF6FE', context: '' },
+    { name: 'purple-10', hasVariable: true, hex: '#F2CCFA', context: '' },
+    { name: 'purple-20', hasVariable: true, hex: '#E79DF5', context: '' },
+    { name: 'purple-30', hasVariable: true, hex: '#B114D1', context: '' },
+    { name: 'purple-40', hasVariable: true, hex: '#860F9E', context: '' },
+    { name: 'purple-50', hasVariable: true, hex: '#5E0B6F', context: '' },
+    { name: 'lavanda-5', hasVariable: true, hex: '#F8F6FE', context: '' },
+    { name: 'lavanda-10', hasVariable: true, hex: '#DBCCFA', context: '' },
+    { name: 'lavanda-20', hasVariable: true, hex: '#BB9DF5', context: '' },
+    { name: 'lavanda-30', hasVariable: true, hex: '#773CEC', context: '' },
+    { name: 'lavanda-40', hasVariable: true, hex: '#5514D6', context: '' },
+    { name: 'lavanda-50', hasVariable: true, hex: '#40109E', context: '' },
+    { name: 'cobalt-5', hasVariable: true, hex: '#F8FAFF', context: '' },
+    { name: 'cobalt-10', hasVariable: true, hex: '#D9E2FC', context: '' },
+    { name: 'cobalt-20', hasVariable: true, hex: '#AEC0F5', context: '' },
+    { name: 'cobalt-30', hasVariable: true, hex: '#0F98FF', context: '' },
+    { name: 'cobalt-40', hasVariable: true, hex: '#006FE5', context: '' },
+    { name: 'cobalt-50', hasVariable: true, hex: '#0954A5', context: '' },
+    { name: 'cyan-5', hasVariable: true, hex: '#F5FBFF', context: '' },
+    { name: 'cyan-10', hasVariable: true, hex: '#D1FAFA', context: '' },
+    { name: 'cyan-20', hasVariable: true, hex: '#AAEEEE', context: '' },
+    { name: 'cyan-30', hasVariable: true, hex: '#14CCCC', context: '' },
+    { name: 'cyan-40', hasVariable: true, hex: '#0F9E9E', context: '' },
+    { name: 'cyan-50', hasVariable: true, hex: '#0B6F6F', context: '' },
+    { name: 'mint-5', hasVariable: true, hex: '#F2FCF5', context: '' },
+    { name: 'mint-10', hasVariable: true, hex: '#DDF3E4', context: '' },
+    { name: 'mint-20', hasVariable: true, hex: '#B4DFC4', context: '' },
+    { name: 'mint-30', hasVariable: true, hex: '#4FC48C', context: '' },
+    { name: 'mint-40', hasVariable: true, hex: '#2E9E68', context: '' },
+    { name: 'mint-50', hasVariable: true, hex: '#236E4A', context: '' },
+];
 
 export class LoveshipColorsDoc extends React.Component {
     showNotification() {
@@ -108,16 +126,17 @@ export class LoveshipColorsDoc extends React.Component {
     }
 
     renderBasicColors() {
+        const colorMatrix = arrayToMatrix(basicColors, 6);
         return (
             <RichTextView size="16" cx={ css.container }>
                 <h2>Basics</h2>
                 <FlexRow>
-                    {(Object.keys(basicColors) as Array<BasicColorsTypes>).map((nameColor, index) => {
+                    {colorMatrix.map((column, i) => {
                         return (
-                            <FlexCell key={ index } minWidth={ 120 }>
-                                {basicColors[nameColor].map((color, index) => {
+                            <FlexCell key={ i } minWidth={ 120 }>
+                                {column.map((color, index) => {
                                     return (
-                                        <div key={ index } className={ cx(css.box, css.basicColorBox, style[`color-${nameColor}`]) }>
+                                        <div key={ index } className={ cx(css.box, css.basicColorBox, css[`basic-color-${color.name}`]) }>
                                             <div
                                                 className={ cx(css.hexText, color.contrastText && css.contrastText) }
                                                 onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }
@@ -125,7 +144,7 @@ export class LoveshipColorsDoc extends React.Component {
                                                 {color.hex}
                                             </div>
                                             {color.hasVariable && (
-                                                <div className={ cx(css.colorName, color.contrastText && css.contrastText) } onClick={ () => {} }>{`$${nameColor}`}</div>
+                                                <div className={ cx(css.colorName, color.contrastText && css.contrastText) } onClick={ () => {} }>{`$${color.name}`}</div>
                                             )}
                                         </div>
                                     );
@@ -163,8 +182,8 @@ export class LoveshipColorsDoc extends React.Component {
                 <FlexRow>
                     {grayscaleColors.map((color) => {
                         return (
-                            <Tooltip key={ color.name } content={ false && color.context }>
-                                <div className={ cx(css.box, css.grayscaleColorBox, style[`color-${color.name}`]) }>
+                            <Tooltip key={ color.name } content={ color.context }>
+                                <div className={ cx(css.box, css.grayscaleColorBox, css[`grayscale-color-${color.name}`]) }>
                                     <div className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }>
                                         {color.hex}
                                     </div>
@@ -183,23 +202,24 @@ export class LoveshipColorsDoc extends React.Component {
     }
 
     renderAdditionalColors() {
+        const colorMatrix = arrayToMatrix(additionalColors, 6);
         return (
             <RichTextView size="16" cx={ css.container }>
                 <h2>Additional</h2>
                 <FlexRow>
-                    {(Object.keys(additionalColors) as Array<AdditionalColorsTypes>).map((nameColor: AdditionalColorsTypes, index: number) => {
+                    {colorMatrix.map((column, index) => {
                         return (
-                            <FlexCell key={ index } minWidth={ 80 }>
-                                {additionalColors[nameColor].map((color, index: number) => {
+                            <FlexCell key={ index } minWidth={ 120 }>
+                                {column.map((color, index) => {
                                     return (
-                                        <div key={ index } className={ cx(css.box, css.additionalColorBox) } style={ { backgroundColor: color.hex } }>
-                                            <div
-                                                className={ cx(css.hexText, color.contrastText && css.contrastText) }
-                                                onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }
-                                            >
-                                                {color.hex}
+                                        <Tooltip content={ color.context } key={ index }>
+                                            <div className={ cx(css.box, css.additionalColorBox, css[`additional-color-${color.name}`]) }>
+                                                <div className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }>
+                                                    {color.hex}
+                                                </div>
+                                                {color.hasVariable && <div className={ css.colorName } onClick={ () => {} }>{`$${color.name}`}</div>}
                                             </div>
-                                        </div>
+                                        </Tooltip>
                                     );
                                 })}
                             </FlexCell>

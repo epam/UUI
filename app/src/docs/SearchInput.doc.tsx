@@ -5,7 +5,6 @@ import {
 
 export class SearchInputDoc extends BaseDocsBlock {
     title = 'Search Input';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/searchInput.props.ts',

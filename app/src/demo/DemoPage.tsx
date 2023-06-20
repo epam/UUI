@@ -5,7 +5,7 @@ import { svc } from '../services';
 import { demoItems } from './structure';
 import { analyticsEvents } from '../analyticsEvents';
 import { getQuery } from '../helpers';
-import css from './DemoPage.scss';
+import css from './DemoPage.module.scss';
 import { useEffect } from 'react';
 import { useFullScreenApi } from '../common/services/useFullScreenApi';
 import { AppFooterDemo } from '../common/appFooterDemo/AppFooterDemo';

@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Accordion, Button, FlexCell, FlexRow, FlexSpacer, Text,
 } from '@epam/promo';
-import css from './BasicExample.scss';
+import css from './BasicExample.module.scss';
 import { demoData } from '@epam/uui-docs';
 
 const componentAsDemoContent = (

@@ -4,9 +4,7 @@ import { LayoutLayer } from '../types/objects';
 
 export class LayoutContext extends BaseContext {
     layerIdCounter = 0;
-
     layers: LayoutLayer[] = [];
-
     public getLayer(): LayoutLayer {
         const topLayer = maxBy(this.layers, (l) => l.depth);
         const depth = topLayer ? topLayer.depth + 1 : 0;

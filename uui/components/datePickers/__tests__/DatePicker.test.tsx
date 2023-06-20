@@ -1,38 +1,27 @@
 import * as React from 'react';
 import {
     renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen,
-} from '@epam/test-utils';
+} from '@epam/uui-test-utils';
 import { DatePicker, DatePickerProps } from '../DatePicker';
 
-jest.mock('react-popper', () => {
-    const PopperJS = jest.requireActual('react-popper');
-    const Popper = function PopperMock({ children }: any) {
+jest.mock('react-popper', () => ({
+    ...jest.requireActual('react-popper'),
+    Popper: function PopperMock({ children }: any) {
         return children({
             ref: jest.fn,
-            placement: 'bottom-start',
-            style: {
-                position: 'fixed',
-                top: 0,
-                right: 'auto',
-                bottom: 'auto',
-                left: 0,
-            },
             update: jest.fn(),
+            style: {},
+            arrowProps: { ref: jest.fn },
+            placement: 'bottom-start',
             isReferenceHidden: false,
-            arrowProps: {
-                ref: jest.fn,
-            },
         });
-    };
-    return {
-        ...PopperJS,
-        Popper,
-    };
-});
-async function setupDatePicker(params: { value: string | null; format: string }) {
+    },
+}));
+
+async function setupDatePicker(params: Partial<DatePickerProps>) {
     const { format, value } = params;
 
-    const { result, mocks, setProps } = await setupComponentForTest<DatePickerProps>(
+    const { mocks, setProps } = await setupComponentForTest<DatePickerProps>(
         (context) => ({
             value,
             format,
@@ -45,12 +34,12 @@ async function setupDatePicker(params: { value: string | null; format: string })
 
     const input = screen.queryByRole('textbox') as HTMLInputElement;
     const clear = screen.queryByRole('button');
+    const dom = { input, clear };
 
     return {
-        result,
         setProps,
-        mocks: { onValueChange: mocks.onValueChange },
-        dom: { input, clear },
+        mocks,
+        dom,
     };
 }
 

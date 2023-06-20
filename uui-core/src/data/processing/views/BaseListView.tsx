@@ -12,7 +12,7 @@ import {
     CascadeSelectionTypes,
     VirtualListRange,
 } from '../../../types';
-import { ITree } from './tree/ITree';
+import { ITree, NOT_FOUND_RECORD } from './tree/ITree';
 
 interface NodeStats {
     isSomeCheckable: boolean;
@@ -24,27 +24,17 @@ interface NodeStats {
 
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     protected tree: ITree<TItem, TId>;
-
     protected rows: DataRowProps<TItem, TId>[] = [];
-
     public value: DataSourceState<TFilter, TId> = {};
-
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
-
     protected checkedByKey: Record<string, boolean> = {};
-
     protected someChildCheckedByKey: Record<string, boolean> = {};
-
     public selectAll?: ICheckable;
-
     protected isDestroyed = false;
-
     protected hasMoreRows = false;
-
     abstract getById(id: TId, index: number): DataRowProps<TItem, TId>;
     abstract getVisibleRows(): DataRowProps<TItem, TId>[];
     abstract getListProps(): DataSourceListProps;
-
     _forceUpdate() {
         !this.isDestroyed && this.onValueChange({ ...this.value });
     }
@@ -79,10 +69,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             this.checkedByKey[this.idToKey(id)] = true;
             if (this.tree && this.props.getParentId) {
                 const item = this.tree.getById(id);
-                if (item) {
+                if (item !== NOT_FOUND_RECORD) {
                     const parentId = this.props.getParentId(item);
                     if (!this.someChildCheckedByKey[this.idToKey(parentId)]) {
-                        const parents = this.tree.getParentIdsRecursive(id);
+                        const parents = this.tree.getParentIdsRecursive(id).reverse();
                         for (const parent of parents) {
                             if (this.someChildCheckedByKey[this.idToKey(parent)]) {
                                 break;
@@ -100,7 +90,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected idToKey(id: TId) {
-        return JSON.stringify(id);
+        return typeof id === 'object' ? JSON.stringify(id) : `${id}`;
     }
 
     protected keyToId(key: string) {
@@ -122,8 +112,21 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         if (visibleCount !== undefined) {
             checked = checked.slice(topIndex, topIndex + visibleCount);
         }
+        const selectedRows: Array<DataRowProps<TItem, TId>> = [];
+        const missingIds: TId[] = [];
+        checked.forEach((id, n) => {
+            const row = this.getById(id, topIndex + n);
+            if (row.isUnknown) {
+                missingIds.push(id);
+            }
+            selectedRows.push(row);
+        });
+        if (missingIds.length) {
+            console.error(`DataSource can't find selected/checked items with following IDs: ${missingIds.join(', ')}.
+                Read more here: https://github.com/epam/UUI/issues/89`);
+        }
 
-        return checked.map((id, n) => this.getById(id, topIndex + n));
+        return selectedRows;
     };
 
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
@@ -138,7 +141,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     };
 
     protected isSelectAllEnabled() {
-        return this.props.selectAll == undefined ? true : this.props.selectAll;
+        return this.props.selectAll === undefined ? true : this.props.selectAll;
     }
 
     protected handleOnSelect = (rowProps: DataRowProps<TItem, TId>) => {
@@ -176,10 +179,13 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     };
 
     protected isFolded(item: TItem) {
+        const searchIsApplied = !!this.value?.search;
+        if (searchIsApplied) {
+            return false;
+        }
+
         const folded = this.value.folded || {};
-
         const key = this.idToKey(this.props.getId(item));
-
         if (folded[key] != null) {
             return folded[key];
         }
@@ -213,7 +219,12 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected applyRowOptions(row: DataRowProps<TItem, TId>) {
-        const rowOptions = this.props.getRowOptions && !row.isLoading ? this.props.getRowOptions(row.value, row.index) : this.props.rowOptions;
+        const externalRowOptions = (this.props.getRowOptions && !row.isLoading)
+            ? this.props.getRowOptions(row.value, row.index)
+            : {};
+
+        const rowOptions = { ...this.props.rowOptions, ...externalRowOptions };
+        
         const estimatedChildrenCount = this.getEstimatedChildrenCount(row.id);
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
 
@@ -250,16 +261,38 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected getLoadingRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
-        const rowOptions = this.props.rowOptions;
+        const rowProps = this.getEmptyRowProps(id, index, path);
+        return {
+            ...rowProps,
+            checkbox: { ...rowProps.checkbox, isDisabled: true },
+            isLoading: true,
+        };
+    }
 
+    protected getUnknownRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
+        const emptyRowProps = this.getEmptyRowProps(id, index, path);
+        const rowOptions = this.props.rowOptions;
+        const checkbox = (rowOptions?.checkbox?.isVisible || emptyRowProps.isChecked) ? { isVisible: true, isDisabled: false } : undefined;
+        return {
+            ...emptyRowProps,
+            checkbox,
+            isUnknown: true,
+        };
+    }
+
+    private getEmptyRowProps(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
+        const rowOptions = this.props.rowOptions;
+        const checked = this.value?.checked ?? [];
+        const isChecked = checked.includes(id);
         return {
             id,
             rowKey: this.idToKey(id),
+            value: undefined,
             index,
-            isLoading: true,
             depth: path ? path.length : 0,
             path: path ?? [],
             checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
+            isChecked,
         };
     }
 
@@ -269,7 +302,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         const lastIndex = this.getLastRecordIndex();
 
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
-        const searchIsApplied = !!this.value?.search;
         const iterateNode = (
             parentId: TId,
             appendRows: boolean, // Will be false, if we are iterating folded nodes.
@@ -285,6 +317,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             for (let n = 0; n < ids.length; n++) {
                 const id = ids[n];
                 const item = this.tree.getById(id);
+                if (item === NOT_FOUND_RECORD) {
+                    continue;
+                }
+
                 const row = this.getRowProps(item, rows.length);
 
                 if (appendRows && (!this.isPartialLoad() || (this.isPartialLoad() && rows.length < lastIndex))) {
@@ -294,18 +330,14 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 }
 
                 stats = this.getRowStats(row, stats);
-                row.isLastChild = n == ids.length - 1 && nodeInfo.count === ids.length;
+                row.isLastChild = n === ids.length - 1 && nodeInfo.count === ids.length;
                 row.indent = isFlattenSearch ? 0 : row.path.length + 1;
                 const estimatedChildrenCount = this.getEstimatedChildrenCount(id);
                 if (!isFlattenSearch && estimatedChildrenCount !== undefined) {
                     const childrenIds = this.tree.getChildrenIdsByParentId(id);
 
                     if (estimatedChildrenCount > 0) {
-                        let isFolded = this.isFolded(item);
-                        if (searchIsApplied && childrenIds.length > 0) {
-                            isFolded = false;
-                        }
-                        row.isFolded = isFolded;
+                        row.isFolded = this.isFolded(item);
                         row.onFold = row.isFoldable && this.handleOnFold;
 
                         if (childrenIds.length > 0) {
@@ -318,10 +350,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                             // children are not loaded
                             const parentsWithRow = [...row.path, this.tree.getPathItem(item)];
                             for (let m = 0; m < estimatedChildrenCount && rows.length < lastIndex; m++) {
-                                const row = this.getLoadingRow('_loading_' + rows.length, rows.length, parentsWithRow);
-                                row.indent = parentsWithRow.length + 1;
-                                row.isLastChild = m == estimatedChildrenCount - 1;
-                                rows.push(row);
+                                const loadingRow = this.getLoadingRow('_loading_' + rows.length, rows.length, parentsWithRow);
+                                loadingRow.indent = parentsWithRow.length + 1;
+                                loadingRow.isLastChild = m === estimatedChildrenCount - 1;
+                                rows.push(loadingRow);
                                 currentLevelRows++;
                             }
                         }
@@ -330,7 +362,9 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             }
 
             const pathToParent = this.tree.getPathById(parentId);
-            const path = parentId ? [...pathToParent, this.tree.getPathItem(this.tree.getById(parentId))] : pathToParent;
+            const parent = this.tree.getById(parentId);
+            const parentPathItem = parent !== NOT_FOUND_RECORD ? [this.tree.getPathItem(parent)] : [];
+            const path = parentId ? [...pathToParent, ...parentPathItem] : pathToParent;
             if (appendRows) {
                 let missingCount: number = this.getMissingRecordsCount(parentId, rows.length, currentLevelRows);
                 if (missingCount > 0) {
@@ -349,7 +383,9 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
             const isListFlat = path.length === 0 && !layerRows.some((r) => r.isFoldable);
             if (isListFlat || isFlattenSearch) {
-                layerRows.forEach((r) => (r.indent = 0));
+                layerRows.forEach((r) => {
+                    r.indent = 0;
+                });
             }
 
             return stats;
@@ -380,10 +416,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     private getEstimatedChildrenCount = (id: TId) => {
-        if (!id) return undefined;
+        if (id === undefined) return undefined;
 
         const item = this.tree.getById(id);
-        if (!item) return undefined;
+        if (item === NOT_FOUND_RECORD) return undefined;
 
         const childCount = this.getChildCount(item);
         if (childCount === undefined) return undefined;
@@ -410,7 +446,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
         const lastIndex = this.getLastRecordIndex();
         // estimatedChildCount = undefined for top-level rows only.
-        if (!id && totalRowsCount < lastIndex) {
+        if (id === undefined && totalRowsCount < lastIndex) {
             return lastIndex - totalRowsCount; // let's put placeholders down to the bottom of visible list
         }
 
@@ -479,9 +515,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     });
 
     protected canBeSelected = (row: DataRowProps<TItem, TId>) => row.checkbox && row.checkbox.isVisible && !row.checkbox.isDisabled;
-
     protected getLastRecordIndex = () => this.value.topIndex + this.value.visibleCount;
-
     protected shouldRebuildTree = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) =>
         this.searchWasChanged(prevValue, newValue)
         || this.sortingWasChanged(prevValue, newValue)
@@ -493,17 +527,12 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         !prevValue || !isEqual(newValue.checked, prevValue.checked) || newValue.selectedId !== prevValue.selectedId || newValue.folded !== prevValue.folded;
 
     protected sortingWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) => !isEqual(newValue.sorting, prevValue.sorting);
-
     protected filterWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) => !isEqual(newValue.filter, prevValue.filter);
-
     protected searchWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) => newValue.search !== prevValue.search;
-
     protected abstract handleSelectAll(checked: boolean): void;
     protected abstract getChildCount(item: TItem): number | undefined;
     protected isFlattenSearch = () => false;
-
     protected isPartialLoad = () => false;
-
     public loadData() {}
     public abstract reload(): void;
 }

@@ -19,12 +19,14 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             renderRow: (props) => (
                 <DataPickerRow
                     { ...props }
+                    padding="12"
                     size="36"
                     key={ props.rowKey }
                     renderItem={ (item: any) => <Badge fill="transparent" color={ item.name.toLowerCase() } caption={ item.name } /> }
                 />
             ),
             predicates: defaultPredicates.multiPicker,
+            showSearch: false,
         }, {
             field: 'countryId',
             columnKey: 'countryName',
@@ -35,6 +37,7 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
                 <DataPickerRow
                     { ...props }
                     size="36"
+                    padding="12"
                     key={ props.rowKey }
                     renderItem={ (item: Country, rowProps) => <PickerItem { ...rowProps } title={ item.name } subtitle={ item.capital } /> }
                 />
@@ -80,6 +83,7 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             predicates: [
                 { predicate: 'eq', name: '=' }, { predicate: 'neq', name: '≠' }, { predicate: 'lte', name: '≤' }, { predicate: 'gte', name: '≥' },
             ],
+            showSearch: false,
         }, {
             field: 'salary',
             columnKey: 'salary',
@@ -96,6 +100,7 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             columnKey: 'birthDate',
             title: 'Birth Date',
             type: 'rangeDatePicker',
+            filter: (day) => day.isSameOrBefore(new Date()),
             format: 'YYYY-MM-DD',
             predicates: defaultPredicates.rangeDatePicker,
         },

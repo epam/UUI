@@ -1,0 +1,199 @@
+@use  '../../assets/styles/index' as *;
+
+@mixin control-inline-mode() {
+    background-color: transparent;
+    border-color: transparent;
+    border-style: solid;
+    border-radius: var(--uui-text-area-border-radius);
+
+    &:hover {
+        border-color: var(--uui-secondary-disabled);
+    }
+
+    &:global(.uui-focus) {
+        //TODO: implement when we get a design
+        //@include control-focus-effect();
+        border-color: var(--uui-text-area-border-active);
+    }
+}
+
+.root {
+    :global(.uui-input) {
+        color: var(--uui-text-area-text);
+        fill: var(--uui-text-area-icon);
+        border-style: solid;
+        border-radius: var(--uui-text-area-border-radius);
+        font-family: var(--uui-text-area-font);
+        font-weight: var(--uui-text-area-font-weight, normal);
+        box-sizing: border-box;
+        padding-right: 18px;
+        padding-left: 12px;
+        overflow-x: hidden;  // Firefox add an extra row in textarea when overflow-x is not hidden
+
+        &::placeholder {
+            color: var(--uui-text-area-placeholder);
+        }
+
+        &:placeholder-shown {
+            text-overflow: ellipsis;
+        }
+
+        &::-moz-placeholder {
+            opacity: 1;
+        }
+
+        &:global(.uui-readonly) {
+            color: var(--uui-text-area-text);
+            fill: var(--uui-text-area-icon);
+            pointer-events: none;
+        }
+
+        &:global(.uui-disabled) {
+            color: var(--uui-text-area-text-disabled);
+            fill: var(--uui-text-area-text-disabled);
+            pointer-events: none;
+
+            &::placeholder {
+                color: var(--uui-text-area-text-disabled);
+            }
+        }
+    }
+
+    &.mode-form {
+        :global(.uui-input) {
+            background-color: var(--uui-text-area-bg);
+            border-color: var(--uui-text-area-border);
+
+            &:hover {
+                border-color: var(--uui-text-area-border-hover);
+            }
+
+            &:global(.uui-focus) {
+                border-color: var(--uui-text-area-border-active);
+            }
+
+            &:global(.uui-invalid) {
+                border-color: var(--uui-text-area-border-error);
+            }
+
+            &:global(.uui-readonly) {
+                background-color: var(--uui-text-area-bg-disabled);
+                border-color: var(--uui-text-area-border-disabled);
+            }
+
+            &:global(.uui-disabled) {
+                background-color: var(--uui-text-area-bg-disabled);
+                border-color: var(--uui-text-area-border-disabled);
+            }
+        }
+    }
+
+    &.mode-cell {
+        :global(.uui-input) {
+            background-color: transparent;
+            border-color: transparent;
+
+            &:global(.uui-readonly) {
+                background-color: transparent;
+                border-color: transparent;
+            }
+
+            &:global(.uui-disabled) {
+                background-color: transparent;
+                border-color: transparent;
+            }
+        }
+    }
+
+    &.mode-inline {
+        :global(.uui-input) {
+            @include control-inline-mode();
+            padding-left: 5px;
+            padding-right: 5px;
+
+            &:global(.uui-readonly) {
+                &:hover {
+                    border-color: transparent;
+                }
+
+                &:global(.uui-focus) {
+                    border-color: transparent;
+                    box-shadow: none;
+                }
+            }
+
+            &:global(.uui-disabled) {
+                background-color: transparent;
+                color: var(--uui-text-area-text-disabled);
+                fill: var(--uui-text-area-icon);
+                border-color: transparent;
+
+                &:hover, &:active, &:focus {
+                    background-color: transparent;
+                    color: var(--uui-text-area-text-disabled);
+                    fill: var(--uui-text-area-icon);
+                    border-color: transparent;
+                    box-shadow: none;
+                }
+
+                &::placeholder {
+                    color: var(--uui-text-area-placeholder);
+                }
+            }
+        }
+    }
+
+    :global(.uui-textarea-counter) {
+        line-height: 18px;
+        font-size: 12px;
+        color: var(--uui-text-area-icon);
+        font-family: var(--uui-text-area-counter-font);
+        font-weight: var(--uui-text-area-counter-font-weight, normal);
+    }
+
+    //Sizes
+    &.size-24 {
+        min-width: 24px;
+        min-height: 24px;
+
+        :global(.uui-input) {
+            @include text-size(24px, 1px);
+        }
+    }
+
+    &.size-30 {
+        min-width: 30px;
+        min-height: 30px;
+
+        :global(.uui-input) {
+            @include text-size(30px, 1px);
+        }
+    }
+
+    &.size-36 {
+        min-width: 36px;
+        min-height: 36px;
+
+        :global(.uui-input) {
+            @include text-size(36px, 1px);
+        }
+    }
+
+    &.size-42 {
+        min-width: 42px;
+        min-height: 42px;
+
+        :global(.uui-input) {
+            @include text-size(42px, 1px);
+        }
+    }
+
+    &.size-48 {
+        min-width: 48px;
+        min-height: 48px;
+
+        :global(.uui-input) {
+            @include text-size(48px, 1px);
+        }
+    }
+}

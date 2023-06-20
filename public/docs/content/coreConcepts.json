@@ -426,7 +426,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "let developers learn less. Similarly behaving components have similar APIs.",
+                    "text": "Let developers learn less. Similarly, behaving components have similar APIs.",
                     "marks": []
                   }
                 ]
@@ -445,7 +445,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "enforce API consistency.",
+                    "text": "Enforce API consistency.",
                     "marks": []
                   }
                 ]
@@ -464,7 +464,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "composability. If a component needs another component to plug into, it can request it with something like \"I need something IClickable.\" ",
+                    "text": "Composability. If a component needs another component to plug into, it can request it with something like \"I need something IClickable.\" ",
                     "marks": []
                   }
                 ]
@@ -641,7 +641,7 @@
               },
               {
                 "object": "text",
-                "text": "library. Most components implement this interface. This allows to put CSS classes to a component.CX can be an object or array, and all its non-falsy values would be put classes on the root of the component. Example: <Button cx={[ 'red', isActive && 'big ]} />",
+                "text": "library. Most components implement this interface. This allows to put CSS classes to a component. CX can be an object or array, and all its non-falsy values would be put classes on the root of the component. Example: <Button cx={[ 'red', isActive && 'big ]} />",
                 "marks": []
               }
             ]
@@ -1845,7 +1845,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "skin can define its own set of colors. Instead of just pre-defined success/warning/error semantic colors, we can use a brand-named set of colors and add custom component variations.",
+                    "text": "Skin can define its own set of colors. Instead of just pre-defined success/warning/error semantic colors, we can use a brand-named set of colors and add custom component variations.",
                     "marks": []
                   }
                 ]
@@ -1864,7 +1864,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "skin, being a component library, can define custom, brand-specific components which don't exist in the base library.",
+                    "text": "Skin, being a component library, can define custom, brand-specific components which don't exist in the base library.",
                     "marks": []
                   }
                 ]

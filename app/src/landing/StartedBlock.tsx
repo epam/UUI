@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     Button, FlexRow, IconContainer, RichTextView, Text,
 } from '@epam/promo';
-import css from './StartedBlock.scss';
+import css from './StartedBlock.module.scss';
 import { ReactComponent as CrystalIcon } from '../icons/crystal.svg';
 import { ReactComponent as ReactIcon } from '../icons/react_small.svg';
 import { UUI4 } from '../common';
@@ -10,9 +10,7 @@ import { analyticsEvents } from '../analyticsEvents';
 
 export class StartedBlock extends React.Component {
     private forDevelopersEvent = analyticsEvents.welcome.gettingStarted('For developers');
-
     private forDesignersEvent = analyticsEvents.welcome.gettingStarted('For designers');
-
     render() {
         return (
             <div className={ css.layout }>

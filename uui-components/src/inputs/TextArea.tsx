@@ -14,7 +14,7 @@ import {
     cx,
     ICanFocus,
 } from '@epam/uui-core';
-import css from './TextArea.scss';
+import css from './TextArea.module.scss';
 
 export interface TextAreaProps
     extends IHasCX,
@@ -47,7 +47,6 @@ interface TextAreaState {
 
 export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
     textAreaRef = React.createRef<HTMLTextAreaElement>();
-
     state = {
         inFocus: false,
     };

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { BaseRating, IconContainer } from '@epam/uui-components';
 import { Icon, IEditable, IHasRawProps } from '@epam/uui-core';
-import css from './SliderRating.scss';
+import css from './SliderRating.module.scss';
 import { ReactComponent as LineGrayIcon } from '../icons/slider-rating/line_gray_icon.svg';
 import { ReactComponent as LineRedIcon } from '../icons/slider-rating/line_red_icon.svg';
 import { ReactComponent as LineYellowIcon } from '../icons/slider-rating/line_yellow_icon.svg';
@@ -33,7 +33,6 @@ const maxValue = 5;
 
 export class SliderRating extends React.Component<SliderRatingProps<number>> {
     handlerWidth: number;
-
     getScaleIcon = (rating: number) => {
         switch (rating) {
             case 1:

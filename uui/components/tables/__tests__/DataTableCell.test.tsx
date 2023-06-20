@@ -1,6 +1,6 @@
 import React from 'react';
 import { DataTableCell } from '../DataTableCell';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('DataTableCell', () => {
     it('should be rendered correctly', () => {

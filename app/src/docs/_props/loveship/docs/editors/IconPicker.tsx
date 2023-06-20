@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     IEditable, IHasIcon, ArrayDataSource, Icon, cx,
 } from '@epam/uui-core';
-import css from './IconPicker.scss';
+import css from './IconPicker.module.scss';
 import {
     Button, Text, PickerInput, DataPickerRow, IconButton, Tooltip,
 } from '@epam/loveship';
@@ -67,7 +67,7 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
                 <Text fontSize="12" font="sans-semibold" cx={ css.infoText }>
                     I don't know what icon size use.
                 </Text>
-                <Tooltip cx={ css.tooltip } placement="top" content={ this.renderTooltip() } color="night100">
+                <Tooltip cx={ css.tooltip } placement="top" content={ this.renderTooltip() } color="white">
                     <IconButton icon={ InfoIcon } color="sky" />
                 </Tooltip>
             </div>

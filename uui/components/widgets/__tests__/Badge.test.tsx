@@ -1,6 +1,6 @@
 import React from 'react';
 import { Badge } from '../Badge';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 import CalendarIcon from '../../../icons/calendar-18.svg';
 
 describe('Badge', () => {

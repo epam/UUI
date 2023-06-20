@@ -5,7 +5,6 @@ import {
 
 export class DropdownContainerDoc extends BaseDocsBlock {
     title = 'Dropdown Container';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/overlays/dropdownContainer.props.tsx',

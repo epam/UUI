@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import css from './PresetActionsDropdown.scss';
+import css from './PresetActionsDropdown.module.scss';
 import {
     IPresetsApi, IDropdownToggler, ITablePreset, useUuiContext, DataTableState,
 } from '@epam/uui-core';

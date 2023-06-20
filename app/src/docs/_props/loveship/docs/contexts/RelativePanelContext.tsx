@@ -3,7 +3,7 @@ import { DemoComponentProps } from '@epam/uui-docs';
 import {
     Panel, FlexRow, Text, MultiSwitch, FlexSpacer, Button, TextInput, LabeledInput, NumericInput, DatePicker,
 } from '@epam/loveship';
-import css from './RelativePanelContext.scss';
+import css from './RelativePanelContext.module.scss';
 
 interface DemoComponentState {
     activeContent: 'form' | 'text';
@@ -11,7 +11,6 @@ interface DemoComponentState {
 
 export class RelativePanelContext extends React.Component<DemoComponentProps, DemoComponentState> {
     public static displayName = 'Relative panel';
-
     state: DemoComponentState = {
         activeContent: 'form',
     };

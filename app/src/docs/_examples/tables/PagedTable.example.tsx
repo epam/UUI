@@ -6,7 +6,7 @@ import {
     DataTable, Panel, Text, Paginator, FlexRow,
 } from '@epam/promo';
 import { Person } from '@epam/uui-docs';
-import css from './TablesExamples.scss';
+import css from './TablesExamples.module.scss';
 import { FlexSpacer } from '@epam/uui-components';
 
 export interface PagedTableState extends DataSourceState<{}> {

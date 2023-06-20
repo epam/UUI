@@ -1,7 +1,7 @@
 import { DataSourceState, IMap, DataRowPathItem } from '../../../../types';
 import { CompositeKeysMap } from './CompositeKeysMap';
 import {
-    ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, TreeNodeInfo,
+    ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, NOT_FOUND_RECORD, TreeNodeInfo,
 } from './ITree';
 import { TreeParams } from './ITree';
 
@@ -15,9 +15,7 @@ export function newMap<TKey, TValue>(params: TreeParams<any, any>) {
 
 export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     protected getId: (item: TItem) => TId;
-
     protected getParentId: (item: TItem) => TId;
-
     protected constructor(
         protected params: TreeParams<TItem, TId>,
         protected readonly byId: IMap<TId, TItem>,
@@ -62,7 +60,11 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         return this.getRootIds().map((id) => this.byId.get(id)!);
     }
 
-    public getById(id: TId) {
+    public getById(id: TId): TItem | typeof NOT_FOUND_RECORD {
+        if (!this.byId.has(id)) {
+            return NOT_FOUND_RECORD;
+        }
+
         return this.byId.get(id);
     }
 
@@ -83,16 +85,17 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
     public getParentIdsRecursive(id: TId) {
         const parentIds: TId[] = [];
+        let parentId = id;
         while (true) {
-            const item = this.byId.get(id);
+            const item = this.byId.get(parentId);
             if (!item) {
                 break;
             }
-            id = this.getParentId(item);
-            if (!id) {
+            parentId = this.getParentId(item);
+            if (!parentId) {
                 break;
             }
-            parentIds.unshift(id);
+            parentIds.unshift(parentId);
         }
         return parentIds;
     }
@@ -146,7 +149,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
     public getTotalRecursiveCount() {
         let count = 0;
-        for (const [id, info] of this.nodeInfoById) {
+        for (const [, info] of this.nodeInfoById) {
             if (info.count == null) {
                 // TBD: getTotalRecursiveCount() is used for totalCount, but we can't have correct count until all branches are loaded
                 // return;
@@ -237,7 +240,6 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     }
 
     protected static truePredicate = () => true;
-
     public static blank<TItem, TId>(params: TreeParams<TItem, TId>) {
         return new (this as any)(
             params,
@@ -259,7 +261,6 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     }
 
     abstract patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: (newItem: TItem, existingItem: TItem) => number): ITree<TItem, TId>;
-
     abstract cascadeSelection(
         currentSelection: TId[],
         selectedId: TId,
@@ -271,11 +272,8 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     ): TId[];
 
     abstract load<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>): Promise<ITree<TItem, TId>>;
-
     abstract loadMissing<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>): Promise<ITree<TItem, TId>>;
-
     abstract loadMissingIdsAndParents<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, idsToLoad: TId[]): Promise<ITree<TItem, TId>>;
-
     abstract filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId>;
     abstract search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): ITree<TItem, TId>;
     abstract sort<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>): ITree<TItem, TId>;

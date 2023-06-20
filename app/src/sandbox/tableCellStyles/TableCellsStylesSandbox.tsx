@@ -230,7 +230,7 @@ export default function TableCellsStylesSandbox() {
                     renderCell: (props) => (
                         <SkinDataTableCell
                             { ...props.rowLens.prop('textArea').toProps() }
-                            renderEditor={ (props) => <skin.TextInput { ...props } /> }
+                            renderEditor={ (props) => <skin.TextArea { ...props } /> }
                             { ...props }
                             background={ getCellBackground(props) }
                         />
@@ -290,8 +290,6 @@ export default function TableCellsStylesSandbox() {
             getId: ({ id }) => id,
             getRowOptions: (item: Item, index: number) => ({
                 ...lens.prop('items').index(index).toProps(),
-                isSelectable: true,
-                checkbox: { isVisible: true },
             }),
         },
         [],
