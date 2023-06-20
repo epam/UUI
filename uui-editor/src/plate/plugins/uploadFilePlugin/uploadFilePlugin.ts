@@ -21,10 +21,14 @@ interface UploadFilePluginOptions {
 }
 
 const isFilesUploadEvent = (types: readonly string[], files: FileList) => {
-    if (!isEqual(types, ["Files"])) return false;
     if (files.length === 0) return false;
+    if (
+        isEqual(types, ["Files"]) ||
+        isEqual(types, ["application/x-moz-file", "Files"])
+    )
+        return true;
 
-    return true;
+    return false;
 };
 
 export const uploadFilePlugin = (uploadOptions?: UploadFileOptions) =>
