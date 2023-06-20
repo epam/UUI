@@ -98,7 +98,7 @@ const Editor = (props: PlateEditorProps) => {
                     placeholder: props.placeholder,
                     renderPlaceholder: ({ attributes }) => {
                         const shouldShowPlaceholder = isElementEmpty(editor, editor.children[0]) && editor.children[0].type === 'paragraph';
-                        return shouldShowPlaceholder && <div { ...attributes }>{ props.placeholder }</div>
+                        return shouldShowPlaceholder && <div { ...attributes } className={ css.placeholderText } > { props.placeholder }</div>
                     },
                     style: { padding: '0 24px', minHeight: props.minHeight }
                 } }
@@ -107,7 +107,7 @@ const Editor = (props: PlateEditorProps) => {
                 // so, we need to disable default implementation
                 disableCorePlugins={ { insertData: true } }
             />
-            <MarkBalloonToolbar />
+            < MarkBalloonToolbar />
             <Toolbar style={ {
                 position: 'sticky',
                 bottom: 12,
@@ -117,7 +117,7 @@ const Editor = (props: PlateEditorProps) => {
             } }>
                 <ToolbarButtons />
             </Toolbar>
-        </DndProvider>
+        </DndProvider >
     );
 
     return (
