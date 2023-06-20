@@ -7,7 +7,7 @@ import { ColumnHeaderDropdown, DataTableHeaderCellMods } from './';
 import {
     FlexCell, Checkbox, Text, IconButton, Tooltip,
 } from '../';
-import css from './DataTableHeaderCell.scss';
+import css from './DataTableHeaderCell.module.scss';
 import { ReactComponent as DefaultSortIcon } from '@epam/assets/icons/common/table-swap-18.svg';
 import { ReactComponent as SortIcon } from '@epam/assets/icons/common/table-sort_asc-18.svg';
 import { ReactComponent as SortIconDesc } from '@epam/assets/icons/common/table-sort_desc-18.svg';
@@ -88,7 +88,6 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         );
 
     renderResizeMark = (props: HeaderCellContentProps) => <div onMouseDown={ props.onResizeStart } className={ cx(css.resizeMark, uuiMarkers.draggable) } />;
-
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownToggler) => (
         <FlexCell
             { ...this.props.column }

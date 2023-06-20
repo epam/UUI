@@ -1,6 +1,6 @@
 import * as React from 'react';
 import sortBy from 'lodash.sortby';
-import css from './DemoDnd.scss';
+import css from './DemoDnd.module.scss';
 import {
     FlexCell, FlexRow, FlexSpacer, IconButton, Panel, Text,
 } from '@epam/promo';

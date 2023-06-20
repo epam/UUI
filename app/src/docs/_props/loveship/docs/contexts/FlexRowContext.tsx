@@ -1,11 +1,10 @@
 import * as React from 'react';
-import css from './FlexRowContext.scss';
+import css from './FlexRowContext.module.scss';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { FlexRow, FlexCell, TextInput } from '@epam/loveship';
 
 export class FlexRowContext extends React.Component<DemoComponentProps> {
     public static displayName = 'Default';
-
     render() {
         const { DemoComponent, props } = this.props;
 

@@ -6,7 +6,7 @@ import {
 import { Day } from './Day';
 import { i18n } from '../../i18n';
 import localeData from 'dayjs/plugin/localeData.js';
-import css from './Calendar.scss';
+import css from './Calendar.module.scss';
 
 dayjs.extend(localeData);
 

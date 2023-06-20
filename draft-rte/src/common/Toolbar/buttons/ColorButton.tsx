@@ -4,7 +4,7 @@ import { Dropdown, Button } from '@epam/loveship';
 import { UuiContext, UuiContexts } from '@epam/uui-core';
 import * as React from 'react';
 import { DraftButtonProps, ToolbarTextColor } from '../../../types';
-import css from './ColorButton.scss';
+import css from './ColorButton.module.scss';
 
 interface ColorButtonProps extends DraftButtonProps {
     textColors: ToolbarTextColor[];

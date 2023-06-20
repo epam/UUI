@@ -1,24 +1,7 @@
 import '@testing-library/jest-dom';
+import { setupJsDom } from './../../test-utils/src/jsdom/setupJsDom.js';
 
-global.ResizeObserver = class ResizeObserver {
-    observe() {}
+window.__DEV__ = true;
+window.__PACKAGE_VERSION__ = '';
 
-    disconnect() {}
-};
-
-global.navigator.clipboard = {
-    writeText: () => {},
-};
-
-const consoleErrorPrev = console.error;
-console.error = (...args) => {
-    const [first] = args;
-    const ignorePatterns = ['Warning: validateDOMNesting(...):'];
-    if (typeof first === 'string') {
-        const shouldIgnore = ignorePatterns.some((p) => first.indexOf(p) !== -1);
-        if (shouldIgnore) {
-            return;
-        }
-    }
-    consoleErrorPrev.apply(this, args);
-};
+setupJsDom(global);

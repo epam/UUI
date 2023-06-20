@@ -1,15 +1,15 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI,
 } from '../common';
 
 export class LinkButtonDoc extends BaseDocsBlock {
     title = 'Link Button';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/buttons/linkButton.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/buttons/linkButton.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/buttons/linkButton.props.tsx',
+            [UUI]: './app/src/docs/_props/uui/components/buttons/linkButton.props.tsx',
         };
     }
 

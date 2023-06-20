@@ -3,7 +3,6 @@ import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
 
 export class TablesOverviewDoc extends BaseDocsBlock {
     title = 'Tables overview';
-
     renderContent() {
         return (
             <>

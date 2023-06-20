@@ -66,12 +66,12 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
         const value = props.value as INumericRangeValue;
         return (
             <div>
-                <FlexRow padding="12" vPadding="24" alignItems="center" spacing="12" borderBottom={ true }>
+                <FlexRow padding="12" vPadding="24" alignItems="center" spacing="12" borderBottom={ true } rawProps={ { style: { paddingTop: '3px' } } }>
                     <FlexCell width="100%">
                         <NumericInput
                             value={ value?.from ?? null }
                             onValueChange={ rangeValueHandler('from') }
-                            size="30"
+                            size="36"
                             placeholder="Min"
                             formatOptions={ { maximumFractionDigits: 2 } }
                         />
@@ -80,7 +80,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
                         <NumericInput
                             value={ value?.to ?? null }
                             onValueChange={ rangeValueHandler('to') }
-                            size="30"
+                            size="36"
                             placeholder="Max"
                             formatOptions={ { maximumFractionDigits: 2 } }
                         />
@@ -93,12 +93,12 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
 
     return (
         <div>
-            <FlexRow padding="12" vPadding="24" alignItems="center" borderBottom={ true }>
+            <FlexRow padding="12" vPadding="24" alignItems="center" borderBottom={ true } rawProps={ { style: { paddingTop: '3px' } } }>
                 <FlexCell width={ 130 }>
                     <NumericInput
                         value={ typeof props.value === 'number' ? props.value : null }
                         onValueChange={ props.onValueChange }
-                        size="30"
+                        size="36"
                         placeholder="Enter a number"
                         formatOptions={ { maximumFractionDigits: 2 } }
                     />

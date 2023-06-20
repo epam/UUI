@@ -12,7 +12,6 @@ export interface IHistory4 {
 
 export class HistoryAdaptedRouter implements IRouterContext {
     constructor(private history: IHistory4) {}
-
     public getCurrentLink(): Link {
         return HistoryAdaptedRouter.searchToQuery(this.history.location);
     }

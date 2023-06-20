@@ -5,7 +5,6 @@ import {
 
 export class FlexRowDoc extends BaseDocsBlock {
     title = 'FlexRow';
-
     getPropsDocPath() {
         return {
             [UUI4]: './app/src/docs/_props/epam-promo/components/layout/FlexItems/flexRow.props.tsx',

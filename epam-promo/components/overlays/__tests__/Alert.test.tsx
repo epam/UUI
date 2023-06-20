@@ -1,8 +1,6 @@
 import React from 'react';
-import {
-    Alert, ErrorAlert, HintAlert, SuccessAlert, WarningAlert,
-} from '../Alert';
-import { SvgMock, renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { Alert, ErrorAlert, HintAlert, SuccessAlert, WarningAlert } from '../Alert';
+import { SvgMock, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('Alert', () => {
     it('should render with minimum props', async () => {

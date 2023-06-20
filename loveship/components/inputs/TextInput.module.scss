@@ -1,0 +1,24 @@
+@use '../../assets/styles/scss' as *;
+
+@mixin control-vertical-layout($size, $borderWidth) {
+    &:global(.uui-button-box), &:global(.uui-input-box) {
+        min-height: $size;
+        border-width: $borderWidth;
+    }
+}
+
+.size-60 {
+    @include control-vertical-layout(60px, 1px);
+}
+
+// It seems like these styles intended to work when onClick is attached to the input.
+// However, we now always set -clickable marker on inputs, to prevent clicks on them to get focus, from bubbling
+// In this case, we shouldn't get cursor pointer, while still get behavior of -clickable.
+// Contact me if you need to fix that. Yakov Zh.
+//   &:global(.-clickable) {
+//     cursor: pointer;
+
+//     :global(.uui-input) {
+//       cursor: pointer;
+//     }
+//   }

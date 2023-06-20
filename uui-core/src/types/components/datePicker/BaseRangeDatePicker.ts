@@ -2,7 +2,7 @@ import { ReactElement, ReactNode } from 'react';
 import { Dayjs } from 'dayjs';
 import { Placement } from '@popperjs/core';
 import {
-    IAnalyticableOnChange, ICanBeReadonly, IDisableable, IDropdownToggler, IEditable, IHasCX, IHasRawProps,
+    IAnalyticableOnChange, ICanBeReadonly, IDisableable, IDropdownToggler, IEditable, IHasRawProps,
 } from '../../props';
 import * as React from 'react';
 import { CX } from '../../objects';
@@ -61,6 +61,9 @@ export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue
 
     /** Called when component looses input focus */
     onBlur?: (e: React.FocusEvent<HTMLInputElement>, inputType: 'from' | 'to') => void;
+
+    /** Called when component is opened/closed */
+    onOpenChange?: (isOpen: boolean) => void
 
     /** rawProps as HTML attributes */
     rawProps?: {

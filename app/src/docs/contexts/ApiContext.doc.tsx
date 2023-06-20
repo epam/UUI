@@ -3,7 +3,6 @@ import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
 
 export class ApiContextDoc extends BaseDocsBlock {
     title = 'Api Context and Error Handling';
-
     renderContent() {
         return (
             <>

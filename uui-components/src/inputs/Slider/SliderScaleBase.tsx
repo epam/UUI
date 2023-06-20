@@ -15,7 +15,6 @@ interface SliderScaleProps<THandleOffsetValue> {
 
 export abstract class SliderScaleBase<THandleOffsetValue> extends React.Component<SliderScaleProps<THandleOffsetValue>> {
     abstract renderSliderScaleElements(): React.ReactElement<SliderScaleElement>[];
-
     generateScale = (step: number): number[] => {
         const min = this.props.min;
         const max = this.props.max;

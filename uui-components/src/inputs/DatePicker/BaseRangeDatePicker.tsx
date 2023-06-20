@@ -40,11 +40,8 @@ const getStateFromValue = (value: RangeDatePickerValue, format: string) => {
 
 export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProps> extends React.Component<TProps, RangeDatePickerState> {
     static contextType = UuiContext;
-
     context: UuiContexts;
-
     inFocus: RangeDatePickerInputType;
-
     getInitialState(): RangeDatePickerState {
         return {
             isOpen: false,
@@ -55,7 +52,6 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     }
 
     state = this.getInitialState();
-
     static getDerivedStateFromProps(props: BaseRangeDatePickerProps, state: RangeDatePickerState): RangeDatePickerState {
         if (!props.value || props.value.from !== state.selectedDate.from || props.value.to !== state.selectedDate.to) {
             return {
@@ -157,6 +153,8 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
             inFocus: value ? focus : null,
         });
 
+        this.props?.onOpenChange?.(value);
+
         // if (this.props.getValueChangeAnalyticsEvent) {
         //     const event = this.props.getValueChangeAnalyticsEvent(value, this.state.isOpen);
         //     this.context.uuiAnalytics.sendEvent(event);
@@ -210,18 +208,18 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     }
 
     handleValueChange = (newValue: RangeDatePickerValue) => {
-        this.props.onValueChange(newValue);
+        if (this.props.value?.from !== newValue.from || this.props.value?.to !== newValue.to) {
+            this.props.onValueChange(newValue);
 
-        if (this.props.getValueChangeAnalyticsEvent) {
-            const event = this.props.getValueChangeAnalyticsEvent(newValue, this.props.value);
-            this.context.uuiAnalytics.sendEvent(event);
+            if (this.props.getValueChangeAnalyticsEvent) {
+                const event = this.props.getValueChangeAnalyticsEvent(newValue, this.props.value);
+                this.context.uuiAnalytics.sendEvent(event);
+            }
         }
     };
 
     abstract renderInput(props: IDropdownToggler): React.ReactElement;
-
     abstract renderBody(props: DropdownBodyProps): React.ReactElement;
-
     render() {
         return (
             <Dropdown

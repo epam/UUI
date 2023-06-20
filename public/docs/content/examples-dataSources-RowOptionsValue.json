@@ -1,0 +1,136 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To make rows ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "editable",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", it is worth bypassing ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "value/onValueChange",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " as a part of the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "rowOptions",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". Usually, at the UUI ecosystem ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "value/onValueChange",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " is taken from ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "lens",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " of the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "form",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", for example. To read more about creating editable tables, please, visit ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?id=editableTables&mode=doc&skin=UUI4_promo&category=tables"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "this article",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

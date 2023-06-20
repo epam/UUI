@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch } from '../Switch';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('Switch', () => {
     it('should be rendered correctly', () => {

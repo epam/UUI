@@ -1,0 +1,158 @@
+@mixin padding($size) {
+    padding-left: $size + px;
+    padding-right: $size + px;
+}
+
+.root {
+    :global(.uui-accordion-toggler) {
+        font-family: var(--uui-accordion-toggler-font);
+        font-weight: var(--uui-accordion-toggler-font-weight, normal);
+        color: var(--uui-accordion-text);
+        cursor: pointer;
+    }
+
+    :global(.uui-accordion-body) {
+        font-family: var(--uui-accordion-body-font);
+        font-weight: var(--uui-accordion-body-font-weight, normal);
+        color: var(--uui-accordion-text);
+    }
+
+    &:global(.uui-accordion-container) {
+        &.mode-block {
+            box-shadow: var(--uui-accordion-shadow);
+        }
+    }
+
+    &.mode-block {
+        border-radius: var(--uui-accordion-border-radius);
+
+        :global(.uui-accordion-toggler) {
+            background: var(--uui-accordion-bg);
+            fill: var(--uui-accordion-icon);
+            line-height: 24px;
+            font-size: 18px;
+            padding: 0 18px;
+            border-radius: var(--uui-accordion-border-radius);
+
+            :global(.uui-accordion-toggle-container) {
+                min-height: 48px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+
+            :global(.uui-accordion-title) {
+                color: var(--uui-accordion-text);
+            }
+
+            &:hover, &:focus {
+                box-shadow: var(--uui-accordion-shadow-hovered);
+            }
+        }
+
+        :global(.uui-accordion-body) {
+            padding: 18px;
+            line-height: 24px;
+            letter-spacing: 0;
+            background: var(--uui-accordion-bg);
+            border-top: 1px solid var(--uui-accordion-border);
+            border-radius: 0 0 var(--uui-accordion-border-radius) var(--uui-accordion-border-radius);
+        }
+
+        &:global(.uui-opened) {
+            :global(.uui-accordion-toggler) {
+                border-radius: var(--uui-accordion-border-radius) var(--uui-accordion-border-radius) 0 0;
+
+                &:hover, &:focus {
+                    border-color: var(--uui-accordion-shadow-hovered);
+                }
+            }
+        }
+
+        &:global(.uui-disabled) {
+            :global(.uui-accordion-toggler) {
+                cursor: default;
+                fill: var(--uui-accordion-icon-disabled);
+
+                &:global(.uui-opened) {
+                    border-radius: var(--uui-accordion-border-radius) var(--uui-accordion-border-radius) 0 0;
+                }
+
+                :global(.uui-accordion-title) {
+                    color: var(--uui-accordion-text-disabled);
+                }
+
+                &:hover, &:focus {
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+
+    &.mode-inline {
+        :global(.uui-accordion-toggler) {
+            border-bottom: 1px solid var(--uui-accordion-border);
+            fill: var(--uui-accordion-icon);
+            line-height: 18px;
+            font-size: 14px;
+            padding: 8px 12px 8px;
+
+            :global(.uui-accordion-toggle-container) {
+                min-height: 24px;
+            }
+
+            :global(.uui-accordion-title) {
+                color: var(--uui-accordion-text);
+            }
+        }
+
+        :global(.uui-accordion-body) {
+            padding: 1px 12px 12px;
+            border-bottom: 1px solid var(--uui-accordion-border);
+        }
+
+        &:global(.uui-opened) {
+            :global(.uui-accordion-toggler) {
+                border-bottom: none;
+            }
+        }
+
+        &:global(.uui-disabled) {
+            :global(.uui-accordion-toggler) {
+                cursor: default;
+                fill: var(--uui-accordion-icon-disabled);
+
+                &:global(.uui-opened) {
+                    border-bottom: none;
+                }
+
+                :global(.uui-accordion-title) {
+                    color: var(--uui-accordion-text-disabled);
+                }
+            }
+        }
+    }
+
+    &.padding-0 {
+        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
+            @include padding(0);
+        }
+    }
+
+    &.padding-6 {
+        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
+            @include padding(6);
+        }
+    }
+
+    &.padding-12 {
+        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
+            @include padding(12);
+        }
+    }
+
+    &.padding-18 {
+        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
+            @include padding(18);
+        }
+    }
+}

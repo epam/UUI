@@ -20,6 +20,7 @@ export const i18n = {
         clearSelectionButton: 'CLEAR ALL',
         clearSelectionButtonSingle: 'CLEAR',
         selectAllButton: 'SELECT ALL',
+        doneButton: 'DONE',
     },
     notificationCard: {
         closeAllNotificationsButton: 'CLOSE ALL NOTIFICATIONS',
@@ -84,7 +85,6 @@ export const i18n = {
         },
         pickerInput: {
             itemsPlaceholder: 'items',
-            emptyValueCaption: 'ALL',
         },
     },
     presetPanel: {

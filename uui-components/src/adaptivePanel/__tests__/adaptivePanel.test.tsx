@@ -1,7 +1,7 @@
 import { AdaptiveItemProps, AdaptivePanel } from '../AdaptivePanel';
 import {
-    renderSnapshotWithContextAsync, renderToJsdomWithContextAsync, mockAdaptivePanelLayout, screen,
-} from '@epam/test-utils';
+    renderSnapshotWithContextAsync, renderWithContextAsync, mockAdaptivePanelLayout, screen,
+} from '@epam/uui-test-utils';
 import React from 'react';
 
 type TestItemType = AdaptiveItemProps<{ data?: { label: string } }>;
@@ -39,7 +39,7 @@ async function setupAdaptivePanel({ width, itemWidth }: { width: number; itemWid
         ...getNItems('p1', 3, 1), ...getNItems('p2', 3, 3), ...getNItems('p3', 3, 5), genContainerItem({ id: 'wide-screen', priority: 2 }), genContainerItem({ id: 'medium-screen', priority: 4 }), genContainerItem({ id: 'small-screen', priority: 6 }),
     ];
     mockAdaptivePanelLayout({ width, itemWidth });
-    const result = await renderToJsdomWithContextAsync(<AdaptivePanel items={ items } rawProps={ { 'data-testid': 'adaptive-panel' } } />);
+    const result = await renderWithContextAsync(<AdaptivePanel items={ items } rawProps={ { 'data-testid': 'adaptive-panel' } } />);
     const visibleItems = screen
         .queryAllByTestId('adaptive-item')
         .map((i) => i.getAttribute('data-label'))

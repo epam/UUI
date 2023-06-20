@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IconContainer } from '../../layout';
 import { Icon, IEditable, IHasCX } from '@epam/uui-core';
 import cx from 'classnames';
-import css from './DatePickerHeader.scss';
+import css from './DatePickerHeader.module.scss';
 import dayjs, { Dayjs } from 'dayjs';
 import { PickerBodyValue, ViewType } from './DatePickerBodyBase';
 
@@ -93,16 +93,33 @@ export class DatePickerHeader extends React.Component<DatePickerHeaderProps, any
     };
 
     render() {
+        const title = `${
+            this.props.value?.view !== 'MONTH_SELECTION' ? dayjs.months()[this.props.value?.displayedDate.month()] : ''
+        } ${this.props.value?.displayedDate.year()}`;
+
         return (
             <div className={ cx(css.container, uuiHeader.container, this.props.cx) }>
                 <header className={ uuiHeader.header }>
-                    <IconContainer cx={ uuiHeader.navIconLeft } icon={ this.props.navIconLeft } onClick={ () => this.onLeftNavigationArrow() } />
-                    <div onClick={ () => this.onCaptionClick(this.props.value.view) } className={ uuiHeader.navTitle } tabIndex={ 0 }>
-                        {`${
-                            this.props.value?.view !== 'MONTH_SELECTION' ? dayjs.months()[this.props.value?.displayedDate.month()] : ''
-                        } ${this.props.value?.displayedDate.year()}`}
+                    <IconContainer
+                        rawProps={ { role: 'button' } }
+                        cx={ uuiHeader.navIconLeft }
+                        icon={ this.props.navIconLeft }
+                        onClick={ () => this.onLeftNavigationArrow() }
+                    />
+                    <div
+                        role="button"
+                        onClick={ () => this.onCaptionClick(this.props.value.view) }
+                        className={ uuiHeader.navTitle }
+                        tabIndex={ 0 }
+                    >
+                        { title }
                     </div>
-                    <IconContainer cx={ uuiHeader.navIconRight } icon={ this.props.navIconRight } onClick={ () => this.onRightNavigationArrow() } />
+                    <IconContainer
+                        rawProps={ { role: 'button' } }
+                        cx={ uuiHeader.navIconRight }
+                        icon={ this.props.navIconRight }
+                        onClick={ () => this.onRightNavigationArrow() }
+                    />
                 </header>
             </div>
         );

@@ -5,7 +5,7 @@ import {
 import { ScrollSpyForm } from './ScrollSpyForm';
 import { ScrollSpyModal } from './ScrollSpyModal';
 import { ScrollSpyAnchor } from './ScrollSpyAnchor';
-import css from './ScrollSpyDemo.scss';
+import css from './ScrollSpyDemo.module.scss';
 
 enum Pages {
     Form = 'Form',

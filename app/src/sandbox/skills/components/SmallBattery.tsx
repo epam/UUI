@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import css from './SmallBattery.scss';
+import css from './SmallBattery.module.scss';
 import { Text, IconContainer } from '@epam/promo';
 import { ISkillLevel } from '../index';
 import { ReactComponent as CrossIcon } from '../icons/navigation-close_popup-7.svg';
@@ -21,7 +21,7 @@ export function SmallBattery(props: ISmallBatteryProps) {
         case 'NoSkill':
             return (
                 <div className={ cx(css.ratingBlockAlone) }>
-                    <IconContainer icon={ CrossIcon } style={ { fill: 'lime' } } cx={ [css.blockAloneSvgWrapper, css.iconGray50] } />
+                    <IconContainer icon={ CrossIcon } style={ { fill: '#6C6F80' } } cx={ [css.blockAloneSvgWrapper, css.iconGray60] } />
                 </div>
             );
         default:

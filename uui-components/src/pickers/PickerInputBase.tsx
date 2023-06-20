@@ -1,36 +1,8 @@
 import * as React from 'react';
 import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
-import {
-    DropdownBodyProps,
-    DropdownState,
-    UuiContexts,
-    UuiContext,
-    IHasPlaceholder,
-    IDisableable,
-    DataRowProps,
-    ICanBeReadonly,
-    isMobile,
-    mobilePopperModifier,
-    IDropdownToggler,
-    DataSourceListProps,
-    IHasIcon,
-    IHasRawProps,
-    PickerBaseProps,
-    PickerFooterProps,
-    ICanFocus,
-    CX,
-} from '@epam/uui-core';
-import {
-    PickerBase,
-    PickerBaseState,
-    handleDataSourceKeyboard,
-    PickerTogglerProps,
-    DataSourceKeyboardParams,
-    PickerBodyBaseProps,
-    dataSourceStateToValue,
-    applyValueToDataSourceState,
-} from './index';
+import { DropdownBodyProps, DropdownState, UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier, IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, PickerFooterProps, ICanFocus, CX } from '@epam/uui-core';
+import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps, dataSourceStateToValue, applyValueToDataSourceState } from './index';
 import { Dropdown } from '../overlays';
 import { i18n } from '../i18n';
 import { getMaxItems } from './helpers';
@@ -79,12 +51,6 @@ IHasIcon & {
     /** Sets focus to component when it's mounted */
     autoFocus?: boolean;
 
-    /** Prefix text to add to the input */
-    prefix?: React.ReactNode;
-
-    /** Suffix text to add to the input */
-    suffix?: React.ReactNode;
-
     /** HTML attributes to put directly to the input and body elements */
     rawProps?: {
         input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
@@ -118,11 +84,8 @@ const initialRowsVisible = 20; /* estimated, with some reserve to allow start sc
 
 export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TItem, TId, PickerInputBaseProps<TItem, TId> & TProps, PickerInputState> {
     static contextType = UuiContext;
-
     togglerRef = React.createRef<HTMLElement>();
-
     context: UuiContexts;
-
     private readonly popperModifiers: Modifier<any>[] = [
         {
             name: 'offset',
@@ -133,7 +96,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     abstract toggleModalOpening(opened: boolean): void;
     abstract renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>): React.ReactNode;
     abstract renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]): React.ReactNode;
-
     static getDerivedStateFromProps<TItem, TId>(props: PickerInputBaseProps<TItem, TId>, state: PickerInputState) {
         const prevValue = dataSourceStateToValue(props, state.dataSourceState, props.dataSource);
         if (prevValue !== props.value) {
@@ -166,7 +128,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     toggleBodyOpening = (opened: boolean) => {
         if (this.state.opened === opened || (this.props.minCharsToSearch && (this.state.dataSourceState.search?.length ?? 0) < this.props.minCharsToSearch)) return;
-        if (this.props.editMode == 'modal') {
+        if (this.props.editMode === 'modal') {
             this.toggleModalOpening(opened);
         } else {
             this.toggleDropdownOpening(opened);
@@ -282,12 +244,14 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableClear: propDisableClear,
             icon,
             iconPosition,
-            prefix,
-            suffix,
         } = this.props;
         const searchPosition = this.getSearchPosition();
         const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRowsCount);
         const disableClear = forcedDisabledClear || propDisableClear;
+        let searchValue: string | undefined = this.getSearchValue();
+        if (this.isSingleSelect() && selectedRows[0]?.isLoading) {
+            searchValue = undefined;
+        }
 
         return {
             isSingleLine,
@@ -301,8 +265,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             autoFocus,
             icon,
             iconPosition,
-            prefix,
-            suffix,
             onFocus: this.props.onFocus,
             onClear: this.handleClearSelection,
             onBlur: this.props.onBlur,
@@ -319,7 +281,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             toggleDropdownOpening: this.toggleDropdownOpening,
             closePickerBody: this.closePickerBody,
             rawProps: this.props.rawProps?.input,
-            value: this.getSearchValue(),
+            value: searchValue,
             cx: inputCx,
         };
     }

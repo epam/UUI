@@ -22,7 +22,7 @@ import {
     codeBlockPlugin,
 } from '@epam/uui-editor';
 import { svc } from '../../services';
-import css from './EditableDocContent.scss';
+import css from './EditableDocContent.module.scss';
 
 export interface EditableDocContentProps {
     fileName: string;
@@ -54,7 +54,6 @@ const plugins = [
 
 export class EditableDocContent extends React.Component<EditableDocContentProps, EditableDocContentState> {
     static plugins = plugins;
-
     state: EditableDocContentState = {
         content: null,
         isLoading: true,

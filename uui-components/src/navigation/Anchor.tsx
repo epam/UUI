@@ -17,7 +17,7 @@ import {
     IAnalyticableClick,
 } from '@epam/uui-core';
 import { ButtonBase } from '../buttons';
-import css from './Anchor.scss';
+import css from './Anchor.module.scss';
 
 export interface AnchorProps
     extends IHasCX,
@@ -31,9 +31,7 @@ export interface AnchorProps
 
 export class AnchorImpl extends ButtonBase<AnchorProps> {
     static contextType = UuiContext;
-
     context: UuiContexts;
-
     handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
         !this.props.isDisabled && handleSpaceKey(e, this.clickHandler);
     };

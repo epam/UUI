@@ -3,7 +3,7 @@ import {
     Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
-import css from './TextInput.scss';
+import css from './TextInput.module.scss';
 
 const ENTER = 'Enter';
 const ESCAPE = 'Escape';
@@ -113,7 +113,6 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
             onBlur={ handleBlur }
             { ...props.rawProps }
         >
-            {props.prefix && <span className={ cx(props.inputCx, uuiElement.prefixInput) }>{props.prefix}</span>}
             {props.iconPosition !== 'right' && icon}
             {props.renderInput ? props.renderInput(getInputProps()) : <input { ...getInputProps() } />}
             {props.onAccept && showIconsOnAction && (
@@ -132,7 +131,6 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
             {props.isDropdown && (
                 <IconContainer cx={ cx((props.isReadonly || props.isDisabled) && css.hidden, css.pointer) } icon={ props.dropdownIcon } flipY={ props.isOpen } />
             )}
-            {props.suffix && <span className={ cx(props.inputCx, uuiElement.suffixInput) }>{props.suffix}</span>}
         </div>
     );
 });

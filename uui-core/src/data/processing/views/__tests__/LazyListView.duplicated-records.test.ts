@@ -1,6 +1,6 @@
 import { LazyDataSource } from '../../LazyDataSource';
 import { LazyListView } from '../LazyListView';
-import { delay } from '@epam/test-utils';
+import { delay } from '@epam/uui-test-utils';
 import {
     DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IEditable,
 } from '../../../../types';

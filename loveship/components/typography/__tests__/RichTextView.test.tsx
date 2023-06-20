@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 import { RichTextView } from '../RichTextView';
 
 describe('RichTextView', () => {
@@ -17,7 +17,7 @@ describe('RichTextView', () => {
     it('should be rendered correctly with extra props', () => {
         const tree = renderer
             .create(
-                <RichTextView theme="dark" size="12">
+                <RichTextView size="12">
                     <p>Test text</p>
                 </RichTextView>,
             )

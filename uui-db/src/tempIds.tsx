@@ -24,15 +24,10 @@ export interface IClientIdsMap {
 
 export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientIdsMap {
     private serverToClientIds = new Map<keyof TTables, Map<any, number>>();
-
     private clientToServerIds = new Map<number, any>();
-
     constructor(private db: Db<TTables>) {}
-
     public clientToServer = (id: number): any => this.clientToServerIds.get(id);
-
     public serverToClient = (tableName: string, id: any): number => this.getServerToClientMap(tableName as any).get(id);
-
     public clientToServerRequest = (request: any) => {
         request = { ...request };
 

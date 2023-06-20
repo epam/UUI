@@ -19,7 +19,7 @@
     "importHelpers": true,
     "esModuleInterop": true,
     "paths": {
-      "@epam/test-utils": [
+      "@epam/uui-test-utils": [
         "test-utils"
       ]
     },
@@ -34,6 +34,7 @@
     "**/node_modules",
     "**/build",
     "**/__tests__",
-    "**/globals.d.ts"
+    "**/globals.d.ts",
+    "./uui_globals.d.ts"
   ]
 }

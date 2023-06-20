@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-    FlexCell, FlexRow, LabeledInput, TextInput, Form, Text, SuccessNotification, ErrorNotification, FlexSpacer, Button,
-} from '@epam/promo';
-import { IFormApi } from '@epam/uui-core';
-import { svc } from '../../../services';
+import { FlexCell, FlexRow, LabeledInput, TextInput, Form, Text, SuccessNotification, ErrorNotification, FlexSpacer, Button } from '@epam/promo';
+import { IFormApi, useUuiContext } from '@epam/uui-core';
 
 interface Person {
     firstName?: string;
@@ -11,6 +8,8 @@ interface Person {
 }
 
 export default function FormWIthClassesExample() {
+    const svc = useUuiContext();
+
     const getMetadata = () => ({
         props: {
             firstName: { isRequired: true },
@@ -45,13 +44,13 @@ export default function FormWIthClassesExample() {
     return (
         <Form
             onSave={ (person) => Promise.resolve({ form: person }) /* place your save api call here */ }
-            onSuccess={ (result) =>
+            onSuccess={ () =>
                 svc.uuiNotifications.show((props) => (
                     <SuccessNotification { ...props }>
                         <Text>Form saved</Text>
                     </SuccessNotification>
                 )) }
-            onError={ (error) =>
+            onError={ () =>
                 svc.uuiNotifications.show((props) => (
                     <ErrorNotification { ...props }>
                         <Text>Error on save</Text>

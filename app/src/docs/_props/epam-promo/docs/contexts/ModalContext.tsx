@@ -11,11 +11,8 @@ interface DemoComponentState {
 
 export class ModalContext extends React.Component<DemoComponentProps, DemoComponentState> {
     static contextType = UuiContext;
-
     context: UuiContexts;
-
     public static displayName = 'Modal';
-
     state: DemoComponentState = {
         result: '',
     };

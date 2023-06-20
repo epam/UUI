@@ -1,37 +1,101 @@
-# 5.0.0 - xx.xx.20203
+# 5.0.1 - 13.06.2023
+
 **What's New**
-* "EcmaScript" modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
-* [ContextProvider]: removed support of legacy React context API, as it were announced in 4.1.0 version. `enableLegacyContext` prop was deleted.
+* [FiltersPanel]:
+    * added picker title to the header in mobile view
+    * added possibility to hide search for exact filter using `showSearch` prop in config
+    * added 42 and 48 sizes
+
+**What's Fixed**
+* [PickerInput]: fixed `unknown` in a `single` selection mode while data is loading in `AsyncDataSource` and `LazyDataSource`, and removed error of missing ids if data is still loading
+* [FiltersPanel]: fixed styles for body & toggler according to design
+
+# 5.0.0 - 06.06.2023
+
+**Themes**
+
+This release introduces Themes support. `@epam/uui` package now contains components, which can be styled differently according to an applied Theme - a set of global CSS variables.
+
+`@epam/promo` and `@epam/loveship` packages are re-built on top of `@epam/uui` package. This allows us to unify codebase, and reduce differences between 'loveship' and 'promo'. We also aligned APIs, functionality and visual appearance between 'promo' and 'loveship' skins, as a result, we removed or deprecated some props or their values.
+
+Pay attention that this release requires some additional actions for the library to work properly.
+You can find migration guide and full list of changes [here](https://github.com/epam/UUI/wiki/Migration-guide-to-UUI-v.5).
+
+Note: Currently, we use Themes internally to implement Loveship and Promo. In future, we allow UUI users to build their own themes, and using Themes variables for customization. However, in this release we haven’t yet finalized Themes APIs (CSS variables names). We can’t yet recommend using Themes internals, e.g. override Themes CSS variables for customization.
+
+**Testing facilities and documentation**
+* Introduced new `@epam/uui-test-utils` package. It provides a set of helpers, utils and mocks which facilitate creation of unit tests for UUI components.
+* Was added Testing [documentation](https://uui.epam.com/documents?id=testing-basics&category=testing). It contains general guidelines, best practices and tools which we are recommending to use for UUI components testing.
+Also, it contains a Cookbook describing typical use cases with code examples as well as frequent questions & answers.
+
+**DataSources documentation**
+* Introduced the new [DataSources documentation](https://uui.epam.com/documents?id=dataSources-getting-started&category=dataSources), that covers a wide range of topics related to the DataSources, accompanied by illustrative examples.
+  Note that this is the first revision of this doc, so we would appreciate your feedback and have plans to continuously improve this documentation.
+
+**ESM modules support**
+* EcmaScript modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
+
+**Other changes**
+* We made UUI compatible with Vite build toolchain. You can find template project of UUI + Vite [here](https://github.com/epam/UUI/tree/develop/templates/uui-vite-template).
+* The `@epam/assets` package and "assets" folders inside promo and loveship packages were cleaned up: some "*.scss" files were deleted. Please copy any missing files directly to your project if they are still needed.
 * [useTableState]:
-  - [BreakingChange]: removed `initialFilter` prop, if you need to provide any initial state for hook, pre-generate a link with this state on you side.
+  - [BreakingChange]: removed `initialFilter` prop, if you need to provide any initial state for hook, pre-generate an url link with this state on you side.
   - added storing of sorting, columns config, and paging state into url
   - now hook accepts optional `IEditable` props, use them for cases when you need to store DataTableState by yourself. If passed it assumed that you will handle all state changes on your side and hook will not store any state into url.
-
-* [MainMenuDropdown]: added callback renderBody with dropdownBodyProps to renderBody method of MainMenuDropdown.
-* [Dropdown]: added a 400ms delay to the submenu's close and open triggers
-* [FiltersPanel]: hide 'Add filter' button, if all filters `isAlwaysVisible`
+* [ContextProvider]: removed support of legacy React context API, as it were announced in 4.1.0 version. `enableLegacyContext` prop was deleted.
+* [ApiContext]: removed the code which handles `/auth/login` for the apps, which doesn't handle this themselves.
+  If an app doesn't handle `/auth/login correctly`, this needs to be implemented implicitly. There are several options:
+  - Handle /auth/login path server-side. Server should log in user (via redirects to SSO), and - after success, return the following HTML:
+    `<script>window.opener && window.opener.postMessage("authSuccess", "*")</script>`
+  - Handle /auth/login path client-side. The simplest method is to add the following to the index.js:
+    `window.opener && window.location.pathname === '/auth/login' && window.opener.postMessage("authSuccess", "*");`
+  - If an app implements UUI-based login pages, they need to run the following code after successful login:
+    `window.opener && window.opener.postMessage("authSuccess", "*")`
+* [DataTable]: deprecated column `shrink` property was removed, as it was announced in 4.9.0 version.
+* [MainMenuDropdown]: added callback `renderBody` prop.
+* [FiltersPanel]:
+    - hide 'Add filter' button, if all filters `isAlwaysVisible`
+    - added `presets` prop to rangeDatePicker filter
+    - added `filter` prop for datePicker and rangeDatePicker filters
+* [PickerInput]:
+  - added `implicit` cascade selection mode. In this mode selecting a parent node means that all children are considered checked,
+but only the checked parent is present in the Picker's value or DataSourceState.checked array.
+  - now items which present in selection and doesn't exist in DataSource will be shown in picker as '[Unknown]'
+  - added a default footer component for single pickers that includes a "Clear" button
+* [DataSources]: DataSources internals are refactored, optimized, and prepared for further improvements
+* [PresetsPanel]: added limitation for new preset input (max length 50)
+* [DropdownMenu]: added a 400ms delay to the submenu's close and open triggers
+* [ModalWindow]: added possibility to provide number for 'width' and 'height' props.
 * [TimePicker]: added max values to hours and minutes inputs
-* [Tooltip]: added possibility to pass raw-props to the tooltip body
-
+* [Tooltip]: added possibility to pass rawProps to the tooltip body
+* [RangeDatePicker]: added new `onOpenChange` prop
+* [ErrorHandler]: now in Loveship used `NotificationCard` component instead of `SnackbarCard` for notification type errors
+* [ErrorHandler]: added additional property `onNotificationError` to render notifications with custom markup and configured the notification duration.
+* Added `inputCx` and `bodyCx` props for composed components like PickerInput and DatePickers
 
 **What's Fixed**
-* [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column
+* [PickerInput]:
+    - fixed partially checked nodes in lazy lists
+    - fixed single select dropdown body closing by the collapse icon if any value was selected.
+    - fixed hover affect doesn't appear on "parent" node, in case when it's not selectable but foldable.
+    - fixed single select window doesn't close by the collapse icon if any value was selected.
+    - fixed renderToggler prop which was used with TextInput / SearchInput
+    - fixed picker body closing by click on clear search icon
+* [FilterPanel]:
+    - fixed "show only selected" toggle not being visible, when selectAll was disabled via DataSource
+    - fixed picker body closing by clicking close button or done in mobile view.
+* [DataTable]:
+  - fixed first column overlapping second column in case when content can't fit the column
+  - set 'undefined' value instead of '[]' for sorting, when sorting removed from column
+  - fixed mobile view column filter crashes and when column caption not a string
+* [Tooltip]:
+    - removed default 300px max-width value from styles, you can set max-with using property 'maxWidth'.
+    - Fixed a white subpixel line on a tooltip arrow on browsers with zoom >100%.
+* [PresetsPanel]: fixed scroll inside "N more" dropdown
 * [Dropdown]: The delay to close/open the dropdown has been fixed. In previous version the closeDelay being overwritten constantly while the mouse was moving.
 * [Button]: removed 'disabled' attribute if the Button/LinkButton/IconButton is disabled, because it will prevent all events and broke Tooltip at least.
-* [PickerInput]: fixed single select dropdown body closing by the collapse icon if any value was selected.
-
-* [Datasources]: datasources rework
-  - Moved sort/search/filter logic to the `Tree` from views.
-  - `rebuildRows` was unified.
-  - `patch` functionality was added to `Tree`.
-  - Datatable demos were added/updated.
-  - `implicit` cascade selection mode was added.
-  - `Show only selected` order was fixed.
-
-**What's Fixed**
-* [PickerInput]: fixes Hover doesn't appear on "parent" when pointing the mouse.
+* [RichTextView]: h1 font-size in promo skin changed from 36px to 42px.
 * [FilterPanel]: fixed issue with "show only selected" toggle not being visible, when selectAll was disabled via DataSource
-* [PickerInput]: added a default footer component for single pickers that includes a "Clear" button
 
 # 4.10.2 - 24.03.2023
 
@@ -46,7 +110,6 @@
 
 **What's New**
 * Exposed our Rollup build toolchain from @epam/uui-build package that you be able to build and publish your own packages.
-* [Pickers]: `implicit` cascade selection mode for the pickers was added.
 
 **What's Fixed**
 * [Typography]: links now underlined
@@ -646,7 +709,7 @@ fix UUI context multiple creation
 # 4.1.0 - 30.06.2021
 
 **What’s New**
-* [DataSources][Breaking Change]: Added required 'deps' argument for all DataSources hooks. Please review all your datasources hooks usage and decide which deps do you need or set '[]'.
+* [DataSources][Breaking Change]: Added required 'deps' argument for all DataSources hooks. Please review all your dataSources hooks usage and decide which deps do you need or set '[]'.
 * [React Context]: added support for new React Context API. Consider switching to new context APIs in your components (or keep using the global ctx variable pattern). In class components you can use "static contextType = UuiContext", in function components you can use the hook "useUuiContext". Legacy context API still works in parallel with the new API. We'll keep support for legacy context API for at least 3 month (can be extended if projects would ask to prolong the support). You can explicitly disable legacy contexts with enableLegacyContexts={ false } prop on the ContextProvider. It is recommended if you don't use legacy contexts
 * removed legacy lifecycle methods
 * [NumericInput]: Now NumericInput supports transfer of formatter function. The function responds to the onBlur action.

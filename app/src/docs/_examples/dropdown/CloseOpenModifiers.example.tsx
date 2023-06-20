@@ -4,7 +4,7 @@ import { DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
 import {
     Button, Text, FlexRow, DropdownContainer, FlexCell, Avatar,
 } from '@epam/promo';
-import css from './HandleStateExample.scss';
+import css from './HandleStateExample.module.scss';
 
 export default function CloseOpenModifiersExample() {
     const renderDropdownBody = (props: DropdownBodyProps) => {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './AppFooter.scss';
+import css from './AppFooter.module.scss';
 import {
     FlexRow, Text, Anchor, IconContainer,
 } from '@epam/promo';

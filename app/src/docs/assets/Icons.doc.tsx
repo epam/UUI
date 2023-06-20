@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './IconsPage.scss';
+import css from './IconsPage.module.scss';
 import {
     FlexCell,
     ControlSize,
@@ -61,9 +61,7 @@ export class IconsDoc extends React.Component {
     };
 
     typeIcons: IconList<Icon>[] = getIconList(false);
-
     groupedIcons: { [key: string]: IconList<Icon>[] } = getGroupedIcons();
-
     componentWillUnmount(): void {
         this.iconsDS.unsubscribeView(this.onDataSourceStateChange);
     }
@@ -82,7 +80,6 @@ export class IconsDoc extends React.Component {
     }
 
     getImportCode = (icon: IconList<Icon>) => `import { ReactComponent as myIcon } from '${icon.name}';`;
-
     renderIconCard() {
         return (
             <Panel cx={ css.iconCard }>
@@ -354,7 +351,6 @@ export class IconsDoc extends React.Component {
     });
 
     onDataSourceStateChange = (data: DataSourceState) => this.setState(data);
-
     render() {
         const view = this.iconsDS.getView(this.state, this.onDataSourceStateChange, { getSearchFields: (l) => [l.name] });
         const items = view.getVisibleRows();

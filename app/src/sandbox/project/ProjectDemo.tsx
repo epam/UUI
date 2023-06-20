@@ -1,11 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import {
-    DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton,
-} from '@epam/uui';
-import { useForm } from '@epam/promo';
-import {
-    AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList,
-} from '@epam/uui-core';
+import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm } from '@epam/promo';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';

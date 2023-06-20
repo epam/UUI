@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { Slider } from '@epam/promo';
-import css from './ResizableContext.scss';
+import css from './ResizableContext.module.scss';
 
 interface DemoComponentState {
     widthPercent: number;
@@ -17,7 +17,6 @@ export class ResizableContext extends React.Component<DemoComponentProps, DemoCo
     };
 
     public static displayName = 'Resizable';
-
     render() {
         const { DemoComponent, props } = this.props;
 

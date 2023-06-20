@@ -5,7 +5,6 @@ import { ILens, ArrayElement } from './types';
 
 export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused> {
     public readonly handleValueChange: (newValue: TFocused) => void = null;
-
     constructor(public readonly lens: ILensImpl<TRoot, TFocused>) {
         this.handleValueChange = (newValue: TFocused) => {
             this.lens.set(null, newValue);
@@ -25,9 +24,7 @@ export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused>
     }
 
     public static MAX_CACHE_SIZE = 1000;
-
     private cache = new Map();
-
     public compose<TSmall>(lens: ILensImpl<TFocused, TSmall>, cacheKey?: any): LensBuilder<TRoot, TSmall> {
         if (cacheKey != null && this.cache.has(cacheKey)) {
             return this.cache.get(cacheKey);

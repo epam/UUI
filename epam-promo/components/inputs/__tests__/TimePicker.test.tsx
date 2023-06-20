@@ -1,6 +1,6 @@
 import React from 'react';
 import { TimePicker } from '../TimePicker';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('TimePicker', () => {
     it('should be rendered correctly', async () => {

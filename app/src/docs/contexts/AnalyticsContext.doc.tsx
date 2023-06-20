@@ -3,7 +3,6 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 
 export class AnalyticsContextDoc extends BaseDocsBlock {
     public readonly title = 'Analytics Context';
-
     public renderContent() {
         return (
             <>

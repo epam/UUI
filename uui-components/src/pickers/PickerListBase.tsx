@@ -43,11 +43,8 @@ interface LastUsedRec<TId> {
 
 export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TItem, TId, PickerListBaseProps<TItem, TId> & TProps, PickerListState<TId>> {
     static contextType = UuiContext;
-
     sessionStartTime = new Date().getTime();
-
     context: UuiContexts;
-
     state: PickerListState<TId> = {
         dataSourceState: { focusedIndex: 0, topIndex: 0, visibleCount: this.getMaxDefaultItems() },
         visibleIds: this.getVisibleIds(),
@@ -181,7 +178,7 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
         addRows(view.getSelectedRows(), this.getMaxTotalItems());
 
         if (this.state.visibleIds && result.length < maxTotalItems) {
-            const rows = this.state.visibleIds.map((id, n) => view.getById(id, n)).filter((r) => !!r);
+            const rows = this.state.visibleIds.map((id, n) => view.getById(id, n));
             addRows(rows, maxTotalItems);
         }
 

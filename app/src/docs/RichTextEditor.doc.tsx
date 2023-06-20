@@ -3,7 +3,6 @@ import { BaseDocsBlock, DocExample } from '../common';
 
 export class RichTextEditorDoc extends BaseDocsBlock {
     title = 'Rich Text Editor';
-
     renderContent() {
         return (
             <>

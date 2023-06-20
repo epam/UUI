@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-core",
-  "version": "5.0.0-alpha.0",
+  "version": "5.0.0",
   "description": "EPAM UUI Core",
   "author": "EPAM",
   "license": "MIT",
@@ -38,10 +38,6 @@
     "query-string": "6.13.1",
     "react-popper": "2.3.0"
   },
-  "devDependencies": {
-    "@testing-library/react": "14.0.0",
-    "react-test-renderer": "18.2.0"
-  },
   "peerDependencies": {
     "prop-types": "*",
     "react": ">=16.0.0",
@@ -51,7 +47,7 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "41609f0fcd234b99185dfb83a32a54914795f78c",
+  "gitHead": "f0d58123e11e321e4417e3bba7dc6c5c9026998c",
   "publishConfig": {
     "access": "public",
     "directory": "build"

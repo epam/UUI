@@ -5,7 +5,7 @@ const BASE_CONFIG = {
         'js', 'ts', 'tsx', 'json',
     ],
     moduleNameMapper: {
-        '@epam/test-utils': '<rootDir>/test-utils',
+        '@epam/uui-test-utils': '<rootDir>/test-utils',
     },
     transform: {
         '^.+\\.(js|ts|tsx)$': ['<rootDir>/node_modules/babel-jest'],
@@ -47,7 +47,7 @@ const JSDOM_TESTS_ROOTS = [
     'extra',
     'uui-db',
     // TODO: uncomment line(s) below as soon as we have any tests in these modules
-    // 'app',
+    'app',
     // 'draft-rte',
     // 'uui-docs',
     'uui-editor',

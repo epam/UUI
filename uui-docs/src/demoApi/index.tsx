@@ -18,6 +18,7 @@ export function getDemoApi(processRequest: (request: string, requestMethod: stri
         languages: lazyApi<models.Language, string>('languages'),
         products: lazyApi<models.Product, number>('products'),
         locations: lazyApi<models.Location, string>('locations'),
+        locationsSearch: lazyApi<models.Location, string>('locations/search-tree'),
         statuses: lazyApi<models.Status, string>('statuses'),
         managers: lazyApi<models.Manager, string>('managers'),
         persons: lazyApi<models.Person, number>('persons'),

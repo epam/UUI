@@ -22,7 +22,7 @@ const textDoc = new DocBuilder<TextProps & TextMods>({ name: 'Text', component: 
     })
     .prop('color', {
         examples: [
-            'night50', 'night300', 'night400', 'night500', 'night600', 'night700', 'night800', 'night900',
+            'sky', 'grass', 'fire', 'sun', 'night50', 'night300', 'night400', 'night500', 'night600', 'night700', 'night800', 'night900',
         ],
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
     })

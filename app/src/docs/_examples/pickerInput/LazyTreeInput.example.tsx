@@ -9,18 +9,17 @@ import { Location } from '@epam/uui-docs';
 
 export default function LazyTreePicker() {
     const svc = useUuiContext();
-    const [value, onValueChange] = useState<string[]>();
+    const [value, onValueChange] = useState<string[]>([]);
 
     const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>(
         {
             api: (request, ctx) => {
                 const { search } = request;
-                // if search is specified, it is required to search over all the children,
-                // and since parentId is meaningful value, it is required to exclude it from the filter.
                 const filter = search ? {} : { parentId: ctx?.parentId };
                 return svc.api.demo.locations({ ...request, search, filter });
             },
             cascadeSelection: true,
+            flattenSearchResults: true,
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
@@ -32,7 +31,7 @@ export default function LazyTreePicker() {
         if (!search) return;
 
         return path
-            .map(({ value }) => value?.name)
+            .map(({ value: v }) => v?.name)
             .filter(Boolean)
             .join(' / ');
     };

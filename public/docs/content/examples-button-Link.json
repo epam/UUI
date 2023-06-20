@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Buttons can navigate user as a link. Pass the ",
+            "text": "Buttons can navigate the user as a link. Pass the ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop if you need SPA redirect via react-router or ",
+            "text": " prop if you need an SPA redirect via react-router or ",
             "marks": []
           },
           {

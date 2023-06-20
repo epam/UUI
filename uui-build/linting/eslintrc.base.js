@@ -17,7 +17,7 @@
  *  - No possibility to add JSX attr spaces as described here: https://github.com/prettier/prettier/issues/95
  */
 const pickFromAirbnb = require('./utils/eslintRulesFromAirbnb.js');
-const { turnOffEslintRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
+const { turnOffEslintRulesToBeFixed, shouldTurnOffRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
 
 process.env.NODE_ENV = 'production'; // this line is required by "babel-preset-react-app".
 module.exports = {
@@ -26,7 +26,8 @@ module.exports = {
         es6: true,
         node: true,
     },
-    reportUnusedDisableDirectives: true,
+    // We need to remove such directives only if full set of rules is checked.
+    reportUnusedDisableDirectives: !shouldTurnOffRulesToBeFixed,
     extends: ['react-app'],
     rules: {
         ...uuiJsRules(),
@@ -57,8 +58,23 @@ module.exports = {
             extends: ['react-app/jest'],
             env: { 'jest/globals': true },
             rules: {
-                'testing-library/render-result-naming-convention': 0,
                 'import/no-extraneous-dependencies': 0,
+                'no-restricted-imports': ['error', {
+                    paths: [
+                        { name: 'react-test-renderer', message: 'Please use: import { renderer } from \'@epam/uui-test-utils\';' },
+                        { name: '@testing-library/react', message: 'Please use: import { ... } from \'@epam/uui-test-utils\';' },
+                        { name: '@testing-library/user-event', message: 'Please use: import { userEvent } from \'@epam/uui-test-utils\';' },
+                    ],
+                }],
+                /**
+                 * Don't want to force usage of userEvent because it slows down the performance of tests (with user-event it's ~3 times slower).
+                 * https://github.com/testing-library/user-event/issues/650
+                 */
+                'testing-library/prefer-user-event': 0,
+                'testing-library/render-result-naming-convention': 0,
+                'testing-library/no-node-access': 1,
+                'testing-library/no-manual-cleanup': 2,
+                'testing-library/prefer-explicit-assert': 2,
                 ...turnOffEslintRulesToBeFixed(),
             },
         }, {
@@ -96,7 +112,7 @@ module.exports = {
                     '.js', '.ts', '.tsx', '.d.ts', '.css', '.scss', '.svg',
                 ],
             },
-            alias: { map: [['@epam/test-utils', './test-utils/index.ts']] },
+            alias: { map: [['@epam/uui-test-utils', './test-utils/index.ts']] },
         },
         'import/extensions': [
             '.js', '.ts', '.tsx', '.d.ts',
@@ -111,6 +127,8 @@ function uuiTsRules() {
         ...pickFromAirbnb.typescript.nonStylistic,
         'no-unused-expressions': 0,
         '@typescript-eslint/no-unused-expressions': uuiJsRules()['no-unused-expressions'],
+        'no-shadow': 0,
+        '@typescript-eslint/no-shadow': uuiJsRules()['no-shadow'],
         // non-stylistic - end
         // stylistic - start
         ...pickFromAirbnb.typescript.stylistic,
@@ -127,6 +145,7 @@ function uuiTsRules() {
                 generics: 'ignore', // ts-specific
             },
         ],
+        '@typescript-eslint/lines-between-class-members': uuiJsRules()['lines-between-class-members'],
         // stylistic - end
     };
 }
@@ -172,6 +191,7 @@ function uuiJsRules() {
                 ignoreReadBeforeAssign: true,
             },
         ],
+        'no-shadow': [2, { allow: ['props'] }],
         // non-stylistic- end
         // stylistic - start
         ...pickFromAirbnb.base.stylistic,
@@ -199,6 +219,11 @@ function uuiJsRules() {
                 functions: 'always-multiline',
             },
         ],
+        'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+        'no-trailing-spaces': ['error', {
+            skipBlankLines: true,
+            ignoreComments: false,
+        }],
         // stylistic - end
     };
 }

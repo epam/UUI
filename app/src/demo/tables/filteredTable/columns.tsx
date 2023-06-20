@@ -4,7 +4,7 @@ import {
 } from '@epam/promo';
 import { DataColumnProps, getSeparatedValue } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
-import css from './FilteredTable.scss';
+import css from './FilteredTable.module.scss';
 
 export const personColumns: DataColumnProps<Person, number>[] = [
     {
@@ -25,7 +25,6 @@ export const personColumns: DataColumnProps<Person, number>[] = [
                 </FlexRow>
             ),
         grow: 0,
-        shrink: 0,
         width: 140,
         isSortable: true,
         isFilterActive: (f) => !!f.profileStatusId,
@@ -54,7 +53,6 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         caption: 'Department',
         render: (p) => <Text>{p.departmentName}</Text>,
         grow: 0,
-        shrink: 0,
         width: 200,
         isSortable: true,
         isFilterActive: (f) => !!f.departmentId,
@@ -64,7 +62,6 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         caption: 'Office',
         render: (p) => <Text>{p.officeAddress}</Text>,
         grow: 0,
-        shrink: 0,
         width: 150,
         isSortable: true,
         isFilterActive: (f) => !!f.officeId,
@@ -73,7 +70,6 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         caption: 'Manager',
         render: (p) => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href="#" />,
         grow: 0,
-        shrink: 0,
         width: 150,
         isSortable: true,
         isFilterActive: (f) => !!f.managerId,
@@ -82,7 +78,6 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         caption: 'Country',
         render: (p) => <Text>{p.countryName}</Text>,
         grow: 0,
-        shrink: 0,
         width: 150,
         isSortable: true,
         isFilterActive: (f) => !!f.countryId,
@@ -91,7 +86,6 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         caption: 'City',
         render: (p) => <Text>{p.cityName}</Text>,
         grow: 0,
-        shrink: 0,
         width: 150,
         isSortable: true,
         isFilterActive: (f) => !!f.cityId,
@@ -100,14 +94,12 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         caption: 'Profile Type',
         render: (p) => <Text>{p.hireDate ? 'Employee' : 'Student'}</Text>,
         grow: 0,
-        shrink: 0,
         width: 150,
     }, {
         key: 'birthDate',
         caption: 'Birth Date',
         render: (p) => p?.birthDate && <Text>{new Date(p.birthDate).toLocaleDateString()}</Text>,
         grow: 0,
-        shrink: 0,
         width: 120,
         isSortable: true,
     }, {
@@ -115,7 +107,6 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         caption: 'Related NPR',
         render: (p) => <Text>{p.relatedNPR ? 'Completed' : 'Uncompleted'}</Text>,
         grow: 0,
-        shrink: 0,
         width: 120,
         isSortable: true,
         isHiddenByDefault: true,
@@ -124,7 +115,6 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         caption: 'Track & Level',
         render: (p) => <Text>{p.titleLevel}</Text>,
         grow: 1,
-        shrink: 0,
         width: 100,
         isSortable: true,
         isHiddenByDefault: true,

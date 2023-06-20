@@ -3,20 +3,18 @@ import { allBorderStyles, allFillStyles, allEpamPrimaryColors } from '@epam/love
 import { Button, ButtonMods } from '@epam/loveship';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
-import {
-    basicPickerTogglerDoc,
-    DefaultContext,
-    dropdownTogglerDoc,
-    FormContext,
-    iCanRedirectDoc,
-    iconOptionsDoc,
-    iconWithInfoDoc,
-    iHasPlaceholder,
-    isDisabledDoc,
-    onClickDoc,
-    ResizableContext,
-} from '../../docs';
-import { colors } from '../../docs/helpers/colorMap';
+import { basicPickerTogglerDoc, DefaultContext, dropdownTogglerDoc, FormContext, iCanRedirectDoc, iconOptionsDoc, iconWithInfoDoc, iHasPlaceholder, isDisabledDoc, onClickDoc, ResizableContext } from '../../docs';
+
+const colors = {
+    sky: '#009ECC',
+    grass: '#67A300',
+    sun: '#FCAA00',
+    fire: '#FA4B4B',
+    white: '#FFFFFF',
+    night500: '#ACAFBF',
+    night600: '#6C6F80',
+    gray: '#6C6F80',
+};
 
 const ButtonDoc = new DocBuilder<ButtonProps & ButtonMods>({ name: 'Button', component: Button })
     .prop('size', {
@@ -31,7 +29,9 @@ const ButtonDoc = new DocBuilder<ButtonProps & ButtonMods>({ name: 'Button', com
     .prop('color', {
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
         examples: [
-            ...allEpamPrimaryColors.filter((color) => color !== 'sun'), 'white', 'night500',
+            ...allEpamPrimaryColors.filter((color) => color !== 'sun'),
+            'white',
+            'gray',
         ],
     })
     .prop('caption', {

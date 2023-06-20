@@ -1,0 +1,54 @@
+@use  '../../assets/styles/index' as *;
+
+.body {
+    --uui-dt-cell-border-width: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    align-self: stretch;
+    width: 100%;
+
+    :global(.-scrolled-bottom) {
+        border-bottom: 1px solid var(--uui-divider);
+    }
+
+    &.modal {
+        :global(.-scrolled-top) {
+            border-top: 1px solid var(--uui-divider);
+        }
+
+        :global(.-scrolled-bottom) {
+            border-bottom: 1px solid var(--uui-divider);
+        }
+    }
+}
+
+.search-wrapper ~ .body {
+    &:not(.modal) {
+        :global(.-scrolled-top) {
+            border-top: 1px solid var(--uui-divider);
+        }
+    }
+}
+
+.modal {
+    border: 0;
+}
+
+.checkbox {
+    padding: 6px 0;
+}
+
+.search-wrapper {
+    padding: 9px 12px;
+}
+
+.no-found-size-24 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.no-found-size-30, .no-found-size-36, .no-found-size-42 {
+    padding-top: 23px;
+    padding-bottom: 23px;
+}

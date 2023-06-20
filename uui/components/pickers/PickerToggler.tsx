@@ -6,7 +6,7 @@ import { systemIcons } from '../../icons/icons';
 import { Tag } from '../widgets';
 import * as types from '../types';
 import { getMaxItems } from './helpers';
-import css from './PickerToggler.scss';
+import css from './PickerToggler.module.scss';
 
 const defaultSize = '36';
 const defaultMode = types.EditMode.FORM;
@@ -17,7 +17,9 @@ export interface PickerTogglerMods extends types.IHasEditMode {
 
 function applyPickerTogglerMods(mods: PickerTogglerMods) {
     return [
-        css.root, css['size-' + (mods.size || defaultSize)], css['mode-' + (mods.mode || defaultMode)],
+        css.root,
+        css['size-' + (mods.size || defaultSize)],
+        css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 

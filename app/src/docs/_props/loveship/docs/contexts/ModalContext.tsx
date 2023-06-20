@@ -7,13 +7,9 @@ import {
 
 export class ModalContext extends React.Component<DemoComponentProps> {
     public static displayName = 'Modal';
-
     static contextType = UuiContext;
-
     context: UuiContexts;
-
     state = { result: '' };
-
     handleOnClick = () => {
         const { DemoComponent, props } = this.props;
         this.context.uuiModals

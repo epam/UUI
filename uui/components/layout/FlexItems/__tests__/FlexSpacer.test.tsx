@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlexSpacer } from '../';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('FlexSpacer', () => {
     it('should be rendered correctly', () => {

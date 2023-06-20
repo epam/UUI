@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './Blocker.scss';
+import css from './Blocker.module.scss';
 import { withMods } from '@epam/uui-core';
 import { Blocker as uuiBlocker, BlockerProps } from '@epam/uui-components';
 import { Spinner } from '../widgets/Spinner';

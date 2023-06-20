@@ -1,20 +1,13 @@
 import * as React from 'react';
-import {
-    IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, cx, IHasRawProps, ICanFocus,
-} from '@epam/uui-core';
+import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, cx, IHasRawProps, ICanFocus } from '@epam/uui-core';
 import { IconContainer } from '../layout';
-import css from './PickerToggler.scss';
+import css from './PickerToggler.module.scss';
 import { i18n } from '../i18n';
 import { useCallback } from 'react';
 import { getMaxItems } from './helpers';
 
 export interface PickerTogglerProps<TItem = any, TId = any>
-    extends IPickerToggler<TItem, TId>,
-    ICanFocus<HTMLElement>,
-    IHasIcon,
-    IHasCX,
-    ICanBeReadonly,
-    IHasRawProps<React.HTMLAttributes<HTMLElement>> {
+    extends IPickerToggler<TItem, TId>, ICanFocus<HTMLElement>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
     cancelIcon?: Icon;
     dropdownIcon?: Icon;
     autoFocus?: boolean;
@@ -30,8 +23,6 @@ export interface PickerTogglerProps<TItem = any, TId = any>
     disableSearch?: boolean;
     disableClear?: boolean;
     minCharsToSearch?: number;
-    prefix?: React.ReactNode;
-    suffix?: React.ReactNode;
 }
 
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
@@ -106,7 +97,15 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const renderInput = () => {
         const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
-        const placeholder = isSinglePickerSelected ? props.getName(props.selection[0]?.value) : props.placeholder;
+
+        let placeholder: string;
+        if (!isSinglePickerSelected) {
+            placeholder = props.placeholder;
+        }
+
+        if (isSinglePickerSelected) {
+            placeholder = props.selection[0].isLoading ? undefined : props.getName(props.selection[0]?.value);
+        }
         const value = props.disableSearch ? null : props.value;
         if (props.searchPosition !== 'input' && props.pickerMode === 'multi' && props.selectedRowsCount > 0) {
             return null;
@@ -176,7 +175,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             onKeyDown={ props.onKeyDown }
             { ...props.rawProps }
         >
-            {props.prefix && <span className={ uuiElement.prefixInput }>{props.prefix}</span>}
             <div className={ cx(css.body, !props.isSingleLine && props.pickerMode !== 'single' && css.multiline) }>
                 {props.iconPosition !== 'right' && icon}
                 {props.pickerMode !== 'single' && renderItems()}
@@ -198,7 +196,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                     {props.isDropdown && <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" onClick={ closeOpenedPickerBody } />}
                 </div>
             )}
-            {props.suffix && <span className={ uuiElement.suffixInput }>{props.suffix}</span>}
         </div>
     );
 }

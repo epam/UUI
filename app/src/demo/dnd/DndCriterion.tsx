@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './DndCriterion.scss';
+import css from './DndCriterion.module.scss';
 import {
     DndActor, IEditable, cx, DropParams, getOrderBetween,
 } from '@epam/uui-core';

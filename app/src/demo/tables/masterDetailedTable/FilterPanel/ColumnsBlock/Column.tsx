@@ -1,5 +1,5 @@
 import React, { ReactNode, useCallback } from 'react';
-import css from './Column.scss';
+import css from './Column.module.scss';
 import { ColumnsConfig, IEditable } from '@epam/uui-core';
 import { Checkbox } from '@epam/uui';
 

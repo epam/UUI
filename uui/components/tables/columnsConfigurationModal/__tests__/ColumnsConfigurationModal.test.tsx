@@ -1,7 +1,7 @@
 import React from 'react';
 import { ColumnsConfigurationModal } from '../ColumnsConfigurationModal';
 import { DataColumnProps, getDefaultColumnsConfig } from '@epam/uui-core';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 const mockColumns: DataColumnProps[] = [
     {

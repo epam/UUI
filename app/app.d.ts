@@ -1,18 +1,9 @@
+/// <reference path="../uui_globals.d.ts" />
+
+declare let __COMMIT_HASH__: string;
+
 // TBD: react-measure is abandoned, and it's typings are not compatible with modern react versions. We need to find a replacement.
 // declare module 'react-measure';
-
-declare module '*.scss' {
-    const all: { [selector: string]: string };
-    export = all;
-}
-
-declare module '*.svg' {
-    import React from 'react';
-
-    export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
-    const src: string;
-    export default src;
-}
 
 declare module 'react-imask' {
     import IMask from 'imask';

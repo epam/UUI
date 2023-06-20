@@ -1,6 +1,6 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
-import { fireEvent, setupComponentForTest, screen } from '@epam/test-utils';
+import { fireEvent, setupComponentForTest, screen, within } from '@epam/uui-test-utils';
 import { DatePickerHeader, DatePickerHeaderProps } from '../DatePickerHeader';
 
 async function setupDatePickerHeader(params: { initialDate: string }) {
@@ -20,9 +20,7 @@ async function setupDatePickerHeader(params: { initialDate: string }) {
         (props) => <DatePickerHeader { ...props } />,
     );
 
-    const left = result.container.querySelector('.uui-datepickerheader-nav-icon-left');
-    const right = result.container.querySelector('.uui-datepickerheader-nav-icon-right');
-    const title = result.container.querySelector('.uui-datepickerheader-nav-title');
+    const [left, title, right] = within(screen.queryByRole('banner')).queryAllByRole('button');
 
     return {
         result,

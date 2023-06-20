@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './Rating.scss';
+import css from './Rating.module.scss';
 import { IconContainer } from '../../layout';
 import { TooltipProps } from '../../overlays/Tooltip';
 import { BaseRating, BaseRatingProps } from './BaseRating';

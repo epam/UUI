@@ -1,6 +1,6 @@
 import React from 'react';
 import { IHasCX, cx } from '@epam/uui-core';
-import styles from './TextOverflow.scss';
+import styles from './TextOverflow.module.scss';
 import { Tooltip } from '../overlays';
 
 type getTextWidth = (text: string, font: string, canvas: HTMLCanvasElement) => number | null;
@@ -26,7 +26,6 @@ interface TextOverflowProps extends IHasCX {
 
 export class TextOverflow extends React.Component<TextOverflowProps> {
     textContainer: HTMLElement | null = null;
-
     render() {
         let content = '';
         if (this.textContainer) {

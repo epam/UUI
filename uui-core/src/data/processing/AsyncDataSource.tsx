@@ -7,7 +7,6 @@ export interface AsyncDataSourceProps<TItem, TId, TFilter> extends AsyncListView
 
 export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends ArrayDataSource<TItem, TId> {
     api: () => Promise<TItem[]> = null;
-
     constructor(props: AsyncDataSourceProps<TItem, TId, TFilter>) {
         super({
             ...props,

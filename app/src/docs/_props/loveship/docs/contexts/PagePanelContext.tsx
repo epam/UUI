@@ -3,7 +3,7 @@ import { DemoComponentProps } from '@epam/uui-docs';
 import {
     Panel, FlexRow, Text, FlexCell,
 } from '@epam/loveship';
-import css from './PagePanelContext.scss';
+import css from './PagePanelContext.module.scss';
 
 const items: Array<{ country: string }> = [
     { country: 'Belarus' }, { country: 'Russia' }, { country: 'China' }, { country: 'USA' }, { country: 'Japan' }, { country: 'Poland' }, { country: 'Italy' }, { country: 'France' }, { country: 'Germany' },
@@ -15,7 +15,6 @@ interface DemoComponentState {
 
 export class PagePanelContext extends React.Component<DemoComponentProps, DemoComponentState> {
     public static displayName = 'Page panel';
-
     state = {
         totalPages: items.length,
     };

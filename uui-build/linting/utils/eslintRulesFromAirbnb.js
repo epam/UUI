@@ -34,7 +34,6 @@ const AIRBNB_PICK_RULES = {
             'indent',
             'key-spacing',
             'keyword-spacing',
-            'lines-between-class-members',
             'max-len',
             'newline-per-chained-call',
             'no-mixed-spaces-and-tabs',
@@ -42,7 +41,6 @@ const AIRBNB_PICK_RULES = {
             'no-multi-spaces',
             'nonblock-statement-body-position',
             'no-tabs',
-            'no-trailing-spaces',
             'no-whitespace-before-property',
             'object-curly-spacing',
             'operator-linebreak',
@@ -71,7 +69,6 @@ const AIRBNB_PICK_RULES = {
             'block-scoped-var',
             'prefer-promise-reject-errors',
             //
-            'no-shadow',
             'no-unused-vars',
             //
             'no-var',
@@ -84,13 +81,31 @@ const AIRBNB_PICK_RULES = {
     },
     TS: {
         STYLISTIC: [
-            '@typescript-eslint/brace-style', '@typescript-eslint/comma-spacing', '@typescript-eslint/indent', '@typescript-eslint/keyword-spacing', '@typescript-eslint/lines-between-class-members', '@typescript-eslint/no-extra-semi', '@typescript-eslint/object-curly-spacing', '@typescript-eslint/quotes', '@typescript-eslint/semi', '@typescript-eslint/space-before-blocks', '@typescript-eslint/space-before-function-paren',
+            '@typescript-eslint/brace-style',
+            '@typescript-eslint/comma-spacing',
+            '@typescript-eslint/indent',
+            '@typescript-eslint/keyword-spacing',
+            '@typescript-eslint/no-extra-semi',
+            '@typescript-eslint/object-curly-spacing',
+            '@typescript-eslint/quotes',
+            '@typescript-eslint/semi',
+            '@typescript-eslint/space-before-blocks',
+            '@typescript-eslint/space-before-function-paren',
         ],
-        NON_STYLISTIC: ['@typescript-eslint/no-shadow', '@typescript-eslint/no-unused-vars'],
+        NON_STYLISTIC: ['@typescript-eslint/no-unused-vars'],
     },
     REACT: {
         STYLISTIC: [
-            'react/jsx-closing-bracket-location', 'react/jsx-closing-tag-location', 'react/jsx-curly-brace-presence', 'react/jsx-curly-newline', 'react/jsx-first-prop-new-line', 'react/jsx-max-props-per-line', 'react/jsx-one-expression-per-line', 'react/jsx-props-no-multi-spaces', 'react/jsx-tag-spacing', 'jsx-quotes',
+            'react/jsx-closing-bracket-location',
+            'react/jsx-closing-tag-location',
+            'react/jsx-curly-brace-presence',
+            'react/jsx-curly-newline',
+            'react/jsx-first-prop-new-line',
+            'react/jsx-max-props-per-line',
+            'react/jsx-one-expression-per-line',
+            'react/jsx-props-no-multi-spaces',
+            'react/jsx-tag-spacing',
+            'jsx-quotes',
         ],
         NON_STYLISTIC: [
             'react/no-access-state-in-setstate',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlexRow } from '../FlexRow';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('FlexRow', () => {
     it('should be rendered correctly', () => {

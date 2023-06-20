@@ -3,7 +3,6 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class ScrollSpyDoc extends BaseDocsBlock {
     title = 'Scroll Spy';
-
     renderContent() {
         return (
             <>

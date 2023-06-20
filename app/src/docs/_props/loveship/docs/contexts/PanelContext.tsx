@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { Panel, FlexRow } from '@epam/loveship';
-import css from './PanelContext.scss';
+import css from './PanelContext.module.scss';
 
 export class PanelContext extends React.Component<DemoComponentProps> {
     public static displayName = 'Panel';
-
     render() {
         const { DemoComponent, props } = this.props;
         return (

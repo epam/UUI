@@ -15,7 +15,7 @@ import {
     CheckboxGroup,
     FlexSpacer,
 } from '@epam/promo';
-import css from './FormContext.scss';
+import css from './FormContext.module.scss';
 
 interface FormContextState {
     textValue: string;
@@ -28,7 +28,6 @@ interface FormContextState {
 
 export class FormContext extends React.Component<DemoComponentProps, FormContextState> {
     public static displayName = 'Form';
-
     state = {
         textValue: '',
         isInvalid: false,

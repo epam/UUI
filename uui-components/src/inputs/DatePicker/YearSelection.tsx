@@ -3,7 +3,7 @@ import { Dayjs } from 'dayjs';
 import {
     IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';
-import css from './YearSelection.scss';
+import css from './YearSelection.module.scss';
 
 const MONTH_ROW_LENGTH = 4;
 

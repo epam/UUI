@@ -3,7 +3,7 @@ import { Text as UuiText, TextProps as UuiTextProps } from '@epam/uui';
 import * as types from '../types';
 
 export interface TextMods {
-    color?: 'night50' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';
+    color?: 'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night50' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';
     font?: types.FontStyle;
 }
 
