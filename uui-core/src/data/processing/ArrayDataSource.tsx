@@ -64,7 +64,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         };
 
         if (view) {
-            view.update(value, viewProps);
+            view.update({ value, onValueChange }, viewProps);
             return view;
         } else {
             const newView = new ArrayListView({ value, onValueChange }, viewProps);

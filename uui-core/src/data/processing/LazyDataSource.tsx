@@ -56,7 +56,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         };
 
         if (view) {
-            view.update(value, viewProps);
+            view.update({ value, onValueChange }, viewProps);
             return view;
         } else {
             const newView = new LazyListView({ value, onValueChange }, viewProps, this.cache);

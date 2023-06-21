@@ -460,12 +460,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         // let's guess we have at least 1 item more than loaded
         return 1;
     }
-    
-    protected isValueEditable(
-        value: DataSourceState<TFilter, TId> | IEditable<DataSourceState<TFilter, TId>>,
-    ): value is IEditable<DataSourceState<TFilter, TId>> {
-        return 'value' in value && 'onValueChange' in value && value.onValueChange !== undefined && value.onValueChange !== null;
-    }
 
     private getDefaultNodeStats = () => ({
         isSomeCheckable: false,
