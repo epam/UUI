@@ -39,6 +39,7 @@ export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => {
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
+            flattenSearchResults: true,
         });
 
     dataSourcesMap.locations = dataSourcesMap.locations

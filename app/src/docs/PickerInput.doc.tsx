@@ -21,6 +21,7 @@ export class PickerInputDoc extends BaseDocsBlock {
                 <DocExample title="Basic" path="./_examples/pickerInput/ArrayPickerInput.example.tsx" />
                 <DocExample title="Lazy list" path="./_examples/pickerInput/LazyPickerInput.example.tsx" />
                 <DocExample title="Lazy tree" path="./_examples/pickerInput/LazyTreeInput.example.tsx" />
+                <DocExample title="Search modes" path="./_examples/pickerInput/LazyTreeSearch.example.tsx" />
                 <DocExample title="Async list" path="./_examples/pickerInput/AsyncPickerInput.example.tsx" />
                 <DocExample title="Cascade selection modes" path="./_examples/pickerInput/CascadeSelectionModes.example.tsx" />
                 <DocExample title="Search positions" path="./_examples/pickerInput/SearchPositions.example.tsx" />
