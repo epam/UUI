@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect, useRef } from 'react';
 import isEqual from 'lodash.isequal';
 import {
-    DataRowOptions, DataSourceListProps, DataSourceState, IDataSourceView, PickerBaseProps, PickerFooterProps, UuiContext,
+    DataSourceListProps, DataSourceState, IDataSourceView, PickerBaseProps, PickerFooterProps, UuiContext,
 } from '@epam/uui-core';
 import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
 import { PickerState } from './types';
@@ -96,17 +96,12 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
 
     const getDataSourceState = () => applyValueToDataSourceState(props, dataSourceState, props.value, props.dataSource);
 
-    const getRowOptions = (item: TItem, index: number) => {
-        const options: DataRowOptions<TItem, TId> = {};
+    const getRowOptions = () => {
         if (isSingleSelect()) {
-            options.isSelectable = true;
-        } else {
-            options.checkbox = { isVisible: true };
+            return { isSelectable: true };
         }
 
-        const externalOptions = props.getRowOptions ? props.getRowOptions(item, index) : {};
-
-        return { ...options, ...externalOptions };
+        return { checkbox: { isVisible: true } };
     };
 
     const clearSelection = () => {
@@ -127,11 +122,12 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
 
     const getView = (): IDataSourceView<TItem, TId, any> =>
         dataSource.getView(getDataSourceState(), handleDataSourceValueChange, {
-            getRowOptions,
+            rowOptions: getRowOptions(),
             getSearchFields: getSearchFields || ((item: TItem) => [getName(item)]),
             isFoldedByDefault,
             ...(sortBy ? { sortBy } : {}),
             ...(cascadeSelection ? { cascadeSelection } : {}),
+            ...(props.getRowOptions ? { getRowOptions: props.getRowOptions } : {}),
         });
 
     const getSelectedRows = (visibleCount?: number) => {

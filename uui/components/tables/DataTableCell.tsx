@@ -24,7 +24,7 @@ function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TI
                     size={ additionalItemSize }
                     value={ row.isChecked }
                     indeterminate={ !row.isChecked && row.isChildrenChecked }
-                    onValueChange={ () => row.onCheck(row) }
+                    onValueChange={ () => row.onCheck?.(row) }
                     isDisabled={ row.checkbox.isDisabled }
                     isInvalid={ row.checkbox.isInvalid }
                 />
