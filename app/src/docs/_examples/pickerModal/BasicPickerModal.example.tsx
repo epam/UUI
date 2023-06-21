@@ -16,7 +16,6 @@ export default function BasicPickerModal() {
         [],
     );
 
-    console.log('value', value);
     const handleModalOpening = useCallback(() => {
         context.uuiModals.show<string[]>((props) => {
             return (

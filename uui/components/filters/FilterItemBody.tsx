@@ -1,5 +1,5 @@
 import React from 'react';
-import { FilterPickerBody } from './FilterPickerBody.fn';
+import { FilterPickerBody } from './FilterPickerBody';
 import { FilterDatePickerBody } from './FilterDatePickerBody';
 import { FilterRangeDatePickerBody } from './FilterRangeDatePickerBody';
 import { IFilterItemBodyProps } from '@epam/uui-core';
