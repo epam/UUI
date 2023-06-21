@@ -30,8 +30,15 @@ export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => {
         || new LazyDataSource({
             api: (request, context) => {
                 const { search } = request;
-                const filter = search ? {} : { parentId: context?.parentId };
-                return ctx.demoApi.locations({ ...request, search, filter });
+                if (search && context.parentId) { // >1 level, search
+                    return Promise.resolve({ items: context.parent.children });
+                } else if (search) {
+                    const tree = ctx.demoApi.locationsSearch({ ...request, search });
+                    return tree;
+                }
+
+                const filter = { parentId: context?.parentId };
+                return ctx.demoApi.locations({ ...request, filter });
             },
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,

@@ -179,9 +179,13 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     };
 
     protected isFolded(item: TItem) {
+        const searchIsApplied = !!this.value?.search;
+        if (searchIsApplied) {
+            return false;
+        }
+
         const folded = this.value.folded || {};
         const key = this.idToKey(this.props.getId(item));
-
         if (folded[key] != null) {
             return folded[key];
         }
@@ -215,7 +219,12 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected applyRowOptions(row: DataRowProps<TItem, TId>) {
-        const rowOptions = this.props.getRowOptions && !row.isLoading ? this.props.getRowOptions(row.value, row.index) : this.props.rowOptions;
+        const externalRowOptions = (this.props.getRowOptions && !row.isLoading)
+            ? this.props.getRowOptions(row.value, row.index)
+            : {};
+
+        const rowOptions = { ...this.props.rowOptions, ...externalRowOptions };
+        
         const estimatedChildrenCount = this.getEstimatedChildrenCount(row.id);
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
 
@@ -252,8 +261,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected getLoadingRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
+        const rowProps = this.getEmptyRowProps(id, index, path);
         return {
-            ...this.getEmptyRowProps(id, index, path),
+            ...rowProps,
+            checkbox: { ...rowProps.checkbox, isDisabled: true },
             isLoading: true,
         };
     }
@@ -281,7 +292,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             depth: path ? path.length : 0,
             path: path ?? [],
             checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
-            onCheck: this.handleOnCheck,
             isChecked,
         };
     }
@@ -292,7 +302,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         const lastIndex = this.getLastRecordIndex();
 
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
-        const searchIsApplied = !!this.value?.search;
         const iterateNode = (
             parentId: TId,
             appendRows: boolean, // Will be false, if we are iterating folded nodes.
@@ -328,11 +337,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                     const childrenIds = this.tree.getChildrenIdsByParentId(id);
 
                     if (estimatedChildrenCount > 0) {
-                        let isFolded = this.isFolded(item);
-                        if (searchIsApplied && childrenIds.length > 0) {
-                            isFolded = false;
-                        }
-                        row.isFolded = isFolded;
+                        row.isFolded = this.isFolded(item);
                         row.onFold = row.isFoldable && this.handleOnFold;
 
                         if (childrenIds.length > 0) {
