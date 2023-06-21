@@ -47,7 +47,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         };
 
         if (view) {
-            view.update(value, viewProps);
+            view.update({ value, onValueChange }, viewProps);
             if (!view.isLoaded) {
                 view.loadData().then((loadedItems) => {
                     this.setProps({ ...this.props, items: loadedItems ?? [] });

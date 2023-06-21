@@ -107,7 +107,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 onUpdate: () => this._forceUpdate(),
             });
         }
-        this.update(editable.value, this.props);
+        this.update(editable, this.props);
     }
 
     private defaultGetId = (i: any) => i.id;
@@ -123,27 +123,17 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     public update(
-        newValue: DataSourceState<TFilter, TId> | IEditable<DataSourceState<TFilter, TId>>,
+        { value, onValueChange }: IEditable<DataSourceState<TFilter, TId>>,
         props: LazyListViewProps<TItem, TId, TFilter>,
     ): void {
         this.isUpdatePending = true;
+        // We assume value to be immutable. However, we can't guarantee this.
+        // Let's shallow-copy value to survive at least simple cases when it's mutated outside
+        this.value = { topIndex: 0, visibleCount: 20, ...value };
+        this.onValueChange = onValueChange;
 
-        let extractedValue;
-        if (this.isValueEditable(newValue)) {
-            // We assume value to be immutable. However, we can't guarantee this.
-            // Let's shallow-copy value to survive at least simple cases when it's mutated outside
-            this.value = { topIndex: 0, visibleCount: 20, ...newValue.value };
-            this.onValueChange = newValue.onValueChange;
-            extractedValue = newValue.value;
-        } else {
-            // We assume value to be immutable. However, we can't guarantee this.
-            // Let's shallow-copy value to survive at least simple cases when it's mutated outside
-            this.value = { topIndex: 0, visibleCount: 20, ...newValue };
-            extractedValue = newValue;
-        }
-
-        if (!isEqual(extractedValue?.checked, this.value?.checked)) {
-            this.updateCheckedLookup(extractedValue.checked);
+        if (!isEqual(value?.checked, this.value?.checked)) {
+            this.updateCheckedLookup(value.checked);
         }
 
         this.props = {
@@ -224,7 +214,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.tree = Tree.blank(this.props);
         this.reloading = true;
         this.initCache();
-        this.update(this.value, this.props);
+        this.update({ value: this.value, onValueChange: this.onValueChange }, this.props);
         this._forceUpdate();
     };
 

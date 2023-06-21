@@ -1,6 +1,6 @@
 import { ArrayListView, ArrayListViewProps } from '../ArrayListView';
 import { ArrayDataSource } from '../../ArrayDataSource';
-import { DataSourceState, SortDirection } from '../../../../types';
+import { CascadeSelection, DataSourceState, SortDirection } from '../../../../types';
 
 interface TItem {
     id: number;
@@ -28,10 +28,10 @@ const testItems: TItem[] = [
 const totalRowsCount = 12;
 const rootNodesCount = 9;
 
-let dataSource: ArrayDataSource<{ id: number; level: string }, number, any> = null;
-let view: View = null;
+let dataSource: ArrayDataSource<{ id: number; level: string }, number, any>;
+let view: View;
 
-let onValueChange: () => any = null;
+let onValueChange: () => any;
 const initialValue: DataSourceState = { topIndex: 0, visibleCount: totalRowsCount };
 let viewProps: ArrayListViewProps<TItem, number, any>;
 
@@ -48,7 +48,7 @@ describe('ArrayListView', () => {
         viewProps = {
             getId: (i) => i.id,
             getSearchFields: (item) => [item.level],
-            getRowOptions: (item, index) => ({
+            getRowOptions: () => ({
                 checkbox: {
                     isVisible: true,
                 },
@@ -67,7 +67,7 @@ describe('ArrayListView', () => {
         it('should set new value and update rows', () => {
             const rebuildRowsSpy = jest.spyOn(view, 'rebuildRows' as any);
 
-            view.update({ filter: {} }, viewProps);
+            view.update({ value: { filter: {} }, onValueChange }, viewProps);
 
             expect(view.value).toStrictEqual({ filter: {} });
             expect(rebuildRowsSpy).toHaveBeenCalled();
@@ -76,7 +76,7 @@ describe('ArrayListView', () => {
         it('should not update nodes when setValue called with the same value', () => {
             const rebuildRowsSpy = jest.spyOn(view, 'rebuildRows' as any);
 
-            view.update(initialValue, viewProps);
+            view.update({ value: initialValue, onValueChange }, viewProps);
 
             expect(rebuildRowsSpy).toHaveBeenCalledTimes(0);
         });
@@ -84,7 +84,7 @@ describe('ArrayListView', () => {
         it('should update focused item if only focusedIndex changed in value', () => {
             const updateFocusedItemSpy = jest.spyOn(view, 'updateFocusedItem' as any);
 
-            view.update({ ...initialValue, focusedIndex: 1 }, viewProps);
+            view.update({ value: { ...initialValue, focusedIndex: 1 }, onValueChange }, viewProps);
 
             expect(updateFocusedItemSpy).toHaveBeenCalledTimes(1);
         });
@@ -99,7 +99,7 @@ describe('ArrayListView', () => {
 
     it('should return rows', () => {
         const topIndex = 2;
-        view.update({ ...initialValue, topIndex, visibleCount: 15 }, viewProps);
+        view.update({ value: { ...initialValue, topIndex, visibleCount: 15 }, onValueChange }, viewProps);
         const rows = view.getVisibleRows();
         const rootTestItems = testItems.filter((i) => i.parentId == null).slice(topIndex);
         expect(rows).toMatchObject(rootTestItems.map((i) => ({ id: i.id, value: i })));
@@ -118,7 +118,7 @@ describe('ArrayListView', () => {
 
     describe('sorting', () => {
         it('should return rows in default order, if sorting do not passed', () => {
-            view.update({ ...initialValue, topIndex: 0, visibleCount: 20 }, viewProps);
+            view.update({ value: { ...initialValue, topIndex: 0, visibleCount: 20 }, onValueChange }, viewProps);
             const rows = view.getVisibleRows();
             expect(rows[0].id).toEqual(2);
             expect(rows[4].id).toEqual(4);
@@ -126,7 +126,10 @@ describe('ArrayListView', () => {
 
         it('should sort rows if set sorting to value', () => {
             view.update({
-                ...initialValue, sorting: [{ field: 'id', direction: 'asc' }], topIndex: 0, visibleCount: 20,
+                value: {
+                    ...initialValue, sorting: [{ field: 'id', direction: 'asc' }], topIndex: 0, visibleCount: 20,
+                },
+                onValueChange,
             }, viewProps);
             const rows = view.getVisibleRows();
             expect(rows[0].id).toEqual(1);
@@ -137,7 +140,10 @@ describe('ArrayListView', () => {
     describe('search', () => {
         it('should search items', () => {
             view.update({
-                ...initialValue, search: 'C1', topIndex: 0, visibleCount: 20,
+                value: {
+                    ...initialValue, search: 'C1', topIndex: 0, visibleCount: 20,
+                },
+                onValueChange,
             }, viewProps);
             const rows = view.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
@@ -152,14 +158,17 @@ describe('ArrayListView', () => {
         const filter = (item) => item.parentId === 6;
 
         let value: View['value'] = initialValue;
-        const onValueChange = (newValue: typeof value) => {
+        const onValueChangeFn = (newValue: typeof value) => {
             value = newValue;
         };
 
         it('should update tree if filter was changed', () => {
-            const realView = dataSource.getView(value, onValueChange, viewProps) as View;
+            const realView = dataSource.getView(value, onValueChangeFn, viewProps) as View;
             realView.update({
-                ...value, topIndex: 0, visibleCount: 20, filter,
+                value: {
+                    ...value, topIndex: 0, visibleCount: 20, filter,
+                },
+                onValueChange: onValueChangeFn,
             }, { ...viewProps, getFilter });
             const rows = realView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
@@ -168,9 +177,12 @@ describe('ArrayListView', () => {
             expect(rowsIds).toEqual([6]);
 
             const [row] = rows;
-            row.onFold(row);
+            row.onFold?.(row);
             realView.update({
-                ...value, topIndex: 0, visibleCount: 20, filter,
+                value: {
+                    ...value, topIndex: 0, visibleCount: 20, filter,
+                },
+                onValueChange: onValueChangeFn,
             }, { ...viewProps, getFilter });
 
             const unfoldedRows = realView.getVisibleRows();
@@ -182,11 +194,11 @@ describe('ArrayListView', () => {
         });
 
         it('should update tree if filter and search was changed', () => {
-            const realView = dataSource.getView(value, onValueChange, viewProps) as View;
+            const realView = dataSource.getView(value, onValueChangeFn, viewProps) as View;
             const dataSourceState = {
                 ...value, topIndex: 0, visibleCount: 20, filter, search: 'B1',
             };
-            realView.update(dataSourceState, { ...viewProps, getFilter });
+            realView.update({ value: dataSourceState, onValueChange: onValueChangeFn }, { ...viewProps, getFilter });
             const rows = realView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
@@ -195,7 +207,7 @@ describe('ArrayListView', () => {
         });
 
         it('should update tree if filter, search and sorting was changed', () => {
-            const realView = dataSource.getView(value, onValueChange, viewProps) as View;
+            const realView = dataSource.getView(value, onValueChangeFn, viewProps) as View;
             const dataSourceState = {
                 ...value,
                 topIndex: 0,
@@ -204,7 +216,7 @@ describe('ArrayListView', () => {
                 search: 'B',
                 sorting: [{ field: 'level', direction: 'desc' as SortDirection }],
             };
-            realView.update(dataSourceState, { ...viewProps, getFilter });
+            realView.update({ value: dataSourceState, onValueChange: onValueChangeFn }, { ...viewProps, getFilter });
             const rows = realView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
@@ -219,27 +231,27 @@ describe('ArrayListView', () => {
         describe('cascadeSelection = false', () => {
             it('should select item in single mode', () => {
                 const row = view.getById(6, 6);
-                row.onSelect(row);
+                row.onSelect?.(row);
 
                 expect(onValueChange).toBeCalledWith({ ...initialValue, selectedId: 6 });
             });
 
             it('onCheck handler should set id to checked array in value', async () => {
                 const row1 = view.getById(6, 6);
-                row1.onCheck(row1);
+                row1.onCheck?.(row1);
                 expect(onValueChange).toHaveBeenCalledWith({ ...initialValue, checked: [6] });
 
-                view.update({ ...initialValue, checked: [6] }, viewProps);
+                view.update({ value: { ...initialValue, checked: [6] }, onValueChange }, viewProps);
 
                 const row2 = view.getById(7, 7);
-                row2.onCheck(row2);
+                row2.onCheck?.(row2);
 
                 expect(onValueChange).toHaveBeenCalledWith({ ...initialValue, checked: [6, 7] });
             });
         });
 
         describe("cascadeSelection = true | cascadeSelection = 'explicit'", () => {
-            it.each([[true], ['explicit']])('should check all children when parent checked with cascadeSelection = %s', (cascadeSelection) => {
+            it.each<[CascadeSelection]>([[true], ['explicit']])('should check all children when parent checked with cascadeSelection = %s', (cascadeSelection) => {
                 view = dataSource.getView(initialValue, onValueChange, {
                     getId: (i) => i.id,
                     cascadeSelection,
@@ -249,7 +261,7 @@ describe('ArrayListView', () => {
                 }) as View;
 
                 const row1 = view.getById(6, 6);
-                row1.onCheck(row1);
+                row1.onCheck?.(row1);
 
                 expect(onValueChange).toBeCalledWith({
                     ...initialValue,
@@ -259,7 +271,7 @@ describe('ArrayListView', () => {
                 });
             });
 
-            it.each([[true], ['explicit']])('should check parent if all siblings checked with cascadeSelection = %s', (cascadeSelection) => {
+            it.each<[CascadeSelection]>([[true], ['explicit']])('should check parent if all siblings checked with cascadeSelection = %s', (cascadeSelection) => {
                 view = dataSource.getView({ ...initialValue, checked: [7, 8] }, onValueChange, {
                     getId: (i) => i.id,
                     cascadeSelection,
@@ -269,7 +281,7 @@ describe('ArrayListView', () => {
                 }) as View;
 
                 const row = view.getById(9, 9);
-                row.onCheck(row);
+                row.onCheck?.(row);
 
                 expect(onValueChange).toBeCalledWith({
                     ...initialValue,
@@ -279,10 +291,10 @@ describe('ArrayListView', () => {
                 });
             });
 
-            it.each([[true], ['explicit']])(
+            it.each<[CascadeSelection]>([[true], ['explicit']])(
                 'should not update internal state itself on onCheck call but only on update call with cascadeSelection = %s',
                 (cascadeSelection) => {
-                    const view = dataSource.getView({ ...initialValue, checked: [] }, onValueChange, {
+                    view = dataSource.getView({ ...initialValue, checked: [] }, onValueChange, {
                         getId: (i) => i.id,
                         cascadeSelection,
                         getRowOptions: () => ({
@@ -291,19 +303,19 @@ describe('ArrayListView', () => {
                     }) as View;
 
                     const row = view.getById(9, 9);
-                    row.onCheck(row);
+                    row.onCheck?.(row);
 
                     expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] });
                     expect(view['checkedByKey']).toEqual({});
 
-                    view.update({ ...initialValue, checked: [9] }, viewProps);
+                    view.update({ value: { ...initialValue, checked: [9] }, onValueChange }, viewProps);
                     expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] });
 
                     expect(view['checkedByKey']).toEqual({ 9: true });
                 },
             );
 
-            it.each([[true], ['explicit']])('should select all top items with cascadeSelection = %s', (cascadeSelection) => {
+            it.each<[CascadeSelection]>([[true], ['explicit']])('should select all top items with cascadeSelection = %s', (cascadeSelection) => {
                 view = dataSource.getView({ ...initialValue, checked: [7, 8] }, onValueChange, {
                     getId: (i) => i.id,
                     cascadeSelection,
@@ -313,7 +325,7 @@ describe('ArrayListView', () => {
                 }) as View;
 
                 const selectAll = view.selectAll;
-                selectAll.onValueChange(true);
+                selectAll?.onValueChange(true);
 
                 expect(onValueChange).toBeCalledWith({
                     ...initialValue,
@@ -335,7 +347,7 @@ describe('ArrayListView', () => {
                 }) as View;
 
                 const row1 = view.getById(6, 6);
-                row1.onCheck(row1);
+                row1.onCheck?.(row1);
 
                 expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [6] });
             });
@@ -350,7 +362,7 @@ describe('ArrayListView', () => {
                 }) as View;
 
                 const row = view.getById(9, 9);
-                row.onCheck(row);
+                row.onCheck?.(row);
 
                 expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [6] });
             });
@@ -365,7 +377,7 @@ describe('ArrayListView', () => {
                 }) as View;
 
                 const selectAll = view.selectAll;
-                selectAll.onValueChange(true);
+                selectAll?.onValueChange(true);
 
                 expect(onValueChange).toBeCalledWith({
                     ...initialValue,
@@ -379,27 +391,22 @@ describe('ArrayListView', () => {
 
     it('should set focusedItem', () => {
         const row = view.getById(6, 6);
-        row.onFocus(row.index);
+        row.onFocus?.(row.index);
 
         expect(onValueChange).toBeCalledWith({ ...initialValue, focusedIndex: row.index });
     });
 
     it('should fold/unfold item', () => {
         const row = view.getVisibleRows()[5];
-        row.onFold(row);
+        row.onFold?.(row);
 
         expect(onValueChange).toBeCalledWith({ ...initialValue, folded: { [row.id]: !row.isFolded } });
     });
 
     it('should return selected rows in selection order', () => {
-        view.update({
-            ...initialValue,
-            checked: [
-                6, 5, 4,
-            ],
-        }, viewProps);
+        view.update({ value: { ...initialValue, checked: [6, 5, 4] }, onValueChange }, viewProps);
 
-        const selectedRows = view.getSelectedRows(0);
+        const selectedRows = view.getSelectedRows();
         expect(selectedRows.map(({ id }) => id)).toEqual([
             6, 5, 4,
         ]);

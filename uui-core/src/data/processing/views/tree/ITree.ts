@@ -58,7 +58,7 @@ export interface ITree<TItem, TId> {
     patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: ItemsComparator<TItem>): ITree<TItem, TId>;
     cascadeSelection(
         currentSelection: TId[],
-        selectedId: TId,
+        selectedId: TId | undefined,
         isSelected: boolean,
         options?: {
             isSelectable?: (item: TItem) => boolean;
@@ -84,7 +84,7 @@ export interface ITree<TItem, TId> {
     computeSubtotals<TSubtotals>(
         get: (item: TItem, hasChildren: boolean) => TSubtotals,
         add: (a: TSubtotals, b: TSubtotals) => TSubtotals
-    ): CompositeKeysMap<TId, TSubtotals> | Map<TId, TSubtotals>;
+    ): CompositeKeysMap<TId | undefined, TSubtotals> | Map<TId | undefined, TSubtotals>;
 
     filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId>;
     search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): ITree<TItem, TId>;

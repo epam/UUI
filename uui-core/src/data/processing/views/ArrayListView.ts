@@ -25,20 +25,13 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         super(editable, props);
         this.props = props;
         this.tree = Tree.blank(props);
-        this.update(editable.value, props);
+        this.update(editable, props);
     }
 
-    public update(newValue: DataSourceState<TFilter, TId> | IEditable<DataSourceState<TFilter, TId>>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
+    public update({ value, onValueChange }: IEditable<DataSourceState<TFilter, TId>>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
         const currentValue = { ...this.value };
-        let extractedValue: DataSourceState<TFilter, TId>;
-        if (this.isValueEditable(newValue)) {
-            this.value = newValue.value;
-            this.onValueChange = newValue.onValueChange;
-            extractedValue = newValue.value;
-        } else {
-            this.value = newValue;
-            extractedValue = newValue;
-        }
+        this.value = value;
+        this.onValueChange = onValueChange;
         const prevItems = this.props.items;
         const newItems = newProps.items || this.props.items;
         this.props = { ...newProps, items: newItems };
@@ -53,12 +46,12 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             }
         }
 
-        if (this.originalTree && (prevTree !== this.tree || this.isCacheIsOutdated(extractedValue, currentValue))) {
-            this.updateTree(currentValue, extractedValue);
+        if (this.originalTree && (prevTree !== this.tree || this.isCacheIsOutdated(value, currentValue))) {
+            this.updateTree(currentValue, value);
             this.updateCheckedLookup(this.value.checked);
             this.rebuildRows();
         } else {
-            if (extractedValue.focusedIndex !== currentValue.focusedIndex) {
+            if (value.focusedIndex !== currentValue.focusedIndex) {
                 this.updateFocusedItem();
             }
         }
@@ -66,7 +59,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     }
 
     public reload = () => {
-        this.update(this.editable.value, { ...this.props, items: [] });
+        this.update(this.editable, { ...this.props, items: [] });
         this._forceUpdate();
     };
 
