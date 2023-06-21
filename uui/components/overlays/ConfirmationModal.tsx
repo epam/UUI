@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { IModal } from '@epam/uui-core';
+import { FlexSpacer, Panel, ScrollBars } from '../layout';
 import {
-    ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, Button, ModalFooter, Panel, ScrollBars,
-} from '../';
+    ModalBlocker, ModalWindow, ModalHeader, ModalFooter,
+} from './Modals';
+import { Button } from '../buttons';
 import { i18n } from '../../i18n';
 
 export interface ConfirmationModalWindowProps extends IModal<any> {

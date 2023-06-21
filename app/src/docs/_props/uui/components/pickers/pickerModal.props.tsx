@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
-import { PickerModalProps } from '@epam/uui-components';
-import { PickerModal } from '@epam/uui';
+import { PickerModal, PickerModalProps } from '@epam/uui';
 import { Switch } from '@epam/loveship';
 import {
     iEditable, sizeDoc, isDisabledDoc, modeDoc, iconDoc, iconOptionsDoc,
