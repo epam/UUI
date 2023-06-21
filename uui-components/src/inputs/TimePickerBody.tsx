@@ -83,7 +83,11 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
                     <IconContainer
                         cx={ uuiTimePicker.iconUp }
                         icon={ this.props.addIcon }
-                        onClick={ () => this.onMinutesChange(dayjs().set(this.props.value).add(minutesStep, 'm').minute()) }
+                        onClick={ () => {
+                            var value: Dayjs = dayjs().set(this.props.value);
+                            const minutesToAdd: number = minutesStep - (value.minute() % minutesStep);
+                            this.onMinutesChange(value.add(minutesToAdd, 'm').minute());
+                        } }
                     />
                     <NumericInput
                         cx={ uuiTimePicker.input }
@@ -95,7 +99,11 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
                     <IconContainer
                         cx={ uuiTimePicker.iconDown }
                         icon={ this.props.subtractIcon }
-                        onClick={ () => this.onMinutesChange(dayjs().set(this.props.value).subtract(minutesStep, 'm').minute()) }
+                        onClick={ () => {
+                            var value: Dayjs = dayjs().set(this.props.value);
+                            const minutesToSubtract: number = value.minute() % minutesStep == 0 ? minutesStep : value.minute() % minutesStep;
+                            this.onMinutesChange(value.subtract(minutesToSubtract, 'm').minute());
+                        } }
                     />
                 </div>
                 {MAX_HOURS === FORMAT_12H && (
