@@ -20,7 +20,6 @@ on:
 # The SHA of source branch if this is the "push" event: github.event.after
 concurrency:
     group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.event.after }}
-    cancel-in-progress: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
