@@ -24,8 +24,9 @@ interface AddImageModalProps extends IModal<any> {
 }
 
 export function AddImageModal(props: AddImageModalProps): JSX.Element {
-    const { focusEditor, abort } = props;
+    const { abort } = props;
 
+    // TODO: make image file upload independent form uploadFilePlugin
     const onFilesAdded = useFilesUploader(props.editor);
     const [imageURL, setImageURL] = useState(null);
     const [files, setFiles] = useState([]);
@@ -52,7 +53,6 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
                     <FlexSpacer />
                     <Button type='cancel' caption='Cancel' onClick={ abort } />
                     <Button type='success' caption='Ok' isDisabled={ !imageURL } onClick={ () => {
-                        focusEditor();
                         if (files && files.length) {
                             onFilesAdded(files);
                         } else {

@@ -6,6 +6,7 @@ import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 
 export const ATTACHMENT_PLUGIN_KEY = 'attachment';
+export const ATTACHMENT_PLUGIN_TYPE = 'attachment';
 
 export const attachmentPlugin = () => {
     const createAttachmentPlugin = createPluginFactory({
