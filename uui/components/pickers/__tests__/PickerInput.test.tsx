@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { ArrayDataSource, AsyncDataSource, CascadeSelection, IDataSource } from '@epam/uui-core';
+import { ArrayDataSource, AsyncDataSource, CascadeSelection } from '@epam/uui-core';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, waitFor,
 } from '@epam/uui-test-utils';
@@ -1006,6 +1006,49 @@ describe('PickerInput', () => {
             'Advanced',
             'Advanced+',
             'Proficiency',
+        ]);
+    });
+    
+    it('should search items', async () => {
+        const { dom } = await setupPickerInputForTest<TestItemType, number>({
+            value: undefined,
+            selectionMode: 'multi',
+            searchPosition: 'body',
+            getSearchFields: (item) => [item!.level],
+        });
+
+        expect(dom.input.hasAttribute('readonly')).toBeTruthy();
+        fireEvent.click(dom.input);
+
+        const dialog = await screen.findByRole('dialog');
+        expect(dialog).toBeInTheDocument();
+        
+        await waitFor(async () => expect(PickerInputObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
+
+        expect(await PickerInputObject.findOptionsText({ busy: false })).toEqual([
+            'A1',
+            'A1+',
+            'A2',
+            'A2+',
+            'B1',
+            'B1+',
+            'B2',
+            'B2+',
+            'C1',
+            'C1+',
+            'C2',
+        ]);
+
+        const bodyInput = within(dialog).getByPlaceholderText('Search');
+        fireEvent.change(bodyInput, { target: { value: 'A' } });
+
+        await waitFor(() => expect(PickerInputObject.getOptions({ busy: false }).length).toBe(4));
+
+        expect(await PickerInputObject.findOptionsText({ busy: false })).toEqual([
+            'A1',
+            'A1+',
+            'A2',
+            'A2+',
         ]);
     });
 });
