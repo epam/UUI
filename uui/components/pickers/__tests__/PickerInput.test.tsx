@@ -63,10 +63,6 @@ const treeLikeData: TestTreeItem[] = [
     { id: 3.3, parentId: 3, name: 'Child 3.3' },
 ];
 
-const data: TestTreeItem[] = [
-    { id: 1, name: 'Item 1' },
-];
-
 const mockDataSource = new ArrayDataSource({
     items: languageLevels,
 });
@@ -84,13 +80,6 @@ const mockTreeLikeDataSourceAsync = new AsyncDataSource<TestTreeItem, number, an
         return treeLikeData;
     },
     getParentId: ({ parentId }) => parentId,
-});
-
-const mockSmallDataSourceAsync = new AsyncDataSource<TestTreeItem, number, any>({
-    api: async () => {
-        await delay(100);
-        return data;
-    },
 });
 
 type PickerInputComponentProps<TItem, TId> = PickerInputBaseProps<TItem, TId> & PickerInputProps;
@@ -922,8 +911,6 @@ describe('PickerInput', () => {
             value: undefined,
             selectionMode: 'multi',
             searchPosition: 'input',
-            dataSource: mockSmallDataSourceAsync,
-            getName: ({ name }) => name,
         });
         
         expect(dom.input.getAttribute('readonly')).toBe('');
@@ -940,8 +927,6 @@ describe('PickerInput', () => {
             value: undefined,
             selectionMode: 'multi',
             searchPosition: 'body',
-            dataSource: mockSmallDataSourceAsync,
-            getName: ({ name }) => name,
         });
 
         expect(dom.input.hasAttribute('readonly')).toBeTruthy();
@@ -959,8 +944,6 @@ describe('PickerInput', () => {
             value: undefined,
             selectionMode: 'multi',
             searchPosition: 'none',
-            dataSource: mockSmallDataSourceAsync,
-            getName: ({ name }) => name,
         });
 
         expect(dom.input.hasAttribute('readonly')).toBeTruthy();
