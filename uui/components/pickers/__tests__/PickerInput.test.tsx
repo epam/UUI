@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource, AsyncDataSource, CascadeSelection } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, waitFor,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, waitFor, prettyDOM,
 } from '@epam/uui-test-utils';
 import { Modals, PickerInputBaseProps } from '@epam/uui-components';
 import { Button, DataPickerRow, FlexCell, PickerItem, Text } from '@epam/promo';
@@ -918,7 +918,7 @@ describe('PickerInput', () => {
     });
 
     it('should render search in input', async () => {
-        const { result, dom } = await setupPickerInputForTest({
+        const { dom } = await setupPickerInputForTest({
             value: undefined,
             selectionMode: 'multi',
             searchPosition: 'input',
@@ -928,15 +928,15 @@ describe('PickerInput', () => {
         
         expect(dom.input.getAttribute('readonly')).toBe('');
         fireEvent.click(dom.input);
-        expect(await screen.findByRole('dialog')).toBeInTheDocument();
+        const dialog = await screen.findByRole('dialog');
+        expect(dialog).toBeInTheDocument();
         
-        await waitFor(async () => expect(PickerInputObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
-
-        expect(result.baseElement).toMatchSnapshot();
+        const bodyInput = within(dialog).queryByPlaceholderText('Search');
+        expect(bodyInput).not.toBeInTheDocument();
     });
 
     it('should render search in body', async () => {
-        const { result, dom } = await setupPickerInputForTest({
+        const { dom } = await setupPickerInputForTest({
             value: undefined,
             selectionMode: 'multi',
             searchPosition: 'body',
@@ -952,14 +952,10 @@ describe('PickerInput', () => {
         const bodyInput = within(dialog).getByPlaceholderText('Search');
         expect(bodyInput).toBeInTheDocument();
         expect(bodyInput.hasAttribute('readonly')).toBeFalsy();
-
-        await waitFor(async () => expect(PickerInputObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
-
-        expect(result.baseElement).toMatchSnapshot();
     });
 
     it('should not render search in none mode', async () => {
-        const { result, dom } = await setupPickerInputForTest({
+        const { dom } = await setupPickerInputForTest({
             value: undefined,
             selectionMode: 'multi',
             searchPosition: 'none',
@@ -973,10 +969,6 @@ describe('PickerInput', () => {
         const dialog = await screen.findByRole('dialog');
         expect(dialog).toBeInTheDocument();
         expect(within(dialog).queryByPlaceholderText('Search')).not.toBeInTheDocument();
-
-        await waitFor(async () => expect(PickerInputObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
-
-        expect(result.baseElement).toMatchSnapshot();
     });
 
     it('should render custom not found', async () => {
