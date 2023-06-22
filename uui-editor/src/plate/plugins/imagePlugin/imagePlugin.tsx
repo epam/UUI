@@ -11,6 +11,7 @@ import {
     TImageElement,
     insertNodes,
     insertEmptyElement,
+    captionGlobalStore,
 } from '@udecode/plate';
 
 import { isPluginActive, isTextSelected } from '../../../helpers';
@@ -21,16 +22,17 @@ import { AddImageModal } from './AddImageModal';
 import { ToolbarButton } from '../../../implementation/ToolbarButton';
 
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
-import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { Editor } from 'slate';
+import isHotkey from 'is-hotkey';
 
 export const IMAGE_PLUGIN_KEY = 'image';
+export const IMAGE_PLUGIN_TYPE = 'image';
 
 export const imagePlugin = () => {
     const createImagePlugin = createPluginFactory<ImagePlugin>({
         key: IMAGE_PLUGIN_KEY,
-        type: 'image',
+        type: IMAGE_PLUGIN_TYPE,
         isElement: true,
         isVoid: true,
         component: Image,
@@ -45,7 +47,8 @@ export const imagePlugin = () => {
         }),
         handlers: {
             onKeyDown: (editor) => (event) => {
-                if (!getBlockAboveByType(editor, ['image'])) return;
+                const imageEntry = getBlockAbove(editor, { match: { type: IMAGE_PLUGIN_TYPE } })
+                if (!imageEntry) return;
 
                 if (event.key === 'Enter') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
@@ -60,6 +63,11 @@ export const imagePlugin = () => {
                     Editor.deleteForward(editor as any);
                     insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
+
+                // focus caption from image
+                if (isHotkey('down', event)) {
+                    captionGlobalStore.set.focusEndCaptionPath(imageEntry[1]);
+                }
             },
         },
         plugins: [
@@ -72,6 +80,7 @@ export const imagePlugin = () => {
             },
         ],
     });
+
     return createImagePlugin();
 };
 
@@ -103,9 +112,9 @@ export const ImageButton = ({ editor }: IImageButton) => {
             styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
             onMouseDown={ async (event) => {
                 if (!editor) return;
-
                 event.preventDefault();
-                focusEditor(editor);
+                event.stopPropagation();
+
                 context.uuiModals.show<string>(modalProps => (
                     <AddImageModal
                         editor={ editor }
@@ -113,7 +122,11 @@ export const ImageButton = ({ editor }: IImageButton) => {
                         insertImage={ handleImageInsert }
                         { ...modalProps }
                     />
-                )).catch(() => null);
+                )).then(() => {
+                    focusEditor(editor); // focusing right after insert leads to bugs
+                }).catch((error) => {
+                    console.error(error);
+                });
             } }
             icon={ <ToolbarButton
                 isDisabled={ isTextSelected(editor, true) }

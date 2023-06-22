@@ -2,13 +2,12 @@ import {
     KEY_INSERT_DATA,
     PlateEditor,
     deleteBackward,
-    focusEditor,
     getPlugin,
     insertEmptyElement,
 } from "@udecode/plate";
-import { IMAGE_PLUGIN_KEY } from "../imagePlugin/imagePlugin";
-import { ATTACHMENT_PLUGIN_KEY } from "../attachmentPlugin/attachmentPlugin";
-import { IFRAME_PLUGIN_KEY } from "../iframePlugin/iframePlugin";
+import { IMAGE_PLUGIN_TYPE } from "../imagePlugin/imagePlugin";
+import { ATTACHMENT_PLUGIN_TYPE } from "../attachmentPlugin/attachmentPlugin";
+import { IFRAME_PLUGIN_TYPE } from "../iframePlugin/iframePlugin";
 import { useCallback } from "react";
 import type { FileUploadResponse } from "@epam/uui-core";
 
@@ -25,18 +24,18 @@ type UploadFile = (
 
 const UPLOAD_BLOCKS = {
     attachment: (file: FileUploadResponse) => ({
-        type: ATTACHMENT_PLUGIN_KEY,
+        type: ATTACHMENT_PLUGIN_TYPE,
         data: { ...file, fileName: file.name },
         children: [{ text: "" }],
     }),
     image: (file: FileUploadResponse) => ({
-        type: IMAGE_PLUGIN_KEY,
+        type: IMAGE_PLUGIN_TYPE,
         data: file,
         url: file.path,
         children: [{ text: "" }],
     }),
     iframe: (file: FileUploadResponse) => ({
-        type: IFRAME_PLUGIN_KEY,
+        type: IFRAME_PLUGIN_TYPE,
         data: file,
         src: file.path,
         children: [{ text: "" }],
@@ -108,7 +107,6 @@ export const createFileUploader =
 
         // insert blocks
         editor.insertFragment(fileFragments);
-        focusEditor(editor);
     };
 
 export const useFilesUploader = (editor: PlateEditor) => {

@@ -19,10 +19,12 @@ import { PARAGRAPH_TYPE } from "../paragraphPlugin/paragraphPlugin";
 import { Editor } from 'slate';
 
 export const IFRAME_PLUGIN_KEY = 'iframe';
+export const IFRAME_PLUGIN_TYPE = 'iframe';
 
 export const iframePlugin = () => {
     const createIframePlugin = createPluginFactory({
         key: IFRAME_PLUGIN_KEY,
+        type: IFRAME_PLUGIN_TYPE,
         isElement: true,
         isVoid: true,
         component: IframeBlock,

@@ -5,7 +5,6 @@ import {
     findEventRange,
     select,
 } from "@udecode/plate";
-import { isEqual } from "lodash";
 import {
     UploadFileOptions,
     UploadType,
@@ -20,13 +19,11 @@ interface UploadFilePluginOptions {
     ) => Promise<void>;
 }
 
-const isFilesUploadEvent = (types: readonly string[], files: FileList) => {
-    if (files.length === 0) return false;
-    if (
-        isEqual(types, ["Files"]) ||
-        isEqual(types, ["application/x-moz-file", "Files"])
-    )
-        return true;
+const isFilesUploadEvent = (dataTransfer: DataTransfer) => {
+    const text = dataTransfer.getData('text/plain');
+    const { files } = dataTransfer;
+
+    if (!text && files && files.length > 1) return true;
 
     return false;
 };
@@ -37,9 +34,7 @@ export const uploadFilePlugin = (uploadOptions?: UploadFileOptions) =>
         handlers: {
             onDrop: (editor, plugin) => {
                 return (event) => {
-                    const types = event.dataTransfer.types;
-                    const { files } = event.dataTransfer;
-                    if (!isFilesUploadEvent(types, files)) return false;
+                    if (!isFilesUploadEvent(event.dataTransfer)) return false;
 
                     event.preventDefault();
                     event.stopPropagation();
@@ -49,18 +44,19 @@ export const uploadFilePlugin = (uploadOptions?: UploadFileOptions) =>
                     if (!at) return false;
                     select(editor, at);
 
+                    const { files } = event.dataTransfer;
                     plugin.options.uploadFiles(editor, Array.from(files));
                     return true;
                 };
             },
             onPaste: (editor, plugin) => {
                 return (event) => {
-                    const types = event.clipboardData.types;
-                    const { files } = event.clipboardData;
-                    if (!isFilesUploadEvent(types, files)) return false;
+                    if (!isFilesUploadEvent(event.clipboardData)) return false;
 
                     event.preventDefault();
                     event.stopPropagation();
+
+                    const { files } = event.clipboardData;
                     plugin.options.uploadFiles(editor, Array.from(files));
                     return true;
                 };
