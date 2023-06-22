@@ -1,7 +1,7 @@
 import * as React from 'react';
 import isEqual from 'lodash.isequal';
 import { DataRowProps, FlexRowProps, uuiMod } from '@epam/uui-core';
-import { FlexRow } from '../index';
+import { FlexRow } from '../layout';
 
 interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId> {
     renderContent: () => React.ReactNode;
