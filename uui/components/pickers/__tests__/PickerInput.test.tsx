@@ -406,7 +406,7 @@ describe('PickerInput', () => {
             expect(PickerInputObject.getPlaceholderText(dom.input)).toEqual('A1');
         });
 
-        it('should select all', async () => {
+        it('should clear selected item', async () => {
             const { dom } = await setupPickerInputForTest({
                 value: undefined,
                 selectionMode: 'single',
