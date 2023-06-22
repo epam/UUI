@@ -667,7 +667,139 @@
             "nodes": [
               {
                 "object": "text",
-                "text": "3.  if you want to use ",
+                "text": "3. Add theme class",
+                "marks": []
+              },
+              {
+                "object": "text",
+                "text": " ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {}
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "uui-theme-promo",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-code",
+                    "data": {}
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {}
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "or",
+                "marks": []
+              },
+              {
+                "object": "text",
+                "text": " ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {}
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "uui-theme-loveship",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-code",
+                    "data": {}
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {}
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "to",
+                "marks": []
+              },
+              {
+                "object": "text",
+                "text": " ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {}
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "body",
+                "marks": []
+              },
+              {
+                "object": "text",
+                "text": " ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {}
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "tag according to the skin you are using.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "paragraph",
+            "data": {},
+            "nodes": [
+              {
+                "object": "text",
+                "text": "4.  if you want to use ",
                 "marks": []
               },
               {
