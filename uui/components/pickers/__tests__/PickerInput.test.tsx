@@ -63,6 +63,10 @@ const treeLikeData: TestTreeItem[] = [
     { id: 3.3, parentId: 3, name: 'Child 3.3' },
 ];
 
+const data: TestTreeItem[] = [
+    { id: 1, name: 'Item 1' },
+];
+
 const mockDataSource = new ArrayDataSource({
     items: languageLevels,
 });
@@ -80,6 +84,13 @@ const mockTreeLikeDataSourceAsync = new AsyncDataSource<TestTreeItem, number, an
         return treeLikeData;
     },
     getParentId: ({ parentId }) => parentId,
+});
+
+const mockSmallDataSourceAsync = new AsyncDataSource<TestTreeItem, number, any>({
+    api: async () => {
+        await delay(100);
+        return data;
+    },
 });
 
 type PickerInputComponentProps<TItem, TId> = PickerInputBaseProps<TItem, TId> & PickerInputProps;
@@ -829,10 +840,11 @@ describe('PickerInput', () => {
     });
 
     it('should render search in input', async () => {
-        const { result, dom } = await setupPickerInputForTest<TestItemType, number>({
+        const { result, dom } = await setupPickerInputForTest({
             value: undefined,
             selectionMode: 'multi',
             searchPosition: 'input',
+            dataSource: mockSmallDataSourceAsync,
         });
         
         expect(dom.input.getAttribute('readonly')).toBe('');
@@ -845,10 +857,11 @@ describe('PickerInput', () => {
     });
 
     it('should render search in body', async () => {
-        const { result, dom } = await setupPickerInputForTest<TestItemType, number>({
+        const { result, dom } = await setupPickerInputForTest({
             value: undefined,
             selectionMode: 'multi',
             searchPosition: 'body',
+            dataSource: mockSmallDataSourceAsync,
         });
 
         expect(dom.input.hasAttribute('readonly')).toBeTruthy();
@@ -866,10 +879,11 @@ describe('PickerInput', () => {
     });
 
     it('should not render search in none mode', async () => {
-        const { result, dom } = await setupPickerInputForTest<TestItemType, number>({
+        const { result, dom } = await setupPickerInputForTest({
             value: undefined,
             selectionMode: 'multi',
             searchPosition: 'none',
+            dataSource: mockSmallDataSourceAsync,
         });
 
         expect(dom.input.hasAttribute('readonly')).toBeTruthy();
