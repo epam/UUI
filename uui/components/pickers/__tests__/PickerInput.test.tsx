@@ -895,6 +895,7 @@ describe('PickerInput', () => {
             selectionMode: 'multi',
             searchPosition: 'input',
             dataSource: mockSmallDataSourceAsync,
+            getName: ({ name }) => name,
         });
         
         expect(dom.input.getAttribute('readonly')).toBe('');
@@ -903,7 +904,7 @@ describe('PickerInput', () => {
         
         await waitFor(async () => expect(PickerInputObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
 
-        expect(result.baseElement.childNodes[0]).toMatchSnapshot();
+        expect(result.baseElement).toMatchSnapshot();
     });
 
     it('should render search in body', async () => {
@@ -912,6 +913,7 @@ describe('PickerInput', () => {
             selectionMode: 'multi',
             searchPosition: 'body',
             dataSource: mockSmallDataSourceAsync,
+            getName: ({ name }) => name,
         });
 
         expect(dom.input.hasAttribute('readonly')).toBeTruthy();
@@ -925,7 +927,7 @@ describe('PickerInput', () => {
 
         await waitFor(async () => expect(PickerInputObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
 
-        expect(result.baseElement.childNodes[0]).toMatchSnapshot();
+        expect(result.baseElement).toMatchSnapshot();
     });
 
     it('should not render search in none mode', async () => {
@@ -934,6 +936,7 @@ describe('PickerInput', () => {
             selectionMode: 'multi',
             searchPosition: 'none',
             dataSource: mockSmallDataSourceAsync,
+            getName: ({ name }) => name,
         });
 
         expect(dom.input.hasAttribute('readonly')).toBeTruthy();
@@ -945,7 +948,7 @@ describe('PickerInput', () => {
 
         await waitFor(async () => expect(PickerInputObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
 
-        expect(result.baseElement.childNodes[0]).toMatchSnapshot();
+        expect(result.baseElement).toMatchSnapshot();
     });
 
     it('should render custom not found', async () => {
@@ -956,10 +959,10 @@ describe('PickerInput', () => {
 
         const customText = 'Custom Text or Component';
 
-        const { dom } = await setupPickerInputForTest<TestItemType, number>({
+        const { dom } = await setupPickerInputForTest({
             value: undefined,
             selectionMode: 'multi',
-            dataSource: mockEmptyDS as IDataSource<TestItemType, number, any>,
+            dataSource: mockEmptyDS,
             renderNotFound: () => (
                 <FlexCell grow={ 1 } textAlign="center" rawProps={ { 'data-testid': 'test-custom-not-found' } }>
                     <Text>{customText}</Text>
