@@ -1,3 +1,9 @@
+# 5.0.2 - 22.06.2023
+
+**What's Fixed**
+* [TimePickerBody]: fixed the bug where `minutes` values that are not a multiple of  `minutesStep`, are not rounded up to a `step`
+
+
 # 5.0.1 - 13.06.2023
 
 **What's New**
