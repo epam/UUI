@@ -49,6 +49,20 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
         this.setValue(dayjs().set(this.props.value).add(12, 'h'));
     };
 
+    handleMinutesUpClick = () => {
+        var minutesStep: number = this.props.minutesStep || 5;
+        var value: Dayjs = dayjs().set(this.props.value);
+        const minutesToAdd: number = minutesStep - (value.minute() % minutesStep);
+        this.onMinutesChange(value.add(minutesToAdd, 'm').minute());
+    };
+
+    handleMinutesDownClick = () => {
+        var minutesStep: number = this.props.minutesStep || 5;
+        var value: Dayjs = dayjs().set(this.props.value);
+        const minutesToSubtract: number = value.minute() % minutesStep == 0 ? minutesStep : value.minute() % minutesStep;
+        this.onMinutesChange(value.subtract(minutesToSubtract, 'm').minute());
+    };
+
     render() {
         const minutesStep = this.props.minutesStep || 5;
         const MIN_HOURS = this.props.format === FORMAT_12H ? 1 : 0;
@@ -83,11 +97,7 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
                     <IconContainer
                         cx={ uuiTimePicker.iconUp }
                         icon={ this.props.addIcon }
-                        onClick={ () => {
-                            var value: Dayjs = dayjs().set(this.props.value);
-                            const minutesToAdd: number = minutesStep - (value.minute() % minutesStep);
-                            this.onMinutesChange(value.add(minutesToAdd, 'm').minute());
-                        } }
+                        onClick={ this.handleMinutesUpClick }
                     />
                     <NumericInput
                         cx={ uuiTimePicker.input }
@@ -99,11 +109,7 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
                     <IconContainer
                         cx={ uuiTimePicker.iconDown }
                         icon={ this.props.subtractIcon }
-                        onClick={ () => {
-                            var value: Dayjs = dayjs().set(this.props.value);
-                            const minutesToSubtract: number = value.minute() % minutesStep == 0 ? minutesStep : value.minute() % minutesStep;
-                            this.onMinutesChange(value.subtract(minutesToSubtract, 'm').minute());
-                        } }
+                        onClick={ this.handleMinutesDownClick }
                     />
                 </div>
                 {MAX_HOURS === FORMAT_12H && (
