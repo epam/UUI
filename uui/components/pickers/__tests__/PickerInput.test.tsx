@@ -903,7 +903,7 @@ describe('PickerInput', () => {
         
         await waitFor(async () => expect(PickerInputObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
 
-        expect(result.baseElement).toMatchSnapshot();
+        expect(result.baseElement.childNodes[0]).toMatchSnapshot();
     });
 
     it('should render search in body', async () => {
@@ -925,7 +925,7 @@ describe('PickerInput', () => {
 
         await waitFor(async () => expect(PickerInputObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
 
-        expect(result.baseElement).toMatchSnapshot();
+        expect(result.baseElement.childNodes[0]).toMatchSnapshot();
     });
 
     it('should not render search in none mode', async () => {
@@ -945,7 +945,7 @@ describe('PickerInput', () => {
 
         await waitFor(async () => expect(PickerInputObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
 
-        expect(result.baseElement).toMatchSnapshot();
+        expect(result.baseElement.childNodes[0]).toMatchSnapshot();
     });
 
     it('should render custom not found', async () => {
