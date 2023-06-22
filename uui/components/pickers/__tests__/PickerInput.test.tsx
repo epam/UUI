@@ -193,6 +193,12 @@ class PickerInputObject {
         const selectAllButton = await dialog.findByRole('button', { name: 'SELECT ALL' });
         fireEvent.click(selectAllButton);
     }
+    
+    static async clickShowOnlySelected() {
+        const dialog = within(await this.findDialog());
+        const showOnlySelected = await dialog.findByRole('switch', { name: 'Show only selected' });
+        fireEvent.click(showOnlySelected);
+    }
 
     static async clickClearAllOptions() {
         const dialog = within(await this.findDialog());
@@ -680,6 +686,28 @@ describe('PickerInput', () => {
 
             await PickerInputObject.clickClearAllOptions();
             expect(PickerInputObject.getSelectedTagsText(dom.input)).toEqual([]);
+        });
+ 
+        it('should show only selected', async () => {
+            const { dom } = await setupPickerInputForTest<TestItemType, number>({
+                value: [4, 2, 6, 8],
+                selectionMode: 'multi',
+            });
+
+            fireEvent.click(dom.input);
+
+            const dialog = await screen.findByRole('dialog');
+            expect(dialog).toBeInTheDocument();
+            
+            await waitFor(async () => expect(PickerInputObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
+
+            expect(await PickerInputObject.findCheckedOptions()).toEqual(['A1', 'A2', 'B1', 'B2']);
+            expect(await PickerInputObject.findUncheckedOptions()).toEqual(['A1+', 'A2+', 'B1+', 'B2+', 'C1', 'C1+', 'C2']);
+            
+            await PickerInputObject.clickShowOnlySelected();
+
+            expect(await PickerInputObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
+            expect(await PickerInputObject.findUncheckedOptions()).toEqual([]);
         });
     });
 
