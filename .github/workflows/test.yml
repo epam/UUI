@@ -7,15 +7,20 @@ on:
             - '**'
             - '!main'
             - '!develop'
-    # Allows you to run this workflow manually from the Actions tab
-    workflow_dispatch:
 
     pull_request:
         branches:
             - '**'
-            - '!main'
-            - '!develop'
 
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
+
+# The "concurrency" expression below implements github-specific ternary (more info here: https://docs.github.com/en/actions/learn-github-actions/expressions#operators)
+# The SHA of source branch if this is the "pull_request" event: github.event.pull_request.head.sha
+# The SHA of source branch if this is the "push" event: github.event.after
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.event.after }}
+    cancel-in-progress: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
