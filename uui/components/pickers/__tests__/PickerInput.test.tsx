@@ -291,7 +291,7 @@ describe('PickerInput', () => {
     });
 
     describe('[selectionMode single]', () => {
-        it('should select & clear option', async () => {
+        it('[valueType id] should select & clear option', async () => {
             const { dom, mocks } = await setupPickerInputForTest({
                 value: undefined,
                 selectionMode: 'single',
@@ -302,6 +302,26 @@ describe('PickerInput', () => {
             const optionC2 = await screen.findByText('C2');
             fireEvent.click(optionC2);
             expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
+            fireEvent.click(window.document.body);
+            expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+            expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
+            const clear = screen.getByRole('button');
+            fireEvent.click(clear);
+            expect(screen.queryByText('C2')).not.toBeInTheDocument();
+        });
+        
+        it('[valueType entity] should select & clear option', async () => {
+            const { dom, mocks } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'single',
+                valueType: 'entity',
+            });
+            expect(PickerInputObject.getPlaceholderText(dom.input)).toEqual('Please select');
+            fireEvent.click(dom.input);
+            expect(screen.getByRole('dialog')).toBeInTheDocument();
+            const optionC2 = await screen.findByText('C2');
+            fireEvent.click(optionC2);
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith({ id: 12, level: 'C2', name: 'Proficiency' });
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
             expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
@@ -437,7 +457,7 @@ describe('PickerInput', () => {
     });
 
     describe('[selectionMode multi]', () => {
-        it('should select & clear several options', async () => {
+        it('[valueType id] should select & clear several options', async () => {
             const { dom, mocks } = await setupPickerInputForTest({
                 value: undefined,
                 selectionMode: 'multi',
@@ -464,6 +484,36 @@ describe('PickerInput', () => {
             expect(PickerInputObject.getSelectedTagsText(dom.input)).toEqual([]);
         });
 
+        it('[valueType entity] should select & clear several options', async () => {
+            const { dom, mocks } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'multi',
+                valueType: 'entity',
+            });
+            expect(PickerInputObject.getPlaceholderText(dom.input)).toEqual('Please select');
+            fireEvent.click(dom.input);
+            expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+            await PickerInputObject.clickOptionCheckbox('A1');
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith([{ id: 2, level: 'A1', name: 'Elementary' }]);
+
+            await PickerInputObject.clickOptionCheckbox('A1+');
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith([
+                { id: 2, level: 'A1', name: 'Elementary' },
+                { id: 3, level: 'A1+', name: 'Elementary+' },
+            ]);
+            expect(await PickerInputObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
+
+            fireEvent.click(window.document.body);
+            expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+            expect(PickerInputObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
+
+            PickerInputObject.removeSelectedTagByText(dom.input, 'A1+');
+            expect(PickerInputObject.getSelectedTagsText(dom.input)).toEqual(['A1']);
+
+            PickerInputObject.removeSelectedTagByText(dom.input, 'A1');
+            expect(PickerInputObject.getSelectedTagsText(dom.input)).toEqual([]);
+        });
         it('should render names of items by getName', async () => {
             const { dom } = await setupPickerInputForTest<TestItemType, number>({
                 value: [3, 4],
