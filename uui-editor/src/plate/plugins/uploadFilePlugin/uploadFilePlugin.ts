@@ -23,7 +23,7 @@ const isFilesUploadEvent = (dataTransfer: DataTransfer) => {
     const text = dataTransfer.getData('text/plain');
     const { files } = dataTransfer;
 
-    if (!text && files && files.length > 1) return true;
+    if (!text && files && files.length !== 0) return true;
 
     return false;
 };

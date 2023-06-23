@@ -82,8 +82,6 @@ interface ToolbarLinkButtonProps {
 export const LinkButton = ({ editor }: ToolbarLinkButtonProps) => {
     const context = useUuiContext();
 
-    const type = getPluginType(editor, ELEMENT_LINK);
-
     if (!isPluginActive(ELEMENT_LINK)) return null;
 
     const isLink = !!editor?.selection && someNode(editor, { match: { type: LINK_ELEMENT } });
