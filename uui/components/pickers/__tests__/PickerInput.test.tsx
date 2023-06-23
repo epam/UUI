@@ -28,6 +28,16 @@ type TestItemType = {
     name: string;
 };
 
+type Item = {
+    id: number;
+    name: string;
+};
+
+const smallDataSet: Item[] = [
+    { id: 2, name: 'Elementary' },
+    { id: 3, name: 'Elementary+' },
+];
+
 const languageLevels: TestItemType[] = [
     { id: 2, level: 'A1', name: 'Elementary' },
     { id: 3, level: 'A1+', name: 'Elementary+' },
@@ -65,6 +75,13 @@ const treeLikeData: TestTreeItem[] = [
 
 const mockDataSource = new ArrayDataSource({
     items: languageLevels,
+});
+
+const mockSmallDataSourceAsync = new AsyncDataSource({
+    api: async () => {
+        await delay(100);
+        return smallDataSet;
+    },
 });
 
 const mockDataSourceAsync = new AsyncDataSource({
@@ -160,6 +177,21 @@ describe('PickerInput', () => {
             />,
         );
         expect(tree).toMatchSnapshot();
+    });
+
+    it('should open body', async () => {
+        const { dom, result } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'single',
+            dataSource: mockSmallDataSourceAsync,
+            getName: ({ name }) => name,
+        });
+
+        fireEvent.click(dom.input);
+
+        await waitFor(async () => expect(PickerInputTestObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
+
+        expect(result.baseElement).toMatchSnapshot();
     });
 
     describe('[selectionMode single]', () => {
