@@ -25,3 +25,5 @@ export type { CustomWrapperType } from './src/rendering/renderingWithContextUtil
 export { setupComponentForTest } from './src/rendering/setupComponentUtils';
 // delay
 export { delayAct, delay } from './src/rendering/timerUtils';
+// test objects
+export { PickerInputTestObject } from './src/testObjects';
