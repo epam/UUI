@@ -40,10 +40,6 @@
     flex-direction: column;
     width: 100%;
 
-    figcaption {
-        width: auto !important;
-    }
-
     figcaption > textarea {
         overflow-y: hidden;
         text-align: center;

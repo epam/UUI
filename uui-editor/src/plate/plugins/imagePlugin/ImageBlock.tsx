@@ -160,33 +160,34 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
         return isCaptionEnabled ? { disabled: false } : { disabled: true }
     }, [currentWidth]);
 
+    /**
+     * Updates exact width of image and their caption element, when squeezing viewport
+     * TODO: should be handled by plate
+     */
+    useEffect(() => {
+        if (ref.current && !caption.disabled) {
 
-    // const [, setWidth] = useResizableStore().use.width();
-    // useEffect(() => {
-    //     if (ref.current && !caption.disabled) {
+            let prev = currentWidth; // grab initial width
+            const resizeObserver = new ResizeObserver((entries) => {
+                window.requestAnimationFrame(() => {
+                    if (!Array.isArray(entries) || !entries.length) {
+                        return;
+                    }
+                    for (const entry of entries) {
+                        if(prev > entry.contentRect.width) {
+                            setCurrentWidth(entry.contentRect.width);
+                            prev = entry.contentRect.width;
+                        }
+                    }
+                })
+            });
 
-    //         const resizeObserver = new ResizeObserver((entries) => {
-    //             window.requestAnimationFrame(() => {
-    //                 console.log('requesting animation frame', entries);
-    //                 if (!Array.isArray(entries) || !entries.length) {
-    //                     return;
-    //                 }
-    //                 for (const entry of entries) {
-    //                     setWidth(entry.contentRect.width);
-    //                     console.log("Size changed", entry.contentRect.width);
-    //                 }
-    //             })
-    //         });
-
-    //         console.log('observe')
-
-    //         resizeObserver.observe(ref.current);
-    //         return () => {
-    //             resizeObserver.unobserve(ref.current);
-    //         }
-    //     }
-    // }, [caption.disabled]);
-
+            resizeObserver.observe(ref.current);
+            return () => {
+                resizeObserver.unobserve(ref.current);
+            }
+        }
+    }, [caption.disabled]);
 
     const resizableProps = useMemo(() => ({
         ...RESIZABLE_PROPS,
