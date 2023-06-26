@@ -12,6 +12,7 @@ const ALLOWED_EMPTY_ELEMENTS = ['BR', 'IMG'];
 - Fix pasting tables from Word in Safari only. Root cause in `cleanDocx.ts`, `copyBlockMarksToSpanChild()` function.
 - Create issue about copying unordered lists from Word. Each item wrapped inside paragraph node after pasting. Ordered lists works as expected.
 - Create issue about displaying merged cells correctly. Basically, blue resize borders broken.
+- Squeezing viewport does not updates caption width of an image. Solution: `figcaption { max-width: 100%; }`
 - Toggle between todo and list elements
 - Header style when pasting from word.
 - Create issue about cells selection highlighting. Sometimes there is wrong cells selection. [Video](https://epam-my.sharepoint.com/:v:/p/dzmitry_tamashevich/Ec4ZOs-rATZHjFYZWVxjczEB649FCoYFKDV_x3RxZiWAGA?e=4hswgA)

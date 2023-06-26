@@ -98,7 +98,14 @@ const Editor = (props: PlateEditorProps) => {
                     placeholder: props.placeholder,
                     renderPlaceholder: ({ attributes }) => {
                         const shouldShowPlaceholder = isElementEmpty(editor, editor.children[0]) && editor.children[0].type === 'paragraph';
-                        return shouldShowPlaceholder && <div { ...attributes } className={ css.placeholderText } > { props.placeholder }</div>
+                        return shouldShowPlaceholder && (
+                            <div
+                                { ...attributes }
+                                style={ { pointerEvents: 'none' } }
+                                className={ css.placeholder }>
+                                { props.placeholder }
+                            </div>
+                        );
                     },
                     style: { padding: '0 24px', minHeight: props.minHeight }
                 } }
