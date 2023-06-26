@@ -113,6 +113,7 @@
         pointer-events: none;
 
         :global(.uui-input) {
+            -webkit-text-fill-color: var(--uui-text-input-text-disabled); // safari bugfix, more: https://stackoverflow.com/questions/43483363/safari-color-with-background-transparency-on-disabled-input
             color: var(--uui-text-input-text-disabled);
 
             &::placeholder {
