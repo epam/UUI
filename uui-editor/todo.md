@@ -1,7 +1,7 @@
 ## TODO
 
 Plate issues to create:
-- Move to plate email links validation `uui-editor/src/plate/plugins/linkPlugin/isUrl.ts`
+- [x] Move to plate email links validation `uui-editor/src/plate/plugins/linkPlugin/isUrl.ts`. [PR](https://github.com/udecode/plate/pull/2444)
 - Allow pasting links as url into highlighted text, but not replacing that text with text link.
 - Create issue about copying table which has empty cells from Microsoft Excel. The problem here `packages/core/src/plugins/html-deserializer/utils/cleanHtmlEmptyElements.ts`. `ALLOWED_EMPTY_ELEMENTS` should be extended with `TD` and `TH` on plate side.  [Video](https://epam-my.sharepoint.com/personal/natallia_alieva_epam_com/_layouts/15/stream.aspx?id=%2Fpersonal%2Fnatallia%5Falieva%5Fepam%5Fcom%2FDocuments%2FMicrosoft%20Teams%20Chat%20Files%2F2023%2D04%2D11%5F11h58%5F43%2Emp4)
 
