@@ -160,6 +160,34 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
         return isCaptionEnabled ? { disabled: false } : { disabled: true }
     }, [currentWidth]);
 
+
+    // const [, setWidth] = useResizableStore().use.width();
+    // useEffect(() => {
+    //     if (ref.current && !caption.disabled) {
+
+    //         const resizeObserver = new ResizeObserver((entries) => {
+    //             window.requestAnimationFrame(() => {
+    //                 console.log('requesting animation frame', entries);
+    //                 if (!Array.isArray(entries) || !entries.length) {
+    //                     return;
+    //                 }
+    //                 for (const entry of entries) {
+    //                     setWidth(entry.contentRect.width);
+    //                     console.log("Size changed", entry.contentRect.width);
+    //                 }
+    //             })
+    //         });
+
+    //         console.log('observe')
+
+    //         resizeObserver.observe(ref.current);
+    //         return () => {
+    //             resizeObserver.unobserve(ref.current);
+    //         }
+    //     }
+    // }, [caption.disabled]);
+
+
     const resizableProps = useMemo(() => ({
         ...RESIZABLE_PROPS,
         onLoad: (event: any) => {
