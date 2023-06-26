@@ -167,6 +167,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
     useEffect(() => {
         if (ref.current && !caption.disabled) {
 
+            const elem = ref.current;
             let prev = currentWidth; // grab initial width
             const resizeObserver = new ResizeObserver((entries) => {
                 window.requestAnimationFrame(() => {
@@ -174,7 +175,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
                         return;
                     }
                     for (const entry of entries) {
-                        if(prev > entry.contentRect.width) {
+                        if (prev > entry.contentRect.width) {
                             setCurrentWidth(entry.contentRect.width);
                             prev = entry.contentRect.width;
                         }
@@ -182,9 +183,11 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
                 })
             });
 
-            resizeObserver.observe(ref.current);
+            resizeObserver.observe(elem);
             return () => {
-                resizeObserver.unobserve(ref.current);
+                if (elem) {
+                    resizeObserver.unobserve(elem);
+                }
             }
         }
     }, [caption.disabled]);
