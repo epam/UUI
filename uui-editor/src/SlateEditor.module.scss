@@ -88,12 +88,17 @@
 }
 
 .placeholder {
-    pointer-events: none;
     position: absolute;
+    top: 0;
+    left: 12px;
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    user-select: none;
+    text-decoration: none;
     color: $gray60;
     font-family: $font-sans;
     line-height: 1.5;
-    top: 8px;
     padding: 0 12px;
 }
 
