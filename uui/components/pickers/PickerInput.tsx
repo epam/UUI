@@ -53,7 +53,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
-        return <PickerItem title={ this.getName(item) } size={ this.getRowSize() } { ...rowProps } />;
+        return <PickerItem title={ this.highlightSearchMatches(this.getName(item)) } size={ this.getRowSize() } { ...rowProps } />;
     };
 
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {

@@ -4,6 +4,8 @@ import {
 } from '@epam/uui-core';
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';
 import isEqual from 'lodash.isequal';
+import { Text } from '../Text';
+import css from './PickerBase.module.scss';
 
 export interface PickerBaseState {
     dataSourceState: DataSourceState;
@@ -48,6 +50,94 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         }
         return i ? i.name : unknownStr;
     };
+    
+    protected highlightSearchMatches = (str: string) => {
+        const { search } = this.state.dataSourceState ?? {};
+        if (!search) {
+            return str;
+        }
+
+        const words = search
+            .split(' ')
+            .flatMap((s) => s.split(','))
+            .filter(Boolean)
+            .map((word) => new RegExp(word, 'ig'));
+        const matches = words.flatMap((word) => [...str.matchAll(word)]);
+
+        const ranges = matches
+            .map((match) => ({ from: match.index, to: match[0].length + match.index }))
+            .sort((range1, range2) => range1.from - range2.from);
+
+        if (!ranges.length) {
+            return str;
+        }
+
+        const mergedRanges = this.mergeRanges(ranges);
+        const textChunks = mergedRanges.flatMap((range, index, allRanges) => {
+            const highlightedStr = this.getHighlightedString(str.substring(range.from, range.to), index);
+            
+            const chunks = [];
+            if (index === 0 && range.from !== 0) {
+                chunks.push(this.getString(str.substring(0, range.from), index));
+            }
+
+            const prevRange = allRanges[index - 1];
+            if (prevRange) {
+                chunks.push(this.getString(str.substring(prevRange.to, range.from), index));
+            }
+
+            chunks.push(highlightedStr);
+
+            const lastIndex = allRanges.length - 1;
+            if (index === lastIndex && range.to !== lastIndex) {
+                chunks.push(this.getString(str.substring(range.to, str.length), index));
+            }
+    
+            return chunks;
+        });
+        
+        return <Text>{textChunks}</Text>;
+    };
+
+    private getHighlightedString = (str: string, index: number) => {
+        return <span key={ `${str}-${index}` } className={ css.highlightedText }>{str}</span>;
+    };
+
+    private getString = (str: string, index: number) => {
+        return <span key={ `${str}-${index}` }>{str}</span>;
+    };
+
+    private mergeRanges = (ranges: Array<{
+        from: number;
+        to: number;
+    }>) => ranges.reduce<Array<{
+        from: number;
+        to: number;
+    }>>((acc, range) => {
+        if (!acc.length) {
+            return [range];
+        }
+
+        const lastRange = acc[acc.length - 1];
+        if (range.from > lastRange.to) {
+            return [...acc, range];
+        }
+
+        if (lastRange.from >= range.from && lastRange.to <= range.to) {
+            acc[acc.length - 1] = range;
+            return acc;
+        }
+            
+        if (lastRange.from >= range.from && lastRange.to >= range.to) {
+            acc[acc.length - 1] = { from: range.from, to: lastRange.to };
+            return acc;
+        }
+        if (lastRange.from <= range.from && lastRange.to >= range.from) {
+            acc[acc.length - 1] = { from: lastRange.from, to: range.to };
+            return acc;
+        }
+        return acc;
+    }, []);
 
     getPluralName = () => {
         const { entityName } = this.props;

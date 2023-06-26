@@ -12,7 +12,7 @@ const defaultSize = '36';
 export interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId>, SizeMod {
     avatarUrl?: string;
     icon?: Icon;
-    title?: string;
+    title?: string | React.ReactNode;
     subtitle?: string;
 }
 
@@ -27,7 +27,6 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
         } = this.props;
         const itemSize = size && size !== 'none' ? size : defaultSize;
         const isMultiline = !!(title && subtitle);
-
         return (
             <FlexCell width="auto" cx={ css.root }>
                 <FlexRow size={ itemSize } cx={ isMultiline && css[`multiline-vertical-padding-${itemSize}`] } spacing="12">
