@@ -160,38 +160,6 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
         return isCaptionEnabled ? { disabled: false } : { disabled: true }
     }, [currentWidth]);
 
-    /**
-     * Updates exact width of image and their caption element, when squeezing viewport
-     * TODO: should be handled by plate
-     */
-    useEffect(() => {
-        if (ref.current && !caption.disabled) {
-
-            const elem = ref.current;
-            let prev = currentWidth; // grab initial width
-            const resizeObserver = new ResizeObserver((entries) => {
-                window.requestAnimationFrame(() => {
-                    if (!Array.isArray(entries) || !entries.length) {
-                        return;
-                    }
-                    for (const entry of entries) {
-                        if (prev > entry.contentRect.width) {
-                            setCurrentWidth(entry.contentRect.width);
-                            prev = entry.contentRect.width;
-                        }
-                    }
-                })
-            });
-
-            resizeObserver.observe(elem);
-            return () => {
-                if (elem) {
-                    resizeObserver.unobserve(elem);
-                }
-            }
-        }
-    }, [caption.disabled]);
-
     const resizableProps = useMemo(() => ({
         ...RESIZABLE_PROPS,
         onLoad: (event: any) => {
