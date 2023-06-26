@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import {
     DataSourceState, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps, UuiContexts,
 } from '@epam/uui-core';
@@ -15,6 +15,7 @@ export interface PickerBaseState {
 interface Range {
     from: number;
     to: number;
+    isHighlighted: boolean;
 }
 
 export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TItem, TId>, TState extends PickerBaseState> extends React.Component<TProps, TState> {
@@ -67,7 +68,14 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
             return str;
         }
 
-        const textChunks = this.getHighlightedTextChunks(str, ranges);
+        const textChunks = ranges.map((range, index) => {
+            const rangeStr = str.substring(range.from, range.to);
+            if (range.isHighlighted) {
+                return this.getHighlightedString(rangeStr, index);
+            }
+            return this.getString(rangeStr, index);
+        });
+    
         return <Text>{textChunks}</Text>;
     };
 
@@ -80,52 +88,43 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     };
 
     private mergeRanges = (ranges: Range[]) => {
-        return ranges.reduce<Range[]>((mergedRanges, range) => {
+        const mergedRanges: Range[] = [];
+        ranges.forEach((range) => {
             if (!mergedRanges.length) {
-                return [range];
+                mergedRanges.push({ ...range, isHighlighted: true });
             }
-
-            const lastRangeIndex = mergedRanges.length - 1;
-            const lastRange = mergedRanges[lastRangeIndex];
-            if (range.from > lastRange.to) {
-                mergedRanges.push(range);
-                return mergedRanges;
-            }
-
-            if (lastRange.from >= range.from) {
-                mergedRanges[lastRangeIndex] = lastRange.to <= range.to
-                    ? range
-                    : { from: range.from, to: lastRange.to };
-            }
-
-            if (lastRange.from <= range.from && lastRange.to >= range.from) {
-                mergedRanges[lastRangeIndex] = { from: lastRange.from, to: range.to };
-            }
-            return mergedRanges;
-        }, []);
-    };
-
-    private getHighlightedTextChunks = (str: string, ranges: Range[]) => {
-        const chunks: ReactNode[] = [];
-        ranges.forEach((range, index, allRanges) => {
-            if (index === 0 && range.from !== 0) {
-                chunks.push(this.getString(str.substring(0, range.from), index));
-            }
-
-            const prevRange = allRanges[index - 1];
-            if (prevRange && prevRange.to + 1 < range.from) {
-                chunks.push(this.getString(str.substring(prevRange.to, range.from), index));
+              
+            const lastRange = mergedRanges[mergedRanges.length - 1];
+            if (range.from >= lastRange.from && range.from <= lastRange.to + 1 && range.to > lastRange.to) {
+                lastRange.to = range.to;
             }
         
-            chunks.push(this.getHighlightedString(str.substring(range.from, range.to), index));
-
-            const lastIndex = allRanges.length - 1;
-            if (index === lastIndex && range.to < str.length - 1) {
-                chunks.push(this.getString(str.substring(range.to, str.length), index));
+            if (lastRange.to < range.from - 1) {
+                mergedRanges.push({ ...range, isHighlighted: true });
             }
         });
 
-        return chunks;
+        return mergedRanges;
+    };
+
+    private addNotHighlightedRanges = (ranges: Range[], str: string) => {
+        const allRanges: Range[] = [];
+        ranges.forEach((range, index) => {
+            if (index === 0 && range.from !== 0) {
+                allRanges.push({ from: 0, to: range.from, isHighlighted: false });
+            }
+            const prevRange = ranges[index - 1];
+            if (prevRange && prevRange.to + 1 < range.from) {
+                allRanges.push({ from: prevRange.to, to: range.from, isHighlighted: false });
+            }
+        
+            allRanges.push(range);
+            const lastIndex = ranges.length - 1;
+            if (index === lastIndex && range.to < str.length - 1) {
+                allRanges.push({ from: range.to, to: str.length, isHighlighted: false });
+            }
+        });
+        return allRanges;
     };
 
     private getRanges = (search: string, str: string) => {
@@ -137,9 +136,15 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         const matches = words.flatMap((word) => [...str.matchAll(word)]);
 
         const ranges = matches
-            .map((match) => ({ from: match.index, to: match[0].length + match.index }))
+            .map((match) => ({ from: match.index, to: match[0].length + match.index, isHighlighted: true }))
             .sort((range1, range2) => range1.from - range2.from);
-        return this.mergeRanges(ranges);
+
+        if (!ranges) {
+            return [];
+        }
+
+        const mergedRanges = this.mergeRanges(ranges);
+        return this.addNotHighlightedRanges(mergedRanges, str);
     };
 
     getPluralName = () => {
