@@ -117,6 +117,7 @@
             color: var(--uui-text-input-text-disabled);
 
             &::placeholder {
+                -webkit-text-fill-color: var(--uui-text-input-placeholder-disabled); // to avoid color inheritance from input component
                 color: var(--uui-text-input-placeholder-disabled);
             }
         }
