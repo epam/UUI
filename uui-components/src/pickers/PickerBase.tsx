@@ -124,7 +124,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         
             allRanges.push(range);
             const lastIndex = ranges.length - 1;
-            if (index === lastIndex && range.to <= str.length - 1) {
+            if (index === lastIndex && range.to < str.length) {
                 allRanges.push({ from: range.to, to: str.length, isHighlighted: false });
             }
         });
