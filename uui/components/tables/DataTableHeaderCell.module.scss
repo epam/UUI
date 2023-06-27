@@ -147,3 +147,14 @@
         }
     }
 }
+
+.cell-tooltip-text {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: 3px;
+
+    .cell-tooltip-item {
+        padding: 0;
+    }
+}

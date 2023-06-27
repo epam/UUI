@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    IDropdownToggler, uuiElement, cx, TooltipCoreProps, DropdownBodyProps,
-} from '@epam/uui-core';
+import { IDropdownToggler, uuiElement, cx, TooltipCoreProps, DropdownBodyProps } from '@epam/uui-core';
 import { Dropdown } from './Dropdown';
 import { DropdownContainer } from './DropdownContainer';
 
@@ -51,6 +49,7 @@ export function Tooltip(props: TooltipProps) {
             placement={ props.placement || 'top' }
             modifiers={ [{ name: 'offset', options: { offset: props.offset || [0, 12] } }] }
             renderTarget={ (props: IDropdownToggler) => renderTarget(props) }
+            openDelay={ props.openDelay }
         />
     );
 }
