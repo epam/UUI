@@ -68,22 +68,26 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
             return str;
         }
 
+        return this.getDecoratedText(str, ranges);
+    };
+
+    private getDecoratedText = (str: string, ranges: Range[]) => {
         const textChunks = ranges.map((range, index) => {
             const rangeStr = str.substring(range.from, range.to);
             if (range.isHighlighted) {
-                return this.getHighlightedString(rangeStr, index);
+                return this.getHighlightedText(rangeStr, index);
             }
-            return this.getString(rangeStr, index);
+            return this.getRegularText(rangeStr, index);
         });
     
         return <Text>{textChunks}</Text>;
     };
 
-    private getHighlightedString = (str: string, index: number) => {
+    private getHighlightedText = (str: string, index: number) => {
         return <span key={ `${str}-${index}` } className={ css.highlightedText }>{str}</span>;
     };
 
-    private getString = (str: string, index: number) => {
+    private getRegularText = (str: string, index: number) => {
         return <span key={ `${str}-${index}` }>{str}</span>;
     };
 
@@ -120,7 +124,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         
             allRanges.push(range);
             const lastIndex = ranges.length - 1;
-            if (index === lastIndex && range.to < str.length - 1) {
+            if (index === lastIndex && range.to <= str.length - 1) {
                 allRanges.push({ from: range.to, to: str.length, isHighlighted: false });
             }
         });
