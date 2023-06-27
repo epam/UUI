@@ -121,19 +121,7 @@
           },
           {
             "object": "text",
-            "text": " with subtitle.\n",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
+            "text": " with subtitle.",
             "marks": []
           }
         ]
