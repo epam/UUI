@@ -157,7 +157,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
             isCaptionEnabled = currentWidth >= MIN_CAPTION_WIDTH;
         }
 
-        return isCaptionEnabled ? { disabled: false } : { disabled: true }
+        return isCaptionEnabled ? { disabled: false } : { disabled: true };
     }, [currentWidth]);
 
     const resizableProps = useMemo(() => ({
@@ -190,7 +190,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
                         <ImageElement
                             { ...props }
                             align={ align }
-                            caption={ caption }
+                            caption={ { ...caption, align: 'center' } }
                             style={ IMAGE_STYLES }
                             resizableProps={ resizableProps }
                         />
