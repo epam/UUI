@@ -148,13 +148,13 @@
     }
 }
 
-.cell-tooltip-text {
+.cell-tooltip-wrapper {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     row-gap: 3px;
 
-    .cell-tooltip-item {
+    .cell-tooltip-text {
         padding: 0;
     }
 }
