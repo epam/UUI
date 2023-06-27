@@ -32,9 +32,9 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
 
     getColumnCaption = () => {
         const getTooltipContent = () => !this.state.isDropdownOpen && (
-            <div className={ css.cellTooltipText }>
-                <Text fontSize="14" color="contrast" font="semibold" cx={ css.cellTooltipItem }>{ this.props.column.caption }</Text>
-                { this.props.column.info && <Text fontSize="12" color="contrast" cx={ css.cellTooltipItem }>{ this.props.column.info }</Text> }
+            <div className={ css.cellTooltipWrapper }>
+                <Text fontSize="14" color="contrast" font="semibold" cx={ css.cellTooltipText }>{ this.props.column.caption }</Text>
+                { this.props.column.info && <Text fontSize="12" color="contrast" cx={ css.cellTooltipText }>{ this.props.column.info }</Text> }
             </div>
         );
 
