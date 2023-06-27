@@ -1,3 +1,8 @@
+# 5.?.? - ??.??.2023
+
+**What's Fixed**
+* [TextInput]: fixed the bug for Safari - text color rendered incorrectly on disabled input
+
 # 5.0.2 - 22.06.2023
 
 **What's Fixed**
