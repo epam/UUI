@@ -14,7 +14,7 @@ import { getApi, TApi } from './data';
 import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
 import './index.module.scss';
-
+// this is a test!
 const history = createBrowserHistory();
 // __COMMIT_HASH__ & __PACKAGE_VERSION__ will be replaced to a real string by Webpack
 (window as any).BUILD_INFO = { hash: __COMMIT_HASH__ };
