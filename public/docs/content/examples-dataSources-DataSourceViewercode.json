@@ -1,0 +1,69 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Most examples in the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSources",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " tutorial are built on top of the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSourceViewer",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", a toy component, which was created for the demonstration purpose. It also serves as a good example of how to build your components on top of ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataSources",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".﻿",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
