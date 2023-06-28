@@ -2,6 +2,7 @@
 
 **What's Fixed**
 * [TextInput]: fixed the bug for Safari - text color rendered incorrectly on disabled input
+* [DataTableHeaderCell]: Tooltip was remade in accordance to new design, it shows always on hover with open delay 600ms
 
 # 5.0.2 - 22.06.2023
 
