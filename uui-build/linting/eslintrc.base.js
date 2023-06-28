@@ -195,6 +195,7 @@ function uuiJsRules() {
         // non-stylistic- end
         // stylistic - start
         ...pickFromAirbnb.base.stylistic,
+        'no-trailing-spaces': 0,
         'max-len': [
             2, {
                 code: 170,
@@ -220,10 +221,6 @@ function uuiJsRules() {
             },
         ],
         'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
-        'no-trailing-spaces': ['error', {
-            skipBlankLines: true,
-            ignoreComments: false,
-        }],
         // stylistic - end
     };
 }
