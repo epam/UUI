@@ -3,6 +3,7 @@
 **What's Fixed**
 * [TextInput]: fixed the bug for Safari - text color rendered incorrectly on disabled input
 * [DataTableHeaderCell]: Tooltip was remade in accordance to new design, it shows always on hover with open delay 600ms
+* [PickerInput]: disable 'Clear' button in footer in case when `disableClear` prop is `true`
 
 # 5.0.2 - 22.06.2023
 
