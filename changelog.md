@@ -1,13 +1,15 @@
+# RTE update changelog
+* [RTE]: UUI `SlateEditor` component was updated and reworked to work with latest Slate.js version.
+  * SlateEditor became uncontrolled component, now `value` prop worked only as initial value, if you need to update it after component mount, please set another `key` prop.
+  * Changed Slate JSON format, now it's works with array instead of immutable.js object, therefore no needed to convert value via `value.toJSON()` and `Value.fromJSON(value)`.
+
+
 # 5.?.? - ??.??.2023
 
 **What's Fixed**
 * [TextInput]: fixed the bug for Safari - text color rendered incorrectly on disabled input
 * [DataTableHeaderCell]: Tooltip was remade in accordance to new design, it shows always on hover with open delay 600ms
 * [PickerInput]: disable 'Clear' button in footer in case when `disableClear` prop is `true`
-
-# 5.0.2 - 22.06.2023
-
-**What's Fixed**
 * [TimePickerBody]: fixed the bug where `minutes` values that are not a multiple of  `minutesStep`, are not rounded up to a `step`
 
 
