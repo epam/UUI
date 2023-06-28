@@ -1,16 +1,41 @@
-# RTE update changelog
-* [RTE]: UUI `SlateEditor` component was updated and reworked to work with latest Slate.js version.
-  * SlateEditor became uncontrolled component, now `value` prop worked only as initial value, if you need to update it after component mount, please set another `key` prop.
-  * Changed Slate JSON format, now it's works with array instead of immutable.js object, therefore no needed to convert value via `value.toJSON()` and `Value.fromJSON(value)`.
+# 5.1.0 - ??.??.2023
+
+**What's New**
+
+**Rich Text Editor component update and improvements**
+
+UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework. 
+During the update the previous code based of RTE was almost fully rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users and update to the new version of `uui-editor` package should be seamless and easy. 
+
+List of changes:
+* [Breaking change]: Changed RTE value format, now it's works with array instead of immutable.js object. Also, there are some additional changes inside slate value structure. 
+We make an automatic migration from old state format to the new one, so it's not required any additional actions from your side. But if you make some manipulations with value object on your side, it will cause issues, contact us if you faced with such case.
+* Regarding the new value format it's not needed to convert value to JSON via `value.toJSON()` and `Value.fromJSON(value)` in your code.
 
 
-# 5.?.? - ??.??.2023
+* Added possibility to add caption for images
+* Fixed page crash after delete horizontal line/separator
+* Fixed adding list inside table
+* Fixed text selection breaks if mouse cursor lands on toolbar
+* Fixed reverse text in list in Safari
+* 403 error now doesn't appear during dragging image
+* Added possibility to insert new line before and after image/video/iframe
+* Fixed link replacement without first deleting it
+* Long links now fit table cell width
+* Images adjust when width of container is changing
+* Added support of different spell checking extensions, like Grammarly
+* Improved content copying from Microsoft Word files
+* Fixed color bar closing by color click
+* Fixed sticky toolbar disappears after selecting any options in it in Safari
+* Added autofocus on input in 'Add Link' modal
+* A lot of issues and improvements from Slate.js version update
 
 **What's Fixed**
-* [TextInput]: fixed the bug for Safari - text color rendered incorrectly on disabled input
-* [DataTableHeaderCell]: Tooltip was remade in accordance to new design, it shows always on hover with open delay 600ms
-* [PickerInput]: disable 'Clear' button in footer in case when `disableClear` prop is `true`
+* [DataTable]: added tooltip to the all column header cells, it shows `column.caption` and `column.info` and appear with 600ms delay
+* [PickerInput]: disabled 'Clear' button in footer in case when `disableClear` prop is `true`
 * [TimePickerBody]: fixed the bug where `minutes` values that are not a multiple of  `minutesStep`, are not rounded up to a `step`
+* [TextInput]: fixed incorrectly text color in disabled state in Safari
+* [useTableState]: fixed checked state overriding to the initial value
 
 
 # 5.0.1 - 13.06.2023

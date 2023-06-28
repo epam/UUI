@@ -33,7 +33,7 @@ import { createDeserializeDocxPlugin } from './plate/plugins/deserializeDocxPlug
 
 let components = createPlateUI();
 
-export type EditorValue = Value;
+export type EditorValue = Value | null;
 
 
 /**
@@ -56,7 +56,7 @@ export const basePlugins: any = [
     ...defaultPlugins,
 ];
 
-interface SlateEditorProps extends IEditable<Value | null>, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+interface SlateEditorProps extends IEditable<EditorValue>, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     isReadonly?: boolean;
     plugins?: any[];
     autoFocus?: boolean;
