@@ -4,11 +4,7 @@ Plate issues to create:
 - [x] Move email links validation to plate. Then remove `uui-editor/src/plate/plugins/linkPlugin/isUrl.ts`. [PR](https://github.com/udecode/plate/pull/2444)
 - [x] Fix caption width. Then update `uui-editor/src/plate/plugins/imagePlugin/ImageBlock.module.scss`. [PR](https://github.com/udecode/plate/pull/2448)
 - [x] Allow pasting links as url into highlighted text. Then update `uui-editor/src/plate/plugins/linkPlugin/linkPlugin.tsx` [PR](https://github.com/udecode/plate/pull/2453) 
-- Create issue about copying table which has empty cells from Microsoft Excel. The problem here `packages/core/src/plugins/html-deserializer/utils/cleanHtmlEmptyElements.ts`. `ALLOWED_EMPTY_ELEMENTS` should be extended with `TD` and `TH` on plate side.  [Video](https://epam-my.sharepoint.com/personal/natallia_alieva_epam_com/_layouts/15/stream.aspx?id=%2Fpersonal%2Fnatallia%5Falieva%5Fepam%5Fcom%2FDocuments%2FMicrosoft%20Teams%20Chat%20Files%2F2023%2D04%2D11%5F11h58%5F43%2Emp4)
-
-```
-const ALLOWED_EMPTY_ELEMENTS = ['BR', 'IMG'];
-```
+- [x] Create issue about copying table which has empty cells from Microsoft Excel. Then remove `uui-editor/src/plate/plugins/deserializeDocxPlugin/cleanHtmlEmptyElements.ts`. [Video](https://epam-my.sharepoint.com/personal/natallia_alieva_epam_com/_layouts/15/stream.aspx?id=%2Fpersonal%2Fnatallia%5Falieva%5Fepam%5Fcom%2FDocuments%2FMicrosoft%20Teams%20Chat%20Files%2F2023%2D04%2D11%5F11h58%5F43%2Emp4). [PR](https://github.com/udecode/plate/pull/2454)
 - Move to plate single table cell copy | cup operation. It should be pasted as a text.
 - Fix pasting tables from Word in Safari only. Root cause in `cleanDocx.ts`, `copyBlockMarksToSpanChild()` function.
 - Create issue about copying unordered lists from Word. Each item wrapped inside paragraph node after pasting. Ordered lists works as expected.
