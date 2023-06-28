@@ -10,6 +10,7 @@
     "strictNullChecks": false,
     "strictFunctionTypes": true,
     "removeComments": false,
+    //"skipLibCheck": true,
     "preserveConstEnums": true,
     "sourceMap": true,
     "noEmitOnError": true,
