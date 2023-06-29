@@ -1,113 +1,108 @@
-export {};
-// import Lists from "@convertkit/slate-lists";
-// import { Editor as CoreEditor, Editor } from "slate";
-// import { RenderBlockProps } from "slate-react";
-// import { ReactComponent as ListBulletIcon } from "../../icons/bullet-list.svg";
-// import { ReactComponent as ListNumberIcon } from "../../icons/numbered-list.svg";
-// import * as React from "react";
-// import { ToolbarButton } from "../../implementation/ToolbarButton";
-// import { getBlockDesirialiser } from '../../helpers';
-//
-// export const listPlugin = () => {
-//     const lists = Lists();
-//     const toggleListCommand = lists[0].commands.toggleList;
-//     lists[0].commands.wrapList = (editor: Editor, ...props: any[]) => {
-//         const type = props[0].type || 'unordered-list';
-//         const leafBlocks = editor.value.document.getLeafBlocksAtRange(editor.value.selection as any);
-//
-//         editor.withoutNormalizing(() => {
-//             leafBlocks.forEach(block => {
-//                 if (block.type == 'unordered-list' || block.type == 'ordered-list') return;
-//                 editor.wrapBlockByKey(block.key, type);
-//                 editor.wrapBlockByKey(block.key, 'list-item');
-//                 editor.setNodeByKey(block.key, 'list-item-child');
-//             });
-//         });
-//     };
-//     lists[0].commands.toggleList = (editor: Editor, ...props: any[]) => {
-//         toggleListCommand(editor, ...props);
-//     };
-//
-//     const isList = (editor: Editor, type: 'ordered-list' | 'unordered-list') => {
-//         let isActive = false;
-//         const blocks = editor.value.blocks;
-//         const document = editor.value.document;
-//
-//         if (blocks.size > 0) {
-//             const parent: any = document.getParent(document.getParent(blocks.first().key).key);
-//             isActive = (editor as any).hasBlock(['list-item-child']) && parent && parent.type === type;
-//         }
-//
-//         return isActive;
-//     };
-//
-//     const onKeyDown = (event: KeyboardEvent, editor: Editor, next: () => any) => {
-//         const { value } = editor;
-//
-//         if (new RegExp(/^[1-9]\.$/).test(value.anchorBlock.text)) {
-//             editor.moveToRangeOfNode(value.anchorBlock).delete();
-//             return (editor as any).toggleList({ type: 'ordered-list' });
-//         }
-//
-//         if (new RegExp(/^-$/).test(value.anchorBlock.text)) {
-//             editor.moveToRangeOfNode(value.anchorBlock).delete();
-//             return (editor as any).toggleList({ type: 'unordered-list' });
-//         }
-//
-//         return next();
-//     };
-//
-//     return [
-//         ...lists,
-//         {
-//             queries: { isList },
-//             renderBlock: (props: RenderBlockProps, editor: CoreEditor, next: () => any) => lists[0].renderNode(props, editor, next),
-//             onKeyDown,
-//             sidebarButtons: [OrderedListToolbarButton, UnorderedListToolbarButton],
-//             serializers: [listItemDesializer, listDesializer],
-//         },
-//     ];
-// };
-//
-//
-// const UnorderedListToolbarButton = (props: { editor: any }) => {
-//     const onClick = () => {
-//         (props.editor as any).toggleList({ type: 'unordered-list' });
-//     };
-//     return <ToolbarButton isActive={ (props.editor as any).isList('unordered-list') } icon={ ListBulletIcon } onClick={ onClick } />;
-// };
-//
-// const OrderedListToolbarButton = (props: { editor: any }) => {
-//     return <ToolbarButton isActive={ (props.editor as any).isList('ordered-list') } icon={ ListNumberIcon } onClick={ () => (props.editor as any).toggleList({ type: 'ordered-list' }) } />;
-// };
-//
-// const LIST_TAGS: any = {
-//     ul: 'unordered-list',
-//     ol: 'ordered-list',
-// };
-//
-// const listDesializer = getBlockDesirialiser(LIST_TAGS);
-//
-// const listItemDesializer = (el: any, next: any) => {
-//     if (el.tagName.toLowerCase() === 'li') {
-//         let listNodes: any = [];
-//         let childNodes: any = [];
-//         el.childNodes.forEach((node: any) => {
-//             if (node.nodeName !== 'UL' && node.nodeName !== 'OL') {
-//                 next([node]).map((el: any) => childNodes.push(el));
-//             } else {
-//                 next([node]).map((el: any) => listNodes.push(el));
-//             }
-//         });
-//
-//         return {
-//             object: 'block',
-//             type: 'list-item',
-//             nodes: [{
-//                 object: 'block',
-//                 type: 'list-item-child',
-//                 nodes: childNodes,
-//             }].concat(listNodes),
-//         };
-//     }
-// };
+import React from "react";
+
+import {
+    ELEMENT_OL,
+    ELEMENT_UL,
+    ELEMENT_LI,
+    createListPlugin,
+    PlateEditor,
+    ListToolbarButton,
+    getPluginType,
+    getListItemEntry,
+    ELEMENT_LIC,
+} from "@udecode/plate";
+import { isPluginActive } from "../../helpers";
+import { ToolbarButton } from "../../implementation/ToolbarButton";
+import { ReactComponent as UnorderedList } from "../../icons/bullet-list.svg";
+import { ReactComponent as NumberedList } from "../../icons/numbered-list.svg";
+
+const noop = () => {};
+
+export const ELEMENT_UL_CUSTOM = 'unordered-list';
+export const ELEMENT_OL_CUSTOM = 'ordered-list';
+export const ELEMENT_LI_CUSTOM = 'list-item';
+export const ELEMENT_LI_TEXT_CUSTOM = 'list-item-child';
+
+export const List = (props: any) => {
+    const { attributes, children, element } = props;
+    switch (element.type) {
+        case ELEMENT_OL_CUSTOM:
+            return <ol { ...attributes }>{ children }</ol>;
+        case ELEMENT_UL_CUSTOM:
+            return <ul { ...attributes }>{ children }</ul>;
+        case ELEMENT_LI_CUSTOM:
+            return <li className={ element.type } { ...attributes }>{ children }</li>;
+        case ELEMENT_LI_TEXT_CUSTOM:
+            return <div { ...attributes }>{ children }</div>;
+        default:
+            return <div { ...attributes }>{ children }</div>;
+    }
+};
+
+export const listPlugin = () => createListPlugin({
+    overrideByKey: {
+        [ELEMENT_OL]: {
+            type: ELEMENT_OL_CUSTOM,
+            isElement: true,
+            deserializeHtml: { rules: [{ validNodeName: 'OL' }] },
+            component: List,
+        },
+        [ELEMENT_UL]: {
+            type: ELEMENT_UL_CUSTOM,
+            isElement: true,
+            deserializeHtml: { rules: [{ validNodeName: 'UL' }] },
+            component: List,
+        },
+        [ELEMENT_LI]: {
+            type: ELEMENT_LI_CUSTOM,
+            isElement: true,
+            component: List,
+            deserializeHtml: { rules: [{ validNodeName: 'LI' }] },
+        },
+        [ELEMENT_LIC]: {
+            type: ELEMENT_LI_TEXT_CUSTOM,
+            isElement: true,
+            component: List,
+        },
+    },
+});
+
+interface IToolbarButton {
+    editor: PlateEditor;
+}
+
+export const ListButton = ({ editor }: IToolbarButton) => {
+    if (!isPluginActive(ELEMENT_OL) && !isPluginActive(ELEMENT_LI)) return null;
+
+    const res = !!editor?.selection && getListItemEntry(editor);
+
+    const isUnorderedActive = res?.list && res?.list[0]?.type === 'unordered-list';
+    const isOrderedActive = res?.list && res?.list[0]?.type === 'ordered-list';
+
+    return (
+        <>
+            <ListToolbarButton
+                styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px', } } }
+                type={ getPluginType(editor, ELEMENT_OL) }
+                actionHandler='onMouseDown'
+                icon={ <ToolbarButton
+                    onClick={ noop }
+                    icon={ NumberedList }
+                    isActive={ !!editor?.selection && isOrderedActive }
+                /> }
+            />
+            <ListToolbarButton
+                styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
+                type={ getPluginType(editor, ELEMENT_UL) }
+                actionHandler='onMouseDown'
+                icon={ <ToolbarButton
+                    // styles={ { root: {  } } }
+                    onClick={ noop }
+                    icon={ UnorderedList }
+                    isActive={ !!editor?.selection && isUnorderedActive }
+                /> }
+            />
+        </>
+    );
+};
+
