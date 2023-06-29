@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Value } from 'slate';
-import { useUuiContext } from '@epam/uui-core';
+import { FileUploadResponse, useUuiContext } from '@epam/uui-core';
 import { Panel } from '@epam/promo';
 import {
     SlateEditor,
@@ -22,15 +21,17 @@ import {
     headerPlugin,
     listPlugin,
     placeholderPlugin,
+    EditorValue,
+    codeBlockPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 
 export default function WithInnerScrollExample() {
     const svc = useUuiContext();
     const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
-    const [value, setValue] = useState<Value>(Value.fromJSON(demoData.slateInitialValue));
+    const [value, setValue] = useState<EditorValue>(demoData.slateInitialValue);
 
-    const uploadFile = (file: File, onProgress: (progress: number) => unknown): unknown => {
+    const uploadFile = (file: File, onProgress: (progress: number) => unknown): Promise<FileUploadResponse> => {
         return svc.uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
             onProgress,
         });
@@ -66,20 +67,20 @@ export default function WithInnerScrollExample() {
                 },
             ],
         }),
+        codeBlockPlugin(),
     ];
 
     return (
-        <Panel rawProps={ { style: { height: '350px' } } }>
+        <Panel rawProps={ { style: { width: '100%', height: '350px' } } }>
             <SlateEditor
                 value={ value }
                 onValueChange={ setValue }
                 isReadonly={ false }
-                autoFocus={ true }
                 plugins={ plugins }
                 mode="form"
                 placeholder="Add description"
                 minHeight="none"
-                fontSize="16"
+                fontSize="14"
                 scrollbars
             />
         </Panel>
