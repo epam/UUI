@@ -120,12 +120,18 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
                 if (isMatching !== false) {
                     matchedItems.push(item);
                     if (typeof isMatching !== 'boolean') {
-                        ranks.set(this.getId(item), isMatching);
+                        const id = this.getId(item);
+                        const rank = ranks.has(id) ? Math.max(ranks.get(id), isMatching) : isMatching;
+                        ranks.set(this.getId(item), rank);
                     }
                 }
 
                 if (!isSomeMatching) {
                     isSomeMatching = isMatching;
+                } else if (typeof isMatching === 'number') {
+                    isSomeMatching = typeof isSomeMatching === 'number'
+                        ? Math.max(isMatching, isSomeMatching)
+                        : isMatching;
                 }
             });
 
