@@ -107,7 +107,6 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
         };
 
         applyMatchRec(this.getRootItems());
-        console.log(ranks);
         return Tree.create({ ...this.params }, this.sortByRanks(matchedItems, ranks));
     }
 
