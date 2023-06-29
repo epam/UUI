@@ -31,7 +31,6 @@ We make an automatic migration from old state format to the new one, so it's not
 * A lot of issues and improvements from Slate.js version update
 
 **What's Fixed**
-* [DataTable]: added tooltip to the all column header cells, it shows `column.caption` and `column.info` and appear with 600ms delay
 * [PickerInput]: disabled 'Clear' button in footer in case when `disableClear` prop is `true`
 * [TimePickerBody]: fixed the bug where `minutes` values that are not a multiple of  `minutesStep`, are not rounded up to a `step`
 * [TextInput]: fixed incorrectly text color in disabled state in Safari
