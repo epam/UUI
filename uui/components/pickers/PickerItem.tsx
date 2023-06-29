@@ -125,13 +125,12 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
 
     render() {
         const {
-            size, avatarUrl, isLoading, isDisabled, icon, highlightSearchMatches = true,
+            size, avatarUrl, isLoading, isDisabled, subtitle, icon, highlightSearchMatches = true,
         } = this.props;
         const itemSize = size && size !== 'none' ? size : defaultSize;
         const isMultiline = !!(this.props.title && this.props.subtitle);
 
         const title = highlightSearchMatches ? this.highlightSearchMatches(this.props.title) : this.props.title;
-        const subtitle = highlightSearchMatches ? this.highlightSearchMatches(this.props.subtitle) : this.props.subtitle;
         return (
             <FlexCell width="auto" cx={ css.root }>
                 <FlexRow size={ itemSize } cx={ isMultiline && css[`multiline-vertical-padding-${itemSize}`] } spacing="12">
