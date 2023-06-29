@@ -1,62 +1,58 @@
-const extractRank = (matches: (false | (false | number[])[])[], textsCount: number, groupWordLength: number[]) => {
-    if (!matches) return false;
+const getRank = (match: RegExpMatchArray) => {
+    const [word] = match;
+    const { index, input } = match;
 
-    return matches.flatMap((match, index) => {
-        if (!match) {
-            return Array(groupWordLength[index] * textsCount).fill(null);
+    if (index === 0) {
+        if (word.length === input.length || input.charAt(word.length) === ' ') {
+            return 3;
         }
-        return match;
-    }).flatMap((match) => match);
+
+        return 2;
+    }
+    return 1;
 };
 
-export function getSearchFilter(searchString: string): (texts: string[]) => boolean | Array<number | null> {
+export function getSearchFilter(searchString: string): (texts: string[]) => number | boolean {
     if (!searchString) {
         return () => true;
     }
     const searchStr = searchString.replace(/[\s\n\r\t\0]+/g, ' ').trim(); // trim and normalize whitespaces
 
     // split by comma-separated groups, then by spaces, and make regex of each word
-    const wordGroups = searchStr
-        .split(',')
-        .map((words) =>
-            words
-                .split(' ')
-                .map((word) => word.trim())
-                .filter((s) => s.length > 0)
-                .map((word) => word.trim().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')) // esape regex characters inside the string
-                .map((word) => new RegExp(word, 'i')))
-        .filter((g) => g.length > 0);
+    const words = searchStr
+        .split(' ')
+        .map((word) => word.trim())
+        .filter((s) => s.length > 0)
+        .map((word) => word.trim().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')) // esape regex characters inside the string
+        .map((word) => new RegExp(word, 'i'));
 
     return (texts) => {
-        if (!wordGroups.length) {
+        if (!words.length) {
             return true;
         }
 
-        const matchesByGroups = wordGroups.map((wordRegexes) => {
-            const matches = wordRegexes.map((wordRegex) => {
-                // matching regex word with fields values
-                const wordMatches = texts.map((text) => text.match(wordRegex));
-
-                // if keyword was not found in every field value
-                if (wordMatches.every((match) => match === null)) {
-                    return false;
+        const ranks = words.map((wordRegex) => {
+            // matching regex word with fields values
+            const wordRanks = texts.map((text) => {
+                const match = text.match(wordRegex);
+                if (match === null) {
+                    return null;
                 }
-                return wordMatches.map((match) => match !== null ? match.index : null);
+                return getRank(match);
             });
 
-            // some keyword of a group was not found in fields values
-            if (matches.some((match) => !match)) {
+            // if keyword was not found in every field value
+            if (wordRanks.every((rank) => rank === null)) {
                 return false;
             }
-
-            return matches;
+            return Math.max(...wordRanks);
         });
 
-        // if every group matching is failed
-        if (matchesByGroups.every((matchByGroup) => matchByGroup === false)) {
+        // some keyword of a group was not found in fields values
+        if (ranks.some((rank) => !rank)) {
             return false;
         }
 
-        return extractRank(matchesByGroups, texts.length, wordGroups.map((wordGroup) => wordGroup.length));
+        return (ranks as number[]).reduce((totalRank, rank) => totalRank + rank, 0);
     };
 }
