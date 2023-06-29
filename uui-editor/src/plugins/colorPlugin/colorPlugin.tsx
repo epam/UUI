@@ -3,6 +3,7 @@ import { ColorBar } from "../../implementation/ColorBar";
 import { ReactComponent as ColorIcon } from '../../icons/text-color-normal.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { Dropdown } from '@epam/uui-components';
+import { useSlate } from "slate-react";
 
 export const colorPlugin = () => {
     return {
@@ -10,7 +11,7 @@ export const colorPlugin = () => {
     };
 };
 
-const ColorButton = (editorProps: { editor: any }) => {
+const ColorButton = () => {
     return <Dropdown
         renderTarget={ (props) => <ToolbarButton
             icon={ ColorIcon }
@@ -18,7 +19,7 @@ const ColorButton = (editorProps: { editor: any }) => {
             onClick={ () => null }
             { ...props }
         /> }
-        renderBody={ () => <ColorBar editor={ editorProps.editor } /> }
+        renderBody={ () => <ColorBar /> }
         placement='top-start'
         modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
     />;

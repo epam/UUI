@@ -80,10 +80,10 @@ export class Checkbox extends React.Component<CheckboxProps> {
                         tabIndex={ this.props.tabIndex || this.props.isReadonly || this.props.isDisabled ? -1 : 0 }
                         id={ this.props.id }
                     />
-                    {this.props.value && !this.props.indeterminate && <IconContainer icon={ this.props.icon } />}
-                    {this.props.indeterminate && <IconContainer icon={ this.props.indeterminateIcon } />}
+                    { this.props.value && !this.props.indeterminate && <IconContainer icon={ this.props.icon } /> }
+                    { this.props.indeterminate && <IconContainer icon={ this.props.indeterminateIcon } /> }
                 </div>
-                {label && <div className={ uuiElement.inputLabel }>{label}</div>}
+                { label && <div className={ uuiElement.inputLabel }>{ label }</div> }
             </label>
         );
     }

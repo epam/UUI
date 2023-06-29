@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    IDropdownToggler, uuiElement, cx, TooltipCoreProps, DropdownBodyProps,
-} from '@epam/uui-core';
+import { IDropdownToggler, uuiElement, cx, TooltipCoreProps, DropdownBodyProps } from '@epam/uui-core';
 import { Dropdown } from './Dropdown';
 import { DropdownContainer } from './DropdownContainer';
 
