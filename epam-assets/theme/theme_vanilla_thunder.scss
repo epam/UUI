@@ -11,6 +11,7 @@
     --font-light: 'Sans Light', 'Arial', sans-serif;
 
     --blue-0: #F0F7FC;
+    --blue-50: #E1F4FA;
     --blue-100: #D4F0FE;
     --blue-200: #76CDD8;
     --blue-300: #2BC1F0;
@@ -220,13 +221,13 @@
     --uui-text-input-border: var(--uui-control-border);
     --uui-text-input-border-hover: var(--uui-control_textinput-border-hover);
     --uui-text-input-border-active: var(--uui-control-border-checked);
-    --uui-text-input-border-error: var(--uui-negative);
+    --uui-text-input-border-error: var(--uui-error);
     --uui-text-input-border-disabled: var(--uui-control-border-disabled);
     --uui-text-input-border-readonly: var(--uui-control-border-readonly);
     --uui-text-input-placeholder: var(--uui-control-placeholder);
     --uui-text-input-placeholder-disabled: var(--uui-control-placeholder-disabled);
     --uui-text-input-text: var(--uui-control-text);
-    --uui-text-input-text-disabled: var(--uui-control-text-disabled);
+    --uui-text-input-text-disabled: var(--uui-control-placeholder-disabled);
     --uui-text-input-icon: var(--uui-control-icon);
     --uui-text-input-icon-disabled: var(--uui-control-icon-disabled);
     --uui-text-input-icon-clickable: var(--uui-icon);
@@ -240,7 +241,7 @@
     --uui-btn-border-radius: 8px;
 
     --uui-btn-font: var(--font-museo-sans);
-    --uui-btn-font-weight: 500;
+    --uui-btn-font-weight: 700;
 
 
     /*  LinkButton vars   */
@@ -254,14 +255,9 @@
 
     /*  DatePicker vars   */
     --uui-dtp-title-bg: var(--uui-control-bg);
-    --uui-dtp-title-bg-hover: var(--uui-primary-halftone);
     --uui-dtp-text-selected: var(--uui-control-border-checked);
     --uui-dtp-text: var(--uui-control-text);
-    --uui-dtp-next-prev-icon: var(--uui-icon);
-    --uui-dtp-next-prev-icon-bg-hover: var(--uui-secondary-lightest);
 
-    --uui-dtp_header-font: var(--font-inter);
-    --uui-dtp_header-font-weight: 400;
     --uui-dtp_body-content-font: var(--font-inter);
     --uui-dtp_body-content-font-weight: 400;
 
@@ -307,7 +303,7 @@
     --uui-radio-input-fill-checked: var(--uui-control-border-checked);
     --uui-radio-input-fill-hover: var(--uui-control-border-hover);
     --uui-radio-input-fill-checked-disabled: var(--uui-control-border-checked-disabled);
-    --uui-radio-input-error: var(--uui-negative);
+    --uui-radio-input-error: var(--uui-error);
 
     --uui-radio-input-font: var(--font-inter);
     --uui-radio-input-font-weight: 400;
@@ -323,7 +319,7 @@
     --uui-checkbox-bg-disabled: var(--uui-control-bg-disabled);
     --uui-checkbox-bg-checked-hover: var(--uui-control-bg-checked-hover);
     --uui-checkbox-bg-checked-disabled: var(--uui-control-bg-checked-disabled);
-    --uui-checkbox-error: var(--uui-negative);
+    --uui-checkbox-error: var(--uui-error);
     --uui-checkbox-fill: var(--uui-control-checkbox-icon);
     --uui-checkbox-label: var(--uui-control-label);
     --uui-checkbox-label-disabled: var(--uui-control-label-disabled);
@@ -353,7 +349,7 @@
     --uui-text-area-border-disabled: var(--uui-control-border-disabled);
     --uui-text-area-border-hover: var(--uui-control_textinput-border-hover);
     --uui-text-area-border-active: var(--uui-control-border-checked);
-    --uui-text-area-border-error: var(--uui-negative);
+    --uui-text-area-border-error: var(--uui-error);
     --uui-text-area-placeholder: var(--uui-control-placeholder);
     --uui-text-area-text: var(--uui-control-text);
     --uui-text-area-text-disabled: var(--uui-control-text-disabled);
@@ -387,7 +383,7 @@
     --uui-picker-toggler-border-disabled: var(--uui-control-border-disabled);
     --uui-picker-toggler-border-hover: var(--uui-control_textinput-border-hover);
     --uui-picker-toggler-border-active: var(--uui-control-border-checked);
-    --uui-picker-toggler-border-error: var(--uui-negative);
+    --uui-picker-toggler-border-error: var(--uui-error);
     --uui-picker-toggler-placeholder: var(--uui-control-placeholder);
     --uui-picker-toggler-text: var(--uui-control-text);
     --uui-picker-toggler-text-disabled: var(--uui-control-text-disabled);
@@ -405,7 +401,7 @@
     --uui-panel-shadow: var(--uui-shadow-level-1);
 
     /* Modals */
-    --uui-modals-border-radius: 8px;
+    --uui-modals-border-radius: 16px;
     --uui-modals-overlay: rgb(29 30 38 / 80%);
     --uui-modals-shadow: var(--uui-shadow-level-3);
     --uui-modals-bg: var(--uui-surface);
@@ -498,7 +494,7 @@
     --uui-main_menu-bg: #F0F7FCD9;
     --uui-main_menu-hover: #FFF;
     --uui-main_menu-active: #FFF;
-    --uui-main_menu-border-active: var(--uui-primary);
+    --uui-main_menu-border-active: #FFF;
 
     --uui-main_menu-dropdown-bg: var(--uui-surface);
     --uui-main_menu-dropdown-hover: var(--uui-primary);
@@ -538,9 +534,9 @@
     --uui-burger_group-font-weight: 400;
 
     /* BurgerButton */
-    --uui-burger_btn_caption: var(--uui-text-contrast);
-    --uui-burger_btn_caption-hover: var(--uui-primary);
-    --uui-burger_btn_caption-active: var(--uui-primary);
+    --uui-burger_btn_caption: var(--uui-text-primary);
+    --uui-burger_btn_caption-hover: var(--uui-text-primary);
+    --uui-burger_btn_caption-active: var(--uui-text-primary);
     --uui-burger_btn-border: var(--uui-divider-light);
 
     --uui-burger_btn-font: var(--font-inter);
@@ -562,7 +558,7 @@
     --uui-numeric-input-border-disabled: var(--uui-control-border-disabled);
     --uui-numeric-input-border-hover: var(--uui-control_textinput-border-hover);
     --uui-numeric-input-border-active: var(--uui-control-border-checked);
-    --uui-numeric-input-border-error: var(--uui-negative);
+    --uui-numeric-input-border-error: var(--uui-error);
     --uui-numeric-input-placeholder: var(--uui-control-placeholder);
     --uui-numeric-input-text: var(--uui-control-text);
     --uui-numeric-input-text-disabled: var(--uui-control-text-disabled);
@@ -577,7 +573,7 @@
     --uui-time-picker-border-disabled: var(--uui-control-border-disabled);
     --uui-time-picker-border-hover: var(--uui-control_textinput-border-hover);
     --uui-time-picker-border-active: var(--uui-control-border-checked);
-    --uui-time-picker-border-error: var(--uui-negative);
+    --uui-time-picker-border-error: var(--uui-error);
     --uui-time-picker-placeholder: var(--uui-control-placeholder);
     --uui-time-picker-text: var(--uui-control-text);
     --uui-time-picker-text-disabled: var(--uui-control-text-disabled);
@@ -592,7 +588,7 @@
     --uui-search-input-border-disabled: var(--uui-control-border-disabled);
     --uui-search-input-border-hover: var(--uui-control_textinput-border-hover);
     --uui-search-input-border-active: var(--uui-control-border-checked);
-    --uui-search-input-border-error: var(--uui-negative);
+    --uui-search-input-border-error: var(--uui-error);
     --uui-search-input-placeholder: var(--uui-control-placeholder);
     --uui-search-input-text: var(--uui-control-text);
     --uui-search-input-text-disabled: var(--uui-control-text-disabled);
@@ -613,7 +609,7 @@
     --uui-filters-toggler-border-radius: 8px;
     --uui-filters-toggler-bg: var(--uui-surface);
     --uui-filters-toggler-bg-hover: var(--blue-0);
-    --uui-filters-toggler-text: var(--uui-text-secondarybrand);
+    --uui-filters-toggler-text: var(--uui-text-secondary);
     --uui-filters-toggler-label: var(--uui-text-brand);
     --uui-filters-toggler-icon: var(--uui-text-input-icon-clickable);
     --uui-filters-toggler-shadow: var(--uui-shadow-level-1);
@@ -770,8 +766,25 @@
         --uui-btn-bg-disabled: var(--uui-disabled);
         --uui-btn-border-disabled: var(--uui-disabled);
         --uui-btn-caption: var(--uui-contrast);
-        --uui-btn-caption-halftone: var(--uui-text-primary);
+        --uui-btn-caption-halftone: var(--night600);
         --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .button-white {
+        --uui-btn-bg: var(--white);
+        --uui-btn-bg-hover: var(--blue-50);
+        --uui-btn-bg-active: var(--blue-100);
+        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone-hover: var(--blue-50);
+        --uui-btn-bg-halftone-active: var(--uui-primary-lightest);
+        --uui-btn-bg-disabled: var(--chromatic-0);
+        --uui-btn-border: var(--white);
+        --uui-btn-border-hover: var(--blue-50);
+        --uui-btn-border-active: var(--blue-100);
+        --uui-btn-border-disabled: var(--chromatic-0);
+        --uui-btn-caption: var(--chromatic-500);
+        --uui-btn-caption-halftone: var(--uui-text-primary);
+        --uui-btn-caption-disabled: var(--chromatic-200);
     }
 
     .icon-button-info {
