@@ -1,20 +1,51 @@
-export {};
-// import React from "react";
-// import { RenderMarkProps } from "slate-react";
-// import { ToolbarButton } from "../../implementation/ToolbarButton";
-// import { ReactComponent as editorCodeIcon } from "../../icons/editor-code.svg";
-//
-// export const codeBlockPlugin = () => {
-//     const renderMark = (props: RenderMarkProps) => {
-//         return <code { ...props.attributes }>{ props.children }</code>;
-//     };
-//
-//     return {
-//         renderMark,
-//         toolbarButtons: [CodeButton],
-//     };
-// };
-//
-// const CodeButton = (props: { editor: any }) => {
-//     return <ToolbarButton isActive={ props.editor.hasMark("uui-richTextEditor-code") } icon={ editorCodeIcon } onClick={ () => props.editor.toggleMark("uui-richTextEditor-code") } />;
-// };
+import React from 'react';
+import {
+    StyledLeafProps,
+    EText,
+    TText,
+    Value,
+    createCodePlugin,
+    MarkToolbarButton,
+    getPluginType,
+    isMarkActive,
+    PlateEditor,
+} from "@udecode/plate";
+import { ToolbarButton } from "../../implementation/ToolbarButton";
+import { ReactComponent as CodeIcon } from "../../icons/editor-code.svg";
+import { isPluginActive } from "../../helpers";
+
+const KEY = 'uui-richTextEditor-code';
+const noop = () => {};
+
+const Code = <V extends Value = Value, N extends TText = EText<V>>(
+    props: StyledLeafProps<V, N>,
+) => {
+    const { attributes, children } = props;
+    return (
+        <span { ...attributes }><code>{ children }</code></span>
+    );
+};
+
+export const codeBlockPlugin = () => createCodePlugin({
+    key: KEY,
+    component: Code,
+});
+
+interface ToolbarButton {
+    editor: PlateEditor;
+}
+
+export const CodeButton = ({ editor }: ToolbarButton) => {
+    if (!isPluginActive(KEY)) return null;
+    return (
+        <MarkToolbarButton
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
+            type={ getPluginType(editor, KEY) }
+            icon={ <ToolbarButton
+                onClick={ noop }
+                icon={ CodeIcon }
+                isActive={ !!editor?.selection && isMarkActive(editor, KEY!) }
+            /> }
+        />
+    );
+};

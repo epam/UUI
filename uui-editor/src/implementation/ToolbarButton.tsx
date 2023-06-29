@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Editor } from "slate";
 import { Button } from '@epam/uui-components';
 import css from './ToolbarButton.module.scss';
-import { Icon, cx } from '@epam/uui-core';
+import { Icon, IHasCX, cx } from '@epam/uui-core';
 
-export interface ToolbarButtonProps  {
+export interface ToolbarButtonProps extends IHasCX {
     isActive?: boolean;
     onClick?: () => any;
     icon?: Icon;
@@ -12,7 +12,6 @@ export interface ToolbarButtonProps  {
     editor?: Editor;
     isDisabled?: boolean;
     caption?: string;
-    cx?: string;
 }
 
 export const ToolbarButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ToolbarButtonProps>((props, ref) => (
