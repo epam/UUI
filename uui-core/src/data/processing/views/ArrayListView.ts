@@ -8,6 +8,7 @@ export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListVie
     getSearchFields?(item: TItem): string[];
     sortBy?(item: TItem, sorting: SortingOption): any;
     getFilter?(filter: TFilter): (item: TItem) => boolean;
+    disableSearchSorting?: boolean;
 }
 
 export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
@@ -86,8 +87,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
     private updateTree(prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) {
         const { filter, search, sorting } = newValue;
-        const { getSearchFields, getFilter, sortBy } = this.props;
-
+        const { getSearchFields, getFilter, sortBy, disableSearchSorting } = this.props;
         let filterTreeIsUpdated = false;
         if (this.filterWasChanged(prevValue, newValue) || !this.filteredTree || this.refreshCache) {
             this.filteredTree = this.originalTree.filter({ filter, getFilter });
@@ -97,7 +97,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
         let searchTreeIsUpdated = false;
         if (this.searchWasChanged(prevValue, newValue) || !this.searchTree || filterTreeIsUpdated) {
-            this.searchTree = this.filteredTree.search({ search, getSearchFields });
+            this.searchTree = this.filteredTree.search({ search, getSearchFields, disableSearchSorting });
             searchTreeIsUpdated = true;
         }
 

@@ -35,9 +35,9 @@ const countries: Country[] = [
     { id: 'ES', name: 'Spain' },
     { id: 'FI', name: 'Finland' },
     { id: 'GB', name: 'United Kingdom' },
+    { id: 'NC', name: 'Nicaragua' },
     { id: 'GN', name: 'Guinea' },
     { id: 'GW', name: 'Guinea-Bissau' },
-    { id: 'NC', name: 'Nicaragua' },
 ];
 
 const totalRowsCount = 12;
@@ -209,6 +209,18 @@ describe('ArrayListView', () => {
 
             expect(rows).toHaveLength(3);
             expect(rowsIds).toEqual(['GN', 'GW', 'NC']);
+        });
+
+        it('should not sort items in order of search relevance if disableSearchSorting = true', () => {
+            const props = { ...countriesViewProps, disableSearchSorting: true };
+            countriesView = countriesDataSource.getView(initialValue, countriesOnValueChange, props) as ArrayListView<Country, string, any>;
+
+            countriesView.update({ ...initialValue, search: 'gu', topIndex: 0, visibleCount: 20 }, props);
+            const rows = countriesView.getVisibleRows();
+            const rowsIds = rows.map((i) => i.id);
+
+            expect(rows).toHaveLength(3);
+            expect(rowsIds).toEqual(['NC', 'GN', 'GW']);
         });
 
         it('should not return items if group was not matched', () => {
