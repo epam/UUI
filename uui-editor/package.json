@@ -44,7 +44,8 @@
     "slate-drop-or-paste-images": "^0.9.1",
     "slate-history": "^0.66.0",
     "slate-html-serializer": "^0.8.13",
-    "slate-react": "^0.82.2"
+    "slate-react": "^0.82.2",
+    "styled-components": "^6.0.1"
   },
   "peerDependencies": {
     "react": ">=16.0.0",
