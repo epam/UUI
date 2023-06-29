@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Value } from 'slate';
-import { useUuiContext } from '@epam/uui-core';
+import { FileUploadResponse, useUuiContext } from '@epam/uui-core';
 import {
     Panel, FlexSpacer, FlexRow, Switch, MultiSwitch,
 } from '@epam/promo';
@@ -24,6 +23,8 @@ import {
     headerPlugin,
     listPlugin,
     placeholderPlugin,
+    EditorValue,
+    codeBlockPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.module.scss';
@@ -34,12 +35,12 @@ type EditorMode = 'form' | 'inline';
 export default function SlateEditorBasicExample() {
     const svc = useUuiContext();
     const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
-    const [value, setValue] = useState<Value>(Value.fromJSON(demoData.slateInitialValue));
+    const [value, setValue] = useState<EditorValue>(demoData.slateInitialValue);
     const [isReadonly, setIsReadonly] = useState<boolean>(false);
     const [mode, setMode] = useState<EditorMode>('form');
     const [fontSize, setFontSize] = useState<EditorFontSize>('14');
 
-    const uploadFile = (file: File, onProgress: (progress: number) => unknown): unknown => {
+    const uploadFile = (file: File, onProgress: (progress: number) => unknown): Promise<FileUploadResponse> => {
         return svc.uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
             onProgress,
         });
@@ -74,6 +75,7 @@ export default function SlateEditorBasicExample() {
                 },
             ],
         }),
+        codeBlockPlugin(),
     ];
 
     return (
@@ -82,7 +84,7 @@ export default function SlateEditorBasicExample() {
                 <MultiSwitch
                     items={ [{ id: '14', caption: '14' }, { id: '16', caption: '16' }] }
                     value={ fontSize }
-                    onValueChange={ (value: EditorFontSize) => setFontSize(value) }
+                    onValueChange={ (v: EditorFontSize) => setFontSize(v) }
                     color="blue"
                 />
                 <FlexSpacer />
@@ -94,7 +96,6 @@ export default function SlateEditorBasicExample() {
                 value={ value }
                 onValueChange={ setValue }
                 isReadonly={ isReadonly }
-                autoFocus={ true }
                 plugins={ plugins }
                 mode={ mode }
                 placeholder="Add description"

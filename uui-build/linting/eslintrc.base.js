@@ -17,7 +17,7 @@
  *  - No possibility to add JSX attr spaces as described here: https://github.com/prettier/prettier/issues/95
  */
 const pickFromAirbnb = require('./utils/eslintRulesFromAirbnb.js');
-const { turnOffEslintRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
+const { turnOffEslintRulesToBeFixed, shouldTurnOffRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
 
 process.env.NODE_ENV = 'production'; // this line is required by "babel-preset-react-app".
 module.exports = {
@@ -26,7 +26,8 @@ module.exports = {
         es6: true,
         node: true,
     },
-    reportUnusedDisableDirectives: true,
+    // We need to remove such directives only if full set of rules is checked.
+    reportUnusedDisableDirectives: !shouldTurnOffRulesToBeFixed,
     extends: ['react-app'],
     rules: {
         ...uuiJsRules(),
@@ -194,6 +195,7 @@ function uuiJsRules() {
         // non-stylistic- end
         // stylistic - start
         ...pickFromAirbnb.base.stylistic,
+        'no-trailing-spaces': 0,
         'max-len': [
             2, {
                 code: 170,
@@ -219,10 +221,6 @@ function uuiJsRules() {
             },
         ],
         'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
-        'no-trailing-spaces': ['error', {
-            skipBlankLines: true,
-            ignoreComments: false,
-        }],
         // stylistic - end
     };
 }

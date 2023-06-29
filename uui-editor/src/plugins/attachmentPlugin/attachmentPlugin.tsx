@@ -1,33 +1,43 @@
-import { RenderBlockProps } from "slate-react";
-import { Editor as CoreEditor } from "slate";
-import * as React from "react";
+import { Editor } from 'slate';
+import { createPluginFactory, insertEmptyElement } from '@udecode/plate';
+
 import { AttachmentBlock } from './AttachmentBlock';
+import { getBlockAboveByType } from '../../utils/getAboveBlock';
+import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
+
+export const ATTACHMENT_PLUGIN_KEY = 'attachment';
+export const ATTACHMENT_PLUGIN_TYPE = 'attachment';
 
 export const attachmentPlugin = () => {
-    const renderBlock = (props: RenderBlockProps, editor: CoreEditor, next: () => any) => {
-        switch (props.node.type) {
-            case 'attachment':
-                return <AttachmentBlock { ...props } />;
-            default:
-                return next();
-        }
-    };
+    const createAttachmentPlugin = createPluginFactory({
+        key: ATTACHMENT_PLUGIN_KEY,
+        isElement: true,
+        isVoid: true,
+        handlers: {
+            onKeyDown: (editor) => (event) => {
+                if (!getBlockAboveByType(editor, ['attachment'])) return;
 
-    const onKeyDown = (event: KeyboardEvent, editor: any, next: () => any) => {
+                if (event.key === 'Enter') {
+                    return insertEmptyElement(editor, PARAGRAPH_TYPE);
+                }
 
-        if (event.key === 'Enter' && editor.value.focusBlock.type === 'attachment') {
-            return editor.insertEmptyBlock();
-        }
+                // delete methods explicitly invoked since onDomBeforeInput event isn't fired in case of attachment
+                // empty element needs to be added when we have only attachment in editor content
+                if (event.key === 'Backspace') {
+                    Editor.deleteBackward(editor as any);
+                    insertEmptyElement(editor, PARAGRAPH_TYPE);
+                    return true;
+                }
 
-        if ((event.key === 'Backspace' || event.key === 'Delete') && editor.value.focusBlock.type === 'attachment') {
-            return editor.setBlocks('paragraph');
-        }
+                if (event.key === 'Delete') {
+                    Editor.deleteForward(editor as any);
+                    insertEmptyElement(editor, PARAGRAPH_TYPE);
+                    return true;
+                }
+            },
+        },
+        component: AttachmentBlock,
+    });
 
-        next();
-    };
-
-    return {
-        renderBlock,
-        onKeyDown,
-    };
+    return createAttachmentPlugin();
 };

@@ -1,48 +1,82 @@
-import {Editor, RenderBlockProps} from "slate-react";
-import { Editor as CoreEditor } from "slate";
-import * as React from "react";
-import { Separator } from "./Separator";
-import { ReactComponent as SeparateIcon } from "../../icons/breakline.svg";
+import React from 'react';
+
+import {
+    BlockToolbarButton,
+    getPluginType,
+    isMarkActive,
+    PlateEditor,
+    createPluginFactory, insertEmptyElement,
+} from '@udecode/plate';
+
+import { isPluginActive, isTextSelected } from '../../helpers';
+
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import {getBlockDesirialiser, isTextSelected} from '../../helpers';
+
+import { ReactComponent as SeparateIcon } from '../../icons/breakline.svg';
+
+import { Separator } from './Separator';
+import { getBlockAboveByType } from "../../utils/getAboveBlock";
+import { PARAGRAPH_TYPE } from "../paragraphPlugin/paragraphPlugin";
+import { Editor } from 'slate';
+
+const SEPARATOR_TYPE = 'separatorBLock';
+const noop = () => {};
 
 export const separatorPlugin = () => {
-    const renderBlock = (props: RenderBlockProps, editor: CoreEditor, next: () => any) => {
-        switch (props.node.type) {
-            case 'separatorBLock':
-                return <Separator { ...props } />;
-            default:
-                return next();
-        }
-    };
+    const createSeparatorPlugin = createPluginFactory({
+        key: SEPARATOR_TYPE,
+        isElement: true,
+        isVoid: true,
+        component: Separator,
+        handlers: {
+            onKeyDown: (editor) => (event) => {
+                if (!getBlockAboveByType(editor, [SEPARATOR_TYPE])) return;
 
-    const onKeyDown = (event: KeyboardEvent, editor: Editor, next: () => any) => {
+                if (event.key === 'Enter') {
+                    return insertEmptyElement(editor, PARAGRAPH_TYPE);
+                }
 
-        if (event.keyCode == 13 && editor.value.focusBlock.type === 'separatorBLock') {
-            return (editor as any).insertEmptyBlock(editor);
-        }
+                // empty element needs to be added when we have only attachment in editor content
+                if (event.key === 'Backspace') {
+                    insertEmptyElement(editor, PARAGRAPH_TYPE);
+                }
 
-        next();
-    };
+                if (event.key === 'Delete') {
+                    Editor.deleteForward(editor as any);
+                    insertEmptyElement(editor, PARAGRAPH_TYPE);
+                }
+            },
+        },
+        deserializeHtml: {
+            rules: [
+                {
+                    validNodeName: 'HR',
+                },
+            ],
+        },
+    });
 
-    return {
-        renderBlock,
-        onKeyDown,
-        sidebarButtons: [SeparatorButton],
-        serializers: [separatorDesializer],
-    };
+    return createSeparatorPlugin();
 };
 
-const SeparatorButton = (props: { editor: Editor }) => {
-    return <ToolbarButton
-        onClick={ () => props.editor.setBlocks((props.editor as any).createBlock({}, 'separatorBLock')) }
-        icon={ SeparateIcon }
-        isDisabled={ isTextSelected(props.editor) }
-    />;
-};
+interface ToolbarButton {
+    editor: PlateEditor;
+}
 
-const SEPARATOR_TAG: any = {
-    hr: 'separatorBLock',
-};
+export const SeparatorButton = ({ editor }: ToolbarButton) => {
+    if (!isPluginActive(SEPARATOR_TYPE)) return null;
 
-const separatorDesializer = getBlockDesirialiser(SEPARATOR_TAG);
+    return (
+        <BlockToolbarButton
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
+            type={ getPluginType(editor, SEPARATOR_TYPE) }
+            actionHandler='onMouseDown'
+            icon={ <ToolbarButton
+                isDisabled={ isTextSelected(editor, true) }
+                onClick={ noop }
+                icon={ SeparateIcon }
+                isActive={ !!editor?.selection && isMarkActive(editor, SEPARATOR_TYPE!) }
+            /> }
+        />
+    );
+};

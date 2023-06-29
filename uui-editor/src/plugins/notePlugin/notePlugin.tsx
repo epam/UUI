@@ -1,82 +1,125 @@
-import { Editor, RenderBlockProps } from "slate-react";
-import { Editor as CoreEditor, Block, KeyUtils } from "slate";
-import * as React from "react";
-import { NotePluginBlock } from "./NotePluginBlock";
-import { Dropdown } from "@epam/uui-components";
-import { ReactComponent as NoteIcon } from "../../icons/info-block-quote.svg";
+import React from 'react';
+import { Dropdown } from '@epam/uui-components';
+
+import {
+    createPluginFactory,
+    getBlockAbove,
+    PlateEditor,
+    ToolbarButton as PlateToolbarButton,
+    insertText,
+    getAboveNode,
+    setElements,
+    createNode,
+} from '@udecode/plate';
+
+import { isPluginActive } from '../../helpers';
+
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { NoteBar } from '../../implementation/NoteBar';
 
-export const noteBlocks = ['note-error', 'note-warning', 'note-link', 'note-quote'];
+import { ReactComponent as NoteIcon } from '../../icons/info-block-quote.svg';
 
-export const notePlugin = () => {
-    const renderBlock = (props: RenderBlockProps, editor: CoreEditor, next: () => any) => {
-        switch (props.node.type) {
-            case 'note-error':
-                return <NotePluginBlock { ...props } type='error'/>;
-            case 'note-warning':
-                return <NotePluginBlock { ...props } type='warning'/>;
-            case 'note-link':
-                return <NotePluginBlock { ...props } type='link'/>;
-            case 'note-quote':
-                return <NotePluginBlock { ...props } type='quote'/>;
-            default:
-                return next();
-        }
-    };
+import { NotePluginBlock } from './NotePluginBlock';
+import { getBlockAboveByType } from '../../utils/getAboveBlock';
 
-    const addNote = (editor: CoreEditor) => {
-        const emptyParagraph = Block.create({
-            object: 'block',
-            type: 'paragraph',
-            key: KeyUtils.create(),
-        });
-        editor.insertBlock(emptyParagraph).moveToEndOfPreviousBlock().wrapBlock('note');
-    };
+const noteBlocks = ['note-error', 'note-warning', 'note-link', 'note-quote'];
 
-    const isNote = (editor: CoreEditor) => {
-        let noteTypes = ['note-error', 'note-warning', 'note-link', 'note-quote'];
-        return noteTypes.some(type => (editor.value.document.getParent(editor.value.blocks.first().key) as any).type == type);
-    };
-
-    const isEmpty = (editor: CoreEditor) => {
-        return (editor.value.document.getParent(editor.value.blocks.first().key) as any).nodes.size == 1 && editor.value.anchorBlock.text === '';
-    };
-
-    const onKeyDown = (event: KeyboardEvent, editor: CoreEditor, next: () => any) => {
-        if (event.key === 'Backspace' && (editor as any).hasBlock(noteBlocks) && isEmpty(editor)) {
-            return editor.unwrapBlock('note');
-        }
-
-
-        if (event.keyCode == 13 && (editor as any).hasBlock(noteBlocks)) {
-            return (editor as any).insertEmptyBlock(editor);
-        }
-
-        next();
-    };
-
-    return {
-        renderBlock,
-        onKeyDown,
-        queries: {
-            addNote,
-            isNote,
-        },
-        sidebarButtons: [ToolbarNoteButton],
-    };
+const Note = (props: any) => {
+    return <NotePluginBlock
+        { ...props }
+        type={ props.element.type.replace('note-', '') }
+    />;
 };
 
-const ToolbarNoteButton = (editorProps: { editor: any }) => {
-    return <Dropdown
-        renderTarget={ (props) => <ToolbarButton
-            icon={ NoteIcon }
-            isActive={ editorProps.editor.hasBlock(noteBlocks) }
-            onClick={ () => null }
-            { ...props }
-        /> }
-        renderBody={ (props) => <NoteBar editor={ editorProps.editor } { ...props } /> }
-        placement='top-start'
-        modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
-    />;
+export const notePlugin = () => {
+    const createNotePlugin = createPluginFactory({
+        key: 'note',
+        isElement: true,
+        isVoid: false,
+        component: Note,
+        handlers: {
+            // TODO: potential handler improvement by https://github.com/ianstormtaylor/slate/issues/97
+            onKeyDown: (editor) => (event) => {
+                const isNoteEntry = !!getBlockAboveByType(editor, ['note-link', 'note-error', 'note-warning', 'note-quote']);
+                if (!isNoteEntry || event.key !== 'Enter') return;
+
+                const [entries] = getAboveNode(editor);
+                const textExist = entries.children.some(item => !!item.text);
+                if (event.shiftKey) {
+                    event.preventDefault();
+                    insertText(editor, '\n');
+                    return true;
+                } else if (!textExist) {
+                    setElements(editor, createNode());
+                }
+            },
+        },
+        plugins: [
+            {
+                key: 'note-error',
+                type: 'note-error',
+                isElement: true,
+                isVoid: false,
+                component: Note,
+            },
+            {
+                key: 'note-warning',
+                type: 'note-warning',
+                isElement: true,
+                isVoid: false,
+                component: Note,
+            },
+            {
+                key: 'note-link',
+                type: 'note-link',
+                isElement: true,
+                isVoid: false,
+                component: Note,
+            },
+            {
+                key: 'note-quote',
+                type: 'note-quote',
+                isElement: true,
+                isVoid: false,
+                component: Note,
+            },
+        ],
+    });
+    return createNotePlugin();
+};
+
+interface IToolbarNote {
+    editor: PlateEditor;
+}
+
+export const NoteButton = ({ editor }: IToolbarNote) => {
+
+    if (!isPluginActive('note')) return null;
+
+    const block = getBlockAbove(editor, { block: true });
+    const type: any = block?.length && block[0].type;
+
+    return (
+        <Dropdown
+            renderTarget={ (props) => (
+                <PlateToolbarButton
+                    styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
+                    active={ true }
+                    onMouseDown={
+                        editor
+                            ? (e) => e.preventDefault()
+                            : undefined
+                    }
+                    icon={ <ToolbarButton
+                        isActive={ noteBlocks.includes(type) }
+                        icon={ NoteIcon }
+                        { ...props }
+                    /> }
+                />
+            ) }
+            renderBody={ (props) => <NoteBar editor={ editor } type={ type } { ...props } /> }
+            placement='top-start'
+            modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
+        />
+    );
 };

@@ -1,9 +1,11 @@
-import * as React from 'react';
-import { RenderBlockProps } from 'slate-react';
+import React, { useState } from 'react';
 import cx from 'classnames';
-import { uuiMod, Lens, UuiContexts, uuiSkin, UuiContext } from '@epam/uui-core';
+import { uuiMod, uuiSkin } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
-import css from './AttachmentBlock.module.scss';
+
+import { useSelected, useReadOnly, useFocused } from 'slate-react';
+import { setElements } from '@udecode/plate';
+
 import { ReactComponent as DownloadIcon } from '../../icons/download-icon.svg';
 import { ReactComponent as FileIcon } from '../../icons/file-file-24.svg';
 import { ReactComponent as DocIcon } from '../../icons/file-file_word-24.svg';
@@ -15,12 +17,9 @@ import { ReactComponent as TableIcon } from '../../icons/file-file_table-24.svg'
 import { ReactComponent as TextIcon } from '../../icons/file-file_text-24.svg';
 import { ReactComponent as MailIcon } from '../../icons/file-file_eml-24.svg';
 
-interface AttachmentBlockState {
-    progress: number| null;
-    fileName: string;
-}
+import css from './AttachmentBlock.module.scss';
 
-const { FlexRow, FlexCell, TextInput } = uuiSkin;
+const { FlexRow, FlexCell, TextInput, Spinner } = uuiSkin;
 
 function getReadableFileSizeString(fileSizeInBytes: number) {
     let i = -1;
@@ -33,31 +32,34 @@ function getReadableFileSizeString(fileSizeInBytes: number) {
     return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
 }
 
-export class AttachmentBlock extends React.Component<RenderBlockProps, AttachmentBlockState> {
-    static contextType = UuiContext;
-    context: UuiContexts;
+export function AttachmentBlock(props: any) {
+    const isSelected = useSelected() && useFocused();
+    const isReadonly = useReadOnly();
 
-    state: AttachmentBlockState = {
-        fileName: this.props.node.data.get('fileName'),
-        progress: null,
-    };
+    const { element, editor, children } = props;
+    const [fileName, setFileName] = useState(element.data.fileName || element.fileName);
 
-    lens = Lens.onState<AttachmentBlockState>(this);
-
-    changeName(name: string) {
-        const { editor, node } = this.props;
-        editor.setNodeByKey(node.key, {
-            ...node as any,
+    const changeName = (name: string) => {
+        setElements(editor, {
+            ...element,
             data: {
-                ...this.props.node.data.toObject(),
+                ...element.data,
                 fileName: name,
             },
         });
-    }
+    };
 
-    getIcon() {
-        const { data } = this.props.node;
-        const type = data.get('extension') && data.get('extension').toLowerCase();
+    const handleKeyDown = (event: any) => {
+        event.preventDefault();
+        if (event.code === 'Enter') {
+            event.target.click();
+            event.target.blur();
+        }
+    };
+
+    const getIcon = () => {
+        const { data } = element;
+        const type = data?.extension && data?.extension.toLowerCase();
         switch (type) {
             case 'doc':
             case 'docx': {
@@ -100,40 +102,43 @@ export class AttachmentBlock extends React.Component<RenderBlockProps, Attachmen
                 return <IconContainer size={ 48 } icon={ FileIcon } cx={ css.img }/>;
             }
         }
-    }
+    };
 
-    render() {
-
-        return (
-            <FlexRow
-                rawProps={ this.props.attributes }
-                alignItems='stretch'
-                cx={ cx(css.row, this.props.isFocused && uuiMod.focus) }
-            >
-                <FlexCell width={ 90 } shrink={ 0 } cx={ css.imgBox }>
-                    { this.getIcon() }
-                </FlexCell>
-                <FlexCell width="100%" cx={ css.info }>
-                    {
-                        this.props.readOnly
-                            ? <div className={ css.fileName }> { this.lens.prop('fileName').get() }</div>
-                            : <TextInput
-                                cx={ css.input }
-                                onClick={ (e: any) =>  { e.stopPropagation(); e.preventDefault(); } }
-                                placeholder='Describe attachment: book, link...'
-                                onBlur={ () => this.changeName(this.state.fileName) }
-                                { ...this.lens.prop('fileName').toProps() }
-                                isReadonly={ this.props.readOnly }
-                            />
-                    }
-                    <div className={ css.sizeLabel }> { getReadableFileSizeString(this.props.node.data.get('size')) } </div>
-                </FlexCell>
-                <FlexCell width='auto' shrink={ 0 } cx={ css.imgBox }>
-                    <a href={ this.props.node.data.get('path') } download={ true } className={ css.linkWrapper }>
-                        <IconContainer icon={ DownloadIcon } cx={ css.img }/>
-                    </a>
-                </FlexCell>
-            </FlexRow>
-        );
-    }
+    return (
+        <FlexRow
+            rawProps={ {
+                ...props.attributes,
+                contentEditable: false,
+                style: { userSelect: "none" },
+            } }
+            alignItems='stretch'
+            cx={ cx(css.row, isSelected && uuiMod.focus) }
+        >
+            <FlexCell width={ 90 } shrink={ 0 } cx={ css.imgBox }>
+                { getIcon() }
+            </FlexCell>
+            <FlexCell width="100%" cx={ css.info }>
+                {
+                    isReadonly
+                        ? <div className={ css.fileName }> { fileName }</div>
+                        : <TextInput
+                            cx={ css.input }
+                            onClick={ (e: any) =>  { e.stopPropagation(); e.preventDefault(); } }
+                            placeholder='Describe attachment: book, link...'
+                            onBlur={ () => changeName(fileName) }
+                            value={ fileName }
+                            onValueChange={ setFileName }
+                            isReadonly={ isReadonly }
+                        />
+                }
+                <div className={ css.sizeLabel }> { getReadableFileSizeString(element.data.size) } </div>
+            </FlexCell>
+            <FlexCell width='auto' shrink={ 0 } cx={ css.imgBox }>
+                <a href={ element.data.path } onKeyDown={handleKeyDown} download={ true } className={ css.linkWrapper }>
+                    <IconContainer icon={ DownloadIcon } cx={ css.img }/>
+                </a>
+            </FlexCell>
+            { children }
+        </FlexRow>
+    );
 }

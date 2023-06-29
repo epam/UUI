@@ -1,32 +1,31 @@
 import * as React from 'react';
-import css from './Table.module.scss';
-import { Subscriber } from 'react-broadcast';
-import cx from 'classnames';
+import { TableCellRenderer } from './TableCellRenderer';
 
-export class TableCell extends React.Component<any> {
+export function TableCell(props: any) {
+    const { attributes, element } = props;
 
-    render() {
-        const { attributes, children, node } = this.props;
+    // isNan check needed here
+    const attrColSpan = isNaN(element.attributes?.colspan) ? 1 : Number(element.attributes?.colspan);
+    const attrRowSpan = isNaN(element.attributes?.rowspan) ? 1 : Number(element.attributes?.rowspan);
 
-        if (!this.props.editor) {
-            return null;
-        }
+    const appliedSpans = {
+        colSpan: element?.data?.colSpan ?? attrColSpan,
+        rowSpan: element?.data?.rowSpan ?? attrRowSpan,
+    };
 
-        return (
-            <Subscriber channel='uui-rte-table'>
-                { (selectedCells: any) => {
-                    let isCellFocused = selectedCells.includes(this.props.node) && selectedCells.length > 1;
-                    let cellStyles = {
-                        height: node.data.get('rowSpan') ?  `${24 * node.data.get('rowSpan')}px` : null,
-                        background: isCellFocused ? '#B3D7FF' : null,
-                    };
+    // needs for getColIndex function
+    // TODO: think about, should we store colSpan in element
+    element.colSpan = appliedSpans.colSpan;
 
-                    return <td className={ css.cell } colSpan={ node.data.get('colSpan') || 1 } rowSpan={ node.data.get('rowSpan') || 1 } { ...attributes } style={ node.data.get('style') === 'none' ? { display: 'none' } : cellStyles }>
-                        { children }
-                        <div className={ cx(css.resizingBorder, 'uui-richTextEditor-resize-border') } />
-                    </td>;
-                } }
-            </Subscriber>
-        );
+    if (!props.editor) {
+        return null;
     }
+
+    return (
+        <TableCellRenderer
+            { ...props }
+            { ...attributes }
+            nodeProps={ appliedSpans }
+        />
+    );
 }
