@@ -49,7 +49,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
         <FlexRow rawProps={ { style: { background: '#303240' } } }>
             <PlateToolbarButton
                 key='default'
-                styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: 42, padding: 0 } } }
+                styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: '42px', padding: 0 } } }
                 icon={ <ToolbarButton
                     onClick={ noop }
                     icon={ ClearIcon }
@@ -59,7 +59,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
             />
             <PlateToolbarButton
                 key='note-quote'
-                styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: 42, padding: 0 } } }
+                styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: '42px', padding: 0 } } }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-quote' }
                     onClick={ noop }
@@ -70,7 +70,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
             />
             <PlateToolbarButton
                 key='note-error'
-                styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: 42, padding: 0 } } }
+                styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: '42px', padding: 0 } } }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-error' }
                     onClick={ noop }
@@ -81,7 +81,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
             />
             <PlateToolbarButton
                 key='note-warning'
-                styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: 42, padding: 0 } } }
+                styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: '42px', padding: 0 } } }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-warning' }
                     onClick={ noop }
@@ -92,7 +92,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
             />
             <PlateToolbarButton
                 key='note-link'
-                styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: 42, padding: 0 } } }
+                styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: '42px', padding: 0 } } }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-link' }
                     onClick={ noop }
