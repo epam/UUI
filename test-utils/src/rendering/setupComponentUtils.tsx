@@ -3,12 +3,23 @@ import { useImperativeHandle, useState } from 'react';
 import { renderWithContextAsync, type CustomWrapperType } from './renderingWithContextUtils';
 import { act } from '@testing-library/react';
 
-// jest dependency start
-type MockFnJestType = jest.Mock;
-function isMockFunctionJest(fn: () => void) {
-    return jest.isMockFunction(fn);
+function isMockFunctionGeneric(fn: () => void) {
+    // @ts-ignore
+    if (typeof jest !== 'undefined' && typeof jest.isMockFunction === 'function') {
+        // This is for Jest
+        // @ts-ignore
+        return jest.isMockFunction(fn);
+    }
+    // @ts-ignore
+    if (typeof vi !== 'undefined' && typeof vi.isMockFunction === 'function') {
+        // This is for Vitest
+        // @ts-ignore
+        return vi.isMockFunction(fn);
+    }
+    throw new Error('Neither jest.isMockFunction nor vi.isMockFunction was found in global scope. If another test runner is used, '
+            + 'then please pass your custom "isMockFunction" to the setupComponentForTest '
+            + 'e.g.: setupComponentForTest(propsInitializer, componentRenderer, { isMockFunction: vi.isMockFunction })');
 }
-// jest dependency end
 
 type PropsContextType<TProps> = { setProperty: (name: keyof TProps, value?: TProps[keyof TProps]) => void; };
 export type PropsInitializerCallbackType<TProps> = (contextRef: React.RefObject<PropsContextType<TProps>>) => PropsAll<TProps>;
@@ -36,9 +47,10 @@ type SetupComponentForTestReturnType<TProps, TMockFn> = Promise<{
  * @param componentRenderer - a callback which returns React element. "props" parameter is an object containing all actual parameters of the component.
  * @param [options]
  * @param [options.wrapper] optional custom wrapper. Use it if it's necessary to provide custom contexts.
- * @param [options.isMockFunction] optional callback to check whether function is mocked. It uses jest.isMockFunction by default.
+ * @param [options.isMockFunction] optional callback to check whether function is mocked. It uses jest.isMockFunction or vi.isMockFunction by default
+ *                                  if such functions available in global scope.
  */
-export async function setupComponentForTest<TProps extends PropsAll<TProps>, TMockFn = MockFnJestType>(
+export async function setupComponentForTest<TProps extends PropsAll<TProps>, TMockFn = any>(
     propsInitializer: PropsInitializerCallbackType<TProps>,
     componentRenderer: ComponentRenderCallbackType<TProps>,
     options?: {
@@ -52,7 +64,7 @@ export async function setupComponentForTest<TProps extends PropsAll<TProps>, TMo
 
     Object.keys(propsConfig).forEach((name) => {
         const value = propsConfig[name as keyof TProps];
-        const isMock = options?.isMockFunction || isMockFunctionJest;
+        const isMock = options?.isMockFunction || isMockFunctionGeneric;
         if (isMock(value)) {
             // this is mock function
             mocks[name as keyof TProps] = value as TMockFn;

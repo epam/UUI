@@ -382,7 +382,12 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     getFooterProps(): PickerFooterProps<TItem, TId> & { onClose: () => void } {
         const footerProps = super.getFooterProps();
-        return { ...footerProps, onClose: this.handleCloseBody, selectionMode: this.props.selectionMode };
+        return {
+            ...footerProps,
+            onClose: this.handleCloseBody,
+            selectionMode: this.props.selectionMode,
+            disableClear: this.props.disableClear,
+        };
     }
 
     returnFocusToInput(): void {

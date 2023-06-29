@@ -12,6 +12,11 @@
     }
 }
 
+// For removing default edit button
+.slate-image>div:last-of-type:not(:only-of-type) {
+    display: none;
+}
+
 .container-hover:hover {
     border: 1px solid $blue;
 }
@@ -34,6 +39,10 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+
+    figcaption {
+        max-width: 100%;
+    }
 }
 
 .dot {

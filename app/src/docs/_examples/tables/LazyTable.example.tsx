@@ -1,12 +1,6 @@
-import React, {
-    ReactNode, useCallback, useEffect, useMemo, useState,
-} from 'react';
-import {
-    DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource,
-} from '@epam/uui-core';
-import {
-    Text, DataTable, Panel, IconButton,
-} from '@epam/promo';
+import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource } from '@epam/uui-core';
+import { Text, DataTable, Panel, IconButton } from '@epam/promo';
 import { DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter } from '@epam/loveship';
 import { City } from '@epam/uui-docs';
 import { Dropdown } from '@epam/uui-components';
@@ -66,6 +60,7 @@ export default function CitiesTable() {
             }, {
                 key: 'population',
                 caption: 'POPULATION',
+                info: 'Number of this population in the country at the time of the last census.',
                 render: (city) => (
                     <Text color="gray80" fontSize="14">
                         {city.population}

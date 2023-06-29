@@ -8,6 +8,7 @@ const getChangelog = require('./getChangelog');
 const docsApi = require('./docs');
 const errorApi = require('./error');
 const successApi = require('./success');
+const RTEDemoApi = require('./RTEDemoApi');
 
 const bodyParser = require('body-parser');
 
@@ -21,5 +22,6 @@ router.use(testDataApis);
 router.use(docsApi);
 router.use(errorApi);
 router.use(successApi);
+router.use(RTEDemoApi);
 
 module.exports = router;

@@ -1,11 +1,5 @@
+@use '~@epam/assets/scss/index' as *;
 @use '~@epam/assets/scss/promo/colors' as *;
-@use '~@epam/assets/scss/promo/fonts' as *;
-
-table {
-    position: relative;
-    border-collapse: collapse;
-    table-layout: fixed;
-}
 
 .table-wrapper {
     display: flex;
@@ -14,10 +8,35 @@ table {
     padding-bottom: 1px;
 }
 
+// center icon
+.remove-table-icon {
+    display: block;
+    margin: auto;
+}
+
+.remove-table-button {
+    display: block;
+}
+
+.table {
+    position: relative;
+    display: table;
+    table-layout: fixed;
+    height: 1px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1px;
+    margin-right: 0;
+    border-collapse: collapse;
+}
+
+.tbody {
+    min-width: 100%;
+}
+
 .row {
     width: 100%;
     position: relative;
-    height: 42px;
 
     .resizing-border {
         height: 100%;
@@ -33,36 +52,87 @@ table {
     }
 }
 
-.cell {
-    border: 1px solid $gray30;
+.header-cell {
+    background-color: $gray5;
+}
+
+.cells-selection-active {
+    *::selection {
+        background: none;
+    }
+}
+
+.table-cell-wrapper {
+    --tw-bg-opacity: 1;
     position: relative;
-    vertical-align: baseline;
+    overflow: visible;
+    padding: 0;
+    text-align: left;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        user-select: none;
+        border-bottom: 1px solid rgb(209 213 219);
+        border-right: 1px solid rgb(209 213 219);
+    }
 }
 
-.tablebar {
+.table-cell-wrapper.table-cell-border-left::before {
+    border-left: 1px solid rgb(209 213 219);
+}
+
+.table-cell-wrapper.table-cell-border-top::before {
+    border-top: 1px solid rgb(209 213 219);
+}
+
+.table-cell-wrapper.table-cell-selected::before {
+    --tw-bg-opacity: 1;
+    background-color: rgb(239 246 255 / var(--tw-bg-opacity));
+}
+
+.table-cell-content {
+    // "padding: 0;" leads to bugs, see link below
+    // https://stackoverflow.com/questions/27829250/why-doesnt-a-childs-margin-affect-a-parents-height
+    padding: 6px 24px;
+    position: relative;
+    z-index: 20;
+    box-sizing: border-box;
+    height: 100%;
+
+    &>p {
+        padding: 0;
+    }
+}
+
+.table-cell-resizable {
     position: absolute;
-    top: -28px;
-    left: -18px;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    user-select: none;
+    margin: 0;
 }
 
-.table-body {
-    p {
-        padding: 6px 24px;
-        margin: 0;
-    }
-
-    th {
-        font-family: $font-sans-semibold;
-        text-align: left;
-
-        p {
-            padding: 6px 24px;
-            margin: 0;
-            font-family: $font-sans-semibold;
-        }
-    }
+@mixin resize-handle {
+    --tw-bg-opacity: 1;
+    position: absolute;
+    z-index: 30;
+    width: 0.25rem;
+    background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+    top: 0;
+    height: 100%;
 }
 
-.header-row {
-    background: $gray5;
+.table-cell-resize-right-handle {
+    @include resize-handle();
+    right: -1.5px;
+}
+
+.table-cell-resize-left-handle {
+    @include resize-handle();
+    left: -1.5px;
 }

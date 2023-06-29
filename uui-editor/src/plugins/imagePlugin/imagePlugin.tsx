@@ -1,66 +1,139 @@
-import { RenderBlockProps, Editor } from "slate-react";
-import * as React from "react";
-import { ImageBlock } from "./ImageBlock";
-import css from './ImageBlock.module.scss';
-import { useUuiContext } from "@epam/uui-core";
-import {AddImageModal} from "./AddImageModal";
-import { ReactComponent as ImageIcon } from "../../icons/image.svg";
+import React from 'react';
+import { useUuiContext } from '@epam/uui-core';
+
+import {
+    createPluginFactory,
+    focusEditor,
+    getBlockAbove,
+    ImagePlugin,
+    PlateEditor,
+    ToolbarButton as PlateToolbarButton,
+    TImageElement,
+    insertNodes,
+    insertEmptyElement,
+    captionGlobalStore,
+} from '@udecode/plate';
+
+import { isPluginActive, isTextSelected } from '../../helpers';
+
+import { Image } from './ImageBlock';
+import { AddImageModal } from './AddImageModal';
+
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import { uuiSkin } from "@epam/uui-core";
-import {isTextSelected} from "../../helpers";
+
+import { ReactComponent as ImageIcon } from '../../icons/image.svg';
+import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
+import { Editor } from 'slate';
+import isHotkey from 'is-hotkey';
+
+export const IMAGE_PLUGIN_KEY = 'image';
+export const IMAGE_PLUGIN_TYPE = 'image';
 
 export const imagePlugin = () => {
-    const { Spinner } = uuiSkin;
-
-    const renderBlock = (props: RenderBlockProps, editor: Editor, next: () => any) => {
-        switch (props.node.type) {
-            case 'loader':
-                return <Spinner { ...props } cx={ css.spinner }/>;
-            case 'image':
-                return <ImageBlock { ...props } editor={ editor } />;
-            default:
-                return next();
-        }
-    };
-
-    const onKeyDown = (event: KeyboardEvent, editor: Editor, next: () => any) => {
-        if (event.keyCode == 13 && editor.value.focusBlock.type === 'image') {
-            return (editor as any).insertEmptyBlock(editor);
-        }
-
-        if ((event.key === 'Backspace' || event.key === 'Delete') && editor.value.focusBlock.type === 'image') {
-            return editor.setBlocks('paragraph');
-        }
-
-        next();
-    };
-
-    return {
-        renderBlock,
-        onKeyDown,
-        sidebarButtons: [ImageButton],
-        serializers: [imageDesializer],
-    };
-};
-
-export const ImageButton = (props: { editor: Editor }) => {
-    const context = useUuiContext();
-    return <ToolbarButton
-        onClick={ () => context.uuiModals.show<string>(modalProps => <AddImageModal { ...modalProps } editor={ props.editor } />)
-            .catch(() => null) }
-        icon={ ImageIcon }
-        isDisabled={ isTextSelected(props.editor) }
-    />;
-};
-
-const imageDesializer = (el: any, next: any) => {
-    if (el.tagName.toLowerCase() === 'img') {
-        return {
-            object: 'block',
-            type: 'image',
-            data: {
-                src: el.getAttribute('src'),
+    const createImagePlugin = createPluginFactory<ImagePlugin>({
+        key: IMAGE_PLUGIN_KEY,
+        type: IMAGE_PLUGIN_TYPE,
+        isElement: true,
+        isVoid: true,
+        component: Image,
+        then: (editor, { type }) => ({
+            deserializeHtml: {
+                rules: [{ validNodeName: 'IMG' }],
+                getNode: (el) => {
+                    const url = el.getAttribute('src');
+                    return { type, url };
+                },
             },
+        }),
+        handlers: {
+            onKeyDown: (editor) => (event) => {
+                const imageEntry = getBlockAbove(editor, { match: { type: IMAGE_PLUGIN_TYPE } })
+                if (!imageEntry) return;
+
+                if (event.key === 'Enter') {
+                    return insertEmptyElement(editor, PARAGRAPH_TYPE);
+                }
+
+                // empty element needs to be added when we have only image element in editor content
+                if (event.key === 'Backspace') {
+                    insertEmptyElement(editor, PARAGRAPH_TYPE);
+                }
+
+                if (event.key === 'Delete') {
+                    Editor.deleteForward(editor as any);
+                    insertEmptyElement(editor, PARAGRAPH_TYPE);
+                }
+
+                // focus caption from image
+                if (isHotkey('down', event)) {
+                    captionGlobalStore.set.focusEndCaptionPath(imageEntry[1]);
+                }
+            },
+        },
+        plugins: [
+            {
+                key: 'loader',
+                type: 'loader',
+                isElement: true,
+                isVoid: true,
+                component: Image,
+            },
+        ],
+    });
+
+    return createImagePlugin();
+};
+
+interface IImageButton {
+    editor: PlateEditor;
+}
+
+export const ImageButton = ({ editor }: IImageButton) => {
+    const context = useUuiContext();
+
+    const handleImageInsert = (url: string) => {
+        const text = { text: '' };
+
+        const image: TImageElement = {
+            align: 'left',
+            type: IMAGE_PLUGIN_KEY,
+            url: url,
+            children: [text],
         };
-    }
+
+        insertNodes<TImageElement>(editor, image);
+    };
+
+    if (!isPluginActive(IMAGE_PLUGIN_KEY)) return null;
+    const block = getBlockAbove(editor);
+
+    return (
+        <PlateToolbarButton
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
+            onMouseDown={ async (event) => {
+                if (!editor) return;
+                event.preventDefault();
+                event.stopPropagation();
+
+                context.uuiModals.show<string>(modalProps => (
+                    <AddImageModal
+                        editor={ editor }
+                        focusEditor={ () => focusEditor(editor) }
+                        insertImage={ handleImageInsert }
+                        { ...modalProps }
+                    />
+                )).then(() => {
+                    focusEditor(editor); // focusing right after insert leads to bugs
+                }).catch((error) => {
+                    console.error(error);
+                });
+            } }
+            icon={ <ToolbarButton
+                isDisabled={ isTextSelected(editor, true) }
+                onClick={ () => {} }
+                icon={ ImageIcon }
+                isActive={ block?.length && block[0].type === 'image' }
+            /> }
+        />
+    );
 };

@@ -1,52 +1,68 @@
 import * as React from 'react';
+import {
+    getPluginType,
+    ELEMENT_LINK,
+    getAboveNode,
+    insertLink,
+    getSelectionText,
+    PlateEditor,
+    unwrapLink,
+} from '@udecode/plate';
+
 import { IModal, uuiSkin } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
 import css from './link.module.scss';
+import { useEffect, useState } from "react";
 
 const { LabeledInput, ModalBlocker, ModalWindow, ModalHeader, FlexRow, TextInput, ModalFooter, Button } = uuiSkin;
 
 interface AddLinkModalProps extends IModal<any> {
-    editor: any;
+    editor: PlateEditor;
 }
 
-export class AddLinkModal extends React.Component<AddLinkModalProps> {
-    state = {
-        link: '',
-        isLinkInvalid: false,
+export const AddLinkModal = (props: AddLinkModalProps) => {
+
+    const [link, setLink] = useState('');
+    const [isLinkInvalid, setIsLinkInvalid] = useState(false);
+
+    const linkValidationProps = {
+        isInvalid: isLinkInvalid,
+        validationMessage: 'Link is invalid',
     };
 
-    constructor(props: AddLinkModalProps) {
-        super(props);
-        let defaultValue = this.props.editor.value.anchorInline ? this.props.editor.value.anchorInline.data.get('url') : '';
-        this.state = { link: defaultValue, isLinkInvalid: false };
-    }
+    useEffect(() => {
+        const type = getPluginType(props.editor, ELEMENT_LINK);
 
-    render() {
-        const linkValidationProps = {
-            isInvalid: this.state.isLinkInvalid,
-            validationMessage: 'Link is invalid',
-        };
+        const linkNode = getAboveNode(props.editor, {
+            match: { type },
+        });
+        if (linkNode) {
+            setLink(linkNode[0].url as string);
+        }
+    }, [props]);
 
-        return (
-            <ModalBlocker { ...this.props }>
-                <ModalWindow>
-                    <ModalHeader title="Add link" onClose={ this.props.abort } />
-                    <FlexRow cx={ css.inputWrapper }>
-                        <LabeledInput label='Link' { ...linkValidationProps }>
-                            <TextInput value={ this.state.link } onValueChange={ (newVal) => this.setState({ link: newVal }) } autoFocus/>
-                        </LabeledInput>
-                    </FlexRow>
-                    <ModalFooter borderTop >
-                        <FlexSpacer />
-                        <Button type='cancel' caption='Delete' onClick={ () => { this.props.editor.unwrapLink(); this.props.abort(); } } />
-                        <Button type='success' caption='Save' onClick={ () => {
-                            this.props.editor.wrapLink(this.state.link);
-                            this.props.success(true);
-                        } } />
-                    </ModalFooter>
-                </ModalWindow>
-            </ModalBlocker>
-        );
-    }
-
-}
+    return (
+        <ModalBlocker { ...props }>
+            <ModalWindow>
+                <ModalHeader title="Add link" onClose={ props.abort } />
+                <FlexRow cx={ css.inputWrapper }>
+                    <LabeledInput label='Link' { ...linkValidationProps }>
+                        <TextInput value={ link } onValueChange={ (newVal) => setLink(newVal) } autoFocus />
+                    </LabeledInput>
+                </FlexRow>
+                <ModalFooter borderTop >
+                    <FlexSpacer />
+                    <Button type='cancel' caption='Delete' onClick={ () => {
+                        setLink('');
+                        unwrapLink(props.editor);
+                        props.abort();
+                    } } />
+                    <Button type='success' caption='Save' onClick={ () => {
+                        link && insertLink(props.editor, { url: link, text: getSelectionText(props.editor), target: '_blank' });
+                        props.success(true);
+                    } } />
+                </ModalFooter>
+            </ModalWindow>
+        </ModalBlocker>
+    );
+};

@@ -1,148 +1,216 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import cx from 'classnames';
-import { RenderBlockProps } from 'slate-react';
-import { Resizable } from 're-resizable';
-import { DropdownBodyProps, isClientSide, uuiMod, uuiSkin } from "@epam/uui-core";
+
 import { Dropdown } from '@epam/uui-components';
-import { ToolbarButton } from '../../implementation/ToolbarButton';
+import { uuiSkin } from "@epam/uui-core";
+
+import { useFocused, useSelected } from 'slate-react';
+import invert from 'lodash.invert';
+import debounce from 'lodash.debounce';
+
+import {
+    getBlockAbove,
+    ImageElement,
+    setElements,
+    PlatePluginComponent,
+    PlateRenderElementProps,
+    Value,
+    TElement,
+    PlateEditor,
+    findNodePath,
+    useResizableStore,
+} from '@udecode/plate';
+
+import { FileUploadResponse } from "@epam/uui-core";
+
 import css from './ImageBlock.module.scss';
-import { ReactComponent as AlignLeft } from '../../icons/align-left.svg';
-import { ReactComponent as AlignCenter } from '../../icons/align-center.svg';
-import { ReactComponent as AlignRight } from '../../icons/align-right.svg';
-import { ReactComponent as FullWidth } from '../../icons/align-full-width.svg';
+import { ImgToolbar } from './Toolbar';
 
-const IMAGE_GLOBAL_CLASS = 'uui-rte-image';
+export type PlateImgAlign = 'left' | 'center' | 'right';
+type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';
+type SlateImageSize = { width: number, height: number | string };
 
-const { FlexRow } = uuiSkin;
+type SlateImageData = {
+    imageSize: SlateImageSize;
+    align: SlateImgAlign;
+} & Partial<(File | FileUploadResponse)>;
 
-
-interface ImageBlockProps extends RenderBlockProps {
-    src?: string;
+interface SlateProps {
+    data: SlateImageData;
 }
 
-export class ImageBlock extends React.Component<ImageBlockProps> {
-    state: any = {
-        isOpened: false,
-    };
+interface PlateProps {
+    url: string;
+    align?: PlateImgAlign;
+    width?: number;
+}
 
-    getImageMaxWidth() {
-        if (!isClientSide) return 0;
-        let editorNode: any = ReactDOM.findDOMNode(this.props.editor);
-        return editorNode && editorNode.getBoundingClientRect().width - 50;
+export interface ImageElement extends TElement, PlateProps, SlateProps {}
+
+interface UpdatingProps { width?: number | string, align?: SlateImgAlign };
+
+const { FlexRow, Spinner } = uuiSkin;
+
+const IMAGE_STYLES = { paddingTop: 0, paddingBottom: 0 };
+const MIN_CAPTION_WIDTH = 92;
+const RESIZABLE_PROPS = { minWidth: 12 };
+const PLATE_TO_SLATE_IMG_ALIGN = {
+    'left': 'align-left',
+    'right': 'align-right',
+    'center': 'align-center',
+};
+const SLATE_TO_PLATE_IMG_ALIGN = invert(PLATE_TO_SLATE_IMG_ALIGN);
+
+const toSlateAlign = (plateAlign: PlateImgAlign) => PLATE_TO_SLATE_IMG_ALIGN[plateAlign] as SlateImgAlign;
+
+const toPlateAlign = (slateAlign: SlateImgAlign) => SLATE_TO_PLATE_IMG_ALIGN[slateAlign] as PlateImgAlign;
+
+const getUpdatedElement = (
+    element: ImageElement,
+    { width = element.data?.imageSize?.width || 0, align = element.data?.align || 'align-left' }: UpdatingProps
+) => ({
+    ...element,
+    data: {
+        ...(element.data || {}),
+        imageSize: { width, height: '100%' },
+        align,
+    },
+});
+
+const debounced = debounce((exec: () => void) => exec(), 100, { leading: true, trailing: false });
+
+const isImgElem = (editor?: PlateEditor, element?: ImageElement) => editor && element.type === 'image';
+
+const useUpdatingElement = ({ element, editor }: { element: ImageElement, editor: PlateEditor }) => {
+    const prevNodeWidthRef = useRef(element.width);
+
+    // initialize image width
+    if (isImgElem(editor, element) && !element.width) {
+        if (element.data?.imageSize) {
+            element.width = element.data?.imageSize?.width; // existing
+        } else {
+            element.width = 'fit-content' as unknown as number; // new image
+        }
     }
 
-    isAlign(type: string) {
-        return this.props.node.data.get('align') === type;
+    useEffect(() =>
+        debounced(() => {
+            const prevWidth = prevNodeWidthRef.current;
+            const path = findNodePath(editor, element!);
+            if (isImgElem(editor, element) && !!path && !!element.width && prevWidth !== element.width) {
+                setElements(
+                    editor,
+                    getUpdatedElement(element, { width: element.width }),
+                    { at: path }
+                );
+                prevNodeWidthRef.current = element.width;
+            }
+        }), [element.width]
+    );
+}
+
+export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageElement>> = (props) => {
+    const { editor, element, children } = props;
+    const ref = useRef(null);
+    const isFocused = useFocused();
+    const isSelected = useSelected();
+
+    const [align, setAlign] = useState<PlateImgAlign>(toPlateAlign(element.data?.align) || 'left');
+    const [showToolbar, setShowToolbar] = useState(false);
+
+    // controls slate element structure
+    useUpdatingElement({ element, editor });
+
+    // toolbar
+    useEffect(() => {
+        const block = getBlockAbove(editor);
+        setShowToolbar(isSelected && isFocused && block?.length && block[0].type === 'image');
+    }, [isSelected, isFocused]);
+
+    const onChangeDropDownValue = useCallback((value: boolean) => () => setShowToolbar(value), []);
+
+    // align
+    const toggleBlockAlignment = useCallback((align: PlateImgAlign) => {
+        setAlign(align);
+        setElements(editor, getUpdatedElement(element, { align: toSlateAlign(align) }));
+    }, [editor, element]);
+
+    // width
+    const setMaxWidth = useCallback(() => {
+        const newWidth = ref?.current?.clientWidth;
+        if (newWidth) {
+            element.width = newWidth;
+            setElements(editor, getUpdatedElement(element, { width: newWidth }));
+        }
+    }, [editor, element]);
+
+    const isFullWidth = useCallback(() => {
+        const clientWidth = ref?.current?.clientWidth;
+        return !clientWidth || (clientWidth === element.width);
+    }, [element.width]);
+
+    const [currentWidth, setCurrentWidth] = useResizableStore().use.width();
+
+    const caption = useMemo(() => {
+        let isCaptionEnabled = false;
+        if (currentWidth && typeof currentWidth === 'number') {
+            isCaptionEnabled = currentWidth >= MIN_CAPTION_WIDTH;
+        }
+
+        return isCaptionEnabled ? { disabled: false } : { disabled: true };
+    }, [currentWidth]);
+
+    const resizableProps = useMemo(() => ({
+        ...RESIZABLE_PROPS,
+        onLoad: (event: any) => {
+            setCurrentWidth((event.target as HTMLImageElement).width);
+        }
+    }), []);
+
+    if (!editor) {
+        return null;
     }
 
-    toggleBlockAlignment(type: string, props: DropdownBodyProps) {
-        props.scheduleUpdate();
-
-        const newData = this.props.node.data.set('align', !this.isAlign(type) ? type : null);
-
-        this.props.editor.setNodeByKey(this.props.node.key, {
-            ...this.props.node as any,
-            data: newData,
-        });
-    }
-
-    getDefaultSizes(naturalWidth: number, naturalHeight: number) {
-        const imageWidth = naturalWidth > this.getImageMaxWidth() ? this.getImageMaxWidth() : naturalWidth;
-        const imageRatio = naturalWidth / naturalHeight;
-
-        return {
-            width: imageWidth,
-            height: imageWidth / imageRatio,
-        };
-    }
-
-    setMaxWidth = () => {
-        const imageSizes = this.props.node.data.get('imageSize');
-        const imageRatio = imageSizes.width / imageSizes.height;
-        this.setSize({ width: this.getImageMaxWidth(), height: this.getImageMaxWidth() / imageRatio });
-        this.setState({ isOpened: false });
-    }
-
-    setSize = (data: any) => {
-
-        const newData = this.props.node.data.set('imageSize', data);
-
-        this.props.editor.setNodeByKey(this.props.node.key, {
-            ...this.props.node as any,
-            data: newData,
-        });
-    }
-
-    renderToolbar(props: DropdownBodyProps) {
+    if (element.type === 'loader') {
         return (
-            <div className={ cx(css.imageToolbar, 'slate-prevent-blur') }>
-                <ToolbarButton isActive={ this.isAlign('align-left') } icon={ AlignLeft } onClick={ () => this.toggleBlockAlignment('align-left', props) } />
-                <ToolbarButton isActive={ this.isAlign('align-center') } icon={ AlignCenter } onClick={ () => this.toggleBlockAlignment('align-center', props) } />
-                <ToolbarButton isActive={ this.isAlign('align-right') } icon={ AlignRight } onClick={ () => this.toggleBlockAlignment('align-right', props) } />
-                <ToolbarButton isActive={ this.props.node.data.get('imageSize')?.width === this.getImageMaxWidth() } icon={ FullWidth } onClick={ () => this.setMaxWidth() } />
-            </div>
+            <>
+                <Spinner  { ...props } cx={ css.spinner } />
+                { children }
+            </>
         );
     }
 
-    renderImage(attributes: any, src: string) {
-        let image = <><img
-            onFocus={ () => !this.props.readOnly && this.setState({ isOpened: true }) }
-            tabIndex={ 0 }
-            className={ cx(css.container, this.props.isFocused ? uuiMod.focus : null, !this.props.readOnly ? css.containerHover : null, IMAGE_GLOBAL_CLASS) }
-            { ...attributes }
-            ref={ (ref) => { attributes.ref.current = ref; } }
-            src={ src }
-            onLoad={ (e: any) => {
-                if (!this.props.node.data.get('imageSize')) {
-                    this.setSize(this.getDefaultSizes(e.target.naturalWidth, e.target.naturalHeight));
-                    this.forceUpdate();
-                }
-            } }
-        />
-            <div className={ cx(css.leftTopDot, css.dot) } /><div className={ cx(css.rightTopDot, css.dot) } /><div className={ cx(css.leftBotDot, css.dot) } /><div className={ cx(css.rightBotDot, css.dot) } />
-        </>;
-
-        let size = this.props.node.data.get('imageSize') || {width: 0, height: 0};
-        let imageRatio = size.width / size.height;
-        const maxWidth = this.getImageMaxWidth();
-        const maxHeight = maxWidth ? maxWidth / imageRatio : '100%';
-        return <Resizable
-            size={ { width: size.width, height: size.height} }
-            onResizeStop={ (e: MouseEvent | TouchEvent, d: any, ref: HTMLDivElement) => {
-                this.setSize({
-                    width: ref.clientWidth,
-                    height: ref.clientHeight,
-                });
-                this.setState({ isOpened: false });
-            } }
-            onResize={ () => this.setState({ isOpened: true }) }
-            maxWidth={ maxWidth }
-            maxHeight={ maxHeight }
-            lockAspectRatio={ true }
-            enable={ this.props.readOnly ? {} : undefined }
-        >
-            { image }
-        </Resizable>;
-    }
-
-
-    render() {
-        const { attributes, node } = this.props;
-        const src = node.data.get('src');
-        return src ? (
-            <Dropdown
-                renderTarget={ (props) => (
-                    <div ref={ props.ref } className={ cx(css.wrapper, css[this.props.node.data.get('align')]) }>
-                        <div className={ !this.props.readOnly ? css.containerWrapper : undefined }>
-                            { this.renderImage(attributes, src) }
-                        </div>
+    return (
+        <Dropdown
+            renderTarget={ (innerProps: any) => (
+                <div ref={ innerProps.ref } className={ cx(css.wrapper) }>
+                    <div
+                        ref={ ref }
+                        className={ cx(css.slateImage) }>
+                        <ImageElement
+                            { ...props }
+                            align={ align }
+                            caption={ { ...caption, align: 'center' } }
+                            style={ IMAGE_STYLES }
+                            resizableProps={ resizableProps }
+                        />
                     </div>
-                ) }
-                renderBody={ (props) => <FlexRow cx={ css.imageToolbarWrapper }>{ this.renderToolbar(props) }</FlexRow> }
-                value={ this.props.isFocused }
-                placement='top'
-            />
-        ) : null;
-    }
-}
+                </div>
+            ) }
+            renderBody={ () => (
+                <FlexRow cx={ css.imageToolbarWrapper }>
+                    <ImgToolbar editor={ editor }
+                        align={ align }
+                        element={ element }
+                        toggleBlockAlignment={ toggleBlockAlignment }
+                        isFullWidth={ isFullWidth }
+                        setMaxWidth={ setMaxWidth }
+                    />
+                </FlexRow>
+            ) }
+            onValueChange={ onChangeDropDownValue }
+            value={ showToolbar }
+            placement='top'
+        />
+    );
+};

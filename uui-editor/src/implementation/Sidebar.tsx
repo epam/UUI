@@ -1,25 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
-import css from "./Sidebar.module.scss";
-import { Editor, Plugins } from "slate-react";
-import flatten from "lodash.flatten";
+import { isBlock, usePlateEditorState } from '@udecode/plate';
 import cx from "classnames";
 
+import css from "./Sidebar.module.scss";
+
 interface SidebarProps {
-    editor: Editor;
-    plugins: Plugins;
     isReadonly: boolean;
+    children: any;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ editor, plugins, isReadonly }) => {
+export const Sidebar: React.FC<SidebarProps> = ({  isReadonly, children }) => {
+    const editor = usePlateEditorState();
+    const isBlockSelected = isBlock(editor, editor.value);
     const [isVisible, setIsVisible] = useState(false);
     const sidebarRef = useRef<HTMLDivElement>(null);
     const timeoutIdRef = useRef<ReturnType<typeof setTimeout>>(null);
 
+
     useEffect(() => {
-        const isSidebarVisible = editor?.value.focusBlock
-            && editor?.value.selection.isFocused
-            && !editor?.readOnly;
-        
+        const isSidebarVisible = true;
+
         if (isSidebarVisible !== isVisible) {
             // delay is used to make mouse click work on elements outside editor before they moved because of sidebar disappearing
             timeoutIdRef.current = setTimeout(() => {
@@ -28,17 +28,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ editor, plugins, isReadonly })
         }
 
         return () => clearTimeout(timeoutIdRef.current);
-    }, [editor?.value.focusBlock, editor?.value.selection.isFocused, editor?.readOnly]);
+    }, [isBlockSelected, editor?.readOnly]);
 
     if (isReadonly || !isVisible) return null;
 
     return (
         <div className={ cx("slate-prevent-blur", css.sidebar) } ref={ sidebarRef }>
-            { flatten(plugins).map((plugin: any) => (
-                plugin.sidebarButtons?.map((Button: any, index: number) => (
-                    <Button editor={ editor } key={ `button-${ index }` }/>
-                ))
-            )) }
+            { children }
         </div>
     );
 };

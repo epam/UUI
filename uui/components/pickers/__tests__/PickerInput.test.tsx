@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource, AsyncDataSource } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, waitFor,
+    queryHelpers,
 } from '@epam/uui-test-utils';
 import { PickerInput } from '../PickerInput';
 
@@ -130,7 +131,12 @@ describe('PickerInput', () => {
         expect(dom.input.getAttribute('placeholder').trim()).toEqual('Please select');
         fireEvent.click(dom.input);
         expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+        const optionC2 = await screen.findByText('C2');
+        expect(optionC2).toBeInTheDocument();
+
         const [cb1, cb2] = await within(screen.getByRole('dialog')).findAllByRole('checkbox');
+    
         fireEvent.click(cb1);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
         fireEvent.click(cb2);
