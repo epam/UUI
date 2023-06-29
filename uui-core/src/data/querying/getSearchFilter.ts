@@ -3,12 +3,9 @@ const getRank = (match: RegExpMatchArray) => {
     const { index, input } = match;
 
     if (index === 0) {
-        if (word.length === input.length || input.charAt(word.length) === ' ') {
-            return 3;
-        }
-
-        return 2;
+        return word.length === input.length ? 3 : 2;
     }
+
     return 1;
 };
 
