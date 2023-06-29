@@ -5,7 +5,7 @@ import { ReactComponent as ClearIcon } from "../icons/text-color-default.svg";
 import { ReactComponent as H1Icon } from "../icons/heading-H1.svg";
 import { ReactComponent as H2Icon } from "../icons/heading-H2.svg";
 import { ReactComponent as H3Icon } from "../icons/heading-H3.svg";
-import { PARAGRAPH_TYPE } from '../plate/plugins/paragraphPlugin/paragraphPlugin';
+import { PARAGRAPH_TYPE } from '../plugins/paragraphPlugin/paragraphPlugin';
 import { ToolbarButton } from './ToolbarButton';
 
 import {

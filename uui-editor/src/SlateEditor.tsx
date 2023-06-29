@@ -22,14 +22,14 @@ import {
 } from '@udecode/plate';
 
 import { createJuicePlugin } from '@udecode/plate-juice';
-import { ToolbarButtons, MarkBalloonToolbar, } from './plate/plugins/Toolbars';
+import { ToolbarButtons, MarkBalloonToolbar, } from './plugins/Toolbars';
 
 import { migrateSchema } from './migration';
 
-import { baseMarksPlugin, paragraphPlugin } from './plate/plugins';
+import { baseMarksPlugin, paragraphPlugin } from './plugins';
 
 import css from './SlateEditor.module.scss';
-import { createDeserializeDocxPlugin } from './plate/plugins/deserializeDocxPlugin/deserializeDocxPlugin';
+import { createDeserializeDocxPlugin } from './plugins/deserializeDocxPlugin/deserializeDocxPlugin';
 
 let components = createPlateUI();
 

@@ -1,50 +1,111 @@
-export {};
-// import { linkifyPlugin } from '@mercuriya/slate-linkify';
-// import * as React from 'react';
-// import css from './link.scss';
-// import { Editor } from "slate";
-// import { useUuiContext } from "@epam/uui-core";
-// import { ReactComponent as LinkIcon } from "../../icons/link.svg";
-// import {AddLinkModal} from "./AddLinkModal";
-// import {ToolbarButton} from "../../implementation/ToolbarButton";
-// import {sanitizeUrl} from "@braintree/sanitize-url";
-//
-// export const linkPlugin = () => {
-//     const link = linkifyPlugin({
-//         renderComponent: (args: any) => <a className={ css.link } { ...args } onClick={ (e) => e.ctrlKey && window.location.replace(sanitizeUrl(`${args.href}`)) }>{ args.children }</a>,
-//     });
-//
-//     const hasLink = (editor: Editor) => {
-//         const value: any = editor ? editor.value : { inlines: [] };
-//         return value.inlines.some((i: any) => i.type === 'link');
-//     };
-//
-//     return {
-//         ...link,
-//         renderInline: link.renderNode,
-//         queries: {
-//             hasLink,
-//         },
-//         toolbarButtons: [LinkButton],
-//         serializers: [linkDesializer],
-//     };
-// };
-//
-// export const LinkButton = (props: { editor: any }) => {
-//     const context = useUuiContext();
-//     return <ToolbarButton isActive={ (props.editor as any).hasLink() } icon={ LinkIcon } onClick={ () => context.uuiModals.show<string>(modalProps => <AddLinkModal { ...modalProps } editor={ props.editor } />)
-//         .catch(() => null) } />;
-// };
-//
-// const linkDesializer = (el: any, next: any) => {
-//     if (el.tagName.toLowerCase() === 'a') {
-//         return {
-//             object: 'inline',
-//             type: 'link',
-//             nodes: next(el.childNodes),
-//             data: {
-//                 url: el.getAttribute('href'),
-//             },
-//         };
-//     }
-// };
+import React from 'react';
+import {
+    createLinkPlugin,
+    someNode,
+    LinkToolbarButton,
+    ELEMENT_LINK,
+    PlateEditor,
+    Value,
+    TElement,
+    withLink,
+    WithPlatePlugin,
+    LinkPlugin,
+    upsertLink,
+    getPluginType,
+    validateUrl,
+} from "@udecode/plate";
+import { useUuiContext } from '@epam/uui-core';
+
+import { ToolbarButton } from '../../implementation/ToolbarButton';
+
+import { ReactComponent as LinkIcon } from "../../icons/link.svg";
+import { AddLinkModal } from "./AddLinkModal";
+import { isPluginActive } from '../../helpers';
+import { isUrl } from './isUrl';
+
+export interface LinkElement extends TElement {
+    href: string;
+    type: string;
+}
+
+const withOurLink = <
+    V extends Value = Value,
+    E extends PlateEditor<V> = PlateEditor<V>
+>(
+    editor: E,
+    options: WithPlatePlugin<LinkPlugin, V, E>
+) => {
+    const { insertData } = editor;
+
+    editor = withLink(editor, options);
+
+    editor.insertData = (data: DataTransfer) => {
+        const text = data.getData('text/plain');
+        const textHref = options.options.getUrlHref?.(text);
+
+        // validation is important here. if missed, leads to bugs with insertData plugin
+        // TODO: create issue to have it inside plate ui (pasting links within highlighted text should replace text with pasted url)
+        if (text && validateUrl(editor, text)) {
+            const inserted = upsertLink(editor, {
+                text: textHref || text,
+                url: textHref || text,
+                target: '_blank',
+                insertTextInLink: true,
+            });
+            if (inserted) return;
+        }
+
+        insertData(data);
+    }
+    return editor;
+}
+
+const LINK_ELEMENT = 'link';
+
+export const linkPlugin = () => createLinkPlugin({
+    type: LINK_ELEMENT,
+    withOverrides: withOurLink,
+    then: () => ({ options: { isUrl, } }),
+    overrideByKey: {
+        [ELEMENT_LINK]: {
+            component: (props) => (
+                <a { ...props.attributes } style={ { display: 'inline' } } target='_blank' href={ props.element.url }>{ props.children }</a>
+            ),
+        }
+    },
+});
+
+interface ToolbarLinkButtonProps {
+    editor: PlateEditor;
+}
+
+export const LinkButton = ({ editor }: ToolbarLinkButtonProps) => {
+    const context = useUuiContext();
+
+    if (!isPluginActive(ELEMENT_LINK)) return null;
+
+    const isLink = !!editor?.selection && someNode(editor, { match: { type: LINK_ELEMENT } });
+
+    return (
+        <LinkToolbarButton
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
+            active={ isLink }
+            onMouseDown={ async (event) => {
+                if (!editor) return;
+
+                event.preventDefault();
+                context.uuiModals.show<string>((modalProps): any => (
+                    <AddLinkModal
+                        editor={ editor }
+                        { ...modalProps }
+                    />
+                )).catch(() => null);
+            } }
+            icon={ <ToolbarButton
+                onClick={ () => {} }
+                icon={ LinkIcon }
+                isActive={ !!editor?.selection && isLink }
+            /> }
+        />
+    );
+};
