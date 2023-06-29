@@ -12,8 +12,8 @@ describe('getSearchFilter', () => {
         expect(searchFilter(['Smithy', 'Blacksmith John'])).toEqual(3);
     });
 
-    it('should return false if some group', () => {
-        const searchFilter = getSearchFilter('firstVal, fortx');
+    it('should return false if some word was not found', () => {
+        const searchFilter = getSearchFilter('first fortx');
         const result = searchFilter(['first word', 'third word', 'second, forth']);
         expect(result).toBeFalsy();
     });
