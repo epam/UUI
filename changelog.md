@@ -1,4 +1,4 @@
-# 5.1.0 - ??.??.2023
+# 5.1.0 - 29.06.2023
 
 **What's New**
 
@@ -12,26 +12,27 @@ List of changes:
 We make an automatic migration from old state format to the new one, so it's not required any additional actions from your side. But if you make some manipulations with value object on your side, it will cause issues, contact us if you faced with such case.
 * Regarding the new value format it's not needed to convert value to JSON via `value.toJSON()` and `Value.fromJSON(value)` in your code.
 
-
 * Added possibility to add caption for images
+* Added possibility to insert new line after image/video/iframe
+* Added images adjusting when width of RTE container is changing
+* Added support of different spell checking extensions, like Grammarly
+* Now visited links doesn't highlight with visited style in edit mode
+* Long links now fit table cell width
+* Improved content copying from Microsoft Word files
+* Added autofocus on input in 'Add Link' modal
+* A lot of issues and improvements from Slate.js version update
 * Fixed page crash after delete horizontal line/separator
 * Fixed adding list inside table
 * Fixed text selection breaks if mouse cursor lands on toolbar
 * Fixed reverse text in list in Safari
-* 403 error now doesn't appear during dragging image
-* Added possibility to insert new line before and after image/video/iframe
-* Fixed link replacement without first deleting it
-* Long links now fit table cell width
-* Images adjust when width of container is changing
-* Added support of different spell checking extensions, like Grammarly
-* Improved content copying from Microsoft Word files
 * Fixed color bar closing by color click
 * Fixed sticky toolbar disappears after selecting any options in it in Safari
-* Added autofocus on input in 'Add Link' modal
-* A lot of issues and improvements from Slate.js version update
+* Fixed link replacement without first deleting it
+* Fixed error after setting list on empty line
+* Fixed error after inserting a list previously cut from the editor
+
 
 **What's Fixed**
-* [DataTable]: added tooltip to the all column header cells, it shows `column.caption` and `column.info` and appear with 600ms delay
 * [PickerInput]: disabled 'Clear' button in footer in case when `disableClear` prop is `true`
 * [TimePickerBody]: fixed the bug where `minutes` values that are not a multiple of  `minutesStep`, are not rounded up to a `step`
 * [TextInput]: fixed incorrectly text color in disabled state in Safari
