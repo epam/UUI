@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Value } from 'slate';
 import {
     SlateEditor,
     defaultPlugins,
@@ -21,21 +20,22 @@ import {
     listPlugin,
     placeholderPlugin,
     codeBlockPlugin,
+    EditorValue,
 } from '@epam/uui-editor';
 import { svc } from '../../services';
 import { demoData } from '@epam/uui-docs';
 import css from './RichTextEditorDemo.module.scss';
 
 interface SlateEditorBasicExampleState {
-    value: Value;
+    value: EditorValue;
 }
 
 export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExampleState> {
     state: SlateEditorBasicExampleState = {
-        value: Value.fromJSON(demoData.slateInitialValue),
+        value: demoData.slateInitialValue,
     };
 
-    onChange = (value: Value) => {
+    onChange = (value: EditorValue) => {
         this.setState({ value: value });
     };
 
@@ -56,9 +56,7 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
         quotePlugin(),
         linkPlugin(),
         notePlugin(),
-        uploadFilePlugin({
-            uploadFile: this.uploadFile,
-        }),
+        uploadFilePlugin({ uploadFile: this.uploadFile.bind(this) }),
         attachmentPlugin(),
         imagePlugin(),
         videoPlugin(),

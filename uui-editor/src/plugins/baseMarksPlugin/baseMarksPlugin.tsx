@@ -1,5 +1,5 @@
-import { RenderMarkProps } from "slate-react";
-import { Editor as CoreEditor, Editor, Mark } from "slate";
+import { useSlate } from "slate-react";
+import { Editor as CoreEditor, Editor } from "slate";
 import * as React from "react";
 import { ReactComponent as BoldIcon } from "../../icons/bold.svg";
 import { ReactComponent as ItalicIcon } from "../../icons/italic.svg";
@@ -9,17 +9,17 @@ import { getMarkDeserializer } from '../../helpers';
 import { parseStringToCSSProperties } from '@epam/uui-core';
 
 export const baseMarksPlugin = () => {
-    const renderMark = (props: RenderMarkProps, editor: CoreEditor, next: () => any) => {
+    const renderMark = (props: any, editor: CoreEditor, next: () => any) => {
         switch (props.mark.type) {
-            case "uui-richTextEditor-bold":
+            case "uui-richTextEditor-bolde":
                 return <strong { ...props.attributes }>{ props.children }</strong>;
-            case "uui-richTextEditor-italic":
+            case "uui-richTextEditor-italice":
                 return <i { ...props.attributes }>{ props.children }</i>;
-            case "uui-richTextEditor-underlined":
+            case "uui-richTextEditor-underlinede":
                 return <u { ...props.attributes }>{ props.children }</u>;
-            case "uui-richTextEditor-superscript":
+            case "uui-richTextEditor-superscripte":
                 return <sup { ...props.attributes }>{ props.children }</sup>;
-            case "uui-richTextEditor-span-mark":
+            case "uui-richTextEditor-span-marke":
                 return <span { ...props.attributes } style={ props.mark.data.get("style") }>{ props.children }</span>;
 
             default:
@@ -27,7 +27,7 @@ export const baseMarksPlugin = () => {
         }
     };
 
-    const onKeyDown = (event: KeyboardEvent, editor: CoreEditor, next: () => any) => {
+    const onKeyDown = (event: KeyboardEvent, editor: any, next: () => any) => {
         if (event.ctrlKey && event.keyCode === 66) { // ctrl + b
             return editor.toggleMark("uui-richTextEditor-bold");
         }
@@ -47,15 +47,15 @@ export const baseMarksPlugin = () => {
         return next();
     };
 
-    const hasMark = (editor: Editor, markType: string | string[]) => {
+    const hasMark = (editor: any, markType: string | string[]) => {
         if (!editor) {
             return false;
         }
 
         if ((typeof markType) === "string") {
-            return editor.value.activeMarks.some((mark: Mark) => mark.type === markType);
+            return editor.value.activeMarks.some((mark: any) => mark.type === markType);
         } else {
-            return (markType as any).some((markType: string) => editor.value.activeMarks.some((mark: Mark) => mark.type === markType));
+            return (markType as any).some((markType: string) => editor.value.activeMarks.some((mark: any) => mark.type === markType));
         }
     };
 
@@ -70,16 +70,39 @@ export const baseMarksPlugin = () => {
     };
 };
 
-const BoldButton = (props: { editor: any }) => {
-    return <ToolbarButton isActive={ props.editor.hasMark('uui-richTextEditor-bold') } icon={ BoldIcon } onClick={ () => props.editor.toggleMark('uui-richTextEditor-bold') } />;
+const isMarkActive = (editor: Editor, format: string) => {
+    const marks: any = Editor.marks(editor);
+    return marks ? marks[format] === true : false;
 };
 
-const ItalicButton = (props: { editor: any }) => {
-    return <ToolbarButton isActive={ (props.editor as any).hasMark('uui-richTextEditor-italic') } icon={ ItalicIcon } onClick={ () => props.editor.toggleMark('uui-richTextEditor-italic') } />;
+const BoldButton = () => {
+    const editor = useSlate();
+    const isActive = isMarkActive(editor, 'uui-richTextEditor-bold');
+    return <ToolbarButton
+        isActive={ isMarkActive(editor, 'uui-richTextEditor-bold') }
+        icon={ BoldIcon }
+        onClick={ () => editor.addMark('uui-richTextEditor-bold', !isActive) }
+    />;
 };
 
-const UnderlineButton = (props: { editor: any }) => {
-    return <ToolbarButton isActive={ (props.editor as any).hasMark('uui-richTextEditor-underlined') } icon={ UnderlinedIcon } onClick={ () => props.editor.toggleMark('uui-richTextEditor-underlined') } />;
+const ItalicButton = () => {
+    const editor = useSlate();
+    const isActive = isMarkActive(editor, 'uui-richTextEditor-italic');
+    return <ToolbarButton
+        isActive={ isMarkActive(editor, 'uui-richTextEditor-italic') }
+        icon={ ItalicIcon }
+        onClick={ () => editor.addMark('uui-richTextEditor-italic', !isActive) }
+    />;
+};
+
+const UnderlineButton = () => {
+    const editor = useSlate();
+    const isActive = isMarkActive(editor, 'uui-richTextEditor-underlined');
+    return <ToolbarButton
+        isActive={ isMarkActive(editor, 'uui-richTextEditor-underlined') }
+        icon={ UnderlinedIcon }
+        onClick={ () => editor.addMark('uui-richTextEditor-underlined', !isActive) }
+    />;
 };
 
 const MARK_TAGS: any = {

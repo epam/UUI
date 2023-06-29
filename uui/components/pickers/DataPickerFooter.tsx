@@ -39,7 +39,10 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
         if (!e.shiftKey && e.key === 'Tab') e.preventDefault();
     };
 
-    return (
+    // show always for multi picker and for single only in case if search not disabled.
+    const shouldShowFooter = isSinglePicker ? !props.disableClear : true;
+
+    return shouldShowFooter && (
         <FlexRow padding="12">
             {!isSinglePicker && (
                 <Switch

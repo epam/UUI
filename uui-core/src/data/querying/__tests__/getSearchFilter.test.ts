@@ -2,53 +2,18 @@ import { getSearchFilter } from '../getSearchFilter';
 
 describe('getSearchFilter', () => {
     it('should return matching results', () => {
-        const searchFilter = getSearchFilter('first second, third forth');
-        const result = searchFilter(['first word', 'third word', 'second, forth']);
-        expect(result).toEqual([
-            // first
-            0,
-            null,
-            null,
+        const searchFilter = getSearchFilter('John Smith');
 
-            // second
-            null,
-            null,
-            0,
-
-            // third
-            null,
-            0,
-            null,
-
-            // forth
-            null,
-            null,
-            8,
-        ]);
-    });
-    it('should fill not found group with null', () => {
-        const searchFilter = getSearchFilter('first second, forn');
-        const result = searchFilter(['first word', 'third word', 'second, forth']);
-        expect(result).toEqual([
-            // first
-            0,
-            null,
-            null,
-
-            // second
-            null,
-            null,
-            0,
-
-            // forn
-            null,
-            null,
-            null,
-        ]);
+        expect(searchFilter(['John', 'Smith'])).toEqual(6);
+        expect(searchFilter(['Johny', 'Smith'])).toEqual(5);
+        expect(searchFilter(['Johny', 'Smitherman'])).toEqual(4);
+        expect(searchFilter(['Rejohn', 'Smitherman'])).toEqual(3);
+        expect(searchFilter(['Rejohn', 'Blacksmith'])).toEqual(2);
+        expect(searchFilter(['Smithy', 'Blacksmith John'])).toEqual(3);
     });
 
-    it('should return false if some group', () => {
-        const searchFilter = getSearchFilter('firstVal, fortx');
+    it('should return false if some word was not found', () => {
+        const searchFilter = getSearchFilter('first fortx');
         const result = searchFilter(['first word', 'third word', 'second, forth']);
         expect(result).toBeFalsy();
     });

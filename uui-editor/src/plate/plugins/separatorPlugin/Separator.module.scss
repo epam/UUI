@@ -1,0 +1,12 @@
+@use '~@epam/assets/scss/promo/colors' as *;
+
+.separator {
+    width: 100%;
+    border-top: 1px solid $gray40;
+    height: 1px;
+    margin: 18px 0;
+
+    &:global(.uui-focus) {
+        border-color: $blue;
+    }
+}

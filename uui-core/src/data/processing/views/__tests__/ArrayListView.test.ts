@@ -35,6 +35,7 @@ const countries: Country[] = [
     { id: 'ES', name: 'Spain' },
     { id: 'FI', name: 'Finland' },
     { id: 'GB', name: 'United Kingdom' },
+    { id: 'NC', name: 'Nicaragua' },
     { id: 'GN', name: 'Guinea' },
     { id: 'GW', name: 'Guinea-Bissau' },
 ];
@@ -199,64 +200,32 @@ describe('ArrayListView', () => {
             expect(rowsIds).toEqual(['GW']);
         });
 
-        it('should search items by multiple groups of tokens', () => {
-            countriesView.update({
-                ...initialValue, search: 'ea, in', topIndex: 0, visibleCount: 20,
-            }, countriesViewProps);
-            const rows = countriesView.getVisibleRows();
-            const rowsIds = rows.map((i) => i.id);
-
-            expect(rows).toHaveLength(6);
-            expect(rowsIds).toEqual(['GN', 'GW', 'FI', 'CN', 'ES', 'GB']);
-        });
-
-        it('should search items by multiple groups of multiple words', () => {
-            countriesView.update({
-                ...initialValue, search: 'ea bi, in', topIndex: 0, visibleCount: 20,
-            }, countriesViewProps);
-            const rows = countriesView.getVisibleRows();
-            const rowsIds = rows.map((i) => i.id);
-
-            expect(rows).toHaveLength(6);
-            expect(rowsIds).toEqual(['GW', 'FI', 'CN', 'GN', 'ES', 'GB']);
-        });
-
         it('should sort items in order of search relevance', () => {
             countriesView.update({
-                ...initialValue, search: 'in', topIndex: 0, visibleCount: 20,
+                ...initialValue, search: 'gu', topIndex: 0, visibleCount: 20,
             }, countriesViewProps);
             const rows = countriesView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
-            expect(rows).toHaveLength(6);
-            expect(rowsIds).toEqual(['FI', 'CN', 'GN', 'GW', 'ES', 'GB']);
+            expect(rows).toHaveLength(3);
+            expect(rowsIds).toEqual(['GN', 'GW', 'NC']);
         });
 
-        it('should return items if one group was not matched', () => {
-            countriesView.update({
-                ...initialValue, search: 'ea bi, ix', topIndex: 0, visibleCount: 20,
-            }, countriesViewProps);
+        it('should not sort items in order of search relevance if disableSearchSorting = true', () => {
+            const props = { ...countriesViewProps, disableSearchSorting: true };
+            countriesView = countriesDataSource.getView(initialValue, countriesOnValueChange, props) as ArrayListView<Country, string, any>;
+
+            countriesView.update({ ...initialValue, search: 'gu', topIndex: 0, visibleCount: 20 }, props);
             const rows = countriesView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
-            expect(rows).toHaveLength(1);
-            expect(rowsIds).toEqual(['GW']);
+            expect(rows).toHaveLength(3);
+            expect(rowsIds).toEqual(['NC', 'GN', 'GW']);
         });
 
         it('should not return items if group was not matched', () => {
             countriesView.update({
                 ...initialValue, search: 'wa bx', topIndex: 0, visibleCount: 20,
-            }, countriesViewProps);
-            const rows = countriesView.getVisibleRows();
-            const rowsIds = rows.map((i) => i.id);
-
-            expect(rows).toHaveLength(0);
-            expect(rowsIds).toEqual([]);
-        });
-
-        it('should not return items if groups were not matched', () => {
-            countriesView.update({
-                ...initialValue, search: 'wa bx, dx', topIndex: 0, visibleCount: 20,
             }, countriesViewProps);
             const rows = countriesView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);

@@ -15,6 +15,7 @@ export interface ApplyFilterOptions<TItem, TId, TFilter> {
 export interface ApplySearchOptions<TItem, TId, TFilter> {
     search: DataSourceState<TFilter, TId>['search'];
     getSearchFields?: (item: TItem) => string[];
+    disableSearchSorting?: boolean;
 }
 
 export interface ApplySortOptions<TItem, TId, TFilter> {

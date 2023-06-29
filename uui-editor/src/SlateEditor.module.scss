@@ -12,6 +12,13 @@
 
 :local(.typography-promo) {
     @include typography-promo();
+
+    //We need to highlight visited links only in readonly mode
+    &:not(:global(.uui-readonly)) {
+        a:visited {
+            color: $blue;
+        }
+    }
 }
 
 .container {
@@ -33,7 +40,8 @@
 
     :global(.ordered-list),
     :global(.unordered-list) {
-        ul, ol {
+        ul,
+        ol {
             margin: 3px 0;
         }
     }
@@ -80,13 +88,22 @@
 }
 
 .placeholder {
-    pointer-events: none;
     position: absolute;
+    top: 0;
+    left: 12px;
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    user-select: none;
+    text-decoration: none;
     color: $gray60;
     font-family: $font-sans;
     line-height: 1.5;
-    top: 8px;
-    padding: 0 24px;
+    padding: 0 12px;
+}
+
+.placeholder-text {
+    top: 0;
 }
 
 .placeholder-14 {
@@ -98,7 +115,8 @@
 }
 
 .scrollbars {
-    :global(.uui-thumb-vertical), :global(.uui-thumb-horizontal) {
+    :global(.uui-thumb-vertical),
+    :global(.uui-thumb-horizontal) {
         background: $gray40;
         border-radius: 1.5px;
 
