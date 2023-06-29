@@ -12,7 +12,7 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
 
     public search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): ITree<TItem, TId> {
         const search = this.buildSearchFilter(options);
-        return this.applyMatchToTree(search);
+        return this.applySearchToTree(search, options.disableSearchSorting);
     }
 
     public sort<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) {
@@ -63,8 +63,8 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
 
             const comparer = (a: TItem, b: TItem) => {
                 for (let n = 0; n < comparers.length; n++) {
-                    const comparer = comparers[n];
-                    const result = comparer(a, b);
+                    const compare = comparers[n];
+                    const result = compare(a, b);
                     if (result != 0) {
                         return result;
                     }
@@ -80,20 +80,46 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
         };
     }
 
-    private applyMatchToTree(isMatchingFn: undefined | ((item: TItem) => boolean | Array<number | null>)) {
+    private applyMatchToTree(isMatchingFn: undefined | ((item: TItem) => number | boolean)) {
         if (!isMatchingFn) return this;
 
         const matchedItems: TItem[] = [];
-        const ranks: Map<TId, Array<number | null>> = new Map();
         const applyMatchRec = (items: TItem[]) => {
-            let isSomeMatching: boolean | Array<number | null> = false;
+            let isSomeMatching: number | boolean = false;
             items.forEach((item) => {
                 const isItemMatching = isMatchingFn(item);
                 const isSomeChildMatching = applyMatchRec(this.getChildren(item));
                 const isMatching = isItemMatching || isSomeChildMatching;
                 if (isMatching) {
                     matchedItems.push(item);
-                    if (Array.isArray(isMatching)) {
+                }
+
+                if (!isSomeMatching) {
+                    isSomeMatching = isMatching;
+                }
+            });
+
+            return isSomeMatching;
+        };
+
+        applyMatchRec(this.getRootItems());
+        return Tree.create({ ...this.params }, matchedItems);
+    }
+
+    private applySearchToTree(isMatchingFn: undefined | ((item: TItem) => number | boolean), disableSearchSorting?: boolean) {
+        if (!isMatchingFn) return this;
+
+        const matchedItems: TItem[] = [];
+        const ranks: Map<TId, number> = new Map();
+        const applyMatchRec = (items: TItem[]) => {
+            let isSomeMatching: number | boolean = false;
+            items.forEach((item) => {
+                const isItemMatching = isMatchingFn(item);
+                const isSomeChildMatching = applyMatchRec(this.getChildren(item));
+                const isMatching = isItemMatching || isSomeChildMatching;
+                if (isMatching !== false) {
+                    matchedItems.push(item);
+                    if (typeof isMatching !== 'boolean') {
                         ranks.set(this.getId(item), isMatching);
                     }
                 }
@@ -107,11 +133,13 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
         };
 
         applyMatchRec(this.getRootItems());
-
-        return Tree.create({ ...this.params }, this.sortByRanks(matchedItems, ranks));
+        return Tree.create(
+            { ...this.params },
+            disableSearchSorting ? matchedItems : this.sortByRanks(matchedItems, ranks),
+        );
     }
 
-    private sortByRanks = (items: TItem[], ranks: Map<TId, Array<number | null>>) => {
+    private sortByRanks = (items: TItem[], ranks: Map<TId, number>) => {
         if (ranks.size === 0) {
             return items;
         }
@@ -124,16 +152,7 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
             }
             const rank1 = ranks.get(id1);
             const rank2 = ranks.get(id2);
-            for (const [index, value] of rank1.entries()) {
-                if (value === rank2[index]) {
-                    continue;
-                }
-                if ((value !== null && rank2[index] !== null && rank2[index] < value) || value === null) {
-                    return 1;
-                }
-                return -1;
-            }
-            return 0;
+            return rank2 - rank1;
         });
         return itemsToSort;
     };

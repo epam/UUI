@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Value } from 'slate';
 import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch } from '@epam/promo';
 import {
-    SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin,
+    SlateEditor, defaultPlugins, imagePlugin, videoPlugin,
     toDoListPlugin, baseMarksPlugin,
-    linkPlugin, iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin,
+    linkPlugin, iframePlugin, notePlugin, separatorPlugin,
     tablePlugin, quotePlugin, colorPlugin,
-    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin,
+    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, codeBlockPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from '../styles/SlateEditorBasicExample.module.scss';
@@ -37,7 +37,7 @@ export default function SlateEditorBasicExample() {
         quotePlugin(),
         linkPlugin(),
         notePlugin(),
-        // uploadFilePlugin({ uploadFile }),
+        // uploadFilePlugin({ uploadFile })
         // attachmentPlugin(),
         imagePlugin(),
         videoPlugin(),
@@ -56,6 +56,7 @@ export default function SlateEditorBasicExample() {
                 },
             ],
         }),
+        codeBlockPlugin()
     ];
 
     return (
@@ -86,7 +87,6 @@ export default function SlateEditorBasicExample() {
                     value={ value }
                     onValueChange={ setValue }
                     isReadonly={ isReadonly }
-                    autoFocus={ true }
                     plugins={ plugins }
                     mode={ mode }
                     placeholder='Add description'

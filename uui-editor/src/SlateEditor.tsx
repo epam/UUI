@@ -1,200 +1,185 @@
-import * as React from 'react';
-import { Editor, Plugin, getEventTransfer } from 'slate-react';
-import SoftBreak from "slate-soft-break";
-import htmlclean from 'htmlclean';
-import { KeyUtils, SchemaProperties, Value } from 'slate';
+import React, { useMemo, useRef, useEffect } from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { IEditable, uuiMod, IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import { ScrollBars } from '@epam/uui-components';
-import { IEditable, UuiContexts, uuiMod, IHasCX, UuiContext, cx, IHasRawProps } from '@epam/uui-core';
-import {Toolbar} from "./implementation/Toolbar";
-import {Sidebar} from './implementation/Sidebar';
-import { baseMarksPlugin, utilsPlugin, paragraphPlugin } from "./plugins";
-import { getSerializer, isEditorEmpty } from './helpers';
+import { useForceUpdate } from '@epam/uui-core';
+
+import {
+    Plate,
+    createPlugins,
+    createPlateUI,
+    usePlateEditorState,
+    Toolbar,
+    createSoftBreakPlugin,
+    createExitBreakPlugin,
+    PlateProvider,
+    useEventEditorSelectors,
+    isElementEmpty,
+    Value,
+    createTextIndentPlugin,
+    createIndentListPlugin,
+} from '@udecode/plate';
+
+import { createJuicePlugin } from '@udecode/plate-juice';
+import { ToolbarButtons, MarkBalloonToolbar, } from './plate/plugins/Toolbars';
+
+import { migrateSchema } from './migration';
+
+import { baseMarksPlugin, paragraphPlugin } from './plate/plugins';
+
 import css from './SlateEditor.module.scss';
+import { createDeserializeDocxPlugin } from './plate/plugins/deserializeDocxPlugin/deserializeDocxPlugin';
 
-export const slateEditorEmptyValue: any = Value.fromJS({
-    document: {
-        nodes: [
-            {
-                object: 'block',
-                type: 'paragraph',
-                key: KeyUtils.create(),
-                nodes: [
-                    {
-                        object: 'text',
-                        text: '',
-                    },
-                ],
-            },
-        ],
-    },
-} as any);
+let components = createPlateUI();
 
-const schema: SchemaProperties = {
-    blocks: {
-        attachment: {
-            isVoid: true,
-        },
-        iframe: {
-            isVoid: true,
-        },
-        separatorBLock: {
-            isVoid: true,
-        },
-        video: {
-            isVoid: true,
-        },
-        loader: {
-            isVoid: true,
-        },
-        image: {
-            isVoid: true,
-        },
-    },
-    inlines: {
-        placeholder: {
-            isVoid: true,
-        },
-    },
-};
+export type EditorValue = Value | null;
 
-export const defaultPlugins = [
-    SoftBreak({ shift: true }),
+
+/**
+ * Please make sure defaultPlugins and all your plugins are not interfere
+ * with the following list when disableCorePlugins prop hasn't been set
+ * https://github.com/udecode/plate/blob/main/docs/BREAKING_CHANGES.md#general
+ */
+export const defaultPlugins: any = [
+    createIndentListPlugin(),
+    createTextIndentPlugin(),
+    createSoftBreakPlugin(),
+    createExitBreakPlugin(),
+    createDeserializeDocxPlugin(),
+    createJuicePlugin(),
     paragraphPlugin(),
-    utilsPlugin(),
 ];
 
-export const basePlugins = [
+export const basePlugins: any = [
     baseMarksPlugin(),
     ...defaultPlugins,
 ];
 
-interface SlateEditorProps extends IEditable<Value | null>, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+interface SlateEditorProps extends IEditable<EditorValue>, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     isReadonly?: boolean;
-    plugins?: Plugin[];
+    plugins?: any[];
     autoFocus?: boolean;
     minHeight?: number | 'none';
     placeholder?: string;
     mode?: 'form' | 'inline';
     fontSize?: '14' | '16';
-    onKeyDown?: (event: KeyboardEvent, value: Editor['value'] | null) => void;
-    onBlur?: (event: FocusEvent, value: Editor['value'] | null) => void;
+    onKeyDown?: (event: KeyboardEvent, value: any | null) => void;
+    onBlur?: (event: FocusEvent, value: any | null) => void;
     scrollbars?: boolean;
 }
 
-interface SlateEditorState {
-    inFocus?: boolean;
+interface PlateEditorProps extends SlateEditorProps {
+    initialValue: Value,
+    onChange: (newValue: Value) => void,
+    id: string,
 }
 
-export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorState> {
-    editor: Editor;
-    static contextType = UuiContext;
-    context: UuiContexts;
-    serializer = getSerializer(this.props.plugins);
+const Editor = (props: PlateEditorProps) => {
+    const editor = usePlateEditorState();
 
-    state = {
-        inFocus: !!this.props.autoFocus,
+    const focusedEditorId = useEventEditorSelectors.focus();
+    const isFocused = editor.id === focusedEditorId;
+    const forceUpdate = useForceUpdate();
+
+    if (props.initialValue && editor.children !== props.initialValue) {
+        editor.children = props.initialValue;
+        forceUpdate();
+    }
+
+    const renderEditor = () => (
+        <DndProvider backend={ HTML5Backend }>
+            <Plate
+                { ...props }
+                id={ props.id }
+                editableProps={ {
+                    autoFocus: props.autoFocus,
+                    readOnly: props.isReadonly,
+                    placeholder: props.placeholder,
+                    renderPlaceholder: ({ attributes }) => {
+                        const shouldShowPlaceholder = isElementEmpty(editor, editor.children[0]) && editor.children[0].type === 'paragraph';
+                        return shouldShowPlaceholder && (
+                            <div
+                                { ...attributes }
+                                style={ { pointerEvents: 'none' } }
+                                className={ css.placeholder }>
+                                { props.placeholder }
+                            </div>
+                        );
+                    },
+                    style: { padding: '0 24px', minHeight: props.minHeight }
+                } }
+
+                // we override plate core insertData plugin
+                // so, we need to disable default implementation
+                disableCorePlugins={ { insertData: true } }
+            />
+            < MarkBalloonToolbar />
+            <Toolbar style={ {
+                position: 'sticky',
+                bottom: 12,
+                display: 'flex',
+                minHeight: 0,
+                zIndex: 50,
+            } }>
+                <ToolbarButtons />
+            </Toolbar>
+        </DndProvider >
+    );
+
+    return (
+        <div
+            className={ cx(
+                props.cx,
+                css.container,
+                css['mode-' + (props.mode || 'form')],
+                (!props.isReadonly && isFocused) && uuiMod.focus,
+                props.isReadonly && uuiMod.readonly,
+                props.scrollbars && css.withScrollbars,
+                css.typographyPromo,
+                props.fontSize == '16' ? css.typography16 : css.typography14,
+            ) }
+            style={ { minHeight: props.minHeight || 350 } }
+            { ...props.rawProps }
+        >
+            { props.scrollbars
+                ? <ScrollBars cx={ css.scrollbars } style={ { width: '100%' } }>
+                    { renderEditor() }
+                </ScrollBars>
+                : renderEditor()
+            }
+        </div>
+    );
+};
+
+export function SlateEditor(props: SlateEditorProps) {
+    const currentId = useRef(String(Date.now()));
+
+    const plugins = createPlugins((props.plugins || []).flat(), {
+        components,
+    });
+
+    const onChange = (value: Value) => {
+        if (props.isReadonly) return;
+        props?.onValueChange(value);
     };
 
-    onPaste = (event: any, editor: Editor, next: () => any) => {
-        const transfer: any = getEventTransfer(event);
-        if (transfer.type !== 'html') return next();
-        const html = htmlclean(transfer.html);
-        const { document } = this.serializer.deserialize(html);
-        editor.insertFragment(document);
-        event.preventDefault();
-    }
+    const initialValue = useMemo(() => migrateSchema(props.value), [props.value]);
 
-    onKeyDown = (event: KeyboardEvent, editor: Editor, next: () => any) => {
-        if (event.keyCode === 9 && !((this.editor as any).isList('unordered-list') || (this.editor as any).isList('ordered-list'))) {
-            event.preventDefault();
-            return;
-        }
-
-        this.props.onKeyDown && this.props.onKeyDown(event, editor.value);
-
-        return next();
-    }
-
-    isEmpty = () => {
-        if (!this.editor || !this.props.value) {
-            return true;
-        }
-
-        return isEditorEmpty(this.props.value);
-    }
-
-    onChange = (props: any) => {
-        if (props.value.selection.isFocused !== this.state.inFocus) {
-            this.setState({ inFocus: props.value.selection.isFocused });
-        }
-
-        this.props.onValueChange(props.value);
-    }
-
-    onBlur = (e: any, editor: Editor, next: () => any) => {
-        if (!editor.value.selection.isFocused) return;
-        if (e.relatedTarget && e.relatedTarget.closest('.slate-prevent-blur')) {
-            return e.preventDefault();
-        }
-
-        this.props.onBlur?.(e, editor.value);
-        return next();
-    }
-
-    onFocus = (e: any, editor: Editor, next: () => any) => {
-        if (editor.value.selection.isFocused) return;
-        return next();
-    }
-
-    renderEditor = () => (<>
-        <Editor
-            readOnly={ this.props.isReadonly }
-            className={ cx(css.typographyPromo, !this.props.isReadonly && css.contentEditable, this.props.fontSize == '16' ? css.typography16 : css.typography14) }
-            renderInline={ (pr, ed, next) => next() }
-            onKeyDown={ this.onKeyDown as any }
-            autoFocus={ this.props.autoFocus }
-            plugins={ this.props.plugins }
-            schema={ schema }
-            onFocus={ this.onFocus }
-            onBlur={ this.onBlur }
-            value={ this.props.value || slateEditorEmptyValue }
-            onChange={ this.onChange }
-            style={ { minHeight: this.props.minHeight || 350, padding: '0 24px', overflow: 'hidden' } }
-            ref={ (editor) => this.editor = editor }
-            onPaste={ this.onPaste }
-            spellCheck={ !this.props.isReadonly }
-        />
-        { this.isEmpty() &&
-            (
-                <div className={ cx(css.placeholder, this.props.fontSize === '16' ? css.placeholder16 : css.placeholder14) }>
-                    { this.props.placeholder }
-                </div>
-            )
-        }
-        <Toolbar plugins={ this.props.plugins } editor={ this.editor } />
-        <Sidebar plugins={ this.props.plugins } editor={ this.editor } isReadonly={ this.props.isReadonly } />
-    </>)
-
-    render() {
-        return (
-            <div
-                className={ cx(
-                    this.props.cx,
-                    css.container,
-                    css['mode-' + (this.props.mode || 'form')],
-                    (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
-                    this.props.isReadonly && uuiMod.readonly,
-                    this.props.scrollbars && css.withScrollbars,
-                ) }
-                { ...this.props.rawProps }
-            >
-                { this.props.scrollbars
-                    ? <ScrollBars cx={ css.scrollbars }>
-                        { this.renderEditor() }
-                    </ScrollBars>
-                    : this.renderEditor()
-                }
-            </div>
-        );
-    }
+    return (
+        <PlateProvider
+            onChange={ onChange }
+            plugins={ plugins }
+            initialValue={ initialValue }
+            id={ currentId.current }
+        >
+            <Editor
+                onChange={ onChange }
+                id={ currentId.current }
+                initialValue={ initialValue }
+                plugins={ plugins }
+                { ...props }
+            />
+        </PlateProvider>
+    );
 }
