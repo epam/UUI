@@ -44,15 +44,13 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
     };
 
     getDecoratedText = (str: string, ranges: Range[]) => {
-        const textChunks = ranges.map((range, index) => {
+        return ranges.map((range, index) => {
             const rangeStr = str.substring(range.from, range.to);
             if (range.isHighlighted) {
                 return this.getHighlightedText(rangeStr, index);
             }
             return this.getRegularText(rangeStr, index);
         });
-    
-        return <Text>{textChunks}</Text>;
     };
 
     getHighlightedText = (str: string, index: number) => {
@@ -106,7 +104,6 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
     getRanges = (search: string, str: string) => {
         const words = search
             .split(' ')
-            .flatMap((s) => s.split(','))
             .filter(Boolean)
             .map((word) => new RegExp(word, 'ig'));
         const matches = words.flatMap((word) => [...str.matchAll(word)]);
@@ -125,12 +122,13 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
 
     render() {
         const {
-            size, avatarUrl, isLoading, isDisabled, subtitle, icon, highlightSearchMatches = true,
+            size, avatarUrl, isLoading, isDisabled, icon, highlightSearchMatches = true,
         } = this.props;
         const itemSize = size && size !== 'none' ? size : defaultSize;
         const isMultiline = !!(this.props.title && this.props.subtitle);
 
         const title = highlightSearchMatches ? this.highlightSearchMatches(this.props.title) : this.props.title;
+        const subtitle = highlightSearchMatches ? this.highlightSearchMatches(this.props.subtitle) : this.props.subtitle;
         return (
             <FlexCell width="auto" cx={ css.root }>
                 <FlexRow size={ itemSize } cx={ isMultiline && css[`multiline-vertical-padding-${itemSize}`] } spacing="12">
