@@ -1,12 +1,9 @@
 /// <reference path="../uui_globals.d.ts" />
 
-declare module 'slate-soft-break';
 declare module 'slate-mark-hotkeys';
-declare module 'slate-uui-table-plugin';
 declare module '@convertkit/slate-lists';
 declare module '@mercuriya/slate-linkify';
 declare module '@mercuriya/slate-gallery';
-declare module 'slate-drop-or-paste-images';
 declare module 'slate-html-serializer';
 declare module 'get-video-id';
 declare module 're-resizable';
@@ -20,7 +17,6 @@ declare module 'draft-js-clear-formatting';
 declare module 'draft-convert';
 declare module 'draft-js-plugins-utils';
 declare module 'draft-js/lib/*';
-declare module 'slate-soft-break';
 declare module 'slate-mark-hotkeys';
 declare module 'markdown-draft-js';
 declare module '@braintree/sanitize-url';
