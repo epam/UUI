@@ -1,201 +1,109 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "In this chapter, row options will be described in detail. Row options specify if rows are selectable, editable, checkable, draggable, clickable, and more. Row options can be passed to the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " in two ways:",
-            "marks": []
-          }
-        ]
+        "text": "In this chapter, row options will be described in detail. Row options specify if rows are selectable, editable, checkable, draggable, clickable, and more. Row options can be passed to the "
       },
       {
-        "object": "block",
-        "type": "unordered-list",
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " in two ways:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "as an ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "rowOptions",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " object, allowing to pass the same options for all rows",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+                "text": "as an "
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "a return value of the",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "getRowOptions",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " callback. The callback is passed with a data item for the row, which allows computing different options for each row.",
-                    "marks": []
-                  }
-                ]
+                "text": "rowOptions",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " object, allowing to pass the same options for all rows"
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "For props like  ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "value/onValueChange",
-            "marks": [
+            "data": {},
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "text": "a return value of the "
+              },
+              {
+                "text": "getRowOptions",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " callback. The callback is passed with a data item for the row, which allows computing different options for each row."
               }
             ]
-          },
-          {
-            "object": "text",
-            "text": ", ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "dnd",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "validation props",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "it only makes sense to use ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "getRowOptions",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " (as these props should depend on a row).",
-            "marks": []
           }
         ]
       }
     ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "For props like  "
+      },
+      {
+        "text": "value/onValueChange",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "dnd",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "validation props",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " ",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": "it only makes sense to use "
+      },
+      {
+        "text": "getRowOptions",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " (as these props should depend on a row)."
+      }
+    ]
   }
-}
+]
