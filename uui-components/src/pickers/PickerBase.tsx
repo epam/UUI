@@ -4,18 +4,10 @@ import {
 } from '@epam/uui-core';
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';
 import isEqual from 'lodash.isequal';
-import { Text } from '../Text';
-import css from './PickerBase.module.scss';
 
 export interface PickerBaseState {
     dataSourceState: DataSourceState;
     showSelected?: boolean;
-}
-
-interface Range {
-    from: number;
-    to: number;
-    isHighlighted: boolean;
 }
 
 export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TItem, TId>, TState extends PickerBaseState> extends React.Component<TProps, TState> {
@@ -55,100 +47,6 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
             }
         }
         return i ? i.name : unknownStr;
-    };
-    
-    protected highlightSearchMatches = (str: string) => {
-        const { search } = this.state.dataSourceState ?? {};
-        if (!search) {
-            return str;
-        }
-
-        const ranges = this.getRanges(search, str);
-        if (!ranges.length) {
-            return str;
-        }
-
-        return this.getDecoratedText(str, ranges);
-    };
-
-    private getDecoratedText = (str: string, ranges: Range[]) => {
-        const textChunks = ranges.map((range, index) => {
-            const rangeStr = str.substring(range.from, range.to);
-            if (range.isHighlighted) {
-                return this.getHighlightedText(rangeStr, index);
-            }
-            return this.getRegularText(rangeStr, index);
-        });
-    
-        return <Text>{textChunks}</Text>;
-    };
-
-    private getHighlightedText = (str: string, index: number) => {
-        return <span key={ `${str}-${index}` } className={ css.highlightedText }>{str}</span>;
-    };
-
-    private getRegularText = (str: string, index: number) => {
-        return <span key={ `${str}-${index}` }>{str}</span>;
-    };
-
-    private mergeRanges = (ranges: Range[]) => {
-        const mergedRanges: Range[] = [];
-        ranges.forEach((range) => {
-            if (!mergedRanges.length) {
-                mergedRanges.push({ ...range, isHighlighted: true });
-            }
-              
-            const lastRange = mergedRanges[mergedRanges.length - 1];
-            if (range.from >= lastRange.from && range.from <= lastRange.to + 1 && range.to > lastRange.to) {
-                lastRange.to = range.to;
-            }
-        
-            if (lastRange.to < range.from - 1) {
-                mergedRanges.push({ ...range, isHighlighted: true });
-            }
-        });
-
-        return mergedRanges;
-    };
-
-    private addNotHighlightedRanges = (ranges: Range[], str: string) => {
-        const allRanges: Range[] = [];
-        ranges.forEach((range, index) => {
-            if (index === 0 && range.from !== 0) {
-                allRanges.push({ from: 0, to: range.from, isHighlighted: false });
-            }
-            const prevRange = ranges[index - 1];
-            if (prevRange && prevRange.to + 1 < range.from) {
-                allRanges.push({ from: prevRange.to, to: range.from, isHighlighted: false });
-            }
-        
-            allRanges.push(range);
-            const lastIndex = ranges.length - 1;
-            if (index === lastIndex && range.to < str.length) {
-                allRanges.push({ from: range.to, to: str.length, isHighlighted: false });
-            }
-        });
-        return allRanges;
-    };
-
-    private getRanges = (search: string, str: string) => {
-        const words = search
-            .split(' ')
-            .flatMap((s) => s.split(','))
-            .filter(Boolean)
-            .map((word) => new RegExp(word, 'ig'));
-        const matches = words.flatMap((word) => [...str.matchAll(word)]);
-
-        const ranges = matches
-            .map((match) => ({ from: match.index, to: match[0].length + match.index, isHighlighted: true }))
-            .sort((range1, range2) => range1.from - range2.from);
-
-        if (!ranges) {
-            return [];
-        }
-
-        const mergedRanges = this.mergeRanges(ranges);
-        return this.addNotHighlightedRanges(mergedRanges, str);
     };
 
     getPluralName = () => {

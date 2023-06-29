@@ -69,6 +69,8 @@ IHasIcon & {
     inputCx?: CX;
     /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */
     bodyCx?: CX;
+    
+    highlightSearchMatches?: boolean;
 };
 
 interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
