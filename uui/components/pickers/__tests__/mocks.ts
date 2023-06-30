@@ -56,6 +56,10 @@ export const mockDataSource = new ArrayDataSource({
     items: languageLevels,
 });
 
+export const mockSmallDataSource = new ArrayDataSource({
+    items: smallDataSet,
+});
+
 export const mockSmallDataSourceAsync = new AsyncDataSource({
     api: async () => {
         await delay(100);
