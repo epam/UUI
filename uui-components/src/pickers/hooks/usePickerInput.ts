@@ -244,7 +244,12 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const getFooterProps = (): PickerFooterProps<TItem, TId> & { onClose: () => void } => {
         const footerProps = picker.getFooterProps();
-        return { ...footerProps, onClose: handleCloseBody, selectionMode: props.selectionMode };
+        return {
+            ...footerProps,
+            onClose: handleCloseBody,
+            selectionMode: props.selectionMode,
+            disableClear: props.disableClear,
+        };
     };
 
     const returnFocusToInput = (): void => {
