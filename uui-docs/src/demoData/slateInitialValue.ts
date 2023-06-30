@@ -761,7 +761,7 @@ export const slateInitialValue = {
                 nodes: [
                     {
                         object: 'text',
-                        text: 'Arbitary attachments:',
+                        text: 'Arbitrary attachments:',
                         marks: [
                             {
                                 object: 'mark',

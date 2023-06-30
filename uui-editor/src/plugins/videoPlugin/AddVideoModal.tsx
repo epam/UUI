@@ -2,15 +2,17 @@ import * as React from 'react';
 import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
 import css from './AddVideoModal.module.scss';
-import { Editor } from "slate-react";
+import { PlateEditor, setElements } from "@udecode/plate";
+
 import getVideoId from "get-video-id";
+import { useState } from "react";
 
 
 const { LabeledInput, ModalBlocker, ModalWindow, ModalHeader, FlexRow, TextInput, ModalFooter, Button } = uuiSkin;
 
 
 interface AddVideoModalProps extends IModal<any> {
-    editor: Editor;
+    editor: PlateEditor;
 }
 
 export type VideoService = 'youtube' | 'vimeo' | 'videoportal' | 'vine' | 'videopress';
@@ -41,45 +43,48 @@ export function getVideoSrc(src: string) {
     const { id, service } = getVideoInfo(prependHttp(src, { https: false }));
 
     switch (service) {
-        case 'youtube': return `https://www.youtube.com/embed/${id}`;
-        case 'videoportal': return `//videoportal.epam.com/video/iframe.html?video=${id}`;
-        case 'vimeo': return `https://player.vimeo.com/video/${id}`;
+        case 'youtube': return `https://www.youtube.com/embed/${ id }`;
+        case 'videoportal': return `//videoportal.epam.com/video/iframe.html?video=${ id }`;
+        case 'vimeo': return `https://player.vimeo.com/video/${ id }`;
         default: return src;
     }
 }
 
-export class AddVideoModal extends React.Component<AddVideoModalProps> {
-    state: any = {
-        src: '',
-        file: null,
+export function AddVideoModal({ editor, success, abort, ...props }: AddVideoModalProps) {
+    const [src, setSrc] = useState('');
+
+    const createVideoBlock = () => {
+        const formattedSrc = getVideoSrc(src);
+        setElements(editor, {
+            type: 'iframe',
+            data: { src: formattedSrc },
+            url: formattedSrc,
+        });
+
+        success(true);
     };
 
-    createVideoBlock = () => {
-        const src = getVideoSrc(this.state.src);
+    return (
+        <ModalBlocker { ...props } success={ success } abort={ abort }>
+            <ModalWindow >
+                <ModalHeader title="Add video" onClose={ abort } />
+                <FlexRow cx={ css.inputWrapper }>
+                    <LabeledInput label='Video url' >
+                        <TextInput value={ src } onValueChange={ setSrc } autoFocus />
+                    </LabeledInput>
+                </FlexRow>
+                <ModalFooter borderTop >
+                    <FlexSpacer />
+                    <Button type='cancel' caption='Cancel' onClick={ () => abort() } />
+                    <Button
+                        type='success'
+                        caption='Ok'
+                        isDisabled={ !src }
+                        onClick={ createVideoBlock }
 
-        const block = ((this.props.editor) as any).createBlock({ src: src }, 'iframe');
-        this.props.editor.insertBlock(block) ;
-        this.props.success(true);
-    }
-
-    render() {
-        return (
-            <ModalBlocker { ...this.props }>
-                <ModalWindow >
-                    <ModalHeader title="Add video" onClose={ this.props.abort } />
-                    <FlexRow cx={ css.inputWrapper }>
-                        <LabeledInput label='Video url' >
-                            <TextInput value={ this.state.src } onValueChange={ (newVal) => this.setState({ src: newVal }) } autoFocus/>
-                        </LabeledInput>
-                    </FlexRow>
-                    <ModalFooter borderTop >
-                        <FlexSpacer />
-                        <Button type='cancel' caption='Cancel' onClick={ () => this.props.abort() } />
-                        <Button type='success' caption='Ok' isDisabled={ !this.state.src } onClick={ this.createVideoBlock }
-                        />
-                    </ModalFooter>
-                </ModalWindow>
-            </ModalBlocker>
-        );
-    }
+                    />
+                </ModalFooter>
+            </ModalWindow>
+        </ModalBlocker>
+    );
 }

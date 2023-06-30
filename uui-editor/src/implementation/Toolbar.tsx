@@ -1,77 +1,67 @@
-import * as React from 'react';
-import flatten from 'lodash.flatten';
+import React, { useRef } from 'react';
 import { Popper } from 'react-popper';
-import { Editor, Plugins } from 'slate-react';
-import { LayoutContext, LayoutLayer, UuiContext } from '@epam/uui-core';
+import { usePlateEditorState, isEditorFocused, findNode, toDOMNode, getCellTypes, getSelectionBoundingClientRect } from '@udecode/plate';
 import { Portal } from '@epam/uui-components';
-import { isTextSelected } from '../helpers';
+import cx from "classnames";
+import { Range } from 'slate';
+
+import { isImageSelected, isTextSelected } from '../helpers';
 import css from './Toolbar.module.scss';
+import type { VirtualElement } from '@popperjs/core/lib/popper';
 
 interface ToolbarProps {
-    editor: Editor;
-    plugins: Plugins;
+    editor: any;
+    plugins?: any;
+    children: any;
+    isImage?: boolean;
+    isTable?: boolean;
+    placement?: 'top' | 'bottom' | 'right' | 'left' | 'auto';
 }
 
-export class Toolbar extends React.Component<ToolbarProps> {
-    static contextType = UuiContext;
+export function Toolbar(props: ToolbarProps): any {
+    const ref = useRef<HTMLElement | null>();
+    const editor = usePlateEditorState();
+    const inFocus = isEditorFocused(editor);
 
-    toolbar: HTMLElement | null;
-    private layer: LayoutLayer = null;
-    public context: { uuiLayout: LayoutContext };
+    const virtualReferenceElement = (): VirtualElement => ({
+        getBoundingClientRect(): DOMRect {
+            if(props.isTable) {
+                const [selectedNode] = findNode(editor, {
+                    at: Range.start(editor.selection),
+                    match: { type: getCellTypes(editor) },
+                });
 
-    constructor(props: ToolbarProps, context: { uuiLayout: LayoutContext }) {
-        super(props);
-        this.layer = context.uuiLayout && context.uuiLayout.getLayer();
-    }
+                const domNode = toDOMNode(editor, selectedNode);
+                return domNode.getBoundingClientRect();
+            }
 
-    componentWillUnmount() {
-        this.context.uuiLayout.releaseLayer(this.layer);
-    }
+            return getSelectionBoundingClientRect() as DOMRect;
+        },
+    });
 
-    virtualReferenceElement() {
-        return {
-            clientWidth: this.toolbar?.getBoundingClientRect().width,
-            clientHeight: this.toolbar?.getBoundingClientRect().height,
-            getBoundingClientRect() {
-                const native = window.getSelection();
-                const range = native.getRangeAt(0);
-                return range.getBoundingClientRect();
-            },
-        };
-    }
-
-    renderButton = (Button: React.ComponentType<{ editor: Editor }>, index: number) => {
-        return <Button editor={ this.props.editor } key={ `toolbar-button-${index}` } />;
-    }
-
-    render() {
-        if (!this.props.editor) return null;
-
-        return (
-            <Portal>
-                { isTextSelected(this.props.editor) && (
-                    <Popper
-                        referenceElement={ this.virtualReferenceElement() }
-                        placement='top'
-                        modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }
-                    >
-                        { props => (
-                            <div
-                                onMouseDown={ e => e.preventDefault() }
-                                className={ css.container }
-                                style={ { ...props.style, zIndex: this.layer.zIndex } }
-                                ref={ node => {
-                                    this.toolbar = node;
-                                    (props.ref as React.RefCallback<HTMLDivElement>)(node);
-                                } }
-                            >
-                                { flatten(this.props.plugins).map((plugin: any) => plugin.toolbarButtons
-                                    && plugin.toolbarButtons.map((button: any, index: number) => this.renderButton(button, index))) }
-                            </div>
-                        ) }
-                    </Popper>
-                ) }
-            </Portal>
-        );
-    }
+    return (
+        <Portal>
+            { (props.isImage ? isImageSelected(editor) : props.isTable || isTextSelected(editor, inFocus)) && (
+                <Popper
+                    referenceElement={ virtualReferenceElement() }
+                    placement={ props.placement || 'top' }
+                    modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }
+                >
+                    { popperProps => (
+                        <div
+                            onMouseDown={ e => e.preventDefault() }
+                            className={ cx(css.container, 'slate-prevent-blur') }
+                            style={ { ...popperProps.style, zIndex: 50 } }
+                            ref={ node => {
+                                ref.current = node;
+                                (popperProps.ref as React.RefCallback<HTMLDivElement>)(node);
+                            } }
+                        >
+                            { props.children }
+                        </div>
+                    ) }
+                </Popper>
+            ) }
+        </Portal>
+    );
 }
