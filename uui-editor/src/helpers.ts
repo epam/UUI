@@ -1,8 +1,9 @@
-import flatten from 'lodash.flatten';
-import Html from 'slate-html-serializer';
-import { Editor } from "slate-react";
-import { Block, Text as SlateText, Value } from "slate";
-
+// import flatten from 'lodash.flatten';
+// import Html from 'slate-html-serializer';
+import { useSlate, useFocused } from "slate-react";
+import { Range, Editor } from 'slate';
+import { getPlugins, usePlateEditorState } from "@udecode/plate";
+//
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {
         const block = blockTags[el.tagName.toLowerCase()];
@@ -30,33 +31,48 @@ export function getMarkDeserializer(marks: Record<string, string>) {
         }
     };
 }
+//
+// export function getSerializer(plugins: any) {
+//     let rules: any = [];
+//     flatten(plugins).map((plugin: any) => {
+//         plugin.serializers && plugin.serializers.map((serializer: any) => {
+//             rules.push({
+//                 deserialize: serializer,
+//             });
+//         });
+//     });
+//     return new Html({ rules: rules });
+// }
+//
+export function isTextSelected(editor: any, inFocus: boolean) {
+    const { selection } = editor;
 
-export function getSerializer(plugins: any) {
-    let rules: any = [];
-    flatten(plugins).map((plugin: any) => {
-        plugin.serializers && plugin.serializers.map((serializer: any) => {
-            rules.push({
-                deserialize: serializer,
-            });
-        });
-    });
-    return new Html({ rules: rules });
+    return !(!selection || !inFocus || Range.isCollapsed(selection) || Editor.string(editor, selection) === '');
 }
 
-export function isTextSelected(editor: Editor) {
-    return editor && !(editor.value.selection.isBlurred || editor.value.selection.isCollapsed || editor.value.fragment.text === '');
+export function isImageSelected(editor: any) {
+    const { selection, getFragment } = editor;
+    const node = getFragment()[0]?.type;
+    return selection && node === 'image';
 }
 
-export const isEditorEmpty = (value: Value) => {
-    const blocks: Block[] = value.get('document').get('nodes').toArray();
+export function isPluginActive(key: string): boolean {
+    const editor = usePlateEditorState();
+    const plugins = getPlugins(editor);
+    return plugins.some(plugin => plugin.key === key);
+}
 
-    if (blocks.length === 1 && blocks[0].get('type') === 'paragraph') {
-        const nodes: SlateText[] = blocks[0].get('nodes').toArray();
-
-        if (nodes.length === 1 && nodes[0].get('text') === '') {
-            return true;
-        }
-    }
-
-    return false;
-};
+//
+// export const isEditorEmpty = (value: Value) => {
+//     const blocks: Block[] = value.get('document').get('nodes').toArray();
+//
+//     if (blocks.length === 1 && blocks[0].get('type') === 'paragraph') {
+//         const nodes: SlateText[] = blocks[0].get('nodes').toArray();
+//
+//         if (nodes.length === 1 && nodes[0].get('text') === '') {
+//             return true;
+//         }
+//     }
+//
+//     return false;
+// };

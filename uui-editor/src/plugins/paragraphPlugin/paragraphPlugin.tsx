@@ -1,26 +1,19 @@
 import * as React from 'react';
-import { Editor as CoreEditor } from "slate";
-import { RenderBlockProps } from "slate-react";
-import { getBlockDesirialiser } from '../../helpers';
+import { createParagraphPlugin, ELEMENT_DEFAULT } from "@udecode/plate";
 
+export const PARAGRAPH_TYPE = 'paragraph';
 export const paragraphPlugin = () => {
-    const renderBlock = (props: RenderBlockProps, editor: CoreEditor, next: () => any) => {
-        switch (props.node.type) {
-            case 'paragraph':
-                return <p { ...props.attributes }>{ props.children }</p>;
-            default:
-                return next();
-        }
-    };
+    return createParagraphPlugin({
+        type: PARAGRAPH_TYPE,
+        overrideByKey: {
+            [ELEMENT_DEFAULT]: {
+                component: (props): JSX.Element => {
+                    const { attributes, children } = props;
 
-    return {
-        renderBlock,
-        serializers: [paragraphDesializer],
-    };
+                    return <p { ...attributes }>{ children }</p>;
+                },
+                type: PARAGRAPH_TYPE,
+            }
+        },
+    })
 };
-
-const PARAGRAPH_TAG: any = {
-    p: 'paragraph',
-};
-
-const paragraphDesializer = getBlockDesirialiser(PARAGRAPH_TAG);

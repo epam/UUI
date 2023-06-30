@@ -1,21 +1,23 @@
 import * as React from 'react';
-import { RenderBlockProps } from "slate-react";
-import css from './NotePluginBlock.module.scss';
 import cx from 'classnames';
 
-export interface NotePluginBlockProps extends RenderBlockProps {
-    type?: 'warning' | 'error' | 'link' | 'quote';
+import { StyledElementProps } from '@udecode/plate';
+
+import css from './NotePluginBlock.module.scss';
+
+interface NotePluginBlock extends StyledElementProps {
+    type: string;
 }
 
-export class NotePluginBlock extends React.Component<NotePluginBlockProps> {
+export function NotePluginBlock(props: NotePluginBlock) {
 
-    render() {
-        const { attributes } = this.props;
+    const { attributes, type, children } = props;
 
-        return <div { ...attributes } className={ cx(css.wrapper, css[this.props.type]) }>
+    return (
+        <div { ...attributes } className={ cx(css.wrapper, css[type]) }>
             <div className={ css.content }>
-                { this.props.children }
+                { children }
             </div>
-        </div>;
-    }
+        </div>
+    );
 }

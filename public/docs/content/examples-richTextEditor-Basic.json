@@ -1,194 +1,88 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": "Rich Text Editor is a powerful content editor, styled to match UI, and extensible to host any React component."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Rich Text Editor is based on Slate.JS — the framework to build such editors. Read more on "
+      },
+      {
+        "data": {
+          "url": "https://docs.slatejs.org/"
+        },
+        "type": "link",
+        "url": "https://docs.slatejs.org/",
+        "children": [
           {
-            "object": "text",
-            "text": "Rich Text Editor is a powerful content editor, styled to match UI, and extensible to host any React component.",
-            "marks": []
+            "text": "Slate.JS"
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": " documentation site."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI RichTextEditor is built on top of Slate to bring UUI styles, add our extensions, panels to interact with, and to wrap them with convenient API."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-error",
+    "children": [
+      {
+        "text": "This component doesn't have dependencies on skin packages and uses a skinManager approach to get components from your app skin. So it's required to pass the "
+      },
+      {
+        "text": "skinContext",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop into "
+      },
+      {
+        "data": {
+          "url": "/documents?category=contexts&id=contextProvider&"
+        },
+        "type": "link",
+        "url": "/documents?category=contexts&id=contextProvider&",
+        "children": [
           {
-            "object": "text",
-            "text": "Rich Text Editor is based on Slate.JS — the framework to build such editors. Read more on ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://docs.slatejs.org/"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "Slate.JS",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " documentation site.",
-            "marks": []
+            "text": "ContextProvider"
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "UUI RichTextEditor is built on top of Slate to bring UUI styles, add our extensions, panels to interact with, and to wrap them with convenient API.",
-            "marks": []
-          }
-        ]
+        "text": ". You can import skinContext object from your skin package.\n\nAlso, it's required to import CCS from the editor package. Please add the following code to your app entry file: \n"
       },
       {
-        "object": "block",
-        "type": "note-error",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "This component doesn't have dependencies on skin packages and uses a skinManager approach to get components from your app skin. So it's required to pass the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "skinContext",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop into ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "/documents?category=contexts&id=contextProvider&"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "ContextProvider",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ". You can import skinContext object from your skin package.\n\nAlso, it's required to import CCS from the editor package. Please add the following code to your app entry file: \n",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "import '@epam/uui-editor/styles.css';",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          }
-        ]
-      },
+        "text": "import '@epam/uui-editor/styles.css';",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-warning",
+    "children": [
       {
-        "object": "block",
-        "type": "note-warning",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Slate works with its own JSON-based content format. That allows it to be robust and flexible, but apps need to carefully consider that before using it.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "When you manipulate with the server-side use ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "value.toJSON()",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "Value.fromJSON(value)",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " functions from ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "slate",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " package, to convert the slate state to a JSON model and vice versa.",
-            "marks": []
-          }
-        ]
+        "text": "Slate works with its own JSON-based content format. That allows it to be robust and flexible, but apps need to carefully consider that before using it."
       }
     ]
   }
-}
+]

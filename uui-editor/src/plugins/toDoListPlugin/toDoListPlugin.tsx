@@ -1,89 +1,81 @@
-import { Editor, RenderBlockProps } from "slate-react";
-import { Block, Editor as CoreEditor, KeyUtils } from "slate";
-import { ToDoItem } from "./ToDoItem";
-import * as React from "react";
-import { ReactComponent as CheckboxListIcon } from "../../icons/to-do.svg";
-import { ToolbarButton } from "../../implementation/ToolbarButton";
+import React from 'react';
+
+import {
+    getPluginType,
+    BlockToolbarButton,
+    PlateEditor,
+    getBlockAbove,
+    createTodoListPlugin,
+    ELEMENT_TODO_LI,
+    getAboveNode,
+    insertEmptyElement,
+    deleteForward,
+    deleteBackward,
+} from '@udecode/plate';
+
+import { ToolbarButton } from '../../implementation/ToolbarButton';
+import { isPluginActive } from '../../helpers';
+
+import { ReactComponent as ToDoIcon } from '../../icons/to-do.svg';
+
+import { ToDoItem } from './ToDoItem';
+import { getBlockAboveByType } from '../../utils/getAboveBlock';
+import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
+
+const TODO_ELEMENT_KEY = 'toDoItem';
 
 export const toDoListPlugin = () => {
-    const renderBlock = (props: RenderBlockProps, editor: CoreEditor, next: () => any) => {
-        switch (props.node.type) {
-            case 'toDoItem':
-                return <ToDoItem { ...props } />;
-            default:
-                return next();
+    // TODO: implement withOverrides for toggling between lists and todo lists
+    return createTodoListPlugin({
+        overrideByKey: {
+            [ELEMENT_TODO_LI]: {
+                type: TODO_ELEMENT_KEY,
+                component: ToDoItem,
+                handlers: {
+                    onKeyDown: (editor) => (e) => {
+                        if (!getBlockAboveByType(editor, [TODO_ELEMENT_KEY])) return;
+
+                        if (e.key === 'Enter') {
+                            const [entries] = getAboveNode(editor);
+                            const textExist = entries.children.some(item => !!item.text);
+                            if (!textExist) {
+                                deleteForward(editor);
+                                insertEmptyElement(editor, PARAGRAPH_TYPE);
+                            }
+                        }
+
+                        // for smooth remove, replaces checkbox element with empty paragraph
+                        if (e.key === 'Backspace') {
+                            deleteBackward(editor);
+                            insertEmptyElement(editor, PARAGRAPH_TYPE);
+                            return true;
+                        }
+                    },
+                },
+            }
         }
-    };
-
-    const onKeyDown = (event: KeyboardEvent, editor: CoreEditor, next: () => any) => {
-        const { value } = editor;
-
-        if (event.key === "Enter" && value.startBlock.type === "toDoItem" && editor.value.anchorBlock.text.length === 0) {
-            return editor.setBlocks("paragraph");
-        }
-
-        if (event.key === "Enter" && !event.shiftKey && value.startBlock.type === "toDoItem") {
-            return editor.splitBlock().setBlocks({ data: { checked: false }, type: "toDoItem" });
-        }
-
-        if (event.key === "Backspace" && value.selection.isCollapsed && value.startBlock.type === "toDoItem" && value.selection.start.offset === 0) {
-            return editor.setBlocks("paragraph");
-        }
-
-        if (new RegExp(/^\[]$/).test(value.anchorBlock.text)) {
-            editor.moveToRangeOfNode(value.anchorBlock).delete();
-            return addToDo(editor);
-        }
-
-        return next();
-    };
-
-    return {
-        renderBlock,
-        onKeyDown,
-        commands: {
-            addToDo,
-        },
-        sidebarButtons: [ToDoItemToolbarButton],
-    };
-};
-
-const addToDo = (editor: Editor | CoreEditor) => {
-    const newToDoItem = Block.create({
-        object: "block",
-        type: "toDoItem",
-        key: KeyUtils.create(),
-        data: {
-            checked: false,
-        },
-        nodes: [{ text: "", object: "text" }],
     });
-
-    editor.setBlocks(newToDoItem);
-    // TODO: fix bug with focus
-    // editor.focus();
 };
 
-const isTodo = (editor: Editor) => {
-    return editor.value.anchorBlock.type == "toDoItem";
-};
+interface ToolbarButton {
+    editor: PlateEditor;
+}
 
+export const ToDoListButton = ({ editor }: ToolbarButton) => {
+    if (!isPluginActive(ELEMENT_TODO_LI)) return null;
 
-const ToDoItemToolbarButton = (props: { editor: Editor }) => {
-    const onClick = () => {
-        if (props.editor.value.anchorBlock.type === "list-item-child") {
-            const listType = (props.editor as any).isList("ordered-list")
-                ? "ordered-list"
-                : "unordered-list";
-            (props.editor as any).toggleList({ type: listType });
+    const block = getBlockAbove(editor);
 
-            addToDo(props.editor);
-            return;
-        }
-
-        isTodo(props.editor)
-            ? props.editor.setBlocks("paragraph")
-            : addToDo(props.editor);
-    };
-    return <ToolbarButton isActive={ isTodo(props.editor) } icon={ CheckboxListIcon } onClick={ onClick }/>;
+    return (
+        <BlockToolbarButton
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
+            type={ getPluginType(editor, ELEMENT_TODO_LI) }
+            actionHandler='onMouseDown'
+            icon={ <ToolbarButton
+                onClick={ () => {} }
+                icon={ ToDoIcon }
+                isActive={ !!editor?.selection && block?.length && block[0].type === ELEMENT_TODO_LI }
+            /> }
+        />
+    );
 };
