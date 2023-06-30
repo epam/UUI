@@ -130,7 +130,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     setValue = (value: PickerBodyValue<RangeDatePickerValue>) => {
         (this.props.value?.from !== value.selectedDate?.from || this.props.value.to !== value.selectedDate.to) && this.handleValueChange(value.selectedDate);
         const formatInputValue = toCustomDateRangeFormat(value.selectedDate, this.getFormat());
-        this.setState({ ...this.state, inputValue: formatInputValue, ...value });
+        this.setState((state) => ({ ...state, inputValue: formatInputValue, ...value }));
     };
 
     getDisplayedDateOnOpening(focus: RangeDatePickerInputType) {
@@ -162,12 +162,14 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     };
 
     onRangeChange = (value: PickerBodyValue<RangeDatePickerValue>) => {
-        const isFromValueChanged = this.props.value.from != value.selectedDate.from;
-        const isToValueChanged = this.props.value.to != value.selectedDate.to;
+        const isFromValueChanged = this.props.value.from !== value.selectedDate.from;
+        const isToValueChanged = this.props.value.to !== value.selectedDate.to;
         if (this.state.inFocus === 'from' && isFromValueChanged) {
-            this.setState({ inFocus: 'to' }, () => this.setValue(value));
+            this.setState({ inFocus: 'to' });
+            this.setValue(value);
         } else if (this.state.inFocus === 'to' && isToValueChanged) {
-            this.setState({ inFocus: 'from' }, () => this.setValue(value));
+            this.setState({ inFocus: 'from' });
+            this.setValue(value);
         } else {
             this.setValue(value);
         }
