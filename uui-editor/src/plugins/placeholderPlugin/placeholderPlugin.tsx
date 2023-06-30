@@ -1,11 +1,24 @@
-import { Editor, RenderInlineProps } from "slate-react";
-import { Editor as CoreEditor } from "slate";
-import * as React from "react";
+import React from 'react';
+import { Dropdown } from '@epam/uui-components';
+
+import {
+    createPluginFactory,
+    getPluginOptions,
+    PlateEditor,
+    insertElements,
+    ToolbarButton as PlateToolbarButton,
+} from "@udecode/plate";
+
+import { isPluginActive, isTextSelected } from '../../helpers';
+
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import { isTextSelected } from '../../helpers';
+
 import { PlaceholderBlock } from './PlaceholderBlock';
-import { Dropdown } from "@epam/uui-components";
+
 import css from './PlaceholderPlugin.module.scss';
+
+const KEY = 'placeholder';
+const noop = () => {};
 
 export interface PlaceholderPluginParams {
     items: {
@@ -15,29 +28,47 @@ export interface PlaceholderPluginParams {
 }
 
 export const placeholderPlugin = (params: PlaceholderPluginParams) => {
-    const renderInline = (props: RenderInlineProps, editor: CoreEditor, next: () => any) => {
-        switch (props.node.type) {
-            case 'placeholder':
-                return <PlaceholderBlock { ...props } />;
-            default:
-                return next();
-        }
-    };
+    const createPlaceholderPlugin = createPluginFactory({
+        key: KEY,
+        isElement: true,
+        isInline: true,
+        isVoid: true,
+        options: {
+            params,
+        },
+        component: PlaceholderBlock,
+    });
 
-    const onKeyDown = (event: KeyboardEvent, editor: Editor, next: () => any) => {
+    return createPlaceholderPlugin();
+};
 
-        if (event.keyCode == 13 && editor.value.focusBlock.type === 'placeholder') {
-            return (editor as any).insertEmptyBlock(editor);
-        }
+interface IPlaceholderButton {
+    editor: PlateEditor;
+}
 
-        next();
-    };
+export const PlaceholderButton = ({ editor }: IPlaceholderButton): any => {
 
-    const renderDropdownBody = (editor: Editor) => {
+    if (!isPluginActive(KEY)) return null;
+    const { params }: { params: PlaceholderPluginParams } = getPluginOptions(editor, KEY);
+
+    const renderDropdownBody = () => {
         return (
             <div className={ css.dropdownContainer }>
                 { params.items.map(i =>
-                    <div className={ css.dropdownItem } onClick={ () => editor.insertInline((editor as any).createInline(i, 'placeholder')) }>
+                    <div className={ css.dropdownItem }
+                        key={ i.name }
+                        onMouseDown={ (event) => {
+                            event.preventDefault();
+                            insertElements(
+                                editor,
+                                {
+                                    data: i,
+                                    type: 'placeholder',
+                                    children: [{ text: '' }],
+                                },
+                            )
+                        } }
+                    >
                         { i.name }
                     </div>,
                 ) }
@@ -45,25 +76,28 @@ export const placeholderPlugin = (params: PlaceholderPluginParams) => {
         );
     };
 
-    const InsertPlaceholderButton = (props: { editor: Editor }) => {
-        return (
-            <Dropdown
-                renderTarget={ (targetProps) => <ToolbarButton
-                    caption='Insert Placeholder'
-                    isDisabled={ isTextSelected(props.editor) }
-                    { ...targetProps }
-                /> }
-                renderBody={ () => renderDropdownBody(props.editor) }
-                placement='top-start'
-                modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
-            />
-        );
-    };
-
-    return {
-        renderInline,
-        onKeyDown,
-        sidebarButtons: [InsertPlaceholderButton],
-    };
+    return (
+        <Dropdown
+            renderTarget={ (props) => (
+                <PlateToolbarButton
+                    styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
+                    active={ true }
+                    onMouseDown={
+                        editor
+                            ? (e) => e.preventDefault()
+                            : undefined
+                    }
+                    icon={ <ToolbarButton
+                        onClick={ noop }
+                        caption={ <div style={ { height: 42, display: 'flex', alignItems: 'center' } }>Insert Placeholder</div> }
+                        isDisabled={ isTextSelected(editor, true) }
+                        { ...props }
+                    /> }
+                />
+            ) }
+            renderBody={ renderDropdownBody }
+            placement='top-start'
+            modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
+        />
+    );
 };
-
