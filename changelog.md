@@ -1,3 +1,44 @@
+# 5.1.0 - 29.06.2023
+
+**What's New**
+
+**Rich Text Editor component update and improvements**
+
+UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework. 
+During the update the previous code based of RTE was almost fully rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users and update to the new version of `uui-editor` package should be seamless and easy. 
+
+List of changes:
+* [Breaking change]: Changed RTE value format, now it's works with array instead of immutable.js object. Also, there are some additional changes inside slate value structure. 
+We make an automatic migration from old state format to the new one, so it's not required any additional actions from your side. But if you make some manipulations with value object on your side, it will cause issues, contact us if you faced with such case.
+* Regarding the new value format it's not needed to convert value to JSON via `value.toJSON()` and `Value.fromJSON(value)` in your code.
+
+* Added possibility to add caption for images
+* Added possibility to insert new line after image/video/iframe
+* Added images adjusting when width of RTE container is changing
+* Added support of different spell checking extensions, like Grammarly
+* Now visited links doesn't highlight with visited style in edit mode
+* Long links now fit table cell width
+* Improved content copying from Microsoft Word files
+* Added autofocus on input in 'Add Link' modal
+* A lot of issues and improvements from Slate.js version update
+* Fixed page crash after delete horizontal line/separator
+* Fixed adding list inside table
+* Fixed text selection breaks if mouse cursor lands on toolbar
+* Fixed reverse text in list in Safari
+* Fixed color bar closing by color click
+* Fixed sticky toolbar disappears after selecting any options in it in Safari
+* Fixed link replacement without first deleting it
+* Fixed error after setting list on empty line
+* Fixed error after inserting a list previously cut from the editor
+
+
+**What's Fixed**
+* [PickerInput]: disabled 'Clear' button in footer in case when `disableClear` prop is `true`
+* [TimePickerBody]: fixed the bug where `minutes` values that are not a multiple of  `minutesStep`, are not rounded up to a `step`
+* [TextInput]: fixed incorrectly text color in disabled state in Safari
+* [useTableState]: fixed checked state overriding to the initial value
+
+
 # 5.0.1 - 13.06.2023
 
 **What's New**
