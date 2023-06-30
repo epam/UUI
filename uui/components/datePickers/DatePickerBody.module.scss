@@ -1,7 +1,11 @@
 @use  '../../assets/styles/index.scss' as *;
 
 .root {
-    min-height: 312px;
+    min-height: 300px;
+
+    &:global(.uui-datepickerBody-wrapper) {
+        padding: 0 18px 12px;
+    }
 
     // DatePickerBase style
     :global(.uui-datepicker-container) {
@@ -12,51 +16,6 @@
     :global(.uui-datepickerheader-header) {
         padding-top: 18px;
         padding-bottom: 6px;
-    }
-
-    :global(.uui-datepickerBody-wrapper) {
-        padding: 0 18px 12px;
-    }
-
-    :global(.uui-datepickerheader-nav-title) {
-        font-family: var(--uui-dtp_header-font);
-        font-weight: var(--uui-dtp_header-font-weight, normal);
-        color: var(--uui-dtp-text-selected);
-        font-size: 14px;
-        padding: 3px 10px;
-
-        &:hover {
-            background-color: var(--uui-dtp-title-bg-hover);
-            cursor: pointer;
-        }
-
-        &:focus {
-            outline: none;
-        }
-    }
-
-    :global(.uui-datepickerheader-nav-icon-right), :global(.uui-datepickerheader-nav-icon-left) {
-        fill: var(--uui-dtp-next-prev-icon);
-        width: 36px;
-        height: 36px;
-        align-items: center;
-
-        &:hover {
-            cursor: pointer;
-            background-color: var(--uui-dtp-next-prev-icon-bg-hover);
-        }
-
-        &:focus {
-            outline: none;
-        }
-    }
-
-    :global(.uui-datepickerheader-nav-icon-right) {
-        transform: rotate(-90deg);
-    }
-
-    :global(.uui-datepickerheader-nav-icon-left) {
-        transform: rotate(90deg);
     }
 
     // Month and Year selection styles

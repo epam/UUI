@@ -2,13 +2,12 @@ import React, { useMemo } from 'react';
 import {
     FiltersPanel, DataTable, Panel, FlexRow, Text, Badge, EpamAdditionalColor,
 } from '@epam/promo';
-import { defaultPredicates } from '@epam/uui';
+import { defaultPredicates, rangeDatePickerPresets } from '@epam/uui';
 import {
     DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext,
 } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import dayjs from 'dayjs';
-import { rangeDatePickerPresets } from '@epam/uui-components';
 
 const personColumns: DataColumnProps<Person, number>[] = [
     {

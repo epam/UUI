@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RangeDatePicker, FlexRow, Text } from '@epam/promo';
-import { rangeDatePickerPresets, RangeDatePickerValue } from '@epam/uui-components';
+import { rangeDatePickerPresets, RangeDatePickerValue } from '@epam/uui';
 import dayjs from 'dayjs';
 import css from './PresetsAndFooter.module.scss';
 
@@ -28,13 +28,13 @@ export default function DatePickerBaseExample() {
                         },
                     },
                 } }
-                renderFooter={ (value: RangeDatePickerValue) => (
+                renderFooter={ (footerValue: RangeDatePickerValue) => (
                     <div className={ css.container }>
                         <FlexRow padding="24">
                             <Text>
                                 Range days count:
                                 {' '}
-                                {getRangeLength(value)}
+                                {getRangeLength(footerValue)}
                             </Text>
                         </FlexRow>
                     </div>

@@ -116,7 +116,6 @@
     --uui-primary: var(--blue);
     --uui-primary-light: var(--blue-light);
     --uui-primary-lightest: var(--blue-lightest);
-    --uui-primary-halftone: var(--blue-lightest); // TODO: why we have that?
     --uui-primary-dark: var(--blue-dark);
     --uui-primary-darkest: var(--blue-darkest);
 
@@ -298,13 +297,9 @@
 
     /*  DatePicker vars   */
     --uui-dtp-title-bg: var(--uui-control-bg);
-    --uui-dtp-title-bg-hover: var(--uui-primary-halftone);
     --uui-dtp-text-selected: var(--uui-control-border-checked);
     --uui-dtp-text: var(--uui-control-text);
-    --uui-dtp-next-prev-icon: var(--uui-icon);
-    --uui-dtp-next-prev-icon-bg-hover: var(--uui-secondary-lightest);
 
-    --uui-dtp_header-font: var(--font-semibold);
     --uui-dtp_body-content-font: var(--font-regular);
 
     /*  RangeDatePicker vars   */

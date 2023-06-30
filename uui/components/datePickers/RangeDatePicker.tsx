@@ -3,8 +3,11 @@ import cx from 'classnames';
 import {
     IDropdownToggler, uuiMod, BaseRangeDatePickerProps, DropdownBodyProps,
 } from '@epam/uui-core';
-import { RangeDatePickerValue, BaseRangeDatePicker } from '@epam/uui-components';
-import { DropdownContainer, FlexRow, SizeMod } from '../index';
+import { RangeDatePickerValue } from '@epam/uui-core';
+import { BaseRangeDatePicker } from '@epam/uui-components';
+import { DropdownContainer } from '../overlays';
+import { FlexRow } from '../layout';
+import { SizeMod } from '../types';
 import { RangeDatePickerBody } from './RangeDatePickerBody';
 import { TextInput } from '../inputs';
 import { systemIcons } from '../../icons/icons';
