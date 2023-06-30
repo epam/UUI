@@ -7,4 +7,16 @@ export class PickerModalTestObject extends PickerTestObject {
         const input = await within(modal).findByPlaceholderText('Type text for quick search');
         return input;
     }
+
+    static async closeModal() {
+        const modal = await this.findDialog('modal');
+        const closeButton = await within(modal).findByRole('button', { name: 'Close modal' });
+        fireEvent.click(closeButton);
+    }
+
+    static async selectItems() {
+        const modal = await this.findDialog('modal');
+        const selectButton = within(modal).getByRole('button', { name: 'Select' });
+        fireEvent.click(selectButton);
+    }
 }

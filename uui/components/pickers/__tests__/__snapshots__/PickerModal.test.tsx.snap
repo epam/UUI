@@ -75,6 +75,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           }
         >
           <button
+            aria-label="Close modal"
             className="container uui-button-box uui-enabled -clickable icon-button-default root"
             onClick={[Function]}
             tabIndex={0}
@@ -468,6 +469,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
           }
         >
           <button
+            aria-label="Close modal"
             className="container uui-button-box uui-enabled -clickable icon-button-default root"
             onClick={[Function]}
             tabIndex={0}
@@ -1468,6 +1470,7 @@ exports[`PickerModal should open body 1`] = `
     />
     <div
       class="container modalBlocker"
+      style="z-index: 2000;"
     >
       <div
         class="uui-modal-blocker"
@@ -1502,6 +1505,7 @@ exports[`PickerModal should open body 1`] = `
               style="min-width: 0; flex-shrink: 0; flex-basis: auto;"
             >
               <button
+                aria-label="Close modal"
                 class="container uui-button-box uui-enabled -clickable icon-button-default root"
                 tabindex="0"
                 type="button"
