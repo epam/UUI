@@ -47,7 +47,7 @@ describe('PickerModal', () => {
                 selectionMode="multi"
                 initialValue={ [] }
                 isActive
-                getName={ (item) => item.level }
+                getName={ (item) => item?.level ?? '' }
                 filter={ (item: any) => item.level === 'A1' }
                 sorting={ { direction: 'desc', field: 'level' } }
             />,
