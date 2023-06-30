@@ -34,6 +34,7 @@ export default function StyledColumnsExample() {
                 width: 200,
                 fix: 'left',
                 isSortable: true,
+                info: 'Person full name',
             }, {
                 key: 'profileStatus',
                 caption: 'Profile Status',
@@ -47,6 +48,7 @@ export default function StyledColumnsExample() {
                 minWidth: 80,
                 isSortable: true,
                 alignSelf: 'center',
+                info: 'Person Status according his work profile',
             }, {
                 key: 'salary',
                 caption: 'Salary',
@@ -54,6 +56,7 @@ export default function StyledColumnsExample() {
                 isSortable: true,
                 width: 100,
                 textAlign: 'right',
+                info: 'Salary sum for the last year',
             }, {
                 key: 'jobTitle',
                 caption: 'Title',
@@ -61,12 +64,14 @@ export default function StyledColumnsExample() {
                 width: 200,
                 grow: 1,
                 isSortable: true,
+                info: 'Job full description',
             }, {
                 key: 'detailed',
                 render: () => {},
                 width: 54,
                 alignSelf: 'center',
                 fix: 'right',
+                info: 'detailed description',
             },
         ],
         [],
