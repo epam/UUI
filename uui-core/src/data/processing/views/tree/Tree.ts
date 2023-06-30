@@ -42,13 +42,13 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
         return (i: TItem) => searchFilter(getSearchFields(i));
     }
 
-    private buildSorter<TFilter>({ sorting, sortBy }: ApplySortOptions<TItem, TId, TFilter>) {
+    private buildSorter<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) {
         const compareScalars = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
         const comparers: ((a: TItem, b: TItem) => number)[] = [];
 
-        if (sorting) {
-            sorting.forEach((sortingOption) => {
-                const sortByFn = sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] || '');
+        if (options.sorting) {
+            options.sorting.forEach((sortingOption) => {
+                const sortByFn = options.sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] || '');
                 const sign = sortingOption.direction === 'desc' ? -1 : 1;
                 comparers.push((a, b) => sign * compareScalars(sortByFn(a, sortingOption) + '', sortByFn(b, sortingOption) + ''));
             });
