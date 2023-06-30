@@ -73,7 +73,21 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                 {!!amountPinned && (
                     <FlexRow cx={ styles.groupItems } size="30">
                         {groupedColumns.displayedPinned.map((c) => (
-                            <ColumnRow column={ c } key={ c.key } />
+                            <ColumnRow
+                                renderItem={ () => (
+                                    <FlexRow>
+                                        <span>{c.caption}</span>
+                                        { c.info && (
+                                            <span style={ { fontSize: '10px', marginTop: '2px', marginLeft: '3px', color: 'gray' } }>
+                                                {' / from \'renderItem\''}
+                                                { c.info }
+                                            </span>
+                                        ) }
+                                    </FlexRow>
+                                ) }
+                                column={ c }
+                                key={ c.key }
+                            />
                         ))}
                     </FlexRow>
                 )}
