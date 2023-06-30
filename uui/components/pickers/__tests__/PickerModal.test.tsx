@@ -1,15 +1,21 @@
 import React from 'react';
-import { ArrayDataSource } from '@epam/uui-core';
 import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { PickerModal } from '../PickerModal';
+import { mockDataSource } from './mocks';
 
-const languageLevels = [
-    { id: 2, level: 'A1' }, { id: 3, level: 'A1+' }, { id: 4, level: 'A2' }, { id: 5, level: 'A2+' }, { id: 6, level: 'B1' }, { id: 7, level: 'B1+' }, { id: 8, level: 'B2' }, { id: 9, level: 'B2+' }, { id: 10, level: 'C1' }, { id: 11, level: 'C1+' }, { id: 12, level: 'C2' },
-];
-
-const mockDataSource = new ArrayDataSource({
-    items: languageLevels,
-});
+jest.mock('react-popper', () => ({
+    ...jest.requireActual('react-popper'),
+    Popper: function PopperMock({ children }: any) {
+        return children({
+            ref: jest.fn,
+            update: jest.fn(),
+            style: {},
+            arrowProps: { ref: jest.fn },
+            placement: 'bottom-start',
+            isReferenceHidden: false,
+        });
+    },
+}));
 
 describe('PickerModal', () => {
     it('should be rendered correctly', async () => {
@@ -29,7 +35,7 @@ describe('PickerModal', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', async () => {
+    it('should be rendered correctly with maximum props', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <PickerModal
                 key="test"
