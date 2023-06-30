@@ -159,7 +159,6 @@
     --uui-primary: var(--sky);
     --uui-primary-light: var(--sky-light);
     --uui-primary-lightest: var(--sky-lightest);
-    --uui-primary-halftone: var(--night200);
     --uui-primary-dark: var(--sky-dark);
     --uui-primary-darkest: var(--sky-darkest);
 
@@ -339,13 +338,9 @@
 
     /*  DatePicker vars   */
     --uui-dtp-title-bg: var(--uui-control-bg);
-    --uui-dtp-title-bg-hover: var(--uui-primary-halftone);
     --uui-dtp-text-selected: var(--uui-control-border-checked);
     --uui-dtp-text: var(--uui-control-text);
-    --uui-dtp-next-prev-icon: var(--uui-icon);
-    --uui-dtp-next-prev-icon-bg-hover: var(--uui-secondary-lightest);
 
-    --uui-dtp_header-font: var(--font-semibold);
     --uui-dtp_body-content-font: var(--font-regular);
 
     /*  RangeDatePicker vars   */
