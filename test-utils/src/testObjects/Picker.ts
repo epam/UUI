@@ -1,4 +1,4 @@
-import { fireEvent, within, screen } from '../extensions/testingLibraryReactExt';
+import { fireEvent, within, screen, prettyDOM } from '../extensions/testingLibraryReactExt';
 
 export class PickerTestObject {
     static getOptions(props: { busy?: boolean, editMode?: string } = {}) {

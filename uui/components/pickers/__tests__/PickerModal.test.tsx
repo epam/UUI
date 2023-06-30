@@ -60,7 +60,7 @@ async function setupPickerModalForTest<TItem = TestItemType, TId = number>(param
                     })
                     .catch(() => {});
             }, [context.uuiModals, initialValue]);
-        
+
             return (
                 <>
                     <Button onClick={ handleModalOpening }></Button>
@@ -172,8 +172,53 @@ describe('PickerModal', () => {
             await waitFor(async () => 
                 expect(PickerModalTestObject.getOptions({ busy: false, editMode: 'modal' }).length).toBeGreaterThan(0));
 
-            const checkedOptions = await PickerModalTestObject.findSelectedOption({ editMode: 'modal' });
-            expect(checkedOptions).toEqual('C2');
+            const checkedOption = await PickerModalTestObject.findSelectedOption({ editMode: 'modal' });
+            expect(checkedOption).toEqual('C2');
+        });
+        
+        it('[valueType entity] should select & clear option', async () => {
+            const { dom } = await setupPickerModalForTest({
+                selectionMode: 'single',
+                valueType: 'entity',
+            });
+
+            // should not be selected if modal was closed and items were not selected
+            fireEvent.click(dom.toggler);
+            expect(screen.getByRole('modal')).toBeInTheDocument();
+            const optionC2_1 = await screen.findByText('C2');
+            fireEvent.click(optionC2_1);
+            
+            await PickerModalTestObject.closeModal();
+            expect(screen.queryByRole('modal')).not.toBeInTheDocument();
+
+            fireEvent.click(dom.toggler);
+            expect(screen.getByRole('modal')).toBeInTheDocument();
+    
+            await waitFor(async () => 
+                expect(PickerModalTestObject.getOptions({ busy: false, editMode: 'modal' }).length).toBeGreaterThan(0));
+
+            expect(await PickerModalTestObject.findSelectedOption({ editMode: 'modal' })).toBeUndefined();
+            
+            // should be selected and found after next opening the modal
+            const optionC2 = await screen.findByText('A1');
+            fireEvent.click(optionC2);
+            const checkedOption = await PickerModalTestObject.findSelectedOption({ editMode: 'modal' });
+            expect(checkedOption).toEqual('A1');
+
+            await act(async () => {
+                await PickerModalTestObject.selectItems();
+            });
+
+            expect(screen.queryByRole('modal')).not.toBeInTheDocument();
+
+            fireEvent.click(dom.toggler);
+            expect(screen.getByRole('modal')).toBeInTheDocument();
+    
+            await waitFor(async () => 
+                expect(PickerModalTestObject.getOptions({ busy: false, editMode: 'modal' }).length).toBeGreaterThan(0));
+
+            const checkedOption1 = await PickerModalTestObject.findSelectedOption({ editMode: 'modal' });
+            expect(checkedOption1).toEqual('A1');
         });
     });
 });

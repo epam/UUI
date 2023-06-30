@@ -141,6 +141,7 @@ export interface PickerListState<TId> extends PickerState {
 
 export interface UsePickerModalStateProps<TItem, TId> extends UsePickerStateProps {
     selection: TItem | TId | TId[] | TItem[];
+    selectionMode: 'single' | 'multi';
 }
 
 export interface PickerModalState<TItem, TId> extends PickerState {
