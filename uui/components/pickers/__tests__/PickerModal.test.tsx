@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { PickerModalTestObject, fireEvent, renderSnapshotWithContextAsync, screen, setupComponentForTest, waitFor } from '@epam/uui-test-utils';
 import { PickerModal, PickerModalProps } from '../PickerModal';
 import { mockDataSource, mockDataSourceAsync, mockSmallDataSource, mockSmallDataSourceAsync, TestItemType } from './mocks';
 import { Button, Modals } from '@epam/uui-components';
+import { UuiContext } from '@epam/uui-core';
+import { act } from 'react-dom/test-utils';
 
 jest.mock('react-popper', () => ({
     ...jest.requireActual('react-popper'),
@@ -23,7 +25,6 @@ async function setupPickerModalForTest<TItem = TestItemType, TId = number>(param
         (context): PickerModalProps<TItem, TId> => {
             if (params.selectionMode === 'single') {
                 return Object.assign({
-                    onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('initialValue', newValue)),
                     dataSource: mockDataSourceAsync,
                     disableClear: false,
                     searchPosition: 'input',
@@ -34,7 +35,6 @@ async function setupPickerModalForTest<TItem = TestItemType, TId = number>(param
             }
 
             return Object.assign({
-                onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('initialValue', newValue)),
                 dataSource: mockDataSourceAsync,
                 disableClear: false,
                 searchPosition: 'input',
@@ -44,11 +44,26 @@ async function setupPickerModalForTest<TItem = TestItemType, TId = number>(param
             }, params) as PickerModalProps<TItem, TId>;
         },
         (props) => {
-            const [showModal, setShowModal] = useState(false);
+            const [initialValue, onValueChange] = useState<any>(props.initialValue);
+            const context = useContext(UuiContext);
+            const handleModalOpening = useCallback(() => {
+                context.uuiModals
+                    .show((modalProps) => (
+                        <PickerModal
+                            { ...props }
+                            { ...modalProps }
+                            initialValue={ initialValue }
+                        />
+                    ))
+                    .then((newSelection) => {
+                        onValueChange(newSelection as any);
+                    })
+                    .catch(() => {});
+            }, [context.uuiModals, initialValue]);
+        
             return (
                 <>
-                    <Button onClick={ () => setShowModal((show) => !show) }></Button>
-                    { showModal && <PickerModal { ...props } /> }
+                    <Button onClick={ handleModalOpening }></Button>
                     <Modals />
                 </>
             );
@@ -116,5 +131,49 @@ describe('PickerModal', () => {
             expect(PickerModalTestObject.getOptions({ busy: false, editMode: 'modal' }).length).toBeGreaterThan(0));
 
         expect(result.baseElement).toMatchSnapshot();
+    });
+    
+    describe('[selectionMode single]', () => {
+        it('[valueType id] should select & clear option', async () => {
+            const { dom } = await setupPickerModalForTest({
+                selectionMode: 'single',
+            });
+
+            // should not be selected if modal was closed and items were not selected
+            fireEvent.click(dom.toggler);
+            expect(screen.getByRole('modal')).toBeInTheDocument();
+            const optionC2_1 = await screen.findByText('C2');
+            fireEvent.click(optionC2_1);
+            
+            await PickerModalTestObject.closeModal();
+            expect(screen.queryByRole('modal')).not.toBeInTheDocument();
+
+            fireEvent.click(dom.toggler);
+            expect(screen.getByRole('modal')).toBeInTheDocument();
+    
+            await waitFor(async () => 
+                expect(PickerModalTestObject.getOptions({ busy: false, editMode: 'modal' }).length).toBeGreaterThan(0));
+
+            expect(await PickerModalTestObject.findSelectedOption({ editMode: 'modal' })).toBeUndefined();
+            
+            // should be selected and found after next opening the modal
+            const optionC2 = await screen.findByText('C2');
+            fireEvent.click(optionC2);
+            
+            await act(async () => {
+                await PickerModalTestObject.selectItems();
+            });
+
+            expect(screen.queryByRole('modal')).not.toBeInTheDocument();
+
+            fireEvent.click(dom.toggler);
+            expect(screen.getByRole('modal')).toBeInTheDocument();
+    
+            await waitFor(async () => 
+                expect(PickerModalTestObject.getOptions({ busy: false, editMode: 'modal' }).length).toBeGreaterThan(0));
+
+            const checkedOptions = await PickerModalTestObject.findSelectedOption({ editMode: 'modal' });
+            expect(checkedOptions).toEqual('C2');
+        });
     });
 });

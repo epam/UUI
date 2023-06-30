@@ -50,7 +50,7 @@ export class ModalHeader extends React.Component<ModalHeaderProps> {
                 {this.props.onClose && <FlexSpacer />}
                 {this.props.onClose && (
                     <FlexCell shrink={ 0 } width="auto">
-                        <IconButton icon={ CrossIcon } onClick={ this.props.onClose } />
+                        <IconButton rawProps={ { 'aria-label': 'Close modal' } } icon={ CrossIcon } onClick={ this.props.onClose } />
                     </FlexCell>
                 )}
             </FlexRow>

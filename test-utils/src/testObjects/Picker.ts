@@ -24,11 +24,18 @@ export class PickerTestObject {
         return opts.map((o) => o.textContent?.trim());
     }
 
-    static async findCheckedOptions() {
-        const dialog = within(await this.findDialog());
+    static async findCheckedOptions(props: { editMode?: string } = {}) {
+        const dialog = within(await this.findDialog(props.editMode));
         return (await dialog.findAllByRole('option')).filter((opt) => {
             return (within(opt).getByRole('checkbox') as HTMLInputElement).checked;
         }).map((e) => e.textContent?.trim());
+    }
+
+    static async findSelectedOption(props: { editMode?: string } = {}) {
+        const dialog = within(await this.findDialog(props.editMode));
+        return (await dialog.findAllByRole('option')).filter((opt) => {
+            return (within(opt).queryByLabelText('Selected') as HTMLInputElement);
+        }).map((e) => e.textContent?.trim()).filter(Boolean)[0];
     }
 
     static async findUncheckedOptions() {
