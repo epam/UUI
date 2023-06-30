@@ -2,7 +2,7 @@
 
 exports[`DatePickerBody should be rendered correctly 1`] = `
 <div
-  className="uui-datepicker-container root root root root"
+  className="root uui-datepicker-container"
 >
   <div
     className="root size-36 daySelection container container align-items-top"
@@ -14,24 +14,24 @@ exports[`DatePickerBody should be rendered correctly 1`] = `
     }
   >
     <div
-      className="root size-36 pickerWrapper container align-items-center"
+      className="flexCell"
       style={
         Object {
-          "columnGap": undefined,
-          "rowGap": undefined,
+          "alignSelf": undefined,
+          "flexBasis": "auto",
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": undefined,
         }
       }
     >
       <div
-        className="flexCell"
+        className="root size-36 container align-items-center"
         style={
           Object {
-            "alignSelf": undefined,
-            "flexBasis": "auto",
-            "flexGrow": undefined,
-            "flexShrink": undefined,
-            "minWidth": 0,
-            "textAlign": undefined,
+            "columnGap": undefined,
+            "rowGap": undefined,
           }
         }
       >
@@ -48,7 +48,7 @@ exports[`DatePickerBody should be rendered correctly 1`] = `
             className="uui-datepicker-container fromPicker"
           >
             <div
-              className="root root uui-datepickerBody-wrapper fromPicker"
+              className="root uui-datepickerBody-wrapper fromPicker"
             >
               <div
                 className="container uui-datepickerheader-container"
@@ -101,7 +101,7 @@ exports[`DatePickerBody should be rendered correctly 1`] = `
                 </header>
               </div>
               <div
-                className="container uui-calendar-container"
+                className="container uui-calendar-container root"
               >
                 <div
                   className="uui-calendar-content"
@@ -626,7 +626,7 @@ exports[`DatePickerBody should be rendered correctly 1`] = `
             className="uui-datepicker-container toPicker"
           >
             <div
-              className="root root uui-datepickerBody-wrapper toPicker"
+              className="root uui-datepickerBody-wrapper toPicker"
             >
               <div
                 className="container uui-datepickerheader-container"
@@ -679,7 +679,7 @@ exports[`DatePickerBody should be rendered correctly 1`] = `
                 </header>
               </div>
               <div
-                className="container uui-calendar-container"
+                className="container uui-calendar-container root"
               >
                 <div
                   className="uui-calendar-content"
