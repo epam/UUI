@@ -1,10 +1,3 @@
-# 5.x.x - xx.xx.2023
-**What's New**
-
-
-**What's Fixed**
-[FilterPanel]: fix RangeDatePicker 'to' value change
-
 # 5.1.0 - 29.06.2023
 
 **What's New**
