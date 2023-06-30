@@ -241,7 +241,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       >
                         <div
                           className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-                        />
+                        >
+                          Elementary
+                        </div>
                         <div
                           className="flexSpacer"
                         />
@@ -291,7 +293,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       >
                         <div
                           className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-                        />
+                        >
+                          Elementary+
+                        </div>
                         <div
                           className="flexSpacer"
                         />
@@ -341,7 +345,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       >
                         <div
                           className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-                        />
+                        >
+                          Pre-Intermediate
+                        </div>
                         <div
                           className="flexSpacer"
                         />
@@ -391,7 +397,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       >
                         <div
                           className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-                        />
+                        >
+                          Pre-Intermediate+
+                        </div>
                         <div
                           className="flexSpacer"
                         />
@@ -441,7 +449,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       >
                         <div
                           className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-                        />
+                        >
+                          Intermediate
+                        </div>
                         <div
                           className="flexSpacer"
                         />
@@ -491,7 +501,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       >
                         <div
                           className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-                        />
+                        >
+                          Intermediate+
+                        </div>
                         <div
                           className="flexSpacer"
                         />
@@ -541,7 +553,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       >
                         <div
                           className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-                        />
+                        >
+                          Upper-Intermediate
+                        </div>
                         <div
                           className="flexSpacer"
                         />
@@ -591,7 +605,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       >
                         <div
                           className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-                        />
+                        >
+                          Upper-Intermediate+
+                        </div>
                         <div
                           className="flexSpacer"
                         />
@@ -641,7 +657,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       >
                         <div
                           className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-                        />
+                        >
+                          Advanced
+                        </div>
                         <div
                           className="flexSpacer"
                         />
@@ -691,7 +709,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       >
                         <div
                           className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-                        />
+                        >
+                          Advanced+
+                        </div>
                         <div
                           className="flexSpacer"
                         />
@@ -741,7 +761,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       >
                         <div
                           className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-                        />
+                        >
+                          Proficiency
+                        </div>
                         <div
                           className="flexSpacer"
                         />
@@ -839,7 +861,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
 </div>
 `;
 
-exports[`PickerModal should be rendered correctly 2`] = `
+exports[`PickerModal should be rendered correctly with maximum props 1`] = `
 <div
   className="container modalBlocker"
   style={
