@@ -1,27 +1,8 @@
 import * as React from 'react';
-import {
-    PositionValues, VirtualListRenderRowsParams, IconContainer, DataTableSelectionProvider,
-} from '@epam/uui-components';
+import { PositionValues, VirtualListRenderRowsParams, IconContainer, DataTableSelectionProvider, ColumnsConfigurationRowProps } from '@epam/uui-components';
 import { useColumnsWithFilters } from '../../helpers';
-import {
-    ColumnsConfig,
-    DataRowProps,
-    useUuiContext,
-    uuiScrollShadows,
-    useColumnsConfig,
-    IEditable,
-    DataTableState,
-    DataTableColumnsConfigOptions,
-    DataSourceListProps,
-    DataColumnProps,
-    cx,
-    TableFiltersConfig,
-    DataTableRowProps,
-    DataTableSelectedCellData,
-} from '@epam/uui-core';
-import {
-    DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationModal, DataTableRowMods,
-} from './';
+import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx, TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData } from '@epam/uui-core';
+import { DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationModal, DataTableRowMods } from './';
 import { VirtualList } from '../';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from '../typography';
@@ -37,6 +18,7 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
     showColumnsConfig?: boolean;
     filters?: TableFiltersConfig<any>[];
     onCopy?: (copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>, selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void;
+    renderConfigColCaption?: ((c: ColumnsConfigurationRowProps) => React.ReactNode) | undefined;
 }
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
@@ -80,6 +62,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                     columns={ props.columns }
                     columnsConfig={ config }
                     defaultConfig={ defaultConfig }
+                    renderConfigColCaption={ props.renderConfigColCaption }
                 />
             );
         })

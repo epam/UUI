@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     cx, DataColumnProps, DndActor, DndActorRenderParams, IColumnConfig,
 } from '@epam/uui-core';
-import { FlexRow, Checkbox, DropMarker } from '../../.';
+import { FlexRow, Checkbox, DropMarker, Text } from '../../.';
 import { DragHandle, FlexSpacer, ColumnsConfigurationRowProps } from '@epam/uui-components';
 import { PinIconButton } from './PinIconButton';
 import styles from './ColumnRow.module.scss';
@@ -11,7 +11,7 @@ type DndDataType = { column: DataColumnProps; columnConfig: IColumnConfig };
 
 export interface ColumnRowProps {
     column: ColumnsConfigurationRowProps;
-    renderItem?: () => any;
+    renderItem?: (() => React.ReactNode) | null;
 }
 
 export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
@@ -37,13 +37,8 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
         const getLabelContent = (props: ColumnsConfigurationRowProps) => {
             return (
                 <FlexRow>
-                    <span>{props.caption}</span>
-                    { props.info && (
-                        <span style={ { fontSize: '10px', marginTop: '2px', marginLeft: '3px', color: 'gray' } }> 
-                            {' / '}
-                            { props.info }
-                        </span>
-                    ) }
+                    <Text>{props.caption}</Text>
+                    { props.info && <Text fontSize="12" color="secondary" cx={ styles.labelDescription }>{ ` / ${props.info}` }</Text> }
                 </FlexRow>
             );
         };

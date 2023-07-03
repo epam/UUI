@@ -3,28 +3,11 @@ import * as React from 'react';
 import { useCallback, useMemo } from 'react';
 //
 import { ColumnsConfig, DataColumnProps, IModal } from '@epam/uui-core';
-import { useColumnsConfiguration } from '@epam/uui-components';
+import { ColumnsConfigurationRowProps, useColumnsConfiguration } from '@epam/uui-components';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-update-18.svg';
 //
-import {
-    FlexRow,
-    FlexSpacer,
-    Panel,
-    ScrollBars,
-    Button,
-    LinkButton,
-    SearchInput,
-    Dropdown,
-    Badge,
-    DropdownMenuButton,
-    ModalBlocker,
-    ModalFooter,
-    ModalHeader,
-    ModalWindow,
-    Text,
-    Tooltip,
-} from '../../../.';
+import { FlexRow, FlexSpacer, Panel, ScrollBars, Button, LinkButton, SearchInput, Dropdown, Badge, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Text, Tooltip } from '../../../components';
 import { i18n as uuiI18n } from '../../../i18n';
 import { ColumnRow } from './ColumnRow';
 
@@ -32,6 +15,7 @@ interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IModal<Col
     columnsConfig?: ColumnsConfig;
     defaultConfig: ColumnsConfig;
     columns: DataColumnProps<TItem, TId, TFilter>[];
+    renderConfigColCaption?: ((column: ColumnsConfigurationRowProps) => React.ReactNode) | undefined;
 }
 
 const renderGroupTitle = (title: string, amount: number) => (
@@ -73,21 +57,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                 {!!amountPinned && (
                     <FlexRow cx={ styles.groupItems } size="30">
                         {groupedColumns.displayedPinned.map((c) => (
-                            <ColumnRow
-                                renderItem={ () => (
-                                    <FlexRow>
-                                        <span>{c.caption}</span>
-                                        { c.info && (
-                                            <span style={ { fontSize: '10px', marginTop: '2px', marginLeft: '3px', color: 'gray' } }>
-                                                {' / from \'renderItem\': '}
-                                                { c.info }
-                                            </span>
-                                        ) }
-                                    </FlexRow>
-                                ) }
-                                column={ c }
-                                key={ c.key }
-                            />
+                            <ColumnRow column={ c } key={ c.key } renderItem={ props.renderConfigColCaption ? () => props.renderConfigColCaption(c) : null } />
                         ))}
                     </FlexRow>
                 )}
@@ -95,7 +65,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                 {!!amountUnPinned && (
                     <FlexRow cx={ styles.groupItems } size="30">
                         {groupedColumns.displayedUnpinned.map((c) => (
-                            <ColumnRow column={ c } key={ c.key } />
+                            <ColumnRow column={ c } key={ c.key } renderItem={ props.renderConfigColCaption ? () => props.renderConfigColCaption(c) : null } />
                         ))}
                     </FlexRow>
                 )}

@@ -37,4 +37,9 @@
         @include dnd-ghost-shadow();
         background-color: var(--uui-surface);
     }
+
+    .label-description {
+        padding-bottom: 7px;
+        padding-left: 3px;
+    }
 }
