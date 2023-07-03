@@ -1,0 +1,32 @@
+@import '~@epam/promo/assets/styles/colors';
+
+.container {
+    height: 600px;
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+}
+
+:global(.uui-table-row) {
+    &.task-is-done {
+        --uui-dt-row-bg: var(--gray10);
+    }
+
+    .configItem {
+        visibility: hidden;
+
+        &.showButton {
+            visibility: visible;
+        }
+    }
+
+    &:hover {
+        .configItem {
+            visibility: visible;
+        }
+    }
+}
+
+.weekend-day {
+    background-color: #EBEDF5;
+}

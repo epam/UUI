@@ -25,14 +25,14 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         return css['font-size-14'];
     };
 
-    getColumnCaption = () => {
-        const getTooltipContent = () => !this.state.isDropdownOpen && (
-            <div className={ css.cellTooltipWrapper }>
-                <Text fontSize="14" color="contrast" font="semibold" cx={ css.cellTooltipText }>{ this.props.column.caption }</Text>
-                { this.props.column.info && <Text fontSize="12" color="contrast" cx={ css.cellTooltipText }>{ this.props.column.info }</Text> }
-            </div>
-        );
+    getTooltipContent = () => !this.state.isDropdownOpen && (
+        <div className={ css.cellTooltipWrapper }>
+            <Text fontSize="14" color="contrast" font="semibold" cx={ css.cellTooltipText }>{ this.props.column.caption }</Text>
+            { this.props.column.info && <Text fontSize="12" color="contrast" cx={ css.cellTooltipText }>{ this.props.column.info }</Text> }
+        </div>
+    );
 
+    getColumnCaption = () => {
         return (
             <div className={ css.tooltipWrapper }>
                 <div className={ cx(css.iconCell, css['align-' + this.props.column.textAlign], uuiDataTableHeaderCell.uuiTableHeaderCaptionWrapper) }>
@@ -40,7 +40,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                         trigger="hover"
                         placement="top"
                         color="contrast"
-                        renderContent={ getTooltipContent }
+                        renderContent={ this.getTooltipContent }
                         cx={ css.cellTooltip }
                         openDelay={ 600 }
                     >
