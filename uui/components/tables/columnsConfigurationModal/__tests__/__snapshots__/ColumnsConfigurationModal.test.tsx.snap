@@ -281,9 +281,11 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                           }
                         }
                       >
-                        <span>
+                        <div
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        >
                           ID
-                        </span>
+                        </div>
                       </div>
                     </div>
                   </label>
@@ -386,9 +388,11 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                           }
                         }
                       >
-                        <span>
+                        <div
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        >
                           Level
-                        </span>
+                        </div>
                       </div>
                     </div>
                   </label>
@@ -810,9 +814,11 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                           }
                         }
                       >
-                        <span>
+                        <div
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        >
                           ID
-                        </span>
+                        </div>
                       </div>
                     </div>
                   </label>
@@ -906,9 +912,11 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                           }
                         }
                       >
-                        <span>
+                        <div
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        >
                           Level
-                        </span>
+                        </div>
                       </div>
                     </div>
                   </label>
