@@ -79,7 +79,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                                         <span>{c.caption}</span>
                                         { c.info && (
                                             <span style={ { fontSize: '10px', marginTop: '2px', marginLeft: '3px', color: 'gray' } }>
-                                                {' / from \'renderItem\''}
+                                                {' / from \'renderItem\': '}
                                                 { c.info }
                                             </span>
                                         ) }
