@@ -34,7 +34,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
             ...(isDndAllowed ? { onTouchStart, onPointerDown } : {}),
         };
 
-        const getLabelContent = (props: any) => {
+        const getLabelContent = (props: ColumnsConfigurationRowProps) => {
             return (
                 <FlexRow>
                     <span>{props.caption}</span>
@@ -54,7 +54,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
                     <DragHandle rawProps={ dragHandleRawProps } isDisabled={ !isDndAllowed } cx={ cx(styles.dragHandle, !isDndAllowed && styles.dndDisabled) } />
                     <Checkbox
                         key={ column.key }
-                        label={ props.renderItem ? props.renderItem() : getLabelContent({ caption: column.caption, info: column?.info }) }
+                        label={ props.renderItem ? props.renderItem() : getLabelContent(column) }
                         value={ isVisible }
                         onValueChange={ toggleVisibility }
                         isDisabled={ column.isAlwaysVisible }
