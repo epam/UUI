@@ -4,6 +4,7 @@
 
 **What's Fixed**
 [FilterPanel]: fix RangeDatePicker 'to' value change
+[LabeledInput]: removed specific class for loveship skin
 
 # 5.1.0 - 29.06.2023
 
