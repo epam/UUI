@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { renderSnapshotWithContextAsync, renderWithContextAsync, fireEvent, screen } from '@epam/uui-test-utils';
 import { DatePickerBody } from '../DatePickerBody';
-// @ts-ignore
 import dayjs from 'dayjs';
 
 describe('DataPicker', () => {
