@@ -1,11 +1,8 @@
 @use  '../../assets/styles/index.scss' as *;
 
-.root {
+:global(.uui-datepickerBody-wrapper) {
     min-height: 300px;
-
-    &:global(.uui-datepickerBody-wrapper) {
-        padding: 0 18px 12px;
-    }
+    padding: 0 18px 12px;
 
     // DatePickerBase style
     :global(.uui-datepicker-container) {

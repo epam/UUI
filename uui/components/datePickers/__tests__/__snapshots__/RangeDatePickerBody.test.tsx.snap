@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DatePickerBody should be rendered correctly 1`] = `
+exports[`RangeDatePickerBody should be rendered correctly 1`] = `
 <div
   className="root uui-datepicker-container"
 >
@@ -48,7 +48,7 @@ exports[`DatePickerBody should be rendered correctly 1`] = `
             className="uui-datepicker-container fromPicker"
           >
             <div
-              className="root uui-datepickerBody-wrapper fromPicker"
+              className="uui-datepickerBody-wrapper fromPicker"
             >
               <div
                 className="container uui-datepickerheader-container"
@@ -626,7 +626,7 @@ exports[`DatePickerBody should be rendered correctly 1`] = `
             className="uui-datepicker-container toPicker"
           >
             <div
-              className="root uui-datepickerBody-wrapper toPicker"
+              className="uui-datepickerBody-wrapper toPicker"
             >
               <div
                 className="container uui-datepickerheader-container"
