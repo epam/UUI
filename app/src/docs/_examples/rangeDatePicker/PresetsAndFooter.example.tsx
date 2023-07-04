@@ -5,13 +5,13 @@ import dayjs from 'dayjs';
 import css from './PresetsAndFooter.module.scss';
 
 export default function DatePickerBaseExample() {
-    const [value, onValueChange] = useState({ from: null, to: null });
+    const [pickerValue, onPickerValueChange] = useState({ from: null, to: null });
 
     return (
         <FlexRow>
             <RangeDatePicker
-                value={ value }
-                onValueChange={ onValueChange }
+                value={ pickerValue }
+                onValueChange={ onPickerValueChange }
                 format="MMM D, YYYY"
                 presets={ {
                     ...rangeDatePickerPresets,
@@ -28,13 +28,13 @@ export default function DatePickerBaseExample() {
                         },
                     },
                 } }
-                renderFooter={ (footerValue: RangeDatePickerValue) => (
+                renderFooter={ (value: RangeDatePickerValue) => (
                     <div className={ css.container }>
                         <FlexRow padding="24">
                             <Text>
                                 Range days count:
                                 {' '}
-                                {getRangeLength(footerValue)}
+                                {getRangeLength(value)}
                             </Text>
                         </FlexRow>
                     </div>
