@@ -1,5 +1,4 @@
 import * as React from 'react';
-// @ts-ignore
 import dayjs from 'dayjs';
 import type { ViewType } from '@epam/uui-components';
 import { RangeDatePickerBody, RangeDatePickerBodyProps, RangeDatePickerValue } from '../RangeDatePickerBody';
