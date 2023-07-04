@@ -34,7 +34,7 @@ async function setupRangePickerBody(params: { selectedDate: { from: string; to: 
     };
 }
 
-describe('DatePickerBody', () => {
+describe('RangeDatePickerBody', () => {
     it('should be rendered correctly', () => {
         const displayedDate = dayjs('2020-09-03');
         const value = {
