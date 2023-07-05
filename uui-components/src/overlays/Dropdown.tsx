@@ -186,7 +186,14 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     private getTargetClickHandler = () => {
         const { openOnClick, openOnHover } = this.props;
 
-        return (openOnClick || (!openOnClick && !openOnHover)) ? this.handleTargetClick : undefined;
+        if (
+            openOnClick
+            || !openOnHover
+        ) {
+            return this.handleTargetClick;
+        }
+
+        return undefined;
     };
 
     private getIsInteractedOutside = (event: Event) => {
@@ -201,7 +208,10 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     private renderTarget(targetProps: ReferenceChildrenProps) {
         const innerRef = (node: HTMLElement | null) => {
-            if (!node) return;
+            if (!node) {
+                return;
+            }
+
             this.targetNode = node;
             (targetProps.ref as React.RefCallback<HTMLElement>)(this.targetNode);
         };
