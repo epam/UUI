@@ -2,10 +2,10 @@
 
 exports[`DataPicker should be rendered correctly 1`] = `
 <div
-  className="uui-datepicker-container root root"
+  className="uui-datepicker-container"
 >
   <div
-    className="uui-datepickerBody-wrapper root root"
+    className="uui-datepickerBody-wrapper"
   >
     <div
       className="container uui-datepickerheader-container"
@@ -13,34 +13,48 @@ exports[`DataPicker should be rendered correctly 1`] = `
       <header
         className="uui-datepickerheader-header"
       >
-        <div
-          className="container uui-icon uui-enabled -clickable uui-datepickerheader-nav-icon-left"
+        <button
+          className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-ghost uui-datepickerheader-nav-icon-left"
           onClick={[Function]}
-          role="button"
-          style={Object {}}
-        >
-          <svg
-            className=""
-          />
-        </div>
-        <div
-          className="uui-datepickerheader-nav-title"
-          onClick={[Function]}
-          role="button"
           tabIndex={0}
+          type="button"
         >
-          undefined undefined
-        </div>
-        <div
-          className="container uui-icon uui-enabled -clickable uui-datepickerheader-nav-icon-right"
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
+        </button>
+        <button
+          className="container uui-button-box uui-enabled -clickable button-primary root size-36 mode-ghost uui-datepickerheader-nav-title"
           onClick={[Function]}
-          role="button"
-          style={Object {}}
+          tabIndex={0}
+          type="button"
         >
-          <svg
-            className=""
-          />
-        </div>
+          <div
+            className="uui-caption"
+          >
+            undefined undefined
+          </div>
+        </button>
+        <button
+          className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-ghost uui-datepickerheader-nav-icon-right"
+          onClick={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
+        </button>
       </header>
     </div>
   </div>
