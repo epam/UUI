@@ -1,8 +1,8 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
-import { RangeDatePickerProps } from '@epam/uui';
-import { RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer } from '@epam/uui-components';
+import { rangeDatePickerPresets, RangeDatePickerProps, RangeDatePickerValue } from '@epam/uui';
+import { Day, IconContainer } from '@epam/uui-components';
 import { RangeDatePicker, Button } from '@epam/loveship';
 import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, FormContext, DefaultContext, ResizableContext } from '../../docs';
 import css from './RangeDatePicker.doc.module.scss';

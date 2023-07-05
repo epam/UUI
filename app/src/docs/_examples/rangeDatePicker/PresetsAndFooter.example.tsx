@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { RangeDatePicker, FlexRow, Text } from '@epam/promo';
-import { rangeDatePickerPresets, RangeDatePickerValue } from '@epam/uui-components';
+import { rangeDatePickerPresets, RangeDatePickerValue } from '@epam/uui';
 import dayjs from 'dayjs';
 import css from './PresetsAndFooter.module.scss';
 
 export default function DatePickerBaseExample() {
-    const [value, onValueChange] = useState({ from: null, to: null });
+    const [pickerValue, onPickerValueChange] = useState({ from: null, to: null });
 
     return (
         <FlexRow>
             <RangeDatePicker
-                value={ value }
-                onValueChange={ onValueChange }
+                value={ pickerValue }
+                onValueChange={ onPickerValueChange }
                 format="MMM D, YYYY"
                 presets={ {
                     ...rangeDatePickerPresets,
