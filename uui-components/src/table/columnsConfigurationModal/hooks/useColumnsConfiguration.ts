@@ -7,13 +7,14 @@ import { canAcceptDrop, isColumnAlwaysPinned } from '../columnsConfigurationUtil
 import { DndDataType, GroupedDataColumnProps, ColumnsConfigurationRowProps } from '../types';
 import { groupAndFilterSortedColumns, sortColumnsAndAddGroupKey } from '../columnsConfigurationUtils';
 
-interface UseColumnsConfigurationProps {
+interface UseColumnsConfigurationProps<TItem, TId, TFilter> {
     initialColumnsConfig: ColumnsConfig;
     defaultConfig: ColumnsConfig;
-    columns: DataColumnProps[];
+    columns: DataColumnProps<TItem, TId, TFilter>[];
+    getSearchFields?: (column: DataColumnProps<TItem, TId, TFilter>) => string[];
 }
 
-export function useColumnsConfiguration(props: UseColumnsConfigurationProps) {
+export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any, any, any>) {
     const { initialColumnsConfig, defaultConfig, columns } = props;
     const [searchValue, setSearchValue] = useState<string>();
     const isDndAllowed = !searchValue;
@@ -87,7 +88,15 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps) {
         ],
     );
 
-    const groupedColumns = useMemo(() => groupAndFilterSortedColumns(sortedColumnsExtended, searchValue), [sortedColumnsExtended, searchValue]);
+    const groupedColumns = useMemo(
+        () =>
+            groupAndFilterSortedColumns({
+                sortedColumns: sortedColumnsExtended,
+                searchValue,
+                getSearchFields: props.getSearchFields,
+            }),
+        [sortedColumnsExtended, searchValue, props.getSearchFields],
+    );
 
     return {
         // props

@@ -1,7 +1,14 @@
 @import '~@epam/promo/assets/styles/colors';
 
 .container {
-    height: 600px;
+    padding: 0 12px 44px;
+    height: 800px;
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+}
+
+.table-container {
     display: flex;
     flex: 1 1 0;
     flex-direction: column;

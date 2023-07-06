@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     AcceptDropParams, ColumnsConfig, DataColumnProps, DropPosition, getOrderBetween, IColumnConfig,
 } from '@epam/uui-core';
@@ -5,7 +6,6 @@ import {
     ColumnsConfigurationRowProps, DndDataType, GroupedColumnsType, GroupedDataColumnProps,
 } from './types';
 import sortBy from 'lodash.sortby';
-import React from 'react';
 
 export function isColumnAlwaysPinned(column: DataColumnProps) {
     return Boolean(column.isAlwaysVisible && column.fix);
@@ -49,23 +49,30 @@ function isSubstring(s: React.ReactNode, sub: string) {
     }
     return false;
 }
-export function isColumnFilteredOut(c: DataColumnProps, filter?: string) {
-    const caption = c.caption;
+
+export function isColumnFilteredOut(column: any, searchFields: string[], filter?: string) {
+    const caption = column.caption;
     const hasCaption = !isEmptyCaption(caption);
     const hasFilter = !isEmptyString(filter);
-
-    return hasCaption ? hasFilter && !isSubstring(caption, filter) : true;
+    const isNotSearchValue = hasFilter && !searchFields.some((searchField) => isSubstring(searchField, filter));
+    return hasCaption ? isNotSearchValue : true;
 }
 
-export function groupAndFilterSortedColumns(sortedColumns: ColumnsConfigurationRowProps[], searchValue: string): GroupedColumnsType {
+interface IGroupAndFilterSortedColumnsProps<TItem, TId, TFilter> {
+    sortedColumns: ColumnsConfigurationRowProps[];
+    searchValue: string;
+    getSearchFields?: (column: DataColumnProps<TItem, TId, TFilter>) => string[];
+}
+
+export function groupAndFilterSortedColumns<TItem, TId, TFilter>(props: IGroupAndFilterSortedColumnsProps<TItem, TId, TFilter>): GroupedColumnsType {
     const accUnsorted = {
         displayedPinned: [],
         displayedUnpinned: [],
         hidden: [],
     } as GroupedColumnsType;
 
-    return sortedColumns.reduce((acc, i) => {
-        if (!isColumnFilteredOut(i, searchValue)) {
+    return props.sortedColumns.reduce((acc, i) => {
+        if (!isColumnFilteredOut(i, props?.getSearchFields ? props.getSearchFields(i) : [i.caption as string], props.searchValue)) {
             acc[i.groupKey].push(i);
         }
         return acc;

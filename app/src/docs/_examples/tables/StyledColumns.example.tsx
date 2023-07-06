@@ -37,7 +37,7 @@ export default function StyledColumnsExample() {
                 info: 'Person full name',
             }, {
                 key: 'profileStatus',
-                caption: 'Profile Status',
+                caption: 'Profile status',
                 render: (p) =>
                     p.profileStatus && (
                         <FlexRow>

@@ -272,21 +272,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     <div
                       className="uui-input-label"
                     >
-                      <div
-                        className="root size-36 container align-items-center"
-                        style={
-                          Object {
-                            "columnGap": undefined,
-                            "rowGap": undefined,
-                          }
-                        }
-                      >
-                        <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          ID
-                        </div>
-                      </div>
+                      ID
                     </div>
                   </label>
                 </div>
@@ -379,21 +365,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     <div
                       className="uui-input-label"
                     >
-                      <div
-                        className="root size-36 container align-items-center"
-                        style={
-                          Object {
-                            "columnGap": undefined,
-                            "rowGap": undefined,
-                          }
-                        }
-                      >
-                        <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          Level
-                        </div>
-                      </div>
+                      Level
                     </div>
                   </label>
                 </div>
@@ -805,21 +777,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                     <div
                       className="uui-input-label"
                     >
-                      <div
-                        className="root size-36 container align-items-center"
-                        style={
-                          Object {
-                            "columnGap": undefined,
-                            "rowGap": undefined,
-                          }
-                        }
-                      >
-                        <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          ID
-                        </div>
-                      </div>
+                      ID
                     </div>
                   </label>
                 </div>
@@ -903,21 +861,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                     <div
                       className="uui-input-label"
                     >
-                      <div
-                        className="root size-36 container align-items-center"
-                        style={
-                          Object {
-                            "columnGap": undefined,
-                            "rowGap": undefined,
-                          }
-                        }
-                      >
-                        <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          Level
-                        </div>
-                      </div>
+                      Level
                     </div>
                   </label>
                 </div>

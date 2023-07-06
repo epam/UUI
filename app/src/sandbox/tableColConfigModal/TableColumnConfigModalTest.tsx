@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from 'react';
-import { Badge, DataTable, EpamAdditionalColor, FlexRow, Panel, Text } from '@epam/promo';
+import { Badge, ColumnsConfigurationModal, DataTable, EpamAdditionalColor, FlexRow, Panel, RichTextView, Text } from '@epam/promo';
 import { DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './TableColumnConfigModalStyles.module.scss';
 import { TApi } from '../../data/apiDefinition';
-import { ColumnsConfigurationRowProps } from '@epam/uui-components';
+import { ColumnsConfigurationModalProps } from '@epam/uui';
 
 export function TableColumnConfigModalTest() {
     const svc = useUuiContext<TApi, UuiContexts>();
@@ -31,7 +31,6 @@ export function TableColumnConfigModalTest() {
                 width: 200,
                 fix: 'left',
                 isSortable: true,
-                info: 'Person full name',
             }, {
                 key: 'profileStatus',
                 caption: 'Profile Status',
@@ -74,29 +73,43 @@ export function TableColumnConfigModalTest() {
         [],
     );
 
-    return (
-        <Panel shadow cx={ css.container }>
-            <DataTable
-                { ...view.getListProps() }
-                getRows={ view.getVisibleRows }
-                value={ value }
-                onValueChange={ onValueChange }
-                columns={ productColumns }
-                showColumnsConfig={ true }
-                allowColumnsResizing={ true }
-                allowColumnsReordering={ true }
-                renderConfigColCaption={ (c: ColumnsConfigurationRowProps) => (
+    const columnsConfigurationModal = (props: ColumnsConfigurationModalProps<any, any, any>) => {
+        const { columns, columnsConfig, defaultConfig, ...modalProps } = props;
+        return (
+            <ColumnsConfigurationModal
+                { ...modalProps }
+                columns={ columns }
+                columnsConfig={ columnsConfig }
+                defaultConfig={ defaultConfig }
+                getSearchFields={ (column) => [column.caption as string, column.info as string] }
+                renderItem={ (column) => (
                     <FlexRow>
-                        <span>{c.caption}</span>
-                        { c.info && (
-                            <span style={ { fontSize: '10px', marginTop: '2px', marginLeft: '3px', color: 'gray' } }>
-                                {' / CustomRender\': '}
-                                { c.info }
-                            </span>
-                        ) }
+                        <Text>{column.caption}</Text>
+                        { column.info && <Text fontSize="12" color="gray50" rawProps={ { style: { paddingBottom: '7px', paddingLeft: '3px' } } }>{ ` / ${column.info}` }</Text> }
                     </FlexRow>
                 ) }
             />
+        );
+    };
+
+    return (
+        <Panel shadow cx={ css.container }>
+            <RichTextView>
+                <h3>Table example with ColumnConfigModal</h3>
+            </RichTextView>
+            <Panel shadow cx={ css.tableContainer }>
+                <DataTable
+                    { ...view.getListProps() }
+                    getRows={ view.getVisibleRows }
+                    value={ value }
+                    onValueChange={ onValueChange }
+                    columns={ productColumns }
+                    showColumnsConfig={ true }
+                    allowColumnsResizing={ true }
+                    allowColumnsReordering={ true }
+                    renderColumnsConfigurationModal={ columnsConfigurationModal }
+                />
+            </Panel>
         </Panel>
     );
 }

@@ -25,7 +25,7 @@ export default function PagedTable() {
         () => [
             {
                 key: 'name',
-                caption: 'NAME',
+                caption: 'Name',
                 render: (person) => (
                     <Text color="gray80" font="sans-semibold">
                         {person.name}
@@ -36,7 +36,7 @@ export default function PagedTable() {
                 width: 224,
             }, {
                 key: 'location',
-                caption: 'LOCATION',
+                caption: 'Location',
                 render: (person) => <Text>{person.locationName}</Text>,
                 width: 144,
             },

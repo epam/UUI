@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { PositionValues, VirtualListRenderRowsParams, IconContainer, DataTableSelectionProvider, ColumnsConfigurationRowProps } from '@epam/uui-components';
+import { PositionValues, VirtualListRenderRowsParams, IconContainer, DataTableSelectionProvider } from '@epam/uui-components';
 import { useColumnsWithFilters } from '../../helpers';
 import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx, TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData } from '@epam/uui-core';
-import { DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationModal, DataTableRowMods } from './';
+import { DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationModal, DataTableRowMods, ColumnsConfigurationModalProps } from './';
 import { VirtualList } from '../';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from '../typography';
@@ -18,7 +18,7 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
     showColumnsConfig?: boolean;
     filters?: TableFiltersConfig<any>[];
     onCopy?: (copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>, selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void;
-    renderConfigColCaption?: ((c: ColumnsConfigurationRowProps) => React.ReactNode) | undefined;
+    renderColumnsConfigurationModal?: (props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) => React.ReactNode;
 }
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
@@ -54,22 +54,27 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     }, [props.renderNoResultsBlock]);
 
     const onConfigurationButtonClick = React.useCallback(() => {
+        const outerProps = { columns: props.columns, columnsConfig: { ...config }, defaultConfig };
+
         uuiModals
             .show<ColumnsConfig>((modalProps) => {
             return (
-                <ColumnsConfigurationModal
-                    { ...modalProps }
-                    columns={ props.columns }
-                    columnsConfig={ config }
-                    defaultConfig={ defaultConfig }
-                    renderConfigColCaption={ props.renderConfigColCaption }
-                />
+                props.renderColumnsConfigurationModal
+                    ? props.renderColumnsConfigurationModal({ ...outerProps, ...modalProps })
+                    : (
+                        <ColumnsConfigurationModal
+                            { ...modalProps }
+                            columns={ props.columns }
+                            columnsConfig={ config }
+                            defaultConfig={ defaultConfig }
+                        />
+                    )
             );
         })
             .then((columnsConfig) => props.onValueChange({ ...props.value, columnsConfig }))
             .catch(() => null);
     }, [
-        props.columns, config, defaultConfig, props.value, props.onValueChange,
+        props.columns, config, defaultConfig, props.value, props.onValueChange, props.renderColumnsConfigurationModal,
     ]);
 
     const renderRowsContainer = React.useCallback(

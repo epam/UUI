@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useCallback, useMemo } from 'react';
 //
 import { ColumnsConfig, DataColumnProps, IModal } from '@epam/uui-core';
-import { ColumnsConfigurationRowProps, useColumnsConfiguration } from '@epam/uui-components';
+import { useColumnsConfiguration } from '@epam/uui-components';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-update-18.svg';
 //
@@ -11,11 +11,12 @@ import { FlexRow, FlexSpacer, Panel, ScrollBars, Button, LinkButton, SearchInput
 import { i18n as uuiI18n } from '../../../i18n';
 import { ColumnRow } from './ColumnRow';
 
-interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IModal<ColumnsConfig> {
+export interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IModal<ColumnsConfig> {
     columnsConfig?: ColumnsConfig;
     defaultConfig: ColumnsConfig;
     columns: DataColumnProps<TItem, TId, TFilter>[];
-    renderConfigColCaption?: ((column: ColumnsConfigurationRowProps) => React.ReactNode) | undefined;
+    renderItem?: ((column: DataColumnProps<TItem, TId, TFilter>) => React.ReactNode);
+    getSearchFields?: (column: DataColumnProps<TItem, TId, TFilter>) => string[];
 }
 
 const renderGroupTitle = (title: string, amount: number) => (
@@ -30,15 +31,14 @@ const renderGroupTitle = (title: string, amount: number) => (
 export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) {
     const i18n = uuiI18n.tables.columnsConfigurationModal;
 
-    const {
-        columns, columnsConfig: initialColumnsConfig, defaultConfig, ...modalProps
-    } = props;
+    const { columns, columnsConfig: initialColumnsConfig, defaultConfig, ...modalProps } = props;
     const {
         groupedColumns, searchValue, columnsConfig, reset, checkAll, uncheckAll, setSearchValue,
     } = useColumnsConfiguration({
         initialColumnsConfig,
         columns,
         defaultConfig,
+        getSearchFields: props.getSearchFields,
     });
     const apply = useCallback(() => modalProps.success(columnsConfig), [columnsConfig, modalProps]);
     const close = useCallback(() => modalProps.abort(), [modalProps]);
@@ -57,7 +57,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                 {!!amountPinned && (
                     <FlexRow cx={ styles.groupItems } size="30">
                         {groupedColumns.displayedPinned.map((c) => (
-                            <ColumnRow column={ c } key={ c.key } renderItem={ props.renderConfigColCaption ? () => props.renderConfigColCaption(c) : null } />
+                            <ColumnRow column={ c } key={ c.key } renderItem={ props.renderItem ? () => props.renderItem(c) : null } />
                         ))}
                     </FlexRow>
                 )}
@@ -65,7 +65,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                 {!!amountUnPinned && (
                     <FlexRow cx={ styles.groupItems } size="30">
                         {groupedColumns.displayedUnpinned.map((c) => (
-                            <ColumnRow column={ c } key={ c.key } renderItem={ props.renderConfigColCaption ? () => props.renderConfigColCaption(c) : null } />
+                            <ColumnRow column={ c } key={ c.key } renderItem={ props.renderItem ? () => props.renderItem(c) : null } />
                         ))}
                     </FlexRow>
                 )}
@@ -82,7 +82,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                 {renderGroupTitle(i18n.hiddenSectionTitle, amountHidden)}
                 <FlexRow cx={ styles.groupItems } size="30">
                     {groupedColumns.hidden.map((c) => (
-                        <ColumnRow column={ c } key={ c.key } />
+                        <ColumnRow column={ c } key={ c.key } renderItem={ props.renderItem ? () => props.renderItem(c) : null } />
                     ))}
                 </FlexRow>
             </>
