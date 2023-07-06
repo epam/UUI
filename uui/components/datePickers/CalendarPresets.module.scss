@@ -1,9 +1,8 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
-    :global(.uui-presets-container) {
-        padding: 24px;
-        font-family: var(--font-regular);
+    &:global(.uui-presets-container) {
+        padding: 24px 24px 12px;
     }
 
     :global(.uui-presets-header) {

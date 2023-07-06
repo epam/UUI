@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Dayjs } from 'dayjs';
 import {
-    IHasCX, Icon, cx, IHasRawProps, RangeDatePickerPresets, IHasForwardedRef,
+    IHasCX, cx, IHasRawProps, RangeDatePickerPresets, IHasForwardedRef,
 } from '@epam/uui-core';
 
 export type ViewType = 'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION';
@@ -23,8 +23,6 @@ export interface DatePickerBodyBaseOptions extends IHasCX, IHasRawProps<React.HT
     changeIsOpen?(newValue: boolean): void;
     presets?: RangeDatePickerPresets;
     renderDay?: (day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element>;
-    navIconLeft?: Icon;
-    navIconRight?: Icon;
 }
 
 export interface DatePickerBodyBaseProps<TSelection> extends DatePickerBodyBaseOptions {

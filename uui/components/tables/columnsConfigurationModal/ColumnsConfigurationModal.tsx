@@ -94,7 +94,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         [groupedColumns.displayedPinned, groupedColumns.displayedUnpinned],
     );
 
-    const applyButton = <Button caption={ i18n.applyButton } isDisabled={ noVisibleColumns } color="accent" onClick={ apply } />;
+    const applyButton = <Button caption={ i18n.applyButton } isDisabled={ noVisibleColumns } color="primary" onClick={ apply } />;
 
     return (
         <ModalBlocker { ...modalProps }>

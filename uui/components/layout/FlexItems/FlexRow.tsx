@@ -1,4 +1,4 @@
-import { cx, FlexRowProps as uuiFlexRowProps, withMods } from '@epam/uui-core';
+import { FlexRowProps as uuiFlexRowProps, withMods } from '@epam/uui-core';
 import { FlexRow as uuiFlexRow } from '@epam/uui-components';
 import { RowSizeMod } from '../../types';
 import css from './FlexRow.module.scss';
