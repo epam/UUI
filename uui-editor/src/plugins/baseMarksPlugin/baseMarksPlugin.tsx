@@ -8,11 +8,9 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { ReactComponent as BoldIcon } from "../../icons/bold.svg";
 import { ReactComponent as ItalicIcon } from "../../icons/italic.svg";
 import { ReactComponent as UnderlineIcon } from "../../icons/underline.svg";
-import { EText, TText, Value } from '@udecode/slate';
+import { EText, TText, Value, isMarkActive, PlateEditor, getPluginType } from '@udecode/plate-common';
 import { MarkToolbarButton, StyledLeafProps } from '@udecode/plate-ui';
-import { PlateEditor, getPluginType } from '@udecode/plate-core';
 import { MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE, createBoldPlugin, createItalicPlugin, createUnderlinePlugin } from '@udecode/plate-basic-marks';
-import { isMarkActive } from '@udecode/slate-utils';
 
 const BOLD_KEY = 'uui-richTextEditor-bold';
 const ITALIC_KEY = 'uui-richTextEditor-italic';

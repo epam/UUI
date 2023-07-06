@@ -7,12 +7,9 @@ import { Range } from 'slate';
 import { isImageSelected, isTextSelected } from '../helpers';
 import css from './Toolbar.module.scss';
 import type { VirtualElement } from '@popperjs/core/lib/popper';
-import { PlateEditor, usePlateEditorState } from '@udecode/plate-core';
-import { isEditorFocused } from '@udecode/plate-common';
-import { Value, findNode } from '@udecode/slate';
+import { isEditorFocused, usePlateEditorState, findNode, toDOMNode } from '@udecode/plate-common';
 import { getCellTypes } from '@udecode/plate-table';
 import { getSelectionBoundingClientRect } from '@udecode/plate-floating';
-import { toDOMNode } from '@udecode/slate-react';
 
 interface ToolbarProps {
     editor: any;

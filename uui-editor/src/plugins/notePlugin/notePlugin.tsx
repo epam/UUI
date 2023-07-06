@@ -14,9 +14,7 @@ import { ReactComponent as NoteIcon } from '../../icons/info-block-quote.svg';
 
 import { NotePluginBlock } from './NotePluginBlock';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
-import { createPluginFactory, PlateEditor } from '@udecode/plate-core';
-import { getAboveNode, insertText, setElements } from '@udecode/slate';
-import { createNode, getBlockAbove } from '@udecode/slate-utils';
+import { createPluginFactory, PlateEditor, getAboveNode, insertText, setElements, createNode, getBlockAbove } from '@udecode/plate-common';
 
 const noteBlocks = ['note-error', 'note-warning', 'note-link', 'note-quote'];
 

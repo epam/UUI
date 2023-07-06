@@ -14,12 +14,9 @@ import { FileUploadResponse } from "@epam/uui-core";
 
 import css from './ImageBlock.module.scss';
 import { ImgToolbar } from './Toolbar';
-import { PlateEditor, PlatePluginComponent, PlateRenderElementProps } from '@udecode/plate-core';
+import { PlateEditor, PlatePluginComponent, PlateRenderElementProps, TElement, Value, setElements, findNodePath, getBlockAbove } from '@udecode/plate-common';
 import { useResizableStore } from '@udecode/plate-media';
 import { ImageElement } from '@udecode/plate-ui';
-import { TElement, Value, setElements } from '@udecode/slate';
-import { findNodePath } from '@udecode/slate-react';
-import { getBlockAbove } from '@udecode/slate-utils';
 
 export type PlateImgAlign = 'left' | 'center' | 'right';
 type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';

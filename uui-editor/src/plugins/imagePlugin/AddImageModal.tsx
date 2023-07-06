@@ -4,7 +4,7 @@ import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
 
 import css from './AddImageModal.module.scss';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
-import { PlateEditor } from '@udecode/plate-core';
+import { PlateEditor } from '@udecode/plate-common';
 
 const {
     LabeledInput,

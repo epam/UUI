@@ -10,11 +10,9 @@ import { ReactComponent as ToDoIcon } from '../../icons/to-do.svg';
 import { ToDoItem } from './ToDoItem';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
-import { PlateEditor, getPluginType } from '@udecode/plate-core';
+import { PlateEditor, getPluginType, insertEmptyElement, getBlockAbove, getAboveNode, deleteForward, deleteBackward } from '@udecode/plate-common';
 import { createTodoListPlugin, ELEMENT_TODO_LI } from '@udecode/plate-list';
 import { BlockToolbarButton } from '@udecode/plate-ui';
-import { getAboveNode, deleteForward, deleteBackward } from '@udecode/slate';
-import { insertEmptyElement, getBlockAbove } from '@udecode/slate-utils';
 
 const TODO_ELEMENT_KEY = 'toDoItem';
 

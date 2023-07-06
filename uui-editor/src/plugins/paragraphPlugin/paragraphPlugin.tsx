@@ -1,4 +1,4 @@
-import { ELEMENT_DEFAULT } from '@udecode/plate-core';
+import { ELEMENT_DEFAULT } from '@udecode/plate-common';
 import { createParagraphPlugin } from '@udecode/plate-paragraph';
 import * as React from 'react';
 

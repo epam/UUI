@@ -10,8 +10,7 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { PlaceholderBlock } from './PlaceholderBlock';
 
 import css from './PlaceholderPlugin.module.scss';
-import { createPluginFactory, PlateEditor, getPluginOptions } from '@udecode/plate-core';
-import { insertElements } from '@udecode/slate-utils';
+import { createPluginFactory, PlateEditor, getPluginOptions, insertElements } from '@udecode/plate-common';
 import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
 
 

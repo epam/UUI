@@ -1,14 +1,13 @@
 import React, { MouseEventHandler, useEffect, useState } from "react";
 
 import { ExtendedTTableCellElement } from "./types";
-import { usePlateEditorState, useElement, usePlateEditorRef, getPluginOptions } from "@udecode/plate-core";
-import { getTableEntries, TTableElement, TableCellElementResizableProps, TablePlugin, ELEMENT_TABLE, useTableCellElementResizableProps } from "@udecode/plate-table";
-import { ResizeHandleProps } from "@udecode/resizable";
 import {
-    createComponentAs,
+    usePlateEditorState, useElement, usePlateEditorRef, getPluginOptions, createComponentAs,
     createElementAs,
     HTMLPropsAs,
-} from '@udecode/plate-common';
+} from "@udecode/plate-common";
+import { getTableEntries, TTableElement, TableCellElementResizableProps, TablePlugin, ELEMENT_TABLE, useTableCellElementResizableProps } from "@udecode/plate-table";
+import { ResizeHandleProps } from "@udecode/resizable";
 
 export const useResizeHandleProps: (props: ResizeHandleProps) => HTMLPropsAs<"div"> = ({
     direction,

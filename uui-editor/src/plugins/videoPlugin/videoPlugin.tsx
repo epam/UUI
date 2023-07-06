@@ -11,8 +11,7 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { ReactComponent as VideoIcon } from '../../icons/video.svg';
 
 import { AddVideoModal } from './AddVideoModal';
-import { createPluginFactory, PlateEditor } from '@udecode/plate-core';
-import { getBlockAbove } from '@udecode/slate-utils';
+import { createPluginFactory, PlateEditor, getBlockAbove } from '@udecode/plate-common';
 
 const noop = () => {};
 

@@ -12,7 +12,7 @@ import { ImageElement, PlateImgAlign } from "./ImageBlock";
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import css from './ImageBlock.module.scss';
-import { PlateEditor } from "@udecode/plate-core";
+import { PlateEditor } from "@udecode/plate-common";
 
 export const ImgToolbar = ({
     editor,

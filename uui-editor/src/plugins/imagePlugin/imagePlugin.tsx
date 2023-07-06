@@ -14,11 +14,8 @@ import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { Editor } from 'slate';
 import isHotkey from 'is-hotkey';
-import { createPluginFactory, PlateEditor } from '@udecode/plate-core';
-import { insertNodes } from '@udecode/slate';
-import { focusEditor } from '@udecode/slate-react';
-import { getBlockAbove, insertEmptyElement } from '@udecode/slate-utils';
-import { captionGlobalStore, TImageElement } from '@udecode/plate-media';
+import { createPluginFactory, PlateEditor, insertNodes, focusEditor, getBlockAbove, insertEmptyElement } from '@udecode/plate-common';
+import { TImageElement, captionGlobalStore } from '@udecode/plate-media';
 
 export const IMAGE_PLUGIN_KEY = 'image';
 export const IMAGE_PLUGIN_TYPE = 'image';

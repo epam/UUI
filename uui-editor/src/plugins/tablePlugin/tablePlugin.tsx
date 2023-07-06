@@ -22,9 +22,8 @@ import { TableToolbarContent } from './ToolbarContent';
 import { MergeToolbarContent } from './MergeToolbarContent';
 import { withOurTable } from './withOurTable';
 import { createInitialTable, selectFirstCell } from './utils';
-import { usePlateEditorState, PlateEditor, getPluginType } from '@udecode/plate-core';
+import { usePlateEditorState, PlateEditor, getPluginType, withoutNormalizing, someNode, insertNodes } from '@udecode/plate-common';
 import { getTableGridAbove, ELEMENT_TABLE, createTablePlugin, ELEMENT_TR, ELEMENT_TD, ELEMENT_TH } from '@udecode/plate-table';
-import { withoutNormalizing, someNode, insertNodes } from '@udecode/slate';
 
 const noop = () => {};
 

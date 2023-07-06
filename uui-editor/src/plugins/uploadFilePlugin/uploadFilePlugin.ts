@@ -1,6 +1,10 @@
-import { PlateEditor, createInsertDataPlugin } from "@udecode/plate-core";
-import { Value, select } from "@udecode/slate";
-import { findEventRange } from "@udecode/slate-react";
+import {
+    PlateEditor,
+    createInsertDataPlugin,
+    Value,
+    select,
+    findEventRange,
+} from "@udecode/plate-common";
 import {
     UploadFileOptions,
     UploadType,
