@@ -6,9 +6,8 @@ import cx from 'classnames';
 import { useReadOnly } from 'slate-react';
 import { ExtendedTTableCellElement } from './types';
 import { TableCellElementResizable } from './Resizable';
-import { usePlateEditorRef, useElement } from '@udecode/plate-core';
+import { usePlateEditorRef, useElement, TElement } from '@udecode/plate-common';
 import { TableCellElementRootProps, getTableRowIndex, useTableStore, TTableRowElement, ELEMENT_TR, TTableElement, ELEMENT_TABLE, TableCellElement } from '@udecode/plate-table';
-import { TElement } from '@udecode/slate';
 
 interface PlateTableCellElementProps extends TableCellElementRootProps {
     hideBorder?: boolean;

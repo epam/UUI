@@ -9,8 +9,8 @@ import {
     createComponentAs,
     createElementAs,
     HTMLPropsAs,
+    useElementProps
 } from '@udecode/plate-common';
-import { useElementProps } from '@udecode/plate-utils';
 
 const getDefaultColWidths = (columnsNumber: number) => Array.from({ length: columnsNumber }, () => DEFAULT_COL_WIDTH);
 

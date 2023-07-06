@@ -12,8 +12,7 @@ import { ReactComponent as NoteIconLink } from "../icons/info-block-link.svg";
 import { ReactComponent as NoteIconQuote } from "../icons/info-block-quote.svg";
 
 import { ToolbarButton } from './ToolbarButton';
-import { PlateEditor } from '@udecode/plate-core';
-import { setElements } from '@udecode/slate';
+import { PlateEditor, setElements } from '@udecode/plate-common';
 
 const { FlexRow } = uuiSkin;
 

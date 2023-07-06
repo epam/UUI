@@ -15,10 +15,7 @@ import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from "../paragraphPlugin/paragraphPlugin";
 import { Editor } from 'slate';
-import { PlateEditor, createPluginFactory, getPluginType } from '@udecode/plate-core';
-import { selectEditor } from '@udecode/plate-common';
-import { getEndPoint } from '@udecode/slate';
-import { getBlockAbove, insertEmptyElement } from '@udecode/slate-utils';
+import { PlateEditor, createPluginFactory, getPluginType, selectEditor, getEndPoint, getBlockAbove, insertEmptyElement } from '@udecode/plate-common';
 
 export const IFRAME_PLUGIN_KEY = 'iframe';
 export const IFRAME_PLUGIN_TYPE = 'iframe';

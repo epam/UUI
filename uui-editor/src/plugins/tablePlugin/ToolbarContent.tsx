@@ -15,10 +15,8 @@ import tableCSS from './Table.module.scss';
 import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { deleteColumn } from './deleteColumn';
 import { createCell } from "./utils";
-import { usePlateEditorState } from "@udecode/plate-core";
+import { usePlateEditorState, insertElements, TElementEntry, removeNodes } from "@udecode/plate-common";
 import { getTableEntries, insertTableColumn, insertTableRow, deleteRow, deleteTable } from "@udecode/plate-table";
-import { TElementEntry, removeNodes } from "@udecode/slate";
-import { insertElements } from "@udecode/slate-utils";
 
 const StyledRemoveTable = () => {
     return <RemoveTable className={ tableCSS.removeTableIcon } />

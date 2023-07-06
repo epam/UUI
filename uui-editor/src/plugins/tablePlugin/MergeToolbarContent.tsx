@@ -3,9 +3,7 @@ import React from "react";
 import { ReactComponent as TableMerge } from "../../icons/table-merge.svg";
 import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { createCell, getColSpan, getRowSpan } from "./utils";
-import { usePlateEditorState } from "@udecode/plate-core";
-import { TElementEntry, removeNodes } from "@udecode/slate";
-import { insertElements } from "@udecode/slate-utils";
+import { usePlateEditorState, TElementEntry, removeNodes, insertElements } from "@udecode/plate-common";
 
 export const MergeToolbarContent = ({ cellEntries }: { cellEntries: TElementEntry[] }) => {
     const editor = usePlateEditorState();

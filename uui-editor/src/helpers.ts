@@ -1,8 +1,7 @@
 // import flatten from 'lodash.flatten';
 // import Html from 'slate-html-serializer';
-import { useSlate, useFocused } from "slate-react";
 import { Range, Editor } from 'slate';
-import { getPlugins, usePlateEditorState } from "@udecode/plate-core";
+import { getPlugins, usePlateEditorState } from "@udecode/plate-common";
 //
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {

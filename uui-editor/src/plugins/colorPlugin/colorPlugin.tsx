@@ -9,9 +9,8 @@ import { ColorBar } from '../../implementation/ColorBar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { ReactComponent as ColorIcon } from '../../icons/text-color-normal.svg';
-import { PlateEditor, getPluginType } from '@udecode/plate-core';
+import { PlateEditor, getPluginType, getMark, setMarks, removeMark } from '@udecode/plate-common';
 import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
-import { getMark, setMarks, removeMark } from '@udecode/slate-utils';
 import { MARK_COLOR, createFontColorPlugin } from '@udecode/plate-font';
 
 export const colorPlugin = () => createFontColorPlugin();

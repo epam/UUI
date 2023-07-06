@@ -5,9 +5,7 @@ import css from './AddVideoModal.module.scss';
 
 import getVideoId from "get-video-id";
 import { useState } from "react";
-import { PlateEditor } from '@udecode/plate-core';
-import { setElements } from '@udecode/slate';
-
+import { PlateEditor, setElements } from '@udecode/plate-common';
 
 const { LabeledInput, ModalBlocker, ModalWindow, ModalHeader, FlexRow, TextInput, ModalFooter, Button } = uuiSkin;
 

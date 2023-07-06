@@ -3,9 +3,8 @@ import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { isPluginActive } from "../../helpers";
 import { ReactComponent as SuperScriptIcon } from "../../icons/super-script.svg";
 import { createSuperscriptPlugin, MARK_SUPERSCRIPT } from '@udecode/plate-basic-marks';
-import { PlateEditor, getPluginType } from '@udecode/plate-core';
+import { PlateEditor, getPluginType, isMarkActive } from '@udecode/plate-common';
 import { MarkToolbarButton } from '@udecode/plate-ui';
-import { isMarkActive } from '@udecode/slate-utils';
 
 const KEY = 'uui-richTextEditor-superscript';
 const noop = () => {};

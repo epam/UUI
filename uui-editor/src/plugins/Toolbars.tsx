@@ -21,9 +21,7 @@ import { IframeButton } from "./iframePlugin/iframePlugin";
 import { VideoButton } from "./videoPlugin/videoPlugin";
 import { TableButton } from "./tablePlugin/tablePlugin";
 import { AttachFileButton } from './attachmentPlugin/AttachFileButton';
-import { useEventPlateId, usePlateEditorRef, usePlateEditorState } from '@udecode/plate-core';
-import { isEditorFocused } from '@udecode/slate-react';
-
+import { useEventPlateId, usePlateEditorRef, usePlateEditorState, isEditorFocused } from '@udecode/plate-common';
 
 export const MarkBalloonToolbar = () => {
     const editorRef = usePlateEditorRef();
@@ -33,9 +31,9 @@ export const MarkBalloonToolbar = () => {
             <BoldButton editor={ editorRef } />
             <ItalicButton editor={ editorRef } />
             <UnderlineButton editor={ editorRef } />
-            <ColorButton editor={ editorRef }/>
+            <ColorButton editor={ editorRef } />
             <SuperscriptButton editor={ editorRef } />
-            <LinkButton editor={ editorRef }/>
+            <LinkButton editor={ editorRef } />
             <CodeButton editor={ editorRef } />
         </Toolbar>
     );
@@ -47,7 +45,7 @@ export const ListToolbarButtons = () => {
     return (
         <>
             <ListButton editor={ editor } />
-            <ToDoListButton editor={ editor }/>
+            <ToDoListButton editor={ editor } />
         </>
     );
 };
@@ -59,8 +57,8 @@ const BlockToolbarButtons = () => {
         <>
             <QuoteButton editor={ editorRef } />
             <NoteButton editor={ editorRef } />
-            <AttachFileButton editor={ editorRef }/>
-            <ImageButton editor={ editorRef }/>
+            <AttachFileButton editor={ editorRef } />
+            <ImageButton editor={ editorRef } />
             <VideoButton editor={ editorRef } />
             <IframeButton editor={ editorRef } />
             <SeparatorButton editor={ editorRef } />
@@ -80,7 +78,7 @@ export const ToolbarButtons = () => {
 
     return (
         <Sidebar isReadonly={ false } >
-            <HeaderButton editor={ editor }/>
+            <HeaderButton editor={ editor } />
             <ListToolbarButtons />
             <BlockToolbarButtons />
         </Sidebar>

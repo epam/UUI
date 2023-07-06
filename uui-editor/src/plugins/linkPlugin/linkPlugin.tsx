@@ -8,8 +8,7 @@ import { ReactComponent as LinkIcon } from "../../icons/link.svg";
 import { AddLinkModal } from "./AddLinkModal";
 import { isPluginActive } from '../../helpers';
 import { isUrl } from './isUrl';
-import { TElement, Value, someNode } from '@udecode/slate';
-import { PlateEditor, WithPlatePlugin } from '@udecode/plate-core';
+import { TElement, Value, someNode, PlateEditor, WithPlatePlugin } from '@udecode/plate-common';
 import { LinkPlugin, withLink, validateUrl, upsertLink, createLinkPlugin, ELEMENT_LINK } from '@udecode/plate-link';
 import { LinkToolbarButton } from '@udecode/plate-ui';
 

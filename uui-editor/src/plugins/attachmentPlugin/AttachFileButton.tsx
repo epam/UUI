@@ -8,8 +8,7 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { ReactComponent as AttachIcon } from '../../icons/attach-file.svg';
 import { ATTACHMENT_PLUGIN_KEY } from './attachmentPlugin';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
-import { focusEditor } from '@udecode/slate-react';
-import { PlateEditor } from '@udecode/plate-core';
+import { PlateEditor, focusEditor } from '@udecode/plate-common';
 
 interface IUploadFileButton {
     editor: PlateEditor;

@@ -11,9 +11,10 @@ import {
     usePlateEditorState,
     PlateProvider,
     useEventEditorSelectors,
-} from '@udecode/plate-core';
+    isElementEmpty,
+    Value
+} from '@udecode/plate-common';
 import { Toolbar, createPlateUI } from '@udecode/plate-ui';
-import { isElementEmpty, Value } from '@udecode/plate-common';
 import { createJuicePlugin } from '@udecode/plate-juice';
 import { ToolbarButtons, MarkBalloonToolbar, } from './plugins/Toolbars';
 
