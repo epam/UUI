@@ -1,22 +1,11 @@
-import {
-    ELEMENT_TABLE,
-    ELEMENT_TD,
-    ELEMENT_TH,
-    ELEMENT_TR,
-    PlateEditor,
-    TTableCellElement,
-    TTableElement,
-    TTableRowElement,
-    createNode,
-    getBlockAbove,
-    getPluginType,
-    getStartPoint,
-    insertElements,
-    isBlockAboveEmpty,
-    selectEditor,
-} from "@udecode/plate";
+
 import { ExtendedTTableCellElement } from "./types";
 import { DEFAULT_COL_WIDTH } from "./constants";
+import { PlateEditor, getPluginType } from "@udecode/plate-core";
+import { TTableElement, TTableRowElement, TTableCellElement, ELEMENT_TABLE, ELEMENT_TR, ELEMENT_TH, ELEMENT_TD } from "@udecode/plate-table";
+import { getStartPoint } from "@udecode/slate";
+import { getBlockAbove, insertElements, createNode } from "@udecode/slate-utils";
+import { selectEditor } from "@udecode/plate-utils";
 
 export const getRowSpan = (cellElem: ExtendedTTableCellElement) => {
     const attrRowSpan = isNaN((cellElem?.attributes as any)?.rowspan)

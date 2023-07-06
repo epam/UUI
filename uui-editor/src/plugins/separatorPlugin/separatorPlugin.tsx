@@ -1,12 +1,5 @@
 import React from 'react';
 
-import {
-    BlockToolbarButton,
-    getPluginType,
-    isMarkActive,
-    PlateEditor,
-    createPluginFactory, insertEmptyElement,
-} from '@udecode/plate';
 
 import { isPluginActive, isTextSelected } from '../../helpers';
 
@@ -18,6 +11,9 @@ import { Separator } from './Separator';
 import { getBlockAboveByType } from "../../utils/getAboveBlock";
 import { PARAGRAPH_TYPE } from "../paragraphPlugin/paragraphPlugin";
 import { Editor } from 'slate';
+import { createPluginFactory, PlateEditor, getPluginType } from '@udecode/plate-core';
+import { BlockToolbarButton } from '@udecode/plate-ui';
+import { insertEmptyElement, isMarkActive } from '@udecode/slate-utils';
 
 const SEPARATOR_TYPE = 'separatorBLock';
 const noop = () => {};

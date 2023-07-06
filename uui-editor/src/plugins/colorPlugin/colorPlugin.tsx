@@ -1,16 +1,7 @@
 import React, { useCallback } from 'react';
 import { Dropdown } from '@epam/uui-components';
 
-import {
-    ToolbarButton as PlateToolbarButton,
-    createFontColorPlugin,
-    getPluginType,
-    PlateEditor,
-    MARK_COLOR,
-    removeMark,
-    setMarks,
-    getMark,
-} from '@udecode/plate';
+
 
 import { isPluginActive } from '../../helpers';
 
@@ -18,6 +9,10 @@ import { ColorBar } from '../../implementation/ColorBar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { ReactComponent as ColorIcon } from '../../icons/text-color-normal.svg';
+import { PlateEditor, getPluginType } from '@udecode/plate-core';
+import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
+import { getMark, setMarks, removeMark } from '@udecode/slate-utils';
+import { MARK_COLOR, createFontColorPlugin } from '@udecode/plate-font';
 
 export const colorPlugin = () => createFontColorPlugin();
 

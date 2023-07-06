@@ -1,16 +1,9 @@
 import React from 'react';
 import { Dropdown } from '@epam/uui-components';
 
-import {
-    createPluginFactory,
-    getBlockAbove,
-    PlateEditor,
-    ToolbarButton as PlateToolbarButton,
-    insertText,
-    getAboveNode,
-    setElements,
-    createNode,
-} from '@udecode/plate';
+
+import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
+
 
 import { isPluginActive } from '../../helpers';
 
@@ -21,6 +14,9 @@ import { ReactComponent as NoteIcon } from '../../icons/info-block-quote.svg';
 
 import { NotePluginBlock } from './NotePluginBlock';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
+import { createPluginFactory, PlateEditor } from '@udecode/plate-core';
+import { getAboveNode, insertText, setElements } from '@udecode/slate';
+import { createNode, getBlockAbove } from '@udecode/slate-utils';
 
 const noteBlocks = ['note-error', 'note-warning', 'note-link', 'note-quote'];
 

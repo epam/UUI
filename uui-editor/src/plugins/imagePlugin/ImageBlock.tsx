@@ -8,23 +8,18 @@ import { useFocused, useSelected } from 'slate-react';
 import invert from 'lodash.invert';
 import debounce from 'lodash.debounce';
 
-import {
-    getBlockAbove,
-    ImageElement,
-    setElements,
-    PlatePluginComponent,
-    PlateRenderElementProps,
-    Value,
-    TElement,
-    PlateEditor,
-    findNodePath,
-    useResizableStore,
-} from '@udecode/plate';
+
 
 import { FileUploadResponse } from "@epam/uui-core";
 
 import css from './ImageBlock.module.scss';
 import { ImgToolbar } from './Toolbar';
+import { PlateEditor, PlatePluginComponent, PlateRenderElementProps } from '@udecode/plate-core';
+import { useResizableStore } from '@udecode/plate-media';
+import { ImageElement } from '@udecode/plate-ui';
+import { TElement, Value, setElements } from '@udecode/slate';
+import { findNodePath } from '@udecode/slate-react';
+import { getBlockAbove } from '@udecode/slate-utils';
 
 export type PlateImgAlign = 'left' | 'center' | 'right';
 type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';

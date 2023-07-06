@@ -8,19 +8,12 @@ import { useForceUpdate } from '@epam/uui-core';
 import {
     Plate,
     createPlugins,
-    createPlateUI,
     usePlateEditorState,
-    Toolbar,
-    createSoftBreakPlugin,
-    createExitBreakPlugin,
     PlateProvider,
     useEventEditorSelectors,
-    isElementEmpty,
-    Value,
-    createTextIndentPlugin,
-    createIndentListPlugin,
-} from '@udecode/plate';
-
+} from '@udecode/plate-core';
+import { Toolbar, createPlateUI } from '@udecode/plate-ui';
+import { isElementEmpty, Value } from '@udecode/plate-common';
 import { createJuicePlugin } from '@udecode/plate-juice';
 import { ToolbarButtons, MarkBalloonToolbar, } from './plugins/Toolbars';
 
@@ -30,11 +23,13 @@ import { baseMarksPlugin, paragraphPlugin } from './plugins';
 
 import css from './SlateEditor.module.scss';
 import { createDeserializeDocxPlugin } from './plugins/deserializeDocxPlugin/deserializeDocxPlugin';
+import { createIndentListPlugin } from '@udecode/plate-indent-list';
+import { createExitBreakPlugin, createSoftBreakPlugin } from '@udecode/plate-break';
+import { createTextIndentPlugin } from '@udecode/plate-indent';
 
 let components = createPlateUI();
 
 export type EditorValue = Value | null;
-
 
 /**
  * Please make sure defaultPlugins and all your plugins are not interfere

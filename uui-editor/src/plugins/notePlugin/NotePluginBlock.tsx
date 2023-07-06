@@ -1,9 +1,9 @@
 import * as React from 'react';
 import cx from 'classnames';
 
-import { StyledElementProps } from '@udecode/plate';
 
 import css from './NotePluginBlock.module.scss';
+import { StyledElementProps } from '@udecode/plate-ui';
 
 interface NotePluginBlock extends StyledElementProps {
     type: string;

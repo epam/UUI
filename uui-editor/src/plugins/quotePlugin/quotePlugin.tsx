@@ -1,13 +1,5 @@
 import React from 'react';
 
-import {
-    createBlockquotePlugin,
-    BlockToolbarButton,
-    getPluginType,
-    isMarkActive,
-    PlateEditor,
-    StyledElementProps,
-} from '@udecode/plate';
 
 import { isPluginActive } from '../../helpers';
 
@@ -16,6 +8,10 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { ReactComponent as QuoteIcon } from '../../icons/quote.svg';
 
 import css from './quote.module.scss';
+import { BlockToolbarButton, StyledElementProps } from '@udecode/plate-ui';
+import { createBlockquotePlugin } from '@udecode/plate-block-quote';
+import { PlateEditor, getPluginType } from '@udecode/plate-core';
+import { isMarkActive } from '@udecode/slate-utils';
 
 const noop = () => {};
 const KEY = 'uui-richTextEditor-quote';

@@ -1,19 +1,7 @@
 import React, { useRef } from 'react';
-import {
-    ELEMENT_TABLE,
-    ELEMENT_TD,
-    ELEMENT_TH,
-    ELEMENT_TR,
-    usePlateEditorState,
-    ToolbarButton as PlateToolbarButton,
-    PlateEditor,
-    getTableGridAbove,
-    insertNodes,
-    withoutNormalizing,
-    getPluginType,
-    someNode,
-    createTablePlugin,
-} from "@udecode/plate";
+
+import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
+
 import cx from "classnames";
 import { Dropdown } from '@epam/uui-components';
 import { useFocused, useReadOnly, useSelected } from 'slate-react';
@@ -34,6 +22,9 @@ import { TableToolbarContent } from './ToolbarContent';
 import { MergeToolbarContent } from './MergeToolbarContent';
 import { withOurTable } from './withOurTable';
 import { createInitialTable, selectFirstCell } from './utils';
+import { usePlateEditorState, PlateEditor, getPluginType } from '@udecode/plate-core';
+import { getTableGridAbove, ELEMENT_TABLE, createTablePlugin, ELEMENT_TR, ELEMENT_TD, ELEMENT_TH } from '@udecode/plate-table';
+import { withoutNormalizing, someNode, insertNodes } from '@udecode/slate';
 
 const noop = () => {};
 

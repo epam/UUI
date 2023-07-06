@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { Popper } from 'react-popper';
-import { usePlateEditorState, isEditorFocused, findNode, toDOMNode, getCellTypes, getSelectionBoundingClientRect } from '@udecode/plate';
 import { Portal } from '@epam/uui-components';
 import cx from "classnames";
 import { Range } from 'slate';
@@ -8,6 +7,12 @@ import { Range } from 'slate';
 import { isImageSelected, isTextSelected } from '../helpers';
 import css from './Toolbar.module.scss';
 import type { VirtualElement } from '@popperjs/core/lib/popper';
+import { PlateEditor, usePlateEditorState } from '@udecode/plate-core';
+import { isEditorFocused } from '@udecode/plate-common';
+import { Value, findNode } from '@udecode/slate';
+import { getCellTypes } from '@udecode/plate-table';
+import { getSelectionBoundingClientRect } from '@udecode/plate-floating';
+import { toDOMNode } from '@udecode/slate-react';
 
 interface ToolbarProps {
     editor: any;
@@ -25,7 +30,7 @@ export function Toolbar(props: ToolbarProps): any {
 
     const virtualReferenceElement = (): VirtualElement => ({
         getBoundingClientRect(): DOMRect {
-            if(props.isTable) {
+            if (props.isTable) {
                 const [selectedNode] = findNode(editor, {
                     at: Range.start(editor.selection),
                     match: { type: getCellTypes(editor) },

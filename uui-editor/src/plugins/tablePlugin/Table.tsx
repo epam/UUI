@@ -1,13 +1,16 @@
 import React from 'react';
-import {
-    TableElement,
-    TableElementRootProps,
-} from '@udecode/plate-table';
-import { type TTableElement, useTableStore, TTableRowElement, HTMLPropsAs, useSelectedCells, useElementProps, createComponentAs, createElementAs } from '@udecode/plate';
+
 import { cx } from '@epam/uui-core'
 
 import tableCSS from './Table.module.scss';
 import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
+import { TableElementRootProps, TableElement, TTableElement, TTableRowElement, useSelectedCells, useTableStore } from '@udecode/plate-table';
+import {
+    createComponentAs,
+    createElementAs,
+    HTMLPropsAs,
+} from '@udecode/plate-common';
+import { useElementProps } from '@udecode/plate-utils';
 
 const getDefaultColWidths = (columnsNumber: number) => Array.from({ length: columnsNumber }, () => DEFAULT_COL_WIDTH);
 

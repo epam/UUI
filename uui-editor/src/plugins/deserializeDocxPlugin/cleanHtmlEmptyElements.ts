@@ -1,4 +1,4 @@
-import { traverseHtmlElements } from "@udecode/plate";
+import { traverseHtmlElements } from "@udecode/plate-core";
 
 // TODO: move to plate
 const ALLOWED_EMPTY_ELEMENTS = ["BR", "IMG", "TH", "TD"];

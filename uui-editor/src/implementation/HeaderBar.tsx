@@ -8,12 +8,16 @@ import { ReactComponent as H3Icon } from "../icons/heading-H3.svg";
 import { PARAGRAPH_TYPE } from '../plugins/paragraphPlugin/paragraphPlugin';
 import { ToolbarButton } from './ToolbarButton';
 
-import {
-    setElements,
-    ToolbarButton as PlateToolbarButton,
-    getBlockAbove,
-    PlateEditor,
-} from '@udecode/plate';
+// import {
+//     setElements,
+//     ToolbarButton as PlateToolbarButton,
+//     getBlockAbove,
+//     PlateEditor,
+// } from '@udecode/plate';
+import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
+import { PlateEditor, withEditorProtocol } from '@udecode/plate-core';
+import { setElements } from '@udecode/slate';
+import { getBlockAbove } from '@udecode/slate-utils';
 
 const { FlexRow } = uuiSkin;
 

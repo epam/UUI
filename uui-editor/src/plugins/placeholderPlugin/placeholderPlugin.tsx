@@ -1,13 +1,7 @@
 import React from 'react';
 import { Dropdown } from '@epam/uui-components';
 
-import {
-    createPluginFactory,
-    getPluginOptions,
-    PlateEditor,
-    insertElements,
-    ToolbarButton as PlateToolbarButton,
-} from "@udecode/plate";
+
 
 import { isPluginActive, isTextSelected } from '../../helpers';
 
@@ -16,6 +10,10 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { PlaceholderBlock } from './PlaceholderBlock';
 
 import css from './PlaceholderPlugin.module.scss';
+import { createPluginFactory, PlateEditor, getPluginOptions } from '@udecode/plate-core';
+import { insertElements } from '@udecode/slate-utils';
+import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
+
 
 const KEY = 'placeholder';
 const noop = () => {};

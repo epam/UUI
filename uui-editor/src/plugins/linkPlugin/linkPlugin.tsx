@@ -1,19 +1,5 @@
 import React from 'react';
-import {
-    createLinkPlugin,
-    someNode,
-    LinkToolbarButton,
-    ELEMENT_LINK,
-    PlateEditor,
-    Value,
-    TElement,
-    withLink,
-    WithPlatePlugin,
-    LinkPlugin,
-    upsertLink,
-    getPluginType,
-    validateUrl,
-} from "@udecode/plate";
+
 import { useUuiContext } from '@epam/uui-core';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
@@ -22,6 +8,10 @@ import { ReactComponent as LinkIcon } from "../../icons/link.svg";
 import { AddLinkModal } from "./AddLinkModal";
 import { isPluginActive } from '../../helpers';
 import { isUrl } from './isUrl';
+import { TElement, Value, someNode } from '@udecode/slate';
+import { PlateEditor, WithPlatePlugin } from '@udecode/plate-core';
+import { LinkPlugin, withLink, validateUrl, upsertLink, createLinkPlugin, ELEMENT_LINK } from '@udecode/plate-link';
+import { LinkToolbarButton } from '@udecode/plate-ui';
 
 export interface LinkElement extends TElement {
     href: string;

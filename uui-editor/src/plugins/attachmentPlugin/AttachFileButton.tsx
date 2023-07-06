@@ -1,16 +1,15 @@
 import React, { memo, useCallback } from 'react';
 import { UploadFileToggler } from '@epam/uui-components';
 
-import {
-    ToolbarButton as PlateToolbarButton,
-    PlateEditor, focusEditor
-} from "@udecode/plate";
+import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
 
 import { isPluginActive, isTextSelected } from '../../helpers';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { ReactComponent as AttachIcon } from '../../icons/attach-file.svg';
 import { ATTACHMENT_PLUGIN_KEY } from './attachmentPlugin';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
+import { focusEditor } from '@udecode/slate-react';
+import { PlateEditor } from '@udecode/plate-core';
 
 interface IUploadFileButton {
     editor: PlateEditor;
