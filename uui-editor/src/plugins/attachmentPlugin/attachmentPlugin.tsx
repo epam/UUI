@@ -1,9 +1,10 @@
 import { Editor } from 'slate';
-import { createPluginFactory, insertEmptyElement } from '@udecode/plate';
 
 import { AttachmentBlock } from './AttachmentBlock';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
+import { createPluginFactory } from '@udecode/plate-core';
+import { insertEmptyElement } from '@udecode/slate-utils';
 
 export const ATTACHMENT_PLUGIN_KEY = 'attachment';
 export const ATTACHMENT_PLUGIN_TYPE = 'attachment';

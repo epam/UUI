@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { isBlock, usePlateEditorState } from '@udecode/plate';
 import cx from "classnames";
 
 import css from "./Sidebar.module.scss";
+import { usePlateEditorState } from "@udecode/plate-core";
+import { isBlock } from "@udecode/slate";
 
 interface SidebarProps {
     isReadonly: boolean;

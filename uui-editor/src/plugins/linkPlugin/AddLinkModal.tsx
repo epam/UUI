@@ -1,18 +1,14 @@
 import * as React from 'react';
-import {
-    getPluginType,
-    ELEMENT_LINK,
-    getAboveNode,
-    insertLink,
-    getSelectionText,
-    PlateEditor,
-    unwrapLink,
-} from '@udecode/plate';
+
 
 import { IModal, uuiSkin } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
 import css from './link.module.scss';
 import { useEffect, useState } from "react";
+import { PlateEditor, getPluginType } from '@udecode/plate-core';
+import { getAboveNode } from '@udecode/slate';
+import { getSelectionText } from '@udecode/slate-utils';
+import { ELEMENT_LINK, insertLink, unwrapLink } from '@udecode/plate-link';
 
 const { LabeledInput, ModalBlocker, ModalWindow, ModalHeader, FlexRow, TextInput, ModalFooter, Button } = uuiSkin;
 

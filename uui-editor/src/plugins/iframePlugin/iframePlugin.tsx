@@ -1,10 +1,8 @@
 import React from 'react';
 import { UploadFileToggler } from '@epam/uui-components';
 
-import {
-    createPluginFactory, insertEmptyElement, getBlockAbove, getEndPoint, getPluginType, PlateEditor,
-    ToolbarButton as PlateToolbarButton, selectEditor,
-} from '@udecode/plate';
+import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
+
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
@@ -17,6 +15,10 @@ import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from "../paragraphPlugin/paragraphPlugin";
 import { Editor } from 'slate';
+import { PlateEditor, createPluginFactory, getPluginType } from '@udecode/plate-core';
+import { selectEditor } from '@udecode/plate-common';
+import { getEndPoint } from '@udecode/slate';
+import { getBlockAbove, insertEmptyElement } from '@udecode/slate-utils';
 
 export const IFRAME_PLUGIN_KEY = 'iframe';
 export const IFRAME_PLUGIN_TYPE = 'iframe';

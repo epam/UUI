@@ -1,9 +1,8 @@
 import * as React from 'react';
 import cx from 'classnames';
 
-import { PlateTableRowElement } from '@udecode/plate';
-
 import css from './Table.module.scss';
+import { PlateTableRowElement } from '@udecode/plate-ui';
 
 const DEFAULT_HEADER_ROW_HEIGHT = 46;
 const DEFAULT_HEIGHT = 50;

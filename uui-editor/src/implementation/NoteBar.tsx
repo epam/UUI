@@ -2,11 +2,8 @@ import * as React from 'react';
 
 import { DropdownBodyProps, uuiSkin } from "@epam/uui-core";
 
-import {
-    PlateEditor,
-    setElements,
-    ToolbarButton as PlateToolbarButton,
-} from '@udecode/plate';
+import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
+
 
 import { ReactComponent as ClearIcon } from "../icons/text-color-default.svg";
 import { ReactComponent as NoteIconError } from "../icons/info-block-warning.svg";
@@ -15,6 +12,8 @@ import { ReactComponent as NoteIconLink } from "../icons/info-block-link.svg";
 import { ReactComponent as NoteIconQuote } from "../icons/info-block-quote.svg";
 
 import { ToolbarButton } from './ToolbarButton';
+import { PlateEditor } from '@udecode/plate-core';
+import { setElements } from '@udecode/slate';
 
 const { FlexRow } = uuiSkin;
 

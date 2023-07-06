@@ -1,12 +1,8 @@
 import React from 'react';
 import { useUuiContext } from '@epam/uui-core';
 
-import {
-    createPluginFactory,
-    getBlockAbove,
-    PlateEditor,
-    ToolbarButton as PlateToolbarButton,
-} from '@udecode/plate';
+import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
+
 
 import { isPluginActive, isTextSelected } from '../../helpers';
 
@@ -15,6 +11,8 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { ReactComponent as VideoIcon } from '../../icons/video.svg';
 
 import { AddVideoModal } from './AddVideoModal';
+import { createPluginFactory, PlateEditor } from '@udecode/plate-core';
+import { getBlockAbove } from '@udecode/slate-utils';
 
 const noop = () => {};
 

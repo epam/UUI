@@ -1,12 +1,5 @@
 import React from 'react';
 
-import {
-    useEventPlateId,
-    usePlateEditorState,
-    usePlateEditorRef,
-    isEditorFocused,
-} from '@udecode/plate';
-
 import { BoldButton, ItalicButton, UnderlineButton } from './baseMarksPlugin/baseMarksPlugin';
 import { CodeButton } from './codeBlockPlugin/codeBlockPlugin';
 import { SuperscriptButton } from './superscriptPlugin/superscriptPlugin';
@@ -28,6 +21,8 @@ import { IframeButton } from "./iframePlugin/iframePlugin";
 import { VideoButton } from "./videoPlugin/videoPlugin";
 import { TableButton } from "./tablePlugin/tablePlugin";
 import { AttachFileButton } from './attachmentPlugin/AttachFileButton';
+import { useEventPlateId, usePlateEditorRef, usePlateEditorState } from '@udecode/plate-core';
+import { isEditorFocused } from '@udecode/slate-react';
 
 
 export const MarkBalloonToolbar = () => {

@@ -1,15 +1,8 @@
-import {
-    PlateEditor,
-    TablePlugin,
-    WithPlatePlugin,
-    withTable,
-    Value,
-    getTableGridAbove,
-    serializeHtml,
-    TTableRowElement,
-    TTableCellElement,
-    TTableElement,
-} from "@udecode/plate";
+import { PlateEditor, WithPlatePlugin } from "@udecode/plate-core";
+import { serializeHtml } from "@udecode/plate-serializer-html";
+import { TablePlugin, getTableGridAbove, TTableElement, TTableRowElement, TTableCellElement, withTable } from "@udecode/plate-table";
+import { Value } from "@udecode/slate";
+
 
 const wiOurSetFragmentDataTable = <
     V extends Value = Value,

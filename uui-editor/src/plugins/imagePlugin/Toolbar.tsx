@@ -1,6 +1,7 @@
 import React from "react";
 import cx from 'classnames';
-import { PlateEditor, ToolbarButton as PlateToolbarButton } from "@udecode/plate";
+import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
+
 
 import { ReactComponent as AlignLeft } from '../../icons/align-left.svg';
 import { ReactComponent as AlignCenter } from '../../icons/align-center.svg';
@@ -11,6 +12,7 @@ import { ImageElement, PlateImgAlign } from "./ImageBlock";
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import css from './ImageBlock.module.scss';
+import { PlateEditor } from "@udecode/plate-core";
 
 export const ImgToolbar = ({
     editor,

@@ -1,8 +1,6 @@
-import {
-    KEY_DESERIALIZE_HTML,
-    createDeserializeDocxPlugin as createPlateDeserializeDocxPlugin,
-} from "@udecode/plate";
+import { KEY_DESERIALIZE_HTML } from "@udecode/plate-core";
 import { cleanDocx } from "./cleanDocx";
+import { createDeserializeDocxPlugin as createPlateDeserializeDocxPlugin } from "@udecode/plate-serializer-docx";
 
 export const createDeserializeDocxPlugin = () =>
     createPlateDeserializeDocxPlugin({

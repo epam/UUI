@@ -1,19 +1,7 @@
-import {
-    ELEMENT_TABLE,
-    ELEMENT_TD,
-    ELEMENT_TH,
-    ELEMENT_TR,
-    getAboveNode,
-    getPluginType,
-    PlateEditor,
-    removeNodes,
-    setNodes,
-    someNode,
-    TDescendant,
-    TTableElement,
-    Value,
-    withoutNormalizing,
-} from "@udecode/plate";
+import { PlateEditor, getPluginType } from "@udecode/plate-core";
+import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, TTableElement } from "@udecode/plate-table";
+import { someNode, getAboveNode, withoutNormalizing, TDescendant, removeNodes, setNodes, Value } from "@udecode/slate";
+
 
 export const deleteColumn = <V extends Value>(editor: PlateEditor<V>) => {
     if (

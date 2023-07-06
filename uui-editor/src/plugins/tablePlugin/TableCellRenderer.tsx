@@ -2,22 +2,13 @@ import * as React from 'react';
 import css from './Table.module.scss';
 import cx from 'classnames';
 
-import {
-    TableCellElementRootProps,
-    TableCellElement,
-    useTableStore,
-    TElement,
-    usePlateEditorRef,
-    useElement,
-    getTableRowIndex,
-    TTableRowElement,
-    ELEMENT_TR,
-    TTableElement,
-    ELEMENT_TABLE,
-} from '@udecode/plate';
+
 import { useReadOnly } from 'slate-react';
 import { ExtendedTTableCellElement } from './types';
 import { TableCellElementResizable } from './Resizable';
+import { usePlateEditorRef, useElement } from '@udecode/plate-core';
+import { TableCellElementRootProps, getTableRowIndex, useTableStore, TTableRowElement, ELEMENT_TR, TTableElement, ELEMENT_TABLE, TableCellElement } from '@udecode/plate-table';
+import { TElement } from '@udecode/slate';
 
 interface PlateTableCellElementProps extends TableCellElementRootProps {
     hideBorder?: boolean;

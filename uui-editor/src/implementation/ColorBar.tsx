@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { uuiSkin } from '@epam/uui-core';
-import {
-    ToolbarButton as PlateToolbarButton,
-} from '@udecode/plate';
+import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
 
 import { ReactComponent as ClearIcon } from "../icons/text-color-default.svg";
 import { ReactComponent as ColorIcon } from '../icons/text-color-select.svg';

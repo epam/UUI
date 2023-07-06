@@ -1,18 +1,7 @@
 import React from 'react';
 import { useUuiContext } from '@epam/uui-core';
 
-import {
-    createPluginFactory,
-    focusEditor,
-    getBlockAbove,
-    ImagePlugin,
-    PlateEditor,
-    ToolbarButton as PlateToolbarButton,
-    TImageElement,
-    insertNodes,
-    insertEmptyElement,
-    captionGlobalStore,
-} from '@udecode/plate';
+import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
 
 import { isPluginActive, isTextSelected } from '../../helpers';
 
@@ -25,12 +14,17 @@ import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { Editor } from 'slate';
 import isHotkey from 'is-hotkey';
+import { createPluginFactory, PlateEditor } from '@udecode/plate-core';
+import { insertNodes } from '@udecode/slate';
+import { focusEditor } from '@udecode/slate-react';
+import { getBlockAbove, insertEmptyElement } from '@udecode/slate-utils';
+import { captionGlobalStore, TImageElement } from '@udecode/plate-media';
 
 export const IMAGE_PLUGIN_KEY = 'image';
 export const IMAGE_PLUGIN_TYPE = 'image';
 
 export const imagePlugin = () => {
-    const createImagePlugin = createPluginFactory<ImagePlugin>({
+    const createImagePlugin = createPluginFactory({
         key: IMAGE_PLUGIN_KEY,
         type: IMAGE_PLUGIN_TYPE,
         isElement: true,

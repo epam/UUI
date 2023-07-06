@@ -4,7 +4,6 @@ import { uuiMod, uuiSkin } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 
 import { useSelected, useReadOnly, useFocused } from 'slate-react';
-import { setElements } from '@udecode/plate';
 
 import { ReactComponent as DownloadIcon } from '../../icons/download-icon.svg';
 import { ReactComponent as FileIcon } from '../../icons/file-file-24.svg';
@@ -18,6 +17,7 @@ import { ReactComponent as TextIcon } from '../../icons/file-file_text-24.svg';
 import { ReactComponent as MailIcon } from '../../icons/file-file_eml-24.svg';
 
 import css from './AttachmentBlock.module.scss';
+import { setElements } from '@udecode/slate';
 
 const { FlexRow, FlexCell, TextInput, Spinner } = uuiSkin;
 

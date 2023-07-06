@@ -1,10 +1,6 @@
-import {
-    PlateEditor,
-    Value,
-    createInsertDataPlugin,
-    findEventRange,
-    select,
-} from "@udecode/plate";
+import { PlateEditor, createInsertDataPlugin } from "@udecode/plate-core";
+import { Value, select } from "@udecode/slate";
+import { findEventRange } from "@udecode/slate-react";
 import {
     UploadFileOptions,
     UploadType,
@@ -20,7 +16,7 @@ interface UploadFilePluginOptions {
 }
 
 const isFilesUploadEvent = (dataTransfer: DataTransfer) => {
-    const text = dataTransfer.getData('text/plain');
+    const text = dataTransfer.getData("text/plain");
     const { files } = dataTransfer;
 
     if (!text && files && files.length !== 0) return true;

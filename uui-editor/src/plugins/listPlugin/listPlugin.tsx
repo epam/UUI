@@ -1,20 +1,13 @@
 import React from "react";
 
-import {
-    ELEMENT_OL,
-    ELEMENT_UL,
-    ELEMENT_LI,
-    createListPlugin,
-    PlateEditor,
-    ListToolbarButton,
-    getPluginType,
-    getListItemEntry,
-    ELEMENT_LIC,
-} from "@udecode/plate";
+
 import { isPluginActive } from "../../helpers";
 import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { ReactComponent as UnorderedList } from "../../icons/bullet-list.svg";
 import { ReactComponent as NumberedList } from "../../icons/numbered-list.svg";
+import { PlateEditor, getPluginType } from "@udecode/plate-core";
+import { createListPlugin, ELEMENT_OL, ELEMENT_UL, ELEMENT_LI, ELEMENT_LIC, getListItemEntry } from "@udecode/plate-list";
+import { ListToolbarButton } from "@udecode/plate-ui";
 
 const noop = () => {};
 
