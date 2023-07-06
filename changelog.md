@@ -3,6 +3,7 @@
 
 
 **What's Fixed**
+[Button]: add missing styles for 'sun' color in loveship skin
 [FilterPanel]: fix RangeDatePicker 'to' value change
 [LabeledInput]: removed specific class for loveship skin
 [Rating]: fix rating behavior with 0.5 step
