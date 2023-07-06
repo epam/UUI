@@ -4,6 +4,10 @@
 
 **What's Fixed**
 [FilterPanel]: fix RangeDatePicker 'to' value change
+[LabeledInput]: removed specific class for loveship skin
+[Rating]: fix rating behavior with 0.5 step
+[ColumnsConfigurationConfig]: change 'Apply' button color to the 'primary'
+
 
 # 5.1.0 - 29.06.2023
 
