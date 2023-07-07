@@ -40,7 +40,7 @@ To provide more details please include screenshots, animated GIFs, or minimal co
 
 ## Expected result
 
-Please describe the behavior you are expecting
+Please describe the behavior you are expecting.
 
 ## Environment
 
