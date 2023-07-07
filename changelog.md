@@ -1,8 +1,12 @@
 # 5.x.x - xx.xx.2023
 **What's New**
 
+[DataTable]: Added column description tooltip to table header. DataTable now has an optional property-callback 'renderColumnsConfigurationModal?: (props) => React.ReactNode' for render your custom ColumnsConfigurationModal or you have our variant of it.
+[ColumnsConfigurationModal]: Added 'renderItem?: (column) => React.ReactNode' optional property-callback for render your custom column name section.
+[ColumnsConfigurationModal]: Added 'getSearchFields?: (column) => string[];' optional callback to define columns to search in the ColumnsConfigurationModal. We use 'column.caption' by default.
 
 **What's Fixed**
+
 [Button]: add missing styles for 'sun' color in loveship skin
 [FilterPanel]: fix RangeDatePicker 'to' value change
 [LabeledInput]: removed specific class for loveship skin
