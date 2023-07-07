@@ -15,7 +15,7 @@ export interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IMo
     columnsConfig?: ColumnsConfig;
     defaultConfig: ColumnsConfig;
     columns: DataColumnProps<TItem, TId, TFilter>[];
-    renderItem?: ((column: DataColumnProps<TItem, TId, TFilter>) => React.ReactNode);
+    renderItem?: (column: DataColumnProps<TItem, TId, TFilter>) => React.ReactNode;
     getSearchFields?: (column: DataColumnProps<TItem, TId, TFilter>) => string[];
 }
 
@@ -57,7 +57,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                 {!!amountPinned && (
                     <FlexRow cx={ styles.groupItems } size="30">
                         {groupedColumns.displayedPinned.map((c) => (
-                            <ColumnRow column={ c } key={ c.key } renderItem={ props.renderItem ? () => props.renderItem(c) : null } />
+                            <ColumnRow column={ c } key={ c.key } renderItem={ props.renderItem } />
                         ))}
                     </FlexRow>
                 )}
@@ -65,7 +65,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                 {!!amountUnPinned && (
                     <FlexRow cx={ styles.groupItems } size="30">
                         {groupedColumns.displayedUnpinned.map((c) => (
-                            <ColumnRow column={ c } key={ c.key } renderItem={ props.renderItem ? () => props.renderItem(c) : null } />
+                            <ColumnRow column={ c } key={ c.key } renderItem={ props.renderItem } />
                         ))}
                     </FlexRow>
                 )}
@@ -82,7 +82,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                 {renderGroupTitle(i18n.hiddenSectionTitle, amountHidden)}
                 <FlexRow cx={ styles.groupItems } size="30">
                     {groupedColumns.hidden.map((c) => (
-                        <ColumnRow column={ c } key={ c.key } renderItem={ props.renderItem ? () => props.renderItem(c) : null } />
+                        <ColumnRow column={ c } key={ c.key } renderItem={ props.renderItem } />
                     ))}
                 </FlexRow>
             </>

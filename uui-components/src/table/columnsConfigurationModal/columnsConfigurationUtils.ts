@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-    AcceptDropParams, ColumnsConfig, DataColumnProps, DropPosition, getOrderBetween, IColumnConfig,
-} from '@epam/uui-core';
-import {
-    ColumnsConfigurationRowProps, DndDataType, GroupedColumnsType, GroupedDataColumnProps,
-} from './types';
+import { AcceptDropParams, ColumnsConfig, DataColumnProps, DropPosition, getOrderBetween, IColumnConfig } from '@epam/uui-core';
+import { ColumnsConfigurationRowProps, DndDataType, GroupedColumnsType, GroupedDataColumnProps } from './types';
 import sortBy from 'lodash.sortby';
 
 export function isColumnAlwaysPinned(column: DataColumnProps) {
@@ -50,7 +46,7 @@ function isSubstring(s: React.ReactNode, sub: string) {
     return false;
 }
 
-export function isColumnFilteredOut(column: any, searchFields: string[], filter?: string) {
+export function isColumnFilteredOut(column: DataColumnProps, searchFields: string[], filter?: string) {
     const caption = column.caption;
     const hasCaption = !isEmptyCaption(caption);
     const hasFilter = !isEmptyString(filter);
@@ -61,7 +57,7 @@ export function isColumnFilteredOut(column: any, searchFields: string[], filter?
 interface IGroupAndFilterSortedColumnsProps<TItem, TId, TFilter> {
     sortedColumns: ColumnsConfigurationRowProps[];
     searchValue: string;
-    getSearchFields?: (column: DataColumnProps<TItem, TId, TFilter>) => string[];
+    getSearchFields: (column: DataColumnProps<TItem, TId, TFilter>) => string[];
 }
 
 export function groupAndFilterSortedColumns<TItem, TId, TFilter>(props: IGroupAndFilterSortedColumnsProps<TItem, TId, TFilter>): GroupedColumnsType {
@@ -72,7 +68,7 @@ export function groupAndFilterSortedColumns<TItem, TId, TFilter>(props: IGroupAn
     } as GroupedColumnsType;
 
     return props.sortedColumns.reduce((acc, i) => {
-        if (!isColumnFilteredOut(i, props?.getSearchFields ? props.getSearchFields(i) : [i.caption as string], props.searchValue)) {
+        if (!isColumnFilteredOut(i, props.getSearchFields(i), props.searchValue)) {
             acc[i.groupKey].push(i);
         }
         return acc;

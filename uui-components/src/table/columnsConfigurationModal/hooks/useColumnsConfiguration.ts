@@ -93,7 +93,7 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any,
             groupAndFilterSortedColumns({
                 sortedColumns: sortedColumnsExtended,
                 searchValue,
-                getSearchFields: props.getSearchFields,
+                getSearchFields: (column) => props.getSearchFields ? props.getSearchFields(column) : [column.caption as string],
             }),
         [sortedColumnsExtended, searchValue, props.getSearchFields],
     );
