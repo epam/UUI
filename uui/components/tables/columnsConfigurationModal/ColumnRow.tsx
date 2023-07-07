@@ -7,12 +7,12 @@ import styles from './ColumnRow.module.scss';
 
 type DndDataType = { column: DataColumnProps; columnConfig: IColumnConfig };
 
-export interface ColumnRowProps {
+export interface ColumnRowProps<TItem, TId, TFilter> {
     column: ColumnsConfigurationRowProps;
-    renderItem?: () => React.ReactNode;
+    renderItem?: (column: DataColumnProps<TItem, TId, TFilter>) => React.ReactNode;
 }
 
-export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
+export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any, any, any>) {
     const { column } = props;
     const {
         toggleVisibility, togglePin, onCanAcceptDrop, onDrop, columnConfig, isDndAllowed, isPinnedAlways,
@@ -38,7 +38,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
                     <DragHandle rawProps={ dragHandleRawProps } isDisabled={ !isDndAllowed } cx={ cx(styles.dragHandle, !isDndAllowed && styles.dndDisabled) } />
                     <Checkbox
                         key={ column.key }
-                        label={ props.renderItem ? props.renderItem() : column.caption }
+                        label={ props.renderItem ? props.renderItem(props.column) : column.caption }
                         value={ isVisible }
                         onValueChange={ toggleVisibility }
                         isDisabled={ column.isAlwaysVisible }

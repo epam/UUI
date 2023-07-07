@@ -54,13 +54,13 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     }, [props.renderNoResultsBlock]);
 
     const onConfigurationButtonClick = React.useCallback(() => {
-        const outerProps = { columns: props.columns, columnsConfig: { ...config }, defaultConfig };
+        const configProps = { columns: props.columns, columnsConfig: { ...config }, defaultConfig };
 
         uuiModals
             .show<ColumnsConfig>((modalProps) => {
             return (
                 props.renderColumnsConfigurationModal
-                    ? props.renderColumnsConfigurationModal({ ...outerProps, ...modalProps })
+                    ? props.renderColumnsConfigurationModal({ ...configProps, ...modalProps })
                     : (
                         <ColumnsConfigurationModal
                             { ...modalProps }
