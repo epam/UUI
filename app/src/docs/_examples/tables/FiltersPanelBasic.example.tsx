@@ -19,7 +19,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         isAlwaysVisible: true,
     }, {
         key: 'profileStatus',
-        caption: 'Profile Status',
+        caption: 'Profile status',
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
@@ -50,13 +50,13 @@ const personColumns: DataColumnProps<Person, number>[] = [
         isFilterActive: (f) => !!f.jobTitleId,
     }, {
         key: 'birthDate',
-        caption: 'Birth Date',
+        caption: 'Birth date',
         render: (p) => p?.birthDate && <Text>{dayjs(p.birthDate).format('MMM D, YYYY')}</Text>,
         width: 120,
         isSortable: true,
     }, {
         key: 'hireDate',
-        caption: 'Hire Date',
+        caption: 'Hire date',
         render: (p) => p?.hireDate && <Text>{dayjs(p.hireDate).format('MMM D, YYYY')}</Text>,
         width: 120,
         isSortable: true,
@@ -71,7 +71,7 @@ export default function FiltersPanelExample() {
             {
                 field: 'profileStatusId',
                 columnKey: 'profileStatus',
-                title: 'Profile Status',
+                title: 'Profile status',
                 type: 'multiPicker',
                 isAlwaysVisible: true,
                 dataSource: new LazyDataSource({ api: api.demo.statuses }),
@@ -92,12 +92,12 @@ export default function FiltersPanelExample() {
             }, {
                 field: 'birthDate',
                 columnKey: 'birthDate',
-                title: 'Birth Date',
+                title: 'Birth date',
                 type: 'datePicker',
             }, {
                 field: 'hireDate',
                 columnKey: 'hireDate',
-                title: 'Hire Date',
+                title: 'Hire date',
                 type: 'rangeDatePicker',
                 predicates: defaultPredicates.rangeDatePicker,
                 presets: {
