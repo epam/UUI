@@ -20,6 +20,7 @@ import { Skills } from './skills';
 import TableCellsStylesSandbox from './tableCellStyles/TableCellsStylesSandbox';
 import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
 import { RichTextEditorDemo } from './RTE/rteDemo';
+import { BubblingDropdown } from './bubbling-dropdown/Bubbling-dropdown';
 
 export function SandboxPage() {
     const items = useMemo(
@@ -39,6 +40,7 @@ export function SandboxPage() {
             { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },
             { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
             { id: 'RTEDemo', name: 'RTE Demo', component: RichTextEditorDemo },
+            { id: 'bubbling', name: 'Bubbling React Issue', component: BubblingDropdown },
         ],
         [],
     );
