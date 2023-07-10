@@ -1,1707 +1,1105 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "uui-richTextEditor-header-3",
+    "children": [
       {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Introduction",
-            "marks": []
-          }
-        ]
+        "text": "Introduction"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "A lot of UI/UX elements displays list and hierarchical data. For example, tables, selects, catalogs, etc.  A lot of effort is required to solve problems of retrieving / grouping / filtering / sorting / visualizing such data. Everything becomes even more complex when it is necessary to implement the pattern of data lazy-loading, add some folding logic, different strategies for selecting elements with children nodes, etc."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To solve these and other problems "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "A lot of UI/UX elements displays list and hierarchical data. For example, tables, selects, catalogs, etc.  A lot of effort is required to solve problems of retrieving / grouping / filtering / sorting / visualizing such data. Everything becomes even more complex when it is necessary to implement the pattern of data lazy-loading, add some folding logic, different strategies for selecting elements with children nodes, etc.",
-            "marks": []
-          }
-        ]
+        "text": "DataSources",
+        "uui-richTextEditor-code": true
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "To solve these and other problems ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSources",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " were developed. They are black boxes encapsulating complex solutions to various issues with list/hierarchical data, providing simple abstraction.",
-            "marks": []
-          }
-        ]
+        "text": " were developed. They are black boxes encapsulating complex solutions to various issues with list/hierarchical data, providing simple abstraction."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Problems ",
+        "uui-richTextEditor-bold": true
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Problems ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "DataSources",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " are solving:",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          }
-        ]
+        "text": "DataSources",
+        "uui-richTextEditor-code": true
       },
       {
-        "object": "block",
-        "type": "unordered-list",
+        "text": " are solving:",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "converting data to renderable rows with multiple handlers (folding, selecting, focusing, clicking) based on the configuration;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "providing the abstraction over data fetching strategy; it doesn't matter if ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "DataSource",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " is fetching data from an array, some endpoint, or partially loading large amounts of records;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "implementing various selecting records strategies, such as picking a record only or with its children implicitly or explicitly;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "configuring rows options, like selection, DnD, etc.;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "enabling the possibility to filter/search over data, and sort data, no matter which fetching strategy is provided;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "rendering data rows partially, which makes it possible to render only a part of a large number of records at a time.",
-                    "marks": []
-                  }
-                ]
+                "text": "converting data to renderable rows with multiple handlers (folding, selecting, focusing, clicking) based on the configuration;"
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "How does it work?",
-            "marks": []
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "providing the abstraction over data fetching strategy; it doesn't matter if "
+              },
+              {
+                "text": "DataSource",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " is fetching data from an array, some endpoint, or partially loading large amounts of records;"
+              }
+            ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "While explaining this part of the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSources",
-            "marks": [
+            "data": {},
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "text": "implementing various selecting records strategies, such as picking a record only or with its children implicitly or explicitly;"
               }
             ]
-          },
-          {
-            "object": "text",
-            "text": " concept, it is necessary to keep the right level of abstraction. Instead of digging into the realization details, let us observe ways ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " can be controlled by input.",
-            "marks": []
           }
         ]
       },
       {
-        "object": "block",
-        "type": "image",
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "configuring rows options, like selection, DnD, etc.;"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "enabling the possibility to filter/search over data, and sort data, no matter which fetching strategy is provided;"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "rendering data rows partially, which makes it possible to render only a part of a large number of records at a time."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "How does it work?"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "While explaining this part of the "
+      },
+      {
+        "text": "DataSources",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " concept, it is necessary to keep the right level of abstraction. Instead of digging into the realization details, let us observe ways "
+      },
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " can be controlled by input."
+      }
+    ]
+  },
+  {
+    "data": {
+      "src": "http://static.cdn.epam.com/uploads/4677cc268a04664255f99b470b345dca/dataSources scheme.png",
+      "imageSize": {
+        "width": 933,
+        "height": 261
+      }
+    },
+    "type": "image",
+    "url": "http://static.cdn.epam.com/uploads/4677cc268a04664255f99b470b345dca/dataSources scheme.png",
+    "children": [
+      {
+        "text": ""
+      }
+    ],
+    "width": 933
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " input can be split into two groups of params, "
+      },
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " props (static one, provided at creation time) and "
+      },
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " state (dynamic one, which can be changed according to user actions)."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "DataSourceProps",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " contains info on how to work with data:",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "some info on the data displayed, e.g. how to get the id of an item;"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "how to retrieve data;"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "how to filter/sort/search over data, according to current "
+              },
+              {
+                "text": "DataSource",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " state;"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "rows options, e.g. whether a particular row can be selected, checked, or folded;"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "configuration of selection, such as select selection cascading strategies."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " state contains the current state of the displayed data:",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "range of records to be displayed from some position;"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "an index to be scrolled to;"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "an index of a focused row;"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "a search string;"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "specified filter value;"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "sorting configuration;"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "selected rows ids;"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "folded rows ids;"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "current page and page size."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " state is usually held in the component's state. Changing the "
+      },
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " state causes a change of rows, which are displayed (returned by "
+      },
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "). "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Views"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "DataSources",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " don't produce rows themselves, and they don't contain any information about the state of rows. They return views, which contain that information. Think about "
+      },
+      {
+        "text": "Views",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " as about factories of rows. Each "
+      },
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " can return multiple "
+      },
+      {
+        "text": "Views",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". This is done to support cases when a single "
+      },
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " is used by multiple components."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Each component has to create its own view, and each "
+      },
+      {
+        "text": "View",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " has to have its own "
+      },
+      {
+        "text": "DataSourceState",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " instance and its change handler. To create a "
+      },
+      {
+        "text": "View",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", call the "
+      },
+      {
+        "text": "useView",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " function of the "
+      },
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " instance. You can see how "
+      },
+      {
+        "text": "Views",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " can be created within "
+      },
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
         "data": {
-          "src": "http://static.cdn.epam.com/uploads/4677cc268a04664255f99b470b345dca/dataSources scheme.png",
-          "imageSize": {
-            "width": 933,
-            "height": 261
-          }
+          "url": "/documents?id=dataSources-usage&mode=doc&skin=UUI4_promo&category=dataSources"
         },
-        "nodes": [
+        "type": "link",
+        "url": "/documents?id=dataSources-usage&mode=doc&skin=UUI4_promo&category=dataSources",
+        "children": [
           {
-            "object": "text",
-            "text": "",
-            "marks": []
+            "text": "in the \"Usage In Components\" article"
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
-          }
-        ]
+        "text": "."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Types of DataSources"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Depending on the task, it is necessary to use different "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " input can be split into two groups of params, ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " props (static one, provided at creation time) and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " state (dynamic one, which can be changed according to user actions).",
-            "marks": []
-          }
-        ]
+        "text": "DataSources",
+        "uui-richTextEditor-code": true
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
-          }
-        ]
-      },
+        "text": ":"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "DataSourceProps",
-            "marks": [
+            "data": {},
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " contains info on how to work with data:",
-            "marks": [
+                "text": "ArrayDataSource",
+                "uui-richTextEditor-code": true
+              },
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
+                "text": " is used when it is required to render in-memory data. You can read more about "
+              },
+              {
+                "text": "ArrayDataSource",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " "
+              },
+              {
+                "data": {
+                  "url": "/documents?id=dataSources-array-dataSource&mode=doc&skin=UUI4_promo&category=dataSources"
+                },
+                "type": "link",
+                "url": "/documents?id=dataSources-array-dataSource&mode=doc&skin=UUI4_promo&category=dataSources",
+                "children": [
+                  {
+                    "text": "in this article"
+                  }
+                ]
+              },
+              {
+                "text": "."
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "unordered-list",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
+                "text": "AsyncDataSource",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " is used when data is located at some endpoint, but its amount is not too large; all the operations, like sorting/filtering/searching, are performed on the client side. You can read more about "
+              },
+              {
+                "text": "AsyncDataSource",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " "
+              },
+              {
+                "data": {
+                  "url": "http://localhost:3000/documents?id=dataSources-async-dataSource&mode=doc&skin=UUI4_promo&category=dataSources"
+                },
+                "type": "link",
+                "url": "http://localhost:3000/documents?id=dataSources-async-dataSource&mode=doc&skin=UUI4_promo&category=dataSources",
+                "children": [
                   {
-                    "object": "text",
-                    "text": "some info on the data displayed, e.g. how to get the id of an item;",
-                    "marks": []
+                    "text": ""
                   }
                 ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
+                "text": ""
+              },
+              {
+                "data": {
+                  "url": "/documents?id=dataSources-async-dataSource&mode=doc&skin=UUI4_promo&category=dataSources"
+                },
+                "type": "link",
+                "url": "/documents?id=dataSources-async-dataSource&mode=doc&skin=UUI4_promo&category=dataSources",
+                "children": [
                   {
-                    "object": "text",
-                    "text": "how to retrieve data;",
-                    "marks": []
+                    "text": "in this article"
                   }
                 ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "how to filter/sort/search over data, according to current ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "DataSource",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " state;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "rows options, e.g. whether a particular row can be selected, checked, or folded;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "configuration of selection, such as select selection cascading strategies.",
-                    "marks": []
-                  }
-                ]
+                "text": "."
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "",
-            "marks": []
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "LazyDataSource",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " is used to represent a large amount of data, stored at some endpoint; data is loading lazily, such operations as sorting/filtering/searching are performed on the server side. You can read more about "
+              },
+              {
+                "text": "LazyDataSource",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " "
+              },
+              {
+                "data": {
+                  "url": "/documents?id=dataSources-lazy-dataSource&mode=doc&skin=UUI4_promo&category=dataSources"
+                },
+                "type": "link",
+                "url": "/documents?id=dataSources-lazy-dataSource&mode=doc&skin=UUI4_promo&category=dataSources",
+                "children": [
+                  {
+                    "text": "in this article"
+                  }
+                ]
+              },
+              {
+                "text": "."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Each "
+      },
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " accepts "
+      },
+      {
+        "text": "DataSourceProps",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "DataSourceState",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " in addition to its own specific props. You can read more about "
+      },
+      {
+        "text": "DataSourceProps",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "data": {
+          "url": "/documents?id=dataSources-base-props&mode=doc&skin=UUI4_promo&category=dataSources"
+        },
+        "type": "link",
+        "url": "/documents?id=dataSources-base-props&mode=doc&skin=UUI4_promo&category=dataSources",
+        "children": [
+          {
+            "text": "in this article"
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": " and about "
+      },
+      {
+        "text": "DataSourceState",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "data": {
+          "url": "/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources"
+        },
+        "type": "link",
+        "url": "/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources",
+        "children": [
           {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " state contains the current state of the displayed data:",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
+            "text": "in this one"
           }
         ]
       },
       {
-        "object": "block",
-        "type": "unordered-list",
+        "text": "."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Usage in other UUI components"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "DataSources are used in "
+      },
+      {
+        "text": "Pickers",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "Datatables",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " UUI components. See usage in the further articles:"
+      },
+      {
+        "data": {
+          "url": "/documents?id=pickerInput&mode=doc&skin=UUI4_promo&category=components"
+        },
+        "type": "link",
+        "url": "/documents?id=pickerInput&mode=doc&skin=UUI4_promo&category=components",
+        "children": [
+          {
+            "text": ""
+          }
+        ]
+      },
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
+                "text": ""
+              },
+              {
+                "data": {
+                  "url": "/documents?id=pickerInput&mode=doc&skin=UUI4_promo&category=components"
+                },
+                "type": "link",
+                "url": "/documents?id=pickerInput&mode=doc&skin=UUI4_promo&category=components",
+                "children": [
                   {
-                    "object": "text",
-                    "text": "range of records to be displayed from some position;",
-                    "marks": []
+                    "text": "PickerInput"
                   }
                 ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "an index to be scrolled to;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "an index of a focused row;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "a search string;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "specified filter value;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "sorting configuration;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "selected rows ids;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "folded rows ids;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "current page and page size.",
-                    "marks": []
-                  }
-                ]
+                "text": ""
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " state is usually held in the component's state. Changing the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " state causes a change of rows, which are displayed (returned by ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "). ",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Views",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "DataSources",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " don't produce rows themselves, and they don't contain any information about the state of rows. They return views, which contain that information. Think about ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "Views",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " as about factories of rows. Each ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " can return multiple ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "Views",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ". This is done to support cases when a single ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " is used by multiple components.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Each component has to create its own view, and each ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "View",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " has to have its own ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSourceState",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " instance and its change handler. To create a ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "View",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", call the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "useView",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " function of the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " instance. You can see how ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "Views",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " can be created within ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "/documents?id=dataSources-usage&mode=doc&skin=UUI4_promo&category=dataSources"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "in the \"Usage In Components\" article",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ".",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Types of DataSources",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Depending on the task, it is necessary to use different ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSources",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ":",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "unordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
+                "text": ""
+              },
+              {
+                "data": {
+                  "url": "/documents?id=PickerList&mode=doc&skin=UUI4_promo&category=components"
+                },
+                "type": "link",
+                "url": "/documents?id=PickerList&mode=doc&skin=UUI4_promo&category=components",
+                "children": [
                   {
-                    "object": "text",
-                    "text": "ArrayDataSource",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " is used when it is required to render in-memory data. You can read more about ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "ArrayDataSource",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " ",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "/documents?id=dataSources-array-dataSource&mode=doc&skin=UUI4_promo&category=dataSources"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "in this article",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ".",
-                    "marks": []
+                    "text": "PickerList"
                   }
                 ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "AsyncDataSource",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " is used when data is located at some endpoint, but its amount is not too large; all the operations, like sorting/filtering/searching, are performed on the client side. You can read more about ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "AsyncDataSource",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " ",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "http://localhost:3000/documents?id=dataSources-async-dataSource&mode=doc&skin=UUI4_promo&category=dataSources"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "/documents?id=dataSources-async-dataSource&mode=doc&skin=UUI4_promo&category=dataSources"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "in this article",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ".",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "LazyDataSource",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " is used to represent a large amount of data, stored at some endpoint; data is loading lazily, such operations as sorting/filtering/searching are performed on the server side. You can read more about ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "LazyDataSource",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " ",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "/documents?id=dataSources-lazy-dataSource&mode=doc&skin=UUI4_promo&category=dataSources"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "in this article",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ".",
-                    "marks": []
-                  }
-                ]
+                "text": ""
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "Each ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
+            "data": {},
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "text": ""
+              },
+              {
+                "data": {
+                  "url": "/documents?id=pickerModal&mode=doc&skin=UUI4_promo&category=components"
+                },
+                "type": "link",
+                "url": "/documents?id=pickerModal&mode=doc&skin=UUI4_promo&category=components",
+                "children": [
+                  {
+                    "text": "PickerModal"
+                  }
+                ]
+              },
+              {
+                "text": ""
               }
             ]
-          },
-          {
-            "object": "text",
-            "text": " accepts ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSourceProps",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSourceState",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " in addition to its own specific props. You can read more about ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSourceProps",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "/documents?id=dataSources-base-props&mode=doc&skin=UUI4_promo&category=dataSources"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "in this article",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and about ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSourceState",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "in this one",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ".",
-            "marks": []
           }
         ]
       },
       {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "Usage in other UUI components",
-            "marks": []
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": ""
+              },
+              {
+                "data": {
+                  "url": "/demo?id=table"
+                },
+                "type": "link",
+                "url": "/demo?id=table",
+                "children": [
+                  {
+                    "text": "Table"
+                  }
+                ]
+              },
+              {
+                "text": ""
+              }
+            ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "DataSources are used in ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "Pickers",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "Datatables",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " UUI components. See usage in the further articles:",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "/documents?id=pickerInput&mode=doc&skin=UUI4_promo&category=components"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "unordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
+                "text": ""
+              },
+              {
+                "data": {
+                  "url": "/demo?id=filteredTable&page=1&pageSize=40&presetId=-1"
+                },
+                "type": "link",
+                "url": "/demo?id=filteredTable&page=1&pageSize=40&presetId=-1",
+                "children": [
                   {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "/documents?id=pickerInput&mode=doc&skin=UUI4_promo&category=components"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "PickerInput",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
+                    "text": "FilteredTable"
                   }
                 ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "/documents?id=PickerList&mode=doc&skin=UUI4_promo&category=components"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "PickerList",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "/documents?id=pickerModal&mode=doc&skin=UUI4_promo&category=components"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "PickerModal",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "/demo?id=table"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "Table",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "/demo?id=filteredTable&page=1&pageSize=40&presetId=-1"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "FilteredTable",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  }
-                ]
+                "text": ""
               }
             ]
           }
@@ -1709,4 +1107,4 @@
       }
     ]
   }
-}
+]
