@@ -36,7 +36,7 @@ Include specific actions, input, or conditions that trigger the issue. Give a sa
 
 What is the current behavior?
 
-To provide more details please include screenshots, animated GIFs, or minimal code snippets where appropriate.
+To provide more details please include screenshots, video, animated GIFs, or minimal code snippets where appropriate.
 
 ## Expected result
 
