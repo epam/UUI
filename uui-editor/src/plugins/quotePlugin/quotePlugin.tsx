@@ -1,19 +1,15 @@
 import React from 'react';
 
+import { ELEMENT_BLOCKQUOTE, createBlockquotePlugin } from '@udecode/plate-block-quote';
+import { PlateEditor, focusEditor, isMarkActive, toggleNodeType } from '@udecode/plate-common';
+import type { StyledElementProps } from '@udecode/plate-styled-components';
 
 import { isPluginActive } from '../../helpers';
-
-import { ToolbarButton } from '../../implementation/ToolbarButton';
-
 import { ReactComponent as QuoteIcon } from '../../icons/quote.svg';
-
+import { ToolbarButton } from '../../implementation/ToolbarButton';
 import css from './quote.module.scss';
-import { BlockToolbarButton, StyledElementProps } from '@udecode/plate-ui';
-import { createBlockquotePlugin } from '@udecode/plate-block-quote';
-import { PlateEditor, getPluginType, isMarkActive } from '@udecode/plate-common';
 
-const noop = () => {};
-const KEY = 'uui-richTextEditor-quote';
+const QUOTE_PLUGIN_KEY = 'uui-richTextEditor-quote';
 
 const Quote = (props: StyledElementProps) => {
     return <blockquote
@@ -25,12 +21,16 @@ const Quote = (props: StyledElementProps) => {
 };
 
 export const quotePlugin = () => createBlockquotePlugin({
-    key: KEY,
-    type: KEY,
-    component: Quote,
-    options: {
-        hotkey: 'ctrl+q',
-    },
+    overrideByKey: {
+        [ELEMENT_BLOCKQUOTE]: {
+            key: QUOTE_PLUGIN_KEY,
+            type: QUOTE_PLUGIN_KEY,
+            component: Quote,
+            options: {
+                hotkey: 'ctrl+q',
+            },
+        }
+    }
 });
 
 interface ToolbarButton {
@@ -38,18 +38,21 @@ interface ToolbarButton {
 }
 
 export const QuoteButton = ({ editor }: ToolbarButton) => {
-    if (!isPluginActive(KEY)) return null;
+    if (!isPluginActive(QUOTE_PLUGIN_KEY)) return null;
+
+    const onQuoteButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, type: string) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        toggleNodeType(editor, { activeType: type });
+        focusEditor(editor);
+    }
 
     return (
-        <BlockToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            type={ getPluginType(editor, KEY) }
-            actionHandler='onMouseDown'
-            icon={ <ToolbarButton
-                onClick={ noop }
-                icon={ QuoteIcon }
-                isActive={ !!editor?.selection && isMarkActive(editor, KEY!) }
-            /> }
+        <ToolbarButton
+            onClick={ (e) => onQuoteButtonClick(e, QUOTE_PLUGIN_KEY) }
+            icon={ QuoteIcon }
+            isActive={ !!editor?.selection && isMarkActive(editor, QUOTE_PLUGIN_KEY) }
         />
     );
 };

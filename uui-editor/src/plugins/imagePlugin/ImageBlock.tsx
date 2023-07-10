@@ -1,22 +1,18 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { PlateEditor, PlatePluginComponent, PlateRenderElementProps, TElement, Value, findNodePath, getBlockAbove, setElements } from '@udecode/plate-common';
+import { useResizableStore } from '@udecode/plate-media';
 import cx from 'classnames';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useFocused, useSelected } from 'slate-react';
 
 import { Dropdown } from '@epam/uui-components';
-import { uuiSkin } from "@epam/uui-core";
+import { FileUploadResponse, uuiSkin } from "@epam/uui-core";
+import { ImageElement } from '@udecode/plate-ui-media';
 
-import { useFocused, useSelected } from 'slate-react';
-import invert from 'lodash.invert';
 import debounce from 'lodash.debounce';
-
-
-
-import { FileUploadResponse } from "@epam/uui-core";
+import invert from 'lodash.invert';
 
 import css from './ImageBlock.module.scss';
 import { ImgToolbar } from './Toolbar';
-import { PlateEditor, PlatePluginComponent, PlateRenderElementProps, TElement, Value, setElements, findNodePath, getBlockAbove } from '@udecode/plate-common';
-import { useResizableStore } from '@udecode/plate-media';
-import { ImageElement } from '@udecode/plate-ui';
 
 export type PlateImgAlign = 'left' | 'center' | 'right';
 type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';

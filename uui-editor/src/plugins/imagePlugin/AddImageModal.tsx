@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { UploadFileToggler, FlexSpacer } from '@epam/uui-components';
+import { FlexSpacer, UploadFileToggler } from '@epam/uui-components';
 import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
+import React, { useState } from 'react';
 
-import css from './AddImageModal.module.scss';
-import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 import { PlateEditor } from '@udecode/plate-common';
+import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
+import css from './AddImageModal.module.scss';
 
 const {
     LabeledInput,
@@ -19,7 +19,6 @@ const {
 
 interface AddImageModalProps extends IModal<any> {
     insertImage: (imageURL: string) => void;
-    focusEditor: () => void;
     editor: PlateEditor;
 }
 
@@ -52,9 +51,9 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
                     />
                     <FlexSpacer />
                     <Button type='cancel' caption='Cancel' onClick={ abort } />
-                    <Button type='success' caption='Ok' isDisabled={ !imageURL } onClick={ () => {
+                    <Button type='success' caption='Ok' isDisabled={ !imageURL } onClick={ async () => {
                         if (files && files.length) {
-                            onFilesAdded(files);
+                            await onFilesAdded(files);
                         } else {
                             props.insertImage(prependHttp(imageURL, { https: true }));
                         }

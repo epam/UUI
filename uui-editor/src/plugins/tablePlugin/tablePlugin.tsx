@@ -1,29 +1,26 @@
 import React, { useRef } from 'react';
 
-import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
-
-import cx from "classnames";
 import { Dropdown } from '@epam/uui-components';
+import cx from "classnames";
 import { useFocused, useReadOnly, useSelected } from 'slate-react';
 
-import { ReactComponent as TableIcon } from "../../icons/table-add.svg";
 import { isPluginActive, isTextSelected } from "../../helpers";
+import { ReactComponent as TableIcon } from "../../icons/table-add.svg";
 
+import { PositionedToolbar } from '../../implementation/PositionedToolbar';
 import { ToolbarButton } from "../../implementation/ToolbarButton";
-import { Toolbar } from '../../implementation/Toolbar';
 
 import { Table } from './Table';
-import { TableRow } from "./TableRow";
 import { TableCell } from "./TableCell";
+import { TableRow } from "./TableRow";
 
-import tableCSS from './Table.module.scss';
-import { updateTableStructure } from './utils';
-import { TableToolbarContent } from './ToolbarContent';
+import { PlateEditor, getPluginType, insertNodes, someNode, usePlateEditorState, withoutNormalizing } from '@udecode/plate-common';
+import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, createTablePlugin, getTableGridAbove } from '@udecode/plate-table';
 import { MergeToolbarContent } from './MergeToolbarContent';
+import tableCSS from './Table.module.scss';
+import { TableToolbarContent } from './ToolbarContent';
+import { createInitialTable, selectFirstCell, updateTableStructure } from './utils';
 import { withOurTable } from './withOurTable';
-import { createInitialTable, selectFirstCell } from './utils';
-import { usePlateEditorState, PlateEditor, getPluginType, withoutNormalizing, someNode, insertNodes } from '@udecode/plate-common';
-import { getTableGridAbove, ELEMENT_TABLE, createTablePlugin, ELEMENT_TR, ELEMENT_TD, ELEMENT_TH } from '@udecode/plate-table';
 
 const noop = () => {};
 
@@ -56,7 +53,7 @@ const TableRenderer = (props: any) => {
                 </div>
             ) }
             renderBody={ () => (
-                <Toolbar
+                <PositionedToolbar
                     placement='bottom'
                     children={
                         cellEntries.length > 1
@@ -87,20 +84,16 @@ export const TableButton = ({ editor, }: { editor: PlateEditor; }) => {
 
             if (!isCurrentTableSelection) {
                 insertNodes(editor, createInitialTable(editor));
-                setTimeout(() => selectFirstCell(editor), 0);
+                selectFirstCell(editor);
             }
         });
     }
 
     return (
-        <PlateToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            onMouseDown={ onCreateTable }
-            icon={ <ToolbarButton
-                isDisabled={ isTextSelected(editor, true) }
-                onClick={ () => {} }
-                icon={ TableIcon }
-            /> }
+        <ToolbarButton
+            isDisabled={ isTextSelected(editor, true) }
+            onClick={ onCreateTable }
+            icon={ TableIcon }
         />
     );
 };

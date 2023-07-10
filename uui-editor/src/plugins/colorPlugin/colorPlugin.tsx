@@ -1,17 +1,13 @@
-import React, { useCallback } from 'react';
 import { Dropdown } from '@epam/uui-components';
-
-
+import React, { useCallback } from 'react';
 
 import { isPluginActive } from '../../helpers';
-
 import { ColorBar } from '../../implementation/ColorBar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { ReactComponent as ColorIcon } from '../../icons/text-color-normal.svg';
-import { PlateEditor, getPluginType, getMark, setMarks, removeMark } from '@udecode/plate-common';
-import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
+import { PlateEditor, getMark, getPluginType, removeMark, setMarks } from '@udecode/plate-common';
 import { MARK_COLOR, createFontColorPlugin } from '@udecode/plate-font';
+import { ReactComponent as ColorIcon } from '../../icons/text-color-normal.svg';
 
 export const colorPlugin = () => createFontColorPlugin();
 
@@ -41,18 +37,9 @@ export const ColorButton = ({ editor }: IToolbarButton) => {
     return (
         <Dropdown
             renderTarget={ (props) => (
-                <PlateToolbarButton
-                    styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-                    active={ true }
-                    onMouseDown={
-                        editor
-                            ? (e) => e.preventDefault()
-                            : undefined
-                    }
-                    icon={ <ToolbarButton
-                        icon={ ColorIcon }
-                        { ...props }
-                    /> }
+                <ToolbarButton
+                    icon={ ColorIcon }
+                    { ...props }
                 />
             ) }
             renderBody={ () => <ColorBar

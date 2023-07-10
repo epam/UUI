@@ -1,18 +1,16 @@
-import React from "react";
 import cx from 'classnames';
-import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
+import React from "react";
 
-
-import { ReactComponent as AlignLeft } from '../../icons/align-left.svg';
 import { ReactComponent as AlignCenter } from '../../icons/align-center.svg';
-import { ReactComponent as AlignRight } from '../../icons/align-right.svg';
 import { ReactComponent as FullWidth } from '../../icons/align-full-width.svg';
+import { ReactComponent as AlignLeft } from '../../icons/align-left.svg';
+import { ReactComponent as AlignRight } from '../../icons/align-right.svg';
 
-import { ImageElement, PlateImgAlign } from "./ImageBlock";
 import { ToolbarButton } from '../../implementation/ToolbarButton';
+import { ImageElement, PlateImgAlign } from "./ImageBlock";
 
-import css from './ImageBlock.module.scss';
 import { PlateEditor } from "@udecode/plate-common";
+import css from './ImageBlock.module.scss';
 
 export const ImgToolbar = ({
     editor,
@@ -30,48 +28,22 @@ export const ImgToolbar = ({
     setMaxWidth: () => void,
 }) => (
     <div className={ cx(css.imageToolbar, 'slate-prevent-blur') }>
-        <PlateToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            active={ true }
-            onMouseDown={ editor
-                ? (e) => e.preventDefault()
-                : undefined }
-            icon={ <ToolbarButton
-                isActive={ align === 'left' }
-                icon={ AlignLeft }
-                onClick={ () => toggleBlockAlignment('left') } /> } />
+        <ToolbarButton
+            isActive={ align === 'left' }
+            icon={ AlignLeft }
+            onClick={ () => toggleBlockAlignment('left') } />
+        <ToolbarButton
+            isActive={ align === 'center' }
+            icon={ AlignCenter }
+            onClick={ () => toggleBlockAlignment('center') } />
+        <ToolbarButton
+            isActive={ element.align === 'right' }
+            icon={ AlignRight }
+            onClick={ () => toggleBlockAlignment('right') } />
 
-        <PlateToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            active={ true }
-            onMouseDown={ editor
-                ? (e) => e.preventDefault()
-                : undefined }
-            icon={ <ToolbarButton
-                isActive={ align === 'center' }
-                icon={ AlignCenter }
-                onClick={ () => toggleBlockAlignment('center') } /> } />
-
-        <PlateToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            active={ true }
-            onMouseDown={ editor
-                ? (e) => e.preventDefault()
-                : undefined }
-            icon={ <ToolbarButton
-                isActive={ element.align === 'right' }
-                icon={ AlignRight }
-                onClick={ () => toggleBlockAlignment('right') } /> } />
-
-        <PlateToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            active={ true }
-            onMouseDown={ editor
-                ? (e) => e.preventDefault()
-                : undefined }
-            icon={ <ToolbarButton
-                isActive={ isFullWidth() }
-                icon={ FullWidth }
-                onClick={ setMaxWidth } /> } />
+        <ToolbarButton
+            isActive={ isFullWidth() }
+            icon={ FullWidth }
+            onClick={ setMaxWidth } />
     </div>
 )

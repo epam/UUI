@@ -1,34 +1,29 @@
-import React, { useMemo, useRef, useEffect } from 'react';
+import { ScrollBars } from '@epam/uui-components';
+import { IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod } from '@epam/uui-core';
+import React, { useMemo, useRef } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { IEditable, uuiMod, IHasCX, cx, IHasRawProps } from '@epam/uui-core';
-import { ScrollBars } from '@epam/uui-components';
-import { useForceUpdate } from '@epam/uui-core';
 
+import { createExitBreakPlugin, createSoftBreakPlugin } from '@udecode/plate-break';
 import {
     Plate,
-    createPlugins,
-    usePlateEditorState,
     PlateProvider,
-    useEventEditorSelectors,
+    Value,
+    createPlugins,
     isElementEmpty,
-    Value
+    useEventEditorSelectors,
+    usePlateEditorState
 } from '@udecode/plate-common';
-import { Toolbar, createPlateUI } from '@udecode/plate-ui';
+import { createTextIndentPlugin } from '@udecode/plate-indent';
+import { createIndentListPlugin } from '@udecode/plate-indent-list';
 import { createJuicePlugin } from '@udecode/plate-juice';
-import { ToolbarButtons, MarkBalloonToolbar, } from './plugins/Toolbars';
-
-import { migrateSchema } from './migration';
-
-import { baseMarksPlugin, paragraphPlugin } from './plugins';
+import { createDeserializeDocxPlugin } from './plugins/deserializeDocxPlugin/deserializeDocxPlugin';
 
 import css from './SlateEditor.module.scss';
-import { createDeserializeDocxPlugin } from './plugins/deserializeDocxPlugin/deserializeDocxPlugin';
-import { createIndentListPlugin } from '@udecode/plate-indent-list';
-import { createExitBreakPlugin, createSoftBreakPlugin } from '@udecode/plate-break';
-import { createTextIndentPlugin } from '@udecode/plate-indent';
-
-let components = createPlateUI();
+import { createPlateUI } from './components';
+import { migrateSchema } from './migration';
+import { baseMarksPlugin, paragraphPlugin } from './plugins';
+import { MainToolbar, MarksToolbar } from './plugins/Toolbars';
 
 export type EditorValue = Value | null;
 
@@ -110,16 +105,8 @@ const Editor = (props: PlateEditorProps) => {
                 // so, we need to disable default implementation
                 disableCorePlugins={ { insertData: true } }
             />
-            < MarkBalloonToolbar />
-            <Toolbar style={ {
-                position: 'sticky',
-                bottom: 12,
-                display: 'flex',
-                minHeight: 0,
-                zIndex: 50,
-            } }>
-                <ToolbarButtons />
-            </Toolbar>
+            <MainToolbar />
+            <MarksToolbar />
         </DndProvider >
     );
 
@@ -151,9 +138,12 @@ const Editor = (props: PlateEditorProps) => {
 export function SlateEditor(props: SlateEditorProps) {
     const currentId = useRef(String(Date.now()));
 
-    const plugins = createPlugins((props.plugins || []).flat(), {
-        components,
-    });
+    const plugins = useMemo(
+        () => {
+            return createPlugins((props.plugins || []).flat(), { components: createPlateUI() });
+        },
+        [props.plugins]
+    );
 
     const onChange = (value: Value) => {
         if (props.isReadonly) return;

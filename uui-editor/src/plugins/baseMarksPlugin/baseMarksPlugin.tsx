@@ -1,21 +1,20 @@
+import { EText, PlateEditor, TText, Value, isMarkActive } from '@udecode/plate-common';
+import type { StyledLeafProps } from '@udecode/plate-styled-components';
 import React from 'react';
-
 
 import { isPluginActive } from '../../helpers';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
+import { MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE, createBoldPlugin, createItalicPlugin, createUnderlinePlugin } from '@udecode/plate-basic-marks';
 import { ReactComponent as BoldIcon } from "../../icons/bold.svg";
 import { ReactComponent as ItalicIcon } from "../../icons/italic.svg";
 import { ReactComponent as UnderlineIcon } from "../../icons/underline.svg";
-import { EText, TText, Value, isMarkActive, PlateEditor, getPluginType } from '@udecode/plate-common';
-import { MarkToolbarButton, StyledLeafProps } from '@udecode/plate-ui';
-import { MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE, createBoldPlugin, createItalicPlugin, createUnderlinePlugin } from '@udecode/plate-basic-marks';
+import { onClickToolbarButton } from '../../utils/onClickToolbarButton';
 
 const BOLD_KEY = 'uui-richTextEditor-bold';
 const ITALIC_KEY = 'uui-richTextEditor-italic';
 const UNDERLINE_KEY = 'uui-richTextEditor-underlined';
-const noop = () => {};
 
 const Bold = <V extends Value = Value, N extends TText = EText<V>>(
     props: StyledLeafProps<V, N>,
@@ -69,14 +68,10 @@ interface IToolbarButton {
 export const BoldButton = ({ editor }: IToolbarButton) => {
     if (!isPluginActive(MARK_BOLD)) return null;
     return (
-        <MarkToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            type={ getPluginType(editor, BOLD_KEY) }
-            icon={ <ToolbarButton
-                onClick={ noop }
-                icon={ BoldIcon }
-                isActive={ !!editor?.selection && isMarkActive(editor, BOLD_KEY!) }
-            /> }
+        <ToolbarButton
+            onClick={ onClickToolbarButton(editor, BOLD_KEY) }
+            icon={ BoldIcon }
+            isActive={ !!editor?.selection && isMarkActive(editor, BOLD_KEY!) }
         />
     );
 };
@@ -84,14 +79,10 @@ export const BoldButton = ({ editor }: IToolbarButton) => {
 export const ItalicButton = ({ editor }: IToolbarButton) => {
     if (!isPluginActive(MARK_ITALIC)) return null;
     return (
-        <MarkToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            type={ getPluginType(editor, ITALIC_KEY) }
-            icon={ <ToolbarButton
-                onClick={ noop }
-                icon={ ItalicIcon }
-                isActive={ !!editor?.selection && isMarkActive(editor, ITALIC_KEY!) }
-            /> }
+        <ToolbarButton
+            onClick={ onClickToolbarButton(editor, ITALIC_KEY) }
+            icon={ ItalicIcon }
+            isActive={ !!editor?.selection && isMarkActive(editor, ITALIC_KEY!) }
         />
     );
 };
@@ -99,14 +90,10 @@ export const ItalicButton = ({ editor }: IToolbarButton) => {
 export const UnderlineButton = ({ editor }: IToolbarButton) => {
     if (!isPluginActive(MARK_UNDERLINE)) return null;
     return (
-        <MarkToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            type={ getPluginType(editor, UNDERLINE_KEY) }
-            icon={ <ToolbarButton
-                onClick={ noop }
-                icon={ UnderlineIcon }
-                isActive={ !!editor?.selection && isMarkActive(editor, UNDERLINE_KEY!) }
-            /> }
+        <ToolbarButton
+            onClick={ onClickToolbarButton(editor, UNDERLINE_KEY) }
+            icon={ UnderlineIcon }
+            isActive={ !!editor?.selection && isMarkActive(editor, UNDERLINE_KEY!) }
         />
     );
 };
