@@ -65,7 +65,7 @@ yarn create react-app my-app --template @epam/uui
 
 Contributions are the driving force behind the incredible growth and innovation in the open-source community.
 
-For more in-depth information, we recommend reviewing our [Contribution](https://github.com/epam/UUI/blob/main/CONTRIBUTING.md#creating-a-pull-request) guide.
+For more in-depth information, we recommend reviewing our [Contribution](https://github.com/epam/UUI/blob/main/CONTRIBUTING.md#contributing-to-uui) guide.
 
 ## License
 
