@@ -21,7 +21,7 @@ export const IconContainer = withMods<ControlIconProps, IconContainerMods>(
     uuiIconContainer,
     applyIconContainerMods,
     (props) => {
-        if (props.color) {
+        if (props.color && __DEV__) {
             devLogger.warn('IconContainer: Property color is deprecated and will be removed in the future release. Please make icon color configuration by yourself, e.g. via cx or style prop.');
         }
         return null;
