@@ -61,32 +61,11 @@ yarn create react-app my-app --template @epam/uui
 | [@epam/uui-test-utils](https://github.com/epam/UUI/tree/main/test-utils) | [![npm version](https://badge.fury.io/js/@epam%2Fuui-test-utils.svg)](https://www.npmjs.com/package/@epam%2Fuui-test-utils) | A set of helpers which facilitate creation of unit tests for UUI components. |
 
 
-## Development
+## Contributing
 
-To start locally.
+Contributions are the driving force behind the incredible growth and innovation in the open-source community.
 
-1. Clone github repository:
-
-```
-git clone git@github.com:epam/UUI.git
-```
-
-2. Install server dependencies:
-
-```
-cd ./server
-yarn
-```
-3. Go back to the `UUI` folder and run the App:
-
-```
-cd ../
-yarn
-yarn start
-```
-
-This would open the uui.epam.com web-site locally, in watch mode.
-
+For more in-depth information, we recommend reviewing our [Contribution](https://github.com/epam/UUI/blob/main/CONTRIBUTING.md#creating-a-pull-request) guide.
 
 ## License
 
