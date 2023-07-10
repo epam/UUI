@@ -4,13 +4,12 @@ import { useUuiContext } from '@epam/uui-core';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
+import { PlateEditor, TElement, Value, WithPlatePlugin, someNode } from '@udecode/plate-common';
+import { ELEMENT_LINK, LinkPlugin, createLinkPlugin, upsertLink, validateUrl, withLink } from '@udecode/plate-link';
+import { isPluginActive } from '../../helpers';
 import { ReactComponent as LinkIcon } from "../../icons/link.svg";
 import { AddLinkModal } from "./AddLinkModal";
-import { isPluginActive } from '../../helpers';
 import { isUrl } from './isUrl';
-import { TElement, Value, someNode, PlateEditor, WithPlatePlugin } from '@udecode/plate-common';
-import { LinkPlugin, withLink, validateUrl, upsertLink, createLinkPlugin, ELEMENT_LINK } from '@udecode/plate-link';
-import { LinkToolbarButton } from '@udecode/plate-ui';
 
 export interface LinkElement extends TElement {
     href: string;
@@ -76,10 +75,8 @@ export const LinkButton = ({ editor }: ToolbarLinkButtonProps) => {
     const isLink = !!editor?.selection && someNode(editor, { match: { type: LINK_ELEMENT } });
 
     return (
-        <LinkToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            active={ isLink }
-            onMouseDown={ async (event) => {
+        <ToolbarButton
+            onClick={ async (event) => {
                 if (!editor) return;
 
                 event.preventDefault();
@@ -90,11 +87,8 @@ export const LinkButton = ({ editor }: ToolbarLinkButtonProps) => {
                     />
                 )).catch(() => null);
             } }
-            icon={ <ToolbarButton
-                onClick={ () => {} }
-                icon={ LinkIcon }
-                isActive={ !!editor?.selection && isLink }
-            /> }
+            icon={ LinkIcon }
+            isActive={ !!editor?.selection && isLink }
         />
     );
 };

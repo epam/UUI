@@ -16,15 +16,10 @@
     "@epam/uui-components": "5.1.0",
     "@epam/uui-core": "5.1.0",
     "@styled-icons/material": "^10.46.0",
-    "@types/lodash.debounce": "4.0.7",
-    "@types/lodash.invert": "4.3.7",
-    "@types/slate": "^0.47.11",
-    "@types/slate-react": "^0.50.1",
-    "@udecode/plate-common": "21.1.5",
     "@udecode/plate-basic-marks": "21.1.5",
     "@udecode/plate-block-quote": "21.1.5",
     "@udecode/plate-break": "21.1.5",
-    "@udecode/plate-ui": "21.1.5",
+    "@udecode/plate-common": "21.1.5",
     "@udecode/plate-floating": "21.1.5",
     "@udecode/plate-font": "21.1.5",
     "@udecode/plate-heading": "21.1.5",
@@ -38,6 +33,8 @@
     "@udecode/plate-serializer-docx": "21.1.5",
     "@udecode/plate-serializer-html": "21.1.5",
     "@udecode/plate-table": "21.1.5",
+    "@udecode/plate-ui-media": "21.1.5",
+    "@udecode/plate-ui-toolbar": "21.1.5",
     "@udecode/resizable": "20.4.5",
     "classnames": "2.2.6",
     "get-video-id": "3.1.3",
@@ -52,6 +49,12 @@
     "slate-history": "0.66.0",
     "slate-react": "0.82.2",
     "styled-components": "5.3.1"
+  },
+  "devDependencies": {
+    "@types/lodash.debounce": "4.0.7",
+    "@types/lodash.invert": "4.3.7",
+    "@types/slate": "0.47.11",
+    "@types/styled-components": "5.1.26"
   },
   "peerDependencies": {
     "react": ">=16.0.0",

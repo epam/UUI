@@ -1,21 +1,19 @@
-import React from 'react';
 import { useUuiContext } from '@epam/uui-core';
-
-import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
+import React from 'react';
 
 import { isPluginActive, isTextSelected } from '../../helpers';
 
-import { Image } from './ImageBlock';
 import { AddImageModal } from './AddImageModal';
+import { Image } from './ImageBlock';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
+import { PlateEditor, createPluginFactory, focusEditor, getBlockAbove, insertEmptyElement, insertNodes } from '@udecode/plate-common';
+import { TImageElement, captionGlobalStore } from '@udecode/plate-media';
+import isHotkey from 'is-hotkey';
+import { Editor } from 'slate';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
-import { Editor } from 'slate';
-import isHotkey from 'is-hotkey';
-import { createPluginFactory, PlateEditor, insertNodes, focusEditor, getBlockAbove, insertEmptyElement } from '@udecode/plate-common';
-import { TImageElement, captionGlobalStore } from '@udecode/plate-media';
 
 export const IMAGE_PLUGIN_KEY = 'image';
 export const IMAGE_PLUGIN_TYPE = 'image';
@@ -99,9 +97,9 @@ export const ImageButton = ({ editor }: IImageButton) => {
     const block = getBlockAbove(editor);
 
     return (
-        <PlateToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            onMouseDown={ async (event) => {
+        <ToolbarButton
+            isDisabled={ isTextSelected(editor, true) }
+            onClick={ async (event) => {
                 if (!editor) return;
                 event.preventDefault();
                 event.stopPropagation();
@@ -109,7 +107,6 @@ export const ImageButton = ({ editor }: IImageButton) => {
                 context.uuiModals.show<string>(modalProps => (
                     <AddImageModal
                         editor={ editor }
-                        focusEditor={ () => focusEditor(editor) }
                         insertImage={ handleImageInsert }
                         { ...modalProps }
                     />
@@ -119,12 +116,8 @@ export const ImageButton = ({ editor }: IImageButton) => {
                     console.error(error);
                 });
             } }
-            icon={ <ToolbarButton
-                isDisabled={ isTextSelected(editor, true) }
-                onClick={ () => {} }
-                icon={ ImageIcon }
-                isActive={ block?.length && block[0].type === 'image' }
-            /> }
+            icon={ ImageIcon }
+            isActive={ block?.length && block[0].type === 'image' }
         />
     );
 };

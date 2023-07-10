@@ -1,20 +1,17 @@
-import React from 'react';
 import { Dropdown } from '@epam/uui-components';
-
-
-import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
+import React from 'react';
 
 
 import { isPluginActive } from '../../helpers';
 
-import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { NoteBar } from '../../implementation/NoteBar';
+import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { ReactComponent as NoteIcon } from '../../icons/info-block-quote.svg';
 
-import { NotePluginBlock } from './NotePluginBlock';
+import { PlateEditor, createNode, createPluginFactory, getAboveNode, getBlockAbove, insertText, setElements } from '@udecode/plate-common';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
-import { createPluginFactory, PlateEditor, getAboveNode, insertText, setElements, createNode, getBlockAbove } from '@udecode/plate-common';
+import { NotePluginBlock } from './NotePluginBlock';
 
 const noteBlocks = ['note-error', 'note-warning', 'note-link', 'note-quote'];
 
@@ -96,19 +93,10 @@ export const NoteButton = ({ editor }: IToolbarNote) => {
     return (
         <Dropdown
             renderTarget={ (props) => (
-                <PlateToolbarButton
-                    styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-                    active={ true }
-                    onMouseDown={
-                        editor
-                            ? (e) => e.preventDefault()
-                            : undefined
-                    }
-                    icon={ <ToolbarButton
-                        isActive={ noteBlocks.includes(type) }
-                        icon={ NoteIcon }
-                        { ...props }
-                    /> }
+                <ToolbarButton
+                    isActive={ noteBlocks.includes(type) }
+                    icon={ NoteIcon }
+                    { ...props }
                 />
             ) }
             renderBody={ (props) => <NoteBar editor={ editor } type={ type } { ...props } /> }

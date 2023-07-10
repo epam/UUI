@@ -1,8 +1,5 @@
 import React from 'react';
 
-
-import { ToolbarButton as PlateToolbarButton } from '@udecode/plate-ui';
-
 import { Dropdown } from '@epam/uui-components';
 import { isPluginActive } from "../../helpers";
 
@@ -49,18 +46,10 @@ export const HeaderButton = ({ editor }: IToolbarButton): any => {
     return (
         <Dropdown
             renderTarget={ (props) => (
-                <PlateToolbarButton
-                    styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-                    active={ true }
-                    onMouseDown={
-                        editor
-                            ? (e) => e.preventDefault()
-                            : undefined
-                    }
-                    icon={ <ToolbarButton
-                        icon={ HeadlinePickerIcon }
-                        { ...props }
-                    /> }
+                <ToolbarButton
+
+                    icon={ HeadlinePickerIcon }
+                    { ...props }
                 />
             ) }
             renderBody={ (props) => <HeaderBar editor={ editor } { ...props } /> }

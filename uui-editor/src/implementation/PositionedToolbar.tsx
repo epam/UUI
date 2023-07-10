@@ -1,15 +1,15 @@
+import { Portal } from '@epam/uui-components';
+import type { VirtualElement } from '@popperjs/core/lib/popper';
+import { findNode, isEditorFocused, toDOMNode, usePlateEditorState } from '@udecode/plate-common';
+import { getSelectionBoundingClientRect } from '@udecode/plate-floating';
+import { getCellTypes } from '@udecode/plate-table';
+import cx from "classnames";
 import React, { useRef } from 'react';
 import { Popper } from 'react-popper';
-import { Portal } from '@epam/uui-components';
-import cx from "classnames";
 import { Range } from 'slate';
 
 import { isImageSelected, isTextSelected } from '../helpers';
 import css from './Toolbar.module.scss';
-import type { VirtualElement } from '@popperjs/core/lib/popper';
-import { isEditorFocused, usePlateEditorState, findNode, toDOMNode } from '@udecode/plate-common';
-import { getCellTypes } from '@udecode/plate-table';
-import { getSelectionBoundingClientRect } from '@udecode/plate-floating';
 
 interface ToolbarProps {
     editor: any;
@@ -20,7 +20,7 @@ interface ToolbarProps {
     placement?: 'top' | 'bottom' | 'right' | 'left' | 'auto';
 }
 
-export function Toolbar(props: ToolbarProps): any {
+export function PositionedToolbar(props: ToolbarProps): any {
     const ref = useRef<HTMLElement | null>();
     const editor = usePlateEditorState();
     const inFocus = isEditorFocused(editor);

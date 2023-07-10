@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
-import { useSelected } from 'slate-react';
-import cx from 'classnames';
 import { uuiMod } from '@epam/uui-core';
+import cx from 'classnames';
+import React from 'react';
+import { useSelected } from 'slate-react';
 
 
 import css from './Separator.module.scss';
-import { StyledElementProps } from '@udecode/plate-ui';
 
-export function Separator(props: StyledElementProps) {
+export function Separator(props: any) {
     const { children, attributes } = props;
     const selected = useSelected();
 

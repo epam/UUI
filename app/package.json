@@ -48,7 +48,7 @@
     "react-router": "5.3.4",
     "react-router-dom": "5.3.4",
     "remark-gfm": "3.0.1",
-    "slate": "0.47.9"
+    "slate": "0.82.0"
   },
   "browserslist": {
     "production": [

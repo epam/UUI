@@ -1,21 +1,15 @@
+import { PlateEditor, createPluginFactory, focusEditor, insertEmptyElement, isMarkActive, toggleNodeType } from '@udecode/plate-common';
 import React from 'react';
-
+import { Editor } from 'slate';
 
 import { isPluginActive, isTextSelected } from '../../helpers';
-
-import { ToolbarButton } from '../../implementation/ToolbarButton';
-
 import { ReactComponent as SeparateIcon } from '../../icons/breakline.svg';
-
-import { Separator } from './Separator';
+import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { getBlockAboveByType } from "../../utils/getAboveBlock";
 import { PARAGRAPH_TYPE } from "../paragraphPlugin/paragraphPlugin";
-import { Editor } from 'slate';
-import { createPluginFactory, PlateEditor, getPluginType, insertEmptyElement, isMarkActive } from '@udecode/plate-common';
-import { BlockToolbarButton } from '@udecode/plate-ui';
+import { Separator } from './Separator';
 
 const SEPARATOR_TYPE = 'separatorBLock';
-const noop = () => {};
 
 export const separatorPlugin = () => {
     const createSeparatorPlugin = createPluginFactory({
@@ -61,17 +55,20 @@ interface ToolbarButton {
 export const SeparatorButton = ({ editor }: ToolbarButton) => {
     if (!isPluginActive(SEPARATOR_TYPE)) return null;
 
+    const onSeparatorButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, type: string) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        toggleNodeType(editor, { activeType: type });
+        focusEditor(editor);
+    }
+
     return (
-        <BlockToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            type={ getPluginType(editor, SEPARATOR_TYPE) }
-            actionHandler='onMouseDown'
-            icon={ <ToolbarButton
-                isDisabled={ isTextSelected(editor, true) }
-                onClick={ noop }
-                icon={ SeparateIcon }
-                isActive={ !!editor?.selection && isMarkActive(editor, SEPARATOR_TYPE!) }
-            /> }
+        <ToolbarButton
+            isDisabled={ isTextSelected(editor, true) }
+            onClick={ (e) => onSeparatorButtonClick(e, SEPARATOR_TYPE) }
+            icon={ SeparateIcon }
+            isActive={ !!editor?.selection && isMarkActive(editor, SEPARATOR_TYPE) }
         />
     );
 };
