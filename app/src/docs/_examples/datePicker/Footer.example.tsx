@@ -3,7 +3,7 @@ import { DatePicker, FlexRow, LinkButton } from '@epam/promo';
 import css from './FormatDateExample.module.scss';
 import dayjs from 'dayjs';
 
-export default function DatePickerFormatDateExample() {
+export default function DatePickerFooterExample() {
     const [value, onValueChange] = useState('');
 
     return (
