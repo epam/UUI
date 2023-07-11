@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { IHasChildren, IHasRawProps, INotification } from '@epam/uui-core';
+import { devLogger, IHasChildren, IHasRawProps, INotification } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton } from '../buttons';
 import { ReactComponent as CrossIcon } from './../icons/snackbar/cross.svg';
@@ -20,14 +20,20 @@ const SnackbarIcon = {
     info: InfoIcon,
 };
 
-export const SnackbarCard = React.forwardRef<HTMLDivElement, SnackbarCardProps>((props, ref) => (
-    <div ref={ ref } className={ css.snackbar } { ...props.rawProps }>
-        <div className={ cx([css[props.snackType], css.iconContainer]) }>
-            <IconContainer icon={ SnackbarIcon[props.snackType] } cx={ css.actionIcon } />
+export const SnackbarCard = React.forwardRef<HTMLDivElement, SnackbarCardProps>((props, ref) => {
+    if (__DEV__) {
+        devLogger.warn('SnackbarCard is deprecated and will be deleted in a future release. Please, use the NotificationCard instead it.');
+    }
+
+    return (
+        <div ref={ ref } className={ css.snackbar } { ...props.rawProps }>
+            <div className={ cx([css[props.snackType], css.iconContainer]) }>
+                <IconContainer icon={ SnackbarIcon[props.snackType] } cx={ css.actionIcon } />
+            </div>
+            <div className={ css.mainPath }>
+                <div className={ css.content }>{ props.children }</div>
+                <IconButton icon={ CrossIcon } color="night600" onClick={ props.onClose } cx={ css.closeIcon } />
+            </div>
         </div>
-        <div className={ css.mainPath }>
-            <div className={ css.content }>{props.children}</div>
-            <IconButton icon={ CrossIcon } color="night600" onClick={ props.onClose } cx={ css.closeIcon } />
-        </div>
-    </div>
-));
+    );
+});
