@@ -30,13 +30,12 @@ export default function DatePickerBaseExample() {
                 } }
                 renderFooter={ (value: RangeDatePickerValue) => (
                     <div className={ css.container }>
-                        <FlexRow padding="24">
-                            <Text>
-                                Range days count:
-                                {' '}
-                                {getRangeLength(value)}
-                            </Text>
-                        </FlexRow>
+                        <Text color="gray80" size="30">
+                            { value?.from ? dayjs(value?.from).format('MMMM DD, YYYY') : (value?.to && ' ... ') }
+                            { (value?.from || value?.to) && ' - ' }
+                            { value?.to ? dayjs(value?.to).format('MMMM DD, YYYY') : (value?.from && ' ... ') }
+                            { getRangeLength(value) !== 0 && (getRangeLength(value) === 1 ? ` (${getRangeLength(value)} day)` : ` (${getRangeLength(value)} days)`) }
+                        </Text>
                     </div>
                 ) }
             />
@@ -45,7 +44,9 @@ export default function DatePickerBaseExample() {
 }
 
 const getRangeLength = (value: RangeDatePickerValue) => {
+    const isOneOrZero = dayjs(value.from).valueOf() === dayjs(value.to).valueOf() ? 1 : 0;
+
     return dayjs(value.to).isValid() && dayjs(value.from).isValid() && dayjs(value.from).valueOf() < dayjs(value.to).valueOf()
         ? dayjs(value.to).diff(dayjs(value.from), 'day') + 1
-        : 0;
+        : isOneOrZero;
 };
