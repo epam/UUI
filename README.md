@@ -20,13 +20,17 @@ Check out [UUI website](https://uui.epam.com) for [demo](https://uui.epam.com/de
 
 To add UUI to an existing project, read more [here](https://uui.epam.com/documents?id=gettingStarted).
 
-## Contribution
+## Getting started
 
-Contributions are the driving force behind the incredible growth and innovation in the open-source community.
+We recommend to use our custom [UUI template](https://www.npmjs.com/package/@epam/cra-template-uui) for [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) to create React application with already configured environment.
 
-For more in-depth information, we recommend reviewing our [Contribution guide](https://github.com/epam/UUI/blob/main/CONTRIBUTING.md#contributing-to-uui).
-It covers [Bug reporting](https://github.com/epam/UUI/blob/main/CONTRIBUTING.md#i-have-an-issue), submitting [Improvements](https://github.com/epam/UUI/blob/main/CONTRIBUTING.md#i-have-an-idea) or [Pull Requests](https://github.com/epam/UUI/blob/main/CONTRIBUTING.md#i-want-to-submit-changes), and other related topics.
+```sh
+npx create-react-app my-app --template @epam/uui
 
+# or
+
+yarn create react-app my-app --template @epam/uui
+```
 ## Quick start
 
 Try our pre-configured template on
@@ -41,18 +45,6 @@ Try our pre-configured template on
         />
     </a>
 
-## Getting started
-
-We recommend to use our custom [UUI template](https://www.npmjs.com/package/@epam/cra-template-uui) for [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) to create React application with already configured environment.
-
-```sh
-npx create-react-app my-app --template @epam/uui
-
-# or
-
-yarn create react-app my-app --template @epam/uui
-```
-
 ## Packages
 
 | Project                                                                  | Status                                                                                                                      | Description                                                                  |
@@ -66,6 +58,13 @@ yarn create react-app my-app --template @epam/uui
 | [@epam/uui-db](https://github.com/epam/UUI/tree/main/uui-db)             | [![npm version](https://badge.fury.io/js/@epam%2Fuui-db.svg)](https://www.npmjs.com/package/@epam%2Fuui-db)                 | State-manager, allow to manage UI operations asynchronously.                 |
 | [@epam/uui-timeline](https://github.com/epam/UUI/tree/main/uui-timeline) | [![npm version](https://badge.fury.io/js/@epam%2Fuui-timeline.svg)](https://www.npmjs.com/package/@epam%2Fuui-timeline)     | UUI Timeline provides facilities to build a Ghant-chart like interfaces.     |
 | [@epam/uui-test-utils](https://github.com/epam/UUI/tree/main/test-utils) | [![npm version](https://badge.fury.io/js/@epam%2Fuui-test-utils.svg)](https://www.npmjs.com/package/@epam%2Fuui-test-utils) | A set of helpers which facilitate creation of unit tests for UUI components. |
+
+## Contribution
+
+Contributions are the driving force behind the incredible growth and innovation in the open-source community.
+
+For more in-depth information, we recommend reviewing our [Contribution guide](https://github.com/epam/UUI/blob/main/CONTRIBUTING.md#contributing-to-uui).
+It covers [Bug reporting](https://github.com/epam/UUI/blob/main/CONTRIBUTING.md#i-have-an-issue), submitting [Improvements](https://github.com/epam/UUI/blob/main/CONTRIBUTING.md#i-have-an-idea) or [Pull Requests](https://github.com/epam/UUI/blob/main/CONTRIBUTING.md#i-want-to-submit-changes), and other related topics.
 
 ## License
 
