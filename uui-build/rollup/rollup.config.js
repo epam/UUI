@@ -97,7 +97,11 @@ async function createRollupConfigForModule(options) {
             }),
             postcss({
                 sourceMap: true,
-                modules: { hashPrefix: moduleName },
+                modules: {
+                    hashPrefix: moduleName,
+                    // See the logic behind this pattern here: https://github.com/css-modules/generic-names/blob/master/index.js
+                    generateScopedName: '[hash:base64:6]',
+                },
                 autoModules: true,
                 extract: path.resolve(outDir, EXTRACTED_CSS_FILE_NAME),
                 to: `${outDir}/${EXTRACTED_CSS_FILE_NAME}`,
