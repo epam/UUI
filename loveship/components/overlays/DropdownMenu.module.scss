@@ -2,14 +2,18 @@
 @use '../../assets/styles/scss/index' as *;
 @use '../../assets/styles/scss/loveship-colors' as *;
 
-@mixin panel-shadow() { box-shadow: 0 1px 3px 0 rgba(51, 51, 51, 0.2); }
+@mixin panel-shadow() {
+    box-shadow: 0 1px 3px 0 rgba(51, 51, 51, 0.2);
+}
 
 @mixin disabled-input() {
     @include input-colors($night50, $night500, $night500, $night300);
     cursor: default;
     pointer-events: none;
 
-    &:hover, &:active, &:focus {
+    &:hover,
+    &:active,
+    &:focus {
         @include input-colors($night50, $night500, $night500, $night300);
         box-shadow: none;
     }
@@ -118,7 +122,8 @@ $panel-border-radius: 6px;
         }
 
         .checkboxRoot {
-            &:hover, &:focus {
+            &:hover,
+            &:focus {
                 color: $sky;
 
                 :global(.uui-checkbox) {
@@ -134,7 +139,8 @@ $panel-border-radius: 6px;
 
         :global(.uui-button-box) {
             &:global(.-clickable) {
-                &:hover, &:focus {
+                &:hover,
+                &:focus {
                     color: $sky;
                     fill: $sky;
                 }
@@ -143,7 +149,8 @@ $panel-border-radius: 6px;
                     color: $night500;
                     fill: $night500;
 
-                    &:hover, &:focus {
+                    &:hover,
+                    &:focus {
                         cursor: default;
                     }
                 }
@@ -178,7 +185,8 @@ $panel-border-radius: 6px;
         }
 
         .checkboxRoot {
-            &:hover, &:focus {
+            &:hover,
+            &:focus {
                 color: $white;
 
                 :global(.uui-checkbox) {
@@ -193,7 +201,8 @@ $panel-border-radius: 6px;
 
         :global(.uui-button-box) {
             &:global(.-clickable) {
-                &:hover, &:focus {
+                &:hover,
+                &:focus {
                     color: $white;
                     fill: $white;
                 }
@@ -202,7 +211,8 @@ $panel-border-radius: 6px;
                     color: $night500;
                     fill: $night500;
 
-                    &:hover, &:focus {
+                    &:hover,
+                    &:focus {
                         cursor: default;
                     }
                 }
@@ -240,7 +250,6 @@ $panel-border-radius: 6px;
     }
 }
 
-
 .no-icon {
     margin-left: 36px;
 }
@@ -261,7 +270,8 @@ $panel-border-radius: 6px;
     &:global(.uui-disabled) {
         cursor: default;
 
-        :global(.uui-checkbox), :global(.uui-checkbox):global(.uui-checked) {
+        :global(.uui-checkbox),
+        :global(.uui-checkbox):global(.uui-checked) {
             @include disabled-input();
             fill: white;
         }
@@ -276,7 +286,8 @@ $panel-border-radius: 6px;
             border-color: $fire;
             fill: $fire;
 
-            &:hover, &:active {
+            &:hover,
+            &:active {
                 border-color: darken($fire, 10%);
                 fill: darken($fire, 10%);
             }
@@ -286,7 +297,8 @@ $panel-border-radius: 6px;
                 background-color: $fire;
                 border-color: $fire;
 
-                &:hover, &:active {
+                &:hover,
+                &:active {
                     background-color: darken($fire, 10%);
                     border-color: darken($fire, 10%);
                 }

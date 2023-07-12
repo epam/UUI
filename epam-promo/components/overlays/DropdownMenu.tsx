@@ -1,8 +1,31 @@
 import React, { useRef, useContext, useState, useEffect } from 'react';
 import FocusLock from 'react-focus-lock';
-import { cx, DropdownBodyProps, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption,
-    IDisableable, IAnalyticableClick, IHasCX, IClickable } from '@epam/uui-core';
-import { Text, FlexRow, Anchor, Dropdown, FlexSpacer, DropdownContainer, IconContainer } from '@epam/uui-components';
+import {
+    cx,
+    DropdownBodyProps,
+    IDropdownToggler,
+    withMods,
+    uuiMod,
+    UuiContext,
+    IHasChildren,
+    VPanelProps,
+    IHasIcon,
+    ICanRedirect,
+    IHasCaption,
+    IDisableable,
+    IAnalyticableClick,
+    IHasCX,
+    IClickable,
+} from '@epam/uui-core';
+import {
+    Text,
+    FlexRow,
+    Anchor,
+    Dropdown,
+    FlexSpacer,
+    DropdownContainer,
+    IconContainer,
+} from '@epam/uui-components';
 import { Switch } from '@epam/uui';
 import { IconButton } from '../buttons';
 import { systemIcons } from '../../icons/icons';
@@ -10,7 +33,13 @@ import css from './DropdownMenu.module.scss';
 import { ReactComponent as CheckIcon } from '../../icons/accept-18.svg';
 
 const icons = systemIcons['36'];
-export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick, IDropdownToggler {
+export interface IDropdownMenuItemProps
+    extends IHasIcon,
+    ICanRedirect,
+    IHasCX,
+    IDisableable,
+    IAnalyticableClick,
+    IDropdownToggler {
     isSelected?: boolean;
     isActive?: boolean;
 }
@@ -31,7 +60,13 @@ export enum IDropdownControlKeys {
 function DropdownMenuContainer(props: IDropdownMenuContainer) {
     const menuRef = useRef<HTMLMenuElement>(null);
     const [currentlyFocused, setFocused] = useState<number>(-1);
-    const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`)) : [];
+    const menuItems: HTMLElement[] = menuRef.current
+        ? Array.from(
+            menuRef.current.querySelectorAll(
+                `[role="menuitem"]:not(.${uuiMod.disabled})`,
+            ),
+        )
+        : [];
 
     useEffect(() => {
         menuRef.current?.focus();
@@ -50,16 +85,27 @@ function DropdownMenuContainer(props: IDropdownMenuContainer) {
         const lastMenuItemsIndex = menuItems.length - 1;
 
         if (e.key === IDropdownControlKeys.UP_ARROW) {
-            changeFocus(currentlyFocused > 0 ? currentlyFocused - 1 : lastMenuItemsIndex);
+            changeFocus(
+                currentlyFocused > 0 ? currentlyFocused - 1 : lastMenuItemsIndex,
+            );
         } else if (e.key === IDropdownControlKeys.DOWN_ARROW) {
-            changeFocus(currentlyFocused < lastMenuItemsIndex ? currentlyFocused + 1 : 0);
+            changeFocus(
+                currentlyFocused < lastMenuItemsIndex ? currentlyFocused + 1 : 0,
+            );
         } else if (e.key === props.closeOnKey && props.onClose) {
             props.onClose();
         }
     };
 
     return (
-        <FocusLock as="menu" className={ css.menuRoot } returnFocus autoFocus={ false } ref={ menuRef } lockProps={ { onKeyDown: handleArrowKeys, tabIndex: -1 } }>
+        <FocusLock
+            as="menu"
+            className={ css.menuRoot }
+            returnFocus
+            autoFocus={ false }
+            ref={ menuRef }
+            lockProps={ { onKeyDown: handleArrowKeys, tabIndex: -1 } }
+        >
             <DropdownContainer { ...props } rawProps={ { tabIndex: -1 } } />
         </FocusLock>
     );
@@ -71,79 +117,115 @@ export const DropdownMenuBody = withMods<IDropdownMenuContainer>(
     ({ style }) => ({ style }),
 );
 
-export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>((props, ref) => {
-    const context = useContext(UuiContext);
+export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
+    (props, ref) => {
+        const context = useContext(UuiContext);
 
-    const {
-        icon, iconPosition, onIconClick, caption, isDisabled, isSelected, isActive, link, href, onClick, toggleDropdownOpening, isDropdown, isOpen, target,
-    } = props;
+        const {
+            icon,
+            iconPosition,
+            onIconClick,
+            caption,
+            isDisabled,
+            isSelected,
+            isActive,
+            link,
+            href,
+            onClick,
+            toggleDropdownOpening,
+            isDropdown,
+            isOpen,
+            target,
+        } = props;
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        if (isDisabled || !onClick) return;
-        onClick(event);
-        context.uuiAnalytics.sendEvent(props.clickAnalyticsEvent);
-    };
-
-    const handleOpenDropdown = (event: React.KeyboardEvent<HTMLElement>) => {
-        if (event.key === IDropdownControlKeys.RIGHT_ARROW && isDropdown) {
-            toggleDropdownOpening(true);
-        } else if (event.key === IDropdownControlKeys.ENTER && onClick) {
+        const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+            if (isDisabled || !onClick) return;
             onClick(event);
-        }
-    };
+            context.uuiAnalytics.sendEvent(props.clickAnalyticsEvent);
+        };
 
-    const getMenuButtonContent = () => {
-        const isIconBefore = Boolean(icon && iconPosition !== 'right');
-        const isIconAfter = Boolean(icon && iconPosition === 'right');
-        const iconElement = <IconButton icon={ icon } onClick={ onIconClick } cx={ cx(css.icon, iconPosition === 'right' ? css.iconAfter : css.iconBefore) } />;
+        const handleOpenDropdown = (
+            event: React.KeyboardEvent<HTMLElement>,
+        ) => {
+            if (event.key === IDropdownControlKeys.RIGHT_ARROW && isDropdown) {
+                toggleDropdownOpening(true);
+            } else if (event.key === IDropdownControlKeys.ENTER && onClick) {
+                onClick(event);
+            }
+        };
 
-        return (
-            <>
-                {isIconBefore && iconElement}
-                <Text cx={ css.caption }>{caption}</Text>
-                {isIconAfter && (
-                    <>
-                        <FlexSpacer />
-                        {iconElement}
-                    </>
-                )}
-            </>
+        const getMenuButtonContent = () => {
+            const isIconBefore = Boolean(icon && iconPosition !== 'right');
+            const isIconAfter = Boolean(icon && iconPosition === 'right');
+            const iconElement = (
+                <IconButton
+                    icon={ icon }
+                    onClick={ onIconClick }
+                    cx={ cx(
+                        css.icon,
+                        iconPosition === 'right'
+                            ? css.iconAfter
+                            : css.iconBefore,
+                    ) }
+                />
+            );
+
+            return (
+                <>
+                    {isIconBefore && iconElement}
+                    <Text cx={ css.caption }>{caption}</Text>
+                    {isIconAfter && (
+                        <>
+                            <FlexSpacer />
+                            {iconElement}
+                        </>
+                    )}
+                </>
+            );
+        };
+
+        const isAnchor = Boolean(link || href);
+
+        const itemClassNames = cx(
+            props.cx,
+            css.itemRoot,
+            isDisabled && uuiMod.disabled,
+            isActive && uuiMod.active,
+            isOpen && uuiMod.opened,
         );
-    };
 
-    const isAnchor = Boolean(link || href);
-
-    const itemClassNames = cx(props.cx, css.itemRoot, isDisabled && uuiMod.disabled, isActive && uuiMod.active, isOpen && uuiMod.opened);
-
-    return isAnchor ? (
-        <Anchor
-            cx={ cx(css.link, itemClassNames) }
-            link={ link }
-            href={ href }
-            rawProps={ { role: 'menuitem', tabIndex: isDisabled ? -1 : 0 } }
-            onClick={ handleClick }
-            isDisabled={ isDisabled }
-            forwardedRef={ ref }
-            target={ target }
-        >
-            {getMenuButtonContent()}
-        </Anchor>
-    ) : (
-        <FlexRow
-            rawProps={ {
-                tabIndex: isDisabled ? -1 : 0,
-                role: 'menuitem',
-                onKeyDown: isDisabled ? null : handleOpenDropdown,
-            } }
-            cx={ itemClassNames }
-            onClick={ handleClick }
-            ref={ ref }
-        >
-            {getMenuButtonContent()}
-            {isSelected && <CheckIcon className={ cx(css.selectedCheckmark) } />}
-        </FlexRow>
-    );
-});
+        return isAnchor ? (
+            <Anchor
+                cx={ cx(css.link, itemClassNames) }
+                link={ link }
+                href={ href }
+                rawProps={ { role: 'menuitem', tabIndex: isDisabled ? -1 : 0 } }
+                onClick={ handleClick }
+                isDisabled={ isDisabled }
+                forwardedRef={ ref }
+                target={ target }
+            >
+                {getMenuButtonContent()}
+            </Anchor>
+        ) : (
+            <FlexRow
+                rawProps={ {
+                    tabIndex: isDisabled ? -1 : 0,
+                    role: 'menuitem',
+                    onKeyDown: isDisabled ? null : handleOpenDropdown,
+                } }
+                cx={ itemClassNames }
+                onClick={ handleClick }
+                ref={ ref }
+            >
+                {getMenuButtonContent()}
+                {isSelected && (
+                    <CheckIcon className={ cx(css.selectedCheckmark) } />
+                )}
+            </FlexRow>
+        );
+    },
+);
 
 DropdownMenuButton.displayName = 'DropdownMenuButton';
 
@@ -165,11 +247,24 @@ export function DropdownMenuHeader(props: IDropdownMenuHeader) {
     );
 }
 
-interface IDropdownSubMenu extends IHasChildren, IHasCaption, IHasIcon, IDropdownMenuItemProps {
+interface IDropdownSubMenu
+    extends IHasChildren,
+    IHasCaption,
+    IHasIcon,
+    IDropdownMenuItemProps {
     openOnHover?: boolean;
 }
 
 export function DropdownSubMenu(props: IDropdownSubMenu) {
+    const subMenuModifiers = [
+        {
+            name: 'offset',
+            options: {
+                offset: [-6, 0],
+            },
+        },
+    ];
+
     return (
         <Dropdown
             openOnHover={ props.openOnHover || true }
@@ -177,7 +272,14 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
             openDelay={ 400 }
             closeDelay={ 400 }
             placement="right-start"
-            renderBody={ (dropdownProps) => <DropdownMenuBody closeOnKey={ IDropdownControlKeys.LEFT_ARROW } { ...props } { ...dropdownProps } /> }
+            modifiers={ subMenuModifiers }
+            renderBody={ (dropdownProps) => (
+                <DropdownMenuBody
+                    closeOnKey={ IDropdownControlKeys.LEFT_ARROW }
+                    { ...props }
+                    { ...dropdownProps }
+                />
+            ) }
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
                 <DropdownMenuButton
                     cx={ cx(css.submenuRootItem) }
@@ -193,7 +295,13 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
     );
 }
 
-interface IDropdownMenuSwitchButton extends IHasCX, IHasCaption, IHasIcon, IDisableable, IAnalyticableClick, IClickable {
+interface IDropdownMenuSwitchButton
+    extends IHasCX,
+    IHasCaption,
+    IHasIcon,
+    IDisableable,
+    IAnalyticableClick,
+    IClickable {
     onValueChange: (value: boolean) => void;
     isSelected: boolean;
 }
@@ -201,9 +309,7 @@ interface IDropdownMenuSwitchButton extends IHasCX, IHasCaption, IHasIcon, IDisa
 export function DropdownMenuSwitchButton(props: IDropdownMenuSwitchButton) {
     const context = useContext(UuiContext);
 
-    const {
-        icon, caption, isDisabled, isSelected, onValueChange,
-    } = props;
+    const { icon, caption, isDisabled, isSelected, onValueChange } = props;
 
     const onHandleValueChange = (value: boolean) => {
         if (isDisabled || !onValueChange) return;
@@ -221,12 +327,20 @@ export function DropdownMenuSwitchButton(props: IDropdownMenuSwitchButton) {
         <FlexRow
             cx={ cx(props.cx, css.itemRoot, isDisabled && uuiMod.disabled) }
             onClick={ () => onHandleValueChange(!isSelected) }
-            rawProps={ { role: 'menuitem', onKeyDown: handleKeySelect, tabIndex: isDisabled ? -1 : 0 } }
+            rawProps={ {
+                role: 'menuitem',
+                onKeyDown: handleKeySelect,
+                tabIndex: isDisabled ? -1 : 0,
+            } }
         >
             {icon && <IconContainer icon={ icon } cx={ css.iconBefore } />}
             <Text cx={ css.caption }>{caption}</Text>
             <FlexSpacer />
-            <Switch value={ isSelected } tabIndex={ -1 } onValueChange={ onHandleValueChange } />
+            <Switch
+                value={ isSelected }
+                tabIndex={ -1 }
+                onValueChange={ onHandleValueChange }
+            />
         </FlexRow>
     );
 }
