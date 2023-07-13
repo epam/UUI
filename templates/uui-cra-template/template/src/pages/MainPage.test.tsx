@@ -1,9 +1,10 @@
-import React from 'react';
-import { renderWithContextAsync, screen } from '@epam/uui-test-utils';
 import { MainPage } from './MainPage';
+import { renderWithContextAsync, screen } from '../../test-utils/testUtils';
 
-it('renders uui docs link', async () => {
-    await renderWithContextAsync(<MainPage />);
-    const linkElement = screen.getByText(/uui.epam.com/i);
-    expect(linkElement).toBeInTheDocument();
+describe('MainPage', () => {
+    it('should render link to UUI site', async () => {
+        await renderWithContextAsync(<MainPage />);
+        const linkElement = screen.getByText(/uui.epam.com/i);
+        expect(linkElement).toBeInTheDocument();
+    });
 });
