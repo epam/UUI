@@ -6,7 +6,7 @@ import { delayAct } from './timerUtils';
 
 export { renderer };
 
-export type CustomWrapperType = ({ children }: { children?: React.ReactNode }) => JSX.Element;
+export type CustomWrapperType = ({ children }: { children?: React.ReactNode }) => ReactElement;
 
 /**
  * Creates a component which wraps given children with default UUI context provider.

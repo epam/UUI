@@ -2,8 +2,8 @@ import { Panel, RichTextView, IconContainer } from '@epam/uui';
 import { ReactComponent as UuiPromoImage } from '../icons/uui-promo-image.svg';
 import css from './MainPage.module.scss';
 import { useUuiContext } from '@epam/uui-core';
-import { TApi, TMainPageLink } from '../app/helpers/apiDefinition';
-import { TAppContext } from '../app/helpers/appContext';
+import { TApi, TMainPageLink } from '../data/apiDefinition';
+import { TAppContext } from '../data/appContext';
 import { useEffect, useState } from 'react';
 
 export const MainPage = () => {

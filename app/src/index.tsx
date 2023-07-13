@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import { RouterProvider, UNSAFE_DataRouterContext as DataRouterContext } from 'react-router';
+import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 import {
-    ApiCallOptions,
     UuiContexts,
     Router6AdaptedRouter,
     useUuiServices,
@@ -19,7 +18,11 @@ import { getApi, TApi } from './data';
 import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
 import './index.module.scss';
-import { useEffect } from 'react';
+
+const router6 = createBrowserRouter([
+    { path: '*', element: <App /> },
+]);
+const router = new Router6AdaptedRouter(router6);
 
 // __COMMIT_HASH__ will be replaced to a real string by Webpack
 (window as any).BUILD_INFO = { hash: __COMMIT_HASH__ };
@@ -29,25 +32,14 @@ const isProduction = /uui.epam.com/.test(window.location.hostname);
 const AMP_CODE = isProduction ? '94e0dbdbd106e5b208a33e72b58a1345' : 'b2260a6d42a038e9f9e3863f67042cc1';
 
 function apiDefinition(processRequest: IProcessRequest) {
-    return getApi(
-        (url: string, method: string, data?: any, options?: ApiCallOptions) => {
-            return processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options });
-        },
-    );
+    return getApi({ processRequest, fetchOptions: { credentials: undefined } });
 }
 
 function UuiEnhancedApp() {
     const [isLoaded, setIsLoaded] = React.useState(false);
-    const reactRouter6Context = React.useContext(DataRouterContext);
-    const router = React.useMemo(() => new Router6AdaptedRouter(reactRouter6Context.router), [reactRouter6Context.router]);
-    //
-    const { services } = useUuiServices<TApi, UuiContexts>({
-        apiDefinition,
-        router,
-        skinContext,
-    });
+    const { services } = useUuiServices<TApi, UuiContexts>({ apiDefinition, router, skinContext });
 
-    useEffect(() => {
+    React.useEffect(() => {
         services.uuiAnalytics.addListener(new GAListener(GA_CODE));
         services.uuiAnalytics.addListener(new AmplitudeListener(AMP_CODE));
         Object.assign(svc, services);
@@ -57,7 +49,7 @@ function UuiEnhancedApp() {
     if (isLoaded) {
         return (
             <UuiContext.Provider value={ services }>
-                <App />
+                <RouterProvider router={ router6 } />
                 <Snackbar />
                 <Modals />
                 <DragGhost />
@@ -68,13 +60,9 @@ function UuiEnhancedApp() {
 }
 
 function initApp() {
-    const router = createBrowserRouter([
-        { path: '*', element: <UuiEnhancedApp /> },
-    ]);
-
     render(
         <React.StrictMode>
-            <RouterProvider router={ router } />
+            <UuiEnhancedApp />
         </React.StrictMode>,
         document.getElementById('root'),
     );
