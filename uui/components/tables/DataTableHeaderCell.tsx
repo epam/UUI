@@ -37,7 +37,6 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             <div className={ css.tooltipWrapper }>
                 <div className={ cx(css.iconCell, css['align-' + this.props.column.textAlign], uuiDataTableHeaderCell.uuiTableHeaderCaptionWrapper) }>
                     <Tooltip
-                        trigger="hover"
                         placement="top"
                         color="contrast"
                         renderContent={ this.getTooltipContent }
