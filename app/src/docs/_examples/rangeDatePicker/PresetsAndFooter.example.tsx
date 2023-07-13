@@ -31,9 +31,10 @@ export default function DatePickerBaseExample() {
                 renderFooter={ (value: RangeDatePickerValue) => (
                     <div className={ css.container }>
                         <Text color="gray80" size="30">
-                            { value?.from ? dayjs(value?.from).format('MMMM DD, YYYY') : (value?.to && ' ... ') }
+                            { (!value?.from && !value?.to) && 'Select Start date, End date' }
+                            { value?.from ? dayjs(value?.from).format('MMMM DD, YYYY') : (value?.to && ' Start date ') }
                             { (value?.from || value?.to) && ' - ' }
-                            { value?.to ? dayjs(value?.to).format('MMMM DD, YYYY') : (value?.from && ' ... ') }
+                            { value?.to ? dayjs(value?.to).format('MMMM DD, YYYY') : (value?.from && ' End date ') }
                             { getRangeLength(value) !== 0 && (getRangeLength(value) === 1 ? ` (${getRangeLength(value)} day)` : ` (${getRangeLength(value)} days)`) }
                         </Text>
                     </div>
