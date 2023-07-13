@@ -92,7 +92,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
     };
 
     const renderErrorContent = () => (
-        <Tooltip trigger="hover" content={ file.error.message } placement="bottom-start">
+        <Tooltip content={ file.error.message } placement="bottom-start">
             <div className={ css.errorBlock }>
                 <ErrorIcon />
                 Upload failed
