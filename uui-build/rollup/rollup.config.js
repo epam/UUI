@@ -98,18 +98,14 @@ async function createRollupConfigForModule(options) {
             postcss({
                 sourceMap: true,
                 modules: {
-                    hashPrefix: `${moduleName}_${version}`,
-                    // See the logic behind this pattern here:
-                    // https://github.com/css-modules/generic-names/blob/master/index.js
+                    hashPrefix: `${moduleName}_${version}_`,
                     /*
-                     * Next info is included into the content to obtain hash from:
-                     *  - hashPrefix (in our case it's moduleName & version)
-                     *  - absoluteFilePath
-                     *  - selectorName.
-                     *
-                     * We explicitly use "xxhash64" here because it's now the default algorithm in https://github.com/webpack/loader-utils/blob/master/lib/getHashDigest.js
+                     * Hash is calculated from a string which looks like this: '<uuiModuleName>_<uuiVersion>_<relativePathToScss><selectorName>'
+                     * See the logic behind this pattern here:
+                     * https://github.com/css-modules/generic-names/blob/master/index.js
+                     * https://github.com/webpack/loader-utils/blob/master/lib/getHashDigest.js
                      */
-                    generateScopedName: '[xxhash64:hash:base64:6]',
+                    generateScopedName: '[hash:base64:6]',
                 },
                 autoModules: true,
                 extract: path.resolve(outDir, EXTRACTED_CSS_FILE_NAME),
