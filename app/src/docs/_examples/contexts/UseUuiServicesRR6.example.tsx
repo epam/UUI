@@ -1,31 +1,29 @@
 // Note: please remove @ts-nocheck comment in real app, it's here only because it's our local code example.
 // @ts-nocheck
 import { render } from 'react';
-import { UuiContext, HistoryAdaptedRouter, useUuiServices, DragGhost } from '@epam/uui-core';
+import { UuiContext, useUuiServices, DragGhost, Router6AdaptedRouter } from '@epam/uui-core';
 import { Modals, Snackbar } from '@epam/uui-components';
 import { skinContext, ErrorHandler } from '@epam/promo';
-import { createBrowserHistory } from 'history';
 import { svc } from '../../../services';
-import { Router } from 'react-router';
+import { createBrowserRouter } from 'react-router-dom';
+import { RouterProvider } from 'react-router';
 
-const history = createBrowserHistory();
-const router = new HistoryAdaptedRouter(history);
+const router6 = createBrowserRouter([
+    { path: '*', element: '<YourAppComponent />' },
+]);
+const router = new Router6AdaptedRouter(router6);
 
 function UuiEnhancedApp() {
     const { services } = useUuiServices({
         router,
         skinContext,
-        // apiServerUrl: 'url',
-        // appContext: {}
     });
     Object.assign(svc, services);
 
     return (
         <UuiContext.Provider value={ services }>
             <ErrorHandler>
-                <Router history={ history }>
-                    Your App component
-                </Router>
+                <RouterProvider router={ router6 } />
             </ErrorHandler>
             <Snackbar />
             <Modals />
