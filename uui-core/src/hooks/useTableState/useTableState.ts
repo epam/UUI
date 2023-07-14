@@ -93,7 +93,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
         };
 
         // reset paging on filter change
-        if (prevValue.page !== undefined && !isEqual(prevValue.filter, newFilter)) {
+        if (prevValue?.page !== undefined && !isEqual(prevValue?.filter, newFilter)) {
             newTableState.page = 1;
         }
         return newTableState;
@@ -141,7 +141,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
     );
 
     const getActivePresetId = () => {
-        const presetId = getTableStateValue().presetId;
+        const presetId = getTableStateValue()?.presetId;
         return presetId ? +presetId : undefined;
     };
 
