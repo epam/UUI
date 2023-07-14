@@ -1,6 +1,6 @@
 // Note: please remove @ts-nocheck comment in real app, it's here only because it's our local code example.
 // @ts-nocheck
-import { render } from 'react';
+import { render } from 'react-dom';
 import { UuiContext, useUuiServices, DragGhost, Router6AdaptedRouter } from '@epam/uui-core';
 import { Modals, Snackbar } from '@epam/uui-components';
 import { skinContext, ErrorHandler } from '@epam/promo';
