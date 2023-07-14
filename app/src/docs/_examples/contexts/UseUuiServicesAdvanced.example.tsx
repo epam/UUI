@@ -50,9 +50,9 @@ function UuiEnhancedApp() {
         router,
         skinContext,
     });
-    Object.assign(svc, services);
 
     React.useEffect(() => {
+        Object.assign(svc, services);
         // listeners are added here
         services.uuiAnalytics.addListener(new GAListener(/** your Google Analytics id goes here */));
         // app context is loaded here

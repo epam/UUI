@@ -32,9 +32,9 @@ function apiDefinition(processRequest: IProcessRequest) {
 function UuiEnhancedApp() {
     const [isLoaded, setIsLoaded] = useState(false);
     const { services } = useUuiServices<TApi, never>({ apiDefinition, router, skinContext });
-    Object.assign(svc, services);
 
     useEffect(() => {
+        Object.assign(svc, services);
         setIsLoaded(true);
     }, [services]);
 
