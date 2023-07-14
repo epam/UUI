@@ -38,11 +38,11 @@ function apiDefinition(processRequest: IProcessRequest) {
 function UuiEnhancedApp() {
     const [isLoaded, setIsLoaded] = React.useState(false);
     const { services } = useUuiServices<TApi, UuiContexts>({ apiDefinition, router, skinContext });
+    Object.assign(svc, services);
 
     React.useEffect(() => {
         services.uuiAnalytics.addListener(new GAListener(GA_CODE));
         services.uuiAnalytics.addListener(new AmplitudeListener(AMP_CODE));
-        Object.assign(svc, services);
         setIsLoaded(true);
     }, [services]);
 
