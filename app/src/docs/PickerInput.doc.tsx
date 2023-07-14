@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    BaseDocsBlock, EditableDocContent, DocExample, UUI4, UUI3, UUI,
-} from '../common/docs';
+import { BaseDocsBlock, EditableDocContent, DocExample, UUI4, UUI3, UUI } from '../common/docs';
 
 export class PickerInputDoc extends BaseDocsBlock {
     title = 'Picker Input';
@@ -19,6 +17,7 @@ export class PickerInputDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="pickerInput-descriptions" />
                 { this.renderSectionTitle('Examples') }
                 <DocExample title="Basic" path="./_examples/pickerInput/ArrayPickerInput.example.tsx" />
+                <DocExample title="Turn off 'Select All' button in footer" path="./_examples/pickerInput/PickerInputTurnOffSelectAll.example.tsx" />
                 <DocExample title="Lazy list" path="./_examples/pickerInput/LazyPickerInput.example.tsx" />
                 <DocExample title="Lazy tree" path="./_examples/pickerInput/LazyTreeInput.example.tsx" />
                 <DocExample title="Search modes" path="./_examples/pickerInput/LazyTreeSearch.example.tsx" />

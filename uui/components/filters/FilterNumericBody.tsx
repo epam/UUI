@@ -66,7 +66,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
         const value = props.value as INumericRangeValue;
         return (
             <div>
-                <FlexRow padding="12" vPadding="24" alignItems="center" spacing="12" borderBottom={ true } rawProps={ { style: { paddingTop: '3px' } } }>
+                <FlexRow padding="12" alignItems="center" spacing="12" borderBottom={ true } rawProps={ { style: { marginTop: '12px', paddingBottom: '12px' } } }>
                     <FlexCell width="100%">
                         <NumericInput
                             value={ value?.from ?? null }
@@ -93,7 +93,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
 
     return (
         <div>
-            <FlexRow padding="12" vPadding="24" alignItems="center" borderBottom={ true } rawProps={ { style: { paddingTop: '3px' } } }>
+            <FlexRow padding="12" alignItems="center" borderBottom={ true } rawProps={ { style: { marginTop: '12px', paddingBottom: '12px' } } }>
                 <FlexCell width={ 130 }>
                     <NumericInput
                         value={ typeof props.value === 'number' ? props.value : null }
