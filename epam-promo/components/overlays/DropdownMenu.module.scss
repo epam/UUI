@@ -1,7 +1,10 @@
 @use 'sass:math';
-@use  '../../assets/styles/index' as *;
+@use '../../assets/styles/index' as *;
 
-@mixin panel-shadow() { box-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.1), 0 1px 3px 0 rgba(29, 30, 38, 0.1); }
+@mixin panel-shadow() {
+    box-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.1),
+        0 1px 3px 0 rgba(29, 30, 38, 0.1);
+}
 
 @mixin icon-layout($size) {
     :global(.uui-icon) {
@@ -47,7 +50,8 @@
     &:global(.uui-active) {
         @include fillColor($blue);
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             @include fillColor($blue!important);
         }
 
@@ -64,6 +68,7 @@
     line-height: 18px;
     padding: 0.5em 1em;
     width: 100%;
+    height: 36px;
 
     &:focus {
         outline: none;
@@ -85,7 +90,7 @@
     @include fillColor($gray60, $gray80);
     font-family: $font-sans;
     font-size: 14px;
-    padding: 0.5em 0;
+    padding: 6px 0;
     background-color: $white;
 }
 
@@ -139,7 +144,8 @@
     }
 
     &:global(.-clickable:not(.uui-disabled)) {
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             background-color: $gray30;
             cursor: pointer;
         }
@@ -148,7 +154,8 @@
     &:global(.uui-disabled) {
         @include fillColor($gray50);
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             background-color: transparent;
             cursor: default;
         }
@@ -168,7 +175,8 @@
     margin-left: auto;
     fill: $blue;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         fill: $blue;
     }
 }
