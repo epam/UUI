@@ -1,0 +1,10 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Same as very first example but using react-router v.6"
+      }
+    ]
+  }
+]
