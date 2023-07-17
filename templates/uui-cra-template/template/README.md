@@ -1,7 +1,7 @@
 # Getting started
 
 ## Recommended software:
-- Node 8.12.0 or later (https://nodejs.org/en/)
+- Node 16.x or newer (https://nodejs.org/en/)
 - VSCode (https://code.visualstudio.com/), or other IDE with typescript support (like WebStorm)
 - yarn package manager (https://yarnpkg.com/en/)
 - Any GIT client (standalone, or embedded into your IDE)
