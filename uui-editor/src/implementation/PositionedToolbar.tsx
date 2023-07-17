@@ -1,6 +1,6 @@
 import { Portal } from '@epam/uui-components';
 import { findNode, isEditorFocused, toDOMNode, usePlateEditorState } from '@udecode/plate-common';
-import { getSelectionBoundingClientRect } from '@udecode/plate-floating';
+// import { getSelectionBoundingClientRect } from '@udecode/plate-floating';
 import { getCellTypes } from '@udecode/plate-table';
 import cx from "classnames";
 import React, { useRef } from 'react';
@@ -36,7 +36,7 @@ export function PositionedToolbar(props: ToolbarProps): any {
                 return domNode.getBoundingClientRect();
             }
 
-            return getSelectionBoundingClientRect() as DOMRect;
+            return null;
         },
     });
 
