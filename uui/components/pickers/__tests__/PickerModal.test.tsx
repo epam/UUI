@@ -1,9 +1,9 @@
-import React, { useCallback, useContext, useState } from 'react';
-import { PickerModalTestObject, fireEvent, prettyDOM, renderSnapshotWithContextAsync, screen, setupComponentForTest, waitFor } from '@epam/uui-test-utils';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { PickerModalTestObject, delay, fireEvent, prettyDOM, renderSnapshotWithContextAsync, screen, setupComponentForTest, waitFor } from '@epam/uui-test-utils';
 import { PickerModal, PickerModalProps } from '../PickerModal';
-import { mockDataSource, mockDataSourceAsync, mockSmallDataSource, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync, TestItemType } from './mocks';
+import { languageLevels, mockDataSource, mockDataSourceAsync, mockSmallDataSource, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync, TestItemType } from './mocks';
 import { Button, Modals } from '@epam/uui-components';
-import { CascadeSelection, UuiContext } from '@epam/uui-core';
+import { CascadeSelection, UuiContext, useAsyncDataSource } from '@epam/uui-core';
 import { act } from 'react-dom/test-utils';
 
 jest.mock('react-popper', () => ({
@@ -25,6 +25,7 @@ const onValueChangeMock = jest.fn();
 async function setupPickerModalForTest<TItem = TestItemType, TId = number>(params: Partial<PickerModalProps<TItem, TId>>) {
     const { result, mocks, setProps } = await setupComponentForTest<PickerModalProps<TItem, TId>>(
         (): PickerModalProps<TItem, TId> => {
+            console.log('recreate dataSources');
             if (params.selectionMode === 'single') {
                 return Object.assign({
                     dataSource: mockDataSourceAsync,
@@ -47,14 +48,28 @@ async function setupPickerModalForTest<TItem = TestItemType, TId = number>(param
         },
         (props) => {
             const [initialValue, onValueChange] = useState<any>(props.initialValue);
+    
+            // const dataSource = useAsyncDataSource(
+            //     {
+            //         getId: ({ id }) => id, 
+            //         api: async () => {
+            //             await delay(100);
+            //             return languageLevels;
+            //         },
+            //     },
+            //     [],
+            // );
             const context = useContext(UuiContext);
+
             const handleModalOpening = useCallback(() => {
                 context.uuiModals
                     .show((modalProps) => {
+                        console.log('dataSource 1', props.dataSource);
                         return (
                             <PickerModal
                                 { ...modalProps }
                                 { ...props }
+                                dataSource={ props.dataSource }
                                 initialValue={ initialValue }
                             />
                         );
@@ -189,6 +204,7 @@ describe('PickerModal', () => {
             const { dom } = await setupPickerModalForTest({
                 selectionMode: 'single',
                 valueType: 'entity',
+                getName: ({ level }) => level, 
             });
 
             // should not be selected if modal was closed and items were not selected
@@ -219,7 +235,8 @@ describe('PickerModal', () => {
             });
 
             expect(screen.queryByRole('modal')).not.toBeInTheDocument();
-
+            // ?? the same about valueType = entity for selectionMode = multi
+            // console.log('---------------------- open modal ----------------------');
             fireEvent.click(dom.toggler);
             expect(screen.getByRole('modal')).toBeInTheDocument();
     

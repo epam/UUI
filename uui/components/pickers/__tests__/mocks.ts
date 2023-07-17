@@ -17,7 +17,7 @@ const smallDataSet: Item[] = [
     { id: 3, name: 'Elementary+' },
 ];
 
-const languageLevels: TestItemType[] = [
+export const languageLevels: TestItemType[] = [
     { id: 2, level: 'A1', name: 'Elementary' },
     { id: 3, level: 'A1+', name: 'Elementary+' },
     { id: 4, level: 'A2', name: 'Pre-Intermediate' },
