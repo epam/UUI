@@ -17,7 +17,6 @@ export class PickerInputDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="pickerInput-descriptions" />
                 { this.renderSectionTitle('Examples') }
                 <DocExample title="Basic" path="./_examples/pickerInput/ArrayPickerInput.example.tsx" />
-                <DocExample title="Turn off 'Select All' button in footer" path="./_examples/pickerInput/PickerInputTurnOffSelectAll.example.tsx" />
                 <DocExample title="Lazy list" path="./_examples/pickerInput/LazyPickerInput.example.tsx" />
                 <DocExample title="Lazy tree" path="./_examples/pickerInput/LazyTreeInput.example.tsx" />
                 <DocExample title="Search modes" path="./_examples/pickerInput/LazyTreeSearch.example.tsx" />
@@ -33,6 +32,7 @@ export class PickerInputDoc extends BaseDocsBlock {
                 <DocExample title="Picker with changed array of items" path="./_examples/pickerInput/PickerWithChangingItemsArray.example.tsx" />
                 <DocExample title="Linked pickers" path="./_examples/pickerInput/LinkedPickers.example.tsx" />
                 <DocExample title="Change portal target and dropdown placement" path="./_examples/pickerInput/ConfigurePortalTargetAndPlacement.example.tsx" />
+                <DocExample title="Turn off 'Select All' button in footer" path="./_examples/pickerInput/PickerInputTurnOffSelectAll.example.tsx" />
             </>
         );
     }
