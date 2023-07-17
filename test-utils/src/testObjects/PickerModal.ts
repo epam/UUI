@@ -14,7 +14,7 @@ export class PickerModalTestObject extends PickerTestObject {
         fireEvent.click(closeButton);
     }
 
-    static async selectItems() {
+    static async clickSelectItems() {
         const modal = await this.findDialog('modal');
         const selectButton = within(modal).getByRole('button', { name: 'Select' });
         fireEvent.click(selectButton);
