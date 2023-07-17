@@ -14,12 +14,14 @@ export const Tooltip = withMods<Omit<UuiTooltipProps, 'color'>, TooltipMods>(
     uuiTooltip,
     () => [],
     (props) => {
-        devLogger.warnAboutDeprecatedPropValue<TooltipProps, 'color'>({
-            propName: 'color',
-            propValue: props.color,
-            propValueUseInstead: 'gray',
-            condition: () => ['gray90'].indexOf(props.color) !== -1,
-        });
+        if (__DEV__) {
+            devLogger.warnAboutDeprecatedPropValue<TooltipProps, 'color'>({
+                propName: 'color',
+                propValue: props.color,
+                propValueUseInstead: 'gray',
+                condition: () => ['gray90'].indexOf(props.color) !== -1,
+            });
+        }
         return {
             color: (!props.color || props.color === 'gray90') ? 'gray' : props.color,
         } as TooltipProps;

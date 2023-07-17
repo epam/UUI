@@ -1,10 +1,10 @@
 import * as React from 'react';
+import dayjs, { Dayjs } from 'dayjs';
+import isToday from 'dayjs/plugin/isToday.js';
 import {
     cx, CX, IEditable, uuiMarkers, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';
-import dayjs, { Dayjs } from 'dayjs';
-import { uuiDaySelection } from './Calendar';
-import isToday from 'dayjs/plugin/isToday.js';
+import { uuiDaySelection } from './calendarConstants';
 
 dayjs.extend(isToday);
 

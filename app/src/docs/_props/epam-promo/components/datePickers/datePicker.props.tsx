@@ -9,6 +9,7 @@ import {
     iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, FormContext, DefaultContext, ResizableContext, TableContext, IHasEditModeDoc,
 } from '../../docs';
 import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
+import css from './DatePicker.doc.module.scss';
 
 const getCustomDay = (day: Dayjs) => {
     return (
@@ -75,8 +76,8 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
             {
                 name: 'footer',
                 value: () => (
-                    <FlexRow padding="18">
-                        <LinkButton size="42" caption="Today" onClick={ () => ctx.getSelectedProps().onValueChange(dayjs().format('MMM D, YYYY')) } />
+                    <FlexRow cx={ css.footer } background="white" size="48">
+                        <LinkButton size="36" caption="Today" onClick={ () => ctx.getSelectedProps().onValueChange(dayjs().format('YYYY-MM-DD')) } />
                     </FlexRow>
                 ),
             },

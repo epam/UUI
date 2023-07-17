@@ -69,7 +69,7 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
     checkRating(rating: number): number {
         if (!rating && rating !== 0) {
             return rating;
-        } else if (rating <= this.props.from - this.props.step) {
+        } else if (rating < this.props.from - this.props.step) {
             return this.props.from;
         } else if (rating > this.props.to) {
             return this.props.to;

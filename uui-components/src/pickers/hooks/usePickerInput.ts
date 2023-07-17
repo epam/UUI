@@ -30,7 +30,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     });
     const {
         opened, setOpened, isSearchChanged, setIsSearchChanged,
-        dataSourceState, setDataSourceState, showSelected,
+        dataSourceState, setDataSourceState, showSelected, setShowSelected,
     } = pickerInputState;
 
     const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>(props, pickerInputState);
@@ -89,6 +89,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
         setIsSearchChanged(false);
         setOpened(newOpened);
+        setShowSelected(false);
     };
 
     const toggleBodyOpening = (newOpened: boolean) => {
