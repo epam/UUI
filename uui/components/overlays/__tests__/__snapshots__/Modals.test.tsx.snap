@@ -157,6 +157,7 @@ exports[`Modals should be rendered correctly 2`] = `
           }
         >
           <button
+            aria-label="Close modal"
             className="container uui-button-box uui-enabled -clickable icon-button-default root"
             onClick={[Function]}
             tabIndex={0}
