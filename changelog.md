@@ -18,7 +18,9 @@
 * [Rating]: fix rating behavior with 0.5 step
 * [ColumnsConfigurationConfig]: change 'Apply' button color to the 'primary'
 * [MainMenu]: fixed hover:background-color in nested menu items.
-
+* [DatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
+* [RangeDatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
+* [SnackbarCard]: is deprecated and will be deleted in a future release. Please, use a NotificationCard instead it.
 
 # 5.1.0 - 29.06.2023
 
