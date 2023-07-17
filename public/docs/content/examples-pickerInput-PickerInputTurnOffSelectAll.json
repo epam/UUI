@@ -1,0 +1,14 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Sometimes you need to hide the 'Select all' button in a PickerInput footer. "
+      },
+      {
+        "text": "Here's an example that demonstrates how to do it.",
+        "color": "rgb(22, 23, 25)"
+      }
+    ]
+  }
+]
