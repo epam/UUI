@@ -1,5 +1,4 @@
-import { EText, PlateEditor, TText, Value, isMarkActive } from '@udecode/plate-common';
-import type { StyledLeafProps } from '@udecode/plate-styled-components';
+import { EText, PlateEditor, PlatePluginComponent, TText, Value, isMarkActive } from '@udecode/plate-common';
 import React from 'react';
 
 import { isPluginActive } from '../../helpers';
@@ -16,9 +15,7 @@ const BOLD_KEY = 'uui-richTextEditor-bold';
 const ITALIC_KEY = 'uui-richTextEditor-italic';
 const UNDERLINE_KEY = 'uui-richTextEditor-underlined';
 
-const Bold = <V extends Value = Value, N extends TText = EText<V>>(
-    props: StyledLeafProps<V, N>,
-) => {
+const Bold: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
 
     return (
@@ -26,9 +23,7 @@ const Bold = <V extends Value = Value, N extends TText = EText<V>>(
     );
 };
 
-const Italic = <V extends Value = Value, N extends TText = EText<V>>(
-    props: StyledLeafProps<V, N>,
-) => {
+const Italic: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
 
     return (
@@ -36,9 +31,7 @@ const Italic = <V extends Value = Value, N extends TText = EText<V>>(
     );
 };
 
-const Underline = <V extends Value = Value, N extends TText = EText<V>>(
-    props: StyledLeafProps<V, N>,
-) => {
+const Underline: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
 
     return (

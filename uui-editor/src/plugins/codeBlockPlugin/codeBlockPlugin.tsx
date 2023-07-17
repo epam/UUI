@@ -1,6 +1,5 @@
 import { createCodePlugin } from '@udecode/plate-basic-marks';
-import { EText, PlateEditor, TText, Value, isMarkActive } from '@udecode/plate-common';
-import type { StyledLeafProps } from '@udecode/plate-styled-components';
+import { PlateEditor, PlatePluginComponent, TText, Value, isMarkActive } from '@udecode/plate-common';
 import React from 'react';
 
 import { isPluginActive } from "../../helpers";
@@ -10,9 +9,7 @@ import { onClickToolbarButton } from '../../utils/onClickToolbarButton';
 
 const CODE_BLOCK_KEY = 'uui-richTextEditor-code';
 
-const Code = <V extends Value = Value, N extends TText = EText<V>>(
-    props: StyledLeafProps<V, N>,
-) => {
+const Code: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
     return (
         <span { ...attributes }><code>{ children }</code></span>

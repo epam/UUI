@@ -1,0 +1,126 @@
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding-left: 0;
+    padding-right: 0;
+    cursor: pointer;
+    object-fit: cover;
+    border-radius: calc(var(--radius) - 4px);
+}
+
+.imageCaption {
+    max-width: 100%;
+}
+
+.align-image-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.align-image-left {
+    margin-right: auto;
+}
+
+.align-image-right {
+    margin-left: auto;
+}
+
+.selected-image {
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+    --tw-shadow-color: 0 0 #0000;
+    --tw-shadow: 0 0 0 1px rgb(59, 130, 249);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+@mixin resize-handle {
+    -webkit-user-select: none;
+    user-select: none;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    height: 100%;
+    width: 1.5rem;
+    justify-content: center;
+    flex-direction: column;
+    -webkit-box-pack: center;
+}
+
+@mixin resize-handle-content {
+    --ring: 240 5% 64.9%;
+    --tw-content: ' ';
+    content: var(--tw-content);
+    display: flex;
+    height: 4rem;
+    width: 3px;
+    border-radius: 6px;
+    background-color: hsl(var(--ring));
+}
+
+.left-handle {
+    @include resize-handle();
+
+    // for left only
+    margin-left: -0.75rem;
+    left: -0.75rem;
+    padding-left: 0.75rem;
+}
+
+.right-handle {
+    @include resize-handle();
+
+    // only for right
+    align-items: flex-end;
+    right: -0.75rem;
+    margin-right: -0.75rem;
+    padding-right: 0.75rem;
+}
+
+.left-handle::after {
+    @include resize-handle-content();
+}
+
+.right-handle::after {
+    @include resize-handle-content();
+}
+
+.group {
+    position: relative;
+}
+
+.resize-handle-opacity::after {
+    opacity: 0;
+}
+
+// on desktop on hover
+.group:hover .resize-handle-opacity::after {
+    opacity: 1;
+}
+
+// for mobile on click
+.resize-handle-visible::after {
+    opacity: 1;
+}
+
+.caption {
+    margin-top: 0.5rem;
+    width: 100%;
+    resize: none;
+    border-style: none;
+    background-color: inherit;
+    padding: 0;
+    font-family: inherit;
+    color: inherit;
+    text-align: center;
+}
+
+.caption:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+
+    &::placeholder {
+        opacity: 0;
+    }
+}

@@ -1,5 +1,5 @@
 import { isBlock, usePlateEditorState } from "@udecode/plate-common";
-import { Toolbar as PlateToolbar } from '@udecode/plate-ui-toolbar';
+
 import cx from "classnames";
 import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
 
@@ -42,7 +42,7 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) 
     if (isReadonly || !isVisible) return null;
 
     return (
-        <PlateToolbar style={ {
+        <div style={ {
             position: 'sticky',
             bottom: 12,
             display: 'flex',
@@ -52,6 +52,6 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) 
             <div onMouseDown={ onMouseDown } className={ cx("slate-prevent-blur", css.sidebar) } ref={ sidebarRef }>
                 { children }
             </div>
-        </PlateToolbar>
+        </div>
     );
 };
