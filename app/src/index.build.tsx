@@ -16,4 +16,4 @@ import '@epam/uui-docs/build/styles.css';
 import '@epam/uui-editor/build/styles.css';
 import '@epam/uui-timeline/build/styles.css';
 //
-export * from './index';
+import './index';
