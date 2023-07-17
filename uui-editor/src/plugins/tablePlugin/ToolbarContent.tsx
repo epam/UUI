@@ -1,7 +1,5 @@
 import React, { Fragment, useMemo } from "react";
 
-
-
 import { ReactComponent as UnmergeCellsIcon } from "../../icons/table-un-merge.svg";
 import { ReactComponent as InsertColumnBefore } from "../../icons/table-add-column-left.svg";
 import { ReactComponent as InsertColumnAfter } from "../../icons/table-add-column-right.svg";

@@ -1,11 +1,10 @@
 import { Portal } from '@epam/uui-components';
-import type { VirtualElement } from '@popperjs/core/lib/popper';
 import { findNode, isEditorFocused, toDOMNode, usePlateEditorState } from '@udecode/plate-common';
 import { getSelectionBoundingClientRect } from '@udecode/plate-floating';
 import { getCellTypes } from '@udecode/plate-table';
 import cx from "classnames";
 import React, { useRef } from 'react';
-import { Popper } from 'react-popper';
+import * as PopperJS from 'react-popper';
 import { Range } from 'slate';
 
 import { isImageSelected, isTextSelected } from '../helpers';
@@ -25,7 +24,7 @@ export function PositionedToolbar(props: ToolbarProps): any {
     const editor = usePlateEditorState();
     const inFocus = isEditorFocused(editor);
 
-    const virtualReferenceElement = (): VirtualElement => ({
+    const virtualReferenceElement = (): any => ({
         getBoundingClientRect(): DOMRect {
             if (props.isTable) {
                 const [selectedNode] = findNode(editor, {
@@ -44,7 +43,7 @@ export function PositionedToolbar(props: ToolbarProps): any {
     return (
         <Portal>
             { (props.isImage ? isImageSelected(editor) : props.isTable || isTextSelected(editor, inFocus)) && (
-                <Popper
+                <PopperJS.Popper
                     referenceElement={ virtualReferenceElement() }
                     placement={ props.placement || 'top' }
                     modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }
@@ -62,7 +61,7 @@ export function PositionedToolbar(props: ToolbarProps): any {
                             { props.children }
                         </div>
                     ) }
-                </Popper>
+                </PopperJS.Popper>
             ) }
         </Portal>
     );

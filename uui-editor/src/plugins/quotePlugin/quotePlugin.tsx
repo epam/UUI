@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { ELEMENT_BLOCKQUOTE, createBlockquotePlugin } from '@udecode/plate-block-quote';
-import { PlateEditor, focusEditor, isMarkActive, toggleNodeType } from '@udecode/plate-common';
-import type { StyledElementProps } from '@udecode/plate-styled-components';
+import { PlateEditor, PlatePluginComponent, focusEditor, isMarkActive, toggleNodeType } from '@udecode/plate-common';
 
 import { isPluginActive } from '../../helpers';
 import { ReactComponent as QuoteIcon } from '../../icons/quote.svg';
@@ -11,7 +10,7 @@ import css from './quote.module.scss';
 
 const QUOTE_PLUGIN_KEY = 'uui-richTextEditor-quote';
 
-const Quote = (props: StyledElementProps) => {
+const Quote: PlatePluginComponent = (props) => {
     return <blockquote
         { ...props.attributes }
         className={ css.quote }

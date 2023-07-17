@@ -10,17 +10,15 @@ import { ReactComponent as TableIcon } from "../../icons/table-add.svg";
 import { PositionedToolbar } from '../../implementation/PositionedToolbar';
 import { ToolbarButton } from "../../implementation/ToolbarButton";
 
-import { Table } from './Table';
-import { TableCell } from "./TableCell";
-import { TableRow } from "./TableRow";
-
-import { PlateEditor, getPluginType, insertNodes, someNode, usePlateEditorState, withoutNormalizing } from '@udecode/plate-common';
-import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, createTablePlugin, getTableGridAbove } from '@udecode/plate-table';
+import { PlateEditor, PlatePlugin, Value, getPluginType, insertNodes, someNode, usePlateEditorState, withoutNormalizing } from '@udecode/plate-common';
+import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, TablePlugin, createTablePlugin, getTableGridAbove } from '@udecode/plate-table';
 import { MergeToolbarContent } from './MergeToolbarContent';
 import tableCSS from './Table.module.scss';
 import { TableToolbarContent } from './ToolbarContent';
 import { createInitialTable, selectFirstCell, updateTableStructure } from './utils';
-import { withOurTable } from './withOurTable';
+import { TableRowElement } from './TableRowElement';
+import { TableCellElement } from './TableCellElement';
+import { TableElement } from './TableElement';
 
 const noop = () => {};
 
@@ -48,7 +46,7 @@ const TableRenderer = (props: any) => {
             renderTarget={ (innerProps: any) => (
                 <div ref={ innerProps.ref } >
                     <div ref={ ref } className={ cx(tableCSS.tableWrapper) }>
-                        <Table { ...props } />
+                        <TableElement { ...props } />
                     </div>
                 </div>
             ) }
@@ -98,24 +96,25 @@ export const TableButton = ({ editor, }: { editor: PlateEditor; }) => {
     );
 };
 
-export const tablePlugin = () => createTablePlugin({
+type CreateTablePlugin = () => PlatePlugin<TablePlugin<Value>, Value, PlateEditor<Value>>;
+
+export const tablePlugin: CreateTablePlugin = () => createTablePlugin({
     overrideByKey: {
         [ELEMENT_TABLE]: {
             type: 'table',
             component: TableRenderer,
-            withOverrides: withOurTable,
         },
         [ELEMENT_TR]: {
             type: 'table_row',
-            component: TableRow,
+            component: TableRowElement,
         },
         [ELEMENT_TD]: {
             type: 'table_cell',
-            component: TableCell,
+            component: TableCellElement,
         },
         [ELEMENT_TH]: {
             type: 'table_header_cell',
-            component: TableCell,
+            component: TableCellElement,
         },
     },
 });
