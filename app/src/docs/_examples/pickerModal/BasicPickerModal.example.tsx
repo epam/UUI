@@ -5,7 +5,15 @@ import { UuiContext, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
 export default function BasicPickerModal() {
-    const [value, onValueChange] = useState([]);
+    const [value, onValueChange] = useState<Location>({
+        childCount: 52,
+        id: 'c-AS',
+        name: 'Asia',
+        parentId: null,
+        type: 'continent',
+        __typename: 'Location',
+        children: [],
+    });
     const context = useContext(UuiContext);
     const svc = useUuiContext();
 
@@ -17,13 +25,13 @@ export default function BasicPickerModal() {
     );
 
     const handleModalOpening = useCallback(() => {
-        context.uuiModals.show<string[]>((props) => {
+        context.uuiModals.show<Location>((props) => {
             return (
                 <PickerModal
                     initialValue={ value }
                     dataSource={ dataSource }
-                    selectionMode="multi"
-                    valueType="id"
+                    selectionMode="single"
+                    valueType="entity"
                     { ...props }
                 />
             );
