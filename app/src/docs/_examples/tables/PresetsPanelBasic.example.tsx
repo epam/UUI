@@ -18,7 +18,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         isAlwaysVisible: true,
     }, {
         key: 'profileStatus',
-        caption: 'Profile Status',
+        caption: 'Profile status',
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
@@ -44,7 +44,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         isFilterActive: (f) => !!f.jobTitleId,
     }, {
         key: 'birthDate',
-        caption: 'Birth Date',
+        caption: 'Birth date',
         render: (p) => p?.birthDate && <Text>{dayjs(p.birthDate).format('MMM D, YYYY')}</Text>,
         width: 140,
         isSortable: true,
@@ -82,7 +82,7 @@ export default function PresetsPanelExample() {
             {
                 field: 'profileStatusId',
                 columnKey: 'profileStatus',
-                title: 'Profile Status',
+                title: 'Profile status',
                 type: 'multiPicker',
                 dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
             }, {
@@ -100,7 +100,7 @@ export default function PresetsPanelExample() {
             }, {
                 field: 'birthDate',
                 columnKey: 'birthDate',
-                title: 'Birth Date',
+                title: 'Birth date',
                 type: 'datePicker',
             },
         ],

@@ -1,10 +1,20 @@
+import css from './MainPage.module.scss';
+//
 import { Panel, RichTextView, IconContainer } from '@epam/uui';
 import { ReactComponent as UuiPromoImage } from '../icons/uui-promo-image.svg';
-import css from './MainPage.module.scss';
-import { useUuiContext } from '@epam/uui-core';
-import { TApi, TMainPageLink } from '../app/helpers/apiDefinition';
-import { TAppContext } from '../app/helpers/appContext';
-import { useEffect, useState } from 'react';
+
+const links = [
+    {
+        label: 'UUI docs: ',
+        link: 'https://uui.epam.com',
+        linkLabel: 'uui.epam.com',
+    },
+    {
+        label: 'Git: ',
+        link: 'https://github.com/epam/uui',
+        linkLabel: 'github.com/epam/uui',
+    },
+];
 
 export const MainPage = () => {
     return (
@@ -15,37 +25,16 @@ export const MainPage = () => {
             <Panel cx={css.mainPanel}>
                 <RichTextView size="14">
                     <h3>Welcome to UUI template app</h3>
-                    <Links />
+                    {
+                        links.map((value) => (
+                            <p key={value.label}>
+                                {value.label}
+                                <a href={value.link}>{value.linkLabel}</a>
+                            </p>
+                        ))
+                    }
                 </RichTextView>
             </Panel>
         </main>
     );
 };
-
-function Links() {
-    const [links, setLinks] = useState<TMainPageLink[]>([]);
-    const { api } = useUuiContext<TApi, TAppContext>();
-    const loadLinksFn = api.loadLinksForMainPage;
-
-    useEffect(() => {
-        loadLinksFn()
-            .then((res) => {
-                setLinks(res);
-            })
-            .catch((err) => console.error(err));
-    }, [loadLinksFn]);
-
-    return (
-        <>
-            {links.map((value) => {
-                const { label, link, linkLabel } = value;
-                return (
-                    <p key={label}>
-                        {label}
-                        <a href={link}>{linkLabel}</a>
-                    </p>
-                );
-            })}
-        </>
-    );
-}

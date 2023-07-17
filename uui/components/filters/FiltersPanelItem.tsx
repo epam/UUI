@@ -228,11 +228,11 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 return { selection };
             }
             case 'datePicker': {
-                return { selection: currentValue ? dayjs(currentValue).format(props.format || defaultFormat) : i18n.filterToolbar.datePicker.placeholder };
+                return { selection: currentValue ? dayjs(currentValue).format(props.format || defaultFormat) : currentValue };
             }
             case 'rangeDatePicker': {
                 if (!currentValue || (!currentValue.from && !currentValue.to)) {
-                    return { selection: i18n.filterToolbar.rangeDatePicker.emptyPickerPlaceholder };
+                    return { selection: '' };
                 }
                 const currentValueFrom = currentValue?.from
                     ? dayjs(currentValue?.from).format(props.format || defaultFormat)
