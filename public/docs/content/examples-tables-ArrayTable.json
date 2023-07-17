@@ -1,37 +1,18 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Table example where data is loaded using ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "ArrayDataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " -  just getting items from an array.",
-            "marks": []
-          }
-        ]
+        "text": "Table example where data is loaded using "
+      },
+      {
+        "text": "ArrayDataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " -  just getting items from an array."
       }
     ]
   }
-}
+]

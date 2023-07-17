@@ -141,7 +141,7 @@ export default function EditableTableExample() {
                     width: 80,
                 }, {
                     key: 'dueDate',
-                    caption: 'Due Date',
+                    caption: 'Due date',
                     renderCell: (props) => <DataTableCell { ...props.rowLens.prop('dueDate').toProps() } renderEditor={ (props) => <DatePicker { ...props } /> } { ...props } />,
                     width: 150,
                 }, {

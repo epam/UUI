@@ -99,7 +99,6 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     // Wrap to add validation tooltip
     if (props.inFocus) {
         return props.renderTooltip({
-            trigger: 'manual',
             placement: 'top',
             value: props.isInvalid,
             content: props.validationMessage,

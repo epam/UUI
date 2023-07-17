@@ -26,7 +26,7 @@ export default function CitiesTable() {
         () => [
             {
                 key: 'id',
-                caption: 'ID',
+                caption: 'Id',
                 render: (city) => (
                     <Text color="gray80" fontSize="14">
                         {city.id}
@@ -37,7 +37,7 @@ export default function CitiesTable() {
                 width: 120,
             }, {
                 key: 'name',
-                caption: 'NAME',
+                caption: 'Name',
                 render: (city) => (
                     <Text color="gray80" fontSize="14">
                         {city.name}
@@ -48,7 +48,7 @@ export default function CitiesTable() {
                 grow: 1,
             }, {
                 key: 'countryName',
-                caption: 'COUNTRY',
+                caption: 'Country',
                 render: (city) => (
                     <Text color="gray80" fontSize="14">
                         {city.countryName}
@@ -59,7 +59,7 @@ export default function CitiesTable() {
                 isFilterActive: (filter) => filter.country && filter.country.$in && !!filter.country.$in.length,
             }, {
                 key: 'population',
-                caption: 'POPULATION',
+                caption: 'Population',
                 info: 'Number of this population in the country at the time of the last census.',
                 render: (city) => (
                     <Text color="gray80" fontSize="14">

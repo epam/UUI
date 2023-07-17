@@ -1,13 +1,23 @@
 # 5.x.x - xx.xx.2023
+
 **What's New**
 
+* [Tooltip][BreakingChange]: Removed prop `trigger`. Now tooltip always opens on hover, use dropdown for cases when you need to open body by click.
+* [DataTable]: Added column description tooltip to table header. DataTable now has an optional property-callback 'renderColumnsConfigurationModal?: (props) => React.ReactNode' for render your custom ColumnsConfigurationModal or you have our variant of it.
+* [ColumnsConfigurationModal]: Added 'renderItem?: (column) => React.ReactNode' optional property-callback for render your custom column name section.
+* [ColumnsConfigurationModal]: Added 'getSearchFields?: (column) => string[];' optional callback to define columns to search in the ColumnsConfigurationModal. We use 'column.caption' by default.
+* [DatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
+* Added adapter for react-router 6. 
+  - Note: we strongly discourage the use of react-router 6, as it introduces too many breaking changes, and certain important features (like block and listen) are available only via unstable internal API.
 
 **What's Fixed**
-[Button]: add missing styles for 'sun' color in loveship skin
-[FilterPanel]: fix RangeDatePicker 'to' value change
-[LabeledInput]: removed specific class for loveship skin
-[Rating]: fix rating behavior with 0.5 step
-[ColumnsConfigurationConfig]: change 'Apply' button color to the 'primary'
+
+* [Button]: add missing styles for 'sun' color in loveship skin
+* [FilterPanel]: fix RangeDatePicker 'to' value change
+* [LabeledInput]: removed specific class for loveship skin
+* [Rating]: fix rating behavior with 0.5 step
+* [ColumnsConfigurationConfig]: change 'Apply' button color to the 'primary'
+* [MainMenu]: fixed hover:background-color in nested menu items.
 
 
 # 5.1.0 - 29.06.2023
