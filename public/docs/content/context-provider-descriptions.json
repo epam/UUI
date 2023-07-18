@@ -1,49 +1,55 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "To use UUI services, you need to wrap your application into the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "ContextProvider",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " component, which initializes services on the application start and places it in the react Context so that you can get access to it.",
-            "marks": []
-          }
-        ]
+        "text": "To use UUI services, you need to wrap your application into the "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "This Context is also required for the proper work of several components. E.g., Button requires routing context to make SPA redirects, or Dropdown and ModalWindow need LayoutContext to get appropriate layer z-index.",
-            "marks": []
-          }
-        ]
+        "text": "UuiContext.Provider",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " React context, which passes the services to the application, so that they can be accessed."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This React context is also required for the proper work of several components. E.g.: "
+      },
+      {
+        "text": "Button",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " requires routing context to make SPA redirects.  "
+      },
+      {
+        "text": "Dropdown",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "ModalWindow",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " need "
+      },
+      {
+        "text": "LayoutContext",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " to get appropriate layer z-index."
       }
     ]
   }
-}
+]

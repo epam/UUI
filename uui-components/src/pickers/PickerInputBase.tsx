@@ -152,6 +152,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             },
             isSearchChanged: false,
             opened,
+            showSelected: false,
         });
     };
 

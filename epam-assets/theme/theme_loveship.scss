@@ -159,7 +159,6 @@
     --uui-primary: var(--sky);
     --uui-primary-light: var(--sky-light);
     --uui-primary-lightest: var(--sky-lightest);
-    --uui-primary-halftone: var(--night200);
     --uui-primary-dark: var(--sky-dark);
     --uui-primary-darkest: var(--sky-darkest);
 
@@ -339,13 +338,9 @@
 
     /*  DatePicker vars   */
     --uui-dtp-title-bg: var(--uui-control-bg);
-    --uui-dtp-title-bg-hover: var(--uui-primary-halftone);
     --uui-dtp-text-selected: var(--uui-control-border-checked);
     --uui-dtp-text: var(--uui-control-text);
-    --uui-dtp-next-prev-icon: var(--uui-icon);
-    --uui-dtp-next-prev-icon-bg-hover: var(--uui-secondary-lightest);
 
-    --uui-dtp_header-font: var(--font-semibold);
     --uui-dtp_body-content-font: var(--font-regular);
 
     /*  RangeDatePicker vars   */
@@ -790,6 +785,23 @@
         --uui-btn-border-disabled: var(--uui-disabled);
         --uui-btn-caption: var(--uui-contrast);
         --uui-btn-caption-halftone: var(--uui-accent);
+        --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
+    }
+
+    .button-sun {
+        --uui-btn-bg: var(--sun);
+        --uui-btn-bg-hover: var(--sun-dark);
+        --uui-btn-bg-active: var(--sun-darkest);
+        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone-hover: var(--sun-lightest);
+        --uui-btn-bg-halftone-active: var(--sun-light);
+        --uui-btn-border: var(--sun);
+        --uui-btn-border-hover: var(--sun-dark);
+        --uui-btn-border-active: var(--sun-darkest);
+        --uui-btn-bg-disabled: var(--uui-disabled);
+        --uui-btn-border-disabled: var(--uui-disabled);
+        --uui-btn-caption: var(--uui-control-text);
+        --uui-btn-caption-halftone: var(--sun-darkest);
         --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
     }
 

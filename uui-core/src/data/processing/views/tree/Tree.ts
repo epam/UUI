@@ -3,6 +3,7 @@ import { LoadableTree } from './LoadableTree';
 import {
     ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree,
 } from './ITree';
+import sortBy from 'lodash.sortby';
 
 export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
     public filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId> {
@@ -41,13 +42,13 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
         return (i: TItem) => searchFilter(getSearchFields(i));
     }
 
-    private buildSorter<TFilter>({ sorting, sortBy }: ApplySortOptions<TItem, TId, TFilter>) {
+    private buildSorter<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) {
         const compareScalars = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
         const comparers: ((a: TItem, b: TItem) => number)[] = [];
 
-        if (sorting) {
-            sorting.forEach((sortingOption) => {
-                const sortByFn = sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] || '');
+        if (options.sorting) {
+            options.sorting.forEach((sortingOption) => {
+                const sortByFn = options.sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] || '');
                 const sign = sortingOption.direction === 'desc' ? -1 : 1;
                 comparers.push((a, b) => sign * compareScalars(sortByFn(a, sortingOption) + '', sortByFn(b, sortingOption) + ''));
             });
@@ -120,12 +121,18 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
                 if (isMatching !== false) {
                     matchedItems.push(item);
                     if (typeof isMatching !== 'boolean') {
-                        ranks.set(this.getId(item), isMatching);
+                        const id = this.getId(item);
+                        const rank = ranks.has(id) ? Math.max(ranks.get(id), isMatching) : isMatching;
+                        ranks.set(this.getId(item), rank);
                     }
                 }
 
                 if (!isSomeMatching) {
                     isSomeMatching = isMatching;
+                } else if (typeof isMatching === 'number') {
+                    isSomeMatching = typeof isSomeMatching === 'number'
+                        ? Math.max(isMatching, isSomeMatching)
+                        : isMatching;
                 }
             });
 
@@ -144,16 +151,13 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
             return items;
         }
         const itemsToSort = [...items];
-        itemsToSort.sort((item1, item2) => {
-            const id1 = this.getId(item1);
-            const id2 = this.getId(item2);
-            if (!ranks.has(id1) || !ranks.has(id2)) {
+
+        return sortBy(itemsToSort, (item) => {
+            const id = this.getId(item);
+            if (!ranks.has(id)) {
                 return 0;
             }
-            const rank1 = ranks.get(id1);
-            const rank2 = ranks.get(id2);
-            return rank2 - rank1;
+            return ranks.get(id) * -1;
         });
-        return itemsToSort;
     };
 }

@@ -23,8 +23,7 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
     React.useEffect(() => {
         const { parentId } = props.items.find((i) => i.id === props.value);
         if (parentId != null) {
-            const parentKey = JSON.stringify(parentId);
-            setValue((stateValue) => ({ ...stateValue, folded: { ...stateValue.folded, [parentKey]: false } }));
+            setValue((stateValue) => ({ ...stateValue, folded: { ...stateValue.folded, [parentId]: false } }));
         }
     }, [props.value]);
 

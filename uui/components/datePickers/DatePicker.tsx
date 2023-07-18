@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    cx, DatePickerCoreProps, IDropdownToggler, uuiMod, DropdownBodyProps,
-} from '@epam/uui-core';
+import { cx, DatePickerCoreProps, IDropdownToggler, uuiMod, DropdownBodyProps, devLogger } from '@epam/uui-core';
 import { BaseDatePicker } from '@epam/uui-components';
 import { EditMode, SizeMod, IHasEditMode } from '../types';
 import { TextInput } from '../inputs';
@@ -15,6 +13,17 @@ export interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditM
 
 export class DatePicker extends BaseDatePicker<DatePickerProps> {
     renderInput = (props: IDropdownToggler & { cx: any }) => {
+        if (__DEV__) {
+            if (this.props.size === '48') {
+                devLogger.warnAboutDeprecatedPropValue<DatePickerProps, 'size'>({
+                    component: 'DatePicker',
+                    propName: 'size',
+                    propValue: this.props.size,
+                    propValueUseInstead: '42',
+                    condition: () => ['48'].indexOf(this.props.size) !== -1,
+                });
+            }
+        }
         return (
             <TextInput
                 { ...props }

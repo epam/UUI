@@ -1,33 +1,19 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
+import localeData from 'dayjs/plugin/localeData.js';
+import updateLocale from 'dayjs/plugin/updateLocale.js';
 import {
     IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';
 import { Day } from './Day';
+import { uuiDaySelection } from './calendarConstants';
 import { i18n } from '../../i18n';
-import localeData from 'dayjs/plugin/localeData.js';
 import css from './Calendar.module.scss';
 
 dayjs.extend(localeData);
+dayjs.extend(updateLocale);
 
 const DAYS_COUNT_IN_WEEK = 7;
-
-export const uuiDaySelection = {
-    container: 'uui-calendar-container',
-    content: 'uui-calendar-content',
-    weekdaysContainer: 'uui-calendar-weekdays-container',
-    weekday: 'uui-calendar-weekday',
-    days: 'uui-calendar-days',
-    dayCell: 'uui-calendar-day-cell',
-    day: 'uui-calendar-day',
-    currentDay: 'uui-calendar-current-day',
-    selectedDay: 'uui-calendar-selected-day',
-    filteredDay: 'uui-calendar-filtered-day',
-    previousMonthEmptyDay: 'uui-calendar-previous-month-empty-day',
-    clickable: 'uui-calendar-clickable-day',
-    dayWrapper: 'uui-calendar-day-wrapper',
-    holiday: 'uui-calendar-day-holiday',
-} as const;
 
 export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     value: TSelection;
