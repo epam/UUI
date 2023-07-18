@@ -8,7 +8,7 @@
 * [ColumnsConfigurationModal]: Added 'getSearchFields?: (column) => string[];' optional callback to define columns to search in the ColumnsConfigurationModal. We use 'column.caption' by default.
 * [DatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
 * Added adapter for react-router 6.
-  - Note: we strongly discourage the use of react-router 6, as it introduces too many breaking changes, and certain important features (like block and listen) are available only via unstable internal API.
+    - Note: we strongly discourage the use of react-router 6, as it introduces too many breaking changes, and certain important features (like block and listen) are available only via unstable internal API.
 
 **What's Fixed**
 
@@ -22,6 +22,7 @@
 * [DatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
 * [RangeDatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
 * [SnackbarCard]: is deprecated and will be deleted in a future release. Please, use a NotificationCard instead it.
+
 
 # 5.1.0 - 29.06.2023
 
