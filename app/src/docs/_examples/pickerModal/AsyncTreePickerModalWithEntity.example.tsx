@@ -12,7 +12,9 @@ export default function AsyncTreePickerModalWithEntity() {
         parentId: null,
         type: 'continent',
         __typename: 'Location',
-    } as Location);
+        children: [],
+    });
+
     const context = useContext(UuiContext);
     const svc = useUuiContext();
 
