@@ -5,6 +5,7 @@ import { DropdownBodyProps, isMobile } from '@epam/uui-core';
 import { FlexCell, FlexRow } from '../layout';
 import { LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
+import css from './FilterNumericBody.module.scss';
 
 interface INumericRangeValue {
     from: number | null;
@@ -66,7 +67,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
         const value = props.value as INumericRangeValue;
         return (
             <div>
-                <FlexRow padding="12" alignItems="center" spacing="12" borderBottom={ true } rawProps={ { style: { marginTop: '12px', paddingBottom: '12px' } } }>
+                <FlexRow padding="12" alignItems="center" spacing="12" borderBottom={ true } cx={ css.container }>
                     <FlexCell width="100%">
                         <NumericInput
                             value={ value?.from ?? null }
@@ -93,7 +94,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
 
     return (
         <div>
-            <FlexRow padding="12" alignItems="center" borderBottom={ true } rawProps={ { style: { marginTop: '12px', paddingBottom: '12px' } } }>
+            <FlexRow padding="12" alignItems="center" borderBottom={ true } cx={ css.container }>
                 <FlexCell width={ 130 }>
                     <NumericInput
                         value={ typeof props.value === 'number' ? props.value : null }
