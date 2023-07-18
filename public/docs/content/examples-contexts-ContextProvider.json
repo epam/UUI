@@ -1,160 +1,69 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "This is a short example of how it can be used in your app. ",
-            "marks": []
-          }
-        ]
-      },
+        "text": "Notes:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "Let's describe some approaches:",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "unordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "loadAppContext",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " — use it if you need to load some general data to your application before the application is mounted. For example, to load logging user data or permission settings.\nPlace here an API call that returns your data, and then you can use it globally via ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "context.uuiApp",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " or ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "svc.uuiApp",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " in your app. \n",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+                "text": "loadAppContext",
+                "uui-richTextEditor-code": true
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "onInitCompleted",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " — callback, which is called when all services are already inited. We recommend writing our services to the module variable(like svc in this example), then importing it and using services from it. This approach is more convenient and doesn't require extra effort because you don't need to subscribe each component to the react context api. ",
-                    "marks": []
-                  }
-                ]
+                "text": " — use it if you need to load some general data to your application before the application is mounted. For example, to load logging user data or permission settings.\nPlace here an API call that returns your data, and then you can use it globally via "
+              },
+              {
+                "text": "context.uuiApp",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " or "
+              },
+              {
+                "text": "svc.uuiApp",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " in your app. \n"
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "note-link",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "Note: We will use the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "svc",
-            "marks": [
+            "data": {},
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "text": "onInitCompleted",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " — callback, which is called when all services are already inited. We recommend writing our services to the module variable(like svc in this example), then importing it and using services from it. This approach is more convenient and doesn't require extra effort because you don't need to subscribe each component to the react context API. "
               }
             ]
-          },
-          {
-            "object": "text",
-            "text": " variable in all our examples, but you can use services from react context.",
-            "marks": []
           }
         ]
       }
     ]
   }
-}
+]

@@ -1,12 +1,16 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import { Router } from 'react-router';
-import { createBrowserHistory } from 'history';
+import { RouterProvider } from 'react-router';
+import { createBrowserRouter } from 'react-router-dom';
 import {
-    ApiCallOptions, ContextProvider, CommonContexts, UuiContexts,
+    UuiContexts,
+    Router6AdaptedRouter,
+    useUuiServices,
+    DragGhost,
+    UuiContext, GAListener, IProcessRequest,
 } from '@epam/uui-core';
 import { Snackbar, Modals } from '@epam/uui-components';
-import { skinContext as promoSkinContext } from '@epam/promo';
+import { skinContext } from '@epam/promo';
 import { AmplitudeListener } from './analyticsEvents';
 import { svc } from './services';
 import App from './App';
@@ -15,44 +19,53 @@ import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
 import './index.module.scss';
 
-const history = createBrowserHistory();
-// __COMMIT_HASH__ & __PACKAGE_VERSION__ will be replaced to a real string by Webpack
+const router6 = createBrowserRouter([
+    { path: '*', element: <App /> },
+]);
+const router = new Router6AdaptedRouter(router6);
+
+// __COMMIT_HASH__ will be replaced to a real string by Webpack
 (window as any).BUILD_INFO = { hash: __COMMIT_HASH__ };
 
-export class UuiEnhancedApp extends React.Component {
-    onInitCompleted = (context: CommonContexts<TApi, UuiContexts>, ampCode: string) => {
-        Object.assign(svc, context);
-        const listener = new AmplitudeListener(ampCode);
-        context.uuiAnalytics.addListener(listener);
-    };
+const GA_CODE = 'UA-132675234-1';
+const isProduction = /uui.epam.com/.test(window.location.hostname);
+const AMP_CODE = isProduction ? '94e0dbdbd106e5b208a33e72b58a1345' : 'b2260a6d42a038e9f9e3863f67042cc1';
 
-    render() {
-        const isProduction = /uui.epam.com/.test(window.location.hostname);
-        const ampCode = isProduction ? '94e0dbdbd106e5b208a33e72b58a1345' : 'b2260a6d42a038e9f9e3863f67042cc1';
-
-        return (
-            <ContextProvider<TApi, UuiContexts>
-                apiDefinition={ (processRequest) =>
-                    getApi((url: string, method: string, data?: any, options?: ApiCallOptions) =>
-                        processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options })) }
-                onInitCompleted={ (context) => this.onInitCompleted(context, ampCode) }
-                history={ history }
-                gaCode="UA-132675234-1"
-                skinContext={ promoSkinContext }
-            >
-                <App />
-                <Snackbar />
-                <Modals />
-            </ContextProvider>
-        );
-    }
+function apiDefinition(processRequest: IProcessRequest) {
+    return getApi({ processRequest, fetchOptions: { credentials: undefined } });
 }
 
-render(
-    <React.StrictMode>
-        <Router history={ history }>
+function UuiEnhancedApp() {
+    const [isLoaded, setIsLoaded] = React.useState(false);
+    const { services } = useUuiServices<TApi, UuiContexts>({ apiDefinition, router, skinContext });
+
+    React.useEffect(() => {
+        Object.assign(svc, services);
+        services.uuiAnalytics.addListener(new GAListener(GA_CODE));
+        services.uuiAnalytics.addListener(new AmplitudeListener(AMP_CODE));
+        setIsLoaded(true);
+    }, [services]);
+
+    if (isLoaded) {
+        return (
+            <UuiContext.Provider value={ services }>
+                <RouterProvider router={ router6 } />
+                <Snackbar />
+                <Modals />
+                <DragGhost />
+            </UuiContext.Provider>
+        );
+    }
+    return null;
+}
+
+function initApp() {
+    render(
+        <React.StrictMode>
             <UuiEnhancedApp />
-        </Router>
-    </React.StrictMode>,
-    document.getElementById('root'),
-);
+        </React.StrictMode>,
+        document.getElementById('root'),
+    );
+}
+
+initApp();

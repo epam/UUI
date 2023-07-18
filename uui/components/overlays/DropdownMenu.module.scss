@@ -36,8 +36,9 @@
     &:global(.uui-active) {
         @include fillColor(var(--uui-primary));
 
-        &:hover, &:focus {
-            @include fillColor(var(--uui-primary)!important);
+        &:hover,
+        &:focus {
+            @include fillColor(var(--uui-primary) !important);
         }
 
         .iconCheck {
@@ -47,11 +48,12 @@
 }
 
 @mixin itemRoot {
-    padding: 6px 12px;
+    padding: 9px 12px;
     line-height: 18px;
     font-size: 14px;
     box-sizing: border-box;
     width: 100%;
+    height: 36px;
     font-family: var(--uui-dropdown-menu-item-font);
     font-weight: var(--uui-dropdown-menu-item-font-weight, normal);
 
@@ -75,7 +77,7 @@
     font-family: var(--uui-dropdown-menu-body-font);
     font-weight: var(--uui-dropdown-menu-body-font-weight, normal);
     font-size: 14px;
-    padding: 0.5em 0;
+    padding: 6px 0;
     background-color: var(--uui-dropdown-menu-bg);
     box-shadow: var(--uui-shadow);
 }
@@ -106,7 +108,9 @@
     @include fillColor(var(--uui-text-secondary));
     @include itemRoot;
     cursor: default;
-    font-size: 0.9em;
+    height: auto;
+    font-size: 12px;
+    padding: 3px 12px;
 }
 
 .itemRoot {
@@ -131,7 +135,8 @@
     }
 
     &:global(.-clickable:not(.uui-disabled)) {
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             background-color: var(--uui-dropdown-menu-item-hover);
             fill: var(--uui-icon-active);
             cursor: pointer;
@@ -141,7 +146,8 @@
     &:global(.uui-disabled) {
         @include fillColor(var(--uui-disabled));
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             background-color: transparent;
             cursor: default;
         }
@@ -153,6 +159,6 @@
     }
 
     & > *:not(:last-child) {
-        margin: 0 0.5em 0 0;
+        margin: 0 7px 0 0;
     }
 }

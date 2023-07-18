@@ -25,12 +25,14 @@ export const Badge = withMods<Omit<UuiBadgeProps, 'color' | 'fill' | 'size'>, Ba
     UuiBadge,
     applyBadgeMods,
     (props) => {
-        devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'color'>({
-            component: 'Badge',
-            propName: 'color',
-            propValue: props.color,
-            condition: () => ['night200', 'night400', 'night500'].indexOf(props.color) !== -1,
-        });
+        if (__DEV__) {
+            devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'color'>({
+                component: 'Badge',
+                propName: 'color',
+                propValue: props.color,
+                condition: () => ['night200', 'night400', 'night500'].indexOf(props.color) !== -1,
+            });
+        }
         return {
             color: props.color || 'sky',
             size: props.size || defaultSize,

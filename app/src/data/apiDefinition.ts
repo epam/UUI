@@ -19,7 +19,14 @@ export interface GetCodeResponse {
     highlighted: string;
 }
 
-export function getApi(processRequest: IProcessRequest, origin: string = '') {
+export function getApi(params: { processRequest: IProcessRequest, origin?: string, fetchOptions?: RequestInit }) {
+    const { origin = '', fetchOptions } = params;
+
+    const processRequest: IProcessRequest = (url, method, data, options) => {
+        const opts = fetchOptions ? { fetchOptions, ...options } : options;
+        return params.processRequest(url, method, data, opts);
+    };
+
     return {
         demo: getDemoApi(processRequest, origin),
         success: {
