@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "description": "EPAM UUI components set",
   "author": "EPAM",
   "license": "MIT",
@@ -12,9 +12,9 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "5.0.1",
-    "@epam/uui-components": "5.0.1",
-    "@epam/uui-core": "5.0.1",
+    "@epam/assets": "5.1.0",
+    "@epam/uui-components": "5.1.0",
+    "@epam/uui-core": "5.1.0",
     "classnames": "2.2.6",
     "lodash.sortby": "4.7.0",
     "react-focus-lock": "2.9.2",

@@ -1,24 +1,40 @@
-import React from 'react';
-import { Panel, RichTextView, IconContainer } from '@epam/promo';
-import { ReactComponent as UuiPromoImage } from '../icons/uui-promo-image.svg';
 import css from './MainPage.module.scss';
+//
+import { Panel, RichTextView, IconContainer } from '@epam/uui';
+import { ReactComponent as UuiPromoImage } from '../icons/uui-promo-image.svg';
+
+const links = [
+    {
+        label: 'UUI docs: ',
+        link: 'https://uui.epam.com',
+        linkLabel: 'uui.epam.com',
+    },
+    {
+        label: 'Git: ',
+        link: 'https://github.com/epam/uui',
+        linkLabel: 'github.com/epam/uui',
+    },
+];
 
 export const MainPage = () => {
     return (
-        <>
-            <div className={ css.bgImg }>
-                <div>
-                    <IconContainer icon={ UuiPromoImage } />
-                </div>
+        <main>
+            <div className={css.bgImg}>
+                <IconContainer icon={UuiPromoImage} />
             </div>
-            <Panel cx={ css.mainPanel } background='white'>
+            <Panel cx={css.mainPanel}>
                 <RichTextView size="14">
                     <h3>Welcome to UUI template app</h3>
-                    <p>UUI docs: <a href="https://uui.epam.com/">uui.epam.com</a></p>
-                    <p>Git: <a href="https://github.com/epam/uui">github.com/epam/uui</a></p>
-                    <p>App powered by: <a href="https://create-react-app.dev/">Create React App</a></p>
+                    {
+                        links.map((value) => (
+                            <p key={value.label}>
+                                {value.label}
+                                <a href={value.link}>{value.linkLabel}</a>
+                            </p>
+                        ))
+                    }
                 </RichTextView>
             </Panel>
-        </>
+        </main>
     );
 };
