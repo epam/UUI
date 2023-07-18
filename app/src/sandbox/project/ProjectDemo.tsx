@@ -35,9 +35,9 @@ export function ProjectDemo() {
         lens, value, onValueChange, save, isChanged, revert, undo, canUndo, redo, canRedo,
     } = useForm<FormState>({
         value: savedValue,
-        onSave: async (value) => {
+        onSave: async (data) => {
             // At this point you usually call api.saveSomething(value) to actually send changed data to server
-            savedValue = value;
+            savedValue = data;
         },
         getMetadata: () => metadata,
     });

@@ -116,8 +116,8 @@ export function NumericInput(props: NumericInputProps) {
 
         props.onValueChange(newValue);
         if (props.getValueChangeAnalyticsEvent) {
-            const event = props.getValueChangeAnalyticsEvent(newValue, props.value);
-            context.uuiAnalytics.sendEvent(event);
+            const analyticsEvent = props.getValueChangeAnalyticsEvent(newValue, props.value);
+            context.uuiAnalytics.sendEvent(analyticsEvent);
         }
     };
 

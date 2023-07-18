@@ -52,17 +52,17 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
         this.props.handleActiveState && this.props.handleActiveState(true);
     };
 
-    handleMouseUp = (e: React.MouseEvent<HTMLDivElement>): void => {
+    handleMouseUp = (): void => {
         if (this.props.isActive) {
             this.props.handleActiveState && this.props.handleActiveState(false);
         }
     };
 
-    handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>): void => {
+    handleMouseEnter = (): void => {
         this.setState({ isHovered: true });
     };
 
-    handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>): void => {
+    handleMouseLeave = (): void => {
         this.setState({ isHovered: false });
     };
 
@@ -99,9 +99,9 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
                     {(targetProps) => (
                         <div
                             tabIndex={ 0 }
-                            ref={ (SliderHandle) => {
-                                this.sliderHandle = SliderHandle;
-                                (targetProps.ref as React.RefCallback<any>)(SliderHandle);
+                            ref={ (handle) => {
+                                this.sliderHandle = handle;
+                                (targetProps.ref as React.RefCallback<any>)(handle);
                             } }
                             className={ cx(uuiSlider.handle, this.props.cx) }
                             style={ { transform: `translateX(${this.props.offset || 0}px)` } }

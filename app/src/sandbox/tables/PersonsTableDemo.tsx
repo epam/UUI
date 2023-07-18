@@ -78,9 +78,9 @@ export function PersonsTableDemo() {
 
             const promises = typesToLoad.map(async (type) => {
                 const idsRequest: LazyDataSourceApiRequest<any, any, any> = { ids: idsByType[type] };
-                const api = type === 'Person' ? svc.api.demo.persons : type == 'PersonGroup' ? svc.api.demo.personGroups : type == 'Location' ? svc.api.demo.locations : null;
+                const apiRequest = type === 'Person' ? svc.api.demo.persons : type == 'PersonGroup' ? svc.api.demo.personGroups : type == 'Location' ? svc.api.demo.locations : null;
 
-                const apiResponse = await api(idsRequest);
+                const apiResponse = await apiRequest(idsRequest);
                 response.items = [...response.items, ...apiResponse.items];
             });
 
@@ -91,24 +91,24 @@ export function PersonsTableDemo() {
         const { groupBy, ...filter } = requestFilter || {};
 
         const updateSummary = (response: PersonsApiResponse) => {
-            const { summary, totalCount } = response;
-            const totalSalary = formatCurrency(Number(summary.totalSalary));
+            const { summary: summaryRes, totalCount } = response;
+            const totalSalary = formatCurrency(Number(summaryRes.totalSalary));
             setSummary({ totalCount, totalSalary });
         };
 
-        const getPersons = async (rq: LazyDataSourceApiRequest<Person, number, DataQueryFilter<Person>>) => {
+        const getPersons = async (personRequest: LazyDataSourceApiRequest<Person, number, DataQueryFilter<Person>>) => {
             if (groupBy && !ctx.parent) {
                 const personGroupsResponse = await svc.api.demo.personGroups({
-                    ...rq,
+                    ...personRequest,
                     filter: { groupBy },
                     search: null,
-                    itemsRequest: { filter, search: rq.search },
+                    itemsRequest: { filter, search: personRequest.search },
                     ids,
                 } as any);
                 updateSummary(personGroupsResponse as PersonsApiResponse);
                 return personGroupsResponse;
             } else {
-                const personsResponse = await svc.api.demo.persons(rq);
+                const personsResponse = await svc.api.demo.persons(personRequest);
                 updateSummary(personsResponse as PersonsApiResponse);
                 return personsResponse;
             }
