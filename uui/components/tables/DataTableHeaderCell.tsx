@@ -25,7 +25,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         return css['font-size-14'];
     };
 
-    getTooltipContent = () => !this.state.isDropdownOpen && (
+    getTooltipContent = () => (
         <div className={ css.cellTooltipWrapper }>
             <Text fontSize="14" color="contrast" font="semibold" cx={ css.cellTooltipText }>{ this.props.column.caption }</Text>
             { this.props.column.info && <Text fontSize="12" color="contrast" cx={ css.cellTooltipText }>{ this.props.column.info }</Text> }
