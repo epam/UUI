@@ -28,7 +28,7 @@ module.exports = {
         es6: true,
         node: true,
     },
-    ignorePatterns: getIgnoredPatterns({ isCI, isLintStaged, isLintScript }),
+    ignorePatterns: getIgnoredPatterns({ isCI: isCI(), isLintStaged: isLintStaged(), isLintScript: isLintScript() }),
     // We need to remove such directives only if full set of rules is checked.
     reportUnusedDisableDirectives: !shouldTurnOffRulesToBeFixed,
     extends: ['react-app'],
