@@ -1,9 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { DataColumnProps, useLazyDataSource, useUuiContext, TableFiltersConfig, LazyDataSource, useTableState, DataTableState, getSeparatedValue } from '@epam/uui-core';
-import { Text, DataTable, Panel, defaultPredicates, FlexRow, Badge, EpamAdditionalColor } from '@epam/promo';
+import { Text, DataTable, Panel, FlexRow, Badge, EpamAdditionalColor } from '@epam/promo';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
-import { rangeDatePickerPresets } from '@epam/uui';
 import dayjs from 'dayjs';
 
 const personColumns: DataColumnProps<Person, number>[] = [
@@ -71,7 +70,6 @@ export default function ColumnsConfigurationDataTableExample() {
                 title: 'Profile status',
                 type: 'multiPicker',
                 dataSource: new LazyDataSource({ api: api.demo.statuses }),
-                predicates: defaultPredicates.multiPicker,
                 showSearch: false,
             }, {
                 field: 'jobTitleId',
@@ -84,7 +82,6 @@ export default function ColumnsConfigurationDataTableExample() {
                 columnKey: 'salary',
                 title: 'Salary',
                 type: 'numeric',
-                predicates: defaultPredicates.numeric,
             }, {
                 field: 'birthDate',
                 columnKey: 'birthDate',
@@ -95,7 +92,6 @@ export default function ColumnsConfigurationDataTableExample() {
                 columnKey: 'hireDate',
                 title: 'Hire date',
                 type: 'rangeDatePicker',
-                predicates: defaultPredicates.rangeDatePicker,
             },
         ],
         [api.demo.jobTitles, api.demo.statuses],
