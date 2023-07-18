@@ -57,7 +57,7 @@ export function DocumentsPage() {
                     getSearchFields={ (i) => [i.name, ...(i.tags || [])] }
                     getItemLink={ (row) =>
                         !row.isFoldable && {
-                            pathname: 'documents',
+                            pathname: '/documents',
                             query: {
                                 id: row.id,
                                 mode: (row.parentId && svc.uuiRouter.getCurrentLink().query.mode) || 'doc',

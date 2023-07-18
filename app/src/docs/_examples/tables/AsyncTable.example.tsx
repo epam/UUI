@@ -42,14 +42,14 @@ export default function ProductTable() {
         () => [
             {
                 key: 'id',
-                caption: 'ID',
+                caption: 'Id',
                 render: (product) => <Text color="gray60">{product.ProductID}</Text>,
                 isSortable: true,
                 isAlwaysVisible: true,
                 width: 120,
             }, {
                 key: 'name',
-                caption: 'NAME',
+                caption: 'Name',
                 render: (product) => (
                     <Text color="gray80" font="sans-semibold">
                         {product.Name}
@@ -60,12 +60,12 @@ export default function ProductTable() {
                 width: 224,
             }, {
                 key: 'productNumber',
-                caption: 'PRODUCT NUMBER',
+                caption: 'Product number',
                 render: (product) => <Text>{product.ProductNumber}</Text>,
                 width: 144,
             }, {
                 key: 'color',
-                caption: 'COLOR',
+                caption: 'Color',
                 render: (product) => <Text>{product.Color}</Text>,
                 width: 156,
             },
