@@ -20,7 +20,7 @@ jobs:
                   repository: ${{ github.event.pull_request.head.repo.full_name }}
                   path: source-branch
 
-            - uses: actions/setup-node@v3
+            - uses: actions/setup-node@v1
               with:
                   node-version: '16.x'
 
