@@ -6,7 +6,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 9px 12px;
+    padding: 9px 12px 0;
+    margin-bottom: 9px;
 
     button.removeButton {
         padding-left: 24px;
@@ -18,11 +19,13 @@
     }
 
     &.with-search {
-        padding-bottom: 0;
+        margin-bottom: 0;
     }
 }
 
 .panel {
+    display: block;
+
     @media screen and (max-width: 720px) {
         height: var(--app-mobile-height);
     }
