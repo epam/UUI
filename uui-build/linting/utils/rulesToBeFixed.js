@@ -10,10 +10,10 @@
  *
  * Note: a rule must be removed from this array as soon as all errors/warnings related to this rule are fixed.
  */
-const { isCI, isDevServer, isLintStaged } = require('../../utils/envUtils.js');
+const { isCI, isLintStaged } = require('../../utils/envUtils.js');
 
 // Only CI & pre-commit hooks should ignore these rules.
-const shouldTurnOffRulesToBeFixed = Boolean(isCI() || isDevServer() || isLintStaged());
+const shouldTurnOffRulesToBeFixed = Boolean(isCI() || isLintStaged());
 
 /**
  * Please make sure that stylistic rules aren't included (especially ones related to spacing, etc.) because it may break formatting after autofix.
