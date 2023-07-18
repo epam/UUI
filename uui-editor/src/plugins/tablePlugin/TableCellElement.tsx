@@ -1,72 +1,36 @@
 import React from 'react';
-import { PlateElement, PlateElementProps, TElement, useElement, usePlateEditorRef } from '@udecode/plate-common';
+import { PlateElement, PlateElementProps, useElement } from '@udecode/plate-common';
 import {
-    ELEMENT_TABLE,
-    ELEMENT_TR,
-    TTableElement,
-    TTableRowElement,
     TableCellElementResizable,
-    getTableCellBorders,
-    getTableRowIndex,
     useTableCellElement,
-    useTableStore,
+    useTableCellElementState,
 } from '@udecode/plate-table';
 import cx from 'classnames';
 import css from './TableCell.module.scss';
-import { ExtendedTTableCellElement } from './types';
-import { useReadOnly } from 'slate-react';
 
 export interface TableCellElementProps extends PlateElementProps {
     hideBorder?: boolean;
     isHeader?: boolean;
 }
 
-const isFirstCell = (colIndex: number, cellNode: TElement) => {
-    const cellColSpan = (cellNode.colSpan as number);
-    const isFirstMergedCell = colIndex + 1 === cellColSpan;
-    return colIndex === 0 || isFirstMergedCell;
-};
-
 const TableCellElement = React.forwardRef<
     React.ElementRef<typeof PlateElement>,
     TableCellElementProps
 >(({ className, ...props }, ref) => {
     const { children, hideBorder, ...rootProps } = props;
-
-    const editor = usePlateEditorRef();
-    const cellElement = useElement<ExtendedTTableCellElement>();
-    const rowIndex = getTableRowIndex(editor, cellElement);
-    const readOnly = useReadOnly();
-
-    const [selectedCells] = useTableStore().use.selectedCells();
-    const selected = React.useMemo(() => !!selectedCells?.includes(cellElement), [
-        cellElement,
-        selectedCells,
-    ]);
-
-    const rowSizeOverrides = useTableStore().get.rowSizeOverrides();
-    const rowElement = useElement<TTableRowElement>(ELEMENT_TR);
-    const rowSize = rowSizeOverrides.get(rowIndex) ?? rowElement?.size ?? undefined;
-
-    // TODO: move to plate
-    const colIndex = cellElement.colIndex;
-    const tableElement = useElement<TTableElement>(ELEMENT_TABLE);
-
-    const isFirstRow = tableElement.children[0] === rowElement;
-
-    const firstCell = isFirstCell(colIndex, cellElement)
-    const borders = getTableCellBorders(cellElement, {
-        isFirstCell: firstCell,
-        isFirstRow,
-    });
-
-    const hoveredColIndex = useTableStore().get.hoveredColIndex();
-
-    const hovered = hoveredColIndex === colIndex;
-    const hoveredLeft = firstCell && hoveredColIndex === -1;
-
+    const {
+        colIndex,
+        rowIndex,
+        readOnly,
+        selected,
+        hovered,
+        hoveredLeft,
+        rowSize,
+        borders,
+    } = useTableCellElementState();
     const { props: cellProps } = useTableCellElement({ element: props.element });
 
+    const cellElement = useElement();
     const isHeader = cellElement.type === 'table_header_cell';
     const Cell = isHeader ? 'th' : 'td';
 
@@ -77,6 +41,7 @@ const TableCellElement = React.forwardRef<
             className={
                 cx(
                     css.tableCellWrapper,
+                    isHeader && css.headerCell,
                     hideBorder && css.hideBorder,
                     !hideBorder && cx(
                         isHeader && css.textLeft,

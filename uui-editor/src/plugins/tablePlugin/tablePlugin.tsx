@@ -39,7 +39,7 @@ const TableRenderer = (props: any) => {
      * TODO: make less function invocations,
      * ideally once on migration and pasting from documents
      */
-    tableElem = updateTableStructure(tableElem);
+    // tableElem = updateTableStructure(tableElem);
 
     return (
         <Dropdown
@@ -102,7 +102,7 @@ export const tablePlugin: CreateTablePlugin = () => createTablePlugin({
     overrideByKey: {
         [ELEMENT_TABLE]: {
             type: 'table',
-            component: TableRenderer,
+            component: TableElement,
         },
         [ELEMENT_TR]: {
             type: 'table_row',
