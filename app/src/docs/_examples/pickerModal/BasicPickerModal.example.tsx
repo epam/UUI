@@ -1,17 +1,25 @@
 import React, { useCallback, useContext, useState } from 'react';
 import { PickerModal } from '@epam/uui';
 import { FlexRow, FlexCell, Button } from '@epam/promo';
-import { UuiContext, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
+import { UuiContext, useAsyncDataSource, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
 export default function LanguagesPickerModal() {
-    const [value, onValueChange] = useState<Location>();
+    const [value, onValueChange] = useState<Location>({
+        childCount: 52,
+        id: 'c-AS1',
+        name: 'Asia',
+        parentId: null,
+        type: 'continent',
+        __typename: 'Location',
+    } as Location);
     const context = useContext(UuiContext);
     const svc = useUuiContext();
 
     const dataSource = useAsyncDataSource<Location, string, unknown>(
         {
             api: () => svc.api.demo.locations({}).then((res: { items: any; }) => res.items),
+            getId: ({ id }) => id,
         },
         [],
     );

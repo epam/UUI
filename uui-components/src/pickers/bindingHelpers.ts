@@ -80,9 +80,13 @@ class ScalarBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId,
             dataSource && dataSource.setItem(value);
         }
 
+        const selectedId = props.valueType === 'entity' && !value && dsState.selectedId
+            ? dsState.selectedId
+            : id;
+
         return {
             ...dsState,
-            selectedId: id,
+            selectedId,
             checked: null,
             filter: props.filter || dsState.filter,
             sorting: props.sorting ? [props.sorting] : dsState.sorting,
