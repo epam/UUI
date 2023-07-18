@@ -1,19 +1,18 @@
 import * as React from 'react';
-import {
-    cx, DataColumnProps, DndActor, DndActorRenderParams, IColumnConfig,
-} from '@epam/uui-core';
-import { FlexRow, Checkbox, DropMarker } from '../../.';
+import { cx, DataColumnProps, DndActor, DndActorRenderParams, IColumnConfig } from '@epam/uui-core';
+import { FlexRow, Checkbox, DropMarker } from '../../../components';
 import { DragHandle, FlexSpacer, ColumnsConfigurationRowProps } from '@epam/uui-components';
 import { PinIconButton } from './PinIconButton';
 import styles from './ColumnRow.module.scss';
 
 type DndDataType = { column: DataColumnProps; columnConfig: IColumnConfig };
 
-export interface ColumnRowProps {
+export interface ColumnRowProps<TItem, TId, TFilter> {
     column: ColumnsConfigurationRowProps;
+    renderItem?: (column: DataColumnProps<TItem, TId, TFilter>) => React.ReactNode;
 }
 
-export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
+export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any, any, any>) {
     const { column } = props;
     const {
         toggleVisibility, togglePin, onCanAcceptDrop, onDrop, columnConfig, isDndAllowed, isPinnedAlways,
@@ -37,7 +36,13 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
             <FlexRow size="30" cx={ wrapperClasses } { ...wrapperAttrs }>
                 <FlexRow size="30" spacing="6" cx={ styles.title }>
                     <DragHandle rawProps={ dragHandleRawProps } isDisabled={ !isDndAllowed } cx={ cx(styles.dragHandle, !isDndAllowed && styles.dndDisabled) } />
-                    <Checkbox key={ column.key } label={ column.caption } value={ isVisible } onValueChange={ toggleVisibility } isDisabled={ column.isAlwaysVisible } />
+                    <Checkbox
+                        key={ column.key }
+                        label={ props.renderItem ? props.renderItem(props.column) : column.caption }
+                        value={ isVisible }
+                        onValueChange={ toggleVisibility }
+                        isDisabled={ column.isAlwaysVisible }
+                    />
                 </FlexRow>
                 <FlexSpacer />
                 <FlexRow size="30" cx={ styles.pinIconButton }>

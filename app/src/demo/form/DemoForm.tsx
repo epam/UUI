@@ -137,7 +137,7 @@ function PrimaryInfo({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) {
                 <RichTextView>
                     <h3>Primary Info</h3>
                 </RichTextView>
-                <Tooltip trigger="hover" offset={ [0, 3] } content="You have no permission to edit this information">
+                <Tooltip offset={ [0, 3] } content="You have no permission to edit this information">
                     <IconContainer icon={ InfoIcon } cx={ css.infoIcon } />
                 </Tooltip>
             </FlexRow>

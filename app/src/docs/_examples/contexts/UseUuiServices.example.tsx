@@ -1,29 +1,37 @@
-import React from 'react';
-import { UuiContext, HistoryAdaptedRouter, useUuiServices } from '@epam/uui-core';
+// Note: please remove @ts-nocheck comment in real app, it's here only because it's our local code example.
+// @ts-nocheck
+import { render } from 'react-dom';
+import { UuiContext, HistoryAdaptedRouter, useUuiServices, DragGhost } from '@epam/uui-core';
 import { Modals, Snackbar } from '@epam/uui-components';
 import { skinContext, ErrorHandler } from '@epam/promo';
 import { createBrowserHistory } from 'history';
+import { svc } from '../../../services';
+import { Router } from 'react-router';
 
 const history = createBrowserHistory();
+const router = new HistoryAdaptedRouter(history);
 
-export default function UuiEnhancedApp() {
-    const router = new HistoryAdaptedRouter(history);
-
+function UuiEnhancedApp() {
     const { services } = useUuiServices({
-        apiDefinition: (processRequest) => Promise.resolve({}),
         router,
         skinContext,
         // apiServerUrl: 'url',
         // appContext: {}
     });
+    Object.assign(svc, services);
 
     return (
         <UuiContext.Provider value={ services }>
-            <ErrorHandler>Your App component</ErrorHandler>
+            <ErrorHandler>
+                <Router history={ history }>
+                    Your App component
+                </Router>
+            </ErrorHandler>
             <Snackbar />
             <Modals />
+            <DragGhost />
         </UuiContext.Provider>
     );
 }
 
-// ReactDOM.render(<Router history={ history } > <UuiEnhancedApp /> </Router>, document.getElementById('root'));
+render(<UuiEnhancedApp />, document.getElementById('root'));

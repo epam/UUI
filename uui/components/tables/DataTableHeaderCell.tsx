@@ -1,12 +1,8 @@
 import * as React from 'react';
-import {
-    DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownToggler, cx,
-} from '@epam/uui-core';
+import { DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownToggler, cx } from '@epam/uui-core';
 import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from '@epam/uui-components';
 import { ColumnHeaderDropdown, DataTableHeaderCellMods } from './';
-import {
-    FlexCell, Checkbox, Text, IconButton, Tooltip,
-} from '../';
+import { FlexCell, Checkbox, Text, IconButton, Tooltip } from '../';
 import css from './DataTableHeaderCell.module.scss';
 import { ReactComponent as DefaultSortIcon } from '@epam/assets/icons/common/table-swap-18.svg';
 import { ReactComponent as SortIcon } from '@epam/assets/icons/common/table-sort_asc-18.svg';
@@ -14,7 +10,6 @@ import { ReactComponent as SortIconDesc } from '@epam/assets/icons/common/table-
 import { ReactComponent as FilterIcon } from '@epam/assets/icons/common/content-filtration-18.svg';
 import { ReactComponent as DropdownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import { ReactComponent as OpenedDropdownIcon } from '@epam/assets/icons/common/navigation-chevron-up-18.svg';
-import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-info-outline-18.svg';
 
 interface DataTableHeaderCellState {
     isDropdownOpen: boolean;
@@ -30,28 +25,28 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         return css['font-size-14'];
     };
 
-    getColumnCaption = () => (
-        <div className={ css.tooltipWrapper }>
-            <Tooltip
-                trigger="hover"
-                placement="bottom-start"
-                renderContent={ !this.state.isDropdownOpen && this.props.column.info ? () => this.props.column.info : null }
-                color="default"
-                cx={ css.cellTooltip }
-                offset={ [-12, 12] }
-            >
+    getTooltipContent = () => !this.state.isDropdownOpen && (
+        <div className={ css.cellTooltipWrapper }>
+            <Text fontSize="14" color="contrast" font="semibold" cx={ css.cellTooltipText }>{ this.props.column.caption }</Text>
+            { this.props.column.info && <Text fontSize="12" color="contrast" cx={ css.cellTooltipText }>{ this.props.column.info }</Text> }
+        </div>
+    );
+
+    getColumnCaption = () => {
+        return (
+            <div className={ css.tooltipWrapper }>
                 <div className={ cx(css.iconCell, css['align-' + this.props.column.textAlign], uuiDataTableHeaderCell.uuiTableHeaderCaptionWrapper) }>
-                    <Text key="text" lineHeight="30" fontSize="14" size="30" cx={ cx(css.caption, this.getTextStyle(), uuiDataTableHeaderCell.uuiTableHeaderCaption) }>
-                        {this.props.column.caption}
-                    </Text>
-                    {this.props.column.info && (
-                        <IconButton
-                            key="info"
-                            cx={ cx(css.icon, css.infoIcon, this.props.sortDirection && css.sortIconActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
-                            color="secondary"
-                            icon={ InfoIcon }
-                        />
-                    )}
+                    <Tooltip
+                        placement="top"
+                        color="contrast"
+                        renderContent={ this.getTooltipContent }
+                        cx={ css.cellTooltip }
+                        openDelay={ 600 }
+                    >
+                        <Text key="text" lineHeight="30" fontSize="14" size="30" cx={ cx(css.caption, this.getTextStyle(), uuiDataTableHeaderCell.uuiTableHeaderCaption) }>
+                            {this.props.column.caption}
+                        </Text>
+                    </Tooltip>
                     {this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) && (
                         <IconButton
                             key="sort"
@@ -77,9 +72,9 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                         />
                     )}
                 </div>
-            </Tooltip>
-        </div>
-    );
+            </div>
+        );
+    };
 
     renderHeaderCheckbox = () =>
         this.props.selectAll
