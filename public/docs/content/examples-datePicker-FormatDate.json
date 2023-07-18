@@ -1,77 +1,27 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "You can customize the format of the displayed date via ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "format",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop, for example \"DD-MM-YYYY\" - \"03-09-2020\",  \"DD/MM/YYYY\" - \"03/09/2020\". ",
-            "marks": []
-          }
-        ]
+        "text": "You can customize the format of the displayed date via "
       },
       {
-        "object": "block",
-        "type": "note-error",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Not to be confused with the value prop format, here we always use the ISO 8601 format \"YYYY-MM-DD\" - \"2020-09-03\", format prop value used only for displaying date in DatePicker.",
-            "marks": []
-          }
-        ]
+        "text": "format",
+        "uui-richTextEditor-code": true
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "By ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "renderFooter",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop, you can add custom footer to DatePicker body.",
-            "marks": []
-          }
-        ]
+        "text": " prop, for example \"DD-MM-YYYY\" - \"03-09-2020\",  \"DD/MM/YYYY\" - \"03/09/2020\". "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-error",
+    "children": [
+      {
+        "text": "Not to be confused with the value prop format, here we always use the ISO 8601 format \"YYYY-MM-DD\" - \"2020-09-03\", format prop value used only for displaying date in DatePicker."
       }
     ]
   }
-}
+]

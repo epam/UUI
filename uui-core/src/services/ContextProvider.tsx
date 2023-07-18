@@ -48,9 +48,6 @@ export function ContextProvider<TApi, TAppContext>(props: ContextProviderProps<T
             onInitCompleted(services);
             setIsLoaded(true);
         });
-        if (window) {
-            (window as any).UUI_VERSION = __PACKAGE_VERSION__; // it replaced with current uui version during build time
-        }
     }, []);
 
     const children = isLoaded ? propsChildren : '';

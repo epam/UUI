@@ -788,6 +788,23 @@
         --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
     }
 
+    .button-sun {
+        --uui-btn-bg: var(--sun);
+        --uui-btn-bg-hover: var(--sun-dark);
+        --uui-btn-bg-active: var(--sun-darkest);
+        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone-hover: var(--sun-lightest);
+        --uui-btn-bg-halftone-active: var(--sun-light);
+        --uui-btn-border: var(--sun);
+        --uui-btn-border-hover: var(--sun-dark);
+        --uui-btn-border-active: var(--sun-darkest);
+        --uui-btn-bg-disabled: var(--uui-disabled);
+        --uui-btn-border-disabled: var(--uui-disabled);
+        --uui-btn-caption: var(--uui-control-text);
+        --uui-btn-caption-halftone: var(--sun-darkest);
+        --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
+    }
+
     .button-fire, .button-negative {
         --uui-btn-bg: var(--uui-negative);
         --uui-btn-bg-hover: var(--uui-negative-dark);

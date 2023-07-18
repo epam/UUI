@@ -19,7 +19,9 @@ export class DatePickerDoc extends BaseDocsBlock {
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/datePicker/Basic.example.tsx" />
 
-                <DocExample title="Format date & render footer" path="./_examples/datePicker/FormatDate.example.tsx" />
+                <DocExample title="Format date" path="./_examples/datePicker/FormatDate.example.tsx" />
+
+                <DocExample title="Render footer" path="./_examples/datePicker/Footer.example.tsx" />
 
                 <DocExample title="Disable dates" path="./_examples/datePicker/Filter.example.tsx" />
 

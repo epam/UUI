@@ -32,13 +32,15 @@ export function applyButtonMods(mods: ButtonProps) {
 }
 
 export const Button = withMods<Omit<UuiButtonProps, 'color'>, ButtonMods>(uuiButton, applyButtonMods, (props) => {
-    devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
-        component: 'Button',
-        propName: 'color',
-        propValue: props.color,
-        propValueUseInstead: 'gray',
-        condition: () => ['night500', 'night600'].indexOf(props.color) !== -1,
-    });
+    if (__DEV__) {
+        devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
+            component: 'Button',
+            propName: 'color',
+            propValue: props.color,
+            propValueUseInstead: 'gray',
+            condition: () => ['night500', 'night600'].indexOf(props.color) !== -1,
+        });
+    }
     return {
         dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
         clearIcon: systemIcons[props.size || defaultSize].clear,
