@@ -23,13 +23,13 @@ jobs:
     # No need to run this job on "pull_request" from main UUI repo, because it's guaranteed it's already run on "push" event.
     if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != 'epam/UUI' || github.event_name == 'push'
     runs-on: ubuntu-latest
-    container: node:16
+    container: node:18
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '18.x'
 
       - uses: actions/cache@v2
         with:

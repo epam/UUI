@@ -12,7 +12,7 @@ concurrency:
 jobs:
     track-bundle-size:
         runs-on: ubuntu-latest
-        container: node:16
+        container: node:18
         steps:
             - uses: actions/checkout@v3
               with:
@@ -20,9 +20,9 @@ jobs:
                   repository: ${{ github.event.pull_request.head.repo.full_name }}
                   path: source-branch
 
-            - uses: actions/setup-node@v1
+            - uses: actions/setup-node@v3
               with:
-                  node-version: '16.x'
+                  node-version: '18.x'
 
             - uses: actions/cache@v2
               with:
