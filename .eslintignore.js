@@ -8,9 +8,10 @@ module.exports = {
  * But the ".eslintignore" file needs to be renamed, so that it doesn't interfere with this config.
  * @param isCI
  * @param isLintStaged
+ * @param isLintScript
  * @returns {string[]}
  */
-function getIgnoredPatterns({ isCI, isLintStaged }) {
+function getIgnoredPatterns({ isCI, isLintStaged, isLintScript }) {
     let list = [
         '!.*.js',
         'build',
@@ -18,10 +19,13 @@ function getIgnoredPatterns({ isCI, isLintStaged }) {
         'templates',
         'next-app',
         'server/helpers/getFilterPredicate.js',
-        'uui-editor', // TODO: it's temporarily ignored, uncomment when work related to editor is finished.
     ];
     if (isCI || isLintStaged) {
-        // don't want to fail CI if issues are in legacy modules.
+        // ignore in CI only
+        list.push('uui-editor'); // TODO: it's temporarily ignored, uncomment when work related to editor is finished.
+    }
+    if (isCI || isLintStaged || isLintScript) {
+        // ignore in CI & don't show errors in report
         list = list.concat([
             'uui-db',
             'extra',

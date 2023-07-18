@@ -18,7 +18,7 @@
  */
 const pickFromAirbnb = require('./utils/eslintRulesFromAirbnb.js');
 const { turnOffEslintRulesToBeFixed, shouldTurnOffRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
-const { isCI, isLintStaged } = require('../utils/envUtils.js');
+const { isCI, isLintStaged, isLintScript } = require('../utils/envUtils.js');
 const { getIgnoredPatterns } = require('./../../.eslintignore.js');
 
 process.env.NODE_ENV = 'production'; // this line is required by "babel-preset-react-app".
@@ -28,7 +28,7 @@ module.exports = {
         es6: true,
         node: true,
     },
-    ignorePatterns: getIgnoredPatterns({ isCI, isLintStaged }),
+    ignorePatterns: getIgnoredPatterns({ isCI, isLintStaged, isLintScript }),
     // We need to remove such directives only if full set of rules is checked.
     reportUnusedDisableDirectives: !shouldTurnOffRulesToBeFixed,
     extends: ['react-app'],
