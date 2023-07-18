@@ -1,17 +1,9 @@
-@use '~@epam/promo/assets/styles/index'  as *;
-
 .container {
-    display: flex;
-    padding: 9px 30px;
-    justify-content: space-between;
-    border-top: 1px solid $gray40;
-    align-items: center;
-    background-color: $white;
     position: relative;
-}
-
-.button-group {
+    height: 47px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid var(--uui-control-border);
+    background-color: var(--white);
 }
-
