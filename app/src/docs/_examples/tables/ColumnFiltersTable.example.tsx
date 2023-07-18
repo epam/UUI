@@ -13,7 +13,6 @@ const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) => <Text>{p.name}</Text>,
         width: 180,
         isSortable: true,
-        isAlwaysVisible: true,
     }, {
         key: 'profileStatus',
         caption: 'Profile status',
@@ -71,7 +70,6 @@ export default function ColumnsConfigurationDataTableExample() {
                 columnKey: 'profileStatus',
                 title: 'Profile status',
                 type: 'multiPicker',
-                isAlwaysVisible: true,
                 dataSource: new LazyDataSource({ api: api.demo.statuses }),
                 predicates: defaultPredicates.multiPicker,
                 showSearch: false,
@@ -98,21 +96,6 @@ export default function ColumnsConfigurationDataTableExample() {
                 title: 'Hire date',
                 type: 'rangeDatePicker',
                 predicates: defaultPredicates.rangeDatePicker,
-                presets: {
-                    ...rangeDatePickerPresets,
-                    last3Days: {
-                        name: 'Last 3 days',
-                        getRange: () => {
-                            return { from: dayjs().subtract(3, 'day').toString(), to: dayjs().toString(), order: 11 };
-                        },
-                    },
-                    last7Days: {
-                        name: 'Last 7 days',
-                        getRange: () => {
-                            return { from: dayjs().subtract(7, 'day').toString(), to: dayjs().toString(), order: 12 };
-                        },
-                    },
-                },
             },
         ],
         [api.demo.jobTitles, api.demo.statuses],

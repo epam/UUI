@@ -3,12 +3,20 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Sometimes you need to hide the 'Select all' button in a PickerInput footer. "
+        "text": "Sometimes you need to hide the "
+      },
+      {
+        "text": "'Select all'",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " button in a PickerInput footer. "
       },
       {
         "text": "Here's an example that demonstrates how to do it.",
         "color": "rgb(22, 23, 25)"
       }
-    ]
+    ],
+    "data": {}
   }
 ]
