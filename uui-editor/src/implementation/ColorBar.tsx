@@ -1,53 +1,65 @@
 import * as React from 'react';
+import { uuiSkin } from '@epam/uui-core';
+import {
+    ToolbarButton as PlateToolbarButton,
+} from '@udecode/plate';
+
 import { ReactComponent as ClearIcon } from "../icons/text-color-default.svg";
 import { ReactComponent as ColorIcon } from '../icons/text-color-select.svg';
-import { ToolbarButton } from './ToolbarButton';
-import { Editor } from 'slate';
-import { useSlate } from 'slate-react';
-import { uuiSkin } from "@epam/uui-core";
-import { useState } from "react";
 
-interface ColorBarProps {
-    editor: Editor;
-}
+import { ToolbarButton } from './ToolbarButton';
 
 const { FlexRow } = uuiSkin;
 
-export function ColorBar() {
-    //const editor = useSlate();
+const noop = () => {};
 
-    //const [isActive, setIsActive] = useState(false);
+type IColorBar = {
+    updateColor: (color: string) => void;
+    clearColor: () => void;
+    value?: string,
+};
 
-    const removeMarks = () => {
-        // console.log(this.props.editor);
-        // this.props.editor.marks.toArray().map((mark: any) => {
-        //     console.log('sdfsdfsdfsdf', mark)
-        //     mark.type === 'uui-richTextEditor-span-mark' && this.props.editor.removeMark(mark);
-        // });
-    };
-
-    // const isMarkActive = (editor: any, format: string) => {
-    //     const marks: any = Editor.marks(editor);
-    //
-    //     return marks ? marks[format] === true : false;
-    // };
-
-    const toggleMark = (color: string) => {
-        //this.removeMarks();
-
-        // const isActive = isMarkActive(editor, 'bold');
-        //
-        // if (isActive) {
-        //     Editor.removeMark(editor, 'bold');
-        // } else {
-        //     Editor.addMark(editor, 'bold', true);
-        // }
-    };
+export function ColorBar({ updateColor, clearColor, value }: IColorBar) {
 
     return <FlexRow rawProps={ { style: { background: '#303240' } } }>
-        <ToolbarButton isActive={ false } icon={ ClearIcon } onClick={ () => removeMarks() } />
-        <ToolbarButton iconColor='red' isActive={ false } icon={ ColorIcon } onClick={ () => { toggleMark('#A72014'); } } />
-        <ToolbarButton iconColor='amber' isActive={ false } icon={ ColorIcon } onClick={ () => { toggleMark('#995A00'); } } />
-        <ToolbarButton iconColor='green' isActive={ false } icon={ ColorIcon } onClick={ () => { toggleMark('#669900'); } } />
+        <PlateToolbarButton
+            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+            icon={ <ToolbarButton
+                onClick={ noop }
+                isActive={ false }
+                icon={ ClearIcon }
+            /> }
+            onMouseDown={ clearColor }
+        />
+        <PlateToolbarButton
+            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+            icon={ <ToolbarButton
+                onClick={ noop }
+                iconColor='red'
+                isActive={ value === '#A72014' }
+                icon={ ColorIcon }
+            /> }
+            onMouseDown={ () => updateColor('#A72014') }
+        />
+        <PlateToolbarButton
+            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+            icon={ <ToolbarButton
+                onClick={ noop }
+                iconColor='amber'
+                isActive={ value === '#995A00' }
+                icon={ ColorIcon }
+            /> }
+            onMouseDown={ () => updateColor('#995A00') }
+        />
+        <PlateToolbarButton
+            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+            icon={ <ToolbarButton
+                onClick={ noop }
+                iconColor='green'
+                isActive={ value === '#669900' }
+                icon={ ColorIcon }
+            /> }
+            onMouseDown={ () => updateColor('#669900') }
+        />
     </FlexRow>;
 }

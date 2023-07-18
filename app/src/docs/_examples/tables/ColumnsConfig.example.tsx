@@ -24,7 +24,7 @@ export default function ColumnsConfigurationDataTableExample() {
         () => [
             {
                 key: 'id',
-                caption: 'ID',
+                caption: 'Id',
                 render: (city) => (
                     <Text color="gray80" fontSize="14">
                         {city.id}
@@ -34,7 +34,7 @@ export default function ColumnsConfigurationDataTableExample() {
                 width: 120,
             }, {
                 key: 'name',
-                caption: 'NAME',
+                caption: 'Name',
                 render: (city) => (
                     <Text color="gray80" fontSize="14">
                         {city.name}
@@ -44,7 +44,7 @@ export default function ColumnsConfigurationDataTableExample() {
                 width: 200,
             }, {
                 key: 'countryName',
-                caption: 'COUNTRY',
+                caption: 'Country',
                 render: (city) => (
                     <Text color="gray80" fontSize="14">
                         {city.countryName}
@@ -54,7 +54,7 @@ export default function ColumnsConfigurationDataTableExample() {
                 width: 140,
             }, {
                 key: 'population',
-                caption: 'POPULATION',
+                caption: 'Population',
                 render: (city) => (
                     <Text color="gray80" fontSize="14">
                         {city.population}

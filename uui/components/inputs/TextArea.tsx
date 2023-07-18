@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { withMods } from '@epam/uui-core';
 import { TextArea as uuiTextArea, TextAreaProps as UuiTextAreaProps } from '@epam/uui-components';
 import * as types from '../types';

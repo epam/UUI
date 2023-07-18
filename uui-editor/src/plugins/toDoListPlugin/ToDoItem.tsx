@@ -1,30 +1,46 @@
-export {};
-// import * as React from 'react';
-// import { uuiSkin } from '@epam/uui-core';
-// import { RenderBlockProps } from "slate-react";
-// import css from './ToDoItem.scss';
-//
-// const { Checkbox, FlexRow } = uuiSkin;
-//
-// export class ToDoItem extends React.Component<RenderBlockProps, any> {
-//
-//     onChange = (value: boolean) => {
-//         const { editor, node } = this.props;
-//         editor.setNodeByKey(node.key, {
-//             data: { checked: value },
-//             type: 'toDoItem',
-//         });
-//     }
-//
-//     render() {
-//         const data = this.props.node.data;
-//         return (
-//             <FlexRow rawProps={ this.props.attributes }>
-//                 <div contentEditable={ false } className={ css.checkboxContainer }><Checkbox value={ data.get('checked') } onValueChange={ this.onChange }/></div>
-//                 <div className={ css.textContainer }>
-//                     { this.props.children }
-//                 </div>
-//             </FlexRow>
-//         );
-//     }
-// }
+import React from 'react';
+import { uuiSkin } from '@epam/uui-core';
+import {
+    findNodePath,
+    setNodes,
+    TTodoListItemElement,
+} from '@udecode/plate';
+
+import css from './ToDoItem.module.scss';
+import { useReadOnly } from 'slate-react';
+
+const { Checkbox, FlexRow } = uuiSkin;
+
+export function ToDoItem(props: any): any {
+    const isReadonly = useReadOnly();
+    const { element, editor, attributes, children } = props;
+
+    const checked = element.data?.checked || false;
+
+    return (
+        <FlexRow rawProps={ attributes }  >
+            <div className={ css.checkboxContainer } style={ { userSelect: 'none' } } >
+                <Checkbox
+                    isReadonly={ isReadonly }
+                    isDisabled={ false }
+                    value={ checked }
+                    rawProps={ { contentEditable: false } }
+                    onValueChange={ (value) => {
+                        if (isReadonly) return;
+                        const path = findNodePath(editor, element);
+                        if (!path) return;
+
+                        setNodes<TTodoListItemElement>(
+                            editor,
+                            { data: { checked: value } },
+                            { at: path }
+                        );
+                    } }
+                />
+            </div>
+            <div className={ css.textContainer }>
+                { children }
+            </div>
+        </FlexRow>
+    );
+}

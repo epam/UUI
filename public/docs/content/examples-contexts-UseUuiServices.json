@@ -1,114 +1,100 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
+        "text": "This is an example of how "
+      },
+      {
+        "text": "UuiContext",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " can be initialized. "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Notes: "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "An alternative example using UUI services with hook ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "useUuiServices",
-            "marks": [
+            "data": {},
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "text": "Create router using "
+              },
+              {
+                "text": "HistoryAdaptedRouter",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": "."
               }
             ]
-          },
-          {
-            "object": "text",
-            "text": ". ",
-            "marks": []
           }
         ]
       },
       {
-        "object": "block",
-        "type": "ordered-list",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Create router data using ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "HistoryAdaptedRouter",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ".",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+                "text": "The  "
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "With a hook  ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "useUuiServices",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " gets an object with context services and then passes it as value, like in an example.",
-                    "marks": []
-                  }
-                ]
+                "text": "useUuiServices",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " hook returns an object with context services. The object must be passed as "
+              },
+              {
+                "text": "UuiContext.Provider",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " value (see the example)"
               }
             ]
           }
         ]
       }
     ]
+  },
+  {
+    "data": {},
+    "type": "note-link",
+    "children": [
+      {
+        "text": "Note: We use the "
+      },
+      {
+        "text": "svc",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " variable in all our examples, but you can use services from react context."
+      }
+    ]
   }
-}
+]

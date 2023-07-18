@@ -1,8 +1,7 @@
 import css from './DemoToolbar.module.scss';
 import * as React from 'react';
-import { useHistory } from 'react-router';
 import {
-    LinkButton, FlexRow, FlexCell, SuccessNotification, Text,
+    LinkButton, FlexRow, FlexCell,
 } from '@epam/promo';
 import { DemoItem } from '../../../demo/structure';
 import { ReactComponent as BackIcon } from '@epam/assets/icons/common/navigation-back-18.svg';
@@ -11,6 +10,7 @@ import { ReactComponent as FullScreenIcon } from '@epam/assets/icons/common/medi
 import { ReactComponent as DescriptionIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 import { analyticsEvents } from '../../../analyticsEvents';
 import { useDemoDescriptionEditor } from './useDemoDescriptionEditor';
+import { useUuiContext } from '@epam/uui-core';
 
 interface AppFooterContentDemoProps {
     demoItem: DemoItem;
@@ -21,11 +21,12 @@ interface AppFooterContentDemoProps {
 export function DemoToolbar(props: AppFooterContentDemoProps) {
     const { demoItem, onOpenFullScreen, isFullScreenSupported } = props;
     const demoItemName = demoItem.name;
-    const routerHistory = useHistory();
+
+    const { uuiRouter } = useUuiContext();
 
     const handleBack = React.useCallback(() => {
-        routerHistory.push('/demo');
-    }, []);
+        uuiRouter.redirect('/demo');
+    }, [uuiRouter]);
 
     const renderDivider = () => (
         <FlexCell width="auto">

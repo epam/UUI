@@ -1,12 +1,12 @@
 import dayjs from 'dayjs';
+import { RangeDatePickerValue } from '@epam/uui-core';
 import {
-    RangeDatePickerValue, defaultFormat, valueFormat, supportedDateFormats,
-} from '..';
+    defaultFormat, valueFormat, supportedDateFormats,
+} from './DatePickerBodyBase';
 
 export const toValueDateRangeFormat = (value: RangeDatePickerValue, format?: string): RangeDatePickerValue => {
     const from = value.from;
     const to = value.to;
-    const customFormat = format || defaultFormat;
 
     return {
         from: from ? dayjs(from, supportedDateFormats(format), true).format(valueFormat) : null,

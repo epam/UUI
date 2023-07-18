@@ -1,28 +1,63 @@
-export {};
-// import { Editor } from 'slate-react';
-// import * as React from 'react';
-// import { useUuiContext } from '@epam/uui-core';
-// import { AddVideoModal } from './AddVideoModal';
-// import { ReactComponent as VideoIcon } from '../../icons/video.svg';
-// import { ToolbarButton } from '../../implementation/ToolbarButton';
-// import { isTextSelected } from '../../helpers';
-//
-// export const videoPlugin = () => {
-//
-//     return {
-//         sidebarButtons: [
-//             VideoButton,
-//         ],
-//     };
-// };
-//
-// const VideoButton = (props: { editor: Editor }) => {
-//     const context = useUuiContext();
-//
-//     return <ToolbarButton
-//         onClick={ () => context.uuiModals.show<string>(modalProps => <AddVideoModal { ...modalProps } editor={ props.editor } />)
-//             .catch(() => null) }
-//         icon={ VideoIcon }
-//         isDisabled={ isTextSelected(props.editor) }
-//     />;
-// };
+import React from 'react';
+import { useUuiContext } from '@epam/uui-core';
+
+import {
+    createPluginFactory,
+    getBlockAbove,
+    PlateEditor,
+    ToolbarButton as PlateToolbarButton,
+} from '@udecode/plate';
+
+import { isPluginActive, isTextSelected } from '../../helpers';
+
+import { ToolbarButton } from '../../implementation/ToolbarButton';
+
+import { ReactComponent as VideoIcon } from '../../icons/video.svg';
+
+import { AddVideoModal } from './AddVideoModal';
+
+const noop = () => {};
+
+const VIDEO_PLUGIN_KEY = 'video';
+
+export const videoPlugin = createPluginFactory({
+    key: VIDEO_PLUGIN_KEY,
+    type: 'video',
+});
+
+interface IVideoButton {
+    editor: PlateEditor;
+}
+
+export const VideoButton = ({
+    editor,
+}: IVideoButton) => {
+    const context = useUuiContext();
+
+    if (!isPluginActive('video')) return null;
+
+    const block = getBlockAbove(editor);
+
+    return (
+        <PlateToolbarButton
+            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
+            onMouseDown={ async (event) => {
+                if (!editor) return;
+                event.preventDefault();
+
+                context.uuiModals.show<string>(modalProps => (
+                    <AddVideoModal
+                        editor={ editor }
+                        { ...modalProps }
+                    />
+                )).catch(() => null);
+            } }
+            icon={ <ToolbarButton
+                onClick={ noop }
+                isDisabled={ !!isTextSelected(editor, true) }
+                icon={ VideoIcon }
+                isActive={ block?.length && block[0].type === 'iframe' }
+            /> }
+        />
+    );
+};

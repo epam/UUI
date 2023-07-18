@@ -1,37 +1,63 @@
-# 5.1.0 - ??.??.2023
+# 5.x.x - xx.xx.2023
+
+**What's New**
+
+* [Tooltip][BreakingChange]: Removed prop `trigger`. Now tooltip always opens on hover, use dropdown for cases when you need to open body by click.
+* [DataTable]: Added column description tooltip to table header. DataTable now has an optional property-callback 'renderColumnsConfigurationModal?: (props) => React.ReactNode' for render your custom ColumnsConfigurationModal or you have our variant of it.
+* [ColumnsConfigurationModal]: Added 'renderItem?: (column) => React.ReactNode' optional property-callback for render your custom column name section.
+* [ColumnsConfigurationModal]: Added 'getSearchFields?: (column) => string[];' optional callback to define columns to search in the ColumnsConfigurationModal. We use 'column.caption' by default.
+* [DatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
+* Added adapter for react-router 6.
+  - Note: we strongly discourage the use of react-router 6, as it introduces too many breaking changes, and certain important features (like block and listen) are available only via unstable internal API.
+
+**What's Fixed**
+
+* [Button]: add missing styles for 'sun' color in loveship skin
+* [FilterPanel]: fix RangeDatePicker 'to' value change
+* [LabeledInput]: removed specific class for loveship skin
+* [Rating]: fix rating behavior with 0.5 step
+* [ColumnsConfigurationConfig]: change 'Apply' button color to the 'primary'
+* [MainMenu]: fixed hover:background-color in nested menu items.
+* [DropdownMenu]: fixed button's heigth and submenu position.
+* [DatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
+* [RangeDatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
+* [SnackbarCard]: is deprecated and will be deleted in a future release. Please, use a NotificationCard instead it.
+
+# 5.1.0 - 29.06.2023
 
 **What's New**
 
 **Rich Text Editor component update and improvements**
 
-UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework. 
-During the update the previous code based of RTE was almost fully rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users and update to the new version of `uui-editor` package should be seamless and easy. 
+UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework.
+During the update the previous code based of RTE almost completely rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users. Therefore, update to the new version of `uui-editor` package should be seamless and easy.
 
 List of changes:
-* [Breaking change]: Changed RTE value format, now it's works with array instead of immutable.js object. Also, there are some additional changes inside slate value structure. 
+* [Breaking change]: Changed RTE value format, now it's works with array instead of immutable.js object. Also, there are some additional changes inside slate value structure.
 We make an automatic migration from old state format to the new one, so it's not required any additional actions from your side. But if you make some manipulations with value object on your side, it will cause issues, contact us if you faced with such case.
 * Regarding the new value format it's not needed to convert value to JSON via `value.toJSON()` and `Value.fromJSON(value)` in your code.
 
-
 * Added possibility to add caption for images
+* Added possibility to insert new line after image/video/iframe
+* Added images adjusting when width of RTE container is changing
+* Added support of different spell checking extensions, like Grammarly
+* Now visited links doesn't highlight with visited style in edit mode
+* Long links now fit table cell width
+* Improved content copying from Microsoft Word files
+* Added autofocus on input in 'Add Link' modal
+* A lot of issues and improvements from Slate.js version update
 * Fixed page crash after delete horizontal line/separator
 * Fixed adding list inside table
 * Fixed text selection breaks if mouse cursor lands on toolbar
 * Fixed reverse text in list in Safari
-* 403 error now doesn't appear during dragging image
-* Added possibility to insert new line before and after image/video/iframe
-* Fixed link replacement without first deleting it
-* Long links now fit table cell width
-* Images adjust when width of container is changing
-* Added support of different spell checking extensions, like Grammarly
-* Improved content copying from Microsoft Word files
 * Fixed color bar closing by color click
 * Fixed sticky toolbar disappears after selecting any options in it in Safari
-* Added autofocus on input in 'Add Link' modal
-* A lot of issues and improvements from Slate.js version update
+* Fixed link replacement without first deleting it
+* Fixed error after setting list on empty line
+* Fixed error after inserting a list previously cut from the editor
+
 
 **What's Fixed**
-* [DataTable]: added tooltip to the all column header cells, it shows `column.caption` and `column.info` and appear with 600ms delay
 * [PickerInput]: disabled 'Clear' button in footer in case when `disableClear` prop is `true`
 * [TimePickerBody]: fixed the bug where `minutes` values that are not a multiple of  `minutesStep`, are not rounded up to a `step`
 * [TextInput]: fixed incorrectly text color in disabled state in Safari

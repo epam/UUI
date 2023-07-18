@@ -102,6 +102,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         grow: 0,
         width: 120,
         isSortable: true,
+        isFilterActive: (f) => !!f.birthDate,
     }, {
         key: 'relatedNPR',
         caption: 'Related NPR',
