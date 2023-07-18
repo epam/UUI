@@ -24,7 +24,7 @@ jobs:
               with:
                   node-version: '16.x'
 
-            - uses: actions/cache@v3
+            - uses: actions/cache@v2
               with:
                   path: |
                       node_modules
