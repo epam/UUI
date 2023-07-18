@@ -12,7 +12,7 @@ module.exports = {
  * @returns {string[]}
  */
 function getIgnoredPatterns({ isCI, isLintStaged, isLintScript }) {
-    let list = [
+    let ignored = [
         '!.*.js',
         'build',
         'node_modules',
@@ -21,16 +21,18 @@ function getIgnoredPatterns({ isCI, isLintStaged, isLintScript }) {
         'server/helpers/getFilterPredicate.js',
     ];
     if (isCI || isLintStaged) {
-        // ignore in CI only
-        list.push('uui-editor'); // TODO: it's temporarily ignored, uncomment when work related to editor is finished.
+        // ignore in CI
+        // still show any errors in IDE & in local running eslint script
+        ignored.push('uui-editor'); // TODO: it's temporarily ignored, uncomment when work related to editor is finished.
     }
     if (isCI || isLintStaged || isLintScript) {
-        // ignore in CI & don't show errors in report
-        list = list.concat([
+        // ignore in CI & for local running eslint script
+        // still show any errors in IDE
+        ignored = ignored.concat([
             'uui-db',
             'extra',
             'draft-rte',
         ]);
     }
-    return list;
+    return ignored;
 }
