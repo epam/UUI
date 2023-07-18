@@ -9,14 +9,11 @@ import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
 import css from './BaseDocsBlock.module.scss';
 
-export type UUI3 = 'UUI3_loveship';
-export type UUI4 = 'UUI4_promo';
-export type UUI = 'UUI';
-export type Skin = UUI3 | UUI4 | UUI;
+export type Skin = 'UUI3_loveship' | 'UUI4_promo' | 'UUI';
 
-export const UUI3: UUI3 = 'UUI3_loveship';
-export const UUI4: UUI4 = 'UUI4_promo';
-export const UUI: UUI = 'UUI';
+export const UUI3: 'UUI3_loveship' = 'UUI3_loveship';
+export const UUI4: 'UUI4_promo' = 'UUI4_promo';
+export const UUI: 'UUI' = 'UUI';
 
 const items: { id: Skin; caption: string }[] = [
     { caption: 'UUI3 [Loveship]', id: UUI3 }, { caption: 'UUI4 [Promo]', id: UUI4 }, { caption: 'UUI [Themebale]', id: UUI },

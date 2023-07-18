@@ -64,7 +64,7 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
     }
 
     handleKeyDown(type: 'left' | 'right', normValue: RangeSliderValue) {
-        const { step, min, max } = this.props;
+        const { step } = this.props;
         const { from, to } = normValue;
         const { activeHandle } = this.state;
 

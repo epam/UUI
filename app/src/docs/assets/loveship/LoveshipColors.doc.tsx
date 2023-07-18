@@ -210,9 +210,9 @@ export class LoveshipColorsDoc extends React.Component {
                     {colorMatrix.map((column, index) => {
                         return (
                             <FlexCell key={ index } minWidth={ 120 }>
-                                {column.map((color, index) => {
+                                {column.map((color, cellIndex) => {
                                     return (
-                                        <Tooltip content={ color.context } key={ index }>
+                                        <Tooltip content={ color.context } key={ cellIndex }>
                                             <div className={ cx(css.box, css.additionalColorBox, css[`additional-color-${color.name}`]) }>
                                                 <div className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }>
                                                     {color.hex}

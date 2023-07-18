@@ -5,26 +5,22 @@ import * as I from 'immutable';
 import {
     SortDirection, getFilterPredicate, getOrderComparer, DataQueryFilter, SortingOption, getSearchFilter, DataQuery,
 } from '@epam/uui-core';
-import { Seq, Iterable } from 'immutable';
+import { Seq } from 'immutable';
 
-interface ApplyQueryOptions {
-    runSort?: boolean;
-}
-
-interface DbIndex<TEntity, TId> {
+interface DbIndex<TEntity> {
     field: keyof TEntity;
     map: I.Map<any, I.Set<any>>;
 }
 
-interface DbTableState<TEntity, TId extends DbPkFieldType, TTables extends DbTablesSet<TTables>> {
+interface DbTableState<TEntity, TTables extends DbTablesSet<TTables>> {
     pk: I.Map<any, TEntity>;
-    indexes: DbIndex<TEntity, TId>[];
+    indexes: DbIndex<TEntity>[];
 }
 
 export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTablesSet<TTables>> {
-    constructor(public readonly schema: DbEntitySchema<TEntity, TId, TTables>, private state?: DbTableState<TEntity, TId, TTables>, private q?: DbQuery<TEntity>) {
+    constructor(public readonly schema: DbEntitySchema<TEntity, TId, TTables>, private state?: DbTableState<TEntity, TTables>, private q?: DbQuery<TEntity>) {
         if (!state) {
-            const indexes: DbIndex<TEntity, TId>[] = (schema.indexes || []).map((indexDef) => {
+            const indexes: DbIndex<TEntity>[] = (schema.indexes || []).map((indexDef) => {
                 return {
                     field: indexDef,
                     map: I.Map(),
@@ -120,7 +116,7 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
             return { ...index, map: newMap };
         });
 
-        const newState: DbTableState<TEntity, TId, TTables> = { pk: newPk, indexes: newIndexes };
+        const newState: DbTableState<TEntity, TTables> = { pk: newPk, indexes: newIndexes };
 
         return this.update((t) => (t.state = newState));
     }

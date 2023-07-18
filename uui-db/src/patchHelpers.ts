@@ -33,10 +33,10 @@ export function mergeEntityPatches<TTables extends DbTablesSet<TTables>>(tables:
         const table = tables[key];
         const groupedEntities = groupBy(patch[key], (item) => table.getId(item));
         const tablePatch = map(groupedEntities, (entities) => {
-            const result = merge({}, ...entities);
+            const tablePatchResult = merge({}, ...entities);
 
             if (process.env.NODE_ENV !== 'production') {
-                const props = objectKeys(result).filter(
+                const props = objectKeys(tablePatchResult).filter(
                     (prop) =>
                         Object.keys(
                             countBy(
@@ -50,7 +50,7 @@ export function mergeEntityPatches<TTables extends DbTablesSet<TTables>>(tables:
                 }
             }
 
-            return result;
+            return tablePatchResult;
         });
 
         result[key] = tablePatch;
@@ -102,7 +102,7 @@ export function flattenResponse<TTables extends DbTablesSet<any>>(response: any,
 
     const tablesByTypeName: Record<string, DbTable<any, any, any>> = {};
     Object.values(tables).forEach((table) => (tablesByTypeName[table.schema.typeName] = table));
-    objectKeys(tables).forEach((tableName) => tablesByTypeName);
+    objectKeys(tables).forEach(() => tablesByTypeName);
 
     objectKeys(tables).forEach((key) => (result[key] = []));
 

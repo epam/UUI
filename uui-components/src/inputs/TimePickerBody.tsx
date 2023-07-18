@@ -64,7 +64,6 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
     };
 
     render() {
-        const minutesStep = this.props.minutesStep || 5;
         const MIN_HOURS = this.props.format === FORMAT_12H ? 1 : 0;
         const MAX_HOURS = this.props.format || FORMAT_12H;
 

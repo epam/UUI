@@ -74,7 +74,7 @@ interface UseListApi<TItem, TId, TFilter = DataQueryFilter<TItem>>
 //    useTree() is an extended version (with required getChildCount, getParentId, etc.)
 //    the problem here is that it's harder to use UseListProps as input for pickers
 //    - as there'll be two types of props (for list and tree)
-function useList<TItem, TId, TFilter = DataQueryFilter<TItem>>(props: UseListProps<TItem, TId, TFilter>) {
+function useList<TItem, TId, TFilter = DataQueryFilter<TItem>>() {
     return null as UseListApi<TItem, TId, TFilter>;
 }
 

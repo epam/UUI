@@ -179,15 +179,15 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
 
     const createNewPreset = useCallback(
         (name: string) => {
-            const tableStateValue = getTableStateValue();
+            const newTableStateValue = getTableStateValue();
             const newPreset: ITablePreset<TFilter, TViewState> = {
                 id: null,
                 name: name,
-                filter: tableStateValue.filter,
-                columnsConfig: tableStateValue.columnsConfig,
-                filtersConfig: tableStateValue.filtersConfig,
-                sorting: tableStateValue.sorting,
-                viewState: tableStateValue.viewState,
+                filter: newTableStateValue.filter,
+                columnsConfig: newTableStateValue.columnsConfig,
+                filtersConfig: newTableStateValue.filtersConfig,
+                sorting: newTableStateValue.sorting,
+                viewState: newTableStateValue.viewState,
                 isReadonly: false,
                 order: getNewPresetOrder(),
             };
@@ -199,12 +199,12 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
 
     const hasPresetChanged = useCallback(
         (preset: ITablePreset<TFilter, TViewState>) => {
-            const tableStateValue = getTableStateValue();
+            const newTableStateValue = getTableStateValue();
             return (
-                !isEqual(preset.filter, tableStateValue.filter)
-                || !isEqual(preset.columnsConfig, tableStateValue.columnsConfig)
-                || !isEqual(preset.sorting, tableStateValue.sorting)
-                || !isEqual(preset.viewState, tableStateValue.viewState)
+                !isEqual(preset.filter, newTableStateValue.filter)
+                || !isEqual(preset.columnsConfig, newTableStateValue.columnsConfig)
+                || !isEqual(preset.sorting, newTableStateValue.sorting)
+                || !isEqual(preset.viewState, newTableStateValue.viewState)
             );
         },
         [getTableStateValue],

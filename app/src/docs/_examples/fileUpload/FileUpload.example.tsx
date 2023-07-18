@@ -12,15 +12,15 @@ export default function FileUploadExample() {
     const [attachments, setAttachments] = React.useState<FileCardItem[]>([]);
 
     const trackProgress = (progress: number, id: number) => {
-        setAttachments((attachments) => attachments.map((item) => (item.id === id ? { ...item, progress } : item)));
+        setAttachments((progressAttachments) => progressAttachments.map((item) => (item.id === id ? { ...item, progress } : item)));
     };
 
     const updateFile = (file: FileCardItem, id: number) => {
-        setAttachments((attachments) => attachments.map((item) => (item.id === id ? file : item)));
+        setAttachments((updateAttachments) => updateAttachments.map((item) => (item.id === id ? file : item)));
     };
 
     const deleteFile = (file: FileCardItem) => {
-        setAttachments((attachments) => attachments.filter((item) => item.id !== file.id));
+        setAttachments((deleteAttachments) => deleteAttachments.filter((item) => item.id !== file.id));
     };
 
     const uploadFile = (files: File[]) => {

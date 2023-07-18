@@ -297,15 +297,15 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
         const { component: DemoComponent } = this.state.docs;
         const defaultContext = this.state.docs.contexts[0];
         const props = this.getProps();
-        let DemoContext = null;
+        let SelectedDemoContext = null;
 
         if (!this.state.selectedContext) {
-            DemoContext = defaultContext.context;
+            SelectedDemoContext = defaultContext.context;
         } else {
-            DemoContext = this.state.docs.contexts.filter((ctx) => ctx.name == this.state.selectedContext)[0].context;
+            SelectedDemoContext = this.state.docs.contexts.filter((ctx) => ctx.name == this.state.selectedContext)[0].context;
         }
 
-        return <DemoContext DemoComponent={ DemoComponent } props={ props } />;
+        return <SelectedDemoContext DemoComponent={ DemoComponent } props={ props } />;
     }
 
     renderCode(selectedProps: { [name: string]: any }) {
