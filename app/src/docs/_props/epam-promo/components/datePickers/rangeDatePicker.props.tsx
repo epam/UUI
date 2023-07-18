@@ -9,7 +9,7 @@ import {
 import dayjs, { Dayjs } from 'dayjs';
 import { Day, IconContainer } from '@epam/uui-components';
 import { rangeDatePickerPresets, RangeDatePickerValue } from '@epam/uui';
-import { Button, Text } from '@epam/promo';
+import { Text } from '@epam/promo';
 import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
 import isBetween from 'dayjs/plugin/isBetween.js';
 
@@ -18,10 +18,10 @@ dayjs.extend(isBetween);
 const getCustomDay = (day: Dayjs) => {
     return (
         <>
-            {day.format('D')}
+            { day.format('D') }
             <IconContainer
                 style={ {
-                    fill: '#fcaa00', height: '4px', width: '4px', position: 'absolute', top: '7px', right: '10px',
+                    fill: '#FCAA00', height: '4px', width: '4px', position: 'absolute', top: '7px', right: '10px',
                 } }
                 icon={ Point }
             />
@@ -30,9 +30,11 @@ const getCustomDay = (day: Dayjs) => {
 };
 
 const getRangeLength = (value: RangeDatePickerValue) => {
+    const isOneOrZero = dayjs(value.from).valueOf() === dayjs(value.to).valueOf() ? 1 : 0;
+
     return dayjs(value.to).isValid() && dayjs(value.from).isValid() && dayjs(value.from).valueOf() < dayjs(value.to).valueOf()
         ? dayjs(value.to).diff(dayjs(value.from), 'day') + 1
-        : 0;
+        : isOneOrZero;
 };
 
 const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDatePicker', component: RangeDatePicker })
@@ -114,14 +116,13 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
                 name: 'footer',
                 value: (value) => (
                     <div className={ css.container }>
-                        <div>
-                            <Text color="gray60" size="24">
-                                {`Days: ${getRangeLength(value)}`}
-                            </Text>
-                        </div>
-                        <div className={ css.buttonGroup }>
-                            <Button cx={ css.buttonContainer } caption="Done" color="green" fill="solid" size="24" onClick={ () => {} } />
-                        </div>
+                        <Text color="gray80" size="30">
+                            { (!value?.from || !value?.to) && 'Please select range' }
+                            { value?.from && value?.to && dayjs(value?.from).format('MMMM DD, YYYY') }
+                            { (value?.from && value?.to) && ' - ' }
+                            { value?.from && value?.to && dayjs(value?.to).format('MMMM DD, YYYY') }
+                            { getRangeLength(value) !== 0 && (getRangeLength(value) === 1 ? ` (${getRangeLength(value)} day)` : ` (${getRangeLength(value)} days)`) }
+                        </Text>
                     </div>
                 ),
             },

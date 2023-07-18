@@ -1,87 +1,57 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": "DatePicker uses English by default. To change the language, you must import a new locale from the moment package and set this locale name to the i18n object. "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "List of dayjs locales on "
+      },
+      {
+        "data": {
+          "url": "https://github.com/iamkun/dayjs/tree/dev/src/locale"
+        },
+        "type": "link",
+        "url": "https://github.com/iamkun/dayjs/tree/dev/src/locale",
+        "children": [
           {
-            "object": "text",
-            "text": "DatePicker uses English by default. To change the language, you must import a new locale from the moment package and set this locale name to the i18n object. ",
-            "marks": []
+            "text": "Github"
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "List of dayjs locales on ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://github.com/iamkun/dayjs/tree/dev/src/locale"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "Github",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ". \n\n",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": " Example with 'de' locale:",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          }
-        ]
+        "text": ". \n\n"
       },
       {
-        "object": "block",
-        "type": "note-quote",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "import 'dayjs/locale/de';\nimport { i18n } from '@epam/uui-components';\n\ni18n.datePicker.locale = 'de;",
-            "marks": []
-          }
-        ]
-      },
+        "text": " Example with 'de' locale:",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-quote",
+    "children": [
       {
-        "object": "block",
-        "type": "note-error",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Ensure that you use the same version of dayjs as in UUI packages. Otherwise localization won't work.",
-            "marks": []
-          }
-        ]
+        "text": "import 'dayjs/locale/de';\nimport { i18n } from '@epam/uui-components';\n\ni18n.datePicker.locale = 'de;"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-error",
+    "children": [
+      {
+        "text": "Ensure that you use the same version of dayjs as in UUI packages. Otherwise localization won't work."
       }
     ]
   }
-}
+]
