@@ -13,7 +13,7 @@ interface FloatingActionButtonProps {
 export class FloatingActionButton extends React.Component<FloatingActionButtonProps, any> {
     render() {
         return (
-            <Tooltip content={ this.props.tooltip } placement="auto" trigger="hover">
+            <Tooltip content={ this.props.tooltip } placement="auto">
                 <Button fill="white" color="blue" icon={ this.props.icon } size="48" onClick={ this.props.onClick } cx={ cx(css.root, this.props.buttonCx) } />
             </Tooltip>
         );

@@ -343,10 +343,9 @@ describe('FiltersPanel', () => {
                     .queryAllByRole('tab')
                     .map((t) => t.textContent),
             ).toEqual(['In Range', 'Not in Range']);
-            await user.click(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0]);
-            await user.click(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0]);
             await user.click(withinDialog().getByRoleAndText({ role: 'tab', text: 'Not in Range' }));
-            await user.click(window.document.body);
+            await user.click(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0]);
+            await user.click(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0]);
             notExpectDialog();
             expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { hireDate: { notInRange: { from: TODAY_DATE_ISO, to: TODAY_DATE_ISO } } } }));
             await user.click(screen.getByRoleAndText({ role: 'button', text: `Hire Date Not in Range${TODAY_DATE_FORMATTED} - ${TODAY_DATE_FORMATTED}` }));

@@ -2,10 +2,10 @@
 
 exports[`RangeDatePickerBody should be rendered correctly 1`] = `
 <div
-  className="uui-datepicker-container root root root root"
+  className="root uui-datepicker-container"
 >
   <div
-    className="daySelection container container align-items-top"
+    className="root size-36 daySelection container container align-items-top"
     style={
       Object {
         "columnGap": undefined,
@@ -14,33 +14,32 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
     }
   >
     <div
-      className="pickerWrapper container align-items-center"
+      className="flexCell"
       style={
         Object {
-          "columnGap": undefined,
-          "rowGap": undefined,
+          "alignSelf": undefined,
+          "flexBasis": "auto",
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": undefined,
         }
       }
     >
       <div
-        className=""
+        className="root size-36 container align-items-center"
         style={
           Object {
-            "alignSelf": undefined,
-            "flexBasis": "auto",
-            "flexGrow": undefined,
-            "flexShrink": undefined,
-            "minWidth": 0,
-            "textAlign": undefined,
+            "columnGap": undefined,
+            "rowGap": undefined,
           }
         }
       >
         <div
-          className="bodesWrapper container align-items-top"
+          className="root size-36 bodesWrapper container align-items-top"
           style={
             Object {
               "columnGap": undefined,
-              "height": "276px",
               "rowGap": undefined,
             }
           }
@@ -57,38 +56,52 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                 <header
                   className="uui-datepickerheader-header"
                 >
-                  <div
-                    className="container uui-icon uui-enabled -clickable uui-datepickerheader-nav-icon-left"
+                  <button
+                    className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-ghost uui-datepickerheader-nav-icon-left"
                     onClick={[Function]}
-                    role="button"
-                    style={Object {}}
-                  >
-                    <svg
-                      className=""
-                    />
-                  </div>
-                  <div
-                    className="uui-datepickerheader-nav-title"
-                    onClick={[Function]}
-                    role="button"
                     tabIndex={0}
+                    type="button"
                   >
-                    September 2020
-                  </div>
-                  <div
-                    className="container uui-icon uui-enabled -clickable uui-datepickerheader-nav-icon-right"
+                    <div
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
+                    >
+                      <svg
+                        className=""
+                      />
+                    </div>
+                  </button>
+                  <button
+                    className="container uui-button-box uui-enabled -clickable button-primary root size-36 mode-ghost uui-datepickerheader-nav-title"
                     onClick={[Function]}
-                    role="button"
-                    style={Object {}}
+                    tabIndex={0}
+                    type="button"
                   >
-                    <svg
-                      className=""
-                    />
-                  </div>
+                    <div
+                      className="uui-caption"
+                    >
+                      September 2020
+                    </div>
+                  </button>
+                  <button
+                    className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-ghost uui-datepickerheader-nav-icon-right"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    type="button"
+                  >
+                    <div
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
+                    >
+                      <svg
+                        className=""
+                      />
+                    </div>
+                  </button>
                 </header>
               </div>
               <div
-                className="container uui-calendar-container"
+                className="container uui-calendar-container root"
               >
                 <div
                   className="uui-calendar-content"
@@ -621,38 +634,52 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                 <header
                   className="uui-datepickerheader-header"
                 >
-                  <div
-                    className="container uui-icon uui-enabled -clickable uui-datepickerheader-nav-icon-left"
+                  <button
+                    className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-ghost uui-datepickerheader-nav-icon-left"
                     onClick={[Function]}
-                    role="button"
-                    style={Object {}}
-                  >
-                    <svg
-                      className=""
-                    />
-                  </div>
-                  <div
-                    className="uui-datepickerheader-nav-title"
-                    onClick={[Function]}
-                    role="button"
                     tabIndex={0}
+                    type="button"
                   >
-                    October 2020
-                  </div>
-                  <div
-                    className="container uui-icon uui-enabled -clickable uui-datepickerheader-nav-icon-right"
+                    <div
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
+                    >
+                      <svg
+                        className=""
+                      />
+                    </div>
+                  </button>
+                  <button
+                    className="container uui-button-box uui-enabled -clickable button-primary root size-36 mode-ghost uui-datepickerheader-nav-title"
                     onClick={[Function]}
-                    role="button"
-                    style={Object {}}
+                    tabIndex={0}
+                    type="button"
                   >
-                    <svg
-                      className=""
-                    />
-                  </div>
+                    <div
+                      className="uui-caption"
+                    >
+                      October 2020
+                    </div>
+                  </button>
+                  <button
+                    className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-ghost uui-datepickerheader-nav-icon-right"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    type="button"
+                  >
+                    <div
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
+                    >
+                      <svg
+                        className=""
+                      />
+                    </div>
+                  </button>
                 </header>
               </div>
               <div
-                className="container uui-calendar-container"
+                className="container uui-calendar-container root"
               >
                 <div
                   className="uui-calendar-content"

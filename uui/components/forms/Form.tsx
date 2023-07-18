@@ -2,8 +2,8 @@ import * as React from 'react';
 import {
     Form as UuiForm, FormProps, useUuiContext, INotification,
 } from '@epam/uui-core';
-import { Text, RichTextView, WarningNotification } from '..';
-import { ConfirmationModal } from '../overlays/ConfirmationModal';
+import { Text, RichTextView } from '../typography';
+import { ConfirmationModal, WarningNotification } from '../overlays';
 import { i18n } from '../../i18n';
 
 export function Form<T>(props: FormProps<T>) {

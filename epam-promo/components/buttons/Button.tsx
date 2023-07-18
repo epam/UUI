@@ -25,13 +25,15 @@ export const Button = withMods<Omit<UuiButtonProps, 'color'>, ButtonMods>(
         ['42', '48'].includes(props.size) && css.uppercase,
     ],
     (props) => {
-        devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
-            component: 'Button',
-            propName: 'color',
-            propValue: props.color,
-            propValueUseInstead: 'gray',
-            condition: () => ['gray50'].indexOf(props.color) !== -1,
-        });
+        if (__DEV__) {
+            devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
+                component: 'Button',
+                propName: 'color',
+                propValue: props.color,
+                propValueUseInstead: 'gray',
+                condition: () => ['gray50'].indexOf(props.color) !== -1,
+            });
+        }
         return {
             mode: mapFillToMod[props.fill] || mapFillToMod.solid,
         };
