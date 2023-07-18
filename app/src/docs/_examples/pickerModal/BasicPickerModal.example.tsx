@@ -1,13 +1,13 @@
 import React, { useCallback, useContext, useState } from 'react';
 import { PickerModal } from '@epam/uui';
 import { FlexRow, FlexCell, Button } from '@epam/promo';
-import { UuiContext, useAsyncDataSource, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { UuiContext, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
 export default function LanguagesPickerModal() {
     const [value, onValueChange] = useState<Location>({
         childCount: 52,
-        id: 'c-AS1',
+        id: 'c-AS',
         name: 'Asia',
         parentId: null,
         type: 'continent',
