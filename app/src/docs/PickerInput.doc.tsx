@@ -19,6 +19,7 @@ export class PickerInputDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="pickerInput-descriptions" />
                 { this.renderSectionTitle('Examples') }
                 <DocExample title="Basic" path="./_examples/pickerInput/ArrayPickerInput.example.tsx" />
+                <DocExample title="Bug" path="./_examples/pickerInput/Bug.example.tsx" />
                 <DocExample title="Lazy list" path="./_examples/pickerInput/LazyPickerInput.example.tsx" />
                 <DocExample title="Lazy tree" path="./_examples/pickerInput/LazyTreeInput.example.tsx" />
                 <DocExample title="Search modes" path="./_examples/pickerInput/LazyTreeSearch.example.tsx" />

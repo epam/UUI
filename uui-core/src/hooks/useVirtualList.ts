@@ -73,13 +73,24 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         onScroll?.(scrollContainer.current);
 
         let topIndex = 0;
+        console.log('topIndex 1-----------_>', topIndex);
+        console.log('scrollTop', scrollTop);
+        console.log('rowsCount', rowsCount);
+        console.log('rowOffsets.current', rowOffsets.current);
         while (topIndex < rowsCount && rowOffsets.current[topIndex] < scrollTop) {
+            console.log('[topIndex]', topIndex, rowOffsets.current[topIndex]);
             topIndex += 1;
         }
 
         topIndex = topIndex - overdrawRows; // draw more rows at the top to remove visible blank areas while scrolling up
+        console.log('overdrawRows-----------_>', overdrawRows);
+
+        console.log('topIndex 2-----------_>', topIndex);
         topIndex = Math.floor(topIndex / blockSize) * blockSize; // Align to blockSize
+        console.log('topIndex 3-----------_>', topIndex);
+
         topIndex = Math.max(0, topIndex);
+        console.log('topIndex 4-----------_>', topIndex);
 
         let bottomIndex = topIndex;
         const scrollBottom = scrollTop + clientHeight;
@@ -96,6 +107,9 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         const visibleCount = Math.max(value.visibleCount ?? blockSize, bottomIndex - topIndex);
 
         if (topIndex !== value.topIndex || visibleCount > value.visibleCount || value.indexToScroll != null) {
+            console.log('topIndex', topIndex, value.topIndex);
+            console.log('visibleCount', visibleCount, value.visibleCount);
+            console.log('value.indexToScroll', value.indexToScroll);
             onValueChange({
                 ...value, topIndex, visibleCount, indexToScroll: null,
             });
