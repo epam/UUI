@@ -1,7 +1,6 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 import { Dropdown } from '@epam/uui-components';
-import cx from "classnames";
 import { useFocused, useReadOnly, useSelected } from 'slate-react';
 
 import { isPluginActive, isTextSelected } from "../../helpers";
@@ -37,7 +36,7 @@ const TableRenderer = (props: any) => {
      * TODO: make less function invocations,
      * ideally once on migration and pasting from documents
      */
-    // tableElem = updateTableStructure(tableElem);
+    tableElem = updateTableStructure(tableElem);
 
     return (
         <Dropdown
