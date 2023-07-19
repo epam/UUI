@@ -4,7 +4,7 @@ import React from 'react';
 import { isPluginActive } from "../../helpers";
 import { ReactComponent as SuperScriptIcon } from "../../icons/super-script.svg";
 import { ToolbarButton } from "../../implementation/ToolbarButton";
-import { onClickToolbarButton } from '../../utils/onClickToolbarButton';
+import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
 
 const SUPERSCRIPT_TYPE = 'uui-richTextEditor-superscript';
 
@@ -20,7 +20,7 @@ export const SuperscriptButton = ({ editor }: ToolbarButton) => {
     if (!isPluginActive(MARK_SUPERSCRIPT)) return null;
     return (
         <ToolbarButton
-            onClick={ onClickToolbarButton(editor, SUPERSCRIPT_TYPE) }
+            onClick={ handleMarkButtonClick(editor, SUPERSCRIPT_TYPE) }
             icon={ SuperScriptIcon }
             isActive={ !!editor?.selection && isMarkActive(editor, SUPERSCRIPT_TYPE) }
         />

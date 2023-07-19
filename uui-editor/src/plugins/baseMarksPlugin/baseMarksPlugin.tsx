@@ -9,7 +9,7 @@ import { MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE, createBoldPlugin, createItalicP
 import { ReactComponent as BoldIcon } from "../../icons/bold.svg";
 import { ReactComponent as ItalicIcon } from "../../icons/italic.svg";
 import { ReactComponent as UnderlineIcon } from "../../icons/underline.svg";
-import { onClickToolbarButton } from '../../utils/onClickToolbarButton';
+import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
 
 const BOLD_KEY = 'uui-richTextEditor-bold';
 const ITALIC_KEY = 'uui-richTextEditor-italic';
@@ -62,7 +62,7 @@ export const BoldButton = ({ editor }: IToolbarButton) => {
     if (!isPluginActive(MARK_BOLD)) return null;
     return (
         <ToolbarButton
-            onClick={ onClickToolbarButton(editor, BOLD_KEY) }
+            onClick={ handleMarkButtonClick(editor, BOLD_KEY) }
             icon={ BoldIcon }
             isActive={ !!editor?.selection && isMarkActive(editor, BOLD_KEY!) }
         />
@@ -73,7 +73,7 @@ export const ItalicButton = ({ editor }: IToolbarButton) => {
     if (!isPluginActive(MARK_ITALIC)) return null;
     return (
         <ToolbarButton
-            onClick={ onClickToolbarButton(editor, ITALIC_KEY) }
+            onClick={ handleMarkButtonClick(editor, ITALIC_KEY) }
             icon={ ItalicIcon }
             isActive={ !!editor?.selection && isMarkActive(editor, ITALIC_KEY!) }
         />
@@ -84,7 +84,7 @@ export const UnderlineButton = ({ editor }: IToolbarButton) => {
     if (!isPluginActive(MARK_UNDERLINE)) return null;
     return (
         <ToolbarButton
-            onClick={ onClickToolbarButton(editor, UNDERLINE_KEY) }
+            onClick={ handleMarkButtonClick(editor, UNDERLINE_KEY) }
             icon={ UnderlineIcon }
             isActive={ !!editor?.selection && isMarkActive(editor, UNDERLINE_KEY!) }
         />
