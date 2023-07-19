@@ -3,10 +3,10 @@ const getRank = (match: RegExpMatchArray) => {
     const { index, input } = match;
 
     if (index === 0) {
-        return word.length === input.length ? 3 : 2;
+        return word.length === input.length ? 4 : 3;
     }
 
-    return 1;
+    return input[index - 1] === ' ' ? 2 : 1;
 };
 
 export function getSearchFilter(searchString: string): (texts: string[]) => number | boolean {
