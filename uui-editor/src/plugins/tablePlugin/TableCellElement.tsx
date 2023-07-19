@@ -1,37 +1,73 @@
 import React from 'react';
-import { PlateElement, PlateElementProps, useElement } from '@udecode/plate-common';
-import { useTableCellElement, useTableCellElementState } from '@udecode/plate-table';
+import { PlateElement, PlateElementProps, TElement, useElement, usePlateEditorRef } from '@udecode/plate-common';
+import { ELEMENT_TABLE, ELEMENT_TR, TTableElement, TTableRowElement, getTableCellBorders, getTableRowIndex, useIsCellSelected, useTableStore } from '@udecode/plate-table';
 import cx from 'classnames';
 import css from './TableCell.module.scss';
 import { ExtendedTTableCellElement } from './types';
 import { TableCellElementResizable } from './resize/TableCellResizable';
+import { useReadOnly } from 'slate-react';
 
 export interface TableCellElementProps extends PlateElementProps {
     hideBorder?: boolean;
     isHeader?: boolean;
 }
 
+const checkIsFirstCell = (colIndex: number, cellNode: TElement) => {
+    const cellColSpan = (cellNode.colSpan as number);
+    const isFirstMergedCell = colIndex + 1 === cellColSpan;
+    return colIndex === 0 || isFirstMergedCell;
+};
+
 const TableCellElement = React.forwardRef<
     React.ElementRef<typeof PlateElement>,
     TableCellElementProps
 >(({ className, ...props }, ref) => {
     const { children, hideBorder, ...rootProps } = props;
-    const {
-        colIndex,
-        rowIndex,
-        readOnly,
-        selected,
-        hovered,
-        hoveredLeft,
-        rowSize,
-        borders,
-    } = useTableCellElementState();
-    const { props: cellProps } = useTableCellElement({ element: props.element });
+    const editor = usePlateEditorRef();
+    const cellElement = useElement<ExtendedTTableCellElement>();
 
-    const cellElement: ExtendedTTableCellElement = useElement();
+    /**
+     * Apply valid spans to element
+     */
+    const attrColSpan = isNaN(cellElement.attributes?.colspan) ? 1 : Number(cellElement.attributes?.colspan);
+    const attrRowSpan = isNaN(cellElement.attributes?.rowspan) ? 1 : Number(cellElement.attributes?.rowspan);
+    const appliedSpans = {
+        colSpan: cellElement?.data?.colSpan ?? attrColSpan,
+        rowSpan: cellElement?.data?.rowSpan ?? attrRowSpan,
+    };
+    cellElement.colSpan = appliedSpans.colSpan;
+    cellElement.rowSpan = appliedSpans.rowSpan;
+
+    // TODO: move to plate
+    const colIndex = cellElement.colIndex;
+    // const colIndex = getTableColumnIndex(editor, cellElement);
+    const rowIndex = getTableRowIndex(editor, cellElement);
+
+    const readOnly = useReadOnly();
+
+    const isCellSelected = useIsCellSelected(cellElement);
+    const hoveredColIndex = useTableStore().get.hoveredColIndex();
+
+    const tableElement = useElement<TTableElement>(ELEMENT_TABLE);
+    const rowElement = useElement<TTableRowElement>(ELEMENT_TR);
+    const rowSizeOverrides = useTableStore().get.rowSizeOverrides();
+    const rowSize =
+        rowSizeOverrides.get(rowIndex) ?? rowElement?.size ?? undefined;
+
+    // const isFirstCell = colIndex === 0;
+    const isFirstRow = tableElement.children?.[0] === rowElement;
+
+    const borders = getTableCellBorders(cellElement, {
+        isFirstCell: checkIsFirstCell(colIndex, cellElement),
+        isFirstRow,
+    });
+
+    const selected = isCellSelected;
+    const hovered = hoveredColIndex === colIndex;
+    const hoveredLeft = checkIsFirstCell(colIndex, cellElement) && hoveredColIndex === -1;
+
     const isHeader = cellElement.type === 'table_header_cell';
     const Cell = isHeader ? 'th' : 'td';
-
     return (
         <PlateElement
             asChild
@@ -54,10 +90,9 @@ const TableCellElement = React.forwardRef<
                     className
                 )
             }
-            { ...cellProps }
             { ...rootProps }
         >
-            <Cell>
+            <Cell colSpan={ cellElement.colSpan } rowSpan={ cellElement.rowSpan }>
                 <div className={ css.cell } style={ { minHeight: rowSize } }>
                     { children }
                 </div>
@@ -77,11 +112,11 @@ const TableCellElement = React.forwardRef<
                     ) }
 
                     { !readOnly && hoveredLeft && (
-                        <div className={ cx(css.resizeHandleBottom) } />
+                        <div className={ cx(css.resizeHandleLeft) } />
                     ) }
                 </div>
             </Cell>
-        </PlateElement>
+        </PlateElement >
     );
 });
 TableCellElement.displayName = 'TableCellElement';

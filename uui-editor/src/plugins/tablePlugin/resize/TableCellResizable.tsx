@@ -242,7 +242,6 @@ export function TableCellElementResizable(
 
     const hasLeftHandle = colIndex === 0 && !disableMarginLeft;
 
-
     return readOnly ? null : (
         <>
             <ResizeHandle { ...rightProps } />
