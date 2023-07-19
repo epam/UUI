@@ -1,12 +1,16 @@
 module.exports = {
     isCI,
     isDevServer,
+    isLintScript,
     isLintStaged,
 };
 
 function isCI() {
-    // https://github.com/webpack/webpack-dev-server/pull/3000
     return !!process.env['CI'];
+}
+
+function isLintScript() {
+    return !!process.env['LINT_SCRIPT'];
 }
 
 function isDevServer() {

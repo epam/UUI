@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    BaseDocsBlock, EditableDocContent, DocExample, UUI4, UUI3, UUI,
-} from '../common/docs';
+import { BaseDocsBlock, EditableDocContent, DocExample, UUI4, UUI3, UUI } from '../common/docs';
 
 export class PickerInputDoc extends BaseDocsBlock {
     title = 'Picker Input';
@@ -34,6 +32,7 @@ export class PickerInputDoc extends BaseDocsBlock {
                 <DocExample title="Picker with changed array of items" path="./_examples/pickerInput/PickerWithChangingItemsArray.example.tsx" />
                 <DocExample title="Linked pickers" path="./_examples/pickerInput/LinkedPickers.example.tsx" />
                 <DocExample title="Change portal target and dropdown placement" path="./_examples/pickerInput/ConfigurePortalTargetAndPlacement.example.tsx" />
+                <DocExample title="Turn off 'Select All' button in footer" path="./_examples/pickerInput/PickerInputTurnOffSelectAll.example.tsx" />
             </>
         );
     }

@@ -1,26 +1,7 @@
 import * as React from 'react';
-import {
-    ArrayDataSource, cx, IHasCX, INotification,
-} from '@epam/uui-core';
-import {
-    PropDoc, PropSamplesCreationContext, IComponentDocs, PropExample, DemoContext,
-} from '@epam/uui-docs';
-import {
-    FlexCell,
-    FlexRow,
-    FlexSpacer,
-    RadioInput,
-    Switch,
-    Text,
-    Tooltip,
-    TextInput,
-    MultiSwitch,
-    Panel,
-    ScrollBars,
-    PickerInput,
-    Spinner,
-    NotificationCard,
-} from '@epam/promo';
+import { ArrayDataSource, cx, IHasCX, INotification } from '@epam/uui-core';
+import { PropDoc, PropSamplesCreationContext, IComponentDocs, PropExample, DemoContext } from '@epam/uui-docs';
+import { FlexCell, FlexRow, FlexSpacer, RadioInput, Switch, Text, Tooltip, TextInput, MultiSwitch, Panel, ScrollBars, PickerInput, Spinner, NotificationCard } from '@epam/promo';
 import { IconButton } from '@epam/uui';
 import { svc } from '../../services';
 import { copyTextToClipboard } from '../../helpers';
@@ -270,7 +251,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                             label={ prop.defaultValue == null ? 'none' : prop.defaultValue + '' }
                             size="18"
                             value={ !this.state.selectedPropsIds[prop.name] }
-                            onValueChange={ () => this.setState({ ...this.state, selectedPropsIds: { ...this.state.selectedPropsIds, [prop.name]: null } }) }
+                            onValueChange={ () => this.setState({ ...this.state, selectedPropsIds: { ...this.state.selectedPropsIds, [prop.name]: undefined } }) }
                         />
                     )}
                 </FlexCell>

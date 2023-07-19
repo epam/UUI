@@ -55,3 +55,11 @@ jobs:
                   name: prNumber.txt
                   path: ./prNumber.txt
                   retention-days: 1 # set minimum retention
+            - name: 'Mark as failed if any package size exceeds threshold'
+              uses: actions/github-script@v6
+              with:
+                  script: |
+                      const mdContent = require('fs').readFileSync('./source-branch/.reports/trackBundleSize.md').toString();
+                      if (mdContent.indexOf('Exceeds Limits: yes') !== -1) {
+                          core.setFailed('Size of some package exceeds threshold')
+                      }

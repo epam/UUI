@@ -1,20 +1,7 @@
-import React, {
-    useCallback, useState, useEffect, useMemo,
-} from 'react';
+import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import dayjs from 'dayjs';
 import cx from 'classnames';
-import {
-    DropdownBodyProps,
-    TableFiltersConfig,
-    IDropdownToggler,
-    IEditable,
-    isMobile,
-    useForceUpdate,
-    FilterPredicateName,
-    getSeparatedValue,
-    DataRowProps,
-    PickerFilterConfig,
-} from '@epam/uui-core';
+import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName, getSeparatedValue, DataRowProps, PickerFilterConfig } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { i18n } from '../../i18n';
 import { FilterPanelItemToggler } from './FilterPanelItemToggler';
