@@ -13,7 +13,6 @@ import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { PlateEditor, PlatePlugin, Value, getPluginType, insertNodes, someNode, usePlateEditorState, withoutNormalizing } from '@udecode/plate-common';
 import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, TablePlugin, createTablePlugin, getTableGridAbove } from '@udecode/plate-table';
 import { MergeToolbarContent } from './MergeToolbarContent';
-import tableCSS from './Table.module.scss';
 import { TableToolbarContent } from './ToolbarContent';
 import { createInitialTable, selectFirstCell, updateTableStructure } from './utils';
 import { TableRowElement } from './TableRowElement';
@@ -26,7 +25,6 @@ const TableRenderer = (props: any) => {
     let { element: tableElem } = props;
     const editor = usePlateEditorState();
     const isReadonly = useReadOnly();
-    const ref = useRef(null);
     const isFocused = useFocused();
     const isSelected = useSelected();
 
@@ -45,9 +43,7 @@ const TableRenderer = (props: any) => {
         <Dropdown
             renderTarget={ (innerProps: any) => (
                 <div ref={ innerProps.ref } >
-                    <div ref={ ref } className={ cx(tableCSS.tableWrapper) }>
-                        <TableElement { ...props } />
-                    </div>
+                    <TableElement { ...props } />
                 </div>
             ) }
             renderBody={ () => (
@@ -102,7 +98,7 @@ export const tablePlugin: CreateTablePlugin = () => createTablePlugin({
     overrideByKey: {
         [ELEMENT_TABLE]: {
             type: 'table',
-            component: TableElement,
+            component: TableRenderer,
         },
         [ELEMENT_TR]: {
             type: 'table_row',

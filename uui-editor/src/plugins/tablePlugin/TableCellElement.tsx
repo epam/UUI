@@ -1,12 +1,10 @@
 import React from 'react';
 import { PlateElement, PlateElementProps, useElement } from '@udecode/plate-common';
-import {
-    TableCellElementResizable,
-    useTableCellElement,
-    useTableCellElementState,
-} from '@udecode/plate-table';
+import { useTableCellElement, useTableCellElementState } from '@udecode/plate-table';
 import cx from 'classnames';
 import css from './TableCell.module.scss';
+import { ExtendedTTableCellElement } from './types';
+import { TableCellElementResizable } from './resize/TableCellResizable';
 
 export interface TableCellElementProps extends PlateElementProps {
     hideBorder?: boolean;
@@ -30,7 +28,7 @@ const TableCellElement = React.forwardRef<
     } = useTableCellElementState();
     const { props: cellProps } = useTableCellElement({ element: props.element });
 
-    const cellElement = useElement();
+    const cellElement: ExtendedTTableCellElement = useElement();
     const isHeader = cellElement.type === 'table_header_cell';
     const Cell = isHeader ? 'th' : 'td';
 

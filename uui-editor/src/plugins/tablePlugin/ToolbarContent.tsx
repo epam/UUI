@@ -9,7 +9,7 @@ import { ReactComponent as InsertRowAfter } from "../../icons/table-add-row-afte
 import { ReactComponent as RemoveRow } from "../../icons/table-delete-row.svg";
 import { ReactComponent as RemoveTable } from "../../icons/table-table_remove-24.svg";
 
-import tableCSS from './Table.module.scss';
+import css from './ToolbarContent.module.scss';
 import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { deleteColumn } from './deleteColumn';
 import { createCell } from "./utils";
@@ -17,7 +17,7 @@ import { usePlateEditorState, insertElements, TElementEntry, removeNodes } from 
 import { getTableEntries, insertTableColumn, insertTableRow, deleteRow, deleteTable } from "@udecode/plate-table";
 
 const StyledRemoveTable = () => {
-    return <RemoveTable className={ tableCSS.removeTableIcon } />
+    return <RemoveTable className={ css.removeTableIcon } />
 }
 
 export const TableToolbarContent = ({ cellEntries }: { cellEntries: TElementEntry[] }) => {
@@ -92,7 +92,7 @@ export const TableToolbarContent = ({ cellEntries }: { cellEntries: TElementEntr
                 key="delete-table"
                 onClick={ () => deleteTable(editor) }
                 icon={ StyledRemoveTable }
-                cx={ tableCSS.removeTableButton }
+                cx={ css.removeTableButton }
             />
             { cellEntries &&
                 cellEntries.length === 1 &&

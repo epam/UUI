@@ -11,11 +11,12 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@braintree/sanitize-url": "4.0.1",
     "@epam/assets": "5.1.0",
     "@epam/uui-components": "5.1.0",
     "@epam/uui-core": "5.1.0",
-    "@styled-icons/material": "^10.46.0",
+    "slate": "0.82.0",
+    "slate-history": "0.66.0",
+    "slate-react": "0.82.2",
     "@udecode/plate-basic-marks": "22.0.2",
     "@udecode/plate-block-quote": "22.0.2",
     "@udecode/plate-break": "22.0.2",
@@ -34,17 +35,12 @@
     "@udecode/plate-table": "22.0.2",
     "@udecode/resizable": "22.0.2",
     "classnames": "2.2.6",
-    "get-video-id": "3.1.3",
-    "htmlclean": "3.0.8",
-    "is-hotkey": "^0.2.0",
+    "react-popper": "2.3.0",
     "lodash.debounce": "4.0.8",
     "lodash.invert": "4.3.0",
-    "react-dnd": "^16.0.1",
-    "react-dnd-html5-backend": "^16.0.1",
-    "react-popper": "2.3.0",
-    "slate": "0.82.0",
-    "slate-history": "0.66.0",
-    "slate-react": "0.82.2"
+    "@braintree/sanitize-url": "4.0.1",
+    "get-video-id": "3.1.3",
+    "is-hotkey": "^0.2.0"
   },
   "devDependencies": {
     "@types/lodash.debounce": "4.0.7",

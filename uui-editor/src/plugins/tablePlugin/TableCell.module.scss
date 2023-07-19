@@ -76,14 +76,14 @@
 
 .resize-handle-right {
     --tw-bg-opacity: 1;
-    position: absolute;
-    right: -2px;
-    top: 0;
-    bottom: 0;
-    width: 0.25rem;
-    z-index: 40;
-    cursor: col-resize;
     background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+    width: 0.25rem;
+    height: 100%;
+    z-index: 30;
+    right: -1.5px;
+    top: 0;
+    position: absolute;
+    cursor: col-resize;
 }
 
 .resize-handle-bottom {

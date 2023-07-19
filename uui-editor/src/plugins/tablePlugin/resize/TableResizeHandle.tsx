@@ -140,7 +140,7 @@ export const useResizeHandle = ({
         // TODO: move to plate
         let size;
         if (isHorizontal) {
-            size = element.offsetWidth ;
+            size = element.offsetWidth;
             const isMergedCell = table && cellElement && cellElement.colSpan > 1;
             if (isMergedCell) {
                 const tableElem = table[0] as TTableElement;
