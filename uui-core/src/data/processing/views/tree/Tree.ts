@@ -138,7 +138,7 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
 
             return isSomeMatching;
         };
-        console.log(sortSearchByRelevance);
+
         applySearchRec(this.getRootItems());
         return Tree.create(
             { ...this.params },
