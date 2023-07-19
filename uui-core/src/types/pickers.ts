@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
-import { DataRowOptions, DataRowProps, IAnalyticableOnChange, IEditable } from '../props';
-import {
-    IDataSource, IDataSourceView, DataSourceState, CascadeSelection,
-} from '../dataSources';
-import { SortingOption } from '../dataQuery';
+import { IAnalyticableOnChange, ICanBeInvalid, IClickable, IDisableable, IEditable, IHasCaption, IHasPlaceholder } from './props';
+import { IDataSource, IDataSourceView, DataSourceState, CascadeSelection } from './dataSources';
+import { DataRowProps, DataRowOptions } from './dataRows';
+import { SortingOption } from './dataQuery';
+import { Placement } from '@popperjs/core';
+import { PopperArrowProps } from 'react-popper';
 
 export type SinglePickerProps<TId, TItem> =
     | ({
@@ -96,3 +97,55 @@ export type PickerFooterProps<TItem, TId> = {
 };
 
 export type PickerBaseProps<TItem, TId> = PickerBaseOptions<TItem, TId> & PickerBindingProps<TItem, TId> & IAnalyticableOnChange<any>;
+
+/**
+ * Component can be used as Toggler control for pickers.
+ * Only IDropdownToggler implementation is necessary for the picker to function.
+ * Other props can be implemented for full-featured picker togglers.
+ */
+export interface IPickerToggler<TItem = any, TId = any>
+    extends IBasicPickerToggler,
+    Partial<IEditable<string>>,
+    Partial<IHasPlaceholder>,
+    Partial<IDisableable>,
+    Partial<ICanBeInvalid> {
+    selection?: DataRowProps<TItem, TId>[];
+    selectedRowsCount?: number;
+}
+
+/**
+ * Component can be used as Toggler control for pickers.
+ * This interface is enough for basic pickers.
+ * Picker togglers with search or advanced selection display should implement IPickerToggler interface
+ */
+export interface IBasicPickerToggler extends IDropdownToggler {
+    onClear?(e?: any): void;
+}
+
+/** Component can be used as Toggler control for dropdown menus */
+export interface IDropdownToggler extends IHasCaption, IClickable {
+    /** When component acts as dropdown, indicate that dropdown is open */
+    isOpen?: boolean;
+    /** Enabled dropdown mode - component can toggle dropdown */
+    isDropdown?: boolean;
+    /** Called when associated dropdown should open or close  */
+    toggleDropdownOpening?: (value: boolean) => void;
+    /** Called when component is interacted outside, to close the dropdown */
+    isInteractedOutside?: (event: Event) => boolean;
+    /** Component's ref */
+    ref?: React.Ref<any>;
+    /** Disables component */
+    isDisabled?: boolean;
+}
+
+export interface IDropdownBodyProps {
+    onClose?: () => void;
+    togglerWidth?: number;
+    togglerHeight?: number;
+    scheduleUpdate?: () => void;
+    isOpen?: boolean;
+    arrowProps?: PopperArrowProps;
+
+    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
+    placement?: Placement;
+}

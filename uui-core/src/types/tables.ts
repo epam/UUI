@@ -1,7 +1,9 @@
 import React, { Attributes, ReactNode } from 'react';
 import {
-    IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps, DataRowProps,
+    IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus,
 } from './props';
+import { IDropdownToggler, IDropdownBodyProps } from './pickers';
+import { DataRowProps } from './dataRows';
 import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
 import { DataSourceState, IDataSource } from './dataSources';
