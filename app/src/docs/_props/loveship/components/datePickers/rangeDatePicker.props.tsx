@@ -3,10 +3,11 @@ import dayjs, { Dayjs } from 'dayjs';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { rangeDatePickerPresets, RangeDatePickerProps, RangeDatePickerValue } from '@epam/uui';
 import { Day, IconContainer } from '@epam/uui-components';
-import { RangeDatePicker, Button } from '@epam/loveship';
+import { RangeDatePicker } from '@epam/loveship';
 import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, FormContext, DefaultContext, ResizableContext } from '../../docs';
 import css from './RangeDatePicker.doc.module.scss';
 import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
+import { Text } from '@epam/loveship';
 
 const getCustomDay = (day: Dayjs) => {
     return (
@@ -23,9 +24,11 @@ const getCustomDay = (day: Dayjs) => {
 };
 
 const getRangeLength = (value: RangeDatePickerValue) => {
+    const isOneOrZero = dayjs(value.from).valueOf() === dayjs(value.to).valueOf() ? 1 : 0;
+
     return dayjs(value.to).isValid() && dayjs(value.from).isValid() && dayjs(value.from).valueOf() < dayjs(value.to).valueOf()
         ? dayjs(value.to).diff(dayjs(value.from), 'day') + 1
-        : 0;
+        : isOneOrZero;
 };
 
 const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDatePicker', component: RangeDatePicker })
@@ -107,14 +110,13 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
                 name: 'footer',
                 value: (value) => (
                     <div className={ css.container }>
-                        <div>
-                            <div className={ css.counter }>
-                                {`Days: ${getRangeLength(value)}`}
-                            </div>
-                        </div>
-                        <div className={ css.buttonGroup }>
-                            <Button cx={ css.buttonContainer } caption="clear" color="night600" fill="none" size="30" onClick={ () => {} } />
-                        </div>
+                        <Text color="night800" size="30">
+                            { (!value?.from || !value?.to) && 'Please select range' }
+                            { value?.from && value?.to && dayjs(value?.from).format('MMMM DD, YYYY') }
+                            { (value?.from && value?.to) && ' - ' }
+                            { value?.from && value?.to && dayjs(value?.to).format('MMMM DD, YYYY') }
+                            { getRangeLength(value) !== 0 && (getRangeLength(value) === 1 ? ` (${getRangeLength(value)} day)` : ` (${getRangeLength(value)} days)`) }
+                        </Text>
                     </div>
                 ),
             },
