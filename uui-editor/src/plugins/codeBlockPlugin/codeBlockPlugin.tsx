@@ -5,7 +5,7 @@ import React from 'react';
 import { isPluginActive } from "../../helpers";
 import { ReactComponent as CodeIcon } from "../../icons/editor-code.svg";
 import { ToolbarButton } from "../../implementation/ToolbarButton";
-import { onClickToolbarButton } from '../../utils/onClickToolbarButton';
+import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
 
 const CODE_BLOCK_KEY = 'uui-richTextEditor-code';
 
@@ -30,7 +30,7 @@ export const CodeButton = ({ editor }: ToolbarButton) => {
     if (!isPluginActive(CODE_BLOCK_KEY)) return null;
     return (
         <ToolbarButton
-            onClick={ onClickToolbarButton(editor, CODE_BLOCK_KEY) }
+            onClick={ handleMarkButtonClick(editor, CODE_BLOCK_KEY) }
             icon={ CodeIcon }
             isActive={ !!editor?.selection && isMarkActive(editor, CODE_BLOCK_KEY) }
         />
