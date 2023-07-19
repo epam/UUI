@@ -1,5 +1,6 @@
 import { SortingOption } from './dataQuery';
-import { DataRowOptions, DataRowProps, ICheckable } from './props';
+import { ICheckable } from './props';
+import { DataRowOptions, DataRowProps } from './dataRows';
 
 export interface VirtualListRange {
     /**
