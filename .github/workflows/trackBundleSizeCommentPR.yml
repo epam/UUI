@@ -12,8 +12,6 @@ permissions:
 jobs:
     track_bundle_size_comment_pr:
         runs-on: ubuntu-latest
-        if: >
-            github.event.workflow_run.event == 'pull_request'
         steps:
             - name: 'Download trackBundleSize.md and prNumber.txt'
               uses: actions/github-script@v6
