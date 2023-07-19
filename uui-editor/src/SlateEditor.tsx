@@ -1,8 +1,6 @@
 import { ScrollBars } from '@epam/uui-components';
 import { IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod } from '@epam/uui-core';
-import React, { useMemo, useRef } from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import React, { Fragment, useMemo, useRef } from 'react';
 
 import { createExitBreakPlugin, createSoftBreakPlugin } from '@udecode/plate-break';
 import {
@@ -79,7 +77,7 @@ const Editor = (props: PlateEditorProps) => {
     }
 
     const renderEditor = () => (
-        <DndProvider backend={ HTML5Backend }>
+        <Fragment>
             <Plate
                 { ...props }
                 id={ props.id }
@@ -107,7 +105,7 @@ const Editor = (props: PlateEditorProps) => {
             />
             <MainToolbar />
             <MarksToolbar />
-        </DndProvider >
+        </Fragment>
     );
 
     return (

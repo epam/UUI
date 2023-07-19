@@ -1,7 +1,7 @@
 import React from 'react';
 import { PlateElement, PlateElementProps } from '@udecode/plate-common';
 import cx from 'classnames';
-import css from './Table.module.scss';
+import css from './TableRow.module.scss';
 
 export interface PlateTableRowElementProps extends PlateElementProps {
     hideBorder?: boolean;
