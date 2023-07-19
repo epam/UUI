@@ -1,8 +1,9 @@
-@import '~@epam/promo/assets/styles/colors.scss';
-
 .container {
-    width: 100%;
-    border-top: 1px solid $gray40;
-    background-color: $white;
     position: relative;
+    height: 47px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid var(--uui-control-border);
+    background-color: var(--white);
 }

@@ -170,6 +170,15 @@ interface IDropdownSubMenu extends IHasChildren, IHasCaption, IHasIcon, IDropdow
 }
 
 export function DropdownSubMenu(props: IDropdownSubMenu) {
+    const subMenuModifiers = [
+        {
+            name: 'offset',
+            options: {
+                offset: [-6, 0],
+            },
+        },
+    ];
+
     return (
         <Dropdown
             openOnHover={ props.openOnHover || true }
@@ -177,6 +186,7 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
             openDelay={ 400 }
             closeDelay={ 400 }
             placement="right-start"
+            modifiers={ subMenuModifiers }
             renderBody={ (dropdownProps) => <DropdownMenuBody closeOnKey={ IDropdownControlKeys.LEFT_ARROW } { ...props } { ...dropdownProps } /> }
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
                 <DropdownMenuButton

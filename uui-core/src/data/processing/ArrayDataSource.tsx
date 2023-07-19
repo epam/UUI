@@ -45,7 +45,14 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     };
 
     setItem(item: TItem): void {
-        // TODO
+        const id = this.getId(item);
+        const prevItem = this.getById(id);
+        if (!prevItem) {
+            const items = Array.isArray(this.props.items) 
+                ? [...this.props.items, item] 
+                : this.props.items.patch([item]);
+            this.setProps({ ...this.props, items });
+        }
     }
 
     getView(
