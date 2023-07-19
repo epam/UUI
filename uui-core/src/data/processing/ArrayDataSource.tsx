@@ -44,8 +44,16 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         return (item as any)['parentId'];
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    setItem(item: TItem): void {}
+    setItem(item: TItem): void {
+        const id = this.getId(item);
+        const prevItem = this.getById(id);
+        if (!prevItem) {
+            const items = Array.isArray(this.props.items) 
+                ? [...this.props.items, item] 
+                : this.props.items.patch([item]);
+            this.setProps({ ...this.props, items });
+        }
+    }
 
     getView(
         value: DataSourceState<TFilter, TId>,
