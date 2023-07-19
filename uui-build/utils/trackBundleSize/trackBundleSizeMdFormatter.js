@@ -1,6 +1,6 @@
 module.exports = { comparisonResultToMd };
 
-function comparisonResultToMd({ comparisonResult, currentBaseLine }) {
+function comparisonResultToMd({ comparisonResult, currentBaseLine, newBaseLine }) {
     const attrs = [
         'baseLineSize', 'size', 'diffLabel', 'withinThreshold', 'thresholdLabel',
     ];
@@ -35,7 +35,9 @@ function comparisonResultToMd({ comparisonResult, currentBaseLine }) {
         'Bundle size diff (in kBytes). Not gzipped. Both CSS & JS included.', `Baseline: v${currentBaseLine.version} (${currentBaseLine.timestamp})`, generatedBy, `Generated at: ${new Date().toUTCString()}`, '\n',
     ].join('<br>');
 
-    return `${descriptionMd}\n${tableMd}`;
+    const newBaseLineMd = formatNewBaseLine(newBaseLine);
+
+    return `${descriptionMd}\n${tableMd}\n${newBaseLineMd}`;
 }
 
 function formatMdTable(obj, attrs, formatHeader = (h) => h, formatValue = (h, v) => v) {
@@ -49,4 +51,18 @@ function formatMdTable(obj, attrs, formatHeader = (h) => h, formatValue = (h, v)
         return acc;
     }, []);
     return `${header}\n${headerSep}\n${rows.join('\n')}`;
+}
+
+function formatNewBaseLine(newBaseLine) {
+    return [
+        '<details>',
+        '<summary>new sizes (raw)</summary>',
+        '',
+        'To set the sizes as a new baseline, you can copy/paste next content to the ```uui-build/config/bundleSizeBaseLine.json``` and commit the file.',
+        '',
+        '```json',
+        newBaseLine,
+        '```',
+        '</details>',
+    ].join('\n');
 }

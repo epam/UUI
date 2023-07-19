@@ -13,20 +13,25 @@ module.exports = {
     overrideBaseLineFileSync,
     getCurrentBaseLineSync,
     saveComparisonResultsMd,
+    createBaseLineJson,
 };
 
-/**
- * Creates new file if it doesn't exist.
- * @param sizes
- */
-function overrideBaseLineFileSync(sizes) {
+function createBaseLineJson(sizes) {
     const timestamp = new Date().toISOString().split('T')[0];
     const newBaseline = {
         version: uuiVersion,
         timestamp,
         sizes,
     };
-    createFileSync(pathToBaselineResolved, JSON.stringify(newBaseline, undefined, 2));
+    return JSON.stringify(newBaseline, undefined, 2);
+}
+
+/**
+ * Creates new file if it doesn't exist.
+ * @param sizes
+ */
+function overrideBaseLineFileSync(newBaseLine) {
+    createFileSync(pathToBaselineResolved, newBaseLine);
     logger.info(`New baseline generated at: "${pathToBaselineResolved}".`);
 }
 
