@@ -24,6 +24,7 @@ const { comparisonResultToMd } = require('./trackBundleSizeMdFormatter.js');
 const { compareBundleSizes } = require('./trackBundleSizeComparator.js');
 const { overrideBaseLineFileSync, getCurrentBaseLineSync, saveComparisonResultsMd } = require('./trackBundleSizeFileUtils.js');
 const { measureAllBundleSizes } = require('./trackBundleSizeMeasureUtils.js');
+const { createBaseLineJson } = require('./trackBundleSizeFileUtils.js');
 
 const epamPrefix = '@epam/';
 const appTargetDirResolved = path.resolve(uuiRoot, TEMPLATE_APP_TARGET_DIR);
@@ -153,15 +154,16 @@ async function compareWithBaseLine(params) {
     const newSizes = await measureAllBundleSizes();
     console.log('New sizes:');
     console.table(newSizes);
+    const newBaseLine = createBaseLineJson(newSizes);
     if (overrideBaseline) {
-        overrideBaseLineFileSync(newSizes);
+        overrideBaseLineFileSync(newBaseLine);
     }
     const currentBaseLine = getCurrentBaseLineSync();
     const baseLineSizes = currentBaseLine.sizes;
     console.log('Baseline sizes:');
     console.table(baseLineSizes);
     const comparisonResult = compareBundleSizes({ baseLineSizes, newSizes });
-    const comparisonResultMd = comparisonResultToMd({ comparisonResult, currentBaseLine });
+    const comparisonResultMd = comparisonResultToMd({ comparisonResult, currentBaseLine, newBaseLine });
     console.log('Comparison results:');
     console.table(comparisonResult);
     saveComparisonResultsMd(comparisonResultMd);
