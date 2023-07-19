@@ -8,7 +8,7 @@ export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListVie
     getSearchFields?(item: TItem): string[];
     sortBy?(item: TItem, sorting: SortingOption): any;
     getFilter?(filter: TFilter): (item: TItem) => boolean;
-    disableSearchSorting?: boolean;
+    sortSearchByRelevance?: boolean;
 }
 
 export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
@@ -23,10 +23,15 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     sortedTree: ITree<TItem, TId>;
     refreshCache: boolean;
     constructor(protected editable: IEditable<DataSourceState<TFilter, TId>>, props: ArrayListViewProps<TItem, TId, TFilter>) {
-        super(editable, props);
-        this.props = props;
-        this.tree = Tree.blank(props);
-        this.update(editable.value, props);
+        const newProps = { ...props, sortSearchByRelevance: props.sortSearchByRelevance ?? true };
+        super(editable, newProps);
+        this.props = newProps;
+        this.tree = Tree.blank(newProps);
+        this.update(editable.value, newProps);
+    }
+
+    private getPropsWithDefaults(props: ArrayListViewProps<TItem, TId, TFilter>) {
+        return { ...props, sortSearchByRelevance: props.sortSearchByRelevance ?? true };
     }
 
     public update(newValue: DataSourceState<TFilter, TId>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
@@ -34,7 +39,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         this.value = newValue;
         const prevItems = this.props.items;
         const newItems = newProps.items || this.props.items;
-        this.props = { ...newProps, items: newItems };
+        this.props = { ...newProps, items: newItems, sortSearchByRelevance: newProps.sortSearchByRelevance ?? true };
 
         const prevTree = this.tree;
         if (this.props.items) {
@@ -87,7 +92,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
     private updateTree(prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) {
         const { filter, search, sorting } = newValue;
-        const { getSearchFields, getFilter, sortBy, disableSearchSorting } = this.props;
+        const { getSearchFields, getFilter, sortBy, sortSearchByRelevance } = this.props;
         let filterTreeIsUpdated = false;
         if (this.filterWasChanged(prevValue, newValue) || !this.filteredTree || this.refreshCache) {
             this.filteredTree = this.originalTree.filter({ filter, getFilter });
@@ -97,7 +102,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
         let searchTreeIsUpdated = false;
         if (this.searchWasChanged(prevValue, newValue) || !this.searchTree || filterTreeIsUpdated) {
-            this.searchTree = this.filteredTree.search({ search, getSearchFields, disableSearchSorting });
+            this.searchTree = this.filteredTree.search({ search, getSearchFields, sortSearchByRelevance });
             searchTreeIsUpdated = true;
         }
 

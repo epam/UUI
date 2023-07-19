@@ -8,12 +8,12 @@ import sortBy from 'lodash.sortby';
 export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
     public filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId> {
         const filter = options.getFilter?.(options.filter);
-        return this.applyMatchToTree(filter);
+        return this.applyFilterToTree(filter);
     }
 
     public search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): ITree<TItem, TId> {
         const search = this.buildSearchFilter(options);
-        return this.applySearchToTree(search, options.disableSearchSorting);
+        return this.applySearchToTree(search, options.sortSearchByRelevance);
     }
 
     public sort<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) {
@@ -81,15 +81,15 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
         };
     }
 
-    private applyMatchToTree(isMatchingFn: undefined | ((item: TItem) => number | boolean)) {
-        if (!isMatchingFn) return this;
+    private applyFilterToTree(isMatchingFilterFn: undefined | ((item: TItem) => number | boolean)) {
+        if (!isMatchingFilterFn) return this;
 
         const matchedItems: TItem[] = [];
-        const applyMatchRec = (items: TItem[]) => {
+        const applyFilterRec = (items: TItem[]) => {
             let isSomeMatching: number | boolean = false;
             items.forEach((item) => {
-                const isItemMatching = isMatchingFn(item);
-                const isSomeChildMatching = applyMatchRec(this.getChildren(item));
+                const isItemMatching = isMatchingFilterFn(item);
+                const isSomeChildMatching = applyFilterRec(this.getChildren(item));
                 const isMatching = isItemMatching || isSomeChildMatching;
                 if (isMatching) {
                     matchedItems.push(item);
@@ -103,20 +103,20 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
             return isSomeMatching;
         };
 
-        applyMatchRec(this.getRootItems());
+        applyFilterRec(this.getRootItems());
         return Tree.create({ ...this.params }, matchedItems);
     }
 
-    private applySearchToTree(isMatchingFn: undefined | ((item: TItem) => number | boolean), disableSearchSorting?: boolean) {
-        if (!isMatchingFn) return this;
+    private applySearchToTree(isMatchingSearchFn: undefined | ((item: TItem) => number | boolean), sortSearchByRelevance?: boolean) {
+        if (!isMatchingSearchFn) return this;
 
         const matchedItems: TItem[] = [];
         const ranks: Map<TId, number> = new Map();
-        const applyMatchRec = (items: TItem[]) => {
+        const applySearchRec = (items: TItem[]) => {
             let isSomeMatching: number | boolean = false;
             items.forEach((item) => {
-                const isItemMatching = isMatchingFn(item);
-                const isSomeChildMatching = applyMatchRec(this.getChildren(item));
+                const isItemMatching = isMatchingSearchFn(item);
+                const isSomeChildMatching = applySearchRec(this.getChildren(item));
                 const isMatching = isItemMatching || isSomeChildMatching;
                 if (isMatching !== false) {
                     matchedItems.push(item);
@@ -139,10 +139,10 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
             return isSomeMatching;
         };
 
-        applyMatchRec(this.getRootItems());
+        applySearchRec(this.getRootItems());
         return Tree.create(
             { ...this.params },
-            disableSearchSorting ? matchedItems : this.sortByRanks(matchedItems, ranks),
+            sortSearchByRelevance ? this.sortByRanks(matchedItems, ranks) : matchedItems,
         );
     }
 

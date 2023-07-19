@@ -211,8 +211,8 @@ describe('ArrayListView', () => {
             expect(rowsIds).toEqual(['GN', 'GW', 'NC']);
         });
 
-        it('should not sort items in order of search relevance if disableSearchSorting = true', () => {
-            const props = { ...countriesViewProps, disableSearchSorting: true };
+        it('should not sort items in order of search relevance if sortSearchByRelevance = false', () => {
+            const props: ArrayListViewProps<Country, string, any> = { ...countriesViewProps, sortSearchByRelevance: false };
             countriesView = countriesDataSource.getView(initialValue, countriesOnValueChange, props) as ArrayListView<Country, string, any>;
 
             countriesView.update({ ...initialValue, search: 'gu', topIndex: 0, visibleCount: 20 }, props);
