@@ -2,9 +2,8 @@ name: track_bundle_size_comment_pr
 
 on:
     workflow_run:
-        workflows: ["track_bundle_size"]
-        types:
-            - completed
+        workflows: [track_bundle_size]
+        types: [completed]
 
 permissions:
     pull-requests: write
