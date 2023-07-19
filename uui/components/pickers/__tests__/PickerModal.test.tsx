@@ -25,7 +25,6 @@ const onValueChangeMock = jest.fn();
 async function setupPickerModalForTest<TItem = TestItemType, TId = number>(params: Partial<PickerModalProps<TItem, TId>>) {
     const { result, mocks, setProps } = await setupComponentForTest<PickerModalProps<TItem, TId>>(
         (): PickerModalProps<TItem, TId> => {
-            console.log('recreate dataSources');
             if (params.selectionMode === 'single') {
                 return Object.assign({
                     dataSource: mockDataSourceAsync,
@@ -48,23 +47,11 @@ async function setupPickerModalForTest<TItem = TestItemType, TId = number>(param
         },
         (props) => {
             const [initialValue, onValueChange] = useState<any>(props.initialValue);
-    
-            // const dataSource = useAsyncDataSource(
-            //     {
-            //         getId: ({ id }) => id, 
-            //         api: async () => {
-            //             await delay(100);
-            //             return languageLevels;
-            //         },
-            //     },
-            //     [],
-            // );
             const context = useContext(UuiContext);
 
             const handleModalOpening = useCallback(() => {
                 context.uuiModals
                     .show((modalProps) => {
-                        console.log('dataSource 1', props.dataSource);
                         return (
                             <PickerModal
                                 { ...modalProps }
@@ -235,8 +222,7 @@ describe('PickerModal', () => {
             });
 
             expect(screen.queryByRole('modal')).not.toBeInTheDocument();
-            // ?? the same about valueType = entity for selectionMode = multi
-            // console.log('---------------------- open modal ----------------------');
+
             fireEvent.click(dom.toggler);
             expect(screen.getByRole('modal')).toBeInTheDocument();
     
