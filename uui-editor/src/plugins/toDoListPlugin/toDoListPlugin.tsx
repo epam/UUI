@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 import { isPluginActive } from '../../helpers';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
@@ -29,7 +27,7 @@ export const toDoListPlugin = () => {
 
                         if (e.key === 'Enter') {
                             const [entries] = getAboveNode(editor);
-                            const textExist = entries.children.some(item => !!item.text);
+                            const textExist = entries.children.some((item) => !!item.text);
                             if (!textExist) {
                                 deleteForward(editor);
                                 insertEmptyElement(editor, PARAGRAPH_TYPE);
@@ -44,16 +42,16 @@ export const toDoListPlugin = () => {
                         }
                     },
                 },
-            }
-        }
+            },
+        },
     });
 };
 
-interface ToolbarButton {
+interface IToolbarButton {
     editor: PlateEditor;
 }
 
-export const ToDoListButton = ({ editor }: ToolbarButton) => {
+export const ToDoListButton = ({ editor }: IToolbarButton) => {
     if (!isPluginActive(TODO_ELEMENT_KEY)) return null;
 
     const block = getBlockAbove(editor);
@@ -73,4 +71,4 @@ export const ToDoListButton = ({ editor }: ToolbarButton) => {
             isActive={ !!editor?.selection && block?.length && block[0].type === TODO_ELEMENT_KEY }
         />
     );
-};
+}

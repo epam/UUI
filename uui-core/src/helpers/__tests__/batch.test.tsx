@@ -92,7 +92,7 @@ describe('batch', () => {
     });
 
     it('Errors are passed thru', async () => {
-        const batchFn = jest.fn(async (arr: number[]) => {
+        const batchFn = jest.fn(async () => {
             await delay(2);
             throw 'My Error';
         });

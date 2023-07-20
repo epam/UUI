@@ -1,8 +1,7 @@
 // import flatten from 'lodash.flatten';
 // import Html from 'slate-html-serializer';
 import { Range, Editor } from 'slate';
-import { getPlugins, usePlateEditorState } from "@udecode/plate-common";
-import { EditorValue } from './types';
+import { getPlugins, usePlateEditorState } from '@udecode/plate';
 //
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {
@@ -59,7 +58,7 @@ export function isImageSelected(editor: any) {
 export function isPluginActive(key: string): boolean {
     const editor = usePlateEditorState();
     const plugins = getPlugins(editor);
-    return plugins.some(plugin => plugin.key === key);
+    return plugins.some((plugin) => plugin.key === key);
 }
 
 export const isElementEmpty = (value: EditorValue) => {

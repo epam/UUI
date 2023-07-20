@@ -9,8 +9,8 @@ export default function ActionSearchInputExample() {
     return (
         <FlexCell cx={ css.container } width="auto">
             <TextInput icon={ CustomIcon } onIconClick={ () => {} } value={ value } onValueChange={ onValueChange } placeholder="onIconClick action" />
-            <TextInput onClick={ (e) => {} } value={ value } onValueChange={ onValueChange } placeholder="onClick action" />
-            <TextInput onFocus={ (e) => {} } value={ value } onValueChange={ onValueChange } placeholder="onFocus action" />
+            <TextInput onClick={ () => {} } value={ value } onValueChange={ onValueChange } placeholder="onClick action" />
+            <TextInput onFocus={ () => {} } value={ value } onValueChange={ onValueChange } placeholder="onFocus action" />
             <TextInput onAccept={ () => {} } value={ value } onValueChange={ onValueChange } placeholder="onAccept action" />
             <TextInput onCancel={ () => {} } value={ value } onValueChange={ onValueChange } placeholder="onCancel action" />
         </FlexCell>

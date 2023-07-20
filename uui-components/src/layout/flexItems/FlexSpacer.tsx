@@ -4,7 +4,7 @@ import { IAdaptiveItem } from '@epam/uui-core';
 
 export interface FlexSpacerProps extends IAdaptiveItem {}
 
-export function FlexSpacer(props: FlexSpacerProps) {
+export function FlexSpacer() {
     return <div className={ css.flexSpacer } />;
 }
 

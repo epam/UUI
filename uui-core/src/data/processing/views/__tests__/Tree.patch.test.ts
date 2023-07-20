@@ -38,8 +38,6 @@ const blankTree = Tree.blank<TestItem, number>({
 });
 
 describe('Tree - patch', () => {
-    const itemsById = (Object as any).fromEntries(testData.map((i) => [i.id, i]));
-
     const testApiFn: LazyDataSourceApi<TestItem, number, DataQueryFilter<TestItem>> = (rq, ctx) => {
         rq.filter = rq.filter || {};
         if (rq.ids) {
@@ -54,14 +52,14 @@ describe('Tree - patch', () => {
     const loadParams: LoadTreeOptions<TestItem, number, DataQueryFilter<TestItem>> = {
         api: testApi,
         getChildCount: (i) => i.childrenCount,
-        isFolded: (i) => true,
+        isFolded: () => true,
     };
 
     const value: DataSourceState = { topIndex: 0, visibleCount: 100 };
     let tree: ITree<TestItem, number>;
 
     beforeEach(async () => {
-        tree = await blankTree.load({ ...loadParams, isFolded: (i) => false }, value);
+        tree = await blankTree.load({ ...loadParams, isFolded: () => false }, value);
     });
 
     it('should delete items from the top level', () => {

@@ -50,7 +50,7 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
     return validateRec(value, [value], meta, initValue);
 };
 
-const validateValue = (value: any, path: any[], meta: Metadata<any>, initValue: any): ICanBeInvalid => {
+const validateValue = (value: any, path: any[], meta: Metadata<any>): ICanBeInvalid => {
     if (meta.validators) {
         const customValidationMessages = meta.validators
             .map((validator) => validator.apply(null, path))

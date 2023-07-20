@@ -195,7 +195,7 @@ DataRowOptions<TItem, TId> & {
     onFocus?(focusedIndex: number): void;
 };
 
-export interface BaseListViewProps<TItem, TId, TFilter> {
+export interface BaseListViewProps<TItem, TId> {
     /**
      * Should return unique ID of the TItem
      * If omitted, we assume that every TItem has and unique id in its 'id' field.
@@ -264,7 +264,7 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
     selectAll?: true | false;
 }
 
-export type IDataSourceView<TItem, TId, TFilter> = {
+export type IDataSourceView<TItem, TId> = {
     getById(id: TId, index: number): DataRowProps<TItem, TId>;
     getListProps(): DataSourceListProps;
     getVisibleRows(): DataRowProps<TItem, TId>[];
@@ -305,7 +305,7 @@ export interface DataSourceListProps extends DataSourceListCounts {
 // Lazy Data Source API
 
 /** The common part of LazyDataSourceApiRequest, which defines how list should be filtered and sorted */
-export interface LazyDataSourceApiRequestOptions<TItem, TFilter> {
+export interface LazyDataSourceApiRequestOptions< TFilter> {
     filter?: TFilter;
     sorting?: SortingOption[];
     search?: string;
@@ -318,7 +318,7 @@ export interface LazyDataSourceApiRequestRange {
 }
 
 /** Defines input arguments for Lazy Data Source APIs */
-export interface LazyDataSourceApiRequest<TItem, TId = any, TFilter = {}> extends LazyDataSourceApiRequestOptions<TItem, TFilter> {
+export interface LazyDataSourceApiRequest<TItem, TId = any> extends LazyDataSourceApiRequestOptions<TItem> {
     range?: LazyDataSourceApiRequestRange;
     page?: number;
     pageSize?: number;
@@ -347,7 +347,7 @@ export interface LazyDataSourceApiRequestContext<TItem, TId> {
 }
 
 /** Defines API to retrieve data for DataSources */
-export type LazyDataSourceApi<TItem, TId, TFilter> = (
-    request: LazyDataSourceApiRequest<TItem, TId, TFilter>,
+export type LazyDataSourceApi<TItem, TId> = (
+    request: LazyDataSourceApiRequest<TItem, TId>,
     context?: LazyDataSourceApiRequestContext<TItem, TId>
 ) => Promise<LazyDataSourceApiResponse<TItem>>;

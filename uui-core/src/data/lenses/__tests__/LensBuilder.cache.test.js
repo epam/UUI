@@ -46,13 +46,10 @@ describe('LensBuilder - lenses are cached', () => {
         const lens = Lens.onEditable({ value: ['test'] });
         const prevCacheSize = LensBuilder.MAX_CACHE_SIZE;
         LensBuilder.MAX_CACHE_SIZE = 2;
-        const lensA = lens.prop('a');
         // 1 cache entry left
         const l1 = lens.prop('name');
         const l2 = lens.prop('name');
         expect(l1).toBe(l2);
-        const lensB = lens.prop('b');
-        const lensC = lens.prop('c');
         // now 'name' lens should be pushed out from cache
         const l3 = lens.prop('name');
         expect(l3).not.toBe(l1);

@@ -33,8 +33,8 @@ describe('LazyListView', () => {
     const ds = new LazyDataSource({ api, getChildCount: (i) => i.childrenCount });
     const viewProps = {
         flattenSearchResults: true,
-        getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
-        isFoldedByDefault: (i) => false,
+        getRowOptions: () => ({ checkbox: { isVisible: true } }),
+        isFoldedByDefault: () => false,
         getParentId: (i) => i.parentId,
         getId: (i) => i.id,
         api,

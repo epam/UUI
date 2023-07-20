@@ -13,7 +13,8 @@ export const Separator: PlatePluginComponent = (props) => {
     return (
         <div
             { ...attributes }
-            className={ cx(css.separator, selected && uuiMod.focus) }>
+            className={ cx(css.separator, selected && uuiMod.focus) }
+        >
             { children }
         </div>
     );

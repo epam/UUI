@@ -12,7 +12,7 @@ export const ELEMENT_OL_CUSTOM = 'ordered-list';
 export const ELEMENT_LI_CUSTOM = 'list-item';
 export const ELEMENT_LI_TEXT_CUSTOM = 'list-item-child';
 
-export const List = (props: any) => {
+export function List(props: any) {
     const { attributes, children, element } = props;
     switch (element.type) {
         case ELEMENT_OL_CUSTOM:
@@ -26,7 +26,7 @@ export const List = (props: any) => {
         default:
             return <div { ...attributes }>{ children }</div>;
     }
-};
+}
 
 export const listPlugin = () => createListPlugin({
     overrideByKey: {
@@ -60,7 +60,7 @@ interface IToolbarButton {
     editor: PlateEditor;
 }
 
-export const ListButton = ({ editor }: IToolbarButton) => {
+export function ListButton({ editor }: IToolbarButton) {
     if (!isPluginActive(ELEMENT_OL) && !isPluginActive(ELEMENT_LI)) return null;
 
     const res = !!editor?.selection && getListItemEntry(editor);
@@ -74,7 +74,7 @@ export const ListButton = ({ editor }: IToolbarButton) => {
 
         toggleList(editor, { type });
         focusEditor(editor);
-    }
+    };
 
     return (
         <Fragment>
@@ -90,5 +90,4 @@ export const ListButton = ({ editor }: IToolbarButton) => {
             />
         </Fragment>
     );
-};
-
+}

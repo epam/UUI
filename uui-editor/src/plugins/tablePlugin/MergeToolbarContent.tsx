@@ -5,7 +5,7 @@ import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { createCell, getColSpan, getRowSpan } from "./utils";
 import { usePlateEditorState, TElementEntry, removeNodes, insertElements } from "@udecode/plate-common";
 
-export const MergeToolbarContent = ({ cellEntries }: { cellEntries: TElementEntry[] }) => {
+export function MergeToolbarContent({ cellEntries }: { cellEntries: TElementEntry[] }) {
     const editor = usePlateEditorState();
 
     const mergeCells = () => {
@@ -61,7 +61,7 @@ export const MergeToolbarContent = ({ cellEntries }: { cellEntries: TElementEntr
             rowSpan,
             colSpan,
             type: hasHeaderCell ? 'table_header_cell' : 'table_cell',
-            textContent
+            textContent,
         });
 
         insertElements(editor, mergedCell, { at: cellEntries[0][1] });

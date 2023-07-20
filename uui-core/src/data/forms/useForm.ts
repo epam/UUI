@@ -23,11 +23,6 @@ export interface FormState<T> {
     isInSaveMode: boolean;
 }
 
-interface ICanBeChanged {
-    isChanged: boolean;
-    changedProps?: ICanBeChanged;
-}
-
 export type UseFormProps<T> = Omit<FormProps<T>, 'renderForm'>;
 
 export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {

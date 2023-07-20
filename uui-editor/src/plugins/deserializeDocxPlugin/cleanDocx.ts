@@ -21,7 +21,7 @@ import {
 export const cleanDocx = (html: string, rtf: string): string => {
     const document = new DOMParser().parseFromString(
         preCleanHtml(html),
-        "text/html"
+        'text/html',
     );
     const { body } = document;
 

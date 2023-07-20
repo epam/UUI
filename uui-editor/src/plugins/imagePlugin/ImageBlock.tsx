@@ -14,15 +14,15 @@ import css from './ImageBlock.module.scss';
 import { ImgToolbar } from './Toolbar';
 import { IImageElement, PlateImgAlign, SlateImgAlign } from './imagePlugin';
 
-interface UpdatingProps { width?: number | string, align?: SlateImgAlign };
+interface UpdatingProps { width?: number | string, align?: SlateImgAlign }
 
 const { FlexRow, Spinner } = uuiSkin;
 
 const IMAGE_STYLES = { paddingTop: 0, paddingBottom: 0 };
 const PLATE_TO_SLATE_IMG_ALIGN = {
-    'left': 'align-left',
-    'right': 'align-right',
-    'center': 'align-center',
+    left: 'align-left',
+    right: 'align-right',
+    center: 'align-center',
 };
 const SLATE_TO_PLATE_IMG_ALIGN = invert(PLATE_TO_SLATE_IMG_ALIGN);
 
@@ -66,13 +66,12 @@ const useUpdatingElement = ({ element, editor }: { element: IImageElement, edito
                 setElements(
                     editor,
                     getUpdatedElement(element, { width: element.width }),
-                    { at: path }
+                    { at: path },
                 );
                 prevNodeWidthRef.current = element.width;
             }
-        }), [element.width]
-    );
-}
+        }), [element.width]);
+};
 
 export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageElement>> = (props) => {
     const { editor, element, children } = props;
@@ -123,7 +122,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageEl
     if (element.type === 'loader') {
         return (
             <>
-                <Spinner  { ...props } cx={ css.spinner } />
+                <Spinner { ...props } cx={ css.spinner } />
                 { children }
             </>
         );
@@ -135,7 +134,8 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageEl
                 <div ref={ innerProps.ref } className={ cx(css.wrapper) }>
                     <div
                         ref={ ref }
-                        className={ cx(css.slateImage) }>
+                        className={ cx(css.slateImage) }
+                    >
                         <ImageElement
                             { ...props }
                             align={ align }
@@ -159,7 +159,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageEl
             } }
             onValueChange={ onChangeDropDownValue }
             value={ showToolbar }
-            placement='top'
+            placement="top"
         />
     );
 };

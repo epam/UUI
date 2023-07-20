@@ -15,7 +15,7 @@ export const ImgToolbar = ({
     align,
     toggleBlockAlignment,
     isFullWidth,
-    setMaxWidth
+    setMaxWidth,
 }: {
     align: PlateImgAlign,
     toggleBlockAlignment: (align: PlateImgAlign) => void,

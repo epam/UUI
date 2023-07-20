@@ -48,7 +48,7 @@ export function ProjectTasksDemo() {
     const columns = useMemo(() => getColumns(), []);
 
     // Insert new/exiting top/bottom or above/below relative to other task
-    const insertTask = (position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
+    const insertTask = (_: DropPosition, __: Task | null, existingTask: Task | null = null) => {
         const task: Task = existingTask ? { ...existingTask } : {
             id: lastId--, title: '', description: '', estimate: 0, complete: 0, status: { id: 0, name: 'To do' },
         };

@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from "react";
+import React, { Fragment, useMemo } from 'react';
 
 import { ReactComponent as UnmergeCellsIcon } from "../../icons/table-un-merge.svg";
 import { ReactComponent as InsertColumnBefore } from "../../icons/table-add-column-left.svg";
@@ -20,7 +20,7 @@ const StyledRemoveTable = () => {
     return <RemoveTable className={ css.removeTableIcon } />
 }
 
-export const TableToolbarContent = ({ cellEntries }: { cellEntries: TElementEntry[] }) => {
+export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntry[] }) {
     const editor = usePlateEditorState();
 
     const { cell, row } = getTableEntries(editor) || {};
@@ -72,14 +72,14 @@ export const TableToolbarContent = ({ cellEntries }: { cellEntries: TElementEntr
                 onClick={ () => insertTableRow(editor, {
                     header: cell[0].type === 'table_header_cell',
                     at: rowPath,
-                    disableSelect: true
+                    disableSelect: true,
                 }) }
                 icon={ InsertRowBefore }
             />
             <ToolbarButton
                 key="insert-row-after"
                 onClick={ () => insertTableRow(editor, {
-                    header: cell[0].type === 'table_header_cell'
+                    header: cell[0].type === 'table_header_cell',
                 }) }
                 icon={ InsertRowAfter }
             />
@@ -94,16 +94,16 @@ export const TableToolbarContent = ({ cellEntries }: { cellEntries: TElementEntr
                 icon={ StyledRemoveTable }
                 cx={ css.removeTableButton }
             />
-            { cellEntries &&
-                cellEntries.length === 1 &&
-                ((cellEntries[0][0]?.data as any)?.colSpan > 1 ||
-                    (cellEntries[0][0]?.data as any)?.rowSpan > 1) && (
-                    <ToolbarButton
+            { cellEntries
+                && cellEntries.length === 1
+                && ((cellEntries[0][0]?.data as any)?.colSpan > 1
+                    || (cellEntries[0][0]?.data as any)?.rowSpan > 1) && (
+                <ToolbarButton
                         key="unmerge-cells"
                         onClick={ unmergeCells }
                         icon={ UnmergeCellsIcon }
                     />
-                ) }
+            ) }
         </Fragment>
     );
-};
+}

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { withMods } from '@epam/uui-core';
 import css from './Burger.module.scss';
 import { Burger as uuiBurger, BurgerProps } from '@epam/uui-components';

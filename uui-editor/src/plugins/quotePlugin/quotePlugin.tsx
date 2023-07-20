@@ -32,11 +32,11 @@ export const quotePlugin = () => createBlockquotePlugin({
     }
 });
 
-interface ToolbarButton {
+interface IToolbarButton {
     editor: PlateEditor;
 }
 
-export const QuoteButton = ({ editor }: ToolbarButton) => {
+export const QuoteButton = ({ editor }: IToolbarButton) => {
     if (!isPluginActive(QUOTE_PLUGIN_KEY)) return null;
 
     const onQuoteButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, type: string) => {
@@ -54,4 +54,4 @@ export const QuoteButton = ({ editor }: ToolbarButton) => {
             isActive={ !!editor?.selection && isMarkActive(editor, QUOTE_PLUGIN_KEY) }
         />
     );
-};
+}

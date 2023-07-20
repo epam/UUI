@@ -1,19 +1,17 @@
 import * as React from 'react';
 
-import { DropdownBodyProps, uuiSkin } from "@epam/uui-core";
+import { DropdownBodyProps, uuiSkin } from '@epam/uui-core';
 import { PlateEditor, setElements } from '@udecode/plate-common';
 
-import { ReactComponent as NoteIconLink } from "../icons/info-block-link.svg";
-import { ReactComponent as NoteIconQuote } from "../icons/info-block-quote.svg";
-import { ReactComponent as NoteIconError } from "../icons/info-block-warning.svg";
-import { ReactComponent as NoteIconWarning } from "../icons/info-block.svg";
-import { ReactComponent as ClearIcon } from "../icons/text-color-default.svg";
+import { ReactComponent as NoteIconLink } from '../icons/info-block-link.svg';
+import { ReactComponent as NoteIconQuote } from '../icons/info-block-quote.svg';
+import { ReactComponent as NoteIconError } from '../icons/info-block-warning.svg';
+import { ReactComponent as NoteIconWarning } from '../icons/info-block.svg';
+import { ReactComponent as ClearIcon } from '../icons/text-color-default.svg';
 
 import { ToolbarButton } from './ToolbarButton';
 
 const { FlexRow } = uuiSkin;
-
-const noop = () => {};
 
 interface NoteBarProps extends DropdownBodyProps {
     editor: PlateEditor;
@@ -23,11 +21,11 @@ interface NoteBarProps extends DropdownBodyProps {
 export function NoteBar({ editor, type }: NoteBarProps) {
     const prevElementType = React.useRef(type);
 
-    const toggleBlock = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, type: string) => {
+    const toggleBlock = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, toggleType: string) => {
         // fixes a bug with toolbar removal
         e.preventDefault();
 
-        let newType = type;
+        let newType = toggleType;
         if (type === prevElementType.current) {
             newType = 'paragraph';
         }
@@ -45,31 +43,31 @@ export function NoteBar({ editor, type }: NoteBarProps) {
             <ToolbarButton
                 onClick={ clearBlock }
                 icon={ ClearIcon }
-                iconColor='gray60'
+                iconColor="gray60"
             />
             <ToolbarButton
                 isActive={ type === 'note-quote' }
                 onClick={ (e) => toggleBlock(e, 'note-quote') }
                 icon={ NoteIconQuote }
-                iconColor='gray60'
+                iconColor="gray60"
             />
             <ToolbarButton
                 isActive={ type === 'note-error' }
                 onClick={ (e) => toggleBlock(e, 'note-error') }
                 icon={ NoteIconError }
-                iconColor='red'
+                iconColor="red"
             />
             <ToolbarButton
                 isActive={ type === 'note-warning' }
                 onClick={ (e) => toggleBlock(e, 'note-warning') }
                 icon={ NoteIconWarning }
-                iconColor='amber'
+                iconColor="amber"
             />
             <ToolbarButton
                 isActive={ type === 'note-link' }
                 onClick={ (e) => toggleBlock(e, 'note-link') }
                 icon={ NoteIconLink }
-                iconColor='blue'
+                iconColor="blue"
             />
         </FlexRow>
     );

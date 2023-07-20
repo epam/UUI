@@ -71,7 +71,7 @@ export function getColumns(dbRef: DemoDbRef) {
         }, {
             key: 'spacer',
             caption: 'Name',
-            render: (p) => null,
+            render: () => null,
             width: 0,
             grow: 1,
         },

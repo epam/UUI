@@ -1,9 +1,9 @@
-import { isBlock, usePlateEditorState } from "@udecode/plate-common";
+import { isBlock, usePlateEditorState } from '@udecode/plate-common';
 
-import cx from "classnames";
-import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
+import cx from 'classnames';
+import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
 
-import css from "./Sidebar.module.scss";
+import css from './Sidebar.module.scss';
 
 interface SidebarProps {
     isReadonly: boolean;

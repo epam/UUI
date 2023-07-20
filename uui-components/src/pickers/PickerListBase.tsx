@@ -1,4 +1,3 @@
-import React from 'react';
 import { PickerBase, PickerBaseState } from './PickerBase';
 import {
     UuiContexts, DataRowProps, UuiContext, PickerBaseProps,
