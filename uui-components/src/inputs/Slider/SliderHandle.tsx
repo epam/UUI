@@ -81,7 +81,7 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
     handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
         if (e.key === 'ArrowLeft') {
             this.props.onKeyDownUpdate('left');
-        } else if (e.key == 'ArrowRight') {
+        } else if (e.key === 'ArrowRight') {
             this.props.onKeyDownUpdate('right');
         }
     };

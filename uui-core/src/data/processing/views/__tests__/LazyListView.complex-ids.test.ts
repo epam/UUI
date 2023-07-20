@@ -38,7 +38,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
                 return runDataQuery(testData, { filter: { type: 'parent' } });
             }
         },
-        getChildCount: (i) => (i.type == 'parent' ? i.childrenCount : 0),
+        getChildCount: (i) => (i.type === 'parent' ? i.childrenCount : 0),
         getId: (i) => [i.type, i.id],
         getParentId: (i) => (i.parentId ? ['parent', i.parentId] : null),
         cascadeSelection: true,

@@ -113,7 +113,7 @@ describe('LazyListView with tree table', () => {
     ];
 
     testData.forEach((i) => {
-        i.childrenCount = testData.filter((x) => x.parentId == i.id).length;
+        i.childrenCount = testData.filter((x) => x.parentId === i.id).length;
     });
 
     const testDataById = (Object as any).fromEntries(testData.map((i) => [i.id, i]));

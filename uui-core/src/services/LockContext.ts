@@ -70,7 +70,7 @@ export class LockContext extends BaseContext {
     }
 
     public release(lock: Lock) {
-        if (lock && this.currentLock == lock) {
+        if (lock && this.currentLock === lock) {
             this.clearLock();
         } else {
             throw new Error("Attempting to release a lock, which wasn't acquired");

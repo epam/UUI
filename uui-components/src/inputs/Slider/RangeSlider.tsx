@@ -22,7 +22,7 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
     };
 
     normalize(value: number) {
-        if (!value && value != 0) {
+        if (!value && value !== 0) {
             return this.props.min;
         }
 

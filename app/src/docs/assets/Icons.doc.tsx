@@ -302,7 +302,7 @@ export class IconsDoc extends React.Component {
         return (
             <div
                 key={ item.id }
-                className={ cx(css.item, this.state.currentIcon && this.state.currentIcon.id == item.id && css.activeItem) }
+                className={ cx(css.item, this.state.currentIcon && this.state.currentIcon.id === item.id && css.activeItem) }
                 onClick={ () =>
                     this.setState({
                         currentIcon: item,

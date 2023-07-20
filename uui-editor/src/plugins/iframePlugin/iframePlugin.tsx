@@ -50,7 +50,7 @@ export const iframePlugin = () => {
             onKeyDown: (editor) => (event) => {
                 if (!getBlockAboveByType(editor, ['iframe'])) return;
 
-                if (event.key == 'Enter') {
+                if (event.key === 'Enter') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
 

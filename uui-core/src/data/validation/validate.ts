@@ -66,7 +66,7 @@ const validateValue = (value: any, path: any[], meta: Metadata<any>): ICanBeInva
     }
 
     if (meta.isRequired) {
-        if (value == null || (typeof value === 'string' && value.trim() === '') || (Array.isArray(value) && value.length == 0)) {
+        if (value == null || (typeof value === 'string' && value.trim() === '') || (Array.isArray(value) && value.length === 0)) {
             return {
                 isInvalid: true,
                 validationMessage: i18n.lenses.validation.isRequiredMessage,

@@ -15,7 +15,7 @@ describe('LazyListView', () => {
     ];
 
     testData.forEach((i) => {
-        i.childrenCount = testData.filter((x) => x.parentId == i.id).length;
+        i.childrenCount = testData.filter((x) => x.parentId === i.id).length;
     });
 
     let value: DataSourceState = { visibleCount: 5 };
