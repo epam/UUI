@@ -66,19 +66,6 @@ export const getHighlightRanges = (str: string, search: string) => {
     return addNotHighlightedRanges(mergedRanges, str);
 };
 
-export const getHighlightedSearchMatches = (str: string, search?: string) => {
-    if (!search || !str) {
-        return str;
-    }
-
-    const ranges = getHighlightRanges(str, search);
-    if (!ranges.length) {
-        return str;
-    }
-
-    return getDecoratedText(str, ranges);
-};
-
 const getDecoratedText = (str: string, ranges: HighlightRange[]) => 
     ranges.map((range, index) => {
         const rangeStr = str.substring(range.from, range.to);
@@ -91,3 +78,16 @@ const getDecoratedText = (str: string, ranges: HighlightRange[]) =>
             </span>
         );
     });
+
+export const getHighlightedSearchMatches = (str: string, search?: string) => {
+    if (!search || !str) {
+        return str;
+    }
+    
+    const ranges = getHighlightRanges(str, search);
+    if (!ranges.length) {
+        return str;
+    }
+    
+    return getDecoratedText(str, ranges);
+};
