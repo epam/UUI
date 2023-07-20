@@ -23,7 +23,7 @@ export interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId>, S
     highlightSearchMatches?: boolean;
 }
 export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TItem, TId>> {
-    static defaultProps = {
+    public static defaultProps = {
         highlightSearchMatches: true,   
     };
 
