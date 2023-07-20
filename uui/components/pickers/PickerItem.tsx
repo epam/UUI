@@ -6,7 +6,7 @@ import { Text, TextPlaceholder } from '../typography';
 import { Avatar } from '../widgets';
 import { SizeMod } from '../types';
 import css from './PickerItem.module.scss';
-import { getHighlightRanges, type HighlightRange } from './highlight';
+import { getHighlightedSearchMatches } from './highlight';
 
 const defaultSize = '36';
 
@@ -23,38 +23,6 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
         return isMultiline ? size : +size - 6;
     };
 
-    highlightSearchMatches = (str: string) => {
-        const { search } = this.props.dataSourceState ?? {};
-        if (!search || !str) {
-            return str;
-        }
-
-        const ranges = getHighlightRanges(search, str);
-        if (!ranges.length) {
-            return str;
-        }
-
-        return this.getDecoratedText(str, ranges);
-    };
-
-    getDecoratedText = (str: string, ranges: HighlightRange[]) => {
-        return ranges.map((range, index) => {
-            const rangeStr = str.substring(range.from, range.to);
-            if (range.isHighlighted) {
-                return this.getHighlightedText(rangeStr, index);
-            }
-            return this.getRegularText(rangeStr, index);
-        });
-    };
-
-    getHighlightedText = (str: string, index: number) => {
-        return <span key={ `${str}-${index}` } className={ css.highlightedText }>{str}</span>;
-    };
-
-    getRegularText = (str: string, index: number) => {
-        return <span key={ `${str}-${index}` }>{str}</span>;
-    };
-
     render() {
         const {
             size, avatarUrl, isLoading, isDisabled, icon, highlightSearchMatches = true,
@@ -62,8 +30,10 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
         const itemSize = size && size !== 'none' ? size : defaultSize;
         const isMultiline = !!(this.props.title && this.props.subtitle);
 
-        const title = highlightSearchMatches ? this.highlightSearchMatches(this.props.title) : this.props.title;
-        const subtitle = highlightSearchMatches ? this.highlightSearchMatches(this.props.subtitle) : this.props.subtitle;
+        const { search } = this.props.dataSourceState ?? {};
+        const title = highlightSearchMatches ? getHighlightedSearchMatches(this.props.title, search) : this.props.title;
+        const subtitle = highlightSearchMatches ? getHighlightedSearchMatches(this.props.subtitle, search) : this.props.subtitle;
+
         return (
             <FlexCell width="auto" cx={ css.root }>
                 <FlexRow size={ itemSize } cx={ isMultiline && css[`multiline-vertical-padding-${itemSize}`] } spacing="12">

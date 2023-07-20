@@ -1,3 +1,6 @@
+import React from 'react';
+import css from './highlight.module.scss';
+
 export interface HighlightRange {
     from: number;
     to: number;
@@ -44,7 +47,7 @@ const addNotHighlightedRanges = (ranges: HighlightRange[], str: string) => {
     return allRanges;
 };
 
-export const getHighlightRanges = (search: string, str: string) => {
+export const getHighlightRanges = (str: string, search: string) => {
     const words = search
         .split(' ')
         .filter(Boolean)
@@ -62,3 +65,29 @@ export const getHighlightRanges = (search: string, str: string) => {
     const mergedRanges = mergeHighlightRanges(ranges);
     return addNotHighlightedRanges(mergedRanges, str);
 };
+
+export const getHighlightedSearchMatches = (str: string, search?: string) => {
+    if (!search || !str) {
+        return str;
+    }
+
+    const ranges = getHighlightRanges(str, search);
+    if (!ranges.length) {
+        return str;
+    }
+
+    return getDecoratedText(str, ranges);
+};
+
+const getDecoratedText = (str: string, ranges: HighlightRange[]) => 
+    ranges.map((range, index) => {
+        const rangeStr = str.substring(range.from, range.to);
+        return (
+            <span
+                key={ `${rangeStr}-${index}` }
+                { ...(range.isHighlighted ? { className: css.highlightedText } : {}) }
+            >
+                {str}
+            </span>
+        );
+    });
