@@ -72,7 +72,6 @@ IHasIcon & {
 
     /** 
      * Enables highlighting of the items' text with search-matching results. 
-     * @default true
      * */
     highlightSearchMatches?: boolean;
 };
@@ -98,10 +97,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             options: { offset: [0, 6] },
         }, mobilePopperModifier,
     ];
-
-    static defaultProps = {
-        highlightSearchMatches: true,
-    };
 
     abstract toggleModalOpening(opened: boolean): void;
     abstract renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>): React.ReactNode;
