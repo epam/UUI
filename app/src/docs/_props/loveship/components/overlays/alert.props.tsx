@@ -48,6 +48,27 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
             },
         ],
     })
+    .prop('size', {
+        examples: [
+            {
+                value: [
+                    {
+                        name: 'default',
+                    },
+                ],
+                name: 'Default',
+            }, {
+                value: [
+                    {
+                        name: 'compact',
+                    },
+                ],
+                name: 'Compact',
+            },
+        ],
+        isRequired: true,
+
+    })
     .prop('onClose', {
         examples: [
             {

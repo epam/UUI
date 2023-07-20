@@ -17,6 +17,9 @@ type notificationAction = {
     name: string;
     action: () => void;
 };
+type alertSize = {
+    name: string;
+};
 
 export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /** List of actions to display in the alert. Each action has name and 'action' callback */
@@ -27,10 +30,12 @@ export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.HTM
     onClose?(): void;
     /** An optional icon to show on the left of the alert */
     icon?: Icon;
+    /** this is size component of alert */
+    size?: alertSize[];
 }
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
-    <div role="alert" ref={ ref } className={ cx(css.alertWrapper, `alert-${props.color || 'default'}`, css.root, props.cx) } { ...props.rawProps }>
+    <div role="alert" ref={ ref } className={ cx(`alert-${props.color || 'default'}`, css.root, props.cx, (props.size[0].name === 'default' ? css.alertWrapper : css.alertWrapperCompact)) } { ...props.rawProps }>
         <div className={ css.mainPath }>
             {props.icon && (
                 <div className={ css.iconWrapper }>
