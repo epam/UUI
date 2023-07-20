@@ -99,6 +99,10 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         }, mobilePopperModifier,
     ];
 
+    static defaultProps = {
+        highlightSearchMatches: true,
+    };
+
     abstract toggleModalOpening(opened: boolean): void;
     abstract renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>): React.ReactNode;
     abstract renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]): React.ReactNode;
