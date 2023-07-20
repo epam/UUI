@@ -7,6 +7,7 @@ describe('getSearchFilter', () => {
         expect(searchFilter(['John', 'Smith'])).toEqual(8);
         expect(searchFilter(['Johny', 'Smith'])).toEqual(7);
         expect(searchFilter(['Johny', 'Smitherman'])).toEqual(6);
+        expect(searchFilter(['John Smith'])).toEqual(6);
         expect(searchFilter(['Rejohn', 'Smitherman'])).toEqual(4);
         expect(searchFilter(['Rejohn', 'Blacksmith'])).toEqual(2);
         expect(searchFilter(['Smithy', 'Blacksmith John'])).toEqual(5);
