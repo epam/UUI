@@ -69,7 +69,11 @@ IHasIcon & {
     inputCx?: CX;
     /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */
     bodyCx?: CX;
-    
+
+    /** 
+     * Enables highlighting of the items' text with search-matching results. 
+     * @default true
+     * */
     highlightSearchMatches?: boolean;
 };
 
