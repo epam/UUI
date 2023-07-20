@@ -1,17 +1,15 @@
 import * as React from 'react';
-import css from './FilterPanelItemToggler.module.scss';
 import cx from 'classnames';
-import {
-    IDropdownToggler, IHasCX, uuiElement, uuiMarkers, uuiMod,
-} from '@epam/uui-core';
+import { IDropdownToggler, IHasCX, uuiElement, uuiMarkers, uuiMod } from '@epam/uui-core';
 import { systemIcons } from '../../icons/icons';
 import { IconContainer, FlexRow } from '@epam/uui-components';
 import { Text } from '../typography';
+import css from './FilterPanelItemToggler.module.scss';
 
 const defaultSize = '36';
 
 export interface FilterToolbarItemTogglerProps extends IDropdownToggler {
-    selection: string | null | JSX.Element;
+    selection: string[] | null | JSX.Element[];
     postfix?: string | null | JSX.Element;
     title?: string;
     maxWidth?: string;
@@ -29,6 +27,32 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
 
     const getTitle = props.predicateName ? `${props.title} ${props.predicateName}` : `${props.title}${props.selection ? ':' : ''}`;
 
+    const isArrayOfStrings = (value: any): value is string[] => Array.isArray(value) && value.every((item) => typeof item === 'string');
+
+    const getSelectionText = () => {
+        if (props.selection && isArrayOfStrings(props.selection)) {
+            return props.selection?.length === 0
+                ? <Text color="brand" size={ props.size } cx={ css.selection }>{props.selection[0]}</Text>
+                : props.selection.map((i, index) => {
+                    const isLastSelection = index === props.selection.length - 1;
+                    const commaWithSpace = <span className={ cx(!isLastSelection && css.comma) }>,</span>;
+
+                    return (
+                        <>
+                            <Text color="brand" size={ props.size }>{i}</Text>
+                            { (props.postfix || !isLastSelection) && commaWithSpace }
+                        </>
+                    );
+                });
+        } else {
+            return (
+                <Text color="brand" size={ props.size } cx={ css.selection }>
+                    {props.selection}
+                </Text>
+            );
+        }
+    };
+
     return (
         <FlexRow
             { ...props }
@@ -45,9 +69,7 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
                 {
                     props.selection && (
                         <div className={ css.textWrapper }>
-                            <Text color="brand" size={ props.size } cx={ css.selection }>
-                                {props.selection}
-                            </Text>
+                            { getSelectionText() }
                             {props.postfix && (
                                 <Text color="brand" size={ props.size } cx={ css.postfix }>
                                     {props.postfix}

@@ -82,6 +82,7 @@ export default function FiltersPanelExample() {
                 columnKey: 'jobTitle',
                 title: 'Title',
                 type: 'multiPicker',
+                maxCount: 2,
                 dataSource: new LazyDataSource({ api: api.demo.jobTitles }),
             }, {
                 field: 'salary',
