@@ -8,6 +8,10 @@ export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListVie
     getSearchFields?(item: TItem): string[];
     sortBy?(item: TItem, sorting: SortingOption): any;
     getFilter?(filter: TFilter): (item: TItem) => boolean;
+    /**
+     * Enables sorting of search results by relevance.
+     * @default true
+     */
     sortSearchByRelevance?: boolean;
 }
 
@@ -28,10 +32,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         this.props = newProps;
         this.tree = Tree.blank(newProps);
         this.update(editable.value, newProps);
-    }
-
-    private getPropsWithDefaults(props: ArrayListViewProps<TItem, TId, TFilter>) {
-        return { ...props, sortSearchByRelevance: props.sortSearchByRelevance ?? true };
     }
 
     public update(newValue: DataSourceState<TFilter, TId>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
