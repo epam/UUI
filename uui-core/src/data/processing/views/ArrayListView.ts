@@ -8,6 +8,22 @@ export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListVie
     getSearchFields?(item: TItem): string[];
     sortBy?(item: TItem, sorting: SortingOption): any;
     getFilter?(filter: TFilter): (item: TItem) => boolean;
+    /**
+     * Enables sorting of search results by relevance.
+     * - The highest priority has records, which have a full match with a search keyword.
+     * - The lower one has records, which have a search keyword at the 0 position, but not the full match.
+     * - Then, records, which contain a search keyword as a separate word, but not at the beginning.
+     * - And the lowest one - any other match of the search keyword.
+     *
+     * Example:
+     * - `search`: 'some'
+     * - `record string`: 'some word', `rank` = 4
+     * - `record string`: 'someone', `rank` = 3
+     * - `record string`: 'I know some guy', `rank` = 2
+     * - `record string`: 'awesome', `rank` = 1
+     *
+     * @default true
+     */
     sortSearchByRelevance?: boolean;
 }
 
@@ -28,10 +44,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         this.props = newProps;
         this.tree = Tree.blank(newProps);
         this.update(editable.value, newProps);
-    }
-
-    private getPropsWithDefaults(props: ArrayListViewProps<TItem, TId, TFilter>) {
-        return { ...props, sortSearchByRelevance: props.sortSearchByRelevance ?? true };
     }
 
     public update(newValue: DataSourceState<TFilter, TId>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
