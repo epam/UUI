@@ -1,0 +1,94 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "The "
+      },
+      {
+        "text": "useTableState",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " hook is designed to manage state operations for tables or similar data structures such as lists, data grids, etc. "
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This hook provides the following functionality:"
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Handle changing of filtration, sorting, list range, filters and columns configs, selected preset and view state."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Storing state in the URL and syncing it with React state, or storing it in local state."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Normalizing state by clearing empty and invalid values."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Managing CRUD operations for presets."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "note-warning",
+    "children": [
+      {
+        "text": "Please note that despite the hook's name suggesting its usage with tables, it is not limited to tables and can be used with any data representation that requires its functionality."
+      },
+      {
+        "color": "rgb(55, 65, 81)",
+        "text": " All the table-specific parameters are optional and can be omitted."
+      }
+    ]
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This example shows general case of using "
+      },
+      {
+        "text": "useTableState",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " hook for table with filtration on columns and saving it to the presets. "
+      }
+    ]
+  }
+]
