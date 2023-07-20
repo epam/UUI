@@ -15,11 +15,11 @@ const mergeHighlightRanges = (ranges: HighlightRange[]) => {
         }
 
         const lastRange = mergedRanges[mergedRanges.length - 1];
-        if (range.from >= lastRange.from && range.from <= lastRange.to + 1 && range.to > lastRange.to) {
+        if (range.from >= lastRange.from && range.from <= lastRange.to && range.to > lastRange.to) {
             lastRange.to = range.to;
         }
 
-        if (lastRange.to < range.from - 1) {
+        if (lastRange.to < range.from) {
             mergedRanges.push({ ...range, isHighlighted: true });
         }
     });
@@ -34,7 +34,7 @@ const addNotHighlightedRanges = (ranges: HighlightRange[], str: string) => {
             allRanges.push({ from: 0, to: range.from, isHighlighted: false });
         }
         const prevRange = ranges[index - 1];
-        if (prevRange && prevRange.to + 1 < range.from) {
+        if (prevRange && prevRange.to < range.from) {
             allRanges.push({ from: prevRange.to, to: range.from, isHighlighted: false });
         }
 
@@ -51,6 +51,7 @@ export const getHighlightRanges = (str: string, search: string) => {
     const words = search
         .split(' ')
         .filter(Boolean)
+        .map((word) => word.trim().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')) // esape regex characters inside the string
         .map((word) => new RegExp(word, 'ig'));
     const matches = words.flatMap((word) => [...str.matchAll(word)]);
 
@@ -74,7 +75,7 @@ const getDecoratedText = (str: string, ranges: HighlightRange[]) =>
                 key={ `${rangeStr}-${index}` }
                 { ...(range.isHighlighted ? { className: css.highlightedText } : {}) }
             >
-                {str}
+                {rangeStr}
             </span>
         );
     });
