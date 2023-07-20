@@ -58,7 +58,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 title={ this.getName(item) }
                 size={ this.getRowSize() }
                 dataSourceState={ this.state.dataSourceState }
-                highlightSearchMatches={ this.props.highlightSearchMatches ?? true }
+                highlightSearchMatches={ this.props.highlightSearchMatches }
                 { ...rowProps }
             />
         );

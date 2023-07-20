@@ -16,16 +16,24 @@ export interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId>, S
     title?: string;
     subtitle?: string;
     dataSourceState?: DataSourceState;
+    /** 
+     * Enables highlighting of the items' text with search-matching results. 
+     * @default true
+     * */
     highlightSearchMatches?: boolean;
 }
 export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TItem, TId>> {
+    static defaultProps = {
+        highlightSearchMatches: true,   
+    };
+
     getAvatarSize = (size: string, isMultiline: boolean): string | number => {
         return isMultiline ? size : +size - 6;
     };
 
     render() {
         const {
-            size, avatarUrl, isLoading, isDisabled, icon, highlightSearchMatches = true,
+            size, avatarUrl, isLoading, isDisabled, icon, highlightSearchMatches,
         } = this.props;
         const itemSize = size && size !== 'none' ? size : defaultSize;
         const isMultiline = !!(this.props.title && this.props.subtitle);
