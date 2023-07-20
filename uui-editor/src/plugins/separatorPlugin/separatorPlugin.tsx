@@ -52,7 +52,7 @@ interface ToolbarButton {
     editor: PlateEditor;
 }
 
-export const SeparatorButton = ({ editor }: ToolbarButton) => {
+export function SeparatorButton({ editor }: ToolbarButton) {
     if (!isPluginActive(SEPARATOR_TYPE)) return null;
 
     const onSeparatorButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, type: string) => {
@@ -71,4 +71,4 @@ export const SeparatorButton = ({ editor }: ToolbarButton) => {
             isActive={ !!editor?.selection && isMarkActive(editor, SEPARATOR_TYPE) }
         />
     );
-};
+}

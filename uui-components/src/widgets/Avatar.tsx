@@ -48,4 +48,4 @@ function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageEl
     );
 }
 
-export const Avatar = React.forwardRef(AvatarComponent) as <AvatarComponent>(props: AvatarProps, ref: React.ForwardedRef<HTMLImageElement>) => JSX.Element;
+export const Avatar = React.forwardRef(AvatarComponent);

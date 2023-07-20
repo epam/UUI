@@ -9,7 +9,7 @@ import {
     UploadFileOptions,
     UploadType,
     createFileUploader,
-} from "./file_uploader";
+} from './file_uploader';
 
 interface UploadFilePluginOptions {
     uploadFiles: (

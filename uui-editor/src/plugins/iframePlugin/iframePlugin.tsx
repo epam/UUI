@@ -36,7 +36,7 @@ export const iframePlugin = () => {
         }),
         handlers: {
             // move selection to the end of iframe for further new line render on Enter click
-            onLoad: (editor) => (event) => {
+            onLoad: (editor) => () => {
                 if (!getBlockAboveByType(editor, ['iframe'])) return;
 
                 const videoEntry = getBlockAbove(editor, {
@@ -44,7 +44,7 @@ export const iframePlugin = () => {
                 });
                 if (!videoEntry) return;
 
-                const endPoint = getEndPoint(editor, videoEntry[1])
+                const endPoint = getEndPoint(editor, videoEntry[1]);
                 selectEditor(editor, { at: endPoint.path, focus: true });
             },
             onKeyDown: (editor) => (event) => {
@@ -74,7 +74,7 @@ interface IIframeButton {
     editor: PlateEditor;
 }
 
-export const IframeButton = ({ editor }: IIframeButton) => {
+export function IframeButton({ editor }: IIframeButton) {
     if (!isPluginActive(IFRAME_PLUGIN_KEY)) return null;
 
     const onFilesAdded = useFilesUploader(editor);
@@ -89,7 +89,7 @@ export const IframeButton = ({ editor }: IIframeButton) => {
                 />
             ) }
             onFilesAdded={ onFilesAdded }
-            accept='.pdf'
+            accept=".pdf"
         />
     );
-};
+}

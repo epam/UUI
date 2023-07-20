@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     ISkin, skinComponent, SkinContextComponentProps, ButtonCoreProps,
 } from '@epam/uui-core';

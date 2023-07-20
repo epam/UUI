@@ -324,7 +324,7 @@ const defaultSectionItems: SectionItem[] = [
     },
 ];
 
-const getDefaultOrderConfig = <TItem, TId>(items: any[], initialOrder: string = 'a'): [any[], string] => {
+const getDefaultOrderConfig = (items: any[], initialOrder: string = 'a'): [any[], string] => {
     const config: any[] = [];
     let prevOrder = initialOrder;
 

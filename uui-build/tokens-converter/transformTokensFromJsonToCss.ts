@@ -1,5 +1,5 @@
 import {
-    readdir, writeFile, realpath, readFile,
+    readdir, writeFile, readFile,
 } from 'fs/promises';
 import { EOL } from 'os';
 import { ParsedPath, resolve, parse } from 'path';

@@ -51,7 +51,7 @@ describe('Tree - load', () => {
     const loadParams: LoadTreeOptions<TestItem, number, DataQueryFilter<TestItem>> = {
         api: testApi,
         getChildCount: (i) => i.childrenCount,
-        isFolded: (i) => true,
+        isFolded: () => true,
     };
 
     const value: DataSourceState = { topIndex: 0, visibleCount: 100 };
@@ -94,7 +94,7 @@ describe('Tree - load', () => {
     });
 
     it('Can load items (unfolded)', async () => {
-        const tree = await blankTree.load({ ...loadParams, isFolded: (i) => false }, value);
+        const tree = await blankTree.load({ ...loadParams, isFolded: () => false }, value);
         expectTreeToLookLike(
             tree,
             testDataById,

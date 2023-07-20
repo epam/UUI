@@ -15,8 +15,7 @@ interface IToolbarButton {
     editor: PlateEditor;
 }
 
-export const ColorButton = ({ editor }: IToolbarButton) => {
-
+export function ColorButton({ editor }: IToolbarButton) {
     if (!isPluginActive(MARK_COLOR)) return null;
 
     const type = getPluginType(editor, MARK_COLOR);
@@ -42,13 +41,15 @@ export const ColorButton = ({ editor }: IToolbarButton) => {
                     { ...props }
                 />
             ) }
-            renderBody={ () => <ColorBar
-                updateColor={ updateColor }
-                clearColor={ clearColor }
-                value={ markValue }
-            /> }
-            placement='top-start'
+            renderBody={ () => (
+                <ColorBar
+                    updateColor={ updateColor }
+                    clearColor={ clearColor }
+                    value={ markValue }
+                />
+            ) }
+            placement="top-start"
             modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
         />
     );
-};
+}

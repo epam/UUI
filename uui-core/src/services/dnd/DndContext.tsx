@@ -71,7 +71,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
         }
     };
 
-    private windowPointerUpHandler = (e: PointerEvent) => {
+    private windowPointerUpHandler = () => {
         this.isDragging && this.endDrag();
     };
 

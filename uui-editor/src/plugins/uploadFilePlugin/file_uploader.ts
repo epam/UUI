@@ -20,25 +20,25 @@ const UPLOAD_BLOCKS = {
     attachment: (file: FileUploadResponse) => ({
         type: ATTACHMENT_PLUGIN_TYPE,
         data: { ...file, fileName: file.name },
-        children: [{ text: "" }],
+        children: [{ text: '' }],
     }),
     image: (file: FileUploadResponse) => ({
         type: IMAGE_PLUGIN_TYPE,
         data: file,
         url: file.path,
-        children: [{ text: "" }],
+        children: [{ text: '' }],
     }),
     iframe: (file: FileUploadResponse) => ({
         type: IFRAME_PLUGIN_TYPE,
         data: file,
         src: file.path,
-        children: [{ text: "" }],
+        children: [{ text: '' }],
     }),
 };
 
 const upload = async (
     files: File[],
-    invokeUpload: UploadFile
+    invokeUpload: UploadFile,
 ): Promise<FileUploadResponse[]> => {
     const filesData: Array<FileUploadResponse> = [];
 
@@ -61,30 +61,29 @@ const isValidFileType = (fileType: string) => {
 
 const buildFragments = (
     files: FileUploadResponse[],
-    overriddenAction?: UploadType
+    overriddenAction?: UploadType,
 ) => {
     return files.map((file: FileUploadResponse) => {
         const fileType = file.type;
         const uploadType = (
-            isValidFileType(fileType) ? fileType : "attachment"
+            isValidFileType(fileType) ? fileType : 'attachment'
         ) as UploadType;
 
         return UPLOAD_BLOCKS[overriddenAction || uploadType](file);
     });
 };
 
-export const createFileUploader =
-    (options: UploadFileOptions) =>
+export const createFileUploader = (options: UploadFileOptions) =>
     async (
         editor: PlateEditor,
         files: File[],
-        overriddenAction?: UploadType
+        overriddenAction?: UploadType,
     ) => {
         const uploadFile = options?.uploadFile;
         if (!uploadFile) return;
 
         // show loader
-        insertEmptyElement(editor, "loader");
+        insertEmptyElement(editor, 'loader');
         const currentSelection = { ...editor.selection };
         const prevSelection = { ...editor.prevSelection };
 
@@ -97,7 +96,7 @@ export const createFileUploader =
         // remove loader
         editor.selection = currentSelection;
         editor.prevSelection = prevSelection;
-        deleteBackward(editor, { unit: "block" });
+        deleteBackward(editor, { unit: 'block' });
 
         // insert blocks
         editor.insertFragment(fileFragments);
@@ -109,8 +108,8 @@ export const useFilesUploader = (editor: PlateEditor) => {
             getPlugin(editor, KEY_INSERT_DATA).options.uploadFiles(
                 editor,
                 files,
-                overriddenAction
+                overriddenAction,
             ),
-        [editor]
+        [editor],
     );
 };

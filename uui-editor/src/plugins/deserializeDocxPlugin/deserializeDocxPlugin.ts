@@ -10,7 +10,7 @@ export const createDeserializeDocxPlugin = () =>
                     editor: {
                         insertData: {
                             transformData: (data, { dataTransfer }) => {
-                                const rtf = dataTransfer.getData("text/rtf");
+                                const rtf = dataTransfer.getData('text/rtf');
                                 return cleanDocx(data, rtf);
                             },
                         },

@@ -15,8 +15,8 @@ export function ToDoItem(props: any): any {
     const checked = element.data?.checked || false;
 
     return (
-        <FlexRow rawProps={ attributes }  >
-            <div className={ css.checkboxContainer } style={ { userSelect: 'none' } } >
+        <FlexRow rawProps={ attributes }>
+            <div className={ css.checkboxContainer } style={ { userSelect: 'none' } }>
                 <Checkbox
                     isReadonly={ isReadonly }
                     isDisabled={ false }
@@ -30,7 +30,7 @@ export function ToDoItem(props: any): any {
                         setNodes<TTodoListItemElement>(
                             editor,
                             { data: { checked: value } },
-                            { at: path }
+                            { at: path },
                         );
                     } }
                 />

@@ -1,4 +1,3 @@
-import React, { useMemo } from 'react';
 import { NextRouterAdapter } from '../services';
 import type { IUseUuiServicesProps } from '../hooks';
 import { useUuiServices } from '../hooks';

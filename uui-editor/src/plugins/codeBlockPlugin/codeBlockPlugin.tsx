@@ -14,7 +14,7 @@ const Code: PlatePluginComponent = (props) => {
     return (
         <span { ...attributes }><code>{ children }</code></span>
     );
-};
+}
 
 export const codeBlockPlugin = () => createCodePlugin({
     key: CODE_BLOCK_KEY,
@@ -35,4 +35,4 @@ export const CodeButton = ({ editor }: ToolbarButton) => {
             isActive={ !!editor?.selection && isMarkActive(editor, CODE_BLOCK_KEY) }
         />
     );
-};
+}

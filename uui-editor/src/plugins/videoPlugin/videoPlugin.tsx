@@ -22,9 +22,9 @@ interface IVideoButton {
     editor: PlateEditor;
 }
 
-export const VideoButton = ({
+export function VideoButton({
     editor,
-}: IVideoButton) => {
+}: IVideoButton) {
     const context = useUuiContext();
 
     if (!isPluginActive('video')) return null;
@@ -37,7 +37,7 @@ export const VideoButton = ({
                 if (!editor) return;
                 event.preventDefault();
 
-                context.uuiModals.show<string>(modalProps => (
+                context.uuiModals.show<string>((modalProps) => (
                     <AddVideoModal
                         editor={ editor }
                         { ...modalProps }
@@ -49,4 +49,4 @@ export const VideoButton = ({
             isActive={ block?.length && block[0].type === 'iframe' }
         />
     );
-};
+}

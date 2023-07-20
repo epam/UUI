@@ -12,11 +12,11 @@ export const superscriptPlugin = () => createSuperscriptPlugin({
     type: SUPERSCRIPT_TYPE,
 });
 
-interface ToolbarButton {
+interface IToolbarButton {
     editor: PlateEditor;
 }
 
-export const SuperscriptButton = ({ editor }: ToolbarButton) => {
+export function SuperscriptButton({ editor }: IToolbarButton) {
     if (!isPluginActive(MARK_SUPERSCRIPT)) return null;
     return (
         <ToolbarButton
@@ -25,4 +25,4 @@ export const SuperscriptButton = ({ editor }: ToolbarButton) => {
             isActive={ !!editor?.selection && isMarkActive(editor, SUPERSCRIPT_TYPE) }
         />
     );
-};
+}

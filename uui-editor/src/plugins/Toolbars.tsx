@@ -8,7 +8,7 @@ import { ListButton } from './listPlugin/listPlugin';
 import { ToDoListButton } from './toDoListPlugin/toDoListPlugin';
 
 import { ColorButton } from './colorPlugin/colorPlugin';
-import { LinkButton } from "./linkPlugin/linkPlugin";
+import { LinkButton } from './linkPlugin/linkPlugin';
 
 import { StickyToolbar } from "../implementation/StickyToolbar";
 import { HeaderButton } from "./headerPlugin/headerPlugin";
@@ -37,7 +37,7 @@ export const MarksToolbar = () => {
             <CodeButton editor={ editorRef } />
         </PositionedToolbar>
     );
-};
+}
 
 export const MainToolbar = () => {
     const editor = usePlateEditorState(useEventPlateId());
@@ -67,4 +67,4 @@ export const MainToolbar = () => {
             <PlaceholderButton editor={ editor } />
         </StickyToolbar>
     );
-};
+}

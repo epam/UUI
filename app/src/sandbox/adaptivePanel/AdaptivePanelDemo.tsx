@@ -28,21 +28,6 @@ const items: AdaptiveItemProps<{ data?: { name: string } }>[] = [
 ];
 
 export function AdaptivePanelDemo() {
-    const addNewHandler = () => {
-        // setChangeState(prev => !prev);
-    };
-
-    const addNewButtonEl = (
-        <Button
-            rawProps={ { style: { flexShrink: '0', minWidth: 'initial' } } }
-            key={ Math.random() }
-            data-priority={ 100 }
-            caption="+ Add New"
-            color="blue"
-            onClick={ addNewHandler }
-        />
-    );
-
     return (
         <FlexCell grow={ 1 }>
             <FlexRow vPadding="24" padding="6">

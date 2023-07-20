@@ -50,15 +50,15 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
     };
 
     handleMinutesUpClick = () => {
-        var minutesStep: number = this.props.minutesStep || 5;
-        var value: Dayjs = dayjs().set(this.props.value);
+        const minutesStep: number = this.props.minutesStep || 5;
+        const value: Dayjs = dayjs().set(this.props.value);
         const minutesToAdd: number = minutesStep - (value.minute() % minutesStep);
         this.onMinutesChange(value.add(minutesToAdd, 'm').minute());
     };
 
     handleMinutesDownClick = () => {
-        var minutesStep: number = this.props.minutesStep || 5;
-        var value: Dayjs = dayjs().set(this.props.value);
+        const minutesStep: number = this.props.minutesStep || 5;
+        const value: Dayjs = dayjs().set(this.props.value);
         const minutesToSubtract: number = value.minute() % minutesStep == 0 ? minutesStep : value.minute() % minutesStep;
         this.onMinutesChange(value.subtract(minutesToSubtract, 'm').minute());
     };

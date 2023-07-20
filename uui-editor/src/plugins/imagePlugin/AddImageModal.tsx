@@ -32,22 +32,22 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
 
     return (
         <ModalBlocker { ...props }>
-            <ModalWindow >
+            <ModalWindow>
                 <ModalHeader title="Add image" onClose={ abort } />
                 <FlexRow cx={ css.inputWrapper }>
-                    <LabeledInput label='Image url' >
+                    <LabeledInput label="Image url">
                         <TextInput value={ imageURL } onValueChange={ (newVal) => setImageURL(newVal) } autoFocus />
                     </LabeledInput>
                 </FlexRow>
-                <ModalFooter borderTop >
+                <ModalFooter borderTop>
                     <UploadFileToggler
-                        render={ (props) => <Button { ...props } caption='Select file' /> }
+                        render={ (props) => <Button { ...props } caption="Select file" /> }
                         onFilesAdded={ (acceptedFiles: File[]) => {
                             const urlName = acceptedFiles.map(({ name }) => name).join('; ');
                             setImageURL(urlName);
                             setFiles(acceptedFiles);
                         } }
-                        accept='image/*'
+                        accept="image/*"
                     />
                     <FlexSpacer />
                     <Button type='cancel' caption='Cancel' onClick={ abort } />
@@ -64,5 +64,4 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
             </ModalWindow>
         </ModalBlocker>
     );
-
 }

@@ -37,8 +37,8 @@ export const getColSpan = (cellElem: ExtendedTTableCellElement) => {
 
 export const updateTableStructure = (tableElem: TTableElement) => {
     const structure: number[][][] = [];
-    let shifts: number[][] = [];
-    let hShifts: number[][] = [];
+    const shifts: number[][] = [];
+    const hShifts: number[][] = [];
 
     tableElem.children.forEach((cur, rowIndex) => {
         const rowElem = cur as TTableRowElement;
@@ -53,7 +53,7 @@ export const updateTableStructure = (tableElem: TTableElement) => {
             // shifts caused by [rowSpan]
             // decide which index to assign depending on col shifts
             if (!!shifts.length) {
-                shifts.forEach((sh, i) => {
+                shifts.forEach((sh) => {
                     if (!sh.length) return;
 
                     // - is it valid shift for this column
@@ -158,8 +158,8 @@ export const updateTableStructure = (tableElem: TTableElement) => {
 export const createCell = ({
     colSpan = 1,
     rowSpan = 1,
-    type = "table_cell",
-    textContent = "",
+    type = 'table_cell',
+    textContent = '',
 }: {
     type: string;
     colSpan?: number;
@@ -172,7 +172,7 @@ export const createCell = ({
         children: [
             {
                 data: {},
-                type: "paragraph",
+                type: 'paragraph',
                 children: [{ text: textContent }],
             },
         ],
