@@ -24,6 +24,7 @@ IEditable<any> & {
 };
 
 function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
+    const { maxCount = 2 } = props;
     const isPickersType = props?.type === 'multiPicker' || props?.type === 'singlePicker';
     const isMobileScreen = isMobile();
 
@@ -176,19 +177,18 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         switch (props.type) {
             case 'multiPicker': {
                 const view = props.dataSource.getView({}, forceUpdate);
-                const postfix = currentValue?.length > 2 ? ` +${(currentValue.length - 2).toString()} ${i18n.filterToolbar.pickerInput.itemsPlaceholder}` : null;
                 let isLoading = false;
 
                 const selection = currentValue
-                    ? currentValue?.slice(0, 2).map((i: any) => {
+                    ? currentValue?.slice(0, maxCount).map((i: any) => {
                         const item = view.getById(i, null);
                         isLoading = item.isLoading;
                         return getPickerItemName(item, props);
                     })
                     : [currentValue];
 
-                const selectionText = isLoading ? selection : selection.join(', ');
-                return { selection: selectionText, postfix };
+                const postfix = (!isLoading && currentValue?.length > maxCount) ? ` +${(currentValue.length - maxCount).toString()} ${i18n.filterToolbar.pickerInput.itemsPlaceholder}` : null;
+                return { selection, postfix };
             }
             case 'numeric': {
                 const isRangePredicate = predicate === 'inRange' || predicate === 'notInRange';
