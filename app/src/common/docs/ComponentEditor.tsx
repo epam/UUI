@@ -302,7 +302,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
         if (!this.state.selectedContext) {
             SelectedDemoContext = defaultContext.context;
         } else {
-            SelectedDemoContext = this.state.docs.contexts.filter((ctx) => ctx.name == this.state.selectedContext)[0].context;
+            SelectedDemoContext = this.state.docs.contexts.filter((ctx) => ctx.name === this.state.selectedContext)[0].context;
         }
 
         return <SelectedDemoContext DemoComponent={ DemoComponent } props={ props } />;
@@ -316,7 +316,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
             const val = selectedProps[name];
 
             if (val) {
-                if (name == 'children') {
+                if (name === 'children') {
                     children = '{/* ' + (val.displayName || 'children') + ' */}';
                 } else if (val === true) {
                     props.push(name);

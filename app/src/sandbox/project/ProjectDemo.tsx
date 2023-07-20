@@ -59,7 +59,7 @@ export function ProjectDemo() {
             Object.values(value.items)
                 .filter((i) => i.parentId === task.parentId)
                 .map((i) => i.order),
-            position == 'bottom' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
+            position === 'bottom' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
             relativeTask?.order,
         );
 

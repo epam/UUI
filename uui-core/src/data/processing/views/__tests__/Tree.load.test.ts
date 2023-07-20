@@ -24,7 +24,7 @@ const testData: TestItem[] = [
 const testDataById: Record<number, TestItem> = {};
 
 testData.forEach((i) => {
-    i.childrenCount = testData.filter((x) => x.parentId == i.id).length;
+    i.childrenCount = testData.filter((x) => x.parentId === i.id).length;
     testDataById[i.id] = i;
 });
 

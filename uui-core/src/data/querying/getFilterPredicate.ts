@@ -151,9 +151,9 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
         }
     }
 
-    if (predicates.length == 1) {
+    if (predicates.length === 1) {
         return predicates[0];
-    } else if (predicates.length == 0) {
+    } else if (predicates.length === 0) {
         return truePredicate;
     } else {
         return (item: T) => {

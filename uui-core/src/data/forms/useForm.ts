@@ -144,7 +144,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
             // Determine if change is significant and we need to create new checkpoint.
             // If false - we'll just update the latest checkpoint.
             // We need to always create a checkpoint at the first change, to save initial form state.
-            const needCheckpoint = historyIndex == 0 || shouldCreateUndoCheckpoint(formHistory[historyIndex - 1], formHistory[historyIndex], newForm);
+            const needCheckpoint = historyIndex === 0 || shouldCreateUndoCheckpoint(formHistory[historyIndex - 1], formHistory[historyIndex], newForm);
 
             if (options.addCheckpoint && needCheckpoint) {
                 historyIndex++;

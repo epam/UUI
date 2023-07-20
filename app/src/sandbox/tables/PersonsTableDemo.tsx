@@ -63,7 +63,7 @@ export function PersonsTableDemo() {
 
     const lens = Lens.onEditable<DataSourceState>({ value, onValueChange });
 
-    const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = async (request, ctx) => {
+    const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId> = async (request, ctx) => {
         const { ids, filter: requestFilter, ...rq } = request;
 
         if (ids != null) {
@@ -77,8 +77,8 @@ export function PersonsTableDemo() {
             const response: LazyDataSourceApiResponse<PersonTableRecord> = { items: [] };
 
             const promises = typesToLoad.map(async (type) => {
-                const idsRequest: LazyDataSourceApiRequest<any, any, any> = { ids: idsByType[type] };
-                const apiRequest = type === 'Person' ? svc.api.demo.persons : type == 'PersonGroup' ? svc.api.demo.personGroups : type == 'Location' ? svc.api.demo.locations : null;
+                const idsRequest: LazyDataSourceApiRequest<any, any> = { ids: idsByType[type] };
+                const apiRequest = type === 'Person' ? svc.api.demo.persons : type === 'PersonGroup' ? svc.api.demo.personGroups : type === 'Location' ? svc.api.demo.locations : null;
 
                 const apiResponse = await apiRequest(idsRequest);
                 response.items = [...response.items, ...apiResponse.items];
@@ -96,7 +96,7 @@ export function PersonsTableDemo() {
             setSummary({ totalCount, totalSalary });
         };
 
-        const getPersons = async (personRequest: LazyDataSourceApiRequest<Person, number, DataQueryFilter<Person>>) => {
+        const getPersons = async (personRequest: LazyDataSourceApiRequest<Person, number>) => {
             if (groupBy && !ctx.parent) {
                 const personGroupsResponse = await svc.api.demo.personGroups({
                     ...personRequest,
@@ -116,7 +116,7 @@ export function PersonsTableDemo() {
 
         if (request.search) {
             return getPersons({ ...rq, filter });
-        } else if (groupBy == 'location') {
+        } else if (groupBy === 'location') {
             if (!ctx.parent) {
                 return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true } } });
             } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
@@ -148,16 +148,16 @@ export function PersonsTableDemo() {
             complexIds: true,
             getParentId: (i) => {
                 const groupBy = value.filter?.groupBy;
-                if (i.__typename == 'PersonGroup') {
+                if (i.__typename === 'PersonGroup') {
                     return null;
-                } else if (i.__typename == 'Location') {
+                } else if (i.__typename === 'Location') {
                     return i.parentId ? ['Location', i.parentId] : undefined;
-                } else if (i.__typename == 'Person') {
-                    if (groupBy == 'location') {
+                } else if (i.__typename === 'Person') {
+                    if (groupBy === 'location') {
                         return ['Location', i.locationId];
-                    } else if (groupBy == 'jobTitle') {
+                    } else if (groupBy === 'jobTitle') {
                         return ['PersonGroup', i.jobTitleId];
-                    } else if (groupBy == 'department') {
+                    } else if (groupBy === 'department') {
                         return ['PersonGroup', i.departmentId];
                     } else {
                         return undefined;
@@ -166,8 +166,8 @@ export function PersonsTableDemo() {
 
                 throw new Error('PersonTableDemo: unknown typename/groupBy combination');
             },
-            getChildCount: (item) => (item.__typename === 'PersonGroup' ? item.count : item.__typename === 'Location' ? (item.type == 'city' ? 1 : 10) : null),
-            fetchStrategy: value.filter?.groupBy == 'location' ? 'sequential' : 'parallel',
+            getChildCount: (item) => (item.__typename === 'PersonGroup' ? item.count : item.__typename === 'Location' ? (item.type === 'city' ? 1 : 10) : null),
+            fetchStrategy: value.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
             rowOptions: { checkbox: { isVisible: true } },
             isFoldedByDefault: () => value.isFolded,
             cascadeSelection: true,

@@ -212,7 +212,7 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
                     return;
                 }
                 e.persist();
-                if (e.button == 0) {
+                if (e.button === 0) {
                     this.setState(() => ({
                         ...initialState,
                         isMouseDown: true,
