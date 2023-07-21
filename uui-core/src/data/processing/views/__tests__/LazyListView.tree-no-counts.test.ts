@@ -27,7 +27,7 @@ describe('LazyListView', () => {
     ];
 
     testData.forEach((i) => {
-        i.childrenCount = testData.filter((x) => x.parentId == i.id).length;
+        i.childrenCount = testData.filter((x) => x.parentId === i.id).length;
     });
 
     const testDataById = (Object as any).fromEntries(testData.map((i) => [i.id, i]));
@@ -46,7 +46,7 @@ describe('LazyListView', () => {
 
     const treeDataSource = new LazyDataSource({
         api: (rq, ctx) =>
-            ctx.parent ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } }) : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
+            ctx?.parent ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } }) : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
         getChildCount: (i) => i.childrenCount,
     });
 
@@ -115,7 +115,7 @@ describe('LazyListView', () => {
         const rows = view.getVisibleRows();
 
         // unfold first row
-        rows[0].onFold(rows[0]);
+        rows[0].onFold?.(rows[0]);
         view = ds.getView(value, onValueChanged, {});
         expectViewToLookLike(view, [
             { id: 100 }, { isLoading: true }, { isLoading: true }, { id: 200 }, { id: 300 },

@@ -1,7 +1,7 @@
-import { useCallback, useContext, useEffect, useRef } from 'react';
+import { useCallback, useContext } from 'react';
 import isEqual from 'lodash.isequal';
 import {
-    DataSourceListProps, DataSourceState, IDataSourceView, PickerBaseProps, PickerFooterProps, UuiContext,
+    DataSourceListProps, DataSourceState, PickerBaseProps, PickerFooterProps, UuiContext,
 } from '@epam/uui-core';
 import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
 import { PickerState } from './types';
@@ -27,25 +27,17 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         cascadeSelection,
     } = props;
 
-    const propsRef = useRef(props);
-    propsRef.current = props;
-
-    const pickerStateRef = useRef(pickerState);
-    pickerStateRef.current = pickerState;
-
-    const handleDataSourceValueChangeRef = useRef((newDataSourceState: DataSourceState) => {
-        if (pickerStateRef.current.showSelected && !newDataSourceState.checked?.length) {
-            pickerStateRef.current.setShowSelected(false);
+    const handleDataSourceValueChange = (newDataSourceState: DataSourceState) => {
+        if (showSelected && !newDataSourceState.checked?.length) {
+            setShowSelected(false);
         }
 
         setDataSourceState(newDataSourceState);
-        const newValue = dataSourceStateToValue(propsRef.current, newDataSourceState, propsRef.current.dataSource);
-        if (!isEqual(propsRef.current.value, newValue)) {
+        const newValue = dataSourceStateToValue(props, newDataSourceState, dataSource);
+        if (!isEqual(value, newValue)) {
             handleSelectionValueChange(newValue);
         }
-    });
-
-    const handleDataSourceValueChange = handleDataSourceValueChangeRef.current;
+    };
 
     const handleSelectionValueChange = useCallback((newValue: any) => {
         onValueChange(newValue);
@@ -120,26 +112,23 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         }
     };
 
-    const getView = (): IDataSourceView<TItem, TId, any> =>
-        dataSource.getView(getDataSourceState(), handleDataSourceValueChange, {
-            rowOptions: getRowOptions(),
-            getSearchFields: getSearchFields || ((item: TItem) => [getName(item)]),
-            isFoldedByDefault,
-            ...(sortBy ? { sortBy } : {}),
-            ...(cascadeSelection ? { cascadeSelection } : {}),
-            ...(props.getRowOptions ? { getRowOptions: props.getRowOptions } : {}),
-        });
+    const view = dataSource.useView(getDataSourceState(), handleDataSourceValueChange, {
+        rowOptions: getRowOptions(),
+        getSearchFields: getSearchFields || ((item: TItem) => [getName(item)]),
+        isFoldedByDefault,
+        ...(sortBy ? { sortBy } : {}),
+        ...(cascadeSelection ? { cascadeSelection } : {}),
+        ...(props.getRowOptions ? { getRowOptions: props.getRowOptions } : {}),
+    });
 
     const getSelectedRows = (visibleCount?: number) => {
         if (hasSelection()) {
-            const view = getView();
             return view.getSelectedRows({ visibleCount });
         }
         return [];
     };
 
     const getListProps = (): DataSourceListProps => {
-        const view = getView();
         const listProps = view.getListProps();
         if (showSelected) {
             const checked = getDataSourceState().checked;
@@ -156,7 +145,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
     };
 
     const getFooterProps = (): PickerFooterProps<TItem, TId> => ({
-        view: getView(),
+        view,
         showSelected: {
             value: showSelected,
             onValueChange: setShowSelected,
@@ -164,12 +153,6 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         clearSelection,
         selectionMode,
     });
-
-    useEffect(() => {
-        return () => {
-            dataSource.unsubscribeView(handleDataSourceValueChange);
-        };
-    }, []);
 
     return {
         context,
@@ -184,7 +167,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         clearSelection,
         hasSelection,
         getSelectedRows,
-        getView,
+        view,
         getListProps,
         getFooterProps,
         handleDataSourceValueChange,

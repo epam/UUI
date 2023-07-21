@@ -119,15 +119,6 @@ describe('Tree', () => {
                 110, 120, 130,
             ]);
         });
-
-        it('can move node to a new parent', () => {
-            const newTree = testTree.patch([{ id: 110, parentId: 100 }]);
-            // TBD
-            // expect(newTree.getNodeById(130)).toEqual(
-            //     { id: 130, key: '130', parentId: 100, index: 2, item: { id: 130, parentId: 100 }}
-            // );
-            // expect(newTree.getNodesByParentId(100).map(n => n.id)).toEqual([110, 120, 130]);
-        });
     });
 
     describe('forEach', () => {
@@ -136,7 +127,10 @@ describe('Tree', () => {
             tree.forEach((item, id, parentId) => {
                 visited.push({ item, id, parentId });
             }, options);
-            const reference = resultIds.map((id) => tree.getById(id)).map((item) => ({ id: item?.id, item, parentId: item?.parentId }));
+            const reference = resultIds.map((id) => tree.getById(id)).map((item) => {
+                const record = item as TestItem;
+                return { id: record?.id, item, parentId: record?.parentId };
+            });
             expect(visited).toEqual(reference);
         };
 
@@ -169,7 +163,7 @@ describe('Tree', () => {
         });
 
         it('can iterate top-down whole tree', () => {
-            testForeach(testTree, null, [
+            testForeach(testTree, undefined, [
                 100, 110, 120, 121, 122, 200, 300, 310, 320, 330,
             ]);
         });
@@ -184,7 +178,7 @@ describe('Tree', () => {
     describe('computeSubtotals', () => {
         it('can calculate child counts', () => {
             const subtotals = testTree.computeSubtotals(
-                (_) => 1,
+                () => 1,
                 (a, b) => a + b,
             );
             expect(subtotals.get(100)).toBe(5);

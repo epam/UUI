@@ -1,8 +1,8 @@
-import { Link, LayoutLayer } from './objects';
+import { Link, LayoutLayer, AnalyticsEvent } from './objects';
 import * as PropTypes from 'prop-types';
 import { IModal, INotification } from './props';
 import {
-    FileUploadOptions, FileUploadResponse, SkinContext, ModalOperation, NotificationOperation, IHistory4, Lock,
+    FileUploadOptions, FileUploadResponse, SkinContext, ModalOperation, IHistory4, Lock,
 } from '../services';
 
 export interface IBaseContext<TState = {}> {
@@ -13,6 +13,12 @@ export interface IBaseContext<TState = {}> {
 export interface NotificationParams {
     duration?: number | 'forever';
     position?: 'bot-left' | 'bot-right' | 'top-left' | 'top-right' | 'top-center' | 'bot-center';
+}
+
+export interface NotificationOperation {
+    component: React.ComponentType<any>;
+    props: INotification;
+    config: NotificationParams;
 }
 
 export interface INotificationContext extends IBaseContext {
@@ -166,11 +172,6 @@ export interface CommonContexts<TApi, TAppContext> extends UuiContexts {
     uuiApp: TAppContext;
     history?: IHistory4;
 }
-
-export type AnalyticsEvent = {
-    name: string;
-    [key: string]: any;
-} | null;
 
 export const uuiContextTypes = {
     uuiAnalytics: PropTypes.object,

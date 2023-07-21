@@ -1,6 +1,6 @@
 import { DataSourceState, LazyDataSourceApi, DataQueryFilter } from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { LoadTreeOptions, Tree, TreeNodeInfo } from '../tree';
+import { ITree, LoadTreeOptions, Tree, TreeNodeInfo } from '../tree';
 
 interface TestItem {
     id: number;
@@ -24,7 +24,7 @@ const testData: TestItem[] = [
 const testDataById: Record<number, TestItem> = {};
 
 testData.forEach((i) => {
-    i.childrenCount = testData.filter((x) => x.parentId == i.id).length;
+    i.childrenCount = testData.filter((x) => x.parentId === i.id).length;
     testDataById[i.id] = i;
 });
 
@@ -50,8 +50,8 @@ describe('Tree - load', () => {
 
     const loadParams: LoadTreeOptions<TestItem, number, DataQueryFilter<TestItem>> = {
         api: testApi,
-        getChildCount: (i) => i.childrenCount,
-        isFolded: (i) => true,
+        getChildCount: (i) => i.childrenCount ?? 0,
+        isFolded: () => true,
     };
 
     const value: DataSourceState = { topIndex: 0, visibleCount: 100 };
@@ -61,14 +61,14 @@ describe('Tree - load', () => {
     });
 
     function expectTreeToLookLike(
-        actual: Tree<TestItem, number>,
+        actual: ITree<TestItem, number>,
         expectedById: Record<any, TestItem>,
         expectedByParentId: Record<any, number[]>,
         expectedNodeInfos: Record<any, TreeNodeInfo>,
     ) {
-        expect(Object.fromEntries(actual.byId)).toEqual(expectedById);
-        expect(Object.fromEntries(actual.byParentId)).toEqual(expectedByParentId);
-        expect(Object.fromEntries(actual.nodeInfoById)).toEqual(expectedNodeInfos);
+        expect(Object.fromEntries(actual['byId'])).toEqual(expectedById);
+        expect(Object.fromEntries(actual['byParentId'])).toEqual(expectedByParentId);
+        expect(Object.fromEntries(actual['nodeInfoById'])).toEqual(expectedNodeInfos);
     }
 
     it('Can load items (folded)', async () => {
@@ -94,7 +94,7 @@ describe('Tree - load', () => {
     });
 
     it('Can load items (unfolded)', async () => {
-        const tree = await blankTree.load({ ...loadParams, isFolded: (i) => false }, value);
+        const tree = await blankTree.load({ ...loadParams, isFolded: () => false }, value);
         expectTreeToLookLike(
             tree,
             testDataById,

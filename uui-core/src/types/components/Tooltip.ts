@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Options } from '@popperjs/core/lib/modifiers/offset';
-import { DropdownProps } from './index';
+import { DropdownProps } from './Dropdown';
 import { IHasChildren, IHasCX, IHasRawProps } from '../props';
 import { IEditable } from '../props';
 

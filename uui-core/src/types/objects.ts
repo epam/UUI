@@ -1,4 +1,4 @@
-import { ClassValue } from '../helpers';
+import { ClassValue } from '../helpers/cx';
 
 /* Common interface for data items */
 export interface IdAndName {
@@ -41,3 +41,8 @@ export interface IMap<TKey, TValue> {
     delete(key: TKey): boolean;
     size: number;
 }
+
+export type AnalyticsEvent = {
+    name: string;
+    [key: string]: any;
+} | null;

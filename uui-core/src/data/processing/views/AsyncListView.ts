@@ -12,7 +12,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
     constructor(protected editable: IEditable<DataSourceState<TFilter, TId>>, protected props: AsyncListViewProps<TItem, TId, TFilter>) {
         super(editable, props);
         this.props = props;
-        this.update(editable.value, props);
+        this.update(editable, props);
     }
 
     public async loadData() {
@@ -24,7 +24,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
         return this.props.api().then((items) => {
             this.isLoaded = true;
             this.isLoading = false;
-            this.update(this.editable.value, { ...this.props, items });
+            this.update({ value: this.value, onValueChange: this.onValueChange }, { ...this.props, items });
             this._forceUpdate();
             return items;
         });
