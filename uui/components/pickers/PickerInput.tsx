@@ -20,7 +20,7 @@ const pickerWidth = 360;
 export type PickerInputProps = SizeMod & IHasEditMode & {};
 type CompletePickerInputProps<TItem, TId> = PickerInputProps & PickerInputBaseProps<TItem, TId>;
 
-export function PickerInput<TItem, TId>(props: CompletePickerInputProps<TItem, TId>) {
+export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...props }: CompletePickerInputProps<TItem, TId>) {
     const toggleModalOpening = () => {
         const { renderFooter, rawProps, ...restProps } = props;
         context.uuiModals
@@ -104,8 +104,17 @@ export function PickerInput<TItem, TId>(props: CompletePickerInputProps<TItem, T
 
         return props.editMode === 'modal' ? '36' : props.size;
     };
+
     const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
-        return <PickerItem title={ getName(item) } size={ getRowSize() } { ...rowProps } />;
+        return (
+            <PickerItem
+                title={ getName(item) }
+                size={ getRowSize() }
+                dataSourceState={ dataSourceState }
+                highlightSearchMatches={ highlightSearchMatches }
+                { ...rowProps }
+            />
+        );
     };
 
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => {
