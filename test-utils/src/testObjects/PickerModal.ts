@@ -1,4 +1,4 @@
-import { fireEvent, within, waitFor } from '../extensions/testingLibraryReactExt';
+import { fireEvent, within } from '../extensions/testingLibraryReactExt';
 import { PickerTestObject } from './Picker';
 
 export class PickerModalTestObject extends PickerTestObject {
@@ -20,11 +20,5 @@ export class PickerModalTestObject extends PickerTestObject {
         const modal = await this.findDialog();
         const selectButton = within(modal).getByRole('button', { name: 'Select' });
         fireEvent.click(selectButton);
-    }
-
-    static async waitForOptionsToBeReady() {
-        return await waitFor(
-            () => expect(PickerModalTestObject.getOptions({ busy: false }).length).toBeGreaterThan(0),
-        );
     }
 }
