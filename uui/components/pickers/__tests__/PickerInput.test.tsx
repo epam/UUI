@@ -1,12 +1,13 @@
 import React, { ReactNode } from 'react';
-import { ArrayDataSource, AsyncDataSource, CascadeSelection } from '@epam/uui-core';
+import { ArrayDataSource, CascadeSelection } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, waitFor, PickerInputTestObject,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, waitFor, PickerInputTestObject,
 } from '@epam/uui-test-utils';
 import { Modals, PickerInputBaseProps } from '@epam/uui-components';
 import { Button, DataPickerRow, FlexCell, PickerItem, Text } from '@epam/promo';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { IHasEditMode } from '../../types';
+import { TestItemType, mockDataSource, mockDataSourceAsync, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync } from './mocks';
 
 jest.mock('react-popper', () => ({
     ...jest.requireActual('react-popper'),
@@ -21,83 +22,6 @@ jest.mock('react-popper', () => ({
         });
     },
 }));
-
-type TestItemType = {
-    id: number;
-    level: string;
-    name: string;
-};
-
-type Item = {
-    id: number;
-    name: string;
-};
-
-const smallDataSet: Item[] = [
-    { id: 2, name: 'Elementary' },
-    { id: 3, name: 'Elementary+' },
-];
-
-const languageLevels: TestItemType[] = [
-    { id: 2, level: 'A1', name: 'Elementary' },
-    { id: 3, level: 'A1+', name: 'Elementary+' },
-    { id: 4, level: 'A2', name: 'Pre-Intermediate' },
-    { id: 5, level: 'A2+', name: 'Pre-Intermediate+' },
-    { id: 6, level: 'B1', name: 'Intermediate' },
-    { id: 7, level: 'B1+', name: 'Intermediate+' },
-    { id: 8, level: 'B2', name: 'Upper-Intermediate' },
-    { id: 9, level: 'B2+', name: 'Upper-Intermediate+' },
-    { id: 10, level: 'C1', name: 'Advanced' },
-    { id: 11, level: 'C1+', name: 'Advanced+' },
-    { id: 12, level: 'C2', name: 'Proficiency' },
-];
-
-type TestTreeItem = {
-    id: number;
-    name: string;
-    parentId?: number;
-};
-
-const treeLikeData: TestTreeItem[] = [
-    { id: 1, name: 'Parent 1' },
-    { id: 1.1, parentId: 1, name: 'Child 1.1' },
-    { id: 1.2, parentId: 1, name: 'Child 1.2' },
-    { id: 1.3, parentId: 1, name: 'Child 1.3' },
-    { id: 2, name: 'Parent 2' },
-    { id: 2.1, parentId: 2, name: 'Child 2.1' },
-    { id: 2.2, parentId: 2, name: 'Child 2.2' },
-    { id: 2.3, parentId: 2, name: 'Child 2.3' },
-    { id: 3, name: 'Parent 3' },
-    { id: 3.1, parentId: 3, name: 'Child 3.1' },
-    { id: 3.2, parentId: 3, name: 'Child 3.2' },
-    { id: 3.3, parentId: 3, name: 'Child 3.3' },
-];
-
-const mockDataSource = new ArrayDataSource({
-    items: languageLevels,
-});
-
-const mockSmallDataSourceAsync = new AsyncDataSource({
-    api: async () => {
-        await delay(100);
-        return smallDataSet;
-    },
-});
-
-const mockDataSourceAsync = new AsyncDataSource({
-    api: async () => {
-        await delay(100);
-        return languageLevels;
-    },
-});
-
-const mockTreeLikeDataSourceAsync = new AsyncDataSource<TestTreeItem, number, any>({
-    api: async () => {
-        await delay(100);
-        return treeLikeData;
-    },
-    getParentId: ({ parentId }) => parentId,
-});
 
 type PickerInputComponentProps<TItem, TId> = PickerInputBaseProps<TItem, TId> & PickerInputProps;
 
@@ -189,7 +113,7 @@ describe('PickerInput', () => {
 
         fireEvent.click(dom.input);
 
-        await waitFor(async () => expect(PickerInputTestObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
+        await PickerInputTestObject.waitForOptionsToBeReady();
 
         expect(result.baseElement).toMatchSnapshot();
     });
@@ -242,7 +166,7 @@ describe('PickerInput', () => {
             });
 
             expect(PickerInputTestObject.getPlaceholderText(dom.input)).toBeUndefined();
-            await waitFor(async () => expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual(languageLevels[1].name));
+            await waitFor(async () => expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Elementary+'));
 
             fireEvent.click(dom.input);
             expect(screen.getByRole('dialog')).toBeInTheDocument();
@@ -285,7 +209,7 @@ describe('PickerInput', () => {
             });
             fireEvent.click(dom.input);
  
-            await waitFor(async () => expect(PickerInputTestObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
+            await PickerInputTestObject.waitForOptionsToBeReady();
 
             // Check parent
             await PickerInputTestObject.clickOptionByText('Parent 2');
@@ -302,7 +226,7 @@ describe('PickerInput', () => {
 
             fireEvent.click(dom.input);
 
-            await waitFor(async () => expect(PickerInputTestObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
+            await PickerInputTestObject.waitForOptionsToBeReady();
 
             // Check parent
             await PickerInputTestObject.clickOptionByText('A1');
@@ -597,7 +521,7 @@ describe('PickerInput', () => {
             const dialog = await screen.findByRole('dialog');
             expect(dialog).toBeInTheDocument();
             
-            await waitFor(async () => expect(PickerInputTestObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
+            await PickerInputTestObject.waitForOptionsToBeReady();
 
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'A2', 'B1', 'B2']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['A1+', 'A2+', 'B1+', 'B2+', 'C1', 'C1+', 'C2']);
@@ -904,7 +828,7 @@ describe('PickerInput', () => {
         fireEvent.click(dom.input);
         expect(await screen.findByRole('dialog')).toBeInTheDocument();
 
-        await waitFor(async () => expect(PickerInputTestObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
+        await PickerInputTestObject.waitForOptionsToBeReady();
 
         expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual([
             'Elementary',
@@ -935,7 +859,7 @@ describe('PickerInput', () => {
         const dialog = await screen.findByRole('dialog');
         expect(dialog).toBeInTheDocument();
         
-        await waitFor(async () => expect(PickerInputTestObject.getOptions({ busy: false }).length).toBeGreaterThan(0));
+        await PickerInputTestObject.waitForOptionsToBeReady();
 
         expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual([
             'A1',
