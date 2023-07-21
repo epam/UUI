@@ -193,6 +193,7 @@ describe('PickerModal', () => {
 
             // should not be selected if modal was closed and items were not selected
             fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
             await PickerModalTestObject.waitForOptionsToBeReady();
 
@@ -203,7 +204,7 @@ describe('PickerModal', () => {
             expect(PickerModalTestObject.queryDialog()).not.toBeInTheDocument();
 
             fireEvent.click(dom.toggler);
-            expect(PickerModalTestObject.getDialog()).toBeInTheDocument();
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
     
             await PickerModalTestObject.waitForOptionsToBeReady();
     
@@ -222,7 +223,7 @@ describe('PickerModal', () => {
             expect(PickerModalTestObject.queryDialog()).not.toBeInTheDocument();
 
             fireEvent.click(dom.toggler);
-            expect(PickerModalTestObject.queryDialog()).toBeInTheDocument();
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
     
             await PickerModalTestObject.waitForOptionsToBeReady();
 
@@ -241,7 +242,7 @@ describe('PickerModal', () => {
                 dataSource: mockTreeLikeDataSourceAsync,
             });
             fireEvent.click(dom.toggler);
-            expect(PickerModalTestObject.getDialog()).toBeInTheDocument();
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
             await PickerModalTestObject.waitForOptionsToBeReady();
             // Check parent
@@ -263,7 +264,7 @@ describe('PickerModal', () => {
 
             // should not be selected if modal was closed and items were not selected
             fireEvent.click(dom.toggler);
-            expect(PickerModalTestObject.getDialog()).toBeInTheDocument();
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
             await PickerModalTestObject.waitForOptionsToBeReady();
 
@@ -283,7 +284,8 @@ describe('PickerModal', () => {
             expect(onValueChangeMock).toHaveBeenLastCalledWith([2, 3]);
 
             fireEvent.click(dom.toggler);
-          
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
             await PickerModalTestObject.waitForOptionsToBeReady();
 
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
@@ -299,6 +301,7 @@ describe('PickerModal', () => {
             });
 
             fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
             await PickerModalTestObject.waitForOptionsToBeReady();
             await PickerModalTestObject.clickOptionCheckbox('A1');
@@ -315,7 +318,8 @@ describe('PickerModal', () => {
             ]);
             
             fireEvent.click(dom.toggler);
-    
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
             await PickerModalTestObject.waitForOptionsToBeReady();
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
             
@@ -339,6 +343,7 @@ describe('PickerModal', () => {
                 getName: ({ name }) => name,
             });
             fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
             await PickerModalTestObject.waitForOptionsToBeReady();
 
@@ -369,6 +374,8 @@ describe('PickerModal', () => {
             });
 
             fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
             await PickerModalTestObject.waitForOptionsToBeReady();
 
             // Check parent
@@ -384,6 +391,7 @@ describe('PickerModal', () => {
             expect(onValueChangeMock).toHaveBeenLastCalledWith([2, 2.1, 2.2, 2.3]);
 
             fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
             await PickerModalTestObject.waitForOptionsToBeReady();
 
@@ -400,7 +408,8 @@ describe('PickerModal', () => {
             // // Test if checkboxes are checked/unchecked
             expect(onValueChangeMock).toHaveBeenLastCalledWith([2.1, 2.3]);
             fireEvent.click(dom.toggler);
-           
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
             await PickerModalTestObject.waitForOptionsToBeReady();
             await PickerModalTestObject.clickOptionUnfold('Parent 2');
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['Child 2.1', 'Child 2.3']);
@@ -416,7 +425,9 @@ describe('PickerModal', () => {
             });
 
             fireEvent.click(dom.toggler);
-            expect(await PickerModalTestObject.hasOptions()).toBeTruthy();
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
+            await PickerModalTestObject.waitForOptionsToBeReady();   
 
             // Check parent
             await PickerModalTestObject.clickOptionCheckbox('Parent 2');
@@ -428,7 +439,8 @@ describe('PickerModal', () => {
             expect(onValueChangeMock).toHaveBeenLastCalledWith([2]);
 
             fireEvent.click(dom.toggler);
-          
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
             await PickerModalTestObject.waitForOptionsToBeReady();   
             await PickerModalTestObject.clickOptionUnfold('Parent 2');
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['Parent 2', 'Child 2.1', 'Child 2.2', 'Child 2.3']);
@@ -443,7 +455,8 @@ describe('PickerModal', () => {
             expect(onValueChangeMock).toHaveBeenLastCalledWith([2.1, 2.3]);
 
             fireEvent.click(dom.toggler);
-         
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
             await PickerModalTestObject.waitForOptionsToBeReady();
             await PickerModalTestObject.clickOptionUnfold('Parent 2');
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['Child 2.1', 'Child 2.3']);
@@ -457,7 +470,8 @@ describe('PickerModal', () => {
             });
 
             fireEvent.click(dom.toggler);
-       
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
             await PickerModalTestObject.waitForOptionsToBeReady();
             await PickerModalTestObject.clickSelectAllOptions();
             await act(async () => {
@@ -466,6 +480,7 @@ describe('PickerModal', () => {
             expect(onValueChangeMock).toHaveBeenLastCalledWith([2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
 
             fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
             await PickerModalTestObject.waitForOptionsToBeReady();
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(
@@ -478,7 +493,8 @@ describe('PickerModal', () => {
             });
 
             fireEvent.click(dom.toggler);
-          
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
             await PickerModalTestObject.waitForOptionsToBeReady();
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual([]);
         });
@@ -490,6 +506,7 @@ describe('PickerModal', () => {
             });
 
             fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
             await PickerModalTestObject.waitForOptionsToBeReady();
             
@@ -506,6 +523,8 @@ describe('PickerModal', () => {
             expect(onValueChangeMock).toHaveBeenLastCalledWith([4, 2, 6, 8]);
 
             fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
             await PickerModalTestObject.waitForOptionsToBeReady();
             await PickerModalTestObject.clickShowOnlySelected();
 
