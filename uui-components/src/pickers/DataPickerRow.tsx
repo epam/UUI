@@ -1,6 +1,5 @@
 import * as React from 'react';
-import isEqual from 'lodash.isequal';
-import { DataRowProps, FlexRowProps, uuiMod } from '@epam/uui-core';
+import { DataRowProps, uuiMod } from '@epam/uui-core';
 import { FlexRow } from '../layout';
 
 interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId> {
@@ -22,10 +21,6 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
     handleMouseEnter = () => {
         this.props.onFocus && this.props.onFocus(this.props.index);
     };
-
-    shouldComponentUpdate(nextProps: DataRowProps<TItem, TId> & FlexRowProps) {
-        return !isEqual(this.props, nextProps);
-    }
 
     render() {
         const clickHandler = this.props.onClick || this.props.onSelect || this.props.onFold || this.props.onCheck;
