@@ -19,7 +19,7 @@ export function useList<TItem, TId, TFilter>(
     const view = useView<TItem, TId, TFilter, UnboxListProps<typeof props>>(
         () => createView({ value: listState, onValueChange: setListState }, viewProps),
         (current) => {
-            current.update(listState, props);
+            current.update({ value: listState, onValueChange: setListState }, props);
         },
         deps,
     );

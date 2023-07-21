@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modifier } from 'react-popper';
 import { Placement, Boundary } from '@popperjs/core';
-import { IDropdownBodyProps, IDropdownToggler } from '../props';
+import { IDropdownBodyProps, IDropdownToggler } from '../pickers';
 import { IEditable } from '../../../src/types/props';
 
 export interface DropdownState {

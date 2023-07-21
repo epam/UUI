@@ -82,7 +82,7 @@ describe('ArrayListView', () => {
         it('should set new value and update rows', () => {
             const rebuildRowsSpy = jest.spyOn(view, 'rebuildRows' as any);
 
-            view.update({ filter: {} }, viewProps);
+            view.update({ value: { filter: {} }, onValueChange }, viewProps);
 
             expect(view.value).toStrictEqual({ filter: {} });
             expect(rebuildRowsSpy).toHaveBeenCalled();
@@ -91,7 +91,7 @@ describe('ArrayListView', () => {
         it('should not update nodes when setValue called with the same value', () => {
             const rebuildRowsSpy = jest.spyOn(view, 'rebuildRows' as any);
 
-            view.update(initialValue, viewProps);
+            view.update({ value: initialValue, onValueChange }, viewProps);
 
             expect(rebuildRowsSpy).toHaveBeenCalledTimes(0);
         });
@@ -99,7 +99,7 @@ describe('ArrayListView', () => {
         it('should update focused item if only focusedIndex changed in value', () => {
             const updateFocusedItemSpy = jest.spyOn(view, 'updateFocusedItem' as any);
 
-            view.update({ ...initialValue, focusedIndex: 1 }, viewProps);
+            view.update({ value: { ...initialValue, focusedIndex: 1 }, onValueChange }, viewProps);
 
             expect(updateFocusedItemSpy).toHaveBeenCalledTimes(1);
         });
@@ -114,7 +114,7 @@ describe('ArrayListView', () => {
 
     it('should return rows', () => {
         const topIndex = 2;
-        view.update({ ...initialValue, topIndex, visibleCount: 15 }, viewProps);
+        view.update({ value: { ...initialValue, topIndex, visibleCount: 15 }, onValueChange }, viewProps);
         const rows = view.getVisibleRows();
         const rootTestItems = testItems.filter((i) => i.parentId == null).slice(topIndex);
         expect(rows).toMatchObject(rootTestItems.map((i) => ({ id: i.id, value: i })));
@@ -133,7 +133,7 @@ describe('ArrayListView', () => {
 
     describe('sorting', () => {
         it('should return rows in default order, if sorting do not passed', () => {
-            view.update({ ...initialValue, topIndex: 0, visibleCount: 20 }, viewProps);
+            view.update({ value: { ...initialValue, topIndex: 0, visibleCount: 20 }, onValueChange }, viewProps);
             const rows = view.getVisibleRows();
             expect(rows[0].id).toEqual(2);
             expect(rows[4].id).toEqual(4);
@@ -141,7 +141,10 @@ describe('ArrayListView', () => {
 
         it('should sort rows if set sorting to value', () => {
             view.update({
-                ...initialValue, sorting: [{ field: 'id', direction: 'asc' }], topIndex: 0, visibleCount: 20,
+                value: {
+                    ...initialValue, sorting: [{ field: 'id', direction: 'asc' }], topIndex: 0, visibleCount: 20,
+                },
+                onValueChange,
             }, viewProps);
             const rows = view.getVisibleRows();
             expect(rows[0].id).toEqual(1);
@@ -180,7 +183,8 @@ describe('ArrayListView', () => {
 
         it('should search items', () => {
             countriesView.update({
-                ...initialValue, search: 'ea', topIndex: 0, visibleCount: 20,
+                value: { ...initialValue, search: 'ea', topIndex: 0, visibleCount: 20 },
+                onValueChange: countriesOnValueChange,
             }, countriesViewProps);
             const rows = countriesView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
@@ -191,7 +195,8 @@ describe('ArrayListView', () => {
 
         it('should search items by group of tokens', () => {
             countriesView.update({
-                ...initialValue, search: 'ea bi', topIndex: 0, visibleCount: 20,
+                value: { ...initialValue, search: 'ea bi', topIndex: 0, visibleCount: 20 },
+                onValueChange: countriesOnValueChange,
             }, countriesViewProps);
             const rows = countriesView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
@@ -202,7 +207,8 @@ describe('ArrayListView', () => {
 
         it('should sort items in order of search relevance', () => {
             countriesView.update({
-                ...initialValue, search: 'gu', topIndex: 0, visibleCount: 20,
+                value: { ...initialValue, search: 'gu', topIndex: 0, visibleCount: 20 },
+                onValueChange: countriesOnValueChange,
             }, countriesViewProps);
             const rows = countriesView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
@@ -215,7 +221,10 @@ describe('ArrayListView', () => {
             const props: ArrayListViewProps<Country, string, any> = { ...countriesViewProps, sortSearchByRelevance: false };
             countriesView = countriesDataSource.getView(initialValue, countriesOnValueChange, props) as ArrayListView<Country, string, any>;
 
-            countriesView.update({ ...initialValue, search: 'gu', topIndex: 0, visibleCount: 20 }, props);
+            countriesView.update({
+                value: { ...initialValue, search: 'gu', topIndex: 0, visibleCount: 20 },
+                onValueChange: countriesOnValueChange,
+            }, props);
             const rows = countriesView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
@@ -225,7 +234,8 @@ describe('ArrayListView', () => {
 
         it('should not return items if group was not matched', () => {
             countriesView.update({
-                ...initialValue, search: 'wa bx', topIndex: 0, visibleCount: 20,
+                value: { ...initialValue, search: 'wa bx', topIndex: 0, visibleCount: 20 },
+                onValueChange: countriesOnValueChange,
             }, countriesViewProps);
             const rows = countriesView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
@@ -247,7 +257,10 @@ describe('ArrayListView', () => {
         it('should update tree if filter was changed', () => {
             const realView = dataSource.getView(value, onValueChangeFn, viewProps) as View;
             realView.update({
-                ...value, topIndex: 0, visibleCount: 20, filter,
+                value: {
+                    ...value, topIndex: 0, visibleCount: 20, filter,
+                },
+                onValueChange: onValueChangeFn,
             }, { ...viewProps, getFilter });
             const rows = realView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
@@ -258,7 +271,10 @@ describe('ArrayListView', () => {
             const [row] = rows;
             row.onFold?.(row);
             realView.update({
-                ...value, topIndex: 0, visibleCount: 20, filter,
+                value: {
+                    ...value, topIndex: 0, visibleCount: 20, filter,
+                },
+                onValueChange: onValueChangeFn,
             }, { ...viewProps, getFilter });
 
             const unfoldedRows = realView.getVisibleRows();
@@ -274,7 +290,7 @@ describe('ArrayListView', () => {
             const dataSourceState = {
                 ...value, topIndex: 0, visibleCount: 20, filter, search: 'B1',
             };
-            realView.update(dataSourceState, { ...viewProps, getFilter });
+            realView.update({ value: dataSourceState, onValueChange: onValueChangeFn }, { ...viewProps, getFilter });
             const rows = realView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
@@ -292,7 +308,7 @@ describe('ArrayListView', () => {
                 search: 'B',
                 sorting: [{ field: 'level', direction: 'desc' as SortDirection }],
             };
-            realView.update(dataSourceState, { ...viewProps, getFilter });
+            realView.update({ value: dataSourceState, onValueChange: onValueChangeFn }, { ...viewProps, getFilter });
             const rows = realView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
@@ -317,7 +333,7 @@ describe('ArrayListView', () => {
                 row1.onCheck?.(row1);
                 expect(onValueChange).toHaveBeenCalledWith({ ...initialValue, checked: [6] });
 
-                view.update({ ...initialValue, checked: [6] }, viewProps);
+                view.update({ value: { ...initialValue, checked: [6] }, onValueChange }, viewProps);
 
                 const row2 = view.getById(7, 7);
                 row2.onCheck?.(row2);
@@ -384,7 +400,7 @@ describe('ArrayListView', () => {
                     expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] });
                     expect(view['checkedByKey']).toEqual({});
 
-                    view.update({ ...initialValue, checked: [9] }, viewProps);
+                    view.update({ value: { ...initialValue, checked: [9] }, onValueChange }, viewProps);
                     expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] });
 
                     expect(view['checkedByKey']).toEqual({ 9: true });
@@ -480,12 +496,7 @@ describe('ArrayListView', () => {
     });
 
     it('should return selected rows in selection order', () => {
-        view.update({
-            ...initialValue,
-            checked: [
-                6, 5, 4,
-            ],
-        }, viewProps);
+        view.update({ value: { ...initialValue, checked: [6, 5, 4] }, onValueChange }, viewProps);
 
         const selectedRows = view.getSelectedRows();
         expect(selectedRows.map(({ id }) => id)).toEqual([

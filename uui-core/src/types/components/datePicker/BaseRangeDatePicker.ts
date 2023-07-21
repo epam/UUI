@@ -2,8 +2,9 @@ import { ReactElement, ReactNode } from 'react';
 import { Dayjs } from 'dayjs';
 import { Placement } from '@popperjs/core';
 import {
-    IAnalyticableOnChange, ICanBeReadonly, IDisableable, IDropdownToggler, IEditable, IHasRawProps,
+    IAnalyticableOnChange, ICanBeReadonly, IDisableable, IEditable, IHasRawProps,
 } from '../../props';
+import { IDropdownToggler } from '../../pickers';
 import * as React from 'react';
 import { CX } from '../../objects';
 
