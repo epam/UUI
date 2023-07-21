@@ -105,9 +105,9 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
          
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            this.subs.set(view, view._forceUpdate);
+            const unsubscribe = this.subscribe(view);
             return () => {
-                this.subs.delete(view);
+                unsubscribe();
             };
         }, [view]);
 
