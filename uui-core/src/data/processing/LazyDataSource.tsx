@@ -82,12 +82,12 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             () => new LazyListView({ value, onValueChange }, viewProps, this.cache),
             deps,
         );
-         
+
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            this.subs.set(view, view._forceUpdate);
+            const unsubscribe = this.subscribe(view);
             return () => {
-                this.subs.delete(view);
+                unsubscribe();
             };
         }, [view]);
 

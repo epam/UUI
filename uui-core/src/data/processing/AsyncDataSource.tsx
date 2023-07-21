@@ -85,12 +85,12 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             () => new AsyncListView({ value, onValueChange }, viewProps),
             deps,
         );
-         
+
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            this.subs.set(view, view._forceUpdate);
+            const unsubscribe = this.subscribe(view);
             return () => {
-                this.subs.delete(view);
+                unsubscribe();
             };
         }, [view]);
 

@@ -4,7 +4,7 @@ import {
 
 export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IDataSource<TItem, TId, TFilter> {
     protected views = new Map<any, IDataSourceView<TItem, TId, TFilter>>();
-    protected subs = new Map<IDataSourceView<TItem, TId, TFilter>, () => void>();
+    private subscriptions = new Map<IDataSourceView<TItem, TId, TFilter>, () => void>();
 
     constructor(public props: BaseListViewProps<TItem, TId, TFilter>) {}
 
@@ -25,7 +25,7 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
 
     protected updateViews = () => {
         this.views.forEach((view) => view._forceUpdate());
-        this.subs.forEach((onUpdate) => onUpdate());
+        this.subscriptions.forEach((onUpdate) => onUpdate());
     };
 
     public abstract setProps(newProps: BaseListViewProps<TItem, TId, TFilter>): void;
@@ -36,7 +36,7 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
     public destroy() {
         this.views.forEach((view) => view.destroy());
         this.views.clear();
-        this.subs.forEach((_, view) => view.destroy());
+        this.subscriptions.forEach((_, view) => view.destroy());
     }
 
     public getId = (item: TItem & { id?: TId }) => {
@@ -50,4 +50,12 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
 
         return id;
     };
+    
+    protected subscribe(view: IDataSourceView<TItem, TId, TFilter>) {
+        this.subscriptions.set(view, view._forceUpdate);
+        return () => {
+            this.subscriptions.delete(view);
+            view.destroy();
+        };
+    }
 }
