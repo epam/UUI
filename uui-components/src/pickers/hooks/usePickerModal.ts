@@ -1,8 +1,9 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { DataSourceState, IHasCaption, IModal, Lens, PickerBaseProps, PickerFooterProps } from '@epam/uui-core';
 import { usePicker } from './usePicker';
 import { usePickerModalState } from './usePickerModalState';
 import { PickerModalOptions, UsePickerModalProps } from './types';
+import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
 
 type PickerProps<TItem, TId> = PickerBaseProps<TItem, TId> & IModal<any> & IHasCaption & PickerModalOptions<TItem, TId>;
 
@@ -14,8 +15,9 @@ const initialStateValues: DataSourceState = {
 
 export function usePickerModal<TItem, TId>(props: UsePickerModalProps<TItem, TId>) {
     const pickerListState = usePickerModalState<TItem, TId>({
-        dataSourceState: initialStateValues,
+        dataSourceState: { ...initialStateValues },
         selection: props.initialValue,
+        selectionMode: props.selectionMode,
     });
 
     const { dataSourceState, setDataSourceState, showSelected, setShowSelected, selection, setSelection } = pickerListState;
@@ -25,6 +27,7 @@ export function usePickerModal<TItem, TId>(props: UsePickerModalProps<TItem, TId
             .onChange((_, newVal) => ({ ...newVal, ...initialStateValues })),
         [dataSourceState, setDataSourceState],
     );
+
     const showSelectedLens = useMemo(
         () => Lens
             .onEditable<boolean>({ value: showSelected, onValueChange: setShowSelected }),
@@ -52,6 +55,20 @@ export function usePickerModal<TItem, TId>(props: UsePickerModalProps<TItem, TId
         isSingleSelect,
         handleDataSourceValueChange,
     } = picker;
+
+    useEffect(() => {
+        const prevValue = dataSourceStateToValue(props, dataSourceState, props.dataSource);
+        if (prevValue !== props.initialValue) {
+            setDataSourceState(
+                applyValueToDataSourceState(
+                    props,
+                    dataSourceState,
+                    props.initialValue,
+                    props.dataSource,
+                ),
+            );
+        }
+    }, [props.initialValue]);
 
     const getRows = () => {
         const { topIndex, visibleCount } = dataSourceState;
