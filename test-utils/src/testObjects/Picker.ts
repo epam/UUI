@@ -62,8 +62,8 @@ export class PickerTestObject {
         fireEvent.click(selectAllButton);
     }
 
-    static async clickShowOnlySelected() {
-        const dialog = within(await this.findDialog());
+    static async clickShowOnlySelected(props: OptionConfig = {}) {
+        const dialog = within(await this.findDialog(props.editMode));
         const showOnlySelected = await dialog.findByRole('switch', { name: 'Show only selected' });
         fireEvent.click(showOnlySelected);
     }
