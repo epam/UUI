@@ -29,6 +29,17 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         this.setProps({ ...this.props, items: [] });
     }
 
+    private loadViewData(view: AsyncListView<TItem, TId, TFilter>) {
+        if (!view.isLoaded) {
+            view.loadData().then((loadedItems) => {
+                if (loadedItems !== undefined) {
+                    this.setProps({ ...this.props, items: loadedItems }); 
+                    view._forceUpdate();
+                }
+            });
+        }
+    }
+
     getView(
         value: DataSourceState<any, TId>,
         onValueChange: (val: DataSourceState<any, TId>) => any,
@@ -48,14 +59,8 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
 
         if (view) {
             view.update({ value, onValueChange }, viewProps);
-            if (!view.isLoaded) {
-                view.loadData().then((loadedItems) => {
-                    if (loadedItems !== undefined) {
-                        this.setProps({ ...this.props, items: loadedItems ?? [] }); 
-                        view._forceUpdate();
-                    }
-                });
-            }
+            this.loadViewData(view);
+
             return view;
         } else {
             const newView = new AsyncListView({ value, onValueChange }, viewProps);
@@ -95,13 +100,8 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         }, [view]);
 
         view.update({ value, onValueChange }, viewProps);
-        if (!view.isLoaded) {
-            view.loadData().then((loadedItems) => {
-                this.setProps({ ...this.props, items: loadedItems ?? [] });
-                view._forceUpdate();
-            });
-        }
-    
+        this.loadViewData(view);
+
         return view;
     }
 }
