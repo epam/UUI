@@ -1,10 +1,12 @@
-import { fireEvent, within, screen, prettyDOM } from '../extensions/testingLibraryReactExt';
+import { fireEvent, within, screen } from '../extensions/testingLibraryReactExt';
 
 interface OptionConfig {
     editMode?: string;
 }
 
 export class PickerTestObject {
+    static editMode: string;
+
     static getOptions(props: { busy?: boolean, editMode?: string } = {}) {
         const dialog = within(this.getDialog(props.editMode));
         const params: any = {};
@@ -28,10 +30,9 @@ export class PickerTestObject {
         return opts.map((o) => o.textContent?.trim());
     }
 
-    static async findCheckedOptions(props: { editMode?: string } = {}, log?: boolean) {
+    static async findCheckedOptions(props: { editMode?: string } = {}) {
         const dialog = within(await this.findDialog(props.editMode));
         return (await dialog.findAllByRole('option')).filter((opt) => {
-            if (log) console.log(prettyDOM(opt), (within(opt).getByRole('checkbox') as HTMLInputElement).checked);
             return (within(opt).getByRole('checkbox') as HTMLInputElement).checked;
         }).map((e) => e.textContent?.trim());
     }
@@ -87,12 +88,16 @@ export class PickerTestObject {
         return (await this.findOptions(props)).length > 0;
     }
 
-    protected static async findDialog(editMode: string = 'dialog') {
-        return await screen.findByRole(editMode === 'modal' ? 'modal' : 'dialog');
+    protected static async findDialog(editMode?: string) {
+        return await screen.findByRole(editMode ?? this.editMode ?? 'dialog');
     }
 
-    private static getDialog(editMode: string = 'dialog') {
-        return screen.getByRole(editMode === 'modal' ? 'modal' : 'dialog');
+    public static getDialog(editMode?: string) {
+        return screen.getByRole(editMode ?? this.editMode ?? 'dialog');
+    }
+
+    public static queryDialog(editMode?: string) {
+        return screen.queryByRole(editMode ?? this.editMode ?? 'dialog');
     }
 
     private static async findOption(optionText: string, { editMode }: OptionConfig = {}) {
