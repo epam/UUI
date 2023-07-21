@@ -25,13 +25,28 @@ const testItems: TItem[] = [
     { id: 12, level: 'C2' },
 ];
 
+interface Country {
+    id: string;
+    name: string;
+}
+
+const countries: Country[] = [
+    { id: 'CN', name: 'China' },
+    { id: 'ES', name: 'Spain' },
+    { id: 'FI', name: 'Finland' },
+    { id: 'GB', name: 'United Kingdom' },
+    { id: 'NC', name: 'Nicaragua' },
+    { id: 'GN', name: 'Guinea' },
+    { id: 'GW', name: 'Guinea-Bissau' },
+];
+
 const totalRowsCount = 12;
 const rootNodesCount = 9;
 
 let dataSource: ArrayDataSource<{ id: number; level: string }, number, any>;
 let view: View;
 
-let onValueChange: () => any;
+let onValueChange: (newValue: DataSourceState<any, number>) => any;
 const initialValue: DataSourceState = { topIndex: 0, visibleCount: totalRowsCount };
 let viewProps: ArrayListViewProps<TItem, number, any>;
 
@@ -138,18 +153,95 @@ describe('ArrayListView', () => {
     });
 
     describe('search', () => {
+        let countriesDataSource: ArrayDataSource<Country, string>;
+        let countriesViewProps: ArrayListViewProps<Country, string, any>;
+        let countriesView: ArrayListView<Country, string, any>;
+        let countriesOnValueChange: (newValue: DataSourceState<Country, string>) => any;
+
+        beforeEach(() => {
+            countriesOnValueChange = jest.fn();
+
+            countriesDataSource = new ArrayDataSource<Country, string>({
+                items: countries,
+                getId: (i) => i.id,
+                getSearchFields: (item) => [item.name],
+            });
+
+            countriesViewProps = {
+                getId: (i) => i.id,
+                getSearchFields: (item) => [item.name],
+                getRowOptions: () => ({
+                    checkbox: {
+                        isVisible: true,
+                    },
+                    isSelectable: true,
+                }),
+            };
+            countriesView = countriesDataSource.getView(initialValue, countriesOnValueChange, countriesViewProps) as ArrayListView<Country, string, any>;
+            jest.clearAllMocks();
+        });
+
         it('should search items', () => {
-            view.update({
-                value: {
-                    ...initialValue, search: 'C1', topIndex: 0, visibleCount: 20,
-                },
-                onValueChange,
-            }, viewProps);
-            const rows = view.getVisibleRows();
+            countriesView.update({
+                value: { ...initialValue, search: 'ea', topIndex: 0, visibleCount: 20 },
+                onValueChange: countriesOnValueChange,
+            }, countriesViewProps);
+            const rows = countriesView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
             expect(rows).toHaveLength(2);
-            expect(rowsIds).toEqual([10, 11]);
+            expect(rowsIds).toEqual(['GN', 'GW']);
+        });
+
+        it('should search items by group of tokens', () => {
+            countriesView.update({
+                value: { ...initialValue, search: 'ea bi', topIndex: 0, visibleCount: 20 },
+                onValueChange: countriesOnValueChange,
+            }, countriesViewProps);
+            const rows = countriesView.getVisibleRows();
+            const rowsIds = rows.map((i) => i.id);
+
+            expect(rows).toHaveLength(1);
+            expect(rowsIds).toEqual(['GW']);
+        });
+
+        it('should sort items in order of search relevance', () => {
+            countriesView.update({
+                value: { ...initialValue, search: 'gu', topIndex: 0, visibleCount: 20 },
+                onValueChange: countriesOnValueChange,
+            }, countriesViewProps);
+            const rows = countriesView.getVisibleRows();
+            const rowsIds = rows.map((i) => i.id);
+
+            expect(rows).toHaveLength(3);
+            expect(rowsIds).toEqual(['GN', 'GW', 'NC']);
+        });
+
+        it('should not sort items in order of search relevance if sortSearchByRelevance = false', () => {
+            const props: ArrayListViewProps<Country, string, any> = { ...countriesViewProps, sortSearchByRelevance: false };
+            countriesView = countriesDataSource.getView(initialValue, countriesOnValueChange, props) as ArrayListView<Country, string, any>;
+
+            countriesView.update({
+                value: { ...initialValue, search: 'gu', topIndex: 0, visibleCount: 20 },
+                onValueChange: countriesOnValueChange,
+            }, props);
+            const rows = countriesView.getVisibleRows();
+            const rowsIds = rows.map((i) => i.id);
+
+            expect(rows).toHaveLength(3);
+            expect(rowsIds).toEqual(['NC', 'GN', 'GW']);
+        });
+
+        it('should not return items if group was not matched', () => {
+            countriesView.update({
+                value: { ...initialValue, search: 'wa bx', topIndex: 0, visibleCount: 20 },
+                onValueChange: countriesOnValueChange,
+            }, countriesViewProps);
+            const rows = countriesView.getVisibleRows();
+            const rowsIds = rows.map((i) => i.id);
+
+            expect(rows).toHaveLength(0);
+            expect(rowsIds).toEqual([]);
         });
     });
 
