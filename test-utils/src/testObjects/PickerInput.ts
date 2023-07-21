@@ -1,4 +1,4 @@
-import { fireEvent, within, screen } from '../extensions/testingLibraryReactExt';
+import { fireEvent, within } from '../extensions/testingLibraryReactExt';
 import { PickerTestObject } from './Picker';
 
 export class PickerInputTestObject extends PickerTestObject {

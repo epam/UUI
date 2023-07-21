@@ -2,27 +2,29 @@ import { fireEvent, within, waitFor } from '../extensions/testingLibraryReactExt
 import { PickerTestObject } from './Picker';
 
 export class PickerModalTestObject extends PickerTestObject {
+    static editMode: string = 'modal';
+
     static async findSearchInput() {
-        const modal = await this.findDialog('modal');
+        const modal = await this.findDialog();
         const input = await within(modal).findByPlaceholderText('Type text for quick search');
         return input;
     }
 
     static async closeModal() {
-        const modal = await this.findDialog('modal');
+        const modal = await this.findDialog();
         const closeButton = await within(modal).findByRole('button', { name: 'Close modal' });
         fireEvent.click(closeButton);
     }
 
     static async clickSelectItems() {
-        const modal = await this.findDialog('modal');
+        const modal = await this.findDialog();
         const selectButton = within(modal).getByRole('button', { name: 'Select' });
         fireEvent.click(selectButton);
     }
 
     static async waitForOptionsToBeReady() {
         return await waitFor(
-            () => expect(PickerModalTestObject.getOptions({ busy: false, editMode: 'modal' }).length).toBeGreaterThan(0),
+            () => expect(PickerModalTestObject.getOptions({ busy: false }).length).toBeGreaterThan(0),
         );
     }
 }
