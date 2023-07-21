@@ -12,7 +12,7 @@ const mockDataSource = new ArrayDataSource({
 });
 
 describe('PickerModal', () => {
-    it('should be rendered correctly', async () => {
+    it('[selectionMode=single] should be rendered correctly', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <PickerModal
                 key="test"
@@ -29,7 +29,7 @@ describe('PickerModal', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', async () => {
+    it('[selectionMode=multi] should be rendered correctly', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <PickerModal
                 key="test"
@@ -41,7 +41,7 @@ describe('PickerModal', () => {
                 selectionMode="multi"
                 initialValue={ [] }
                 isActive
-                getName={ (item) => item.level }
+                getName={ (item) => item!.level }
                 filter={ (item: any) => item.level === 'A1' }
                 sorting={ { direction: 'desc', field: 'level' } }
             />,
