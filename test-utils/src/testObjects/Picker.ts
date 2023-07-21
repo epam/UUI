@@ -88,7 +88,7 @@ export class PickerTestObject {
         return (await this.findOptions(props)).length > 0;
     }
 
-    protected static async findDialog(editMode?: string) {
+    public static async findDialog(editMode?: string) {
         return await screen.findByRole(editMode ?? this.editMode ?? 'dialog');
     }
 

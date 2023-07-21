@@ -62,21 +62,21 @@ export const mockSmallDataSource = new ArrayDataSource({
 
 export const mockSmallDataSourceAsync = new AsyncDataSource({
     api: async () => {
-        await delay(100);
+        await delay(50);
         return smallDataSet;
     },
 });
 
 export const mockDataSourceAsync = new AsyncDataSource({
     api: async () => {
-        await delay(100);
+        await delay(50);
         return languageLevels;
     },
 });
 
 export const mockTreeLikeDataSourceAsync = new AsyncDataSource<TestTreeItem, number, any>({
     api: async () => {
-        await delay(100);
+        await delay(50);
         return treeLikeData;
     },
     getParentId: ({ parentId }) => parentId,
