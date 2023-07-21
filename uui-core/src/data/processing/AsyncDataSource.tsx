@@ -1,3 +1,4 @@
+import { useEffect, useMemo } from 'react';
 import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
 import { BaseArrayListViewProps } from './views/ArrayListView';
 import { DataSourceState, IDataSourceView } from '../../types';
@@ -46,7 +47,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         };
 
         if (view) {
-            view.update(value, viewProps);
+            view.update({ value, onValueChange }, viewProps);
             if (!view.isLoaded) {
                 view.loadData().then((loadedItems) => {
                     if (loadedItems !== undefined) {
@@ -61,5 +62,46 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             this.views.set(onValueChange, newView);
             return newView;
         }
+    }
+    
+    useView(
+        value: DataSourceState<TFilter, TId>,
+        onValueChange: (val: DataSourceState<TFilter, TId>) => void,
+        options?: Partial<AsyncListViewProps<TItem, TId, TFilter>>,
+        deps: any[] = [],
+    ): IDataSourceView<TItem, TId, TFilter> {
+        const viewProps: AsyncListViewProps<TItem, TId, TFilter> = {
+            ...this.props,
+            api: this.api,
+            ...options,
+            // These defaults are added for compatibility reasons.
+            // We'll require getId and getParentId callbacks in other APIs, including the views.
+            getId: this.getId,
+            getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
+        };
+         
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const view = useMemo(
+            () => new AsyncListView({ value, onValueChange }, viewProps),
+            deps,
+        );
+
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        useEffect(() => {
+            const unsubscribe = this.subscribe(view);
+            return () => {
+                unsubscribe();
+            };
+        }, [view]);
+
+        view.update({ value, onValueChange }, viewProps);
+        if (!view.isLoaded) {
+            view.loadData().then((loadedItems) => {
+                this.setProps({ ...this.props, items: loadedItems ?? [] });
+                view._forceUpdate();
+            });
+        }
+    
+        return view;
     }
 }

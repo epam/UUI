@@ -46,7 +46,7 @@ export function usePickerModal<TItem, TId>(props: UsePickerModalProps<TItem, TId
     );
     const {
         context,
-        getView,
+        view,
         getEntityName,
         getName,
         getListProps,
@@ -71,7 +71,6 @@ export function usePickerModal<TItem, TId>(props: UsePickerModalProps<TItem, TId
     }, [props.initialValue]);
 
     const getRows = () => {
-        const view = getView();
         const { topIndex, visibleCount } = dataSourceState;
         return showSelected ? view.getSelectedRows({ topIndex, visibleCount }) : view.getVisibleRows();
     };
@@ -95,7 +94,7 @@ export function usePickerModal<TItem, TId>(props: UsePickerModalProps<TItem, TId
         getName,
         getEntityName,
         getListProps,
-        getView,
+        view,
         getRows,
         getFooterProps,
         getDataSourceState,

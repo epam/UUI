@@ -65,7 +65,7 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
     const picker = usePicker<TItem, TId, UsePickerListProps<TItem, TId, TProps>>(props, pickerListState);
     const {
         context,
-        getView,
+        view,
         getEntityName,
         getDataSourceState,
         isSingleSelect,
@@ -127,7 +127,6 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
     const buildRowsList = () => {
         const maxDefaultItems = getMaxDefaultItems();
         const maxTotalItems = getMaxTotalItems();
-        const view = getView();
 
         const result: DataRowProps<TItem, TId>[] = [];
         const added: Record<string, boolean> = {};
@@ -164,7 +163,7 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         getEntityName,
         appendLastSelected,
         getSelectedIdsArray,
-        getView,
+        view,
         buildRowsList,
         getMaxDefaultItems,
         getModalTogglerCaption,
