@@ -79,8 +79,10 @@ We make an automatic migration from old state format to the new one, so it's not
 * [Pickers]:
   - rewritten `Pickers` to functional components;
   - moved from `getView`to `useView` hook;
-  - [BreakingChange]: `useView` is not recreating view on `onValueChange` update any more;
-  - [BreakingChange]: it was added `deps` to `useView` as a last argument; changing the `deps` is causing recreating of a `view`.
+
+* [DataSources][useView]:
+  - [BreakingChange]: `useView` is not recreating view on `onValueChange` update anymore;
+  - [BreakingChange]: added `deps` to `useView` as a last argument; changing the `deps` causes recreating of a `view`.
 
 # 5.0.0 - 06.06.2023
 
