@@ -32,13 +32,13 @@ export class Button extends ButtonBase<ButtonProps> {
                 <IconContainer key="dropdown-icon-left" icon={ this.props.dropdownIcon } flipY={ this.props.isOpen } />
             ), this.props.icon && this.props.iconPosition !== 'right' && (
                 <IconContainer key="icon-left" icon={ this.props.icon } onClick={ !this.props.isDisabled ? this.props.onIconClick : undefined } />
-            ), this.props.count !== undefined && this.props.count !== null && this.props.countPosition !== 'right' && (
-                <div key="count" className={ cx(uuiElement.count) }>
-                    {this.props.count}
-                </div>
             ), this.props.caption && (
                 <div key="caption" className={ cx(uuiElement.caption, this.props.captionCX) }>
                     {this.props.caption}
+                </div>
+            ), this.props.count !== undefined && this.props.count !== null && this.props.countPosition !== 'right' && (
+                <div key="count" className={ cx(uuiElement.count) }>
+                    {this.props.count}
                 </div>
             ), this.props.count !== undefined && this.props.count !== null && this.props.countPosition === 'right' && (
                 <div key="count" className={ cx(uuiElement.count) }>
