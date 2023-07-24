@@ -1,6 +1,10 @@
 ## TODO
 
-Plate issues to create:
+Plate Discussions:
+
+- [ ] Switch between lists and todo lists https://github.com/udecode/plate/discussions/2467
+
+Plate PRs:
 - [x] Move email links validation to plate. Then remove `uui-editor/src/plate/plugins/linkPlugin/isUrl.ts`. https://github.com/udecode/plate/pull/2444
 - [x] Fix caption width. Then update `uui-editor/src/plate/plugins/imagePlugin/ImageBlock.module.scss`. https://github.com/udecode/plate/pull/2448
 - [x] Allow pasting links as url into highlighted text. Then update `uui-editor/src/plate/plugins/linkPlugin/linkPlugin.tsx`. https://github.com/udecode/plate/pull/2453
