@@ -137,14 +137,14 @@ export class LoveshipColorsDoc extends React.Component {
                                 {column.map((color, index) => {
                                     return (
                                         <div key={ index } className={ cx(css.box, css.basicColorBox, css[`basic-color-${color.name}`]) }>
-                                            <div
+                                            <button
                                                 className={ cx(css.hexText, color.contrastText && css.contrastText) }
                                                 onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }
                                             >
                                                 {color.hex}
-                                            </div>
+                                            </button>
                                             {color.hasVariable && (
-                                                <div className={ cx(css.colorName, color.contrastText && css.contrastText) } onClick={ () => {} }>{`$${color.name}`}</div>
+                                                <div className={ cx(css.colorName, color.contrastText && css.contrastText) }>{`$${color.name}`}</div>
                                             )}
                                         </div>
                                     );
@@ -184,10 +184,10 @@ export class LoveshipColorsDoc extends React.Component {
                         return (
                             <Tooltip key={ color.name } content={ color.context }>
                                 <div className={ cx(css.box, css.grayscaleColorBox, css[`grayscale-color-${color.name}`]) }>
-                                    <div className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }>
+                                    <button className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }>
                                         {color.hex}
-                                    </div>
-                                    {color.hasVariable && <div className={ css.colorName } onClick={ () => {} }>{`$${color.name}`}</div>}
+                                    </button>
+                                    {color.hasVariable && <div className={ css.colorName }>{`$${color.name}`}</div>}
                                 </div>
                             </Tooltip>
                         );
@@ -214,10 +214,10 @@ export class LoveshipColorsDoc extends React.Component {
                                     return (
                                         <Tooltip content={ color.context } key={ cellIndex }>
                                             <div className={ cx(css.box, css.additionalColorBox, css[`additional-color-${color.name}`]) }>
-                                                <div className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }>
+                                                <button className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }>
                                                     {color.hex}
-                                                </div>
-                                                {color.hasVariable && <div className={ css.colorName } onClick={ () => {} }>{`$${color.name}`}</div>}
+                                                </button>
+                                                {color.hasVariable && <div className={ css.colorName }>{`$${color.name}`}</div>}
                                             </div>
                                         </Tooltip>
                                     );
