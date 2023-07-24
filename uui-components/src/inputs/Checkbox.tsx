@@ -32,7 +32,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
             return 'mixed';
         }
 
-        return value === undefined ? false : value;
+        return value == null ? false : value;
     };
 
     render() {
