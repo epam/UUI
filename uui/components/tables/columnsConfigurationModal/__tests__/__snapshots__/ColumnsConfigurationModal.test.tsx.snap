@@ -253,6 +253,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       className="uui-checkbox uui-checked"
                     >
                       <input
+                        aria-checked={true}
                         aria-disabled={true}
                         checked={true}
                         disabled={true}
@@ -346,6 +347,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       className="uui-checkbox uui-checked"
                     >
                       <input
+                        aria-checked={true}
                         aria-disabled={true}
                         checked={true}
                         disabled={true}
@@ -767,6 +769,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                       className="uui-checkbox"
                     >
                       <input
+                        aria-checked={false}
                         checked={false}
                         disabled={false}
                         onChange={[Function]}
@@ -851,6 +854,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                       className="uui-checkbox"
                     >
                       <input
+                        aria-checked={false}
                         checked={false}
                         disabled={false}
                         onChange={[Function]}
