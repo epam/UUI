@@ -20,17 +20,17 @@ export function ErrorHandler(props: ErrorHandlerProps) {
 
     const showNotifications = (errors: ApiCallInfo[]) => {
         errors.forEach((c) => {
-            props.onNotificationError ? (
-                props.onNotificationError(c)
-            ) : (
+            if (props.onNotificationError) {
+                props.onNotificationError(c);
+            } else {
                 uuiNotifications.show((notificationProps: INotification) => (
                     <ErrorNotification { ...notificationProps }>
                         <Text size="36">
                             {c.responseData && c.responseData.errorMessage}
                         </Text>
                     </ErrorNotification>
-                ))
-            );
+                ));
+            }
             c.dismissError();
         });
     };

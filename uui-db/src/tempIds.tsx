@@ -55,7 +55,7 @@ export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientI
 
         for (let n = 0; n < keys.length; n++) {
             const key = keys[n];
-            let condition = filter[key] as DataQueryFilterCondition<any, any>;
+            let condition = filter[key] as DataQueryFilterCondition<any>;
             if (condition != null && typeof condition === 'object') {
                 condition = { ...condition };
                 if ('in' in condition && Array.isArray(condition.in) && condition.in.length) {

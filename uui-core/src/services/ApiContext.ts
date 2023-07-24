@@ -98,7 +98,12 @@ export class ApiContext extends BaseContext implements IApiContext {
                 return;
             }
             this.setStatus('recovery', reason);
-            reason === 'auth-lost' ? window.open(this.props.apiReloginPath) : this.recoverConnection();
+
+            if (reason === 'auth-lost') {
+                window.open(this.props.apiReloginPath);
+            } else {
+                this.recoverConnection();
+            }
         } else {
             call.status = 'error';
             this.setStatus('error');

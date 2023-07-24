@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FlexRow, FlexCell, FlexSpacer, Text, PickerInput, Button, SearchInput, DataTable, DataTableRow } from '@epam/loveship';
 import { Person, PersonGroup } from '@epam/uui-docs';
-import { DataSourceState, useArrayDataSource, useList, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens, DataColumnProps, LazyDataSourceApi } from '@epam/uui-core';
+import { DataSourceState, useArrayDataSource, useList, LazyDataSourceApiRequest, LazyDataSourceApiResponse, Lens, DataColumnProps, LazyDataSourceApi } from '@epam/uui-core';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
 import { svc } from '../../services';
 import { getColumns } from './columns';

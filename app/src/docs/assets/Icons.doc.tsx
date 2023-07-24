@@ -144,7 +144,7 @@ export class IconsDoc extends React.Component {
         const importCode = this.getImportCode(this.state.selectedIcon);
         return (
             <Tooltip placement="left" content="Copy code">
-                <div onClick={ () => copyTextToClipboard(importCode, this.showNotification) }>{importCode}</div>
+                <button className={ css.importButton } onClick={ () => copyTextToClipboard(importCode, this.showNotification) }>{importCode}</button>
             </Tooltip>
         );
     }
