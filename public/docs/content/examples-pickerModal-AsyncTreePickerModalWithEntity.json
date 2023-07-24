@@ -1,0 +1,74 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Below, you can see "
+      },
+      {
+        "text": "PickerModal",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " usage with "
+      },
+      {
+        "text": "AsyncDataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "valueType='entity'",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "It is possible to define if the "
+      },
+      {
+        "text": "value",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " should contain the "
+      },
+      {
+        "text": "id",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " of the entity or the whole "
+      },
+      {
+        "text": "entity",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". You can pass "
+      },
+      {
+        "text": "valueType: 'id' | 'entity'",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " as a prop of the "
+      },
+      {
+        "text": "PickerModal",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " to control it."
+      }
+    ]
+  }
+]

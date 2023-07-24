@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { DataRowProps, Icon } from '@epam/uui-core';
+import { DataRowProps, DataSourceState, Icon } from '@epam/uui-core';
 import { AvatarProps, IconContainer } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
 import { Text, TextPlaceholder } from '../typography';
 import { Avatar } from '../widgets';
 import { SizeMod } from '../types';
 import css from './PickerItem.module.scss';
+import { getHighlightedSearchMatches } from './highlight';
 
 const defaultSize = '36';
 
@@ -14,19 +15,32 @@ export interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId>, S
     icon?: Icon;
     title?: string;
     subtitle?: string;
+    dataSourceState?: DataSourceState;
+    /** 
+     * Enables highlighting of the items' text with search-matching results. 
+     * @default true
+     * */
+    highlightSearchMatches?: boolean;
 }
-
 export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TItem, TId>> {
+    public static defaultProps = {
+        highlightSearchMatches: true,   
+    };
+
     getAvatarSize = (size: string, isMultiline: boolean): string | number => {
         return isMultiline ? size : +size - 6;
     };
 
     render() {
         const {
-            size, avatarUrl, title, subtitle, isLoading, isDisabled, icon,
+            size, avatarUrl, isLoading, isDisabled, icon, highlightSearchMatches,
         } = this.props;
         const itemSize = size && size !== 'none' ? size : defaultSize;
-        const isMultiline = !!(title && subtitle);
+        const isMultiline = !!(this.props.title && this.props.subtitle);
+
+        const { search } = this.props.dataSourceState ?? {};
+        const title = highlightSearchMatches ? getHighlightedSearchMatches(this.props.title, search) : this.props.title;
+        const subtitle = highlightSearchMatches ? getHighlightedSearchMatches(this.props.subtitle, search) : this.props.subtitle;
 
         return (
             <FlexCell width="auto" cx={ css.root }>

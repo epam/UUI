@@ -1,0 +1,18 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To hide "
+      },
+      {
+        "text": "'Select All' ",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "button you need to provide selectAll: false to the DataSource params."
+      }
+    ],
+    "data": {}
+  }
+]
