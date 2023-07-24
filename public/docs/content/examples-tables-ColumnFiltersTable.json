@@ -1,0 +1,29 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This example illustrate how to make table with filters on column. For this you need to pass filters config to the  "
+      },
+      {
+        "text": "filters",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop in "
+      },
+      {
+        "text": "DataTable",
+        "color": "rgb(0, 0, 0)",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "color": "rgb(0, 0, 0)",
+        "text": " component"
+      },
+      {
+        "text": "."
+      }
+    ]
+  }
+]

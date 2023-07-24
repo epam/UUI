@@ -76,7 +76,14 @@ export default function LazyTreeSearch() {
                             { ...props }
                             key={ props.rowKey }
                             padding="12"
-                            renderItem={ (item) => <PickerItem { ...props } title={ item.name } subtitle={ getSubtitle(props, dataSourceState) } /> }
+                            renderItem={ (item) => (
+                                <PickerItem
+                                    { ...props }
+                                    dataSourceState={ dataSourceState }
+                                    title={ item.name }
+                                    subtitle={ getSubtitle(props, dataSourceState) }
+                                />
+                            ) }
                         />
                     ) }
                 />
