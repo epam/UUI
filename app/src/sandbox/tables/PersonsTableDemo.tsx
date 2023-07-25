@@ -54,7 +54,7 @@ export function PersonsTableDemo() {
         [],
     );
 
-    const [value, onValueChange] = React.useState<PersonsTableState>(() => ({
+    const [value, onValueChange] = React.useState<PersonsTableState & { filter?: PersonTableFilter }>(() => ({
         topIndex: 0,
         visibleCount: 100,
         sorting: [{ field: 'name' }],
@@ -63,7 +63,7 @@ export function PersonsTableDemo() {
 
     const lens = Lens.onEditable<DataSourceState>({ value, onValueChange });
 
-    const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId> = async (request, ctx) => {
+    const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = async (request, ctx) => {
         const { ids, filter: requestFilter, ...rq } = request;
 
         if (ids != null) {
@@ -88,7 +88,7 @@ export function PersonsTableDemo() {
             return response;
         }
 
-        const { groupBy, ...filter } = requestFilter || {};
+        const { groupBy, ...filter } = (requestFilter as PersonTableFilter) || {};
 
         const updateSummary = (response: PersonsApiResponse) => {
             const { summary: summaryRes, totalCount } = response;

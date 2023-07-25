@@ -88,10 +88,10 @@ export function ProjectTasksDemo() {
         <Panel style={ { width: '100%' } }>
             <FlexRow spacing="12" margin="12">
                 <FlexCell width="auto">
-                    <IconButton icon={ insertAfter } onClick={ () => insertTask('top') } />
+                    <IconButton icon={ insertAfter } onClick={ () => insertTask('top', null, null) } />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <IconButton icon={ insertBefore } onClick={ () => insertTask('bottom') } />
+                    <IconButton icon={ insertBefore } onClick={ () => insertTask('bottom', null, null) } />
                 </FlexCell>
                 <FlexSpacer />
                 <FlexCell width="auto">

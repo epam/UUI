@@ -96,9 +96,9 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageEl
     }, []);
 
     // align
-    const toggleBlockAlignment = useCallback((align: PlateImgAlign) => {
-        setAlign(align);
-        setElements(editor, getUpdatedElement(element, { align: toSlateAlign(align) }));
+    const toggleBlockAlignment = useCallback((toggleAlign: PlateImgAlign) => {
+        setAlign(toggleAlign);
+        setElements(editor, getUpdatedElement(element, { align: toSlateAlign(toggleAlign) }));
     }, [editor, element]);
 
     // width

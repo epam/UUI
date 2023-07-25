@@ -41,8 +41,8 @@ export function getGroupedIcons() {
     return groupedIcons;
 }
 
-export function getIconList(includeChildren?: boolean) {
-    return Object.keys(groupedIcons).reduce<IconList<any>[]>((acc, key) => {
+export function getIconList<TIcon>(includeChildren?: boolean) {
+    return Object.keys(groupedIcons).reduce<IconList<TIcon>[]>((acc, key) => {
         const first = groupedIcons[key][0];
         acc.push({ ...first, name: key, id: key });
         if (includeChildren) {
