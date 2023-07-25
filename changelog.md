@@ -14,6 +14,7 @@
 
 * [Button]: add missing styles for 'sun' color in loveship skin
 * [FilterPanel]: fix RangeDatePicker 'to' value change
+* [FilterPanel]: in FilterPanelItemToggler we have packed each selected element into a Text component and flexible container. Now they can be compressed as flexible elements and separated by comma.
 * [LabeledInput]: removed specific class for loveship skin
 * [Rating]: fix rating behavior with 0.5 step
 * [ColumnsConfigurationConfig]: change 'Apply' button color to the 'primary'

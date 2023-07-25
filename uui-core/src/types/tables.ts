@@ -225,6 +225,8 @@ type FilterConfigBase<TFilter> = {
     columnKey: string;
     isAlwaysVisible?: boolean;
     predicates?: IFilterPredicate[];
+    /** Count of words to show in the Filter toggler. By default, 2 item will be shown. */
+    maxCount?: number;
 };
 
 export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
