@@ -9,7 +9,7 @@ import {
     Value,
     createPlugins,
     useEventEditorSelectors,
-    usePlateEditorState
+    usePlateEditorState,
 } from '@udecode/plate-common';
 import { createTextIndentPlugin } from '@udecode/plate-indent';
 import { createIndentListPlugin } from '@udecode/plate-indent-list';

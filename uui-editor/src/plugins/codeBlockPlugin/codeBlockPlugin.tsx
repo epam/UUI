@@ -2,9 +2,9 @@ import { createCodePlugin } from '@udecode/plate-basic-marks';
 import { PlateEditor, PlatePluginComponent, TText, Value, isMarkActive } from '@udecode/plate-common';
 import React from 'react';
 
-import { isPluginActive } from "../../helpers";
-import { ReactComponent as CodeIcon } from "../../icons/editor-code.svg";
-import { ToolbarButton } from "../../implementation/ToolbarButton";
+import { isPluginActive } from '../../helpers';
+import { ReactComponent as CodeIcon } from '../../icons/editor-code.svg';
+import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
 
 const CODE_BLOCK_KEY = 'uui-richTextEditor-code';
@@ -14,7 +14,7 @@ const Code: PlatePluginComponent = (props) => {
     return (
         <span { ...attributes }><code>{ children }</code></span>
     );
-}
+};
 
 export const codeBlockPlugin = () => createCodePlugin({
     key: CODE_BLOCK_KEY,
@@ -26,7 +26,7 @@ interface ToolbarButton {
     editor: PlateEditor;
 }
 
-export const CodeButton = ({ editor }: ToolbarButton) => {
+export function CodeButton({ editor }: ToolbarButton) {
     if (!isPluginActive(CODE_BLOCK_KEY)) return null;
     return (
         <ToolbarButton

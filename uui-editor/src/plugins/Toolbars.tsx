@@ -10,20 +10,20 @@ import { ToDoListButton } from './toDoListPlugin/toDoListPlugin';
 import { ColorButton } from './colorPlugin/colorPlugin';
 import { LinkButton } from './linkPlugin/linkPlugin';
 
-import { StickyToolbar } from "../implementation/StickyToolbar";
-import { HeaderButton } from "./headerPlugin/headerPlugin";
-import { ImageButton } from "./imagePlugin/imagePlugin";
-import { NoteButton } from "./notePlugin/notePlugin";
-import { QuoteButton } from "./quotePlugin/quotePlugin";
-import { SeparatorButton } from "./separatorPlugin/separatorPlugin";
-import { PlaceholderButton } from "./placeholderPlugin/placeholderPlugin";
-import { IframeButton } from "./iframePlugin/iframePlugin";
-import { VideoButton } from "./videoPlugin/videoPlugin";
-import { TableButton } from "./tablePlugin/tablePlugin";
+import { StickyToolbar } from '../implementation/StickyToolbar';
+import { HeaderButton } from './headerPlugin/headerPlugin';
+import { ImageButton } from './imagePlugin/imagePlugin';
+import { NoteButton } from './notePlugin/notePlugin';
+import { QuoteButton } from './quotePlugin/quotePlugin';
+import { SeparatorButton } from './separatorPlugin/separatorPlugin';
+import { PlaceholderButton } from './placeholderPlugin/placeholderPlugin';
+import { IframeButton } from './iframePlugin/iframePlugin';
+import { VideoButton } from './videoPlugin/videoPlugin';
+import { TableButton } from './tablePlugin/tablePlugin';
 import { AttachFileButton } from './attachmentPlugin/AttachFileButton';
 import { PositionedToolbar } from '../implementation/PositionedToolbar';
 
-export const MarksToolbar = () => {
+export function MarksToolbar() {
     const editorRef = usePlateEditorRef();
 
     return (
@@ -39,7 +39,7 @@ export const MarksToolbar = () => {
     );
 }
 
-export const MainToolbar = () => {
+export function MainToolbar() {
     const editor = usePlateEditorState(useEventPlateId());
     const isActive = isEditorFocused(editor);
 
@@ -48,7 +48,7 @@ export const MainToolbar = () => {
     }
 
     return (
-        <StickyToolbar isReadonly={ false } >
+        <StickyToolbar isReadonly={ false }>
             <HeaderButton editor={ editor } />
 
             {/* list */}

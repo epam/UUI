@@ -1,9 +1,9 @@
 import { createSuperscriptPlugin, MARK_SUPERSCRIPT } from '@udecode/plate-basic-marks';
 import { isMarkActive, PlateEditor } from '@udecode/plate-common';
 import React from 'react';
-import { isPluginActive } from "../../helpers";
-import { ReactComponent as SuperScriptIcon } from "../../icons/super-script.svg";
-import { ToolbarButton } from "../../implementation/ToolbarButton";
+import { isPluginActive } from '../../helpers';
+import { ReactComponent as SuperScriptIcon } from '../../icons/super-script.svg';
+import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
 
 const SUPERSCRIPT_TYPE = 'uui-richTextEditor-superscript';

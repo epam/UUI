@@ -8,7 +8,7 @@ import { isPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as PdfIcon } from '../../icons/pdf.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
-import { PARAGRAPH_TYPE } from "../paragraphPlugin/paragraphPlugin";
+import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 import { IframeBlock } from './IframeBlock';
 

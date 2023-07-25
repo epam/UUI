@@ -14,7 +14,7 @@ import isHotkey from 'is-hotkey';
 import { Editor } from 'slate';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
-import { FileUploadResponse } from "@epam/uui-core";
+import { FileUploadResponse } from '@epam/uui-core';
 
 export type PlateImgAlign = 'left' | 'center' | 'right';
 export type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';

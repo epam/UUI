@@ -40,12 +40,12 @@ export function ImageElement({
         align === 'center' && css.alignImageCenter,
         align === 'left' && css.alignImageLeft,
         align === 'right' && css.alignImageRight,
-    ]
+    ];
 
     const resizeHandleClasses = [
         css.resizeHandleOpacity,
-        focused && selected && css.resizeHandleVisible // for mobile
-    ]
+        focused && selected && css.resizeHandleVisible, // for mobile
+    ];
 
     useMediaState();
 
@@ -79,31 +79,32 @@ export function ImageElement({
                         ),
                         align,
                         readOnly,
-                        minWidth: MAX_IMG_WIDTH
+                        minWidth: MAX_IMG_WIDTH,
                     } }
                 >
-                    {/* eslint-disable-next-line jsx-a11y/alt-text */ }
+                    { }
                     <Image
                         { ...nodeProps }
                         className={
                             cx(
                                 css.image,
                                 focused && selected && css.selectedImage, // for mobile
-                                nodeProps?.className
+                                nodeProps?.className,
                             )
                         }
                     />
                 </Resizable>
 
-                { isCaptionEnabled &&
-                    <Caption className={ cx(css.imageCaption, ...aligns) }>
-                        <CaptionTextarea
-                            className={ cx(css.caption) }
-                            placeholder="Write a caption..."
-                            readOnly={ readOnly }
-                        />
-                    </Caption>
-                }
+                { isCaptionEnabled
+                    && (
+                        <Caption className={ cx(css.imageCaption, ...aligns) }>
+                            <CaptionTextarea
+                                className={ cx(css.caption) }
+                                placeholder="Write a caption..."
+                                readOnly={ readOnly }
+                            />
+                        </Caption>
+                    )}
             </figure>
 
             { children }

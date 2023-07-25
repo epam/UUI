@@ -1,7 +1,6 @@
 import { Dropdown } from '@epam/uui-components';
 import React from 'react';
 
-
 import { isPluginActive } from '../../helpers';
 
 import { NoteBar } from '../../implementation/NoteBar';

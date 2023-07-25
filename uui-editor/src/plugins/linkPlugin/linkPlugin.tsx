@@ -6,8 +6,8 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { PlateEditor, TElement, Value, WithPlatePlugin, someNode } from '@udecode/plate-common';
 import { ELEMENT_LINK, LinkPlugin, createLinkPlugin, upsertLink, validateUrl, withLink } from '@udecode/plate-link';
 import { isPluginActive } from '../../helpers';
-import { ReactComponent as LinkIcon } from "../../icons/link.svg";
-import { AddLinkModal } from "./AddLinkModal";
+import { ReactComponent as LinkIcon } from '../../icons/link.svg';
+import { AddLinkModal } from './AddLinkModal';
 import { isUrl } from './isUrl';
 
 export interface LinkElement extends TElement {

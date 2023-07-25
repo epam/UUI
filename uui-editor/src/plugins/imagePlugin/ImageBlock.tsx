@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useFocused, useSelected } from 'slate-react';
 
 import { Dropdown } from '@epam/uui-components';
-import { uuiSkin } from "@epam/uui-core";
+import { uuiSkin } from '@epam/uui-core';
 import { ImageElement } from './ImageElement';
 
 import debounce from 'lodash.debounce';
@@ -32,7 +32,7 @@ const toPlateAlign = (slateAlign: SlateImgAlign) => SLATE_TO_PLATE_IMG_ALIGN[sla
 
 const getUpdatedElement = (
     element: IImageElement,
-    { width = element.data?.imageSize?.width || 0, align = element.data?.align || 'align-left' }: UpdatingProps
+    { width = element.data?.imageSize?.width || 0, align = element.data?.align || 'align-left' }: UpdatingProps,
 ) => ({
     ...element,
     data: {
@@ -92,7 +92,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageEl
     }, [isSelected, isFocused]);
 
     const onChangeDropDownValue = useCallback((value: boolean) => () => {
-        setShowToolbar(value)
+        setShowToolbar(value);
     }, []);
 
     // align
@@ -155,7 +155,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageEl
                             setMaxWidth={ setMaxWidth }
                         />
                     </FlexRow>
-                )
+                );
             } }
             onValueChange={ onChangeDropDownValue }
             value={ showToolbar }

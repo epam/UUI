@@ -3,7 +3,6 @@ import cx from 'classnames';
 import { uuiMod, uuiSkin } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 
-
 import { ReactComponent as DownloadIcon } from '../../icons/download-icon.svg';
 import { ReactComponent as FileIcon } from '../../icons/file-file-24.svg';
 import { ReactComponent as DocIcon } from '../../icons/file-file_word-24.svg';

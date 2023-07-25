@@ -47,7 +47,7 @@ export const useResizeHandleState = ({
 
         const sendResizeEvent = (
             event: MouseEvent | TouchEvent,
-            finished: boolean
+            finished: boolean,
         ) => {
             const { clientX, clientY } = isTouchEvent(event)
                 ? event.touches[0] || event.changedTouches[0]
@@ -206,8 +206,8 @@ export const useResizeHandle = ({
 };
 
 export const ResizeHandle = createPrimitiveComponent<
-    'div',
-    Omit<React.HTMLAttributes<HTMLDivElement>, 'onResize'>
+'div',
+Omit<React.HTMLAttributes<HTMLDivElement>, 'onResize'>
 >('div')({
     propsHook: useResizeHandle,
     stateHook: useResizeHandleState,

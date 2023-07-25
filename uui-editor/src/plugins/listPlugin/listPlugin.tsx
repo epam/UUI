@@ -1,11 +1,11 @@
-import { PlateEditor, focusEditor } from "@udecode/plate-common";
-import { ELEMENT_LI, ELEMENT_LIC, ELEMENT_OL, ELEMENT_UL, createListPlugin, getListItemEntry, toggleList } from "@udecode/plate-list";
-import React, { Fragment } from "react";
+import { PlateEditor, focusEditor } from '@udecode/plate-common';
+import { ELEMENT_LI, ELEMENT_LIC, ELEMENT_OL, ELEMENT_UL, createListPlugin, getListItemEntry, toggleList } from '@udecode/plate-list';
+import React, { Fragment } from 'react';
 
-import { isPluginActive } from "../../helpers";
-import { ReactComponent as UnorderedList } from "../../icons/bullet-list.svg";
-import { ReactComponent as NumberedList } from "../../icons/numbered-list.svg";
-import { ToolbarButton } from "../../implementation/ToolbarButton";
+import { isPluginActive } from '../../helpers';
+import { ReactComponent as UnorderedList } from '../../icons/bullet-list.svg';
+import { ReactComponent as NumberedList } from '../../icons/numbered-list.svg';
+import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 export const ELEMENT_UL_CUSTOM = 'unordered-list';
 export const ELEMENT_OL_CUSTOM = 'ordered-list';
