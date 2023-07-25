@@ -1,22 +1,11 @@
-import React from "react";
+import { PlateEditor, focusEditor } from "@udecode/plate-common";
+import { ELEMENT_LI, ELEMENT_LIC, ELEMENT_OL, ELEMENT_UL, createListPlugin, getListItemEntry, toggleList } from "@udecode/plate-list";
+import React, { Fragment } from "react";
 
-import {
-    ELEMENT_OL,
-    ELEMENT_UL,
-    ELEMENT_LI,
-    createListPlugin,
-    PlateEditor,
-    ListToolbarButton,
-    getPluginType,
-    getListItemEntry,
-    ELEMENT_LIC,
-} from "@udecode/plate";
 import { isPluginActive } from "../../helpers";
-import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { ReactComponent as UnorderedList } from "../../icons/bullet-list.svg";
 import { ReactComponent as NumberedList } from "../../icons/numbered-list.svg";
-
-const noop = () => {};
+import { ToolbarButton } from "../../implementation/ToolbarButton";
 
 export const ELEMENT_UL_CUSTOM = 'unordered-list';
 export const ELEMENT_OL_CUSTOM = 'ordered-list';
@@ -76,33 +65,30 @@ export const ListButton = ({ editor }: IToolbarButton) => {
 
     const res = !!editor?.selection && getListItemEntry(editor);
 
-    const isUnorderedActive = res?.list && res?.list[0]?.type === 'unordered-list';
-    const isOrderedActive = res?.list && res?.list[0]?.type === 'ordered-list';
+    const isUnorderedActive = res?.list && res?.list[0]?.type === ELEMENT_UL_CUSTOM;
+    const isOrderedActive = res?.list && res?.list[0]?.type === ELEMENT_OL_CUSTOM;
+
+    const onListButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, type: string) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        toggleList(editor, { type });
+        focusEditor(editor);
+    }
 
     return (
-        <>
-            <ListToolbarButton
-                styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px', } } }
-                type={ getPluginType(editor, ELEMENT_OL) }
-                actionHandler='onMouseDown'
-                icon={ <ToolbarButton
-                    onClick={ noop }
-                    icon={ NumberedList }
-                    isActive={ !!editor?.selection && isOrderedActive }
-                /> }
+        <Fragment>
+            <ToolbarButton
+                onClick={ (e) => onListButtonClick(e, ELEMENT_OL_CUSTOM) }
+                icon={ NumberedList }
+                isActive={ !!editor?.selection && isOrderedActive }
             />
-            <ListToolbarButton
-                styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-                type={ getPluginType(editor, ELEMENT_UL) }
-                actionHandler='onMouseDown'
-                icon={ <ToolbarButton
-                    // styles={ { root: {  } } }
-                    onClick={ noop }
-                    icon={ UnorderedList }
-                    isActive={ !!editor?.selection && isUnorderedActive }
-                /> }
+            <ToolbarButton
+                onClick={ (e) => onListButtonClick(e, ELEMENT_UL_CUSTOM) }
+                icon={ UnorderedList }
+                isActive={ !!editor?.selection && isUnorderedActive }
             />
-        </>
+        </Fragment>
     );
 };
 

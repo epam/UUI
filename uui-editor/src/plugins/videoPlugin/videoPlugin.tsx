@@ -1,12 +1,6 @@
-import React from 'react';
 import { useUuiContext } from '@epam/uui-core';
+import React from 'react';
 
-import {
-    createPluginFactory,
-    getBlockAbove,
-    PlateEditor,
-    ToolbarButton as PlateToolbarButton,
-} from '@udecode/plate';
 
 import { isPluginActive, isTextSelected } from '../../helpers';
 
@@ -14,9 +8,8 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { ReactComponent as VideoIcon } from '../../icons/video.svg';
 
+import { PlateEditor, createPluginFactory, getBlockAbove } from '@udecode/plate-common';
 import { AddVideoModal } from './AddVideoModal';
-
-const noop = () => {};
 
 const VIDEO_PLUGIN_KEY = 'video';
 
@@ -39,9 +32,8 @@ export const VideoButton = ({
     const block = getBlockAbove(editor);
 
     return (
-        <PlateToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            onMouseDown={ async (event) => {
+        <ToolbarButton
+            onClick={ async (event) => {
                 if (!editor) return;
                 event.preventDefault();
 
@@ -51,13 +43,10 @@ export const VideoButton = ({
                         { ...modalProps }
                     />
                 )).catch(() => null);
-            } }
-            icon={ <ToolbarButton
-                onClick={ noop }
-                isDisabled={ !!isTextSelected(editor, true) }
-                icon={ VideoIcon }
-                isActive={ block?.length && block[0].type === 'iframe' }
-            /> }
+            }  }
+            isDisabled={ !!isTextSelected(editor, true) }
+            icon={ VideoIcon }
+            isActive={ block?.length && block[0].type === 'iframe' }
         />
     );
 };

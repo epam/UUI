@@ -1,37 +1,21 @@
+import { EText, PlateEditor, PlatePluginComponent, TText, Value, isMarkActive } from '@udecode/plate-common';
 import React from 'react';
-import {
-    StyledLeafProps,
-    EText,
-    TText,
-    Value,
-    MARK_BOLD,
-    getPluginType,
-    MarkToolbarButton,
-    isMarkActive,
-    createBoldPlugin,
-    createItalicPlugin,
-    MARK_ITALIC,
-    createUnderlinePlugin,
-    MARK_UNDERLINE,
-    PlateEditor,
-} from "@udecode/plate";
 
 import { isPluginActive } from '../../helpers';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
+import { MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE, createBoldPlugin, createItalicPlugin, createUnderlinePlugin } from '@udecode/plate-basic-marks';
 import { ReactComponent as BoldIcon } from "../../icons/bold.svg";
 import { ReactComponent as ItalicIcon } from "../../icons/italic.svg";
 import { ReactComponent as UnderlineIcon } from "../../icons/underline.svg";
+import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
 
 const BOLD_KEY = 'uui-richTextEditor-bold';
 const ITALIC_KEY = 'uui-richTextEditor-italic';
 const UNDERLINE_KEY = 'uui-richTextEditor-underlined';
-const noop = () => {};
 
-const Bold = <V extends Value = Value, N extends TText = EText<V>>(
-    props: StyledLeafProps<V, N>,
-) => {
+const Bold: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
 
     return (
@@ -39,9 +23,7 @@ const Bold = <V extends Value = Value, N extends TText = EText<V>>(
     );
 };
 
-const Italic = <V extends Value = Value, N extends TText = EText<V>>(
-    props: StyledLeafProps<V, N>,
-) => {
+const Italic: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
 
     return (
@@ -49,9 +31,7 @@ const Italic = <V extends Value = Value, N extends TText = EText<V>>(
     );
 };
 
-const Underline = <V extends Value = Value, N extends TText = EText<V>>(
-    props: StyledLeafProps<V, N>,
-) => {
+const Underline: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
 
     return (
@@ -81,14 +61,10 @@ interface IToolbarButton {
 export const BoldButton = ({ editor }: IToolbarButton) => {
     if (!isPluginActive(MARK_BOLD)) return null;
     return (
-        <MarkToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            type={ getPluginType(editor, BOLD_KEY) }
-            icon={ <ToolbarButton
-                onClick={ noop }
-                icon={ BoldIcon }
-                isActive={ !!editor?.selection && isMarkActive(editor, BOLD_KEY!) }
-            /> }
+        <ToolbarButton
+            onClick={ handleMarkButtonClick(editor, BOLD_KEY) }
+            icon={ BoldIcon }
+            isActive={ !!editor?.selection && isMarkActive(editor, BOLD_KEY!) }
         />
     );
 };
@@ -96,14 +72,10 @@ export const BoldButton = ({ editor }: IToolbarButton) => {
 export const ItalicButton = ({ editor }: IToolbarButton) => {
     if (!isPluginActive(MARK_ITALIC)) return null;
     return (
-        <MarkToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            type={ getPluginType(editor, ITALIC_KEY) }
-            icon={ <ToolbarButton
-                onClick={ noop }
-                icon={ ItalicIcon }
-                isActive={ !!editor?.selection && isMarkActive(editor, ITALIC_KEY!) }
-            /> }
+        <ToolbarButton
+            onClick={ handleMarkButtonClick(editor, ITALIC_KEY) }
+            icon={ ItalicIcon }
+            isActive={ !!editor?.selection && isMarkActive(editor, ITALIC_KEY!) }
         />
     );
 };
@@ -111,14 +83,10 @@ export const ItalicButton = ({ editor }: IToolbarButton) => {
 export const UnderlineButton = ({ editor }: IToolbarButton) => {
     if (!isPluginActive(MARK_UNDERLINE)) return null;
     return (
-        <MarkToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            type={ getPluginType(editor, UNDERLINE_KEY) }
-            icon={ <ToolbarButton
-                onClick={ noop }
-                icon={ UnderlineIcon }
-                isActive={ !!editor?.selection && isMarkActive(editor, UNDERLINE_KEY!) }
-            /> }
+        <ToolbarButton
+            onClick={ handleMarkButtonClick(editor, UNDERLINE_KEY) }
+            icon={ UnderlineIcon }
+            isActive={ !!editor?.selection && isMarkActive(editor, UNDERLINE_KEY!) }
         />
     );
 };

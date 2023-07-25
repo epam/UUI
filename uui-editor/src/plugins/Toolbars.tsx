@@ -1,11 +1,5 @@
 import React from 'react';
-
-import {
-    useEventPlateId,
-    usePlateEditorState,
-    usePlateEditorRef,
-    isEditorFocused,
-} from '@udecode/plate';
+import { useEventPlateId, usePlateEditorRef, usePlateEditorState, isEditorFocused } from '@udecode/plate-common';
 
 import { BoldButton, ItalicButton, UnderlineButton } from './baseMarksPlugin/baseMarksPlugin';
 import { CodeButton } from './codeBlockPlugin/codeBlockPlugin';
@@ -16,8 +10,7 @@ import { ToDoListButton } from './toDoListPlugin/toDoListPlugin';
 import { ColorButton } from './colorPlugin/colorPlugin';
 import { LinkButton } from "./linkPlugin/linkPlugin";
 
-import { Toolbar } from "../implementation/Toolbar";
-import { Sidebar } from "../implementation/Sidebar";
+import { StickyToolbar } from "../implementation/StickyToolbar";
 import { HeaderButton } from "./headerPlugin/headerPlugin";
 import { ImageButton } from "./imagePlugin/imagePlugin";
 import { NoteButton } from "./notePlugin/notePlugin";
@@ -28,54 +21,25 @@ import { IframeButton } from "./iframePlugin/iframePlugin";
 import { VideoButton } from "./videoPlugin/videoPlugin";
 import { TableButton } from "./tablePlugin/tablePlugin";
 import { AttachFileButton } from './attachmentPlugin/AttachFileButton';
+import { PositionedToolbar } from '../implementation/PositionedToolbar';
 
-
-export const MarkBalloonToolbar = () => {
+export const MarksToolbar = () => {
     const editorRef = usePlateEditorRef();
 
     return (
-        <Toolbar isImage={ false } editor={ editorRef } plugins={ [] }>
+        <PositionedToolbar isImage={ false } editor={ editorRef } plugins={ [] }>
             <BoldButton editor={ editorRef } />
             <ItalicButton editor={ editorRef } />
             <UnderlineButton editor={ editorRef } />
-            <ColorButton editor={ editorRef }/>
+            <ColorButton editor={ editorRef } />
             <SuperscriptButton editor={ editorRef } />
-            <LinkButton editor={ editorRef }/>
+            <LinkButton editor={ editorRef } />
             <CodeButton editor={ editorRef } />
-        </Toolbar>
+        </PositionedToolbar>
     );
 };
 
-export const ListToolbarButtons = () => {
-    const editor = usePlateEditorState(useEventPlateId());
-
-    return (
-        <>
-            <ListButton editor={ editor } />
-            <ToDoListButton editor={ editor }/>
-        </>
-    );
-};
-
-const BlockToolbarButtons = () => {
-    const editorRef = usePlateEditorRef(useEventPlateId());
-
-    return (
-        <>
-            <QuoteButton editor={ editorRef } />
-            <NoteButton editor={ editorRef } />
-            <AttachFileButton editor={ editorRef }/>
-            <ImageButton editor={ editorRef }/>
-            <VideoButton editor={ editorRef } />
-            <IframeButton editor={ editorRef } />
-            <SeparatorButton editor={ editorRef } />
-            <TableButton editor={ editorRef } />
-            <PlaceholderButton editor={ editorRef } />
-        </>
-    );
-};
-
-export const ToolbarButtons = () => {
+export const MainToolbar = () => {
     const editor = usePlateEditorState(useEventPlateId());
     const isActive = isEditorFocused(editor);
 
@@ -84,10 +48,23 @@ export const ToolbarButtons = () => {
     }
 
     return (
-        <Sidebar isReadonly={ false } >
-            <HeaderButton editor={ editor }/>
-            <ListToolbarButtons />
-            <BlockToolbarButtons />
-        </Sidebar>
+        <StickyToolbar isReadonly={ false } >
+            <HeaderButton editor={ editor } />
+
+            {/* list */}
+            <ListButton editor={ editor } />
+            <ToDoListButton editor={ editor } />
+
+            {/* block */}
+            <QuoteButton editor={ editor } />
+            <NoteButton editor={ editor } />
+            <AttachFileButton editor={ editor } />
+            <ImageButton editor={ editor } />
+            <VideoButton editor={ editor } />
+            <IframeButton editor={ editor } />
+            <SeparatorButton editor={ editor } />
+            <TableButton editor={ editor } />
+            <PlaceholderButton editor={ editor } />
+        </StickyToolbar>
     );
 };

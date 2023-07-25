@@ -1,13 +1,10 @@
 import React from 'react';
 import { uuiSkin } from '@epam/uui-core';
-import {
-    findNodePath,
-    setNodes,
-    TTodoListItemElement,
-} from '@udecode/plate';
 
 import css from './ToDoItem.module.scss';
 import { useReadOnly } from 'slate-react';
+import { TTodoListItemElement } from '@udecode/plate-list';
+import { setNodes, findNodePath } from '@udecode/plate-common';
 
 const { Checkbox, FlexRow } = uuiSkin;
 
