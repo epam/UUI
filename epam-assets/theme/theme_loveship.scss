@@ -260,35 +260,31 @@
     --uui-button-bg-halftone: var(--white);
 
     --uui-control-bg: var(--white);
-    --uui-control-bg-checked: var(--uui-primary);
-    --uui-control-bg-checked-hover: var(--uui-primary-dark);
-    --uui-control-bg-checked-disabled: var(--uui-primary-light);
     --uui-control-bg-hover: var(--night600);
     --uui-control-bg-disabled: var(--night50);
     --uui-control-bg-readonly: var(--night50);
+    --uui-control-bg-checked: var(--uui-primary);
+    --uui-control-bg-checked-hover: var(--uui-primary-dark);
+    --uui-control-bg-checked-disabled: var(--uui-primary-light);
     --uui-control_switch-bg: var(--night400);
     --uui-control_switch-toggler-bg: var(--white);
 
-    --uui-control-border-checked-disabled: var(--uui-primary-light);
     --uui-control-border: var(--night400);
-    --uui-control-border-checked: var(--uui-primary);
-    --uui-control-border-checked-hover: var(--uui-primary-dark);
     --uui-control-border-hover: var(--uui-primary-dark);
     --uui-control-border-disabled: var(--night300);
     --uui-control-border-readonly: var(--night300);
+    --uui-control-border-checked: var(--uui-primary);
+    --uui-control-border-checked-hover: var(--uui-primary-dark);
+    --uui-control-border-checked-disabled: var(--uui-primary-light);
 
     --uui-control_switch-border-hover: var(--night600);
     --uui-control_textinput-border-hover: var(--night600);
 
     --uui-control-label: var(--uui-text-primary);
     --uui-control-label-disabled: var(--uui-text-disabled);
-    --uui-control-label-error: var(--uui-error);
-    --uui-control-label-fill: var(--uui-icon);
-    --uui-control-label-optional-text: var(--uui-text-secondary); // TODO: delete token
-    --uui-control-label-asterisk: var(--uui-error);
 
     --uui-control-placeholder: var(--night600);
-    --uui-control-placeholder-disabled: var(--night500);
+    --uui-control-placeholder-disabled: var(--night500); // one place of usage
 
     --uui-control-text: var(--night800);
     --uui-control-text-disabled: var(--night500);
@@ -298,8 +294,8 @@
 
     --uui-control-checkbox-icon: var(--white);
 
-    --uui-tag-bg: var(--night300);
-    --uui-tag-bg-hover: var(--night400);
+    --uui-tag-bg: var(--night300); // one place of usage
+    --uui-tag-bg-hover: var(--night400); // one place of usage
 
     --uui-skeleton: var(--night400);
     --uui-skeleton-gradient: linear-gradient(90deg, var(--night400) 0%, var(--night100) 50%, var(--night400) 100%);
@@ -320,7 +316,7 @@
     --uui-text-input-border: var(--uui-control-border);
     --uui-text-input-border-hover: var(--uui-control_textinput-border-hover);
     --uui-text-input-border-active: var(--uui-control-border-checked);
-    --uui-text-input-border-error: var(--uui-negative);
+    --uui-text-input-border-error: var(--uui-error);
     --uui-text-input-border-disabled: var(--uui-control-border-disabled);
     --uui-text-input-border-readonly: var(--uui-control-border-readonly);
     --uui-text-input-placeholder: var(--uui-control-placeholder);
@@ -367,11 +363,11 @@
     --uui-calendar-selected_day-font: var(--font-semibold);
 
     /*  tab-button-vars     */
-    --uui-tab-button-text: var(--uui-text-primary);
-    --uui-tab-button-text-hover: var(--uui-primary);
-    --uui-tab-button-text-active: var(--uui-primary);
-    --uui-tab-button-text-disabled: var(--uui-text-disabled);
-    --uui-tab-button-font: var(--font-semibold);
+    --uui-tab_button-text: var(--uui-text-primary);
+    --uui-tab_button-text-hover: var(--uui-primary);
+    --uui-tab_button-text-active: var(--uui-primary);
+    --uui-tab_button-text-disabled: var(--uui-text-disabled);
+    --uui-tab_button-font: var(--font-semibold);
 
     /*  radio-input-vars    */
     --uui-radio-input-bg: var(--uui-control-bg);
@@ -415,7 +411,6 @@
     --uui-tag-fill-hover: var(--uui-icon-hover);
     --uui-tag-count-bg: var(--uui-surface);
     --uui-tag-count: var(--uui-text-secondary);
-    --uui-tag-label: var(--uui-text-secondary); // TODO: delete
     --uui-tag-border-radius: 30px;
 
     --uui-tag-font: var(--font-regular);
@@ -428,7 +423,7 @@
     --uui-text-area-border-disabled: var(--uui-control-border-disabled);
     --uui-text-area-border-hover: var(--uui-control_textinput-border-hover);
     --uui-text-area-border-active: var(--uui-control-border-checked);
-    --uui-text-area-border-error: var(--uui-negative);
+    --uui-text-area-border-error: var(--uui-error);
     --uui-text-area-placeholder: var(--uui-control-placeholder);
     --uui-text-area-text: var(--uui-control-text);
     --uui-text-area-text-disabled: var(--uui-control-text-disabled);
@@ -459,7 +454,7 @@
     --uui-picker-toggler-border-disabled: var(--uui-control-border-disabled);
     --uui-picker-toggler-border-hover: var(--uui-control_textinput-border-hover);
     --uui-picker-toggler-border-active: var(--uui-control-border-checked);
-    --uui-picker-toggler-border-error: var(--uui-negative);
+    --uui-picker-toggler-border-error: var(--uui-error);
     --uui-picker-toggler-placeholder: var(--uui-control-placeholder);
     --uui-picker-toggler-text: var(--uui-control-text);
     --uui-picker-toggler-text-disabled: var(--uui-control-text-disabled);
@@ -622,7 +617,7 @@
     --uui-numeric-input-border-disabled: var(--uui-control-border-disabled);
     --uui-numeric-input-border-hover: var(--uui-control_textinput-border-hover);
     --uui-numeric-input-border-active: var(--uui-control-border-checked);
-    --uui-numeric-input-border-error: var(--uui-negative);
+    --uui-numeric-input-border-error: var(--uui-error);
     --uui-numeric-input-placeholder: var(--uui-control-placeholder);
     --uui-numeric-input-text: var(--uui-control-text);
     --uui-numeric-input-text-disabled: var(--uui-control-text-disabled);
@@ -637,7 +632,7 @@
     --uui-time-picker-border-disabled: var(--uui-control-border-disabled);
     --uui-time-picker-border-hover: var(--uui-control_textinput-border-hover);
     --uui-time-picker-border-active: var(--uui-control-border-checked);
-    --uui-time-picker-border-error: var(--uui-negative);
+    --uui-time-picker-border-error: var(--uui-error);
     --uui-time-picker-placeholder: var(--uui-control-placeholder);
     --uui-time-picker-text: var(--uui-control-text);
     --uui-time-picker-text-disabled: var(--uui-control-text-disabled);
@@ -1134,7 +1129,7 @@
     .alert-error,
     .alert-fire {
         --uui-alert-text: var(--uui-text-primary);
-        --uui-alert-bg: #F5E5E9;
+        --uui-alert-bg: var(--uui-error-lightest);
         --uui-alert-border: var(--uui-error);
         --uui-alert-icon: var(--uui-error);
     }
@@ -1142,7 +1137,7 @@
     .alert-warning,
     .alert-sun {
         --uui-alert-text: var(--uui-text-primary);
-        --uui-alert-bg: #F6EEE1;
+        --uui-alert-bg: var(--uui-warning-lightest);
         --uui-alert-border: var(--uui-warning);
         --uui-alert-icon: var(--uui-warning);
     }
@@ -1151,7 +1146,7 @@
     .alert-success,
     .alert-grass {
         --uui-alert-text: var(--uui-text-primary);
-        --uui-alert-bg: #E7EEE1;
+        --uui-alert-bg: var(--uui-success-lightest);
         --uui-alert-border: var(--uui-success);
         --uui-alert-icon: var(--uui-success);
     }
@@ -1159,7 +1154,7 @@
     .alert-info,
     .alert-sky {
         --uui-alert-text: var(--uui-text-primary);
-        --uui-alert-bg: #DCEDF6;
+        --uui-alert-bg: var(--uui-info-lightest);
         --uui-alert-border: var(--uui-info);
         --uui-alert-icon: var(--uui-info);
     }
@@ -1171,10 +1166,10 @@
         --uui-badge-bg-halftone-hover: var(--night300);
         --uui-badge-border-halftone: var(--night400);
         --uui-badge-border-halftone-hover: var(--night500);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--uui-text-primary);
         --uui-badge-caption-halftone: var(--uui-text-primary);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-info, .badge-sky {
@@ -1184,10 +1179,10 @@
         --uui-badge-bg-halftone-hover: var(--uui-info-light);
         --uui-badge-border-halftone: var(--uui-info-light);
         --uui-badge-border-halftone-hover: var(--uui-info);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--uui-text-contrast);
         --uui-badge-caption-halftone: var(--uui-info-darkest);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-success, .badge-grass {
@@ -1197,10 +1192,10 @@
         --uui-badge-bg-halftone-hover: var(--uui-success-light);
         --uui-badge-border-halftone: var(--uui-success-light);
         --uui-badge-border-halftone-hover: var(--uui-success);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--uui-text-contrast);
         --uui-badge-caption-halftone: var(--uui-success-darkest);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-warning, .badge-sun {
@@ -1210,10 +1205,10 @@
         --uui-badge-bg-halftone-hover: var(--uui-warning-light);
         --uui-badge-border-halftone: var(--uui-warning-light);
         --uui-badge-border-halftone-hover: var(--uui-warning);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--uui-text-primary);
         --uui-badge-caption-halftone: var(--uui-warning-darkest);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-error, .badge-fire {
@@ -1223,10 +1218,10 @@
         --uui-badge-bg-halftone-hover: var(--uui-error-light);
         --uui-badge-border-halftone: var(--uui-error-light);
         --uui-badge-border-halftone-hover: var(--uui-error);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--white);
         --uui-badge-caption-halftone: var(--uui-error-darkest);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-cobalt {
@@ -1236,10 +1231,10 @@
         --uui-badge-bg-halftone-hover: var(--cobalt-20);
         --uui-badge-border-halftone: var(--cobalt-30);
         --uui-badge-border-halftone-hover: var(--cobalt-40);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--uui-text-contrast);
         --uui-badge-caption-halftone: var(--cobalt-50);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-lavanda {
@@ -1249,10 +1244,10 @@
         --uui-badge-bg-halftone-hover: var(--lavanda-20);
         --uui-badge-border-halftone: var(--lavanda-30);
         --uui-badge-border-halftone-hover: var(--lavanda-40);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--white);
         --uui-badge-caption-halftone: var(--lavanda-50);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-fuchsia {
@@ -1262,10 +1257,10 @@
         --uui-badge-bg-halftone-hover: var(--fuchia-20);
         --uui-badge-border-halftone: var(--fuchia-30);
         --uui-badge-border-halftone-hover: var(--fuchia-40);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--uui-text-contrast);
         --uui-badge-caption-halftone: var(--fuchia-50);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-white {
@@ -1275,10 +1270,10 @@
         --uui-badge-bg-halftone-hover: var(--gray5);
         --uui-badge-border-halftone: var(--white);
         --uui-badge-border-halftone-hover: var(--gray5);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--night800);
         --uui-badge-caption-halftone: var(--uui-text-secondary);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-night200 {
@@ -1288,10 +1283,10 @@
         --uui-badge-bg-halftone-hover: var(--gray5);
         --uui-badge-border-halftone: var(--white);
         --uui-badge-border-halftone-hover: var(--gray5);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--night800);
         --uui-badge-caption-halftone: var(--uui-text-secondary);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-night300 {
@@ -1301,10 +1296,10 @@
         --uui-badge-bg-halftone-hover: var(--gray5);
         --uui-badge-border-halftone: var(--white);
         --uui-badge-border-halftone-hover: var(--gray5);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--night800);
         --uui-badge-caption-halftone: var(--uui-text-secondary);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-night400 {
@@ -1314,10 +1309,10 @@
         --uui-badge-bg-halftone-hover: var(--gray5);
         --uui-badge-border-halftone: var(--white);
         --uui-badge-border-halftone-hover: var(--gray5);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--night800);
         --uui-badge-caption-halftone: var(--uui-text-secondary);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-night500 {
@@ -1327,10 +1322,10 @@
         --uui-badge-bg-halftone-hover: var(--gray5);
         --uui-badge-border-halftone: var(--white);
         --uui-badge-border-halftone-hover: var(--gray5);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--uui-text-contrast);
         --uui-badge-caption-halftone: var(--uui-text-secondary);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-night600 {
@@ -1340,10 +1335,10 @@
         --uui-badge-bg-halftone-hover: var(--gray5);
         --uui-badge-border-halftone: var(--white);
         --uui-badge-border-halftone-hover: var(--gray5);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--uui-text-contrast);
         --uui-badge-caption-halftone: var(--uui-text-secondary);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-violet {
@@ -1353,10 +1348,10 @@
         --uui-badge-bg-halftone-hover: var(--lavanda-20);
         --uui-badge-border-halftone: var(--lavanda-20);
         --uui-badge-border-halftone-hover: var(--lavanda-30);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--uui-text-contrast);
         --uui-badge-caption-halftone: var(--lavanda-50);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-orange {
@@ -1366,10 +1361,10 @@
         --uui-badge-bg-halftone-hover: var(--orange-20);
         --uui-badge-border-halftone: var(--orange-20);
         --uui-badge-border-halftone-hover: var(--orange-30);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--uui-text-contrast);
         --uui-badge-caption-halftone: var(--orange-50);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .badge-purple {
@@ -1379,10 +1374,10 @@
         --uui-badge-bg-halftone-hover: var(--purple-20);
         --uui-badge-border-halftone: var(--purple-20);
         --uui-badge-border-halftone-hover: var(--purple-30);
-        --uui-badge-count: var(--uui-text-secondary);
-        --uui-badge-count-bg: var(--white);
         --uui-badge-caption-solid: var(--uui-text-contrast);
         --uui-badge-caption-halftone: var(--purple-50);
+        --uui-badge-count: var(--uui-text-secondary);
+        --uui-badge-count-bg: var(--white);
     }
 
     .informer-default {
