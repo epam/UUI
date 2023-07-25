@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-    Avatar,
+    AvatarButton,
     DropdownMenuBody,
     DropdownMenuButton,
     DropdownMenuSwitchButton,
@@ -107,7 +107,7 @@ export default function BasicDropdownMenuExample() {
                 closeOnMouseLeave="boundary"
                 closeDelay={ 400 }
                 renderBody={ (props) => renderDropdownBody(props) }
-                renderTarget={ (props) => <Avatar img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" size="36" { ...props } /> }
+                renderTarget={ (props) => <AvatarButton img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" size="36" { ...props } /> }
             />
             <ControlGroup>
                 <Button size="36" caption="Action with selected" fill="solid" onClick={ () => {} } />

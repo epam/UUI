@@ -1,4 +1,5 @@
 export * from './Avatar';
+export * from './AvatarButton';
 export * from './AvatarStack';
 export * from './Spinner';
 export * from './Carousel';
