@@ -1,16 +1,31 @@
 import * as React from 'react';
 
-type DataSource = {
+type DataSourceFactory<TParams, TItem> = (params: TParams) => DataSource<TItem>;
+
+type DataSource<T> = {
     props: any;
     Component: React.ComponentType<any>;
 };
 
-function array(): DataSource {
+interface ArrayDataManagerProps<T> {
+    parentField?: string;
+}
+
+function array<T>(data: T[], params: ArrayDataManagerProps<T>): DataSource<T> {
+    return null;
+}
+
+interface LazyDataManagerProps<T> {
+    getItems(): T[];
+    cacheSettings?: any;
+}
+
+function lazy<T>(params: LazyDataManagerProps<T>): DataSource<T> {
     return null;
 }
 
 type DataTableProps<TItem> = {
-    data: DataSource;
+    data: DataSource<TItem>;
     someColor: 'blue' | 'red';
     render(item: TItem): any;
 };
@@ -27,6 +42,13 @@ interface ArrItemType {
 }
 
 const arr = [{ id: 1, value: '123 ' }];
+
+function testLoad() {
+    return [{ key: '123', val: 'test' }];
+}
+
+const ArrDataTable = DataTable.of<ArrItemType>();
+const t1 = <ArrDataTable data={ array(arr, { parentField: 'parentId' }) } someColor="blue" render={ (x) => x.value } />;
 
 // const t2 = <DataTable
 //     data={lazy({ getItems: testLoad })}

@@ -1,7 +1,8 @@
 // import flatten from 'lodash.flatten';
 // import Html from 'slate-html-serializer';
 import { Range, Editor } from 'slate';
-import { getPlugins, usePlateEditorState } from '@udecode/plate';
+import { getPlugins, usePlateEditorState } from '@udecode/plate-common';
+import { EditorValue } from './types';
 //
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {
@@ -70,7 +71,7 @@ export const isElementEmpty = (value: EditorValue) => {
     return (
         value.length === 0
         || (value.length === 1
-            && first.type === 'paragraph'
-            && first.children[0].text === '')
+        && first.type === 'paragraph'
+        && first.children[0].text === '')
     );
 };
