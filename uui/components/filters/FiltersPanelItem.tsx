@@ -201,7 +201,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                         !currentValue?.to && currentValue?.to !== 0 ? 'Max' : decimalFormat(currentValue?.to)
                     }`
                     : `${!currentValue && currentValue !== 0 ? 'ALL' : decimalFormat(currentValue)}`;
-                return { selection };
+                return { selection: [selection] };
             }
             case 'singlePicker': {
                 const view = props.dataSource.getView({}, forceUpdate);
@@ -212,10 +212,10 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 const item = view.getById(currentValue, null);
                 const selection = getPickerItemName(item, props);
 
-                return { selection };
+                return { selection: [selection] };
             }
             case 'datePicker': {
-                return { selection: currentValue ? dayjs(currentValue).format(props.format || defaultFormat) : currentValue };
+                return { selection: [currentValue ? dayjs(currentValue).format(props.format || defaultFormat) : currentValue] };
             }
             case 'rangeDatePicker': {
                 if (!currentValue || (!currentValue.from && !currentValue.to)) {
@@ -228,7 +228,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                     ? dayjs(currentValue?.to).format(props.format || defaultFormat)
                     : i18n.filterToolbar.rangeDatePicker.emptyPlaceholderTo;
                 const selection = `${currentValueFrom} - ${currentValueTo}`;
-                return { selection };
+                return { selection: [selection] };
             }
         }
     };

@@ -225,7 +225,7 @@ type FilterConfigBase<TFilter> = {
     columnKey: string;
     isAlwaysVisible?: boolean;
     predicates?: IFilterPredicate[];
-    /** default value: 2. count of words to show in the Filter PickerToggler */
+    /** Count of words to show in the Filter toggler. By default, 2 item will be shown. */
     maxCount?: number;
 };
 
