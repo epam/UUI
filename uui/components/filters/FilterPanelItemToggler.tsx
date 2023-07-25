@@ -9,7 +9,7 @@ import css from './FilterPanelItemToggler.module.scss';
 const defaultSize = '36';
 
 export interface FilterToolbarItemTogglerProps extends IDropdownToggler {
-    selection: string[] | null | JSX.Element[];
+    selection: React.ReactNode[];
     postfix?: string | null | JSX.Element;
     title?: string;
     maxWidth?: string;
@@ -27,31 +27,12 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
 
     const getTitle = props.predicateName ? `${props.title} ${props.predicateName}` : `${props.title}${props.selection ? ':' : ''}`;
 
-    const isArrayOfStrings = (value: any): value is string[] => Array.isArray(value) && value.every((item) => typeof item === 'string');
-
-    const getSelectionText = () => {
-        if (props.selection && isArrayOfStrings(props.selection)) {
-            return props.selection?.length === 0
-                ? <Text color="brand" size={ props.size } cx={ css.selection }>{props.selection[0]}</Text>
-                : props.selection.map((i, index) => {
-                    const isLastSelection = index === props.selection.length - 1;
-                    const commaWithSpace = <span className={ cx(!isLastSelection && css.comma) }>,</span>;
-
-                    return (
-                        <>
-                            <Text color="brand" size={ props.size }>{i}</Text>
-                            { (props.postfix || !isLastSelection) && commaWithSpace }
-                        </>
-                    );
-                });
-        } else {
-            return (
-                <Text color="brand" size={ props.size } cx={ css.selection }>
-                    {props.selection}
-                </Text>
-            );
-        }
-    };
+    const getSelectionText = () => props.selection.map((i, index) => (
+        <>
+            <Text key={ index } color="brand" size={ props.size } cx={ css.selection }>{i}</Text>
+            { (props.postfix || index !== props.selection.length - 1) && <span>,&nbsp;</span> }
+        </>
+    ));
 
     return (
         <FlexRow
