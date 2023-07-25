@@ -1,36 +1,47 @@
-import React from 'react';
 import { useUuiContext } from '@epam/uui-core';
-
-import {
-    createPluginFactory,
-    focusEditor,
-    getBlockAbove,
-    ImagePlugin,
-    PlateEditor,
-    ToolbarButton as PlateToolbarButton,
-    TImageElement,
-    insertNodes,
-    insertEmptyElement,
-    captionGlobalStore,
-} from '@udecode/plate';
+import React from 'react';
 
 import { isPluginActive, isTextSelected } from '../../helpers';
 
-import { Image } from './ImageBlock';
 import { AddImageModal } from './AddImageModal';
+import { Image } from './ImageBlock';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
+import { PlateEditor, TElement, createPluginFactory, focusEditor, getBlockAbove, insertEmptyElement, insertNodes } from '@udecode/plate-common';
+import { TImageElement, captionGlobalStore } from '@udecode/plate-media';
+import isHotkey from 'is-hotkey';
+import { Editor } from 'slate';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
-import { Editor } from 'slate';
-import isHotkey from 'is-hotkey';
+import { FileUploadResponse } from "@epam/uui-core";
+
+export type PlateImgAlign = 'left' | 'center' | 'right';
+export type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';
+export type SlateImageSize = { width: number, height: number | string };
+
+type SlateImageData = {
+    imageSize: SlateImageSize;
+    align: SlateImgAlign;
+} & Partial<(File | FileUploadResponse)>;
+
+export interface SlateProps {
+    data: SlateImageData;
+}
+
+export interface PlateProps {
+    url: string;
+    align?: PlateImgAlign;
+    width?: number;
+}
+
+export interface IImageElement extends TElement, PlateProps, SlateProps {}
 
 export const IMAGE_PLUGIN_KEY = 'image';
 export const IMAGE_PLUGIN_TYPE = 'image';
 
 export const imagePlugin = () => {
-    const createImagePlugin = createPluginFactory<ImagePlugin>({
+    const createImagePlugin = createPluginFactory({
         key: IMAGE_PLUGIN_KEY,
         type: IMAGE_PLUGIN_TYPE,
         isElement: true,
@@ -108,9 +119,9 @@ export const ImageButton = ({ editor }: IImageButton) => {
     const block = getBlockAbove(editor);
 
     return (
-        <PlateToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            onMouseDown={ async (event) => {
+        <ToolbarButton
+            isDisabled={ isTextSelected(editor, true) }
+            onClick={ async (event) => {
                 if (!editor) return;
                 event.preventDefault();
                 event.stopPropagation();
@@ -118,7 +129,6 @@ export const ImageButton = ({ editor }: IImageButton) => {
                 context.uuiModals.show<string>(modalProps => (
                     <AddImageModal
                         editor={ editor }
-                        focusEditor={ () => focusEditor(editor) }
                         insertImage={ handleImageInsert }
                         { ...modalProps }
                     />
@@ -128,12 +138,8 @@ export const ImageButton = ({ editor }: IImageButton) => {
                     console.error(error);
                 });
             } }
-            icon={ <ToolbarButton
-                isDisabled={ isTextSelected(editor, true) }
-                onClick={ () => {} }
-                icon={ ImageIcon }
-                isActive={ block?.length && block[0].type === 'image' }
-            /> }
+            icon={ ImageIcon }
+            isActive={ block?.length && block[0].type === 'image' }
         />
     );
 };
