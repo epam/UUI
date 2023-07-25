@@ -7,7 +7,7 @@ export const blankValidationState: ICanBeInvalid = {};
 
 export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateOn: ValidationMode): ICanBeInvalid => {
     const validateRec = <U>(innerValue: U, path: U[], innerMeta: Metadata<U>, innerInitValue: U): ICanBeInvalid => {
-        const itemResult: ICanBeInvalid = validateValue(innerValue, path, innerMeta, innerInitValue);
+        const itemResult: ICanBeInvalid = validateValue(innerValue, path, innerMeta);
         const validateItem = (key: string, validationMeta: Metadata<any>) => {
             const childValue = innerValue && (innerValue as any)[key];
             const newPath = [childValue, ...path];

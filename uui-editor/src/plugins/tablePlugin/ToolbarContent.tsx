@@ -43,7 +43,7 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
         for (let i = 1; i < item[0].data.rowSpan; i++) {
             insertElements(editor, emptyCell, {
                 // plus one row, when is vertical align
-                at: item[1].map((item: number, index: number) => index === 2 ? item + 1 : item),
+                at: item[1].map((itemRow: number, index: number) => index === 2 ? itemRow + 1 : itemRow),
             });
         }
         insertElements(editor, mergedCell, { at: item[1] });
