@@ -3081,8 +3081,8 @@
       },
       {
         "name": "size",
-        "value": "alertSize[]",
-        "comment": "<p>List of size, you can use {name: &#39;compact&#39;} and by default its {name: &#39;default&#39;}</p>"
+        "value": "36 | 48",
+        "comment": "<p>Optional to change size, the compact size value &#39;36&#39; and by default its value is &#39;46&#39;</p>"
       }
     ],
     "/app/src/docs/_props/epam-promo/components/overlays/dropdown.props.tsx": [
@@ -8078,8 +8078,8 @@
       },
       {
         "name": "size",
-        "value": "alertSize[]",
-        "comment": "<p>List of size, you can use {name: &#39;compact&#39;} and by default its {name: &#39;default&#39;}</p>"
+        "value": "36 | 48",
+        "comment": "<p>Optional to change size, the compact size value &#39;36&#39; and by default its value is &#39;46&#39;</p>"
       }
     ],
     "/app/src/docs/_props/loveship/components/overlays/dropdown.props.tsx": [

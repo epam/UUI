@@ -45,19 +45,11 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
     .prop('size', {
         examples: [
             {
-                value: [
-                    {
-                        name: 'default',
-                    },
-                ],
+                value: '48',
                 name: 'Default',
             }, {
-                value: [
-                    {
-                        name: 'compact',
-                    },
-                ],
-                name: 'Compact',
+                value: '36',
+                name: 'compact',
             },
         ],
         isRequired: true,
