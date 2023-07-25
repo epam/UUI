@@ -37,7 +37,7 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) 
     const onMouseDown: MouseEventHandler = (event) => {
         event.preventDefault();
         event.stopPropagation();
-    }
+    };
 
     if (isReadonly || !isVisible) return null;
 
@@ -48,8 +48,9 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) 
             display: 'flex',
             minHeight: 0,
             zIndex: 50,
-        } }>
-            <div onMouseDown={ onMouseDown } className={ cx("slate-prevent-blur", css.sidebar) } ref={ sidebarRef }>
+        } }
+        >
+            <div onMouseDown={ onMouseDown } className={ cx('slate-prevent-blur', css.sidebar) } ref={ sidebarRef }>
                 { children }
             </div>
         </div>

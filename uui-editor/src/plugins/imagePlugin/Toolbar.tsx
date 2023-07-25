@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler } from 'react';
 
 import { ReactComponent as AlignCenter } from '../../icons/align-center.svg';
 import { ReactComponent as FullWidth } from '../../icons/align-full-width.svg';
@@ -11,7 +11,7 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import css from './ImageBlock.module.scss';
 import { PlateImgAlign } from './imagePlugin';
 
-export const ImgToolbar = ({
+export function ImgToolbar({
     align,
     toggleBlockAlignment,
     isFullWidth,
@@ -21,8 +21,7 @@ export const ImgToolbar = ({
     toggleBlockAlignment: (align: PlateImgAlign) => void,
     isFullWidth: () => boolean,
     setMaxWidth: () => void,
-}) => {
-
+}) {
     /**
     * Prevents unwanted event propagation of focus change
     * on clicking buttons inside toolbar.
@@ -30,7 +29,7 @@ export const ImgToolbar = ({
     const onMouseDown: MouseEventHandler = (event) => {
         event.preventDefault();
         event.stopPropagation();
-    }
+    };
 
     return (
         <div className={ cx(css.imageToolbar, 'slate-prevent-blur') } onMouseDown={ onMouseDown }>

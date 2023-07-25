@@ -68,9 +68,9 @@ export const isElementEmpty = (value: EditorValue) => {
 
     const [first] = value;
     return (
-        value.length === 0 ||
-        (value.length === 1 &&
-            first.type === 'paragraph' &&
-            first.children[0].text === '')
+        value.length === 0
+        || (value.length === 1
+            && first.type === 'paragraph'
+            && first.children[0].text === '')
     );
 };

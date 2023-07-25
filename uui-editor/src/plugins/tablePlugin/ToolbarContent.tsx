@@ -1,23 +1,23 @@
 import React, { Fragment, useMemo } from 'react';
 
-import { ReactComponent as UnmergeCellsIcon } from "../../icons/table-un-merge.svg";
-import { ReactComponent as InsertColumnBefore } from "../../icons/table-add-column-left.svg";
-import { ReactComponent as InsertColumnAfter } from "../../icons/table-add-column-right.svg";
-import { ReactComponent as RemoveColumn } from "../../icons/table-delete-column.svg";
-import { ReactComponent as InsertRowBefore } from "../../icons/table-add-row-before.svg";
-import { ReactComponent as InsertRowAfter } from "../../icons/table-add-row-after.svg";
-import { ReactComponent as RemoveRow } from "../../icons/table-delete-row.svg";
-import { ReactComponent as RemoveTable } from "../../icons/table-table_remove-24.svg";
+import { ReactComponent as UnmergeCellsIcon } from '../../icons/table-un-merge.svg';
+import { ReactComponent as InsertColumnBefore } from '../../icons/table-add-column-left.svg';
+import { ReactComponent as InsertColumnAfter } from '../../icons/table-add-column-right.svg';
+import { ReactComponent as RemoveColumn } from '../../icons/table-delete-column.svg';
+import { ReactComponent as InsertRowBefore } from '../../icons/table-add-row-before.svg';
+import { ReactComponent as InsertRowAfter } from '../../icons/table-add-row-after.svg';
+import { ReactComponent as RemoveRow } from '../../icons/table-delete-row.svg';
+import { ReactComponent as RemoveTable } from '../../icons/table-table_remove-24.svg';
 
 import css from './ToolbarContent.module.scss';
-import { ToolbarButton } from "../../implementation/ToolbarButton";
+import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { deleteColumn } from './deleteColumn';
-import { createCell } from "./utils";
-import { usePlateEditorState, insertElements, TElementEntry, removeNodes } from "@udecode/plate-common";
-import { getTableEntries, insertTableColumn, insertTableRow, deleteRow, deleteTable } from "@udecode/plate-table";
+import { createCell } from './utils';
+import { usePlateEditorState, insertElements, TElementEntry, removeNodes } from '@udecode/plate-common';
+import { getTableEntries, insertTableColumn, insertTableRow, deleteRow, deleteTable } from '@udecode/plate-table';
 
-const StyledRemoveTable = () => {
-    return <RemoveTable className={ css.removeTableIcon } />
+function StyledRemoveTable() {
+    return <RemoveTable className={ css.removeTableIcon } />;
 }
 
 export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntry[] }) {

@@ -51,7 +51,7 @@ interface IToolbarButton {
     editor: PlateEditor;
 }
 
-export const ToDoListButton = ({ editor }: IToolbarButton) => {
+export function ToDoListButton({ editor }: IToolbarButton) {
     if (!isPluginActive(TODO_ELEMENT_KEY)) return null;
 
     const block = getBlockAbove(editor);
@@ -62,7 +62,7 @@ export const ToDoListButton = ({ editor }: IToolbarButton) => {
 
         toggleNodeType(editor, { activeType: type });
         focusEditor(editor);
-    }
+    };
 
     return (
         <ToolbarButton

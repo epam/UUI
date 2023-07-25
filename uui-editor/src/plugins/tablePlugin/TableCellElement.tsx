@@ -19,8 +19,8 @@ const checkIsFirstCell = (colIndex: number, cellNode: TElement) => {
 };
 
 const TableCellElement = React.forwardRef<
-    React.ElementRef<typeof PlateElement>,
-    TableCellElementProps
+React.ElementRef<typeof PlateElement>,
+TableCellElementProps
 >(({ className, ...props }, ref) => {
     const { children, hideBorder, ...rootProps } = props;
     const editor = usePlateEditorRef();
@@ -51,8 +51,7 @@ const TableCellElement = React.forwardRef<
     const tableElement = useElement<TTableElement>(ELEMENT_TABLE);
     const rowElement = useElement<TTableRowElement>(ELEMENT_TR);
     const rowSizeOverrides = useTableStore().get.rowSizeOverrides();
-    const rowSize =
-        rowSizeOverrides.get(rowIndex) ?? rowElement?.size ?? undefined;
+    const rowSize = rowSizeOverrides.get(rowIndex) ?? rowElement?.size ?? undefined;
 
     // const isFirstCell = colIndex === 0;
     const isFirstRow = tableElement.children?.[0] === rowElement;
@@ -84,10 +83,10 @@ const TableCellElement = React.forwardRef<
                             borders.bottom?.size && css.borderBottom,
                             borders.right?.size && css.borderRight,
                             borders.left?.size && css.borderLeft,
-                            borders.top?.size && css.borderTop
+                            borders.top?.size && css.borderTop,
                         ),
                     ),
-                    className
+                    className,
                 )
             }
             { ...rootProps }
@@ -116,18 +115,17 @@ const TableCellElement = React.forwardRef<
                     ) }
                 </div>
             </Cell>
-        </PlateElement >
+        </PlateElement>
     );
 });
 TableCellElement.displayName = 'TableCellElement';
 
 const TableCellHeaderElement = React.forwardRef<
-    React.ElementRef<typeof TableCellElement>,
-    TableCellElementProps
+React.ElementRef<typeof TableCellElement>,
+TableCellElementProps
 >((props, ref) => {
     return <TableCellElement ref={ ref } { ...props } isHeader />;
 });
 TableCellHeaderElement.displayName = 'TableCellHeaderElement';
 
 export { TableCellElement, TableCellHeaderElement };
-

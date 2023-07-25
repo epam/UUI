@@ -8,14 +8,14 @@ import {
     removeNodes,
     setNodes,
     Value,
-} from "@udecode/plate-common";
+} from '@udecode/plate-common';
 import {
     ELEMENT_TABLE,
     ELEMENT_TD,
     ELEMENT_TH,
     ELEMENT_TR,
     TTableElement,
-} from "@udecode/plate-table"
+} from '@udecode/plate-table';
 
 export const deleteColumn = <V extends Value>(editor: PlateEditor<V>) => {
     if (

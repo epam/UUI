@@ -18,4 +18,4 @@ export const Separator: PlatePluginComponent = (props) => {
             { children }
         </div>
     );
-}
+};

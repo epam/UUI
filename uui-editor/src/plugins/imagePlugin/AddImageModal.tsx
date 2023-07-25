@@ -50,15 +50,19 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
                         accept="image/*"
                     />
                     <FlexSpacer />
-                    <Button type='cancel' caption='Cancel' onClick={ abort } />
-                    <Button type='success' caption='Ok' isDisabled={ !imageURL } onClick={ async () => {
-                        if (files && files.length) {
-                            await onFilesAdded(files);
-                        } else {
-                            props.insertImage(prependHttp(imageURL, { https: true }));
-                        }
-                        props.success(true);
-                    } }
+                    <Button type="cancel" caption="Cancel" onClick={ abort } />
+                    <Button
+                        type="success"
+                        caption="Ok"
+                        isDisabled={ !imageURL }
+                        onClick={ async () => {
+                            if (files && files.length) {
+                                await onFilesAdded(files);
+                            } else {
+                                props.insertImage(prependHttp(imageURL, { https: true }));
+                            }
+                            props.success(true);
+                        } }
                     />
                 </ModalFooter>
             </ModalWindow>

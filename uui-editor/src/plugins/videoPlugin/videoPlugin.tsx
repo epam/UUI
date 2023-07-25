@@ -1,7 +1,6 @@
 import { useUuiContext } from '@epam/uui-core';
 import React from 'react';
 
-
 import { isPluginActive, isTextSelected } from '../../helpers';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
@@ -43,7 +42,7 @@ export function VideoButton({
                         { ...modalProps }
                     />
                 )).catch(() => null);
-            }  }
+            } }
             isDisabled={ !!isTextSelected(editor, true) }
             icon={ VideoIcon }
             isActive={ block?.length && block[0].type === 'iframe' }
