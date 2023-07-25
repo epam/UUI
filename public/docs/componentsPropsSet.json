@@ -8,7 +8,7 @@
       },
       {
         "name": "captionCX",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put on the caption</p>"
       },
       {
@@ -23,8 +23,8 @@
       },
       {
         "name": "color",
-        "value": "blue | green | red | gray50",
-        "comment": "<p>Button color</p>"
+        "value": "blue | green | red | gray50 | gray",
+        "comment": null
       },
       {
         "name": "count",
@@ -38,7 +38,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -54,7 +54,7 @@
       {
         "name": "fill",
         "value": "none | solid | white | light",
-        "comment": "<p>Fill style: solid (normal), light (washed color), white, or none (just button label is visible)</p>"
+        "comment": null
       },
       {
         "name": "forwardedRef",
@@ -144,7 +144,7 @@
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48 | 18",
-        "comment": "<p>Button size</p>"
+        "comment": null
       },
       {
         "name": "tabIndex",
@@ -175,7 +175,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -239,7 +239,7 @@
         "comment": "<p>Controls where the link should be opened</p>"
       }
     ],
-    "/app/src/docs/_props/epam-promo/components/buttons/linkButton.props.ts": [
+    "/app/src/docs/_props/epam-promo/components/buttons/linkButton.props.tsx": [
       {
         "name": "caption",
         "value": "any",
@@ -247,7 +247,7 @@
       },
       {
         "name": "captionCX",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put on the caption</p>"
       },
       {
@@ -262,7 +262,7 @@
       },
       {
         "name": "color",
-        "value": "blue | green | red | amber",
+        "value": "blue | green | red | amber | gray60 | gray10",
         "comment": null
       },
       {
@@ -277,7 +277,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -369,6 +369,11 @@
         "name": "ref",
         "value": "React.Ref<any>",
         "comment": "<p>Component&#39;s ref</p>"
+      },
+      {
+        "name": "size",
+        "value": "none | 24 | 30 | 36 | 42 | 48",
+        "comment": null
       },
       {
         "name": "tabIndex",
@@ -394,7 +399,7 @@
       },
       {
         "name": "captionCX",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put on the caption</p>"
       },
       {
@@ -419,7 +424,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -515,7 +520,7 @@
       {
         "name": "size",
         "value": "36 | 48 | 60",
-        "comment": "<p>Tab button size</p>"
+        "comment": null
       },
       {
         "name": "tabIndex",
@@ -535,7 +540,7 @@
       {
         "name": "withNotify",
         "value": "boolean",
-        "comment": "<p>Show notification red dot</p>"
+        "comment": null
       }
     ],
     "/app/src/docs/_props/epam-promo/components/buttons/verticalTabButton.props.ts": [
@@ -546,7 +551,7 @@
       },
       {
         "name": "captionCX",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put on the caption</p>"
       },
       {
@@ -571,7 +576,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -667,7 +672,7 @@
       {
         "name": "size",
         "value": "36 | 48 | 60",
-        "comment": "<p>Tab button size</p>"
+        "comment": null
       },
       {
         "name": "tabIndex",
@@ -687,14 +692,14 @@
       {
         "name": "withNotify",
         "value": "boolean",
-        "comment": "<p>Show notification red dot</p>"
+        "comment": null
       }
     ],
     "/app/src/docs/_props/epam-promo/components/datePickers/datePicker.props.tsx": [
       {
         "name": "bodyCx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+        "value": "ClassValue",
+        "comment": null
       },
       {
         "name": "disableClear",
@@ -723,7 +728,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>Styles for input and body components in DatePicker</p>"
       },
       {
@@ -754,7 +759,7 @@
       {
         "name": "mode",
         "value": "form | cell | inline",
-        "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
+        "comment": null
       },
       {
         "name": "onBlur",
@@ -804,7 +809,7 @@
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48",
-        "comment": "<p>Component&#39;s size in px. This is &#39;logical&#39; size, defined in how many pixels components occupies vertically.</p>"
+        "comment": null
       },
       {
         "name": "validationMessage",
@@ -825,8 +830,8 @@
     "/app/src/docs/_props/epam-promo/components/datePickers/rangeDatePicker.props.tsx": [
       {
         "name": "bodyCx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+        "value": "ClassValue",
+        "comment": null
       },
       {
         "name": "disableClear",
@@ -855,7 +860,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>Styles for input and body components in RangeDatePicker</p>"
       },
       {
@@ -892,6 +897,11 @@
         "name": "onFocus",
         "value": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: \"from\" | \"to\") => void",
         "comment": "<p>Called when component gets input focus</p>"
+      },
+      {
+        "name": "onOpenChange",
+        "value": "(isOpen: boolean) => void",
+        "comment": "<p>Called when component is opened/closed</p>"
       },
       {
         "name": "onValueChange",
@@ -931,7 +941,7 @@
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48",
-        "comment": "<p>Component&#39;s size in px. This is &#39;logical&#39; size, defined in how many pixels components occupies vertically.</p>"
+        "comment": null
       },
       {
         "name": "validationMessage",
@@ -952,7 +962,7 @@
     "/app/src/docs/_props/epam-promo/components/inputs/checkbox.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -1043,7 +1053,7 @@
       {
         "name": "size",
         "value": "18 | 12",
-        "comment": "<p>Checkbox size</p>"
+        "comment": null
       },
       {
         "name": "tabIndex",
@@ -1110,7 +1120,7 @@
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48",
-        "comment": "<p>Component&#39;s size in px. This is &#39;logical&#39; size, defined in how many pixels components occupies vertically.</p>"
+        "comment": null
       },
       {
         "name": "validationMessage",
@@ -1136,7 +1146,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -1181,7 +1191,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put directly on the Input element</p>"
       },
       {
@@ -1217,7 +1227,7 @@
       {
         "name": "mode",
         "value": "form | cell | inline",
-        "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
+        "comment": null
       },
       {
         "name": "onBlur",
@@ -1252,7 +1262,7 @@
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48",
-        "comment": "<p>Component&#39;s size in px. This is &#39;logical&#39; size, defined in how many pixels components occupies vertically.</p>"
+        "comment": null
       },
       {
         "name": "step",
@@ -1283,7 +1293,7 @@
     "/app/src/docs/_props/epam-promo/components/inputs/radioInput.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -1375,7 +1385,7 @@
     "/app/src/docs/_props/epam-promo/components/inputs/rating.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -1507,7 +1517,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -1547,7 +1557,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put to the HTML Input element</p>"
       },
       {
@@ -1598,7 +1608,7 @@
       {
         "name": "mode",
         "value": "form | cell | inline",
-        "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
+        "comment": null
       },
       {
         "name": "name",
@@ -1651,11 +1661,6 @@
         "comment": "<p>Placeholder to display when empty</p>"
       },
       {
-        "name": "prefix",
-        "value": "React.ReactNode",
-        "comment": "<p>Prefix to render before the input. Can be used to display in-place labels</p>"
-      },
-      {
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
@@ -1674,11 +1679,6 @@
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48",
         "comment": null
-      },
-      {
-        "name": "suffix",
-        "value": "React.ReactNode",
-        "comment": "<p>Suffix to render after the input. Can be used to display unit or currency</p>"
       },
       {
         "name": "tabIndex",
@@ -1714,7 +1714,7 @@
     "/app/src/docs/_props/epam-promo/components/inputs/switch.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -1806,7 +1806,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -1821,7 +1821,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class names to put to the HTML Input element</p>"
       },
       {
@@ -1852,7 +1852,7 @@
       {
         "name": "mode",
         "value": "form | cell | inline",
-        "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
+        "comment": null
       },
       {
         "name": "onBlur",
@@ -1938,7 +1938,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -1968,7 +1968,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put to the HTML Input element</p>"
       },
       {
@@ -2019,7 +2019,7 @@
       {
         "name": "mode",
         "value": "form | cell | inline",
-        "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
+        "comment": null
       },
       {
         "name": "name",
@@ -2072,11 +2072,6 @@
         "comment": "<p>Placeholder to display when empty</p>"
       },
       {
-        "name": "prefix",
-        "value": "React.ReactNode",
-        "comment": "<p>Prefix to render before the input. Can be used to display in-place labels</p>"
-      },
-      {
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
@@ -2095,11 +2090,6 @@
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48",
         "comment": null
-      },
-      {
-        "name": "suffix",
-        "value": "React.ReactNode",
-        "comment": "<p>Suffix to render after the input. Can be used to display unit or currency</p>"
       },
       {
         "name": "tabIndex",
@@ -2134,6 +2124,11 @@
     ],
     "/app/src/docs/_props/epam-promo/components/inputs/timePicker.props.ts": [
       {
+        "name": "bodyCx",
+        "value": "ClassValue",
+        "comment": "<p>CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details</p>"
+      },
+      {
         "name": "format",
         "value": "24 | 12",
         "comment": null
@@ -2142,6 +2137,11 @@
         "name": "id",
         "value": "string",
         "comment": null
+      },
+      {
+        "name": "inputCx",
+        "value": "ClassValue",
+        "comment": "<p>CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details</p>"
       },
       {
         "name": "isDisabled",
@@ -2222,7 +2222,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -2243,12 +2243,12 @@
       {
         "name": "mode",
         "value": "inline | block",
-        "comment": "<p>&#39;block&#39; mode: render as separate panel (with padding, borders, shadows). &#39;inline&#39; mode - renders no outside panel, suitable for placing in a panel with other components</p>"
+        "comment": null
       },
       {
         "name": "padding",
         "value": "18 | 0 | 6 | 12",
-        "comment": "<p>Padding inside the panel</p>"
+        "comment": null
       },
       {
         "name": "rawProps",
@@ -2274,7 +2274,7 @@
     "/app/src/docs/_props/epam-promo/components/layout/blocker.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -2316,7 +2316,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -2388,7 +2388,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -2425,12 +2425,12 @@
       },
       {
         "name": "columnGap",
-        "value": "6 | 12 | 18 | 24 | 36",
-        "comment": "<p>Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": null
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -2471,7 +2471,7 @@
       {
         "name": "rowGap",
         "value": "24 | 36 | 18 | 6 | 12",
-        "comment": "<p>Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
+        "comment": null
       },
       {
         "name": "shrink",
@@ -2542,7 +2542,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -2614,7 +2614,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -2650,8 +2650,13 @@
     ],
     "/app/src/docs/_props/epam-promo/components/layout/iconContainer.props.tsx": [
       {
+        "name": "color",
+        "value": "white | blue | green | red | gray50 | amber | gray30 | gray60 | gray10 | gray90 | gray5 | cyan | orange | purple | violet | gray20 | gray40 | gray70 | gray80",
+        "comment": "<p>IconContainer color.</p>"
+      },
+      {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -2708,7 +2713,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -2764,7 +2769,7 @@
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48",
-        "comment": "<p>Component&#39;s size in px. This is &#39;logical&#39; size, defined in how many pixels components occupies vertically.</p>"
+        "comment": null
       },
       {
         "name": "Tooltip",
@@ -2785,7 +2790,7 @@
     "/app/src/docs/_props/epam-promo/components/layout/radioGroup.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -2872,7 +2877,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -2969,7 +2974,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -3052,11 +3057,11 @@
       {
         "name": "color",
         "value": "blue | green | red | amber",
-        "comment": "<p>Alert color</p>"
+        "comment": null
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -3073,6 +3078,11 @@
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "size",
+        "value": "alertSize[]",
+        "comment": "<p>List of size, you can use {name: &#39;compact&#39;} and by default its {name: &#39;default&#39;}</p>"
       }
     ],
     "/app/src/docs/_props/epam-promo/components/overlays/dropdown.props.tsx": [
@@ -3220,7 +3230,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -3311,11 +3321,6 @@
     ],
     "/app/src/docs/_props/epam-promo/components/overlays/modalFooter.props.tsx": [
       {
-        "name": "background",
-        "value": "none | white | gray5",
-        "comment": null
-      },
-      {
         "name": "borderBottom",
         "value": "boolean",
         "comment": null
@@ -3337,7 +3342,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -3383,11 +3388,6 @@
     ],
     "/app/src/docs/_props/epam-promo/components/overlays/modalHeader.props.tsx": [
       {
-        "name": "background",
-        "value": "none | white | gray5",
-        "comment": null
-      },
-      {
         "name": "borderBottom",
         "value": "boolean",
         "comment": null
@@ -3404,7 +3404,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -3481,7 +3481,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -3524,7 +3524,7 @@
       {
         "name": "boundaryElement",
         "value": "clippingParents",
-        "comment": "<p>See  <a href='https://popper.js.org/docs/v2/modifiers/prevent-overflow/'>Popper docs</a></p>"
+        "comment": null
       },
       {
         "name": "children",
@@ -3539,7 +3539,7 @@
       {
         "name": "closeDelay",
         "value": "number",
-        "comment": "<p>Set delay for close. Default: 0</p>"
+        "comment": null
       },
       {
         "name": "closeOnMouseLeave",
@@ -3548,8 +3548,8 @@
       },
       {
         "name": "color",
-        "value": "white | red | gray90",
-        "comment": "<p>Tooltip color</p>"
+        "value": "white | red | gray | gray90",
+        "comment": "<p>Tooltip color.\r\n&#39;gray90&#39; is deprecated and will be removed in future release, use &#39;gray&#39; instead.</p>"
       },
       {
         "name": "content",
@@ -3558,7 +3558,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -3609,17 +3609,22 @@
       {
         "name": "openDelay",
         "value": "number",
-        "comment": "<p>Set delay for open. Default: 0</p>"
+        "comment": "<p>Should we close dropdown on click on the Toggler, if it&#39;s already open? Default is true.</p>"
       },
       {
         "name": "placement",
         "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end",
-        "comment": "<p>Tooltip position relative to the wrapped content. See [Popper Docs](@link https://popper.js.org/)</p>"
+        "comment": null
       },
       {
         "name": "portalTarget",
         "value": "HTMLElement",
-        "comment": "<p>Overrides React Portal target to use</p>"
+        "comment": null
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       },
       {
         "name": "renderContent",
@@ -3654,9 +3659,14 @@
         "comment": "<p>Sets focus to component when it&#39;s mounted</p>"
       },
       {
+        "name": "bodyCx",
+        "value": "ClassValue",
+        "comment": "<p>CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details</p>"
+      },
+      {
         "name": "cascadeSelection",
-        "value": "boolean",
-        "comment": "<p>Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents)</p>"
+        "value": "implicit | explicit",
+        "comment": "<p>Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.\r\n- false: All nodes are selected independently (default).\r\n- true or &#39;explicit&#39;: Selecting a parent node explicitly selects all its children. Unchecking the last parent&#39;s child unchecks its parent.\r\n- &#39;implicit&#39;: Selecting a parent node means that all children are considered checked.\r\n  The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked\r\n  parent is present in the Picker&#39;s value or DataSourceState.checked array. When the user unchecks the first child of such a parent,\r\n  its parents become unchecked and all children but the unchecked one become checked, making children&#39;s selection explicit. If the last\r\n  unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.</p>"
       },
       {
         "name": "dataSource",
@@ -3739,6 +3749,11 @@
         "comment": "<p>Position of the icon (left of right)</p>"
       },
       {
+        "name": "inputCx",
+        "value": "ClassValue",
+        "comment": "<p>CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details</p>"
+      },
+      {
         "name": "isDisabled",
         "value": "boolean",
         "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
@@ -3786,7 +3801,7 @@
       {
         "name": "mode",
         "value": "form | cell | inline",
-        "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
+        "comment": null
       },
       {
         "name": "onBlur",
@@ -3817,11 +3832,6 @@
         "name": "portalTarget",
         "value": "HTMLElement",
         "comment": null
-      },
-      {
-        "name": "prefix",
-        "value": "React.ReactNode",
-        "comment": "<p>Prefix text to add to the input</p>"
       },
       {
         "name": "rawProps",
@@ -3861,7 +3871,7 @@
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48",
-        "comment": "<p>Component&#39;s size in px. This is &#39;logical&#39; size, defined in how many pixels components occupies vertically.</p>"
+        "comment": null
       },
       {
         "name": "sortBy",
@@ -3872,11 +3882,6 @@
         "name": "sorting",
         "value": "SortingOption<any>",
         "comment": "<p>Defines sorting to pass to the DataSource</p>"
-      },
-      {
-        "name": "suffix",
-        "value": "React.ReactNode",
-        "comment": "<p>Suffix text to add to the input</p>"
       },
       {
         "name": "validationMessage",
@@ -3902,8 +3907,8 @@
     "/app/src/docs/_props/epam-promo/components/pickers/pickerList.props.tsx": [
       {
         "name": "cascadeSelection",
-        "value": "boolean",
-        "comment": "<p>Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents)</p>"
+        "value": "implicit | explicit",
+        "comment": "<p>Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.\r\n- false: All nodes are selected independently (default).\r\n- true or &#39;explicit&#39;: Selecting a parent node explicitly selects all its children. Unchecking the last parent&#39;s child unchecks its parent.\r\n- &#39;implicit&#39;: Selecting a parent node means that all children are considered checked.\r\n  The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked\r\n  parent is present in the Picker&#39;s value or DataSourceState.checked array. When the user unchecks the first child of such a parent,\r\n  its parents become unchecked and all children but the unchecked one become checked, making children&#39;s selection explicit. If the last\r\n  unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.</p>"
       },
       {
         "name": "dataSource",
@@ -4094,7 +4099,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -4126,12 +4131,12 @@
       },
       {
         "name": "color",
-        "value": "gray50 | gray60 | gray90 | gray5 | gray80",
+        "value": "white | blue | green | red | gray50 | amber | gray60 | gray90 | gray5 | gray80",
         "comment": null
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -4163,7 +4168,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -4190,7 +4195,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -4237,7 +4242,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -4269,7 +4274,7 @@
       },
       {
         "name": "captionCX",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put on the caption</p>"
       },
       {
@@ -4299,7 +4304,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -4488,7 +4493,7 @@
     "/app/src/docs/_props/epam-promo/components/widgets/spinner.props.tsx": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -4510,7 +4515,7 @@
       },
       {
         "name": "captionCX",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put on the caption</p>"
       },
       {
@@ -4535,7 +4540,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -4657,7 +4662,7 @@
       },
       {
         "name": "captionCX",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put on the caption</p>"
       },
       {
@@ -4672,8 +4677,8 @@
       },
       {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": "<p>Component color</p>"
+        "value": "white | gray | sky | grass | sun | fire | night500 | night600",
+        "comment": null
       },
       {
         "name": "count",
@@ -4687,7 +4692,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -4811,7 +4816,7 @@
         "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
-    "/app/src/docs/_props/loveship/components/buttons/iconButton.props.ts": [
+    "/app/src/docs/_props/loveship/components/buttons/iconButton.props.tsx": [
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
@@ -4819,12 +4824,12 @@
       },
       {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "value": "white | fuchsia | sky | grass | sun | fire | night500 | night600 | cobalt | lavanda | night200 | night300 | night400",
         "comment": null
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -4896,7 +4901,7 @@
       },
       {
         "name": "captionCX",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put on the caption</p>"
       },
       {
@@ -4911,7 +4916,7 @@
       },
       {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "value": "white | fuchsia | sky | grass | sun | fire | night500 | night600 | cobalt | lavanda | night200 | night300 | night400 | night50 | night100 | night700 | night800 | night900",
         "comment": null
       },
       {
@@ -4926,7 +4931,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -4938,16 +4943,6 @@
         "name": "dropdownIconPosition",
         "value": "left | right",
         "comment": "<p>Position of the dropdown icon (&#39;left&#39; of &#39;right&#39;)</p>"
-      },
-      {
-        "name": "font",
-        "value": "sans | sans-semibold | sans-light",
-        "comment": null
-      },
-      {
-        "name": "fontSize",
-        "value": "18 | 10 | 12 | 14 | 16",
-        "comment": null
       },
       {
         "name": "forwardedRef",
@@ -4995,11 +4990,6 @@
         "comment": "<p>When component acts as dropdown, indicate that dropdown is open</p>"
       },
       {
-        "name": "lineHeight",
-        "value": "24 | 30 | 18 | 12",
-        "comment": null
-      },
-      {
         "name": "link",
         "value": "Link",
         "comment": "<p>Link object to redirect to for SPA-redirects</p>"
@@ -5035,6 +5025,11 @@
         "comment": "<p>Component&#39;s ref</p>"
       },
       {
+        "name": "size",
+        "value": "none | 24 | 30 | 36 | 42 | 48",
+        "comment": null
+      },
+      {
         "name": "tabIndex",
         "value": "number",
         "comment": "<p>Controls the order of keyboard navigation between components</p>"
@@ -5058,7 +5053,7 @@
       },
       {
         "name": "captionCX",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put on the caption</p>"
       },
       {
@@ -5083,7 +5078,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -5215,7 +5210,7 @@
       },
       {
         "name": "captionCX",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put on the caption</p>"
       },
       {
@@ -5240,7 +5235,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -5367,7 +5362,7 @@
     "/app/src/docs/_props/loveship/components/datePickers/calendar.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -5424,7 +5419,7 @@
     "/app/src/docs/_props/loveship/components/datePickers/datePicker.props.tsx": [
       {
         "name": "bodyCx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": null
       },
       {
@@ -5454,7 +5449,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>Styles for input and body components in DatePicker</p>"
       },
       {
@@ -5556,7 +5551,7 @@
     "/app/src/docs/_props/loveship/components/datePickers/rangeDatePicker.props.tsx": [
       {
         "name": "bodyCx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": null
       },
       {
@@ -5586,7 +5581,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>Styles for input and body components in RangeDatePicker</p>"
       },
       {
@@ -5623,6 +5618,11 @@
         "name": "onFocus",
         "value": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: \"from\" | \"to\") => void",
         "comment": "<p>Called when component gets input focus</p>"
+      },
+      {
+        "name": "onOpenChange",
+        "value": "(isOpen: boolean) => void",
+        "comment": "<p>Called when component is opened/closed</p>"
       },
       {
         "name": "onValueChange",
@@ -5683,7 +5683,7 @@
     "/app/src/docs/_props/loveship/components/inputs/checkbox.props.tsx": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -5872,7 +5872,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -5917,7 +5917,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put directly on the Input element</p>"
       },
       {
@@ -6019,7 +6019,7 @@
     "/app/src/docs/_props/loveship/components/inputs/radioInput.props.tsx": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -6116,7 +6116,7 @@
     "/app/src/docs/_props/loveship/components/inputs/rating.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -6248,7 +6248,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -6288,7 +6288,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put to the HTML Input element</p>"
       },
       {
@@ -6392,11 +6392,6 @@
         "comment": "<p>Placeholder to display when empty</p>"
       },
       {
-        "name": "prefix",
-        "value": "React.ReactNode",
-        "comment": "<p>Prefix to render before the input. Can be used to display in-place labels</p>"
-      },
-      {
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
@@ -6415,11 +6410,6 @@
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60",
         "comment": null
-      },
-      {
-        "name": "suffix",
-        "value": "React.ReactNode",
-        "comment": "<p>Suffix to render after the input. Can be used to display unit or currency</p>"
       },
       {
         "name": "tabIndex",
@@ -6455,12 +6445,12 @@
     "/app/src/docs/_props/loveship/components/inputs/Slider/rangeSlider.props.ts": [
       {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "value": "white | fuchsia | sky | grass | sun | fire | night500 | night600 | cobalt | lavanda | night200 | night300 | night400 | night50 | night100 | night700 | night800 | night900",
         "comment": "<p>Component color</p>"
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -6546,13 +6536,8 @@
     ],
     "/app/src/docs/_props/loveship/components/inputs/Slider/slider.props.ts": [
       {
-        "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": "<p>Component color</p>"
-      },
-      {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -6716,7 +6701,7 @@
     "/app/src/docs/_props/loveship/components/inputs/switch.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -6808,7 +6793,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -6823,7 +6808,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class names to put to the HTML Input element</p>"
       },
       {
@@ -6940,7 +6925,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -6970,7 +6955,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put to the HTML Input element</p>"
       },
       {
@@ -7074,11 +7059,6 @@
         "comment": "<p>Placeholder to display when empty</p>"
       },
       {
-        "name": "prefix",
-        "value": "React.ReactNode",
-        "comment": "<p>Prefix to render before the input. Can be used to display in-place labels</p>"
-      },
-      {
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
@@ -7097,11 +7077,6 @@
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60",
         "comment": null
-      },
-      {
-        "name": "suffix",
-        "value": "React.ReactNode",
-        "comment": "<p>Suffix to render after the input. Can be used to display unit or currency</p>"
       },
       {
         "name": "tabIndex",
@@ -7136,6 +7111,11 @@
     ],
     "/app/src/docs/_props/loveship/components/inputs/timePicker.props.ts": [
       {
+        "name": "bodyCx",
+        "value": "ClassValue",
+        "comment": "<p>CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details</p>"
+      },
+      {
         "name": "format",
         "value": "24 | 12",
         "comment": null
@@ -7144,6 +7124,11 @@
         "name": "id",
         "value": "string",
         "comment": null
+      },
+      {
+        "name": "inputCx",
+        "value": "ClassValue",
+        "comment": "<p>CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details</p>"
       },
       {
         "name": "isDisabled",
@@ -7224,7 +7209,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -7276,7 +7261,7 @@
     "/app/src/docs/_props/loveship/components/layout/blocker.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -7318,7 +7303,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -7390,7 +7375,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -7432,7 +7417,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -7549,7 +7534,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -7626,7 +7611,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -7662,8 +7647,13 @@
     ],
     "/app/src/docs/_props/loveship/components/layout/iconContainer.props.tsx": [
       {
+        "name": "color",
+        "value": "white | fuchsia | sky | grass | sun | fire | night500 | night600 | cobalt | lavanda | night200 | night300 | night400 | night50 | night100 | night700 | night800 | night900 | carbon",
+        "comment": "<p>IconContainer color.</p>"
+      },
+      {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -7720,7 +7710,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -7797,7 +7787,7 @@
     "/app/src/docs/_props/loveship/components/layout/radioGroup.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -7884,7 +7874,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -7981,7 +7971,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -8068,7 +8058,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -8085,6 +8075,11 @@
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "size",
+        "value": "alertSize[]",
+        "comment": "<p>List of size, you can use {name: &#39;compact&#39;} and by default its {name: &#39;default&#39;}</p>"
       }
     ],
     "/app/src/docs/_props/loveship/components/overlays/dropdown.props.tsx": [
@@ -8297,7 +8292,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -8586,7 +8581,7 @@
       },
       {
         "name": "captionCX",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put on the caption</p>"
       },
       {
@@ -8616,7 +8611,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -8737,11 +8732,6 @@
     ],
     "/app/src/docs/_props/loveship/components/overlays/modalFooter.props.tsx": [
       {
-        "name": "background",
-        "value": "none | white | night50 | night100",
-        "comment": null
-      },
-      {
         "name": "borderBottom",
         "value": "boolean",
         "comment": null
@@ -8763,7 +8753,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -8802,22 +8792,12 @@
         "comment": null
       },
       {
-        "name": "type",
-        "value": "form | panel",
-        "comment": null
-      },
-      {
         "name": "vPadding",
         "value": "24 | 36 | 48 | 18 | 12",
         "comment": null
       }
     ],
     "/app/src/docs/_props/loveship/components/overlays/modalHeader.props.tsx": [
-      {
-        "name": "background",
-        "value": "none | white | night50 | night100",
-        "comment": null
-      },
       {
         "name": "borderBottom",
         "value": "boolean",
@@ -8835,7 +8815,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -8884,11 +8864,6 @@
         "comment": null
       },
       {
-        "name": "type",
-        "value": "form | panel",
-        "comment": null
-      },
-      {
         "name": "vPadding",
         "value": "24 | 36 | 48 | 18 | 12",
         "comment": null
@@ -8917,7 +8892,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -9031,8 +9006,8 @@
       },
       {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": null
+        "value": "white | gray | fire | night900",
+        "comment": "<p>Tooltip color.\r\n&#39;night900&#39; is deprecated and will be removed in future release, use &#39;gray&#39; instead.</p>"
       },
       {
         "name": "content",
@@ -9041,7 +9016,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -9105,6 +9080,11 @@
         "comment": null
       },
       {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
         "name": "renderContent",
         "value": "() => any",
         "comment": "<p>Alternative to &#39;content&#39; prop, you can pass a render function.\r\nThe function will only be called when content is shown, this can save performance.</p>"
@@ -9137,9 +9117,14 @@
         "comment": "<p>Sets focus to component when it&#39;s mounted</p>"
       },
       {
+        "name": "bodyCx",
+        "value": "ClassValue",
+        "comment": "<p>CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details</p>"
+      },
+      {
         "name": "cascadeSelection",
-        "value": "boolean",
-        "comment": "<p>Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents)</p>"
+        "value": "implicit | explicit",
+        "comment": "<p>Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.\r\n- false: All nodes are selected independently (default).\r\n- true or &#39;explicit&#39;: Selecting a parent node explicitly selects all its children. Unchecking the last parent&#39;s child unchecks its parent.\r\n- &#39;implicit&#39;: Selecting a parent node means that all children are considered checked.\r\n  The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked\r\n  parent is present in the Picker&#39;s value or DataSourceState.checked array. When the user unchecks the first child of such a parent,\r\n  its parents become unchecked and all children but the unchecked one become checked, making children&#39;s selection explicit. If the last\r\n  unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.</p>"
       },
       {
         "name": "dataSource",
@@ -9222,6 +9207,11 @@
         "comment": "<p>Position of the icon (left of right)</p>"
       },
       {
+        "name": "inputCx",
+        "value": "ClassValue",
+        "comment": "<p>CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details</p>"
+      },
+      {
         "name": "isDisabled",
         "value": "boolean",
         "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
@@ -9302,11 +9292,6 @@
         "comment": null
       },
       {
-        "name": "prefix",
-        "value": "React.ReactNode",
-        "comment": "<p>Prefix text to add to the input</p>"
-      },
-      {
         "name": "rawProps",
         "value": "{ input?: React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>; body?: React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>; }",
         "comment": "<p>HTML attributes to put directly to the input and body elements</p>"
@@ -9357,11 +9342,6 @@
         "comment": "<p>Defines sorting to pass to the DataSource</p>"
       },
       {
-        "name": "suffix",
-        "value": "React.ReactNode",
-        "comment": "<p>Suffix text to add to the input</p>"
-      },
-      {
         "name": "validationMessage",
         "value": "string",
         "comment": "<p>Message describing why the value is invalid</p>"
@@ -9385,8 +9365,8 @@
     "/app/src/docs/_props/loveship/components/pickers/pickerList.props.tsx": [
       {
         "name": "cascadeSelection",
-        "value": "boolean",
-        "comment": "<p>Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents)</p>"
+        "value": "implicit | explicit",
+        "comment": "<p>Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.\r\n- false: All nodes are selected independently (default).\r\n- true or &#39;explicit&#39;: Selecting a parent node explicitly selects all its children. Unchecking the last parent&#39;s child unchecks its parent.\r\n- &#39;implicit&#39;: Selecting a parent node means that all children are considered checked.\r\n  The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked\r\n  parent is present in the Picker&#39;s value or DataSourceState.checked array. When the user unchecks the first child of such a parent,\r\n  its parents become unchecked and all children but the unchecked one become checked, making children&#39;s selection explicit. If the last\r\n  unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.</p>"
       },
       {
         "name": "dataSource",
@@ -9577,7 +9557,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -9609,12 +9589,12 @@
       },
       {
         "name": "color",
-        "value": "night50 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "value": "white | sky | grass | sun | fire | night500 | night600 | night300 | night400 | night50 | night700 | night800 | night900",
         "comment": null
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -9646,7 +9626,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -9673,7 +9653,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -9720,7 +9700,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -9744,7 +9724,7 @@
         "comment": null
       }
     ],
-    "/app/src/docs/_props/loveship/components/widgets/badge.props.ts": [
+    "/app/src/docs/_props/loveship/components/widgets/badge.props.tsx": [
       {
         "name": "caption",
         "value": "any",
@@ -9752,7 +9732,7 @@
       },
       {
         "name": "captionCX",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put on the caption</p>"
       },
       {
@@ -9767,7 +9747,7 @@
       },
       {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "value": "white | fuchsia | sky | grass | sun | fire | night500 | night600 | cobalt | lavanda | night200 | night300 | night400",
         "comment": null
       },
       {
@@ -9782,7 +9762,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -9906,48 +9886,6 @@
         "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
-    "/app/src/docs/_props/loveship/components/widgets/carousel.props.tsx": [
-      {
-        "name": "arrowIcon",
-        "value": "Icon",
-        "comment": null
-      },
-      {
-        "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": null
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "divideBy",
-        "value": "number",
-        "comment": null
-      },
-      {
-        "name": "forwardedRef",
-        "value": "React.ForwardedRef<T>",
-        "comment": "<p>this ref is passed to the underlying component</p>"
-      },
-      {
-        "name": "items",
-        "value": "Record<string, any>[]",
-        "comment": null
-      },
-      {
-        "name": "rawProps",
-        "value": "T & Record<`data-${string}`, string>",
-        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
-      },
-      {
-        "name": "renderItem",
-        "value": "(item: Record<string, any>) => React.ReactNode",
-        "comment": null
-      }
-    ],
     "/app/src/docs/_props/loveship/components/widgets/paginator.props.tsx": [
       {
         "name": "getValueChangeAnalyticsEvent",
@@ -10018,7 +9956,7 @@
     "/app/src/docs/_props/loveship/components/widgets/spinner.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -10040,7 +9978,7 @@
       },
       {
         "name": "captionCX",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put on the caption</p>"
       },
       {
@@ -10065,7 +10003,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -10192,7 +10130,7 @@
       },
       {
         "name": "captionCX",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put on the caption</p>"
       },
       {
@@ -10222,7 +10160,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -10341,7 +10279,7 @@
         "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
-    "/app/src/docs/_props/uui/components/buttons/linkButton.props.ts": [
+    "/app/src/docs/_props/uui/components/buttons/linkButton.props.tsx": [
       {
         "name": "caption",
         "value": "any",
@@ -10349,7 +10287,7 @@
       },
       {
         "name": "captionCX",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS classes to put on the caption</p>"
       },
       {
@@ -10363,6 +10301,11 @@
         "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
+        "name": "color",
+        "value": "primary | secondary | contrast",
+        "comment": null
+      },
+      {
         "name": "count",
         "value": "number",
         "comment": null
@@ -10374,7 +10317,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -10488,10 +10431,162 @@
         "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
+    "/app/src/docs/_props/uui/components/buttons/tabButton.props.ts": [
+      {
+        "name": "caption",
+        "value": "any",
+        "comment": "<p>Caption. Can be a string, or React.Elements. Certain components supports minimal markup (&lt;b&gt;,&lt;i&gt;,&lt;a&gt;) in captions.</p>"
+      },
+      {
+        "name": "captionCX",
+        "value": "ClassValue",
+        "comment": "<p>CSS classes to put on the caption</p>"
+      },
+      {
+        "name": "clearIcon",
+        "value": "Icon",
+        "comment": "<p>Icon for clear value button (usually cross)</p>"
+      },
+      {
+        "name": "clickAnalyticsEvent",
+        "value": "{ [key: string]: any; name: string; }",
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+      },
+      {
+        "name": "count",
+        "value": "number",
+        "comment": null
+      },
+      {
+        "name": "countPosition",
+        "value": "left | right",
+        "comment": null
+      },
+      {
+        "name": "cx",
+        "value": "ClassValue",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "dropdownIcon",
+        "value": "Icon",
+        "comment": "<p>Icon for drop-down toggler</p>"
+      },
+      {
+        "name": "dropdownIconPosition",
+        "value": "left | right",
+        "comment": "<p>Position of the dropdown icon (&#39;left&#39; of &#39;right&#39;)</p>"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>",
+        "comment": "<p>this ref is passed to the underlying component</p>"
+      },
+      {
+        "name": "href",
+        "value": "string",
+        "comment": "<p>Href (URL) to redirect to, for non-SPA redirects</p>"
+      },
+      {
+        "name": "icon",
+        "value": "Icon",
+        "comment": "<p>Icon can be an React element (usually an SVG element)</p>"
+      },
+      {
+        "name": "iconPosition",
+        "value": "left | right",
+        "comment": "<p>Position of the icon (left of right)</p>"
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean",
+        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
+      },
+      {
+        "name": "isDropdown",
+        "value": "boolean",
+        "comment": "<p>Enabled dropdown mode - component can toggle dropdown</p>"
+      },
+      {
+        "name": "isInteractedOutside",
+        "value": "(event: Event) => boolean",
+        "comment": "<p>Called when component is interacted outside, to close the dropdown</p>"
+      },
+      {
+        "name": "isLinkActive",
+        "value": "boolean",
+        "comment": "<p>Highlights component to show that link is active (browser is displaying the page to which link is pointing)</p>"
+      },
+      {
+        "name": "isOpen",
+        "value": "boolean",
+        "comment": "<p>When component acts as dropdown, indicate that dropdown is open</p>"
+      },
+      {
+        "name": "link",
+        "value": "Link",
+        "comment": "<p>Link object to redirect to for SPA-redirects</p>"
+      },
+      {
+        "name": "onClear",
+        "value": "(e?: any) => void",
+        "comment": null
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void",
+        "comment": "<p>Called when component is clicked</p>"
+      },
+      {
+        "name": "onIconClick",
+        "value": "() => void",
+        "comment": "<p>Click handler for the icon</p>"
+      },
+      {
+        "name": "placeholder",
+        "value": "any",
+        "comment": "<p>Placeholder to display when empty</p>"
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "ref",
+        "value": "React.Ref<any>",
+        "comment": "<p>Component&#39;s ref</p>"
+      },
+      {
+        "name": "size",
+        "value": "36 | 48 | 60",
+        "comment": null
+      },
+      {
+        "name": "tabIndex",
+        "value": "number",
+        "comment": "<p>Controls the order of keyboard navigation between components</p>"
+      },
+      {
+        "name": "target",
+        "value": "\"_blank\"",
+        "comment": "<p>Controls where the link should be opened</p>"
+      },
+      {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void",
+        "comment": "<p>Called when associated dropdown should open or close</p>"
+      },
+      {
+        "name": "withNotify",
+        "value": "boolean",
+        "comment": null
+      }
+    ],
     "/app/src/docs/_props/uui/components/inputs/checkbox.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -10608,7 +10703,7 @@
     "/app/src/docs/_props/uui/components/inputs/radioInput.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -10700,7 +10795,7 @@
     "/app/src/docs/_props/uui/components/inputs/switch.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -10807,7 +10902,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -10837,7 +10932,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put to the HTML Input element</p>"
       },
       {
@@ -10941,11 +11036,6 @@
         "comment": "<p>Placeholder to display when empty</p>"
       },
       {
-        "name": "prefix",
-        "value": "React.ReactNode",
-        "comment": "<p>Prefix to render before the input. Can be used to display in-place labels</p>"
-      },
-      {
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
@@ -10964,11 +11054,6 @@
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48",
         "comment": null
-      },
-      {
-        "name": "suffix",
-        "value": "React.ReactNode",
-        "comment": "<p>Suffix to render after the input. Can be used to display unit or currency</p>"
       },
       {
         "name": "tabIndex",
@@ -11004,7 +11089,7 @@
     "/app/src/docs/_props/uui/components/layout/blocker.props.ts": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -11038,6 +11123,68 @@
         "comment": "<p>Sets the minimal height in px, for cases when blocked content is empty</p>"
       }
     ],
+    "/app/src/docs/_props/uui/components/overlays/notificationCard.props.tsx": [
+      {
+        "name": "actions",
+        "value": "NotificationAction[]",
+        "comment": null
+      },
+      {
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "clearTimer",
+        "value": "() => void",
+        "comment": null
+      },
+      {
+        "name": "color",
+        "value": "info | success | warning | error",
+        "comment": null
+      },
+      {
+        "name": "cx",
+        "value": "ClassValue",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "icon",
+        "value": "Icon",
+        "comment": null
+      },
+      {
+        "name": "id",
+        "value": "number",
+        "comment": null
+      },
+      {
+        "name": "key",
+        "value": "string",
+        "comment": null
+      },
+      {
+        "name": "onClose",
+        "value": "() => void",
+        "comment": null
+      },
+      {
+        "name": "onSuccess",
+        "value": "() => void",
+        "comment": null
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "refreshTimer",
+        "value": "() => void",
+        "comment": null
+      }
+    ],
     "/app/src/docs/_props/uui/components/overlays/tooltip.props.tsx": [
       {
         "name": "boundaryElement",
@@ -11067,7 +11214,7 @@
       {
         "name": "color",
         "value": "default | contrast | critical",
-        "comment": null
+        "comment": "<p>Tooltip color</p>"
       },
       {
         "name": "content",
@@ -11076,7 +11223,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -11140,6 +11287,11 @@
         "comment": null
       },
       {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
         "name": "renderContent",
         "value": "() => any",
         "comment": "<p>Alternative to &#39;content&#39; prop, you can pass a render function.\r\nThe function will only be called when content is shown, this can save performance.</p>"
@@ -11172,9 +11324,14 @@
         "comment": "<p>Sets focus to component when it&#39;s mounted</p>"
       },
       {
+        "name": "bodyCx",
+        "value": "ClassValue",
+        "comment": "<p>CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details</p>"
+      },
+      {
         "name": "cascadeSelection",
-        "value": "boolean",
-        "comment": "<p>Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents)</p>"
+        "value": "implicit | explicit",
+        "comment": "<p>Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.\r\n- false: All nodes are selected independently (default).\r\n- true or &#39;explicit&#39;: Selecting a parent node explicitly selects all its children. Unchecking the last parent&#39;s child unchecks its parent.\r\n- &#39;implicit&#39;: Selecting a parent node means that all children are considered checked.\r\n  The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked\r\n  parent is present in the Picker&#39;s value or DataSourceState.checked array. When the user unchecks the first child of such a parent,\r\n  its parents become unchecked and all children but the unchecked one become checked, making children&#39;s selection explicit. If the last\r\n  unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.</p>"
       },
       {
         "name": "dataSource",
@@ -11257,6 +11414,11 @@
         "comment": "<p>Position of the icon (left of right)</p>"
       },
       {
+        "name": "inputCx",
+        "value": "ClassValue",
+        "comment": "<p>CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details</p>"
+      },
+      {
         "name": "isDisabled",
         "value": "boolean",
         "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
@@ -11337,11 +11499,6 @@
         "comment": null
       },
       {
-        "name": "prefix",
-        "value": "React.ReactNode",
-        "comment": "<p>Prefix text to add to the input</p>"
-      },
-      {
         "name": "rawProps",
         "value": "{ input?: React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>; body?: React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>; }",
         "comment": "<p>HTML attributes to put directly to the input and body elements</p>"
@@ -11392,11 +11549,6 @@
         "comment": "<p>Defines sorting to pass to the DataSource</p>"
       },
       {
-        "name": "suffix",
-        "value": "React.ReactNode",
-        "comment": "<p>Suffix text to add to the input</p>"
-      },
-      {
         "name": "validationMessage",
         "value": "string",
         "comment": "<p>Message describing why the value is invalid</p>"
@@ -11420,8 +11572,8 @@
     "/app/src/docs/_props/uui/components/pickers/pickerList.props.tsx": [
       {
         "name": "cascadeSelection",
-        "value": "boolean",
-        "comment": "<p>Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents)</p>"
+        "value": "implicit | explicit",
+        "comment": "<p>Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.\r\n- false: All nodes are selected independently (default).\r\n- true or &#39;explicit&#39;: Selecting a parent node explicitly selects all its children. Unchecking the last parent&#39;s child unchecks its parent.\r\n- &#39;implicit&#39;: Selecting a parent node means that all children are considered checked.\r\n  The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked\r\n  parent is present in the Picker&#39;s value or DataSourceState.checked array. When the user unchecks the first child of such a parent,\r\n  its parents become unchecked and all children but the unchecked one become checked, making children&#39;s selection explicit. If the last\r\n  unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.</p>"
       },
       {
         "name": "dataSource",
@@ -11604,6 +11756,143 @@
         "comment": "<p>Defines what to use in value/onValueChange: &#39;id&#39; - item id (TId). &#39;entity&#39; - the item itself (TItem)</p>"
       }
     ],
+    "/app/src/docs/_props/uui/components/pickers/pickerModal.props.tsx": [
+      {
+        "name": "abort",
+        "value": "(result?: any) => void",
+        "comment": null
+      },
+      {
+        "name": "caption",
+        "value": "any",
+        "comment": "<p>Caption. Can be a string, or React.Elements. Certain components supports minimal markup (&lt;b&gt;,&lt;i&gt;,&lt;a&gt;) in captions.</p>"
+      },
+      {
+        "name": "cascadeSelection",
+        "value": "implicit | explicit",
+        "comment": "<p>Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.\r\n- false: All nodes are selected independently (default).\r\n- true or &#39;explicit&#39;: Selecting a parent node explicitly selects all its children. Unchecking the last parent&#39;s child unchecks its parent.\r\n- &#39;implicit&#39;: Selecting a parent node means that all children are considered checked.\r\n  The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked\r\n  parent is present in the Picker&#39;s value or DataSourceState.checked array. When the user unchecks the first child of such a parent,\r\n  its parents become unchecked and all children but the unchecked one become checked, making children&#39;s selection explicit. If the last\r\n  unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.</p>"
+      },
+      {
+        "name": "dataSource",
+        "value": "IDataSource<TItem, TId, any>",
+        "comment": "<p>Provides items to the Picker</p>"
+      },
+      {
+        "name": "disallowClickOutside",
+        "value": "boolean",
+        "comment": null
+      },
+      {
+        "name": "emptyValue",
+        "value": "[]",
+        "comment": "<p>Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers</p>"
+      },
+      {
+        "name": "entityName",
+        "value": "string",
+        "comment": "<p>Name of the entity being selected. Affects wording like &quot;Please select [entity]&quot;</p>"
+      },
+      {
+        "name": "entityPluralName",
+        "value": "string",
+        "comment": "<p>Plural name of the entity being selected. Affects wording like &quot;X [entities] selected&quot;</p>"
+      },
+      {
+        "name": "filter",
+        "value": "any",
+        "comment": "<p>Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario.</p>"
+      },
+      {
+        "name": "getName",
+        "value": "(item: TItem) => string",
+        "comment": "<p>Gets entity display name. Default it item.name.</p>"
+      },
+      {
+        "name": "getRowOptions",
+        "value": "(item: TItem, index: number) => DataRowOptions<TItem, TId>",
+        "comment": "<p>Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks.</p>"
+      },
+      {
+        "name": "getSearchFields",
+        "value": "(item: TItem) => string[]",
+        "comment": "<p>Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field.</p>"
+      },
+      {
+        "name": "initialValue",
+        "value": "TId",
+        "comment": null
+      },
+      {
+        "name": "isActive",
+        "value": "boolean",
+        "comment": null
+      },
+      {
+        "name": "isFoldedByDefault",
+        "value": "(item: TItem) => boolean",
+        "comment": "<p>You can return true for all, or some items to fold them.</p>"
+      },
+      {
+        "name": "key",
+        "value": "string",
+        "comment": null
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "renderFilter",
+        "value": "(editableFilter: IEditable<any>) => React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "renderFooter",
+        "value": "(props: IModal<any>>) => React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "renderNotFound",
+        "value": "(props: { search: string; onClose: () => void; }) => React.ReactNode",
+        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\r\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
+      },
+      {
+        "name": "renderRow",
+        "value": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode",
+        "comment": "<p>Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc.</p>"
+      },
+      {
+        "name": "selectionMode",
+        "value": "\"single\"",
+        "comment": null
+      },
+      {
+        "name": "sortBy",
+        "value": "(item: TItem, sorting: SortingOption<any>) => any",
+        "comment": "<p>Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource</p>"
+      },
+      {
+        "name": "sorting",
+        "value": "SortingOption<any>",
+        "comment": "<p>Defines sorting to pass to the DataSource</p>"
+      },
+      {
+        "name": "success",
+        "value": "(result: TResult) => void",
+        "comment": null
+      },
+      {
+        "name": "valueType",
+        "value": "\"id\"",
+        "comment": null
+      },
+      {
+        "name": "zIndex",
+        "value": "number",
+        "comment": null
+      }
+    ],
     "/app/src/docs/_props/uui/components/pickers/pickerToggler.props.tsx": [
       {
         "name": "autoFocus",
@@ -11621,8 +11910,13 @@
         "comment": "<p>Caption. Can be a string, or React.Elements. Certain components supports minimal markup (&lt;b&gt;,&lt;i&gt;,&lt;a&gt;) in captions.</p>"
       },
       {
+        "name": "closePickerBody",
+        "value": "() => void",
+        "comment": null
+      },
+      {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -11761,11 +12055,6 @@
         "comment": "<p>Placeholder to display when empty</p>"
       },
       {
-        "name": "prefix",
-        "value": "React.ReactNode",
-        "comment": null
-      },
-      {
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
@@ -11786,6 +12075,11 @@
         "comment": null
       },
       {
+        "name": "selectedRowsCount",
+        "value": "number",
+        "comment": null
+      },
+      {
         "name": "selection",
         "value": "DataRowProps<TItem, TId>[]",
         "comment": null
@@ -11793,11 +12087,6 @@
       {
         "name": "size",
         "value": "24 | 30 | 36 | 42 | 48",
-        "comment": null
-      },
-      {
-        "name": "suffix",
-        "value": "React.ReactNode",
         "comment": null
       },
       {
@@ -11821,6 +12110,33 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
+    "/app/src/docs/_props/uui/components/typography/richTextView.props.tsx": [
+      {
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "cx",
+        "value": "ClassValue",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "htmlContent",
+        "value": "any",
+        "comment": null
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "size",
+        "value": "12 | 14 | 16",
+        "comment": null
+      }
+    ],
     "/app/src/docs/_props/uui/components/typography/textPlaceholder.props.tsx": [
       {
         "name": "children",
@@ -11829,7 +12145,7 @@
       },
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
@@ -11846,6 +12162,163 @@
         "name": "wordsCount",
         "value": "number",
         "comment": null
+      }
+    ],
+    "/app/src/docs/_props/uui/components/widgets/badge.props.tsx": [
+      {
+        "name": "caption",
+        "value": "any",
+        "comment": "<p>Caption. Can be a string, or React.Elements. Certain components supports minimal markup (&lt;b&gt;,&lt;i&gt;,&lt;a&gt;) in captions.</p>"
+      },
+      {
+        "name": "captionCX",
+        "value": "ClassValue",
+        "comment": "<p>CSS classes to put on the caption</p>"
+      },
+      {
+        "name": "clearIcon",
+        "value": "Icon",
+        "comment": "<p>Icon for clear value button (usually cross)</p>"
+      },
+      {
+        "name": "clickAnalyticsEvent",
+        "value": "{ [key: string]: any; name: string; }",
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+      },
+      {
+        "name": "color",
+        "value": "info | success | warning | error | default",
+        "comment": null
+      },
+      {
+        "name": "count",
+        "value": "number",
+        "comment": null
+      },
+      {
+        "name": "countPosition",
+        "value": "left | right",
+        "comment": null
+      },
+      {
+        "name": "cx",
+        "value": "ClassValue",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "dropdownIcon",
+        "value": "Icon",
+        "comment": "<p>Icon for drop-down toggler</p>"
+      },
+      {
+        "name": "dropdownIconPosition",
+        "value": "left | right",
+        "comment": "<p>Position of the dropdown icon (&#39;left&#39; of &#39;right&#39;)</p>"
+      },
+      {
+        "name": "fill",
+        "value": "solid | transparent | semitransparent",
+        "comment": null
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>",
+        "comment": "<p>this ref is passed to the underlying component</p>"
+      },
+      {
+        "name": "href",
+        "value": "string",
+        "comment": "<p>Href (URL) to redirect to, for non-SPA redirects</p>"
+      },
+      {
+        "name": "icon",
+        "value": "Icon",
+        "comment": "<p>Icon can be an React element (usually an SVG element)</p>"
+      },
+      {
+        "name": "iconPosition",
+        "value": "left | right",
+        "comment": "<p>Position of the icon (left of right)</p>"
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean",
+        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
+      },
+      {
+        "name": "isDropdown",
+        "value": "boolean",
+        "comment": "<p>Enabled dropdown mode - component can toggle dropdown</p>"
+      },
+      {
+        "name": "isInteractedOutside",
+        "value": "(event: Event) => boolean",
+        "comment": "<p>Called when component is interacted outside, to close the dropdown</p>"
+      },
+      {
+        "name": "isLinkActive",
+        "value": "boolean",
+        "comment": "<p>Highlights component to show that link is active (browser is displaying the page to which link is pointing)</p>"
+      },
+      {
+        "name": "isOpen",
+        "value": "boolean",
+        "comment": "<p>When component acts as dropdown, indicate that dropdown is open</p>"
+      },
+      {
+        "name": "link",
+        "value": "Link",
+        "comment": "<p>Link object to redirect to for SPA-redirects</p>"
+      },
+      {
+        "name": "onClear",
+        "value": "(e?: any) => void",
+        "comment": null
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void",
+        "comment": "<p>Called when component is clicked</p>"
+      },
+      {
+        "name": "onIconClick",
+        "value": "() => void",
+        "comment": "<p>Click handler for the icon</p>"
+      },
+      {
+        "name": "placeholder",
+        "value": "any",
+        "comment": "<p>Placeholder to display when empty</p>"
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "ref",
+        "value": "React.Ref<any>",
+        "comment": "<p>Component&#39;s ref</p>"
+      },
+      {
+        "name": "size",
+        "value": "24 | 30 | 36 | 42 | 48 | 18",
+        "comment": null
+      },
+      {
+        "name": "tabIndex",
+        "value": "number",
+        "comment": "<p>Controls the order of keyboard navigation between components</p>"
+      },
+      {
+        "name": "target",
+        "value": "\"_blank\"",
+        "comment": "<p>Controls where the link should be opened</p>"
+      },
+      {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void",
+        "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
     "/app/src/docs/_props/uui/components/widgets/paginator.props.tsx": [
@@ -11918,7 +12391,7 @@
     "/app/src/docs/_props/uui/components/widgets/spinner.props.tsx": [
       {
         "name": "cx",
-        "value": "any",
+        "value": "ClassValue",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
