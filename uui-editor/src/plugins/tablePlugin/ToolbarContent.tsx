@@ -1,17 +1,5 @@
 import React, { Fragment, useMemo } from "react";
 
-import {
-    TElementEntry,
-    deleteRow,
-    deleteTable,
-    getTableEntries,
-    insertElements,
-    insertTableColumn,
-    insertTableRow,
-    removeNodes,
-    usePlateEditorState
-} from "@udecode/plate";
-
 import { ReactComponent as UnmergeCellsIcon } from "../../icons/table-un-merge.svg";
 import { ReactComponent as InsertColumnBefore } from "../../icons/table-add-column-left.svg";
 import { ReactComponent as InsertColumnAfter } from "../../icons/table-add-column-right.svg";
@@ -21,13 +9,15 @@ import { ReactComponent as InsertRowAfter } from "../../icons/table-add-row-afte
 import { ReactComponent as RemoveRow } from "../../icons/table-delete-row.svg";
 import { ReactComponent as RemoveTable } from "../../icons/table-table_remove-24.svg";
 
-import tableCSS from './Table.module.scss';
+import css from './ToolbarContent.module.scss';
 import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { deleteColumn } from './deleteColumn';
 import { createCell } from "./utils";
+import { usePlateEditorState, insertElements, TElementEntry, removeNodes } from "@udecode/plate-common";
+import { getTableEntries, insertTableColumn, insertTableRow, deleteRow, deleteTable } from "@udecode/plate-table";
 
 const StyledRemoveTable = () => {
-    return <RemoveTable className={ tableCSS.removeTableIcon } />
+    return <RemoveTable className={ css.removeTableIcon } />
 }
 
 export const TableToolbarContent = ({ cellEntries }: { cellEntries: TElementEntry[] }) => {
@@ -102,7 +92,7 @@ export const TableToolbarContent = ({ cellEntries }: { cellEntries: TElementEntr
                 key="delete-table"
                 onClick={ () => deleteTable(editor) }
                 icon={ StyledRemoveTable }
-                cx={ tableCSS.removeTableButton }
+                cx={ css.removeTableButton }
             />
             { cellEntries &&
                 cellEntries.length === 1 &&

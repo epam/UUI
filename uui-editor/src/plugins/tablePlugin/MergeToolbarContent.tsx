@@ -1,9 +1,9 @@
 import React from "react";
-import { TElementEntry, insertElements, removeNodes, usePlateEditorState } from "@udecode/plate";
 
 import { ReactComponent as TableMerge } from "../../icons/table-merge.svg";
 import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { createCell, getColSpan, getRowSpan } from "./utils";
+import { usePlateEditorState, TElementEntry, removeNodes, insertElements } from "@udecode/plate-common";
 
 export const MergeToolbarContent = ({ cellEntries }: { cellEntries: TElementEntry[] }) => {
     const editor = usePlateEditorState();

@@ -1,0 +1,24 @@
+.table-wrapper {
+    display: flex;
+    max-width: 100%;
+    overflow-y: hidden;
+    padding-bottom: 1px;
+}
+
+.table {
+    position: relative;
+    display: table;
+    table-layout: fixed;
+    height: 1px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1px;
+    margin-right: 0;
+    border-collapse: collapse;
+}
+
+.cells-selection-active {
+    *::selection {
+        background: none;
+    }
+}

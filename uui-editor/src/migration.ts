@@ -53,7 +53,7 @@ const migrateElementNode = (node: any) => {
     };
 };
 
-const migrateNode = (oldNode: any) => {
+export const migrateNode = (oldNode: any) => {
     if (oldNode.object === "text") {
         return migrateTextNode(oldNode);
     } else {

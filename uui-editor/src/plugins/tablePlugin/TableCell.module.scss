@@ -1,0 +1,100 @@
+@use '~@epam/assets/scss/index' as *;
+@use '~@epam/assets/scss/promo/colors' as *;
+
+.table-cell-wrapper {
+    --background: 0 0% 100%;
+    position: relative;
+    overflow: visible;
+    border-style: none;
+    background-color: hsl(var(--background));
+    padding: 0;
+}
+
+.table-cell-wrapper::before {
+    content: '';
+    height: 100%;
+    width: 100%;
+    -webkit-user-select: none;
+    user-select: none;
+    box-sizing: border-box;
+    position: absolute;
+}
+
+.border-bottom::before {
+    border-bottom: 1px solid #D1D5DB;
+}
+
+.border-right::before {
+    border-right: 1px solid #D1D5DB;
+}
+
+.border-left::before {
+    border-left: 1px solid #D1D5DB;
+}
+
+.border-top::before {
+    border-top: 1px solid #D1D5DB;
+}
+
+.selected::before {
+    --tw-bg-opacity: 1;
+    z-index: 10;
+    background-color: rgb(239 246 255 / var(--tw-bg-opacity));
+}
+
+.hide-border::before {
+    border-style: none;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-left>* {
+    margin: 0;
+}
+
+.cell {
+    position: relative;
+    z-index: 20;
+    box-sizing: border-box;
+    height: 100%;
+    // "padding: 0;" leads to bugs, see link below
+    // https://stackoverflow.com/questions/27829250/why-doesnt-a-childs-margin-affect-a-parents-height
+    padding: 6px 24px;
+}
+
+.resizable-wrapper {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.resize-handle-right {
+    --tw-bg-opacity: 1;
+    background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+    width: 0.25rem;
+    height: 100%;
+    z-index: 30;
+    right: -1.5px;
+    top: 0;
+    position: absolute;
+}
+
+.resize-handle-left {
+    --tw-bg-opacity: 1;
+    position: absolute;
+    left: -1.5px;
+    z-index: 30;
+    height: 100%;
+    top: 0;
+    width: 0.25rem;
+    background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+}
+
+.header-cell {
+    background-color: $gray5;
+}
