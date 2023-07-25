@@ -1,22 +1,16 @@
+import { PlateEditor, createPluginFactory, getBlockAbove, getEndPoint, getPluginType, insertEmptyElement, selectEditor } from '@udecode/plate-common';
 import React from 'react';
+import { Editor } from 'slate';
+
 import { UploadFileToggler } from '@epam/uui-components';
 
-import {
-    createPluginFactory, insertEmptyElement, getBlockAbove, getEndPoint, getPluginType, PlateEditor,
-    ToolbarButton as PlateToolbarButton, selectEditor,
-} from '@udecode/plate';
-
-import { ToolbarButton } from '../../implementation/ToolbarButton';
-
-import { ReactComponent as PdfIcon } from '../../icons/pdf.svg';
-
 import { isPluginActive, isTextSelected } from '../../helpers';
-
-import { IframeBlock } from './IframeBlock';
-import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
+import { ReactComponent as PdfIcon } from '../../icons/pdf.svg';
+import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from "../paragraphPlugin/paragraphPlugin";
-import { Editor } from 'slate';
+import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
+import { IframeBlock } from './IframeBlock';
 
 export const IFRAME_PLUGIN_KEY = 'iframe';
 export const IFRAME_PLUGIN_TYPE = 'iframe';
@@ -88,19 +82,10 @@ export const IframeButton = ({ editor }: IIframeButton) => {
     return (
         <UploadFileToggler
             render={ (props) => (
-                <PlateToolbarButton
-                    styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-                    active={ true }
-                    onMouseDown={
-                        editor
-                            ? (e) => e.preventDefault()
-                            : undefined
-                    }
-                    icon={ <ToolbarButton
-                        { ...props }
-                        icon={ PdfIcon }
-                        isDisabled={ isTextSelected(editor, true) }
-                    /> }
+                <ToolbarButton
+                    { ...props }
+                    icon={ PdfIcon }
+                    isDisabled={ isTextSelected(editor, true) }
                 />
             ) }
             onFilesAdded={ onFilesAdded }

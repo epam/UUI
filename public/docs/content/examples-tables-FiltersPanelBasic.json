@@ -1,81 +1,41 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "This example shows a typical case of using ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "FiltersPanel",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " with ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataTable",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ". ",
-            "marks": []
-          }
-        ]
+        "text": "This example shows a typical case of using "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "However, the FiltersPanel component can be used not only with DataTables. It will work with any UX component based on the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataTableState",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " approach.",
-            "marks": []
-          }
-        ]
+        "text": "FiltersPanel",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " with "
+      },
+      {
+        "text": "DataTable",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "However, the FiltersPanel component can be used not only with DataTables. It will work with any UX component based on the "
+      },
+      {
+        "text": "DataTableState",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " approach."
       }
     ]
   }
-}
+]

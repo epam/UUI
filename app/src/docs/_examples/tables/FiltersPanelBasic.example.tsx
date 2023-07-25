@@ -77,11 +77,13 @@ export default function FiltersPanelExample() {
                 dataSource: new LazyDataSource({ api: api.demo.statuses }),
                 predicates: defaultPredicates.multiPicker,
                 showSearch: false,
+                maxCount: 3,
             }, {
                 field: 'jobTitleId',
                 columnKey: 'jobTitle',
                 title: 'Title',
                 type: 'multiPicker',
+                maxCount: 1,
                 dataSource: new LazyDataSource({ api: api.demo.jobTitles }),
             }, {
                 field: 'salary',
@@ -136,7 +138,7 @@ export default function FiltersPanelExample() {
 
     return (
         <Panel style={ { height: '400px' } }>
-            <FlexRow spacing="6" vPadding="12">
+            <FlexRow spacing="6" vPadding="12" rawProps={ { style: { flexWrap: 'wrap' } } }>
                 <FiltersPanel filters={ filtersConfig } tableState={ tableState } setTableState={ setTableState } />
             </FlexRow>
             <DataTable getRows={ view.getVisibleRows } columns={ personColumns } value={ tableState } onValueChange={ setTableState } { ...view.getListProps() } />

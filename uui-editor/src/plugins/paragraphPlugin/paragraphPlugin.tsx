@@ -1,5 +1,6 @@
+import { ELEMENT_DEFAULT } from '@udecode/plate-common';
+import { createParagraphPlugin } from '@udecode/plate-paragraph';
 import * as React from 'react';
-import { createParagraphPlugin, ELEMENT_DEFAULT } from "@udecode/plate";
 
 export const PARAGRAPH_TYPE = 'paragraph';
 export const paragraphPlugin = () => {

@@ -1,8 +1,8 @@
 // import flatten from 'lodash.flatten';
 // import Html from 'slate-html-serializer';
-import { useSlate, useFocused } from "slate-react";
 import { Range, Editor } from 'slate';
-import { getPlugins, usePlateEditorState } from "@udecode/plate";
+import { getPlugins, usePlateEditorState } from "@udecode/plate-common";
+import { EditorValue } from './types';
 //
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {
@@ -62,17 +62,16 @@ export function isPluginActive(key: string): boolean {
     return plugins.some(plugin => plugin.key === key);
 }
 
-//
-// export const isEditorEmpty = (value: Value) => {
-//     const blocks: Block[] = value.get('document').get('nodes').toArray();
-//
-//     if (blocks.length === 1 && blocks[0].get('type') === 'paragraph') {
-//         const nodes: SlateText[] = blocks[0].get('nodes').toArray();
-//
-//         if (nodes.length === 1 && nodes[0].get('text') === '') {
-//             return true;
-//         }
-//     }
-//
-//     return false;
-// };
+export const isElementEmpty = (value: EditorValue) => {
+    if (!value || value?.length > 1) {
+        return false;
+    }
+
+    const [first] = value;
+    return (
+        value.length === 0 ||
+        (value.length === 1 &&
+            first.type === 'paragraph' &&
+            first.children[0].text === '')
+    );
+};

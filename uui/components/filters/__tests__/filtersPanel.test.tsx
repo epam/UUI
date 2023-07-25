@@ -196,7 +196,7 @@ describe('FiltersPanel', () => {
             await user.click(window.document.body);
             notExpectDialog();
             expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { position: [2, 3] } }));
-            await user.click(screen.getByRoleAndText({ role: 'button', text: 'Position:QA, Dev' }));
+            await user.click(screen.getByRole('button', { name: 'Position: QA , Dev' }));
             expectDialog();
             expect(withinDialog().getByRoleAndText({ role: 'option', text: 'QA' })).toBeChecked();
             expect(withinDialog().getByRoleAndText({ role: 'option', text: 'Dev' })).toBeChecked();
@@ -229,7 +229,7 @@ describe('FiltersPanel', () => {
             await user.click(window.document.body);
             notExpectDialog();
             expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { position: { nin: [2, 3] } } }));
-            await user.click(screen.getByRoleAndText({ role: 'button', text: 'Position is notQA, Dev' }));
+            await user.click(screen.getByRole('button', { name: 'Position is not QA , Dev' }));
             expectDialog();
             expect(withinDialog().getByRoleAndText({ role: 'option', text: 'QA' })).toBeChecked();
             expect(withinDialog().getByRoleAndText({ role: 'option', text: 'Dev' })).toBeChecked();

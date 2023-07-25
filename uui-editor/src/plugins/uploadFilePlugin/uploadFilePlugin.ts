@@ -1,10 +1,10 @@
 import {
     PlateEditor,
-    Value,
     createInsertDataPlugin,
-    findEventRange,
+    Value,
     select,
-} from "@udecode/plate";
+    findEventRange,
+} from "@udecode/plate-common";
 import {
     UploadFileOptions,
     UploadType,
@@ -20,7 +20,7 @@ interface UploadFilePluginOptions {
 }
 
 const isFilesUploadEvent = (dataTransfer: DataTransfer) => {
-    const text = dataTransfer.getData('text/plain');
+    const text = dataTransfer.getData("text/plain");
     const { files } = dataTransfer;
 
     if (!text && files && files.length !== 0) return true;
