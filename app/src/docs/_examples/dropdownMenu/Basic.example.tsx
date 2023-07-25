@@ -1,18 +1,6 @@
 import React, { useState } from 'react';
-import {
-    Avatar,
-    DropdownMenuBody,
-    DropdownMenuButton,
-    DropdownMenuSwitchButton,
-    DropdownMenuSplitter,
-    DropdownMenuHeader,
-    DropdownSubMenu,
-    IDropdownMenuItemProps,
-    Button,
-    ControlGroup,
-    Dropdown,
-    Panel,
-} from '@epam/promo';
+import { Avatar, DropdownMenuBody, DropdownMenuButton, DropdownMenuSwitchButton, DropdownMenuSplitter, DropdownMenuHeader, DropdownSubMenu, Button, ControlGroup, Dropdown, Panel } from '@epam/promo';
+import { IDropdownMenuItemProps } from '@epam/uui';
 import { DropdownBodyProps } from '@epam/uui-core';
 import { ReactComponent as LogoutIcon } from '@epam/assets/icons/common/navigation-logout-24.svg';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-12.svg';
