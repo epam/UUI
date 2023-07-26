@@ -21,7 +21,7 @@ export interface AvatarProps extends IHasCX, IHasRawProps<React.ImgHTMLAttribute
     onClick?: () => void;
 }
 
-function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageElement>) {
+function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageElement | HTMLButtonElement>) {
     const [isError, setIsError] = React.useState<boolean>(false);
 
     function onError() {
@@ -29,21 +29,40 @@ function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageEl
             setIsError(true);
         }
     }
+
+    const { 'aria-label': ariaLabel, ...rawProps } = props.rawProps;
+    const commonProps = {
+        className: cx(css.avatar, props.cx),
+        width: props.size,
+        height: props.size,
+        src: props.isLoading || !props.img || isError
+            ? 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg'
+            : props.img,
+        alt: props.alt,
+        onError,
+        ...rawProps,
+    };
+
+    if (props.onClick) {
+        return (
+            <button
+                ref={ ref as React.ForwardedRef<HTMLButtonElement> }
+                type="button"
+                onClick={ props.onClick }
+                className={ cx(css.avatarButton, props.cx) }
+                style={ { height: `${props.size}px` } }
+                aria-label={ ariaLabel }
+            >
+                <img { ...commonProps } />
+            </button>
+        );
+    }
+
     return (
         <img
-            onClick={ props.onClick }
-            ref={ ref }
-            className={ cx(css.avatar, props.cx) }
-            width={ props.size }
-            height={ props.size }
-            src={
-                props.isLoading || !props.img || isError
-                    ? 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg'
-                    : props.img
-            }
-            alt={ props.alt }
-            onError={ onError }
-            { ...props.rawProps }
+            ref={ ref as React.ForwardedRef<HTMLImageElement> }
+            aria-label={ ariaLabel }
+            { ...commonProps }
         />
     );
 }
