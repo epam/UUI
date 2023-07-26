@@ -30,7 +30,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         isFilterActive: (f) => !!f.profileStatusId,
     }, {
         key: 'salary',
-        caption: 'salary',
+        caption: 'Salary',
         render: (p) => (
             <Text>
                 {getSeparatedValue(+p.salary, {
