@@ -219,7 +219,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
             }
             case 'rangeDatePicker': {
                 if (!currentValue || (!currentValue.from && !currentValue.to)) {
-                    return { selection: '' };
+                    return { selection: [null] };
                 }
                 const currentValueFrom = currentValue?.from
                     ? dayjs(currentValue?.from).format(props.format || defaultFormat)
