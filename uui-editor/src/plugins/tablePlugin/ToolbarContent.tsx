@@ -102,7 +102,7 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
                         key="unmerge-cells"
                         onClick={ unmergeCells }
                         icon={ UnmergeCellsIcon }
-                    />
+                />
             ) }
         </Fragment>
     );
