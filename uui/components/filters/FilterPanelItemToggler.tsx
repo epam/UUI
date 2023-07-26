@@ -24,8 +24,7 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
         e.preventDefault();
         props.onClick?.();
     };
-
-    const getTitle = props.predicateName ? `${props.title} ${props.predicateName}` : `${props.title}${props.selection ? ':' : ''}`;
+    const getTitle = props.predicateName ? `${props.title} ${props.predicateName}` : `${props.title}${(Array.isArray(props.selection) && props.selection[0]) ? ':' : ''}`;
 
     const getSelectionText = () => props.selection.map((i, index) => (
         <>
