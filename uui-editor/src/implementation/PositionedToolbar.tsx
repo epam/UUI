@@ -1,13 +1,13 @@
+import { Portal } from '@epam/uui-components';
+import { findNode, isEditorFocused, toDOMNode, usePlateEditorState } from '@udecode/plate-common';
+import { getCellTypes } from '@udecode/plate-table';
+import cx from "classnames";
 import React, { useRef } from 'react';
 import { Popper } from 'react-popper';
-import { usePlateEditorState, isEditorFocused, findNode, toDOMNode, getCellTypes, getSelectionBoundingClientRect } from '@udecode/plate';
-import { Portal } from '@epam/uui-components';
-import cx from "classnames";
 import { Range } from 'slate';
 
 import { isImageSelected, isTextSelected } from '../helpers';
 import css from './Toolbar.module.scss';
-import type { VirtualElement } from '@popperjs/core/lib/popper';
 
 interface ToolbarProps {
     editor: any;
@@ -18,14 +18,14 @@ interface ToolbarProps {
     placement?: 'top' | 'bottom' | 'right' | 'left' | 'auto';
 }
 
-export function Toolbar(props: ToolbarProps): any {
+export function PositionedToolbar(props: ToolbarProps): any {
     const ref = useRef<HTMLElement | null>();
     const editor = usePlateEditorState();
     const inFocus = isEditorFocused(editor);
 
-    const virtualReferenceElement = (): VirtualElement => ({
+    const virtualReferenceElement = (): any => ({
         getBoundingClientRect(): DOMRect {
-            if(props.isTable) {
+            if (props.isTable) {
                 const [selectedNode] = findNode(editor, {
                     at: Range.start(editor.selection),
                     match: { type: getCellTypes(editor) },
@@ -35,7 +35,7 @@ export function Toolbar(props: ToolbarProps): any {
                 return domNode.getBoundingClientRect();
             }
 
-            return getSelectionBoundingClientRect() as DOMRect;
+            return getSelectionBoundingClientRect();
         },
     });
 
@@ -65,3 +65,29 @@ export function Toolbar(props: ToolbarProps): any {
         </Portal>
     );
 }
+
+const getDefaultBoundingClientRect = () => ({
+    width: 0,
+    height: 0,
+    x: 0,
+    y: 0,
+    top: -9999,
+    left: -9999,
+    right: 9999,
+    bottom: 9999,
+}) as DOMRect;
+
+/**
+ * Get bounding client rect of the window selection
+ */
+const getSelectionBoundingClientRect = (): DOMRect => {
+    const domSelection = window.getSelection();
+
+    if (!domSelection || domSelection.rangeCount < 1) {
+        return getDefaultBoundingClientRect();
+    }
+
+    const domRange = domSelection.getRangeAt(0);
+
+    return domRange.getBoundingClientRect();
+};
