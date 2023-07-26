@@ -6,6 +6,9 @@ import css from './AvatarButton.module.scss';
 export interface AvatarButtonProps extends AvatarProps {
     /** Click handler */
     onClick?: () => void;
+
+    /** Defines a string value that labels the current element */
+    'aria-label'?: string;
 }
 
 function AvatarButtonComponent(props: AvatarButtonProps, ref: React.ForwardedRef<HTMLButtonElement>) {
@@ -16,6 +19,7 @@ function AvatarButtonComponent(props: AvatarButtonProps, ref: React.ForwardedRef
             ref = { ref }
             className={ cx(css.avatarButton, props.cx) }
             style={ { height: `${props.size}px` } }
+            aria-label={ props['aria-label'] }
         >
             <Avatar { ...props } />
         </button>
