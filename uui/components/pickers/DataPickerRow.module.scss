@@ -13,7 +13,7 @@
 
 .picker-row {
     &:global(.uui-focus) {
-        background-color: var(--uui-surface-hover);
+        background-color: var(--uui-surface-lowest);
     }
 
     &:global(.-clickable) {
