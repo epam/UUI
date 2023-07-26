@@ -23,7 +23,7 @@ $text-size-count: 24px;
 
 .root {
     @include link-button-horizontal-layout(36px);
-    @include tab-button-color(var(--uui-tab-button-text), var(--uui-tab-button-text-active), transparent);
+    @include tab-button-color(var(--uui-tab_button-text), var(--uui-tab_button-text-active), transparent);
     cursor: pointer;
     padding-left: 12px;
     padding-right: 12px;
@@ -31,12 +31,12 @@ $text-size-count: 24px;
     bottom: -1px;
     display: flex;
     align-items: center;
-    font-family: var(--uui-tab-button-font);
-    font-weight: var(--uui-tab-button-font-weight, normal);
+    font-family: var(--uui-tab_button-font);
+    font-weight: var(--uui-tab_button-font-weight, normal);
     border-bottom: 3px solid transparent;
 
     &:global(.uui-disabled) {
-        @include tab-button-color(var(--uui-tab-button-text-disabled), var(--uui-tab-button-text-disabled), transparent);
+        @include tab-button-color(var(--uui-tab_button-text-disabled), var(--uui-tab_button-text-disabled), transparent);
     }
 
     &.uui-notification {
