@@ -8,11 +8,12 @@ export interface AvatarButtonProps extends AvatarProps {
     onClick?: () => void;
 }
 
-function AvatarButtonComponent(props: AvatarButtonProps, ref: React.ForwardedRef<HTMLImageElement>) {
+function AvatarButtonComponent(props: AvatarButtonProps, ref: React.ForwardedRef<HTMLButtonElement>) {
     return (
         <button
             type="button"
             onClick={ props.onClick }
+            ref = { ref }
             className={ cx(css.avatarButton, props.cx) }
             style={ { height: `${props.size}px` } }
         >
@@ -23,5 +24,5 @@ function AvatarButtonComponent(props: AvatarButtonProps, ref: React.ForwardedRef
 
 export const AvatarButton = React.forwardRef(AvatarButtonComponent) as <AvatarButtonComponent>(
     props: AvatarButtonProps,
-    ref: React.ForwardedRef<HTMLImageElement>
+    ref: React.ForwardedRef<HTMLButtonElement>
 ) => JSX.Element;
