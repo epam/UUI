@@ -9,8 +9,8 @@ Plate PRs:
 - [x] Fix pasting tables from Word in Safari only. Then update or remove `uui-editor/src/plugins/deserializeDocxPlugin/cleanDocx.ts`. https://github.com/udecode/plate/pull/2458
 - [x] Header style when pasting from word. https://github.com/udecode/plate/pull/2536
 - [ ] Toggle between todo and list elements. https://github.com/udecode/plate/issues/2466
-- Create issue to improve list plugin. Now it causes bug with separator. [Video](https://epam-my.sharepoint.com/:v:/r/personal/natallia_alieva_epam_com/Documents/Microsoft%20Teams%20Chat%20Files/2023-02-08_12h08_43.mp4?csf=1&web=1&e=wT5iVq). Investigation here
-[https://github.com/epam/UUI/pull/1366](https://github.com/epam/UUI/pull/1366)
+- [ ] Create issue to improve list plugin. Now it causes bug with separator. [Video](https://epam-my.sharepoint.com/:v:/r/personal/natallia_alieva_epam_com/Documents/Microsoft%20Teams%20Chat%20Files/2023-02-08_12h08_43.mp4?csf=1&web=1&e=wT5iVq). Investigation here
+[https://github.com/epam/UUI/pull/1366](https://github.com/epam/UUI/pull/1366). Fix here https://github.com/epam/UUI/pull/1530
 - Create issue about copying unordered lists from Word. Each item wrapped inside paragraph node after pasting. Ordered lists works as expected.
 - Table Cells Merging
     - Create issue about displaying merged cells correctly. Basically, blue resize borders broken.
