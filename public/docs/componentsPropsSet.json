@@ -3082,7 +3082,7 @@
       {
         "name": "size",
         "value": "36 | 48",
-        "comment": "<p>Optional to change size, the compact size value &#39;36&#39; and by default its value is &#39;46&#39;</p>"
+        "comment": "<p>Component size. If omitted, 48 size will be used.</p>"
       }
     ],
     "/app/src/docs/_props/epam-promo/components/overlays/dropdown.props.tsx": [
@@ -8079,7 +8079,7 @@
       {
         "name": "size",
         "value": "36 | 48",
-        "comment": "<p>Optional to change size, the compact size value &#39;36&#39; and by default its value is &#39;46&#39;</p>"
+        "comment": "<p>Component size. If omitted, 48 size will be used.</p>"
       }
     ],
     "/app/src/docs/_props/loveship/components/overlays/dropdown.props.tsx": [
