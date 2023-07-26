@@ -52,10 +52,10 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
         examples: [
             {
                 value: '48',
-                name: 'Default',
+                name: '48',
             }, {
                 value: '36',
-                name: 'compact',
+                name: '36',
             },
         ],
         isRequired: true,

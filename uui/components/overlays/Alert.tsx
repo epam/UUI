@@ -27,12 +27,12 @@ export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.HTM
     onClose?(): void;
     /** An optional icon to show on the left of the alert */
     icon?: Icon;
-    /** Optional to change size, the compact size value '36' and by default its value is '46' */
+    /** Component size. If omitted, 48 size will be used. */
     size?: '36' | '48';
 }
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
-    <div role="alert" ref={ ref } className={ cx(`alert-${props.color || 'default'}`, css.root, props.cx, (props.size === '48' ? css.alertWrapper : css.alertWrapperCompact)) } { ...props.rawProps }>
+    <div role="alert" ref={ ref } className={ cx(css.alertWrapper, `alert-${props.color || 'default'}`, css.root, props.cx, (props.size === '48' ? css.size_48 : css.size_36)) } { ...props.rawProps }>
         <div className={ css.mainPath }>
             {props.icon && (
                 <div className={ css.iconWrapper }>
