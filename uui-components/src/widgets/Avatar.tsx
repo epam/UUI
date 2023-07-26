@@ -16,12 +16,9 @@ export interface AvatarProps extends IHasCX, IHasRawProps<React.ImgHTMLAttribute
 
     /** True to show placeholder */
     isLoading?: boolean;
-
-    /** Click handler */
-    onClick?: () => void;
 }
 
-function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageElement>) {
+export function Avatar(props: AvatarProps) {
     const [isError, setIsError] = React.useState<boolean>(false);
 
     function onError() {
@@ -31,8 +28,6 @@ function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageEl
     }
     return (
         <img
-            onClick={ props.onClick }
-            ref={ ref }
             className={ cx(css.avatar, props.cx) }
             width={ props.size }
             height={ props.size }
@@ -47,5 +42,3 @@ function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageEl
         />
     );
 }
-
-export const Avatar = React.forwardRef(AvatarComponent) as <AvatarComponent>(props: AvatarProps, ref: React.ForwardedRef<HTMLImageElement>) => JSX.Element;
