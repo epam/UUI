@@ -1,4 +1,4 @@
-import { TTableCellElement } from "@udecode/plate";
+import { TTableCellElement } from "@udecode/plate-table";
 
 export type ExtendedTTableCellElement = TTableCellElement & {
     rowSpan?: number;
@@ -8,5 +8,9 @@ export type ExtendedTTableCellElement = TTableCellElement & {
         colSpan?: number;
         rowSpan?: number;
         colIndex?: number;
+    },
+    attributes?: {
+        colspan?: number;
+        rowspan?: number;
     }
 }

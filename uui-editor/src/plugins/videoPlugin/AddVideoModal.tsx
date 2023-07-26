@@ -2,11 +2,10 @@ import * as React from 'react';
 import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
 import css from './AddVideoModal.module.scss';
-import { PlateEditor, setElements } from "@udecode/plate";
 
 import getVideoId from "get-video-id";
 import { useState } from "react";
-
+import { PlateEditor, setElements } from '@udecode/plate-common';
 
 const { LabeledInput, ModalBlocker, ModalWindow, ModalHeader, FlexRow, TextInput, ModalFooter, Button } = uuiSkin;
 

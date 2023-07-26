@@ -29,7 +29,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.42.1",
-    "slate": "0.47.9",
+    "slate": "0.82.0",
     "swr": "^1.0.1"
   },
   "devDependencies": {

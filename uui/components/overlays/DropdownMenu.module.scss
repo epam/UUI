@@ -1,7 +1,7 @@
 @use 'sass:math';
 @use '../../assets/styles/index' as *;
 
-//TODO: refactor all these tokens
+// TODO: need to revamp
 
 @mixin icon-sizes($size, $font-size, $line-height) {
     $vpadding: math.div(($line-height - $size), 2);
