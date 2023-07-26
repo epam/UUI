@@ -180,7 +180,13 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
         {
             name: 'offset',
             options: {
-                offset: [-6, 0],
+                offset: ({ placement } : { placement:string }) => {
+                    if (placement === 'right-start') {
+                        return [-6, 0];
+                    } else {
+                        return [6, 0];
+                    }
+                },
             },
         },
     ];
