@@ -1,5 +1,5 @@
 import { createCodePlugin } from '@udecode/plate-basic-marks';
-import { PlateEditor, PlatePluginComponent, TText, Value, isMarkActive } from '@udecode/plate-common';
+import { PlateEditor, PlatePluginComponent, isMarkActive } from '@udecode/plate-common';
 import React from 'react';
 
 import { isPluginActive } from '../../helpers';
@@ -22,11 +22,11 @@ export const codeBlockPlugin = () => createCodePlugin({
     component: Code,
 });
 
-interface ToolbarButton {
+interface IToolbarButton {
     editor: PlateEditor;
 }
 
-export function CodeButton({ editor }: ToolbarButton) {
+export function CodeButton({ editor }: IToolbarButton) {
     if (!isPluginActive(CODE_BLOCK_KEY)) return null;
     return (
         <ToolbarButton

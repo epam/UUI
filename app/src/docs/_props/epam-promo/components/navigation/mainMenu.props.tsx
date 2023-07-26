@@ -89,7 +89,7 @@ const mainMenuDoc = new DocBuilder<MainMenuMods & MainMenuProps>({ name: 'MainMe
                                     cursor: 'pointer',
                                 } }
                                 src="/static/images/give_badge.svg"
-                                alt="give-badge-image"
+                                alt="give-badge"
                             />
                         </div>
                     </MainMenuCustomElement>,
