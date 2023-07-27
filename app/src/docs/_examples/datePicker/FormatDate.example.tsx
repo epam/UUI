@@ -5,7 +5,7 @@ export default function DatePickerFormatDateExample() {
     const [value, onValueChange] = useState('');
 
     return (
-        <FlexRow>
+        <FlexRow rawProps={ { style: { minWidth: '195px' } } }>
             <DatePicker
                 value={ value } // value format 'YYYY-MM-DD'
                 onValueChange={ onValueChange }
