@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Avatar, DropdownMenuBody, DropdownMenuButton, DropdownMenuSwitchButton, DropdownMenuSplitter, DropdownMenuHeader, DropdownSubMenu, Button, ControlGroup, Dropdown, Panel } from '@epam/promo';
-import { IDropdownMenuItemProps } from '@epam/uui';
+import { IDropdownMenuItemProps, DropdownMenuBody, DropdownMenuButton, DropdownMenuSwitchButton, DropdownMenuSplitter, DropdownMenuHeader, DropdownSubMenu,
+    Dropdown, Panel, ControlGroup, Button, Avatar } from '@epam/uui';
 import { DropdownBodyProps } from '@epam/uui-core';
 import { ReactComponent as LogoutIcon } from '@epam/assets/icons/common/navigation-logout-24.svg';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-12.svg';
@@ -72,7 +72,7 @@ export default function BasicDropdownMenuExample() {
 
     const renderSecondDropdownBody = () => {
         return (
-            <Panel background="white" shadow={ true }>
+            <Panel shadow={ true }>
                 <DropdownMenuButton caption="Cancel Data Loads" onClick={ () => {} } />
                 <DropdownMenuButton caption="Deactivate" onClick={ () => {} } />
                 <DropdownMenuButton caption="Delete" onClick={ () => {} } />
@@ -82,7 +82,7 @@ export default function BasicDropdownMenuExample() {
 
     const renderThirdDropdownBody = () => {
         return (
-            <Panel background="white" shadow={ true }>
+            <Panel shadow={ true }>
                 <DropdownMenuButton caption="Export" icon={ ExportIcon } onClick={ () => {} } />
                 <DropdownMenuButton caption="Delete" icon={ DeleteIcon } onClick={ () => {} } />
             </Panel>
@@ -98,17 +98,17 @@ export default function BasicDropdownMenuExample() {
                 renderTarget={ (props) => <Avatar img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" size="36" { ...props } /> }
             />
             <ControlGroup>
-                <Button size="36" caption="Action with selected" fill="solid" onClick={ () => {} } />
+                <Button size="36" caption="Action with selected" onClick={ () => {} } />
                 <Dropdown
                     renderBody={ renderSecondDropdownBody }
-                    renderTarget={ (props) => <Button { ...props } fill="solid" icon={ MenuIcon } size="36" isDropdown={ false } /> }
+                    renderTarget={ (props) => <Button { ...props } icon={ MenuIcon } size="36" isDropdown={ false } /> }
                     placement="bottom-end"
                 />
             </ControlGroup>
             <ControlGroup>
                 <Dropdown
                     renderBody={ renderThirdDropdownBody }
-                    renderTarget={ (props) => <Button { ...props } fill="white" icon={ MenuIcon } size="36" isDropdown={ false } /> }
+                    renderTarget={ (props) => <Button { ...props } mode="outline" icon={ MenuIcon } size="36" isDropdown={ false } /> }
                     placement="bottom-end"
                 />
             </ControlGroup>

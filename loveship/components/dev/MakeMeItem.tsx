@@ -1,5 +1,5 @@
 import React from 'react';
-import { DropdownMenuButton } from '../overlays';
+import { DropdownMenuButton } from '../../components';
 import {
     DataRowProps, getCookie, setCookie, LazyDataSourceApi, LazyDataSource,
 } from '@epam/uui-core';
