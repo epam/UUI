@@ -9,6 +9,7 @@
 * [DatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
 * Added adapter for react-router 6.
     - Note: we strongly discourage the use of react-router 6, as it introduces too many breaking changes, and certain important features (like block and listen) are available only via unstable internal API.
+* [Avatar]: Property `onClick` marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this prop.
 
 **What's Fixed**
 
