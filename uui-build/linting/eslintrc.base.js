@@ -175,6 +175,11 @@ function uuiJsRules() {
          */
         'import/no-cycle': [1, { maxDepth: 4 }],
         'import/no-extraneous-dependencies': ['error', {}],
+        'no-restricted-imports': ['error', {
+            patterns: [
+                { group: ['@epam/*/build/*', '@epam/*/build'], message: 'Import from "build" folder of UUI modules is not allowed.' },
+            ],
+        }],
         'import/no-unresolved': [
             2, {
                 ignore: [

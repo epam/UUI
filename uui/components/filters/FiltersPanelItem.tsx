@@ -185,7 +185,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                         isLoading = item.isLoading;
                         return getPickerItemName(item, props);
                     })
-                    : [currentValue];
+                    : currentValue;
 
                 const postfix = (!isLoading && currentValue?.length > maxCount) ? ` +${(currentValue.length - maxCount).toString()} ${i18n.filterToolbar.pickerInput.itemsPlaceholder}` : null;
                 return { selection, postfix };
@@ -194,7 +194,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 const isRangePredicate = predicate === 'inRange' || predicate === 'notInRange';
                 const decimalFormat = (val: number) => getSeparatedValue(val, { maximumFractionDigits: 2 });
                 if ((isRangePredicate && !currentValue) || (!isRangePredicate && !currentValue && currentValue !== 0)) {
-                    return { selection: currentValue };
+                    return { selection: undefined };
                 }
                 const selection = isRangePredicate
                     ? `${!currentValue?.from && currentValue?.from !== 0 ? 'Min' : decimalFormat(currentValue?.from)} - ${
@@ -206,7 +206,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
             case 'singlePicker': {
                 const view = props.dataSource.getView({}, forceUpdate);
                 if (currentValue === null || currentValue === undefined) {
-                    return { selection: currentValue };
+                    return { selection: undefined };
                 }
 
                 const item = view.getById(currentValue, null);
@@ -215,11 +215,11 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 return { selection: [selection] };
             }
             case 'datePicker': {
-                return { selection: [currentValue ? dayjs(currentValue).format(props.format || defaultFormat) : currentValue] };
+                return { selection: currentValue ? [dayjs(currentValue).format(props.format || defaultFormat)] : currentValue };
             }
             case 'rangeDatePicker': {
                 if (!currentValue || (!currentValue.from && !currentValue.to)) {
-                    return { selection: '' };
+                    return { selection: undefined };
                 }
                 const currentValueFrom = currentValue?.from
                     ? dayjs(currentValue?.from).format(props.format || defaultFormat)
