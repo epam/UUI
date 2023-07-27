@@ -9,7 +9,7 @@ import css from './FilterPanelItemToggler.module.scss';
 const defaultSize = '36';
 
 export interface FilterToolbarItemTogglerProps extends IDropdownToggler {
-    selection: React.ReactNode[];
+    selection?: React.ReactNode[];
     postfix?: string | null | JSX.Element;
     title?: string;
     maxWidth?: string;

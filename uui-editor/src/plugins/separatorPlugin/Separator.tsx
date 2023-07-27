@@ -6,7 +6,7 @@ import { PlatePluginComponent } from '@udecode/plate-common';
 
 import css from './Separator.module.scss';
 
-export const Separator: PlatePluginComponent = (props) => {
+export const Separator: PlatePluginComponent = function (props) {
     const { children, attributes } = props;
     const selected = useSelected();
 

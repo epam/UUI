@@ -6,6 +6,7 @@ import { isPluginActive } from '../../helpers';
 import { ReactComponent as UnorderedList } from '../../icons/bullet-list.svg';
 import { ReactComponent as NumberedList } from '../../icons/numbered-list.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
+import { withOurList } from './withList';
 
 export const ELEMENT_UL_CUSTOM = 'unordered-list';
 export const ELEMENT_OL_CUSTOM = 'ordered-list';
@@ -35,12 +36,14 @@ export const listPlugin = () => createListPlugin({
             isElement: true,
             deserializeHtml: { rules: [{ validNodeName: 'OL' }] },
             component: List,
+            withOverrides: withOurList,
         },
         [ELEMENT_UL]: {
             type: ELEMENT_UL_CUSTOM,
             isElement: true,
             deserializeHtml: { rules: [{ validNodeName: 'UL' }] },
             component: List,
+            withOverrides: withOurList,
         },
         [ELEMENT_LI]: {
             type: ELEMENT_LI_CUSTOM,
