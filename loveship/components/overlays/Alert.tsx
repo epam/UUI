@@ -19,6 +19,7 @@ export const Alert = withMods<Omit<uuiAlertProps, 'color'>, AlertMods>(
     (props) => ({
         ...props,
         color: props.color ?? 'sky',
+        size: props.size ?? '48',
     }),
 );
 
