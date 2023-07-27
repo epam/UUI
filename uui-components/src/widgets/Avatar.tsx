@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    IHasCX, cx, IHasRawProps, IHasForwardedRef,
+    devLogger, IHasCX, cx, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';
 import css from './Avatar.module.scss';
 
@@ -25,6 +25,12 @@ export interface AvatarProps extends IHasCX, IHasRawProps<React.ImgHTMLAttribute
 
 function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageElement>) {
     const [isError, setIsError] = React.useState<boolean>(false);
+
+    if (__DEV__) {
+        if (props.onClick) {
+            devLogger.warn('Avatar: Property onClick is deprecated and will be removed in the future release.');
+        }
+    }
 
     function onError() {
         if (!isError) {
