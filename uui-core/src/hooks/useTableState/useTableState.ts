@@ -179,15 +179,15 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
 
     const createNewPreset = useCallback(
         (name: string) => {
-            const newTableStateValue = getTableStateValue();
+            const currentTableStateValue = getTableStateValue();
             const newPreset: ITablePreset<TFilter, TViewState> = {
                 id: null,
                 name: name,
-                filter: newTableStateValue.filter,
-                columnsConfig: newTableStateValue.columnsConfig,
-                filtersConfig: newTableStateValue.filtersConfig,
-                sorting: newTableStateValue.sorting,
-                viewState: newTableStateValue.viewState,
+                filter: currentTableStateValue.filter,
+                columnsConfig: currentTableStateValue.columnsConfig,
+                filtersConfig: currentTableStateValue.filtersConfig,
+                sorting: currentTableStateValue.sorting,
+                viewState: currentTableStateValue.viewState,
                 isReadonly: false,
                 order: getNewPresetOrder(),
             };
@@ -199,12 +199,12 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
 
     const hasPresetChanged = useCallback(
         (preset: ITablePreset<TFilter, TViewState>) => {
-            const newTableStateValue = getTableStateValue();
+            const currentTableStateValue = getTableStateValue();
             return (
-                !isEqual(preset.filter, newTableStateValue.filter)
-                || !isEqual(preset.columnsConfig, newTableStateValue.columnsConfig)
-                || !isEqual(preset.sorting, newTableStateValue.sorting)
-                || !isEqual(preset.viewState, newTableStateValue.viewState)
+                !isEqual(preset.filter, currentTableStateValue.filter)
+                || !isEqual(preset.columnsConfig, currentTableStateValue.columnsConfig)
+                || !isEqual(preset.sorting, currentTableStateValue.sorting)
+                || !isEqual(preset.viewState, currentTableStateValue.viewState)
             );
         },
         [getTableStateValue],
