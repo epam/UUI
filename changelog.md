@@ -1,7 +1,7 @@
 # 5.x.x - xx.xx.2023
 
 **What's New**
-
+* [Avatar]: Property `onClick` marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this prop.
 
 **What's Fixed**
 
@@ -9,15 +9,14 @@
 # 5.1.1 - 27.07.2023
 
 **What's New**
-* [PickerInput]: Added highlighting of the search matching results. 
-* [PickerInput]: Added search result sorting by search relevance. 
+* [PickerInput]: Added highlighting of the search matching results.
+* [PickerInput]: Added search result sorting by search relevance.
 * [Tooltip][BreakingChange]: Removed prop `trigger`. Now tooltip always opens on hover, use dropdown for cases when you need to open body by click.
 * [DataTable]: Added column description tooltip to table header. DataTable now has an optional property-callback 'renderColumnsConfigurationModal?: (props) => React.ReactNode' for render your custom ColumnsConfigurationModal.
 * [ColumnsConfigurationModal]: Added 'renderItem?: (column) => React.ReactNode' optional property-callback for render your custom column name section.
 * [ColumnsConfigurationModal]: Added 'getSearchFields?: (column) => string[];' optional callback to define columns to search in the ColumnsConfigurationModal. We use 'column.caption' by default.
 * Added adapter for react-router 6.
     - Note: we strongly discourage the use of react-router 6, as it introduces too many breaking changes, and certain important features (like block and listen) are available only via unstable internal API.
-* [Avatar]: Property `onClick` marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this prop.
 
 **What's Fixed**
 * [uui-editor]: reduced package size.
