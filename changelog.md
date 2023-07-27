@@ -11,20 +11,20 @@
     - Note: we strongly discourage the use of react-router 6, as it introduces too many breaking changes, and certain important features (like block and listen) are available only via unstable internal API.
 
 **What's Fixed**
-* [uui-editor]: reduce package size.
-* [PickerInput]: fix initialValue resetting in case of entity value type and async data source.
-* [Button]: add missing styles for 'sun' color in loveship skin.
-* [FilterPanel]: fix RangeDatePicker 'to' value change.
+* [uui-editor]: reduced package size.
+* [PickerInput]: fixed initialValue resetting in case of entity value type and async data source.
+* [Button]: added missing styles for 'sun' color in loveship skin.
+* [FilterPanel]: fixed RangeDatePicker 'to' value change.
 * [FilterPanel]: added `maxItems` prop for filter config, this prop will configure how much items will be shown in filter toggler before collapsing in '+ n items'. Also improved selected items collapsing when they don't fit toggler width.
-* [Rating]: fix rating behavior with 0.5 step.
+* [Rating]: fixed rating behavior with 0.5 step.
 * [ColumnsConfigurationConfig]: change 'Apply' button color to the 'primary'
 * [MainMenu]: fixed hover:background-color in nested menu items.
 * [PickerInput]: reset 'Show only selected' to default value toggler on picker close.
 * [DropdownMenu]: fixed button's heigth and submenu position.
-* [LabeledInput]: change `info` prop type from string to `ReactNode`.
-* [DatePicker]: Size '48' marked as @deprecated. It will be removed in future releases.
-* [RangeDatePicker]: Size '48' marked as @deprecated. It will be removed in future releases.
-* [SnackbarCard]: is deprecated and will be deleted in a future releases. Please, use a NotificationCard instead it.
+* [LabeledInput]: changed `info` prop type from string to `ReactNode`.
+* [DatePicker]: size '48' marked as @deprecated. It will be removed in future releases.
+* [RangeDatePicker]: size '48' marked as @deprecated. It will be removed in future releases.
+* [SnackbarCard]: component deprecated and will be deleted in a future releases. Please, use a NotificationCard instead it.
 
 # 5.1.0 - 29.06.2023
 
