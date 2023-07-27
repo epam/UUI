@@ -18,6 +18,8 @@
  */
 const pickFromAirbnb = require('./utils/eslintRulesFromAirbnb.js');
 const { turnOffEslintRulesToBeFixed, shouldTurnOffRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
+const { isCI, isLintStaged, isLintScript } = require('../utils/envUtils.js');
+const { getIgnoredPatterns } = require('./../../.eslintignore.js');
 
 process.env.NODE_ENV = 'production'; // this line is required by "babel-preset-react-app".
 module.exports = {
@@ -26,6 +28,7 @@ module.exports = {
         es6: true,
         node: true,
     },
+    ignorePatterns: getIgnoredPatterns({ isCI: isCI(), isLintStaged: isLintStaged(), isLintScript: isLintScript() }),
     // We need to remove such directives only if full set of rules is checked.
     reportUnusedDisableDirectives: !shouldTurnOffRulesToBeFixed,
     extends: ['react-app'],
@@ -172,6 +175,11 @@ function uuiJsRules() {
          */
         'import/no-cycle': [1, { maxDepth: 4 }],
         'import/no-extraneous-dependencies': ['error', {}],
+        'no-restricted-imports': ['error', {
+            patterns: [
+                { group: ['@epam/*/build/*', '@epam/*/build'], message: 'Import from "build" folder of UUI modules is not allowed.' },
+            ],
+        }],
         'import/no-unresolved': [
             2, {
                 ignore: [

@@ -2,13 +2,12 @@ import React, { useMemo } from 'react';
 import {
     FiltersPanel, DataTable, Panel, FlexRow, Text, Badge, EpamAdditionalColor,
 } from '@epam/promo';
-import { defaultPredicates } from '@epam/uui';
+import { defaultPredicates, rangeDatePickerPresets } from '@epam/uui';
 import {
     DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext,
 } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import dayjs from 'dayjs';
-import { rangeDatePickerPresets } from '@epam/uui-components';
 
 const personColumns: DataColumnProps<Person, number>[] = [
     {
@@ -20,7 +19,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         isAlwaysVisible: true,
     }, {
         key: 'profileStatus',
-        caption: 'Profile Status',
+        caption: 'Profile status',
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
@@ -51,13 +50,13 @@ const personColumns: DataColumnProps<Person, number>[] = [
         isFilterActive: (f) => !!f.jobTitleId,
     }, {
         key: 'birthDate',
-        caption: 'Birth Date',
+        caption: 'Birth date',
         render: (p) => p?.birthDate && <Text>{dayjs(p.birthDate).format('MMM D, YYYY')}</Text>,
         width: 120,
         isSortable: true,
     }, {
         key: 'hireDate',
-        caption: 'Hire Date',
+        caption: 'Hire date',
         render: (p) => p?.hireDate && <Text>{dayjs(p.hireDate).format('MMM D, YYYY')}</Text>,
         width: 120,
         isSortable: true,
@@ -72,17 +71,19 @@ export default function FiltersPanelExample() {
             {
                 field: 'profileStatusId',
                 columnKey: 'profileStatus',
-                title: 'Profile Status',
+                title: 'Profile status',
                 type: 'multiPicker',
                 isAlwaysVisible: true,
                 dataSource: new LazyDataSource({ api: api.demo.statuses }),
                 predicates: defaultPredicates.multiPicker,
                 showSearch: false,
+                maxCount: 3,
             }, {
                 field: 'jobTitleId',
                 columnKey: 'jobTitle',
                 title: 'Title',
                 type: 'multiPicker',
+                maxCount: 1,
                 dataSource: new LazyDataSource({ api: api.demo.jobTitles }),
             }, {
                 field: 'salary',
@@ -93,12 +94,12 @@ export default function FiltersPanelExample() {
             }, {
                 field: 'birthDate',
                 columnKey: 'birthDate',
-                title: 'Birth Date',
+                title: 'Birth date',
                 type: 'datePicker',
             }, {
                 field: 'hireDate',
                 columnKey: 'hireDate',
-                title: 'Hire Date',
+                title: 'Hire date',
                 type: 'rangeDatePicker',
                 predicates: defaultPredicates.rangeDatePicker,
                 presets: {
@@ -137,7 +138,7 @@ export default function FiltersPanelExample() {
 
     return (
         <Panel style={ { height: '400px' } }>
-            <FlexRow spacing="6" vPadding="12">
+            <FlexRow spacing="6" vPadding="12" rawProps={ { style: { flexWrap: 'wrap' } } }>
                 <FiltersPanel filters={ filtersConfig } tableState={ tableState } setTableState={ setTableState } />
             </FlexRow>
             <DataTable getRows={ view.getVisibleRows } columns={ personColumns } value={ tableState } onValueChange={ setTableState } { ...view.getListProps() } />

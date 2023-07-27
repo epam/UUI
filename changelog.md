@@ -1,14 +1,42 @@
+# 5.1.1 - 27.07.2023
+
+**What's New**
+* [PickerInput]: Added highlighting of the search matching results. 
+* [PickerInput]: Added search result sorting by search relevance. 
+* [Tooltip][BreakingChange]: Removed prop `trigger`. Now tooltip always opens on hover, use dropdown for cases when you need to open body by click.
+* [DataTable]: Added column description tooltip to table header. DataTable now has an optional property-callback 'renderColumnsConfigurationModal?: (props) => React.ReactNode' for render your custom ColumnsConfigurationModal.
+* [ColumnsConfigurationModal]: Added 'renderItem?: (column) => React.ReactNode' optional property-callback for render your custom column name section.
+* [ColumnsConfigurationModal]: Added 'getSearchFields?: (column) => string[];' optional callback to define columns to search in the ColumnsConfigurationModal. We use 'column.caption' by default.
+* Added adapter for react-router 6.
+    - Note: we strongly discourage the use of react-router 6, as it introduces too many breaking changes, and certain important features (like block and listen) are available only via unstable internal API.
+
+**What's Fixed**
+* [uui-editor]: reduced package size.
+* [PickerInput]: fixed initialValue resetting in case of entity value type and async data source.
+* [Button]: added missing styles for 'sun' color in loveship skin.
+* [FilterPanel]: fixed RangeDatePicker 'to' value change.
+* [FilterPanel]: added `maxItems` prop for filter config, this prop will configure how much items will be shown in filter toggler before collapsing in '+ n items'. Also improved selected items collapsing when they don't fit toggler width.
+* [Rating]: fixed rating behavior with 0.5 step.
+* [ColumnsConfigurationConfig]: change 'Apply' button color to the 'primary'
+* [MainMenu]: fixed hover styles for nested menu items.
+* [PickerInput]: reset 'Show only selected' to default value toggler on picker close.
+* [DropdownMenu]: fixed button's heigth and submenu position.
+* [LabeledInput]: changed `info` prop type from string to `ReactNode`.
+* [DatePicker]: size '48' marked as @deprecated. It will be removed in future releases.
+* [RangeDatePicker]: size '48' marked as @deprecated. It will be removed in future releases.
+* [SnackbarCard]: component deprecated and will be deleted in a future releases. Please, use a NotificationCard instead it.
+
 # 5.1.0 - 29.06.2023
 
 **What's New**
 
 **Rich Text Editor component update and improvements**
 
-UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework. 
-During the update the previous code based of RTE almost completely rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users. Therefore, update to the new version of `uui-editor` package should be seamless and easy. 
+UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework.
+During the update the previous code based of RTE almost completely rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users. Therefore, update to the new version of `uui-editor` package should be seamless and easy.
 
 List of changes:
-* [Breaking change]: Changed RTE value format, now it's works with array instead of immutable.js object. Also, there are some additional changes inside slate value structure. 
+* [Breaking change]: Changed RTE value format, now it's works with array instead of immutable.js object. Also, there are some additional changes inside slate value structure.
 We make an automatic migration from old state format to the new one, so it's not required any additional actions from your side. But if you make some manipulations with value object on your side, it will cause issues, contact us if you faced with such case.
 * Regarding the new value format it's not needed to convert value to JSON via `value.toJSON()` and `Value.fromJSON(value)` in your code.
 

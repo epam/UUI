@@ -1,15 +1,9 @@
-import {
-    KEY_INSERT_DATA,
-    PlateEditor,
-    deleteBackward,
-    getPlugin,
-    insertEmptyElement,
-} from "@udecode/plate";
 import { IMAGE_PLUGIN_TYPE } from "../imagePlugin/imagePlugin";
 import { ATTACHMENT_PLUGIN_TYPE } from "../attachmentPlugin/attachmentPlugin";
 import { IFRAME_PLUGIN_TYPE } from "../iframePlugin/iframePlugin";
 import { useCallback } from "react";
 import type { FileUploadResponse } from "@epam/uui-core";
+import { PlateEditor, getPlugin, KEY_INSERT_DATA, deleteBackward, insertEmptyElement } from "@udecode/plate-common";
 
 export type UploadType = keyof typeof UPLOAD_BLOCKS;
 

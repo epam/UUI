@@ -69,6 +69,11 @@ IHasIcon & {
     inputCx?: CX;
     /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */
     bodyCx?: CX;
+
+    /** 
+     * Enables highlighting of the items' text with search-matching results. 
+     * */
+    highlightSearchMatches?: boolean;
 };
 
 interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
@@ -150,6 +155,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             },
             isSearchChanged: false,
             opened,
+            showSelected: false,
         });
     };
 

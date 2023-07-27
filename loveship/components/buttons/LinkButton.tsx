@@ -11,12 +11,14 @@ export const LinkButton = withMods<Omit<UuiLinkButtonProps, 'color'>, LinkButton
     UuiLinkButton,
     () => [],
     (props) => {
-        devLogger.warnAboutDeprecatedPropValue<LinkButtonProps, 'color'>({
-            component: 'LinkButton',
-            propName: 'color',
-            propValue: props.color,
-            condition: () => ['grass', 'sun', 'fire', 'cobalt', 'lavanda', 'fuchsia', 'white', 'night50', 'night200', 'night300', 'night400', 'night500', 'night700', 'night800', 'night900'].indexOf(props.color) !== -1,
-        });
+        if (__DEV__) {
+            devLogger.warnAboutDeprecatedPropValue<LinkButtonProps, 'color'>({
+                component: 'LinkButton',
+                propName: 'color',
+                propValue: props.color,
+                condition: () => ['grass', 'sun', 'fire', 'cobalt', 'lavanda', 'fuchsia', 'white', 'night50', 'night200', 'night300', 'night400', 'night500', 'night700', 'night800', 'night900'].indexOf(props.color) !== -1,
+            });
+        }
         return {
             color: props.color ?? 'sky',
         } as LinkButtonProps;

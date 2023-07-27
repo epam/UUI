@@ -1,39 +1,22 @@
-import React, { useRef } from 'react';
-import {
-    ELEMENT_TABLE,
-    ELEMENT_TD,
-    ELEMENT_TH,
-    ELEMENT_TR,
-    usePlateEditorState,
-    ToolbarButton as PlateToolbarButton,
-    PlateEditor,
-    getTableGridAbove,
-    insertNodes,
-    withoutNormalizing,
-    getPluginType,
-    someNode,
-    createTablePlugin,
-} from "@udecode/plate";
-import cx from "classnames";
+import React from 'react';
+
 import { Dropdown } from '@epam/uui-components';
 import { useFocused, useReadOnly, useSelected } from 'slate-react';
 
-import { ReactComponent as TableIcon } from "../../icons/table-add.svg";
 import { isPluginActive, isTextSelected } from "../../helpers";
+import { ReactComponent as TableIcon } from "../../icons/table-add.svg";
 
+import { PositionedToolbar } from '../../implementation/PositionedToolbar';
 import { ToolbarButton } from "../../implementation/ToolbarButton";
-import { Toolbar } from '../../implementation/Toolbar';
 
-import { Table } from './Table';
-import { TableRow } from "./TableRow";
-import { TableCell } from "./TableCell";
-
-import tableCSS from './Table.module.scss';
-import { updateTableStructure } from './utils';
-import { TableToolbarContent } from './ToolbarContent';
+import { PlateEditor, PlatePlugin, Value, getPluginType, insertNodes, someNode, usePlateEditorState, withoutNormalizing } from '@udecode/plate-common';
+import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, TablePlugin, createTablePlugin, getTableGridAbove } from '@udecode/plate-table';
 import { MergeToolbarContent } from './MergeToolbarContent';
-import { withOurTable } from './withOurTable';
-import { createInitialTable, selectFirstCell } from './utils';
+import { TableToolbarContent } from './ToolbarContent';
+import { createInitialTable, selectFirstCell, updateTableStructure } from './utils';
+import { TableRowElement } from './TableRowElement';
+import { TableCellElement } from './TableCellElement';
+import { TableElement } from './TableElement';
 
 const noop = () => {};
 
@@ -41,7 +24,6 @@ const TableRenderer = (props: any) => {
     let { element: tableElem } = props;
     const editor = usePlateEditorState();
     const isReadonly = useReadOnly();
-    const ref = useRef(null);
     const isFocused = useFocused();
     const isSelected = useSelected();
 
@@ -60,13 +42,11 @@ const TableRenderer = (props: any) => {
         <Dropdown
             renderTarget={ (innerProps: any) => (
                 <div ref={ innerProps.ref } >
-                    <div ref={ ref } className={ cx(tableCSS.tableWrapper) }>
-                        <Table { ...props } />
-                    </div>
+                    <TableElement { ...props } />
                 </div>
             ) }
             renderBody={ () => (
-                <Toolbar
+                <PositionedToolbar
                     placement='bottom'
                     children={
                         cellEntries.length > 1
@@ -97,42 +77,39 @@ export const TableButton = ({ editor, }: { editor: PlateEditor; }) => {
 
             if (!isCurrentTableSelection) {
                 insertNodes(editor, createInitialTable(editor));
-                setTimeout(() => selectFirstCell(editor), 0);
+                selectFirstCell(editor);
             }
         });
     }
 
     return (
-        <PlateToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            onMouseDown={ onCreateTable }
-            icon={ <ToolbarButton
-                isDisabled={ isTextSelected(editor, true) }
-                onClick={ () => {} }
-                icon={ TableIcon }
-            /> }
+        <ToolbarButton
+            isDisabled={ isTextSelected(editor, true) }
+            onClick={ onCreateTable }
+            icon={ TableIcon }
         />
     );
 };
 
-export const tablePlugin = () => createTablePlugin({
+type CreateTablePlugin = () => PlatePlugin<TablePlugin<Value>, Value, PlateEditor<Value>>;
+
+export const tablePlugin: CreateTablePlugin = () => createTablePlugin({
     overrideByKey: {
         [ELEMENT_TABLE]: {
             type: 'table',
             component: TableRenderer,
-            withOverrides: withOurTable,
         },
         [ELEMENT_TR]: {
             type: 'table_row',
-            component: TableRow,
+            component: TableRowElement,
         },
         [ELEMENT_TD]: {
             type: 'table_cell',
-            component: TableCell,
+            component: TableCellElement,
         },
         [ELEMENT_TH]: {
             type: 'table_header_cell',
-            component: TableCell,
+            component: TableCellElement,
         },
     },
 });

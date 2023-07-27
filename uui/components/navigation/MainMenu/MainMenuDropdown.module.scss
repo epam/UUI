@@ -9,7 +9,7 @@
 
     :global(.-clickable) {
         &:global(.uui-button-box):hover {
-            background-color: var(--uui-main_menu-hover);
+            background-color: var(--uui-main_menu-dropdown-bg-hover);
         }
     }
 
