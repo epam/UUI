@@ -1,4 +1,5 @@
 /* eslint import/no-unresolved : 0 */
+/* eslint no-restricted-imports : 0 */
 /**
  * This index file is used as webpack entrypoint when "@epam/app" is built using "./build" folder of respective dependencies.
  * - All dependencies must be already built before "app" build is started.
