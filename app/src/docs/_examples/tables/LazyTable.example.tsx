@@ -1,7 +1,7 @@
 import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
-import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource } from '@epam/uui-core';
+import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource, DropdownBodyProps } from '@epam/uui-core';
 import { Text, DataTable, Panel, IconButton } from '@epam/promo';
-import { DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter } from '@epam/loveship';
+import { DropdownMenuButton, DropdownMenuSplitter, DropdownMenuBody } from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import { Dropdown } from '@epam/uui-components';
 import css from './TablesExamples.module.scss';
@@ -12,13 +12,13 @@ export default function CitiesTable() {
     const svc = useUuiContext();
     const [tableState, setTableState] = useState<DataSourceState>({});
 
-    const renderMenu = (): ReactNode => (
-        <DropdownMenuBody color="white">
-            <DropdownMenuButton caption="Edit" icon={ PencilIcon } />
-            <DropdownMenuButton caption="Remove" />
+    const renderMenu = (dropdownProps: DropdownBodyProps): ReactNode => (
+        <Panel shadow={ true } style={ { minWidth: '90px' } } { ...dropdownProps }>
+            <DropdownMenuButton caption="Edit" icon={ PencilIcon } cx={ css.actionButton } />
+            <DropdownMenuButton caption="Remove" cx={ css.actionButton } />
             <DropdownMenuSplitter />
-            <DropdownMenuButton caption="Cancel" />
-        </DropdownMenuBody>
+            <DropdownMenuButton caption="Cancel" cx={ css.actionButton } />
+        </Panel>
     );
 
     // Define columns config array
@@ -80,7 +80,7 @@ export default function CitiesTable() {
                 render: () => (
                     <Dropdown
                         renderTarget={ (props) => <IconButton icon={ MoreIcon } color="gray60" cx={ [css.configItem, props.isOpen && css.showButton] } { ...props } /> }
-                        renderBody={ renderMenu }
+                        renderBody={ (dropdownProps) => renderMenu(dropdownProps) }
                         placement="bottom-end"
                     />
                 ),

@@ -30,3 +30,11 @@
 .weekend-day {
     background-color: #EBEDF5;
 }
+
+.action-button {
+    padding: 0 20px;
+
+    &:first-child {
+        padding: 0 18px;
+    }
+}
