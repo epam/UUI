@@ -17,7 +17,9 @@ export interface AvatarProps extends IHasCX, IHasRawProps<React.ImgHTMLAttribute
     /** True to show placeholder */
     isLoading?: boolean;
 
-    /** Click handler */
+    /** Avatar onClick.
+     *  @deprecated Property onClick is deprecated and will be removed in future release.
+     * */
     onClick?: () => void;
 }
 
