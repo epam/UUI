@@ -175,6 +175,18 @@ function uuiJsRules() {
          */
         'import/no-cycle': [1, { maxDepth: 4 }],
         'import/no-extraneous-dependencies': ['error', {}],
+        'import/no-restricted-paths': [
+            'error',
+            {
+                zones: [
+                    {
+                        target: './**/*',
+                        from: './node_modules/@epam/**/build/**/*',
+                        message: 'Import from "build" folder of UUI modules isn\'t allowed.',
+                    },
+                ],
+            },
+        ],
         'import/no-unresolved': [
             2, {
                 ignore: [
