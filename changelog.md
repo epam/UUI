@@ -18,7 +18,7 @@
 * [FilterPanel]: added `maxItems` prop for filter config, this prop will configure how much items will be shown in filter toggler before collapsing in '+ n items'. Also improved selected items collapsing when they don't fit toggler width.
 * [Rating]: fixed rating behavior with 0.5 step.
 * [ColumnsConfigurationConfig]: change 'Apply' button color to the 'primary'
-* [MainMenu]: fixed hover:background-color in nested menu items.
+* [MainMenu]: fixed hover styles for nested menu items.
 * [PickerInput]: reset 'Show only selected' to default value toggler on picker close.
 * [DropdownMenu]: fixed button's heigth and submenu position.
 * [LabeledInput]: changed `info` prop type from string to `ReactNode`.
