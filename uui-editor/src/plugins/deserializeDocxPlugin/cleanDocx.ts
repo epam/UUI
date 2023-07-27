@@ -1,14 +1,4 @@
 import {
-    cleanDocxBrComments,
-    cleanDocxEmptyParagraphs,
-    cleanDocxFootnotes,
-    cleanDocxImageElements,
-    cleanDocxListElements,
-    cleanDocxQuotes,
-    cleanDocxSpans,
-    isDocxContent,
-} from "@udecode/plate";
-import {
     cleanHtmlBrElements,
     cleanHtmlFontElements,
     cleanHtmlLinkElements,
@@ -17,6 +7,16 @@ import {
     preCleanHtml,
 } from "@udecode/plate-common";
 import { cleanHtmlEmptyElements } from "./cleanHtmlEmptyElements";
+import {
+    cleanDocxBrComments,
+    cleanDocxEmptyParagraphs,
+    cleanDocxFootnotes,
+    cleanDocxImageElements,
+    cleanDocxListElements,
+    cleanDocxQuotes,
+    cleanDocxSpans,
+    isDocxContent,
+} from "@udecode/plate-serializer-docx";
 
 export const cleanDocx = (html: string, rtf: string): string => {
     const document = new DOMParser().parseFromString(

@@ -1,7 +1,7 @@
 .root {
     &:global(.uui-blocker-container) {
         :global(.uui-blocker) {
-            background-color: var(--uui-blocker-bg-with-opacity);
+            background-color: rgba(var(--uui-blocker-bg), 0.5);
         }
 
         :global(.uui-blocker-enter) {
@@ -9,12 +9,12 @@
         }
 
         :global(.uui-blocker-enter-active) {
-            background-color: var(--uui-blocker-bg-with-opacity);
+            background-color: rgba(var(--uui-blocker-bg), 0.5);
             transition: opacity 1000ms ease-out, background-color 2000ms ease-out;
         }
 
         :global(.uui-blocker-exit) {
-            background-color: var(--uui-blocker-bg-with-opacity);
+            background-color: rgba(var(--uui-blocker-bg), 0.5);
             pointer-events: none;
             transition: opacity 1000ms ease-out, background-color 200ms ease-out;
         }

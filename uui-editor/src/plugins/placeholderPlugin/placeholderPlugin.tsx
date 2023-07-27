@@ -1,24 +1,14 @@
-import React from 'react';
 import { Dropdown } from '@epam/uui-components';
-
-import {
-    createPluginFactory,
-    getPluginOptions,
-    PlateEditor,
-    insertElements,
-    ToolbarButton as PlateToolbarButton,
-} from "@udecode/plate";
+import React from 'react';
 
 import { isPluginActive, isTextSelected } from '../../helpers';
-
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-
 import { PlaceholderBlock } from './PlaceholderBlock';
 
+import { PlateEditor, createPluginFactory, getPluginOptions, insertElements } from '@udecode/plate-common';
 import css from './PlaceholderPlugin.module.scss';
 
 const KEY = 'placeholder';
-const noop = () => {};
 
 export interface PlaceholderPluginParams {
     items: {
@@ -79,20 +69,10 @@ export const PlaceholderButton = ({ editor }: IPlaceholderButton): any => {
     return (
         <Dropdown
             renderTarget={ (props) => (
-                <PlateToolbarButton
-                    styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-                    active={ true }
-                    onMouseDown={
-                        editor
-                            ? (e) => e.preventDefault()
-                            : undefined
-                    }
-                    icon={ <ToolbarButton
-                        onClick={ noop }
-                        caption={ <div style={ { height: 42, display: 'flex', alignItems: 'center' } }>Insert Placeholder</div> }
-                        isDisabled={ isTextSelected(editor, true) }
-                        { ...props }
-                    /> }
+                <ToolbarButton
+                    caption={ <div style={ { height: 42, display: 'flex', alignItems: 'center' } }>Insert Placeholder</div> }
+                    isDisabled={ isTextSelected(editor, true) }
+                    { ...props }
                 />
             ) }
             renderBody={ renderDropdownBody }

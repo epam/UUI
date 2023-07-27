@@ -1,6 +1,6 @@
 {
   "name": "@epam/cra-template-uui",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "keywords": [
     "UUI",
     "react",
@@ -15,7 +15,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=10"
+    "node": ">=16"
   },
   "files": [
     "template",

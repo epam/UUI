@@ -8,7 +8,7 @@
     }
 
     :global(.uui-thumb-vertical), :global(.uui-thumb-horizontal) {
-        background: var(--uui-scroll-bars-bg);
+        background: var(--uui-scroll_bars-bg);
         border-radius: 1.5px;
 
         &:hover {
@@ -17,7 +17,7 @@
 
         &:active {
             border-radius: 3px;
-            background: var(--uui-scroll-bars-bg-active);
+            background: var(--uui-scroll_bars-bg-active);
         }
     }
 

@@ -30,7 +30,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         isFilterActive: (f) => !!f.profileStatusId,
     }, {
         key: 'salary',
-        caption: 'salary',
+        caption: 'Salary',
         render: (p) => (
             <Text>
                 {getSeparatedValue(+p.salary, {
@@ -102,6 +102,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         grow: 0,
         width: 120,
         isSortable: true,
+        isFilterActive: (f) => !!f.birthDate,
     }, {
         key: 'relatedNPR',
         caption: 'Related NPR',

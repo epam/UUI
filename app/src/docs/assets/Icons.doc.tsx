@@ -214,7 +214,7 @@ export class IconsDoc extends React.Component {
                                     </FlexCell>
                                     {Object.keys(recommendedSizes).map((size) =>
                                         recommendedSizes[size].map((control) => (
-                                            <Tooltip key={ control } trigger={ null } content={ !iconSizesList.some((i) => i === size) && 'There is no size for this icon' }>
+                                            <Tooltip key={ control } content={ !iconSizesList.some((i) => i === size) && 'There is no size for this icon' }>
                                                 <FlexCell
                                                     key={ control }
                                                     minWidth={ 30 }
