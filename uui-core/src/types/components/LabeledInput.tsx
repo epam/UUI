@@ -1,6 +1,7 @@
 import {
     ICanBeInvalid, ICanBeRequired, IHasChildren, IHasCX, IHasLabel, IHasRawProps, IHasForwardedRef,
 } from '../props';
+import { ReactNode } from 'react';
 
 export interface LabeledInputCoreProps
     extends ICanBeInvalid,
@@ -13,7 +14,7 @@ export interface LabeledInputCoreProps
     /** Position of the label, relative to the wrapped component (top of left) */
     labelPosition?: 'top' | 'left';
     /** Info hint text to show in tooltip */
-    info?: string;
+    info?: ReactNode;
     /** Marks related field as optional */
     isOptional?: boolean;
     /** HTML 'for' tag to bind the label to a component.
