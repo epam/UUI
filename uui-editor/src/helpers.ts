@@ -1,4 +1,4 @@
-import { Range, Editor } from 'slate';
+import { Range, Editor, Text } from 'slate';
 import { getPlugins, usePlateEditorState } from '@udecode/plate-common';
 import { EditorValue } from './types';
 
