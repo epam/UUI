@@ -62,7 +62,7 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
                 rawProps={ {
                     ...params.eventHandlers,
                     role: 'row',
-                    'aria-expanded': props.isFolded == null ? undefined : !props.isFolded,
+                    'aria-expanded': (props.isFolded === undefined || props.isFolded === null) ? undefined : !props.isFolded,
                     ...(props.isSelectable && { 'aria-selected': props.isSelected }),
                 } }
                 cx={ [
