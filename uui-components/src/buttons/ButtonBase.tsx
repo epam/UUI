@@ -60,7 +60,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
         return this.props.tabIndex || 0;
     }
 
-    getAriaAttrs?(): Record<`aria-${string}`, string | boolean>;
+    getProps?(): React.ButtonHTMLAttributes<HTMLButtonElement>;
 
     hasLink(link: ButtonProps['link']): link is NonNullable<ButtonProps['link']> {
         return !!link;
@@ -96,7 +96,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             tabIndex: this.getTabIndex(),
             ref: this.props.forwardedRef,
             'aria-disabled': this.props.isDisabled,
-            ...this.getAriaAttrs?.(),
+            ...this.getProps?.(),
             // NOTE: do not use disabled attribute for button because it will prevent all events and broke Tooltip at least
             // more info: https://github.com/epam/UUI/issues/1057#issuecomment-1508632942
             // disabled: this.props.isDisabled,
