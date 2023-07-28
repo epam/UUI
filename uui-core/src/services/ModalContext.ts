@@ -83,7 +83,7 @@ export class ModalContext extends BaseContext implements IModalContext {
     public getOperations(): ModalOperation[] {
         return this.operations.map((op, n) => {
             op = clone(op);
-            op.props.isActive = n == this.operations.length - 1;
+            op.props.isActive = n === this.operations.length - 1;
             return op;
         });
     }

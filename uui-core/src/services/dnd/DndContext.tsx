@@ -71,7 +71,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
         }
     };
 
-    private windowPointerUpHandler = (e: PointerEvent) => {
+    private windowPointerUpHandler = () => {
         this.isDragging && this.endDrag();
     };
 
@@ -94,7 +94,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
             scrollDir = Math.max(0, (scrollZoneSize - endToMouse) / scrollZoneSize);
         }
 
-        if (scrollDir != 0) {
+        if (scrollDir !== 0) {
             const step = ((now - this.lastScrollTime) / 1000) * maxScrollSpeed * scrollDir;
             return nodeScroll + step;
         }

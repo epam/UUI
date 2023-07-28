@@ -42,7 +42,11 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
     private toggleAccordion = () => {
         const opened = this.isOpened();
 
-        isEditableAccordionProps(this.props) ? this.props.onValueChange(!opened) : this.setState({ opened: !opened });
+        if (isEditableAccordionProps(this.props)) {
+            this.props.onValueChange(!opened);
+        } else {
+            this.setState({ opened: !opened });
+        }
     };
 
     private handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {

@@ -5,8 +5,8 @@ import {
     cleanHtmlTextNodes,
     postCleanHtml,
     preCleanHtml,
-} from "@udecode/plate-common";
-import { cleanHtmlEmptyElements } from "./cleanHtmlEmptyElements";
+} from '@udecode/plate-common';
+import { cleanHtmlEmptyElements } from './cleanHtmlEmptyElements';
 import {
     cleanDocxBrComments,
     cleanDocxEmptyParagraphs,
@@ -16,12 +16,12 @@ import {
     cleanDocxQuotes,
     cleanDocxSpans,
     isDocxContent,
-} from "@udecode/plate-serializer-docx";
+} from '@udecode/plate-serializer-docx';
 
 export const cleanDocx = (html: string, rtf: string): string => {
     const document = new DOMParser().parseFromString(
         preCleanHtml(html),
-        "text/html"
+        'text/html',
     );
     const { body } = document;
 

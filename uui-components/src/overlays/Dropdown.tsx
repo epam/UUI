@@ -98,7 +98,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         }
     };
 
-    private handleMouseEnter = (e: Event) => {
+    private handleMouseEnter = () => {
         this.clearCloseDropdownTimer();
         if (this.props.openDelay) {
             this.setOpenDropdownTimer();
@@ -107,7 +107,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         }
     };
 
-    private handleMouseLeave = (e: MouseEvent) => {
+    private handleMouseLeave = () => {
         this.clearOpenDropdownTimer();
 
         if (this.props.closeOnMouseLeave !== 'boundary') {

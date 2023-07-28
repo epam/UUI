@@ -51,9 +51,9 @@ export function useFullScreenApi(): IFullScreenApi {
 
     useEffect(() => {
         return onFullScreenChange(() => {
-            const isFullScreen = isSomeElementOpenedFullScreen();
-            setIsFullScreen(isFullScreen);
-            if (isFullScreen) {
+            const isFullScreenElementOpened = isSomeElementOpenedFullScreen();
+            setIsFullScreen(isFullScreenElementOpened);
+            if (isFullScreenElementOpened) {
                 document.body.classList.add(FULL_SCREEN_MODIFIER);
             } else {
                 document.body.classList.remove(FULL_SCREEN_MODIFIER);
@@ -61,7 +61,7 @@ export function useFullScreenApi(): IFullScreenApi {
         });
     }, []);
 
-    const handleOpenFullScreen = React.useCallback(async () => {
+    const handleOpenFullScreen = useCallback(async () => {
         await openElementFullScreen(document.body);
     }, []);
 

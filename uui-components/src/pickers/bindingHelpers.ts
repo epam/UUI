@@ -13,7 +13,7 @@ export type ArrayPickerProps<TId, TItem> =
     | ({ selectionMode: 'multi'; valueType: 'id'; emptyValue?: [] | null } & IEditable<TId[]>)
     | ({ selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null } & IEditable<TItem[]>);
 
-export interface PickerBindingHelper<TItem, TId, TValue> {
+export interface PickerBindingHelper<TItem, TId> {
     dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>): any;
     applyValueToDataSourceState(
         dsState: DataSourceState<any, TId>,
@@ -23,7 +23,7 @@ export interface PickerBindingHelper<TItem, TId, TValue> {
     ): DataSourceState<any, TId>;
 }
 
-class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId, TId[]> {
+class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId> {
     dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>) {
         if (dsState && Array.isArray(dsState.checked) && dsState.checked && dsState.checked.length > 0) {
             if (props.valueType === 'entity') {
@@ -59,7 +59,7 @@ class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId, 
     }
 }
 
-class ScalarBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId, TId> {
+class ScalarBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId> {
     dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>) {
         if (dsState.selectedId != null && props.valueType === 'entity') {
             return dataSource && dataSource.getById(dsState.selectedId);
@@ -90,7 +90,7 @@ class ScalarBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId,
     }
 }
 
-const lookup: Record<string, PickerBindingHelper<any, any, any>> = {
+const lookup: Record<string, PickerBindingHelper<any, any>> = {
     multi: new ArrayBindingHelper(),
     single: new ScalarBindingHelper(),
 };

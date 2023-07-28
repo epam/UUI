@@ -78,7 +78,7 @@ export default function MainMenuBasicExample() {
     const getMenuItems = (): AdaptiveItemProps[] => {
         return [
             {
-                id: 'burger', priority: 100, collapsedContainer: true, render: (hiddenItems) => <Burger key="burger" width={ 300 } renderBurgerContent={ renderBurger } />,
+                id: 'burger', priority: 100, collapsedContainer: true, render: () => <Burger key="burger" width={ 300 } renderBurgerContent={ renderBurger } />,
             }, {
                 id: 'logo',
                 priority: 99,

@@ -10,6 +10,9 @@
         width: 60px;
         cursor: pointer;
         fill: var(--uui-burger_icon);
+        background: transparent;
+        padding: 0;
+        border: none;
 
         &:hover {
             background-color: var(--uui-burger_menu-bg-hover);

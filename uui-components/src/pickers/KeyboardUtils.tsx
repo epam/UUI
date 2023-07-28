@@ -59,7 +59,7 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
             return;
     }
 
-    if (value.focusedIndex != focusedIndex || value.search != search) {
+    if (value.focusedIndex !== focusedIndex || value.search !== search) {
         params.onValueChange({
             ...value,
             focusedIndex,
