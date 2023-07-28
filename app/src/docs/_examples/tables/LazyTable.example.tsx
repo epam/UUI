@@ -13,12 +13,12 @@ export default function CitiesTable() {
     const [tableState, setTableState] = useState<DataSourceState>({});
 
     const renderMenu = (dropdownProps: DropdownBodyProps): ReactNode => (
-        <Panel shadow={ true } style={ { minWidth: '90px' } } { ...dropdownProps }>
-            <DropdownMenuButton caption="Edit" icon={ PencilIcon } cx={ css.actionButton } />
-            <DropdownMenuButton caption="Remove" cx={ css.actionButton } />
+        <DropdownMenuBody minWidth={ 90 } { ...dropdownProps }>
+            <DropdownMenuButton caption="Edit" icon={ PencilIcon } iconPosition="right" />
+            <DropdownMenuButton caption="Remove" />
             <DropdownMenuSplitter />
-            <DropdownMenuButton caption="Cancel" cx={ css.actionButton } />
-        </Panel>
+            <DropdownMenuButton caption="Cancel" />
+        </DropdownMenuBody>
     );
 
     // Define columns config array
