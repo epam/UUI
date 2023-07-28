@@ -57,4 +57,11 @@ export class Button extends ButtonBase<ButtonProps> {
             ),
         ];
     }
+
+    getAriaAttrs(): Record<`aria-${string}`, boolean> {
+        return {
+            'aria-haspopup': this.props.isDropdown,
+            'aria-expanded': this.props.isOpen,
+        };
+    }
 }
