@@ -3,6 +3,7 @@
 **What's New**
 
 [DropdownMenu]: moved in uui and loveship version of it is deprecated. Now promo and loveship are using the same uui implementation.
+[DropdownMenu]: added new property minWidth: number to setup minWidth to DropdownMenu container.
 
 **What's Fixed**
 
