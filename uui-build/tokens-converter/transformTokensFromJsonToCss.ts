@@ -1,5 +1,5 @@
 import {
-    readdir, writeFile, realpath, readFile,
+    readdir, writeFile, readFile,
 } from 'fs/promises';
 import { EOL } from 'os';
 import { ParsedPath, resolve, parse } from 'path';
@@ -83,8 +83,8 @@ export const transformTokensFromJsonToCss = async function () {
         data += `}${EOL}`;
 
         Object.values(components).forEach((value) => {
-            createCssClasses(value as UuiComponent).forEach((value) => {
-                data += value;
+            createCssClasses(value as UuiComponent).forEach((innerValue) => {
+                data += innerValue;
             });
         });
 
@@ -103,9 +103,9 @@ export const transformTokensFromJsonToCss = async function () {
             const themeFile = resolve(pathObj.dir, `${key}-theme.css`);
             const mergedTheme = defaultsDeep(value, defaultTheme);
 
-            const checkedTheme = checkTokens(mergedTheme, defaultTokens, key);
+            const checkedRestTheme = checkTokens(mergedTheme, defaultTokens, key);
 
-            createThemeCssFile(themeFile, key, checkedTheme);
+            createThemeCssFile(themeFile, key, checkedRestTheme);
         });
     }
 

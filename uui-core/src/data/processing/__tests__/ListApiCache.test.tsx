@@ -21,8 +21,6 @@ for (let id = 0; id < 100; id++) {
 
 const testApi = (r: LazyDataSourceApiRequest<TestItem, number, TestFilter>) => {
     let items: TestItem[] = allItems;
-    let from: number;
-    let count: number;
 
     if (r.ids) {
         items = items.filter((i) => r.ids.indexOf(i.id) >= 0);

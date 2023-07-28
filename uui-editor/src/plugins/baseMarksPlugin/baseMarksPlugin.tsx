@@ -1,4 +1,4 @@
-import { EText, PlateEditor, PlatePluginComponent, TText, Value, isMarkActive } from '@udecode/plate-common';
+import { PlateEditor, PlatePluginComponent, isMarkActive } from '@udecode/plate-common';
 import React from 'react';
 
 import { isPluginActive } from '../../helpers';
@@ -6,9 +6,9 @@ import { isPluginActive } from '../../helpers';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE, createBoldPlugin, createItalicPlugin, createUnderlinePlugin } from '@udecode/plate-basic-marks';
-import { ReactComponent as BoldIcon } from "../../icons/bold.svg";
-import { ReactComponent as ItalicIcon } from "../../icons/italic.svg";
-import { ReactComponent as UnderlineIcon } from "../../icons/underline.svg";
+import { ReactComponent as BoldIcon } from '../../icons/bold.svg';
+import { ReactComponent as ItalicIcon } from '../../icons/italic.svg';
+import { ReactComponent as UnderlineIcon } from '../../icons/underline.svg';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
 
 const BOLD_KEY = 'uui-richTextEditor-bold';
@@ -58,7 +58,7 @@ interface IToolbarButton {
     editor: PlateEditor;
 }
 
-export const BoldButton = ({ editor }: IToolbarButton) => {
+export function BoldButton({ editor }: IToolbarButton) {
     if (!isPluginActive(MARK_BOLD)) return null;
     return (
         <ToolbarButton
@@ -67,9 +67,9 @@ export const BoldButton = ({ editor }: IToolbarButton) => {
             isActive={ !!editor?.selection && isMarkActive(editor, BOLD_KEY!) }
         />
     );
-};
+}
 
-export const ItalicButton = ({ editor }: IToolbarButton) => {
+export function ItalicButton({ editor }: IToolbarButton) {
     if (!isPluginActive(MARK_ITALIC)) return null;
     return (
         <ToolbarButton
@@ -78,9 +78,9 @@ export const ItalicButton = ({ editor }: IToolbarButton) => {
             isActive={ !!editor?.selection && isMarkActive(editor, ITALIC_KEY!) }
         />
     );
-};
+}
 
-export const UnderlineButton = ({ editor }: IToolbarButton) => {
+export function UnderlineButton({ editor }: IToolbarButton) {
     if (!isPluginActive(MARK_UNDERLINE)) return null;
     return (
         <ToolbarButton
@@ -89,13 +89,10 @@ export const UnderlineButton = ({ editor }: IToolbarButton) => {
             isActive={ !!editor?.selection && isMarkActive(editor, UNDERLINE_KEY!) }
         />
     );
-};
+}
 
 export const baseMarksPlugin = () => ([
     boldPlugin,
     underlinePlugin,
     italicPlugin,
 ]);
-
-
-

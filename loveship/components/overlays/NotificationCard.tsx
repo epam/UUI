@@ -1,4 +1,3 @@
-import React from 'react';
 import { withMods } from '@epam/uui-core';
 import { NotificationCard as uuiNotificationCard, NotificationCardProps as uuiNotificationCardProps } from '@epam/uui';
 import { EpamPrimaryColor } from '../types';

@@ -37,7 +37,7 @@ export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused>
         }
 
         if (this.cache.size > LensBuilder.MAX_CACHE_SIZE) {
-            const { done, value } = this.cache.keys().next();
+            const { value } = this.cache.keys().next();
             this.cache.delete(value);
         }
 

@@ -1,7 +1,6 @@
 import { Dropdown } from '@epam/uui-components';
 import React from 'react';
 
-
 import { isPluginActive } from '../../helpers';
 
 import { NoteBar } from '../../implementation/NoteBar';
@@ -15,12 +14,14 @@ import { NotePluginBlock } from './NotePluginBlock';
 
 const noteBlocks = ['note-error', 'note-warning', 'note-link', 'note-quote'];
 
-const Note = (props: any) => {
-    return <NotePluginBlock
-        { ...props }
-        type={ props.element.type.replace('note-', '') }
-    />;
-};
+function Note(props: any) {
+    return (
+        <NotePluginBlock
+            { ...props }
+            type={ props.element.type.replace('note-', '') }
+        />
+    );
+}
 
 export const notePlugin = () => {
     const createNotePlugin = createPluginFactory({
@@ -35,7 +36,7 @@ export const notePlugin = () => {
                 if (!isNoteEntry || event.key !== 'Enter') return;
 
                 const [entries] = getAboveNode(editor);
-                const textExist = entries.children.some(item => !!item.text);
+                const textExist = entries.children.some((item) => !!item.text);
                 if (event.shiftKey) {
                     event.preventDefault();
                     insertText(editor, '\n');
@@ -83,8 +84,7 @@ interface IToolbarNote {
     editor: PlateEditor;
 }
 
-export const NoteButton = ({ editor }: IToolbarNote) => {
-
+export function NoteButton({ editor }: IToolbarNote) {
     if (!isPluginActive('note')) return null;
 
     const block = getBlockAbove(editor, { block: true });
@@ -100,8 +100,8 @@ export const NoteButton = ({ editor }: IToolbarNote) => {
                 />
             ) }
             renderBody={ (props) => <NoteBar editor={ editor } type={ type } { ...props } /> }
-            placement='top-start'
+            placement="top-start"
             modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
         />
     );
-};
+}

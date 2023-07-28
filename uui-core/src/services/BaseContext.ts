@@ -15,4 +15,8 @@ export class BaseContext<TState = {}> {
             this.handlers.forEach((h) => h && h(state));
         });
     }
+
+    destroyContext() {
+        this.handlers = [];
+    }
 }

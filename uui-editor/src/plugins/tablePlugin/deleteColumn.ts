@@ -8,14 +8,14 @@ import {
     removeNodes,
     setNodes,
     Value,
-} from "@udecode/plate-common";
+} from '@udecode/plate-common';
 import {
     ELEMENT_TABLE,
     ELEMENT_TD,
     ELEMENT_TH,
     ELEMENT_TR,
     TTableElement,
-} from "@udecode/plate-table"
+} from '@udecode/plate-table';
 
 export const deleteColumn = <V extends Value>(editor: PlateEditor<V>) => {
     if (
@@ -39,11 +39,11 @@ export const deleteColumn = <V extends Value>(editor: PlateEditor<V>) => {
         });
 
         if (
-            tdEntry &&
-            trEntry &&
-            tableEntry &&
+            tdEntry
+            && trEntry
+            && tableEntry
             // Cannot delete the last cell
-            trEntry[0].children.length > 1
+            && trEntry[0].children.length > 1
         ) {
             const [tableNode, tablePath] = tableEntry;
 
@@ -65,7 +65,7 @@ export const deleteColumn = <V extends Value>(editor: PlateEditor<V>) => {
                         removeNodes(editor, {
                             at: pathToDelete,
                         });
-                    }
+                    },
                 );
 
                 const { colSizes } = tableNode;
@@ -77,7 +77,7 @@ export const deleteColumn = <V extends Value>(editor: PlateEditor<V>) => {
                     setNodes<TTableElement>(
                         editor,
                         { colSizes: newColSizes },
-                        { at: tablePath }
+                        { at: tablePath },
                     );
                 }
             });

@@ -16,44 +16,44 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
     const [horizontal, setHorizontal] = React.useState({ left: false, right: false });
     const resizeObserver = React.useRef<ResizeObserver>();
 
-    function shouldHaveRightShadow(root: UseScrollShadowsProps['root']) {
-        if (!root) return false;
-        const { scrollLeft, clientWidth, scrollWidth } = root;
+    function shouldHaveRightShadow(rootRight: UseScrollShadowsProps['root']) {
+        if (!rootRight) return false;
+        const { scrollLeft, clientWidth, scrollWidth } = rootRight;
         return scrollWidth - clientWidth - scrollLeft > 1 && !horizontal.right;
     }
 
-    function shouldNotHaveRightShadow(root: UseScrollShadowsProps['root']) {
-        const { scrollLeft, clientWidth, scrollWidth } = root;
+    function shouldNotHaveRightShadow(rootRight: UseScrollShadowsProps['root']) {
+        const { scrollLeft, clientWidth, scrollWidth } = rootRight;
         return scrollWidth - clientWidth - scrollLeft <= 1 && horizontal.right;
     }
 
-    function shouldHaveLeftShadow(root: UseScrollShadowsProps['root']) {
-        if (!root) return false;
-        return root.scrollLeft > 0 && !horizontal.left;
+    function shouldHaveLeftShadow(rootLeft: UseScrollShadowsProps['root']) {
+        if (!rootLeft) return false;
+        return rootLeft.scrollLeft > 0 && !horizontal.left;
     }
 
-    function shouldNotHaveLeftShadow(root: UseScrollShadowsProps['root']) {
-        return root.scrollLeft === 0 && horizontal.left;
+    function shouldNotHaveLeftShadow(rootLeft: UseScrollShadowsProps['root']) {
+        return rootLeft.scrollLeft === 0 && horizontal.left;
     }
 
-    function shouldHaveTopShadow(root: UseScrollShadowsProps['root']) {
-        if (!root) return false;
-        return root.scrollTop > 0 && !vertical.top;
+    function shouldHaveTopShadow(rootTop: UseScrollShadowsProps['root']) {
+        if (!rootTop) return false;
+        return rootTop.scrollTop > 0 && !vertical.top;
     }
 
-    function shouldNotHaveTopShadow(root: UseScrollShadowsProps['root']) {
-        return root.scrollTop === 0 && vertical.top;
+    function shouldNotHaveTopShadow(rootTop: UseScrollShadowsProps['root']) {
+        return rootTop.scrollTop === 0 && vertical.top;
     }
 
-    function shouldHaveBottomShadow(root: UseScrollShadowsProps['root']) {
-        if (!root) return false;
-        const { scrollHeight, scrollTop, clientHeight } = root;
+    function shouldHaveBottomShadow(rootBottom: UseScrollShadowsProps['root']) {
+        if (!rootBottom) return false;
+        const { scrollHeight, scrollTop, clientHeight } = rootBottom;
         return scrollHeight - clientHeight - scrollTop > 1 && !vertical.bottom;
     }
 
-    function shouldNotHaveBottomShadow(root: UseScrollShadowsProps['root']) {
-        if (!root) return false;
-        const { scrollHeight, scrollTop, clientHeight } = root;
+    function shouldNotHaveBottomShadow(rootBottom: UseScrollShadowsProps['root']) {
+        if (!rootBottom) return false;
+        const { scrollHeight, scrollTop, clientHeight } = rootBottom;
         return scrollHeight - clientHeight - scrollTop <= 1 && vertical.bottom;
     }
 
