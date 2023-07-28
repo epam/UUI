@@ -155,7 +155,20 @@
                 "target": "_blank",
                 "children": [
                   {
-                    "text": "Datasource State"
+                    "text": ""
+                  },
+                  {
+                    "type": "link",
+                    "url": "/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources",
+                    "target": "_blank",
+                    "children": [
+                      {
+                        "text": "Datasource State"
+                      }
+                    ]
+                  },
+                  {
+                    "text": ""
                   }
                 ]
               },
