@@ -114,7 +114,6 @@ export default function BasicDropdownMenuExample() {
                         caption="Alex Smith"
                         size="36"
                         { ...props }
-                        rawProps={ { 'aria-haspopup': props.isDropdown, 'aria-expanded': props.isOpen } }
                     />
                 ) }
             />

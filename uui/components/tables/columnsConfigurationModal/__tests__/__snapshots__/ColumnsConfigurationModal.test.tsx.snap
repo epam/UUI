@@ -126,6 +126,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           />
         </div>
         <button
+          aria-expanded={false}
+          aria-haspopup={false}
           className="container uui-button-box uui-enabled -clickable button-secondary root size-30 mode-none"
           onClick={[Function]}
           tabIndex={0}
@@ -640,6 +642,8 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
           />
         </div>
         <button
+          aria-expanded={false}
+          aria-haspopup={false}
           className="container uui-button-box uui-enabled -clickable button-secondary root size-30 mode-none"
           onClick={[Function]}
           tabIndex={0}
