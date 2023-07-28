@@ -35,6 +35,10 @@ $text-size-count: 24px;
     font-weight: var(--uui-tab_button-font-weight, normal);
     border-bottom: 3px solid transparent;
 
+    &:global(.-clickable):focus-visible {
+        @include focus-visible-effect(-2px, 0);
+    }
+
     &:global(.uui-disabled) {
         @include tab-button-color(var(--uui-tab_button-text-disabled), var(--uui-tab_button-text-disabled), transparent);
     }
