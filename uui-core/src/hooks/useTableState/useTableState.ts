@@ -283,10 +283,16 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
 };
 
 interface TableStateParams<TFilter = Record<string, any>, TViewState = any> extends Partial<IEditable<DataTableState<TFilter, TViewState>>> {
+    /** Columns configuration, can be omitted if used without tables */
     columns?: DataColumnProps[];
+    /** Filters configuration, can be omitted if you don't need filters */
     filters?: TableFiltersConfig<TFilter>[];
+    /** Initial presets array */
     initialPresets?: ITablePreset<TFilter, TViewState>[];
+    /** Called when preset was created. Should return the ID of new preset */
     onPresetCreate?(preset: ITablePreset<TFilter, TViewState>): Promise<number>;
+    /** Called when preset was updated */
     onPresetUpdate?(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
+    /** Called when preset was deleted */
     onPresetDelete?(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
 }
