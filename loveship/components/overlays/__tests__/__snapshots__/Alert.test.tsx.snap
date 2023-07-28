@@ -2,7 +2,7 @@
 
 exports[`Alert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper alert-sky root size48"
+  className="alertWrapper alert-sky root"
   role="alert"
 >
   <div
@@ -17,7 +17,7 @@ exports[`Alert should be rendered correctly 1`] = `
 
 exports[`Alert should be rendered correctly with props 1`] = `
 <div
-  className="alertWrapper alert-sun root root size48"
+  className="alertWrapper alert-sun root root"
   role="alert"
 >
   <div
