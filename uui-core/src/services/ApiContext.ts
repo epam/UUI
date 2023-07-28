@@ -57,7 +57,7 @@ export class ApiContext extends BaseContext implements IApiContext {
     }
 
     private handleWindowMessage = (e: MessageEvent) => {
-        if (e.data == 'authSuccess') {
+        if (e.data === 'authSuccess') {
             if (this.status === 'recovery' && this.recoveryReason === 'auth-lost') {
                 this.setStatus('running');
                 this.runQueue();
@@ -163,7 +163,7 @@ export class ApiContext extends BaseContext implements IApiContext {
                 'apiTiming',
             );
 
-            if (response.status == 204) {
+            if (response.status === 204) {
                 return this.resolveCall(call, null);
             }
 
