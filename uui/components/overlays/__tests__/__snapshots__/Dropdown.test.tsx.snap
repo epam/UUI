@@ -2,6 +2,8 @@
 
 exports[`Dropdown should be rendered correctly 1`] = `
 <button
+  aria-expanded={false}
+  aria-haspopup={true}
   className="container uui-button-box uui-enabled -clickable button-primary root size-36 mode-solid"
   onClick={[Function]}
   tabIndex={0}
@@ -25,6 +27,8 @@ exports[`Dropdown should be rendered correctly 1`] = `
 
 exports[`Dropdown should be rendered correctly 2`] = `
 <button
+  aria-expanded={false}
+  aria-haspopup={true}
   className="container uui-button-box uui-enabled -clickable button-primary root size-36 mode-solid"
   onClick={[Function]}
   tabIndex={0}
