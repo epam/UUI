@@ -147,55 +147,20 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "",
-                "uui-richTextEditor-bold": true
+                "text": ""
               },
               {
-                "data": {
-                  "url": "/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources"
-                },
                 "type": "link",
-                "url": "/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources",
+                "url": "https://uui.epam.com/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources",
+                "target": "_blank",
                 "children": [
                   {
-                    "text": "",
-                    "uui-richTextEditor-bold": true
-                  },
-                  {
-                    "data": {
-                      "url": "http://localhost:3000/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources"
-                    },
-                    "type": "link",
-                    "url": "http://localhost:3000/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources",
-                    "children": [
-                      {
-                        "text": "",
-                        "uui-richTextEditor-bold": true
-                      },
-                      {
-                        "type": "link",
-                        "url": "https://uui.epam.com/documents?id=dataSources-dataSource-state&mode=doc&skin=UUI4_promo&category=dataSources",
-                        "target": "_blank",
-                        "children": [
-                          {
-                            "text": "Datasource State"
-                          }
-                        ]
-                      },
-                      {
-                        "text": ""
-                      }
-                    ]
-                  },
-                  {
-                    "text": "",
-                    "uui-richTextEditor-bold": true
+                    "text": "Datasource State"
                   }
                 ]
               },
               {
-                "text": "",
-                "uui-richTextEditor-bold": true
+                "text": ""
               }
             ]
           }
