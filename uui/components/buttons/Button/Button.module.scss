@@ -40,8 +40,6 @@
         &:focus {
             background-color: var(--uui-btn-bg-hover);
             border-color: var(--uui-btn-bg-hover);
-            box-shadow: var(--uui-btn-focus-shadow);
-            outline: var(--uui-btn-focus-outline);
         }
 
         &:active {

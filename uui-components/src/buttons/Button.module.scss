@@ -1,3 +1,5 @@
+@use  '~@epam/uui/assets/styles' as *;
+
 .container {
     text-decoration: none;
     outline: none;
@@ -19,6 +21,10 @@
 
     &:global(.-clickable) {
         cursor: pointer;
+
+        &:focus-visible {
+            @include focus-visible-effect();
+        }
     }
 
     &:global(.uui-disabled) {
