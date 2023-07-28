@@ -2,10 +2,13 @@ import * as React from 'react';
 import {
     IDndActor, UuiContexts, DropPosition, AcceptDropParams, DndActorRenderParams, DropPositionOptions, DndContextState,
 } from '../../types';
-import { mouseCoords } from '../../helpers';
+import {
+    isEventTargetInsideDraggable,
+    isEventTargetInsideInput,
+    releasePointerCaptureOnEventTarget,
+} from '../../helpers';
 import { getSector } from './helpers';
-import { uuiDndState, uuiMarkers, uuiElement } from '../../constants';
-import { isChildHasClass } from '../../helpers';
+import { uuiDndState, uuiMarkers } from '../../constants';
 import { UuiContext } from '../ContextProvider';
 
 export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
@@ -61,9 +64,9 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
         this.setState({ dndContextState });
     };
 
-    windowPointerUpHandler = () => {
+    windowPointerUpHandler = (e: Event) => {
         if (this.state.isDragging || this.state.isMouseDown) {
-            this.setState(() => initialState);
+            this.setState((s) => initialState);
             this.context.uuiDnD.endDrag();
         }
     };
@@ -75,10 +78,11 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
             || this.state.isDragging
         ) return;
 
-        if (isChildHasClass(e.target, this.dndRef.current, [uuiElement.input])) {
+        if (isEventTargetInsideInput(e, this.dndRef.current)) {
             return;
         }
 
+        const mouseCoords = this.context.uuiDnD.getMouseCoords();
         const dist = Math.sqrt(Math.pow(this.state.pointerX - mouseCoords.mousePageX, 2) + Math.pow(this.state.pointerY - mouseCoords.mousePageY, 2));
 
         if (dist > DND_START_THRESHOLD) {
@@ -208,19 +212,22 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
 
         if (!!this.props.srcData) {
             params.eventHandlers.onPointerDown = (e: React.PointerEvent<any>) => {
-                if (isChildHasClass(e.target, e.currentTarget, [uuiMarkers.draggable])) {
+                if (isEventTargetInsideDraggable(e, e.currentTarget)) {
                     return;
                 }
                 e.persist();
-                if (e.button === 0) {
-                    this.setState(() => ({
-                        ...initialState,
-                        isMouseDown: true,
-                        pointerX: mouseCoords.mousePageX,
-                        pointerY: mouseCoords.mousePageY,
-                    }));
+                if (e.button == 0) {
+                    this.setState((s) => {
+                        const mouseCoords = this.context.uuiDnD.getMouseCoords();
+                        return {
+                            ...initialState,
+                            isMouseDown: true,
+                            pointerX: mouseCoords.mousePageX,
+                            pointerY: mouseCoords.mousePageY,
+                        };
+                    });
 
-                    if (!isChildHasClass(e.target, e.currentTarget, [uuiElement.input])) {
+                    if (!isEventTargetInsideInput(e, e.currentTarget)) {
                         // This prevents text selection start
                         // dnd don't work without it in ff
                         e.preventDefault();
@@ -231,7 +238,7 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
         }
 
         if (this.props.canAcceptDrop) {
-            const pointerLeaveHandler = () => {
+            const pointerLeaveHandler = (e: React.MouseEvent<any>) => {
                 if (this.context.uuiDnD.isDragging) {
                     this.setState((s) => ({ ...s, isMouseOver: false, position: null }));
                 }
@@ -239,11 +246,11 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
 
             const pointerMoveHandler = (e: React.PointerEvent<any>) => {
                 if (this.context.uuiDnD.isDragging) {
-                    if (isChildHasClass(e.target, e.currentTarget, [uuiMarkers.draggable])) {
-                        return pointerLeaveHandler();
+                    if (isEventTargetInsideDraggable(e, e.currentTarget)) {
+                        return pointerLeaveHandler(e);
                     }
 
-                    (e.target as HTMLElement).releasePointerCapture(e.pointerId); // allows you to trigger pointer events on other nodes
+                    releasePointerCaptureOnEventTarget(e); // allows you to trigger pointer events on other nodes
 
                     const dropParams = this.getDropParams(e);
                     const positionOptions = this.props.canAcceptDrop(dropParams);
@@ -261,7 +268,7 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
 
         params.eventHandlers.onPointerUp = (e) => {
             if (this.context.uuiDnD.isDragging) {
-                if (isChildHasClass(e.target, e.currentTarget, [uuiMarkers.draggable])) {
+                if (isEventTargetInsideDraggable(e, e.currentTarget)) {
                     return;
                 }
                 e.preventDefault();
@@ -269,7 +276,7 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
                     this.props.onDrop && this.props.onDrop({ ...this.getDropParams(e), position: this.state.position });
                 }
                 this.context.uuiDnD.endDrag();
-                this.setState(() => initialState);
+                this.setState((s) => initialState);
             } else {
                 // TBD: investigate. Should blur inputs, but doesn't work so far.
                 // if (this.state.pendingMouseDownTarget) {
