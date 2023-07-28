@@ -19,6 +19,11 @@ export class NotificationContext extends BaseContext implements INotificationCon
         super();
     }
 
+    public destroyContext() {
+        this.clearAll();
+        super.destroyContext();
+    }
+
     public show(render: (props: INotification) => React.ReactNode, notificationParams: NotificationParams): Promise<void> {
         const NotificationAdapter = class extends React.Component<INotification> {
             render() {
