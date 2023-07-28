@@ -121,7 +121,7 @@ describe('Tree', () => {
         });
 
         it('can move node to a new parent', () => {
-            const newTree = testTree.patch([{ id: 110, parentId: 100 }]);
+            // const newTree = testTree.patch([{ id: 110, parentId: 100 }]);
             // TBD
             // expect(newTree.getNodeById(130)).toEqual(
             //     { id: 130, key: '130', parentId: 100, index: 2, item: { id: 130, parentId: 100 }}
@@ -184,7 +184,7 @@ describe('Tree', () => {
     describe('computeSubtotals', () => {
         it('can calculate child counts', () => {
             const subtotals = testTree.computeSubtotals(
-                (_) => 1,
+                () => 1,
                 (a, b) => a + b,
             );
             expect(subtotals.get(100)).toBe(5);

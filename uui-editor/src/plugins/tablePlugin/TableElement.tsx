@@ -4,7 +4,7 @@ import {
     PlateElementProps,
     getPluginOptions,
 } from '@udecode/plate-common';
-import { ELEMENT_TABLE, TTableElement, TablePlugin, getTableColumnCount, useTableElement, useTableElementState, useTableStore } from '@udecode/plate-table';
+import { ELEMENT_TABLE, TTableElement, TablePlugin, getTableColumnCount, useTableElement, useTableStore } from '@udecode/plate-table';
 import cx from 'classnames';
 import css from './TableElement.module.scss';
 import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
@@ -19,8 +19,8 @@ const getDefaultColWidths = (columnsNumber: number) =>
     Array.from({ length: columnsNumber }, () => DEFAULT_COL_WIDTH);
 
 const TableElement = React.forwardRef<
-    React.ElementRef<typeof PlateElement>,
-    PlateElementProps
+React.ElementRef<typeof PlateElement>,
+PlateElementProps
 >(({ className, children, ...props }, ref) => {
     const { editor } = props;
     const element: OldTableElement = props.element;
@@ -29,7 +29,7 @@ const TableElement = React.forwardRef<
 
     const { minColumnWidth, disableMarginLeft } = getPluginOptions<TablePlugin>(
         editor,
-        ELEMENT_TABLE
+        ELEMENT_TABLE,
     );
     const marginLeftOverride = useTableStore().get.marginLeftOverride();
     const marginLeft = disableMarginLeft
@@ -47,14 +47,14 @@ const TableElement = React.forwardRef<
     const tableWidth = currentColSizes.reduce((acc, cur) => acc + cur, 0);
 
     return (
-        <div className={css.tableWrapper} style={ { paddingLeft: marginLeft } }>
+        <div className={ css.tableWrapper } style={ { paddingLeft: marginLeft } }>
             <PlateElement
                 asChild
                 ref={ ref }
                 className={ cx(
                     css.table,
                     isCellsSelected && css.cellsSelectionActive,
-                    className
+                    className,
                 ) }
                 { ...tableProps }
                 { ...props }
@@ -75,7 +75,7 @@ const TableElement = React.forwardRef<
                     <tbody className={ css.tbody }>{ children }</tbody>
                 </table>
             </PlateElement>
-        </div >
+        </div>
     );
 });
 TableElement.displayName = 'TableElement';

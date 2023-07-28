@@ -66,11 +66,11 @@ export abstract class SliderBase<TSelection, TState extends SliderBaseState> ext
         }
     };
 
-    handleMouseDown = (e: React.MouseEvent<any>) => {
+    handleMouseDown = () => {
         this.setState({ isActive: true });
     };
 
-    handleMouseUp = (e: Event) => {
+    handleMouseUp = () => {
         this.state.isActive && this.setState({ isActive: false });
     };
 

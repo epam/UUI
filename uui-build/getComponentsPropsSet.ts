@@ -36,7 +36,7 @@ let propsCount = 0;
 let JsDocCommentsCount = 0;
 let missingJsDocCommentsCount = 0;
 
-const getPropType = (prop: Symbol, path: string) => {
+const getPropType = (prop: Symbol, docPath: string) => {
     const name = prop.getEscapedName();
 
     let htmlComment = null;
@@ -48,7 +48,7 @@ const getPropType = (prop: Symbol, path: string) => {
         htmlComment = formatComment(jsDocComment);
         JsDocCommentsCount++;
     } else {
-        console.debug(`Missing comment for ${name} in ${path}`);
+        console.debug(`Missing comment for ${name} in ${docPath}`);
         missingJsDocCommentsCount++;
     }
     propsCount++;

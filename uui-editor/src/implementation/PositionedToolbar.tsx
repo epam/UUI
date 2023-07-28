@@ -1,7 +1,7 @@
 import { Portal } from '@epam/uui-components';
 import { findNode, isEditorFocused, toDOMNode, usePlateEditorState } from '@udecode/plate-common';
 import { getCellTypes } from '@udecode/plate-table';
-import cx from "classnames";
+import cx from 'classnames';
 import React, { useRef } from 'react';
 import { Popper } from 'react-popper';
 import { Range } from 'slate';
@@ -47,12 +47,12 @@ export function PositionedToolbar(props: ToolbarProps): any {
                     placement={ props.placement || 'top' }
                     modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }
                 >
-                    { popperProps => (
+                    { (popperProps) => (
                         <div
-                            onMouseDown={ e => e.preventDefault() }
+                            onMouseDown={ (e) => e.preventDefault() }
                             className={ cx(css.container, 'slate-prevent-blur') }
                             style={ { ...popperProps.style, zIndex: 50 } }
-                            ref={ node => {
+                            ref={ (node) => {
                                 ref.current = node;
                                 (popperProps.ref as React.RefCallback<HTMLDivElement>)(node);
                             } }

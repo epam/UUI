@@ -99,9 +99,9 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
                     className={ cx(this.props.cx, uuiBurger.menu, css.container, this.state.isOpen && uuiBurger.menuOpen) }
                     { ...this.props.rawProps }
                 >
-                    <div className={ uuiBurger.button } onClick={ this.toggleBurgerMenu }>
+                    <button className={ uuiBurger.button } onClick={ this.toggleBurgerMenu }>
                         <IconContainer icon={ this.state.isOpen ? this.props.crossIcon : this.props.burgerIcon } />
-                    </div>
+                    </button>
                 </div>
                 <PortalWithCssTransition
                     timeout={ uuiBurgerTransitionTimeout }

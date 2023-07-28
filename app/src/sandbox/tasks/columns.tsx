@@ -40,7 +40,7 @@ export function getColumns() {
             width: 120,
             isSortable: true,
             canCopy: () => true,
-            canAcceptCopy: (from, to) => ['estimate', 'complete'].includes(from.column.key),
+            canAcceptCopy: (from) => ['estimate', 'complete'].includes(from.column.key),
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('estimate').toProps() }
@@ -56,7 +56,7 @@ export function getColumns() {
             width: 130,
             isSortable: true,
             canCopy: () => true,
-            canAcceptCopy: (from, to) => ['estimate', 'complete'].includes(from.column.key),
+            canAcceptCopy: (from) => ['estimate', 'complete'].includes(from.column.key),
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('complete').toProps() }
@@ -95,7 +95,7 @@ export function getColumns() {
             width: 200,
             isSortable: true,
             canCopy: () => true,
-            canAcceptCopy: (from, to) => ['startDate', 'endDate'].includes(from.column.key),
+            canAcceptCopy: (from) => ['startDate', 'endDate'].includes(from.column.key),
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('startDate').toProps() }
@@ -109,7 +109,7 @@ export function getColumns() {
             width: 200,
             isSortable: true,
             canCopy: () => true,
-            canAcceptCopy: (from, to) => ['startDate', 'endDate'].includes(from.column.key),
+            canAcceptCopy: (from) => ['startDate', 'endDate'].includes(from.column.key),
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('endDate').toProps() }
@@ -119,7 +119,7 @@ export function getColumns() {
             ),
         }, {
             key: 'detailed',
-            render: (p) => <></>,
+            render: () => <></>,
             width: 54,
             alignSelf: 'center',
             fix: 'right',

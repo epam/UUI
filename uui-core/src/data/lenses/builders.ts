@@ -1,22 +1,22 @@
 import { LensBuilder } from './LensBuilder';
-import { IEditable, ICanBeInvalid, Metadata } from '../../types';
+import { IEditable } from '../../types';
 import { ILens } from './types';
 
 /** @deprecated This helper to be removed in future versions, as it's intended for Class-components, and very rarely used */
 export function onEditableComponent<T>(component: any): ILens<T> {
     return new LensBuilder<T, T>({
-        get(big: any) {
+        get() {
             return component.props.value;
         },
         set(big: any, small: any) {
             component.props.onValueChange(small);
             return small;
         },
-        getValidationState(big: ICanBeInvalid) {
+        getValidationState() {
             const { isInvalid, validationMessage, validationProps } = component.props;
             return { isInvalid, validationMessage, validationProps };
         },
-        getMetadata(big: Metadata<T>) {
+        getMetadata() {
             const {
                 isReadonly, isDisabled, isRequired, props, all,
             } = component.props;
@@ -29,14 +29,14 @@ export function onEditableComponent<T>(component: any): ILens<T> {
 
 export function onEditable<T>(editable: IEditable<T>): ILens<T> {
     return new LensBuilder<T, T>({
-        get(big: any) {
+        get() {
             return editable.value;
         },
         set(big: any, small: any) {
             editable.onValueChange(small);
             return small;
         },
-        getValidationState(big: any) {
+        getValidationState() {
             return editable;
         },
     });
@@ -45,10 +45,10 @@ export function onEditable<T>(editable: IEditable<T>): ILens<T> {
 /** @deprecated This helper to be removed in future versions, as it's intended for Class-components, and very rarely used */
 export function onState<T>(component: any): ILens<T> {
     return new LensBuilder<T, T>({
-        get(big: any) {
+        get() {
             return component.state;
         },
-        set(big: any, small: any) {
+        set(_, small: any) {
             component.setState(small);
             return small;
         },

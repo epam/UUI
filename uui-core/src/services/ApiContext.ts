@@ -55,7 +55,7 @@ export class ApiContext extends BaseContext implements IApiContext {
     private runListeners() {
         // If we opened another window to relogin and check auth - close this window and resume
         window.addEventListener('message', (e) => {
-            if (e.data == 'authSuccess') {
+            if (e.data === 'authSuccess') {
                 if (this.status === 'recovery' && this.recoveryReason === 'auth-lost') {
                     this.setStatus('running');
                     this.runQueue();
@@ -98,7 +98,12 @@ export class ApiContext extends BaseContext implements IApiContext {
                 return;
             }
             this.setStatus('recovery', reason);
-            reason === 'auth-lost' ? window.open(this.props.apiReloginPath) : this.recoverConnection();
+
+            if (reason === 'auth-lost') {
+                window.open(this.props.apiReloginPath);
+            } else {
+                this.recoverConnection();
+            }
         } else {
             call.status = 'error';
             this.setStatus('error');
@@ -155,7 +160,7 @@ export class ApiContext extends BaseContext implements IApiContext {
                 'apiTiming',
             );
 
-            if (response.status == 204) {
+            if (response.status === 204) {
                 return this.resolveCall(call, null);
             }
 

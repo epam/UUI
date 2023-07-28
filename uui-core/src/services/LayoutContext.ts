@@ -20,6 +20,6 @@ export class LayoutContext extends BaseContext {
     }
 
     public releaseLayer(layer: LayoutLayer) {
-        this.layers = this.layers.filter((l) => l.id != layer.id);
+        this.layers = this.layers.filter((l) => l.id !== layer.id);
     }
 }

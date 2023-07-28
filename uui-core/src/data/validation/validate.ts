@@ -6,22 +6,22 @@ export type ValidationMode = 'change' | 'save';
 export const blankValidationState: ICanBeInvalid = {};
 
 export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateOn: ValidationMode): ICanBeInvalid => {
-    const validateRec = <T>(value: T, path: T[], meta: Metadata<T>, initValue: T): ICanBeInvalid => {
-        const itemResult: ICanBeInvalid = validateValue(value, path, meta, initValue);
-        const validateItem = (key: string, meta: Metadata<any>) => {
-            const childValue = value && (value as any)[key];
+    const validateRec = <U>(innerValue: U, path: U[], innerMeta: Metadata<U>, innerInitValue: U): ICanBeInvalid => {
+        const itemResult: ICanBeInvalid = validateValue(innerValue, path, innerMeta);
+        const validateItem = (key: string, validationMeta: Metadata<any>) => {
+            const childValue = innerValue && (innerValue as any)[key];
             const newPath = [childValue, ...path];
-            const initChildValue = initValue && (initValue as any)[key];
+            const initChildValue = innerInitValue && (innerInitValue as any)[key];
             const isChildChanged = childValue !== initChildValue;
 
             let childResult;
             switch (validateOn) {
                 case 'change': {
-                    childResult = isChildChanged ? validateRec(childValue, newPath, meta, initChildValue) : {};
+                    childResult = isChildChanged ? validateRec(childValue, newPath, validationMeta, initChildValue) : {};
                     break;
                 }
                 case 'save': {
-                    childResult = validateRec(childValue, newPath, meta, initChildValue);
+                    childResult = validateRec(childValue, newPath, validationMeta, initChildValue);
                 }
             }
 
@@ -30,18 +30,18 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
             itemResult.validationProps[key] = childResult;
         };
 
-        if (meta.props) {
-            for (const key in meta.props) {
-                const childMeta = meta.props[key];
+        if (innerMeta.props) {
+            for (const key in innerMeta.props) {
+                const childMeta = innerMeta.props[key];
                 if (childMeta) {
                     validateItem(key, childMeta);
                 }
             }
         }
 
-        if (meta.all && value != null) {
-            for (const key in value) {
-                validateItem(key, meta.all);
+        if (innerMeta.all && innerValue != null) {
+            for (const key in innerValue) {
+                validateItem(key, innerMeta.all);
             }
         }
 
@@ -50,7 +50,7 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
     return validateRec(value, [value], meta, initValue);
 };
 
-const validateValue = (value: any, path: any[], meta: Metadata<any>, initValue: any): ICanBeInvalid => {
+const validateValue = (value: any, path: any[], meta: Metadata<any>): ICanBeInvalid => {
     if (meta.validators) {
         const customValidationMessages = meta.validators
             .map((validator) => validator.apply(null, path))
@@ -66,7 +66,7 @@ const validateValue = (value: any, path: any[], meta: Metadata<any>, initValue: 
     }
 
     if (meta.isRequired) {
-        if (value == null || (typeof value === 'string' && value.trim() === '') || (Array.isArray(value) && value.length == 0)) {
+        if (value == null || (typeof value === 'string' && value.trim() === '') || (Array.isArray(value) && value.length === 0)) {
             return {
                 isInvalid: true,
                 validationMessage: i18n.lenses.validation.isRequiredMessage,

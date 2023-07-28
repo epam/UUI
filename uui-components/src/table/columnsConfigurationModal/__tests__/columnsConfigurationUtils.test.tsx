@@ -1,4 +1,3 @@
-import React from 'react';
 import { GroupedDataColumnProps } from '../types';
 import { ColumnsConfig, DataColumnProps } from '@epam/uui-core';
 import { isColumnFilteredOut, sortColumnsAndAddGroupKey } from '../columnsConfigurationUtils';

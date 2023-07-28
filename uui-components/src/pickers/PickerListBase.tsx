@@ -1,4 +1,3 @@
-import React from 'react';
 import { PickerBase, PickerBaseState } from './PickerBase';
 import {
     UuiContexts, DataRowProps, UuiContext, PickerBaseProps,
@@ -147,7 +146,7 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
         const stringComparer = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
         const comparer = (a: DataRowProps<TItem, TId>, b: DataRowProps<TItem, TId>) => {
             const loadingComparison = (b.isLoading ? 0 : 1) - (a.isLoading ? 0 : 1);
-            if (loadingComparison != 0 || (a.isLoading && b.isLoading)) {
+            if (loadingComparison !== 0 || (a.isLoading && b.isLoading)) {
                 return loadingComparison;
             } else {
                 return sign * stringComparer(sortBy(a.value, sorting), sortBy(b.value, sorting));

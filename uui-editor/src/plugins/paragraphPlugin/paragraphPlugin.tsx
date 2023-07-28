@@ -14,7 +14,7 @@ export const paragraphPlugin = () => {
                     return <p { ...attributes }>{ children }</p>;
                 },
                 type: PARAGRAPH_TYPE,
-            }
+            },
         },
-    })
+    });
 };

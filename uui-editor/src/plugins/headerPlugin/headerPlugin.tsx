@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Dropdown } from '@epam/uui-components';
-import { isPluginActive } from "../../helpers";
+import { isPluginActive } from '../../helpers';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { HeaderBar } from '../../implementation/HeaderBar';
@@ -41,22 +41,20 @@ interface IToolbarButton {
     editor: PlateEditor;
 }
 
-export const HeaderButton = ({ editor }: IToolbarButton): any => {
-
+export function HeaderButton({ editor }: IToolbarButton): any {
     if (!isPluginActive(KEY)) return null;
 
     return (
         <Dropdown
             renderTarget={ (props) => (
                 <ToolbarButton
-
                     icon={ HeadlinePickerIcon }
                     { ...props }
                 />
             ) }
             renderBody={ (props) => <HeaderBar editor={ editor } { ...props } /> }
-            placement='top-start'
+            placement="top-start"
             modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
         />
     );
-};
+}
