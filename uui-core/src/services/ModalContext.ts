@@ -30,6 +30,11 @@ export class ModalContext extends BaseContext implements IModalContext {
         super();
     }
 
+    public destroyContext() {
+        super.destroyContext();
+        this.closeAll();
+    }
+
     public show<TResult, TParameters = {}>(render: (props: IModal<TResult>) => React.ReactElement<any>, parameters?: TParameters): Promise<TResult> {
         const ModalAdapter = class extends React.Component<ModalComponentProps<{}, TResult>> {
             render() {

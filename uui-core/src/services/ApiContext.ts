@@ -49,21 +49,29 @@ export class ApiContext extends BaseContext implements IApiContext {
         this.props.apiReloginPath = this.props.apiReloginPath ?? '/auth/login';
         this.props.apiPingPath = this.props.apiPingPath ?? '/auth/ping';
         this.props.apiServerUrl = this.props.apiServerUrl ?? '';
-        isClientSide && this.runListeners();
+
+        if (isClientSide) {
+            // If we opened another window to relogin and check auth - close this window and resume
+            window.addEventListener('message', this.handleWindowMessage);
+        }
     }
 
-    private runListeners() {
-        // If we opened another window to relogin and check auth - close this window and resume
-        window.addEventListener('message', (e) => {
-            if (e.data === 'authSuccess') {
-                if (this.status === 'recovery' && this.recoveryReason === 'auth-lost') {
-                    this.setStatus('running');
-                    this.runQueue();
-                    this.update({});
-                }
-                (e.source as any).close();
+    private handleWindowMessage = (e: MessageEvent) => {
+        if (e.data === 'authSuccess') {
+            if (this.status === 'recovery' && this.recoveryReason === 'auth-lost') {
+                this.setStatus('running');
+                this.runQueue();
+                this.update({});
             }
-        });
+            (e.source as any).close();
+        }
+    };
+
+    public destroyContext() {
+        super.destroyContext();
+        if (isClientSide) {
+            window.removeEventListener('message', this.handleWindowMessage);
+        }
     }
 
     public getActiveCalls(): ApiCallInfo[] {
@@ -98,7 +106,6 @@ export class ApiContext extends BaseContext implements IApiContext {
                 return;
             }
             this.setStatus('recovery', reason);
-
             if (reason === 'auth-lost') {
                 window.open(this.props.apiReloginPath);
             } else {

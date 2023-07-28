@@ -13,6 +13,11 @@ export class LockContext extends BaseContext {
         super();
     }
 
+    public destroyContext() {
+        this.clearLock();
+        super.destroyContext();
+    }
+
     public acquire(tryRelease?: () => Promise<any>): Promise<Lock | null> {
         if (this.currentLock) {
             return this.tryRelease().then(() => this.acquire(tryRelease));
@@ -66,7 +71,7 @@ export class LockContext extends BaseContext {
 
     private clearLock() {
         this.currentLock = null;
-        this.unblock();
+        this.unblock?.();
     }
 
     public release(lock: Lock) {
