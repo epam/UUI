@@ -4,12 +4,12 @@ import {
     ButtonBaseCoreProps,
     IHasForwardedRef,
     UuiContexts,
-    isClickableChildClicked,
+    isEventTargetInsideClickable,
     uuiMod,
     uuiElement,
     uuiMarkers,
     UuiContext,
-    isChildHasClass,
+    isAnyParentHasClass,
 } from '@epam/uui-core';
 
 export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {}
@@ -22,7 +22,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
     static contextType = UuiContext;
     context: UuiContexts;
     clickHandler = (e: any) => {
-        if (!isClickableChildClicked(e) && !this.props.isDisabled) {
+        if (!isEventTargetInsideClickable(e) && !this.props.isDisabled) {
             if (this.props.onClick) {
                 this.props.onClick(e);
             }
@@ -41,7 +41,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
         } else if (
             // NOTE: this condition it necessary here because native input elements (checkbox and radio) do not work correctly inside link
             // https://github.com/facebook/react/issues/9023
-            !isChildHasClass(e.target, e.currentTarget, uuiInputElements)
+            !isAnyParentHasClass(e.target, e.currentTarget, uuiInputElements)
         ) {
             e.preventDefault();
         }

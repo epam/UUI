@@ -1,5 +1,5 @@
 import { BaseContext } from './BaseContext';
-import { AnalyticsEvent, IRouterContext, IAnalyticsListener } from '../types';
+import { AnalyticsEvent, IRouterContext, IAnalyticsListener, Link } from '../types';
 import { isClientSide } from '../helpers';
 
 interface AnalyticsContextOptions {
@@ -7,6 +7,8 @@ interface AnalyticsContextOptions {
 }
 
 export class AnalyticsContext extends BaseContext {
+    private removeRouteListener: () => void;
+    private currentLocation: string;
     private readonly router: IRouterContext;
     public listeners: IAnalyticsListener[] = [];
     constructor(options: AnalyticsContextOptions) {
@@ -14,7 +16,17 @@ export class AnalyticsContext extends BaseContext {
 
         this.router = options.router;
 
-        this.listenRouter();
+        if (isClientSide) {
+            this.currentLocation = window.location?.pathname;
+            this.removeRouteListener = this.router?.listen(this.handleChangeRoute);
+        }
+    }
+
+    public destroyContext() {
+        super.destroyContext();
+        if (isClientSide) {
+            this.removeRouteListener?.();
+        }
     }
 
     public sendEvent(event: AnalyticsEvent | null | undefined, eventType: 'event' | 'pageView' | 'apiTiming' = 'event') {
@@ -22,17 +34,12 @@ export class AnalyticsContext extends BaseContext {
         if (this.listeners.length) this.listeners.forEach((listener) => listener.sendEvent(event, this.getParameters(event), eventType));
     }
 
-    private listenRouter() {
-        if (!isClientSide) return;
-        let currentLocation = window.location?.pathname;
-        this.router
-            && this.router.listen((location) => {
-                if (currentLocation !== location?.pathname) {
-                    currentLocation = location?.pathname;
-                    this.sendEvent({ path: location?.pathname, name: 'pageView' }, 'pageView');
-                }
-            });
-    }
+    private handleChangeRoute = (location: Link) => {
+        if (this.currentLocation !== location?.pathname) {
+            this.currentLocation = location?.pathname;
+            this.sendEvent({ path: location?.pathname, name: 'pageView' }, 'pageView');
+        }
+    };
 
     public addListener(listener: IAnalyticsListener) {
         this.listeners.push(listener);

@@ -1,21 +1,45 @@
 import * as React from 'react';
-import { uuiMarkers } from '../constants';
+import { uuiElement, uuiMarkers } from '../constants';
 
-export function isClickableChildClicked(e: React.SyntheticEvent<Element>): boolean {
-    return isChildHasClass(e.target, e.currentTarget, [uuiMarkers.clickable]);
+export function isEventTargetInsideClickable(e: React.SyntheticEvent<Element>): boolean {
+    return isAnyParentHasClass(_getEventTarget(e), e.currentTarget, [uuiMarkers.clickable]);
 }
 
-export function isChildFocusable(e: React.FocusEvent<HTMLElement>): boolean {
-    return isChildHasClass(e.relatedTarget, e.target as unknown as Node, [uuiMarkers.lockFocus]);
+/**
+ * This method receives blur event. So, relatedTarget is the element receiving focus.
+ * @param e - blur event
+ */
+export function isFocusReceiverInsideFocusLock(e: React.FocusEvent<HTMLElement>): boolean {
+    return isAnyParentHasClass(e.relatedTarget, _getEventTarget(e) as Node, [uuiMarkers.lockFocus]);
 }
 
-export function isChildHasClass(target: EventTarget, currentTarget: Node, classNames: string[]): boolean {
-    let el = target as HTMLElement;
-    while (el && currentTarget !== el) {
+export function isEventTargetInsideDraggable(e: React.PointerEvent, toElement: Node) {
+    return isAnyParentHasClass(_getEventTarget(e), toElement, [uuiMarkers.draggable]);
+}
+
+export function isEventTargetInsideInput(e: Event | React.PointerEvent, toElement: Node) {
+    return isAnyParentHasClass(_getEventTarget(e), toElement, [uuiElement.input]);
+}
+
+export function releasePointerCaptureOnEventTarget(e: React.PointerEvent) {
+    (_getEventTarget(e) as HTMLElement).releasePointerCapture(e.pointerId);
+}
+
+/**
+ * Iterates parent elements starting from "fromElement" and goes through its parents until "toElement" is found.
+ * It returns true if any element along this path contains one of the class names specified in the "classNames" array.
+ *
+ * @param fromElement
+ * @param toElement
+ * @param classNames
+ */
+export function isAnyParentHasClass(fromElement: EventTarget, toElement: Node, classNames: string[]): boolean {
+    let el = fromElement as HTMLElement;
+    while (el && toElement !== el) {
         if (el.classList && classNames.some((className) => el.classList.contains(className))) {
             return true;
         }
-        el = el.parentElement;
+        el = _getParentElement(el) as HTMLElement;
     }
     return false;
 }
@@ -25,4 +49,136 @@ export function handleSpaceKey(e: any, cb: any): void {
         e.preventDefault();
         cb(e);
     }
+}
+
+export function blurFocusedElement() {
+    const elem = _getActiveElement() as HTMLElement;
+    elem?.blur();
+}
+
+export function preventDefaultIfTargetFocused(e: Event) {
+    if (_getActiveElement() === e.target) {
+        e.preventDefault();
+    }
+}
+
+/**
+ * Works exactly like native "closest" method, with next enhancements:
+ * - supports HTMLElement as a selector
+ * - takes Event as an input and performs search for the "event target"
+ *
+ * @param event
+ * @param condition
+ */
+export function closestTargetParentByCondition(event: Event, condition: string | HTMLElement) {
+    const element = _getEventTarget(event) as HTMLElement;
+    if (!element || !condition) {
+        return null;
+    }
+    const conditionCallback = (elem: HTMLElement) => {
+        if (typeof condition === 'string') {
+            return elem.matches(condition);
+        }
+        return condition === elem;
+    };
+    if (conditionCallback(element)) {
+        return element;
+    }
+    let parent = _getParentElement(element) as HTMLElement;
+    while (parent) {
+        if (conditionCallback(parent)) {
+            return parent as HTMLElement;
+        }
+        parent = _getParentElement(parent) as HTMLElement;
+    }
+    return null;
+}
+
+export function getScrollParentOfEventTarget(event: Event, dimension: 'x' | 'y'): HTMLElement {
+    const node = _getEventTarget(event) as HTMLElement;
+    return _getScrollParent(node, dimension);
+}
+
+/**
+ * ↓ PRIVATE methods below this comment ↓
+ */
+
+/**
+ * Works as normal "element.parentElement" with next enhancement:
+ * - If direct parent element is a shadow root, then it returns the shadow host element instead of null.
+ * @param element
+ */
+function _getParentElement(element: Element) {
+    let parentElem: Element = element.parentElement;
+    const parentNode: Node = element.parentElement;
+    if (!parentElem && parentNode && parentNode instanceof ShadowRoot) {
+        parentElem = parentNode.host;
+    }
+    return parentElem;
+}
+
+/**
+ * Works as normal "document.activeElement" with next enhancement:
+ * - if focused element is located inside shadow DOM, then it returns actual focused element instead of the shadow DOM host.
+ */
+function _getActiveElement(): HTMLElement | null {
+    const activeEl = document.activeElement || null;
+    if (activeEl && activeEl.shadowRoot) {
+        return activeEl.shadowRoot.activeElement as HTMLElement;
+    }
+    return activeEl as HTMLElement;
+}
+
+function _getScrollParent(node: HTMLElement, dimension: 'x' | 'y'): HTMLElement {
+    if (node == null) {
+        return null;
+    }
+
+    const isElement = node instanceof HTMLElement;
+    const style = isElement && window.getComputedStyle(node);
+
+    let overflow: string;
+    let scrollSize: number;
+    let clientSize: number;
+
+    if (dimension === 'x') {
+        overflow = style && style.overflowX;
+        scrollSize = node.scrollWidth;
+        clientSize = node.clientWidth;
+    } else {
+        overflow = style && style.overflowY;
+        scrollSize = node.scrollHeight;
+        clientSize = node.clientHeight;
+    }
+
+    const isScrollable = overflow !== 'visible' && overflow !== 'hidden';
+
+    if (isScrollable && scrollSize > clientSize) {
+        return node;
+    } else {
+        return _getScrollParent(_getParentElement(node) as HTMLElement, dimension);
+    }
+}
+
+/**
+ * 1. For native Event - works as normal "event.target" with next enhancement:
+ *    - If event occurs inside shadow DOM and caught outside the shadow dom then the real target is returned instead of the shadow DOM host.
+ * 2. For React synthetic event - just returns "event.target" because it already points to the actual target.
+ *
+ * @param event
+ */
+function _getEventTarget(event: Event | React.SyntheticEvent) {
+    if (event instanceof Event) {
+        const target = event.target;
+        if (target instanceof Element && target.shadowRoot) {
+            /**
+             * If event occurs inside shadow DOM and caught outside the shadow dom,
+             * then "event.target" points to the shadow dom host, instead of the real target
+             */
+            return event.composedPath()[0];
+        }
+        return target;
+    }
+    // event target is always correct in synthetic events.
+    return event.target;
 }

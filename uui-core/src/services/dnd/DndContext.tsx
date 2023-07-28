@@ -1,4 +1,8 @@
-import { isClientSide, mouseCoords, getOffset } from '../../helpers';
+import {
+    isClientSide,
+    getOffset,
+    getScrollParentOfEventTarget,
+} from '../../helpers';
 import * as React from 'react';
 import { IDndContext, DndContextState } from '../../types';
 import { BaseContext } from '../BaseContext';
@@ -14,16 +18,32 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     private ghostWidth: number = 300;
     private renderGhostCallback: () => React.ReactNode = null;
     private lastScrollTime = new Date().getTime();
+    private mouseCoordsService = new MouseCoordsService();
     constructor() {
         super();
         if (isClientSide) {
+            this.mouseCoordsService.init();
             window.addEventListener('pointermove', this.windowPointerMoveHandler);
             window.addEventListener('pointerup', this.windowPointerUpHandler);
         }
     }
 
+    public destroyContext() {
+        super.destroyContext();
+        if (isClientSide) {
+            window.removeEventListener('pointermove', this.windowPointerMoveHandler);
+            window.removeEventListener('pointerup', this.windowPointerUpHandler);
+            this.mouseCoordsService.destroy();
+        }
+    }
+
+    public getMouseCoords = (): TMouseCoords => {
+        return this.mouseCoordsService.getCoords();
+    };
+
     public startDrag(node: HTMLElement, data: {}, renderGhost: () => React.ReactNode) {
         const offset = getOffset(node);
+        const mouseCoords = this.mouseCoordsService.getCoords();
 
         this.ghostOffsetX = offset.left - mouseCoords.mouseDownPageX - parseInt(getComputedStyle(node, null).marginLeft, 10);
         this.ghostOffsetY = offset.top - mouseCoords.mouseDownPageY - parseInt(getComputedStyle(node, null).marginTop, 10);
@@ -66,8 +86,8 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     yScrollNode: HTMLElement = null;
     private windowPointerMoveHandler = (e: PointerEvent) => {
         if (this.isDragging) {
-            this.xScrollNode = getScrollParent(e.target as HTMLElement, 'x');
-            this.yScrollNode = getScrollParent(e.target as HTMLElement, 'y');
+            this.xScrollNode = getScrollParentOfEventTarget(e, 'x');
+            this.yScrollNode = getScrollParentOfEventTarget(e, 'y');
         }
     };
 
@@ -102,6 +122,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
 
     private scrollWindow() {
         const now = new Date().getTime();
+        const mouseCoords = this.mouseCoordsService.getCoords();
 
         if (this.xScrollNode) {
             const scrollX = this.getScrollStep(
@@ -139,33 +160,74 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     }
 }
 
-function getScrollParent(node: HTMLElement, dimension: 'x' | 'y'): HTMLElement {
-    if (node == null) {
-        return null;
+export type TMouseCoords = {
+    mousePageX: number,
+    mousePageY: number,
+    mouseDx: number,
+    mouseDy: number,
+    mouseDxSmooth: number,
+    mouseDySmooth: number,
+    mouseDownPageX: number,
+    mouseDownPageY: number,
+    buttons: number,
+};
+
+class MouseCoordsService {
+    private _prevMouseCoords: TMouseCoords;
+
+    init = () => {
+        this._prevMouseCoords = {
+            mousePageX: 0,
+            mousePageY: 0,
+            mouseDx: 0,
+            mouseDy: 0,
+            mouseDxSmooth: 0,
+            mouseDySmooth: 0,
+            mouseDownPageX: 0,
+            mouseDownPageY: 0,
+            buttons: 0,
+        };
+        if (isClientSide) {
+            document.addEventListener('pointermove', this.handleMouseCoordsChange);
+        }
+    };
+
+    public destroy() {
+        if (isClientSide) {
+            document.removeEventListener('pointermove', this.handleMouseCoordsChange);
+        }
     }
 
-    const isElement = node instanceof HTMLElement;
-    const style = isElement && window.getComputedStyle(node);
+    private handleMouseCoordsChange = (e: PointerEvent) => {
+        this._prevMouseCoords = getMouseCoordsFromPointerEvent(e, this._prevMouseCoords);
+    };
 
-    let overflow: string;
-    let scrollSize: number;
-    let clientSize: number;
+    public getCoords = () => {
+        return this._prevMouseCoords;
+    };
+}
 
-    if (dimension === 'x') {
-        overflow = style && style.overflowX;
-        scrollSize = node.scrollWidth;
-        clientSize = node.clientWidth;
-    } else {
-        overflow = style && style.overflowY;
-        scrollSize = node.scrollHeight;
-        clientSize = node.clientHeight;
+function getMouseCoordsFromPointerEvent(e: PointerEvent, prevCoords: TMouseCoords): TMouseCoords {
+    const mouseDx = e.pageX - prevCoords.mousePageX;
+    const mouseDy = e.pageY - prevCoords.mousePageY;
+    const mouseDxSmooth = prevCoords.mouseDxSmooth * 0.8 + mouseDx * 0.2;
+    const mouseDySmooth = prevCoords.mouseDySmooth * 0.8 + mouseDy * 0.2;
+    const mousePageX = e.pageX;
+    const mousePageY = e.pageY;
+    const result: TMouseCoords = {
+        mouseDx,
+        mouseDy,
+        mouseDxSmooth,
+        mouseDySmooth,
+        mousePageX,
+        mousePageY,
+        buttons: e.buttons,
+        mouseDownPageX: prevCoords.mouseDownPageX || 0,
+        mouseDownPageY: prevCoords.mouseDownPageY || 0,
+    };
+    if ((prevCoords.buttons === 0 && e.buttons > 0) || e.pointerType === 'touch') {
+        result.mouseDownPageX = mousePageX;
+        result.mouseDownPageY = mousePageY;
     }
-
-    const isScrollable = overflow !== 'visible' && overflow !== 'hidden';
-
-    if (isScrollable && scrollSize > clientSize) {
-        return node;
-    } else {
-        return getScrollParent(node.parentNode as HTMLElement, dimension);
-    }
+    return result;
 }
