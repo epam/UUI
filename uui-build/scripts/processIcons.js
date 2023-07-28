@@ -10,7 +10,6 @@ const isModule = process.env.IS_MODULE === 'true';
 const appDirectory = fs.realpathSync(process.cwd());
 
 const resolveRoot = (relativePath) => (isModule ? path.resolve(appDirectory, '..', relativePath) : path.resolve(appDirectory, relativePath));
-const lastIconId = 0;
 
 const svgo = new SVGO({
     plugins: [

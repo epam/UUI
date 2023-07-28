@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataSourceState, LazyDataSourceApi, DataQueryFilter, Lens, useList, cx } from '@epam/uui-core';
+import { DataSourceState, LazyDataSourceApi, DataQueryFilter, Lens, useList } from '@epam/uui-core';
 import { DbContext } from '@epam/uui-db';
 import { Person } from '@epam/uui-docs';
 import { FlexRow, FlexCell, FlexSpacer, Button, SuccessNotification, ErrorNotification, Text, SearchInput } from '@epam/loveship';
@@ -18,7 +18,7 @@ export function DbDemoImpl() {
     const handleSave = () => {
         dbRef
             .save()
-            .then((patch) => {
+            .then(() => {
                 svc.uuiNotifications.show(
                     (props) => (
                         <SuccessNotification { ...props }>
@@ -30,7 +30,7 @@ export function DbDemoImpl() {
                     { duration: 2 },
                 );
             })
-            .catch((e) => {
+            .catch(() => {
                 svc.uuiNotifications.show(
                     (props) => (
                         <ErrorNotification { ...props }>
@@ -82,7 +82,7 @@ export function DbDemoImpl() {
             api,
             getId: ({ id }) => id,
             getChildCount: (item: PersonTableRecord) => (item.__typename === 'PersonGroup' ? item.count : null),
-            getRowOptions: (p) => ({ checkbox: { isVisible: true } }),
+            getRowOptions: () => ({ checkbox: { isVisible: true } }),
             isFoldedByDefault: () => false,
         },
         [],

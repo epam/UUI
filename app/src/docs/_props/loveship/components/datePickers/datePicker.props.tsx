@@ -66,7 +66,7 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
         ],
     })
     .prop('disableClear', { examples: [true], defaultValue: false })
-    .prop('isHoliday', { examples: [{ name: 'without Holidays', value: (day) => false }] })
+    .prop('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] })
     .prop('renderFooter', {
         examples: (ctx) => [
             {

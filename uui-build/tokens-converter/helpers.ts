@@ -44,19 +44,35 @@ export const createShadowString = ({
     }
 
     if (x !== null || x !== undefined) {
-        x === '0' || x === 0 ? (result += `${x} `) : (result += `${x}px `);
+        if (x === '0' || x === 0) {
+            result += `${x} `;
+        } else {
+            result += `${x}px `;
+        }
     }
 
     if (y !== null || y !== undefined) {
-        y === '0' || y === 0 ? (result += `${y} `) : (result += `${y}px `);
+        if (y === '0' || y === 0) {
+            result += `${y} `;
+        } else {
+            result += `${y}px `;
+        }
     }
 
     if (blur !== null || blur !== undefined) {
-        blur === '0' || blur === 0 ? (result += `${blur} `) : (result += `${blur}px `);
+        if (blur === '0' || blur === 0) {
+            result += `${blur} `;
+        } else {
+            result += `${blur}px `;
+        }
     }
 
     if (spread !== null || spread !== undefined) {
-        spread === '0' || spread === 0 ? (result += `${spread} `) : (result += `${spread}px `);
+        if (spread === '0' || spread === 0) {
+            result += `${spread} `;
+        } else {
+            result += `${spread}px `;
+        }
     }
 
     if (isVariable(color)) {

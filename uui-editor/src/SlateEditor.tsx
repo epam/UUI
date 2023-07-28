@@ -98,7 +98,6 @@ function Editor(props: PlateEditorProps) {
                     },
                     style: { padding: '0 24px', minHeight: props.minHeight },
                 } }
-
                 // we override plate core insertData plugin
                 // so, we need to disable default implementation
                 disableCorePlugins={ { insertData: true } }
@@ -118,7 +117,7 @@ function Editor(props: PlateEditorProps) {
                 props.isReadonly && uuiMod.readonly,
                 props.scrollbars && css.withScrollbars,
                 css.typographyPromo,
-                props.fontSize == '16' ? css.typography16 : css.typography14,
+                props.fontSize === '16' ? css.typography16 : css.typography14,
             ) }
             style={ { minHeight: props.minHeight || 350 } }
             { ...props.rawProps }

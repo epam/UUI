@@ -9,7 +9,7 @@ export class DefaultContext extends React.Component<DemoComponentProps> {
         const { DemoComponent, props } = this.props;
 
         return (
-            <div className={ css.root } style={ { background: props.theme == 'dark' && '#2c2f3c' } }>
+            <div className={ css.root } style={ { background: props.theme === 'dark' && '#2c2f3c' } }>
                 <FlexCell width="auto">
                     <DemoComponent { ...props } />
                 </FlexCell>

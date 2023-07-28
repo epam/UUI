@@ -31,7 +31,7 @@ export default function BasicFormExample() {
         value: initFormValue,
         validationOn: 'change',
         onSave: (person) => Promise.resolve({ form: person }) /* place your save api call here */,
-        onSuccess: (result) =>
+        onSuccess: () =>
             svc.uuiNotifications.show((props) => (
                 <SuccessNotification { ...props }>
                     <Text>Form saved</Text>

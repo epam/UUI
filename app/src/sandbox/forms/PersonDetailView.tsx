@@ -1,7 +1,7 @@
 import * as React from 'react';
 import css from './ComplexForm.module.scss';
 import {
-    Panel, FlexRow, FlexCell, LabeledInput, ControlWrapper, RadioGroup, CheckboxGroup, Rating, Slider, RangeSlider, Blocker, Text,
+    Panel, FlexRow, FlexCell, LabeledInput, ControlWrapper, RadioGroup, CheckboxGroup, Rating, Slider, RangeSlider, Text,
 } from '@epam/loveship';
 import { ILens } from '@epam/uui-core';
 import { ExperienceEditor } from './ExperienceEditor';

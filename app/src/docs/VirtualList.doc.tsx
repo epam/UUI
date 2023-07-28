@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4,
+    EditableDocContent, DocExample, BaseDocsBlock,
 } from '../common';
 
 export class VirtualListDoc extends BaseDocsBlock {

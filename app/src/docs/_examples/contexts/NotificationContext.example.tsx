@@ -135,12 +135,12 @@ export default function NotificationContextExample() {
                         <ModalHeader title="Custom notification" onClose={ props.onClose } />
                         <FlexRow padding="24" background="none" spacing="12">
                             <LabeledInput size="36" label="Promotion Cycle">
-                                <TextInput value="" size="36" onValueChange={ (newVal) => {} } />
+                                <TextInput value="" size="36" onValueChange={ () => {} } />
                             </LabeledInput>
                         </FlexRow>
                         <FlexRow padding="24" background="none" spacing="12">
                             <LabeledInput size="36" label="Discipline">
-                                <TextInput value="" size="36" onValueChange={ (newVal) => {} } />
+                                <TextInput value="" size="36" onValueChange={ () => {} } />
                             </LabeledInput>
                         </FlexRow>
                         <FlexSpacer />

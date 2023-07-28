@@ -16,30 +16,30 @@ export class StubAdaptedRouter implements IRouterContext {
         return null;
     }
 
-    public redirect(link: Link): void {
+    public redirect(): void {
         this.throwError();
     }
 
-    public transfer(link: Link): void {
+    public transfer(): void {
         this.throwError();
     }
 
-    public isActive(link: Link): boolean {
+    public isActive(): boolean {
         this.throwError();
         return false;
     }
 
-    public createHref(link: Link): string {
+    public createHref(): string {
         this.throwError();
         return '';
     }
 
-    public listen(listener: (link: Link) => void): () => void {
+    public listen(): () => void {
         this.throwError();
         return () => {};
     }
 
-    public block(listener: (link: Link) => void): () => void {
+    public block(): () => void {
         this.throwError();
         return () => {};
     }

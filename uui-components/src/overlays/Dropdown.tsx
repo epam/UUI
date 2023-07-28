@@ -4,20 +4,15 @@ import {
 } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
 import {
-    isClickableChildClicked, LayoutLayer, UuiContexts, UuiContext, closest, DropdownProps, DropdownState,
+    isEventTargetInsideClickable,
+    LayoutLayer,
+    UuiContexts,
+    UuiContext,
+    DropdownProps,
+    DropdownState,
 } from '@epam/uui-core';
 import { Portal } from './Portal';
-
-const isInteractedOutsideDropdown = (e: Event, stopNodes: HTMLElement[]) => {
-    const [relatedNode] = stopNodes;
-    const target = e.target as HTMLElement;
-
-    if (stopNodes.some((node) => node && closest(target, node))) {
-        return false;
-    }
-
-    return !(closest(target, '.uui-popper') && +closest(target, '.uui-popper').style.zIndex > (relatedNode !== null ? +relatedNode.style.zIndex : 0));
-};
+import { isInteractedOutsideDropdown } from './DropdownHelpers';
 
 export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     private targetNode: HTMLElement | null = null;
@@ -61,6 +56,8 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     public componentWillUnmount() {
         window.removeEventListener('dragstart', this.clickOutsideHandler);
+        this.targetNode?.removeEventListener?.('mouseenter', this.handleMouseEnter);
+        this.targetNode?.removeEventListener?.('mouseleave', this.handleMouseLeave);
         window.removeEventListener('click', this.clickOutsideHandler, true);
         this.layer && this.context.uuiLayout?.releaseLayer(this.layer);
     }
@@ -88,7 +85,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     };
 
     private handleTargetClick = (e: React.SyntheticEvent<HTMLElement>) => {
-        if (!this.props.isNotUnfoldable && !(e && isClickableChildClicked(e))) {
+        if (!this.props.isNotUnfoldable && !(e && isEventTargetInsideClickable(e))) {
             const currentValue = this.isOpened();
             const newValue = this.props.closeOnTargetClick === false ? true : !currentValue;
 
@@ -98,7 +95,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         }
     };
 
-    private handleMouseEnter = (e: Event) => {
+    private handleMouseEnter = () => {
         this.clearCloseDropdownTimer();
         if (this.props.openDelay) {
             this.setOpenDropdownTimer();
@@ -107,7 +104,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         }
     };
 
-    private handleMouseLeave = (e: MouseEvent) => {
+    private handleMouseLeave = () => {
         this.clearOpenDropdownTimer();
 
         if (this.props.closeOnMouseLeave !== 'boundary') {
@@ -280,7 +277,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     private isInteractedOutside = (e: Event) => {
         if (!this.isOpened()) return false;
-        return isInteractedOutsideDropdown(e, [this.bodyNode, this.targetNode]);
+        return this.getIsInteractedOutside(e);
     };
 
     private clickOutsideHandler = (e: Event) => {

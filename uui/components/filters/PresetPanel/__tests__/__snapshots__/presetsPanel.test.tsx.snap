@@ -48,6 +48,8 @@ exports[`PresetsPanel should render with minimum props 1`] = `
             className="divider"
           />
           <button
+            aria-expanded={false}
+            aria-haspopup={true}
             className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-ghost"
             onClick={[Function]}
             tabIndex={0}

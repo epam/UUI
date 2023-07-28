@@ -10,7 +10,7 @@ export class ErrorCatch extends React.Component<ErrorCatchProps> {
         super(props);
     }
 
-    componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    componentDidCatch(error: Error) {
         this.context.uuiErrors.reportError(error);
     }
 
