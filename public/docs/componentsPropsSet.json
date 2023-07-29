@@ -2728,7 +2728,7 @@
       },
       {
         "name": "info",
-        "value": "string",
+        "value": "React.ReactNode",
         "comment": "<p>Info hint text to show in tooltip</p>"
       },
       {
@@ -3632,11 +3632,6 @@
         "comment": "<p>Alternative to &#39;content&#39; prop, you can pass a render function.\r\nThe function will only be called when content is shown, this can save performance.</p>"
       },
       {
-        "name": "trigger",
-        "value": "click | press | hover | manual",
-        "comment": "<p>Defines when to show the tooltip: &#39;hover&#39; - default and usual, &#39;press&#39; - only when mouse button is down, &#39;manual&#39; - visibility is controlled with isVisible prop</p>"
-      },
-      {
         "name": "validationMessage",
         "value": "string",
         "comment": "<p>Message describing why the value is invalid</p>"
@@ -3737,6 +3732,11 @@
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
         "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+      },
+      {
+        "name": "highlightSearchMatches",
+        "value": "boolean",
+        "comment": "<p>Enables highlighting of the items&#39; text with search-matching results.</p>"
       },
       {
         "name": "icon",
@@ -7725,7 +7725,7 @@
       },
       {
         "name": "info",
-        "value": "string",
+        "value": "React.ReactNode",
         "comment": "<p>Info hint text to show in tooltip</p>"
       },
       {
@@ -9090,11 +9090,6 @@
         "comment": "<p>Alternative to &#39;content&#39; prop, you can pass a render function.\r\nThe function will only be called when content is shown, this can save performance.</p>"
       },
       {
-        "name": "trigger",
-        "value": "click | press | hover | manual",
-        "comment": "<p>Defines when to show the tooltip: &#39;hover&#39; - default and usual, &#39;press&#39; - only when mouse button is down, &#39;manual&#39; - visibility is controlled with isVisible prop</p>"
-      },
-      {
         "name": "validationMessage",
         "value": "string",
         "comment": "<p>Message describing why the value is invalid</p>"
@@ -9195,6 +9190,11 @@
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
         "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+      },
+      {
+        "name": "highlightSearchMatches",
+        "value": "boolean",
+        "comment": "<p>Enables highlighting of the items&#39; text with search-matching results.</p>"
       },
       {
         "name": "icon",
@@ -11297,11 +11297,6 @@
         "comment": "<p>Alternative to &#39;content&#39; prop, you can pass a render function.\r\nThe function will only be called when content is shown, this can save performance.</p>"
       },
       {
-        "name": "trigger",
-        "value": "click | press | hover | manual",
-        "comment": "<p>Defines when to show the tooltip: &#39;hover&#39; - default and usual, &#39;press&#39; - only when mouse button is down, &#39;manual&#39; - visibility is controlled with isVisible prop</p>"
-      },
-      {
         "name": "validationMessage",
         "value": "string",
         "comment": "<p>Message describing why the value is invalid</p>"
@@ -11402,6 +11397,11 @@
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
         "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+      },
+      {
+        "name": "highlightSearchMatches",
+        "value": "boolean",
+        "comment": "<p>Enables highlighting of the items&#39; text with search-matching results.</p>"
       },
       {
         "name": "icon",
