@@ -32,7 +32,7 @@ export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.HTM
 }
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
-    <div role="alert" ref={ ref } className={ cx(css.alertWrapper, `alert-${props.color || 'default'}`, css.root, props.cx, (props.size === '48' ? css.size_48 : css.size_36)) } { ...props.rawProps }>
+    <div role="alert" ref={ ref } className={ cx(css.alertWrapper, `alert-${props.color || 'default'}`, css.root, props.cx, (props.size === '36' ? css.size36 : css.size48)) } { ...props.rawProps }>
         <div className={ css.mainPath }>
             {props.icon && (
                 <div className={ css.iconWrapper }>
