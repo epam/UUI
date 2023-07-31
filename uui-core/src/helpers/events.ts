@@ -110,8 +110,8 @@ export function getScrollParentOfEventTarget(event: Event, dimension: 'x' | 'y')
  */
 function _getParentElement(element: Element) {
     let parentElem: Element = element.parentElement;
-    const parentNode: Node = element.parentElement;
-    if (!parentElem && parentNode && parentNode instanceof ShadowRoot) {
+    const parentNode: Node = element.parentNode;
+    if (!parentElem && parentNode instanceof ShadowRoot) {
         parentElem = parentNode.host;
     }
     return parentElem;
