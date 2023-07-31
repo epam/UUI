@@ -3,7 +3,6 @@ export * from './ResizableContext';
 export * from './FlexRowContext';
 export * from './FormContext';
 export * from './ModalContext';
-export * from './DropdownMenuContext';
 export * from './MainMenuContext';
 export * from './TabButtonContext';
 export * from './RelativePanelContext';
