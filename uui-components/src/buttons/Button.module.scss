@@ -1,5 +1,3 @@
-@use  '~@epam/uui/assets/styles' as *;
-
 .container {
     text-decoration: none;
     outline: none;
@@ -23,7 +21,9 @@
         cursor: pointer;
 
         &:focus-visible {
-            @include focus-visible-effect();
+            outline: 2px solid var(--uui-control-focus);
+            outline-offset: 2px;
+            border-radius: 2px;
         }
     }
 
