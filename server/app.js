@@ -23,6 +23,7 @@ app.use(cors({
 app.use((req, res, next) => {
     res.set('X-XSS-Protection', '1; mode=block');
     res.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains');
+    res.set('Cache-Control', 'public,max-age=2592000,immutable');
     res.set('x-frame-options', 'SAMEORIGIN');
     res.set('X-Content-Type-Options', 'nosniff');
     res.set(
@@ -59,6 +60,7 @@ app.use('/api', api);
 
 if (!isDevServer()) {
     app.get('*', function response(req, res) {
+        res.set('Cache-Control', 'public, max-age=0');
         res.sendFile(path.join(__dirname, '../app/build/', 'index.html'));
     });
 
