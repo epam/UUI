@@ -1,4 +1,5 @@
 @use  '../../assets/styles/index.scss' as *;
+@use  '../../assets/styles/effects' as *;
 
 @mixin icon-sizes($size, $font-size, $line-height) {
     :global(.uui-checkbox) {
@@ -35,10 +36,13 @@
         background-color: var(--uui-checkbox-bg);
         border: 1px solid var(--uui-checkbox-border);
         border-radius: var(--uui-checkbox-border-radius);
+
+        &:focus-within {
+            @include focus-visible-effect();
+        }
     }
 
     :global(.uui-input-label) {
-        // @include typography-inline(); TODO: ???
         font-family: var(--uui-checkbox-font);
         font-weight: var(--uui-checkbox-font-weigth, normal);
         color: var(--uui-checkbox-label);

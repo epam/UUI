@@ -1,3 +1,5 @@
+@use  '../../assets/styles/effects' as *;
+
 @mixin padding($size) {
     padding-left: $size + px;
     padding-right: $size + px;
@@ -46,6 +48,10 @@
 
             &:hover, &:focus {
                 box-shadow: var(--uui-accordion-shadow-hovered);
+            }
+
+            &:focus-visible {
+                @include focus-visible-effect(-2px, 0);
             }
         }
 
