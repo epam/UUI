@@ -2,7 +2,7 @@
 
 exports[`TimePicker should be rendered correctly 1`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-form size-36 dateInput"
+  className="container uui-input-box -clickable root size-36 mode-form dateInput"
   onBlur={[Function]}
   onClick={null}
   onFocus={[Function]}
@@ -15,24 +15,14 @@ exports[`TimePicker should be rendered correctly 1`] = `
     placeholder="hh:mm A"
     tabIndex={0}
     type="text"
-    value="01:01 AM"
+    value=""
   />
-  <div
-    className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
-    onClick={[Function]}
-    role="button"
-    style={Object {}}
-  >
-    <svg
-      className=""
-    />
-  </div>
 </div>
 `;
 
-exports[`TimePicker should be rendered correctly with extra props 1`] = `
+exports[`TimePicker should be rendered correctly 2`] = `
 <div
-  className="container uui-input-box uui-disabled root size-36 mode-form size-36 dateInput"
+  className="container uui-input-box uui-disabled root size-36 mode-form dateInput"
   onBlur={[Function]}
   onClick={null}
   onFocus={[Function]}
@@ -47,7 +37,7 @@ exports[`TimePicker should be rendered correctly with extra props 1`] = `
     placeholder="HH:mm"
     tabIndex={-1}
     type="text"
-    value="01:01"
+    value="01:05"
   />
 </div>
 `;
