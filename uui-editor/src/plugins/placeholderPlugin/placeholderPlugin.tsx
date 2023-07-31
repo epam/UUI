@@ -1,24 +1,14 @@
-import React from 'react';
 import { Dropdown } from '@epam/uui-components';
-
-import {
-    createPluginFactory,
-    getPluginOptions,
-    PlateEditor,
-    insertElements,
-    ToolbarButton as PlateToolbarButton,
-} from "@udecode/plate";
+import React from 'react';
 
 import { isPluginActive, isTextSelected } from '../../helpers';
-
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-
 import { PlaceholderBlock } from './PlaceholderBlock';
 
+import { PlateEditor, createPluginFactory, getPluginOptions, insertElements } from '@udecode/plate-common';
 import css from './PlaceholderPlugin.module.scss';
 
 const KEY = 'placeholder';
-const noop = () => {};
 
 export interface PlaceholderPluginParams {
     items: {
@@ -46,16 +36,16 @@ interface IPlaceholderButton {
     editor: PlateEditor;
 }
 
-export const PlaceholderButton = ({ editor }: IPlaceholderButton): any => {
-
+export function PlaceholderButton({ editor }: IPlaceholderButton): any {
     if (!isPluginActive(KEY)) return null;
     const { params }: { params: PlaceholderPluginParams } = getPluginOptions(editor, KEY);
 
     const renderDropdownBody = () => {
         return (
             <div className={ css.dropdownContainer }>
-                { params.items.map(i =>
-                    <div className={ css.dropdownItem }
+                { params.items.map((i) => (
+                    <div
+                        className={ css.dropdownItem }
                         key={ i.name }
                         onMouseDown={ (event) => {
                             event.preventDefault();
@@ -66,12 +56,12 @@ export const PlaceholderButton = ({ editor }: IPlaceholderButton): any => {
                                     type: 'placeholder',
                                     children: [{ text: '' }],
                                 },
-                            )
+                            );
                         } }
                     >
                         { i.name }
-                    </div>,
-                ) }
+                    </div>
+                )) }
             </div>
         );
     };
@@ -79,25 +69,15 @@ export const PlaceholderButton = ({ editor }: IPlaceholderButton): any => {
     return (
         <Dropdown
             renderTarget={ (props) => (
-                <PlateToolbarButton
-                    styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-                    active={ true }
-                    onMouseDown={
-                        editor
-                            ? (e) => e.preventDefault()
-                            : undefined
-                    }
-                    icon={ <ToolbarButton
-                        onClick={ noop }
-                        caption={ <div style={ { height: 42, display: 'flex', alignItems: 'center' } }>Insert Placeholder</div> }
-                        isDisabled={ isTextSelected(editor, true) }
-                        { ...props }
-                    /> }
+                <ToolbarButton
+                    caption={ <div style={ { height: 42, display: 'flex', alignItems: 'center' } }>Insert Placeholder</div> }
+                    isDisabled={ isTextSelected(editor, true) }
+                    { ...props }
                 />
             ) }
             renderBody={ renderDropdownBody }
-            placement='top-start'
+            placement="top-start"
             modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
         />
     );
-};
+}

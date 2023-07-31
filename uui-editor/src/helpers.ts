@@ -1,9 +1,7 @@
-// import flatten from 'lodash.flatten';
-// import Html from 'slate-html-serializer';
-import { useSlate, useFocused } from "slate-react";
-import { Range, Editor } from 'slate';
-import { getPlugins, usePlateEditorState } from "@udecode/plate";
-//
+import { Range, Editor, Text } from 'slate';
+import { getPlugins, usePlateEditorState } from '@udecode/plate-common';
+import { EditorValue } from './types';
+
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {
         const block = blockTags[el.tagName.toLowerCase()];
@@ -31,19 +29,7 @@ export function getMarkDeserializer(marks: Record<string, string>) {
         }
     };
 }
-//
-// export function getSerializer(plugins: any) {
-//     let rules: any = [];
-//     flatten(plugins).map((plugin: any) => {
-//         plugin.serializers && plugin.serializers.map((serializer: any) => {
-//             rules.push({
-//                 deserialize: serializer,
-//             });
-//         });
-//     });
-//     return new Html({ rules: rules });
-// }
-//
+
 export function isTextSelected(editor: any, inFocus: boolean) {
     const { selection } = editor;
 
@@ -59,20 +45,20 @@ export function isImageSelected(editor: any) {
 export function isPluginActive(key: string): boolean {
     const editor = usePlateEditorState();
     const plugins = getPlugins(editor);
-    return plugins.some(plugin => plugin.key === key);
+    return plugins.some((plugin) => plugin.key === key);
 }
 
-//
-// export const isEditorEmpty = (value: Value) => {
-//     const blocks: Block[] = value.get('document').get('nodes').toArray();
-//
-//     if (blocks.length === 1 && blocks[0].get('type') === 'paragraph') {
-//         const nodes: SlateText[] = blocks[0].get('nodes').toArray();
-//
-//         if (nodes.length === 1 && nodes[0].get('text') === '') {
-//             return true;
-//         }
-//     }
-//
-//     return false;
-// };
+export const isElementEmpty = (value: EditorValue) => {
+    if (!value || value?.length > 1) {
+        return false;
+    }
+
+    const [first] = value;
+    return (
+        value.length === 0
+        || (value.length === 1
+        && Text.isText(first)
+        && first.type === 'paragraph'
+        && first.children[0].text === '')
+    );
+};

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cx, IHasTabIndex, uuiMarkers } from '@epam/uui-core';
 import css from './Checkbox.module.scss';
 import {
-    Icon, uuiMod, uuiElement, isClickableChildClicked, CheckboxCoreProps, UuiContexts, UuiContext,
+    Icon, uuiMod, uuiElement, isEventTargetInsideClickable, CheckboxCoreProps, UuiContexts, UuiContext,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 
@@ -19,7 +19,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
     static contextType = UuiContext;
     context: UuiContexts;
     handleChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
-        !isClickableChildClicked(e) && this.props.onValueChange(!this.props.value);
+        !isEventTargetInsideClickable(e) && this.props.onValueChange(!this.props.value);
 
         if (this.props.getValueChangeAnalyticsEvent) {
             const event = this.props.getValueChangeAnalyticsEvent(!this.props.value, this.props.value);
@@ -32,11 +32,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
             return 'mixed';
         }
 
-        if (value == undefined) {
-            return false;
-        } else {
-            value;
-        }
+        return value == null ? false : value;
     };
 
     render() {

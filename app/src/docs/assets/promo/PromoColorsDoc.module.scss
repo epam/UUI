@@ -35,6 +35,9 @@
 
 .hex-text {
     cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: inherit;
 
     &:hover {
         opacity: 0.75;

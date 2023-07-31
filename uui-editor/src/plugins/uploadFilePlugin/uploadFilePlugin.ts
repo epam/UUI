@@ -1,15 +1,15 @@
 import {
     PlateEditor,
-    Value,
     createInsertDataPlugin,
-    findEventRange,
+    Value,
     select,
-} from "@udecode/plate";
+    findEventRange,
+} from '@udecode/plate-common';
 import {
     UploadFileOptions,
     UploadType,
     createFileUploader,
-} from "./file_uploader";
+} from './file_uploader';
 
 interface UploadFilePluginOptions {
     uploadFiles: (

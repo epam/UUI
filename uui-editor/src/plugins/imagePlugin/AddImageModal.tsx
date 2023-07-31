@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { UploadFileToggler, FlexSpacer } from '@epam/uui-components';
+import { FlexSpacer, UploadFileToggler } from '@epam/uui-components';
 import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
-import { PlateEditor } from '@udecode/plate';
+import React, { useState } from 'react';
 
-import css from './AddImageModal.module.scss';
+import { PlateEditor } from '@udecode/plate-common';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
+import css from './AddImageModal.module.scss';
 
 const {
     LabeledInput,
@@ -19,7 +19,6 @@ const {
 
 interface AddImageModalProps extends IModal<any> {
     insertImage: (imageURL: string) => void;
-    focusEditor: () => void;
     editor: PlateEditor;
 }
 
@@ -33,37 +32,40 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
 
     return (
         <ModalBlocker { ...props }>
-            <ModalWindow >
+            <ModalWindow>
                 <ModalHeader title="Add image" onClose={ abort } />
                 <FlexRow cx={ css.inputWrapper }>
-                    <LabeledInput label='Image url' >
+                    <LabeledInput label="Image url">
                         <TextInput value={ imageURL } onValueChange={ (newVal) => setImageURL(newVal) } autoFocus />
                     </LabeledInput>
                 </FlexRow>
-                <ModalFooter borderTop >
+                <ModalFooter borderTop>
                     <UploadFileToggler
-                        render={ (props) => <Button { ...props } caption='Select file' /> }
+                        render={ (props) => <Button { ...props } caption="Select file" /> }
                         onFilesAdded={ (acceptedFiles: File[]) => {
                             const urlName = acceptedFiles.map(({ name }) => name).join('; ');
                             setImageURL(urlName);
                             setFiles(acceptedFiles);
                         } }
-                        accept='image/*'
+                        accept="image/*"
                     />
                     <FlexSpacer />
-                    <Button type='cancel' caption='Cancel' onClick={ abort } />
-                    <Button type='success' caption='Ok' isDisabled={ !imageURL } onClick={ () => {
-                        if (files && files.length) {
-                            onFilesAdded(files);
-                        } else {
-                            props.insertImage(prependHttp(imageURL, { https: true }));
-                        }
-                        props.success(true);
-                    } }
+                    <Button type="cancel" caption="Cancel" onClick={ abort } />
+                    <Button
+                        type="success"
+                        caption="Ok"
+                        isDisabled={ !imageURL }
+                        onClick={ async () => {
+                            if (files && files.length) {
+                                await onFilesAdded(files);
+                            } else {
+                                props.insertImage(prependHttp(imageURL, { https: true }));
+                            }
+                            props.success(true);
+                        } }
                     />
                 </ModalFooter>
             </ModalWindow>
         </ModalBlocker>
     );
-
 }

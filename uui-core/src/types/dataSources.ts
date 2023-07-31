@@ -131,6 +131,7 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
     selectAll?: true | false;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IDataSourceView<TItem, TId, TFilter> = {
     getById(id: TId, index: number): DataRowProps<TItem, TId>;
     getListProps(): DataSourceListProps;
@@ -172,6 +173,7 @@ export interface DataSourceListProps extends DataSourceListCounts {
 // Lazy Data Source API
 
 /** The common part of LazyDataSourceApiRequest, which defines how list should be filtered and sorted */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export interface LazyDataSourceApiRequestOptions<TItem, TFilter> {
     filter?: TFilter;
     sorting?: SortingOption[];

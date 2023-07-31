@@ -1,18 +1,11 @@
 import * as React from 'react';
-import {
-    getPluginType,
-    ELEMENT_LINK,
-    getAboveNode,
-    insertLink,
-    getSelectionText,
-    PlateEditor,
-    unwrapLink,
-} from '@udecode/plate';
 
 import { IModal, uuiSkin } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
 import css from './link.module.scss';
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import { PlateEditor, getPluginType, getAboveNode, getSelectionText } from '@udecode/plate-common';
+import { ELEMENT_LINK, insertLink, unwrapLink } from '@udecode/plate-link';
 
 const { LabeledInput, ModalBlocker, ModalWindow, ModalHeader, FlexRow, TextInput, ModalFooter, Button } = uuiSkin;
 
@@ -20,10 +13,9 @@ interface AddLinkModalProps extends IModal<any> {
     editor: PlateEditor;
 }
 
-export const AddLinkModal = (props: AddLinkModalProps) => {
-
+export function AddLinkModal(props: AddLinkModalProps) {
     const [link, setLink] = useState('');
-    const [isLinkInvalid, setIsLinkInvalid] = useState(false);
+    const isLinkInvalid = false;
 
     const linkValidationProps = {
         isInvalid: isLinkInvalid,
@@ -46,23 +38,31 @@ export const AddLinkModal = (props: AddLinkModalProps) => {
             <ModalWindow>
                 <ModalHeader title="Add link" onClose={ props.abort } />
                 <FlexRow cx={ css.inputWrapper }>
-                    <LabeledInput label='Link' { ...linkValidationProps }>
+                    <LabeledInput label="Link" { ...linkValidationProps }>
                         <TextInput value={ link } onValueChange={ (newVal) => setLink(newVal) } autoFocus />
                     </LabeledInput>
                 </FlexRow>
-                <ModalFooter borderTop >
+                <ModalFooter borderTop>
                     <FlexSpacer />
-                    <Button type='cancel' caption='Delete' onClick={ () => {
-                        setLink('');
-                        unwrapLink(props.editor);
-                        props.abort();
-                    } } />
-                    <Button type='success' caption='Save' onClick={ () => {
-                        link && insertLink(props.editor, { url: link, text: getSelectionText(props.editor), target: '_blank' });
-                        props.success(true);
-                    } } />
+                    <Button
+                        type="cancel"
+                        caption="Delete"
+                        onClick={ () => {
+                            setLink('');
+                            unwrapLink(props.editor);
+                            props.abort();
+                        } }
+                    />
+                    <Button
+                        type="success"
+                        caption="Save"
+                        onClick={ () => {
+                            link && insertLink(props.editor, { url: link, text: getSelectionText(props.editor), target: '_blank' });
+                            props.success(true);
+                        } }
+                    />
                 </ModalFooter>
             </ModalWindow>
         </ModalBlocker>
     );
-};
+}

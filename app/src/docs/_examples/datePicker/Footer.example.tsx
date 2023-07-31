@@ -7,7 +7,7 @@ export default function DatePickerFooterExample() {
     const [value, onValueChange] = useState('');
 
     return (
-        <FlexRow>
+        <FlexRow rawProps={ { style: { minWidth: '195px' } } }>
             <DatePicker
                 value={ value }
                 onValueChange={ onValueChange }

@@ -35,9 +35,9 @@ export function ProjectDemo() {
         lens, value, onValueChange, save, isChanged, revert, undo, canUndo, redo, canRedo,
     } = useForm<FormState>({
         value: savedValue,
-        onSave: async (value) => {
+        onSave: async (data) => {
             // At this point you usually call api.saveSomething(value) to actually send changed data to server
-            savedValue = value;
+            savedValue = data;
         },
         getMetadata: () => metadata,
     });
@@ -59,7 +59,7 @@ export function ProjectDemo() {
             Object.values(value.items)
                 .filter((i) => i.parentId === task.parentId)
                 .map((i) => i.order),
-            position == 'bottom' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
+            position === 'bottom' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
             relativeTask?.order,
         );
 

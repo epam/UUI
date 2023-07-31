@@ -140,15 +140,15 @@ describe('db - patchHelpers', () => {
         });
 
         it('should process non-entity arrays and objects as fields', () => {
-            const task: any = {
+            const processTask: any = {
                 id: 'YZ',
                 tags: ['important', 'db'],
                 // details: { test: 'test' }, // FIXME
                 __typename: 'Task',
             };
 
-            const result = flattenResponse(task, emptyDb.tables);
-            expect(result.tasks).toEqual([task]);
+            const result = flattenResponse(processTask, emptyDb.tables);
+            expect(result.tasks).toEqual([processTask]);
         });
     });
 

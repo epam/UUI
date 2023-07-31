@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { TimelineTransform } from './TimelineTransform';
 import { BaseTimelineCanvasComponent, BaseTimelineCanvasComponentProps } from './BaseTimelineCanvasComponent';
 import {
-    addDays, isWeekend, months, msPerDay, Scales, getHoursInFormatAMPM,
+    addDays, months, getHoursInFormatAMPM,
 } from './helpers';
 import styles from './TimelineScale.module.scss';
 

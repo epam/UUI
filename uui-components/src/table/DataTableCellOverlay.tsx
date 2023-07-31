@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import {
+    blurFocusedElement,
     cx, ICanBeInvalid, IHasCX, TooltipCoreProps, uuiMod,
 } from '@epam/uui-core';
 import css from './DataTableCellOverlay.module.scss';
@@ -39,7 +40,7 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
             e.preventDefault();
             e.stopPropagation();
 
-            (document.activeElement as HTMLElement)?.blur();
+            blurFocusedElement();
 
             setSelectionRange({
                 startColumnIndex: columnIndex, startRowIndex: rowIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex, isCopying: true,

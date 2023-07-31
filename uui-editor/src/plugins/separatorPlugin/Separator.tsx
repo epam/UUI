@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
-import { useSelected } from 'slate-react';
-import cx from 'classnames';
 import { uuiMod } from '@epam/uui-core';
-
-import { StyledElementProps } from '@udecode/plate';
+import cx from 'classnames';
+import React from 'react';
+import { useSelected } from 'slate-react';
+import { PlatePluginComponent } from '@udecode/plate-common';
 
 import css from './Separator.module.scss';
 
-export function Separator(props: StyledElementProps) {
+export const Separator: PlatePluginComponent = function (props) {
     const { children, attributes } = props;
     const selected = useSelected();
 
     return (
         <div
             { ...attributes }
-            className={ cx(css.separator, selected && uuiMod.focus) }>
+            className={ cx(css.separator, selected && uuiMod.focus) }
+        >
             { children }
         </div>
     );
-}
+};

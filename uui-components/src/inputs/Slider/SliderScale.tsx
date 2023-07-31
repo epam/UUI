@@ -3,11 +3,6 @@ import { SliderScaleElement } from './SliderScaleElement';
 import { SliderScaleBase } from './SliderScaleBase';
 import { isClientSide } from '@epam/uui-core';
 
-interface HandlerOffsetValue {
-    from: number;
-    to: number;
-}
-
 export class SliderScale extends SliderScaleBase<number> {
     renderSliderScaleElements() {
         const splitAt = this.props.splitAt || this.props.max - this.props.min;

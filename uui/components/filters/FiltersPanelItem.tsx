@@ -24,6 +24,7 @@ IEditable<any> & {
 };
 
 function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
+    const { maxCount = 2 } = props;
     const isPickersType = props?.type === 'multiPicker' || props?.type === 'singlePicker';
     const isMobileScreen = isMobile();
 
@@ -176,50 +177,49 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         switch (props.type) {
             case 'multiPicker': {
                 const view = props.dataSource.getView({}, forceUpdate);
-                const postfix = currentValue?.length > 2 ? ` +${(currentValue.length - 2).toString()} ${i18n.filterToolbar.pickerInput.itemsPlaceholder}` : null;
                 let isLoading = false;
 
                 const selection = currentValue
-                    ? currentValue?.slice(0, 2).map((i: any) => {
+                    ? currentValue?.slice(0, maxCount).map((i: any) => {
                         const item = view.getById(i, null);
                         isLoading = item.isLoading;
                         return getPickerItemName(item, props);
                     })
-                    : [currentValue];
+                    : currentValue;
 
-                const selectionText = isLoading ? selection : selection.join(', ');
-                return { selection: selectionText, postfix };
+                const postfix = (!isLoading && currentValue?.length > maxCount) ? ` +${(currentValue.length - maxCount).toString()} ${i18n.filterToolbar.pickerInput.itemsPlaceholder}` : null;
+                return { selection, postfix };
             }
             case 'numeric': {
                 const isRangePredicate = predicate === 'inRange' || predicate === 'notInRange';
                 const decimalFormat = (val: number) => getSeparatedValue(val, { maximumFractionDigits: 2 });
                 if ((isRangePredicate && !currentValue) || (!isRangePredicate && !currentValue && currentValue !== 0)) {
-                    return { selection: currentValue };
+                    return { selection: undefined };
                 }
                 const selection = isRangePredicate
                     ? `${!currentValue?.from && currentValue?.from !== 0 ? 'Min' : decimalFormat(currentValue?.from)} - ${
                         !currentValue?.to && currentValue?.to !== 0 ? 'Max' : decimalFormat(currentValue?.to)
                     }`
                     : `${!currentValue && currentValue !== 0 ? 'ALL' : decimalFormat(currentValue)}`;
-                return { selection };
+                return { selection: [selection] };
             }
             case 'singlePicker': {
                 const view = props.dataSource.getView({}, forceUpdate);
                 if (currentValue === null || currentValue === undefined) {
-                    return { selection: currentValue };
+                    return { selection: undefined };
                 }
 
                 const item = view.getById(currentValue, null);
                 const selection = getPickerItemName(item, props);
 
-                return { selection };
+                return { selection: [selection] };
             }
             case 'datePicker': {
-                return { selection: currentValue ? dayjs(currentValue).format(props.format || defaultFormat) : currentValue };
+                return { selection: currentValue ? [dayjs(currentValue).format(props.format || defaultFormat)] : currentValue };
             }
             case 'rangeDatePicker': {
                 if (!currentValue || (!currentValue.from && !currentValue.to)) {
-                    return { selection: '' };
+                    return { selection: undefined };
                 }
                 const currentValueFrom = currentValue?.from
                     ? dayjs(currentValue?.from).format(props.format || defaultFormat)
@@ -228,7 +228,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                     ? dayjs(currentValue?.to).format(props.format || defaultFormat)
                     : i18n.filterToolbar.rangeDatePicker.emptyPlaceholderTo;
                 const selection = `${currentValueFrom} - ${currentValueTo}`;
-                return { selection };
+                return { selection: [selection] };
             }
         }
     };

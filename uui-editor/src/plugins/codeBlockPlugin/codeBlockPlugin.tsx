@@ -1,25 +1,15 @@
+import { createCodePlugin } from '@udecode/plate-basic-marks';
+import { PlateEditor, PlatePluginComponent, isMarkActive } from '@udecode/plate-common';
 import React from 'react';
-import {
-    StyledLeafProps,
-    EText,
-    TText,
-    Value,
-    createCodePlugin,
-    MarkToolbarButton,
-    getPluginType,
-    isMarkActive,
-    PlateEditor,
-} from "@udecode/plate";
-import { ToolbarButton } from "../../implementation/ToolbarButton";
-import { ReactComponent as CodeIcon } from "../../icons/editor-code.svg";
-import { isPluginActive } from "../../helpers";
 
-const KEY = 'uui-richTextEditor-code';
-const noop = () => {};
+import { isPluginActive } from '../../helpers';
+import { ReactComponent as CodeIcon } from '../../icons/editor-code.svg';
+import { ToolbarButton } from '../../implementation/ToolbarButton';
+import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
 
-const Code = <V extends Value = Value, N extends TText = EText<V>>(
-    props: StyledLeafProps<V, N>,
-) => {
+const CODE_BLOCK_KEY = 'uui-richTextEditor-code';
+
+const Code: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
     return (
         <span { ...attributes }><code>{ children }</code></span>
@@ -27,25 +17,22 @@ const Code = <V extends Value = Value, N extends TText = EText<V>>(
 };
 
 export const codeBlockPlugin = () => createCodePlugin({
-    key: KEY,
+    key: CODE_BLOCK_KEY,
+    type: CODE_BLOCK_KEY,
     component: Code,
 });
 
-interface ToolbarButton {
+interface IToolbarButton {
     editor: PlateEditor;
 }
 
-export const CodeButton = ({ editor }: ToolbarButton) => {
-    if (!isPluginActive(KEY)) return null;
+export function CodeButton({ editor }: IToolbarButton) {
+    if (!isPluginActive(CODE_BLOCK_KEY)) return null;
     return (
-        <MarkToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            type={ getPluginType(editor, KEY) }
-            icon={ <ToolbarButton
-                onClick={ noop }
-                icon={ CodeIcon }
-                isActive={ !!editor?.selection && isMarkActive(editor, KEY!) }
-            /> }
+        <ToolbarButton
+            onClick={ handleMarkButtonClick(editor, CODE_BLOCK_KEY) }
+            icon={ CodeIcon }
+            isActive={ !!editor?.selection && isMarkActive(editor, CODE_BLOCK_KEY) }
         />
     );
-};
+}

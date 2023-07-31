@@ -17,7 +17,7 @@ const migrateTextNode = (oldNode: any) => {
                 ...(mark?.data?.style ? mark.data.style : {}),
                 [mark.type || mark]: true,
             }),
-            {}
+            {},
         ),
     };
 };
@@ -26,7 +26,7 @@ const migrateTable = (oldTable: any) => {
     oldTable.nodes.forEach((row: any) => {
         const newRowNodes: any[] = [];
         row.nodes.forEach((cell: any) => {
-            if (cell.data?.style !== "none") {
+            if (cell.data?.style !== 'none') {
                 newRowNodes.push(cell);
             }
         });
@@ -37,10 +37,10 @@ const migrateTable = (oldTable: any) => {
 };
 
 const migrateElementNode = (node: any) => {
-    const mediaTypes = ["image", "iframe"];
+    const mediaTypes = ['image', 'iframe'];
 
-    if (node.type === "paragraph" && node.nodes?.[0].type === "table") {
-        let tableNode = node.nodes[0];
+    if (node.type === 'paragraph' && node.nodes?.[0].type === 'table') {
+        const tableNode = node.nodes[0];
         node = migrateTable(tableNode);
     }
 
@@ -53,8 +53,8 @@ const migrateElementNode = (node: any) => {
     };
 };
 
-const migrateNode = (oldNode: any) => {
-    if (oldNode.object === "text") {
+export const migrateNode = (oldNode: any) => {
+    if (oldNode.object === 'text') {
         return migrateTextNode(oldNode);
     } else {
         return migrateElementNode(oldNode);
