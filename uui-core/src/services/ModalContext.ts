@@ -30,6 +30,11 @@ export class ModalContext extends BaseContext implements IModalContext {
         super();
     }
 
+    public destroyContext() {
+        super.destroyContext();
+        this.closeAll();
+    }
+
     public show<TResult, TParameters = {}>(render: (props: IModal<TResult>) => React.ReactElement<any>, parameters?: TParameters): Promise<TResult> {
         const ModalAdapter = class extends React.Component<ModalComponentProps<{}, TResult>> {
             render() {
@@ -83,7 +88,7 @@ export class ModalContext extends BaseContext implements IModalContext {
     public getOperations(): ModalOperation[] {
         return this.operations.map((op, n) => {
             op = clone(op);
-            op.props.isActive = n == this.operations.length - 1;
+            op.props.isActive = n === this.operations.length - 1;
             return op;
         });
     }

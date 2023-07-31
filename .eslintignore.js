@@ -32,6 +32,7 @@ function getIgnoredPatterns({ isCI, isLintStaged, isLintScript }) {
             'uui-db',
             'extra',
             'draft-rte',
+            'uui-timeline',
         ]);
     }
     return ignored;

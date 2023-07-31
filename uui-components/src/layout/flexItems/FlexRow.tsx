@@ -1,13 +1,13 @@
 import * as React from 'react';
 import css from './FlexRow.module.scss';
 import {
-    FlexRowProps, uuiMarkers, isClickableChildClicked, cx,
+    FlexRowProps, uuiMarkers, isEventTargetInsideClickable, cx,
 } from '@epam/uui-core';
 
 export const FlexRow = React.forwardRef<HTMLDivElement, FlexRowProps>((props, ref) => (
     <div
         ref={ ref }
-        onClick={ props.onClick ? (e) => !isClickableChildClicked(e) && props.onClick(e) : undefined }
+        onClick={ props.onClick ? (e) => !isEventTargetInsideClickable(e) && props.onClick(e) : undefined }
         className={ cx(
             props.cx,
             css.container,

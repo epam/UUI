@@ -3,7 +3,7 @@ import {
 } from './types';
 import { Db } from './Db';
 import { objectKeys } from './utils';
-import { DataQuery, DataQueryFilter, DataQueryFilterCondition } from '@epam/uui-core';
+import { DataQueryFilter, DataQueryFilterCondition } from '@epam/uui-core';
 
 let lastTempId = -1;
 
@@ -55,7 +55,7 @@ export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientI
 
         for (let n = 0; n < keys.length; n++) {
             const key = keys[n];
-            let condition = filter[key] as DataQueryFilterCondition<any, any>;
+            let condition = filter[key] as DataQueryFilterCondition<any>;
             if (condition != null && typeof condition === 'object') {
                 condition = { ...condition };
                 if ('in' in condition && Array.isArray(condition.in) && condition.in.length) {
@@ -146,7 +146,7 @@ export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientI
         this.mapFields(
             patch,
             (f) => !!(f.fk || f.default != null || f.toClient),
-            (fieldName, fieldSchema, fieldValue, entityPatch, tableName) => {
+            (fieldName, fieldSchema, fieldValue, entityPatch) => {
                 let isUndefined = typeof fieldValue === 'undefined';
 
                 if (fieldSchema.default != null && fieldValue == null) {
@@ -184,7 +184,7 @@ export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientI
         this.mapFields(
             patch,
             (f) => f.isGenerated || !!f.fk,
-            (fieldName, fieldSchema, fieldValue, entityPatch, tableName) => {
+            (fieldName, fieldSchema, fieldValue, entityPatch) => {
                 if (fieldValue != null) {
                     const existingId = this.clientToServerIds.get(fieldValue);
                     if (existingId) {
@@ -197,7 +197,7 @@ export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientI
         this.mapFields(
             patch,
             (f) => !(f.isClientOnly || f.isReadOnly) && !!f.toServer,
-            (fieldName, fieldSchema, fieldValue, entityPatch, tableName) => {
+            (fieldName, fieldSchema, _, entityPatch) => {
                 entityPatch[fieldName] = fieldSchema.toServer(entityPatch[fieldName]);
             },
         );
@@ -205,7 +205,7 @@ export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientI
         this.mapFields(
             patch,
             (meta) => meta.isClientOnly || meta.isReadOnly,
-            (fieldName, fieldSchema, fieldValue, entityPatch, tableName) => {
+            (fieldName, _, __, entityPatch) => {
                 delete entityPatch[fieldName];
             },
         );

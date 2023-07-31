@@ -23,9 +23,9 @@ async function saveDocContentByDemoName(demoItemName: string, content: any) {
 }
 
 export function useDemoDescriptionEditor(demoItemName: string) {
-    const svc = useUuiContext();
+    const svcContext = useUuiContext();
     const showSuccess = async () => {
-        return svc.uuiNotifications
+        return svcContext.uuiNotifications
             .show(
                 (props: INotification) => (
                     <SuccessNotification { ...props }>

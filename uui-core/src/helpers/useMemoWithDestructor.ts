@@ -4,7 +4,7 @@ export function useMemoWithDestructor<T>(create: () => T, update: (instance: T) 
     const ref = useRef<T>();
     const prevDeps = useRef(deps);
 
-    const isDepsChanged = prevDeps.current.length != deps.length || prevDeps.current.some((devVal, index) => devVal != deps[index]);
+    const isDepsChanged = prevDeps.current.length !== deps.length || prevDeps.current.some((devVal, index) => devVal !== deps[index]);
 
     if (ref.current == null || isDepsChanged) {
         prevDeps.current = deps;

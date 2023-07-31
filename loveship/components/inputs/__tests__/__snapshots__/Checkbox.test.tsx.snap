@@ -9,6 +9,7 @@ exports[`Checkbox should be rendered correctly 1`] = `
     className="uui-checkbox uui-checked"
   >
     <input
+      aria-checked={true}
       checked={true}
       onChange={[Function]}
       tabIndex={0}
@@ -35,6 +36,7 @@ exports[`Checkbox should be rendered correctly with new props 1`] = `
     className="uui-checkbox uui-checked"
   >
     <input
+      aria-checked={true}
       checked={true}
       onChange={[Function]}
       tabIndex={0}

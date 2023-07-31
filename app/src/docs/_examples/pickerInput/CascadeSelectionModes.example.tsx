@@ -42,7 +42,7 @@ export default function CascadeSelectionModesExample() {
         if (!search) return;
 
         return path
-            .map(({ value }) => value?.name)
+            .map(({ value: pathValue }) => pathValue?.name)
             .filter(Boolean)
             .join(' / ');
     };

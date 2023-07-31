@@ -14,7 +14,7 @@ describe('ApiContext', () => {
     headers.append('Content-Type', 'application/json');
 
     const getFetchMock = (status: number, data?: any): any => {
-        return jest.fn((req) => {
+        return jest.fn(() => {
             return Promise.resolve({
                 json: () => Promise.resolve(data || testData),
                 ok: status === 200,
@@ -73,7 +73,7 @@ describe('ApiContext', () => {
         const fetchMock = getFetchMock(401);
         global.fetch = fetchMock;
 
-        const windowOpenMock = jest.fn((url) => {});
+        const windowOpenMock = jest.fn(() => {});
         global.open = windowOpenMock as any;
 
         context.processRequest('path', 'POST', testData);

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { IDropdownMenuItemProps, DropdownMenuBody, DropdownMenuButton, DropdownMenuSwitchButton, DropdownMenuSplitter, DropdownMenuHeader, DropdownSubMenu,
-    Dropdown, Panel, ControlGroup, Button, Avatar } from '@epam/uui';
+    Dropdown, Panel, ControlGroup, Button, LinkButton } from '@epam/uui';
 import { DropdownBodyProps } from '@epam/uui-core';
 import { ReactComponent as LogoutIcon } from '@epam/assets/icons/common/navigation-logout-24.svg';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-12.svg';
 import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-delete-12.svg';
 import { ReactComponent as ExportIcon } from '@epam/assets/icons/common/file-export-12.svg';
+import { ReactComponent as PersonIcon } from '@epam/assets/icons/common/social-person-12.svg';
 
 function DropdownMenuSwitchButtonElement(props: IDropdownMenuItemProps) {
     const [selected, setSelected] = useState(false);
@@ -95,7 +96,14 @@ export default function BasicDropdownMenuExample() {
                 closeOnMouseLeave="boundary"
                 closeDelay={ 400 }
                 renderBody={ (props) => renderDropdownBody(props) }
-                renderTarget={ (props) => <Avatar img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" size="36" { ...props } /> }
+                renderTarget={ (props) => (
+                    <LinkButton
+                        icon={ PersonIcon }
+                        caption="Alex Smith"
+                        size="36"
+                        { ...props }
+                    />
+                ) }
             />
             <ControlGroup>
                 <Button size="36" caption="Action with selected" onClick={ () => {} } />
