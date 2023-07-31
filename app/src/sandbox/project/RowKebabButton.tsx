@@ -13,7 +13,7 @@ export interface RowKebabProps extends ColumnsProps {
 export function RowKebabButton({ row, insertTask, deleteTask }: RowKebabProps) {
     const renderBody = React.useCallback((props: DropdownBodyProps) => {
         return (
-            <DropdownMenuBody { ...props } style={ { maxWidth: '250px' } }>
+            <DropdownMenuBody { ...props } rawProps={ { style: { maxWidth: '250px' } } }>
                 <DropdownMenuButton
                     caption="Add Task below"
                     onClick={ () => {
