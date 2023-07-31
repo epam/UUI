@@ -4,7 +4,7 @@ import {
 } from '@epam/promo';
 import PrefixComponent from './PrefixComponent/PrefixComponent';
 import { useArrayDataSource } from '@epam/uui-core';
-import './PrefixesDemoComponent.scss';
+import css from './PrefixesDemoComponent.module.scss';
 
 const languageLevels = [
     { id: 2, level: 'A1' }, { id: 3, level: 'A1+' }, { id: 4, level: 'A2' }, { id: 5, level: 'A2+' }, { id: 6, level: 'B1' }, { id: 7, level: 'B1+' }, { id: 8, level: 'B2' }, { id: 9, level: 'B2+' }, { id: 10, level: 'C1' }, { id: 11, level: 'C1+' }, { id: 12, level: 'C2' },
@@ -51,16 +51,16 @@ export default function BasicExample() {
                 </ControlGroup>
             </div>
 
-            <div className="leftBlockWrapper">
-                <div className="leftBlockTitle">
+            <div className={ css.leftBlockWrapper }>
+                <div className={ css.leftBlockTitle }>
                     Introduction to the team
                 </div>
-                <div className="leftBlockText">
+                <div className={ css.leftBlockText }>
                     Sends list of newcomers joined the team during the last month. It can also send surveys to newcomers
                     so they will be able to write introductions which will be included into the monthly email
                 </div>
                 <div>
-                    <div className="whenTitle">
+                    <div className={ css.whenTitle }>
                         When
                     </div>
                     <div style={ { display: 'flex', marginBottom: '6px' } }>
@@ -76,14 +76,14 @@ export default function BasicExample() {
                             <TimePicker value={ valueTP } onValueChange={ onValueTPChange } />
                         </div>
                     </div>
-                    <div className="leftBlockText">
+                    <div className={ css.leftBlockText }>
                         If it happens to be a weekend, the email will be sent next Monday
                     </div>
                 </div>
             </div>
 
             <div style={ { display: 'flex', margin: '20px' } }>
-                <div className="timeBlockTitle">
+                <div className={ css.timeBlockTitle }>
                     Estimated efforts
                 </div>
                 <div>
@@ -104,7 +104,7 @@ export default function BasicExample() {
                             <PrefixComponent text="m" />
                         </ControlGroup>
                     </div>
-                    <div className="timeBlockDesc">
+                    <div className= { css.timeBlockDesc }>
                         Original estimate: 5h 00m
                     </div>
                 </div>
