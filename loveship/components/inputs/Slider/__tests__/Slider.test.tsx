@@ -1,15 +1,15 @@
 import React from 'react';
-import { renderer } from '@epam/uui-test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { Slider } from '../Slider';
 
 describe('Slider', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer.create(<Slider min={ 1 } max={ 100 } step={ 5 } value={ 50 } onValueChange={ jest.fn() } />).toJSON();
+    it('should be rendered correctly', async () => {
+        const tree = await renderSnapshotWithContextAsync(<Slider min={ 1 } max={ 100 } step={ 5 } value={ 50 } onValueChange={ jest.fn() } />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly with extra props', () => {
-        const tree = renderer.create(<Slider min={ 1 } max={ 100 } step={ 5 } value={ 50 } onValueChange={ jest.fn() } color="sun" />).toJSON();
+    it('should be rendered correctly with extra props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<Slider min={ 1 } max={ 100 } step={ 5 } value={ 50 } onValueChange={ jest.fn() } color="sun" />);
         expect(tree).toMatchSnapshot();
     });
 });

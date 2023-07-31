@@ -36,7 +36,7 @@ export class GAListener implements IAnalyticsListener {
     }
 
     private sendToGA(...args: any[]) {
-        (window as any).dataLayer.push(arguments);
+        (window as any).dataLayer.push(...args);
     }
 
     private sendPageView(path: string) {

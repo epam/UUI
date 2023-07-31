@@ -37,7 +37,7 @@ const checkComponents = (componentTokens: Omit<TokensObject, 'core' | 'palette'>
         }
     });
 
-    Object.entries(componentsScheme).forEach(([componentKey, componentClass]) => {
+    Object.entries(componentsScheme).forEach(([componentKey]) => {
         componentTokens[componentKey]
             && Object.entries(componentTokens[componentKey]).forEach(([key, tokens]) => {
                 try {
@@ -45,7 +45,7 @@ const checkComponents = (componentTokens: Omit<TokensObject, 'core' | 'palette'>
                         throw Error(`New class .${key} has been added to "${uppercaseFirst(componentKey)}", check if the required tokens are available in the core`);
                     } else {
                         tokens
-                            && Object.entries(tokens).forEach(([token, value]) => {
+                            && Object.entries(tokens).forEach(([token]) => {
                                 try {
                                     if (!(componentsScheme[componentKey][key] as ComponentClass)[token]) {
                                         throw Error(`New token --${token} has been added to .${key}, check if the required tokens are available in the core`);

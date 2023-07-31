@@ -18,11 +18,11 @@ export default function ProductTable() {
     );
 
     const view = dataSource.useView(value, onValueChange, {
-        getRowOptions: (item) => ({
+        getRowOptions: () => ({
             checkbox: { isVisible: true },
             isSelectable: true,
         }), // Provide metadata options about row. Go to the "DataRowOptions" interface, to see the full list of possible options.
-        getFilter: (filter) => (item) => !!item.Color, // Provide filter callback, if your need to apply filtering for rows.
+        getFilter: () => (item) => !!item.Color, // Provide filter callback, if your need to apply filtering for rows.
         // By default sorting will be applied by column 'key' field. If you need another behavior, pass sortBy callback, which will return item field for sorting;
         sortBy: (item, sorting) => {
             switch (sorting.field) {

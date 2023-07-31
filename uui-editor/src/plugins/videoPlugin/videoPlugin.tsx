@@ -1,7 +1,6 @@
 import { useUuiContext } from '@epam/uui-core';
 import React from 'react';
 
-
 import { isPluginActive, isTextSelected } from '../../helpers';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
@@ -22,9 +21,9 @@ interface IVideoButton {
     editor: PlateEditor;
 }
 
-export const VideoButton = ({
+export function VideoButton({
     editor,
-}: IVideoButton) => {
+}: IVideoButton) {
     const context = useUuiContext();
 
     if (!isPluginActive('video')) return null;
@@ -37,16 +36,16 @@ export const VideoButton = ({
                 if (!editor) return;
                 event.preventDefault();
 
-                context.uuiModals.show<string>(modalProps => (
+                context.uuiModals.show<string>((modalProps) => (
                     <AddVideoModal
                         editor={ editor }
                         { ...modalProps }
                     />
                 )).catch(() => null);
-            }  }
+            } }
             isDisabled={ !!isTextSelected(editor, true) }
             icon={ VideoIcon }
             isActive={ block?.length && block[0].type === 'iframe' }
         />
     );
-};
+}

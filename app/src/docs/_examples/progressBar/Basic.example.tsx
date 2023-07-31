@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ProgressBar, Panel } from '@epam/promo';
 import css from './BasicExample.module.scss';
 

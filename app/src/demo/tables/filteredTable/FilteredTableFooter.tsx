@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import css from './FilteredTableFooter.module.scss';
 import {
     FlexCell, LabeledInput, TextInput, Text, PickerInput,

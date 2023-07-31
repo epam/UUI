@@ -3,12 +3,11 @@ import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
 import css from './AddVideoModal.module.scss';
 
-import getVideoId from "get-video-id";
-import { useState } from "react";
+import getVideoId from 'get-video-id';
+import { useState } from 'react';
 import { PlateEditor, setElements } from '@udecode/plate-common';
 
 const { LabeledInput, ModalBlocker, ModalWindow, ModalHeader, FlexRow, TextInput, ModalFooter, Button } = uuiSkin;
-
 
 interface AddVideoModalProps extends IModal<any> {
     editor: PlateEditor;
@@ -17,7 +16,6 @@ interface AddVideoModalProps extends IModal<any> {
 export type VideoService = 'youtube' | 'vimeo' | 'videoportal' | 'vine' | 'videopress';
 
 export function getVideoInfo(url: string): { id?: string, service?: VideoService } {
-
     const videoInfo = getVideoId(url);
     if (videoInfo.id || videoInfo.service) {
         return videoInfo;
@@ -42,9 +40,9 @@ export function getVideoSrc(src: string) {
     const { id, service } = getVideoInfo(prependHttp(src, { https: false }));
 
     switch (service) {
-        case 'youtube': return `https://www.youtube.com/embed/${ id }`;
-        case 'videoportal': return `//videoportal.epam.com/video/iframe.html?video=${ id }`;
-        case 'vimeo': return `https://player.vimeo.com/video/${ id }`;
+        case 'youtube': return `https://www.youtube.com/embed/${id}`;
+        case 'videoportal': return `//videoportal.epam.com/video/iframe.html?video=${id}`;
+        case 'vimeo': return `https://player.vimeo.com/video/${id}`;
         default: return src;
     }
 }
@@ -65,19 +63,19 @@ export function AddVideoModal({ editor, success, abort, ...props }: AddVideoModa
 
     return (
         <ModalBlocker { ...props } success={ success } abort={ abort }>
-            <ModalWindow >
+            <ModalWindow>
                 <ModalHeader title="Add video" onClose={ abort } />
                 <FlexRow cx={ css.inputWrapper }>
-                    <LabeledInput label='Video url' >
+                    <LabeledInput label="Video url">
                         <TextInput value={ src } onValueChange={ setSrc } autoFocus />
                     </LabeledInput>
                 </FlexRow>
-                <ModalFooter borderTop >
+                <ModalFooter borderTop>
                     <FlexSpacer />
-                    <Button type='cancel' caption='Cancel' onClick={ () => abort() } />
+                    <Button type="cancel" caption="Cancel" onClick={ () => abort() } />
                     <Button
-                        type='success'
-                        caption='Ok'
+                        type="success"
+                        caption="Ok"
                         isDisabled={ !src }
                         onClick={ createVideoBlock }
 

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { mouseCoords } from '../../helpers/mouseCoords';
 import { UuiContexts, DndContextState } from '../../types/contexts';
 import { LayoutLayer } from '../../types/objects';
 import { UuiContext } from '../ContextProvider';
@@ -36,7 +35,7 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
             this.context.uuiLayout.releaseLayer(this.layer);
             this.layer = null;
         }
-
+        const mouseCoords = this.context.uuiDnD.getMouseCoords();
         this.setState({ ...state, pointerX: mouseCoords.mousePageX, pointerY: mouseCoords.mousePageY });
     };
 
@@ -49,6 +48,7 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
     componentWillUnmount() {
         this.layer && this.context.uuiLayout.releaseLayer(this.layer);
         window.removeEventListener('pointermove', this.onPointerMove);
+        this.context.uuiDnD.unsubscribe(this.contextUpdateHandler);
     }
 
     getGhostCoords(pointerX: number, pointerY: number) {

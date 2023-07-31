@@ -98,8 +98,8 @@ const savedValue: FormState = { items: getDemoTasks() };
 export default function ProjectTimeReportDemo() {
     const { lens, value, onValueChange } = useForm<FormState>({
         value: savedValue,
-        onSave: async (value) => {
-            onValueChange(value);
+        onSave: async (data) => {
+            onValueChange(data);
         },
     });
 

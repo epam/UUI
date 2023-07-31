@@ -1,6 +1,6 @@
 import { SortingOption } from '../../types/dataQuery';
 
-const eqPredicate = (a: any, b: any) => 0;
+const eqPredicate = () => 0;
 
 // Previous versions use this comparer. While it works great for human-readable strings, it's broken for dates. Also, we need a plain sort in case of 'order' fields.
 // const compareScalars = (new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'})).compare;

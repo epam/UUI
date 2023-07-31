@@ -1,5 +1,5 @@
 import React, {
-    CSSProperties, forwardRef, useCallback, useEffect, useImperativeHandle, useRef,
+    CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef,
 } from 'react';
 import { Scrollbars as ReactCustomScrollBars } from 'react-custom-scrollbars-2';
 import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
@@ -28,7 +28,7 @@ enum uuiScrollbars {
 }
 
 export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
-    style, hasBottomShadow, hasTopShadow, rawProps, ...props
+    style: outerStyle, hasBottomShadow, hasTopShadow, rawProps, ...props
 }, ref) => {
     const bars = useRef<ScrollbarsApi>();
 
@@ -53,10 +53,10 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
 
     useEffect(handleUpdateScroll);
 
-    const renderView = ({ style, ...rest }: { style: CSSProperties; rest: {} }) => {
+    const renderView = ({ style: innerStyle, ...rest }: { style: CSSProperties; rest: {} }) => {
         const propsRenderView = props.renderView as (p: any) => any;
-        const rv = propsRenderView?.({ style: { ...style, ...{ position: 'relative', flex: '1 1 auto' } }, ...rest });
-        return rv || <div style={ { ...style, ...{ position: 'relative', flex: '1 1 auto' } } } { ...rest } />;
+        const rv = propsRenderView?.({ style: { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto' } }, ...rest });
+        return rv || <div style={ { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto' } } } { ...rest } />;
     };
 
     return (
@@ -67,7 +67,7 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
             renderTrackVertical={ (props: any) => <div { ...props } className={ uuiScrollbars.uuiTrackVertical } /> }
             renderThumbHorizontal={ () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> }
             renderThumbVertical={ () => <div className={ uuiScrollbars.uuiThumbVertical } /> }
-            style={ { ...{ display: 'flex' }, ...style } }
+            style={ { ...{ display: 'flex' }, ...outerStyle } }
             onScroll={ handleUpdateScroll }
             hideTracksWhenNotNeeded
             ref={ bars }

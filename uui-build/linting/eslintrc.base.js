@@ -191,7 +191,7 @@ function uuiJsRules() {
         'no-param-reassign': [1, { props: false }],
         radix: [1, 'as-needed'],
         'no-cond-assign': [2, 'except-parens'],
-        'no-unused-expressions': [1, { allowShortCircuit: true }],
+        'no-unused-expressions': [2, { allowShortCircuit: true }],
         eqeqeq: [2, 'smart'],
         'prefer-const': [
             1, {
