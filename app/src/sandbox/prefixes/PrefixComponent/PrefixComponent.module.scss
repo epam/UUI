@@ -1,4 +1,4 @@
-@use '~@epam/promo/assets/styles/fonts' as *;
+@use '~@epam/assets/scss/index' as *;
 
 .prefixWrapper {
     display: flex;
@@ -9,6 +9,5 @@
     padding: 6px;
     background-color: #F5F6FA;
     font-size: 14px;
-    font-weight: 400;
-    font-family: $font-sans;
+    font-family: $font-sans-semibold;
 }

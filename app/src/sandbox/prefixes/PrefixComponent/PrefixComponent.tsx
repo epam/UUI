@@ -1,5 +1,5 @@
 import React from 'react';
-import './PrefixComponent.scss';
+import css from './PrefixComponent.module.scss';
 
 interface TestComponentProps {
     text: string;
@@ -7,7 +7,7 @@ interface TestComponentProps {
 
 export default function PrefixComponent(props: TestComponentProps) {
     return (
-        <div className="prefixWrapper">
+        <div className={ css.prefixWrapper }>
             {props.text}
         </div>
     );

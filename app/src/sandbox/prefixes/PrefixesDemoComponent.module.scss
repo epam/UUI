@@ -1,4 +1,4 @@
-@use '~@epam/promo/assets/styles/fonts' as *;
+@use '~@epam/assets/scss/index' as *;
 
 .leftBlockWrapper {
     width: 425px;
@@ -11,9 +11,8 @@
     margin-bottom: 20px;
 
     .leftBlockTitle {
-        font-family: $font-sans;
+        font-family: $font-sans-semibold;
         font-size: 18px;
-        font-weight: 600;
         line-height: 24px;
         letter-spacing: 0;
         text-align: left;
@@ -21,9 +20,8 @@
     }
 
     .leftBlockText {
-        font-family: $font-sans;
+        font-family: $font-sans-semibold;
         font-size: 12px;
-        font-weight: 400;
         line-height: 18px;
         letter-spacing: 0;
         text-align: left;
@@ -32,9 +30,8 @@
     }
 
     .whenTitle {
-        font-family: $font-sans;
+        font-family: $font-sans-semibold;
         font-size: 14px;
-        font-weight: 600;
         line-height: 24px;
         letter-spacing: 0;
         text-align: left;
@@ -43,9 +40,8 @@
 }
 
 .timeBlockTitle {
-    font-family: $font-sans;
+    font-family: $font-sans-bold;
     font-size: 14px;
-    font-weight: 600;
     line-height: 24px;
     letter-spacing: 0;
     text-align: left;
@@ -57,9 +53,8 @@
 }
 
 .timeBlockDesc {
-    font-family: $font-sans;
+    font-family: $font-sans-semibold;
     font-size: 12px;
-    font-weight: 400;
     line-height: 18px;
     letter-spacing: 0;
     text-align: left;
