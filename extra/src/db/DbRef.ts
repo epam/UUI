@@ -84,7 +84,7 @@ export class DbRef<T> {
         this.onUpdate();
     }
 
-    public enqueueFetch(run: () => DbPatch<T>) {}
+    public enqueueFetch() {}
     public entityLens<TEntityName extends keyof T>(name: TEntityName, filter: Partial<T[TEntityName]>): DbEntityLens<T, TEntityName> {
         return new DbEntityLens(this, name, filter);
     }

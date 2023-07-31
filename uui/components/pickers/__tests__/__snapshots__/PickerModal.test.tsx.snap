@@ -654,6 +654,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         className="uui-checkbox"
                       >
                         <input
+                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -721,6 +722,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         className="uui-checkbox"
                       >
                         <input
+                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -788,6 +790,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         className="uui-checkbox"
                       >
                         <input
+                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -855,6 +858,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         className="uui-checkbox"
                       >
                         <input
+                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -922,6 +926,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         className="uui-checkbox"
                       >
                         <input
+                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -989,6 +994,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         className="uui-checkbox"
                       >
                         <input
+                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -1056,6 +1062,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         className="uui-checkbox"
                       >
                         <input
+                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -1123,6 +1130,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         className="uui-checkbox"
                       >
                         <input
+                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -1190,6 +1198,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         className="uui-checkbox"
                       >
                         <input
+                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -1257,6 +1266,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         className="uui-checkbox"
                       >
                         <input
+                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -1324,6 +1334,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         className="uui-checkbox"
                       >
                         <input
+                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}

@@ -175,6 +175,11 @@ function uuiJsRules() {
          */
         'import/no-cycle': [1, { maxDepth: 4 }],
         'import/no-extraneous-dependencies': ['error', {}],
+        'no-restricted-imports': ['error', {
+            patterns: [
+                { group: ['@epam/*/build/*', '@epam/*/build'], message: 'Import from "build" folder of UUI modules is not allowed.' },
+            ],
+        }],
         'import/no-unresolved': [
             2, {
                 ignore: [
@@ -186,7 +191,7 @@ function uuiJsRules() {
         'no-param-reassign': [1, { props: false }],
         radix: [1, 'as-needed'],
         'no-cond-assign': [2, 'except-parens'],
-        'no-unused-expressions': [1, { allowShortCircuit: true }],
+        'no-unused-expressions': [2, { allowShortCircuit: true }],
         eqeqeq: [2, 'smart'],
         'prefer-const': [
             1, {

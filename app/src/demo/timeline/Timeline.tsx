@@ -22,7 +22,7 @@ export class Timeline extends React.Component {
         svc.api.demo.schedules().then((employees) => {
             const rows = employees.map((employee) => ({ items: employee.events }));
             this.dataRows = rows.map((employee) => {
-                const items: Item[] = employee.items.map((event, index) => ({
+                const items: Item[] = employee.items.map((event) => ({
                     from: new Date(event.startDate),
                     to: new Date(event.endDate),
                     color: event.status === 'FREE' ? '#acd24e' : '#c0c3ce',
@@ -59,12 +59,12 @@ export class Timeline extends React.Component {
         window.onresize = null;
     }
 
-    handleZoomToDay = (e: any) => {
+    handleZoomToDay = () => {
         this.timelineController.setViewport({ center: selectedDay, pxPerMs: this.timeline.clientWidth / msPerDay, widthPx: this.timeline.clientWidth }, true);
         this.timelineController.setShiftPercent(1);
     };
 
-    handleZoomToMonth = (e: any) => {
+    handleZoomToMonth = () => {
         this.timelineController.setViewport({ center: selectedDay, pxPerMs: 30 / msPerDay, widthPx: this.timeline.clientWidth }, true);
         this.timelineController.setShiftPercent(0.3);
     };

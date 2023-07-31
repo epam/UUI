@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { FlexRow } from '@epam/promo';
 import { AppHeader, Page, Sidebar } from '../common';
 import { svc } from '../services';
-import { UUI4, UUI3 } from '../common';
+import { UUI4Type, UUI3Type, UUI4 } from '../common';
 import { items, DocItem } from './structure';
 import { getQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
@@ -12,7 +12,7 @@ import { DataRowProps } from '@epam/uui-core';
 type DocsQuery = {
     id: string;
     mode?: string;
-    skin?: UUI3 | UUI4;
+    skin?: UUI4Type | UUI3Type;
     category?: string;
 };
 

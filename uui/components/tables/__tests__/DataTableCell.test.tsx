@@ -19,7 +19,7 @@ describe('DataTableCell', () => {
                         rowKey: '1',
                         index: 1,
                         dnd: {
-                            canAcceptDrop: (params) => null,
+                            canAcceptDrop: () => null,
                             onDrop: jest.fn,
                             srcData: {},
                             dstData: {},
@@ -49,7 +49,7 @@ describe('DataTableCell', () => {
                         rowKey: '1',
                         index: 1,
                         dnd: {
-                            canAcceptDrop: (params) => null,
+                            canAcceptDrop: () => null,
                             onDrop: jest.fn,
                             srcData: {},
                             dstData: {},

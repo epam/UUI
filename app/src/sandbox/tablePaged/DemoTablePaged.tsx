@@ -26,7 +26,6 @@ export const DemoTablePaged: React.FC = () => {
     }, []);
 
     const [totalCount, setTotalCount] = useState(0);
-    const [appliedFilter, setAppliedFilter] = useState<Person>();
 
     const api: LazyDataSourceApi<Person, number, Person> = useCallback(async (request) => {
         const result = await svc.api.demo.personsPaged({
@@ -42,7 +41,6 @@ export const DemoTablePaged: React.FC = () => {
     }, []);
 
     const applyFilter = useCallback(() => {
-        setAppliedFilter(tableState.filter);
         setTableState({ ...tableState, indexToScroll: 0 });
     }, [tableState]);
 
@@ -58,14 +56,6 @@ export const DemoTablePaged: React.FC = () => {
             rowProps.onSelect(rowProps);
         },
     };
-
-    const viewTableState = useMemo(
-        () => ({
-            ...tableState,
-            filter: appliedFilter,
-        }),
-        [tableState, appliedFilter],
-    );
 
     const { rows, listProps } = useList(
         {

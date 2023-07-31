@@ -1,16 +1,9 @@
-import * as React from 'react';
 import cx from 'classnames';
-
-import { StyledElementProps } from '@udecode/plate';
+import * as React from 'react';
 
 import css from './NotePluginBlock.module.scss';
 
-interface NotePluginBlock extends StyledElementProps {
-    type: string;
-}
-
-export function NotePluginBlock(props: NotePluginBlock) {
-
+export function NotePluginBlock(props: any) {
     const { attributes, type, children } = props;
 
     return (
