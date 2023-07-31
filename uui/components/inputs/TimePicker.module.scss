@@ -1,9 +1,4 @@
-@use '../../assets/styles/index' as *;
-@use '../../assets/styles/colorvars/inputs/timePicker-colorvars.scss' as *;
-
 .root {
-    @include time-picker-color();
-
     &:global(.uui-timepicker-container) {
         display: flex;
         padding: 15px 12px;
@@ -20,8 +15,8 @@
                 text-align: center;
                 font-size: 24px;
                 line-height: 24px;
-                color: var(--text-color);
-                font-family: $font-sans;
+                color: var(--uui-time-picker-text);
+                font-family: var(--font-regular);
             }
         }
 
@@ -36,7 +31,7 @@
                 position: absolute;
                 top: 35px;
                 left: 81px;
-                color: var(--text-color);
+                color: var(--uui-time-picker-text);
                 font-size: 24px;
                 line-height: 30px;
             }
@@ -44,7 +39,7 @@
 
         .icon {
             align-items: center;
-            fill: var(--icon-color);
+            fill: var(--uui-time-picker-icon-clickable);
 
             &:hover {
                 cursor: pointer;
@@ -53,13 +48,13 @@
 
         :global(.uui-timepicker-icon-up) {
             align-items: center;
-            fill: var(--icon-color);
+            fill: var(--uui-time-picker-icon-clickable);
             transform: rotate(180deg);
         }
 
         :global(.uui-timepicker-icon-down) {
             align-items: center;
-            fill: var(--icon-color);
+            fill: var(--uui-time-picker-icon-clickable);
         }
     }
 }
@@ -67,5 +62,3 @@
 .date-input {
     width: 100%;
 }
-
-
