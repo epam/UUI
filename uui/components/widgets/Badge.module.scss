@@ -30,6 +30,10 @@
 
     }
 
+    &:focus-visible {
+        @include focus-visible-effect();
+    }
+
     &.size-18 {
         min-width: 18px;
         min-height: 18px;
