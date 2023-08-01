@@ -8,10 +8,10 @@ import {
     PlateProvider,
     Value,
     createPlugins,
-    isElementEmpty,
     useEventEditorSelectors,
     usePlateEditorState,
 } from '@udecode/plate-common';
+import { createTrailingBlockPlugin } from '@udecode/plate-trailing-block';
 import { createTextIndentPlugin } from '@udecode/plate-indent';
 import { createIndentListPlugin } from '@udecode/plate-indent-list';
 import { createJuicePlugin } from '@udecode/plate-juice';
@@ -20,7 +20,7 @@ import { createDeserializeDocxPlugin } from './plugins/deserializeDocxPlugin/des
 import css from './SlateEditor.module.scss';
 import { createPlateUI } from './components';
 import { migrateSchema } from './migration';
-import { baseMarksPlugin, paragraphPlugin } from './plugins';
+import { PARAGRAPH_TYPE, baseMarksPlugin, paragraphPlugin } from './plugins';
 import { MainToolbar, MarksToolbar } from './plugins/Toolbars';
 import { EditorValue } from './types';
 
@@ -36,7 +36,12 @@ export const defaultPlugins: any = [
     createExitBreakPlugin(),
     createDeserializeDocxPlugin(),
     createJuicePlugin(),
+    // next two are linked
     paragraphPlugin(),
+    createTrailingBlockPlugin({
+        options: { type: PARAGRAPH_TYPE },
+        enabled: true,
+    }),
 ];
 
 export const basePlugins: any = [
@@ -84,18 +89,6 @@ function Editor(props: PlateEditorProps) {
                     autoFocus: props.autoFocus,
                     readOnly: props.isReadonly,
                     placeholder: props.placeholder,
-                    renderPlaceholder: ({ attributes }) => {
-                        const shouldShowPlaceholder = isElementEmpty(editor, editor.children[0]);
-                        return shouldShowPlaceholder && (
-                            <div
-                                { ...attributes }
-                                style={ { pointerEvents: 'none' } }
-                                className={ css.placeholder }
-                            >
-                                { props.placeholder }
-                            </div>
-                        );
-                    },
                     style: { padding: '0 24px', minHeight: props.minHeight },
                 } }
                 // we override plate core insertData plugin
