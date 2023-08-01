@@ -4270,6 +4270,13 @@
     "@udecode/plate-common" "22.0.2"
     "@udecode/resizable" "22.0.2"
 
+"@udecode/plate-trailing-block@22.0.2":
+  version "22.0.2"
+  resolved "https://registry.yarnpkg.com/@udecode/plate-trailing-block/-/plate-trailing-block-22.0.2.tgz#95c1bb0af00fa1d877ed7ac27aab7e32e9f986b3"
+  integrity sha512-19mJrHHggedoyBtwKnKB+PDOy5j2O45y4M7YHuQlH4z7kz1GSAl4efM5/szWWIMNr2e481a+tzHIyWOFsIUkxw==
+  dependencies:
+    "@udecode/plate-common" "22.0.2"
+
 "@udecode/plate-utils@22.0.2":
   version "22.0.2"
   resolved "https://registry.yarnpkg.com/@udecode/plate-utils/-/plate-utils-22.0.2.tgz#8d567d80f610f4f98c81309c74ee86ec24ad9302"
