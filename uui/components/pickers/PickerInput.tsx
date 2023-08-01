@@ -2,7 +2,7 @@ import React from 'react';
 import { PickerBodyBaseProps, PickerInputBaseProps, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
 import { Dropdown } from '../overlays/Dropdown';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
-import { DataRowProps, DataSourceListProps, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
+import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import { Panel } from '../layout';
@@ -105,21 +105,21 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
         return props.editMode === 'modal' ? '36' : props.size;
     };
 
-    const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
+    const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
         return (
             <PickerItem
                 title={ getName(item) }
                 size={ getRowSize() }
-                dataSourceState={ dataSourceState }
+                dataSourceState={ dsState }
                 highlightSearchMatches={ highlightSearchMatches }
                 { ...rowProps }
             />
         );
     };
 
-    const renderRow = (rowProps: DataRowProps<TItem, TId>) => {
+    const renderRow = (rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
         return props.renderRow ? (
-            props.renderRow(rowProps, dataSourceState)
+            props.renderRow(rowProps, dsState)
         ) : (
             <DataPickerRow
                 { ...rowProps }
@@ -127,13 +127,13 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
                 borderBottom="none"
                 size={ getRowSize() }
                 padding={ props.editMode === 'modal' ? '24' : '12' }
-                renderItem={ renderItem }
+                renderItem={ (item, itemProps) => renderItem(item, itemProps, dsState) }
             />
         );
     };
 
     const renderBody = (bodyProps: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
-        const renderedDataRows = rows.map((row) => renderRow(row));
+        const renderedDataRows = rows.map((row) => renderRow(row, dataSourceState));
         const maxHeight = isMobile() ? document.documentElement.clientHeight : props.dropdownHeight || pickerHeight;
         const minBodyWidth = isMobile() ? document.documentElement.clientWidth : props.minBodyWidth || pickerWidth;
 

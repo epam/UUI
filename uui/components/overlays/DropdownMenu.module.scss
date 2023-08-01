@@ -81,7 +81,8 @@
     font-size: 14px;
     padding: 6px 0;
     background-color: var(--uui-dropdown-menu-bg);
-    box-shadow: var(--uui-shadow);
+    box-shadow: var(--uui-shadow-level-1);
+    border-radius: var(--uui-dropdown-container-border-radius);
 }
 
 .submenuRootItem {

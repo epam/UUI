@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "A complex example of DropdownMenu. ",
-            "marks": []
-          }
-        ]
+        "text": "A complex example of DropdownMenu. "
       }
     ]
   }
-}
+]
