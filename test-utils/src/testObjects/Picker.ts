@@ -105,9 +105,9 @@ export class PickerTestObject {
         return await dialog.findByRoleAndText({ role: 'option', text: optionText });
     }
 
-    public static async waitForOptionsToBeReady() {
+    public static async waitForOptionsToBeReady(editMode?: string) {
         return await waitFor(
-            () => expect(this.getOptions({ busy: false }).length).toBeGreaterThan(0),
+            () => expect(this.getOptions({ editMode, busy: false }).length).toBeGreaterThan(0),
         );
     }
 }
