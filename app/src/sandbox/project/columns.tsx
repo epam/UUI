@@ -18,7 +18,13 @@ export function getColumns(columnsProps: ColumnsProps) {
             width: 400,
             fix: 'left',
             isSortable: true,
-            renderCell: (props) => <DataTableCell padding="12" { ...props.rowLens.prop('name').toProps() } renderEditor={ (props) => <TextInput { ...props } /> } { ...props } />,
+            renderCell: (props) => (
+                <DataTableCell
+                    { ...props.rowLens.prop('name').toProps() }
+                    renderEditor={ (props) => <TextInput { ...props } /> }
+                    { ...props }
+                />
+            ),
         }, {
             key: 'estimate',
             textAlign: 'right',
