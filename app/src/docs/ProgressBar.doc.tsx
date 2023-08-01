@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4,
+    BaseDocsBlock, DocExample, EditableDocContent,
 } from '../common';
 
 export class ProgressBarDoc extends BaseDocsBlock {

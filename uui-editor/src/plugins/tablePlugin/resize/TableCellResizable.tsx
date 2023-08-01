@@ -10,8 +10,8 @@ import { ELEMENT_TABLE, TTableElement, TableCellElementState, TablePlugin, round
 import { ResizeHandle } from './TableResizeHandle';
 
 export type TableCellElementResizableProps = Pick<
-    TableCellElementState,
-    'colIndex' | 'rowIndex' | 'readOnly'
+TableCellElementState,
+'colIndex' | 'rowIndex' | 'readOnly'
 > & {
     /**
      * Resize by step instead of by pixel.
@@ -41,7 +41,7 @@ export const useTableCellElementResizable = ({
     const tableElement = useElement<TTableElement>(ELEMENT_TABLE);
     const { minColumnWidth = 0 } = getPluginOptions<TablePlugin>(
         editor,
-        ELEMENT_TABLE
+        ELEMENT_TABLE,
     );
 
     const [hoveredColIndex, setHoveredColIndex] = useTableStore().use.hoveredColIndex();
@@ -61,13 +61,13 @@ export const useTableCellElementResizable = ({
             setTableColSize(
                 editor,
                 { colIndex, width },
-                { at: findNodePath(editor, element)! }
+                { at: findNodePath(editor, element)! },
             );
 
             // Prevent flickering
             setTimeout(() => overrideColSize(colIndex, null), 0);
         },
-        [editor, element, overrideColSize]
+        [editor, element, overrideColSize],
     );
 
     /* eslint-disable @typescript-eslint/no-shadow */
@@ -76,13 +76,13 @@ export const useTableCellElementResizable = ({
             setTableRowSize(
                 editor,
                 { rowIndex, height },
-                { at: findNodePath(editor, element)! }
+                { at: findNodePath(editor, element)! },
             );
 
             // Prevent flickering
             setTimeout(() => overrideRowSize(rowIndex, null), 0);
         },
-        [editor, element, overrideRowSize]
+        [editor, element, overrideRowSize],
     );
 
     const setMarginLeft = useCallback(
@@ -90,13 +90,13 @@ export const useTableCellElementResizable = ({
             setTableMarginLeft(
                 editor,
                 { marginLeft },
-                { at: findNodePath(editor, element)! }
+                { at: findNodePath(editor, element)! },
             );
 
             // Prevent flickering
             setTimeout(() => overrideMarginLeft(null), 0);
         },
-        [editor, element, overrideMarginLeft]
+        [editor, element, overrideMarginLeft],
     );
 
     const handleResizeRight = useCallback(
@@ -111,7 +111,7 @@ export const useTableCellElementResizable = ({
                     min: minColumnWidth,
                     max: nextInitial ? complement(minColumnWidth) : undefined,
                 }),
-                stepX
+                stepX,
             );
 
             const nextNew = nextInitial ? complement(currentNew) : undefined;
@@ -127,14 +127,14 @@ export const useTableCellElementResizable = ({
             overrideColSize,
             setColSize,
             stepX,
-        ]
+        ],
     );
 
     const handleResizeBottom = useCallback(
         (event: ResizeEvent) => {
             const newHeight = roundCellSizeToStep(
                 event.initialSize + event.delta,
-                stepY
+                stepY,
             );
 
             if (event.finished) {
@@ -143,7 +143,7 @@ export const useTableCellElementResizable = ({
                 overrideRowSize(rowIndex, newHeight);
             }
         },
-        [overrideRowSize, rowIndex, setRowSize, stepY]
+        [overrideRowSize, rowIndex, setRowSize, stepY],
     );
 
     const handleResizeLeft = useCallback(
@@ -157,7 +157,7 @@ export const useTableCellElementResizable = ({
                     min: 0,
                     max: complement(minColumnWidth),
                 }),
-                stepX
+                stepX,
             );
 
             const newWidth = complement(newMargin);
@@ -180,7 +180,7 @@ export const useTableCellElementResizable = ({
             setColSize,
             setMarginLeft,
             stepX,
-        ]
+        ],
     );
 
     /* eslint-disable @typescript-eslint/no-shadow */
@@ -229,16 +229,15 @@ export const useTableCellElementResizable = ({
 };
 
 export function TableCellElementResizable(
-    props: TableCellElementResizableProps
+    props: TableCellElementResizableProps,
 ) {
     const editor = usePlateEditorRef();
     const { disableMarginLeft } = getPluginOptions<TablePlugin>(
         editor,
-        ELEMENT_TABLE
+        ELEMENT_TABLE,
     );
     const { readOnly, colIndex } = props;
-    const { rightProps, bottomProps, leftProps } =
-        useTableCellElementResizable(props);
+    const { rightProps, bottomProps, leftProps } = useTableCellElementResizable(props);
 
     const hasLeftHandle = colIndex === 0 && !disableMarginLeft;
 

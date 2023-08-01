@@ -40,7 +40,7 @@ describe('getOrderBetween', () => {
         expect(order < '0001').toBe(true);
     });
 
-    it('can insert before 0001', () => {
+    it('can insert after 9999', () => {
         const order = getOrderBetween('9999', null);
         expect(order > '9999').toBe(true);
         expect(order < 'z').toBe(true);

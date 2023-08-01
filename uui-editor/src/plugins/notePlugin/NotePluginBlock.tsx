@@ -4,7 +4,6 @@ import * as React from 'react';
 import css from './NotePluginBlock.module.scss';
 
 export function NotePluginBlock(props: any) {
-
     const { attributes, type, children } = props;
 
     return (

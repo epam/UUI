@@ -21,6 +21,7 @@ import TableCellsStylesSandbox from './tableCellStyles/TableCellsStylesSandbox';
 import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
 import { RichTextEditorDemo } from './RTE/rteDemo';
 import { TableColumnConfigModalTest } from './tableColConfigModal/TableColumnConfigModalTest';
+import PrefixDemoComponent from './prefixes/PrefixesDemoComponent';
 
 export function SandboxPage() {
     const items = useMemo(
@@ -41,6 +42,7 @@ export function SandboxPage() {
             { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
             { id: 'RTEDemo', name: 'RTE Demo', component: RichTextEditorDemo },
             { id: 'TableColumnsConfigurationModal', name: 'Table ColumnsConfigModal', component: TableColumnConfigModalTest },
+            { id: 'PrefixSuffixDemo', name: 'Prefix Demo', component: PrefixDemoComponent },
         ],
         [],
     );

@@ -59,7 +59,7 @@ export function getColumns() {
             textAlign: 'right',
         }, {
             key: 'сonfig',
-            render: (p) => null,
+            render: () => null,
             width: 48,
             fix: 'right',
         },
@@ -124,7 +124,7 @@ export function getColumns() {
             textAlign: 'right',
         }, {
             key: 'сonfig',
-            render: (p) => null,
+            render: () => null,
             width: 48,
             fix: 'right',
         },

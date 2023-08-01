@@ -21,6 +21,7 @@ import {
     getSeparatedValue,
     useUuiContext,
     i18n,
+    preventDefaultIfTargetFocused,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import css from './NumericInput.module.scss';
@@ -116,8 +117,8 @@ export function NumericInput(props: NumericInputProps) {
 
         props.onValueChange(newValue);
         if (props.getValueChangeAnalyticsEvent) {
-            const event = props.getValueChangeAnalyticsEvent(newValue, props.value);
-            context.uuiAnalytics.sendEvent(event);
+            const analyticsEvent = props.getValueChangeAnalyticsEvent(newValue, props.value);
+            context.uuiAnalytics.sendEvent(analyticsEvent);
         }
     };
 
@@ -167,12 +168,10 @@ export function NumericInput(props: NumericInputProps) {
 
     // disable changing the value by scrolling the wheel when the input is in focus and hover
     React.useEffect(() => {
-        const preventValueChange = (e: WheelEvent) => document.activeElement === e.target && e.preventDefault();
-
-        inputRef?.current?.addEventListener('wheel', preventValueChange, { passive: false });
+        inputRef?.current?.addEventListener('wheel', preventDefaultIfTargetFocused, { passive: false });
 
         return () => {
-            inputRef?.current?.removeEventListener('wheel', preventValueChange);
+            inputRef?.current?.removeEventListener('wheel', preventDefaultIfTargetFocused);
         };
     }, []);
 

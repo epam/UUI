@@ -1,4 +1,3 @@
-import React from 'react';
 import { withMods } from '@epam/uui-core';
 import { allEpamPrimaryColors, EpamPrimaryColor } from '../types';
 import { IconButton as uuiIconButton, IconButtonProps as UuiIconButtonProps } from '@epam/uui';

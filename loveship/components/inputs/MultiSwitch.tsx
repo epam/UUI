@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { withMods } from '@epam/uui-core';
 import { MultiSwitch as UuiMultiSwitch, UuiMultiSwitchColor, MultiSwitchProps as UuiMultiSwitchProps } from '@epam/uui';
 

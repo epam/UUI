@@ -8,8 +8,9 @@ import {
     PlateProvider,
     Value,
     createPlugins,
+    isElementEmpty,
     useEventEditorSelectors,
-    usePlateEditorState
+    usePlateEditorState,
 } from '@udecode/plate-common';
 import { createTextIndentPlugin } from '@udecode/plate-indent';
 import { createIndentListPlugin } from '@udecode/plate-indent-list';
@@ -21,7 +22,6 @@ import { createPlateUI } from './components';
 import { migrateSchema } from './migration';
 import { baseMarksPlugin, paragraphPlugin } from './plugins';
 import { MainToolbar, MarksToolbar } from './plugins/Toolbars';
-import { isElementEmpty } from './helpers';
 import { EditorValue } from './types';
 
 /**
@@ -63,7 +63,7 @@ interface PlateEditorProps extends SlateEditorProps {
     id: string,
 }
 
-const Editor = (props: PlateEditorProps) => {
+function Editor(props: PlateEditorProps) {
     const editor = usePlateEditorState();
 
     const focusedEditorId = useEventEditorSelectors.focus();
@@ -85,19 +85,19 @@ const Editor = (props: PlateEditorProps) => {
                     readOnly: props.isReadonly,
                     placeholder: props.placeholder,
                     renderPlaceholder: ({ attributes }) => {
-                        const shouldShowPlaceholder = isElementEmpty(editor.children);
+                        const shouldShowPlaceholder = isElementEmpty(editor, editor.children[0]);
                         return shouldShowPlaceholder && (
                             <div
                                 { ...attributes }
                                 style={ { pointerEvents: 'none' } }
-                                className={ css.placeholder }>
+                                className={ css.placeholder }
+                            >
                                 { props.placeholder }
                             </div>
                         );
                     },
-                    style: { padding: '0 24px', minHeight: props.minHeight }
+                    style: { padding: '0 24px', minHeight: props.minHeight },
                 } }
-
                 // we override plate core insertData plugin
                 // so, we need to disable default implementation
                 disableCorePlugins={ { insertData: true } }
@@ -117,20 +117,21 @@ const Editor = (props: PlateEditorProps) => {
                 props.isReadonly && uuiMod.readonly,
                 props.scrollbars && css.withScrollbars,
                 css.typographyPromo,
-                props.fontSize == '16' ? css.typography16 : css.typography14,
+                props.fontSize === '16' ? css.typography16 : css.typography14,
             ) }
             style={ { minHeight: props.minHeight || 350 } }
             { ...props.rawProps }
         >
             { props.scrollbars
-                ? <ScrollBars cx={ css.scrollbars } style={ { width: '100%' } }>
-                    { renderEditor() }
-                </ScrollBars>
-                : renderEditor()
-            }
+                ? (
+                    <ScrollBars cx={ css.scrollbars } style={ { width: '100%' } }>
+                        { renderEditor() }
+                    </ScrollBars>
+                )
+                : renderEditor()}
         </div>
     );
-};
+}
 
 export function SlateEditor(props: SlateEditorProps) {
     const currentId = useRef(String(Date.now()));
@@ -139,7 +140,7 @@ export function SlateEditor(props: SlateEditorProps) {
         () => {
             return createPlugins((props.plugins || []).flat(), { components: createPlateUI() });
         },
-        [props.plugins]
+        [props.plugins],
     );
 
     const onChange = (value: Value) => {

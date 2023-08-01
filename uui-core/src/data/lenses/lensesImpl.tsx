@@ -58,23 +58,23 @@ export function prop<TObject, TKey extends keyof TObject>(name: TKey): ILensImpl
     };
 }
 
-export function index<TItem>(index: number): ILensImpl<TItem[], TItem> {
+export function index<TItem>(num: number): ILensImpl<TItem[], TItem> {
     return {
         get(big: TItem[]) {
             if (big == null) {
                 return undefined;
             } else {
-                return big[index];
+                return big[num];
             }
         },
         set(big: TItem[], small: TItem) {
             const newArray = [...big];
-            newArray[index] = small;
+            newArray[num] = small;
             return newArray;
         },
         getValidationState(big: ICanBeInvalid) {
             const validationStateProps = (big || blankValidationState).validationProps || {};
-            return validationStateProps[index];
+            return validationStateProps[num];
         },
         getMetadata(big: Metadata<TItem[]>) {
             const metadata: Metadata<TItem[]> = big || { all: { props: {} } };

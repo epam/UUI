@@ -53,7 +53,7 @@ export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
                     <LinkButton
                         rawProps={ { 'aria-label': 'Remove' } }
                         icon={ RemoveIcon }
-                        onClick={ () => this.props.onValueChange(this.props.value.filter((item, i) => index != i)) }
+                        onClick={ () => this.props.onValueChange(this.props.value.filter((filter, i) => index !== i)) }
                     />
                 </FlexCell>
             </FlexRow>
@@ -82,7 +82,7 @@ export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
                     </FlexCell>
                 </FlexRow>
                 {value.map((item, index) => this.renderItem(item, index))}
-                {value.length == 0 && (
+                {value.length === 0 && (
                     <FlexRow padding="24">
                         <RichTextView>No Experience defined</RichTextView>
                     </FlexRow>

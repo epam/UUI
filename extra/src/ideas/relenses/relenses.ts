@@ -59,8 +59,6 @@ const setVal = (a: { name: string }) => (s: AppState) => ({ ...s, stringVal: a.n
 const setItem = (a: { item: ItemState }) => (s: AppState) => ({ ...s, item: a.item });
 const clearVal = () => setVal({ name: '' });
 
-const getTotal = () => (state: AppState) => state.value * state.mult;
-
 const o = new Optic<AppState, {}>().reducers({ setVal, clearVal, setItem });
 // .compose(host => ({ item: itemController.bind(host.prop('item'))}))
 

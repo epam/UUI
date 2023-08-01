@@ -324,7 +324,7 @@ const defaultSectionItems: SectionItem[] = [
     },
 ];
 
-const getDefaultOrderConfig = <TItem, TId>(items: any[], initialOrder: string = 'a'): [any[], string] => {
+const getDefaultOrderConfig = (items: any[], initialOrder: string = 'a'): [any[], string] => {
     const config: any[] = [];
     let prevOrder = initialOrder;
 
@@ -334,14 +334,14 @@ const getDefaultOrderConfig = <TItem, TId>(items: any[], initialOrder: string = 
         config[index].order = prevOrder;
         prevOrder = order;
         if (config[index].materials) {
-            const [materialsConfig, order] = getDefaultOrderConfig(config[index].materials, prevOrder);
+            const [materialsConfig, materialsOrder] = getDefaultOrderConfig(config[index].materials, prevOrder);
             config[index].materials = materialsConfig;
-            prevOrder = order;
+            prevOrder = materialsOrder;
         }
         if (config[index].criteria) {
-            const [criteriaConfig, order] = getDefaultOrderConfig(config[index].criteria, prevOrder);
+            const [criteriaConfig, criteriaOrder] = getDefaultOrderConfig(config[index].criteria, prevOrder);
             config[index].criteria = criteriaConfig;
-            prevOrder = order;
+            prevOrder = criteriaOrder;
         }
     });
 

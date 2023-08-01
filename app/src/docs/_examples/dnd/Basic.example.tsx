@@ -47,7 +47,7 @@ export default function DndMaterial() {
         },
     ]);
 
-    const canAcceptDrop = (srcData: DropParams<MaterialItem, MaterialItem>) => ({
+    const canAcceptDrop = () => ({
         top: true,
         bottom: true,
     });

@@ -24,7 +24,7 @@ export class ModalBlocker extends React.Component<ModalBlockerProps> {
         }
     };
 
-    private handleBlockerClick = (e: React.SyntheticEvent<Element>) => {
+    private handleBlockerClick = () => {
         if (!this.props.disallowClickOutside) {
             this.props.abort();
         }

@@ -235,7 +235,10 @@ export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     getName?: (item: any) => string;
     renderRow?: (props: DataRowProps<any, any>) => ReactNode;
     valueType?: 'id';
-    /** default value: true */
+    /**
+     * Pass false to hide search in picker body.
+     * If omitted, true value will be used.
+     */
     showSearch?: boolean;
 };
 
@@ -272,22 +275,36 @@ export interface ITablePreset<TFilter = any, TViewState = any> {
 }
 
 export interface IPresetsApi<TFilter = any, TViewState = any> {
+    /** ID of selected preset */
     activePresetId: number | null;
+    /** Function that selects given preset  */
     choosePreset(preset: ITablePreset<TFilter, TViewState>): void;
+    /** Function that gives preset name and create new preset with this name and current table state  */
     createNewPreset(name: string): Promise<number>;
+    /** Function that gives preset and return if this preset changed or not  */
     hasPresetChanged(preset: ITablePreset<TFilter, TViewState>): boolean;
+    /** Function that gives the preset and creat their duplicate  */
     duplicatePreset(preset: ITablePreset<TFilter, TViewState>): void;
+    /** Function that deletes given preset  */
     deletePreset(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
+    /** Function that updates given preset  */
     updatePreset(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
+    /** Function that gives preset and return URL link on given preset  */
     getPresetLink(preset: ITablePreset<TFilter, TViewState>): string;
+    /** Array of presets  */
     presets: ITablePreset<TFilter, TViewState>[];
 }
 
 export interface ITableState<TFilter = Record<string, any>, TViewState = any> extends IPresetsApi<TFilter, TViewState> {
+    /** Table state value */
     tableState: DataTableState<TFilter, TViewState>;
+    /** Function that updates table state value */
     setTableState(newState: DataTableState<TFilter, TViewState>): void;
+    /** Function that updates filter value */
     setFilter(filter: TFilter): void;
+    /** Function that updates columns config value */
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
+    /** Function that updates filters config value */
     setFiltersConfig(filtersConfig: FiltersConfig): void;
 }
 
