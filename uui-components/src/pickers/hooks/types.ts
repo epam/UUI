@@ -104,7 +104,7 @@ export interface PickerState {
     setShowSelected: Dispatch<SetStateAction<boolean>>;
 }
 
-export type PickerListBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
+export type PickerListBaseProps<TItem, TId> = Exclude<PickerBaseProps<TItem, TId>, 'cascadeSelection'> & {
     /**
      * Number of default items to show initially, when nothing is selected.
      * Default it 10 items

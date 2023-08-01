@@ -94,7 +94,6 @@ describe('PickerList', () => {
             renderFilter: (props) => <div>{props as unknown as ReactNode}</div>,
             renderFooter: (props) => <div>{props as unknown as ReactNode}</div>,
             noOptionsMessage: 'Not found',
-            cascadeSelection: true,
             disallowClickOutside: true,
             maxDefaultItems: 20,
             maxTotalItems: 40,
@@ -144,85 +143,70 @@ describe('PickerList', () => {
             const selectedOption = await PickerListTestObject.findSelectedOption({ editMode: 'modal' });
             expect(selectedOption).toBe('A2+');
         });
+        
+        it('[valueType entity] should select & clear option', async () => {
+            const { mocks } = await setupPickerListForTest({
+                value: undefined,
+                selectionMode: 'single',
+                valueType: 'entity',
+            });
+            await PickerListTestObject.waitForOptionsToBeReady();
+
+            const optionC2 = await screen.findByText('A2+');
+            fireEvent.click(optionC2);
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith({ id: 5, level: 'A2+', name: 'Pre-Intermediate+' });
+            expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+
+            const toggler = PickerListTestObject.getPickerToggler();  
+            fireEvent.click(toggler);
+    
+            await PickerListTestObject.waitForOptionsToBeReady('modal');
+            
+            const selectedOption = await PickerListTestObject.findSelectedOption({ editMode: 'modal' });
+            expect(selectedOption).toBe('A2+');
+        });
+
+        it('should render names of items by getName', async () => {
+            const { mocks } = await setupPickerListForTest<TestItemType, number>({
+                value: 3,
+                selectionMode: 'single',
+                getName: ({ name }) => name,
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+
+            const optionC2 = await screen.findByText('Elementary');
+            fireEvent.click(optionC2);
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith(2);
+        });
+
+        it('should render entity name in picker toggler text', async () => {
+            await setupPickerListForTest({
+                value: undefined,
+                selectionMode: 'single',
+                entityName: 'Language Levels',
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+
+            expect(PickerListTestObject.getPickerToggler().textContent?.trim().toLowerCase())
+                .toEqual('show all 11 language levels');
+        });
+
+        it('should ignore plural entity name in placeholder', async () => {
+            await setupPickerListForTest({
+                value: undefined,
+                selectionMode: 'single',
+                entityName: 'Language Levels',
+                entityPluralName: 'Multiple Language Levels',
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+
+            expect(PickerListTestObject.getPickerToggler().textContent?.trim().toLowerCase())
+                .toEqual('show all 11 language levels');
+        });
     });   
-    //     it('[valueType entity] should select & clear option', async () => {
-    //         const { dom, mocks } = await setupPickerListForTest({
-    //             value: undefined,
-    //             selectionMode: 'single',
-    //             valueType: 'entity',
-    //         });
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-    //         fireEvent.click(dom.input);
-    //         expect(screen.getByRole('dialog')).toBeInTheDocument();
-    //         const optionC2 = await screen.findByText('C2');
-    //         fireEvent.click(optionC2);
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith({ id: 12, level: 'C2', name: 'Proficiency' });
-    //         fireEvent.click(window.document.body);
-    //         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    //         expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
-    //         const clear = screen.getByRole('button');
-    //         fireEvent.click(clear);
-    //         expect(screen.queryByText('C2')).not.toBeInTheDocument();
-    //     });
-
-    //     it('should render names of items by getName', async () => {
-    //         const { mocks, dom } = await setupPickerListForTest<TestItemType, number>({
-    //             value: 3,
-    //             selectionMode: 'single',
-    //             getName: ({ name }) => name,
-    //         });
-
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toBeUndefined();
-    //         await waitFor(async () => expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('Elementary+'));
-
-    //         fireEvent.click(dom.input);
-    //         expect(screen.getByRole('dialog')).toBeInTheDocument();
-    //         const optionC2 = await screen.findByText('Proficiency');
-    //         fireEvent.click(optionC2);
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
-    //     });
-
-    //     it('should render entity name in placeholder', async () => {
-    //         const { dom } = await setupPickerListForTest({
-    //             value: undefined,
-    //             selectionMode: 'single',
-    //             entityName: 'Language Level',
-    //         });
-
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('Please select Language Level');
-    //     });
-
-    //     it('should ignore plural entity name in placeholder', async () => {
-    //         const { dom } = await setupPickerListForTest({
-    //             value: undefined,
-    //             selectionMode: 'single',
-    //             entityName: 'Language Level',
-    //             entityPluralName: 'Multiple Language Levels',
-    //         });
-
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('Please select Language Level');
-    //     });
-
-    //     it.each<[CascadeSelection]>(
-    //         [[false], [true], ['implicit'], ['explicit']],
-    //     )
-    //     ('should pick single element with cascadeSelection = %s', async (cascadeSelection) => {
-    //         const { mocks, dom } = await setupPickerListForTest({
-    //             value: undefined,
-    //             getName: ({ name }) => name,
-    //             selectionMode: 'single',
-    //             cascadeSelection,
-    //             dataSource: mockTreeLikeDataSourceAsync,
-    //         });
-    //         fireEvent.click(dom.input);
- 
-    //         await PickerListTestObject.waitForOptionsToBeReady();
-
-    //         // Check parent
-    //         await PickerListTestObject.clickOptionByText('Parent 2');
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith(2);
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('Parent 2');
-    //     });
 
     //     it('should work with maxItems properly', async () => {
     //         const { mocks, dom } = await setupPickerListForTest({
@@ -242,54 +226,6 @@ describe('PickerList', () => {
     //         expect(mocks.onValueChange).toHaveBeenLastCalledWith(3);
     //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('A1+');
     //     });
-
-    //     it('should disable clear', async () => {
-    //         const { dom, setProps } = await setupPickerListForTest({
-    //             value: 2,
-    //             selectionMode: 'single',
-    //             disableClear: false,
-    //         });
-
-    //         await waitFor(() => expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('A1'));
-
-    //         const clearButton = within(dom.container).getByRole('button', { name: 'Clear' });
-    //         expect(clearButton).toBeInTheDocument();
-    //         fireEvent.click(clearButton);
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-    //         setProps({ disableClear: true, value: 2 });
-    //         expect(within(dom.container).queryByRole('button', { name: 'Clear' })).not.toBeInTheDocument();
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('A1');
-    //     });
-
-    //     it('should clear selected item', async () => {
-    //         const { dom } = await setupPickerListForTest({
-    //             value: undefined,
-    //             selectionMode: 'single',
-    //             maxItems: 100,
-    //         });
-    //         fireEvent.click(dom.input);
-
-    //         expect(await PickerListTestObject.hasOptions()).toBeTruthy();
-
-    //         const clearButton = within(screen.getByRole('dialog')).getByRole('button', { name: 'CLEAR' });
-    //         expect(clearButton).toBeInTheDocument();
-    //         expect(clearButton).toHaveAttribute('aria-disabled', 'true');
-
-    //         await PickerListTestObject.clickOptionByText('A1');
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('A1');
-
-    //         fireEvent.click(dom.input);
-
-    //         const clearButton2 = within(screen.getByRole('dialog')).getByRole('button', { name: 'CLEAR' });
-    //         expect(clearButton2).toHaveAttribute('aria-disabled', 'false');
-
-    //         fireEvent.click(clearButton2);
-
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-    //         const clearButton3 = within(screen.getByRole('dialog')).getByRole('button', { name: 'CLEAR' });
-    //         expect(clearButton3).toHaveAttribute('aria-disabled', 'true');
-    //     });
-    // });
 
     // describe('[selectionMode multi]', () => {
     //     it('[valueType id] should select & clear several options', async () => {
