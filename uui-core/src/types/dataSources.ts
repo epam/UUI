@@ -62,6 +62,7 @@ export const CascadeSelectionTypes = {
 
 export type CascadeSelection = boolean | typeof CascadeSelectionTypes.EXPLICIT | typeof CascadeSelectionTypes.IMPLICIT;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export interface BaseListViewProps<TItem, TId, TFilter> {
     /**
      * Should return unique ID of the TItem
