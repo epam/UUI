@@ -41,7 +41,7 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
     }, []);
 
     return (
-        <div role="alert" className={ cx(props.color && `notification-card-${props.color}`, css.root, props.cx) } ref={ notificationCardNode } { ...props.rawProps }>
+        <div role="alert" className={ cx('uui-notification_card', props.color && `color-${props.color}`, css.root, props.cx) } ref={ notificationCardNode } { ...props.rawProps }>
             <div className={ css.mainPath }>
                 {props.icon && (
                     <div className={ css.iconWrapper }>

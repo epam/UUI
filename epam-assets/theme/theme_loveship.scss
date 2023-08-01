@@ -67,12 +67,12 @@
     --orange-40: #F76B0D;
     --orange-50: #BD4B00;
 
-    --fuchia-5: #FFF7FB;
-    --fuchia-10: #F9D8E7;
-    --fuchia-20: #EDADC8;
-    --fuchia-30: #EA4386;
-    --fuchia-40: #D61E68;
-    --fuchia-50: #AE1955;
+    --fuchsia-5: #FFF7FB;
+    --fuchsia-10: #F9D8E7;
+    --fuchsia-20: #EDADC8;
+    --fuchsia-30: #EA4386;
+    --fuchsia-40: #D61E68;
+    --fuchsia-50: #AE1955;
 
     --purple-5: #FDF6FE;
     --purple-10: #F2CCFA;
@@ -737,6 +737,253 @@
 
 
     /* ------------------------------------ */
+
+    /* begin color classes */
+
+    .uui-button {
+        --uui-btn-bg: var(--uui-main); // +
+        --uui-btn-bg-hover: var(--uui-dark); // +
+        --uui-btn-bg-active: var(--uui-darkest); // +
+        --uui-btn-bg-halftone: var(--uui-main-halfton); // +
+        --uui-btn-bg-halftone-hover: var(--uui-lightest); // +
+        --uui-btn-bg-halftone-active: var(--uui-light); // +
+        --uui-btn-border: var(--uui-main); // +
+        --uui-btn-border-hover: var(--uui-dark); // +
+        --uui-btn-border-active: var(--uui-darkest); // +
+        --uui-btn-bg-disabled: var(--uui-main-disabled); // +
+        --uui-btn-border-disabled: var(--uui-main-disabled); // +
+        --uui-btn-caption: var(--uui-caption); // +
+        --uui-btn-caption-halftone: var(--uui-caption-halftone); // +
+        --uui-btn-caption-disabled: var(--uui-caption-disabled); // +
+    }
+
+    .uui-badge {
+        --uui-badge-bg: var(--uui-main);
+        --uui-badge-bg-hover: var(--uui-dark);
+        --uui-badge-bg-halftone: var(--uui-lightest);
+        --uui-badge-bg-halftone-hover: var(--uui-light);
+        --uui-badge-border-halftone: var(--uui-light);
+        --uui-badge-border-halftone-hover: var(--uui-main);
+        --uui-badge-caption-solid: var(--uui-caption-contrast);
+        --uui-badge-caption-halftone: var(--uui-darkest);
+        --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
+        --uui-badge-count-bg: var(--white); // It should be a separate component
+    }
+
+    .uui-link_button {
+        --uui-link-button-text: var(--uui-main);
+        --uui-link-button-text-hover: var(--uui-dark);
+        --uui-link-button-text-active: var(--uui-darkest);
+        --uui-link-button-text-disabled: var(--uui-caption-disabled);
+    }
+
+    .uui-icon_button {
+        --uui-icon-btn: var(--uui-main);
+        --uui-icon-btn-hover: var(--uui-dark);
+        --uui-icon-btn-active: var(--uui-darkest);
+        --uui-icon-btn-disabled: var(--uui-icon-disabled); // from core or color class? Current - from core
+    }
+
+    .uui-notification_card {
+        --uui-notification-card-fill: var(--uui-main);
+        --uui-notification-card-border: var(--uui-main);
+        --uui-notification-card-bg: var(--uui-surface);
+        --uui-notification-card-text: var(--uui-text-primary);
+    }
+
+    .uui-alert {
+        --uui-alert-text: var(--uui-text-primary);
+        --uui-alert-bg: var(--uui-lightest);
+        --uui-alert-border: var(--uui-main);
+        --uui-alert-icon: var(--uui-main);
+    }
+
+    .color-accent, .color-grass {
+        --uui-main: var(--uui-accent);
+        --uui-main-halftone: var(--uui-button-bg-halftone);
+        --uui-main-disabled: var(--uui-disabled);
+        --uui-light: var(--uui-accent-light);
+        --uui-lightest: var(--uui-accent-lightest);
+        --uui-dark: var(--uui-accent-dark);
+        --uui-darkest: var(--uui-accent-darkest);
+        --uui-caption: var(--uui-text-white);
+        --uui-caption-contrast: var(--uui-text-white);
+        --uui-caption-halftone: var(--uui-accent);
+        --uui-caption-disabled: var(--uui-text-disabled);
+    }
+
+    .color-primary, .color-sky {
+        --uui-main: var(--uui-primary);
+        --uui-main-halftone: var(--uui-button-bg-halftone);
+        --uui-main-disabled: var(--uui-disabled);
+        --uui-light: var(--uui-primary-light);
+        --uui-lightest: var(--uui-primary-lightest);
+        --uui-dark: var(--uui-primary-dark);
+        --uui-darkest: var(--uui-primary-darkest);
+        --uui-caption: var(--uui-text-white);
+        --uui-caption-contrast: var(--uui-text-white);
+        --uui-caption-halftone: var(--uui-primary);
+        --uui-caption-disabled: var(--uui-text-disabled);
+    }
+
+    .color-fire, .color-negative {
+        --uui-main: var(--uui-negative);
+        --uui-main-halftone: var(--uui-button-bg-halftone);
+        --uui-main-disabled: var(--uui-disabled);
+        --uui-light: var(--uui-negative-light);
+        --uui-lightest: var(--uui-negative-lightest);
+        --uui-dark: var(--uui-negative-dark);
+        --uui-darkest: var(--uui-negative-darkest);
+        --uui-caption: var(--uui-text-white);
+        --uui-contrast-text: var(--uui-text-white);
+        --uui-caption-halftone: var(--uui-negative);
+        --uui-caption-disabled: var(--uui-text-disabled);
+    }
+
+    .color-night500, // TODO: It doesn't work for Badge
+    .color-night600,
+    .color-gray,
+    .color-secondary {
+        --uui-main: var(--uui-secondary);
+        --uui-main-halftone: var(--uui-button-bg-halftone);
+        --uui-main-disabled: var(--uui-disabled);
+        --uui-light: var(--uui-secondary-light);
+        --uui-lightest: var(--uui-secondary-lightest);
+        --uui-dark: var(--uui-secondary-dark);
+        --uui-darkest: var(--uui-secondary-darkest);
+        --uui-caption: var(--uui-text-white);
+        --uui-caption-contrast: var(--uui-text-white);
+        --uui-caption-halftone: var(--uui-secondary-dark);
+        --uui-caption-disabled: var(--uui-text-disabled);
+    }
+
+    .color-sun {
+        --uui-main: var(--sun);
+        --uui-main-halfton: var(--uui-button-bg-halftone);
+        --uui-main-disabled: var(--uui-disabled);
+        --uui-light: var(--sun-light);
+        --uui-lightest: var(--sun-lightest);
+        --uui-dark: var(--sun-dark);
+        --uui-darkest: var(--sun-darkest);
+        --uui-caption: var(--uui-text-white);
+        --uui-caption-contrast: var(--uui-text-dark);
+        --uui-caption-halftone: var(--sun-darkest);
+        --uui-caption-disabled: var(--uui-text-disabled);
+    }
+
+    .color-yellow {
+        --uui-main: var(--yellow-30);
+        --uui-main-halfton: var(--uui-button-bg-halftone);
+        --uui-main-disabled: var(--uui-disabled);
+        --uui-light: var(--yellow-20);
+        --uui-lightest: var(--yellow-10);
+        --uui-dark: var(--yellow-40);
+        --uui-darkest: var(--yellow-50);
+        --uui-caption: var(--uui-text-white);
+        --uui-caption-contrast: var(--uui-text-dark);
+        --uui-caption-halftone: var(--yellow-50);
+        --uui-caption-disabled: var(--uui-text-disabled);
+    }
+
+    .color-orange {
+        --uui-main: var(--orange-30);
+        --uui-main-halfton: var(--uui-button-bg-halftone);
+        --uui-main-disabled: var(--uui-disabled);
+        --uui-light: var(--orange-20);
+        --uui-lightest: var(--orange-10);
+        --uui-dark: var(--orange-40);
+        --uui-darkest: var(--orange-50);
+        --uui-caption: var(--uui-text-white);
+        --uui-caption-contrast: var(--uui-text-dark);
+        --uui-caption-halftone: var(--orange-50);
+        --uui-caption-disabled: var(--uui-text-disabled);
+    }
+
+    .color-fuchsia {
+        --uui-main: var(--fuchsia-30);
+        --uui-main-halfton: var(--uui-button-bg-halftone);
+        --uui-main-disabled: var(--uui-disabled);
+        --uui-light: var(--fuchsia-20);
+        --uui-lightest: var(--fuchsia-10);
+        --uui-dark: var(--fuchsia-40);
+        --uui-darkest: var(--fuchsia-50);
+        --uui-caption: var(--uui-text-white);
+        --uui-caption-contrast: var(--uui-text-white);
+        --uui-caption-halftone: var(--fuchsia-50);
+        --uui-caption-disabled: var(--uui-text-disabled);
+    }
+
+    .color-purple {
+        --uui-main: var(--purple-30);
+        --uui-main-halfton: var(--uui-button-bg-halftone);
+        --uui-main-disabled: var(--uui-disabled);
+        --uui-light: var(--purple-20);
+        --uui-lightest: var(--purple-10);
+        --uui-dark: var(--purple-40);
+        --uui-darkest: var(--purple-50);
+        --uui-caption: var(--uui-text-white);
+        --uui-caption-contrast: var(--uui-text-white);
+        --uui-caption-halftone: var(--purple-50);
+        --uui-caption-disabled: var(--uui-text-disabled);
+    }
+
+    .color-lavanda {
+        --uui-main: var(--lavanda-30);
+        --uui-main-halfton: var(--uui-button-bg-halftone);
+        --uui-main-disabled: var(--uui-disabled);
+        --uui-light: var(--lavanda-20);
+        --uui-lightest: var(--lavanda-10);
+        --uui-dark: var(--lavanda-40);
+        --uui-darkest: var(--lavanda-50);
+        --uui-caption: var(--uui-text-white);
+        --uui-caption-contrast: var(--uui-text-white);
+        --uui-caption-halftone: var(--lavanda-50);
+        --uui-caption-disabled: var(--uui-text-disabled);
+    }
+
+    .color-cobalt {
+        --uui-main: var(--cobalt-30);
+        --uui-main-halfton: var(--uui-button-bg-halftone);
+        --uui-main-disabled: var(--uui-disabled);
+        --uui-light: var(--cobalt-20);
+        --uui-lightest: var(--cobalt-10);
+        --uui-dark: var(--cobalt-40);
+        --uui-darkest: var(--cobalt-50);
+        --uui-caption: var(--uui-text-white);
+        --uui-caption-contrast: var(--uui-text-white);
+        --uui-caption-halftone: var(--cobalt-50);
+        --uui-caption-disabled: var(--uui-text-disabled);
+    }
+
+    .color-cyan {
+        --uui-main: var(--cyan-30);
+        --uui-main-halfton: var(--uui-button-bg-halftone);
+        --uui-main-disabled: var(--uui-disabled);
+        --uui-light: var(--cyan-20);
+        --uui-lightest: var(--cyan-10);
+        --uui-dark: var(--cyan-40);
+        --uui-darkest: var(--cyan-50);
+        --uui-caption: var(--uui-text-white);
+        --uui-caption-contrast: var(--uui-text-dark);
+        --uui-caption-halftone: var(--cyan-50);
+        --uui-caption-disabled: var(--uui-text-disabled);
+    }
+
+    .color-mint {
+        --uui-main: var(--mint-30);
+        --uui-main-halfton: var(--uui-button-bg-halftone);
+        --uui-main-disabled: var(--uui-disabled);
+        --uui-light: var(--mint-20);
+        --uui-lightest: var(--mint-10);
+        --uui-dark: var(--mint-40);
+        --uui-darkest: var(--mint-50);
+        --uui-caption: var(--uui-text-white);
+        --uui-caption-contrast: var(--uui-text-dark);
+        --uui-caption-halftone: var(--mint-50);
+        --uui-caption-disabled: var(--uui-text-disabled);
+    }
+
+    /* end color classes */
 
     .tooltip-contrast,
     .tooltip-gray {
