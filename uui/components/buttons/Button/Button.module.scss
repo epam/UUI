@@ -20,8 +20,8 @@
 
 @mixin button-disables-styles($bg-color, $border-color) {
     background-color: $bg-color;
-    color: var(--uui-button-caption-disabled);
-    fill: var(--uui-button-caption-disabled);
+    color: var(--uui-btn-caption-disabled);
+    fill: var(--uui-btn-caption-disabled);
     border-color: $border-color;
 }
 
