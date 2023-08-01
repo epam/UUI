@@ -42,6 +42,8 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         return result;
     };
 
+    const maxDefaultItems = getMaxDefaultItems();
+
     const getVisibleIds = () => {
         let lastUsedUds: TId[] = [];
         if (props.settingsKey) {
@@ -51,13 +53,13 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
 
         let visibleIds: TId[] = getSelectedIdsArray(props.value as TId | TId[]).slice(0, getMaxTotalItems());
 
-        visibleIds = addDistinct(visibleIds, [...lastUsedUds, ...(props.defaultIds || [])], getMaxDefaultItems());
+        visibleIds = addDistinct(visibleIds, [...lastUsedUds, ...(props.defaultIds || [])], maxDefaultItems);
 
         return visibleIds;
     };
 
     const pickerListState = usePickerListState<TId>({
-        dataSourceState: { visibleCount: getMaxDefaultItems() },
+        dataSourceState: { visibleCount: maxDefaultItems },
         visibleIds: getVisibleIds(),
     });
 
@@ -125,7 +127,6 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
     };
 
     const buildRowsList = () => {
-        const maxDefaultItems = getMaxDefaultItems();
         const maxTotalItems = getMaxTotalItems();
 
         const result: DataRowProps<TItem, TId>[] = [];
@@ -147,12 +148,11 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
             const rows = visibleIds.map((id, n) => view.getById(id, n));
             addRows(rows, maxTotalItems);
         }
-
         if (!props.defaultIds && result.length < maxDefaultItems) {
             const rows = view.getVisibleRows();
+
             addRows(rows, maxDefaultItems);
         }
-
         return sortRows(result);
     };
 
