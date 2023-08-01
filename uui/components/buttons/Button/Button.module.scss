@@ -62,7 +62,7 @@
 }
 
 .mode-outline {
-    background-color: var(--uui-button-bg-halftone);
+    background-color: var(--uui-btn-bg-halftone);
     color: var(--uui-btn-caption-halftone);
     fill: var(--uui-btn-caption-halftone);
     border-color: var(--uui-btn-border);
@@ -84,12 +84,12 @@
     }
 
     &:global(.uui-disabled) {
-        @include button-disables-styles(var(--uui-button-bg-halftone), var(--uui-btn-border-disabled));
+        @include button-disables-styles(var(--uui-btn-bg-halftone), var(--uui-btn-border-disabled));
     }
 
     &:global(.-clickable), &:hover, &:active, &:focus {
         &:global(.uui-disabled) {
-            @include button-disables-styles(var(--uui-button-bg-halftone), var(--uui-btn-border-disabled));
+            @include button-disables-styles(var(--uui-btn-bg-halftone), var(--uui-btn-border-disabled));
         }
     }
 }
