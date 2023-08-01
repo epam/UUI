@@ -13,8 +13,8 @@ function makePortalRootDiscoverable(node: HTMLElement, id: string): () => void {
         const root = node.getRootNode();
         if (root instanceof ShadowRoot) {
             const hostElem = root.host;
-            const name = `data-${id}`;
-            hostElem.setAttribute(name, '');
+            const name = 'data-shadow-host-id';
+            hostElem.setAttribute(name, id);
             return () => {
                 hostElem.removeAttribute(name);
             };

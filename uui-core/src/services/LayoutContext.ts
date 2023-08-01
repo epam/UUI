@@ -15,7 +15,7 @@ function getPortalRootById(id: string) {
          * so, as a fallback, we try to find shadow host by attribute name like this: [data-<id>]
          * and after that - try to find by id in the shadow root.
          */
-        const shadow = document.querySelector(`[data-${id}]`);
+        const shadow = document.querySelector(`[data-shadow-host-id="${id}"]`);
         root = shadow?.shadowRoot?.getElementById(id);
     }
     return root;
