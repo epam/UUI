@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import {
-    setupComponentForTest, fireEvent, PickerListTestObject, screen,
+    setupComponentForTest, fireEvent, PickerListTestObject, screen, within,
 } from '@epam/uui-test-utils';
 import { Modals } from '@epam/uui-components';
 import { PickerList, PickerListProps } from '../PickerList';
@@ -206,7 +206,58 @@ describe('PickerList', () => {
             expect(PickerListTestObject.getPickerToggler().textContent?.trim().toLowerCase())
                 .toEqual('show all 11 language levels');
         });
-    });   
+        
+        it('should render 10 items by default', async () => {
+            await setupPickerListForTest({
+                value: undefined,
+                selectionMode: 'single',
+                maxDefaultItems: undefined,
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+
+            expect(PickerListTestObject.getOptions()).toHaveLength(10);
+        });
+        
+        it('should render items count of maxDefaultItems', async () => {
+            await setupPickerListForTest({
+                value: undefined,
+                selectionMode: 'single',
+                maxDefaultItems: 11,
+                maxTotalItems: 20,
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+
+            expect(PickerListTestObject.getOptions()).toHaveLength(11);
+        });
+        
+        it('should render items count of maxTotalItems, if they are less then maxDefaultItems', async () => {
+            await setupPickerListForTest({
+                value: undefined,
+                selectionMode: 'single',
+                maxDefaultItems: 11,
+                maxTotalItems: 5,
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+            expect(PickerListTestObject.getOptions()).toHaveLength(5);
+        });
+        
+        it('should render items count of maxDefaultItems if item is selected', async () => {
+            await setupPickerListForTest({
+                value: 2,
+                selectionMode: 'single',
+                maxDefaultItems: 5,
+                maxTotalItems: 6,
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+            const options = PickerListTestObject.getOptions();
+            expect(options).toHaveLength(5);
+            expect((within(options[0]).getByRole('radio') as HTMLInputElement).checked).toBeTruthy();
+        });
+    });
 
     //     it('should work with maxItems properly', async () => {
     //         const { mocks, dom } = await setupPickerListForTest({
