@@ -19,15 +19,15 @@
 
     &:global(.-clickable) {
         cursor: pointer;
+
+        &:focus-visible {
+            outline: 2px solid var(--uui-control-focus);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
     }
 
     &:global(.uui-disabled) {
         cursor: default;
-    }
-
-    &:focus-visible {
-        outline: 2px solid var(--uui-control-focus);
-        outline-offset: 2px;
-        border-radius: 2px;
     }
 }
