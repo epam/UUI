@@ -20,6 +20,11 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
     .implements([
         sizeDoc, isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, modeDoc, iconDoc, iconOptionsDoc,
     ])
+    .prop('cascadeSelection', {
+        examples: [
+            true, 'explicit', 'implicit',
+        ],
+    })
     .prop('value', {
         examples: [
             { name: '1', value: 1 }, { name: '[1, 2]', value: [1, 2] }, { name: '{ id: 1, name: "Test"}', value: { id: 1, name: 'Test' } }, { name: '[{ id: 1, name: "Test"}]', value: [{ id: 1, name: 'Test' }] },
