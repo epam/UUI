@@ -1,0 +1,838 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PickerList should open body 1`] = `
+<body
+  style="overflow: hidden;"
+>
+  <div>
+    <div>
+      <div
+        aria-posinset="1"
+        aria-selected="false"
+        class="row"
+        role="option"
+      >
+        <label
+          class="container root size-18 -clickable"
+        >
+          <div
+            class="uui-radioinput"
+          >
+            <input
+              aria-checked="false"
+              type="radio"
+            />
+          </div>
+          <div
+            class="uui-input-label"
+          >
+            Elementary
+          </div>
+        </label>
+      </div>
+      <div
+        aria-posinset="2"
+        aria-selected="false"
+        class="row"
+        role="option"
+      >
+        <label
+          class="container root size-18 -clickable"
+        >
+          <div
+            class="uui-radioinput"
+          >
+            <input
+              aria-checked="false"
+              type="radio"
+            />
+          </div>
+          <div
+            class="uui-input-label"
+          >
+            Elementary+
+          </div>
+        </label>
+      </div>
+      <div
+        aria-posinset="3"
+        aria-selected="false"
+        class="row"
+        role="option"
+      >
+        <label
+          class="container root size-18 -clickable"
+        >
+          <div
+            class="uui-radioinput"
+          >
+            <input
+              aria-checked="false"
+              type="radio"
+            />
+          </div>
+          <div
+            class="uui-input-label"
+          >
+            Pre-Intermediate
+          </div>
+        </label>
+      </div>
+      <div
+        aria-posinset="4"
+        aria-selected="false"
+        class="row"
+        role="option"
+      >
+        <label
+          class="container root size-18 -clickable"
+        >
+          <div
+            class="uui-radioinput"
+          >
+            <input
+              aria-checked="false"
+              type="radio"
+            />
+          </div>
+          <div
+            class="uui-input-label"
+          >
+            Pre-Intermediate+
+          </div>
+        </label>
+      </div>
+      <div
+        aria-posinset="5"
+        aria-selected="false"
+        class="row"
+        role="option"
+      >
+        <label
+          class="container root size-18 -clickable"
+        >
+          <div
+            class="uui-radioinput"
+          >
+            <input
+              aria-checked="false"
+              type="radio"
+            />
+          </div>
+          <div
+            class="uui-input-label"
+          >
+            Intermediate
+          </div>
+        </label>
+      </div>
+      <button
+        class="container uui-button-box uui-enabled -clickable root size-36 uui-no-left-icon uui-no-right-icon link-button-primary"
+        tabindex="0"
+        type="button"
+      >
+        <div
+          class="uui-caption"
+        >
+          SHOW ALL 11
+        </div>
+      </button>
+    </div>
+    <div
+      class="container modalBlocker"
+      style="z-index: 2000;"
+    >
+      <div
+        class="uui-modal-blocker"
+      />
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="0"
+      />
+      <div
+        data-focus-lock-disabled="false"
+      >
+        <div
+          aria-modal="true"
+          class="uui-modal-window modal container"
+          role="modal"
+          style="width: 600px; height: 700px;"
+        >
+          <div
+            class="root size-36 padding-24 vPadding-12 spacing-12 modalHeader container align-items-center"
+          >
+            <div
+              class="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
+            >
+              Please select 
+            </div>
+            <div
+              class="flexSpacer"
+            />
+            <div
+              class="flexCell"
+              style="min-width: 0; flex-shrink: 0; flex-basis: auto;"
+            >
+              <button
+                aria-label="Close modal"
+                class="container uui-button-box uui-enabled -clickable icon-button-default root"
+                tabindex="0"
+                type="button"
+              >
+                <div
+                  class="container uui-icon uui-enabled"
+                >
+                  <svg
+                    class=""
+                  />
+                </div>
+              </button>
+            </div>
+          </div>
+          <div
+            class="flexCell subHeaderWrapper"
+            style="min-width: 0; flex-basis: 0px;"
+          >
+            <div
+              class="root size-36 vPadding-24 container align-items-center"
+            >
+              <div
+                class="container uui-input-box -clickable uui-focus root size-36 mode-form"
+                tabindex="-1"
+              >
+                <div
+                  class="container uui-icon uui-enabled"
+                >
+                  <svg
+                    class=""
+                  />
+                </div>
+                <input
+                  aria-invalid="false"
+                  class="uui-input"
+                  inputmode="search"
+                  placeholder="Type text for quick search"
+                  tabindex="-1"
+                  type="search"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="root size-36 body modal undefined container align-items-center"
+          >
+            <div
+              class="root scrollContainer"
+              cx="scrollContainer"
+              style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+            >
+              <div
+                style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+              >
+                <div
+                  class="listContainer"
+                  style="min-height: 11px;"
+                >
+                  <div
+                    role="listbox"
+                    style="margin-top: 0px;"
+                  >
+                    <div
+                      aria-posinset="1"
+                      aria-selected="false"
+                      class="pickerRow container -clickable align-items-center"
+                      role="option"
+                    >
+                      <div
+                        class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                        role="cell"
+                        style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                      >
+                        <div
+                          class="contentWrapper"
+                        >
+                          <div
+                            class="renderItem"
+                          >
+                            <div
+                              class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            >
+                              Elementary
+                            </div>
+                            <div
+                              class="flexSpacer"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      aria-posinset="2"
+                      aria-selected="false"
+                      class="pickerRow container -clickable align-items-center"
+                      role="option"
+                    >
+                      <div
+                        class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                        role="cell"
+                        style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                      >
+                        <div
+                          class="contentWrapper"
+                        >
+                          <div
+                            class="renderItem"
+                          >
+                            <div
+                              class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            >
+                              Elementary+
+                            </div>
+                            <div
+                              class="flexSpacer"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      aria-posinset="3"
+                      aria-selected="false"
+                      class="pickerRow container -clickable align-items-center"
+                      role="option"
+                    >
+                      <div
+                        class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                        role="cell"
+                        style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                      >
+                        <div
+                          class="contentWrapper"
+                        >
+                          <div
+                            class="renderItem"
+                          >
+                            <div
+                              class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            >
+                              Pre-Intermediate
+                            </div>
+                            <div
+                              class="flexSpacer"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      aria-posinset="4"
+                      aria-selected="false"
+                      class="pickerRow container -clickable align-items-center"
+                      role="option"
+                    >
+                      <div
+                        class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                        role="cell"
+                        style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                      >
+                        <div
+                          class="contentWrapper"
+                        >
+                          <div
+                            class="renderItem"
+                          >
+                            <div
+                              class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            >
+                              Pre-Intermediate+
+                            </div>
+                            <div
+                              class="flexSpacer"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      aria-posinset="5"
+                      aria-selected="false"
+                      class="pickerRow container -clickable align-items-center"
+                      role="option"
+                    >
+                      <div
+                        class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                        role="cell"
+                        style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                      >
+                        <div
+                          class="contentWrapper"
+                        >
+                          <div
+                            class="renderItem"
+                          >
+                            <div
+                              class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            >
+                              Intermediate
+                            </div>
+                            <div
+                              class="flexSpacer"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      aria-posinset="6"
+                      aria-selected="false"
+                      class="pickerRow container -clickable align-items-center"
+                      role="option"
+                    >
+                      <div
+                        class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                        role="cell"
+                        style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                      >
+                        <div
+                          class="contentWrapper"
+                        >
+                          <div
+                            class="renderItem"
+                          >
+                            <div
+                              class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            >
+                              Intermediate+
+                            </div>
+                            <div
+                              class="flexSpacer"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      aria-posinset="7"
+                      aria-selected="false"
+                      class="pickerRow container -clickable align-items-center"
+                      role="option"
+                    >
+                      <div
+                        class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                        role="cell"
+                        style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                      >
+                        <div
+                          class="contentWrapper"
+                        >
+                          <div
+                            class="renderItem"
+                          >
+                            <div
+                              class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            >
+                              Upper-Intermediate
+                            </div>
+                            <div
+                              class="flexSpacer"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      aria-posinset="8"
+                      aria-selected="false"
+                      class="pickerRow container -clickable align-items-center"
+                      role="option"
+                    >
+                      <div
+                        class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                        role="cell"
+                        style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                      >
+                        <div
+                          class="contentWrapper"
+                        >
+                          <div
+                            class="renderItem"
+                          >
+                            <div
+                              class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            >
+                              Upper-Intermediate+
+                            </div>
+                            <div
+                              class="flexSpacer"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      aria-posinset="9"
+                      aria-selected="false"
+                      class="pickerRow container -clickable align-items-center"
+                      role="option"
+                    >
+                      <div
+                        class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                        role="cell"
+                        style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                      >
+                        <div
+                          class="contentWrapper"
+                        >
+                          <div
+                            class="renderItem"
+                          >
+                            <div
+                              class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            >
+                              Advanced
+                            </div>
+                            <div
+                              class="flexSpacer"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      aria-posinset="10"
+                      aria-selected="false"
+                      class="pickerRow container -clickable align-items-center"
+                      role="option"
+                    >
+                      <div
+                        class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                        role="cell"
+                        style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                      >
+                        <div
+                          class="contentWrapper"
+                        >
+                          <div
+                            class="renderItem"
+                          >
+                            <div
+                              class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            >
+                              Advanced+
+                            </div>
+                            <div
+                              class="flexSpacer"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      aria-posinset="11"
+                      aria-selected="false"
+                      class="pickerRow container -clickable align-items-center"
+                      role="option"
+                    >
+                      <div
+                        class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                        role="cell"
+                        style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                      >
+                        <div
+                          class="contentWrapper"
+                        >
+                          <div
+                            class="renderItem"
+                          >
+                            <div
+                              class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            >
+                              Proficiency
+                            </div>
+                            <div
+                              class="flexSpacer"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="uui-track-horizontal"
+                style="position: absolute; height: 6px; display: none;"
+              >
+                <div
+                  class="uui-thumb-horizontal"
+                />
+              </div>
+              <div
+                class="uui-track-vertical"
+                style="position: absolute; width: 6px; display: none;"
+              >
+                <div
+                  class="uui-thumb-vertical"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="root size-36 padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+          >
+            <div
+              class="flexSpacer"
+            />
+            <button
+              class="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-outline"
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="uui-caption"
+              >
+                Cancel
+              </div>
+            </button>
+            <button
+              class="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-solid"
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="uui-caption"
+              >
+                Select
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PickerList should render with maximum props 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        aria-checked="true"
+        aria-posinset="2"
+        class="row"
+        role="option"
+      >
+        <label
+          class="container uui-checkbox-container root size-18 mode-form -clickable"
+          tabindex="-1"
+        >
+          <div
+            class="uui-checkbox uui-checked"
+          >
+            <input
+              aria-checked="true"
+              checked=""
+              tabindex="0"
+              type="checkbox"
+            />
+            <div
+              class="container uui-icon uui-enabled"
+            >
+              <svg
+                class=""
+              />
+            </div>
+          </div>
+          <div
+            class="uui-input-label"
+          >
+            A1+
+          </div>
+        </label>
+      </div>
+      <div
+        aria-checked="true"
+        aria-posinset="1"
+        class="row"
+        role="option"
+      >
+        <label
+          class="container uui-checkbox-container root size-18 mode-form -clickable"
+          tabindex="-1"
+        >
+          <div
+            class="uui-checkbox uui-checked"
+          >
+            <input
+              aria-checked="true"
+              checked=""
+              tabindex="0"
+              type="checkbox"
+            />
+            <div
+              class="container uui-icon uui-enabled"
+            >
+              <svg
+                class=""
+              />
+            </div>
+          </div>
+          <div
+            class="uui-input-label"
+          >
+            A1
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PickerList should render with minimum props 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        aria-posinset="1"
+        aria-selected="false"
+        class="row"
+        role="option"
+      >
+        <label
+          class="container root size-18 -clickable"
+        >
+          <div
+            class="uui-radioinput"
+          >
+            <input
+              aria-checked="false"
+              type="radio"
+            />
+          </div>
+          <div
+            class="uui-input-label"
+          >
+            A1
+          </div>
+        </label>
+      </div>
+      <div
+        aria-posinset="2"
+        aria-selected="false"
+        class="row"
+        role="option"
+      >
+        <label
+          class="container root size-18 -clickable"
+        >
+          <div
+            class="uui-radioinput"
+          >
+            <input
+              aria-checked="false"
+              type="radio"
+            />
+          </div>
+          <div
+            class="uui-input-label"
+          >
+            A1+
+          </div>
+        </label>
+      </div>
+      <div
+        aria-posinset="3"
+        aria-selected="false"
+        class="row"
+        role="option"
+      >
+        <label
+          class="container root size-18 -clickable"
+        >
+          <div
+            class="uui-radioinput"
+          >
+            <input
+              aria-checked="false"
+              type="radio"
+            />
+          </div>
+          <div
+            class="uui-input-label"
+          >
+            A2
+          </div>
+        </label>
+      </div>
+      <div
+        aria-posinset="4"
+        aria-selected="false"
+        class="row"
+        role="option"
+      >
+        <label
+          class="container root size-18 -clickable"
+        >
+          <div
+            class="uui-radioinput"
+          >
+            <input
+              aria-checked="false"
+              type="radio"
+            />
+          </div>
+          <div
+            class="uui-input-label"
+          >
+            A2+
+          </div>
+        </label>
+      </div>
+      <div
+        aria-posinset="5"
+        aria-selected="false"
+        class="row"
+        role="option"
+      >
+        <label
+          class="container root size-18 -clickable"
+        >
+          <div
+            class="uui-radioinput"
+          >
+            <input
+              aria-checked="false"
+              type="radio"
+            />
+          </div>
+          <div
+            class="uui-input-label"
+          >
+            B1
+          </div>
+        </label>
+      </div>
+      <button
+        class="container uui-button-box uui-enabled -clickable root size-36 uui-no-left-icon uui-no-right-icon link-button-primary"
+        tabindex="0"
+        type="button"
+      >
+        <div
+          class="uui-caption"
+        >
+          SHOW ALL 11
+        </div>
+      </button>
+    </div>
+  </div>
+</body>
+`;
