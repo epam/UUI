@@ -1,5 +1,4 @@
 @use  '../../assets/styles/index.scss' as *;
-@use  '../../assets/styles/effects' as *;
 
 @mixin icon-sizes($size, $font-size, $line-height) {
     :global(.uui-checkbox) {
