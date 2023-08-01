@@ -14,6 +14,6 @@ export { FiltersPanel, PresetsPanel, defaultPredicates, TabButton, VerticalTabBu
     ConfirmationModal, RadioGroup, Anchor, Avatar, AvatarStack, Paginator, DataTable, DataTableCell, DataTableRow, DataTableHeaderRow, ColumnsConfigurationModal,
     WarningNotification, SuccessNotification, HintNotification, ErrorNotification, ClearNotification, DatePicker, RangeDatePicker, Checkbox, FlexSpacer, FlexCell,
     Spinner, DataPickerBody, PickerModal, ModalBlocker, ModalHeader, ModalFooter, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, DropdownMenuHeader,
-    DropdownSubMenu, DropdownMenuSwitchButton,
+    DropdownSubMenu, DropdownMenuSwitchButton, TimePicker,
 } from '@epam/uui';
 export { MainMenuLogo, MainMenuCustomElement } from '@epam/uui-components';

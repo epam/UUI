@@ -5,6 +5,7 @@
 * [DropdownMenu]: moved in uui and loveship version of it is deprecated. Now promo and loveship are using the same uui implementation.
 * [DropdownMenu]: added new property minWidth: number to setup minWidth to DropdownMenu container.
 * [Avatar]: Property `onClick` marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this prop.
+* [TimePicker]: both skins are using the UUI implementation, and loveship design has been changed into the promo implementation, and 48 size is deprecated and will be deleted in the future release.
 
 **What's Fixed**
 
