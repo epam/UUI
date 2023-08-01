@@ -1,9 +1,7 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import objectSupport from 'dayjs/plugin/objectSupport.js';
-import {
-    Icon, cx, IHasCX, IEditable, TimePickerValue, IHasRawProps, IHasForwardedRef,
-} from '@epam/uui-core';
+import { Icon, cx, IHasCX, IEditable, TimePickerValue, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import { NumericInput } from './NumericInput';
 import { TextInput } from './TextInput';
 import { IconContainer } from '../layout/IconContainer';
@@ -35,13 +33,15 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
     };
 
     onHoursChange = (newHours: number) => {
+        let newHoursValue = newHours;
         const MAX_HOURS = this.props.format || FORMAT_12H;
-        if (newHours > MAX_HOURS) newHours = MAX_HOURS;
+        if (newHoursValue > MAX_HOURS) newHoursValue = MAX_HOURS;
         this.setValue(dayjs().set(this.props.value).hour(newHours));
     };
 
     onMinutesChange = (newMinutes: number) => {
-        if (newMinutes > MAX_MINUTES) newMinutes = MAX_MINUTES;
+        let newMinutesValue = newMinutes;
+        if (newMinutesValue > MAX_MINUTES) newMinutesValue = MAX_MINUTES;
         this.setValue(dayjs().set(this.props.value).minute(newMinutes));
     };
 
