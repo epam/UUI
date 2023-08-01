@@ -36,16 +36,16 @@ interface IPlaceholderButton {
     editor: PlateEditor;
 }
 
-export const PlaceholderButton = ({ editor }: IPlaceholderButton): any => {
-
+export function PlaceholderButton({ editor }: IPlaceholderButton): any {
     if (!isPluginActive(KEY)) return null;
     const { params }: { params: PlaceholderPluginParams } = getPluginOptions(editor, KEY);
 
     const renderDropdownBody = () => {
         return (
             <div className={ css.dropdownContainer }>
-                { params.items.map(i =>
-                    <div className={ css.dropdownItem }
+                { params.items.map((i) => (
+                    <div
+                        className={ css.dropdownItem }
                         key={ i.name }
                         onMouseDown={ (event) => {
                             event.preventDefault();
@@ -56,12 +56,12 @@ export const PlaceholderButton = ({ editor }: IPlaceholderButton): any => {
                                     type: 'placeholder',
                                     children: [{ text: '' }],
                                 },
-                            )
+                            );
                         } }
                     >
                         { i.name }
-                    </div>,
-                ) }
+                    </div>
+                )) }
             </div>
         );
     };
@@ -76,8 +76,8 @@ export const PlaceholderButton = ({ editor }: IPlaceholderButton): any => {
                 />
             ) }
             renderBody={ renderDropdownBody }
-            placement='top-start'
+            placement="top-start"
             modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
         />
     );
-};
+}

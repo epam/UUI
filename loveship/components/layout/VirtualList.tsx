@@ -4,7 +4,7 @@ import css from './VirtualList.module.scss';
 
 export interface VirtualListMods {}
 
-function applyVirtualListMods(mods: VirtualListMods) {
+function applyVirtualListMods() {
     return [css.root];
 }
 

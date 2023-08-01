@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { IHasChildren } from '@epam/uui-core';
+import { IHasChildren, useUuiContext } from '@epam/uui-core';
 
 export interface PortalProps extends IHasChildren {
     target?: HTMLElement;
@@ -8,6 +8,7 @@ export interface PortalProps extends IHasChildren {
 }
 
 export const Portal: React.FC<PortalProps> = (props) => {
-    const rootElement = props.target || document.getElementById('main') || document.getElementById('root') || document.body;
+    const { uuiLayout } = useUuiContext();
+    const rootElement = props.target || uuiLayout.getPortalRoot();
     return ReactDOM.createPortal(props.children, rootElement, props.key);
 };

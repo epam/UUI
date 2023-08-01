@@ -5,8 +5,8 @@ import { Editor } from 'slate';
 import { isPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as SeparateIcon } from '../../icons/breakline.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import { getBlockAboveByType } from "../../utils/getAboveBlock";
-import { PARAGRAPH_TYPE } from "../paragraphPlugin/paragraphPlugin";
+import { getBlockAboveByType } from '../../utils/getAboveBlock';
+import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { Separator } from './Separator';
 
 const SEPARATOR_TYPE = 'separatorBLock';
@@ -52,7 +52,7 @@ interface ToolbarButton {
     editor: PlateEditor;
 }
 
-export const SeparatorButton = ({ editor }: ToolbarButton) => {
+export function SeparatorButton({ editor }: ToolbarButton) {
     if (!isPluginActive(SEPARATOR_TYPE)) return null;
 
     const onSeparatorButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, type: string) => {
@@ -61,7 +61,7 @@ export const SeparatorButton = ({ editor }: ToolbarButton) => {
 
         toggleNodeType(editor, { activeType: type });
         focusEditor(editor);
-    }
+    };
 
     return (
         <ToolbarButton
@@ -71,4 +71,4 @@ export const SeparatorButton = ({ editor }: ToolbarButton) => {
             isActive={ !!editor?.selection && isMarkActive(editor, SEPARATOR_TYPE) }
         />
     );
-};
+}

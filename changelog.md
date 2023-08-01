@@ -2,28 +2,40 @@
 
 **What's New**
 
+* [DropdownMenu]: moved in uui and loveship version of it is deprecated. Now promo and loveship are using the same uui implementation.
+* [DropdownMenu]: added new property minWidth: number to setup minWidth to DropdownMenu container.
+* [Avatar]: Property `onClick` marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this prop.
+
+**What's Fixed**
+
+
+# 5.1.1 - 27.07.2023
+
+**What's New**
+* [PickerInput]: Added highlighting of the search matching results.
+* [PickerInput]: Added search result sorting by search relevance.
 * [Tooltip][BreakingChange]: Removed prop `trigger`. Now tooltip always opens on hover, use dropdown for cases when you need to open body by click.
-* [DataTable]: Added column description tooltip to table header. DataTable now has an optional property-callback 'renderColumnsConfigurationModal?: (props) => React.ReactNode' for render your custom ColumnsConfigurationModal or you have our variant of it.
+* [DataTable]: Added column description tooltip to table header. DataTable now has an optional property-callback 'renderColumnsConfigurationModal?: (props) => React.ReactNode' for render your custom ColumnsConfigurationModal.
 * [ColumnsConfigurationModal]: Added 'renderItem?: (column) => React.ReactNode' optional property-callback for render your custom column name section.
 * [ColumnsConfigurationModal]: Added 'getSearchFields?: (column) => string[];' optional callback to define columns to search in the ColumnsConfigurationModal. We use 'column.caption' by default.
-* [DatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
 * Added adapter for react-router 6.
     - Note: we strongly discourage the use of react-router 6, as it introduces too many breaking changes, and certain important features (like block and listen) are available only via unstable internal API.
 
 **What's Fixed**
-
-* [Button]: add missing styles for 'sun' color in loveship skin
-* [FilterPanel]: fix RangeDatePicker 'to' value change
-* [FilterPanel]: in FilterPanelItemToggler we have packed each selected element into a Text component and flexible container. Now they can be compressed as flexible elements and separated by comma.
-* [LabeledInput]: removed specific class for loveship skin
-* [Rating]: fix rating behavior with 0.5 step
+* [uui-editor]: reduced package size.
+* [PickerInput]: fixed initialValue resetting in case of entity value type and async data source.
+* [Button]: added missing styles for 'sun' color in loveship skin.
+* [FilterPanel]: fixed RangeDatePicker 'to' value change.
+* [FilterPanel]: added `maxItems` prop for filter config, this prop will configure how much items will be shown in filter toggler before collapsing in '+ n items'. Also improved selected items collapsing when they don't fit toggler width.
+* [Rating]: fixed rating behavior with 0.5 step.
 * [ColumnsConfigurationConfig]: change 'Apply' button color to the 'primary'
-* [MainMenu]: fixed hover:background-color in nested menu items.
+* [MainMenu]: fixed hover styles for nested menu items.
+* [PickerInput]: reset 'Show only selected' to default value toggler on picker close.
 * [DropdownMenu]: fixed button's heigth and submenu position.
-* [DatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
-* [RangeDatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
-* [SnackbarCard]: is deprecated and will be deleted in a future release. Please, use a NotificationCard instead it.
-
+* [LabeledInput]: changed `info` prop type from string to `ReactNode`.
+* [DatePicker]: size '48' marked as @deprecated. It will be removed in future releases.
+* [RangeDatePicker]: size '48' marked as @deprecated. It will be removed in future releases.
+* [SnackbarCard]: component deprecated and will be deleted in a future releases. Please, use a NotificationCard instead it.
 
 # 5.1.0 - 29.06.2023
 

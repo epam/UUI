@@ -39,16 +39,16 @@ export function ProjectTasksDemo() {
         lens, value, onValueChange, save, isChanged, revert, undo, canUndo, redo, canRedo,
     } = useForm<FormState>({
         value: savedValue,
-        onSave: async (value) => {
+        onSave: async (data) => {
             // At this point you usually call api.saveSomething(value) to actually send changed data to server
-            savedValue = value;
+            savedValue = data;
         },
         getMetadata: () => metadata,
     });
     const columns = useMemo(() => getColumns(), []);
 
     // Insert new/exiting top/bottom or above/below relative to other task
-    const insertTask = (position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
+    const insertTask = (_: DropPosition, __: Task | null, existingTask: Task | null = null) => {
         const task: Task = existingTask ? { ...existingTask } : {
             id: lastId--, title: '', description: '', estimate: 0, complete: 0, status: { id: 0, name: 'To do' },
         };
@@ -88,10 +88,10 @@ export function ProjectTasksDemo() {
         <Panel style={ { width: '100%' } }>
             <FlexRow spacing="12" margin="12">
                 <FlexCell width="auto">
-                    <IconButton icon={ insertAfter } onClick={ () => insertTask('top') } />
+                    <IconButton icon={ insertAfter } onClick={ () => insertTask('top', null, null) } />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <IconButton icon={ insertBefore } onClick={ () => insertTask('bottom') } />
+                    <IconButton icon={ insertBefore } onClick={ () => insertTask('bottom', null, null) } />
                 </FlexCell>
                 <FlexSpacer />
                 <FlexCell width="auto">

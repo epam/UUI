@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
+import { EditableDocContent, BaseDocsBlock } from '../../common';
 
 export class LockContextDoc extends BaseDocsBlock {
     title = 'Lock context';

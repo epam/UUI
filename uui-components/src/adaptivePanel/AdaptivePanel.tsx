@@ -29,12 +29,12 @@ export function AdaptivePanel(props: AdaptivePanelProps) {
         const children = Array.from(displayedRowRef.current.children);
 
         if (!children.length) return;
-        const itemsWidth: Record<string, number> = {};
+        const calculatedItemsWidth: Record<string, number> = {};
         children.forEach((child, index) => {
-            itemsWidth[props.items[index].id] = child.getBoundingClientRect().width;
+            calculatedItemsWidth[props.items[index].id] = child.getBoundingClientRect().width;
         });
 
-        return itemsWidth;
+        return calculatedItemsWidth;
     };
 
     useLayoutEffectSafeForSsr(() => {

@@ -24,13 +24,13 @@ export default function BasicFormExample() {
     const { lens, save } = useForm<Person>({
         value: {},
         onSave: (person) => Promise.resolve({ form: person }) /* place your save api call here */,
-        onSuccess: (result) =>
+        onSuccess: () =>
             svc.uuiNotifications.show((props) => (
                 <SuccessNotification { ...props }>
                     <Text>Form saved</Text>
                 </SuccessNotification>
             )),
-        onError: (error) =>
+        onError: () =>
             svc.uuiNotifications.show((props) => (
                 <ErrorNotification { ...props }>
                     <Text>Error on save</Text>

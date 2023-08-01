@@ -20,6 +20,7 @@
             box-sizing: border-box;
             flex-grow: 1;
             flex-basis: 25%;
+            line-height: 0;
 
             &:first-of-type {
                 .rating-block {

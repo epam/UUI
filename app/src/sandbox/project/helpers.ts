@@ -19,7 +19,7 @@ export function getInsertionOrder(existingOrders: string[], position: 'before' |
         }
     }
 
-    if (position == 'before') {
+    if (position === 'before') {
         let maxOrder = minOrderStr;
         existingOrders.forEach((order) => {
             if (order < relativeTo && order > maxOrder) {

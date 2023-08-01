@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { INotification, Metadata, IFormApi, cx } from '@epam/uui-core';
+import { INotification, Metadata, IFormApi } from '@epam/uui-core';
 import { Spinner } from '@epam/uui-components';
 import { PersonDetails } from '@epam/uui-docs';
 import { LabeledInput, Button, Switch, FlexRow, FlexCell, Panel, Text, FlexSpacer, SuccessNotification, Form, MultiSwitch } from '@epam/loveship';
@@ -78,7 +78,7 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
             }));
     }
 
-    getMetaData = (state: PersonDetails): Metadata<PersonDetails> => {
+    getMetaData = (): Metadata<PersonDetails> => {
         return {
             isReadonly: this.state.isReadOnly,
             isDisabled: this.state.isDisabled,

@@ -77,9 +77,9 @@ export class ReleaseNotesDoc extends React.Component {
     }
 
     render() {
-        const { markdown, isLoading, release } = this.state;
+        const { markdown, isLoading, release: releaseData } = this.state;
 
-        if (Object.keys(release).some((key) => !key)) return null;
+        if (Object.keys(releaseData).some((key) => !key)) return null;
 
         return (
             <ContentSection>

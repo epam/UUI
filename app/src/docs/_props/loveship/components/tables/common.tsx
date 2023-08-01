@@ -40,7 +40,7 @@ const UserColumns = [
     }, {
         key: 'inProgress',
         caption: 'IN PROGRESS',
-        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ CalendarIcon } size="30" />,
+        render: () => <LinkButton caption={ getRandomInt(1, 10) } icon={ CalendarIcon } size="30" />,
         grow: 1,
         width: 50,
         vPadding: '30',
@@ -48,7 +48,7 @@ const UserColumns = [
     }, {
         key: 'done',
         caption: 'DONE',
-        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ TickIcon } size="30" />,
+        render: () => <LinkButton caption={ getRandomInt(1, 10) } icon={ TickIcon } size="30" />,
         grow: 1,
         width: 50,
         vPadding: '30',
@@ -56,7 +56,7 @@ const UserColumns = [
     }, {
         key: 'edited',
         caption: 'EDITED',
-        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ PencilIcon } size="30" />,
+        render: () => <LinkButton caption={ getRandomInt(1, 10) } icon={ PencilIcon } size="30" />,
         grow: 1,
         width: 50,
         vPadding: '30',
@@ -171,7 +171,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
         }, {
             key: 'settings',
             caption: '',
-            render: (data: Person) => <LinkButton icon={ MoreIcon } size={ size } />,
+            render: () => <LinkButton icon={ MoreIcon } size={ size } />,
             width: 18,
             textAlign: 'center',
             alignSelf: 'center',
@@ -191,7 +191,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
 }
 
 export const ColumnsHeaderRowDoc = new DocBuilder<DataTableHeaderRowProps & DataTableHeaderRowMods>({ name: 'ColumnsHeaderRowDoc' }).prop('columns', {
-    examples: (ctx) => {
+    examples: () => {
         return [
             {
                 name: 'basic (30)',

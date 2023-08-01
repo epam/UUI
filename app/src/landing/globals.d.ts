@@ -1,5 +1,5 @@
 declare module '*.scss' {
-    var all: { [selector: string]: string };
+    const all: { [selector: string]: string };
     export = all;
 }
 

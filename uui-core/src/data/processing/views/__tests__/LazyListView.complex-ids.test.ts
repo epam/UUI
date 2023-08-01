@@ -31,15 +31,14 @@ describe('LazyListView - can work with id like [string, number]', () => {
     };
 
     const treeDataSource = new LazyDataSource<TestItem, TestItemId, DataQueryFilter<TestItem>>({
-        api: async ({ ids: clientIds, filter, range }, ctx) => {
-            const ids = clientIds && clientIds.map((id) => id[1]);
+        api: async (_, ctx) => {
             if (ctx.parent) {
                 return runDataQuery(testData, { filter: { type: 'child', parentId: ctx.parent.id } });
             } else {
                 return runDataQuery(testData, { filter: { type: 'parent' } });
             }
         },
-        getChildCount: (i) => (i.type == 'parent' ? i.childrenCount : 0),
+        getChildCount: (i) => (i.type === 'parent' ? i.childrenCount : 0),
         getId: (i) => [i.type, i.id],
         getParentId: (i) => (i.parentId ? ['parent', i.parentId] : null),
         cascadeSelection: true,
@@ -100,8 +99,8 @@ describe('LazyListView - can work with id like [string, number]', () => {
 
         const view = ds.getView(value, onValueChanged, {
             cascadeSelection: true,
-            getRowOptions: (_) => ({ checkbox: { isVisible: true } }),
-            isFoldedByDefault: (_) => false,
+            getRowOptions: () => ({ checkbox: { isVisible: true } }),
+            isFoldedByDefault: () => false,
         });
 
         view.getVisibleRows(); // load;
