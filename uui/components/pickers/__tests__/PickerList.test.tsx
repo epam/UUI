@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import {
-    setupComponentForTest, fireEvent, PickerListTestObject,
+    setupComponentForTest, fireEvent, PickerListTestObject, screen,
 } from '@epam/uui-test-utils';
 import { Modals } from '@epam/uui-components';
 import { PickerList, PickerListProps } from '../PickerList';
@@ -115,8 +115,7 @@ describe('PickerList', () => {
 
         await PickerListTestObject.waitForOptionsToBeReady();
         
-        const toggler = PickerListTestObject.getPickerToggler();
-        
+        const toggler = PickerListTestObject.getPickerToggler();  
         fireEvent.click(toggler);
 
         await PickerListTestObject.waitForOptionsToBeReady('modal');
@@ -124,26 +123,28 @@ describe('PickerList', () => {
         expect(result.baseElement).toMatchSnapshot();
     });
 
-    // describe('[selectionMode single]', () => {
-    //     it('[valueType id] should select & clear option', async () => {
-    //         const { dom, mocks } = await setupPickerListForTest({
-    //             value: undefined,
-    //             selectionMode: 'single',
-    //         });
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-    //         fireEvent.click(dom.input);
-    //         expect(screen.getByRole('dialog')).toBeInTheDocument();
-    //         const optionC2 = await screen.findByText('C2');
-    //         fireEvent.click(optionC2);
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
-    //         fireEvent.click(window.document.body);
-    //         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    //         expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
-    //         const clear = screen.getByRole('button');
-    //         fireEvent.click(clear);
-    //         expect(screen.queryByText('C2')).not.toBeInTheDocument();
-    //     });
-        
+    describe('[selectionMode single]', () => {
+        it('[valueType id] should select', async () => {
+            const { mocks } = await setupPickerListForTest({
+                value: undefined,
+                selectionMode: 'single',
+            });
+            await PickerListTestObject.waitForOptionsToBeReady();
+
+            const optionC2 = await screen.findByText('A2+');
+            fireEvent.click(optionC2);
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith(5);
+            expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+
+            const toggler = PickerListTestObject.getPickerToggler();  
+            fireEvent.click(toggler);
+    
+            await PickerListTestObject.waitForOptionsToBeReady('modal');
+            
+            const selectedOption = await PickerListTestObject.findSelectedOption({ editMode: 'modal' });
+            expect(selectedOption).toBe('A2+');
+        });
+    });   
     //     it('[valueType entity] should select & clear option', async () => {
     //         const { dom, mocks } = await setupPickerListForTest({
     //             value: undefined,
