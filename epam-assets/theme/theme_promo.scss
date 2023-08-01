@@ -216,8 +216,6 @@
     --uui-scroll_bars-bg: var(--gray40);
     --uui-scroll_bars-bg-active: var(--gray60);
 
-    --uui-button-bg-halftone: var(--white);
-
     --uui-control-bg: var(--white);
     --uui-control-bg-hover: var(--gray60);
     --uui-control-bg-disabled: var(--gray5);
@@ -721,7 +719,7 @@
         --uui-btn-bg: var(--uui-primary);
         --uui-btn-bg-hover: var(--uui-primary-dark);
         --uui-btn-bg-active: var(--uui-primary-darkest);
-        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone: var(--white);
         --uui-btn-bg-halftone-hover: var(--uui-primary-lightest);
         --uui-btn-bg-halftone-active: var(--uui-primary-light);
         --uui-btn-border: var(--uui-primary);
@@ -738,7 +736,7 @@
         --uui-btn-bg: var(--uui-accent);
         --uui-btn-bg-hover: var(--uui-accent-dark);
         --uui-btn-bg-active: var(--uui-accent-darkest);
-        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone: var(--white);
         --uui-btn-bg-halftone-hover: var(--uui-accent-lightest);
         --uui-btn-bg-halftone-active: var(--uui-accent-light);
         --uui-btn-border: var(--uui-accent);
@@ -755,7 +753,7 @@
         --uui-btn-bg: var(--uui-negative);
         --uui-btn-bg-hover: var(--uui-negative-dark);
         --uui-btn-bg-active: var(--uui-negative-darkest);
-        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone: var(--white);
         --uui-btn-bg-halftone-hover: var(--uui-negative-lightest);
         --uui-btn-bg-halftone-active: var(--uui-negative-light);
         --uui-btn-border: var(--uui-negative);
@@ -774,7 +772,7 @@
         --uui-btn-bg: var(--uui-secondary);
         --uui-btn-bg-hover: var(--uui-secondary-dark);
         --uui-btn-bg-active: var(--uui-secondary-darkest);
-        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone: var(--white);
         --uui-btn-bg-halftone-hover: var(--uui-secondary-lightest);
         --uui-btn-bg-halftone-active: var(--uui-secondary-light);
         --uui-btn-border: var(--uui-secondary);
