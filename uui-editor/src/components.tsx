@@ -1,8 +1,9 @@
 import React from 'react';
 import { MARK_BOLD, MARK_CODE, MARK_ITALIC, MARK_SUPERSCRIPT, MARK_UNDERLINE } from '@udecode/plate-basic-marks';
-import { PlaceholderProps, PlatePluginComponent, createNodesHOC } from '@udecode/plate-common';
+import { PlatePluginComponent } from '@udecode/plate-common';
 import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_H4, ELEMENT_H5, ELEMENT_H6 } from '@udecode/plate-heading';
 import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph';
+import { withPlaceholders } from './placeholder';
 
 export type DefaultPluginKey =
     | typeof ELEMENT_H1
@@ -17,45 +18,6 @@ export type DefaultPluginKey =
     | typeof MARK_ITALIC
     | typeof MARK_SUPERSCRIPT
     | typeof MARK_UNDERLINE;
-
-export const Placeholder = (props: PlaceholderProps) => {
-    const { children, placeholder, nodeProps } = props;
-
-    // const { enabled } = usePlaceholderState(props);
-
-    return React.Children.map(children, (child) => {
-        return React.cloneElement(child, {
-            className: child.props.className,
-            nodeProps: {
-                ...nodeProps,
-                // className: cn(
-                //     enabled
-                //   && 'before:absolute before:cursor-text before:opacity-30 before:content-[attr(placeholder)]',
-                // ),
-                placeholder,
-            },
-        });
-    });
-};
-
-const withPlaceholdersPrimitive = createNodesHOC(Placeholder);
-
-export const withPlaceholders = (components: any) =>
-    withPlaceholdersPrimitive(components, [
-        {
-            key: ELEMENT_PARAGRAPH,
-            placeholder: 'Type a paragraph',
-            hideOnBlur: true,
-            query: {
-                maxLevel: 1,
-            },
-        },
-        {
-            key: ELEMENT_H1,
-            placeholder: 'Untitled',
-            hideOnBlur: false,
-        },
-    ]);
 
 export const createPlateUI = <T extends string = string>(
     overrideByKey?: Partial<
