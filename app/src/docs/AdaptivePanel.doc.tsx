@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3,
+    EditableDocContent, DocExample, BaseDocsBlock,
 } from '../common';
 
 export class AdaptivePanelDoc extends BaseDocsBlock {

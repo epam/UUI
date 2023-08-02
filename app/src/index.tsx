@@ -9,7 +9,7 @@ import {
     DragGhost,
     UuiContext, GAListener, IProcessRequest,
 } from '@epam/uui-core';
-import { Snackbar, Modals } from '@epam/uui-components';
+import { Snackbar, Modals, PortalRoot } from '@epam/uui-components';
 import { skinContext } from '@epam/promo';
 import { AmplitudeListener } from './analyticsEvents';
 import { svc } from './services';
@@ -53,6 +53,7 @@ function UuiEnhancedApp() {
                 <Snackbar />
                 <Modals />
                 <DragGhost />
+                <PortalRoot />
             </UuiContext.Provider>
         );
     }

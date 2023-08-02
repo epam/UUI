@@ -1,4 +1,4 @@
-import { ShadowToken, TokenObject } from './types';
+import { ShadowToken } from './types';
 import {
     isVariable, isGradient, replaceJsonVarsFromGradient, createVariableToken, createSizeString, createShadowString, isObject,
 } from './helpers';
@@ -34,7 +34,7 @@ export const transformHandler = {
             return createSizeString(value);
         }
     },
-    typography: (token: TokenObject) => {}, // TODO: add handler as needed
+    typography: () => {}, // TODO: add handler as needed
     opacity: (value: string) => {
         if (isVariable(value)) {
             return createVariableToken(value);

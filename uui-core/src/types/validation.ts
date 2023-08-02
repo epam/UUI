@@ -1,7 +1,7 @@
 import { ICanBeReadonly, ICanBeRequired, IDisableable } from './props';
 
-type ElementType<ArrayOrObject> = ArrayOrObject extends readonly (infer ElementType)[]
-    ? ElementType
+type ElementType<ArrayOrObject> = ArrayOrObject extends readonly (infer ArrayType)[]
+    ? ArrayType
     : ArrayOrObject extends Record<any, infer ValueType>
         ? ValueType
         : never;

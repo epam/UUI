@@ -79,7 +79,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         css.cell,
         css['size-' + (props.size || '36')],
         css[`padding-${props.padding || (isEditable && !props.rowProps.isLoading && '0') || '12'}`],
-        props.isFirstColumn && css[`padding-left-${props.padding || '24'}`],
+        props.isFirstColumn && css[`padding-left-${props.padding || (isEditable && !props.rowProps.isLoading && '12') || '24'}`],
         props.isLastColumn && css['padding-right-24'],
         css[`align-widgets-${props.alignActions || 'top'}`],
         (props.border || isEditable) && 'uui-dt-vertical-cell-border',

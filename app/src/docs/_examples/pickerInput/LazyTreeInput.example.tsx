@@ -51,7 +51,15 @@ export default function LazyTreePicker() {
                         { ...props }
                         key={ props.rowKey }
                         padding="12"
-                        renderItem={ (item) => <PickerItem { ...props } title={ item.name } subtitle={ getSubtitle(props, dataSourceState) } /> }
+                        renderItem={ (item, rowProps) => (
+                            <PickerItem 
+                                { ...props }
+                                { ...rowProps } 
+                                title={ item.name }
+                                dataSourceState={ dataSourceState }
+                                subtitle={ getSubtitle(props, dataSourceState) } 
+                            />
+                        ) }
                     />
                 ) }
             />

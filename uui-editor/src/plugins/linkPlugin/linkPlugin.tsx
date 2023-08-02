@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { useUuiContext } from '@epam/uui-core';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
@@ -7,8 +6,8 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { PlateEditor, TElement, Value, WithPlatePlugin, someNode } from '@udecode/plate-common';
 import { ELEMENT_LINK, LinkPlugin, createLinkPlugin, upsertLink, validateUrl, withLink } from '@udecode/plate-link';
 import { isPluginActive } from '../../helpers';
-import { ReactComponent as LinkIcon } from "../../icons/link.svg";
-import { AddLinkModal } from "./AddLinkModal";
+import { ReactComponent as LinkIcon } from '../../icons/link.svg';
+import { AddLinkModal } from './AddLinkModal';
 import { isUrl } from './isUrl';
 
 export interface LinkElement extends TElement {
@@ -21,7 +20,7 @@ const withOurLink = <
     E extends PlateEditor<V> = PlateEditor<V>
 >(
     editor: E,
-    options: WithPlatePlugin<LinkPlugin, V, E>
+    options: WithPlatePlugin<LinkPlugin, V, E>,
 ) => {
     const { insertData } = editor;
 
@@ -44,22 +43,22 @@ const withOurLink = <
         }
 
         insertData(data);
-    }
+    };
     return editor;
-}
+};
 
 const LINK_ELEMENT = 'link';
 
 export const linkPlugin = () => createLinkPlugin({
     type: LINK_ELEMENT,
     withOverrides: withOurLink,
-    then: () => ({ options: { isUrl, } }),
+    then: () => ({ options: { isUrl } }),
     overrideByKey: {
         [ELEMENT_LINK]: {
             component: (props) => (
-                <a { ...props.attributes } style={ { display: 'inline' } } target='_blank' href={ props.element.url }>{ props.children }</a>
+                <a { ...props.attributes } style={ { display: 'inline' } } target="_blank" href={ props.element.url }>{ props.children }</a>
             ),
-        }
+        },
     },
 });
 
@@ -67,7 +66,7 @@ interface ToolbarLinkButtonProps {
     editor: PlateEditor;
 }
 
-export const LinkButton = ({ editor }: ToolbarLinkButtonProps) => {
+export function LinkButton({ editor }: ToolbarLinkButtonProps) {
     const context = useUuiContext();
 
     if (!isPluginActive(ELEMENT_LINK)) return null;
@@ -91,4 +90,4 @@ export const LinkButton = ({ editor }: ToolbarLinkButtonProps) => {
             isActive={ !!editor?.selection && isLink }
         />
     );
-};
+}

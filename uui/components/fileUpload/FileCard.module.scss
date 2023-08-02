@@ -1,0 +1,54 @@
+.file-card-wrapper {
+    box-sizing: border-box;
+    min-height: 48px;
+    padding: 5px;
+    border: 1px solid var(--uui-file-card-background);
+
+    .file-name {
+        white-space: nowrap;
+    }
+}
+
+.error-card-wrapper {
+    border: 1px solid var(--uui-file-card-error);
+}
+
+:global(.uui-loading) {
+    .default-color,
+    .doc-color,
+    .xls-color,
+    .pdf-color,
+    .movie-color,
+    .img-color {
+        fill: var(--uui-file-card-background-loaading);
+    }
+}
+
+.default-color {
+    fill: var(--uui-file-card-default);
+}
+
+.drop-start {
+    border: 2px dashed var(--uui-file-card-dropstart-border);
+    background-color: var(--uui-file-card-dropstart-background);
+}
+
+.error-block {
+    font-family: var(--font-regular);
+    font-size: 12px;
+    color: var(--uui-file-card-error-block);
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+
+    svg {
+        margin-right: 4px;
+        fill: var(--uui-file-card-error);
+    }
+}
+
+.icons-block {
+    min-width: 18px;
+    flex-basis: 0;
+}

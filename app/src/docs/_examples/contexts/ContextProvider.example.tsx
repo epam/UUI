@@ -11,7 +11,7 @@ const history = createBrowserHistory();
 export default function UuiEnhancedApp() {
     return (
         <ContextProvider
-            loadAppContext={ (api) => Promise.resolve({}) }
+            loadAppContext={ () => Promise.resolve({}) }
             onInitCompleted={ (context) => {
                 Object.assign(svc, context);
             } }

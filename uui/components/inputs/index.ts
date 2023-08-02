@@ -5,3 +5,4 @@ export * from './TextInput';
 export * from './MultiSwitch';
 export * from './NumericInput';
 export * from './TextArea';
+export * from './TimePicker';

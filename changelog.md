@@ -1,8 +1,20 @@
+# 5.x.x - xx.xx.2023
+
+**What's New**
+
+* [DropdownMenu]: moved in uui and loveship version of it is deprecated. Now promo and loveship are using the same uui implementation.
+* [DropdownMenu]: added new property minWidth: number to setup minWidth to DropdownMenu container.
+* [Avatar]: Property `onClick` marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this prop.
+* [TimePicker]: both skins are using the UUI implementation, and loveship design has been changed into the promo implementation, and 48 size is deprecated and will be deleted in the future release.
+
+**What's Fixed**
+
+
 # 5.1.1 - 27.07.2023
 
 **What's New**
-* [PickerInput]: Added highlighting of the search matching results. 
-* [PickerInput]: Added search result sorting by search relevance. 
+* [PickerInput]: Added highlighting of the search matching results.
+* [PickerInput]: Added search result sorting by search relevance.
 * [Tooltip][BreakingChange]: Removed prop `trigger`. Now tooltip always opens on hover, use dropdown for cases when you need to open body by click.
 * [DataTable]: Added column description tooltip to table header. DataTable now has an optional property-callback 'renderColumnsConfigurationModal?: (props) => React.ReactNode' for render your custom ColumnsConfigurationModal.
 * [ColumnsConfigurationModal]: Added 'renderItem?: (column) => React.ReactNode' optional property-callback for render your custom column name section.

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag,
+    Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton,
 } from '@epam/promo';
 import { DataColumnProps } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
@@ -119,7 +119,7 @@ export const personColumns = [
         isHiddenByDefault: true,
     }, {
         key: 'detailed',
-        render: (p) => <IconButton cx={ css.detailedIcon } icon={ ViewIcon } />,
+        render: () => <IconButton cx={ css.detailedIcon } icon={ ViewIcon } />,
         width: 54,
         alignSelf: 'center',
         fix: 'right',
