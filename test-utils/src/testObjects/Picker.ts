@@ -1,6 +1,6 @@
 import { fireEvent, within, screen, waitFor } from '../extensions/testingLibraryReactExt';
 
-interface OptionConfig {
+export interface OptionConfig {
     editMode?: string;
 }
 
@@ -100,14 +100,14 @@ export class PickerTestObject {
         return screen.queryByRole(editMode ?? this.editMode ?? 'dialog');
     }
 
-    private static async findOption(optionText: string, { editMode }: OptionConfig = {}) {
+    protected static async findOption(optionText: string, { editMode }: OptionConfig = {}) {
         const dialog = within(await this.findDialog(editMode));
         return await dialog.findByRoleAndText({ role: 'option', text: optionText });
     }
 
-    public static async waitForOptionsToBeReady() {
+    public static async waitForOptionsToBeReady(editMode?: string) {
         return await waitFor(
-            () => expect(this.getOptions({ busy: false }).length).toBeGreaterThan(0),
+            () => expect(this.getOptions({ editMode, busy: false }).length).toBeGreaterThan(0),
         );
     }
 }

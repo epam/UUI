@@ -47,7 +47,8 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
             .then((value: any) => {
                 appendLastSelected([...getSelectedIdsArray(value)]);
                 props.onValueChange(value);
-            });
+            })
+            .catch(() => {});
     };
     
     const defaultRenderToggler = (props: IClickable) => <LinkButton caption="Show all" { ...props } />;
