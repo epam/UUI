@@ -14,4 +14,19 @@ export class PickerListTestObject extends PickerTestObject {
         }
         return container.getAllByRole('option', params);
     }
+
+    static queryOptions(props: { busy?: boolean, editMode?: string } = {}) {
+        const container = props.editMode ? within(this.queryDialog(props.editMode)) : screen;
+        const params: any = {};
+        if (typeof props.busy !== 'undefined') {
+            params.busy = props.busy;
+        }
+        return container.queryAllByRole('option', params);
+    }
+
+    static async findSearchInput() {
+        const modal = await this.findDialog('modal');
+        const input = await within(modal).findByPlaceholderText('Type text for quick search');
+        return input;
+    }
 }
