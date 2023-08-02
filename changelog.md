@@ -2,6 +2,7 @@
 
 **What's New**
 
+* [Alert]: Added a new property 'size' (with options 36 and 48) to change the size of the Alert.
 * [DropdownMenu]: moved in uui and loveship version of it is deprecated. Now promo and loveship are using the same uui implementation.
 * [DropdownMenu]: added new property minWidth: number to setup minWidth to DropdownMenu container.
 * [Avatar]: Property `onClick` marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this prop.
