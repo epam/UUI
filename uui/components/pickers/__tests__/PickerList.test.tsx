@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react';
 import {
-    setupComponentForTest, fireEvent, PickerListTestObject, screen, within,
+    setupComponentForTest, fireEvent, PickerListTestObject, screen, within, waitFor,
 } from '@epam/uui-test-utils';
 import { Modals } from '@epam/uui-components';
 import { PickerList, PickerListProps } from '../PickerList';
-import { TestItemType, mockDataSource, mockDataSourceAsync } from './mocks';
+import { TestItemType, mockDataSource, mockDataSourceAsync, mockEmptyDataSource } from './mocks';
 
 jest.mock('react-popper', () => ({
     ...jest.requireActual('react-popper'),
@@ -120,6 +120,57 @@ describe('PickerList', () => {
         await PickerListTestObject.waitForOptionsToBeReady('modal');
 
         expect(result.baseElement).toMatchSnapshot();
+    });
+    
+    it('should render not found', async () => {
+        const { result } = await setupPickerListForTest({
+            selectionMode: 'single',
+            renderNotFound: () => <div data-testid="not-found">Not found</div>,
+        });
+
+        await PickerListTestObject.waitForOptionsToBeReady();
+   
+        const toggler = PickerListTestObject.getPickerToggler();  
+        fireEvent.click(toggler);
+
+        await PickerListTestObject.waitForOptionsToBeReady('modal');
+        
+        const searchInput = await PickerListTestObject.findSearchInput();
+        fireEvent.change(searchInput, { target: { value: 'Some unknown record' } });
+
+        await PickerListTestObject.waitForOptionsToBeReady('modal');
+
+        await waitFor(() => expect(PickerListTestObject.queryOptions({ editMode: 'modal' })).toEqual([]));
+        
+        expect(within(result.baseElement).getByTestId('not-found')).toBeDefined();
+    });
+
+    it('should render no options message', async () => {
+        const { result } = await setupPickerListForTest({
+            selectionMode: 'single',
+            noOptionsMessage: 'No options message',
+            dataSource: mockEmptyDataSource,
+        });
+        expect(PickerListTestObject.queryOptions()).toEqual([]);
+        
+        expect(result.baseElement.textContent).toBe('No options message');
+    });
+
+    it('should render custom footer', async () => {
+        await setupPickerListForTest({
+            selectionMode: 'single',
+            renderFooter: () => <div data-testid="custom-footer">Custom footer</div>,
+        });
+        
+        await PickerListTestObject.waitForOptionsToBeReady();
+   
+        const toggler = PickerListTestObject.getPickerToggler();  
+        fireEvent.click(toggler);
+
+        await PickerListTestObject.waitForOptionsToBeReady('modal');
+        
+        const modal = PickerListTestObject.getDialog('modal');
+        expect(within(modal).getByTestId('custom-footer')).toBeInTheDocument();
     });
 
     describe('[selectionMode single]', () => {
@@ -257,26 +308,25 @@ describe('PickerList', () => {
             expect(options).toHaveLength(5);
             expect((within(options[0]).getByRole('radio') as HTMLInputElement).checked).toBeTruthy();
         });
+
+        it('should apply sorting', async () => {
+            await setupPickerListForTest({
+                selectionMode: 'single',
+                sorting: { direction: 'desc', field: 'level' },
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+            const options = PickerListTestObject.getOptions();
+            expect(options).toHaveLength(5);
+            expect(options.map((opt) => opt.textContent?.trim())).toEqual([
+                'C2',
+                'C1+',
+                'C1',
+                'B2+',
+                'B2', 
+            ]);
+        });
     });
-
-    //     it('should work with maxItems properly', async () => {
-    //         const { mocks, dom } = await setupPickerListForTest({
-    //             value: undefined,
-    //             maxItems: 1,
-    //             selectionMode: 'single',
-    //         });
-
-    //         fireEvent.click(dom.input);
-
-    //         await PickerListTestObject.waitForOptionsToBeReady();
-
-    //         // Check parent
-    //         await PickerListTestObject.clickOptionByText('A1');
-    //         fireEvent.click(dom.input);
-    //         await PickerListTestObject.clickOptionByText('A1+');
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith(3);
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('A1+');
-    //     });
 
     // describe('[selectionMode multi]', () => {
     //     it('[valueType id] should select & clear several options', async () => {

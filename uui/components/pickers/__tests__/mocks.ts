@@ -56,6 +56,10 @@ export const mockDataSource = new ArrayDataSource({
     items: languageLevels,
 });
 
+export const mockEmptyDataSource = new ArrayDataSource({
+    items: [],
+});
+
 export const mockSmallDataSource = new ArrayDataSource({
     items: smallDataSet,
 });
