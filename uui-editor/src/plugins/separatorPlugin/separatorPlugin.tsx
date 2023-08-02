@@ -1,38 +1,27 @@
 import { PlateEditor, createPluginFactory, focusEditor, insertEmptyElement, isMarkActive, toggleNodeType } from '@udecode/plate-common';
 import React from 'react';
-import { Editor } from 'slate';
 
 import { isPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as SeparateIcon } from '../../icons/breakline.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
+import { Separator } from './Separator';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
-import { Separator } from './Separator';
 
-const SEPARATOR_TYPE = 'separatorBLock';
+export const SEPARATOR_KEY = 'separatorBLock';
 
 export const separatorPlugin = () => {
     const createSeparatorPlugin = createPluginFactory({
-        key: SEPARATOR_TYPE,
+        key: SEPARATOR_KEY,
         isElement: true,
         isVoid: true,
         component: Separator,
         handlers: {
             onKeyDown: (editor) => (event) => {
-                if (!getBlockAboveByType(editor, [SEPARATOR_TYPE])) return;
+                if (!getBlockAboveByType(editor, [SEPARATOR_KEY])) return;
 
                 if (event.key === 'Enter') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
-                }
-
-                // empty element needs to be added when we have only attachment in editor content
-                if (event.key === 'Backspace') {
-                    insertEmptyElement(editor, PARAGRAPH_TYPE);
-                }
-
-                if (event.key === 'Delete') {
-                    Editor.deleteForward(editor as any);
-                    insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
             },
         },
@@ -48,12 +37,12 @@ export const separatorPlugin = () => {
     return createSeparatorPlugin();
 };
 
-interface ToolbarButton {
+interface ToolbarButtonProps {
     editor: PlateEditor;
 }
 
-export function SeparatorButton({ editor }: ToolbarButton) {
-    if (!isPluginActive(SEPARATOR_TYPE)) return null;
+export function SeparatorButton({ editor }: ToolbarButtonProps) {
+    if (!isPluginActive(SEPARATOR_KEY)) return null;
 
     const onSeparatorButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, type: string) => {
         e.preventDefault();
@@ -66,9 +55,9 @@ export function SeparatorButton({ editor }: ToolbarButton) {
     return (
         <ToolbarButton
             isDisabled={ isTextSelected(editor, true) }
-            onClick={ (e) => onSeparatorButtonClick(e, SEPARATOR_TYPE) }
+            onClick={ (e) => onSeparatorButtonClick(e, SEPARATOR_KEY) }
             icon={ SeparateIcon }
-            isActive={ !!editor?.selection && isMarkActive(editor, SEPARATOR_TYPE) }
+            isActive={ !!editor?.selection && isMarkActive(editor, SEPARATOR_KEY) }
         />
     );
 }

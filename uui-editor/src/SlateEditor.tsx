@@ -12,17 +12,16 @@ import {
     usePlateEditorState,
 } from '@udecode/plate-common';
 import { createTrailingBlockPlugin } from '@udecode/plate-trailing-block';
-import { createTextIndentPlugin } from '@udecode/plate-indent';
-import { createIndentListPlugin } from '@udecode/plate-indent-list';
 import { createJuicePlugin } from '@udecode/plate-juice';
 import { createDeserializeDocxPlugin } from './plugins/deserializeDocxPlugin/deserializeDocxPlugin';
 
 import css from './SlateEditor.module.scss';
 import { createPlateUI } from './components';
 import { migrateSchema } from './migration';
-import { PARAGRAPH_TYPE, baseMarksPlugin, paragraphPlugin } from './plugins';
+import { IMAGE_PLUGIN_KEY, PARAGRAPH_TYPE, SEPARATOR_KEY, baseMarksPlugin, paragraphPlugin } from './plugins';
 import { MainToolbar, MarksToolbar } from './plugins/Toolbars';
 import { EditorValue } from './types';
+import { createSelectOnBackspacePlugin } from '@udecode/plate-select';
 
 /**
  * Please make sure defaultPlugins and all your plugins are not interfere
@@ -30,15 +29,19 @@ import { EditorValue } from './types';
  * https://github.com/udecode/plate/blob/main/docs/BREAKING_CHANGES.md#general
  */
 export const defaultPlugins: any = [
-    createIndentListPlugin(),
-    createTextIndentPlugin(),
     createSoftBreakPlugin(),
     createExitBreakPlugin(),
-    createDeserializeDocxPlugin(),
+    createDeserializeDocxPlugin(), // depends on juice plugin
     createJuicePlugin(),
-    // next two are linked
+    createSelectOnBackspacePlugin({
+        options: {
+            query: {
+                allow: [SEPARATOR_KEY, IMAGE_PLUGIN_KEY],
+            },
+        },
+    }),
     paragraphPlugin(),
-    createTrailingBlockPlugin({
+    createTrailingBlockPlugin({ // depends on paragraph plugin
         options: { type: PARAGRAPH_TYPE },
         enabled: true,
     }),
