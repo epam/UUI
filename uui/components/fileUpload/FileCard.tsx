@@ -3,17 +3,10 @@ import css from './FileCard.module.scss';
 import { i18n } from '../../i18n';
 import { cx, FileUploadResponse, formatBytes, IClickable, IHasCX, uuiMod } from '@epam/uui-core';
 import { SvgCircleProgress } from './SvgCircleProgress';
-import { FlexCell, FlexRow, IconButton, IconContainer, Text, Tooltip } from '../../components';
+import { IconContainer } from '@epam/uui-components';
+import { FlexCell, FlexRow, IconButton, Text, Tooltip } from '../../components';
+import { fileIcons } from '../../icons/icons';
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/navigation-close-18.svg';
-import { ReactComponent as DocIcon } from '../../icons/fileUpload/file-file_word-24.svg';
-import { ReactComponent as ExelIcon } from '../../icons/fileUpload/file-file_excel-24.svg';
-import { ReactComponent as PdfIcon } from '../../icons/fileUpload/file-file_pdf-24.svg';
-import { ReactComponent as ImgIcon } from '../../icons/fileUpload/file-file_image-24.svg';
-import { ReactComponent as VideoIcon } from '../../icons/fileUpload/file-file_video-24.svg';
-import { ReactComponent as TableIcon } from '../../icons/fileUpload/file-file_table-24.svg';
-import { ReactComponent as TextIcon } from '../../icons/fileUpload/file-file_text-24.svg';
-import { ReactComponent as MailIcon } from '../../icons/fileUpload/file-file_eml-24.svg';
-import { ReactComponent as FileIcon } from '../../icons/fileUpload/file-file-24.svg';
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-10.svg';
 
 export interface FileCardItem extends Partial<File & FileUploadResponse> {
@@ -35,36 +28,36 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
         switch (extension) {
             case 'doc':
             case 'docx':
-                return <IconContainer size={ 24 } icon={ DocIcon } cx={ css.docColor } />;
+                return <IconContainer size={ 24 } icon={ fileIcons.docIcon } />;
             case 'xls':
             case 'xlsx':
-                return <IconContainer size={ 24 } icon={ ExelIcon } cx={ css.xlsColor } />;
+                return <IconContainer size={ 24 } icon={ fileIcons.exelIcon } />;
             case 'pdf':
-                return <IconContainer size={ 24 } icon={ PdfIcon } cx={ css.pdfColor } />;
+                return <IconContainer size={ 24 } icon={ fileIcons.pdfIcon } />;
             case 'gif':
             case 'jpg':
             case 'jpeg':
             case 'svg':
             case 'png':
             case 'webp':
-                return <IconContainer size={ 24 } icon={ ImgIcon } cx={ css.imgColor } />;
+                return <IconContainer size={ 24 } icon={ fileIcons.imgIcon } />;
             case 'avi':
             case 'mov':
             case 'mp4':
             case 'wmw':
             case 'mkv':
-                return <IconContainer size={ 24 } icon={ VideoIcon } cx={ css.movieColor } />;
+                return <IconContainer size={ 24 } icon={ fileIcons.videoIcon } />;
             case 'csv':
             case 'xml':
-                return <IconContainer size={ 24 } icon={ TableIcon } cx={ css.defaultColor } />;
+                return <IconContainer size={ 24 } icon={ fileIcons.tableIcon } cx={ css.defaultColor } />;
             case 'rtf':
             case 'txt':
-                return <IconContainer size={ 24 } icon={ TextIcon } cx={ css.defaultColor } />;
+                return <IconContainer size={ 24 } icon={ fileIcons.textIcon } cx={ css.defaultColor } />;
             case 'eml':
             case 'emlx':
-                return <IconContainer size={ 24 } icon={ MailIcon } cx={ css.defaultColor } />;
+                return <IconContainer size={ 24 } icon={ fileIcons.mailIcon } cx={ css.defaultColor } />;
             default:
-                return <IconContainer size={ 24 } icon={ FileIcon } cx={ css.defaultColor } />;
+                return <IconContainer size={ 24 } icon={ fileIcons.fileIcon } cx={ css.defaultColor } />;
         }
     };
 
@@ -101,7 +94,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
     );
 
     const renderSuccessfulContent = () => (
-        <Text size="18" fontSize="14" lineHeight="18" color="gray60">
+        <Text size="18" fontSize="14" lineHeight="18" color="secondary">
             {fileExtension && `${fileExtension.toUpperCase()}, `}
             {isLoading && formatBytes((size / 100) * progress) + i18n.fileCard.fileSizeProgress}
             {formatBytes(size)}
@@ -123,7 +116,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
             <FlexRow cx={ css.fileCardRow } size="36" alignItems="top" spacing="6">
                 {fileExtension && getIcon(fileExtension)}
                 <FlexCell width="100%">
-                    <Text size="18" fontSize="14" lineHeight="18" color={ progress < 100 ? 'gray60' : 'gray80' } cx={ css.fileName }>
+                    <Text size="18" fontSize="14" lineHeight="18" color={ progress < 100 ? 'secondary' : 'primary' } cx={ css.fileName }>
                         {fileName}
                     </Text>
                     {error?.isError ? renderErrorContent() : renderSuccessfulContent()}

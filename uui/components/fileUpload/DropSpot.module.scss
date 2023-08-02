@@ -1,27 +1,25 @@
-@use '../../assets/styles/index' as *;
-
 .root {
     position: relative;
     min-height: 104px;
-    border: 2px dashed $gray40;
+    border: 2px dashed var(--uui-file-card-background);
     display: flex;
     align-items: center;
     justify-content: center;
     white-space: pre;
 
     &.drop-start {
-        border: 2px dashed $blue;
+        border: 2px dashed var(--uui-file-card-dropstart-border);
     }
 
     &.drop-over {
-        background-color: $blue-lightest;
+        background-color: var(--uui-file-card-dropstart-background);
     }
 
     .link {
-        color: $blue;
+        color: var(--uui-file-card-dropstart-border);
 
         &:hover {
-            color: $blue-dark;
+            color: var(--uui-file-card-link-hover);
         }
     }
 
@@ -38,7 +36,7 @@
     }
 
     .icon-blue {
-        fill: var(--uui-primary);
+        fill: var(--uui-file-card-dropstart-border);
         margin-right: 6px;
     }
 }

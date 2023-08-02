@@ -94,4 +94,12 @@ export const i18n = {
         discardButton: 'Discard',
         saveButton: 'Save',
     },
+    fileUpload: {
+        labelStart: 'Drop files to attach or',
+        browse: 'browse',
+        labelEnd: 'your local files',
+    },
+    fileCard: {
+        fileSizeProgress: ' of ',
+    },
 };
