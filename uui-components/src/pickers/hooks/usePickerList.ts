@@ -69,10 +69,13 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         context,
         view,
         getEntityName,
+        getPluralName,
         getDataSourceState,
         isSingleSelect,
         getName,
     } = picker;
+
+    const getEntityNameForToggler = () => props.entityPluralName || getPluralName();
 
     const getModalTogglerCaption = (totalCount: number, rowsCount: number) => {
         let togglerCaption = i18n.pickerList.showAll;
@@ -80,8 +83,8 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
             togglerCaption += ' ' + totalCount;
         }
 
-        if (getEntityName()) {
-            togglerCaption += ' ' + getEntityName().toUpperCase();
+        if (getEntityNameForToggler()) {
+            togglerCaption += ' ' + getEntityNameForToggler().toUpperCase();
         }
 
         if (!isSingleSelect() && rowsCount > 0) {

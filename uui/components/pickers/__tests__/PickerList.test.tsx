@@ -173,6 +173,35 @@ describe('PickerList', () => {
         expect(within(modal).getByTestId('custom-footer')).toBeInTheDocument();
     });
 
+    it('should disallowClickOutside', async () => {
+        const { setProps } = await setupPickerListForTest({
+            selectionMode: 'single',
+            disallowClickOutside: false,
+        });
+
+        await PickerListTestObject.waitForOptionsToBeReady();
+   
+        const toggler = PickerListTestObject.getPickerToggler();  
+        fireEvent.click(toggler);
+
+        await PickerListTestObject.waitForOptionsToBeReady('modal');
+
+        PickerListTestObject.clickOnModalBlocker();
+        
+        expect(PickerListTestObject.queryDialog('modal')).not.toBeInTheDocument();
+
+        setProps({ disallowClickOutside: true });
+        
+        const toggler2 = PickerListTestObject.getPickerToggler();  
+        fireEvent.click(toggler2);
+
+        await PickerListTestObject.waitForOptionsToBeReady('modal');
+
+        PickerListTestObject.clickOnModalBlocker();
+
+        expect(PickerListTestObject.getDialog('modal')).toBeInTheDocument();
+    });
+
     describe('[selectionMode single]', () => {
         it('[valueType id] should select', async () => {
             const { mocks } = await setupPickerListForTest({
@@ -235,7 +264,7 @@ describe('PickerList', () => {
             await setupPickerListForTest({
                 value: undefined,
                 selectionMode: 'single',
-                entityName: 'Language Levels',
+                entityName: 'Language Level',
             });
 
             await PickerListTestObject.waitForOptionsToBeReady();
@@ -244,7 +273,7 @@ describe('PickerList', () => {
                 .toEqual('show all 11 language levels');
         });
 
-        it('should ignore plural entity name in placeholder', async () => {
+        it('should use plural entity name in toggler text', async () => {
             await setupPickerListForTest({
                 value: undefined,
                 selectionMode: 'single',
@@ -255,7 +284,7 @@ describe('PickerList', () => {
             await PickerListTestObject.waitForOptionsToBeReady();
 
             expect(PickerListTestObject.getPickerToggler().textContent?.trim().toLowerCase())
-                .toEqual('show all 11 language levels');
+                .toEqual('show all 11 multiple language levels');
         });
         
         it('should render 10 items by default', async () => {
@@ -326,609 +355,257 @@ describe('PickerList', () => {
                 'B2', 
             ]);
         });
+
+        it('should render defaultIds', async () => {
+            await setupPickerListForTest({
+                value: 6,
+                selectionMode: 'single',
+                sorting: { direction: 'desc', field: 'level' },
+                defaultIds: [2, 3],
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+            const options = PickerListTestObject.getOptions();
+            expect(options).toHaveLength(3);
+            expect(options.map((opt) => opt.textContent?.trim())).toEqual([
+                'B1',
+                'A1+',
+                'A1',
+            ]);
+        });
     });
 
-    // describe('[selectionMode multi]', () => {
-    //     it('[valueType id] should select & clear several options', async () => {
-    //         const { dom, mocks } = await setupPickerListForTest({
-    //             value: undefined,
-    //             selectionMode: 'multi',
-    //         });
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-    //         fireEvent.click(dom.input);
-    //         expect(screen.getByRole('dialog')).toBeInTheDocument();
+    describe('[selectionMode multi]', () => {
+        it('[valueType id] should select & clear several options', async () => {
+            const { mocks } = await setupPickerListForTest({
+                value: undefined,
+                selectionMode: 'multi',
+            });
 
-    //         await PickerListTestObject.clickOptionCheckbox('A1');
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+            await PickerListTestObject.waitForOptionsToBeReady();
 
-    //         await PickerListTestObject.clickOptionCheckbox('A1+');
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
-    //         expect(await PickerListTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
+            await PickerListTestObject.clickOptionCheckbox('A1');
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
 
-    //         fireEvent.click(window.document.body);
-    //         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
-
-    //         PickerListTestObject.removeSelectedTagByText(dom.input, 'A1+');
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['A1']);
-
-    //         PickerListTestObject.removeSelectedTagByText(dom.input, 'A1');
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual([]);
-    //     });
-
-    //     it('[valueType entity] should select & clear several options', async () => {
-    //         const { dom, mocks } = await setupPickerListForTest({
-    //             value: undefined,
-    //             selectionMode: 'multi',
-    //             valueType: 'entity',
-    //         });
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-    //         fireEvent.click(dom.input);
-    //         expect(screen.getByRole('dialog')).toBeInTheDocument();
-
-    //         await PickerListTestObject.clickOptionCheckbox('A1');
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith([{ id: 2, level: 'A1', name: 'Elementary' }]);
-
-    //         await PickerListTestObject.clickOptionCheckbox('A1+');
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith([
-    //             { id: 2, level: 'A1', name: 'Elementary' },
-    //             { id: 3, level: 'A1+', name: 'Elementary+' },
-    //         ]);
-    //         expect(await PickerListTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
-
-    //         fireEvent.click(window.document.body);
-    //         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
-
-    //         PickerListTestObject.removeSelectedTagByText(dom.input, 'A1+');
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['A1']);
-
-    //         PickerListTestObject.removeSelectedTagByText(dom.input, 'A1');
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual([]);
-    //     });
-    //     it('should render names of items by getName', async () => {
-    //         const { dom } = await setupPickerListForTest<TestItemType, number>({
-    //             value: [3, 4],
-    //             selectionMode: 'multi',
-    //             getName: ({ name }) => name,
-    //         });
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['', '']);
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-    //         await waitFor(() => expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['Elementary+', 'Pre-Intermediate']));
-    //     });
-
-    //     it('should render entity name with \'s\' in placeholder', async () => {
-    //         const { dom } = await setupPickerListForTest({
-    //             value: undefined,
-    //             selectionMode: 'multi',
-    //             entityName: 'Language Level',
-    //         });
-
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('Please select Language Levels');
-    //     });
-
-    //     it('should render plural entity name in placeholder', async () => {
-    //         const { dom } = await setupPickerListForTest({
-    //             value: undefined,
-    //             selectionMode: 'multi',
-    //             entityName: 'Language Level',
-    //             entityPluralName: 'Multiple Language Levels',
-    //         });
-
-    //         expect(PickerListTestObject.getPlaceholderText(dom.input)).toEqual('Please select Multiple Language Levels');
-    //     });
-
-    //     it('should pick single element with cascadeSelection = false', async () => {
-    //         const { mocks, dom } = await setupPickerListForTest({
-    //             value: undefined,
-    //             getName: ({ name }) => name,
-    //             selectionMode: 'multi',
-    //             cascadeSelection: false,
-    //             dataSource: mockTreeLikeDataSourceAsync,
-    //         });
-    //         fireEvent.click(dom.input);
-    //         expect(await PickerListTestObject.hasOptions()).toBeTruthy();
-    //         await PickerListTestObject.clickOptionCheckbox('Parent 2');
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
-
-    //         expect(await PickerListTestObject.findCheckedOptions()).toEqual(['Parent 2']);
-    //         expect(await PickerListTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 3']);
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['Parent 2']);
-    //     });
-
-    //     it.each<[CascadeSelection]>(
-    //         [[true], ['explicit']],
-    //     )
-    //     ('should pick multiple elements with cascadeSelection = %s', async (cascadeSelection) => {
-    //         const { mocks, dom } = await setupPickerListForTest({
-    //             value: undefined,
-    //             getName: ({ name }) => name,
-    //             selectionMode: 'multi',
-    //             cascadeSelection,
-    //             dataSource: mockTreeLikeDataSourceAsync,
-    //         });
-
-    //         fireEvent.click(dom.input);
-    //         expect(await PickerListTestObject.hasOptions()).toBeTruthy();
-    //         // Check parent
-    //         await PickerListTestObject.clickOptionCheckbox('Parent 2');
-    //         // Unfold parent
-    //         await PickerListTestObject.clickOptionUnfold('Parent 2');
-    //         // Test if checkboxes are checked/unchecked
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 2.1, 2.2, 2.3]);
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['Parent 2', 'Child 2.1', 'Child 2.2', 'Child 2.3']);
-    //         expect(await PickerListTestObject.findCheckedOptions()).toEqual(['Parent 2', 'Child 2.1', 'Child 2.2', 'Child 2.3']);
-    //         expect(await PickerListTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 3']);
-
-    //         // Check child
-    //         await PickerListTestObject.clickOptionCheckbox('Child 2.2');
-    //         // Test if checkboxes are checked/unchecked
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith([2.1, 2.3]);
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['Child 2.1', 'Child 2.3']);
-    //         expect(await PickerListTestObject.findCheckedOptions()).toEqual(['Child 2.1', 'Child 2.3']);
-    //         expect(await PickerListTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 2', 'Child 2.2', 'Parent 3']);
-    //     });
-
-    //     it('should pick single element with cascadeSelection = implicit', async () => {
-    //         const { mocks, dom } = await setupPickerListForTest({
-    //             value: undefined,
-    //             getName: ({ name }) => name,
-    //             selectionMode: 'multi',
-    //             cascadeSelection: 'implicit',
-    //             dataSource: mockTreeLikeDataSourceAsync,
-    //         });
-
-    //         fireEvent.click(dom.input);
-    //         expect(await PickerListTestObject.hasOptions()).toBeTruthy();
-
-    //         // Check parent
-    //         await PickerListTestObject.clickOptionCheckbox('Parent 2');
-    //         // Unfold parent
-    //         await PickerListTestObject.clickOptionUnfold('Parent 2');
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['Parent 2']);
-    //         expect(await PickerListTestObject.findCheckedOptions()).toEqual(['Parent 2', 'Child 2.1', 'Child 2.2', 'Child 2.3']);
-    //         expect(await PickerListTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 3']);
-
-    //         // Check child
-    //         await PickerListTestObject.clickOptionCheckbox('Child 2.2');
-    //         // Test if checkboxes are checked/unchecked
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith([2.1, 2.3]);
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['Child 2.1', 'Child 2.3']);
-    //         expect(await PickerListTestObject.findCheckedOptions()).toEqual(['Child 2.1', 'Child 2.3']);
-    //         expect(await PickerListTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 2', 'Child 2.2', 'Parent 3']);
-    //     });
-
-    //     it('should wrap up if number of elements is greater than maxItems', async () => {
-    //         const { mocks, dom } = await setupPickerListForTest({
-    //             value: undefined,
-    //             maxItems: 3,
-    //             entityPluralName: 'languages',
-    //             selectionMode: 'multi',
-    //         });
-
-    //         fireEvent.click(dom.input);
-    //         expect(await PickerListTestObject.hasOptions()).toBeTruthy();
-
-    //         // Check parent
-    //         await PickerListTestObject.clickOptionByText('A1');
-    //         await PickerListTestObject.clickOptionByText('A1+');
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
-
-    //         await PickerListTestObject.clickOptionByText('A2');
-    //         await PickerListTestObject.clickOptionByText('A2+');
-    //         expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3, 4, 5]);
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['4 languages selected']);
-    //     });
-
-    //     it('should disable clear', async () => {
-    //         const { setProps, dom, result } = await setupPickerListForTest({
-    //             value: [2, 3],
-    //             selectionMode: 'multi',
-    //             disableClear: false,
-    //         });
-    //         await waitFor(() => expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']));
-    //         PickerListTestObject.clearInput(result.container);
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual([]);
-
-    //         setProps({ disableClear: true, value: [2, 3] });
-    //         expect(PickerListTestObject.hasClearInputButton(result.container)).toBeFalsy();
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
-    //     });
-
-    //     it('should select all', async () => {
-    //         const { dom } = await setupPickerListForTest({
-    //             value: [],
-    //             selectionMode: 'multi',
-    //             maxItems: 100,
-    //         });
-
-    //         fireEvent.click(dom.input);
-    //         expect(await PickerListTestObject.hasOptions()).toBeTruthy();
-
-    //         await PickerListTestObject.clickSelectAllOptions();
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C1+', 'C2']);
-
-    //         await PickerListTestObject.clickClearAllOptions();
-    //         expect(PickerListTestObject.getSelectedTagsText(dom.input)).toEqual([]);
-    //     });
- 
-    //     it('should show only selected', async () => {
-    //         const { dom } = await setupPickerListForTest<TestItemType, number>({
-    //             value: [4, 2, 6, 8],
-    //             selectionMode: 'multi',
-    //         });
-
-    //         fireEvent.click(dom.input);
-
-    //         const dialog = await screen.findByRole('dialog');
-    //         expect(dialog).toBeInTheDocument();
+            await PickerListTestObject.clickOptionCheckbox('A1+');
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
+            expect(await PickerListTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
             
-    //         await PickerListTestObject.waitForOptionsToBeReady();
-
-    //         expect(await PickerListTestObject.findCheckedOptions()).toEqual(['A1', 'A2', 'B1', 'B2']);
-    //         expect(await PickerListTestObject.findUncheckedOptions()).toEqual(['A1+', 'A2+', 'B1+', 'B2+', 'C1', 'C1+', 'C2']);
-            
-    //         await PickerListTestObject.clickShowOnlySelected();
-
-    //         expect(await PickerListTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
-    //         expect(await PickerListTestObject.findUncheckedOptions()).toEqual([]);
-    //     });
-    // });
-
-    // it('should disable input', async () => {
-    //     const { dom } = await setupPickerListForTest({
-    //         value: undefined,
-    //         selectionMode: 'single',
-    //         isDisabled: true,
-    //     });
-
-    //     expect(dom.input.hasAttribute('disabled')).toBeTruthy();
-    //     expect(dom.input.getAttribute('aria-disabled')?.trim()).toEqual('true');
-
-    //     fireEvent.click(dom.input);
-    //     expect(screen.queryByRole('dialog')).toBeNull();
-    // });
-
-    // it('should make an input readonly', async () => {
-    //     const { dom } = await setupPickerListForTest({
-    //         value: undefined,
-    //         selectionMode: 'single',
-    //         isReadonly: true,
-    //     });
-
-    //     expect(dom.input.hasAttribute('readonly')).toBeTruthy();
-    //     expect(dom.input.getAttribute('aria-readonly')?.trim()).toEqual('true');
-
-    //     fireEvent.click(dom.input);
-    //     expect(screen.queryByRole('dialog')).toBeNull();
-    // });
-
-    // it.each<[IHasEditMode['mode'] | undefined]>(
-    //     [[undefined], ['form'], ['cell'], ['inline']],
-    // )('should render with mode = %s', async (mode) => {
-    //     const props: PickerListComponentProps<TestItemType, number> = {
-    //         value: [],
-    //         onValueChange: () => {},
-    //         valueType: 'id',
-    //         dataSource: mockDataSourceAsync,
-    //         disableClear: false,
-    //         searchPosition: 'input',
-    //         getName: (item: TestItemType) => item.level,
-    //         selectionMode: 'multi',
-    //         mode,
-    //     };
-    //     expect(await renderSnapshotWithContextAsync(<PickerList { ...props } />)).toMatchSnapshot();
-    // });
-
-    // it.each<['left' | 'right' | undefined]>(
-    //     [[undefined], ['left'], ['right']],
-    // )('should render icon at specific position', async (iconPosition) => {
-    //     const props: PickerListComponentProps<TestItemType, number> = {
-    //         value: [],
-    //         onValueChange: () => {},
-    //         valueType: 'id',
-    //         dataSource: mockDataSourceAsync,
-    //         disableClear: false,
-    //         searchPosition: 'input',
-    //         getName: (item: TestItemType) => item.level,
-    //         selectionMode: 'multi',
-    //         icon: () => <div data-testid = "test-icon" />,
-    //         iconPosition,
-    //     };
-    //     expect(await renderSnapshotWithContextAsync(<PickerList { ...props } />)).toMatchSnapshot();
-    // });
-
-    // it('should pass onClick to the icon', async () => {
-    //     const { mocks } = await setupPickerListForTest({
-    //         value: undefined,
-    //         onIconClick: jest.fn(),
-    //         icon: () => <div data-testid = "test-icon" />,
-    //     });
-
-    //     const iconContainer = screen.getByTestId('test-icon').parentElement as Element;
-    //     fireEvent.click(iconContainer);
-    //     expect(mocks.onIconClick).toBeCalledTimes(1);
-    // });
-
-    // it('should open dialog only when minCharsToSearch is reached', async () => {
-    //     const { dom } = await setupPickerListForTest({
-    //         value: undefined,
-    //         minCharsToSearch: 1,
-    //     });
-
-    //     fireEvent.click(dom.input);
-
-    //     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    //     fireEvent.change(dom.input, { target: { value: 'A' } });
-    //     expect(await screen.findByRole('dialog')).toBeInTheDocument();
-    // });
-
-    // it('should use modal edit mode', async () => {
-    //     const { dom } = await setupPickerListForTest({
-    //         value: undefined,
-    //         selectionMode: 'single',
-    //         editMode: 'modal',
-    //     });
-    //     fireEvent.click(dom.input);
-    //     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    //     expect(
-    //         await PickerListTestObject.findOptionsText({ busy: false, editMode: 'modal' }),
-    //     ).toEqual(
-    //         ['A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C1+', 'C2'],
-    //     );
-    // });
-
-    // it('should render input as invalid', async () => {
-    //     const props: PickerListComponentProps<TestItemType, number | undefined> = {
-    //         value: undefined,
-    //         onValueChange: () => {},
-    //         valueType: 'id',
-    //         dataSource: mockDataSourceAsync,
-    //         disableClear: false,
-    //         searchPosition: 'input',
-    //         getName: (item: TestItemType) => item.level,
-    //         selectionMode: 'single',
-    //         isInvalid: true,
-    //     };
-    //     expect(await renderSnapshotWithContextAsync(<PickerList { ...props } />)).toMatchSnapshot();
-    // });
-
-    // it('should support single line', async () => {
-    //     const props: PickerListComponentProps<TestItemType, number> = {
-    //         value: [],
-    //         onValueChange: () => {},
-    //         dataSource: mockDataSourceAsync,
-    //         disableClear: false,
-    //         searchPosition: 'input',
-    //         getName: (item: TestItemType) => item.level,
-    //         selectionMode: 'multi',
-    //         isSingleLine: true,
-    //     };
-    //     expect(await renderSnapshotWithContextAsync(<PickerList { ...props } />)).toMatchSnapshot();
-    // });
-
-    // it('should provide custom placeholder', async () => {
-    //     const { dom } = await setupPickerListForTest({
-    //         value: undefined,
-    //         selectionMode: 'multi',
-    //         placeholder: 'Custom placeholder',
-    //     });
-    //     expect(await PickerListTestObject.getPlaceholderText(dom.input)).toEqual('Custom placeholder');
-    // });
-
-    // it('should define minBodyWidth', async () => {
-    //     const { dom } = await setupPickerListForTest({
-    //         value: undefined,
-    //         selectionMode: 'multi',
-    //         minBodyWidth: 300,
-    //     });
-
-    //     fireEvent.click(dom.input);
-
-    //     const dialog = await screen.findByRole('dialog');
-    //     expect(dialog).toBeInTheDocument();
-
-    //     const dialogBody = dialog.firstElementChild;
-    //     expect(dialogBody).toHaveStyle('width: 300px');
-    // });
-
-    // it('should define dropdownHeight', async () => {
-    //     const { dom } = await setupPickerListForTest({
-    //         value: undefined,
-    //         selectionMode: 'multi',
-    //         dropdownHeight: 100,
-    //     });
-
-    //     fireEvent.click(dom.input);
-
-    //     const dialog = await screen.findByRole('dialog');
-    //     expect(dialog).toBeInTheDocument();
-
-    //     const dialogBody = dialog.firstElementChild?.firstElementChild;
-    //     expect(dialogBody).toHaveStyle('max-height: 100px');
-    // });
-
-    // it('should render custom toggler', async () => {
-    //     const { mocks, dom } = await setupPickerListForTest<TestItemType, number>({
-    //         value: undefined,
-    //         selectionMode: 'multi',
-    //         renderToggler: (props) => (
-    //             <Button
-    //                 rawProps={ {
-    //                     ...props.rawProps,
-    //                     'data-testid': 'test-toggler',
-    //                 } }
-    //                 size="36"
-    //                 onClick={ props.onClick }
-    //                 ref={ props.ref }
-    //                 iconPosition="left"
-    //                 mode="ghost"
-    //                 caption={ props.selection?.map((s) => s.value?.name).join(', ') }
-    //             />
-    //         ),
-    //     });
-
-    //     expect(dom.target.getAttribute('type')).toBe('button');
-
-    //     fireEvent.click(dom.target);
-    //     expect(await PickerListTestObject.hasOptions()).toBeTruthy();
-
-    //     await PickerListTestObject.clickOptionCheckbox('A1');
-    //     await PickerListTestObject.clickOptionCheckbox('A1+');
-    //     expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
-
-    //     expect(await PickerListTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
-    //     expect(screen.getByTestId('test-toggler').textContent?.trim()).toEqual('Elementary, Elementary+');
-    // });
-
-    // it('should render search in input', async () => {
-    //     const { dom } = await setupPickerListForTest({
-    //         value: undefined,
-    //         selectionMode: 'multi',
-    //         searchPosition: 'input',
-    //     });
-        
-    //     expect(dom.input.getAttribute('readonly')).toBe('');
-    //     fireEvent.click(dom.input);
-    //     const dialog = await screen.findByRole('dialog');
-    //     expect(dialog).toBeInTheDocument();
-        
-    //     const bodyInput = within(dialog).queryByPlaceholderText('Search');
-    //     expect(bodyInput).not.toBeInTheDocument();
-    // });
-
-    // it('should render search in body', async () => {
-    //     const { dom } = await setupPickerListForTest({
-    //         value: undefined,
-    //         selectionMode: 'multi',
-    //         searchPosition: 'body',
-    //     });
-
-    //     expect(dom.input.hasAttribute('readonly')).toBeTruthy();
-    //     fireEvent.click(dom.input);
-
-    //     const dialog = await screen.findByRole('dialog');
-    //     expect(dialog).toBeInTheDocument();
-    //     const bodyInput = within(dialog).getByPlaceholderText('Search');
-    //     expect(bodyInput).toBeInTheDocument();
-    //     expect(bodyInput.hasAttribute('readonly')).toBeFalsy();
-    // });
-
-    // it('should not render search in none mode', async () => {
-    //     const { dom } = await setupPickerListForTest({
-    //         value: undefined,
-    //         selectionMode: 'multi',
-    //         searchPosition: 'none',
-    //     });
-
-    //     expect(dom.input.hasAttribute('readonly')).toBeTruthy();
-    //     fireEvent.click(dom.input);
-
-    //     const dialog = await screen.findByRole('dialog');
-    //     expect(dialog).toBeInTheDocument();
-    //     expect(within(dialog).queryByPlaceholderText('Search')).not.toBeInTheDocument();
-    // });
-
-    // it('should render custom not found', async () => {
-    //     const mockEmptyDS = new ArrayDataSource<TestItemType, number, any>({
-    //         items: [],
-    //         getId: ({ id }) => id,
-    //     });
-
-    //     const customText = 'Custom Text or Component';
-
-    //     const { dom } = await setupPickerListForTest({
-    //         value: undefined,
-    //         selectionMode: 'multi',
-    //         dataSource: mockEmptyDS,
-    //         renderNotFound: () => (
-    //             <FlexCell grow={ 1 } textAlign="center" rawProps={ { 'data-testid': 'test-custom-not-found' } }>
-    //                 <Text>{customText}</Text>
-    //             </FlexCell>
-    //         ),
-    //     });
-
-    //     fireEvent.click(dom.input);
-    //     const notFound = within(await screen.findByRole('dialog')).getByTestId('test-custom-not-found');
-    //     expect(notFound).toHaveTextContent(customText);
-    // });
-
-    // it('should render custom row', async () => {
-    //     const { dom } = await setupPickerListForTest<TestItemType, number>({
-    //         value: undefined,
-    //         selectionMode: 'multi',
-    //         renderRow: (props) => (
-    //             <DataPickerRow
-    //                 { ...props }
-    //                 key={ props.rowKey }
-    //                 alignActions="center"
-    //                 renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.name } /> }
-    //             />
-    //         ),
-    //     });
-
-    //     fireEvent.click(dom.input);
-    //     expect(await screen.findByRole('dialog')).toBeInTheDocument();
-
-    //     await PickerListTestObject.waitForOptionsToBeReady();
-
-    //     expect(await PickerListTestObject.findOptionsText({ busy: false })).toEqual([
-    //         'Elementary',
-    //         'Elementary+',
-    //         'Pre-Intermediate',
-    //         'Pre-Intermediate+',
-    //         'Intermediate',
-    //         'Intermediate+',
-    //         'Upper-Intermediate',
-    //         'Upper-Intermediate+',
-    //         'Advanced',
-    //         'Advanced+',
-    //         'Proficiency',
-    //     ]);
-    // });
+            const toggler = PickerListTestObject.getPickerToggler();  
+            fireEvent.click(toggler);
     
-    // it('should search items', async () => {
-    //     const { dom } = await setupPickerListForTest<TestItemType, number>({
-    //         value: undefined,
-    //         selectionMode: 'multi',
-    //         searchPosition: 'body',
-    //         getSearchFields: (item) => [item!.level],
-    //     });
-
-    //     expect(dom.input.hasAttribute('readonly')).toBeTruthy();
-    //     fireEvent.click(dom.input);
-
-    //     const dialog = await screen.findByRole('dialog');
-    //     expect(dialog).toBeInTheDocument();
+            await PickerListTestObject.waitForOptionsToBeReady('modal');
+            
+            const checkedOptions1 = await PickerListTestObject.findCheckedOptions({ editMode: 'modal' });
+            expect(checkedOptions1).toEqual(['A1', 'A1+']);
+            
+            await PickerListTestObject.clickOptionCheckbox('A1+', { editMode: 'modal' });
+            
+            const checkedOptions2 = await PickerListTestObject.findCheckedOptions({ editMode: 'modal' });
+            expect(checkedOptions2).toEqual(['A1']);
+        });
         
-    //     await PickerListTestObject.waitForOptionsToBeReady();
+        it('[valueType entity] should select & clear several options', async () => {
+            const { mocks } = await setupPickerListForTest({
+                value: undefined,
+                selectionMode: 'multi',
+                valueType: 'entity',
+            });
 
-    //     expect(await PickerListTestObject.findOptionsText({ busy: false })).toEqual([
-    //         'A1',
-    //         'A1+',
-    //         'A2',
-    //         'A2+',
-    //         'B1',
-    //         'B1+',
-    //         'B2',
-    //         'B2+',
-    //         'C1',
-    //         'C1+',
-    //         'C2',
-    //     ]);
+            await PickerListTestObject.waitForOptionsToBeReady();
 
-    //     const bodyInput = within(dialog).getByPlaceholderText('Search');
-    //     fireEvent.change(bodyInput, { target: { value: 'A' } });
+            await PickerListTestObject.clickOptionCheckbox('A1');
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith([{
+                id: 2,
+                level: 'A1',
+                name: 'Elementary',
+            }]);
 
-    //     await waitFor(() => expect(PickerListTestObject.getOptions({ busy: false }).length).toBe(4));
+            await PickerListTestObject.clickOptionCheckbox('A1+');
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith([
+                { id: 2, level: 'A1', name: 'Elementary' },
+                { id: 3, level: 'A1+', name: 'Elementary+' },
+            ]);
+            expect(await PickerListTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
+            
+            const toggler = PickerListTestObject.getPickerToggler();  
+            fireEvent.click(toggler);
+    
+            await PickerListTestObject.waitForOptionsToBeReady('modal');
+            
+            const checkedOptions1 = await PickerListTestObject.findCheckedOptions({ editMode: 'modal' });
+            expect(checkedOptions1).toEqual(['A1', 'A1+']);
+            
+            await PickerListTestObject.clickOptionCheckbox('A1+', { editMode: 'modal' });
+            
+            const checkedOptions2 = await PickerListTestObject.findCheckedOptions({ editMode: 'modal' });
+            expect(checkedOptions2).toEqual(['A1']);
+        });
+    
+        it('should render names of items by getName', async () => {
+            await setupPickerListForTest<TestItemType, number>({
+                value: [3, 4],
+                selectionMode: 'multi',
+                getName: ({ name }) => name,
+            });
+            
+            await PickerListTestObject.waitForOptionsToBeReady();
 
-    //     expect(await PickerListTestObject.findOptionsText({ busy: false })).toEqual([
-    //         'A1',
-    //         'A1+',
-    //         'A2',
-    //         'A2+',
-    //     ]);
-    // });
+            const checkedOptions1 = await PickerListTestObject.findCheckedOptions();
+            expect(checkedOptions1).toEqual(['Elementary+', 'Pre-Intermediate']);
+        });
+
+        it('should render entity name in picker toggler text', async () => {
+            await setupPickerListForTest({
+                value: undefined,
+                selectionMode: 'multi',
+                entityName: 'Language Level',
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+
+            expect(PickerListTestObject.getPickerToggler().textContent?.trim().toLowerCase())
+                .toEqual('show all 11 language levels');
+        });
+
+        it('should ignore plural entity name in placeholder', async () => {
+            await setupPickerListForTest({
+                value: undefined,
+                selectionMode: 'multi',
+                entityName: 'Language Levels',
+                entityPluralName: 'Multiple Language Levels',
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+
+            expect(PickerListTestObject.getPickerToggler().textContent?.trim().toLowerCase())
+                .toEqual('show all 11 multiple language levels');
+        });
+        
+        it('should render 10 items by default', async () => {
+            await setupPickerListForTest({
+                value: undefined,
+                selectionMode: 'multi',
+                maxDefaultItems: undefined,
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+
+            expect(PickerListTestObject.getOptions()).toHaveLength(10);
+        });
+        
+        it('should render items count of maxDefaultItems', async () => {
+            await setupPickerListForTest({
+                value: undefined,
+                selectionMode: 'multi',
+                maxDefaultItems: 11,
+                maxTotalItems: 20,
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+
+            expect(PickerListTestObject.getOptions()).toHaveLength(11);
+        });
+        
+        it('should render items count of maxTotalItems, if they are less then maxDefaultItems', async () => {
+            await setupPickerListForTest({
+                value: undefined,
+                selectionMode: 'multi',
+                maxDefaultItems: 11,
+                maxTotalItems: 5,
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+            expect(PickerListTestObject.getOptions()).toHaveLength(5);
+        });
+        
+        it('should render up to maxTotalItems elements, if they are checked', async () => {
+            await setupPickerListForTest({
+                value: [2, 3, 4],
+                selectionMode: 'multi',
+                maxDefaultItems: 1,
+                maxTotalItems: 4,
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+            const options1 = PickerListTestObject.getOptions();
+            expect(options1).toHaveLength(3);
+
+            const options2 = await PickerListTestObject.findCheckedOptions();
+            expect(options2).toHaveLength(3);
+        });
+        
+        it('should render maxTotalItems elements, if amount of checked elements is more than maxTotalItems', async () => {
+            await setupPickerListForTest({
+                value: [2, 3, 4, 5, 6],
+                selectionMode: 'multi',
+                maxDefaultItems: 1,
+                maxTotalItems: 4,
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+            const options1 = PickerListTestObject.getOptions();
+            expect(options1).toHaveLength(4);
+
+            const options2 = await PickerListTestObject.findCheckedOptions();
+            expect(options2).toHaveLength(4);
+        });
+        
+        it('should select all', async () => {
+            await setupPickerListForTest({
+                value: [],
+                selectionMode: 'multi',
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+
+            fireEvent.click(PickerListTestObject.getPickerToggler());
+
+            await PickerListTestObject.waitForOptionsToBeReady('modal');
+
+            await PickerListTestObject.clickSelectAllOptions({ editMode: 'modal' });
+            expect(await PickerListTestObject.findCheckedOptions({ editMode: 'modal' }))
+                .toEqual(['A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C1+', 'C2']);
+
+            await PickerListTestObject.clickClearAllOptions({ editMode: 'modal' });
+            expect(await PickerListTestObject.findCheckedOptions({ editMode: 'modal' })).toEqual([]);
+        });
+        
+        it('should show only selected', async () => {
+            await setupPickerListForTest<TestItemType, number>({
+                value: [4, 2, 6, 8],
+                selectionMode: 'multi',
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+
+            fireEvent.click(PickerListTestObject.getPickerToggler());
+
+            await PickerListTestObject.waitForOptionsToBeReady('modal');
+
+            expect(await PickerListTestObject.findCheckedOptions({ editMode: 'modal' })).toEqual(['A1', 'A2', 'B1', 'B2']);
+            expect(await PickerListTestObject.findUncheckedOptions({ editMode: 'modal' })).toEqual(['A1+', 'A2+', 'B1+', 'B2+', 'C1', 'C1+', 'C2']);
+            
+            await PickerListTestObject.clickShowOnlySelected({ editMode: 'modal' });
+
+            expect(await PickerListTestObject.findCheckedOptions({ editMode: 'modal' })).toEqual(['A2', 'A1', 'B1', 'B2']);
+            expect(await PickerListTestObject.findUncheckedOptions({ editMode: 'modal' })).toEqual([]);
+        });
+        
+        it('should render defaultIds', async () => {
+            await setupPickerListForTest({
+                value: [6, 5],
+                selectionMode: 'multi',
+                sorting: { direction: 'desc', field: 'level' },
+                defaultIds: [3, 2],
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+            const options = PickerListTestObject.getOptions();
+            expect(options).toHaveLength(4);
+            expect(options.map((opt) => opt.textContent?.trim())).toEqual([
+                'B1', 'A2+', 'A1+', 'A1',
+            ]);
+        });
+    });
 });
