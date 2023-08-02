@@ -8,4 +8,9 @@
             box-shadow: none;
         }
     }
+
+    .uui-focus, &>:focus-within, &>:hover {
+        position: relative;
+        z-index: 1;
+    }
 }
