@@ -10,6 +10,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
   }
 >
   <div
+    aria-label="Click to close a modal"
     className="uui-modal-blocker"
     onClick={[Function]}
   />
@@ -226,6 +227,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
   }
 >
   <div
+    aria-label="Click to close a modal"
     className="uui-modal-blocker"
     onClick={[Function]}
   />
