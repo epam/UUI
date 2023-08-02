@@ -7,6 +7,20 @@ function genUniqueId() {
     return [Math.random(), Math.random()].reduce((acc, n) => (acc + n.toString(36).substring(2)), '');
 }
 
+function getPortalRootById(id: string) {
+    let root = document.getElementById(id);
+    if (!root) {
+        /*
+         * document.getElementById doesn't find elements by ID if they are located in shadow DOM.
+         * so, as a fallback, we try to find shadow host by attribute name like this: [data-<id>]
+         * and after that - try to find by id in the shadow root.
+         */
+        const shadow = document.querySelector(`[data-shadow-host-id="${id}"]`);
+        root = shadow?.shadowRoot?.getElementById(id);
+    }
+    return root;
+}
+
 export class LayoutContext extends BaseContext {
     layerIdCounter = 0;
     layers: LayoutLayer[] = [];
@@ -18,7 +32,7 @@ export class LayoutContext extends BaseContext {
          * TODO: we should remove this part: document.getElementById('main') || document.getElementById('root')
          */
         if (isClientSide) {
-            return document.getElementById(this.portalRootId) || document.getElementById('main') || document.getElementById('root') || document.body;
+            return getPortalRootById(this.portalRootId) || document.getElementById('main') || document.getElementById('root') || document.body;
         }
     }
 
