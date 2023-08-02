@@ -10,6 +10,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
   }
 >
   <div
+    aria-label="Click to close a modal"
     className="uui-modal-blocker"
     onClick={[Function]}
   />
@@ -404,6 +405,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
   }
 >
   <div
+    aria-label="Click to close a modal"
     className="uui-modal-blocker"
     onClick={[Function]}
   />
@@ -1484,6 +1486,7 @@ exports[`PickerModal should open body 1`] = `
       style="z-index: 2000;"
     >
       <div
+        aria-label="Click to close a modal"
         class="uui-modal-blocker"
       />
       <div

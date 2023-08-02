@@ -16,6 +16,11 @@ const PickerModalDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'Picke
     .implements([
         sizeDoc, isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, modeDoc, iconDoc, iconOptionsDoc,
     ])
+    .prop('cascadeSelection', {
+        examples: [
+            true, 'explicit', 'implicit',
+        ],
+    })
     .prop('valueType', { examples: ['id', 'entity'], isRequired: true })
     .prop('selectionMode', { examples: ['single', 'multi'], isRequired: true })
     .prop('isFoldedByDefault', { examples: [{ value: () => false, name: '(item) => false' }] })
