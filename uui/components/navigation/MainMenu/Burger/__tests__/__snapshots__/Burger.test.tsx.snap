@@ -4,7 +4,7 @@ exports[`Burger should render with maximum props 1`] = `
 <div
   className="root uui-burger-menu container"
 >
-  <div
+  <button
     className="uui-burger-button"
     onClick={[Function]}
   >
@@ -16,6 +16,6 @@ exports[`Burger should render with maximum props 1`] = `
         className=""
       />
     </div>
-  </div>
+  </button>
 </div>
 `;

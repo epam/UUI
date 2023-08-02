@@ -58,7 +58,7 @@ export function getOrderBetween(inputA: string | null, inputB: string | null): s
         const midDigit = Math.floor((aDigit + bDigit) / 2);
         result += midDigit.toString(radix);
 
-        if (aDigit != midDigit) {
+        if (aDigit !== midDigit) {
             break;
         }
 

@@ -5,5 +5,3 @@ export * from './Checkbox';
 export * from './RadioInput';
 export * from './MultiSwitch';
 export * from './SliderRating';
-export * from './TimePicker';
-export * from './TimePickerBody';

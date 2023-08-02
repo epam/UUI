@@ -23,6 +23,13 @@
             min-width: 72px;
         }
 
+        .import-button {
+            background: none;
+            border: none;
+            line-height: inherit;
+            text-align: left;
+        }
+
         .title {
             font-family: $font-museo-sans;
             margin-bottom: 24px;

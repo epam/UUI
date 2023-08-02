@@ -20,7 +20,7 @@ export class SizeInfo extends React.Component<SizeInfoProps, any> {
             ], // icon size with caption
         ];
 
-        const index = iconSizes[0].findIndex((i) => i == this.props.size);
+        const index = iconSizes[0].findIndex((i) => i === this.props.size);
 
         return (
             <div>
@@ -39,7 +39,7 @@ export class SizeInfo extends React.Component<SizeInfoProps, any> {
                     <FlexRow cx={ css.borderBottom } size="24" spacing={ null }>
                         <FlexCell minWidth={ 80 } shrink={ 0 } cx={ cx(css.leftCell, css.height24) } />
                         {iconSizes[0].map((size) => (
-                            <FlexCell key={ size } minWidth={ 38 } shrink={ 0 } cx={ this.props.size == size && css.activeV }>
+                            <FlexCell key={ size } minWidth={ 38 } shrink={ 0 } cx={ this.props.size === size && css.activeV }>
                                 <Text size="24" font="sans-semibold">
                                     {size}
                                 </Text>

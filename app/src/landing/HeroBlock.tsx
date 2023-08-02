@@ -29,56 +29,56 @@ export class HeroBlock extends React.Component<HeroBlockProps, HeroBlockState> {
     };
 
     renderStaticImage = () => {
-        return <img alt="Hero Image" src="/static/images/hero_image.png" width="100%" />;
+        return <img alt="Demo site showcasing the capabilities of UUI" src="/static/images/hero_image.png" width="100%" />;
     };
 
     renderAnimatedImage = () => {
         return (
             <>
                 <div style={ { width: '100%' } }>
-                    <img alt="image" src="/static/images/Background.png" width="100%" />
+                    <img alt="Demo site showcasing the capabilities of UUI" src="/static/images/Background.png" width="100%" />
                 </div>
                 <div style={ { width: '100%' } }>
-                    <img className={ css.search } alt="image" src="/static/images/120_192.png" width="20%" />
+                    <img className={ css.search } alt="Demo site showcasing the capabilities of UUI" src="/static/images/120_192.png" width="20%" />
                 </div>
                 <div style={ { width: '100%' } }>
-                    <img className={ css.layer_1 } alt="image" src="/static/images/120_390.png" width="20%" />
+                    <img className={ css.layer_1 } alt="Demo site showcasing the capabilities of UUI" src="/static/images/120_390.png" width="20%" />
                 </div>
                 <div style={ { width: '100%' } }>
-                    <img className={ css.layer_2 } alt="image" src="/static/images/426_444.png" width="20%" />
+                    <img className={ css.layer_2 } alt="Demo site showcasing the capabilities of UUI" src="/static/images/426_444.png" width="20%" />
                 </div>
                 <div style={ { width: '100%' } }>
-                    <img className={ css.layer_3 } alt="image" src="/static/images/732_444.png" width="20%" />
+                    <img className={ css.layer_3 } alt="Demo site showcasing the capabilities of UUI" src="/static/images/732_444.png" width="20%" />
                 </div>
                 <div style={ { width: '100%' } }>
-                    <img className={ css.layer_4 } alt="image" src="/static/images/1038_444.png" width="20%" />
+                    <img className={ css.layer_4 } alt="Demo site showcasing the capabilities of UUI" src="/static/images/1038_444.png" width="20%" />
                 </div>
                 <div style={ { width: '100%' } }>
-                    <img className={ css.layer_5 } alt="image" src="/static/images/426_744.png" width="20%" />
+                    <img className={ css.layer_5 } alt="Demo site showcasing the capabilities of UUI" src="/static/images/426_744.png" width="20%" />
                 </div>
                 <div style={ { width: '100%' } }>
-                    <img className={ css.layer_6 } alt="image" src="/static/images/732_744.png" width="20%" />
+                    <img className={ css.layer_6 } alt="Demo site showcasing the capabilities of UUI" src="/static/images/732_744.png" width="20%" />
                 </div>
                 <div style={ { width: '100%' } }>
-                    <img className={ css.layer_7 } alt="image" src="/static/images/1038_744.png" width="20%" />
+                    <img className={ css.layer_7 } alt="Demo site showcasing the capabilities of UUI" src="/static/images/1038_744.png" width="20%" />
                 </div>
                 <div style={ { width: '100%' } }>
-                    <img className={ css.layer_8 } alt="image" src="/static/images/426_1044.png" width="20%" />
+                    <img className={ css.layer_8 } alt="Demo site showcasing the capabilities of UUI" src="/static/images/426_1044.png" width="20%" />
                 </div>
                 <div style={ { width: '100%' } }>
-                    <img className={ css.layer_9 } alt="image" src="/static/images/732_1044.png" width="20%" />
+                    <img className={ css.layer_9 } alt="Demo site showcasing the capabilities of UUI" src="/static/images/732_1044.png" width="20%" />
                 </div>
                 <div style={ { width: '100%' } }>
-                    <img className={ css.layer_10 } alt="image" src="/static/images/1038_1044.png" width="20%" />
+                    <img className={ css.layer_10 } alt="Demo site showcasing the capabilities of UUI" src="/static/images/1038_1044.png" width="20%" />
                 </div>
                 <div style={ { width: '100%' } }>
-                    <img className={ css.layer_11 } alt="image" src="/static/images/426_1344.png" width="20%" />
+                    <img className={ css.layer_11 } alt="Demo site showcasing the capabilities of UUI" src="/static/images/426_1344.png" width="20%" />
                 </div>
                 <div style={ { width: '100%' } }>
-                    <img className={ css.layer_12 } alt="image" src="/static/images/732_1344.png" width="20%" />
+                    <img className={ css.layer_12 } alt="Demo site showcasing the capabilities of UUI" src="/static/images/732_1344.png" width="20%" />
                 </div>
                 <div style={ { width: '100%' } }>
-                    <img className={ css.layer_13 } alt="image" src="/static/images/1038_1344.png" width="20%" />
+                    <img className={ css.layer_13 } alt="Demo site showcasing the capabilities of UUI" src="/static/images/1038_1344.png" width="20%" />
                 </div>
             </>
         );

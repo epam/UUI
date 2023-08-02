@@ -1,18 +1,19 @@
-import { PlateEditor, focusEditor } from "@udecode/plate-common";
-import { ELEMENT_LI, ELEMENT_LIC, ELEMENT_OL, ELEMENT_UL, createListPlugin, getListItemEntry, toggleList } from "@udecode/plate-list";
-import React, { Fragment } from "react";
+import { PlateEditor, focusEditor } from '@udecode/plate-common';
+import { ELEMENT_LI, ELEMENT_LIC, ELEMENT_OL, ELEMENT_UL, createListPlugin, getListItemEntry, toggleList } from '@udecode/plate-list';
+import React, { Fragment } from 'react';
 
-import { isPluginActive } from "../../helpers";
-import { ReactComponent as UnorderedList } from "../../icons/bullet-list.svg";
-import { ReactComponent as NumberedList } from "../../icons/numbered-list.svg";
-import { ToolbarButton } from "../../implementation/ToolbarButton";
+import { isPluginActive } from '../../helpers';
+import { ReactComponent as UnorderedList } from '../../icons/bullet-list.svg';
+import { ReactComponent as NumberedList } from '../../icons/numbered-list.svg';
+import { ToolbarButton } from '../../implementation/ToolbarButton';
+import { withOurList } from './withList';
 
 export const ELEMENT_UL_CUSTOM = 'unordered-list';
 export const ELEMENT_OL_CUSTOM = 'ordered-list';
 export const ELEMENT_LI_CUSTOM = 'list-item';
 export const ELEMENT_LI_TEXT_CUSTOM = 'list-item-child';
 
-export const List = (props: any) => {
+export function List(props: any) {
     const { attributes, children, element } = props;
     switch (element.type) {
         case ELEMENT_OL_CUSTOM:
@@ -26,7 +27,7 @@ export const List = (props: any) => {
         default:
             return <div { ...attributes }>{ children }</div>;
     }
-};
+}
 
 export const listPlugin = () => createListPlugin({
     overrideByKey: {
@@ -35,12 +36,14 @@ export const listPlugin = () => createListPlugin({
             isElement: true,
             deserializeHtml: { rules: [{ validNodeName: 'OL' }] },
             component: List,
+            withOverrides: withOurList,
         },
         [ELEMENT_UL]: {
             type: ELEMENT_UL_CUSTOM,
             isElement: true,
             deserializeHtml: { rules: [{ validNodeName: 'UL' }] },
             component: List,
+            withOverrides: withOurList,
         },
         [ELEMENT_LI]: {
             type: ELEMENT_LI_CUSTOM,
@@ -60,7 +63,7 @@ interface IToolbarButton {
     editor: PlateEditor;
 }
 
-export const ListButton = ({ editor }: IToolbarButton) => {
+export function ListButton({ editor }: IToolbarButton) {
     if (!isPluginActive(ELEMENT_OL) && !isPluginActive(ELEMENT_LI)) return null;
 
     const res = !!editor?.selection && getListItemEntry(editor);
@@ -74,7 +77,7 @@ export const ListButton = ({ editor }: IToolbarButton) => {
 
         toggleList(editor, { type });
         focusEditor(editor);
-    }
+    };
 
     return (
         <Fragment>
@@ -90,5 +93,4 @@ export const ListButton = ({ editor }: IToolbarButton) => {
             />
         </Fragment>
     );
-};
-
+}

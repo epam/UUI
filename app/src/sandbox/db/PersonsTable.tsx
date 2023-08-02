@@ -31,7 +31,7 @@ export function PersonsTable(props: PersonsTableProps) {
     const columnsSet = React.useMemo(() => getColumns(dbRef), []);
 
     const renderRow = (props: DataRowProps<Person, number>) => {
-        if (props.value && props.value.__typename == 'Person') {
+        if (props.value && props.value.__typename === 'Person') {
             return <PersonRow key={ props.id } { ...props } />;
         } else {
             return <DataTableRow key={ props.id } { ...props } columns={ columnsSet.groupColumns } />;
