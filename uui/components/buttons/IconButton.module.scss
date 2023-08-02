@@ -1,3 +1,5 @@
+@use '../../assets/styles/effects' as *;
+
 .root {
     fill: var(--uui-icon-btn);
 
@@ -8,6 +10,10 @@
 
         &:active {
             fill: var(--uui-icon-btn-active);
+        }
+
+        &:focus-visible {
+            @include focus-visible-effect();
         }
     }
 
