@@ -1,3 +1,5 @@
+@use  '../../assets/styles/effects' as *;
+
 .root {
     :global(.avatars) {
         padding-right: 12px;
@@ -5,6 +7,10 @@
         &>* {
             border-radius: 50%;
             border: 1px solid white;
+        }
+
+        :global(.-clickable):focus-visible {
+            @include focus-visible-effect(2px, 50%);
         }
     }
 
