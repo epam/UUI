@@ -1,7 +1,7 @@
 import React, {
     useCallback, useEffect, useMemo, useState,
 } from 'react';
-import { Person, PersonGroup } from '@epam/uui-docs';
+import { Person } from '@epam/uui-docs';
 import {
     cx, useLazyDataSource, useUuiContext, UuiContexts, ITablePreset, useTableState, DataRowProps,
     LazyDataSourceApi, LazyDataSourceApiResponse, LazyDataSourceApiRequest, DataColumnProps,
@@ -18,15 +18,6 @@ import { InfoSidebarPanel } from './InfoSidebarPanel';
 import { SlidingPanel } from './SlidingPanel';
 import { FilterPanelOpener } from './FilterPanelOpener';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
-
-export interface PersonsSummary extends Pick<PersonsApiResponse, 'totalCount'> {
-    totalSalary: string;
-}
-
-interface PersonsApiResponse extends LazyDataSourceApiResponse<Person | PersonGroup> {
-    summary: PersonsSummary;
-    totalCount: number;
-}
 
 export function MasterDetailedTable() {
     const svc = useUuiContext<TApi, UuiContexts>();
