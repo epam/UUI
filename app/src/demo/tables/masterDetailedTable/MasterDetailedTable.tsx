@@ -175,7 +175,7 @@ export function MasterDetailedTable() {
         cascadeSelection: true,
     });
 
-    const panelInfo = tableStateApi.tableState.selectedId && (view.getById(tableStateApi.tableState.selectedId, 0).value as Person);
+    const panelInfo = tableStateApi.tableState.selectedId && (view.getById(tableStateApi.tableState.selectedId, 0).value);
 
     return (
         <div className={ css.wrapper }>
