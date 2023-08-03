@@ -14,7 +14,7 @@ function GroupingBlock({ groupings, value, onValueChange }: GroupingBlockProps) 
     return (
         <Accordion title="Grouping" mode="inline" padding="18">
             <RadioGroup value={ value } onValueChange={ onValueChange } items={ groupings } cx={ css.radioGroupContainer } />
-            { value !== undefined && <LinkButton caption="CLEAR" onClick={ () => onValueChange(undefined) } /> }
+            <LinkButton caption="CLEAR" onClick={ () => onValueChange(undefined) } isDisabled={ value === undefined } />
         </Accordion>
     );
 }
