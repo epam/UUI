@@ -92,6 +92,17 @@ function Editor(props: PlateEditorProps) {
                     autoFocus: props.autoFocus,
                     readOnly: props.isReadonly,
                     placeholder: props.placeholder,
+                    renderPlaceholder: ({ attributes }) => {
+                        return (
+                            <div
+                                { ...attributes }
+                                style={ { pointerEvents: 'none' } }
+                                className={ css.placeholder }
+                            >
+                                { props.placeholder }
+                            </div>
+                        );
+                    },
                     style: { padding: '0 24px', minHeight: props.minHeight },
                 } }
                 // we override plate core insertData plugin
