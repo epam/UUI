@@ -142,6 +142,7 @@ export const updateTableStructure = (tableElem: TTableElement) => {
         });
     });
 
+    // mutating table element
     tableElem.children.forEach((curRow, rowIndex) => {
         const rowElem = curRow as TTableRowElement;
 
@@ -151,8 +152,6 @@ export const updateTableStructure = (tableElem: TTableElement) => {
             cellElem.rowIndex = rowIndex;
         });
     });
-
-    return tableElem;
 };
 
 export const createCell = ({
