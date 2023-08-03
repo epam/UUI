@@ -40,6 +40,7 @@ export class ListApiCache<TItem, TId, TFilter> {
      * @param fetchIfAbsent Pass false to avoid auto-fetching missing item.
      */
     public byId(id: TId, fetchIfAbsent: boolean = true): TItem | typeof NOT_FOUND_RECORD {
+        console.log(this.itemsById);
         const item = this.itemsById.get(JSON.stringify(id), fetchIfAbsent);
         if ((item.status === UNKNOWN && !fetchIfAbsent) || (fetchIfAbsent && item.status === FAILED)) {
             return NOT_FOUND_RECORD;
