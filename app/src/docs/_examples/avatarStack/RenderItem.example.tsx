@@ -22,7 +22,7 @@ export default function BasicExample() {
 
     return (
         <FlexCell width="auto" cx={ css.container }>
-            <AvatarStack urlArray={ avatarsArray } avatarsCount={ 6 } direction="right" avatarSize="36" renderItem={ renderItem } />
+            <AvatarStack urlArray={ avatarsArray } avatarsCount={ 6 } direction="left" avatarSize="36" renderItem={ renderItem } />
         </FlexCell>
     );
 }
