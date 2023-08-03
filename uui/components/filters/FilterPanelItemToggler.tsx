@@ -28,10 +28,10 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
     const getTitle = props.predicateName ? `${props.title} ${props.predicateName}` : `${props.title}${props.selection ? ':' : ''}`;
 
     const getSelectionText = () => props.selection.map((i, index) => (
-        <>
-            <Text key={ index } color="brand" size={ props.size } cx={ css.selection }>{i}</Text>
+        <React.Fragment key={ `${i}${Math.random()}` }>
+            <Text color="brand" size={ props.size } cx={ css.selection }>{ i }</Text>
             { (props.postfix || index !== props.selection.length - 1) && <span>,&nbsp;</span> }
-        </>
+        </React.Fragment>
     ));
 
     return (
