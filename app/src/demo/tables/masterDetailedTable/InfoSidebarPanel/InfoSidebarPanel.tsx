@@ -6,8 +6,6 @@ import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigatio
 import { cx } from '@epam/uui-core';
 import { PersonTableRecord } from '../types';
 import css from './InfoSidebarPanel.module.scss';
-import { LocationInfo } from './LocationInfo';
-import { PersonGroupInfo } from './PersonGroupInfo';
 import { PersonInfo } from './PersonInfo';
 
 interface SidebarPanelProps {
@@ -17,17 +15,8 @@ interface SidebarPanelProps {
 }
 
 export function InfoSidebarPanel({ data, isVisible, onClose }: SidebarPanelProps) {
-    let panelInfo;
-    if (data && data.__typename === 'Location') {
-        panelInfo = <LocationInfo data={ data } />;
-    }
-    
-    if (data && data.__typename === 'PersonGroup') {
-        panelInfo = <PersonGroupInfo data={ data } />;
-    }
-    
-    if (data && data.__typename === 'Person') {
-        panelInfo = <PersonInfo data={ data } />;
+    if (!data || data.__typename !== 'Person') {
+        return null;
     }
 
     return (
@@ -42,7 +31,7 @@ export function InfoSidebarPanel({ data, isVisible, onClose }: SidebarPanelProps
                         <IconButton icon={ CrossIcon } onClick={ onClose } />
                     </FlexCell>
                 </FlexRow>
-                {panelInfo}
+                <PersonInfo data={ data } />
             </Panel>
         </div>
     );
