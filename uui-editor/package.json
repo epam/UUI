@@ -26,6 +26,7 @@
     "@udecode/plate-list": "22.0.2",
     "@udecode/plate-media": "22.0.2",
     "@udecode/plate-paragraph": "22.0.2",
+    "@udecode/plate-reset-node": "22.0.2",
     "@udecode/plate-select": "22.0.2",
     "@udecode/plate-serializer-docx": "22.0.2",
     "@udecode/plate-serializer-html": "22.0.2",

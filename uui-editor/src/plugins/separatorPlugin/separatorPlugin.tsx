@@ -13,6 +13,7 @@ export const SEPARATOR_KEY = 'separatorBLock';
 export const separatorPlugin = () => {
     const createSeparatorPlugin = createPluginFactory({
         key: SEPARATOR_KEY,
+        type: SEPARATOR_KEY,
         isElement: true,
         isVoid: true,
         component: Separator,
