@@ -9,8 +9,16 @@
             border: 1px solid white;
         }
 
-        :global(.-clickable):focus-visible {
-            @include focus-visible-effect(2px, 50%);
+        :global(.-clickable) {
+            &:focus-visible {
+                @include focus-visible-effect(2px, 50%);
+            }
+
+            &:focus-visible, &:hover {
+                position: relative;
+                z-index: 1;
+
+            }
         }
     }
 
