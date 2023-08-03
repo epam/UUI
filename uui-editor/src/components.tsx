@@ -3,7 +3,6 @@ import { MARK_BOLD, MARK_CODE, MARK_ITALIC, MARK_SUPERSCRIPT, MARK_UNDERLINE } f
 import { PlatePluginComponent } from '@udecode/plate-common';
 import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_H4, ELEMENT_H5, ELEMENT_H6 } from '@udecode/plate-heading';
 import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph';
-import { withPlaceholders } from './placeholder';
 
 export type DefaultPluginKey =
     | typeof ELEMENT_H1
@@ -24,7 +23,7 @@ export const createPlateUI = <T extends string = string>(
     Record<DefaultPluginKey | T, PlatePluginComponent>
     >,
 ) => {
-    let components: { [key: string]: PlatePluginComponent } = {
+    const components: { [key: string]: PlatePluginComponent } = {
         [ELEMENT_H1]: (props) => <h1 { ...props.attributes }>{ props.children }</h1>,
         [ELEMENT_H2]: (props) => <h2 { ...props.attributes }>{ props.children }</h2>,
         [ELEMENT_H3]: (props) => <h3 { ...props.attributes }>{ props.children }</h3>,
@@ -45,8 +44,6 @@ export const createPlateUI = <T extends string = string>(
             components[key] = overrideByKey[key];
         });
     }
-
-    components = withPlaceholders(components);
 
     return components;
 };
