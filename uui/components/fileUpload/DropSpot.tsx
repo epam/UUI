@@ -21,7 +21,7 @@ export class DropSpot extends React.Component<DropSpotProps> {
                 <div { ...props.eventHandlers } className={ css.dropArea }>
                     <FlexRow size="24">
                         <IconContainer icon={ ShapeIcon } cx={ css.iconBlue } />
-                        <Text lineHeight="24" size="24" fontSize="14" font="sans">
+                        <Text lineHeight="24" size="24" fontSize="14">
                             {' '}
                             {i18n.fileUpload.labelStart}
                             {' '}
@@ -40,7 +40,7 @@ export class DropSpot extends React.Component<DropSpotProps> {
                         />
                     </FlexRow>
                     {this.props.infoText && (
-                        <Text lineHeight="24" size="24" fontSize="14" color="gray60">
+                        <Text lineHeight="24" size="24" fontSize="14" color="secondary">
                             {this.props.infoText}
                         </Text>
                     )}

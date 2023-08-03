@@ -1,10 +1,8 @@
-@use '../../assets/styles/index' as *;
-
 .file-card-wrapper {
     box-sizing: border-box;
     min-height: 48px;
     padding: 5px;
-    border: 1px solid $gray40;
+    border: 1px solid var(--uui-file-card-background);
 
     .file-name {
         white-space: nowrap;
@@ -12,7 +10,7 @@
 }
 
 .error-card-wrapper {
-    border: 1px solid $red;
+    border: 1px solid var(--uui-file-card-error);
 }
 
 :global(.uui-loading) {
@@ -22,43 +20,23 @@
     .pdf-color,
     .movie-color,
     .img-color {
-        fill: $gray40;
+        fill: var(--uui-file-card-background-loaading);
     }
 }
 
 .default-color {
-    fill: $gray60;
-}
-
-.doc-color {
-    fill: #2B579A;
-}
-
-.xls-color {
-    fill: #217346;
-}
-
-.pdf-color {
-    fill: #FA0F01;
-}
-
-.movie-color {
-    fill: #5214CC;
-}
-
-.img-color {
-    fill: #E67E17;
+    fill: var(--uui-file-card-default);
 }
 
 .drop-start {
-    border: 2px dashed $blue;
-    background-color: $blue-lightest;
+    border: 2px dashed var(--uui-file-card-dropstart-border);
+    background-color: var(--uui-file-card-dropstart-background);
 }
 
 .error-block {
-    font-family: $font-sans;
+    font-family: var(--font-regular);
     font-size: 12px;
-    color: $red-darkest;
+    color: var(--uui-file-card-error-block);
     display: inline-flex;
     align-items: center;
     padding: 0;
@@ -66,7 +44,7 @@
 
     svg {
         margin-right: 4px;
-        fill: $red;
+        fill: var(--uui-file-card-error);
     }
 }
 
