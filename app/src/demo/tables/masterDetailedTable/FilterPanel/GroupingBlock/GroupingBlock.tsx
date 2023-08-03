@@ -1,7 +1,8 @@
 import React from 'react';
 import { Accordion } from '@epam/uui';
-import { RadioGroup } from '@epam/promo';
+import { LinkButton, RadioGroup } from '@epam/promo';
 import { Grouping } from '../../types';
+import css from './GroupingBlock.module.scss';
 
 interface GroupingBlockProps { 
     groupings: Grouping[];
@@ -12,7 +13,8 @@ interface GroupingBlockProps {
 function GroupingBlock({ groupings, value, onValueChange }: GroupingBlockProps) {
     return (
         <Accordion title="Grouping" mode="inline" padding="18">
-            <RadioGroup value={ value } onValueChange={ onValueChange } items={ groupings } />
+            <RadioGroup value={ value } onValueChange={ onValueChange } items={ groupings } cx={ css.radioGroupContainer } />
+            { value !== undefined && <LinkButton caption="CLEAR" onClick={ () => onValueChange(undefined) } /> }
         </Accordion>
     );
 }
