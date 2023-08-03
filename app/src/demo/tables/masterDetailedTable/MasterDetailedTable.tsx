@@ -152,8 +152,10 @@ export function MasterDetailedTable() {
     );
 
     const clickHandler = useCallback((rowProps: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
-        rowProps.onSelect(rowProps);
-        setIsInfoPanelOpened(true);
+        if (rowProps.value.__typename === 'Person') {
+            rowProps.onSelect(rowProps);
+            setIsInfoPanelOpened(true);
+        }
     }, []);
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
