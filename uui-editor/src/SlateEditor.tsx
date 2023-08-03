@@ -2,7 +2,6 @@ import { ScrollBars } from '@epam/uui-components';
 import { IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod } from '@epam/uui-core';
 import React, { Fragment, useMemo, useRef } from 'react';
 
-import { createExitBreakPlugin, createSoftBreakPlugin } from '@udecode/plate-break';
 import {
     Plate,
     PlateProvider,
@@ -11,43 +10,16 @@ import {
     useEventEditorSelectors,
     usePlateEditorState,
 } from '@udecode/plate-common';
-import { createTrailingBlockPlugin } from '@udecode/plate-trailing-block';
-import { createJuicePlugin } from '@udecode/plate-juice';
-import { createDeserializeDocxPlugin } from './plugins/deserializeDocxPlugin/deserializeDocxPlugin';
 
 import css from './SlateEditor.module.scss';
 import { createPlateUI } from './components';
 import { migrateSchema } from './migration';
-import { IMAGE_PLUGIN_KEY, PARAGRAPH_TYPE, SEPARATOR_KEY, baseMarksPlugin, paragraphPlugin } from './plugins';
+import { baseMarksPlugin } from './plugins';
 import { MainToolbar, MarksToolbar } from './plugins/Toolbars';
 import { EditorValue } from './types';
-import { createSelectOnBackspacePlugin } from '@udecode/plate-select';
+import { defaultPlugins } from './defaultPlugins';
 
-/**
- * Please make sure defaultPlugins and all your plugins are not interfere
- * with the following list when disableCorePlugins prop hasn't been set
- * https://github.com/udecode/plate/blob/main/docs/BREAKING_CHANGES.md#general
- */
-export const defaultPlugins: any = [
-    createSoftBreakPlugin(),
-    createExitBreakPlugin(),
-    createDeserializeDocxPlugin(), // depends on juice plugin
-    createJuicePlugin(),
-    createSelectOnBackspacePlugin({
-        options: {
-            query: {
-                allow: [SEPARATOR_KEY, IMAGE_PLUGIN_KEY],
-            },
-        },
-    }),
-    paragraphPlugin(),
-    createTrailingBlockPlugin({ // depends on paragraph plugin
-        options: { type: PARAGRAPH_TYPE },
-        enabled: true,
-    }),
-];
-
-export const basePlugins: any = [
+const basePlugins: any = [
     baseMarksPlugin(),
     ...defaultPlugins,
 ];
@@ -140,7 +112,7 @@ function Editor(props: PlateEditorProps) {
     );
 }
 
-export function SlateEditor(props: SlateEditorProps) {
+function SlateEditor(props: SlateEditorProps) {
     const currentId = useRef(String(Date.now()));
 
     const plugins = useMemo(
@@ -174,3 +146,5 @@ export function SlateEditor(props: SlateEditorProps) {
         </PlateProvider>
     );
 }
+
+export { SlateEditor, basePlugins };
