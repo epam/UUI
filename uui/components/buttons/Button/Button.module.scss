@@ -70,7 +70,7 @@
     border-color: var(--uui-btn-border);
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:hover {
             background-color: var(--uui-btn-bg-halftone-hover);
             color: var(--uui-btn-caption-halftone);
             fill: var(--uui-btn-caption-halftone);
@@ -103,7 +103,7 @@
     border-color: var(--uui-btn-border);
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:hover {
             background-color: var(--uui-btn-bg-halftone-hover);
             color: var(--uui-btn-caption-halftone);
             fill: var(--uui-btn-caption-halftone);
@@ -136,7 +136,7 @@
     border-color: transparent;
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:hover {
             background-color: var(--uui-btn-bg-halftone-hover);
             border-color: var(--uui-btn-bg-halftone-hover);
         }
