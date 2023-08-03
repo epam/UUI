@@ -1,8 +1,9 @@
 import React from 'react';
-import { ProgressBar, IndeterminateBar } from './';
+import { ProgressBar } from './ProgressBar';
 import cx from 'classnames';
 import css from './IndicatorBar.module.scss';
 import { IHasCX } from '@epam/uui-core';
+import { IndeterminateBar } from '@epam/uui';
 
 interface IIndicatorProps extends IHasCX {
     progress?: number;
