@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropSpot should be rendered correctly 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="dropArea"
+    onDragEnter={[Function]}
+    onDragLeave={[Function]}
+    onDragOver={[Function]}
+    onDrop={[Function]}
+  >
+    <div
+      className="root size-24 container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
+        }
+      }
+    >
+      <div
+        className="container uui-icon uui-enabled iconBlue"
+        style={Object {}}
+      >
+        <svg
+          className=""
+        />
+      </div>
+      <div
+        className="uui-font-regular uui-text-primary root line-height-24 font-size-14 v-padding-0 container"
+      >
+         
+        Drop files to attach or
+         
+      </div>
+      <div>
+        <input
+          className="fileInput"
+          multiple={true}
+          onChange={[Function]}
+          type="file"
+        />
+        <div
+          className="typographyUui typography-14"
+        >
+          <a
+            className="container uui-anchor uui-enabled -clickable link"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            role="link"
+            tabIndex={0}
+          >
+            browse
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DropSpot should be rendered correctly with props 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="dropArea"
+    onDragEnter={[Function]}
+    onDragLeave={[Function]}
+    onDragOver={[Function]}
+    onDrop={[Function]}
+  >
+    <div
+      className="root size-24 container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
+        }
+      }
+    >
+      <div
+        className="container uui-icon uui-enabled iconBlue"
+        style={Object {}}
+      >
+        <svg
+          className=""
+        />
+      </div>
+      <div
+        className="uui-font-regular uui-text-primary root line-height-24 font-size-14 v-padding-0 container"
+      >
+         
+        Drop files to attach or
+         
+      </div>
+      <div>
+        <input
+          className="fileInput"
+          multiple={true}
+          onChange={[Function]}
+          type="file"
+        />
+        <div
+          className="typographyUui typography-14"
+        >
+          <a
+            className="container uui-anchor uui-enabled -clickable link"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            role="link"
+            tabIndex={0}
+          >
+            browse
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      className="uui-font-regular uui-text-secondary root line-height-24 font-size-14 v-padding-0 container"
+    >
+      Test info
+    </div>
+  </div>
+</div>
+`;
