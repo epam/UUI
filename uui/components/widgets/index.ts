@@ -5,3 +5,5 @@ export * from './Tag';
 export * from './Spinner';
 export * from './Paginator';
 export * from './IndeterminateBar';
+export * from './IndicatorBar';
+export * from './ProgressBar';

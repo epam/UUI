@@ -710,6 +710,12 @@
     --uui-indeterminate-bar-wrapper: var(--uui-secondary-light);
     --uui-indeterminate-bar-background: var(--uui-primary);
 
+    /* ProgressBar */
+
+    --uui-progress-bar-wrapper: var(--uui-secondary-light);
+    --uui-progress-bar-background: var(--uui-primary);
+    --uui-progress-bar-label: var(--uui-surface-contrast-lower);
+
     /* ------------------------------------ */
 
     .tooltip-contrast,

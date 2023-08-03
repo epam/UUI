@@ -2,7 +2,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { IHasCX, IHasRawProps } from '@epam/uui-core';
 import { ProgressBar } from './ProgressBar';
-import { IndeterminateBar } from '@epam/uui';
+import { IndeterminateBar } from './IndeterminateBar';
 import css from './IndicatorBar.module.scss';
 
 interface IIndicatorProps extends IHasCX, IHasRawProps<HTMLDivElement> {
