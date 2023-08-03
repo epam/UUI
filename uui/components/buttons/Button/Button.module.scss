@@ -20,8 +20,8 @@
 
 @mixin button-disables-styles($bg-color, $border-color) {
     background-color: $bg-color;
-    color: var(--uui-button-caption-disabled);
-    fill: var(--uui-button-caption-disabled);
+    color: var(--uui-btn-caption-disabled);
+    fill: var(--uui-btn-caption-disabled);
     border-color: $border-color;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .mode-outline {
-    background-color: var(--uui-button-bg-halftone);
+    background-color: var(--uui-btn-bg-halftone);
     color: var(--uui-btn-caption-halftone);
     fill: var(--uui-btn-caption-halftone);
     border-color: var(--uui-btn-border);
@@ -84,12 +84,12 @@
     }
 
     &:global(.uui-disabled) {
-        @include button-disables-styles(var(--uui-button-bg-halftone), var(--uui-btn-border-disabled));
+        @include button-disables-styles(var(--uui-btn-bg-halftone), var(--uui-btn-border-disabled));
     }
 
     &:global(.-clickable), &:hover, &:active, &:focus {
         &:global(.uui-disabled) {
-            @include button-disables-styles(var(--uui-button-bg-halftone), var(--uui-btn-border-disabled));
+            @include button-disables-styles(var(--uui-btn-bg-halftone), var(--uui-btn-border-disabled));
         }
     }
 }

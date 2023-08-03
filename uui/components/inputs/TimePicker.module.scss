@@ -1,0 +1,64 @@
+.root {
+    &:global(.uui-timepicker-container) {
+        display: flex;
+        padding: 15px 12px;
+        justify-content: center;
+
+        :global(.uui-timepicker-input) {
+            &:global(.uui-input-box) {
+                margin: 6px 0;
+                width: 36px;
+                height: 36px;
+            }
+
+            > input {
+                text-align: center;
+                font-size: 24px;
+                line-height: 24px;
+                color: var(--uui-time-picker-text);
+                font-family: var(--font-regular);
+            }
+        }
+
+        :global(.uui-timepicker-item) {
+            position: relative;
+            padding: 9px 24px;
+        }
+
+        :global(.uui-timepicker-item:first-child) {
+            &::after {
+                content: ':';
+                position: absolute;
+                top: 35px;
+                left: 81px;
+                color: var(--uui-time-picker-text);
+                font-size: 24px;
+                line-height: 30px;
+            }
+        }
+
+        .icon {
+            align-items: center;
+            fill: var(--uui-time-picker-icon-clickable);
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        :global(.uui-timepicker-icon-up) {
+            align-items: center;
+            fill: var(--uui-time-picker-icon-clickable);
+            transform: rotate(180deg);
+        }
+
+        :global(.uui-timepicker-icon-down) {
+            align-items: center;
+            fill: var(--uui-time-picker-icon-clickable);
+        }
+    }
+}
+
+.date-input {
+    width: 100%;
+}
