@@ -10,11 +10,21 @@
 }
 
 .alert-wrapper {
-    padding: 12px 18px 12px 12px;
     display: flex;
+    align-items: center;
     overflow: hidden;
     min-width: 170px;
     border-radius: var(--uui-alert-border-radius);
+}
+
+.size-48 {
+    padding: 12px 18px 9px 9px;
+    min-height: 48px;
+}
+
+.size-36 {
+    padding: 9px 9px 6px 6px;
+    min-height: 36px;
 }
 
 .icon-wrapper {

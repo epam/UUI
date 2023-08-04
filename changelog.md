@@ -2,6 +2,7 @@
 
 **What's New**
 
+* [Alert]: Added a new property 'size' (with options 36 and 48) to change the size of the Alert.
 * [DropdownMenu]: moved in uui and loveship version of it is deprecated. Now promo and loveship are using the same uui implementation.
 * [DropdownMenu]: added new property minWidth: number to setup minWidth to DropdownMenu container.
 * [Avatar]: Property `onClick` marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this prop.
@@ -44,8 +45,8 @@
 
 **Rich Text Editor component update and improvements**
 
-UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework.
-During the update the previous code based of RTE almost completely rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users. Therefore, update to the new version of `uui-editor` package should be seamless and easy.
+UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework. 
+During the update the previous code based of RTE almost completely rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users. Therefore, update to the new version of `uui-editor` package should be seamless and easy. 
 
 List of changes:
 * [Breaking change]: Changed RTE value format, now it's works with array instead of immutable.js object. Also, there are some additional changes inside slate value structure.
