@@ -6,7 +6,7 @@
     fill: $color;
     background-color: $backgroundColor;
 
-    &:hover, &:focus {
+    &:hover {
         color: $activeColor;
         fill: $activeColor;
     }
