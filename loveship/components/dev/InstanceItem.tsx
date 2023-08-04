@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCookie, setCookie } from '@epam/uui-core';
+import { devLogger, getCookie, setCookie } from '@epam/uui-core';
 import { MultiSwitch } from '../inputs';
 
 interface Instance {
@@ -18,6 +18,7 @@ const cookie = {
 
 export class InstanceItem extends React.Component<InstanceItemProps> {
     render() {
+        devLogger.warn('InstanceItem is deprecated and will be removed in future release.');
         return (
             <MultiSwitch
                 value={ getCookie(cookie.env) || this.props.defaultInstance }
