@@ -1,5 +1,6 @@
 import { ListPlugin, withList } from '@udecode/plate-list';
 import { PlateEditor, Value, WithPlatePlugin } from '@udecode/plate-common';
+import { BaseRange } from 'slate';
 
 // TODO: move to plate
 export const withOurList = <
@@ -15,7 +16,7 @@ export const withOurList = <
 
     // temporary fix for last elements remove
     // it cancels selection change in deleteMerge call from deleteFragmentList function
-    editor.setSelection = (props) => {
+    editor.setSelection = (props: Partial<BaseRange>) => {
         const focus = props.focus;
         if (focus && focus.path[0] === 0 && focus.path[1] === 0) {
             return;
