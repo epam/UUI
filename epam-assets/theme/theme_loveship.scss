@@ -746,6 +746,17 @@
     --uui-file-card-dropstart-background: var(--uui-primary-lightest);
     --uui-file-card-link-hover: var(--uui-primary-dark);
 
+    /* IndeterminateBar */
+
+    --uui-indeterminate-bar-wrapper: var(--uui-secondary-light);
+    --uui-indeterminate-bar-background: var(--uui-primary);
+
+    /* ProgressBar */
+
+    --uui-progress-bar-wrapper: var(--uui-secondary-light);
+    --uui-progress-bar-background: var(--uui-primary);
+    --uui-progress-bar-label: var(--uui-surface-contrast-lower);
+
     /* ------------------------------------ */
 
     .tooltip-contrast,
