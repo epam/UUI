@@ -23,6 +23,7 @@ export class CalendarPresets extends React.Component<CalendarPresetsProps> {
                 presets.push({
                     ...this.props.presets[key].getRange(),
                     name: this.props.presets[key].name,
+                    key,
                 });
             }
         }
@@ -34,8 +35,8 @@ export class CalendarPresets extends React.Component<CalendarPresetsProps> {
         return (
             <div ref={ this.props.forwardedRef } className={ cx(uuiPresets.container, this.props.cx) } { ...this.props.rawProps }>
                 <div className={ uuiPresets.header }>Presets</div>
-                {this.getPresets().map((item, index) => (
-                    <div key={ index + 'preset' } className={ uuiPresets.item } onClick={ () => this.props.onPresetSet(item) }>
+                {this.getPresets().map((item) => (
+                    <div key={ item.key } className={ uuiPresets.item } onClick={ () => this.props.onPresetSet(item) }>
                         {item.name}
                     </div>
                 ))}
