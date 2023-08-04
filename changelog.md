@@ -8,6 +8,7 @@
 * [TimePicker]: both skins are using the UUI implementation, and loveship design has been changed into the promo implementation, and 48 size is deprecated and will be deleted in the future release.
 
 **What's Fixed**
+* [RangeDatePicker]: Preset's name type from string switched to reactNode.
 
 
 # 5.1.1 - 27.07.2023
