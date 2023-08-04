@@ -18,13 +18,14 @@
 }
 
 .size-48 {
-    padding: 12px 18px 9px 9px;
+    padding: 9px 18px 9px 12px;
     min-height: 48px;
 }
 
 .size-36 {
-    padding: 9px 9px 6px 6px;
+    padding: 6px 9px;
     min-height: 36px;
+    border-left-width: 3px;
 }
 
 .icon-wrapper {
