@@ -8,11 +8,7 @@ import { ReactComponent as NumberedList } from '../../icons/numbered-list.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { withOurList } from './withList';
 import { ListElement } from './ListElement';
-
-export const ELEMENT_UL_CUSTOM = 'unordered-list';
-export const ELEMENT_OL_CUSTOM = 'ordered-list';
-export const ELEMENT_LI_CUSTOM = 'list-item';
-export const ELEMENT_LI_TEXT_CUSTOM = 'list-item-child';
+import { ELEMENT_OL_CUSTOM, ELEMENT_UL_CUSTOM, ELEMENT_LI_CUSTOM, ELEMENT_LI_TEXT_CUSTOM } from './constants';
 
 export const listPlugin = () => createListPlugin({
     overrideByKey: {
