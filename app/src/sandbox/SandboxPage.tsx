@@ -22,6 +22,7 @@ import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
 import { RichTextEditorDemo } from './RTE/rteDemo';
 import { TableColumnConfigModalTest } from './tableColConfigModal/TableColumnConfigModalTest';
 import PrefixDemoComponent from './prefixes/PrefixesDemoComponent';
+import DatePickerPresetDemo from './rangeDatePicker/datePickerDemo';
 
 export function SandboxPage() {
     const items = useMemo(
@@ -43,6 +44,7 @@ export function SandboxPage() {
             { id: 'RTEDemo', name: 'RTE Demo', component: RichTextEditorDemo },
             { id: 'TableColumnsConfigurationModal', name: 'Table ColumnsConfigModal', component: TableColumnConfigModalTest },
             { id: 'PrefixSuffixDemo', name: 'Prefix Demo', component: PrefixDemoComponent },
+            { id: 'datePickerPresetAsNode', name: 'RangeDatePicker Preset', component: DatePickerPresetDemo },
         ],
         [],
     );
