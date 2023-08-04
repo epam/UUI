@@ -73,7 +73,7 @@ const useUpdatingElement = ({ element, editor }: { element: IImageElement, edito
         }), [element.width]);
 };
 
-export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageElement>> = (props) => {
+export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageElement>> = function (props) {
     const { editor, element, children } = props;
     const ref = useRef(null);
     const isFocused = useFocused();
