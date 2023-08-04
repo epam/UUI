@@ -9,16 +9,18 @@ export const withOurList = <
     editor: E,
     options: WithPlatePlugin<ListPlugin, V, E>,
 ) => {
-    const { deleteBackward, deleteFragment } = editor;
+    const { setSelection } = editor;
 
     editor = withList(editor, options);
 
-    editor.deleteFragment = (direction) => {
-        deleteFragment(direction);
-    };
-
-    editor.deleteBackward = (unit) => {
-        deleteBackward(unit as any);
+    // temporary fix for last elements remove
+    // it cancels selection change in deleteMerge call from deleteFragmentList function
+    editor.setSelection = (props) => {
+        const focus = props.focus;
+        if (focus && focus.path[0] === 0 && focus.path[1] === 0) {
+            return;
+        }
+        setSelection(props);
     };
 
     return editor;
