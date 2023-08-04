@@ -19,7 +19,7 @@ export interface TimePickerProps extends BaseTimePickerProps, SizeMod, IHasEditM
 
 export class TimePicker extends BaseTimePicker<TimePickerProps> {
     renderInput = (props: IDropdownToggler) => {
-        if (process.env.NODE_ENV !== 'production') {
+        if (__DEV__) {
             if (this.props.size === '48') {
                 devLogger.warnAboutDeprecatedPropValue<TimePickerProps, 'size'>({
                     component: 'TimePicker',

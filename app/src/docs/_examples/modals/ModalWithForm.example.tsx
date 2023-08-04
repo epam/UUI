@@ -1,28 +1,8 @@
 import React from 'react';
-import {
-    IModal, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse,
-} from '@epam/uui-core';
+import { IModal, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui-core';
 import { Country } from '@epam/uui-docs';
-import {
-    ModalBlocker,
-    ModalWindow,
-    FlexSpacer,
-    ModalHeader,
-    FlexRow,
-    LabeledInput,
-    TextInput,
-    Button,
-    ScrollBars,
-    ModalFooter,
-    SuccessNotification,
-    useForm,
-    Text,
-    Panel,
-    FlexCell,
-    ControlWrapper,
-    RadioGroup,
-    PickerInput,
-} from '@epam/promo';
+import { ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, FlexRow, LabeledInput, TextInput, Button, ScrollBars, ModalFooter, SuccessNotification, useForm, Text,
+    Panel, FlexCell, ControlWrapper, RadioGroup, PickerInput } from '@epam/promo';
 
 interface Person {
     firstName?: string;
@@ -129,7 +109,8 @@ export default function ModalWithFormExampleToggler() {
                                 </SuccessNotification>
                             ),
                             { duration: 2 },
-                        )) }
+                        ))
+                    .catch(() => {}) }
         />
     );
 }
