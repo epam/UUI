@@ -18,8 +18,9 @@ export const normalizeFilterConfig = <TFilter>(filtersConfig: FiltersConfig, fil
     filters.forEach((filter) => {
         if (filter.isAlwaysVisible || filterValue?.[filter.field as string] || filtersConfig?.[filter.field]) {
             const newOrder = filtersConfig?.[filter?.field]?.order || getOrderBetween(order, null);
+            const isVisible = filtersConfig?.[filter?.field]?.isVisible;
             result[filter.field] = {
-                isVisible: true,
+                isVisible: isVisible ?? true,
                 order: newOrder,
             };
             order = newOrder;
@@ -51,7 +52,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
     };
 
     const stateToQueryObject = (state: DataTableState<TFilter, TViewState>) => {
-        return {
+        const queryObject = {
             ...context.uuiRouter.getCurrentLink().query,
             filter: state.filter,
             presetId: state.presetId,
@@ -61,6 +62,8 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
             page: state.page,
             pageSize: state.pageSize,
         };
+
+        return clearEmptyValueFromRecord(queryObject) || {};
     };
 
     const setValueToUrl = (value: DataTableState<TFilter, TViewState>) => {
@@ -186,12 +189,16 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
 
     const createPreset = useCallback(
         async (preset: ITablePreset<TFilter, TViewState>) => {
-            preset.id = await params?.onPresetCreate?.(preset);
+            const newId = await params?.onPresetCreate?.(preset);
+            const newPreset = {
+                ...preset,
+                id: newId,
+            };
 
-            setPresets((prevValue) => [...prevValue, preset]);
-            choosePreset(preset);
+            setPresets((prevValue) => [...prevValue, newPreset]);
+            choosePreset(newPreset);
 
-            return preset.id;
+            return newId;
         },
         [choosePreset, params?.onPresetCreate],
     );
