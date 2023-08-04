@@ -5,8 +5,6 @@ import {
     getPluginType,
     getStartPoint,
     getBlockAbove,
-    insertElements,
-    createNode,
     selectEditor,
 } from '@udecode/plate-common';
 import {
@@ -187,12 +185,6 @@ export const selectFirstCell = (editor: PlateEditor) => {
 
         const startPoint = getStartPoint(editor, tableEntry[1]);
         selectEditor(editor, { at: startPoint });
-
-        const [tablePosition] = getStartPoint(editor, tableEntry[1]).path;
-        insertElements(editor, createNode(), {
-            at: [tablePosition + 1],
-            select: false,
-        });
     }
 };
 
