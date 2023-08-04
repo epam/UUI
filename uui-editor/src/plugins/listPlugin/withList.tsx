@@ -6,12 +6,12 @@ export const withOurList = <
     V extends Value = Value,
     E extends PlateEditor<V> = PlateEditor<V>
 >(
-    editor: E,
+    editor: PlateEditor<V>,
     options: WithPlatePlugin<ListPlugin, V, E>,
 ) => {
     const { setSelection } = editor;
 
-    editor = withList(editor, options);
+    editor = withList<V>(editor, options as any);
 
     // temporary fix for last elements remove
     // it cancels selection change in deleteMerge call from deleteFragmentList function
