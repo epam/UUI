@@ -4,7 +4,7 @@
     fill: var(--uui-icon-btn);
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:hover {
             fill: var(--uui-icon-btn-hover);
         }
 

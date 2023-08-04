@@ -7,7 +7,7 @@
         fill: var(--uui-link-button-text);
 
         &:global(.-clickable:not(.uui-disabled)) {
-            &:hover, &:focus {
+            &:hover {
                 color: var(--uui-link-button-text-hover);
                 fill: var(--uui-link-button-text-hover);
             }
