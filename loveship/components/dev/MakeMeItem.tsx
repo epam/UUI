@@ -30,7 +30,9 @@ export class MakeMeItem extends React.Component<MakeMeItemProps> {
     });
 
     render() {
-        devLogger.warn('MakeMeItem is deprecated and will be removed in future release.');
+        if (__DEV__) {
+            devLogger.warn('MakeMeItem is deprecated and will be removed in future release.');
+        }
         return (
             <PickerInput<MakeMeUser, number | string>
                 valueType="id"

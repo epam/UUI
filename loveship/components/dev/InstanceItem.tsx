@@ -18,7 +18,9 @@ const cookie = {
 
 export class InstanceItem extends React.Component<InstanceItemProps> {
     render() {
-        devLogger.warn('InstanceItem is deprecated and will be removed in future release.');
+        if (__DEV__) {
+            devLogger.warn('InstanceItem is deprecated and will be removed in future release.');
+        }
         return (
             <MultiSwitch
                 value={ getCookie(cookie.env) || this.props.defaultInstance }
