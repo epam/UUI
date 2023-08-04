@@ -8,7 +8,9 @@
 * [TimePicker]: both skins are using the UUI implementation, and loveship design has been changed into the promo implementation, and 48 size is deprecated and will be deleted in the future release.
 
 **What's Fixed**
-
+* [ControlWrapper]: was noted as deprecated and will be removed in feature release.
+* [InstanceItem]: was noted as deprecated and will be removed in feature release.
+* [MakeMeItem]: was noted as deprecated and will be removed in feature release.
 
 # 5.1.1 - 27.07.2023
 
