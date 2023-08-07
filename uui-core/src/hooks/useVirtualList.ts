@@ -53,13 +53,23 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     const scrollContainer = React.useRef<ScrollContainer>();
     const rowHeights = React.useRef<number[]>([]);
     const rowOffsets = React.useRef<number[]>([]);
+    const listOffsetRef = React.useRef<number>();
+
+    useLayoutEffectSafeForSsr(() => {
+        if (!scrollContainer.current || !listContainer.current) return;
+        const { top: scrollContainerTop } = scrollContainer.current.getBoundingClientRect();
+        const { top: listContainerTop } = listContainer.current.getBoundingClientRect();
+        const newListOffset = listContainerTop - scrollContainerTop;
+        setListOffset(newListOffset);
+        listOffsetRef.current = newListOffset;
+    }, [scrollContainer.current, listContainer.current]);
 
     const handleScrollToFocus = () => {
         if (!scrollContainer.current || !value) return;
         const { scrollTop, clientHeight } = scrollContainer.current;
         const focusedIndexOffset = rowOffsets.current[value.focusedIndex] || 0;
         const focusedIndexHeight = rowHeights.current[value.focusedIndex] || 0;
-        const scrollBottom = scrollTop + clientHeight - listOffset;
+        const scrollBottom = scrollTop + clientHeight - listOffsetRef.current;
         if (focusedIndexOffset < scrollTop - focusedIndexHeight || scrollBottom < focusedIndexOffset) {
             const middleOffset = focusedIndexOffset - clientHeight / 2 + focusedIndexHeight / 2;
             const indexToScroll = rowOffsets.current.findIndex((rowOffset) => middleOffset <= rowOffset);
@@ -95,9 +105,9 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         // Also, reducing it can cause bouncing between two near values, causing unnecessary re-renders.
         const visibleCount = Math.max(value.visibleCount ?? blockSize, bottomIndex - topIndex);
 
-        if (topIndex !== value.topIndex || visibleCount > value.visibleCount || value.indexToScroll != null) {
+        if (topIndex !== value.topIndex || visibleCount > value.visibleCount) {
             onValueChange({
-                ...value, topIndex, visibleCount, indexToScroll: null,
+                ...value, topIndex, visibleCount,
             });
         }
     }, [
@@ -105,7 +115,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     ]);
 
     const updateRowHeights = React.useCallback(() => {
-        if (!scrollContainer.current || !listContainer.current || listOffset == null || !value) return;
+        if (!scrollContainer.current || !listContainer.current || listOffsetRef.current == null || !value) return;
 
         Array.from(listContainer.current.children).forEach((node, index) => {
             const topIndex = value.topIndex || 0;
@@ -119,15 +129,16 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             : rowHeights.current.reduce((sum, next) => sum + next, 0) / rowHeights.current.length;
 
         rowOffsets.current = [];
-        let lastOffset = listOffset;
+        let lastOffset = listOffsetRef.current;
         for (let n = 0; n < rowsCount; n++) {
             rowOffsets.current[n] = lastOffset;
             lastOffset += rowHeights.current[n] || averageHeight;
         }
 
-        const newEstimatedHeight = lastOffset - listOffset;
+        const newEstimatedHeight = lastOffset - listOffsetRef.current;
         if (estimatedHeight === newEstimatedHeight) return;
         setEstimatedHeight(newEstimatedHeight);
+        onValueChange({ ...value, scrollTo: Object.assign({}, value.scrollTo) });
     }, [
         estimatedHeight, rowOffsets.current, rowsCount, value, listContainer.current, scrollContainer.current, listOffset,
     ]);
@@ -138,32 +149,30 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     });
 
     const handleScrollToIndex = () => {
-        if (!scrollContainer.current || !value || value.indexToScroll == null) return;
-        scrollToIndex(value.indexToScroll);
+        if (!scrollContainer.current || !value || value.scrollTo?.index == null) return;
+        scrollToIndex(value.scrollTo?.index);
     };
 
     const scrollToIndex = React.useCallback(
         (index: number, behavior?: ScrollBehavior) => {
             const indexToScroll = Math.min(index, rowsCount - 1);
-            const topCoordinate = rowOffsets.current[indexToScroll] - listOffset;
+            const topCoordinate = rowOffsets.current[indexToScroll] - listOffsetRef.current;
             scrollContainer.current.scrollTo({ top: topCoordinate, behavior });
         },
         [scrollContainer.current, rowOffsets.current],
     );
 
-    useLayoutEffectSafeForSsr(handleScrollToIndex, [value?.indexToScroll]);
-    useLayoutEffectSafeForSsr(handleScrollToFocus, [value?.focusedIndex]);
+    useLayoutEffectSafeForSsr(() => {
+        handleScrollToIndex();
+    }, [value?.scrollTo]);
 
     useLayoutEffectSafeForSsr(() => {
-        if (!scrollContainer.current || !listContainer.current) return;
-        const { top: scrollContainerTop } = scrollContainer.current.getBoundingClientRect();
-        const { top: listContainerTop } = listContainer.current.getBoundingClientRect();
-        setListOffset(listContainerTop - scrollContainerTop);
-    }, [scrollContainer.current, listContainer.current]);
+        handleScrollToFocus();
+    }, [value?.focusedIndex]);
 
     const offsetY = React.useMemo(() => {
         if (rowOffsets.current.length === 0) return 0;
-        return rowOffsets.current[value.topIndex] - listOffset;
+        return rowOffsets.current[value.topIndex] - listOffsetRef.current;
     }, [
         rowOffsets.current, listOffset, value?.topIndex,
     ]);
