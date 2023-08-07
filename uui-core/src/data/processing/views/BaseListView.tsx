@@ -248,6 +248,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         row.onSelect = rowOptions && rowOptions.isSelectable && this.handleOnSelect;
         row.onFocus = (isSelectable || isCheckable || row.isFoldable) && this.handleOnFocus;
         row.isChildrenChecked = this.someChildCheckedByKey[this.idToKey(row.id)];
+        row.isPinned = rowOptions.pin?.(row) ?? false;
     }
 
     private isRowChecked(row: DataRowProps<TItem, TId>) {
@@ -322,7 +323,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 }
 
                 const row = this.getRowProps(item, rows.length);
-
+                
                 if (appendRows && (!this.isPartialLoad() || (this.isPartialLoad() && rows.length < lastIndex))) {
                     rows.push(row);
                     layerRows.push(row);

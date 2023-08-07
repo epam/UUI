@@ -90,6 +90,7 @@ export interface DataRowOptions<TItem, TId> extends IDisableable, Partial<IEdita
 
     /** Can be specified to make row act as a link (plain or SPA) */
     link?: Link;
+    pin?(rowProps: DataRowProps<TItem, TId>): boolean;
 }
 
 /** DataRowProps is a base shape of props, passed to items in various lists or trees.
@@ -193,6 +194,8 @@ DataRowOptions<TItem, TId> & {
     /** Handles row focusing.
          */
     onFocus?(focusedIndex: number): void;
+
+    isPinned?: boolean;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
