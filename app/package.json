@@ -15,7 +15,7 @@
   "cracoConfig": "./build-config/craco.config.js",
   "dependencies": {
     "@epam/assets": "5.1.2-alpha.0",
-    "@epam/draft-rte": "4.9.1",
+    "@epam/draft-rte": "5.1.2-alpha.0",
     "@epam/internal": "0.0.1",
     "@epam/loveship": "5.1.2-alpha.0",
     "@epam/promo": "5.1.2-alpha.0",
