@@ -7,6 +7,7 @@ import {
     PlateProvider,
     Value,
     createPlugins,
+    isElementEmpty,
     useEventEditorSelectors,
     usePlateEditorState,
 } from '@udecode/plate-common';
@@ -65,7 +66,8 @@ function Editor(props: PlateEditorProps) {
                     readOnly: props.isReadonly,
                     placeholder: props.placeholder,
                     renderPlaceholder: ({ attributes }) => {
-                        return (
+                        const shouldShowPlaceholder = isElementEmpty(editor, editor.children[0]);
+                        return shouldShowPlaceholder && (
                             <div
                                 { ...attributes }
                                 style={ { pointerEvents: 'none' } }
