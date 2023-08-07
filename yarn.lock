@@ -1390,112 +1390,10 @@
   dependencies:
     normalize.css "^7.0.0"
 
-"@epam/assets@4.9.1":
-  version "4.9.1"
-  resolved "https://registry.yarnpkg.com/@epam/assets/-/assets-4.9.1.tgz#d327703e672efd57194582e3ff3060d3a0137fbe"
-  integrity sha512-hebcxuzir3C7x1L/17splhrwaebxeAd6/xqA9Qg4ufn338LCCcQjhFkuZDigYB5CvL6S87k6w3dJ51/Pu+ljaA==
-  dependencies:
-    normalize.css "^7.0.0"
-
-"@epam/draft-rte@4.9.1":
-  version "4.9.1"
-  resolved "https://registry.yarnpkg.com/@epam/draft-rte/-/draft-rte-4.9.1.tgz#50070f199e4078c82914b0e5eef08b0e7c03d28c"
-  integrity sha512-gilH5Un3TWJCCpVkQlTCQ2uGhOkwInlce98xDqAwVYIXC8MdRwpiW0kmLpvjXBOnJVBsjmbl4dCXlEaOVvYi4w==
-  dependencies:
-    "@epam/assets" "4.5.3"
-    "@epam/loveship" "4.9.1"
-    "@epam/uui-components" "4.9.1"
-    "@epam/uui-core" "4.9.1"
-    "@types/draft-js" "0.10.23"
-    classnames "^2.2.6"
-    draft-convert "^2.1.2"
-    draft-js "0.11.7"
-    draft-js-clear-formatting "^1.0.0"
-    draft-js-plugins-utils "^2.0.2"
-    immutable "*"
-    markdown-draft-js "1.6.0"
-
 "@epam/internal@0.0.1":
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/@epam/internal/-/internal-0.0.1.tgz#742bbc31ef813264007346365aaf312c7b335a40"
   integrity sha512-gd+4xCPGAfDZf3I2DtV86pva9/LOaSWu2e+qAuqfkt2uQ0cOqq+xD7aZxHP6PZHr742/tsrRc5BZOW9q1630uQ==
-
-"@epam/loveship@4.9.1":
-  version "4.9.1"
-  resolved "https://registry.yarnpkg.com/@epam/loveship/-/loveship-4.9.1.tgz#1a28bbecd97df78c06bc252c3ea6cc78caee6720"
-  integrity sha512-C00tNUiI8J91xa5XzN/sR5DfiYApfCV3k5cVqemo4syBihp00KFlglpCCh8M9SDGcK/HTO1Tf0Gu2wZAnPyP8Q==
-  dependencies:
-    "@epam/assets" "4.9.1"
-    "@epam/uui-components" "4.9.1"
-    "@epam/uui-core" "4.9.1"
-    "@types/classnames" "2.2.6"
-    "@types/lodash.isequal" "4.5.5"
-    "@types/lodash.sortby" "4.7.6"
-    classnames "2.2.6"
-    dayjs "1.10.7"
-    lodash.isequal "4.5.0"
-    lodash.sortby "4.7.0"
-    react-custom-scrollbars-2 "^4.4.0"
-    react-popper "2.2.5"
-
-"@epam/uui-components@4.9.1":
-  version "4.9.1"
-  resolved "https://registry.yarnpkg.com/@epam/uui-components/-/uui-components-4.9.1.tgz#e18e90a802a0db9ab02d4733629736b6213e5c67"
-  integrity sha512-7AHsMYrK8pCi9huK2RQe6Jj5gRcRuU6LHdRfyWvg7KGzngQizjmpLt/oRiM5YntkicEhWmlFIqCrQA7f9qemzA==
-  dependencies:
-    "@epam/uui-core" "4.9.1"
-    "@popperjs/core" "2.9.0"
-    "@types/classnames" "2.2.6"
-    "@types/lodash.clone" "4.5.6"
-    "@types/lodash.isequal" "4.5.5"
-    "@types/lodash.orderby" "4.6.6"
-    "@types/lodash.range" "3.2.6"
-    "@types/query-string" "6.1.0"
-    "@types/react-measure" "2.0.6"
-    "@types/react-transition-group" "4.4.4"
-    classnames "2.2.6"
-    csstype "2.6.10"
-    dayjs "1.10.7"
-    lodash.clone "4.5.0"
-    lodash.isequal "4.5.0"
-    lodash.orderby "4.6.0"
-    lodash.range "3.2.0"
-    lodash.sortby "4.5.0"
-    react-custom-scrollbars-2 "^4.4.0"
-    react-focus-lock "2.7.1"
-    react-measure "2.5.2"
-    react-popper "2.2.5"
-    react-transition-group "4.4.2"
-
-"@epam/uui-core@4.9.1":
-  version "4.9.1"
-  resolved "https://registry.yarnpkg.com/@epam/uui-core/-/uui-core-4.9.1.tgz#2af16e59ed2563bb269bad343527d10b32ae5eaf"
-  integrity sha512-UOm1NMU94/9rbKNWkR3H4kZzP6hX9VLS4w/+HFVWzQEaDh2BL07JiOxzqq5Hr6kmjBzkuOot+UXkFSnMDlr+TQ==
-  dependencies:
-    "@popperjs/core" "2.9.0"
-    "@types/classnames" "2.2.6"
-    "@types/lodash.clone" "4.5.6"
-    "@types/lodash.debounce" "4.0.6"
-    "@types/lodash.isequal" "4.5.5"
-    "@types/lodash.maxby" "4.6.6"
-    "@types/lodash.memoize" "4.1.6"
-    "@types/lodash.orderby" "4.6.6"
-    "@types/lodash.sortby" "4.7.6"
-    "@types/lodash.trimend" "4.5.6"
-    classnames "2.2.6"
-    csstype "2.6.10"
-    dayjs "1.10.7"
-    jsurl "0.1.5"
-    lodash.clone "4.5.0"
-    lodash.debounce "4.0.8"
-    lodash.isempty "4.4.0"
-    lodash.isequal "4.5.0"
-    lodash.maxby "4.6.0"
-    lodash.memoize "4.1.2"
-    lodash.orderby "4.6.0"
-    lodash.sortby "4.7.0"
-    lodash.trimend "4.5.1"
-    react-popper "2.2.5"
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
@@ -3849,13 +3747,6 @@
   version "18.0.10"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.0.10.tgz#3b66dec56aa0f16a6cc26da9e9ca96c35c0b4352"
   integrity sha512-E42GW/JA4Qv15wQdqJq8DL4JhNpB3prJgjgapN3qJT9K2zO5IIAQh4VXvCEDupoqAwnz0cY4RlXeC/ajX5SFHg==
-  dependencies:
-    "@types/react" "*"
-
-"@types/react-measure@2.0.6":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@types/react-measure/-/react-measure-2.0.6.tgz#d66efad1960ea8b38eef9d8cc3cc857e7767b09e"
-  integrity sha512-FxAwgDVKvxm4SPXu24x9cwzsty8x33UueazHcpxM1UWZlGJI57yIHM2djE3xUJhYVxuzNzi4E8UL3kmCkdh+4A==
   dependencies:
     "@types/react" "*"
 
@@ -8353,13 +8244,6 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-focus-lock@^0.10.1:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/focus-lock/-/focus-lock-0.10.2.tgz#561c62bae8387ecba1dd8e58a6df5ec29835c644"
-  integrity sha512-DSaI/UHZ/02sg1P616aIWgToQcrKKBmcCvomDZ1PZvcJFj350PnWhSJxJ76T3e5/GbtQEARIACtbrdlrF9C5kA==
-  dependencies:
-    tslib "^2.0.3"
-
 focus-lock@^0.11.2:
   version "0.11.6"
   resolved "https://registry.yarnpkg.com/focus-lock/-/focus-lock-0.11.6.tgz#e8821e21d218f03e100f7dc27b733f9c4f61e683"
@@ -11273,39 +11157,10 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
-lodash._baseeach@~4.1.0:
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/lodash._baseeach/-/lodash._baseeach-4.1.3.tgz#ca4984edc849c237b283fbe2ea7cf76d37fc9d67"
-  integrity sha512-gFjnCpAhdcNV0qzva8TtITUnYxkcOQ64eOECtgf+WibYraPEvleZR7JrJ08spT46jFQgPl26Xyx5z/9VJ2/bew==
-
-lodash._baseflatten@~4.2.0:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/lodash._baseflatten/-/lodash._baseflatten-4.2.1.tgz#54acad5e6ef53532a5b8269c0ad725470cfd9208"
-  integrity sha512-yqWVinWjc22uFoAwZhYU+L4X3BUhv1oFVk+yBDJ8ob6I5UUkx4DnSpXRoatOBNyjRz3/lL0TFu6l5MDtHFcuNQ==
-
-lodash._baseiteratee@~4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/lodash._baseiteratee/-/lodash._baseiteratee-4.7.0.tgz#34a9b5543572727c3db2e78edae3c0e9e66bd102"
-  integrity sha512-nqB9M+wITz0BX/Q2xg6fQ8mLkyfF7MU7eE+MNBNjTHFKeKaZAPEzEg+E8LWxKWf1DQVflNEn9N49yAuqKh2mWQ==
-  dependencies:
-    lodash._stringtopath "~4.8.0"
-
-lodash._basetostring@~4.12.0:
-  version "4.12.0"
-  resolved "https://registry.yarnpkg.com/lodash._basetostring/-/lodash._basetostring-4.12.0.tgz#9327c9dc5158866b7fa4b9d42f4638e5766dd9df"
-  integrity sha512-SwcRIbyxnN6CFEEK4K1y+zuApvWdpQdBHM/swxP962s8HIxPO3alBH5t3m/dl+f4CMUug6sJb7Pww8d13/9WSw==
-
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
   integrity sha512-xYHt68QRoYGjeeM/XOE1uJtvXQAgvszfBhjV4yvsQH0u2i9I6cI6c6/eG4Hh3UAOVn0y/xAXwmTzEay49Q//HA==
-
-lodash._stringtopath@~4.8.0:
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/lodash._stringtopath/-/lodash._stringtopath-4.8.0.tgz#941bcf0e64266e5fc1d66fed0a6959544c576824"
-  integrity sha512-SXL66C731p0xPDC5LZg4wI5H+dJo/EO4KTqOMwLYCH3+FmmfAKJEZCm6ohGpI+T1xwsDsJCfL4OnhorllvlTPQ==
-  dependencies:
-    lodash._basetostring "~4.12.0"
 
 lodash.assign@4.2.0:
   version "4.2.0"
@@ -11417,25 +11272,10 @@ lodash.range@3.2.0:
   resolved "https://registry.yarnpkg.com/lodash.range/-/lodash.range-3.2.0.tgz#f461e588f66683f7eadeade513e38a69a565a15d"
   integrity sha512-Fgkb7SinmuzqgIhNhAElo0BL/R1rHCnhwSZf78omqSwvWqD0kD2ssOAutQonDKH/ldS8BxA72ORYI09qAY9CYg==
 
-lodash.rest@^4.0.0:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/lodash.rest/-/lodash.rest-4.0.5.tgz#954ef75049262038c96d1fc98b28fdaf9f0772aa"
-  integrity sha512-hsypEpebNAt0hj1aX9isQqi2CIZoNS1lP6PSWhB3hcMnBivobYzPZRPYq4cr38+RtvrlxQTgaW+sIuHAhBoHrA==
-
 lodash.set@^4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/lodash.set/-/lodash.set-4.3.2.tgz#d8757b1da807dde24816b0d6a84bea1a76230b23"
   integrity sha512-4hNPN5jlm/N/HLMCO43v8BXKq9Z7QdAGc/VGrRD61w8gN9g/6jF9A4L1pbUgBLCffi0w9VsXfTOij5x8iTyFvg==
-
-lodash.sortby@4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.5.0.tgz#c6f5acd5697538e1a1a6107f1a43ad7cc2eaf952"
-  integrity sha512-5axrLlWCqcd8GzPHr2NqLiR7jFtBx4y8PGpsWzz0zgiIbuIcv5+NlFt6WTBwgU4vqWB5UTNFuXj2lNAcexsR9g==
-  dependencies:
-    lodash._baseeach "~4.1.0"
-    lodash._baseflatten "~4.2.0"
-    lodash._baseiteratee "~4.7.0"
-    lodash.rest "^4.0.0"
 
 lodash.sortby@4.7.0, lodash.sortby@^4.7.0:
   version "4.7.0"
@@ -14524,14 +14364,14 @@ react-app-polyfill@3.0.0, react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
-react-clientside-effect@^1.2.5, react-clientside-effect@^1.2.6:
+react-clientside-effect@^1.2.6:
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/react-clientside-effect/-/react-clientside-effect-1.2.6.tgz#29f9b14e944a376b03fb650eed2a754dd128ea3a"
   integrity sha512-XGGGRQAKY+q25Lz9a/4EPqom7WRjz3z9R2k4jhVKA/puQFH/5Nt27vFZYql4m4NVNdUvX8PS3O7r/Zzm7cjUlg==
   dependencies:
     "@babel/runtime" "^7.12.13"
 
-react-custom-scrollbars-2@^4.4.0, react-custom-scrollbars-2@^4.5.0:
+react-custom-scrollbars-2@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/react-custom-scrollbars-2/-/react-custom-scrollbars-2-4.5.0.tgz#cff18e7368bce9d570aea0be780045eda392c745"
   integrity sha512-/z0nWAeXfMDr4+OXReTpYd1Atq9kkn4oI3qxq3iMXGQx1EEfwETSqB8HTAvg1X7dEqcCachbny1DRNGlqX5bDQ==
@@ -14587,18 +14427,6 @@ react-fast-compare@^3.0.1:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.2.tgz#929a97a532304ce9fee4bcae44234f1ce2c21d49"
   integrity sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==
-
-react-focus-lock@2.7.1:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/react-focus-lock/-/react-focus-lock-2.7.1.tgz#a9fbb3fa4efaee32162406e5eb96ae658964193b"
-  integrity sha512-ImSeVmcrLKNMqzUsIdqOkXwTVltj79OPu43oT8tVun7eIckA4VdM7UmYUFo3H/UC2nRVgagMZGFnAOQEDiDYcA==
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-    focus-lock "^0.10.1"
-    prop-types "^15.6.2"
-    react-clientside-effect "^1.2.5"
-    use-callback-ref "^1.2.5"
-    use-sidecar "^1.0.5"
 
 react-focus-lock@2.9.2:
   version "2.9.2"
@@ -14670,14 +14498,6 @@ react-measure@2.5.2:
     get-node-dimensions "^1.2.1"
     prop-types "^15.6.2"
     resize-observer-polyfill "^1.5.0"
-
-react-popper@2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-2.2.5.tgz#1214ef3cec86330a171671a4fbcbeeb65ee58e96"
-  integrity sha512-kxGkS80eQGtLl18+uig1UIf9MKixFSyPxglsgLBxlYnyDf65BiY9B3nZSc6C9XUNDgStROB0fMQlTEz1KxGddw==
-  dependencies:
-    react-fast-compare "^3.0.1"
-    warning "^4.0.2"
 
 react-popper@2.3.0:
   version "2.3.0"
@@ -17675,7 +17495,7 @@ url-parse@^1.5.3:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
 
-use-callback-ref@^1.2.5, use-callback-ref@^1.3.0:
+use-callback-ref@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/use-callback-ref/-/use-callback-ref-1.3.0.tgz#772199899b9c9a50526fedc4993fc7fa1f7e32d5"
   integrity sha512-3FT9PRuRdbB9HfXhEq35u4oZkvpJ5kuYbpqhCfmiZyReuRgpnhDlbr2ZEnnuS0RrJAPn6l23xjFg9kpDM+Ms7w==
@@ -17711,7 +17531,7 @@ use-latest@^1.2.1:
   dependencies:
     use-isomorphic-layout-effect "^1.1.1"
 
-use-sidecar@^1.0.5, use-sidecar@^1.1.2:
+use-sidecar@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/use-sidecar/-/use-sidecar-1.1.2.tgz#2f43126ba2d7d7e117aa5855e5d8f0276dfe73c2"
   integrity sha512-epTbsLuzZ7lPClpz2TyryBfztm7m+28DlEv2ZCQ3MDr5ssiwyOwGH/e5F9CkfWjJ1t4clvI58yF822/GUkjjhw==
