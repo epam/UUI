@@ -29,7 +29,8 @@ export const normalizeFilterConfig = <TFilter>(filtersConfig: FiltersConfig, fil
     return result;
 };
 
-export const useTableState = <TFilter = Record<string, any>, TViewState = any>(params: TableStateParams<TFilter, TViewState>): ITableState<TFilter, TViewState> => {
+export const useTableState = <TFilter = Record<string, any>, TViewState = any>
+(params: UseTableStateHookParams<TFilter, TViewState>): ITableState<TFilter, TViewState> => {
     const context = useUuiContext();
     const [presets, setPresets] = useState(params?.initialPresets ?? []);
 
@@ -308,7 +309,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
     };
 };
 
-export interface TableStateParams<TFilter = Record<string, any>, TViewState = any> extends Partial<IEditable<DataTableState<TFilter, TViewState>>> {
+export interface UseTableStateHookParams<TFilter = Record<string, any>, TViewState = any> extends Partial<IEditable<DataTableState<TFilter, TViewState>>> {
     /** Columns configuration, can be omitted if used without tables */
     columns?: DataColumnProps[];
     /** Filters configuration, can be omitted if you don't need filters */

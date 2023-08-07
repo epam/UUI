@@ -1,5 +1,5 @@
 import { renderHookWithContextAsync, CustomWrapperType, act } from '@epam/uui-test-utils';
-import { useTableState } from '../../useTableState';
+import { useTableState, UseTableStateHookParams } from '../../useTableState';
 import {
     DataColumnProps, DataTableState, IRouterContext, ITablePreset, TableFiltersConfig, UuiContexts,
 } from '../../../types';
@@ -162,7 +162,7 @@ const createNewPresetMock = jest.fn().mockResolvedValue(123);
 const updatePresetMock = jest.fn();
 const deletePresetMock = jest.fn();
 
-const initHook = async () => {
+const initHook = async (props?: UseTableStateHookParams) => {
     const testUuiCtx = {} as UuiContexts;
     const router = routerStab;
     const wrapper: CustomWrapperType = function UuiContextDefaultWrapper({ children }) {
@@ -184,6 +184,7 @@ const initHook = async () => {
                 onPresetCreate: createNewPresetMock,
                 onPresetUpdate: updatePresetMock,
                 onPresetDelete: deletePresetMock,
+                ...props,
             }),
         {},
         { wrapper },
@@ -495,6 +496,20 @@ describe('useTableState', () => {
             });
         });
 
+        it('Should update preset with new value', async () => {
+            queryObject.presetId = 2;
+            const { result } = await initHook();
+
+            expect(result.current.activePresetId).toEqual(2);
+
+            const newPresetValue = { ...presets[1], filter: { filter2: [1] } };
+
+            await act(() => result.current.updatePreset(newPresetValue));
+
+            expect(updatePresetMock).toHaveBeenCalledWith(newPresetValue);
+            expect(result.current.presets[1]).toEqual(newPresetValue);
+        });
+
         it('Should delete preset', async () => {
             const { result } = await initHook();
 
@@ -564,6 +579,53 @@ describe('useTableState', () => {
     });
 
     it('should use external value and onValueChange', async () => {
-        // ToDO
+        const initialValue = {
+            filter: {
+                filter2: [1],
+            },
+            topIndex: 0,
+            visibleCount: 40,
+        };
+
+        let value = initialValue;
+        const onValueChange = jest.fn().mockImplementation((newVal) => { value = newVal; });
+
+        const { result } = await initHook({ value, onValueChange });
+
+        expect(result.current.tableState).toEqual(initialValue);
+
+        await act(() => result.current.setFilter({ filter2: [1, 2, 3] }));
+
+        expect(onValueChange).toHaveBeenCalledWith({
+            ...initialValue,
+            filter: {
+                filter2: [1, 2, 3],
+            },
+            viewState: undefined,
+            filtersConfig: {
+                filter1: {
+                    isVisible: true,
+                    order: 'h',
+                },
+                filter2: {
+                    isVisible: true,
+                    order: 'q',
+                },
+            },
+        });
+
+        expect(redirectMock).not.toBeCalled();
+    });
+
+    it('should reset paging on filter change', async () => {
+        const { result } = await initHook();
+
+        await act(() => result.current.setTableState({ ...result.current.tableState, page: 10 }));
+
+        expect(result.current.tableState.page).toEqual(10);
+
+        await act(() => result.current.setFilter({ filter2: [1] }));
+
+        expect(result.current.tableState.page).toEqual(1);
     });
 });
