@@ -173,6 +173,10 @@ export function MasterDetailedTable() {
             checkbox: { isVisible: true },
             isSelectable: true,
             onClick: clickHandler,
+            pin: (rowProps) => {
+                console.log(rowProps);
+                return rowProps.depth === 0;
+            },
         },
         cascadeSelection: true,
     });
