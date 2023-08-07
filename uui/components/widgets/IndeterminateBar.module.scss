@@ -1,11 +1,9 @@
-@use '../../assets/styles/scss/loveship-colors' as *;
-
 .root {
     position: relative;
-    background-color: $night300;
+    background-color: var(--uui-indeterminate-bar-wrapper);
 
     .bar {
-        background-color: $sky;
+        background-color: var(--uui-indeterminate-bar-background);
         width: 33%;
         top: 0;
         bottom: 0;

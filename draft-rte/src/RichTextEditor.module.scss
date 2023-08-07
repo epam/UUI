@@ -1,4 +1,6 @@
-@use '~@epam/assets/scss/index' as *;
+@use '~@epam/assets/scss/loveship/typography' as *;
+@use '~@epam/assets/scss/loveship/colors' as *;
+@use '~@epam/assets/scss/loveship/fonts' as *;
 @import './draft.module';
 
 .container {
@@ -55,4 +57,12 @@
 .separator {
     height: 24px;
     border-left: 1px solid $night200;
+}
+
+.typography-loveship {
+    @include typography-loveship();
+}
+
+.typography-14 {
+    @include typography-14();
 }

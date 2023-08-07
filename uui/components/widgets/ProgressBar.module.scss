@@ -1,6 +1,3 @@
-@use '../../assets/styles/scss/loveship-colors' as *;
-@use '../../assets/styles/scss/fonts' as *;
-
 @mixin barSizes($height, $fontSize) {
     height: $height + px;
     font-size: $fontSize + px;
@@ -8,16 +5,16 @@
 }
 
 .root {
-    background-color: $night300;
-    font-family: $font-sans;
+    background-color: var(--uui-progress-bar-wrapper);
+    font-family: var(--font-regular);
     color: white;
 
     :global(.bar) {
-        background-color: $sky;
+        background-color: var(--uui-progress-bar-background);
     }
 
     :global(.topLabel) {
-        color: $night900;
+        color: var(--uui-progress-bar-label);
     }
 
     &.striped :global(.bar) {
