@@ -35,9 +35,13 @@
         background-color: var(--uui-checkbox-bg);
         border: 1px solid var(--uui-checkbox-border);
         border-radius: var(--uui-checkbox-border-radius);
+        position: relative;
 
-        &:focus-within {
+        :global(input[type='checkbox']):focus-visible {
             @include focus-visible-effect();
+            position: absolute;
+            width: inherit;
+            height: inherit;
         }
     }
 
