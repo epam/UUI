@@ -90,7 +90,12 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
                     <PickerInput<any, string>
                         selectionMode="single"
                         value={ this.state.iconId }
-                        onValueChange={ (id: string) => {
+                        onValueChange={ (id: string | undefined) => {
+                            if (typeof id === 'undefined') {
+                                this.handleClear();
+                                return;
+                            }
+
                             this.props.onValueChange(icons[id].icon as IHasIcon);
                             this.setState({ iconId: id, iconName: icons[id].parentId });
                         } }
