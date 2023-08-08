@@ -25,3 +25,4 @@ export * from './forwardRef';
 export * from './queryToSearch';
 export * from './searchToQuery';
 export * from './uuiLogger';
+export * from './clearEmptyValueFromRecord';
