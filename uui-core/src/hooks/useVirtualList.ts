@@ -103,7 +103,6 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         // We never reduce visible count intentionally - it can be set so a larger value intentionally.
         // Also, reducing it can cause bouncing between two near values, causing unnecessary re-renders.
         const visibleCount = Math.max(value.visibleCount ?? blockSize, bottomIndex - topIndex);
-
         if (topIndex !== value.topIndex || visibleCount > value.visibleCount) {
             onValueChange({ ...value, topIndex, visibleCount });
         }
@@ -141,7 +140,6 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
 
     useLayoutEffectSafeForSsr(() => {
         updateRowHeights();
-        handleScroll();
     });
 
     const handleScrollToIndex = () => {
