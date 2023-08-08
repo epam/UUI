@@ -7,9 +7,9 @@ import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import utc from 'dayjs/plugin/utc.js';
 import {
     PickerBodyValue, defaultFormat, valueFormat, ViewType, supportedDateFormats,
-} from '../';
+} from './DatePickerBodyBase';
 import { toValueDateFormat, toCustomDateFormat } from './helpers';
-import { Dropdown } from '../../';
+import { Dropdown } from '../../overlays';
 
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);

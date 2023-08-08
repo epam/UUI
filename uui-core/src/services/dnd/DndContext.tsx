@@ -1,10 +1,8 @@
-import {
-    isClientSide,
-    getOffset,
-    getScrollParentOfEventTarget,
-} from '../../helpers';
+import { isClientSide } from '../../helpers/ssr';
+import { getOffset } from '../../helpers/getOffset';
+import { getScrollParentOfEventTarget } from '../../helpers/events';
 import * as React from 'react';
-import { IDndContext, DndContextState } from '../../types';
+import { IDndContext, DndContextState } from '../../types/contexts';
 import { BaseContext } from '../BaseContext';
 
 const maxScrollSpeed = 2000; // px/second

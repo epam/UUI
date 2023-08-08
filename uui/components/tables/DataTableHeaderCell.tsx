@@ -1,8 +1,13 @@
 import * as React from 'react';
 import { DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownToggler, cx } from '@epam/uui-core';
 import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from '@epam/uui-components';
-import { ColumnHeaderDropdown, DataTableHeaderCellMods } from './';
-import { FlexCell, Checkbox, Text, IconButton, Tooltip } from '../';
+import { ColumnHeaderDropdown } from './ColumnHeaderDropdown';
+import { DataTableHeaderCellMods } from './types';
+import { FlexCell } from '../layout';
+import { IconButton } from '../buttons';
+import { Checkbox } from '../inputs';
+import { Tooltip } from '../overlays';
+import { Text } from '../typography';
 import css from './DataTableHeaderCell.module.scss';
 import { ReactComponent as DefaultSortIcon } from '@epam/assets/icons/common/table-swap-18.svg';
 import { ReactComponent as SortIcon } from '@epam/assets/icons/common/table-sort_asc-18.svg';
