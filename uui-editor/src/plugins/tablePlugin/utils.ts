@@ -5,8 +5,6 @@ import {
     getPluginType,
     getStartPoint,
     getBlockAbove,
-    insertElements,
-    createNode,
     selectEditor,
 } from '@udecode/plate-common';
 import {
@@ -142,6 +140,7 @@ export const updateTableStructure = (tableElem: TTableElement) => {
         });
     });
 
+    // mutating table element
     tableElem.children.forEach((curRow, rowIndex) => {
         const rowElem = curRow as TTableRowElement;
 
@@ -151,8 +150,6 @@ export const updateTableStructure = (tableElem: TTableElement) => {
             cellElem.rowIndex = rowIndex;
         });
     });
-
-    return tableElem;
 };
 
 export const createCell = ({
@@ -188,12 +185,6 @@ export const selectFirstCell = (editor: PlateEditor) => {
 
         const startPoint = getStartPoint(editor, tableEntry[1]);
         selectEditor(editor, { at: startPoint });
-
-        const [tablePosition] = getStartPoint(editor, tableEntry[1]).path;
-        insertElements(editor, createNode(), {
-            at: [tablePosition + 1],
-            select: false,
-        });
     }
 };
 
