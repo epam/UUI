@@ -1,8 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import {
-    IHasChildren, IHasCX, Icon, IHasRawProps,
-} from '@epam/uui-core';
+import { IHasChildren, IHasCX, Icon, IHasRawProps } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton, LinkButton } from '../buttons';
 import { SemanticColor } from '../types';
@@ -44,7 +42,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
                 {props.actions && (
                     <div className={ css.actionWrapper }>
                         {props.actions.map((action) => (
-                            <LinkButton caption={ action.name } onClick={ action.action } key={ action.name } cx={ css.actionLink } size="30" />
+                            <LinkButton caption={ action.name } onClick={ action.action } key={ action.name } cx={ css.actionLink } size="24" />
                         ))}
                     </div>
                 )}
