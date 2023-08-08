@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { IEditable, VirtualListState } from '../types';
+import type { IEditable, ScrollToConfig, VirtualListState } from '../types';
 import { useLayoutEffectSafeForSsr } from '../ssr';
 
 interface UuiScrollPositionValues {
@@ -49,11 +49,11 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
 }: UseVirtualListProps): UseVirtualListApi<List, ScrollContainer> {
     const [estimatedHeight, setEstimatedHeight] = React.useState<number>(0);
     const [listOffset, setListOffset] = React.useState<number>();
+    const [scrolledTo, setScrolledTo] = React.useState<ScrollToConfig>(null);
     const listContainer = React.useRef<List>();
     const scrollContainer = React.useRef<ScrollContainer>();
     const rowHeights = React.useRef<number[]>([]);
     const rowOffsets = React.useRef<number[]>([]);
-    const listOffsetRef = React.useRef<number>();
 
     useLayoutEffectSafeForSsr(() => {
         if (!scrollContainer.current || !listContainer.current) return;
@@ -61,7 +61,6 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         const { top: listContainerTop } = listContainer.current.getBoundingClientRect();
         const newListOffset = listContainerTop - scrollContainerTop;
         setListOffset(newListOffset);
-        listOffsetRef.current = newListOffset;
     }, [scrollContainer.current, listContainer.current]);
 
     const handleScrollToFocus = () => {
@@ -69,7 +68,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         const { scrollTop, clientHeight } = scrollContainer.current;
         const focusedIndexOffset = rowOffsets.current[value.focusedIndex] || 0;
         const focusedIndexHeight = rowHeights.current[value.focusedIndex] || 0;
-        const scrollBottom = scrollTop + clientHeight - listOffsetRef.current;
+        const scrollBottom = scrollTop + clientHeight - listOffset;
         if (focusedIndexOffset < scrollTop - focusedIndexHeight || scrollBottom < focusedIndexOffset) {
             const middleOffset = focusedIndexOffset - clientHeight / 2 + focusedIndexHeight / 2;
             const indexToScroll = rowOffsets.current.findIndex((rowOffset) => middleOffset <= rowOffset);
@@ -106,16 +105,14 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         const visibleCount = Math.max(value.visibleCount ?? blockSize, bottomIndex - topIndex);
 
         if (topIndex !== value.topIndex || visibleCount > value.visibleCount) {
-            onValueChange({
-                ...value, topIndex, visibleCount,
-            });
+            onValueChange({ ...value, topIndex, visibleCount });
         }
     }, [
         onValueChange, blockSize, rowOffsets.current, rowsCount, value, onScroll, scrollContainer.current,
     ]);
 
     const updateRowHeights = React.useCallback(() => {
-        if (!scrollContainer.current || !listContainer.current || listOffsetRef.current == null || !value) return;
+        if (!scrollContainer.current || !listContainer.current || listOffset == null || !value) return;
 
         Array.from(listContainer.current.children).forEach((node, index) => {
             const topIndex = value.topIndex || 0;
@@ -129,16 +126,15 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             : rowHeights.current.reduce((sum, next) => sum + next, 0) / rowHeights.current.length;
 
         rowOffsets.current = [];
-        let lastOffset = listOffsetRef.current;
+        let lastOffset = listOffset;
         for (let n = 0; n < rowsCount; n++) {
             rowOffsets.current[n] = lastOffset;
             lastOffset += rowHeights.current[n] || averageHeight;
         }
 
-        const newEstimatedHeight = lastOffset - listOffsetRef.current;
+        const newEstimatedHeight = lastOffset - listOffset;
         if (estimatedHeight === newEstimatedHeight) return;
         setEstimatedHeight(newEstimatedHeight);
-        onValueChange({ ...value, scrollTo: Object.assign({}, value.scrollTo) });
     }, [
         estimatedHeight, rowOffsets.current, rowsCount, value, listContainer.current, scrollContainer.current, listOffset,
     ]);
@@ -156,15 +152,20 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     const scrollToIndex = React.useCallback(
         (index: number, behavior?: ScrollBehavior) => {
             const indexToScroll = Math.min(index, rowsCount - 1);
-            const topCoordinate = rowOffsets.current[indexToScroll] - listOffsetRef.current;
-            scrollContainer.current.scrollTo({ top: topCoordinate, behavior });
+            const topCoordinate = rowOffsets.current[indexToScroll] - listOffset;
+            if (!isNaN(topCoordinate)) {
+                scrollContainer.current.scrollTo({ top: topCoordinate, behavior });
+                setScrolledTo(value.scrollTo);
+            }
         },
         [scrollContainer.current, rowOffsets.current],
     );
 
     useLayoutEffectSafeForSsr(() => {
-        handleScrollToIndex();
-    }, [value?.scrollTo]);
+        if (value?.scrollTo !== scrolledTo) {
+            handleScrollToIndex();
+        }
+    }, [value?.scrollTo, listOffset, scrolledTo]);
 
     useLayoutEffectSafeForSsr(() => {
         handleScrollToFocus();
@@ -172,7 +173,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
 
     const offsetY = React.useMemo(() => {
         if (rowOffsets.current.length === 0) return 0;
-        return rowOffsets.current[value.topIndex] - listOffsetRef.current;
+        return rowOffsets.current[value.topIndex] - listOffset;
     }, [
         rowOffsets.current, listOffset, value?.topIndex,
     ]);
