@@ -13,6 +13,7 @@
 * [ControlWrapper]: was noted as deprecated and will be removed in feature release.
 * [InstanceItem]: was noted as deprecated and will be removed in feature release.
 * [MakeMeItem]: was noted as deprecated and will be removed in feature release.
+* [PickerInput]: fixed when item id equals zero or 'false'.
 
 # 5.1.1 - 27.07.2023
 
