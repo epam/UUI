@@ -21,7 +21,7 @@ export interface VirtualListProps<List extends HTMLElement = any, ScrollContaine
     extends IHasCX,
     IEditable<VirtualListState>,
     IHasRawProps<ScrollContainer> {
-    rows: React.ReactNode[];
+    rows?: React.ReactNode[];
     rowsCount?: number;
     role?: React.HTMLAttributes<HTMLDivElement>['role'];
     renderRows?: (config: VirtualListRenderRowsParams<List>) => React.ReactNode;

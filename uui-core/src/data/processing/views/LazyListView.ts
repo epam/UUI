@@ -375,6 +375,18 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         const rows = this.rows.slice(from, from + count);
 
+        // fix parents of the 1st row
+        if (rows.length > 0) {
+            rows[0].path.forEach((pathItem, idx) => {
+                const row = this.getRowProps(pathItem.value, idx);
+                row.isFoldable = true;
+                row.isFolded = false;
+                row.depth = idx;
+                row.indent = idx + 1;
+                rows[idx] = row;
+            });
+        }
+
         const listProps = this.getListProps();
 
         if (this.hasMoreRows) {

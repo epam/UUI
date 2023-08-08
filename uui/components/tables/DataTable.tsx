@@ -26,12 +26,53 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const columnsWithFilters = useColumnsWithFilters(props.columns, props.filters);
     const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
 
-    const renderRow = React.useCallback((rowProps: DataRowProps<TItem, TId> & DataTableRowMods) => {
+    const defaultRenderRow = React.useCallback((rowProps: DataRowProps<TItem, TId> & DataTableRowMods) => {
         return <DataTableRow key={ rowProps.rowKey } size={ props.size } borderBottom={ props.border } { ...rowProps } />;
     }, []);
 
     const rows = props.getRows();
-    const renderedRows = rows.map((row) => (props.renderRow || renderRow)({ ...row, columns }));
+    const renderRow = props.renderRow ?? defaultRenderRow;
+
+    let rowN = 0;
+
+    const buildGroupsRec = (depth: number) => {
+        const result: React.ReactNode[] = [];
+
+        while (rowN < rows.length) {
+            const row = rows[rowN];
+
+            if (row.depth !== depth) {
+                break;
+            }
+
+            const renderedRow = renderRow({ ...row, columns });
+
+            rowN++;
+
+            const children = buildGroupsRec(depth + 1);
+
+            if (children.length > 0) {
+                result.push(
+                    <div className={ css.group }>
+                        <div className={ css.header } style={ { zIndex: depth + 10, top: (depth + 1) * 36 } }>
+                            {renderedRow}
+                        </div>
+                        {children && (
+                            <div className={ css.children }>
+                                {children}
+                            </div>
+                        )}
+                    </div>,
+                );
+            } else {
+                result.push(renderedRow);
+            }
+        }
+
+        return result;
+    };
+
+    const rowGroups = buildGroupsRec(0);
 
     const renderNoResultsBlock = React.useCallback(() => {
         return (
@@ -81,33 +122,31 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         ({
             listContainerRef, estimatedHeight, offsetY, scrollShadows,
         }: VirtualListRenderRowsParams) => (
-            <>
-                <div className={ css.stickyHeader }>
-                    <DataTableHeaderRow
-                        columns={ columns }
-                        onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
-                        selectAll={ props.selectAll }
-                        size={ props.size }
-                        textCase={ props.headerTextCase }
-                        allowColumnsReordering={ props.allowColumnsReordering }
-                        allowColumnsResizing={ props.allowColumnsResizing }
-                        value={ props.value }
-                        onValueChange={ props.onValueChange }
-                    />
-                    <div
-                        className={ cx(uuiScrollShadows.top, {
-                            [uuiScrollShadows.topVisible]: scrollShadows.verticalTop,
-                        }) }
-                    />
-                </div>
-                {props.exactRowsCount !== 0 ? (
-                    <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
-                        <div ref={ listContainerRef } role="rowgroup" style={ { marginTop: offsetY } } children={ renderedRows } />
+            <div className={ css.group } style={ { minHeight: `${estimatedHeight}px` } }>
+                <div ref={ listContainerRef } role="rowgroup" style={ { marginTop: offsetY } }>
+                    <div className={ css.group }>
+                        <div className={ css.header }>
+                            <DataTableHeaderRow
+                                columns={ columns }
+                                onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
+                                selectAll={ props.selectAll }
+                                size={ props.size }
+                                textCase={ props.headerTextCase }
+                                allowColumnsReordering={ props.allowColumnsReordering }
+                                allowColumnsResizing={ props.allowColumnsResizing }
+                                value={ props.value }
+                                onValueChange={ props.onValueChange }
+                            />
+                            <div
+                                className={ cx(uuiScrollShadows.top, {
+                                    [uuiScrollShadows.topVisible]: scrollShadows.verticalTop,
+                                }) }
+                            />
+                        </div>
+                        {rowGroups}
                     </div>
-                ) : (
-                    renderNoResultsBlock?.()
-                )}
-            </>
+                </div>
+            </div>
         ),
         [
             props, columns, rows, renderNoResultsBlock, onConfigurationButtonClick,
@@ -120,7 +159,6 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 value={ props.value }
                 onValueChange={ props.onValueChange }
                 onScroll={ props.onScroll }
-                rows={ renderedRows }
                 rowsCount={ props.rowsCount }
                 renderRows={ renderRowsContainer }
                 cx={ cx(css.table) }

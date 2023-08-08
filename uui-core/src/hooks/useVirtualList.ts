@@ -107,7 +107,9 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     const updateRowHeights = React.useCallback(() => {
         if (!scrollContainer.current || !listContainer.current || listOffset == null || !value) return;
 
-        Array.from(listContainer.current.children).forEach((node, index) => {
+        const rows = Array.from(listContainer.current.querySelectorAll('[role=row]'));
+
+        rows.forEach((node, index) => {
             const topIndex = value.topIndex || 0;
             const { height } = node.getBoundingClientRect();
             if (!height) return;

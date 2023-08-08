@@ -10,7 +10,7 @@ import { FlexRow } from '@epam/uui';
 import { DataTable } from '@epam/promo';
 import css from './DemoTable.module.scss';
 import type { TApi } from '../../../data';
-import { groupings as groupingsList } from './groupings'; 
+import { groupings as groupingsList } from './groupings';
 import { getFilters } from './filters';
 import { personColumns } from './columns';
 import { FilterPanel } from './FilterPanel';
@@ -58,17 +58,17 @@ export function MasterDetailedTable() {
 
             const promises = typesToLoad.map(async (type) => {
                 const idsRequest: LazyDataSourceApiRequest<any, any> = { ids: idsByType[type] };
-                
+
                 let apiRequest = null;
                 if (type === 'Person') {
-                    apiRequest = svc.api.demo.persons; 
+                    apiRequest = svc.api.demo.persons;
                 }
-                
-                if (type === 'PersonGroup') { 
+
+                if (type === 'PersonGroup') {
                     apiRequest = svc.api.demo.personGroups;
-                } 
-                
-                if (type === 'Location') { 
+                }
+
+                if (type === 'Location') {
                     apiRequest = svc.api.demo.locations;
                 }
 
@@ -144,11 +144,11 @@ export function MasterDetailedTable() {
                         return undefined;
                     }
                 }
-    
+
                 throw new Error('PersonTableDemo: unknown typename/groupBy combination');
             },
         },
-        [],
+        [tableStateApi.tableState.filter?.groupBy],
     );
 
     const clickHandler = useCallback((rowProps: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
@@ -162,10 +162,10 @@ export function MasterDetailedTable() {
         getChildCount: (item) => {
             if (item.__typename === 'PersonGroup') {
                 return item.count;
-            } 
+            }
             if (item.__typename === 'Location') {
                 return item.type === 'city' ? 1 : 10;
-            } 
+            }
             return null;
         },
         fetchStrategy: tableStateApi.tableState.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
