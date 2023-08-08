@@ -500,7 +500,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     public getSelectedRowsCount = () => {
         const count = this.value.checked?.length ?? 0;
         if (!count) {
-            return this.value.selectedId ? 1 : 0;
+            return (this.value.selectedId !== undefined && this.value.selectedId !== null) ? 1 : 0;
         }
 
         return count;

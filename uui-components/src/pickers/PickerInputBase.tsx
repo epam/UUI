@@ -219,7 +219,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     getSearchValue = (): string | null => {
         // only for selectionMode = 'single': we're getting current value and put it into search, and when search changed we turn value to dataSourceState.search
-        if (this.props.selectionMode === 'single' && !this.state.isSearchChanged && this.props.value) {
+        if (this.props.selectionMode === 'single' && !this.state.isSearchChanged && (this.props.value !== undefined && this.props.value !== null)) {
             if (this.props.valueType === 'id') {
                 return this.getName(this.props?.dataSource.getById(this.props.value as TId));
             }
