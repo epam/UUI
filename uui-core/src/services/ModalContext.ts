@@ -2,7 +2,8 @@ import clone from 'lodash.clone';
 import { BaseContext } from './BaseContext';
 import { LayoutContext } from './LayoutContext';
 import * as React from 'react';
-import { IModal, IModalContext } from '../types';
+import { IModalContext } from '../types/contexts';
+import { IModal } from '../types/props';
 
 export interface ModalComponentProps<TParameters, TResult> {
     parameters?: TParameters;

@@ -8,7 +8,7 @@ import { NotificationOperation } from '../services/NotificationContext';
 import { SkinContext } from '../services/SkinContext';
 import { ModalOperation } from '../services/ModalContext';
 
-import { FileUploadOptions } from '../services/ApiContext';
+import { FileUploadOptions, FileUploadResponse } from '../services/ApiContext';
 
 export interface IBaseContext<TState = {}> {
     subscribe(handler: (state: TState) => void): void;

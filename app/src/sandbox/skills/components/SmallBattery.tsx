@@ -2,12 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import css from './SmallBattery.module.scss';
 import { Text, IconContainer } from '@epam/promo';
-import { ISkillLevel } from '../index';
+import { ISmallBatteryProps } from '../utils';
 import { ReactComponent as CrossIcon } from '../icons/navigation-close_popup-7.svg';
-
-interface ISmallBatteryProps {
-    rating: ISkillLevel;
-}
 
 export function SmallBattery(props: ISmallBatteryProps) {
     switch (props.rating) {
