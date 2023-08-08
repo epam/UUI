@@ -1,10 +1,4 @@
-import { ClassValue } from '../helpers';
-
-/* Common interface for data items */
-export interface IdAndName {
-    id: string;
-    name: string;
-}
+import { ClassValue } from '../helpers/cx';
 
 // Defines location within SPA application
 export interface Link {

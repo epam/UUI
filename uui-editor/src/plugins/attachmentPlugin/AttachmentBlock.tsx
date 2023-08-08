@@ -32,7 +32,8 @@ function getReadableFileSizeString(fileSizeInBytes: number) {
 }
 
 export function AttachmentBlock(props: any) {
-    const isSelected = useSelected() && useFocused();
+    const isFocused = useFocused();
+    const isSelected = useSelected() && isFocused;
     const isReadonly = useReadOnly();
 
     const { element, editor, children } = props;
@@ -104,51 +105,52 @@ export function AttachmentBlock(props: any) {
     };
 
     return (
-        <FlexRow
-            rawProps={ {
-                ...props.attributes,
-                contentEditable: false,
-                style: { userSelect: 'none' },
-            } }
-            alignItems="stretch"
-            cx={ cx(css.row, isSelected && uuiMod.focus) }
-        >
-            <FlexCell width={ 90 } shrink={ 0 } cx={ css.imgBox }>
-                { getIcon() }
-            </FlexCell>
-            <FlexCell width="100%" cx={ css.info }>
-                {
-                    isReadonly
-                        ? (
-                            <div className={ css.fileName }> 
-                                {' '}
-                                { fileName }
-                            </div>
-                        )
-                        : (
-                            <TextInput
-                                cx={ css.input }
-                                onClick={ (e: any) => { e.stopPropagation(); e.preventDefault(); } }
-                                placeholder="Describe attachment: book, link..."
-                                onBlur={ () => changeName(fileName) }
-                                value={ fileName }
-                                onValueChange={ setFileName }
-                                isReadonly={ isReadonly }
-                            />
-                        )
-                }
-                <div className={ css.sizeLabel }> 
-                    {' '}
-                    { getReadableFileSizeString(element.data.size) }
-                    {' '}
-                </div>
-            </FlexCell>
-            <FlexCell width="auto" shrink={ 0 } cx={ css.imgBox }>
-                <a href={ element.data.path } onKeyDown={ handleKeyDown } download={ true } className={ css.linkWrapper }>
-                    <IconContainer icon={ DownloadIcon } cx={ css.img } />
-                </a>
-            </FlexCell>
+        <div { ...props.attributes }>
+            <FlexRow
+                rawProps={ {
+                    contentEditable: false,
+                    style: { userSelect: 'none' },
+                } }
+                alignItems="stretch"
+                cx={ cx(css.row, isSelected && uuiMod.focus) }
+            >
+                <FlexCell width={ 90 } shrink={ 0 } cx={ css.imgBox }>
+                    { getIcon() }
+                </FlexCell>
+                <FlexCell width="100%" cx={ css.info }>
+                    {
+                        isReadonly
+                            ? (
+                                <div className={ css.fileName }>
+                                    {' '}
+                                    { fileName }
+                                </div>
+                            )
+                            : (
+                                <TextInput
+                                    cx={ css.input }
+                                    onClick={ (e: any) => { e.stopPropagation(); e.preventDefault(); } }
+                                    placeholder="Describe attachment: book, link..."
+                                    onBlur={ () => changeName(fileName) }
+                                    value={ fileName }
+                                    onValueChange={ setFileName }
+                                    isReadonly={ isReadonly }
+                                />
+                            )
+                    }
+                    <div className={ css.sizeLabel }>
+                        {' '}
+                        { getReadableFileSizeString(element.data.size) }
+                        {' '}
+                    </div>
+                </FlexCell>
+                <FlexCell width="auto" shrink={ 0 } cx={ css.imgBox }>
+                    <a href={ element.data.path } onKeyDown={ handleKeyDown } download={ true } className={ css.linkWrapper }>
+                        <IconContainer icon={ DownloadIcon } cx={ css.img } />
+                    </a>
+                </FlexCell>
+            </FlexRow>
             { children }
-        </FlexRow>
+        </div>
     );
 }

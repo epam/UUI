@@ -10,7 +10,7 @@ import { ReactComponent as VideoIcon } from '../../icons/video.svg';
 import { PlateEditor, createPluginFactory, getBlockAbove } from '@udecode/plate-common';
 import { AddVideoModal } from './AddVideoModal';
 
-const VIDEO_PLUGIN_KEY = 'video';
+export const VIDEO_PLUGIN_KEY = 'video';
 
 export const videoPlugin = createPluginFactory({
     key: VIDEO_PLUGIN_KEY,
