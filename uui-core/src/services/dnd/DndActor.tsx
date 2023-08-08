@@ -9,7 +9,7 @@ import {
     isEventTargetInsideDraggable,
     isEventTargetInsideInput,
     releasePointerCaptureOnEventTarget,
-} from '../../helpers';
+} from '../../helpers/events';
 import { getSector } from './helpers';
 import { uuiDndState, uuiMarkers } from '../../constants';
 import { UuiContext } from '../ContextProvider';

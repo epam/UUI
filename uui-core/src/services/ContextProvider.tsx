@@ -5,7 +5,7 @@ import { IHasChildren } from '../types/props';
 import { CommonContexts } from '../types/contexts';
 import { IProcessRequest } from './index';
 import { HistoryAdaptedRouter, IHistory4, StubAdaptedRouter } from './routing';
-import { DragGhost } from './dnd';
+import { DragGhost } from './dnd/DragGhost';
 import { ISkin } from './SkinContext';
 import { useUuiServices } from '../hooks';
 import { GAListener } from './analytics';
