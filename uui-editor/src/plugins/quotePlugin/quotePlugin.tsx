@@ -8,9 +8,9 @@ import { ReactComponent as QuoteIcon } from '../../icons/quote.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import css from './quote.module.scss';
 
-const QUOTE_PLUGIN_KEY = 'uui-richTextEditor-quote';
+export const QUOTE_PLUGIN_KEY = 'uui-richTextEditor-quote';
 
-const Quote: PlatePluginComponent = (props) => {
+const Quote: PlatePluginComponent = function (props) {
     return (
         <blockquote
             { ...props.attributes }

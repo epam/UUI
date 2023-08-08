@@ -11,7 +11,6 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { PlateEditor, TElement, createPluginFactory, focusEditor, getBlockAbove, insertEmptyElement, insertNodes } from '@udecode/plate-common';
 import { TImageElement, captionGlobalStore } from '@udecode/plate-media';
 import isHotkey from 'is-hotkey';
-import { Editor } from 'slate';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { FileUploadResponse } from '@epam/uui-core';
@@ -63,16 +62,6 @@ export const imagePlugin = () => {
 
                 if (event.key === 'Enter') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
-                }
-
-                // empty element needs to be added when we have only image element in editor content
-                if (event.key === 'Backspace') {
-                    insertEmptyElement(editor, PARAGRAPH_TYPE);
-                }
-
-                if (event.key === 'Delete') {
-                    Editor.deleteForward(editor as any);
-                    insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
 
                 // focus caption from image
