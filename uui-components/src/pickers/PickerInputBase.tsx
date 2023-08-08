@@ -2,7 +2,11 @@ import * as React from 'react';
 import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
 import { DropdownBodyProps, DropdownState, UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier, IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, PickerFooterProps, ICanFocus, CX } from '@epam/uui-core';
-import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps, dataSourceStateToValue, applyValueToDataSourceState } from './index';
+import { PickerBase, PickerBaseState } from './PickerBase';
+import { PickerBodyBaseProps } from './PickerBodyBase';
+import { handleDataSourceKeyboard, DataSourceKeyboardParams } from './KeyboardUtils';
+import { PickerTogglerProps } from './PickerToggler';
+import { dataSourceStateToValue, applyValueToDataSourceState } from '../pickers/bindingHelpers';
 import { Dropdown } from '../overlays';
 import { i18n } from '../i18n';
 import { getMaxItems } from './helpers';
@@ -70,8 +74,8 @@ IHasIcon & {
     /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */
     bodyCx?: CX;
 
-    /** 
-     * Enables highlighting of the items' text with search-matching results. 
+    /**
+     * Enables highlighting of the items' text with search-matching results.
      * */
     highlightSearchMatches?: boolean;
 };

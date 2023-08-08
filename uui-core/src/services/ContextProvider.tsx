@@ -1,7 +1,8 @@
 import React, {
     createContext, useContext, useEffect, useState,
 } from 'react';
-import { CommonContexts, IHasChildren } from '../types';
+import { IHasChildren } from '../types/props';
+import { CommonContexts } from '../types/contexts';
 import { IProcessRequest } from './index';
 import { HistoryAdaptedRouter, IHistory4, StubAdaptedRouter } from './routing';
 import { DragGhost } from './dnd';

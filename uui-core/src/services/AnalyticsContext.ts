@@ -1,6 +1,6 @@
 import { BaseContext } from './BaseContext';
-import { AnalyticsEvent, IRouterContext, IAnalyticsListener, Link } from '../types';
-import { isClientSide } from '../helpers';
+// import { AnalyticsEvent, IRouterContext, IAnalyticsListener, Link } from '../types/contexts';
+import { isClientSide } from '../helpers/ssr';
 
 interface AnalyticsContextOptions {
     router: IRouterContext;

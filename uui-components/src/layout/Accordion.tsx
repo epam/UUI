@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     IHasCX, IDisableable, uuiMod, IHasChildren, Icon, IEditable, cx, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';
-import { IconContainer } from '../layout';
+import { IconContainer } from './IconContainer';
 import css from './Accordion.module.scss';
 
 interface GeneralAccordionProps extends IHasCX, IDisableable, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {

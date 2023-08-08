@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IEditable, IHasRawProps } from '@epam/uui-core';
 import { ButtonProps } from '@epam/uui-components';
-import { ControlGroup } from '../layout';
+import { ControlGroup } from '../layout/ControlGroup';
 import { Button, ButtonMods } from '../buttons';
 import { SizeMod } from '../types';
 
