@@ -26,10 +26,14 @@
         }
 
         &:global(.-clickable) {
-            &:hover, &:active, &:focus {
+            &:hover, &:active {
                 background-color: var(--uui-tag-bg-hover);
                 fill: var(--uui-tag-fill-hover);
                 cursor: pointer;
+            }
+
+            &:focus-visible {
+                @include focus-visible-effect();
             }
         }
 
