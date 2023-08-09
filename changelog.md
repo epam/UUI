@@ -9,10 +9,12 @@
 * [TimePicker]: both skins are using the UUI implementation, and loveship design has been changed into the promo implementation, and 48 size is deprecated and will be deleted in the future release.
 
 **What's Fixed**
+* [FiltersPanel]: fixed wrong filter order calculation on new filter adding.
 * [RangeDatePicker]: Preset's name type from string switched to reactNode.
 * [ControlWrapper]: was noted as deprecated and will be removed in feature release.
 * [InstanceItem]: was noted as deprecated and will be removed in feature release.
 * [MakeMeItem]: was noted as deprecated and will be removed in feature release.
+* [PickerInput]: Fixed selected value displaying if item id equals zero or false.
 
 # 5.1.1 - 27.07.2023
 
