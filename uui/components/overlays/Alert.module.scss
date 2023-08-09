@@ -10,6 +10,7 @@
 }
 
 .alert-wrapper {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -23,7 +24,7 @@
 }
 
 .size-36 {
-    padding: 6px 9px;
+    padding: 3px 9px;
     min-height: 36px;
     border-left-width: 3px;
 }
@@ -35,6 +36,7 @@
 
 .action-wrapper {
     display: flex;
+    align-items: center;
 }
 
 .action-icon {
