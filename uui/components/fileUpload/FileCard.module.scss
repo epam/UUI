@@ -13,6 +13,30 @@
     border: 1px solid var(--uui-file-card-error);
 }
 
+.default-color {
+    fill: var(--uui-file-card-default);
+}
+
+.doc-color {
+    fill: #2B579A;
+}
+
+.xls-color {
+    fill: #217346;
+}
+
+.pdf-color {
+    fill: #FA0F01;
+}
+
+.movie-color {
+    fill: #5214CC;
+}
+
+.img-color {
+    fill: #E67E17;
+}
+
 :global(.uui-loading) {
     .default-color,
     .doc-color,
@@ -20,12 +44,8 @@
     .pdf-color,
     .movie-color,
     .img-color {
-        fill: var(--uui-file-card-background-loaading);
+        fill: var(--uui-icon-disabled);
     }
-}
-
-.default-color {
-    fill: var(--uui-file-card-default);
 }
 
 .drop-start {
