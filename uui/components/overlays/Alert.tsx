@@ -42,7 +42,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
                 {props.actions && (
                     <div className={ css.actionWrapper }>
                         {props.actions.map((action) => (
-                            <LinkButton caption={ action.name } onClick={ action.action } key={ action.name } cx={ css.actionLink } size="24" />
+                            <LinkButton caption={ action.name } onClick={ action.action } key={ action.name } cx={ css.actionLink } size={ props?.size === '36' ? '24' : '30' } />
                         ))}
                     </div>
                 )}
