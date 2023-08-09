@@ -15,7 +15,6 @@ export * from './urlUtils';
 export * from './parseToCSSProperties';
 export * from './getOffset';
 export * from './applyColumnsConfig';
-export * from './getDefaultColumnsConfig';
 export * from './formatBytes';
 export * from './numericInputCalculations';
 export * from './mobile';
