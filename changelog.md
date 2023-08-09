@@ -15,6 +15,7 @@
 * [InstanceItem]: was noted as deprecated and will be removed in feature release.
 * [MakeMeItem]: was noted as deprecated and will be removed in feature release.
 * [PickerInput]: Fixed selected value displaying if item id equals zero or false.
+* [ColumnsConfigurationModal]: fixed crashes when new column was added or deleted from columns array
 
 # 5.1.1 - 27.07.2023
 
