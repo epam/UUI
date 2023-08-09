@@ -209,7 +209,13 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
             } else {
                 return (
                     <React.Fragment>
-                        <MultiSwitch items={ items } onValueChange={ onExampleClick } value={ this.state.selectedPropsIds[prop.name] } size="24" />
+                        <MultiSwitch
+                            items={ items }
+                            onValueChange={ onExampleClick }
+                            value={ this.state.selectedPropsIds[prop.name] }
+                            size="24"
+                            rawProps={ { style: { flexWrap: 'wrap' } } }
+                        />
                         {prop.description && (
                             <Tooltip placement="top" content={ prop.description }>
                                 <IconButton icon={ InfoIcon } color="default" />
