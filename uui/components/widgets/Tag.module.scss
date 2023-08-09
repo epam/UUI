@@ -33,7 +33,7 @@
             }
 
             &:focus-visible {
-                @include focus-visible-effect();
+                @include focus-visible-effect(2px, null);
             }
         }
 
