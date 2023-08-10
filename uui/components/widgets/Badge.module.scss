@@ -1,7 +1,15 @@
 @use  '../../assets/styles/index' as *;
 
-
 .root {
+    --uui-badge-bg: var(--uui-color-50);
+    --uui-badge-bg-hover: var(--uui-color-60);
+    --uui-badge-border: var(--uui-color-50);
+    --uui-badge-border-hover: var(--uui-color-60);
+    --uui-badge-caption: var(--uui-color-contrast-text);
+    --uui-badge-caption-hover: var(--uui-color-contrast-text);
+    --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
+    --uui-badge-count-bg: var(--white); // It should be a separate component
+    //
     background-color: var(--uui-badge-bg);
     color: var(--uui-badge-caption);
     fill: var(--uui-badge-caption); // ??? separate variable
@@ -239,23 +247,23 @@
     }
 
     &:global(.fill-solid) {
-        --uui-badge-bg: var(--uui-main);
-        --uui-badge-bg-hover: var(--uui-dark);
-        --uui-badge-border: var(--uui-main);
-        --uui-badge-border-hover: var(--uui-dark);
-        --uui-badge-caption: var(--uui-caption-contrast);
-        --uui-badge-caption-hover: var(--uui-caption-contrast);
+        --uui-badge-bg: var(--uui-color-50);
+        --uui-badge-bg-hover: var(--uui-color-60);
+        --uui-badge-border: var(--uui-color-50);
+        --uui-badge-border-hover: var(--uui-color-60);
+        --uui-badge-caption: var(--uui-color-contrast-text);
+        --uui-badge-caption-hover: var(--uui-color-contrast-text);
         --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
         --uui-badge-count-bg: var(--white); // It should be a separate component
     }
 
     &:global(.fill-semitransparent) {
-        --uui-badge-bg: var(--uui-soft);
-        --uui-badge-bg-hover: var(--uui-lightest);
-        --uui-badge-border: var(--uui-light);
-        --uui-badge-border-hover: var(--uui-light);
-        --uui-badge-caption: var(--uui-darkest);
-        --uui-badge-caption-hover: var(--uui-darkest);
+        --uui-badge-bg: var(--uui-color-5);
+        --uui-badge-bg-hover: var(--uui-color-10);
+        --uui-badge-border: var(--uui-color-20);
+        --uui-badge-border-hover: var(--uui-color-20);
+        --uui-badge-caption: var(--uui-color-70);
+        --uui-badge-caption-hover: var(--uui-color-70);
         --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
         --uui-badge-count-bg: var(--white); // It should be a separate component
     }
@@ -272,7 +280,7 @@
 
         &:global(.-clickable) {
             &:hover {
-                fill: var(--uui-dark);
+                fill: var(--uui-color-60);
                 cursor: pointer;
             }
         }
@@ -281,7 +289,7 @@
             position: absolute;
             content: '';
             border-radius: 50%;
-            background-color: var(--uui-main);
+            background-color: var(--uui-color-50);
         }
     }
 
@@ -351,14 +359,14 @@
 
 
 //:global(.uui-badge) {
-//    --uui-badge-bg: var(--uui-main);
-//    --uui-badge-bg-hover: var(--uui-dark);
-//    --uui-badge-bg-halftone: var(--uui-lightest);
-//    --uui-badge-bg-halftone-hover: var(--uui-light);
-//    --uui-badge-border-halftone: var(--uui-light);
+//    --uui-badge-bg: var(--uui-color-50);
+//    --uui-badge-bg-hover: var(--uui-color-60);
+//    --uui-badge-bg-halftone: var(--uui-color-10);
+//    --uui-badge-bg-halftone-hover: var(--uui-color-20);
+//    --uui-badge-border-halftone: var(--uui-color-20);
 //    --uui-badge-border-halftone-hover: var(--uui-main);
-//    --uui-badge-caption: var(--uui-caption-contrast);
-//    --uui-badge-caption-halftone: var(--uui-darkest);
+//    --uui-badge-caption: var(--uui-color-contrast-text);
+//    --uui-badge-caption-halftone: var(--uui-color-70);
 //    --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
 //    --uui-badge-count-bg: var(--white); // It should be a separate component
 //}
