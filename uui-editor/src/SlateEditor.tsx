@@ -7,7 +7,6 @@ import {
     PlateProvider,
     Value,
     createPlugins,
-    isElementEmpty,
     useEventEditorSelectors,
     usePlateEditorState,
 } from '@udecode/plate-common';
@@ -19,6 +18,7 @@ import { baseMarksPlugin } from './plugins';
 import { MainToolbar, MarksToolbar } from './plugins/Toolbars';
 import { EditorValue } from './types';
 import { defaultPlugins } from './defaultPlugins';
+import { isEditorValueEmpty } from './helpers';
 
 const basePlugins: any = [
     baseMarksPlugin(),
@@ -66,8 +66,7 @@ function Editor(props: PlateEditorProps) {
                     readOnly: props.isReadonly,
                     placeholder: props.placeholder,
                     renderPlaceholder: ({ attributes }) => {
-                        const shouldShowPlaceholder = isElementEmpty(editor, editor.children[0]);
-                        return shouldShowPlaceholder && (
+                        return isEditorValueEmpty(editor.children) && (
                             <div
                                 { ...attributes }
                                 style={ { pointerEvents: 'none' } }
