@@ -1,3 +1,5 @@
+@use  '../../../assets/styles/effects' as *;
+
 .container {
     display: flex;
     align-items: center;
@@ -26,6 +28,10 @@
 
         &:active {
             background-color: var(--uui-main_menu-dropdown-bg);
+        }
+
+        &:focus-visible {
+            @include focus-visible-effect(-2px, 0);
         }
     }
 }

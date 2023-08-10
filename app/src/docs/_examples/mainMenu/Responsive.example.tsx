@@ -114,7 +114,7 @@ export default function MainMenuResponsiveExample() {
                         } }
                     />
                 ),
-            }, { id: 'flexSpacer', priority: 100, render: () => <FlexSpacer /> }, { id: 'pinIcon', priority: 8, render: () => <MainMenuIcon icon={ PinIcon } /> }, { id: 'helpIcon', priority: 8, render: () => <MainMenuIcon icon={ HelpIcon } /> }, { id: 'avatar', priority: 9, render: renderAvatar }, { id: 'globalMenu', priority: 100, render: () => <GlobalMenu /> },
+            }, { id: 'flexSpacer', priority: 100, render: () => <FlexSpacer /> }, { id: 'pinIcon', priority: 8, render: () => <MainMenuIcon icon={ PinIcon } onClick={ () => {} } /> }, { id: 'helpIcon', priority: 8, render: () => <MainMenuIcon icon={ HelpIcon } onClick={ () => {} } /> }, { id: 'avatar', priority: 9, render: renderAvatar }, { id: 'globalMenu', priority: 100, render: () => <GlobalMenu /> },
         ];
     };
 

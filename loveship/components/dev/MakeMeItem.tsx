@@ -1,6 +1,6 @@
 import React from 'react';
 import { DropdownMenuButton } from '@epam/uui';
-import { DataRowProps, getCookie, setCookie, LazyDataSourceApi, LazyDataSource } from '@epam/uui-core';
+import { DataRowProps, getCookie, setCookie, LazyDataSourceApi, LazyDataSource, devLogger } from '@epam/uui-core';
 import { PickerInput, DataPickerRow } from '@epam/uui';
 import { Avatar } from '@epam/uui-components';
 import { Text } from '../typography';
@@ -30,6 +30,9 @@ export class MakeMeItem extends React.Component<MakeMeItemProps> {
     });
 
     render() {
+        if (__DEV__) {
+            devLogger.warn('MakeMeItem is deprecated and will be removed in future release.');
+        }
         return (
             <PickerInput<MakeMeUser, number | string>
                 valueType="id"

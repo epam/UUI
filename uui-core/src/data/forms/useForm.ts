@@ -2,9 +2,12 @@ import {
     useRef, useEffect, useMemo, useCallback,
 } from 'react';
 import {
-    mergeValidation, useForceUpdate, UuiContexts, validate as uuiValidate, validateServerErrorState, ICanBeInvalid,
-} from '../../../index';
-import { useUuiContext } from '../../../index';
+    mergeValidation, validate as uuiValidate, validateServerErrorState,
+} from '../../data/validation';
+import { useForceUpdate } from '../../hooks';
+import { UuiContexts } from '../../types';
+import { ICanBeInvalid } from '../../types/props';
+import { useUuiContext } from '../../services';
 import { LensBuilder } from '../lenses/LensBuilder';
 import isEqual from 'lodash.isequal';
 import { FormProps, FormSaveResponse, IFormApi } from './Form';

@@ -1,11 +1,4 @@
 /// <reference path="../uui_globals.d.ts" />
-
-declare module '@epam/assets/scss/typography.scss' {
-    // this is a hack, because draft-rte uses old version of @epam/assets
-    const all: { [selector: string]: string };
-    export = all;
-}
-
 // inherited definitions, required for module build
 declare module "jsurl";
 declare module "query-string";

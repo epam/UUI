@@ -52,10 +52,17 @@
         background-color: var(--uui-checkbox-bg);
         border: 1px solid var(--uui-checkbox-border);
         border-radius: var(--uui-checkbox-border-radius);
+        position: relative;
+
+        :global(input[type='checkbox']):focus-visible {
+            @include focus-visible-effect();
+            position: absolute;
+            width: inherit;
+            height: inherit;
+        }
     }
 
     :global(.uui-input-label) {
-        // @include typography-inline(); TODO: ???
         font-family: var(--uui-checkbox-font);
         font-weight: var(--uui-checkbox-font-weigth, normal);
         color: var(--uui-checkbox-label);
