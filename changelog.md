@@ -1,21 +1,28 @@
-# 5.x.x - xx.xx.2023
+# 5.1.2 - 10.08.2023
 
 **What's New**
-
-* [Alert]: Added a new property 'size' (with options 36 and 48) to change the size of the Alert.
-* [DropdownMenu]: moved in uui and loveship version of it is deprecated. Now promo and loveship are using the same uui implementation.
-* [DropdownMenu]: added new property minWidth: number to setup minWidth to DropdownMenu container.
-* [Avatar]: Property `onClick` marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this prop.
-* [TimePicker]: both skins are using the UUI implementation, and loveship design has been changed into the promo implementation, and 48 size is deprecated and will be deleted in the future release.
+* Added support of UUI library proper work in shadow-dom container
+* [DropdownMenu]:
+  - [Breaking change]: reworked component in loveship skin to be aligned with @epam/uui implementation and with design specs
+* [Alert]: added size '36' option.
+* [DropdownMenu]: added minWidth prop to set up minWidth to DropdownMenu container.
+* [Avatar]: property `onClick` marked as @deprecated. It will be removed in future versions.
+* [TimePicker]: rework styles for loveship. Size '48' was marked as deprecated and will be deleted in the future releases.
+* [FileUpload]: file upload components was added to the Loveship skin.
 
 **What's Fixed**
+* [Button]: fixed disabled styles
 * [FiltersPanel]: fixed wrong filter order calculation on new filter adding.
-* [RangeDatePicker]: Preset's name type from string switched to reactNode.
-* [ControlWrapper]: was noted as deprecated and will be removed in feature release.
-* [InstanceItem]: was noted as deprecated and will be removed in feature release.
-* [MakeMeItem]: was noted as deprecated and will be removed in feature release.
-* [PickerInput]: Fixed selected value displaying if item id equals zero or false.
+* [RangeDatePicker]: `presets.name` prop now accept ReactNode.
+* [PickerInput]: fixed selected value displaying if item id equals zero or false.
 * [ColumnsConfigurationModal]: fixed crashes when new column was added or deleted from columns array
+* [ControlWrapper]: component was marked as deprecated and will be removed in feature releases.
+* [InstanceItem]: component was marked as deprecated and will be removed in feature releases.
+* [MakeMeItem]: component was marked as deprecated and will be removed in feature releases.
+* [DraftRTE]: updated to the latest epam/assets package version
+* [DataPickerFooter]: added export from loveship and promo packages
+* [SlateEditor] fixed custom elements removal when they are last element in editor
+* [DataTable]: fixed paddings for first cell in edit mode
 
 # 5.1.1 - 27.07.2023
 
