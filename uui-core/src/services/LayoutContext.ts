@@ -1,7 +1,7 @@
 import { BaseContext } from './BaseContext';
 import maxBy from 'lodash.maxby';
 import { LayoutLayer } from '../types/objects';
-import { isClientSide } from '../helpers';
+import { isClientSide } from '../helpers/ssr';
 
 function genUniqueId() {
     return [Math.random(), Math.random()].reduce((acc, n) => (acc + n.toString(36).substring(2)), '');

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     DataSourceState, IEditable, IHasCaption, IHasRawProps, IModal, Lens, PickerBaseOptions, PickerBaseProps, PickerFooterProps,
 } from '@epam/uui-core';
-import { PickerBase, PickerBaseState } from './index';
+import { PickerBase, PickerBaseState } from './PickerBase';
 
 export interface PickerModalOptions<TItem, TId> extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     renderFilter?(editableFilter: IEditable<any>): React.ReactNode;
