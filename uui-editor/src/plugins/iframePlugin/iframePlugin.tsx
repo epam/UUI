@@ -10,9 +10,7 @@ import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 import { IframeBlock } from './IframeBlock';
-
-export const IFRAME_PLUGIN_KEY = 'iframe';
-export const IFRAME_PLUGIN_TYPE = 'iframe';
+import { IFRAME_PLUGIN_KEY, IFRAME_PLUGIN_TYPE } from '../../types';
 
 export const iframePlugin = () => {
     const createIframePlugin = createPluginFactory({

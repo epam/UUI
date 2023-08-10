@@ -1,5 +1,11 @@
 import { ClassValue } from '../helpers/cx';
 
+/* Common interface for data items */
+export interface IdAndName {
+    id: string;
+    name: string;
+}
+
 // Defines location within SPA application
 export interface Link {
     pathname: string;

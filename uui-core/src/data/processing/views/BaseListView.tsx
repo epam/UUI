@@ -224,7 +224,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             : {};
 
         const rowOptions = { ...this.props.rowOptions, ...externalRowOptions };
-        
+
         const estimatedChildrenCount = this.getEstimatedChildrenCount(row.id);
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
 

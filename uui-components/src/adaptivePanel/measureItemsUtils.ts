@@ -1,5 +1,5 @@
 import sortBy from 'lodash.sortby';
-import { AdaptiveItemProps } from './AdaptivePanel';
+import { AdaptiveItemProps } from './types';
 
 interface MeasuredItems {
     displayed: AdaptiveItemProps[];
