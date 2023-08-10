@@ -209,7 +209,13 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
             } else {
                 return (
                     <React.Fragment>
-                        <MultiSwitch items={ items } onValueChange={ onExampleClick } value={ this.state.selectedPropsIds[prop.name] } size="24" />
+                        <MultiSwitch
+                            items={ items }
+                            onValueChange={ onExampleClick }
+                            value={ this.state.selectedPropsIds[prop.name] }
+                            size="24"
+                            rawProps={ { style: { flexWrap: 'wrap' } } }
+                        />
                         {prop.description && (
                             <Tooltip placement="top" content={ prop.description }>
                                 <IconButton icon={ InfoIcon } color="default" />
@@ -297,15 +303,15 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
         const { component: DemoComponent } = this.state.docs;
         const defaultContext = this.state.docs.contexts[0];
         const props = this.getProps();
-        let DemoContext = null;
+        let SelectedDemoContext = null;
 
         if (!this.state.selectedContext) {
-            DemoContext = defaultContext.context;
+            SelectedDemoContext = defaultContext.context;
         } else {
-            DemoContext = this.state.docs.contexts.filter((ctx) => ctx.name == this.state.selectedContext)[0].context;
+            SelectedDemoContext = this.state.docs.contexts.filter((ctx) => ctx.name === this.state.selectedContext)[0].context;
         }
 
-        return <DemoContext DemoComponent={ DemoComponent } props={ props } />;
+        return <SelectedDemoContext DemoComponent={ DemoComponent } props={ props } />;
     }
 
     renderCode(selectedProps: { [name: string]: any }) {
@@ -316,7 +322,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
             const val = selectedProps[name];
 
             if (val) {
-                if (name == 'children') {
+                if (name === 'children') {
                     children = '{/* ' + (val.displayName || 'children') + ' */}';
                 } else if (val === true) {
                     props.push(name);

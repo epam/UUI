@@ -11,10 +11,9 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { PlateEditor, TElement, createPluginFactory, focusEditor, getBlockAbove, insertEmptyElement, insertNodes } from '@udecode/plate-common';
 import { TImageElement, captionGlobalStore } from '@udecode/plate-media';
 import isHotkey from 'is-hotkey';
-import { Editor } from 'slate';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
-import { FileUploadResponse } from "@epam/uui-core";
+import { FileUploadResponse } from '@epam/uui-core';
 
 export type PlateImgAlign = 'left' | 'center' | 'right';
 export type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';
@@ -58,21 +57,11 @@ export const imagePlugin = () => {
         }),
         handlers: {
             onKeyDown: (editor) => (event) => {
-                const imageEntry = getBlockAbove(editor, { match: { type: IMAGE_PLUGIN_TYPE } })
+                const imageEntry = getBlockAbove(editor, { match: { type: IMAGE_PLUGIN_TYPE } });
                 if (!imageEntry) return;
 
                 if (event.key === 'Enter') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
-                }
-
-                // empty element needs to be added when we have only image element in editor content
-                if (event.key === 'Backspace') {
-                    insertEmptyElement(editor, PARAGRAPH_TYPE);
-                }
-
-                if (event.key === 'Delete') {
-                    Editor.deleteForward(editor as any);
-                    insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
 
                 // focus caption from image
@@ -99,7 +88,7 @@ interface IImageButton {
     editor: PlateEditor;
 }
 
-export const ImageButton = ({ editor }: IImageButton) => {
+export function ImageButton({ editor }: IImageButton) {
     const context = useUuiContext();
 
     const handleImageInsert = (url: string) => {
@@ -126,7 +115,7 @@ export const ImageButton = ({ editor }: IImageButton) => {
                 event.preventDefault();
                 event.stopPropagation();
 
-                context.uuiModals.show<string>(modalProps => (
+                context.uuiModals.show<string>((modalProps) => (
                     <AddImageModal
                         editor={ editor }
                         insertImage={ handleImageInsert }
@@ -142,4 +131,4 @@ export const ImageButton = ({ editor }: IImageButton) => {
             isActive={ block?.length && block[0].type === 'image' }
         />
     );
-};
+}

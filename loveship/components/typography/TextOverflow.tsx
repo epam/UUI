@@ -3,9 +3,7 @@ import { IHasCX, cx } from '@epam/uui-core';
 import styles from './TextOverflow.module.scss';
 import { Tooltip } from '../overlays';
 
-type getTextWidth = (text: string, font: string, canvas: HTMLCanvasElement) => number | null;
-
-export const getTextWidth: getTextWidth = (text, font, canvas) => {
+export const getTextWidth = (text: string, font: string, canvas: HTMLCanvasElement): number | null => {
     const context = canvas.getContext('2d');
 
     if (!context) {

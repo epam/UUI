@@ -8,12 +8,12 @@ import { useUuiContext } from '../services';
 const reduxDevTools: any = null; // (window as any).__REDUX_DEVTOOLS_EXTENSION__;
 
 type StatefulStorageType = 'state' | 'query';
-type StatefulStorageSettings<T> = StatefulStorageType; // TBD: allow per-field settings
+type StatefulStorageSettings = StatefulStorageType; // TBD: allow per-field settings
 
 export interface StatefulProps<T> {
     initialState: Partial<T>;
     render(props: IEditable<T>): React.ReactNode;
-    storage?: StatefulStorageSettings<T>;
+    storage?: StatefulStorageSettings;
 }
 
 const StatefulImpl = <T extends unknown = any>(props: StatefulProps<T>) => {

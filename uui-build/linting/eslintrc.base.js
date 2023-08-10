@@ -68,6 +68,9 @@ module.exports = {
                         { name: '@testing-library/react', message: 'Please use: import { ... } from \'@epam/uui-test-utils\';' },
                         { name: '@testing-library/user-event', message: 'Please use: import { userEvent } from \'@epam/uui-test-utils\';' },
                     ],
+                    patterns: [
+                        { group: ['*.test'], message: 'It\'s not allowed to import "*.test.*" files to any other files.' },
+                    ],
                 }],
                 /**
                  * Don't want to force usage of userEvent because it slows down the performance of tests (with user-event it's ~3 times slower).
@@ -191,7 +194,7 @@ function uuiJsRules() {
         'no-param-reassign': [1, { props: false }],
         radix: [1, 'as-needed'],
         'no-cond-assign': [2, 'except-parens'],
-        'no-unused-expressions': [1, { allowShortCircuit: true }],
+        'no-unused-expressions': [2, { allowShortCircuit: true }],
         eqeqeq: [2, 'smart'],
         'prefer-const': [
             1, {

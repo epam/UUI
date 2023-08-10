@@ -37,12 +37,12 @@ function getIconSize(path: string) {
 
 const groupedIcons = getAllIconsGrouped<any>();
 
-export function getGroupedIcons<TIcon>() {
+export function getGroupedIcons() {
     return groupedIcons;
 }
 
 export function getIconList<TIcon>(includeChildren?: boolean) {
-    return Object.keys(groupedIcons).reduce<IconList<any>[]>((acc, key) => {
+    return Object.keys(groupedIcons).reduce<IconList<TIcon>[]>((acc, key) => {
         const first = groupedIcons[key][0];
         acc.push({ ...first, name: key, id: key });
         if (includeChildren) {

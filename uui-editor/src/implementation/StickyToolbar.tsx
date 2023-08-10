@@ -1,9 +1,9 @@
-import { isBlock, usePlateEditorState } from "@udecode/plate-common";
+import { isBlock, usePlateEditorState } from '@udecode/plate-common';
 
-import cx from "classnames";
-import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
+import cx from 'classnames';
+import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
 
-import css from "./Sidebar.module.scss";
+import css from './Sidebar.module.scss';
 
 interface SidebarProps {
     isReadonly: boolean;
@@ -37,7 +37,7 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) 
     const onMouseDown: MouseEventHandler = (event) => {
         event.preventDefault();
         event.stopPropagation();
-    }
+    };
 
     if (isReadonly || !isVisible) return null;
 
@@ -48,8 +48,9 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) 
             display: 'flex',
             minHeight: 0,
             zIndex: 50,
-        } }>
-            <div onMouseDown={ onMouseDown } className={ cx("slate-prevent-blur", css.sidebar) } ref={ sidebarRef }>
+        } }
+        >
+            <div onMouseDown={ onMouseDown } className={ cx('slate-prevent-blur', css.sidebar) } ref={ sidebarRef }>
                 { children }
             </div>
         </div>

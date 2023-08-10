@@ -140,10 +140,10 @@ export class PromoColorsDoc extends React.Component {
                                     return (
                                         <Tooltip content={ color.context } key={ index }>
                                             <div className={ cx(css.box, css.basicColorBox, css[`basic-color-${color.name}`]) }>
-                                                <div className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }>
+                                                <button className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }>
                                                     {color.hex}
-                                                </div>
-                                                {color.hasVariable && <div className={ css.colorName } onClick={ () => {} }>{`$${color.name}`}</div>}
+                                                </button>
+                                                {color.hasVariable && <div className={ css.colorName }>{`$${color.name}`}</div>}
                                             </div>
                                         </Tooltip>
                                     );
@@ -183,10 +183,10 @@ export class PromoColorsDoc extends React.Component {
                         return (
                             <Tooltip key={ color.name } content={ color.context }>
                                 <div className={ cx(css.box, css.grayscaleColorBox, css[`grayscale-color-${color.name}`]) }>
-                                    <div className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }>
+                                    <button className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }>
                                         {color.hex}
-                                    </div>
-                                    {color.hasVariable && <div className={ css.colorName } onClick={ () => {} }>{`$${color.name}`}</div>}
+                                    </button>
+                                    {color.hasVariable && <div className={ css.colorName }>{`$${color.name}`}</div>}
                                 </div>
                             </Tooltip>
                         );
@@ -213,10 +213,10 @@ export class PromoColorsDoc extends React.Component {
                                     return (
                                         <Tooltip content={ color.context } key={ idx }>
                                             <div className={ cx(css.box, css.additionalColorBox, css[`additional-color-${color.name}`]) }>
-                                                <div className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }>
+                                                <button className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }>
                                                     {color.hex}
-                                                </div>
-                                                {color.hasVariable && <div className={ css.colorName } onClick={ () => {} }>{`$${color.name}`}</div>}
+                                                </button>
+                                                {color.hasVariable && <div className={ css.colorName }>{`$${color.name}`}</div>}
                                             </div>
                                         </Tooltip>
                                     );

@@ -36,7 +36,7 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
         });
     }
 
-    componentDidUpdate(prevProps: BaseRatingProps<number>, prevState: BaseRatingState) {
+    componentDidUpdate(prevProps: BaseRatingProps<number>) {
         if (this.state.containerWidth !== this.getContainerWidth()) {
             this.setState({
                 containerWidth: this.getContainerWidth(),

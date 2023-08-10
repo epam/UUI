@@ -18,6 +18,27 @@ import { ReactComponent as info18 } from './info-18.svg';
 import { ReactComponent as info24 } from './info-24.svg';
 import { ReactComponent as help10 } from './help-fill-10.svg';
 import { ReactComponent as help16 } from './help-fill-16.svg';
+import { ReactComponent as DocIcon } from '@epam/assets/icons/common/file-file_word-24.svg';
+import { ReactComponent as ExelIcon } from '@epam/assets/icons/common/file-file_excel-24.svg';
+import { ReactComponent as PdfIcon } from '@epam/assets/icons/common/file-file_pdf-24.svg';
+import { ReactComponent as ImgIcon } from '@epam/assets/icons/common/file-file_image-24.svg';
+import { ReactComponent as VideoIcon } from '@epam/assets/icons/common/file-file_video-24.svg';
+import { ReactComponent as TableIcon } from '@epam/assets/icons/common/file-file_table-24.svg';
+import { ReactComponent as TextIcon } from '@epam/assets/icons/common/file-file_text-24.svg';
+import { ReactComponent as MailIcon } from '@epam/assets/icons/common/file-file_eml-24.svg';
+import { ReactComponent as FileIcon } from '@epam/assets/icons/common/file-file-24.svg';
+
+export const fileIcons = {
+    docIcon: DocIcon,
+    exelIcon: ExelIcon,
+    pdfIcon: PdfIcon,
+    imgIcon: ImgIcon,
+    videoIcon: VideoIcon,
+    tableIcon: TableIcon,
+    textIcon: TextIcon,
+    mailIcon: MailIcon,
+    fileIcon: FileIcon,
+};
 
 export const systemIcons: { [key: string]: any } = {
     18: {

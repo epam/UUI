@@ -1,5 +1,5 @@
 import React, {
-    useState, useCallback, FC, useRef,
+    useState, useCallback, useRef,
 } from 'react';
 import {
     PickerInput, DropdownContainer, FlexCell, FlexRow, Button, Dropdown, Text, Panel,

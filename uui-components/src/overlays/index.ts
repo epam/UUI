@@ -5,4 +5,5 @@ export * from './Dropdown';
 export * from './Tooltip';
 export * from './ModalWindow';
 export * from './Portal';
+export * from './PortalRoot';
 export * from './Snackbar';

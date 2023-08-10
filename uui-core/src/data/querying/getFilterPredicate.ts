@@ -14,7 +14,7 @@ export function simplifyPredicates<T>(filter: DataQueryFilter<T>) {
     const keys = Object.keys(filter) as (keyof T)[];
     for (let n = 0; n < keys.length; n++) {
         const key = keys[n];
-        const condition = filter[key] as DataQueryFilterCondition<T, any>;
+        const condition = filter[key] as DataQueryFilterCondition<any>;
         if (condition != null && typeof condition === 'object') {
             if ('inRange' in condition) {
                 const value = condition.inRange;
@@ -61,7 +61,7 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
 
     for (let n = 0; n < keys.length; n++) {
         const key = keys[n];
-        const condition = filter[key] as DataQueryFilterCondition<T, any>;
+        const condition = filter[key] as DataQueryFilterCondition<any>;
 
         if (condition != null && typeof condition === 'object') {
             if ('isNull' in condition) {
@@ -151,9 +151,9 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
         }
     }
 
-    if (predicates.length == 1) {
+    if (predicates.length === 1) {
         return predicates[0];
-    } else if (predicates.length == 0) {
+    } else if (predicates.length === 0) {
         return truePredicate;
     } else {
         return (item: T) => {

@@ -6,7 +6,7 @@
   },
   "exclude": [
     "**/__tests__",
-    "./build",
-    "./node_modules"
+    "build",
+    "node_modules"
   ]
 }

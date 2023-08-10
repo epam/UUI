@@ -1,49 +1,18 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "If you need to dynamically change PickerInput items, just re-create ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "dataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " with appropriate items.",
-            "marks": []
-          }
-        ]
+        "text": "If you need to dynamically change PickerInput items, just re-create "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Pay attention that you don't create new dataSource on each render; it will cause performance issues. To solve it, use memo hooks or memoization libraries.",
-            "marks": []
-          }
-        ]
+        "text": "dataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " with appropriate items."
       }
     ]
   }
-}
+]

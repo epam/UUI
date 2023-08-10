@@ -79,7 +79,13 @@ function getColumns() {
             width: 175,
             fix: 'left',
             isSortable: true,
-            renderCell: (props) => <DataTableCell padding="12" { ...props.rowLens.prop('name').toProps() } renderEditor={ (props) => <TextInput { ...props } /> } { ...props } />,
+            renderCell: (props) => (
+                <DataTableCell
+                    { ...props.rowLens.prop('name').toProps() }
+                    { ...props }
+                    renderEditor={ (props) => <TextInput { ...props } /> }
+                />
+            ),
         },
         getWorkingDayColumn(Day.Monday),
         getWorkingDayColumn(Day.Tuesday),
@@ -98,8 +104,8 @@ const savedValue: FormState = { items: getDemoTasks() };
 export default function ProjectTimeReportDemo() {
     const { lens, value, onValueChange } = useForm<FormState>({
         value: savedValue,
-        onSave: async (value) => {
-            onValueChange(value);
+        onSave: async (data) => {
+            onValueChange(data);
         },
     });
 

@@ -1,8 +1,27 @@
+# 5.x.x - xx.xx.2023
+
+**What's New**
+
+* [Alert]: Added a new property 'size' (with options 36 and 48) to change the size of the Alert.
+* [DropdownMenu]: moved in uui and loveship version of it is deprecated. Now promo and loveship are using the same uui implementation.
+* [DropdownMenu]: added new property minWidth: number to setup minWidth to DropdownMenu container.
+* [Avatar]: Property `onClick` marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this prop.
+* [TimePicker]: both skins are using the UUI implementation, and loveship design has been changed into the promo implementation, and 48 size is deprecated and will be deleted in the future release.
+
+**What's Fixed**
+* [FiltersPanel]: fixed wrong filter order calculation on new filter adding.
+* [RangeDatePicker]: Preset's name type from string switched to reactNode.
+* [ControlWrapper]: was noted as deprecated and will be removed in feature release.
+* [InstanceItem]: was noted as deprecated and will be removed in feature release.
+* [MakeMeItem]: was noted as deprecated and will be removed in feature release.
+* [PickerInput]: Fixed selected value displaying if item id equals zero or false.
+* [ColumnsConfigurationModal]: fixed crashes when new column was added or deleted from columns array
+
 # 5.1.1 - 27.07.2023
 
 **What's New**
-* [PickerInput]: Added highlighting of the search matching results. 
-* [PickerInput]: Added search result sorting by search relevance. 
+* [PickerInput]: Added highlighting of the search matching results.
+* [PickerInput]: Added search result sorting by search relevance.
 * [Tooltip][BreakingChange]: Removed prop `trigger`. Now tooltip always opens on hover, use dropdown for cases when you need to open body by click.
 * [DataTable]: Added column description tooltip to table header. DataTable now has an optional property-callback 'renderColumnsConfigurationModal?: (props) => React.ReactNode' for render your custom ColumnsConfigurationModal.
 * [ColumnsConfigurationModal]: Added 'renderItem?: (column) => React.ReactNode' optional property-callback for render your custom column name section.
@@ -32,8 +51,8 @@
 
 **Rich Text Editor component update and improvements**
 
-UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework.
-During the update the previous code based of RTE almost completely rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users. Therefore, update to the new version of `uui-editor` package should be seamless and easy.
+UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework. 
+During the update the previous code based of RTE almost completely rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users. Therefore, update to the new version of `uui-editor` package should be seamless and easy. 
 
 List of changes:
 * [Breaking change]: Changed RTE value format, now it's works with array instead of immutable.js object. Also, there are some additional changes inside slate value structure.

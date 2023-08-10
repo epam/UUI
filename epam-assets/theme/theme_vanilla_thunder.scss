@@ -173,8 +173,6 @@
     --uui-scroll_bars-bg: var(--chromatic-200);
     --uui-scroll_bars-bg-active: var(--chromatic-300);
 
-    --uui-button-bg-halftone: var(--chromatic-0);
-
     --uui-control-bg: var(--chromatic-0);
     --uui-control-bg-hover: var(--chromatic-300);
     --uui-control-bg-disabled: var(--chromatic-100);
@@ -220,6 +218,10 @@
     --uui-shadow-level-1: 0 0 3px rgb(29 30 38 / 15%), 0 3px 6px rgb(29 30 38 / 10%);
     --uui-shadow-level-2: 0 6px 12px rgb(29 30 38 / 10%), 0 3px 12px rgb(29 30 38 / 10%), 0 0 6px rgb(29 30 38 / 5%);
     --uui-shadow-level-3: 0 0 10px rgb(29 30 38 / 5%), 0 6px 24px rgb(29 30 38 / 12%), 0 9px 15px rgb(29 30 38 / 10%);
+
+
+    /* Search results text highlighting */
+    --uui-search-result-highlight: #FFEDC9;
 
     /* core variables end */
 
@@ -695,7 +697,6 @@
     --uui-pagination-font: var(--font-inter);
     --uui-pagination-font-weight: 400;
 
-
     /* ------------------------------------ */
 
     .tooltip-contrast {
@@ -717,7 +718,7 @@
         --uui-btn-bg: var(--uui-primary);
         --uui-btn-bg-hover: var(--uui-primary-dark);
         --uui-btn-bg-active: var(--uui-primary-darkest);
-        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone: var(--chromatic-0);
         --uui-btn-bg-halftone-hover: var(--blue-0);
         --uui-btn-bg-halftone-active: var(--uui-primary-lightest);
         --uui-btn-bg-disabled: var(--uui-disabled);
@@ -734,7 +735,7 @@
         --uui-btn-bg: var(--uui-accent);
         --uui-btn-bg-hover: var(--uui-accent-dark);
         --uui-btn-bg-active: var(--uui-accent-darkest);
-        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone: var(--chromatic-0);
         --uui-btn-bg-halftone-hover: var(--uui-accent-lightest);
         --uui-btn-bg-halftone-active: var(--uui-accent-light);
         --uui-btn-border: var(--uui-accent);
@@ -751,7 +752,7 @@
         --uui-btn-bg: var(--uui-negative);
         --uui-btn-bg-hover: var(--uui-negative-dark);
         --uui-btn-bg-active: var(--uui-negative-darkest);
-        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone: var(--chromatic-0);
         --uui-btn-bg-halftone-hover: var(--uui-negative-lightest);
         --uui-btn-bg-halftone-active: var(--uui-negative-light);
         --uui-btn-border: var(--uui-negative);
@@ -768,7 +769,7 @@
         --uui-btn-bg: var(--uui-secondary);
         --uui-btn-bg-hover: var(--uui-secondary-dark);
         --uui-btn-bg-active: var(--uui-secondary-darkest);
-        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone: var(--chromatic-0);
         --uui-btn-bg-halftone-hover: var(--uui-secondary-lightest);
         --uui-btn-bg-halftone-active: var(--uui-secondary-light);
         --uui-btn-border: var(--uui-secondary);
@@ -785,7 +786,7 @@
         --uui-btn-bg: var(--white);
         --uui-btn-bg-hover: var(--blue-50);
         --uui-btn-bg-active: var(--blue-100);
-        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone: var(--chromatic-0);
         --uui-btn-bg-halftone-hover: var(--blue-50);
         --uui-btn-bg-halftone-active: var(--uui-primary-lightest);
         --uui-btn-bg-disabled: var(--chromatic-0);

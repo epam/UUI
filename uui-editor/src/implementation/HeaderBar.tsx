@@ -1,14 +1,13 @@
-import { DropdownBodyProps, uuiSkin } from "@epam/uui-core";
+import { DropdownBodyProps, uuiSkin } from '@epam/uui-core';
 import { PlateEditor, getBlockAbove, setElements } from '@udecode/plate-common';
 import * as React from 'react';
 
-import { ReactComponent as H1Icon } from "../icons/heading-H1.svg";
-import { ReactComponent as H2Icon } from "../icons/heading-H2.svg";
-import { ReactComponent as H3Icon } from "../icons/heading-H3.svg";
-import { ReactComponent as ClearIcon } from "../icons/text-color-default.svg";
+import { ReactComponent as H1Icon } from '../icons/heading-H1.svg';
+import { ReactComponent as H2Icon } from '../icons/heading-H2.svg';
+import { ReactComponent as H3Icon } from '../icons/heading-H3.svg';
+import { ReactComponent as ClearIcon } from '../icons/text-color-default.svg';
 import { PARAGRAPH_TYPE } from '../plugins/paragraphPlugin/paragraphPlugin';
 import { ToolbarButton } from './ToolbarButton';
-
 
 const { FlexRow } = uuiSkin;
 
@@ -17,7 +16,6 @@ interface HeaderBarProps extends DropdownBodyProps {
 }
 
 export class HeaderBar extends React.Component<HeaderBarProps> {
-
     toggleBlock(event: React.MouseEvent<HTMLButtonElement, MouseEvent>, blockType: string) {
         event.preventDefault();
         const block = getBlockAbove(this.props.editor);
@@ -26,7 +24,7 @@ export class HeaderBar extends React.Component<HeaderBarProps> {
             setElements(this.props.editor, {
                 data: {},
                 type: PARAGRAPH_TYPE,
-                children: [{ "text": "" }],
+                children: [{ text: '' }],
             });
         } else {
             setElements(this.props.editor, { type: blockType });
@@ -38,7 +36,7 @@ export class HeaderBar extends React.Component<HeaderBarProps> {
         setElements(this.props.editor, {
             data: {},
             type: PARAGRAPH_TYPE,
-            children: [{ "text": "" }],
+            children: [{ text: '' }],
         });
     }
 
@@ -72,7 +70,6 @@ export class HeaderBar extends React.Component<HeaderBarProps> {
     }
 
     render() {
-
         return this.renderHeaderMenu();
     }
 }

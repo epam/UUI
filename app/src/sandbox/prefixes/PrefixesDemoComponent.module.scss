@@ -1,0 +1,63 @@
+@use '~@epam/assets/scss/index' as *;
+
+.leftBlockWrapper {
+    width: 425px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    box-shadow: 0 4px 22px 0 #1D1E2626;
+    background-color: #FFF;
+    margin-bottom: 20px;
+
+    .leftBlockTitle {
+        font-family: $font-sans-semibold;
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: 0;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    .leftBlockText {
+        font-family: $font-sans-semibold;
+        font-size: 12px;
+        line-height: 18px;
+        letter-spacing: 0;
+        text-align: left;
+        color: #6C6F80;
+        margin-bottom: 15px;
+    }
+
+    .whenTitle {
+        font-family: $font-sans-semibold;
+        font-size: 14px;
+        line-height: 24px;
+        letter-spacing: 0;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+}
+
+.timeBlockTitle {
+    font-family: $font-sans-bold;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-align: left;
+    margin-right: 5px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeBlockDesc {
+    font-family: $font-sans-semibold;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0;
+    text-align: left;
+    color: #6C6F80;
+    margin-bottom: 15px;
+}

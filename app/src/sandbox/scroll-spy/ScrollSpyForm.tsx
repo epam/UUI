@@ -187,7 +187,7 @@ export function ScrollSpyForm() {
     return (
         <Form<Person>
             value={ person }
-            onSave={ (person) => Promise.resolve() /* place your save api call here */ }
+            onSave={ () => Promise.resolve() /* place your save api call here */ }
             onSuccess={ () =>
                 svc.uuiNotifications.show((notificationProps) => (
                     <ErrorNotification { ...notificationProps }>

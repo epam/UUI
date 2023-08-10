@@ -20,22 +20,22 @@ export type DefaultPluginKey =
 
 export const createPlateUI = <T extends string = string>(
     overrideByKey?: Partial<
-        Record<DefaultPluginKey | T, PlatePluginComponent>
-    >
+    Record<DefaultPluginKey | T, PlatePluginComponent>
+    >,
 ) => {
     const components: { [key: string]: PlatePluginComponent } = {
-        [ELEMENT_H1]: (props) => <h1 { ...props.attributes } >{ props.children }</h1>,
-        [ELEMENT_H2]: (props) => <h2 { ...props.attributes } >{ props.children }</h2>,
-        [ELEMENT_H3]: (props) => <h3 { ...props.attributes } >{ props.children }</h3>,
-        [ELEMENT_H4]: (props) => <h4 { ...props.attributes } >{ props.children }</h4>,
-        [ELEMENT_H5]: (props) => <h5 { ...props.attributes } >{ props.children }</h5>,
-        [ELEMENT_H6]: (props) => <h6 { ...props.attributes } >{ props.children }</h6>,
-        [ELEMENT_PARAGRAPH]: (props) => <p { ...props.attributes } >{ props.children }</p>,
-        [MARK_BOLD]: (props) => <strong { ...props.attributes } >{ props.children }</strong>,
-        [MARK_CODE]: (props) => <code { ...props.attributes } >{ props.children }</code>,
-        [MARK_ITALIC]: (props) => <em { ...props.attributes } >{ props.children }</em>,
-        [MARK_SUPERSCRIPT]: (props) => <sup { ...props.attributes } >{ props.children }</sup>,
-        [MARK_UNDERLINE]: (props) => <u { ...props.attributes } >{ props.children }</u>,
+        [ELEMENT_H1]: (props) => <h1 { ...props.attributes }>{ props.children }</h1>,
+        [ELEMENT_H2]: (props) => <h2 { ...props.attributes }>{ props.children }</h2>,
+        [ELEMENT_H3]: (props) => <h3 { ...props.attributes }>{ props.children }</h3>,
+        [ELEMENT_H4]: (props) => <h4 { ...props.attributes }>{ props.children }</h4>,
+        [ELEMENT_H5]: (props) => <h5 { ...props.attributes }>{ props.children }</h5>,
+        [ELEMENT_H6]: (props) => <h6 { ...props.attributes }>{ props.children }</h6>,
+        [ELEMENT_PARAGRAPH]: (props) => <p { ...props.attributes }>{ props.children }</p>,
+        [MARK_BOLD]: (props) => <strong { ...props.attributes }>{ props.children }</strong>,
+        [MARK_CODE]: (props) => <code { ...props.attributes }>{ props.children }</code>,
+        [MARK_ITALIC]: (props) => <em { ...props.attributes }>{ props.children }</em>,
+        [MARK_SUPERSCRIPT]: (props) => <sup { ...props.attributes }>{ props.children }</sup>,
+        [MARK_UNDERLINE]: (props) => <u { ...props.attributes }>{ props.children }</u>,
     };
 
     if (overrideByKey) {

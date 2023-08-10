@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimePicker should be rendered correctly 1`] = `
+<div
+  className="container uui-input-box -clickable root size-36 mode-form dateInput"
+  onBlur={[Function]}
+  onClick={null}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <input
+    className="uui-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder="hh:mm A"
+    tabIndex={0}
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`TimePicker should be rendered correctly 2`] = `
+<div
+  className="container uui-input-box uui-disabled root size-36 mode-form dateInput"
+  onBlur={[Function]}
+  onClick={null}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <input
+    aria-disabled={true}
+    className="uui-input"
+    disabled={true}
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder="HH:mm"
+    tabIndex={-1}
+    type="text"
+    value="01:05"
+  />
+</div>
+`;
