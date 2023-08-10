@@ -21,13 +21,13 @@ export const getAverageRowHeight = (rowHeights: number[]) => {
 };
 
 export const getUpdatedRowOffsets = (
-    { rowOffsets, rowsCount, listOffset, rowHeights, averageHeight }: VirtualListInfo,
+    { rowOffsets, rowsCount, listOffset, rowHeights, averageRowHeight }: VirtualListInfo,
 ) => {
     const newRowOffsets = [...rowOffsets];
     for (let n = 0; n <= rowsCount; n++) {
         newRowOffsets[n] = n === 0
             ? listOffset
-            : newRowOffsets[n - 1] + (rowHeights[n] || averageHeight);
+            : newRowOffsets[n - 1] + (rowHeights[n] || averageRowHeight);
     }
     return newRowOffsets;
 };
@@ -39,7 +39,11 @@ export const getNewEstimatedContainerHeight = (
 export const getUpdatedRowsInfo = (
     virtualListInfo: VirtualListInfo,
 ) => {
-    if (!virtualListInfo.scrollContainer || !virtualListInfo.listContainer || virtualListInfo.listOffset == null || !virtualListInfo.value) {
+    if (!virtualListInfo.scrollContainer
+        || !virtualListInfo.listContainer
+        || virtualListInfo.listOffset == null
+        || !virtualListInfo.value
+    ) {
         return {
             rowHeights: virtualListInfo.rowHeights,
             rowOffsets: virtualListInfo.rowOffsets,
@@ -47,8 +51,8 @@ export const getUpdatedRowsInfo = (
         };
     }
     const rowHeights = getUpdatedRowHeights(virtualListInfo);
-    const averageHeight = getAverageRowHeight(rowHeights);
-    const newVirtualListInfo = virtualListInfo.update({ rowHeights, averageHeight });
+    const averageRowHeight = getAverageRowHeight(rowHeights);
+    const newVirtualListInfo = virtualListInfo.update({ rowHeights, averageRowHeight });
     const rowOffsets = getUpdatedRowOffsets(newVirtualListInfo);
     const updatedVirtualListInfo = virtualListInfo.update({ rowOffsets });
 
@@ -57,6 +61,7 @@ export const getUpdatedRowsInfo = (
         estimatedContainerHeight,
         rowHeights,
         rowOffsets,
+        averageRowHeight,
     };
 };
 
@@ -94,4 +99,20 @@ export const getRowsToFetchForScroll = (virtualListInfo: VirtualListInfo) => {
     const visibleCount = Math.max(value.visibleCount ?? blockSize, bottomIndex - topIndex);
 
     return { visibleCount, topIndex };
+};
+
+export const getTopCoordinate = (
+    { rowOffsets, listOffset, value, rowHeights }: VirtualListInfo,
+    indexToScroll: number,
+) => {
+    let rowCoordinate = rowOffsets[indexToScroll];
+    if (rowCoordinate === undefined) {
+        const { topIndex = 0, visibleCount = 0 } = value;
+        const assumedRowsCount = indexToScroll - topIndex - visibleCount;
+        const averageRowHeight = getAverageRowHeight(rowHeights);
+        const assumedRowsHeight = assumedRowsCount * averageRowHeight;
+        const heightOfExistingRows = rowOffsets[topIndex + visibleCount] ?? 0;
+        rowCoordinate = heightOfExistingRows + assumedRowsHeight;
+    }
+    return rowCoordinate - listOffset;
 };

@@ -11,7 +11,7 @@ interface Props {
     rowOffsets: number[],
     listOffset: number,
     estimatedHeight?: number,
-    averageHeight?: number,
+    averageRowHeight?: number,
 }
 
 export class VirtualListInfo {
@@ -26,7 +26,7 @@ export class VirtualListInfo {
         public readonly rowOffsets: Props['rowOffsets'],
         public readonly listOffset: Props['listOffset'],
         public readonly estimatedHeight?: Props['estimatedHeight'],
-        public readonly averageHeight?: Props['averageHeight'],
+        public readonly averageRowHeight?: Props['averageRowHeight'],
     ) {}
 
     public update(props: Partial<Props>) {
@@ -41,7 +41,7 @@ export class VirtualListInfo {
             props.rowOffsets ?? this.rowOffsets,
             props.listOffset ?? this.listOffset,
             props.estimatedHeight ?? this.estimatedHeight,
-            props.averageHeight ?? this.averageHeight,
+            props.averageRowHeight ?? this.averageRowHeight,
         );
     }
 
