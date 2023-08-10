@@ -1,12 +1,12 @@
-import { traverseHtmlElements } from "@udecode/plate-common";
+import { traverseHtmlElements } from '@udecode/plate-common';
 
 // TODO: move to plate
-const ALLOWED_EMPTY_ELEMENTS = ["BR", "IMG", "TH", "TD"];
+const ALLOWED_EMPTY_ELEMENTS = ['BR', 'IMG', 'TH', 'TD'];
 
 const isEmpty = (element: Element): boolean => {
     return (
-        !ALLOWED_EMPTY_ELEMENTS.includes(element.nodeName) &&
-        !element.innerHTML.trim()
+        !ALLOWED_EMPTY_ELEMENTS.includes(element.nodeName)
+        && !element.innerHTML.trim()
     );
 };
 

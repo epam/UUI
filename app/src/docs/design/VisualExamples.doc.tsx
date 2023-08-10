@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { EditableDocContent, BaseDocsBlock, UUI3 } from '../../common';
+import { EditableDocContent, BaseDocsBlock } from '../../common';
 
 export class VisualExamplesDoc extends BaseDocsBlock {
     title = 'Visual Examples';

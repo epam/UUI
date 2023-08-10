@@ -8,15 +8,17 @@ import { ReactComponent as QuoteIcon } from '../../icons/quote.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import css from './quote.module.scss';
 
-const QUOTE_PLUGIN_KEY = 'uui-richTextEditor-quote';
+export const QUOTE_PLUGIN_KEY = 'uui-richTextEditor-quote';
 
-const Quote: PlatePluginComponent = (props) => {
-    return <blockquote
-        { ...props.attributes }
-        className={ css.quote }
-    >
-        { props.children }
-    </blockquote>;
+const Quote: PlatePluginComponent = function (props) {
+    return (
+        <blockquote
+            { ...props.attributes }
+            className={ css.quote }
+        >
+            { props.children }
+        </blockquote>
+    );
 };
 
 export const quotePlugin = () => createBlockquotePlugin({
@@ -28,15 +30,15 @@ export const quotePlugin = () => createBlockquotePlugin({
             options: {
                 hotkey: 'ctrl+q',
             },
-        }
-    }
+        },
+    },
 });
 
-interface ToolbarButton {
+interface IToolbarButton {
     editor: PlateEditor;
 }
 
-export const QuoteButton = ({ editor }: ToolbarButton) => {
+export function QuoteButton({ editor }: IToolbarButton) {
     if (!isPluginActive(QUOTE_PLUGIN_KEY)) return null;
 
     const onQuoteButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, type: string) => {
@@ -45,7 +47,7 @@ export const QuoteButton = ({ editor }: ToolbarButton) => {
 
         toggleNodeType(editor, { activeType: type });
         focusEditor(editor);
-    }
+    };
 
     return (
         <ToolbarButton
@@ -54,4 +56,4 @@ export const QuoteButton = ({ editor }: ToolbarButton) => {
             isActive={ !!editor?.selection && isMarkActive(editor, QUOTE_PLUGIN_KEY) }
         />
     );
-};
+}

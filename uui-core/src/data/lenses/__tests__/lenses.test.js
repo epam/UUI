@@ -1,5 +1,4 @@
 const { Lens } = require('../index');
-const { LensBuilder } = require('../LensBuilder');
 
 describe('lenses', () => {
     it('prop().get() for scalar', () => {

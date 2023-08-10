@@ -57,4 +57,11 @@ export class Button extends ButtonBase<ButtonProps> {
             ),
         ];
     }
+
+    getProps(): React.ButtonHTMLAttributes<HTMLButtonElement> {
+        return {
+            'aria-haspopup': this.props.isDropdown,
+            'aria-expanded': this.props.isOpen,
+        };
+    }
 }

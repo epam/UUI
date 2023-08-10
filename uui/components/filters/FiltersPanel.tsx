@@ -75,11 +75,16 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
         const newFilter: any = {};
 
         const sortedOrders = tableState.filtersConfig && sortBy(tableState.filtersConfig, (f) => f?.order);
-        let order: string | null = sortedOrders?.length ? sortedOrders[sortedOrders.length - 1]?.order : null;
+        let lastItemOrder: string | null = sortedOrders?.length ? sortedOrders[sortedOrders.length - 1]?.order : null;
+
         updatedFilters.forEach((filter) => {
-            const newOrder = tableState?.filtersConfig?.[filter?.field]?.order || getOrderBetween(order, null);
-            order = newOrder;
-            newConfig[filter.field] = { isVisible: true, order: newOrder };
+            let order = tableState?.filtersConfig?.[filter?.field]?.order;
+            if (!order) {
+                order = getOrderBetween(lastItemOrder, null);
+                lastItemOrder = order;
+            }
+
+            newConfig[filter.field] = { isVisible: true, order: order };
 
             // Remove unselected filters from filter object
             if (tableState.filter) {
@@ -189,7 +194,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                             padding="12"
                             key={ props.key }
                             onCheck={ (row) => {
-                                props.onCheck(row);
+                                props.onCheck && props.onCheck(row);
                                 !row.isChecked && setNewFilterId(row.value.field);
                             } }
                             renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.title } /> }

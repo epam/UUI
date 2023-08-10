@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useFocused, useSelected } from 'slate-react';
 
 import { Dropdown } from '@epam/uui-components';
-import { uuiSkin } from "@epam/uui-core";
+import { uuiSkin } from '@epam/uui-core';
 import { ImageElement } from './ImageElement';
 
 import debounce from 'lodash.debounce';
@@ -14,15 +14,15 @@ import css from './ImageBlock.module.scss';
 import { ImgToolbar } from './Toolbar';
 import { IImageElement, PlateImgAlign, SlateImgAlign } from './imagePlugin';
 
-interface UpdatingProps { width?: number | string, align?: SlateImgAlign };
+interface UpdatingProps { width?: number | string, align?: SlateImgAlign }
 
 const { FlexRow, Spinner } = uuiSkin;
 
 const IMAGE_STYLES = { paddingTop: 0, paddingBottom: 0 };
 const PLATE_TO_SLATE_IMG_ALIGN = {
-    'left': 'align-left',
-    'right': 'align-right',
-    'center': 'align-center',
+    left: 'align-left',
+    right: 'align-right',
+    center: 'align-center',
 };
 const SLATE_TO_PLATE_IMG_ALIGN = invert(PLATE_TO_SLATE_IMG_ALIGN);
 
@@ -32,7 +32,7 @@ const toPlateAlign = (slateAlign: SlateImgAlign) => SLATE_TO_PLATE_IMG_ALIGN[sla
 
 const getUpdatedElement = (
     element: IImageElement,
-    { width = element.data?.imageSize?.width || 0, align = element.data?.align || 'align-left' }: UpdatingProps
+    { width = element.data?.imageSize?.width || 0, align = element.data?.align || 'align-left' }: UpdatingProps,
 ) => ({
     ...element,
     data: {
@@ -66,15 +66,14 @@ const useUpdatingElement = ({ element, editor }: { element: IImageElement, edito
                 setElements(
                     editor,
                     getUpdatedElement(element, { width: element.width }),
-                    { at: path }
+                    { at: path },
                 );
                 prevNodeWidthRef.current = element.width;
             }
-        }), [element.width]
-    );
-}
+        }), [element.width]);
+};
 
-export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageElement>> = (props) => {
+export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageElement>> = function (props) {
     const { editor, element, children } = props;
     const ref = useRef(null);
     const isFocused = useFocused();
@@ -93,13 +92,13 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageEl
     }, [isSelected, isFocused]);
 
     const onChangeDropDownValue = useCallback((value: boolean) => () => {
-        setShowToolbar(value)
+        setShowToolbar(value);
     }, []);
 
     // align
-    const toggleBlockAlignment = useCallback((align: PlateImgAlign) => {
-        setAlign(align);
-        setElements(editor, getUpdatedElement(element, { align: toSlateAlign(align) }));
+    const toggleBlockAlignment = useCallback((toggleAlign: PlateImgAlign) => {
+        setAlign(toggleAlign);
+        setElements(editor, getUpdatedElement(element, { align: toSlateAlign(toggleAlign) }));
     }, [editor, element]);
 
     // width
@@ -123,7 +122,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageEl
     if (element.type === 'loader') {
         return (
             <>
-                <Spinner  { ...props } cx={ css.spinner } />
+                <Spinner { ...props } cx={ css.spinner } />
                 { children }
             </>
         );
@@ -135,7 +134,8 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageEl
                 <div ref={ innerProps.ref } className={ cx(css.wrapper) }>
                     <div
                         ref={ ref }
-                        className={ cx(css.slateImage) }>
+                        className={ cx(css.slateImage) }
+                    >
                         <ImageElement
                             { ...props }
                             align={ align }
@@ -155,11 +155,11 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageEl
                             setMaxWidth={ setMaxWidth }
                         />
                     </FlexRow>
-                )
+                );
             } }
             onValueChange={ onChangeDropDownValue }
             value={ showToolbar }
-            placement='top'
+            placement="top"
         />
     );
 };

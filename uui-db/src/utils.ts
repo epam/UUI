@@ -22,13 +22,13 @@ export function defaultCompareViewDependencies<T>(prev: T, next: T): boolean {
  * @param  {Object} base   Object to compare with
  * @return {Object}        Return a new object who represent the diff
  */
-export function difference(object: any, base: any) {
+export function difference(obj: any, baseObj: any) {
     function changes(object: any, base: any) {
         return transform(object, function (result: any, value: any, key: any) {
             if (!isEqual(value, base[key])) {
-                result[key] = typeof value === 'object' && typeof base[key] === 'object' ? changes(value, base[key]) : value;
+                result[key] = (typeof value === 'object' && typeof base[key] === 'object') ? changes(value, base[key]) : value;
             }
         });
     }
-    return changes(object, base);
+    return changes(obj, baseObj);
 }

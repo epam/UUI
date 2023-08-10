@@ -88,7 +88,6 @@ describe('getPatternPredicate', () => {
     });
 
     it('{ age: { lte: 30, isNull: false } }', () => {
-        const filter = { count: { lte: 10 } };
         expect(run({ age: { lte: 30, isNull: false } })).toEqual([alice, bob]);
     });
 
@@ -107,12 +106,10 @@ describe('getPatternPredicate', () => {
     });
 
     it('{ name: { lte: "Bob" } }', () => {
-        const filter = { count: { lte: 10 } };
         expect(run({ name: { lte: 'Bob' } })).toEqual([alice, bob]);
     });
 
     it('{ name: { gt: "Pete" } }', () => {
-        const filter = { count: { lte: 10 } };
         expect(run({ name: { gt: 'Pete' } })).toEqual([sandra, william]);
     });
 

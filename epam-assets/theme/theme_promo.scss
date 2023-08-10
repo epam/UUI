@@ -216,8 +216,6 @@
     --uui-scroll_bars-bg: var(--gray40);
     --uui-scroll_bars-bg-active: var(--gray60);
 
-    --uui-button-bg-halftone: var(--white);
-
     --uui-control-bg: var(--white);
     --uui-control-bg-hover: var(--gray60);
     --uui-control-bg-disabled: var(--gray5);
@@ -263,6 +261,9 @@
     --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
     --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0 6px rgba(29, 30, 38, 0.05);
     --uui-shadow-level-3: 0 0 10px rgba(29, 30, 38, 0.05), 0 6px 24px rgba(29, 30, 38, 0.12), 0 9px 15px rgba(29, 30, 38, 0.1);
+
+    /* Search results text highlighting */
+    --uui-search-result-highlight: #FFEDC9;
 
     /* core variables end */
 
@@ -694,6 +695,26 @@
 
     --uui-pagination-font: var(--font-regular);
 
+    /* FileCard */
+    --uui-file-card-background: var(--gray40);
+    --uui-file-card-background-loaading: var(--gray40);
+    --uui-file-card-error: var(--uui-negative);
+    --uui-file-card-error-block: var(--uui-negative-darkest);
+    --uui-file-card-default: var(--uui-secondary);
+    --uui-file-card-dropstart-border: var(--uui-primary);
+    --uui-file-card-dropstart-background: var(--uui-primary-lightest);
+    --uui-file-card-link-hover: var(--uui-primary-dark);
+
+    /* IndeterminateBar */
+
+    --uui-indeterminate-bar-wrapper: var(--uui-secondary-light);
+    --uui-indeterminate-bar-background: var(--uui-primary);
+
+    /* ProgressBar */
+
+    --uui-progress-bar-wrapper: var(--uui-secondary-light);
+    --uui-progress-bar-background: var(--uui-primary);
+    --uui-progress-bar-label: var(--uui-surface-contrast-lower);
 
     /* ------------------------------------ */
 
@@ -719,7 +740,7 @@
         --uui-btn-bg: var(--uui-primary);
         --uui-btn-bg-hover: var(--uui-primary-dark);
         --uui-btn-bg-active: var(--uui-primary-darkest);
-        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone: var(--white);
         --uui-btn-bg-halftone-hover: var(--uui-primary-lightest);
         --uui-btn-bg-halftone-active: var(--uui-primary-light);
         --uui-btn-border: var(--uui-primary);
@@ -736,7 +757,7 @@
         --uui-btn-bg: var(--uui-accent);
         --uui-btn-bg-hover: var(--uui-accent-dark);
         --uui-btn-bg-active: var(--uui-accent-darkest);
-        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone: var(--white);
         --uui-btn-bg-halftone-hover: var(--uui-accent-lightest);
         --uui-btn-bg-halftone-active: var(--uui-accent-light);
         --uui-btn-border: var(--uui-accent);
@@ -753,7 +774,7 @@
         --uui-btn-bg: var(--uui-negative);
         --uui-btn-bg-hover: var(--uui-negative-dark);
         --uui-btn-bg-active: var(--uui-negative-darkest);
-        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone: var(--white);
         --uui-btn-bg-halftone-hover: var(--uui-negative-lightest);
         --uui-btn-bg-halftone-active: var(--uui-negative-light);
         --uui-btn-border: var(--uui-negative);
@@ -772,7 +793,7 @@
         --uui-btn-bg: var(--uui-secondary);
         --uui-btn-bg-hover: var(--uui-secondary-dark);
         --uui-btn-bg-active: var(--uui-secondary-darkest);
-        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone: var(--white);
         --uui-btn-bg-halftone-hover: var(--uui-secondary-lightest);
         --uui-btn-bg-halftone-active: var(--uui-secondary-light);
         --uui-btn-border: var(--uui-secondary);

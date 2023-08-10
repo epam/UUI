@@ -7,16 +7,18 @@ export interface DropMarkerProps extends DndActorRenderParams, IHasCX {
     enableBlocker?: boolean;
 }
 
-export class DropMarker extends React.Component<DropMarkerProps> {
-    render() {
-        return this.props.isDndInProgress ? (
+export function DropMarker(props: DropMarkerProps) {
+    return props.isDndInProgress
+        ? (
             <>
-                {this.props.enableBlocker && <div className={ css.blocker } />}
+                { props.enableBlocker && <div className={ css.blocker } /> }
                 <div className={ cx([
-                    css.marker, css[this.props.position], this.props?.cx,
+                    css.marker,
+                    css[props.position],
+                    props?.cx,
                 ]) }
                 />
             </>
-        ) : null;
-    }
+        )
+        : null;
 }

@@ -3,6 +3,8 @@
 exports[`ColumnHeaderDropdown should be rendered correctly 1`] = `
 Array [
   <button
+    aria-expanded={true}
+    aria-haspopup={true}
     className="container uui-button-box uui-enabled -clickable button-primary root size-36 mode-solid"
     onClick={[Function]}
     tabIndex={0}
