@@ -1,5 +1,7 @@
 .container {
     display: flex;
+    // Here we create separate stacking context, that the z-index below will not affect other parts, for example modals with z-index: 0
+    isolation: isolate;
 
     & > * {
         margin-right: -1px !important;
@@ -7,5 +9,10 @@
         &:focus {
             box-shadow: none;
         }
+    }
+
+    .uui-focus, &>:focus-within, &>:hover {
+        position: relative;
+        z-index: 1;
     }
 }
