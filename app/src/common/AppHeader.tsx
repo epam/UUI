@@ -9,7 +9,7 @@ import { analyticsEvents } from '../analyticsEvents';
 import css from './AppHeader.module.scss';
 import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
 
-type Theme = 'promo' | 'loveship' | 'vanilla_thunder';
+type Theme = 'promo' | 'loveship' | 'loveship_dark' | 'vanilla_thunder';
 
 const GIT_LINK = 'https://github.com/epam/UUI';
 
@@ -65,6 +65,7 @@ export function AppHeader() {
             <>
                 <MainMenuButton caption="Promo" isLinkActive={ theme === 'promo' } iconPosition="right" onClick={ () => updateTheme('promo') } />
                 <MainMenuButton caption="Loveship" isLinkActive={ theme === 'loveship' } iconPosition="right" onClick={ () => updateTheme('loveship') } />
+                <MainMenuButton caption="Loveship Dark" isLinkActive={ theme === 'loveship_dark' } iconPosition="right" onClick={ () => updateTheme('loveship_dark') } />
                 <DropdownMenuSplitter />
                 <MainMenuButton caption="RD Portal" isLinkActive={ theme === 'vanilla_thunder' } iconPosition="right" onClick={ () => updateTheme('vanilla_thunder') } />
             </>

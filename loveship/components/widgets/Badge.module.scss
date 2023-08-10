@@ -73,10 +73,10 @@
     &:global(.fill-white) {
         --uui-badge-bg: var(--white);
         --uui-badge-bg-hover: var(--night50);
-        --uui-badge-border: var(--uui-main);
-        --uui-badge-border-hover: var(--uui-main);
-        --uui-badge-caption: var(--uui-main);
-        --uui-badge-caption-hover: var(--uui-dark);
+        --uui-badge-border: var(--uui-color-50);
+        --uui-badge-border-hover: var(--uui-color-50);
+        --uui-badge-caption: var(--uui-color-50);
+        --uui-badge-caption-hover: var(--uui-color-60);
         --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
         --uui-badge-count-bg: var(--white); // It should be a separate component
     }
@@ -84,10 +84,10 @@
     &:global(.fill-none) {
         --uui-badge-bg: transparent;
         --uui-badge-bg-hover: transparent;
-        --uui-badge-border: var(--uui-main);
-        --uui-badge-border-hover: var(--uui-dark);
-        --uui-badge-caption: var(--uui-main);
-        --uui-badge-caption-hover: var(--uui-dark);
+        --uui-badge-border: var(--uui-color-50);
+        --uui-badge-border-hover: var(--uui-color-60);
+        --uui-badge-caption: var(--uui-color-50);
+        --uui-badge-caption-hover: var(--uui-color-60);
         --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
         --uui-badge-count-bg: var(--white); // It should be a separate component
     }

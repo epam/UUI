@@ -374,7 +374,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
         if (!id) return '';
         switch (routeArray[id + 1]) {
             case 'uui':
-                return 'uui-theme-vanilla_thunder';
+                return '';
             case 'epam-promo':
                 return 'uui-theme-promo';
             case 'loveship':
