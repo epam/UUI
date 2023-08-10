@@ -1,3 +1,5 @@
+@use  '../../../assets/styles/effects' as *;
+
 .root {
     height: 60px;
     min-height: 60px;
@@ -21,5 +23,9 @@
         font-weight: var(--uui-main_menu-font-weight, normal);
         font-size: 9px;
         text-transform: uppercase;
+    }
+
+    :global(.-clickable):focus-visible {
+        @include focus-visible-effect(-2px, 0);
     }
 }
