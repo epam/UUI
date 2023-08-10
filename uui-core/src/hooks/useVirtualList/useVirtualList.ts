@@ -73,7 +73,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
 
         if (scrollContainer.current && value) onScroll?.(scrollContainer.current);
 
-        if (value?.scrollTo !== scrolledTo && value.scrollTo.index != null) {
+        if (value?.scrollTo !== scrolledTo && value.scrollTo?.index != null) {
             const { topIndex = 0, visibleCount = 0 } = value;
             const newEstimatedHeight = rowsInfo.estimatedContainerHeight
                     + (value.scrollTo.index - topIndex - visibleCount)
