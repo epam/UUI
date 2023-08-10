@@ -1,13 +1,19 @@
 import styles from './ColumnsConfigurationModal.module.scss';
 import * as React from 'react';
 import { useCallback, useMemo } from 'react';
-//
+
 import { ColumnsConfig, DataColumnProps, IModal } from '@epam/uui-core';
 import { useColumnsConfiguration } from '@epam/uui-components';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-update-18.svg';
-//
-import { FlexRow, FlexSpacer, Panel, ScrollBars, Button, LinkButton, SearchInput, Dropdown, Badge, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Text, Tooltip } from '../../../components';
+
+import { FlexRow, FlexSpacer, Panel, ScrollBars } from '../../../components/layout';
+import { Button, LinkButton } from '../../../components/buttons';
+import { Dropdown, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Tooltip } from '../../../components/overlays';
+import { Text } from '../../../components/typography';
+import { Badge } from '../../../components/widgets';
+import { SearchInput } from '../../../components/inputs';
+
 import { i18n as uuiI18n } from '../../../i18n';
 import { ColumnRow } from './ColumnRow';
 

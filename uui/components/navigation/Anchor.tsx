@@ -1,3 +1,5 @@
-import { Anchor as uuiAnchor } from '@epam/uui-components';
+import { Anchor as uuiAnchor, AnchorProps } from '@epam/uui-components';
+import { withMods } from '@epam/uui-core';
+import css from './Anchor.module.scss';
 
-export const Anchor = uuiAnchor;
+export const Anchor = withMods<AnchorProps>(uuiAnchor, () => [css.root]);

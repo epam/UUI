@@ -8,37 +8,13 @@ import { Image } from './ImageBlock';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { PlateEditor, TElement, createPluginFactory, focusEditor, getBlockAbove, insertEmptyElement, insertNodes } from '@udecode/plate-common';
+import { PlateEditor, createPluginFactory, focusEditor, getBlockAbove, insertEmptyElement, insertNodes } from '@udecode/plate-common';
 import { TImageElement, captionGlobalStore } from '@udecode/plate-media';
 import isHotkey from 'is-hotkey';
-import { Editor } from 'slate';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
-import { FileUploadResponse } from '@epam/uui-core';
 
-export type PlateImgAlign = 'left' | 'center' | 'right';
-export type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';
-export type SlateImageSize = { width: number, height: number | string };
-
-type SlateImageData = {
-    imageSize: SlateImageSize;
-    align: SlateImgAlign;
-} & Partial<(File | FileUploadResponse)>;
-
-export interface SlateProps {
-    data: SlateImageData;
-}
-
-export interface PlateProps {
-    url: string;
-    align?: PlateImgAlign;
-    width?: number;
-}
-
-export interface IImageElement extends TElement, PlateProps, SlateProps {}
-
-export const IMAGE_PLUGIN_KEY = 'image';
-export const IMAGE_PLUGIN_TYPE = 'image';
+import { IMAGE_PLUGIN_TYPE, IMAGE_PLUGIN_KEY } from '../../types';
 
 export const imagePlugin = () => {
     const createImagePlugin = createPluginFactory({
@@ -63,16 +39,6 @@ export const imagePlugin = () => {
 
                 if (event.key === 'Enter') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
-                }
-
-                // empty element needs to be added when we have only image element in editor content
-                if (event.key === 'Backspace') {
-                    insertEmptyElement(editor, PARAGRAPH_TYPE);
-                }
-
-                if (event.key === 'Delete') {
-                    Editor.deleteForward(editor as any);
-                    insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
 
                 // focus caption from image

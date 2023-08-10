@@ -49,6 +49,10 @@
         border-radius: var(--uui-btn-border-radius);
     }
 
+    &:focus-visible {
+        @include focus-visible-effect();
+    }
+
     :global(.uui-caption) {
         @include overflow-ellipsis();
         min-width: 0;

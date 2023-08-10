@@ -1,12 +1,15 @@
 import * as React from 'react';
 import {
-    IDndActor, UuiContexts, DropPosition, AcceptDropParams, DndActorRenderParams, DropPositionOptions, DndContextState,
-} from '../../types';
+    IDndActor, DropPosition, AcceptDropParams, DndActorRenderParams, DropPositionOptions,
+} from '../../types/dnd';
+
+import { UuiContexts, DndContextState } from '../../types/contexts';
+
 import {
     isEventTargetInsideDraggable,
     isEventTargetInsideInput,
     releasePointerCaptureOnEventTarget,
-} from '../../helpers';
+} from '../../helpers/events';
 import { getSector } from './helpers';
 import { uuiDndState, uuiMarkers } from '../../constants';
 import { UuiContext } from '../ContextProvider';
