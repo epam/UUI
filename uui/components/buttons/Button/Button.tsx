@@ -1,6 +1,6 @@
 import { Button as uuiButton, ButtonProps as uuiButtonProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
-import { ControlSize, ButtonMode } from '../../types';
+import { ControlSize, ButtonFill } from '../../types';
 import { systemIcons } from '../../../icons/icons';
 import css from './Button.module.scss';
 
@@ -13,7 +13,7 @@ const defaultSize = '36';
 
 export interface ButtonMods {
     size?: ControlSize | '18';
-    mode?: ButtonMode;
+    fill?: ButtonFill;
     color?: ButtonColor;
 }
 
@@ -21,11 +21,11 @@ export type ButtonProps = ButtonMods & uuiButtonProps;
 
 export function applyButtonMods(mods: ButtonProps) {
     return [
-        'uui-button',
-        `color-${mods.color || 'primary'}`,
         css.root,
+        'uui-button',
+        `uui-fill-${mods.fill || 'solid'}`,
+        `uui-color-${mods.color || 'primary'}`,
         css[`size-${mods.size || defaultSize}`],
-        css[`mode-${mods.mode || 'solid'}`],
     ];
 }
 

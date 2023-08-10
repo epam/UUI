@@ -219,7 +219,7 @@ export function ThemeDemo() {
                             caption="Add one more"
                             icon={ AddIcon }
                             color="primary"
-                            mode="outline"
+                            fill="outline"
                             onClick={ () =>
                                 lens.prop('visaRecords').set(
                                     lens
@@ -246,7 +246,7 @@ export function ThemeDemo() {
                     </FlexRow>
                     <FlexRow vPadding="24" spacing="12">
                         <FlexSpacer />
-                        <Button caption="Cancel" onClick={ showModal } color="secondary" mode="outline" />
+                        <Button caption="Cancel" onClick={ showModal } color="secondary" fill="outline" />
                         <Button caption="SAVE" onClick={ save } color="primary" />
                     </FlexRow>
                 </FlexCell>

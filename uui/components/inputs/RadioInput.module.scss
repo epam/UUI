@@ -28,6 +28,22 @@
 }
 
 .root {
+    --uui-radio-input-bg: var(--uui-control-bg);
+    --uui-radio-input-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-radio-input-border: var(--uui-control-border);
+    --uui-radio-input-border-checked: var(--uui-main);
+    --uui-radio-input-border-hover: var(--uui-dark);
+    --uui-radio-input-border-disabled: var(--uui-control-border-disabled);
+    --uui-radio-input-border-checked-disabled: var(--uui-light);
+    --uui-radio-input-label: var(--uui-control-label);
+    --uui-radio-input-label-disabled: var(--uui-control-label-disabled);
+    --uui-radio-input-fill-checked: var(--uui-main);
+    --uui-radio-input-fill-hover: var(--uui-dark);
+    --uui-radio-input-fill-checked-disabled: var(--uui-light);
+    --uui-radio-input-error: var(--uui-negative);
+
+    --uui-radio-input-font: var(--font-regular);
+    //
     &:hover, &:focus-within {
         :global(.uui-radioinput) {
             border-color: var(--uui-radio-input-border-hover);

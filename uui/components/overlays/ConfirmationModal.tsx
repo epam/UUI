@@ -27,7 +27,7 @@ export class ConfirmationModal extends React.Component<ConfirmationModalWindowPr
                     <ModalFooter>
                         <FlexSpacer />
                         {this.props.hideCancelButton || (
-                            <Button caption={ i18n.form.modals.discardButton } onClick={ () => this.props.success(false) } mode="outline" color="secondary" />
+                            <Button caption={ i18n.form.modals.discardButton } onClick={ () => this.props.success(false) } fill="outline" color="secondary" />
                         )}
                         <Button caption={ i18n.form.modals.saveButton } onClick={ () => this.props.success(true) } color="accent" />
                     </ModalFooter>

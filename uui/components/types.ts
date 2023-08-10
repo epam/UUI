@@ -1,10 +1,10 @@
-export type ButtonMode = 'solid' | 'outline' | 'ghost' | 'none';
-export const allButtonModes: ButtonMode[] = [
+export type ButtonFill = 'solid' | 'outline' | 'ghost' | 'none';
+export const allButtonFills: ButtonFill[] = [
     'solid', 'outline', 'ghost', 'none',
 ];
 
-export type FillStyle = ButtonMode;
-export const allFillStyles: FillStyle[] = allButtonModes;
+export type FillStyle = ButtonFill;
+export const allFillStyles: FillStyle[] = allButtonFills;
 
 export type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';
 export const allSizes: ControlSize[] = [

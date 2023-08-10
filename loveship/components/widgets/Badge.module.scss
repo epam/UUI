@@ -1,33 +1,9 @@
 @use 'sass:math';
 @use '../../assets/styles/scss/index'  as *;
 
-@mixin button-colors($bg, $fg, $brd) {
-    background-color: $bg;
-    color: $fg;
-    fill: $fg;
-    border-color: $brd;
-}
-
-@mixin control-size($size, $borderWidth) {
-    $padding: math.div($size, 6) - $borderWidth;
-    min-width: $size;
-    padding-left: $padding;
-    padding-right: $padding;
-}
-
-@mixin control-horizontal-layout($size, $borderWidth) {
-    $paddingStep: math.div($size, 6);
-    @include control-size($size, $borderWidth);
-
-    :global(.uui-caption), :global(.uui-input) {
-        padding-left: $paddingStep;
-        padding-right: $paddingStep;
-    }
-}
-
 .root {
     &.size-12 {
-        @include control-horizontal-layout(12px, 1px);
+        min-width: 12px;
         padding: 0 2px;
 
         :global(.uui-count) {
@@ -61,7 +37,7 @@
             }
         }
 
-        &.fill-transparent {
+        &:global(.fill-transparent) {
             padding-left: 0;
             padding-right: 0;
 
@@ -80,22 +56,6 @@
         }
     }
 
-    &.fill-white {
-        @include button-colors(var(--white), var(--uui-badge-bg), var(--uui-badge-bg));
-
-        &:hover {
-            @include button-colors(var(--night50), var(--uui-badge-bg-hover), var(--uui-badge-bg));
-        }
-    }
-
-    &.fill-none {
-        @include button-colors(transparent, var(--uui-badge-bg), var(--uui-badge-bg));
-
-        &:hover {
-            @include button-colors(transparent, var(--uui-badge-bg-hover), var(--uui-badge-bg-hover));
-        }
-    }
-
     &.style-round {
         &.size-12 { border-radius: 7px; }
         &.size-18 { border-radius: 9px; }
@@ -109,4 +69,28 @@
     &.style-square {
         border-radius: var(--uui-border-radius);
     }
+
+    &:global(.fill-white) {
+        --uui-badge-bg: var(--white);
+        --uui-badge-bg-hover: var(--night50);
+        --uui-badge-border: var(--uui-main);
+        --uui-badge-border-hover: var(--uui-main);
+        --uui-badge-caption: var(--uui-main);
+        --uui-badge-caption-hover: var(--uui-dark);
+        --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
+        --uui-badge-count-bg: var(--white); // It should be a separate component
+    }
+
+    &:global(.fill-none) {
+        --uui-badge-bg: transparent;
+        --uui-badge-bg-hover: transparent;
+        --uui-badge-border: var(--uui-main);
+        --uui-badge-border-hover: var(--uui-dark);
+        --uui-badge-caption: var(--uui-main);
+        --uui-badge-caption-hover: var(--uui-dark);
+        --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
+        --uui-badge-count-bg: var(--white); // It should be a separate component
+    }
 }
+
+

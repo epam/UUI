@@ -15,7 +15,7 @@
 
 .theme-dark {
     :global(.uui-input-label) {
-        color: var(--gray5);
+        color: var(--night50);
     }
 
     &:global(.uui-disabled) {
@@ -23,15 +23,15 @@
         background: none;
 
         :global(.uui-checkbox), :global(.uui-checkbox):global(.uui-checked) {
-            @include input-colors(var(--gray60), var(--gray50), var(--gray50), var(--gray60));
+            @include input-colors(var(--night600), var(--night500), var(--night500), var(--night600));
 
             &:hover, &:active, &:focus-within {
-                @include input-colors(var(--gray60), var(--gray50), var(--gray50), var(--gray60));
+                @include input-colors(var(--night600), var(--night500), var(--night500), var(--night600));
             }
         }
 
         :global(.uui-input-label) {
-            color: var(--gray50);
+            color: var(--night500);
         }
     }
 }

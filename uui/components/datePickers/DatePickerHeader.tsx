@@ -101,9 +101,9 @@ export function DatePickerHeader(props: DatePickerHeaderProps) {
     return (
         <div className={ cx(css.container, uuiHeader.container, props.cx) }>
             <header className={ uuiHeader.header }>
-                <Button icon={ LeftArrowIcon } color="secondary" mode="ghost" cx={ uuiHeader.navIconLeft } onClick={ () => onLeftNavigationArrow() } />
-                <Button caption={ title } mode="ghost" cx={ uuiHeader.navTitle } onClick={ () => onCaptionClick(props.value.view) } />
-                <Button icon={ RightArrowIcon } color="secondary" mode="ghost" cx={ uuiHeader.navIconRight } onClick={ () => onRightNavigationArrow() } />
+                <Button icon={ LeftArrowIcon } color="secondary" fill="ghost" cx={ uuiHeader.navIconLeft } onClick={ () => onLeftNavigationArrow() } />
+                <Button caption={ title } fill="ghost" cx={ uuiHeader.navTitle } onClick={ () => onCaptionClick(props.value.view) } />
+                <Button icon={ RightArrowIcon } color="secondary" fill="ghost" cx={ uuiHeader.navIconRight } onClick={ () => onRightNavigationArrow() } />
             </header>
         </div>
     );
