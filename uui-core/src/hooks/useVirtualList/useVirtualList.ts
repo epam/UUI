@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { ScrollToConfig } from '../../types';
 import { useLayoutEffectSafeForSsr } from '../../ssr';
-import { getRowsToFetchForScroll, getUpdatedRowsInfo } from './virtualListUtils';
+import { getRowsToFetchForScroll, getUpdatedRowsInfo, getTopCoordinate } from './virtualListUtils';
 import { UseVirtualListProps, UseVirtualListApi } from './types';
 import { VirtualListInfo } from './VirtualListInfo';
 
@@ -58,46 +58,56 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         }
     };
 
-    const getTopIndexAndVisibleCountOnScroll = () => {
-        if (!scrollContainer.current || !value) {
-            return { visibleCount: value.visibleCount, topIndex: value.topIndex };
+    const getTopIndexAndVisibleCountOnScroll = (virtualListInfo: VirtualListInfo) => {
+        if (!virtualListInfo.scrollContainer || !virtualListInfo.value) {
+            return { visibleCount: virtualListInfo.value.visibleCount, topIndex: virtualListInfo.value.topIndex };
         }
 
-        return getRowsToFetchForScroll(getVirtualListInfo());
+        return getRowsToFetchForScroll(virtualListInfo);
     };
 
     useLayoutEffectSafeForSsr(() => {
         const rowsInfo = getUpdatedRowsInfo(getVirtualListInfo());
         rowHeights.current = rowsInfo.rowHeights;
         rowOffsets.current = rowsInfo.rowOffsets;
-        if (estimatedHeight !== rowsInfo.estimatedContainerHeight) {
-            setEstimatedHeight(rowsInfo.estimatedContainerHeight);
-        }
 
         if (scrollContainer.current && value) onScroll?.(scrollContainer.current);
 
-        const { topIndex, visibleCount } = getTopIndexAndVisibleCountOnScroll();
-        if (topIndex !== value.topIndex || visibleCount > value.visibleCount) {
-            onValueChange({ ...value, topIndex, visibleCount });
-        }
+        if (value?.scrollTo !== scrolledTo && value.scrollTo.index != null) {
+            const { topIndex = 0, visibleCount = 0 } = value;
+            const newEstimatedHeight = rowsInfo.estimatedContainerHeight
+                    + (value.scrollTo.index - topIndex - visibleCount)
+                    * rowsInfo.averageRowHeight;
 
-        if (value?.scrollTo !== scrolledTo) {
-            handleScrollToIndex();
+            const estimatedHeightToSet = newEstimatedHeight > rowsInfo.estimatedContainerHeight
+                ? newEstimatedHeight
+                : rowsInfo.estimatedContainerHeight;
+
+            setEstimatedHeight(estimatedHeightToSet);
+            if (!scrollContainer.current || !value) return;
+
+            scrollToIndex(value.scrollTo?.index);
+        } else if (estimatedHeight !== rowsInfo.estimatedContainerHeight) {
+            setEstimatedHeight(rowsInfo.estimatedContainerHeight);
+            const { topIndex, visibleCount } = getTopIndexAndVisibleCountOnScroll(getVirtualListInfo());
+            if (topIndex !== value.topIndex || visibleCount > value.visibleCount) {
+                onValueChange({ ...value, topIndex, visibleCount });
+            }
         }
     });
 
-    const handleScrollToIndex = () => {
-        if (!scrollContainer.current || !value || value.scrollTo?.index == null) return;
-        scrollToIndex(value.scrollTo?.index);
-    };
+    useLayoutEffectSafeForSsr(() => {
+        if (value.scrollTo?.index >= value.topIndex && value.scrollTo?.index <= value.topIndex + value.visibleCount) {
+            setScrolledTo(value.scrollTo);
+        }
+    }, [value.topIndex, value.scrollTo?.index]);
 
     const scrollToIndex = React.useCallback(
         (index: number, behavior?: ScrollBehavior) => {
-            const indexToScroll = Math.min(index, rowsCount - 1);
-            const topCoordinate = rowOffsets.current[indexToScroll] - listOffset;
+            const indexToScroll = index;
+            const topCoordinate = getTopCoordinate(getVirtualListInfo(), indexToScroll);
             if (!isNaN(topCoordinate)) {
                 scrollContainer.current.scrollTo({ top: topCoordinate, behavior });
-                setScrolledTo(value.scrollTo);
             }
         },
         [scrollContainer.current, rowOffsets.current],
@@ -118,7 +128,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         if (!scrollContainer.current && !value) return;
         onScroll?.(scrollContainer.current);
 
-        const { topIndex, visibleCount } = getTopIndexAndVisibleCountOnScroll();
+        const { topIndex, visibleCount } = getTopIndexAndVisibleCountOnScroll(getVirtualListInfo());
         if (topIndex !== value.topIndex || visibleCount > value.visibleCount) {
             onValueChange({ ...value, topIndex, visibleCount });
         }
