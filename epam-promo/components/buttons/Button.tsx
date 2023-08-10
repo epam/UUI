@@ -1,4 +1,4 @@
-import { Button as uuiButton, ButtonProps as UuiButtonProps, ButtonMode } from '@epam/uui';
+import { Button as uuiButton, ButtonProps as UuiButtonProps, ButtonFill } from '@epam/uui';
 import { devLogger, withMods } from '@epam/uui-core';
 import { FillStyle } from '../types';
 import css from './Button.module.scss';
@@ -10,16 +10,16 @@ export interface ButtonMods {
     color?: ButtonColor;
 }
 
-const mapFillToMod: Record<FillStyle, ButtonMode> = {
+const mapFill: Record<FillStyle, ButtonFill> = {
     solid: 'solid',
     white: 'outline',
     light: 'ghost',
     none: 'none',
 };
 
-export type ButtonProps = Omit<UuiButtonProps, 'color'> & ButtonMods;
+export type ButtonProps = Omit<UuiButtonProps, 'color' | 'fill'> & ButtonMods;
 
-export const Button = withMods<Omit<UuiButtonProps, 'color'>, ButtonMods>(
+export const Button = withMods<Omit<UuiButtonProps, 'color' | 'fill'>, ButtonMods>(
     uuiButton,
     (props) => [
         ['42', '48'].includes(props.size) && css.uppercase,
@@ -35,7 +35,7 @@ export const Button = withMods<Omit<UuiButtonProps, 'color'>, ButtonMods>(
             });
         }
         return {
-            mode: mapFillToMod[props.fill] || mapFillToMod.solid,
-        };
+            fill: mapFill[props.fill] || mapFill.solid,
+        } as any; // TODO: need new helper to rewrite types
     },
 );

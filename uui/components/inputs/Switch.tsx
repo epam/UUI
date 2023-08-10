@@ -8,7 +8,7 @@ export interface SwitchMods {
 
 export function applySwitchMods(mods: SwitchMods & SwitchProps) {
     return [
-        'switch-vars', css.root, css['size-' + (mods.size || '18')],
+        css.root, css['size-' + (mods.size || '18')], 'uui-color-primary',
     ];
 }
 

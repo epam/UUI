@@ -2,7 +2,6 @@ import { EpamBadgeSemanticColor } from '../types';
 import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
-import buttonCss from '../buttons/Button/Button.module.scss';
 import css from './Badge.module.scss';
 
 const defaultSize = '36';
@@ -29,7 +28,7 @@ export type BadgeProps = ButtonProps & BadgeMods;
 
 export function applyBadgeMods(mods: BadgeMods) {
     return [
-        css.root, buttonCss.root, css['size-' + (mods.size || defaultSize)], css['fill-' + (mods.fill || 'solid')], mods.color && `badge-${mods.color}`,
+        'uui-badge', css.root, css['size-' + (mods.size || defaultSize)], `fill-${mods.fill || 'solid'}`, mods.color && `uui-color-${mods.color}`,
     ];
 }
 

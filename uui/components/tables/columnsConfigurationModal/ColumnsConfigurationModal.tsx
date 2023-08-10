@@ -110,7 +110,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                                 <DropdownMenuButton caption={ i18n.selectAllButton } onClick={ checkAll } />
                             </Panel>
                         ) }
-                        renderTarget={ (props) => <Button { ...props } mode="none" icon={ MenuIcon } size="30" color="secondary" isDropdown={ false } /> }
+                        renderTarget={ (props) => <Button { ...props } fill="none" icon={ MenuIcon } size="30" color="secondary" isDropdown={ false } /> }
                     />
                 </FlexRow>
                 <Panel cx={ styles.mainPanel }>
@@ -132,7 +132,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                 <ModalFooter borderTop>
                     <LinkButton icon={ ResetIcon } caption={ i18n.resetToDefaultButton } onClick={ reset } />
                     <FlexSpacer />
-                    <Button mode="none" color="secondary" caption={ i18n.cancelButton } onClick={ close } />
+                    <Button fill="none" color="secondary" caption={ i18n.cancelButton } onClick={ close } />
                     {noVisibleColumns ? (
                         <Tooltip content={ i18n.enableAtLeastOneColumnMessage } placement="top-end" color="critical">
                             {applyButton}

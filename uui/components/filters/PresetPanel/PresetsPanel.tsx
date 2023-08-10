@@ -41,7 +41,7 @@ export function PresetsPanel(props: PresetsPanelProps) {
         return (
             <div key="addingPresetBlock" className={ css.addPresetContainer }>
                 {!isAddingPreset ? (
-                    <Button size="36" onClick={ setAddingPreset } caption={ i18n.presetPanel.addCaption } icon={ addIcon } iconPosition="left" mode="ghost" color="primary" />
+                    <Button size="36" onClick={ setAddingPreset } caption={ i18n.presetPanel.addCaption } icon={ addIcon } iconPosition="left" fill="ghost" color="primary" />
                 ) : (
                     <PresetInput onCancel={ cancelAddingPreset } onSuccess={ props.createNewPreset } />
                 )}
@@ -60,7 +60,7 @@ export function PresetsPanel(props: PresetsPanelProps) {
                 renderTarget={ (props) => (
                     <FlexRow>
                         <div className={ css.divider } />
-                        <Button mode="ghost" color="secondary" caption={ `${hiddenItems?.length || ''} more` } { ...props } />
+                        <Button fill="ghost" color="secondary" caption={ `${hiddenItems?.length || ''} more` } { ...props } />
                     </FlexRow>
                 ) }
                 renderBody={ () => (

@@ -44,7 +44,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
                     />
                 )}
                 <FlexSpacer />
-                <Button mode="outline" color="secondary" caption={ i18n.pickerModal.cancelButton } onClick={ () => this.props.abort() } />
+                <Button fill="outline" color="secondary" caption={ i18n.pickerModal.cancelButton } onClick={ () => this.props.abort() } />
                 <Button color="accent" caption={ i18n.pickerModal.selectButton } onClick={ () => this.props.success(null) } />
             </>
         );

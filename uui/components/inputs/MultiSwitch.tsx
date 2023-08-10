@@ -26,7 +26,7 @@ function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: Reac
                     isDisabled={ props.isDisabled }
                     key={ index + '-' + item.id }
                     onClick={ () => props.onValueChange(item.id) }
-                    mode={ props.value === item.id ? 'solid' : 'outline' }
+                    fill={ props.value === item.id ? 'solid' : 'outline' }
                     color={ props.color === 'secondary' && props.value === item.id ? 'primary' : props.color || 'primary' }
                     size={ props.size }
                     rawProps={ { 'aria-current': props.value === item.id, role: 'tab' } }

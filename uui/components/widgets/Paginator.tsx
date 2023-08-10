@@ -17,7 +17,7 @@ export function Paginator(props: PaginatorProps) {
                 icon={ params.size === '30' ? ArrowLeftIcon_30 : ArrowLeftIcon_24 }
                 onClick={ params.goToPrev }
                 isDisabled={ params.isFirst }
-                mode="outline"
+                fill="outline"
                 color="secondary"
             />
             {params.pages.map((page, index) => {
@@ -28,7 +28,7 @@ export function Paginator(props: PaginatorProps) {
                             size={ params.size }
                             key={ `${index}_spacer` }
                             caption="..."
-                            mode="ghost"
+                            fill="ghost"
                             color="secondary"
                             tabIndex={ -1 }
                         />
@@ -42,7 +42,7 @@ export function Paginator(props: PaginatorProps) {
                             caption={ page.pageNumber }
                             onClick={ () => page.onClick?.() }
                             rawProps={ { 'aria-current': page.isActive } }
-                            mode={ (page.isActive && 'outline') || 'ghost' }
+                            fill={ (page.isActive && 'outline') || 'ghost' }
                             color="primary"
                         />
                     );
@@ -54,7 +54,7 @@ export function Paginator(props: PaginatorProps) {
                 icon={ params.size === '30' ? ArrowRightIcon_30 : ArrowRightIcon_24 }
                 onClick={ params.goToNext }
                 isDisabled={ params.isLast }
-                mode="outline"
+                fill="outline"
                 color="secondary"
             />
         </nav>

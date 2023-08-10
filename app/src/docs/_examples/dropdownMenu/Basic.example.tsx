@@ -116,7 +116,7 @@ export default function BasicDropdownMenuExample() {
             <ControlGroup>
                 <Dropdown
                     renderBody={ renderThirdDropdownBody }
-                    renderTarget={ (props) => <Button { ...props } mode="outline" icon={ MenuIcon } size="36" isDropdown={ false } /> }
+                    renderTarget={ (props) => <Button { ...props } fill="outline" icon={ MenuIcon } size="36" isDropdown={ false } /> }
                     placement="bottom-end"
                 />
             </ControlGroup>

@@ -136,7 +136,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                 caption={ i18n.filterToolbar.addCaption }
                 icon={ addIcon }
                 iconPosition="left"
-                mode="ghost"
+                fill="ghost"
                 color="primary"
             />
         );
