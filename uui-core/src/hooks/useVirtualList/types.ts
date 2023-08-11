@@ -36,3 +36,10 @@ export interface UseVirtualListProps extends IEditable<VirtualListState> {
 
     onScroll?(value: Partial<UuiScrollPositionValues>): void;
 }
+
+export interface RowsInfo {
+    estimatedHeight?: number;
+    rowHeights: number[];
+    rowOffsets: number[];
+    averageRowHeight?: number;
+}

@@ -1,4 +1,6 @@
+import type { VirtualListState } from '../../types';
 import { VirtualListInfo } from './VirtualListInfo';
+import { RowsInfo } from './types';
 
 export const getUpdatedRowHeights = (virtualListInfo: VirtualListInfo) => {
     const newRowHeights = [...virtualListInfo.rowHeights];
@@ -38,7 +40,7 @@ export const getNewEstimatedContainerHeight = (
 
 export const getUpdatedRowsInfo = (
     virtualListInfo: VirtualListInfo,
-) => {
+): RowsInfo => {
     if (!virtualListInfo.scrollContainer
         || !virtualListInfo.listContainer
         || virtualListInfo.listOffset == null
@@ -56,9 +58,9 @@ export const getUpdatedRowsInfo = (
     const rowOffsets = getUpdatedRowOffsets(newVirtualListInfo);
     const updatedVirtualListInfo = virtualListInfo.update({ rowOffsets });
 
-    const estimatedContainerHeight = getNewEstimatedContainerHeight(updatedVirtualListInfo);
+    const estimatedHeight = getNewEstimatedContainerHeight(updatedVirtualListInfo);
     return {
-        estimatedContainerHeight,
+        estimatedHeight,
         rowHeights,
         rowOffsets,
         averageRowHeight,
@@ -116,4 +118,22 @@ export const getTopCoordinate = (
         rowCoordinate = heightOfExistingRows + assumedRowsHeight;
     }
     return rowCoordinate - listOffset;
+};
+
+export const assumeHeightForScrollToIndex = (value: VirtualListState, estimatedHeight: number, averageRowHeight: number) => {
+    const { topIndex = 0, visibleCount = 0 } = value;
+    return estimatedHeight
+            + (value.scrollTo.index - topIndex - visibleCount)
+            * averageRowHeight;
+};
+
+export const getTopIndexWithOffset = (index: number, overdrawRows: number, blockSize: number) => {
+    let topIndex = index - overdrawRows; // draw more rows at the top to remove visible blank areas while scrolling up
+    topIndex = Math.floor(topIndex / blockSize) * blockSize; // Align to blockSize
+    return Math.max(0, topIndex);
+};
+
+export const getOffsetYForIndex = (index: number, rowOffsets: number[], listOffset: number) => {
+    if (rowOffsets.length === 0 || index == null) return 0;
+    return rowOffsets[index] - listOffset;
 };
