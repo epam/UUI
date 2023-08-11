@@ -17,6 +17,7 @@ import App from './App';
 import { getApi, TApi } from './data';
 import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
+import '@epam/assets/theme/theme_loveship_dark.scss';
 import './index.module.scss';
 
 const router6 = createBrowserRouter([
