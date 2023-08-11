@@ -1,7 +1,10 @@
 import * as React from 'react';
 import type { ScrollToConfig } from '../../types';
 import { useLayoutEffectSafeForSsr } from '../../ssr';
-import { getRowsToFetchForScroll, getUpdatedRowsInfo, getTopCoordinate, assumeHeightForScrollToIndex, getTopIndexWithOffset, getOffsetYForIndex } from './virtualListUtils';
+import {
+    getRowsToFetchForScroll, getUpdatedRowsInfo, getTopCoordinate, assumeHeightForScrollToIndex,
+    getTopIndexWithOffset, getOffsetYForIndex,
+} from './virtualListUtils';
 import { UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
 import { VirtualListInfo } from './VirtualListInfo';
 
