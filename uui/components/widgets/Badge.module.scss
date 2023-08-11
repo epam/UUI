@@ -9,6 +9,9 @@
     --uui-badge-caption-hover: var(--uui-color-contrast-text);
     --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
     --uui-badge-count-bg: var(--white); // It should be a separate component
+
+    --uui-badge-font: var(--font-regular);
+    --uui-badge-count-font: var(--font-semibold);
     //
     background-color: var(--uui-badge-bg);
     color: var(--uui-badge-caption);

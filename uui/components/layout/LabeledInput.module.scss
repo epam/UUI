@@ -1,6 +1,18 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
+    --uui-labeled-input: var(--uui-text-primary);
+    --uui-labeled-input-disabled: var(--uui-text-disabled);
+    --uui-labeled-input-error: var(--uui-error);
+    --uui-labeled-input-fill: var(--uui-icon);
+    --uui-labeled-input-info-fill: var(--uui-icon);
+    --uui-labeled-input-optional-text: var(--uui-text-tertiary);
+    --uui-labeled-input-asterisk: var(--uui-error);
+
+    --uui-labeled-input-font: var(--font-semibold);
+    --uui-labeled-input-optional-font: var(--font-italic);
+    --uui-labeled-input-invalid-msg-font: var(--font-regular);
+    //
     width: 100%;
 
     :global(.uui-label) {

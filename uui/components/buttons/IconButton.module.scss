@@ -1,6 +1,11 @@
 @use '../../assets/styles/effects' as *;
 
 .root {
+    --uui-icon-btn: var(--uui-color-50);
+    --uui-icon-btn-hover: var(--uui-color-60);
+    --uui-icon-btn-active: var(--uui-color-70);
+    --uui-icon-btn-disabled: var(--uui-icon-disabled); // from core or color class? Current - from core
+    //
     fill: var(--uui-icon-btn);
 
     &:global(.-clickable) {
@@ -30,11 +35,4 @@
             }
         }
     }
-}
-
-:global(.uui-icon_button) {
-    --uui-icon-btn: var(--uui-main);
-    --uui-icon-btn-hover: var(--uui-dark);
-    --uui-icon-btn-active: var(--uui-darkest);
-    --uui-icon-btn-disabled: var(--uui-icon-disabled); // from core or color class? Current - from core
 }

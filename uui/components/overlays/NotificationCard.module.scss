@@ -1,6 +1,16 @@
 @use '../../assets/styles/index' as *;
 
 .root {
+    --uui-notification-card-bg: var(--uui-surface);
+    --uui-notification-card-border: var(--uui-color-50);
+    --uui-notification-card-fill: var(--uui-color-50);
+    --uui-notification-card-text: var(--uui-text-primary);
+
+    --uui-notification-card-border-radius: var(--uui-border-radius);
+    --uui-notification-card-border-width: 0;
+    --uui-notification-card-border-top-width: 6px;
+    --uui-notification-card-shadow: var(--uui-shadow-level-2); //TODO: may change in the future
+    //
     border-style: solid;
     border-color: var(--uui-notification-card-border, transparent);
     border-width: var(--uui-notification-card-border-width);

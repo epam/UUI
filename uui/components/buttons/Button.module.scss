@@ -1,4 +1,4 @@
-@use '../../../assets/styles/index' as *;
+@use '../../assets/styles/index' as *;
 
 @mixin button-disables-styles($bg-color, $border-color) {
     background-color: $bg-color;
@@ -18,6 +18,10 @@
     --uui-btn-border-disabled: var(--uui-disabled);
     --uui-btn-caption: var(--uui-color-contrast-text);
     --uui-btn-caption-disabled: var(--uui-text-disabled);
+
+    --uui-btn-border-radius: var(--uui-border-radius);
+
+    --uui-btn-font: var(--font-semibold);
     //
     background-color: var(--uui-btn-bg);
     color: var(--uui-btn-caption);
