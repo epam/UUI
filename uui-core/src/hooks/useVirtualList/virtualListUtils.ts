@@ -16,7 +16,7 @@ export const getAverageRowHeight = (rowHeights: number[]) => {
         return 1;
     }
 
-    const totalRowHeights = rowHeights.reduce((sum, next) => sum + next, 0);
+    const totalRowHeights = rowHeights.reduce((sum, next = 0) => sum + next, 0);
     return totalRowHeights / rowHeights.length;
 };
 
@@ -92,6 +92,7 @@ const getNewBottomIndex = (
 export const getRowsToFetchForScroll = (virtualListInfo: VirtualListInfo) => {
     const { value, blockSize } = virtualListInfo;
     const topIndex = getNewTopIndex(virtualListInfo);
+
     const newVirtualListInfo = virtualListInfo.update({ value: { ...value, topIndex } });
     const bottomIndex = getNewBottomIndex(newVirtualListInfo);
     // We never reduce visible count intentionally - it can be set so a larger value intentionally.
