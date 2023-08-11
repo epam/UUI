@@ -708,36 +708,6 @@
 
     /* begin color classes */
 
-    //.uui-button + .uui-badge
-    //
-    //.uui-link_button {
-    //    --uui-link-button-text: var(--uui-main);
-    //    --uui-link-button-text-hover: var(--uui-dark);
-    //    --uui-link-button-text-active: var(--uui-darkest);
-    //    --uui-link-button-text-disabled: var(--uui-caption-disabled);
-    //}
-    //
-    //.uui-icon_button {
-    //    --uui-icon-btn: var(--uui-main);
-    //    --uui-icon-btn-hover: var(--uui-dark);
-    //    --uui-icon-btn-active: var(--uui-darkest);
-    //    --uui-icon-btn-disabled: var(--uui-icon-disabled); // from core or color class? Current - from core
-    //}
-    //
-    //.uui-notification_card {
-    //    --uui-notification-card-fill: var(--uui-main);
-    //    --uui-notification-card-border: var(--uui-main);
-    //    --uui-notification-card-bg: var(--uui-surface);
-    //    --uui-notification-card-text: var(--uui-text-primary);
-    //}
-    //
-    //.uui-alert {
-    //    --uui-alert-text: var(--uui-text-primary);
-    //    --uui-alert-bg: var(--uui-lightest);
-    //    --uui-alert-border: var(--uui-main);
-    //    --uui-alert-icon: var(--uui-main);
-    //}
-
     .uui-color-white {
         --uui-main: var(--white);
         --uui-main-disabled: var(--uui-disabled);
@@ -808,13 +778,16 @@
     //    --uui-caption-disabled: var(--uui-text-disabled);
     //}
 
-    .uui-color-night500, .uui-color-gray, .uui-color-secondary {
+    .uui-icon_button.uui-color-default,
+    .uui-color-night500,
+    .uui-color-gray,
+    .uui-color-secondary {
+        --uui-color-5: var(--night800);
+        --uui-color-10: var(--night200);
+        --uui-color-20: var(--night300);
         --uui-color-50: var(--night500);
-        --uui-light: var(--night300);
-        --uui-lightest: var(--night200);
-        --uui-dark: var(--night400);
-        --uui-darkest: var(--night500);
-        --uui-soft: var(--night800);
+        --uui-color-60: var(--night400);
+        --uui-color-70: var(--night500);
         --uui-color-text: var(--night500);
         --uui-color-contrast-text: var(--uui-text-white);
     }
