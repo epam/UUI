@@ -12,7 +12,7 @@ describe('Button', () => {
         const tree = await renderSnapshotWithContextAsync(
             <Button
                 color="accent"
-                mode="outline"
+                fill="outline"
                 caption="Click me"
                 onClick={ jest.fn }
                 icon={ SvgMock }

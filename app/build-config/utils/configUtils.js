@@ -28,6 +28,7 @@ function changeRuleByTestAttr(config, test, changerFn) {
     const allRules = config.module.rules;
     if (allRules[0].test && testAttrCondition(allRules[0].test, test)) {
         // mutate array item here
+        console.log(allRules[0].test);
         allRules[0] = changerFn(allRules[0]);
     } else {
         const baseArr = allRules[1];
