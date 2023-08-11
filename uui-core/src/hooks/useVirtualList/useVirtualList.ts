@@ -60,7 +60,10 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
 
     const getTopIndexAndVisibleCountOnScroll = (virtualListInfo: VirtualListInfo) => {
         if (!virtualListInfo.scrollContainer || !virtualListInfo.value) {
-            return { visibleCount: virtualListInfo.value.visibleCount, topIndex: virtualListInfo.value.topIndex };
+            return {
+                visibleCount: virtualListInfo.value?.visibleCount,
+                topIndex: virtualListInfo.value?.topIndex,
+            };
         }
 
         return getRowsToFetchForScroll(virtualListInfo);
@@ -72,8 +75,9 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         rowOffsets.current = rowsInfo.rowOffsets;
 
         if (scrollContainer.current && value) onScroll?.(scrollContainer.current);
+        if (!scrollContainer.current || !value) return;
 
-        if (value?.scrollTo !== scrolledTo && value.scrollTo?.index != null) {
+        if (value?.scrollTo !== scrolledTo && value?.scrollTo?.index != null) {
             const { topIndex = 0, visibleCount = 0 } = value;
             const newEstimatedHeight = rowsInfo.estimatedContainerHeight
                     + (value.scrollTo.index - topIndex - visibleCount)
@@ -84,11 +88,19 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
                 : rowsInfo.estimatedContainerHeight;
 
             setEstimatedHeight(estimatedHeightToSet);
-            if (!scrollContainer.current || !value) return;
 
+            let newTopIndex = value.scrollTo.index - overdrawRows; // draw more rows at the top to remove visible blank areas while scrolling up
+            newTopIndex = Math.floor(newTopIndex / blockSize) * blockSize; // Align to blockSize
+            newTopIndex = Math.max(0, newTopIndex);
+
+            if (value.topIndex !== newTopIndex && visibleCount !== value.scrollTo.index) {
+                onValueChange({ ...value, visibleCount: value.scrollTo.index });
+            }
             scrollToIndex(value.scrollTo?.index);
-        } else if (estimatedHeight !== rowsInfo.estimatedContainerHeight) {
-            setEstimatedHeight(rowsInfo.estimatedContainerHeight);
+        } else {
+            if (estimatedHeight !== rowsInfo.estimatedContainerHeight) {
+                setEstimatedHeight(rowsInfo.estimatedContainerHeight);
+            }
             const { topIndex, visibleCount } = getTopIndexAndVisibleCountOnScroll(getVirtualListInfo());
             if (topIndex !== value.topIndex || visibleCount > value.visibleCount) {
                 onValueChange({ ...value, topIndex, visibleCount });
@@ -96,18 +108,21 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         }
     });
 
-    useLayoutEffectSafeForSsr(() => {
-        if (value.scrollTo?.index >= value.topIndex && value.scrollTo?.index <= value.topIndex + value.visibleCount) {
-            setScrolledTo(value.scrollTo);
-        }
-    }, [value.topIndex, value.scrollTo?.index]);
-
     const scrollToIndex = React.useCallback(
         (index: number, behavior?: ScrollBehavior) => {
             const indexToScroll = index;
             const topCoordinate = getTopCoordinate(getVirtualListInfo(), indexToScroll);
             if (!isNaN(topCoordinate)) {
                 scrollContainer.current.scrollTo({ top: topCoordinate, behavior });
+                if (scrollToOffsetY !== topCoordinate) {
+                    let newTopIndex = indexToScroll - overdrawRows; // draw more rows at the top to remove visible blank areas while scrolling up
+                    newTopIndex = Math.floor(newTopIndex / blockSize) * blockSize; // Align to blockSize
+                    newTopIndex = Math.max(0, newTopIndex);
+
+                    onValueChange({ ...value, topIndex: newTopIndex });
+                } else {
+                    setScrolledTo(value.scrollTo);
+                }
             }
         },
         [scrollContainer.current, rowOffsets.current],
@@ -117,8 +132,15 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         handleScrollToFocus();
     }, [value?.focusedIndex]);
 
+    const scrollToOffsetY = React.useMemo(() => {
+        if (rowOffsets.current.length === 0 || value?.scrollTo?.index == null) return 0;
+        return rowOffsets.current[value.scrollTo.index] - listOffset;
+    }, [
+        rowOffsets.current, listOffset, value?.scrollTo?.index,
+    ]);
+
     const offsetY = React.useMemo(() => {
-        if (rowOffsets.current.length === 0) return 0;
+        if (rowOffsets.current.length === 0 || !value) return 0;
         return rowOffsets.current[value.topIndex] - listOffset;
     }, [
         rowOffsets.current, listOffset, value?.topIndex,
@@ -128,7 +150,11 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         if (!scrollContainer.current && !value) return;
         onScroll?.(scrollContainer.current);
 
+        if (value.scrollTo !== scrolledTo && value.scrollTo?.index != null) {
+            return;
+        }
         const { topIndex, visibleCount } = getTopIndexAndVisibleCountOnScroll(getVirtualListInfo());
+
         if (topIndex !== value.topIndex || visibleCount > value.visibleCount) {
             onValueChange({ ...value, topIndex, visibleCount });
         }
