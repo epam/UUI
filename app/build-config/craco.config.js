@@ -47,8 +47,6 @@ function configureWebpack(config, { paths }) {
         config.optimization.splitChunks = { chunks: 'all' };
     });
 
-    console.log(JSON.stringify(config.module.rules));
-
     if (isUseBuildFolderOfDeps) {
         paths.appIndexJs = ENTRY_WITH_EXTRACTED_DEPS_CSS;
         config.entry = ENTRY_WITH_EXTRACTED_DEPS_CSS;
