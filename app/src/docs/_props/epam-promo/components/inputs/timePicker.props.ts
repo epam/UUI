@@ -1,5 +1,6 @@
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
-import { TimePicker, TimePickerProps } from '@epam/promo';
+import { TimePicker } from '@epam/promo';
+import { TimePickerProps } from '@epam/uui';
 import {
     DefaultContext, FormContext, iEditable, IHasEditModeDoc, isDisabledDoc, isInvalidDoc, ResizableContext, sizeDoc, TableContext,
 } from '../../docs';

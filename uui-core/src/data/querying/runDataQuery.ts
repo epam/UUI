@@ -1,4 +1,4 @@
-import { DataQuery } from '../../types';
+import { DataQuery } from '../../types/dataQuery';
 import { getOrderComparer } from './getOrderComparer';
 import { getFilterPredicate } from './getFilterPredicate';
 import { getSearchFilter } from './getSearchFilter';

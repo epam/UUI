@@ -12,3 +12,4 @@ export * from './types';
 export * from './filters';
 export * from './navigation';
 export * from './forms';
+export * from './fileUpload';
