@@ -410,7 +410,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         return (
             <Dropdown
                 renderTarget={ (dropdownProps) => {
-                    const targetProps = this.getTogglerProps(rows, dropdownProps);
+                    const targetProps = this.getTogglerProps(rows);
                     const targetRef = this.getTargetRef({ ...targetProps, ...dropdownProps });
                     return this.renderTarget({ ...dropdownProps, ...targetProps, ...targetRef });
                 } }
