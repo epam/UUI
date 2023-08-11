@@ -23,6 +23,7 @@ app.use(cors({
 app.use((req, res, next) => {
     res.set('X-XSS-Protection', '1; mode=block');
     res.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains');
+    res.set('Cache-Control', 'public,max-age=2592000,immutable');
     res.set('x-frame-options', 'SAMEORIGIN');
     res.set('X-Content-Type-Options', 'nosniff');
     res.set(
@@ -30,7 +31,7 @@ app.use((req, res, next) => {
         "default-src 'self' https://*.epam.com;"
         + "style-src 'self' 'unsafe-inline' https://*.epam.com https://cdnjs.cloudflare.com/; "
         + "font-src 'self' https://*.epam.com https://fonts.gstatic.com/; "
-        + "connect-src 'self' https://*.epam.com https://api.amplitude.com/ https://www.google-analytics.com/ wss://menu.epam.com/'; "
+        + "connect-src 'self' https://*.epam.com https://api.amplitude.com/ wss://menu.epam.com/*' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; "
         + 'frame-src *; '
         + 'img-src * data: ; '
         + `script-src 'self' ${isDevServer() ? "'unsafe-eval' 'unsafe-inline'" : ''} https://*.epam.com https://www.googletagmanager.com/ https://www.google-analytics.com/;`,
@@ -59,6 +60,7 @@ app.use('/api', api);
 
 if (!isDevServer()) {
     app.get('*', function response(req, res) {
+        res.set('Cache-Control', 'no-cache');
         res.sendFile(path.join(__dirname, '../app/build/', 'index.html'));
     });
 

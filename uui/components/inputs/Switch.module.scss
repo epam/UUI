@@ -1,3 +1,5 @@
+@use  '../../assets/styles/effects' as *;
+
 @mixin control-switch-size($size) {
     :global(.uui-switch-body) {
         height: $size;
@@ -29,25 +31,25 @@
 .root {
     --uui-switch-bg: var(--uui-control_switch-bg);
     --uui-switch-border-hover: var(--uui-control_switch-border-hover);
-    --uui-switch-bg-checked: var(--uui-main);
+    --uui-switch-bg-checked: var(--uui-color-50);
     --uui-switch-bg-hover: var(--uui-control-bg-hover);
     --uui-switch-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-switch-bg-checked-hover: var(--uui-dark);
-    --uui-switch-bg-checked-disabled: var(--uui-light);
+    --uui-switch-bg-checked-hover: var(--uui-color-60);
+    --uui-switch-bg-checked-disabled: var(--uui-color-20);
     --uui-switch-border: var(--uui-control-border);
-    --uui-switch-border-checked: var(--uui-main);
+    --uui-switch-border-checked: var(--uui-color-50);
     --uui-switch-border-disabled: var(--uui-control-border-disabled);
-    --uui-switch-border-checked-hover: var(--uui-dark);
-    --uui-switch-border-checked-disabled: var(--uui-light);
+    --uui-switch-border-checked-hover: var(--uui-color-60);
+    --uui-switch-border-checked-disabled: var(--uui-color-20);
     --uui-switch-label: var(--uui-control-label);
     --uui-switch-label-disabled: var(--uui-control-label-disabled);
     --uui-switch-toggler-bg: var(--uui-control_switch-toggler-bg);
     --uui-switch-toggler-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-switch-toggler-border-checked: var(--uui-main);
+    --uui-switch-toggler-border-checked: var(--uui-color-50);
     --uui-switch-toggler-border-hover: var(--uui-control-bg-hover);
     --uui-switch-toggler-border-disabled: var(--uui-control-border-disabled);
-    --uui-switch-toggler-border-checked-hover: var(--uui-dark);
-    --uui-switch-toggler-border-checked-disabled: var(--uui-light);
+    --uui-switch-toggler-border-checked-hover: var(--uui-color-60);
+    --uui-switch-toggler-border-checked-disabled: var(--uui-color-20);
 
     --uui-switch-font: var(--font-regular);
     //Sizes
@@ -69,6 +71,14 @@
         width: 36px;
         border-radius: 18px;
         box-sizing: border-box;
+
+        :global(input[type='checkbox']):focus-visible {
+            @include focus-visible-effect(2px, inherit);
+            width: inherit;
+            height: inherit;
+            position: absolute;
+            left: 0;
+        }
     }
 
     :global(.uui-switch-toggler) {
@@ -81,7 +91,6 @@
     }
 
     :global(.uui-input-label) {
-        //@include typography-inline; TODO: ???
         font-family: var(--uui-switch-font);
         font-weight: var(--uui-switch-font-weight, normal);
         color: var(--uui-switch-label);

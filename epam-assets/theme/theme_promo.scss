@@ -256,6 +256,8 @@
 
     --uui-control-checkbox-icon: var(--white);
 
+    --uui-control-focus: #008ACE80;
+
     --uui-tag-bg: var(--gray30);
     --uui-tag-bg-hover: var(--gray40);
 
@@ -699,6 +701,27 @@
     /* Pagination */
 
     --uui-pagination-font: var(--font-regular);
+
+    /* FileCard */
+    --uui-file-card-background: var(--gray40);
+    --uui-file-card-background-loaading: var(--gray40);
+    --uui-file-card-error: var(--uui-negative);
+    --uui-file-card-error-block: var(--uui-negative-darkest);
+    --uui-file-card-default: var(--uui-secondary);
+    --uui-file-card-dropstart-border: var(--uui-primary);
+    --uui-file-card-dropstart-background: var(--uui-primary-lightest);
+    --uui-file-card-link-hover: var(--uui-primary-dark);
+
+    /* IndeterminateBar */
+
+    --uui-indeterminate-bar-wrapper: var(--uui-secondary-light);
+    --uui-indeterminate-bar-background: var(--uui-primary);
+
+    /* ProgressBar */
+
+    --uui-progress-bar-wrapper: var(--uui-secondary-light);
+    --uui-progress-bar-background: var(--uui-primary);
+    --uui-progress-bar-label: var(--uui-surface-contrast-lower);
 
     /* ------------ NEW ----------- */
 

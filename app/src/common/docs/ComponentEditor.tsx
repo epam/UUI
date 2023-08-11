@@ -209,7 +209,13 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
             } else {
                 return (
                     <React.Fragment>
-                        <MultiSwitch items={ items } onValueChange={ onExampleClick } value={ this.state.selectedPropsIds[prop.name] } size="24" />
+                        <MultiSwitch
+                            items={ items }
+                            onValueChange={ onExampleClick }
+                            value={ this.state.selectedPropsIds[prop.name] }
+                            size="24"
+                            rawProps={ { style: { flexWrap: 'wrap' } } }
+                        />
                         {prop.description && (
                             <Tooltip placement="top" content={ prop.description }>
                                 <IconButton icon={ InfoIcon } color="default" />
@@ -374,7 +380,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
         if (!id) return '';
         switch (routeArray[id + 1]) {
             case 'uui':
-                return 'uui-theme-vanilla_thunder';
+                return '';
             case 'epam-promo':
                 return 'uui-theme-promo';
             case 'loveship':

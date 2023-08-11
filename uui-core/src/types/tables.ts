@@ -5,7 +5,7 @@ import {
 import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceState, IDataSource } from './dataSources';
-import { ILens } from '../data';
+import { ILens } from '../data/lenses/types';
 import * as CSS from 'csstype';
 import { RangeDatePickerPresets, TooltipCoreProps } from './components';
 import { Dayjs } from 'dayjs';

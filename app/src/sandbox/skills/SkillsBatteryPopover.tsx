@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import css from './SkillsBatteryPopover.module.scss';
 import { SmallBattery } from './components/SmallBattery';
 import { BigBattery } from './components/BigBattery';
-import { IInnerSkill, ISkill, ISkillLevel } from './index';
+import { ISkillLevel, IInnerSkill, ISkill } from './utils';
 import {
     Button, Dropdown, FlexRow, Text, DropdownContainer, IconContainer, IconButton, TextInput,
 } from '@epam/promo';

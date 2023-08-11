@@ -4,7 +4,7 @@ import css from './Checkbox.module.scss';
 import {
     Icon, uuiMod, uuiElement, isEventTargetInsideClickable, CheckboxCoreProps, UuiContexts, UuiContext,
 } from '@epam/uui-core';
-import { IconContainer } from '../layout';
+import { IconContainer } from '../layout/IconContainer';
 
 export interface CheckboxProps extends CheckboxCoreProps, IHasTabIndex {
     /** Check icon */
