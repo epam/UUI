@@ -28,7 +28,11 @@ export type BadgeProps = ButtonProps & BadgeMods;
 
 export function applyBadgeMods(mods: BadgeMods) {
     return [
-        'uui-badge', css.root, css['size-' + (mods.size || defaultSize)], `fill-${mods.fill || 'solid'}`, mods.color && `uui-color-${mods.color}`,
+        'uui-badge',
+        css.root,
+        css['size-' + (mods.size || defaultSize)],
+        `fill-${mods.fill || 'solid'}`,
+        mods.color && `uui-color-${mods.color}`,
     ];
 }
 

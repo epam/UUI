@@ -1,3 +1,12 @@
+// 5 - soft,
+// 10 - lightest,
+// 20 - light,
+// 50 - main,
+// 60 - dark,
+// 70 - darkest,
+// contrast-text - caption-contrast,
+// text - halftone
+
 /*  Name convention  */
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 // refactor indentions for this page using co-pilot
@@ -806,7 +815,9 @@
     //    --uui-caption-disabled: var(--uui-text-disabled);
     //}
 
-    .uui-color-accent, .uui-color-green, .uui-color-success {
+    .uui-color-accent,
+    .uui-color-green,
+    .uui-color-success {
         --uui-color-5: var(--green-5);
         --uui-color-10: var(--green-10);
         --uui-color-20: var(--green-20);
@@ -821,7 +832,9 @@
     // contrast from 10 - 100
     // contrast 50 main button color
 
-    .uui-color-primary, .uui-color-blue, .uui-color-info {
+    .uui-color-primary,
+    .uui-color-blue,
+    .uui-color-info {
         --uui-color-5: var(--blue-5);
         --uui-color-10: var(--blue-10);
         --uui-color-20: var(--blue-20);
@@ -832,7 +845,9 @@
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
-    .uui-color-negative, .uui-color-red, .uui-color-error {
+    .uui-color-negative,
+    .uui-color-red,
+    .uui-color-error {
         --uui-color-5: var(--red-5);
         --uui-color-10: var(--red-10);
         --uui-color-20: var(--red-20);
@@ -843,7 +858,8 @@
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
-    .uui-color-amber, .uui-color-warning {
+    .uui-color-amber,
+    .uui-color-warning {
         --uui-color-5: var(--amber-5);
         --uui-color-10: var(--amber-10);
         --uui-color-20: var(--amber-20);
