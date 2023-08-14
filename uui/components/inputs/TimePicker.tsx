@@ -3,8 +3,8 @@ import dayjs from 'dayjs';
 import { devLogger, DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
 import { BaseTimePickerProps, BaseTimePicker } from '@epam/uui-components';
 import { IHasEditMode, SizeMod, EditMode } from '../types';
-import { DropdownContainer } from '../overlays';
-import { TextInput } from '../inputs';
+import { DropdownContainer } from '../overlays/DropdownContainer';
+import { TextInput } from '../inputs/TextInput';
 import { TimePickerBody } from './TimePickerBody';
 import css from './TimePicker.module.scss';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
@@ -19,7 +19,7 @@ export interface TimePickerProps extends BaseTimePickerProps, SizeMod, IHasEditM
 
 export class TimePicker extends BaseTimePicker<TimePickerProps> {
     renderInput = (props: IDropdownToggler) => {
-        if (process.env.NODE_ENV !== 'production') {
+        if (__DEV__) {
             if (this.props.size === '48') {
                 devLogger.warnAboutDeprecatedPropValue<TimePickerProps, 'size'>({
                     component: 'TimePicker',
