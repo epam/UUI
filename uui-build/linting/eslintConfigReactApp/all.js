@@ -1,11 +1,10 @@
 const cfg = require('eslint-config-react-app/index.js');
 const { overrideSeverityInRulesMap } = require('../utils/rulesSeverityUtils.js');
-const config = require('eslint-config-react-app/jest');
 
-module.exports = {
+const newConfig = {
     ...cfg,
     extends: require.resolve('./allBase.js'),
-    overrides: config.overrides.map((o) => {
+    overrides: cfg.overrides.map((o) => {
         return {
             ...o,
             rules: overrideSeverityInRulesMap(o.rules),
@@ -13,3 +12,5 @@ module.exports = {
     }),
     rules: overrideSeverityInRulesMap(cfg.rules),
 };
+
+module.exports = newConfig;
