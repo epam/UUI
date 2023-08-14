@@ -374,7 +374,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const count = this.value.visibleCount;
 
         const rows = this.rows.slice(from, from + count);
-
+        const visibleRows = this.getRowsWithPinned(rows);
         const listProps = this.getListProps();
 
         if (this.hasMoreRows) {
@@ -384,17 +384,17 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
             const lastRow = this.rows[this.rows.length - 1];
 
-            while (rows.length < count && from + rows.length < listProps.rowsCount) {
-                const index = from + rows.length;
+            while (visibleRows.length < count && from + visibleRows.length < listProps.rowsCount) {
+                const index = from + visibleRows.length;
                 const row = this.getLoadingRow('_loading_' + index, index);
                 row.indent = lastRow.indent;
                 row.path = lastRow.path;
                 row.depth = lastRow.depth;
-                rows.push(row);
+                visibleRows.push(row);
             }
         }
 
-        return rows;
+        return visibleRows;
     };
 
     public getListProps = (): DataSourceListProps => {

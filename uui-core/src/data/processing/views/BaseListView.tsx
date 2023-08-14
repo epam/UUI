@@ -29,6 +29,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
     protected checkedByKey: Record<string, boolean> = {};
     protected someChildCheckedByKey: Record<string, boolean> = {};
+    protected pinned: Record<string, number> = {};
+    protected pinnedByParentId: Record<string, number[]> = {};
     public selectAll?: ICheckable;
     protected isDestroyed = false;
     protected hasMoreRows = false;
@@ -94,7 +96,11 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected keyToId(key: string) {
-        return JSON.parse(key);
+        try {
+            return JSON.parse(key);            
+        } catch (e) {
+            return key;
+        }
     }
 
     protected setObjectFlag(object: any, key: string, value: boolean) {
@@ -300,6 +306,9 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     // Extracts a flat list of currently visible rows from the tree
     protected rebuildRows() {
         const rows: DataRowProps<TItem, TId>[] = [];
+        const pinned: Record<string, number> = {};
+        const pinnedByParentId: Record<string, number[]> = {};
+
         const lastIndex = this.getLastRecordIndex();
 
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
@@ -323,7 +332,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 }
 
                 const row = this.getRowProps(item, rows.length);
-                
                 if (appendRows && (!this.isPartialLoad() || (this.isPartialLoad() && rows.length < lastIndex))) {
                     rows.push(row);
                     layerRows.push(row);
@@ -359,6 +367,14 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                             }
                         }
                     }
+                }
+                
+                if (row.isPinned) {
+                    pinned[this.idToKey(row.id)] = row.index;
+                    if (!pinnedByParentId[this.idToKey(row.parentId)]) {
+                        pinnedByParentId[this.idToKey(row.parentId)] = [];                        
+                    }
+                    pinnedByParentId[this.idToKey(row.parentId)]?.push(row.index);
                 }
             }
 
@@ -413,7 +429,46 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         }
 
         this.rows = rows;
+        this.pinned = pinned;
+        this.pinnedByParentId = pinnedByParentId;
         this.hasMoreRows = rootStats.hasMoreRows;
+    }
+
+    protected getRowsWithPinned(rows: DataRowProps<TItem, TId>[]) {
+        const rowsWithPinned: DataRowProps<TItem, TId>[] = [];
+        const ids = rows.map(({ id }) => id);
+        const alreadyPinned: TId[] = [];
+        rows.forEach((row) => {
+            const path = row.path;
+            path.forEach((item) => {
+                const pinnedIndex = this.pinned[this.idToKey(item.id)];
+                if (pinnedIndex === undefined) return;
+                
+                const parent = this.rows[pinnedIndex];
+                if (!parent || !parent.isPinned || alreadyPinned.includes(parent.id) || ids.includes(parent.id)) return;
+                
+                rowsWithPinned.push(parent);
+                alreadyPinned.push(parent.id);
+            });
+            const pinnedIndexes = this.pinnedByParentId[this.idToKey(row.parentId)];
+            if (pinnedIndexes && pinnedIndexes.length > 0) {
+                pinnedIndexes.forEach((index) => {
+                    const pinnedRow = this.rows[index];
+                    if (!pinnedRow || pinnedRow.id === row.id) return;
+                    if (!alreadyPinned.includes(pinnedRow.id) && !ids.includes(pinnedRow.id) && pinnedRow.index < row.index) {
+                        rowsWithPinned.push(pinnedRow);
+                        alreadyPinned.push(pinnedRow.id);
+                    }
+                });
+            }
+            
+            rowsWithPinned.push(row);
+            if (row.isPinned) {
+                alreadyPinned.push(row.id);
+            }
+        });
+        
+        return rowsWithPinned;
     }
 
     private getEstimatedChildrenCount = (id: TId) => {

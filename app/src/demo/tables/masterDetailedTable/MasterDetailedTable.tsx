@@ -174,7 +174,6 @@ export function MasterDetailedTable() {
             isSelectable: true,
             onClick: clickHandler,
             pin: (rowProps) => {
-                console.log(rowProps);
                 return rowProps.depth === 0;
             },
         },
