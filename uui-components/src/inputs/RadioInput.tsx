@@ -16,7 +16,7 @@ import {
     UuiContext,
     IHasForwardedRef,
 } from '@epam/uui-core';
-import { IconContainer } from '../layout';
+import { IconContainer } from '../layout/IconContainer';
 import css from './RadioInput.module.scss';
 
 export interface RadioInputProps

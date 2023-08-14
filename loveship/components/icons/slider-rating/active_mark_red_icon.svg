@@ -4,7 +4,7 @@
     <title>active_mark</title>
     <desc>Created with Sketch.</desc>
     <defs>
-        <linearGradient x1="50%" y1="0%" x2="50%" y2="95.8877389%" id="linearGradient-1">
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="95.8877389%" id="linearGradient-mark-red-1">
             <stop stop-color="#F96650" offset="0%"></stop>
             <stop stop-color="#EE3C3C" offset="100%"></stop>
         </linearGradient>
@@ -14,7 +14,7 @@
         <g id="criteria/grade/bad" transform="translate(0.000000, -2.000000)" stroke-width="2">
             <g id="radio" transform="translate(2.000000, 4.000000)">
                 <g id="active_mark">
-                    <circle stroke="#FFFFFF" stroke-linejoin="square" fill="url(#linearGradient-1)" fill-rule="evenodd" cx="6" cy="6" r="5"></circle>
+                    <circle stroke="#FFFFFF" stroke-linejoin="square" fill="url(#linearGradient-mark-red-1)" fill-rule="evenodd" cx="6" cy="6" r="5"></circle>
                     <circle stroke="#F06965" cx="6" cy="6" r="7"></circle>
                 </g>
             </g>

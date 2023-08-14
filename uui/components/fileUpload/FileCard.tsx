@@ -4,7 +4,10 @@ import { i18n } from '../../i18n';
 import { cx, FileUploadResponse, formatBytes, IClickable, IHasCX, uuiMod } from '@epam/uui-core';
 import { SvgCircleProgress } from './SvgCircleProgress';
 import { IconContainer } from '@epam/uui-components';
-import { FlexCell, FlexRow, IconButton, Text, Tooltip } from '../../components';
+import { FlexCell, FlexRow } from '../../components/layout';
+import { IconButton } from '../../components/buttons';
+import { Text } from '../../components/typography';
+import { Tooltip } from '../../components/overlays';
 import { fileIcons } from '../../icons/icons';
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/navigation-close-18.svg';
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-10.svg';
@@ -28,25 +31,25 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
         switch (extension) {
             case 'doc':
             case 'docx':
-                return <IconContainer size={ 24 } icon={ fileIcons.docIcon } />;
+                return <IconContainer size={ 24 } icon={ fileIcons.docIcon } cx={ css.docColor } />;
             case 'xls':
             case 'xlsx':
-                return <IconContainer size={ 24 } icon={ fileIcons.exelIcon } />;
+                return <IconContainer size={ 24 } icon={ fileIcons.exelIcon } cx={ css.xlsColor } />;
             case 'pdf':
-                return <IconContainer size={ 24 } icon={ fileIcons.pdfIcon } />;
+                return <IconContainer size={ 24 } icon={ fileIcons.pdfIcon } cx={ css.pdfColor } />;
             case 'gif':
             case 'jpg':
             case 'jpeg':
             case 'svg':
             case 'png':
             case 'webp':
-                return <IconContainer size={ 24 } icon={ fileIcons.imgIcon } />;
+                return <IconContainer size={ 24 } icon={ fileIcons.imgIcon } cx={ css.imgColor } />;
             case 'avi':
             case 'mov':
             case 'mp4':
             case 'wmw':
             case 'mkv':
-                return <IconContainer size={ 24 } icon={ fileIcons.videoIcon } />;
+                return <IconContainer size={ 24 } icon={ fileIcons.videoIcon } cx={ css.movieColor } />;
             case 'csv':
             case 'xml':
                 return <IconContainer size={ 24 } icon={ fileIcons.tableIcon } cx={ css.defaultColor } />;
@@ -96,7 +99,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
     const renderSuccessfulContent = () => (
         <Text size="18" fontSize="14" lineHeight="18" color="secondary">
             {fileExtension && `${fileExtension.toUpperCase()}, `}
-            {isLoading && formatBytes((size / 100) * progress) + i18n.fileCard.fileSizeProgress}
+            {isLoading && formatBytes((size / 100) * progress, 2, false) + i18n.fileCard.fileSizeProgress}
             {formatBytes(size)}
         </Text>
     );
@@ -109,7 +112,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
     return (
         <FlexCell
             ref={ ref }
-            cx={ cx(css.fileCardWrapper, isLoading && uuiMod.loading, componentCx, error?.isError && css.errorCardWrapper) }
+            cx={ cx(css.fileCardWrapper, (isLoading || error?.isError) && uuiMod.loading, componentCx, error?.isError && css.errorCardWrapper) }
             minWidth={ width }
             width={ !width ? '100%' : undefined }
         >

@@ -1,10 +1,7 @@
-@mixin panel-shadow() { box-shadow: var(--uui-panel-shadow); }
-
-@mixin panel-top-shadow() { box-shadow: inset 0 10px 5px -10px rgba(51, 51, 51, 0.2); }
-
-//@mixin button-focus-shadow() { box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1); } // TODO: design?
-
 @mixin dnd-ghost-shadow() { box-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05); }
 
-//@mixin control-focus-effect($name) { box-shadow: 0 0 0 2px fade-out($name, 0.6); } // TODO: design?
-@mixin control-focus-effect() { box-shadow: 0 0 0 2px rgba(0, 137 , 204, 0.4); }
+@mixin focus-visible-effect($offset: 2px, $radius: 2px) {
+    outline: 2px solid var(--uui-control-focus);
+    outline-offset: $offset;
+    border-radius: $radius;
+}

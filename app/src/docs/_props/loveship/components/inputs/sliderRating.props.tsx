@@ -16,6 +16,7 @@ const SliderRatingDoc = new DocBuilder<SliderRatingProps<number>>({ name: 'Slide
     .prop('from', { examples: [1, 2] })
     .prop('withoutNa', { examples: [true] })
     .prop('size', { examples: ['18', '24'] })
+    .prop('tooltipColor', { examples: ['white', 'fire', 'gray'] })
     .prop('renderTooltip', {
         examples: [
             {

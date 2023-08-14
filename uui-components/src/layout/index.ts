@@ -10,3 +10,4 @@ export * from './Tree';
 export * from './Blocker';
 export * from './ScrollBars';
 export * from '../adaptivePanel/AdaptivePanel';
+export * from '../adaptivePanel/types';
