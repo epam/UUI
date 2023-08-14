@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI,
 } from '../common';
 
 export class TextDoc extends BaseDocsBlock {
@@ -9,6 +9,7 @@ export class TextDoc extends BaseDocsBlock {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/typography/text.props.tsx',
             [UUI4]: './app/src/docs/_props/epam-promo/components/typography/text.props.tsx',
+            [UUI]: './app/src/docs/_props/uui/components/typography/text.props.tsx',
         };
     }
 
