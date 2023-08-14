@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource, AsyncDataSource } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay, userEvent,
 } from '@epam/uui-test-utils';
 import { PickerInput } from '../PickerInput';
 
@@ -61,7 +61,7 @@ async function setupPickerInputForTest(params: Partial<PickerInputComponentProps
                     onValueChange: jest.fn().mockImplementation((newValue) => context.current.setProperty('value', newValue)),
                     dataSource: mockDataSourceAsync,
                     disableClear: false,
-                    searchPosition: 'input',
+                    searchPosition: params.searchPosition,
                     getName: (item) => item.level,
                 };
             }
@@ -71,7 +71,7 @@ async function setupPickerInputForTest(params: Partial<PickerInputComponentProps
                 onValueChange: jest.fn().mockImplementation((newValue) => context.current.setProperty('value', newValue)),
                 dataSource: mockDataSourceAsync,
                 disableClear: false,
-                searchPosition: 'input',
+                searchPosition: params.searchPosition,
                 getName: (item) => item.level,
             };
         },
@@ -126,6 +126,7 @@ describe('PickerInput', () => {
         const { dom, mocks } = await setupPickerInputForTest({
             value: undefined,
             selectionMode: 'multi',
+            searchPosition: 'input',
         });
         expect(dom.input.getAttribute('placeholder').trim()).toEqual('Please select');
         fireEvent.click(dom.input);
@@ -172,5 +173,49 @@ describe('PickerInput', () => {
         const clear = screen.getByRole('button');
         fireEvent.click(clear);
         expect(screen.queryByText('C2')).not.toBeInTheDocument();
+    });
+
+    describe('keyboard navigation', () => {
+        let btn;
+        function addFocusableElementBefore() {
+            const btnEl = document.createElement('button');
+            document.body.prepend(btnEl);
+            return btnEl;
+        }
+
+        beforeAll(() => {
+            btn = addFocusableElementBefore();
+        });
+
+        const testInputFocus = async (selectionMode, searchPosition?) => {
+            const user = userEvent.setup();
+            const { dom } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode,
+                searchPosition,
+            });
+
+            // click the button just before PickerInput
+            await user.click(btn);
+            // move to PickerInput by Tab key
+            await user.tab();
+
+            expect(dom.input).not.toHaveAttribute('readOnly');
+            expect(dom.input).toEqual(document.activeElement);
+
+            return user;
+        };
+
+        it('[selectionMode single] should focus input on Tab', async () => await testInputFocus('single'));
+
+        it('[selectionMode multi] should focus input on Tab', async () => await testInputFocus('multi', 'input'));
+
+        it('[selectionMode single] should open dropdown when start typing', async () => {
+            const user = await testInputFocus('single');
+            expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+
+            await user.keyboard('a');
+            expect(await screen.findByRole('dialog')).toBeInTheDocument();
+        });
     });
 });

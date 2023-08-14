@@ -1,3 +1,11 @@
+# 5.x.x - xx.xx.2023
+
+**What's New**
+* [FiltersPanel]: added possibility to provide your own custom filter
+
+**What's Fixed**
+
+
 # 5.1.2 - 10.08.2023
 
 **What's New**
