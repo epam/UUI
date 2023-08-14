@@ -4,7 +4,7 @@ import { useLayoutEffectSafeForSsr } from '../../ssr';
 import {
     getRowsToFetchForScroll, getUpdatedRowsInfo, getTopCoordinate, assumeHeightForScrollToIndex,
     getTopIndexWithOffset, getOffsetYForIndex,
-} from './virtualListUtils';
+} from './utils';
 import { UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
 import { VirtualListInfo } from './VirtualListInfo';
 
