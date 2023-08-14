@@ -230,6 +230,10 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 const selection = `${currentValueFrom} - ${currentValueTo}`;
                 return { selection: [selection] };
             }
+            case 'custom': {
+                const value = props.getTogglerValue(props);
+                return { selection: value !== undefined ? [value] : undefined };
+            }
         }
     };
 
