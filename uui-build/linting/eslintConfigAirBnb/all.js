@@ -125,7 +125,7 @@ const AIRBNB_PICK_RULES = {
     },
 };
 
-module.exports = {
+const newConfig = {
     base: {
         stylistic: pickFromMap(baseMap, AIRBNB_PICK_RULES.BASE.STYLISTIC),
         nonStylistic: pickFromMap(baseMap, AIRBNB_PICK_RULES.BASE.NON_STYLISTIC),
@@ -139,6 +139,7 @@ module.exports = {
         nonStylistic: pickFromMap(tsMap, AIRBNB_PICK_RULES.TS.NON_STYLISTIC, true),
     },
 };
+module.exports = newConfig;
 
 function pickFromMap(map, names, isTypescript) {
     return names.reduce((acc, ruleName) => {

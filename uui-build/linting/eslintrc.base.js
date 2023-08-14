@@ -16,7 +16,7 @@
  *  Reason why we don't use Prettier at the moment:
  *  - No possibility to add JSX attr spaces as described here: https://github.com/prettier/prettier/issues/95
  */
-const pickFromAirbnb = require('./eslintConfigAirBnb/eslintRulesFromAirbnb.js');
+const pickFromAirbnb = require('./eslintConfigAirBnb/all.js');
 const { turnOffEslintRulesToBeFixed, shouldTurnOffRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
 const { isCI, isLintStaged, isLintScript } = require('../utils/envUtils.js');
 const { getIgnoredPatterns } = require('./../../.eslintignore.js');
