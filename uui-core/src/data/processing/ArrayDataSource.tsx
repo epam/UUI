@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { IDataSourceView, DataSourceState } from '../../types';
+import { IDataSourceView, DataSourceState } from '../../types/dataSources';
 import { BaseDataSource } from './BaseDataSource';
 import { ArrayListView, ArrayListViewProps } from './views';
 import { ITree, NOT_FOUND_RECORD, Tree } from './views/tree';

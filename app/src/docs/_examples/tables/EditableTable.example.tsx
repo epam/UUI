@@ -121,12 +121,10 @@ export default function EditableTableExample() {
                             // This is used by the cell itself to highlight invalid cells.
                             { ...props.rowLens.prop('name').toProps() }
                             // The same IEditable is then passed to the renderEditor callback,
-                            // which should render an compatible IEditable component
+                            // which should render a compatible IEditable component
                             // The cell passes the mode='cell' prop, so all compatible UUI components
                             // are rendered in a 'cell mode' - adopted to use in cells (e.g. with borders removed)
                             renderEditor={ (props) => <TextInput { ...props } /> }
-                            // Need to set smaller cell padding, that cell editor content will be aligned with header caption
-                            padding="12"
                             { ...props }
                         />
                     ),
@@ -208,7 +206,7 @@ export default function EditableTableExample() {
                 </FlexCell>
                 <FlexSpacer />
                 <FlexCell width="auto">
-                    <Button caption="Revert" onClick={ revert } isDisabled={ !isChanged } color="gray50" />
+                    <Button caption="Revert" onClick={ revert } isDisabled={ !isChanged } color="gray" />
                 </FlexCell>
                 <FlexCell width="auto">
                     <Button caption="Save" onClick={ save } color="green" isDisabled={ !isChanged } />

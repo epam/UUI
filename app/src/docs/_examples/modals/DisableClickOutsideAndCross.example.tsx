@@ -33,5 +33,14 @@ function ModalWithDisabledClickOutsideAndCross(props: IModal<string>) {
 
 export default function DisableClickOutsideAndCrossExampleToggler() {
     const { uuiModals } = useUuiContext();
-    return <Button caption="Show modal" onClick={ () => uuiModals.show((props) => <ModalWithDisabledClickOutsideAndCross { ...props } />) } />;
+    return (
+        <Button
+            caption="Show modal"
+            onClick={
+                () => uuiModals
+                    .show((props) => <ModalWithDisabledClickOutsideAndCross { ...props } />)
+                    .catch(() => {})
+            }
+        />
+    );
 }

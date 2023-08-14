@@ -1,9 +1,14 @@
 import { Link, LayoutLayer, AnalyticsEvent } from './objects';
 import * as PropTypes from 'prop-types';
 import { IModal, INotification } from './props';
-import {
-    FileUploadOptions, FileUploadResponse, SkinContext, ModalOperation, IHistory4, Lock, TMouseCoords,
-} from '../services';
+import { TMouseCoords } from '../services/dnd/DndContext';
+import { Lock } from '../services/LockContext';
+import { IHistory4 } from '../services/routing/HistoryAdaptedRouter';
+import { NotificationOperation } from '../services/NotificationContext';
+import { SkinContext } from '../services/SkinContext';
+import { ModalOperation } from '../services/ModalContext';
+
+import { FileUploadOptions, FileUploadResponse } from '../services/ApiContext';
 
 export interface IBaseContext<TState = {}> {
     subscribe(handler: (state: TState) => void): void;
@@ -14,12 +19,6 @@ export interface IBaseContext<TState = {}> {
 export interface NotificationParams {
     duration?: number | 'forever';
     position?: 'bot-left' | 'bot-right' | 'top-left' | 'top-right' | 'top-center' | 'bot-center';
-}
-
-export interface NotificationOperation {
-    component: React.ComponentType<any>;
-    props: INotification;
-    config: NotificationParams;
 }
 
 export interface INotificationContext extends IBaseContext {

@@ -1,4 +1,4 @@
-import { ICanBeInvalid } from '../../types';
+import { ICanBeInvalid } from '../../types/props';
 import { i18n } from '../../i18n';
 import { Metadata } from '../../types';
 

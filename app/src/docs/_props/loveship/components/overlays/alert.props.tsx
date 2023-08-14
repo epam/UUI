@@ -48,10 +48,21 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
             },
         ],
     })
+    .prop('size', {
+        examples: [
+            {
+                value: '48',
+                name: '48',
+            }, {
+                value: '36',
+                name: '36',
+            },
+        ],
+    })
     .prop('onClose', {
         examples: [
             {
-                value: () => {},
+                value: () => alert('close action'),
                 name: 'OnClose',
             },
         ],

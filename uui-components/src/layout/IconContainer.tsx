@@ -3,7 +3,7 @@ import css from './IconContainer.module.scss';
 import {
     uuiElement, uuiMod, uuiMarkers, IHasCX, IDisableable, Icon, cx, IHasRawProps, IHasTabIndex,
 } from '@epam/uui-core';
-import { Svg } from '../widgets';
+import { Svg } from '../widgets/Svg';
 
 export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasTabIndex {
     /** Icon to display */

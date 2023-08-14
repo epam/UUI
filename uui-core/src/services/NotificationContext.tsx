@@ -1,11 +1,17 @@
 import * as React from 'react';
 import clone from 'lodash.clone';
 import { BaseContext } from './BaseContext';
-import { NotificationParams, INotificationContext, NotificationOperation } from '../types/contexts';
+import { NotificationParams, INotificationContext } from '../types/contexts';
 import { LayoutContext } from './LayoutContext';
 import { INotification } from '../types/props';
 
 let idCounter = 0;
+
+export interface NotificationOperation {
+    component: React.ComponentType<any>;
+    props: INotification;
+    config: NotificationParams;
+}
 
 export class NotificationContext extends BaseContext implements INotificationContext {
     private notifications: NotificationOperation[] = [];
