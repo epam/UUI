@@ -6,6 +6,16 @@ const SEVERITY = {
     error: isLintStaged ? 2 : 1,
 };
 
+function isRuleTurnedOff(ruleConfig) {
+    let s;
+    if (Array.isArray(ruleConfig)) {
+        s = ruleConfig[0];
+    } else {
+        s = ruleConfig;
+    }
+    return s === 'off' || s === 0;
+}
+
 function setSeverity(ruleConfig, severity) {
     if (Array.isArray(ruleConfig)) {
         return [severity].concat(ruleConfig.slice(1));
@@ -18,7 +28,12 @@ function setSeverity(ruleConfig, severity) {
 
 function overrideSeverityInRulesMap(rulesMap) {
     return Object.keys(rulesMap).reduce((acc, ruleName) => {
-        acc[ruleName] = setSeverity(rulesMap[ruleName], SEVERITY.warn);
+        const ruleConfig = rulesMap[ruleName];
+        if (isRuleTurnedOff(ruleConfig)) {
+            acc[ruleName] = ruleConfig;
+        } else {
+            acc[ruleName] = setSeverity(ruleConfig, SEVERITY.warn);
+        }
         return acc;
     }, {});
 }
