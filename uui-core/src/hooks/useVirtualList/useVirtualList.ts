@@ -150,7 +150,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     );
 
     const offsetY = React.useMemo(
-        () => getOffsetYForIndex(value.topIndex, rowOffsets.current, listOffset),
+        () => getOffsetYForIndex(value?.topIndex, rowOffsets.current, listOffset),
         [rowOffsets.current, listOffset, value?.topIndex],
     );
 
