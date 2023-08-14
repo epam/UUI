@@ -19,6 +19,10 @@
                 color: var(--uui-burger_btn_caption-hover);
                 fill: var(--uui-burger_btn_caption-hover);
             }
+
+            &:focus-visible {
+                @include focus-visible-effect(-2px, null);
+            }
         }
     }
 
@@ -40,10 +44,6 @@
         padding-left: 18px;
         margin-left: 48px;
         border-left: 1px var(--uui-burger_btn-border) solid;
-
-        &:hover {
-            // border-left-color: @blue;
-        }
     }
 
     &.hasIcon,
