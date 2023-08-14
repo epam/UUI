@@ -1,6 +1,7 @@
 /**
  * This module provides eslint rules which we want to pick from airbnb
  */
+const { SEVERITY, setSeverity } = require('../utils/rulesSeverityUtils.js');
 
 const baseMap = {
     ...require('eslint-config-airbnb-base/rules/errors').rules,
@@ -110,7 +111,7 @@ const AIRBNB_PICK_RULES = {
         NON_STYLISTIC: [
             'react/no-access-state-in-setstate',
             'react/jsx-no-bind',
-            { name: 'react/prefer-stateless-function', severity: 1 },
+            'react/prefer-stateless-function',
             'react/no-find-dom-node',
             //
             'jsx-a11y/no-noninteractive-tabindex',
@@ -139,30 +140,12 @@ module.exports = {
     },
 };
 
-function setSeverity(ruleConfig, severity) {
-    if (Array.isArray(ruleConfig)) {
-        ruleConfig[0] = severity;
-        return ruleConfig;
-    }
-    if (typeof ruleConfig === 'number') {
-        return severity;
-    }
-    throw new Error('Unexpected rule config', ruleConfig);
-}
-
 function pickFromMap(map, names, isTypescript) {
     return names.reduce((acc, nameOrConfig) => {
-        let n = nameOrConfig;
-        let newSeverity;
-        if (typeof nameOrConfig !== 'string') {
-            n = nameOrConfig.name;
-            newSeverity = nameOrConfig.severity;
-        }
-        let fromMap = map[n];
+        const n = nameOrConfig;
+        const fromMap = map[n];
         if (fromMap) {
-            if (newSeverity) {
-                fromMap = setSeverity(fromMap, newSeverity);
-            }
+            setSeverity(fromMap, SEVERITY.warn);
             if (isTypescript) {
                 const nNotTs = n.substring('@typescript-eslint/'.length);
                 acc[nNotTs] = 'off'; // need to disable the corresponding js rule, to avoid conflict.

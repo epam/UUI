@@ -16,10 +16,11 @@
  *  Reason why we don't use Prettier at the moment:
  *  - No possibility to add JSX attr spaces as described here: https://github.com/prettier/prettier/issues/95
  */
-const pickFromAirbnb = require('./utils/eslintRulesFromAirbnb.js');
+const pickFromAirbnb = require('./eslintConfigAirBnb/eslintRulesFromAirbnb.js');
 const { turnOffEslintRulesToBeFixed, shouldTurnOffRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
 const { isCI, isLintStaged, isLintScript } = require('../utils/envUtils.js');
 const { getIgnoredPatterns } = require('./../../.eslintignore.js');
+const { SEVERITY } = require('./utils/rulesSeverityUtils.js');
 
 process.env.NODE_ENV = 'production'; // this line is required by "babel-preset-react-app".
 module.exports = {
@@ -31,7 +32,7 @@ module.exports = {
     ignorePatterns: getIgnoredPatterns({ isCI: isCI(), isLintStaged: isLintStaged(), isLintScript: isLintScript() }),
     // We need to remove such directives only if full set of rules is checked.
     reportUnusedDisableDirectives: !shouldTurnOffRulesToBeFixed,
-    extends: ['react-app'],
+    extends: require.resolve('./eslintConfigReactApp/all.js'),
     rules: {
         ...uuiJsRules(),
         ...turnOffEslintRulesToBeFixed(),
@@ -54,14 +55,14 @@ module.exports = {
                  *
                  * as soon as this is done, this rule can be enabled globally
                  */
-                'react-hooks/exhaustive-deps': 0,
+                'react-hooks/exhaustive-deps': SEVERITY.off,
             },
         }, {
             files: ['**/__tests__/**/*', '**/*.{test}.ts?(x)'],
-            extends: ['react-app/jest'],
+            extends: require.resolve('./eslintConfigReactApp/allJest.js'),
             env: { 'jest/globals': true },
             rules: {
-                'import/no-extraneous-dependencies': 0,
+                'import/no-extraneous-dependencies': SEVERITY.off,
                 'no-restricted-imports': ['error', {
                     paths: [
                         { name: 'react-test-renderer', message: 'Please use: import { renderer } from \'@epam/uui-test-utils\';' },
@@ -76,11 +77,11 @@ module.exports = {
                  * Don't want to force usage of userEvent because it slows down the performance of tests (with user-event it's ~3 times slower).
                  * https://github.com/testing-library/user-event/issues/650
                  */
-                'testing-library/prefer-user-event': 0,
-                'testing-library/render-result-naming-convention': 0,
-                'testing-library/no-node-access': 1,
-                'testing-library/no-manual-cleanup': 2,
-                'testing-library/prefer-explicit-assert': 2,
+                'testing-library/prefer-user-event': SEVERITY.off,
+                'testing-library/render-result-naming-convention': SEVERITY.off,
+                'testing-library/no-node-access': SEVERITY.warn,
+                'testing-library/no-manual-cleanup': SEVERITY.error,
+                'testing-library/prefer-explicit-assert': SEVERITY.error,
                 ...turnOffEslintRulesToBeFixed(),
             },
         }, {
@@ -94,13 +95,13 @@ module.exports = {
             rules: {
                 ...uuiJsRules(),
                 'import/no-unresolved': [
-                    2, {
+                    SEVERITY.error, {
                         commonjs: true,
                         caseSensitive: true,
                     },
                 ],
                 'import/extensions': [
-                    2, 'never', { ignorePackages: true },
+                    SEVERITY.error, 'never', { ignorePackages: true },
                 ],
                 ...turnOffEslintRulesToBeFixed(),
             },
@@ -131,18 +132,18 @@ function uuiTsRules() {
     return {
         // non-stylistic - start
         ...pickFromAirbnb.typescript.nonStylistic,
-        'no-unused-expressions': 0,
+        'no-unused-expressions': SEVERITY.off,
         '@typescript-eslint/no-unused-expressions': uuiJsRules()['no-unused-expressions'],
-        'no-shadow': 0,
+        'no-shadow': SEVERITY.off,
         '@typescript-eslint/no-shadow': uuiJsRules()['no-shadow'],
         // non-stylistic - end
         // stylistic - start
         ...pickFromAirbnb.typescript.stylistic,
-        indent: 0,
+        indent: SEVERITY.off,
         '@typescript-eslint/indent': uuiJsRules()['indent'],
-        'comma-dangle': 0,
+        'comma-dangle': SEVERITY.off,
         '@typescript-eslint/comma-dangle': [
-            2, {
+            SEVERITY.error, {
                 arrays: 'always-multiline',
                 objects: 'always-multiline',
                 imports: 'always-multiline',
@@ -160,11 +161,11 @@ function uuiJsRules() {
     return {
         // non-stylistic - start
         ...pickFromAirbnb.base.nonStylistic,
-        'default-case': 0,
-        'no-use-before-define': 0,
-        'guard-for-in': 0, // we disallow for-in statement by another rule, so this rule not needed.
+        'default-case': SEVERITY.off,
+        'no-use-before-define': SEVERITY.off,
+        'guard-for-in': SEVERITY.off, // we disallow for-in statement by another rule, so this rule not needed.
         'no-restricted-syntax': [
-            2, {
+            SEVERITY.error, {
                 selector: 'ForInStatement',
                 message:
                     'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
@@ -176,7 +177,7 @@ function uuiJsRules() {
          * - keep it turned off and enable only occasionally if necessary.
          * - change maxDepth to lower value and increase it if you need to see all circular deps.
          */
-        'import/no-cycle': [1, { maxDepth: 4 }],
+        'import/no-cycle': [SEVERITY.warn, { maxDepth: 4 }],
         'import/no-extraneous-dependencies': ['error', {}],
         'no-restricted-imports': ['error', {
             patterns: [
@@ -184,31 +185,31 @@ function uuiJsRules() {
             ],
         }],
         'import/no-unresolved': [
-            2, {
+            SEVERITY.error, {
                 ignore: [
                     '^@epam/uui-[\\w]+/styles.css$', '@epam/promo/styles.css', '@epam/loveship/styles.css',
                 ],
             },
         ],
-        'no-console': [1, { allow: ['error', 'warn'] }],
-        'no-param-reassign': [1, { props: false }],
-        radix: [1, 'as-needed'],
-        'no-cond-assign': [2, 'except-parens'],
-        'no-unused-expressions': [2, { allowShortCircuit: true }],
-        eqeqeq: [2, 'smart'],
+        'no-console': [SEVERITY.warn, { allow: ['error', 'warn'] }],
+        'no-param-reassign': [SEVERITY.warn, { props: false }],
+        radix: [SEVERITY.warn, 'as-needed'],
+        'no-cond-assign': [SEVERITY.error, 'except-parens'],
+        'no-unused-expressions': [SEVERITY.error, { allowShortCircuit: true }],
+        eqeqeq: [SEVERITY.error, 'smart'],
         'prefer-const': [
-            1, {
+            SEVERITY.warn, {
                 destructuring: 'any',
                 ignoreReadBeforeAssign: true,
             },
         ],
-        'no-shadow': [2, { allow: ['props'] }],
+        'no-shadow': [SEVERITY.error, { allow: ['props'] }],
         // non-stylistic- end
         // stylistic - start
         ...pickFromAirbnb.base.stylistic,
-        'no-trailing-spaces': 0,
+        'no-trailing-spaces': SEVERITY.off,
         'max-len': [
-            2, {
+            SEVERITY.error, {
                 code: 170,
                 ignoreUrls: true,
                 ignoreComments: true,
@@ -217,13 +218,13 @@ function uuiJsRules() {
                 ignoreStrings: true,
             },
         ],
-        'array-element-newline': [2, 'consistent'],
-        'array-bracket-newline': [2, 'consistent'],
+        'array-element-newline': [SEVERITY.error, 'consistent'],
+        'array-bracket-newline': [SEVERITY.error, 'consistent'],
         indent: [
-            2, 4, { SwitchCase: 1 },
+            SEVERITY.error, 4, { SwitchCase: 1 },
         ],
         'comma-dangle': [
-            2, {
+            SEVERITY.error, {
                 arrays: 'always-multiline',
                 objects: 'always-multiline',
                 imports: 'always-multiline',
@@ -240,10 +241,10 @@ function uuiReactRules() {
     return {
         // non-stylistic - start
         ...pickFromAirbnb.react.nonStylistic,
-        'react/no-unescaped-entities': [2, { forbid: ['>', '}'] }],
-        'react/jsx-no-useless-fragment': 1,
+        'react/no-unescaped-entities': [SEVERITY.error, { forbid: ['>', '}'] }],
+        'react/jsx-no-useless-fragment': SEVERITY.warn,
         'react/function-component-definition': [
-            2, {
+            SEVERITY.error, {
                 namedComponents: ['function-declaration', 'function-expression'],
                 unnamedComponents: 'function-expression',
             },
@@ -252,7 +253,7 @@ function uuiReactRules() {
         // stylistic - start
         ...pickFromAirbnb.react.stylistic,
         'react/jsx-wrap-multilines': [
-            2, {
+            SEVERITY.error, {
                 condition: 'parens-new-line',
                 logical: 'parens-new-line',
                 arrow: 'parens-new-line',
@@ -262,10 +263,10 @@ function uuiReactRules() {
             },
         ],
         'react/jsx-curly-spacing': [
-            2, 'always', { allowMultiline: true },
+            SEVERITY.error, 'always', { allowMultiline: true },
         ],
-        'react/jsx-indent': [2, 4],
-        'react/jsx-indent-props': [2, 4],
+        'react/jsx-indent': [SEVERITY.error, 4],
+        'react/jsx-indent-props': [SEVERITY.error, 4],
         // stylistic - end
     };
 }
