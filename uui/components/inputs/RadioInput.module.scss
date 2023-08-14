@@ -61,6 +61,13 @@
         flex-shrink: 0;
         box-sizing: border-box;
 
+        :global(input[type='radio']):focus-visible {
+            @include focus-visible-effect(2px, inherit);
+            width: inherit;
+            height: inherit;
+            position: absolute;
+        }
+
         &:global(.uui-checked) {
             border-color: var(--uui-radio-input-border-checked);
 

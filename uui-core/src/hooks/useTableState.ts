@@ -2,22 +2,43 @@ import { useCallback, useState } from 'react';
 import isEqual from 'lodash.isequal';
 import {
     ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, IEditable, ITablePreset, ITableState, TableFiltersConfig,
-} from '../../types';
-import { getOrderBetween } from '../../helpers';
-import { useUuiContext } from '../../services';
+} from '../types';
+import { getOrderBetween } from '../helpers';
+import { useUuiContext } from '../services';
 import sortBy from 'lodash.sortby';
-import { normalizeFilterConfig } from './normalizeFilterConfig';
-import { clearEmptyValueFromRecord } from './clearEmptyValueFromRecord';
+import { clearEmptyValueFromRecord } from '../helpers/clearEmptyValueFromRecord';
 
-export const useTableState = <TFilter = Record<string, any>, TViewState = any>(params: TableStateParams<TFilter, TViewState>): ITableState<TFilter, TViewState> => {
+export const normalizeFilterConfig = <TFilter>(filtersConfig: FiltersConfig, filterValue: Record<string, any> | undefined, filters: TableFiltersConfig<TFilter>[]) => {
+    if (!filters) {
+        return undefined;
+    }
+
+    const result: FiltersConfig = {};
+    let order: string | null = null;
+    filters.forEach((filter) => {
+        if (filter.isAlwaysVisible || filterValue?.[filter.field as string] || filtersConfig?.[filter.field]) {
+            const newOrder = filtersConfig?.[filter?.field]?.order || getOrderBetween(order, null);
+            const isVisible = filtersConfig?.[filter?.field]?.isVisible;
+            result[filter.field] = {
+                isVisible: isVisible ?? true,
+                order: newOrder,
+            };
+            order = newOrder;
+        }
+    });
+    return result;
+};
+
+export const useTableState = <TFilter = Record<string, any>, TViewState = any>
+(params: UseTableStateHookParams<TFilter, TViewState>): ITableState<TFilter, TViewState> => {
     const context = useUuiContext();
-    const [presets, setPresets] = useState(params.initialPresets ?? []);
+    const [presets, setPresets] = useState(params?.initialPresets ?? []);
 
     const getValueFromUrl = () => {
         const urlParams = context.uuiRouter.getCurrentLink().query;
 
         const activePreset = presets.find((p: ITablePreset<TFilter, TViewState>) => p.id === urlParams.presetId);
-        const filtersConfig = normalizeFilterConfig(activePreset?.filtersConfig, urlParams.filter, params.filters);
+        const filtersConfig = normalizeFilterConfig(activePreset?.filtersConfig, urlParams.filter, params?.filters);
 
         return {
             filter: urlParams.filter,
@@ -32,7 +53,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
     };
 
     const stateToQueryObject = (state: DataTableState<TFilter, TViewState>) => {
-        return {
+        const queryObject = {
             ...context.uuiRouter.getCurrentLink().query,
             filter: state.filter,
             presetId: state.presetId,
@@ -42,6 +63,8 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
             page: state.page,
             pageSize: state.pageSize,
         };
+
+        return clearEmptyValueFromRecord(queryObject) || {};
     };
 
     const setValueToUrl = (value: DataTableState<TFilter, TViewState>) => {
@@ -66,7 +89,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
     });
 
     const getTableStateValue = useCallback(() => {
-        if (params.onValueChange) {
+        if (params?.onValueChange) {
             return params.value;
         }
 
@@ -76,7 +99,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
             ...valueFromUrl,
             filtersConfig: tableStateValue.filtersConfig ?? valueFromUrl.filtersConfig,
         };
-    }, [params.value, tableStateValue]);
+    }, [params?.value, tableStateValue]);
 
     const normalizeTableStateValue = (value: DataTableState<TFilter, TViewState>) => {
         const newFilter = clearEmptyValueFromRecord(value.filter);
@@ -167,12 +190,16 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
 
     const createPreset = useCallback(
         async (preset: ITablePreset<TFilter, TViewState>) => {
-            preset.id = await params?.onPresetCreate?.(preset);
+            const newId = await params?.onPresetCreate?.(preset);
+            const newPreset = {
+                ...preset,
+                id: newId,
+            };
 
-            setPresets((prevValue) => [...prevValue, preset]);
-            choosePreset(preset);
+            setPresets((prevValue) => [...prevValue, newPreset]);
+            choosePreset(newPreset);
 
-            return preset.id;
+            return newId;
         },
         [choosePreset, params?.onPresetCreate],
     );
@@ -282,7 +309,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
     };
 };
 
-interface TableStateParams<TFilter = Record<string, any>, TViewState = any> extends Partial<IEditable<DataTableState<TFilter, TViewState>>> {
+export interface UseTableStateHookParams<TFilter = Record<string, any>, TViewState = any> extends Partial<IEditable<DataTableState<TFilter, TViewState>>> {
     /** Columns configuration, can be omitted if used without tables */
     columns?: DataColumnProps[];
     /** Filters configuration, can be omitted if you don't need filters */

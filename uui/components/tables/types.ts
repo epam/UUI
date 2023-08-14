@@ -1,4 +1,4 @@
-import { ControlSize } from '..';
+import { ControlSize } from '../types';
 
 interface BaseRowMods {
     size?: ControlSize | '60';

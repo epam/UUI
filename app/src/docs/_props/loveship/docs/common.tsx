@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IHasIcon, Icon } from '@epam/uui-core';
-import { ColorPicker, IconPicker } from './index';
+import { ColorPicker } from '@epam/uui-docs';
+import { IconPicker } from './editors';
 import { DocBuilder } from '@epam/uui-docs';
 import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, commonControlColors } from '@epam/loveship';
 import { TextMods, IHasEditMode } from '@epam/uui';

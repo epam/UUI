@@ -1,4 +1,4 @@
-import { Range, Editor, Text } from 'slate';
+import { Range, Editor } from 'slate';
 import { getPlugins, usePlateEditorState } from '@udecode/plate-common';
 import { EditorValue } from './types';
 
@@ -48,17 +48,9 @@ export function isPluginActive(key: string): boolean {
     return plugins.some((plugin) => plugin.key === key);
 }
 
-export const isElementEmpty = (value: EditorValue) => {
-    if (!value || value?.length > 1) {
-        return false;
-    }
-
-    const [first] = value;
+export const isEditorValueEmpty = (value: EditorValue) => {
     return (
         value.length === 0
-        || (value.length === 1
-        && Text.isText(first)
-        && first.type === 'paragraph'
-        && first.children[0].text === '')
+        || (value.length === 1 && value[0].type === 'paragraph' && value[0].children[0].text === '')
     );
 };

@@ -1,4 +1,4 @@
-export function formatBytes(bytes: number, decimals = 2) {
+export function formatBytes(bytes: number, decimals = 2, withSizes = true) {
     if (bytes === 0) return '0 Bytes';
 
     const k = 1024;
@@ -9,5 +9,6 @@ export function formatBytes(bytes: number, decimals = 2) {
 
     const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    const numbersResult = parseFloat((bytes / Math.pow(k, i)).toFixed(dm));
+    return withSizes ? `${numbersResult} ${sizes[i]}` : `${numbersResult}`;
 }

@@ -3,7 +3,8 @@ import cx from 'classnames';
 import {
     IHasCX, Icon, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';
-import { IconContainer, Portal, PortalProps } from '../../../index';
+import { Portal, PortalProps } from '../../../overlays';
+import { IconContainer } from '../../../layout';
 import css from './Burger.module.scss';
 import { Ref, useCallback, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
