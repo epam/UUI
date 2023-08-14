@@ -3,11 +3,11 @@
 .root {
     --uui-labeled-input: var(--uui-text-primary);
     --uui-labeled-input-disabled: var(--uui-text-disabled);
-    --uui-labeled-input-error: var(--uui-error);
+    --uui-labeled-input-error: var(--uui-error-50);
     --uui-labeled-input-fill: var(--uui-icon);
     --uui-labeled-input-info-fill: var(--uui-icon);
     --uui-labeled-input-optional-text: var(--uui-text-tertiary);
-    --uui-labeled-input-asterisk: var(--uui-error);
+    --uui-labeled-input-asterisk: var(--uui-error-50);
 
     --uui-labeled-input-font: var(--font-semibold);
     --uui-labeled-input-optional-font: var(--font-italic);

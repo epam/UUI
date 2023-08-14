@@ -3,9 +3,9 @@
 
     .icon-row {
         padding: 0 6px;
-        background-color: var(--uui-accent);
+        background-color: var(--uui-accent-50);
         opacity: 0.8;
-        background-image: repeating-radial-gradient(circle at 0 0, transparent 0, var(--uui-accent) 10px), repeating-linear-gradient(var(--uui-accent-darkest), var(--uui-accent-light));
+        background-image: repeating-radial-gradient(circle at 0 0, transparent 0, var(--uui-accent-50) 10px), repeating-linear-gradient(var(--uui-accent-70), var(--uui-accent-20));
     }
 
     .icon {
