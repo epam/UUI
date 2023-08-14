@@ -7,6 +7,10 @@
         border-radius: var(--uui-btn-border-radius);
     }
 
+    &:focus-visible {
+        @include focus-visible-effect();
+    }
+
     :global(.uui-caption) {
         @include overflow-ellipsis();
         min-width: 0;
@@ -40,8 +44,6 @@
         &:focus {
             background-color: var(--uui-btn-bg-hover);
             border-color: var(--uui-btn-bg-hover);
-            box-shadow: var(--uui-btn-focus-shadow);
-            outline: var(--uui-btn-focus-outline);
         }
 
         &:active {
@@ -68,7 +70,7 @@
     border-color: var(--uui-btn-border);
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:hover {
             background-color: var(--uui-btn-bg-halftone-hover);
             color: var(--uui-btn-caption-halftone);
             fill: var(--uui-btn-caption-halftone);
@@ -101,7 +103,7 @@
     border-color: var(--uui-btn-border);
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:hover {
             background-color: var(--uui-btn-bg-halftone-hover);
             color: var(--uui-btn-caption-halftone);
             fill: var(--uui-btn-caption-halftone);
@@ -134,7 +136,7 @@
     border-color: transparent;
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:hover {
             background-color: var(--uui-btn-bg-halftone-hover);
             border-color: var(--uui-btn-bg-halftone-hover);
         }

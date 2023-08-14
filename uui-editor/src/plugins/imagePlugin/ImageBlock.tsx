@@ -12,7 +12,7 @@ import invert from 'lodash.invert';
 
 import css from './ImageBlock.module.scss';
 import { ImgToolbar } from './Toolbar';
-import { IImageElement, PlateImgAlign, SlateImgAlign } from './imagePlugin';
+import { IImageElement, PlateImgAlign, SlateImgAlign } from '../../types';
 
 interface UpdatingProps { width?: number | string, align?: SlateImgAlign }
 
@@ -73,7 +73,7 @@ const useUpdatingElement = ({ element, editor }: { element: IImageElement, edito
         }), [element.width]);
 };
 
-export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageElement>> = (props) => {
+export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageElement>> = function (props) {
     const { editor, element, children } = props;
     const ref = useRef(null);
     const isFocused = useFocused();

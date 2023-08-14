@@ -26,7 +26,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
         e.preventDefault();
 
         let newType = toggleType;
-        if (type === prevElementType.current) {
+        if (newType === prevElementType.current) {
             newType = 'paragraph';
         }
         prevElementType.current = newType;

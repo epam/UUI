@@ -5,7 +5,7 @@ import {
 } from '@epam/uui-core';
 import { DataTableCell } from './DataTableCell';
 import { DataTableRowMods } from './types';
-import { DropMarker } from '../';
+import { DropMarker } from '../dnd';
 import css from './DataTableRow.module.scss';
 
 // Here we define a single instance of the renderCell function to make DataTableRow#shouldComponentUpdate work.

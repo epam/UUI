@@ -24,9 +24,9 @@ export default function BasicDropdownExample() {
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
             <DropdownContainer showArrow={ true } cx={ css.container } { ...props }>
-                <FlexRow alignItems="top" padding="18" vPadding="24">
+                <FlexRow alignItems="top" padding="12" vPadding="24">
                     <Panel style={ { width: '100%' } }>
-                        <FlexRow cx={ css.containerItem }>
+                        <FlexRow cx={ css.containerItem } padding="6">
                             <Avatar size="48" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" />
 
                             <FlexRow padding="12">
@@ -46,7 +46,7 @@ export default function BasicDropdownExample() {
                             </FlexRow>
                         </FlexRow>
 
-                        <FlexRow>
+                        <FlexRow padding="6">
                             <Panel>
                                 <FlexRow alignItems="center" spacing="6">
                                     <Badge cx={ css.badge } color="green" size="18" fill="semitransparent" icon={ notificationIcon } caption="Available" />
@@ -63,9 +63,9 @@ export default function BasicDropdownExample() {
 
                 <div className={ css.divider }></div>
 
-                <FlexRow padding="18" vPadding="24">
+                <FlexRow padding="12" vPadding="24">
                     <Panel>
-                        <FlexRow alignItems="center" spacing="12">
+                        <FlexRow alignItems="center" spacing="12" padding="6">
                             <IconButton icon={ telescopeIcon } color="blue" onClick={ () => null } />
                             <IconButton icon={ chatIcon } color="blue" onClick={ () => null } />
                             <IconButton icon={ githubIcon } color="blue" onClick={ () => null } />
@@ -73,14 +73,14 @@ export default function BasicDropdownExample() {
                             <IconButton icon={ instaIcon } color="blue" onClick={ () => null } />
                             <IconButton icon={ shareIcon } color="blue" onClick={ () => null } />
                         </FlexRow>
-                        <FlexRow>
+                        <FlexRow padding="6">
                             <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">
                                 Contacts
                             </Text>
                         </FlexRow>
 
                         <FlexCell width="100%">
-                            <FlexRow spacing="6" alignItems="center">
+                            <FlexRow spacing="6" alignItems="center" padding="6">
                                 <IconContainer icon={ phoneIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {
@@ -90,7 +90,7 @@ export default function BasicDropdownExample() {
                                     caption="+3809324353424"
                                 />
                             </FlexRow>
-                            <FlexRow spacing="6" alignItems="center">
+                            <FlexRow spacing="6" alignItems="center" padding="6">
                                 <IconContainer icon={ chatIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {
@@ -100,7 +100,7 @@ export default function BasicDropdownExample() {
                                     caption="x43059"
                                 />
                             </FlexRow>
-                            <FlexRow spacing="6" alignItems="center">
+                            <FlexRow spacing="6" alignItems="center" padding="6">
                                 <IconContainer icon={ mailIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {
@@ -110,7 +110,7 @@ export default function BasicDropdownExample() {
                                     caption="user@epam.com"
                                 />
                             </FlexRow>
-                            <FlexRow spacing="6" alignItems="bottom">
+                            <FlexRow spacing="6" alignItems="bottom" padding="6">
                                 <IconContainer icon={ inIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {
@@ -120,7 +120,7 @@ export default function BasicDropdownExample() {
                                     caption="https://www.linkedin.com/fakeid/..."
                                 />
                             </FlexRow>
-                            <FlexRow spacing="6" alignItems="center">
+                            <FlexRow spacing="6" alignItems="center" padding="6">
                                 <IconContainer icon={ geoIcon } cx={ css.iconGray50 } />
                                 <Text fontSize="14" lineHeight="18" color="gray80" cx={ css.text }>
                                     Gratkorn, Austria UTC+01:00 | 16:54
