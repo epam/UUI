@@ -1,7 +1,7 @@
 const config = require('eslint-config-react-app/jest.js');
 const { overrideSeverityInRulesMap } = require('../utils/rulesSeverityUtils.js');
 
-module.exports = {
+const newConfig = {
     ...config,
     overrides: config.overrides.map((o) => {
         return {
@@ -10,3 +10,5 @@ module.exports = {
         };
     }),
 };
+
+module.exports = newConfig;
