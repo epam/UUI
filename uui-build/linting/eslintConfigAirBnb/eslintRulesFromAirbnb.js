@@ -141,18 +141,16 @@ module.exports = {
 };
 
 function pickFromMap(map, names, isTypescript) {
-    return names.reduce((acc, nameOrConfig) => {
-        const n = nameOrConfig;
-        const fromMap = map[n];
+    return names.reduce((acc, ruleName) => {
+        const fromMap = map[ruleName];
         if (fromMap) {
-            setSeverity(fromMap, SEVERITY.warn);
             if (isTypescript) {
-                const nNotTs = n.substring('@typescript-eslint/'.length);
+                const nNotTs = ruleName.substring('@typescript-eslint/'.length);
                 acc[nNotTs] = 'off'; // need to disable the corresponding js rule, to avoid conflict.
             }
-            acc[n] = fromMap;
+            acc[ruleName] = setSeverity(fromMap, SEVERITY.warn);
         } else {
-            throw new Error(`Unable to find "${n}" in map.`);
+            throw new Error(`Unable to find "${ruleName}" in map.`);
         }
         return acc;
     }, {});

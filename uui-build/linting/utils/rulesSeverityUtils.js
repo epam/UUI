@@ -2,14 +2,13 @@ const { isLintStaged } = require('../../utils/envUtils.js');
 
 const SEVERITY = {
     off: 'off',
-    warn: 2, // during lint staged warnings don't prevent from commit, so we make them as errors.
-    error: 2,
+    warn: isLintStaged ? 2 : 1, // if it's run from the lint-staged task, warnings don't prevent commit, so we make them as errors.
+    error: isLintStaged ? 2 : 1,
 };
 
 function setSeverity(ruleConfig, severity) {
     if (Array.isArray(ruleConfig)) {
-        ruleConfig[0] = severity;
-        return ruleConfig;
+        return [severity].concat(ruleConfig.slice(1));
     }
     if (typeof ruleConfig === 'number' || typeof ruleConfig === 'string') {
         return severity;
