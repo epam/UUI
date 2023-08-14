@@ -2,4 +2,44 @@
     font-family: var(--uui-text-font);
     font-weight: var(--uui-text-font-weight, normal);
     color: var(--uui-text);
+
+    &:global(.uui-text-info) {
+        --uui-text: var(--uui-text-info);
+    }
+
+    &:global(.uui-text-warning) {
+        --uui-text: var(--uui-text-warning);
+    }
+
+    &:global(.uui-text-error) {
+        --uui-text: var(--uui-text-error);
+    }
+
+    &:global(.uui-text-success) {
+        --uui-text: var(--uui-text-success);
+    }
+
+    &:global(.uui-text-brand) {
+        --uui-text: var(--uui-text-brand);
+    }
+
+    &:global(.uui-text-primary) {
+        --uui-text: var(--uui-text-primary);
+    }
+
+    &:global(.uui-text-secondary) {
+        --uui-text: var(--uui-text-secondary);
+    }
+
+    &:global(.uui-text-disabled) {
+        --uui-text: var(--uui-text-disabled);
+    }
+
+    &:global(.uui-text-contrast) {
+        --uui-text: var(--uui-text-contrast);
+    }
+
+    &:global(.uui-text-white) {
+        --uui-text: var(--uui-text-white);
+    }
 }
