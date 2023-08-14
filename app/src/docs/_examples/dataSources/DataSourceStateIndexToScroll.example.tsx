@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { DataSourceState, useArrayDataSource, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { DataSourceViewer } from '@epam/uui-docs';
 import { Button } from '@epam/promo';
 
-const items = Array(1000).fill(0).map((_, index) => ({ id: index, name: `Parent ${index}` }));
+// const items = Array(1000).fill(0).map((_, index) => ({ id: index, name: `Parent ${index}` }));
 
 export default function DataSourceStateVisibleCountExample() {
     const svc = useUuiContext();
