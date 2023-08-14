@@ -1,8 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import {
-    IHasChildren, IHasCX, Icon, IHasRawProps,
-} from '@epam/uui-core';
+import { IHasChildren, IHasCX, Icon, IHasRawProps } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton, LinkButton } from '../buttons';
 import { SemanticColor } from '../types';
@@ -27,10 +25,12 @@ export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.HTM
     onClose?(): void;
     /** An optional icon to show on the left of the alert */
     icon?: Icon;
+    /** Component size. If omitted, 48 size will be used. */
+    size?: '36' | '48';
 }
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
-    <div role="alert" ref={ ref } className={ cx(css.alertWrapper, `alert-${props.color || 'default'}`, css.root, props.cx) } { ...props.rawProps }>
+    <div role="alert" ref={ ref } className={ cx(css.alertWrapper, `alert-${props.color || 'default'}`, css.root, props.cx, (props.size === '36' ? css.size36 : css.size48)) } { ...props.rawProps }>
         <div className={ css.mainPath }>
             {props.icon && (
                 <div className={ css.iconWrapper }>
@@ -42,7 +42,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
                 {props.actions && (
                     <div className={ css.actionWrapper }>
                         {props.actions.map((action) => (
-                            <LinkButton caption={ action.name } onClick={ action.action } key={ action.name } cx={ css.actionLink } size="30" />
+                            <LinkButton caption={ action.name } onClick={ action.action } key={ action.name } cx={ css.actionLink } size={ props?.size === '36' ? '24' : '30' } />
                         ))}
                     </div>
                 )}

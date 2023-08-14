@@ -15,7 +15,7 @@ export interface RangeDatePickerValue {
 
 export type RangeDatePickerPresets = {
     [key: string]: {
-        name: string;
+        name: ReactNode;
         getRange: () => RangeDatePickerPresetValue;
     };
 };

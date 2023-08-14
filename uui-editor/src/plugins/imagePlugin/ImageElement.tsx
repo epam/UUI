@@ -16,7 +16,7 @@ import {
 import { useFocused, useReadOnly, useSelected } from 'slate-react';
 import cx from 'classnames';
 import css from './ImageElement.module.scss';
-import { IImageElement, PlateImgAlign } from './imagePlugin';
+import { IImageElement, PlateImgAlign } from '../../types';
 
 interface ImageElementProps extends PlateElementProps<Value, IImageElement> {
     align: PlateImgAlign;

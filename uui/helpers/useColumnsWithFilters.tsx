@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import {
     DropdownBodyProps, DataColumnProps, ILens, TableFiltersConfig,
 } from '@epam/uui-core';
-import { FilterItemBody } from '../components';
+import { FilterItemBody } from '../components/filters';
 
 export const useColumnsWithFilters = <TFilter extends Record<string, any>>(initialColumns: DataColumnProps[], filters: TableFiltersConfig<TFilter>[] | undefined) => {
     const makeFilterRenderCallback = useCallback<(key: string) => (lens: ILens<TFilter>, dropdownProps: DropdownBodyProps) => React.ReactNode>

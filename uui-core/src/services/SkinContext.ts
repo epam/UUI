@@ -1,19 +1,18 @@
+import { DatePickerCoreProps } from '../types/components/datePicker/DatePicker';
+import { RangeDatePickerCoreProps } from '../types/components/datePicker/RangeDatePicker';
+import { LabeledInputCoreProps } from '../types/components/LabeledInput';
+import { ButtonSemanticProps, ButtonCoreProps } from '../types/components/Button';
+import { ModalHeaderCoreProps, ModalFooterCoreProps, ModalBlockerProps, ModalWindowProps } from '../types/components/Modals';
+import { SpinnerCoreProps } from '../types/components/Spinner';
+import { TextInputCoreProps } from '../types/components/TextInput';
+import { CheckboxCoreProps } from '../types/components/Checkbox';
+
 import {
-    ButtonCoreProps,
-    CheckboxCoreProps,
     FlexCellProps,
     FlexRowProps,
-    TextInputCoreProps,
-    SpinnerCoreProps,
-    ModalWindowProps,
-    ModalBlockerProps,
-    ModalFooterCoreProps,
-    ModalHeaderCoreProps,
-    ButtonSemanticProps,
-    LabeledInputCoreProps,
-    DatePickerCoreProps,
-    RangeDatePickerCoreProps,
-} from '../types';
+
+} from '../types/props';
+
 import * as React from 'react';
 
 interface ISkinComponent<TProps, TSemanticProps = {}> {

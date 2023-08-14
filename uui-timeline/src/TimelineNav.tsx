@@ -1,4 +1,5 @@
 import * as React from 'react';
+import cx from 'classnames';
 import { TimelineController } from './TimelineController';
 import css from './TimelineNav.module.scss';
 import { scales } from './helpers';
@@ -49,7 +50,7 @@ export class TimelineNav extends React.Component<TimelineNavProps> {
                     <div className={ css.fit }>{this.renderIcon(SvgScales)}</div>
                 </div>
                 <div className={ css.actionsForgivingZone } />
-                <ul className={ css.actionsDropdown }>
+                <ul className={ cx(css.actionsList, css.actionsDropdown) }>
                     <li className={ css.actionsScale } onClick={ () => this.props.timelineController.moveToday() }>
                         {i18n.timelineNav.Today}
                     </li>

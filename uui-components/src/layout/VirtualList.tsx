@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, useScrollShadows, cx, uuiMarkers,
 } from '@epam/uui-core';
-import { PositionValues, ScrollBars, ScrollbarsApi } from '../layout';
+import { PositionValues, ScrollBars, ScrollbarsApi } from './ScrollBars';
 import css from './VirtualList.module.scss';
 
 export interface VirtualListRenderRowsParams<List extends HTMLElement = any> {

@@ -1,5 +1,6 @@
 import { BaseContext } from './BaseContext';
-import { IRouterContext, Link } from '../types';
+import { Link } from '../types/objects';
+import { IRouterContext } from '../types/contexts';
 import { isClientSide } from '../helpers/ssr';
 
 export class Lock {

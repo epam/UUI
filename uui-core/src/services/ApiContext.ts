@@ -3,7 +3,8 @@ import { AnalyticsContext } from './AnalyticsContext';
 import {
     IApiContext, ApiStatus, ApiRecoveryReason, ApiCallOptions, ApiCallInfo,
 } from '../types';
-import { getCookie, isClientSide } from '../helpers';
+import { isClientSide } from '../helpers/ssr';
+import { getCookie } from '../helpers/cookie';
 import { ApiContextProps } from './ContextProvider';
 
 interface ApiCall extends ApiCallInfo {

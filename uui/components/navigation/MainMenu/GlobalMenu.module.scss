@@ -1,3 +1,6 @@
+
+@use  '../../../assets/styles/effects' as *;
+
 .global-menu-btn {
     display: block;
     height: 60px;
@@ -16,6 +19,10 @@
 
     &:active {
         background-color: var(--uui-main_menu-active);
+    }
+
+    &:focus-visible {
+        @include focus-visible-effect(-2px, 0);
     }
 }
 

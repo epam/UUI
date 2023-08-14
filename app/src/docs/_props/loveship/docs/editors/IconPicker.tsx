@@ -67,7 +67,7 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
                 <Text fontSize="12" font="sans-semibold" cx={ css.infoText }>
                     I don't know what icon size use.
                 </Text>
-                <Tooltip cx={ css.tooltip } placement="top" content={ this.renderTooltip() } color="white">
+                <Tooltip maxWidth={ 600 } placement="top" content={ this.renderTooltip() } color="white">
                     <IconButton icon={ InfoIcon } color="sky" />
                 </Tooltip>
             </div>
