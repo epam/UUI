@@ -36,15 +36,15 @@
 
 @mixin withActive {
     &:global(.uui-active) {
-        @include fillColor(var(--uui-primary));
+        @include fillColor(var(--uui-primary-50));
 
         &:hover,
         &:focus {
-            @include fillColor(var(--uui-primary) !important);
+            @include fillColor(var(--uui-primary-50) !important);
         }
 
         .iconCheck {
-            @include fillColor(var(--uui-primary));
+            @include fillColor(var(--uui-primary-50));
         }
     }
 }

@@ -91,7 +91,7 @@
     }
 
     &:global(.uui-fill-outline) {
-        --uui-btn-bg: var(--white);
+        --uui-btn-bg: var(--uui-surface);
         --uui-btn-bg-hover: var(--uui-color-10);
         --uui-btn-bg-active: var(--uui-color-20);
         --uui-btn-bg-disabled: var(--uui-disabled);

@@ -77,26 +77,26 @@
     a {
         display: inline-flex;
         align-items: center;
-        color: var(--uui-primary);
+        color: var(--uui-primary-50);
         text-decoration: underline;
 
         &:visited {
-            color: #5214CC;
+            color: #5214CC; // TODO: need variables
 
             &:hover {
-                color: #3F0F9E;
+                color: #3F0F9E; // TODO: need variables
             }
         }
 
         &:hover {
-            color: var(--uui-primary-dark);
+            color: var(--uui-primary-60);
         }
     }
 
     code {
         padding: 0.125em 0.25em;
         color: var(--uui-text-primary);
-        background-color: var(--uui-secondary-light);
+        background-color: var(--uui-secondary-20);
         font-family: var(--font-mono);
         white-space: pre-wrap;
         word-wrap: normal;
@@ -116,7 +116,7 @@
     pre {
         padding: 1.25em;
         color: var(--uui-text-contrast);
-        background-color: var(--uui-secondary-darkest);
+        background-color: var(--uui-secondary-70);
         font-family: monospace;
         white-space: pre-wrap;
         word-wrap: normal;

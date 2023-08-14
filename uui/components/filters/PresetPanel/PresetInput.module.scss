@@ -21,21 +21,21 @@
         :global(.uui-icon-accept) {
             &:global(.-clickable) {
                 fill: var(--white);
-                background-color: var(--uui-accent);
+                background-color: var(--uui-accent-50);
 
                 &:hover {
                     fill: var(--white);
-                    background-color: var(--uui-accent-dark);
+                    background-color: var(--uui-accent-60);
                 }
             }
         }
 
         :global(.uui-icon-cancel) {
-            background-color: var(--uui-secondary-lightest);
+            background-color: var(--uui-secondary-10);
             margin-left: 1px;
 
             &:hover {
-                background-color: var(--uui-secondary-light);
+                background-color: var(--uui-secondary-20);
             }
         }
     }
