@@ -174,7 +174,7 @@ export function MasterDetailedTable() {
             isSelectable: true,
             onClick: clickHandler,
             pin: (rowProps) => {
-                return rowProps.depth === 0;
+                return rowProps.depth < 2 && rowProps.index % 5 === 0;
             },
         },
         cascadeSelection: true,

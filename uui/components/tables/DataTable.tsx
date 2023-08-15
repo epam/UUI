@@ -28,7 +28,7 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
 }
 
 const getChildrenAndRest = <TItem, TId>(row: DataRowProps<TItem, TId>, rows: DataRowProps<TItem, TId>[]) => {
-    const firstNotChildIndex = rows.findIndex((other) => other.depth <= row.depth);
+    const firstNotChildIndex = rows.findIndex((other) => other.depth < row.depth || (row.depth === other.depth && other.isPinned));
     if (firstNotChildIndex === -1) {
         return [rows, []];
     }
@@ -36,7 +36,7 @@ const getChildrenAndRest = <TItem, TId>(row: DataRowProps<TItem, TId>, rows: Dat
         return [[], rows];
     }
     
-    const children = rows.slice(0, firstNotChildIndex - 1);
+    const children = rows.slice(0, firstNotChildIndex);
     const rest = rows.slice(firstNotChildIndex, rows.length);
     return [children, rest];
 };
@@ -47,7 +47,7 @@ const renderGroup = <TItem, TId>(
     renderRow: (props: DataTableRowProps<TItem, TId>) => React.ReactNode,
     top: number = 1,
 ) => ( 
-    <div className={ css.group } key={ row.index }>
+    <div className={ css.group } key={ row.rowKey }>
         <div className={ row.isPinned ? css.stickyHeader : css.header } style={ { zIndex: row.depth + 10, top: (row.depth + 1) * top } }>
             {renderRow(row)}
         </div>
@@ -72,7 +72,7 @@ const renderRows = <TItem, TId>(
         return [renderRow(row)];
     }
     const [next] = rest;
-    if (next.depth <= row.depth) {
+    if (next.depth <= row.depth && !row.isPinned) {
         return [renderRow(row), ...renderRows(rest, renderRow, top)];
     }
     
