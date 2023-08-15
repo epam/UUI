@@ -73,7 +73,6 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
                     uuiDataTableRow.uuiTableRow,
                     props.cx,
                     props.isFocused && uuiMod.focus,
-                    props.isPinned && uuiMod.pinned,
                 ] }
                 overlays={ overlays }
                 link={ props.link }

@@ -41,13 +41,6 @@
     &:global(.uui-dt-row-border) {
         border-bottom-color: var(--uui-dt-border);
     }
-
-    &:global(.uui-pinned.uui-table-row) {
-        position: sticky;
-        top: 2em;
-        isolation: isolate;
-        z-index: 6;
-    }
 }
 
 :global(.uui-dt-row-border) {
