@@ -139,7 +139,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
         if (props.isDisabled || props.isReadonly) return;
         e.preventDefault();
-        if (inFocus && props.value && !props.disableSearch) return;
+        if (inFocus && props.value && (!props.disableSearch && props.searchPosition !== 'input')) return;
         props.onClick?.();
     };
 
