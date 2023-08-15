@@ -40,6 +40,8 @@ IHasIcon & {
       * 'input' - try to place search inside the toggler (default for single-select),
       * 'body' - put search inside the dropdown (default for multi-select)
       * 'none' - disables search completely
+      *
+      * Note: 'searchPosition' cannot be 'input' if 'editMode' is 'modal'
       */
     searchPosition?: 'input' | 'body' | 'none';
 
@@ -171,11 +173,14 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     getSearchPosition() {
         if (isMobile() && this.props.searchPosition !== 'none') return 'body';
-        if (!this.props.searchPosition) {
-            return this.props.selectionMode === 'multi' ? 'body' : 'input';
+        let searchPosition: any = this.props.searchPosition;
+        if (!searchPosition) {
+            searchPosition = this.props.selectionMode === 'multi' ? 'body' : 'input';
         } else {
-            return this.props.searchPosition;
+            searchPosition = this.props.searchPosition;
         }
+
+        return searchPosition === 'input' && this.props.editMode === 'modal' ? 'body' : searchPosition;
     }
 
     getPlaceholder() {
@@ -286,7 +291,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             pickerMode: this.isSingleSelect() ? 'single' : 'multi',
             searchPosition,
             onKeyDown: (e) => this.handlePickerInputKeyboard(rows, e),
-            disableSearch: !minCharsToSearch && searchPosition !== 'input',
+            disableSearch: this.props.editMode === 'modal' || searchPosition !== 'input',
             disableClear: disableClear,
             toggleDropdownOpening: this.toggleDropdownOpening,
             closePickerBody: this.closePickerBody,
