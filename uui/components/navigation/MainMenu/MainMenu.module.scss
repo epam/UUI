@@ -1,6 +1,25 @@
 @use  '../../../assets/styles/effects' as *;
 
 .root {
+    --uui-main_menu-text: var(--uui-text-contrast);
+    --uui-main_menu-text-active: var(--uui-text-contrast);
+    --uui-main_menu-bg: var(--uui-surface-contrast-low);
+    --uui-main_menu-hover: var(--uui-surface-contrast-lower);
+    --uui-main_menu-active: var(--uui-surface-contrast-lower);
+    --uui-main_menu-border-active: var(--uui-primary-50);
+
+    --uui-main_menu-search-bg: var(--uui-secondary-70);
+    --uui-main_menu-search-border: var(--uui-secondary-70);
+    --uui-main_menu-search-placeholder: var(--uui-text-disabled);
+    --uui-main_menu-search-text: var(--uui-text-disabled);
+    --uui-main_menu-search-icon: var(--uui-icon-disabled);
+
+    --uui-main_menu-icon: var(--uui-text-contrast);
+    --uui-main_menu-icon-hover: var(--uui-text-contrast);
+    --uui-main_menu-icon-active: var(--uui-text-contrast);
+
+    --uui-main_menu-font: var(--font-semibold);
+    --uui-main_menu-search-font: var(--font-regular);
     height: 60px;
     min-height: 60px;
     min-width: 360px;

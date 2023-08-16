@@ -1,4 +1,9 @@
 .search-input {
+    --uui-burger_search: var(--uui-text-contrast);
+    --uui-burger_search-fill: var(--uui-text-disabled);
+    --uui-burger_search-bg: var(--uui-surface-contrast);
+    --uui-burger_search-placeholder: var(--uui-text-disabled);
+    --uui-burger_search-font: var(--font-regular);
     height: 60px;
     background-color: var(--uui-burger_search-bg);
     fill: var(--uui-burger_search-fill);
