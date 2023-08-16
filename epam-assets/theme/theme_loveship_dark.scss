@@ -524,21 +524,7 @@
     --uui-dropdown-menu-body-font: var(--font-regular);
     --uui-dropdown-menu-item-font: var(--font-regular);
 
-    /* BurgerMenu */
-    --uui-burger_menu-bg: var(--uui-app-bg);
-    --uui-burger_menu-bg-hover: var(--uui-app-bg);
-    --uui-burger_menu-caption: var(--night50);
-    --uui-burger_menu-caption-hover: var(--uui-primary-50);
-    --uui-burger_menu-overlay: var(--uui-overlay);
-    --uui-burger_icon: var(--night50);
-    --uui-burger_item: var(--uui-app-bg);
-
     /* BurgerGroupHeader */
-    --uui-burger_group-text: var(--uui-text-disabled);
-    --uui-burger_group-bg: var(--uui-surface-contrast);
-    --uui-burger_group-line: var(--uui-text-secondary);
-
-    --uui-burger_group-font: var(--font-regular);
 
     /* NumericInput */
     --uui-numeric-input-bg: var(--uui-control-bg);
@@ -664,6 +650,15 @@
     /* Pagination */
 
     --uui-pagination-font: var(--font-regular);
+
+    /* BurgerMenu */
+    .uui-burger {
+        --uui-burger_menu-bg: var(--uui-app-bg);
+        --uui-burger_menu-bg-hover: var(--uui-app-bg);
+        --uui-burger_menu-caption: var(--night50);
+        --uui-burger_icon: var(--night50);
+        --uui-burger_item: var(--uui-app-bg);
+    }
 
     /*  tab-button-vars     */
     .uui-tab-button {
