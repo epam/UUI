@@ -40,7 +40,7 @@ exports[`ScrollBars should render with default props 1`] = `
     }
   >
     <button
-      className="container uui-button-box uui-enabled button-primary root size-36 mode-solid size-36 style-square"
+      className="container uui-button-box uui-enabled root uui-button uui-fill-solid uui-color-primary size-36 size-36 style-square"
       onClick={[Function]}
       tabIndex={-1}
       type="button"

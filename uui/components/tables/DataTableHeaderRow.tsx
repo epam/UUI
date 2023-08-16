@@ -6,6 +6,7 @@ import { DataTableHeaderCell } from './DataTableHeaderCell';
 import { IconButton } from '../buttons/IconButton';
 
 import css from './DataTableHeaderRow.module.scss';
+import './variables.scss';
 import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/action-settings-18.svg';
 
 export const DataTableHeaderRow = withMods<DataTableHeaderRowProps, DataTableHeaderRowMods>(

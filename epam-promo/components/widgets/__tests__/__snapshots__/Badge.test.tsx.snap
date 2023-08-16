@@ -2,7 +2,7 @@
 
 exports[`Badge should render with maximum props 1`] = `
 <button
-  className="container uui-button-box uui-enabled -clickable root root size-36 fill-semitransparent badge-amber"
+  className="container uui-button-box uui-enabled -clickable uui-badge root size-36 fill-semitransparent uui-color-amber"
   onClick={[Function]}
   tabIndex={0}
   type="button"
@@ -40,7 +40,7 @@ exports[`Badge should render with maximum props 1`] = `
 
 exports[`Badge should render with minimum props 1`] = `
 <button
-  className="container uui-button-box uui-enabled root root size-36 fill-solid badge-blue"
+  className="container uui-button-box uui-enabled uui-badge root size-36 fill-solid uui-color-blue"
   onClick={[Function]}
   tabIndex={-1}
   type="button"

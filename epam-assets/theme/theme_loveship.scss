@@ -363,23 +363,6 @@
     --uui-tag-font: var(--font-regular);
     --uui-tag-count-font: var(--font-semibold);
 
-    /*  TextArea  */
-    --uui-text-area-bg: var(--uui-control-bg);
-    --uui-text-area-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-text-area-border: var(--uui-control-border);
-    --uui-text-area-border-disabled: var(--uui-control-border-disabled);
-    --uui-text-area-border-hover: var(--uui-control_textinput-border-hover);
-    --uui-text-area-border-active: var(--uui-control-border-checked);
-    --uui-text-area-border-error: var(--uui-error-50);
-    --uui-text-area-placeholder: var(--uui-control-placeholder);
-    --uui-text-area-text: var(--uui-control-text);
-    --uui-text-area-text-disabled: var(--uui-control-text-disabled);
-    --uui-text-area-icon: var(--uui-icon);
-    --uui-text-area-border-radius: var(--uui-border-radius);
-
-    --uui-text-area-font: var(--font-regular);
-    --uui-text-area-counter-font: var(--font-regular);
-
     /* DropMarker */
     --uui-drop-marker: var(--uui-primary-50);
     --uui-drop-marker-blocked: var(--uui-error-50);
@@ -413,19 +396,11 @@
 
     --uui-picker-toggler-font: var(--font-regular);
 
-    /* Panel */
-    --uui-panel-border-radius: var(--uui-border-radius);
-    --uui-panel-shadow: var(--uui-shadow-level-1);
-
     /* Modals */
     --uui-modals-border-radius: var(--uui-border-radius);
     --uui-modals-overlay: rgba(29, 30, 38, 0.8);
     --uui-modals-shadow: var(--uui-shadow-level-3);
     --uui-modals-bg: var(--uui-surface);
-
-    /* TextPlaceholder */
-    --uui-text-placeholder-gradient: var(--uui-skeleton-gradient);
-    --uui-text-placeholder: var(--uui-skeleton);
 
     /* Accordion */
     --uui-accordion-bg: var(--uui-surface);
@@ -459,33 +434,6 @@
     --uui-dropdown-menu-body-font: var(--font-regular);
     --uui-dropdown-menu-item-font: var(--font-regular);
 
-    /* MainMenu */
-    //--uui-main_menu-text: var(--uui-text-contrast);
-    //--uui-main_menu-text-active: var(--uui-text-contrast);
-    //--uui-main_menu-bg: var(--uui-surface-contrast-low);
-    //--uui-main_menu-hover: var(--uui-surface-contrast-lower);
-    //--uui-main_menu-active: var(--uui-surface-contrast-lower);
-    //--uui-main_menu-border-active: var(--uui-primary-50);
-    //
-    //--uui-main_menu-dropdown-bg: var(--uui-surface-contrast-lower);
-    //--uui-main_menu-dropdown-bg-hover: var(--uui-surface-contrast-low);
-    //--uui-main_menu-dropdown-hover: var(--uui-primary-50);
-    //--uui-main_menu-dropdown-shadow: none;
-    //--uui-main_menu-dropdown-border-radius: none;
-    //
-    //--uui-main_menu-search-bg: var(--uui-secondary-70);
-    //--uui-main_menu-search-border: var(--uui-secondary-70);
-    //--uui-main_menu-search-placeholder: var(--uui-text-disabled);
-    //--uui-main_menu-search-text: var(--uui-text-disabled);
-    //--uui-main_menu-search-icon: var(--uui-icon-disabled);
-    //
-    //--uui-main_menu-icon: var(--uui-text-contrast);
-    //--uui-main_menu-icon-hover: var(--uui-text-contrast);
-    //--uui-main_menu-icon-active: var(--uui-text-contrast);
-    //
-    //--uui-main_menu-font: var(--font-semibold);
-    //--uui-main_menu-search-font: var(--font-regular);
-
     /* BurgerMenu */
     --uui-burger_menu-bg: var(--uui-surface-contrast-lower);
     --uui-burger_menu-bg-hover: var(--uui-surface-contrast-lower);
@@ -501,37 +449,6 @@
     //--uui-burger_group-line: var(--uui-text-secondary);
     //
     //--uui-burger_group-font: var(--font-regular);
-
-    /* BurgerButton */
-    //--uui-burger_btn_caption: var(--uui-text-contrast);
-    //--uui-burger_btn_caption-hover: var(--uui-primary-50);
-    //--uui-burger_btn_caption-active: var(--uui-primary-50);
-    //--uui-burger_btn-border: var(--uui-disabled);
-    //
-    //--uui-burger_btn-font: var(--font-regular);
-
-    /* BurgerSearch */
-    //--uui-burger_search: var(--uui-text-contrast);
-    //--uui-burger_search-fill: var(--uui-text-disabled);
-    //--uui-burger_search-bg: var(--uui-surface-contrast);
-    //--uui-burger_search-placeholder: var(--uui-text-disabled);
-    //
-    //--uui-burger_search-font: var(--font-regular);
-
-    /* NumericInput */
-    --uui-numeric-input-bg: var(--uui-control-bg);
-    --uui-numeric-input-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-numeric-input-border: var(--uui-control-border);
-    --uui-numeric-input-border-disabled: var(--uui-control-border-disabled);
-    --uui-numeric-input-border-hover: var(--uui-control_textinput-border-hover);
-    --uui-numeric-input-border-active: var(--uui-control-border-checked);
-    --uui-numeric-input-border-error: var(--uui-error-50);
-    --uui-numeric-input-placeholder: var(--uui-control-placeholder);
-    --uui-numeric-input-text: var(--uui-control-text);
-    --uui-numeric-input-text-disabled: var(--uui-control-text-disabled);
-    --uui-numeric-input-icon-clickable: var(--uui-icon);
-    --uui-numeric-input-icon-clickable-hover: var(--uui-icon-hover);
-    --uui-numeric-input-border-radius: var(--uui-border-radius);
 
     /* TimePicker */
     --uui-time-picker-bg: var(--uui-control-bg);
@@ -584,42 +501,11 @@
     --uui-filters-toggler-font: var(--font-regular);
     --uui-filters-panel-header-font: var(--font-regular);
 
-    /* Panel */
-
-    --uui-panel-bg: var(--uui-surface);
-
     /* Spinner */
     --uui-spinner: var(--uui-primary-50);
 
     /* Blocker */
     --uui-blocker-bg: var(--uui-app-bg);
-
-    /* FlexRow */
-    --uui-flex-row-border-bottom: 1px solid var(--uui-divider);
-
-    /* DataTable vars */
-    --uui-dt-border: var(--uui-divider-light);
-
-    --uui-dt-cell-bg: transparent;
-    --uui-dt-cell-bg-resize: #EF55331F;
-    --uui-dt-cell-bg-invalid: var(--uui-negative-10);
-    --uui-dt-cell-border-hover: var(--uui-control_textinput-border-hover);
-    --uui-dt-cell-border-focus: var(--uui-control-border-checked);
-
-    --uui-dt-row-bg: var(--uui-surface);
-    --uui-dt-row-bg-hover: var(--uui-surface-lower);
-    --uui-dt-row-bg-invalid: var(--uui-error-5);
-    --uui-dt-row-bg-selected: var(--uui-info-5);
-
-    --uui-dt-header-row-bg: var(--uui-surface-low);
-    --uui-dt-header-row-bg-hover: var(--uui-surface-lowest);
-
-    --uui-dt-top-shadow: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
-    --uui-dt-left-shadow: linear-gradient(to left, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
-    --uui-dt-right-shadow: linear-gradient(to right, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
-    --uui-dt_header-drop_marker: var(--uui-primary-50);
-
-    --uui-dt-header-cell-font: var(--font-semibold);
 
     /* AvatarStack */
 

@@ -2,7 +2,7 @@
 
 exports[`Alert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper alert-sky root size48"
+  className="uui-alert alertWrapper uui-color-sky root size48"
   role="alert"
 >
   <div
@@ -17,7 +17,7 @@ exports[`Alert should be rendered correctly 1`] = `
 
 exports[`Alert should be rendered correctly with props 1`] = `
 <div
-  className="alertWrapper alert-sun root root size48"
+  className="uui-alert alertWrapper uui-color-sun root root size48"
   role="alert"
 >
   <div
@@ -42,7 +42,7 @@ exports[`Alert should be rendered correctly with props 1`] = `
         className="actionWrapper"
       >
         <button
-          className="container uui-button-box uui-enabled -clickable root size-30 uui-no-left-icon uui-no-right-icon link-button-primary actionLink"
+          className="container uui-button-box uui-enabled -clickable uui-link_button root size-30 uui-no-left-icon uui-no-right-icon uui-color-primary actionLink"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -56,7 +56,7 @@ exports[`Alert should be rendered correctly with props 1`] = `
       </div>
     </div>
     <button
-      className="container uui-button-box uui-enabled -clickable icon-button-default root closeIcon"
+      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root closeIcon"
       onClick={[Function]}
       tabIndex={0}
       type="button"
