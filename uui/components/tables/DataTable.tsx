@@ -14,6 +14,7 @@ import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from '../typography';
 import css from './DataTable.module.scss';
 import { i18n } from '../../i18n';
+import { renderRows } from './renderRows';
 
 export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
@@ -27,59 +28,6 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
     renderColumnsConfigurationModal?: (props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) => React.ReactNode;
 }
 
-const getChildrenAndRest = <TItem, TId>(row: DataRowProps<TItem, TId>, rows: DataRowProps<TItem, TId>[]) => {
-    const firstNotChildIndex = rows.findIndex((other) => other.depth < row.depth || (row.depth === other.depth && other.isPinned));
-    if (firstNotChildIndex === -1) {
-        return [rows, []];
-    }
-    if (firstNotChildIndex === 0) {
-        return [[], rows];
-    }
-    
-    const children = rows.slice(0, firstNotChildIndex);
-    const rest = rows.slice(firstNotChildIndex, rows.length);
-    return [children, rest];
-};
-
-const renderGroup = <TItem, TId>(
-    row: DataRowProps<TItem, TId>,
-    children: DataRowProps<TItem, TId>[],
-    renderRow: (props: DataTableRowProps<TItem, TId>) => React.ReactNode,
-    top: number = 1,
-) => ( 
-    <div className={ css.group } key={ row.rowKey }>
-        <div className={ row.isPinned ? css.stickyHeader : css.header } style={ { zIndex: row.depth + 10, top: (row.depth + 1) * top } }>
-            {renderRow(row)}
-        </div>
-        {children.length > 0 && (
-            <div className={ css.children }>
-                {renderRows(children, renderRow, top)}
-            </div>
-        )}
-    </div>
-);
-
-const renderRows = <TItem, TId>(
-    rows: DataRowProps<TItem, TId>[],
-    renderRow: (props: DataTableRowProps<TItem, TId>) => React.ReactNode,
-    top?: number,
-): React.ReactNode[] => {
-    if (!rows.length) return [];
-
-    const [row, ...rest] = rows;
-    
-    if (!rest.length) {
-        return [renderRow(row)];
-    }
-    const [next] = rest;
-    if (next.depth <= row.depth && !row.isPinned) {
-        return [renderRow(row), ...renderRows(rest, renderRow, top)];
-    }
-    
-    const [children, otherRows] = getChildrenAndRest(row, rest);
-    return [renderGroup(row, children, renderRow, top), ...renderRows(otherRows, renderRow, top)];
-};
-
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
     const headerRef = React.useRef<HTMLDivElement>();
@@ -87,16 +35,13 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
 
     const defaultRenderRow = React.useCallback((rowProps: DataRowProps<TItem, TId> & DataTableRowMods) => {
-        return <DataTableRow key={ rowProps.rowKey } size={ props.size } borderBottom={ props.border } { ...rowProps } />;
+        return <DataTableRow key={ rowProps.rowKey } size={ props.size } borderBottom={ props.border } { ...rowProps } cx={ css.cell } />;
     }, []);
 
     const renderRow = (row: DataRowProps<TItem, TId>) => (props.renderRow ?? defaultRenderRow)({ ...row, columns });
     const rows = props.getRows();
-    const top = headerRef.current?.clientHeight !== undefined 
-        ? headerRef.current?.clientHeight + 1 
-        : headerRef.current?.clientHeight;
 
-    const renderedRows = renderRows(rows, renderRow, top);
+    const renderedRows = renderRows(rows, renderRow, headerRef.current?.clientHeight);
     const renderNoResultsBlock = React.useCallback(() => {
         return (
             <div className={ css.noResults }>
