@@ -1,7 +1,7 @@
 /**
  * This module provides eslint rules which we want to pick from airbnb
  */
-const { SEVERITY, setSeverity } = require('../utils/rulesSeverityUtils.js');
+const { setUnifiedSeverityToConfig } = require('../utils/rulesSeverityUtils.js');
 
 const baseMap = {
     ...require('eslint-config-airbnb-base/rules/errors').rules,
@@ -142,17 +142,18 @@ const newConfig = {
 module.exports = newConfig;
 
 function pickFromMap(map, names, isTypescript) {
-    return names.reduce((acc, ruleName) => {
+    const rules = names.reduce((acc, ruleName) => {
         const fromMap = map[ruleName];
         if (fromMap) {
             if (isTypescript) {
                 const nNotTs = ruleName.substring('@typescript-eslint/'.length);
                 acc[nNotTs] = 'off'; // need to disable the corresponding js rule, to avoid conflict.
             }
-            acc[ruleName] = setSeverity(fromMap, SEVERITY.warn);
+            acc[ruleName] = fromMap;
         } else {
             throw new Error(`Unable to find "${ruleName}" in map.`);
         }
         return acc;
     }, {});
+    return setUnifiedSeverityToConfig({ rules }).rules;
 }

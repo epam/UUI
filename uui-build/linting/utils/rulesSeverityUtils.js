@@ -2,11 +2,45 @@ const { isLintStaged } = require('../../utils/envUtils.js');
 
 const SEVERITY = {
     off: 'off',
-    warn: isLintStaged ? 2 : 1, // if it's run from the lint-staged task, warnings don't prevent commit, so we make them as errors.
+    warn: 1,
     error: isLintStaged ? 2 : 1,
 };
+const unifiedSeverity = _getUnifiedSeverity();
 
-function isRuleTurnedOff(ruleConfig) {
+module.exports = { unifiedSeverity, setUnifiedSeverityToConfig };
+
+/// /
+
+function setUnifiedSeverityToConfig(config) {
+    const result = { ...config };
+    if (result.rules) {
+        result.rules = Object.keys(result.rules).reduce((acc, ruleName) => {
+            const ruleConfig = result.rules[ruleName];
+            if (_isRuleTurnedOff(ruleConfig)) {
+                acc[ruleName] = ruleConfig;
+            } else {
+                acc[ruleName] = _setSeverity(ruleConfig, unifiedSeverity);
+            }
+            return acc;
+        }, {});
+    }
+    if (result.overrides) {
+        result.overrides = result.overrides.map((overrideConfig) => {
+            return setUnifiedSeverityToConfig(overrideConfig);
+        });
+    }
+    return result;
+}
+
+function _getUnifiedSeverity() {
+    if (isLintStaged) {
+        // if it's run from the lint-staged task, warnings don't prevent commit, so we make them as errors.
+        return SEVERITY.error;
+    }
+    return SEVERITY.warn;
+}
+
+function _isRuleTurnedOff(ruleConfig) {
     let s;
     if (Array.isArray(ruleConfig)) {
         s = ruleConfig[0];
@@ -16,7 +50,7 @@ function isRuleTurnedOff(ruleConfig) {
     return s === 'off' || s === 0;
 }
 
-function setSeverity(ruleConfig, severity) {
+function _setSeverity(ruleConfig, severity) {
     if (Array.isArray(ruleConfig)) {
         return [severity].concat(ruleConfig.slice(1));
     }
@@ -25,17 +59,3 @@ function setSeverity(ruleConfig, severity) {
     }
     throw new Error('Unexpected rule config', ruleConfig);
 }
-
-function overrideSeverityInRulesMap(rulesMap) {
-    return Object.keys(rulesMap).reduce((acc, ruleName) => {
-        const ruleConfig = rulesMap[ruleName];
-        if (isRuleTurnedOff(ruleConfig)) {
-            acc[ruleName] = ruleConfig;
-        } else {
-            acc[ruleName] = setSeverity(ruleConfig, SEVERITY.warn);
-        }
-        return acc;
-    }, {});
-}
-
-module.exports = { SEVERITY, setSeverity, overrideSeverityInRulesMap };
