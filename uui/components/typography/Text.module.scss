@@ -8,27 +8,27 @@
 
 
 
-    &:global(.uui-color-brand) {
+    &:global(.uui-text.uui-color-brand) {
         --uui-color-50: var(--uui-text-brand);
     }
 
-    &:global(.uui-color-primary) {
+    &:global(.uui-text.uui-color-primary) {
         --uui-color-50: var(--uui-text-primary);
     }
 
-    &:global(.uui-color-secondary) {
+    &:global(.uui-text.uui-color-secondary) {
         --uui-color-50: var(--uui-text-secondary);
     }
 
-    &:global(.uui-color-disabled) {
+    &:global(.uui-text.uui-color-disabled) {
         --uui-color-50: var(--uui-text-disabled);
     }
 
-    &:global(.uui-color-contrast) {
+    &:global(.uui-text.uui-color-contrast) {
         --uui-color-50: var(--uui-text-contrast);
     }
 
-    &:global(.uui-color-white) {
+    &:global(.uui-text.uui-color-white) {
         --uui-color-50: var(--uui-text-white);
     }
 }

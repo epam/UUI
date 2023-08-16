@@ -7,7 +7,10 @@ import { MainMenuDropdown } from './MainMenuDropdown';
 export interface MainMenuMods {}
 
 function applyMainMenuMods() {
-    return [css.root];
+    return [
+        css.root,
+        'uui-mainMenu',
+    ];
 }
 
 export const MainMenu = withMods<MainMenuProps, MainMenuMods>(uuiMainMenu, applyMainMenuMods, () => ({
