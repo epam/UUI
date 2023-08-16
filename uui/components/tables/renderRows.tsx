@@ -23,30 +23,7 @@ const getChildrenAndRest = <TItem, TId>(row: DataRowProps<TItem, TId>, rows: Dat
     return [children, rest];
 };
 
-export const renderRows = <TItem, TId>(
-    rows: DataRowProps<TItem, TId>[],
-    renderRow: (props: DataRowProps<TItem, TId>) => React.ReactNode,
-    top?: number,
-): React.ReactNode[] => {
-    if (!rows.length) return [];
-
-    const [row, ...rest] = rows;
-    
-    if (!rest.length) {
-        return [renderRow(row)];
-    }
-    const [next] = rest;
-    if (next.depth <= row.depth && !row.isPinned) {
-        return [renderRow(row), ...renderRows(rest, renderRow, top)];
-    }
-    
-    const [children, otherRows] = getChildrenAndRest(row, rest);
-    const group = (<RowsGroup row={ row } childrenRows={ children } renderRow={ renderRow } top={ top } key={ row.rowKey } />); 
-
-    return [group, ...renderRows(otherRows, renderRow, top)];
-};
-
-export function RowsGroup<TItem, TId>({
+function RowsGroup<TItem, TId>({
     row,
     childrenRows,
     renderRow,
@@ -66,3 +43,25 @@ export function RowsGroup<TItem, TId>({
         </div>
     );
 }
+
+export const renderRows = <TItem, TId>(
+    rows: DataRowProps<TItem, TId>[],
+    renderRow: (props: DataRowProps<TItem, TId>) => React.ReactNode,
+    top?: number,
+): React.ReactNode[] => {
+    if (!rows.length) return [];
+
+    const [row, ...rest] = rows;
+    
+    if (!rest.length) {
+        return [renderRow(row)];
+    }
+    const [next] = rest;
+    if (next.depth <= row.depth && !row.isPinned) {
+        return [renderRow(row), ...renderRows(rest, renderRow, top)];
+    }
+    
+    const [children, otherRows] = getChildrenAndRest(row, rest);
+    const group = (<RowsGroup row={ row } childrenRows={ children } renderRow={ renderRow } top={ top } key={ row.rowKey } />); 
+    return [group, ...renderRows(otherRows, renderRow, top)];
+};
