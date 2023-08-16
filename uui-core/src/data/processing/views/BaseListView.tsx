@@ -254,7 +254,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         row.onSelect = rowOptions && rowOptions.isSelectable && this.handleOnSelect;
         row.onFocus = (isSelectable || isCheckable || row.isFoldable) && this.handleOnFocus;
         row.isChildrenChecked = this.someChildCheckedByKey[this.idToKey(row.id)];
-        row.isPinned = rowOptions.pin?.(row) ?? false;
     }
 
     private isRowChecked(row: DataRowProps<TItem, TId>) {
@@ -368,7 +367,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                         }
                     }
                 }
-                
+
+                row.isPinned = row.pin?.(row) ?? false;
                 if (row.isPinned) {
                     pinned[this.idToKey(row.id)] = row.index;
                     if (!pinnedByParentId[this.idToKey(row.parentId)]) {
@@ -452,37 +452,38 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected getRowsWithPinned(rows: DataRowProps<TItem, TId>[]) {
-        let rowsWithPinned: DataRowProps<TItem, TId>[] = [];
+        const rowsWithPinned: DataRowProps<TItem, TId>[] = [];
         const ids = rows.map(({ id }) => id);
-        let alreadyPinned: TId[] = [];
-        rows.forEach((row) => {
-            const path = row.path;
-            path.forEach((item) => {
-                const pinnedIndex = this.pinned[this.idToKey(item.id)];
-                if (pinnedIndex === undefined) return;
-                
-                const parent = this.rows[pinnedIndex];
-                if (!parent || !parent.isPinned || alreadyPinned.includes(parent.id) || ids.includes(parent.id)) return;
+        const alreadyPinned: TId[] = [];
+        
+        if (!rows.length) {
+            return [];
+        }
 
-                const hiddenPinned = this.getHiddenPinnedByParent(parent, ids, alreadyPinned);
-                alreadyPinned = alreadyPinned.concat(hiddenPinned.map(({ id }) => id));
-                rowsWithPinned = rowsWithPinned.concat(hiddenPinned);
-
-                rowsWithPinned.push(parent);
-                alreadyPinned.push(parent.id);
-            });
+        const [firstRow] = rows;
+        const { path } = firstRow;
+        path.forEach((item) => {
+            const pinnedIndex = this.pinned[this.idToKey(item.id)];
+            if (pinnedIndex === undefined) return;
             
-            const hiddenPinned = this.getHiddenPinnedByParent(row, ids, alreadyPinned);
-            alreadyPinned = alreadyPinned.concat(hiddenPinned.map(({ id }) => id));
-            rowsWithPinned = rowsWithPinned.concat(hiddenPinned);
-          
-            rowsWithPinned.push(row);
-            if (row.isPinned) {
-                alreadyPinned.push(row.id);
-            }
+            const parent = this.rows[pinnedIndex];
+            if (!parent || alreadyPinned.includes(parent.id) || ids.includes(parent.id)) return;
+
+            rowsWithPinned.push(parent);
+            alreadyPinned.push(parent.id);
         });
 
-        return rowsWithPinned;
+        const hiddenPinned = this.getHiddenPinnedByParent(firstRow, ids, alreadyPinned);
+        const lastHiddenPinned = hiddenPinned[hiddenPinned.length - 1];
+        if (lastHiddenPinned) {
+            alreadyPinned.push(lastHiddenPinned.id);
+            rowsWithPinned.push(lastHiddenPinned);                
+        }
+        if (firstRow.isPinned) {
+            alreadyPinned.push(firstRow.id);
+        }
+
+        return rowsWithPinned.concat(rows);
     }
 
     private getEstimatedChildrenCount = (id: TId) => {
