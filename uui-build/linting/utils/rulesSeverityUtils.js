@@ -33,7 +33,7 @@ function setUnifiedSeverityToConfig(config) {
 }
 
 function _getUnifiedSeverity() {
-    if (isLintStaged) {
+    if (isLintStaged()) {
         // if it's run from the lint-staged task, warnings don't prevent commit, so we make them as errors.
         return SEVERITY.error;
     }
