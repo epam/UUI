@@ -173,14 +173,14 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     getSearchPosition() {
         if (isMobile() && this.props.searchPosition !== 'none') return 'body';
-        let searchPosition: any = this.props.searchPosition;
-        if (!searchPosition) {
-            searchPosition = this.props.selectionMode === 'multi' ? 'body' : 'input';
-        } else {
-            searchPosition = this.props.searchPosition;
-        }
 
-        return searchPosition === 'input' && this.props.editMode === 'modal' ? 'body' : searchPosition;
+        if (this.props.editMode === 'modal' && this.props.searchPosition !== 'none') return 'body';
+
+        if (!this.props.searchPosition) {
+            return this.props.selectionMode === 'multi' ? 'body' : 'input';
+        } else {
+            return this.props.searchPosition;
+        }
     }
 
     getPlaceholder() {
