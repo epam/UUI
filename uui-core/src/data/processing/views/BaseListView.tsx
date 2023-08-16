@@ -434,21 +434,18 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         this.hasMoreRows = rootStats.hasMoreRows;
     }
 
-    protected getHiddenPinnedByParent(row: DataRowProps<TItem, TId>, renderedIds: TId[], alreadyPinned: TId[]) {
-        const pinned = [...alreadyPinned];
+    protected getLastHiddenPinnedByParent(row: DataRowProps<TItem, TId>, renderedIds: TId[], alreadyPinned: TId[]) {
         const pinnedIndexes = this.pinnedByParentId[this.idToKey(row.parentId)];
-        const hiddenPinned: DataRowProps<TItem, TId>[] = [];
-        if (pinnedIndexes && pinnedIndexes.length > 0) {
-            pinnedIndexes.forEach((index) => {
-                const pinnedRow = this.rows[index];
-                if (!pinnedRow || pinnedRow.id === row.id) return;
-                if (!alreadyPinned.includes(pinnedRow.id) && !renderedIds.includes(pinnedRow.id) && pinnedRow.index < row.index) {
-                    hiddenPinned.push(pinnedRow);
-                    pinned.push(pinnedRow.id);
-                }
-            });
-        }
-        return hiddenPinned;
+        if (!pinnedIndexes || !pinnedIndexes.length) return undefined;
+
+        const firstPinnedAfterRow = pinnedIndexes.findIndex((index) => {
+            const pinnedRow = this.rows[index];
+            if (!pinnedRow) return false;
+            return row.index <= index && !alreadyPinned.includes(pinnedRow.id) && !renderedIds.includes(pinnedRow.id);
+        });
+
+        if (firstPinnedAfterRow <= 0) return undefined;            
+        return this.rows[firstPinnedAfterRow - 1];
     }
 
     protected getRowsWithPinned(rows: DataRowProps<TItem, TId>[]) {
@@ -473,8 +470,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             alreadyPinned.push(parent.id);
         });
 
-        const hiddenPinned = this.getHiddenPinnedByParent(firstRow, ids, alreadyPinned);
-        const lastHiddenPinned = hiddenPinned[hiddenPinned.length - 1];
+        const lastHiddenPinned = this.getLastHiddenPinnedByParent(firstRow, ids, alreadyPinned);
         if (lastHiddenPinned) {
             alreadyPinned.push(lastHiddenPinned.id);
             rowsWithPinned.push(lastHiddenPinned);                
