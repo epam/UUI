@@ -40,13 +40,20 @@ IHasIcon & {
       * 'input' - try to place search inside the toggler (default for single-select),
       * 'body' - put search inside the dropdown (default for multi-select)
       * 'none' - disables search completely
+      *
+      * Note: 'searchPosition' cannot be 'input' if 'editMode' is 'modal'
       */
     searchPosition?: 'input' | 'body' | 'none';
 
     /** Disallow to clear Picker value (cross icon) */
     disableClear?: boolean;
 
-    /** Minimum characters to type, before search will trigger (default is 1) */
+    /**
+     * Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.
+     * By default search triggers after input value is changed.
+     *
+     * Note: defined minCharsToSearch isn't compatible with searchPosition=body.
+     */
     minCharsToSearch?: number;
 
     /** Overrides default height of the dropdown body */
@@ -171,6 +178,9 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     getSearchPosition() {
         if (isMobile() && this.props.searchPosition !== 'none') return 'body';
+
+        if (this.props.editMode === 'modal' && this.props.searchPosition !== 'none') return 'body';
+
         if (!this.props.searchPosition) {
             return this.props.selectionMode === 'multi' ? 'body' : 'input';
         } else {
@@ -286,7 +296,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             pickerMode: this.isSingleSelect() ? 'single' : 'multi',
             searchPosition,
             onKeyDown: (e) => this.handlePickerInputKeyboard(rows, e),
-            disableSearch: !minCharsToSearch && searchPosition !== 'input',
+            disableSearch: searchPosition !== 'input',
             disableClear: disableClear,
             toggleDropdownOpening: this.toggleDropdownOpening,
             closePickerBody: this.closePickerBody,
