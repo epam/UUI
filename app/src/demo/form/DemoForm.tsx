@@ -377,7 +377,7 @@ function Visas({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                 };
 
                 attachments.push(fileToAttach);
-                svc.uuiApi.uploadFile('/uploadFileMock', file, { onProgress: (progress) => trackProgress(progress, tempId) }).then((res) => {
+                svc.uuiApi.uploadFile('/upload/uploadFileMock', file, { onProgress: (progress) => trackProgress(progress, tempId) }).then((res) => {
                     updateAttachment({ ...res, progress: 100 }, tempId);
                 });
             });
