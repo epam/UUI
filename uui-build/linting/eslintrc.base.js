@@ -100,7 +100,7 @@ module.exports = {
                     },
                 ],
                 'import/extensions': [
-                    2, 'always', { ignorePackages: true },
+                    2, 'never', { ignorePackages: true },
                 ],
                 ...turnOffEslintRulesToBeFixed(),
             },
