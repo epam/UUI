@@ -3,7 +3,7 @@
 exports[`TextPlaceholder should be rendered correctly 1`] = `
 <div
   aria-busy={true}
-  className="container"
+  className="root"
 >
   <span
     className="loadingWord animatedLoading"
@@ -19,7 +19,7 @@ exports[`TextPlaceholder should be rendered correctly 1`] = `
 exports[`TextPlaceholder should be rendered correctly 2`] = `
 <div
   aria-busy={true}
-  className="container"
+  className="root"
 >
   <span
     className="loadingWord"

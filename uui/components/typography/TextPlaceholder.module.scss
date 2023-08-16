@@ -3,7 +3,10 @@
     100% { background-position: 0 0; }
 }
 
-.container {
+.root {
+    --uui-text-placeholder-gradient: var(--uui-skeleton-gradient);
+    --uui-text-placeholder: var(--uui-skeleton);
+    //
     display: flex;
     flex-wrap: wrap;
 }

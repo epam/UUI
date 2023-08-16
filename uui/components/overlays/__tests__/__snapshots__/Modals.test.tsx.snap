@@ -136,7 +136,7 @@ exports[`Modals should be rendered correctly 2`] = `
         }
       >
         <div
-          className="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
+          className="root uui-text uui-font-semibold uui-color-primary line-height-24 font-size-18 v-padding-12 container"
         >
           Test header
         </div>
@@ -157,7 +157,7 @@ exports[`Modals should be rendered correctly 2`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-default root"
+            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root"
             onClick={[Function]}
             tabIndex={0}
             type="button"

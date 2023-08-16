@@ -5,9 +5,10 @@ import { DataTableCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
 import { Checkbox } from '../inputs';
 import { ReactComponent as FoldingArrow } from '../../icons/tree_folding_arrow.svg';
-import css from './DataTableCell.module.scss';
 import { Tooltip } from '../overlays';
 import { IconContainer } from '../layout';
+import css from './DataTableCell.module.scss';
+import './variables.scss';
 
 function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue> & DataTableCellMods) {
     const row = props.rowProps;

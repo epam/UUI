@@ -7,7 +7,7 @@
 .root {
     background-color: var(--uui-progress-bar-wrapper);
     font-family: var(--font-regular);
-    color: white;
+    color: white; // TODO: change to variable
 
     :global(.bar) {
         background-color: var(--uui-progress-bar-background);

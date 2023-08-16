@@ -15,7 +15,7 @@ exports[`Preset renders correctly when not in rename mode and active 1`] = `
   }
 >
   <button
-    className="container uui-button-box uui-enabled uui-active root informer-default size-60 uui-no-left-icon uui-has-right-icon preset activePreset"
+    className="container uui-button-box uui-enabled uui-active root uui-tab-button informer-default size-60 uui-no-left-icon uui-has-right-icon preset activePreset"
     onClick={[Function]}
     role="tab"
     tabIndex={-1}
@@ -31,7 +31,7 @@ exports[`Preset renders correctly when not in rename mode and active 1`] = `
       style={Object {}}
     >
       <button
-        className="container uui-button-box uui-enabled -clickable icon-button-info root"
+        className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-info root"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -65,7 +65,7 @@ exports[`Preset renders correctly when not in rename mode and not active 1`] = `
   }
 >
   <button
-    className="container uui-button-box uui-enabled uui-active root informer-default size-60 uui-no-left-icon uui-has-right-icon preset activePreset"
+    className="container uui-button-box uui-enabled uui-active root uui-tab-button informer-default size-60 uui-no-left-icon uui-has-right-icon preset activePreset"
     onClick={[Function]}
     role="tab"
     tabIndex={-1}
@@ -81,7 +81,7 @@ exports[`Preset renders correctly when not in rename mode and not active 1`] = `
       style={Object {}}
     >
       <button
-        className="container uui-button-box uui-enabled -clickable icon-button-info root"
+        className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-info root"
         onClick={[Function]}
         tabIndex={0}
         type="button"

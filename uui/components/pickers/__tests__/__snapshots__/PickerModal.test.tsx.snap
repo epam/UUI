@@ -54,7 +54,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
+          className="root uui-text uui-font-semibold uui-color-primary line-height-24 font-size-18 v-padding-12 container"
         >
           Please select
         </div>
@@ -75,7 +75,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-default root"
+            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -240,7 +240,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -290,7 +290,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -340,7 +340,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -390,7 +390,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -440,7 +440,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -490,7 +490,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -540,7 +540,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -590,7 +590,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -640,7 +640,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -690,7 +690,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -740,7 +740,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -795,7 +795,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-outline"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -807,7 +807,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-solid"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -893,7 +893,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         }
       >
         <div
-          className="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
+          className="root uui-text uui-font-semibold uui-color-primary line-height-24 font-size-18 v-padding-12 container"
         >
           Please select
         </div>
@@ -914,7 +914,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-default root"
+            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -981,7 +981,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           </div>
         </div>
         <label
-          className="container switch-vars root size-18 switch uui-disabled"
+          className="container root size-18 uui-color-primary switch uui-disabled"
         >
           <div
             className="uui-switch-body"
@@ -1091,7 +1091,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1120,7 +1120,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         >
                           C2
                         </div>
@@ -1159,7 +1159,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1188,7 +1188,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         >
                           C1+
                         </div>
@@ -1227,7 +1227,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1256,7 +1256,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         >
                           C1
                         </div>
@@ -1295,7 +1295,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1324,7 +1324,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         >
                           B2+
                         </div>
@@ -1363,7 +1363,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1392,7 +1392,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         >
                           B2
                         </div>
@@ -1431,7 +1431,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1460,7 +1460,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         >
                           B1+
                         </div>
@@ -1499,7 +1499,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1528,7 +1528,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         >
                           B1
                         </div>
@@ -1567,7 +1567,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1596,7 +1596,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         >
                           A2+
                         </div>
@@ -1635,7 +1635,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1664,7 +1664,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         >
                           A2
                         </div>
@@ -1703,7 +1703,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1732,7 +1732,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         >
                           A1+
                         </div>
@@ -1771,7 +1771,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1800,7 +1800,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                          className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
                         >
                           A1
                         </div>
@@ -1854,7 +1854,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         }
       >
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 uui-no-left-icon uui-no-right-icon link-button-primary"
+          className="container uui-button-box uui-enabled -clickable uui-link_button root size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -1869,7 +1869,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-outline"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -1881,7 +1881,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-solid"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
           onClick={[Function]}
           tabIndex={0}
           type="button"

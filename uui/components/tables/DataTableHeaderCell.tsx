@@ -9,6 +9,7 @@ import { Checkbox } from '../inputs';
 import { Tooltip } from '../overlays';
 import { Text } from '../typography';
 import css from './DataTableHeaderCell.module.scss';
+import './variables.scss';
 import { ReactComponent as DefaultSortIcon } from '@epam/assets/icons/common/table-swap-18.svg';
 import { ReactComponent as SortIcon } from '@epam/assets/icons/common/table-sort_asc-18.svg';
 import { ReactComponent as SortIconDesc } from '@epam/assets/icons/common/table-sort_desc-18.svg';

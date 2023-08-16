@@ -16,6 +16,22 @@
 }
 
 .root {
+    --uui-text-area-bg: var(--uui-control-bg);
+    --uui-text-area-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-text-area-border: var(--uui-control-border);
+    --uui-text-area-border-disabled: var(--uui-control-border-disabled);
+    --uui-text-area-border-hover: var(--uui-control_textinput-border-hover);
+    --uui-text-area-border-active: var(--uui-control-border-checked);
+    --uui-text-area-border-error: var(--uui-error-50);
+    --uui-text-area-placeholder: var(--uui-control-placeholder);
+    --uui-text-area-text: var(--uui-control-text);
+    --uui-text-area-text-disabled: var(--uui-control-text-disabled);
+    --uui-text-area-icon: var(--uui-icon);
+    --uui-text-area-border-radius: var(--uui-border-radius);
+
+    --uui-text-area-font: var(--font-regular);
+    --uui-text-area-counter-font: var(--font-regular);
+    //
     :global(.uui-input) {
         color: var(--uui-text-area-text);
         fill: var(--uui-text-area-icon);

@@ -23,7 +23,7 @@ exports[`SnackbarCard should be rendered correctly 1`] = `
       className="content"
     />
     <button
-      className="container uui-button-box uui-enabled -clickable icon-button-night600 root closeIcon"
+      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-night600 root closeIcon"
       onClick={[Function]}
       tabIndex={0}
       type="button"

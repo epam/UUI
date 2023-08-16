@@ -163,7 +163,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
     }
   >
     <div
-      className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+      className="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
     >
       No records found
     </div>

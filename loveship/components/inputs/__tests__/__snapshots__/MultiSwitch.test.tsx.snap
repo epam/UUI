@@ -7,7 +7,7 @@ exports[`MultiSwitch should be rendered correctly 1`] = `
 >
   <button
     aria-current={true}
-    className="container uui-button-box uui-enabled -clickable button-primary root size-36 mode-solid"
+    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-primary size-36"
     onClick={[Function]}
     role="tab"
     tabIndex={0}
@@ -21,7 +21,7 @@ exports[`MultiSwitch should be rendered correctly 1`] = `
   </button>
   <button
     aria-current={false}
-    className="container uui-button-box uui-enabled -clickable button-primary root size-36 mode-outline"
+    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-primary size-36"
     onClick={[Function]}
     role="tab"
     tabIndex={0}

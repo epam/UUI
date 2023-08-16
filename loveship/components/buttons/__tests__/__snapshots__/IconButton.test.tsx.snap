@@ -3,7 +3,7 @@
 exports[`IconButton should render with maximum props 1`] = `
 <button
   aria-disabled={false}
-  className="container uui-button-box uui-enabled -clickable icon-button-sun root"
+  className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-sun root"
   onClick={[Function]}
   tabIndex={0}
   type="button"
@@ -21,7 +21,7 @@ exports[`IconButton should render with maximum props 1`] = `
 
 exports[`IconButton should render with minimum props 1`] = `
 <button
-  className="container uui-button-box uui-enabled icon-button-night600 root"
+  className="container uui-button-box uui-enabled uui-icon_button uui-color-night600 root"
   onClick={[Function]}
   tabIndex={-1}
   type="button"
