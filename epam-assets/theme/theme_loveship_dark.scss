@@ -531,33 +531,6 @@
     --uui-dropdown-menu-body-font: var(--font-regular);
     --uui-dropdown-menu-item-font: var(--font-regular);
 
-    /* MainMenu */
-    --uui-main_menu-text: var(--uui-text-brand);
-    --uui-main_menu-text-active: var(--uui-text-brand);
-    --uui-main_menu-bg: var(--uui-surface);
-    --uui-main_menu-hover: var(--uui-app-bg);
-    --uui-main_menu-active: var(--uui-surface-contrast-lower);
-    --uui-main_menu-border-active: var(--uui-primary-50);
-
-    --uui-main_menu-dropdown-bg: var(--uui-app-bg);//
-    --uui-main_menu-dropdown-bg-hover: var(--uui-surface);
-    --uui-main_menu-dropdown-hover: var(--uui-primary-50);
-    --uui-main_menu-dropdown-shadow: none;
-    --uui-main_menu-dropdown-border-radius: none;
-
-    --uui-main_menu-search-bg: var(--uui-secondary-70);
-    --uui-main_menu-search-border: var(--uui-secondary-70);
-    --uui-main_menu-search-placeholder: var(--uui-text-disabled);
-    --uui-main_menu-search-text: var(--uui-text-disabled);
-    --uui-main_menu-search-icon: var(--uui-icon-disabled);
-
-    --uui-main_menu-icon: var(--night50);
-    --uui-main_menu-icon-hover: var(--night50);
-    --uui-main_menu-icon-active: var(--night50);
-
-    --uui-main_menu-font: var(--font-semibold);
-    --uui-main_menu-search-font: var(--font-regular);
-
     /* BurgerMenu */
     --uui-burger_menu-bg: var(--uui-app-bg);
     --uui-burger_menu-bg-hover: var(--uui-app-bg);
@@ -573,22 +546,6 @@
     --uui-burger_group-line: var(--uui-text-secondary);
 
     --uui-burger_group-font: var(--font-regular);
-
-    /* BurgerButton */
-    --uui-burger_btn_caption: var(--uui-text-brand);
-    --uui-burger_btn_caption-hover: var(--uui-primary-50);
-    --uui-burger_btn_caption-active: var(--uui-primary-50);
-    --uui-burger_btn-border: var(--uui-disabled);
-
-    --uui-burger_btn-font: var(--font-regular);
-
-    /* BurgerSearch */
-    --uui-burger_search: var(--uui-secondary-70);
-    --uui-burger_search-fill: var(--uui-secondary-70);
-    --uui-burger_search-bg: var(--uui-secondary-50);
-    --uui-burger_search-placeholder: var(--uui-secondary-70);
-
-    --uui-burger_search-font: var(--font-regular);
 
     /* NumericInput */
     --uui-numeric-input-bg: var(--uui-control-bg);
@@ -714,6 +671,40 @@
     /* Pagination */
 
     --uui-pagination-font: var(--font-regular);
+
+    /* MainMenu */
+    .uui-mainMenu {
+        --uui-main_menu-text: var(--uui-text-brand);
+        --uui-main_menu-text-active: var(--uui-text-brand);
+        --uui-main_menu-bg: var(--uui-surface);
+        --uui-main_menu-hover: var(--uui-app-bg);
+
+        --uui-main_menu-icon: var(--uui-text-primary);
+        --uui-main_menu-icon-hover: var(--uui-text-primary);
+        --uui-main_menu-icon-active: var(--uui-text-primary);
+    }
+
+    .uui-mainMenu-dropdown {
+        --uui-main_menu-text: var(--uui-text-brand);
+        --uui-main_menu-text-active: var(--uui-text-brand);
+        --uui-main_menu-dropdown-bg: var(--uui-app-bg);
+        --uui-main_menu-dropdown-bg-hover: var(--uui-surface);
+    }
+
+    /* BurgerButton */
+    .uui-mainMenu-burger-button {
+        --uui-burger_btn_caption: var(--uui-text-brand);
+        --uui-burger_btn_caption-hover: var(--uui-primary-50);
+        --uui-burger_btn_caption-active: var(--uui-primary-50);
+    }
+
+    /* BurgerSearch */
+    .uui-mainMenu-burger-search {
+        --uui-burger_search: var(--uui-text-brand);
+        --uui-burger_search-fill: var(--uui-secondary-70);
+        --uui-burger_search-bg: var(--uui-secondary-50);
+        --uui-burger_search-placeholder: var(--uui-secondary-70);
+    }
 
     /* ------------------------------------ */
 

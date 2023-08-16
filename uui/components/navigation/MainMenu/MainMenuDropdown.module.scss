@@ -1,6 +1,16 @@
 @use  '../../../assets/styles/effects' as *;
 
 .dropdown-body {
+    --uui-main_menu-text: var(--uui-text-contrast);
+    --uui-main_menu-text-active: var(--uui-text-contrast);
+    --uui-main_menu-active: var(--uui-surface-contrast-lower);
+    --uui-main_menu-border-active: var(--uui-primary-50);
+
+    --uui-main_menu-dropdown-bg: var(--uui-surface-contrast-lower);
+    --uui-main_menu-dropdown-bg-hover: var(--uui-surface-contrast-low);
+    --uui-main_menu-dropdown-hover: var(--uui-primary-50);
+    --uui-main_menu-dropdown-shadow: none;
+    --uui-main_menu-dropdown-border-radius: none;
     display: flex;
     flex-direction: column;
     min-width: 200px;

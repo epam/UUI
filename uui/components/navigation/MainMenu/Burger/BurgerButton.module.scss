@@ -1,6 +1,11 @@
 @use  '../../../../assets/styles/index' as *;
 
 .root {
+    --uui-burger_btn_caption: var(--uui-text-contrast);
+    --uui-burger_btn_caption-hover: var(--uui-primary-50);
+    --uui-burger_btn_caption-active: var(--uui-primary-50);
+    --uui-burger_btn-border: var(--uui-disabled);
+    --uui-burger_btn-font: var(--font-regular);
     padding: 0 24px;
     background: none;
     border: 0;
