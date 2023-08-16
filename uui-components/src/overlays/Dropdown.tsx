@@ -1,16 +1,7 @@
 import * as React from 'react';
-import {
-    Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps,
-} from 'react-popper';
+import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
-import {
-    isEventTargetInsideClickable,
-    LayoutLayer,
-    UuiContexts,
-    UuiContext,
-    DropdownProps,
-    DropdownState,
-} from '@epam/uui-core';
+import { isEventTargetInsideClickable, LayoutLayer, UuiContexts, UuiContext, DropdownProps, DropdownState } from '@epam/uui-core';
 import { Portal } from './Portal';
 import { isInteractedOutsideDropdown } from './DropdownHelpers';
 
