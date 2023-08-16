@@ -48,7 +48,12 @@ IHasIcon & {
     /** Disallow to clear Picker value (cross icon) */
     disableClear?: boolean;
 
-    /** Minimum characters to type, before search will trigger (default is 1) */
+    /**
+     * Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.
+     * By default search triggers after input value is changed.
+     *
+     * Note: defined minCharsToSearch isn't compatible with searchPosition=body.
+     */
     minCharsToSearch?: number;
 
     /** Overrides default height of the dropdown body */
