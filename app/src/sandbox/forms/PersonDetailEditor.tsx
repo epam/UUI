@@ -38,7 +38,7 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
             attachments.push({ id: tempId, name: file.name, size: file.size });
 
             svc.uuiApi
-                .uploadFile('/uploadFileMock', file, {
+                .uploadFile('/upload/uploadFileMock', file, {
                     onProgress: (progress) => this.trackProgress(progress, tempId),
                 })
                 .then((res) => {
