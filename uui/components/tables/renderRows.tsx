@@ -30,6 +30,7 @@ function RowsGroup<TItem, TId>({
     top = 1,
 }: GroupProps<TItem, TId>) {
     const rowRef = useRef<HTMLDivElement>();
+    const childrenPinnedTop = row.isPinned ? (top + (rowRef.current?.clientHeight ?? 0)) : top;
     return ( 
         <div className={ css.group } key={ row.rowKey }>
             <div className={ row.isPinned ? css.stickyHeader : css.header } style={ { zIndex: row.depth + 10, top } } ref={ rowRef }>
@@ -37,7 +38,7 @@ function RowsGroup<TItem, TId>({
             </div>
             {childrenRows.length > 0 && (
                 <div className={ css.children }>
-                    {renderRows(childrenRows, renderRow, top + (rowRef.current?.clientHeight ?? 0))}
+                    {renderRows(childrenRows, renderRow, childrenPinnedTop)}
                 </div>
             )}
         </div>
