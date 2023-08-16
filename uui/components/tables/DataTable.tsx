@@ -14,7 +14,7 @@ import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from '../typography';
 import css from './DataTable.module.scss';
 import { i18n } from '../../i18n';
-import { renderRows } from './renderRows';
+import { DataRowsContainer } from './DataRowsContainer';
 
 export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
@@ -41,7 +41,6 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const renderRow = (row: DataRowProps<TItem, TId>) => (props.renderRow ?? defaultRenderRow)({ ...row, columns });
     const rows = props.getRows();
 
-    const renderedRows = renderRows(rows, renderRow, headerRef.current?.clientHeight);
     const renderNoResultsBlock = React.useCallback(() => {
         return (
             <div className={ css.noResults }>
@@ -110,9 +109,15 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                     />
                 </div>
                 {props.exactRowsCount !== 0 ? (
-                    <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
-                        <div ref={ listContainerRef } role="rowgroup" style={ { marginTop: offsetY } } children={ renderedRows } />
-                    </div>
+                    <DataRowsContainer
+                        headerRef={ headerRef }
+                        listContainerRef={ listContainerRef }
+                        estimatedHeight={ estimatedHeight } 
+                        offsetY={ offsetY } 
+                        scrollShadows={ scrollShadows }
+                        renderRow={ renderRow }
+                        rows={ rows }
+                    />
                 ) : (
                     renderNoResultsBlock?.()
                 )}
@@ -129,7 +134,6 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 value={ props.value }
                 onValueChange={ props.onValueChange }
                 onScroll={ props.onScroll }
-                rows={ renderedRows }
                 rowsCount={ props.rowsCount }
                 renderRows={ renderRowsContainer }
                 cx={ cx(css.table) }
