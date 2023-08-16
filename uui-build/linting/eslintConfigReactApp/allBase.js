@@ -1,7 +1,6 @@
-const cfg = require('eslint-config-react-app/base.js');
-const { overrideSeverityInRulesMap } = require('../utils/rulesSeverityUtils.js');
+const originalConfig = require('eslint-config-react-app/base.js');
+const { setUnifiedSeverityToConfig } = require('../utils/rulesSeverityUtils.js');
 
-module.exports = {
-    ...cfg,
-    rules: overrideSeverityInRulesMap(cfg.rules),
-};
+const newConfig = setUnifiedSeverityToConfig(originalConfig);
+
+module.exports = newConfig;
