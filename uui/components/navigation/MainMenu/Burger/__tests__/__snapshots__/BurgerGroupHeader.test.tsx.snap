@@ -2,7 +2,7 @@
 
 exports[`BurgerSearch should be rendered correctly 1`] = `
 <div
-  className="groupHeader"
+  className="root groupHeader uui-burger-group-header"
 >
   <hr
     className="line"

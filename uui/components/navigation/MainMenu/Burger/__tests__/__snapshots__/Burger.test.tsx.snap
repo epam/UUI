@@ -2,7 +2,7 @@
 
 exports[`Burger should render with maximum props 1`] = `
 <div
-  className="root uui-burger-menu container"
+  className="root uui-burger uui-burger-menu container"
 >
   <button
     className="uui-burger-button"

@@ -5,7 +5,7 @@ exports[`RadioGroup should be rendered correctly 1`] = `
   className="uui-vertical-direction root container"
 >
   <label
-    className="container root size-18 -clickable"
+    className="container root size-18 uui-color-primary -clickable"
   >
     <div
       className="uui-radioinput"
@@ -24,7 +24,7 @@ exports[`RadioGroup should be rendered correctly 1`] = `
     </div>
   </label>
   <label
-    className="container root size-18 -clickable"
+    className="container root size-18 uui-color-primary -clickable"
   >
     <div
       className="uui-radioinput"
@@ -50,7 +50,7 @@ exports[`RadioGroup should be rendered correctly with props 1`] = `
   className="uui-horizontal-direction root container"
 >
   <label
-    className="container uui-disabled root size-18"
+    className="container uui-disabled root size-18 uui-color-primary"
   >
     <div
       className="uui-radioinput"
@@ -71,7 +71,7 @@ exports[`RadioGroup should be rendered correctly with props 1`] = `
     </div>
   </label>
   <label
-    className="container uui-disabled root size-18"
+    className="container uui-disabled root size-18 uui-color-primary"
   >
     <div
       className="uui-radioinput"
