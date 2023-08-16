@@ -4,6 +4,9 @@
 * [FiltersPanel]: added possibility to provide your own custom filter
 
 **What's Fixed**
+* Added focus state styles for Accordion, AvatarStack, Anchor, Badge, Button, Burger, Checkbox, Control Group, IconButton, LinkButton, MainMenu, RadioInput, Switch, TabButton, Tag.
+* [PickerInput]: when `searchPosition=input` a cursor is placed in textbox once PickerInput is focused via Tab key.
+* [PickerInput]: fix `searchPosition` when `editMode=modal`, it cannot be `input`.
 
 
 # 5.1.2 - 10.08.2023
