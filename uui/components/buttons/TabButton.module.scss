@@ -22,6 +22,12 @@ $text-size-caption: 36px;
 $text-size-count: 24px;
 
 .root {
+    --uui-tab_button-text: var(--uui-text-primary);
+    --uui-tab_button-text-hover: var(--uui-primary-50);
+    --uui-tab_button-text-active: var(--uui-primary-50);
+    --uui-tab_button-text-disabled: var(--uui-text-disabled);
+    --uui-tab_button-font: var(--font-semibold);
+
     @include link-button-horizontal-layout(36px);
     @include tab-button-color(var(--uui-tab_button-text), var(--uui-tab_button-text-active), transparent);
     cursor: pointer;

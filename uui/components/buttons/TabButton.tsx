@@ -14,6 +14,7 @@ export type TabButtonProps = TabButtonMods & ButtonProps;
 function applyTabButtonMods(mods: TabButtonProps) {
     return [
         css.root,
+        'uui-tab-button',
         'informer-default',
         css['size-' + (mods.size || '48')],
         mods.withNotify && css.uuiNotification,
