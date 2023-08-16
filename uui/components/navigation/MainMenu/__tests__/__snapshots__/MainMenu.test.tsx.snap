@@ -2,7 +2,7 @@
 
 exports[`MainMenu should be rendered correctly 1`] = `
 <nav
-  className="root uui-mainmenu-container container"
+  className="root uui-mainMenu uui-mainmenu-container container"
 >
   <div
     className="itemsContainer mainWrapper"
@@ -17,7 +17,7 @@ exports[`MainMenu should be rendered correctly 1`] = `
       }
     >
       <div
-        className="root uui-burger-menu container"
+        className="root uui-burger uui-burger-menu container"
       >
         <button
           className="uui-burger-button"
@@ -46,7 +46,7 @@ exports[`MainMenu should be rendered correctly 1`] = `
 
 exports[`MainMenu should be rendered correctly 2`] = `
 <nav
-  className="root uui-mainmenu-container container uui-mainmenu-transparent"
+  className="root uui-mainMenu uui-mainmenu-container container uui-mainmenu-transparent"
 >
   <div
     className="itemsContainer mainWrapper"
@@ -61,7 +61,7 @@ exports[`MainMenu should be rendered correctly 2`] = `
       }
     >
       <div
-        className="root uui-burger-menu container"
+        className="root uui-burger uui-burger-menu container"
       >
         <button
           className="uui-burger-button"

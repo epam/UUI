@@ -2,7 +2,7 @@
 
 exports[`BurgerButton should be rendered correctly 1`] = `
 <button
-  className="container uui-button-box uui-enabled root button-primary indent-0"
+  className="container uui-button-box uui-enabled root uui-mainMenu-burger-button button-primary indent-0"
   onClick={[Function]}
   tabIndex={-1}
   type="button"
@@ -13,7 +13,7 @@ exports[`BurgerButton should be rendered correctly 2`] = `
 <a
   aria-expanded={false}
   aria-haspopup={true}
-  className="container uui-button-box uui-enabled -clickable root button-secondary indent-0 dropdown hasIcon"
+  className="container uui-button-box uui-enabled -clickable root uui-mainMenu-burger-button button-secondary indent-0 dropdown hasIcon"
   href="#"
   onClick={[Function]}
   rel="noopener noreferrer"
