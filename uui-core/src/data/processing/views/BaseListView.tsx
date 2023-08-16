@@ -449,14 +449,13 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected getRowsWithPinned(rows: DataRowProps<TItem, TId>[]) {
-        const rowsWithPinned: DataRowProps<TItem, TId>[] = [];
-        const ids = rows.map(({ id }) => id);
-        const alreadyPinned: TId[] = [];
-        
         if (!rows.length) {
             return [];
         }
 
+        const rowsWithPinned: DataRowProps<TItem, TId>[] = [];
+        const alreadyPinned: TId[] = [];
+        const ids = rows.map(({ id }) => id);
         const [firstRow] = rows;
         const { path } = firstRow;
         path.forEach((item) => {
