@@ -106,7 +106,6 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                 });
                 this.initialProps = this.state.selectedPropsIds;
                 this.setState({ docs: module, isLoading: false });
-                this.setState({ code: this.renderCode(this.state.selectedPropsIds) });
             });
         }
 
@@ -122,13 +121,6 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
 
     propExamples: { [propName: string]: PropExample<any>[] } = {};
     initialProps: any;
-    componentDidUpdate(prevProps: any, prevState: any) {
-        if (this.state.selectedPropsIds !== prevState.selectedPropsIds) {
-            this.setState({
-                code: this.renderCode(this.state.selectedPropsIds),
-            });
-        }
-    }
 
     getPropValue(prop: PropDoc<any, any>) {
         if (typeof prop.examples === 'function') {
@@ -358,7 +350,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
     }
 
     renderCodeBlock() {
-        return <pre className={ css.code }>{this.state.code}</pre>;
+        return <pre className={ css.code }>{this.renderCode(this.getProps())}</pre>;
     }
 
     showNotification() {
@@ -371,7 +363,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                 </NotificationCard>
             ),
             { duration: 3 },
-        );
+        ).catch(() => {});
     }
 
     getTheme(route: string) {
@@ -445,7 +437,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                                 <Switch label="View Code" value={ this.state.showCode } onValueChange={ () => this.setState({ showCode: !this.state.showCode }) } />
                                 <FlexSpacer />
                                 <Tooltip content="Copy code" placement="top">
-                                    <IconButton icon={ CopyIcon } onClick={ () => copyTextToClipboard(this.state.code, this.showNotification) } />
+                                    <IconButton icon={ CopyIcon } onClick={ () => copyTextToClipboard(this.renderCode(this.getProps()), this.showNotification) } />
                                 </Tooltip>
                             </FlexRow>
                             {this.state.showCode && (
