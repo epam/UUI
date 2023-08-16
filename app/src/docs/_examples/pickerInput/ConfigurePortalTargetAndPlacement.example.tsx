@@ -45,7 +45,7 @@ export default function ConfigurePortalTargetAndPlacement() {
                 <div className={ css.divider }></div>
                 <FlexRow spacing="12" padding="18" vPadding="24">
                     <Button color="green" size="30" caption="Save" onClick={ () => null } />
-                    <Button fill="white" size="30" color="gray50" caption="Cancel" onClick={ () => props.onClose() } />
+                    <Button fill="white" size="30" color="gray" caption="Cancel" onClick={ () => props.onClose() } />
                 </FlexRow>
             </Panel>
         </DropdownContainer>
