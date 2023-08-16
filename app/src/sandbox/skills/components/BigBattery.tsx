@@ -48,7 +48,7 @@ export function BigBattery(props: IBigBatteryProps) {
             {props.isExtended && (
                 <>
                     <div className={ css.batteryDivider }></div>
-                    <Button fill="none" color="gray50" icon={ CrossIcon } cx={ cx(css.mainCloseBtn) } onClick={ () => props.setRating('NoSkill') } />
+                    <Button fill="none" color="gray" icon={ CrossIcon } cx={ cx(css.mainCloseBtn) } onClick={ () => props.setRating('NoSkill') } />
                 </>
             )}
         </FlexRow>
