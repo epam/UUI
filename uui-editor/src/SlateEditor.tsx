@@ -65,6 +65,7 @@ function Editor(props: PlateEditorProps) {
                     autoFocus: props.autoFocus,
                     readOnly: props.isReadonly,
                     placeholder: props.placeholder,
+                    className: css.editor,
                     renderPlaceholder: ({ attributes }) => {
                         return isEditorValueEmpty(editor.children) && (
                             <div
