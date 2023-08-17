@@ -6,6 +6,4 @@ export type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> &
 IEditable<any> &
 IDropdownBodyProps & {
     selectedPredicate?: string;
-    onClose?: () => void;
-    showSearch?: boolean;
 };

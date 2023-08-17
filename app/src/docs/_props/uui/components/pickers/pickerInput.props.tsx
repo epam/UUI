@@ -72,6 +72,7 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
             },
         ],
     })
+    .prop('getRowOptions', { examples: [{ name: 'Disabled rows', value: () => ({ isDisabled: true, isSelectable: false }) }] })
     .prop('searchPosition', {
         examples: [
             'input', 'body', 'none',

@@ -35,7 +35,7 @@ export default function FileUploadExample() {
             newAttachments.push(newFile);
 
             uuiApi
-                .uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
+                .uploadFile(ORIGIN.concat('/upload/uploadFileMock'), file, {
                     onProgress: (progress) => trackProgress(progress, tempId),
                     getXHR: (xhr) => {
                         newFile.abortXHR = () => xhr.abort();
