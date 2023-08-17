@@ -2,8 +2,8 @@
 
 exports[`DataTable should be rendered correctly 1`] = `
 <div
-  className="root scrollContainer table"
-  cx="scrollContainer table"
+  className="root scrollContainer table uui-dt-vars"
+  cx="scrollContainer table uui-dt-vars"
   style={
     Object {
       "display": "flex",
@@ -38,7 +38,7 @@ exports[`DataTable should be rendered correctly 1`] = `
       className="stickyHeader"
     >
       <div
-        className="container uui-table-row-container root root uui-table-header-row container align-items-center"
+        className="container uui-table-row-container root root uui-dt-vars uui-table-header-row container align-items-center"
         role="row"
         style={
           Object {
