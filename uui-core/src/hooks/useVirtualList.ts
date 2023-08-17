@@ -133,7 +133,11 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
 
     useLayoutEffectSafeForSsr(() => {
         updateRowHeights();
-        // handleScroll();
+        handleScroll();
+    }, []);
+
+    useLayoutEffectSafeForSsr(() => {
+        updateRowHeights();
     });
 
     const handleScrollToIndex = () => {
