@@ -76,6 +76,7 @@ export function RichTextEditorDemo() {
     const [contentName, setContentName] = React.useState<string>();
     const [isReadonly, setIsReadonly] = React.useState<boolean>();
     const [html, setHtml] = React.useState<string>();
+    const [type, setType] = React.useState<'html' | 'edit'>('edit');
 
     useEffect(() => {
         if (!contentName) return;
@@ -101,12 +102,14 @@ export function RichTextEditorDemo() {
         setValue(newValue);
     }, []);
 
-    const onSerialize = React.useCallback(() => {
-        console.log('value', value);
-        const serialized = serializeHTML(value);
-        console.log('serialized', serialized);
-        setHtml(serialized);
-    }, [serializeHTML, value]);
+    const toggleFunction = React.useCallback(() => {
+        if (type === 'edit') {
+            setHtml(serializeHTML(value));
+            setType('html');
+        } else {
+            setType('edit');
+        }
+    }, [serializeHTML, type, value]);
 
     return (
         <div style={ { flexGrow: 1, margin: '24px' } }>
@@ -120,17 +123,28 @@ export function RichTextEditorDemo() {
                         selectionMode="single"
                     />
                 </FlexCell>
-                <Switch value={ isReadonly } onValueChange={ setIsReadonly } label="Readonly" />
+                <Switch
+                    isDisabled={ type === 'html' }
+                    value={ isReadonly }
+                    onValueChange={ setIsReadonly }
+                    label="Readonly"
+                />
                 <Button
-                    caption="Serialize"
-                    onClick={ onSerialize }
+                    caption={ type === 'html' ? 'Edit' : 'Serialize' }
+                    onClick={ toggleFunction }
                     isDisabled={ isEditorValueEmpty(migrateSchema(value)) }
                     size="30"
                 />
+                {/* <Button
+                    caption={ 'Deserialize' }
+                    onClick={ onDeserialize }
+                    isDisabled={ isEditorValueEmpty(migrateSchema(value)) }
+                    size="30"
+                /> */}
             </FlexRow>
             <FlexCell grow={ 1 } style={ { marginTop: '12px' } }>
                 {
-                    html
+                    type === 'html'
                         ? <div dangerouslySetInnerHTML={ { __html: html } } />
                         : (
                             <SlateEditor
