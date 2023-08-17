@@ -1,4 +1,4 @@
-const { turnOffStylelintRulesToBeFixed, shouldTurnOffRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
+const { turnOffStylelintRulesToBeFixed, shouldTurnOffRulesToBeFixed } = require('./utils/rulesToBeFixed');
 
 const SCSS_COMMON_RULES = {
     'order/properties-alphabetical-order': null,
