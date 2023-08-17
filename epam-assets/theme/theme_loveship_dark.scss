@@ -395,16 +395,6 @@
     --uui-accordion-toggler-font: var(--font-semibold);
     --uui-accordion-body-font: var(--font-regular);
 
-    /* DropdownContainer */
-    //--uui-dropdown-container-border-radius: 6px;
-    //--uui-dropdown-container-shadow: var(--uui-shadow-level-2);
-    //--uui-dropdown-container-bg: var(--uui-surface);
-
-    /* DropdownMenu */
-    // TODO: update tokens
-
-    /* BurgerGroupHeader */
-
     /* NumericInput */
     --uui-numeric-input-bg: var(--uui-control-bg);
     --uui-numeric-input-bg-disabled: var(--uui-control-bg-disabled);
@@ -419,21 +409,6 @@
     --uui-numeric-input-icon-clickable: var(--uui-icon);
     --uui-numeric-input-icon-clickable-hover: var(--uui-icon-hover);
     --uui-numeric-input-border-radius: var(--uui-border-radius);
-
-    /* TimePicker */
-    --uui-time-picker-bg: var(--uui-control-bg);
-    --uui-time-picker-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-time-picker-border: var(--uui-control-border);
-    --uui-time-picker-border-disabled: var(--uui-control-border-disabled);
-    --uui-time-picker-border-hover: var(--uui-control_textinput-border-hover);
-    --uui-time-picker-border-active: var(--uui-control-border-checked);
-    --uui-time-picker-border-error: var(--uui-error-50);
-    --uui-time-picker-placeholder: var(--uui-control-placeholder);
-    --uui-time-picker-text: var(--uui-control-text);
-    --uui-time-picker-text-disabled: var(--uui-control-text-disabled);
-    --uui-time-picker-icon-clickable: var(--uui-icon);
-    --uui-time-picker-icon-clickable-hover: var(--uui-icon-hover);
-    --uui-time-picker-border-radius: var(--uui-border-radius);
 
     /* SearchPicker */
     --uui-search-input-bg: var(--uui-control-bg);
@@ -476,9 +451,6 @@
     --uui-notification-card-border-width: 0;
     --uui-notification-card-border-top-width: 6px;
     --uui-notification-card-shadow: var(--uui-shadow-level-2); //TODO: may change in the future
-
-    /* Alert */
-    //--uui-alert-border-radius: 6px;
 
     /* Spinner */
     --uui-spinner: var(--uui-primary-50);

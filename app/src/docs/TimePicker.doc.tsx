@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4,
+    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI,
 } from '../common';
 
 export class TimePickerDoc extends BaseDocsBlock {
@@ -9,6 +9,7 @@ export class TimePickerDoc extends BaseDocsBlock {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/timePicker.props.ts',
             [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/timePicker.props.ts',
+            [UUI]: './app/src/docs/_props/uui/components/inputs/timePicker.props.ts',
         };
     }
 
