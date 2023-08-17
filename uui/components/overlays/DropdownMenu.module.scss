@@ -1,6 +1,18 @@
 @use 'sass:math';
 @use '../../assets/styles/index' as *;
 
+.root {
+    --uui-dropdown-menu-bg: var(--uui-surface);
+    --uui-dropdown-menu-shadow: var(--uui-shadow-level-2);
+    --uui-dropdown-menu-splitter: var(--uui-divider);
+    --uui-dropdown-menu-item-hover: var(--uui-surface-lowest);
+    --uui-dropdown-menu-item-active: var(--uui-surface-lowest);
+    --uui-dropdown-menu-item-text: var(--uui-text-primary);
+
+    --uui-dropdown-menu-body-font: var(--font-regular);
+    --uui-dropdown-menu-item-font: var(--font-regular);
+}
+
 // TODO: need to revamp
 
 @mixin icon-sizes($size, $font-size, $line-height) {
