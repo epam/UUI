@@ -11,7 +11,7 @@ import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/action-set
 
 export const DataTableHeaderRow = withMods<DataTableHeaderRowProps, DataTableHeaderRowMods>(
     uuiDataTableHeaderRow,
-    () => [css.root],
+    () => [css.root, 'uui-dt-vars'],
     (mods) => ({
         renderCell: (props) => <DataTableHeaderCell { ...props } size={ mods.size } textCase={ mods.textCase || 'normal' } key={ props.column.key } />,
         renderConfigButton: () => <IconButton key="configuration" onClick={ mods.onConfigButtonClick } cx={ css.configIcon } color="default" icon={ MoreIcon } />,

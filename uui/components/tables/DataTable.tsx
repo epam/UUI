@@ -127,7 +127,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 rows={ renderedRows }
                 rowsCount={ props.rowsCount }
                 renderRows={ renderRowsContainer }
-                cx={ cx(css.table) }
+                cx={ cx(css.table, 'uui-dt-vars') }
                 rawProps={ {
                     role: 'table',
                     'aria-colcount': columns.length,
