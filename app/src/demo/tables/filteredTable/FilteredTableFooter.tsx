@@ -71,7 +71,7 @@ export function FilteredTableFooter(props: IFilteredTableFooterProps) {
                     <TextInput size="24" value={ goToPage } onValueChange={ setGoToPageHandler } />
                 </LabeledInput>
             </div>
-            <Button cx={ css.goToPageButton } size="24" icon={ ArrowRightIcon_24 } onClick={ goToPageHandler } fill="white" color="gray50" />
+            <Button cx={ css.goToPageButton } size="24" icon={ ArrowRightIcon_24 } onClick={ goToPageHandler } fill="white" color="gray" />
             <Paginator value={ props.tableState.page } onValueChange={ paginatorHandler } totalPages={ totalPages } size="24" />
         </FlexRow>
     );

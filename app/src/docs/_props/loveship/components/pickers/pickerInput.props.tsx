@@ -14,7 +14,6 @@ import {
 import { pickerBaseOptionsDoc } from './common';
 import { FlexCell, FlexRow } from '@epam/loveship';
 import { Text } from '@epam/loveship';
-import css from './DataPickerRowDoc.module.scss';
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
     .implements([
@@ -73,7 +72,7 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
             },
         ],
     })
-    .prop('getRowOptions', { examples: [{ name: 'Disabled rows', value: () => ({ isDisabled: true }) }] })
+    .prop('getRowOptions', { examples: [{ name: 'Disabled rows', value: () => ({ isDisabled: true, isSelectable: false }) }] })
     .prop('searchPosition', {
         examples: [
             'input', 'body', 'none',
@@ -119,26 +118,6 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
                         renderItem={ (item, rowProps) => <PickerItem { ...rowProps } avatarUrl={ item.avatarUrl } title={ item.name } subtitle={ item.jobTitle } /> }
                     />
                 ),
-            }, {
-                name: 'Skills',
-                value: (rowProps) => {
-                    const isParent = !rowProps.value.parentId;
-                    return (
-                        <DataPickerRow
-                            { ...rowProps }
-                            depth={ isParent ? 0 : 1 }
-                            cx={ isParent && css.parent }
-                            isFoldable={ false }
-                            isChecked={ isParent ? false : rowProps.isChecked }
-                            isChildrenChecked={ false }
-                            isSelectable={ isParent ? false : rowProps.isSelectable }
-                            isFocused={ isParent ? false : rowProps.isFocused }
-                            borderBottom="none"
-                            size="36"
-                            renderItem={ (i) => <Text size="36">{i.name}</Text> }
-                        />
-                    );
-                },
             },
         ],
     })
