@@ -325,7 +325,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
         const id = rowProps.id;
         const isChecked = !rowProps.isChecked;
-        console.log('rowProps.isChecked', rowProps.isChecked);
+
         this.checkItems(isChecked, false, id);
     };
 
