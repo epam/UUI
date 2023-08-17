@@ -1,5 +1,5 @@
-const originalConfig = require('eslint-config-react-app/jest.js');
-const { setUnifiedSeverityToConfig } = require('../utils/rulesSeverityUtils.js');
+const originalConfig = require('eslint-config-react-app/jest');
+const { setUnifiedSeverityToConfig } = require('../utils/rulesSeverityUtils');
 
 const newConfig = setUnifiedSeverityToConfig(originalConfig);
 

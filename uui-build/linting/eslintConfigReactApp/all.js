@@ -1,5 +1,5 @@
-const originalConfig = require('eslint-config-react-app/index.js');
-const { setUnifiedSeverityToConfig } = require('../utils/rulesSeverityUtils.js');
+const originalConfig = require('eslint-config-react-app/index');
+const { setUnifiedSeverityToConfig } = require('../utils/rulesSeverityUtils');
 
 const newConfig = setUnifiedSeverityToConfig({
     ...originalConfig,
