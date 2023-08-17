@@ -1,9 +1,9 @@
-const { isLintStaged } = require('../../utils/envUtils.js');
+const { isLintStaged } = require('../../utils/envUtils');
 
 const SEVERITY = {
     off: 'off',
     warn: 1,
-    error: isLintStaged ? 2 : 1,
+    error: 2,
 };
 const unifiedSeverity = _getUnifiedSeverity();
 

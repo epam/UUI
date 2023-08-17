@@ -1,7 +1,7 @@
 /**
  * This module provides eslint rules which we want to pick from airbnb
  */
-const { setUnifiedSeverityToConfig } = require('../utils/rulesSeverityUtils.js');
+const { setUnifiedSeverityToConfig } = require('../utils/rulesSeverityUtils');
 
 const baseMap = {
     ...require('eslint-config-airbnb-base/rules/errors').rules,
