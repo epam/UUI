@@ -506,21 +506,21 @@
     --uui-switch-font: var(--font-regular);
 
     /* DropdownContainer */
-    --uui-dropdown-container-border-radius: 0;
-    --uui-dropdown-container-shadow: var(--uui-shadow-level-2);
-    --uui-dropdown-container-bg: var(--uui-surface);
+    //--uui-dropdown-container-border-radius: 0;
+    //--uui-dropdown-container-shadow: var(--uui-shadow-level-2);
+    //--uui-dropdown-container-bg: var(--uui-surface);
 
     /* DropdownMenu */
-    // TODO: update tokens
-    --uui-dropdown-menu-bg: var(--uui-surface);
-    --uui-dropdown-menu-shadow: var(--uui-shadow-level-2);
-    --uui-dropdown-menu-splitter: var(--uui-divider);
-    --uui-dropdown-menu-item-hover: var(--uui-surface-lowest);
-    --uui-dropdown-menu-item-active: var(--uui-surface-lowest);
-    --uui-dropdown-menu-item-text: var(--uui-text-primary);
-
-    --uui-dropdown-menu-body-font: var(--font-regular);
-    --uui-dropdown-menu-item-font: var(--font-regular);
+    //// TODO: update tokens
+    //--uui-dropdown-menu-bg: var(--uui-surface);
+    //--uui-dropdown-menu-shadow: var(--uui-shadow-level-2);
+    //--uui-dropdown-menu-splitter: var(--uui-divider);
+    //--uui-dropdown-menu-item-hover: var(--uui-surface-lowest);
+    //--uui-dropdown-menu-item-active: var(--uui-surface-lowest);
+    //--uui-dropdown-menu-item-text: var(--uui-text-primary);
+    //
+    //--uui-dropdown-menu-body-font: var(--font-regular);
+    //--uui-dropdown-menu-item-font: var(--font-regular);
 
     /* MainMenu */
     //--uui-main_menu-text: var(--uui-text-contrast);
@@ -550,13 +550,13 @@
     //--uui-main_menu-search-font: var(--font-regular);
 
     /* BurgerMenu */
-    --uui-burger_menu-bg: var(--uui-surface-contrast-lower);
-    --uui-burger_menu-bg-hover: var(--uui-surface-contrast-lower);
-    --uui-burger_menu-caption: var(--uui-text-contrast);
-    --uui-burger_menu-caption-hover: var(--uui-primary-50);
-    --uui-burger_menu-overlay: var(--uui-overlay);
-    --uui-burger_icon: var(--uui-text-contrast);
-    --uui-burger_item: var(--uui-text-brand);
+    //--uui-burger_menu-bg: var(--uui-surface-contrast-lower);
+    //--uui-burger_menu-bg-hover: var(--uui-surface-contrast-lower);
+    //--uui-burger_menu-caption: var(--uui-text-contrast);
+    //--uui-burger_menu-caption-hover: var(--uui-primary-50);
+    //--uui-burger_menu-overlay: var(--uui-overlay);
+    //--uui-burger_icon: var(--uui-text-contrast);
+    //--uui-burger_item: var(--uui-text-brand);
 
     /* BurgerGroupHeader */
     //--uui-burger_group-text: var(--uui-text-disabled);
@@ -654,7 +654,7 @@
     --uui-notification-card-shadow: unset;
 
     /* Alert */
-    --uui-alert-border-radius: var(--uui-border-radius);
+    //--uui-alert-border-radius: var(--uui-border-radius);
 
     /* Panel */
 
