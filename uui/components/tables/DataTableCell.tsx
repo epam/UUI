@@ -75,6 +75,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     const isEditable = !!props.onValueChange;
 
     props.cx = [
+        'uui-dt-vars',
         'data-table-cell',
         props.cx,
         css.cell,
