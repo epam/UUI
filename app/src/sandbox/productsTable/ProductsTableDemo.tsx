@@ -7,6 +7,7 @@ import { productColumns } from './columns';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { useTheme } from '../../helpers/useTheme';
+import css from './ProductsTableDemo.module.scss';
 
 interface FormState {
     items: Record<number, Product>;
@@ -59,7 +60,7 @@ export function ProductsTableDemo() {
     );
 
     return (
-        <Panel style={ { width: '100%' } }>
+        <Panel cx={ css.container }>
             <DataTable
                 headerTextCase="upper"
                 getRows={ () => rows }
