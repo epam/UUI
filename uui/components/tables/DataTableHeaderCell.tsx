@@ -138,6 +138,6 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     );
 
     render() {
-        return <UuiDataTableHeaderCell { ...this.props } renderCellContent={ this.props.column.renderFilter ? this.renderCellWithFilter : this.renderCellContent } />;
+        return <UuiDataTableHeaderCell { ...this.props } cx="uui-dt-vars" renderCellContent={ this.props.column.renderFilter ? this.renderCellWithFilter : this.renderCellContent } />;
     }
 }
