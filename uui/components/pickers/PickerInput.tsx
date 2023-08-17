@@ -180,7 +180,7 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
     return (
         <Dropdown
             renderTarget={ (dropdownProps) => {
-                const targetProps = getTogglerProps(rows, dropdownProps);
+                const targetProps = getTogglerProps(rows);
                 const targetRef = getTargetRef({ ...targetProps, ...dropdownProps });
                 return renderTarget({ ...dropdownProps, ...targetProps, ...targetRef });
             } }

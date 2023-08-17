@@ -1,8 +1,7 @@
 import React, { useMemo, useRef, useEffect } from 'react';
 import { Modifier } from 'react-popper';
 import {
-    DropdownBodyProps, DataRowProps, isMobile, mobilePopperModifier, IDropdownToggler, Lens, PickerFooterProps,
-    DataSourceState,
+    DataRowProps, isMobile, mobilePopperModifier, IDropdownToggler, Lens, PickerFooterProps, DataSourceState,
 } from '@epam/uui-core';
 import { PickerTogglerProps } from '../PickerToggler';
 import { PickerBodyBaseProps } from '../PickerBodyBase';
@@ -113,6 +112,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const getSearchPosition = () => {
         if (isMobile() && props.searchPosition !== 'none') return 'body';
+        if (props.editMode === 'modal' && props.searchPosition !== 'none') return 'body';
         if (!props.searchPosition) {
             return props.selectionMode === 'multi' ? 'body' : 'input';
         } else {
@@ -268,7 +268,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         return dataSourceState.search;
     };
 
-    const getTogglerProps = (rows: DataRowProps<TItem, TId>[], dropdownProps: DropdownBodyProps): PickerTogglerProps<TItem, TId> => {
+    const getTogglerProps = (rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> => {
         const selectedRowsCount = view.getSelectedRowsCount();
         const allowedMaxItems = getMaxItems(props.maxItems);
         const itemsToTake = selectedRowsCount > allowedMaxItems ? allowedMaxItems : selectedRowsCount;
@@ -321,7 +321,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             pickerMode: isSingleSelect() ? 'single' : 'multi',
             searchPosition,
             onKeyDown: (e) => handlePickerInputKeyboard(rows, e),
-            disableSearch: !minCharsToSearch && (!dropdownProps.isOpen || searchPosition !== 'input'),
+            disableSearch: searchPosition !== 'input',
             disableClear: disableClear,
             toggleDropdownOpening,
             closePickerBody: closePickerBody,
