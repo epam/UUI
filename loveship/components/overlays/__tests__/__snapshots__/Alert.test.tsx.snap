@@ -2,7 +2,7 @@
 
 exports[`Alert should be rendered correctly 1`] = `
 <div
-  className="uui-alert alertWrapper uui-color-sky root size48"
+  className="root alertWrapper uui-alert uui-color-sky size48"
   role="alert"
 >
   <div
@@ -17,7 +17,7 @@ exports[`Alert should be rendered correctly 1`] = `
 
 exports[`Alert should be rendered correctly with props 1`] = `
 <div
-  className="uui-alert alertWrapper uui-color-sun root root size48"
+  className="root alertWrapper uui-alert uui-color-sun root size48"
   role="alert"
 >
   <div
