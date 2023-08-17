@@ -1,9 +1,7 @@
 import React, { useRef, useContext, useState, useEffect, HTMLAttributes } from 'react';
 import FocusLock from 'react-focus-lock';
-import {
-    cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
-    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IHasRawProps, IHasForwardedRef,
-} from '@epam/uui-core';
+import { cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
+    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer } from '@epam/uui-components';
 import { Switch } from '../inputs';
 import { IconButton } from '../buttons';
@@ -60,7 +58,7 @@ function DropdownMenuContainer(props: IDropdownMenuContainer) {
     };
 
     return (
-        <FocusLock as="menu" className={ css.menuRoot } returnFocus autoFocus={ false } ref={ menuRef } lockProps={ { onKeyDown: handleArrowKeys, tabIndex: -1 } }>
+        <FocusLock as="menu" className={ cx(css.root, css.menuRoot) } returnFocus autoFocus={ false } ref={ menuRef } lockProps={ { onKeyDown: handleArrowKeys, tabIndex: -1 } }>
             <DropdownContainer { ...props } rawProps={ { ...props.rawProps, tabIndex: -1 } } />
         </FocusLock>
     );
@@ -109,7 +107,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
                 icon={ icon }
                 color={ isActive ? 'info' : 'default' }
                 onClick={ onIconClick }
-                cx={ cx(css.icon, iconPosition === 'right' ? css.iconAfter : css.iconBefore) }
+                cx={ cx(css.root, css.icon, iconPosition === 'right' ? css.iconAfter : css.iconBefore) }
             />
         );
 
@@ -129,7 +127,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
 
     const isAnchor = Boolean(link || href);
 
-    const itemClassNames = cx(props.cx, css.itemRoot, isDisabled && uuiMod.disabled, isActive && uuiMod.active, isOpen && uuiMod.opened);
+    const itemClassNames = cx(css.root, props.cx, css.itemRoot, isDisabled && uuiMod.disabled, isActive && uuiMod.active, isOpen && uuiMod.opened);
 
     return isAnchor ? (
         <Anchor
@@ -156,7 +154,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             ref={ ref }
         >
             {getMenuButtonContent()}
-            {isSelected && <IconContainer icon={ icons.accept } cx={ css.selectedCheckmark } />}
+            {isSelected && <IconContainer icon={ icons.accept } cx={ cx(css.root, css.selectedCheckmark) } />}
         </FlexRow>
     );
 });
@@ -165,7 +163,7 @@ DropdownMenuButton.displayName = 'DropdownMenuButton';
 
 export function DropdownMenuSplitter(props: IHasCX) {
     return (
-        <div className={ cx(props.cx, css.splitterRoot) }>
+        <div className={ cx(css.root, props.cx, css.splitterRoot) }>
             <hr className={ css.splitter } />
         </div>
     );
@@ -175,7 +173,7 @@ interface IDropdownMenuHeader extends IHasCX, IHasCaption {}
 
 export function DropdownMenuHeader(props: IDropdownMenuHeader) {
     return (
-        <div className={ cx(props.cx, css.headerRoot) }>
+        <div className={ cx(css.root, props.cx, css.headerRoot) }>
             <span className={ css.header }>{props.caption}</span>
         </div>
     );
@@ -212,7 +210,7 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
             renderBody={ (dropdownProps) => <DropdownMenuBody closeOnKey={ IDropdownControlKeys.LEFT_ARROW } { ...props } { ...dropdownProps } /> }
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
                 <DropdownMenuButton
-                    cx={ cx(css.submenuRootItem) }
+                    cx={ cx(css.root, css.submenuRootItem) }
                     icon={ icons.foldingArrow }
                     iconPosition="right"
                     isDropdown={ true }

@@ -398,21 +398,12 @@
     --uui-accordion-body-font: var(--font-regular);
 
     /* DropdownContainer */
-    --uui-dropdown-container-border-radius: 6px;
-    --uui-dropdown-container-shadow: var(--uui-shadow-level-2);
-    --uui-dropdown-container-bg: var(--uui-surface);
+    //--uui-dropdown-container-border-radius: 6px;
+    //--uui-dropdown-container-shadow: var(--uui-shadow-level-2);
+    //--uui-dropdown-container-bg: var(--uui-surface);
 
     /* DropdownMenu */
     // TODO: update tokens
-    --uui-dropdown-menu-bg: var(--uui-surface);
-    --uui-dropdown-menu-shadow: var(--uui-shadow-level-2);
-    --uui-dropdown-menu-splitter: var(--uui-divider);
-    --uui-dropdown-menu-item-hover: var(--uui-surface-lowest);
-    --uui-dropdown-menu-item-active: var(--uui-surface-lowest);
-    --uui-dropdown-menu-item-text: var(--uui-text-primary);
-
-    --uui-dropdown-menu-body-font: var(--font-regular);
-    --uui-dropdown-menu-item-font: var(--font-regular);
 
     /* BurgerGroupHeader */
 
@@ -489,7 +480,7 @@
     --uui-notification-card-shadow: var(--uui-shadow-level-2); //TODO: may change in the future
 
     /* Alert */
-    --uui-alert-border-radius: 6px;
+    //--uui-alert-border-radius: 6px;
 
     /* Spinner */
     --uui-spinner: var(--uui-primary-50);
