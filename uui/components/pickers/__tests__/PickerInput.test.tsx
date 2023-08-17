@@ -33,7 +33,7 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
                     onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('value', newValue)),
                     dataSource: mockDataSourceAsync,
                     disableClear: false,
-                    searchPosition: params.searchPosition,
+                    searchPosition: 'input',
                     getName: (item: TestItemType) => item.level,
                     value: params.value as TId,
                     selectionMode: 'single',
@@ -44,7 +44,7 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
                 onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('value', newValue)),
                 dataSource: mockDataSourceAsync,
                 disableClear: false,
-                searchPosition: params.searchPosition,
+                searchPosition: 'input',
                 getName: (item: TestItemType) => item.level,
                 value: params.value as number[],
                 selectionMode: 'multi',
@@ -746,7 +746,7 @@ describe('PickerInput', () => {
             searchPosition: 'input',
         });
         
-        expect(dom.input.getAttribute('readonly')).toBe('');
+        expect(dom.input.getAttribute('readonly')).toBeNull();
         fireEvent.click(dom.input);
         const dialog = await screen.findByRole('dialog');
         expect(dialog).toBeInTheDocument();

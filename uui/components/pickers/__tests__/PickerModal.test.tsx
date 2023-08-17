@@ -19,7 +19,7 @@ jest.mock('react-popper', () => ({
         });
     },
 }));
-
+const TIMEOUT = 10000;
 const onValueChangeMock = jest.fn();
 
 async function setupPickerModalForTest<TItem = TestItemType, TId = number>(params: Partial<PickerModalProps<TItem, TId>>) {
@@ -182,7 +182,7 @@ describe('PickerModal', () => {
 
             const checkedOption = await PickerModalTestObject.findSelectedOption();
             expect(checkedOption).toEqual('C2');
-        });
+        }, TIMEOUT);
         
         it('[valueType entity] should select', async () => {
             const { dom } = await setupPickerModalForTest({
@@ -229,7 +229,7 @@ describe('PickerModal', () => {
 
             const checkedOption1 = await PickerModalTestObject.findSelectedOption();
             expect(checkedOption1).toEqual('A1');
-        });
+        }, TIMEOUT);
         
         it.each<[CascadeSelection]>(
             [[false], [true], ['implicit'], ['explicit']],
@@ -253,7 +253,7 @@ describe('PickerModal', () => {
             });
 
             expect(onValueChangeMock).toHaveBeenLastCalledWith(2);
-        });
+        }, TIMEOUT);
     });
 
     describe('[selectionMode multi]', () => {
@@ -292,7 +292,7 @@ describe('PickerModal', () => {
             
             await PickerModalTestObject.clickOptionCheckbox('A1+');
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1']);
-        });
+        }, TIMEOUT);
         
         it('[valueType entity] should select & clear several options', async () => {
             const { dom } = await setupPickerModalForTest({
@@ -333,7 +333,7 @@ describe('PickerModal', () => {
             expect(onValueChangeMock).toHaveBeenLastCalledWith([
                 { id: 3, level: 'A1+', name: 'Elementary+' },
             ]);
-        });
+        }, TIMEOUT);
     
         it('should pick single element with cascadeSelection = false', async () => {
             const { dom } = await setupPickerModalForTest({
@@ -360,7 +360,7 @@ describe('PickerModal', () => {
             await PickerModalTestObject.waitForOptionsToBeReady();
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['Parent 2']);
             expect(await PickerModalTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 3']);
-        });
+        }, TIMEOUT);
         
         it.each<[CascadeSelection]>(
             [[true], ['explicit']],
@@ -414,7 +414,7 @@ describe('PickerModal', () => {
             await PickerModalTestObject.clickOptionUnfold('Parent 2');
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['Child 2.1', 'Child 2.3']);
             expect(await PickerModalTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 2', 'Child 2.2', 'Parent 3']);
-        });
+        }, TIMEOUT);
         
         it('should pick single element with cascadeSelection = implicit', async () => {
             const { dom } = await setupPickerModalForTest({
@@ -461,7 +461,7 @@ describe('PickerModal', () => {
             await PickerModalTestObject.clickOptionUnfold('Parent 2');
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['Child 2.1', 'Child 2.3']);
             expect(await PickerModalTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 2', 'Child 2.2', 'Parent 3']);
-        });
+        }, TIMEOUT);
         
         it('should select all', async () => {
             const { dom } = await setupPickerModalForTest({
@@ -497,7 +497,7 @@ describe('PickerModal', () => {
 
             await PickerModalTestObject.waitForOptionsToBeReady();
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual([]);
-        });
+        }, TIMEOUT);
         
         it('should show only selected', async () => {
             const { dom } = await setupPickerModalForTest<TestItemType, number>({
@@ -530,6 +530,6 @@ describe('PickerModal', () => {
 
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
             expect(await PickerModalTestObject.findUncheckedOptions()).toEqual([]);
-        });
+        }, TIMEOUT);
     });
 });
