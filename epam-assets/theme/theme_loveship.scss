@@ -344,14 +344,6 @@
     --uui-calendar-weekday-font: var(--font-regular);
     --uui-calendar-selected_day-font: var(--font-semibold);
 
-    /* TabButton */
-    //--uui-tab_button-text: var(--uui-text-primary);
-    //--uui-tab_button-text-hover: var(--uui-primary-50);
-    //--uui-tab_button-text-active: var(--uui-primary-50);
-    //--uui-tab_button-text-disabled: var(--uui-text-disabled);
-    //--uui-tab_button-font: var(--font-semibold);
-
-
     /* Tag */
     --uui-tag-caption: var(--uui-text-primary);
     --uui-tag-fill: var(--uui-icon);
@@ -416,51 +408,6 @@
 
     --uui-accordion-toggler-font: var(--font-semibold);
     --uui-accordion-body-font: var(--font-regular);
-
-    /* DropdownContainer */
-
-    /* DropdownMenu */
-    //// TODO: update tokens
-    //--uui-dropdown-menu-bg: var(--uui-surface);
-    //--uui-dropdown-menu-shadow: var(--uui-shadow-level-2);
-    //--uui-dropdown-menu-splitter: var(--uui-divider);
-    //--uui-dropdown-menu-item-hover: var(--uui-surface-lowest);
-    //--uui-dropdown-menu-item-active: var(--uui-surface-lowest);
-    //--uui-dropdown-menu-item-text: var(--uui-text-primary);
-    //
-    //--uui-dropdown-menu-body-font: var(--font-regular);
-    //--uui-dropdown-menu-item-font: var(--font-regular);
-
-    /* BurgerMenu */
-    //--uui-burger_menu-bg: var(--uui-surface-contrast-lower);
-    //--uui-burger_menu-bg-hover: var(--uui-surface-contrast-lower);
-    //--uui-burger_menu-caption: var(--uui-text-contrast);
-    //--uui-burger_menu-caption-hover: var(--uui-primary-50);
-    //--uui-burger_menu-overlay: var(--uui-overlay);
-    //--uui-burger_icon: var(--uui-text-contrast);
-    //--uui-burger_item: var(--uui-text-brand);
-
-    /* BurgerGroupHeader */
-    //--uui-burger_group-text: var(--uui-text-disabled);
-    //--uui-burger_group-bg: var(--uui-surface-contrast);
-    //--uui-burger_group-line: var(--uui-text-secondary);
-    //
-    //--uui-burger_group-font: var(--font-regular);
-
-    /* TimePicker */
-    --uui-time-picker-bg: var(--uui-control-bg);
-    --uui-time-picker-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-time-picker-border: var(--uui-control-border);
-    --uui-time-picker-border-disabled: var(--uui-control-border-disabled);
-    --uui-time-picker-border-hover: var(--uui-control_textinput-border-hover);
-    --uui-time-picker-border-active: var(--uui-control-border-checked);
-    --uui-time-picker-border-error: var(--uui-error-50);
-    --uui-time-picker-placeholder: var(--uui-control-placeholder);
-    --uui-time-picker-text: var(--uui-control-text);
-    --uui-time-picker-text-disabled: var(--uui-control-text-disabled);
-    --uui-time-picker-icon-clickable: var(--uui-icon);
-    --uui-time-picker-icon-clickable-hover: var(--uui-icon-hover);
-    --uui-time-picker-border-radius: var(--uui-border-radius);
 
     /* SearchPicker */
     --uui-search-input-bg: var(--uui-control-bg);
