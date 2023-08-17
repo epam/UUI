@@ -1,17 +1,16 @@
-import { useMemo } from 'react';
-import { DataRowProps } from '@epam/uui-core';
+import { useContext, useMemo } from 'react';
+import { DataRowProps, UuiContext } from '@epam/uui-core';
 import { i18n } from '../../i18n';
 import { usePicker } from './usePicker';
 import { usePickerListState } from './usePickerListState';
 import { LastUsedRec, UsePickerListProps } from './types';
 
 export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TItem, TId, TProps>) {
+    const context = useContext(UuiContext);
     const sessionStartTime = useMemo(() => new Date().getTime(), []);
 
     const getMaxTotalItems = () => props.maxTotalItems || 50;
-
     const getMaxDefaultItems = () => Math.min(props.maxDefaultItems || 10, getMaxTotalItems());
-
     const getSettingsKey = () =>
         'loveship/PickerList/lastSelectedIds/v2/' + props.settingsKey;
 
@@ -66,7 +65,6 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
     const { dataSourceState, visibleIds } = pickerListState;
     const picker = usePicker<TItem, TId, UsePickerListProps<TItem, TId, TProps>>(props, pickerListState);
     const {
-        context,
         view,
         getEntityName,
         getPluralName,
