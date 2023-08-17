@@ -127,12 +127,13 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         props: LazyListViewProps<TItem, TId, TFilter>,
     ): void {
         this.isUpdatePending = true;
+        const { checked: prevChecked } = this.value ?? {};
         // We assume value to be immutable. However, we can't guarantee this.
         // Let's shallow-copy value to survive at least simple cases when it's mutated outside
         this.value = { topIndex: 0, visibleCount: 20, ...value };
         this.onValueChange = onValueChange;
 
-        if (!isEqual(value?.checked, this.value?.checked)) {
+        if (!isEqual(value?.checked, prevChecked)) {
             this.updateCheckedLookup(value.checked);
         }
 
@@ -324,7 +325,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
         const id = rowProps.id;
         const isChecked = !rowProps.isChecked;
-
+        console.log('rowProps.isChecked', rowProps.isChecked);
         this.checkItems(isChecked, false, id);
     };
 
