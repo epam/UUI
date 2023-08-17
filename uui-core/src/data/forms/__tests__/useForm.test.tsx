@@ -283,6 +283,24 @@ describe('useForm', () => {
                 },
             });
         });
+
+        it('Should validate form by calling validate callback', async () => {
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+                useForm<IFoo>({
+                    value: testData,
+                    onSave: () => Promise.resolve(),
+                    onError: jest.fn(),
+                    getMetadata: () => testMetadata,
+                }));
+
+            const validationState = await act(() => result.current.validate());
+
+            expect(validationState.isInvalid).toBe(true);
+
+            act(() => result.current.lens.prop('dummy').set('hello'));
+
+            expect(result.current.isInvalid).toBe(false);
+        });
     });
 
     describe('isChanged, redo/undo/revert handing', () => {
