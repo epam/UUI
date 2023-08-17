@@ -93,13 +93,21 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
         examples: (ctx) => [
             {
                 name: 'UserPickerRow',
-                value: (props) => (
+                value: (props, dataSourceState) => (
                     <DataPickerRow
                         { ...props }
                         key={ props.rowKey }
                         alignActions="center"
                         padding={ (ctx.getSelectedProps() as any).editMode === 'modal' ? '24' : '12' }
-                        renderItem={ (item, rowProps) => <PickerItem { ...rowProps } avatarUrl={ item.avatarUrl } title={ item.name } subtitle={ item.jobTitle } /> }
+                        renderItem={ (item, rowProps) => (
+                            <PickerItem
+                                { ...rowProps }
+                                avatarUrl={ item.avatarUrl }
+                                title={ item.name }
+                                subtitle={ item.jobTitle }
+                                dataSourceState={ dataSourceState }
+                            />
+                        ) }
                     />
                 ),
             },
