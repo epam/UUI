@@ -29,6 +29,7 @@ import { svc } from '../../services';
 import { FlexCell, FlexRow, Switch, PickerInput, Button } from '@epam/promo';
 import { useAsyncDataSource } from '@epam/uui-core';
 import { useEffect } from 'react';
+import { RichTextView } from '@epam/promo';
 
 const getPlugins = () => {
     const uploadFile = (file: File, onProgress: (progress: number) => any): any => {
@@ -145,7 +146,9 @@ export function RichTextEditorDemo() {
             <FlexCell grow={ 1 } style={ { marginTop: '12px' } }>
                 {
                     type === 'html'
-                        ? <div dangerouslySetInnerHTML={ { __html: html } } />
+                        ? (
+                            <RichTextView htmlContent={ html } />
+                        )
                         : (
                             <SlateEditor
                                 value={ value }
