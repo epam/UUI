@@ -18,7 +18,7 @@ Array [
     tabIndex={0}
   />,
   <menu
-    className="menuRoot"
+    className="root menuRoot"
     data-focus-lock-disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}
@@ -37,7 +37,7 @@ Array [
       tabIndex={-1}
     >
       <div
-        className="itemRoot container -clickable align-items-center"
+        className="root itemRoot container -clickable align-items-center"
         onClick={[Function]}
         onKeyDown={[Function]}
         role="menuitem"
@@ -56,14 +56,14 @@ Array [
         </div>
       </div>
       <div
-        className="splitterRoot"
+        className="root splitterRoot"
       >
         <hr
           className="splitter"
         />
       </div>
       <div
-        className="headerRoot"
+        className="root headerRoot"
       >
         <span
           className="header"
@@ -72,7 +72,7 @@ Array [
         </span>
       </div>
       <div
-        className="submenuRootItem itemRoot container -clickable align-items-center"
+        className="root root submenuRootItem itemRoot container -clickable align-items-center"
         onClick={[Function]}
         onKeyDown={[Function]}
         role="menuitem"
@@ -93,7 +93,7 @@ Array [
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled uui-icon_button uui-color-default root icon iconAfter"
+          className="container uui-button-box uui-enabled uui-icon_button uui-color-default root root icon iconAfter"
           onClick={[Function]}
           tabIndex={-1}
           type="button"
