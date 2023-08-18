@@ -111,7 +111,7 @@ export class IconsDoc extends React.Component {
                     </Text>
                     <FlexSpacer />
                     <Button
-                        color="gray50"
+                        color="gray"
                         size="30"
                         fill="light"
                         icon={ this.state.isLocked ? LockedIcon : UnlockedIcon }

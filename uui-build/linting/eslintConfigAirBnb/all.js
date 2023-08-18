@@ -1,6 +1,7 @@
 /**
  * This module provides eslint rules which we want to pick from airbnb
  */
+const { setUnifiedSeverityToConfig } = require('../utils/rulesSeverityUtils');
 
 const baseMap = {
     ...require('eslint-config-airbnb-base/rules/errors').rules,
@@ -110,7 +111,7 @@ const AIRBNB_PICK_RULES = {
         NON_STYLISTIC: [
             'react/no-access-state-in-setstate',
             'react/jsx-no-bind',
-            { name: 'react/prefer-stateless-function', severity: 1 },
+            'react/prefer-stateless-function',
             'react/no-find-dom-node',
             //
             'jsx-a11y/no-noninteractive-tabindex',
@@ -124,7 +125,7 @@ const AIRBNB_PICK_RULES = {
     },
 };
 
-module.exports = {
+const newConfig = {
     base: {
         stylistic: pickFromMap(baseMap, AIRBNB_PICK_RULES.BASE.STYLISTIC),
         nonStylistic: pickFromMap(baseMap, AIRBNB_PICK_RULES.BASE.NON_STYLISTIC),
@@ -138,39 +139,21 @@ module.exports = {
         nonStylistic: pickFromMap(tsMap, AIRBNB_PICK_RULES.TS.NON_STYLISTIC, true),
     },
 };
-
-function setSeverity(ruleConfig, severity) {
-    if (Array.isArray(ruleConfig)) {
-        ruleConfig[0] = severity;
-        return ruleConfig;
-    }
-    if (typeof ruleConfig === 'number') {
-        return severity;
-    }
-    throw new Error('Unexpected rule config', ruleConfig);
-}
+module.exports = newConfig;
 
 function pickFromMap(map, names, isTypescript) {
-    return names.reduce((acc, nameOrConfig) => {
-        let n = nameOrConfig;
-        let newSeverity;
-        if (typeof nameOrConfig !== 'string') {
-            n = nameOrConfig.name;
-            newSeverity = nameOrConfig.severity;
-        }
-        let fromMap = map[n];
+    const rules = names.reduce((acc, ruleName) => {
+        const fromMap = map[ruleName];
         if (fromMap) {
-            if (newSeverity) {
-                fromMap = setSeverity(fromMap, newSeverity);
-            }
             if (isTypescript) {
-                const nNotTs = n.substring('@typescript-eslint/'.length);
+                const nNotTs = ruleName.substring('@typescript-eslint/'.length);
                 acc[nNotTs] = 'off'; // need to disable the corresponding js rule, to avoid conflict.
             }
-            acc[n] = fromMap;
+            acc[ruleName] = fromMap;
         } else {
-            throw new Error(`Unable to find "${n}" in map.`);
+            throw new Error(`Unable to find "${ruleName}" in map.`);
         }
         return acc;
     }, {});
+    return setUnifiedSeverityToConfig({ rules }).rules;
 }

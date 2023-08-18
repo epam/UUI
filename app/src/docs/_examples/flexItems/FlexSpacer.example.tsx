@@ -16,7 +16,7 @@ export default function FlexSpacerExample() {
                     User settings
                 </Text>
                 <FlexSpacer />
-                <Button caption="LogOut" size="30" icon={ myIcon } onClick={ () => null } color="gray50" />
+                <Button caption="LogOut" size="30" icon={ myIcon } onClick={ () => null } color="gray" />
             </FlexRow>
             <FlexRow padding="12" vPadding="24">
                 <CheckboxGroup

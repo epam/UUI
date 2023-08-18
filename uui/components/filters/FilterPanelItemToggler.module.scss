@@ -19,7 +19,7 @@
             cursor: pointer;
         }
 
-        &:hover {
+        &:hover, &:focus {
             border-color: var(--uui-filters-toggler-border-hover);
             background-color: var(--uui-filters-toggler-bg-hover);
         }
