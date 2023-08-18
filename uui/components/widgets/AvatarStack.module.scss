@@ -1,6 +1,8 @@
 @use  '../../assets/styles/effects' as *;
 
 .root {
+    --uui-avatar-stack-font: var(--font-semibold);
+    //
     :global(.avatars) {
         padding-right: 12px;
 

@@ -21,6 +21,8 @@
 }
 
 .root {
+    --uui-pagination-font: var(--font-regular);
+    //
     display: flex;
     flex-direction: row;
 
