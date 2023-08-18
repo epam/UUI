@@ -32,7 +32,7 @@ export default function WithInnerScrollExample() {
     const [value, setValue] = useState<EditorValue>(demoData.slateInitialValue);
 
     const uploadFile = (file: File, onProgress: (progress: number) => unknown): Promise<FileUploadResponse> => {
-        return svc.uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
+        return svc.uuiApi.uploadFile(ORIGIN.concat('/upload/uploadFileMock'), file, {
             onProgress,
         });
     };

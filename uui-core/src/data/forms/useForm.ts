@@ -5,7 +5,7 @@ import {
     mergeValidation, validate as uuiValidate, validateServerErrorState,
 } from '../../data/validation';
 import { useForceUpdate } from '../../hooks';
-import { UuiContexts } from '../../types';
+import { UuiContexts } from '../../types/contexts';
 import { ICanBeInvalid } from '../../types/props';
 import { useUuiContext } from '../../services';
 import { LensBuilder } from '../lenses/LensBuilder';
@@ -183,7 +183,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
             }
         });
 
-    const updateValidationStates = (state: FormState<T>) => {
+    const updateValidationStates = (state: FormState<T>): FormState<T> => {
         const valueToValidate = state.form;
         const metadata = getMetadata(valueToValidate);
         const isInSaveMode = state.isInSaveMode;
@@ -292,7 +292,11 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
     );
 
     const validate = useCallback(() => {
-        updateFormState((currentState) => updateValidationStates(currentState));
+        const formSate = { ...formState.current, isInSaveMode: true };
+        const newState = updateValidationStates(formSate);
+        updateFormState(() => newState);
+
+        return newState.validationState;
     }, []);
 
     const handleRevert = useCallback(() => {

@@ -146,7 +146,7 @@ export default function NotificationContextExample() {
                         <FlexSpacer />
                         <FlexRow padding="24" vPadding="24" spacing="12">
                             <FlexSpacer />
-                            <Button color="gray50" onClick={ props.onClose } caption="Cancel" />
+                            <Button color="gray" onClick={ props.onClose } caption="Cancel" />
                             <Button color="green" caption="Confirm" onClick={ props.onSuccess } />
                         </FlexRow>
                     </Panel>
@@ -178,13 +178,13 @@ export default function NotificationContextExample() {
                 </Text>
             </FlexRow>
             <FlexRow size="48" padding="12" spacing="12">
-                <Button caption="Click" size="24" color="gray50" fill="white" onClick={ customNotificationHandler } />
+                <Button caption="Click" size="24" color="gray" fill="white" onClick={ customNotificationHandler } />
                 <Text size="36" font="sans-semibold">
                     All custom notification
                 </Text>
             </FlexRow>
             <FlexRow size="48" padding="12" spacing="12">
-                <Button caption="Click" size="24" color="gray50" fill="white" onClick={ handleSnackWithRichText } />
+                <Button caption="Click" size="24" color="gray" fill="white" onClick={ handleSnackWithRichText } />
                 <Text size="36" font="sans-semibold">
                     Notification with RichTextView
                 </Text>
