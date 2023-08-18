@@ -5,16 +5,23 @@
 }
 
 .root {
-    background-color: var(--uui-progress-bar-wrapper);
-    font-family: var(--font-regular);
-    color: white; // TODO: change to variable
+    --uui-progress_bar-wrapper: var(--uui-secondary-20);
+    --uui-progress_bar-background: var(--uui-primary-50);
+    --uui-progress_bar-label: var(--uui-text-white);
+    --uui-progress_bar-top-label: var(--uui-text-dark);
+
+    --uui-progress_bar-font: var(--font-regular);
+    //
+    background-color: var(--uui-progress_bar-wrapper);
+    font-family: var(--uui-progress_bar-font);
+    color: var(--uui-progress_bar-label);
 
     :global(.bar) {
-        background-color: var(--uui-progress-bar-background);
+        background-color: var(--uui-progress_bar-background);
     }
 
     :global(.topLabel) {
-        color: var(--uui-progress-bar-label);
+        color: var(--uui-progress_bar-top-label);
     }
 
     &.striped :global(.bar) {
