@@ -55,7 +55,7 @@ const accordionDoc = new DocBuilder<AccordionProps & AccordionMods>({ name: 'Acc
                         </Text>
                         <FlexRow spacing="6">
                             <FlexSpacer />
-                            <Button fill="white" color="gray50" caption="Cancel" onClick={ () => {} } />
+                            <Button fill="white" color="gray" caption="Cancel" onClick={ () => {} } />
                             <Button color="green" caption="Accept" onClick={ () => {} } />
                         </FlexRow>
                     </React.Fragment>

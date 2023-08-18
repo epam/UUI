@@ -1,3 +1,16 @@
+# 5.x.x - xx.xx.2023
+
+**What's New**
+* [FiltersPanel]: added possibility to provide your own custom filter
+* [useForm]: validate callback now return new validationState
+
+**What's Fixed**
+* Added focus state styles for Accordion, AvatarStack, Anchor, Badge, Button, Burger, Checkbox, Control Group, IconButton, LinkButton, MainMenu, RadioInput, Switch, TabButton, Tag.
+* [PickerInput]: when `searchPosition=input` a cursor is placed in textbox once PickerInput is focused via Tab key.
+* [PickerInput]: fix `searchPosition` when `editMode=modal`, it cannot be `input`.
+* [useForm]: after calling validate callback, form turning on mode where revalidating fields on change.
+
+
 # 5.1.2 - 10.08.2023
 
 **What's New**
