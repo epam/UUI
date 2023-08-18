@@ -14,7 +14,7 @@ const componentAsDemoContent = (
         </Text>
         <FlexRow spacing="12">
             <FlexSpacer />
-            <Button fill="white" color="gray50" caption="Cancel" onClick={ () => {} } />
+            <Button fill="white" color="gray" caption="Cancel" onClick={ () => {} } />
             <Button color="green" caption="Accept" onClick={ () => {} } />
         </FlexRow>
     </>

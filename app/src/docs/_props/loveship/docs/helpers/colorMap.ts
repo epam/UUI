@@ -29,4 +29,5 @@ export const colors = {
     night700: '#474A59',
     night800: '#303240',
     night900: '#1D1E26',
+    gray: '#6C6F80',
 };
