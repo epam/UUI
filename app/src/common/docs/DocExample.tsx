@@ -1,7 +1,5 @@
 import React, { RefObject, createRef } from 'react';
-import {
-    Switch, FlexRow, IconButton,
-} from '@epam/promo';
+import { Switch, FlexRow, IconButton } from '@epam/uui';
 import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
 import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
@@ -101,7 +99,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                         <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title } ref={ this.titleRef }>
                             {this.props.title}
                         </div>
-                        <IconButton cx={ css.anchor } icon={ AnchorIcon } color="blue" href={ `#${this.props.title.split(' ').join('_').toLowerCase()}` } />
+                        <IconButton cx={ css.anchor } icon={ AnchorIcon } color="info" href={ `#${this.props.title.split(' ').join('_').toLowerCase()}` } />
                     </FlexRow>
                 )}
                 <EditableDocContent fileName={ this.getDescriptionFileName() } />
