@@ -17,9 +17,9 @@ export const getAverageRowHeight = (rowHeights: number[]) => {
     if (!rowHeights.length) {
         return 1;
     }
-
-    const totalRowHeights = rowHeights.reduce((sum, next = 0) => sum + next, 0);
-    return totalRowHeights / rowHeights.length;
+    const notEmptyRowsHeights = rowHeights.filter((height) => height !== undefined);
+    const totalRowHeights = notEmptyRowsHeights.reduce((sum, next) => sum + next, 0);
+    return totalRowHeights / notEmptyRowsHeights.length;
 };
 
 export const getUpdatedRowOffsets = (
