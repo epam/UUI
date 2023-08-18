@@ -8,7 +8,7 @@ import { Range } from 'slate';
 
 import { isImageSelected, isTextSelected } from '../helpers';
 import css from './Toolbar.module.scss';
-import { useLayoutIndex } from '../utils/useLayoutIndex';
+import { useLayer } from '@epam/uui-core';
 
 interface ToolbarProps {
     editor: any;
@@ -23,7 +23,7 @@ export function PositionedToolbar(props: ToolbarProps): any {
     const ref = useRef<HTMLElement | null>();
     const editor = usePlateEditorState();
     const inFocus = isEditorFocused(editor);
-    const zIndex = useLayoutIndex();
+    const zIndex = useLayer();
 
     const virtualReferenceElement = (): any => ({
         getBoundingClientRect(): DOMRect {
