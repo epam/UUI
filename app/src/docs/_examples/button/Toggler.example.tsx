@@ -1,7 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import {
-    Button, FlexRow, Panel, Tooltip, PickerInput,
-} from '@epam/promo';
+import { Button, FlexRow, Panel, Tooltip, PickerInput } from '@epam/uui';
 import { Dropdown } from '@epam/uui-components';
 import { useLazyDataSource, LazyDataSourceApiRequest, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
@@ -20,7 +18,7 @@ export default function ButtonAsToggler() {
         <FlexRow spacing="12">
             <Dropdown
                 renderBody={ (props) => (
-                    <Panel { ...props } background="white">
+                    <Panel { ...props }>
                         some dropdown content
                     </Panel>
                 ) }

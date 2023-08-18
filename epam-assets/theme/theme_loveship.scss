@@ -303,7 +303,7 @@
 
     --uui-control-focus: #008ACE80;
 
-    --uui-search-result-highlight: #FFEDC9;
+    --uui-search-result-highlight: var(--uui-warning-10); //#FFEDC9;
 
     --uui-tag-bg: var(--night300); // one place of usage
     --uui-tag-bg-hover: var(--night400); // one place of usage
