@@ -78,7 +78,7 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
                     </Panel>
                     <ModalFooter borderTop>
                         <FlexSpacer />
-                        <Button color="gray50" fill="white" onClick={ () => close().then(modalProps.abort) } caption="Cancel" />
+                        <Button color="gray" fill="white" onClick={ () => close().then(modalProps.abort) } caption="Cancel" />
                         <Button color="green" caption="Confirm" onClick={ save } />
                     </ModalFooter>
                     <FlexSpacer />

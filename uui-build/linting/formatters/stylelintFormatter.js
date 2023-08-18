@@ -6,11 +6,11 @@ const {
     getReportLocationPath,
     reportUnnecessaryRulesToBeFixed,
     logSummary,
-} = require('./formatterUtils.js');
+} = require('./formatterUtils');
 const path = require('path');
 const fs = require('fs');
-const { stylelintRulesToBeFixed } = require('../utils/rulesToBeFixed.js');
-const { logger } = require('../../utils/loggerUtils.js');
+const { stylelintRulesToBeFixed } = require('../utils/rulesToBeFixed');
+const { logger } = require('../../utils/loggerUtils');
 
 function writeReport(dataStr) {
     const reportAbsPath = getReportLocationPath();

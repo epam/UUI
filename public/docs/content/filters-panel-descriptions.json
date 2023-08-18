@@ -1,134 +1,94 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
+        "text": "FiltersPanel component allows you to manage filtration based on filters config metadata. To use it, provide your filters config object, and you will get a prebuilt filters panel with the following functionality:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "FiltersPanel component allows you to manage filtration based on filters config metadata. To use it, provide your filters config object, and you will get a prebuilt filters panel with the following functionality:",
-            "marks": []
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Support of different types of filters: multi/single pickers, date and date range pickers, numeric filters or your own custom filter."
+              }
+            ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "unordered-list",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Support of different types of filters: multi/single pickers, date and date range pickers, numeric filters.",
-                    "marks": []
-                  }
-                ]
+                "text": "Showing/hiding filter visibility."
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Showing/hiding filter visibility.",
-                    "marks": []
-                  }
-                ]
+                "text": "Always visible filters."
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Always visible filters.",
-                    "marks": []
-                  }
-                ]
+                "text": "Predicates for each filter."
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Predicates for each filter.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+                "text": "Saving current filters setup into "
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Saving current filters setup into ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "DataTableState",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ", so you can store it into URL or send it to the server.",
-                    "marks": []
-                  }
-                ]
+                "text": "DataTableState",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": ", so you can store it into URL or send it to the server."
               }
             ]
           }
@@ -136,4 +96,4 @@
       }
     ]
   }
-}
+]

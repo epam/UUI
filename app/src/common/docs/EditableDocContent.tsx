@@ -25,7 +25,7 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
     };
 
     uploadFile = (file: File, onProgress: (progress: number) => any): any => {
-        return svc.uuiApi.uploadFile('/uploadFileMock', file, {
+        return svc.uuiApi.uploadFile('/upload/uploadFileMock', file, {
             onProgress,
         });
     };

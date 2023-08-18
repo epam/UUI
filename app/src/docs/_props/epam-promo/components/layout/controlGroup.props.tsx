@@ -14,7 +14,7 @@ const controlGroupDoc = new DocBuilder<ControlGroupProps>({ name: 'ControlGroup'
                     <React.Fragment>
                         <Button color="green" caption="Submit" onClick={ () => {} } />
                         <Button caption="Help" onClick={ () => {} } />
-                        <Button fill="none" color="gray50" caption="Cancel" onClick={ () => {} } />
+                        <Button fill="none" color="gray" caption="Cancel" onClick={ () => {} } />
                     </React.Fragment>
                 ),
                 isDefault: true,

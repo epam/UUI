@@ -17,11 +17,9 @@
 
     .anchor {
         fill: transparent;
-    }
 
-    &:hover {
-        .anchor {
-            fill: $blue;
+        &:hover, &:focus {
+            fill: var(--uui-icon-btn-hover);
         }
     }
 }

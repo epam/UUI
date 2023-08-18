@@ -120,7 +120,7 @@ export interface IFormApi<T> extends IEditable<T>, ICanBeInvalid {
      * Validation is usually done automatically, according to validationOn prop.
      * Use this method only in corner cases.
      */
-    validate(): void;
+    validate(): ICanBeInvalid;
 
     /** True if there are changes to undo */
     canUndo: boolean;
