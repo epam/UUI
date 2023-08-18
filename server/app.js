@@ -7,6 +7,7 @@ const fileUpload = require('express-fileupload');
 const api = require('./api');
 const fileUploadApi = require('./api/fileUpload');
 const { isDevServer } = require('./utils/envUtils');
+const staticMiddleware = require('./static');
 
 const app = express();
 
@@ -16,14 +17,11 @@ app.use(express.json({ limit: '200mb' }));
 app.use(express.urlencoded({ limit: '200mb', extended: true }));
 app.use(fileUpload());
 app.use(cookieParser());
-app.use(cors({
-    credentials: false,
-}));
+app.use(cors({ credentials: false }));
 
 app.use((req, res, next) => {
     res.set('X-XSS-Protection', '1; mode=block');
     res.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains');
-    !isDevServer() && res.set('Cache-Control', 'public,max-age=2592000,immutable');
     res.set('x-frame-options', 'SAMEORIGIN');
     res.set('X-Content-Type-Options', 'nosniff');
     res.set(
@@ -40,23 +38,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/static', express.static(path.join(__dirname, '../app/build/static')));
-
-app.use('/manifest.json', express.static('../app/build/manifest.json'));
-app.use('/favicon.ico', express.static('../app/build/favicon.ico'));
-app.use('/favicon-32x32.png', express.static('../app/build/favicon-32x32.png'));
-app.use('/favicon-16x16.png', express.static('../app/build/favicon-16x16.png'));
-app.use('/safari-pinned-tab.svg', express.static('../app/build/safari-pinned-tab.svg'));
-app.use('/apple-touch-icon.png', express.static('../app/build/apple-touch-icon.png'));
-app.use('/android-chrome-192x192.png', express.static('../app/build/android-chrome-192x192.png'));
-app.use('/android-chrome-512x512.png', express.static('../app/build/android-chrome-512x512.png'));
-app.use('/mstile-150x150.png', express.static('../app/build/mstile-150x150.png'));
-app.use('/browserconfig.xml', express.static('../app/build/browserconfig.xml'));
-
-app.use('/static/uploads', express.static(path.resolve(__dirname, '../public/uploads')));
-
-app.use('/', fileUploadApi);
+app.use('/upload', fileUploadApi);
 app.use('/api', api);
+
+app.use(staticMiddleware);
 
 if (!isDevServer()) {
     app.get('*', function response(req, res) {
@@ -64,7 +49,8 @@ if (!isDevServer()) {
         res.sendFile(path.join(__dirname, '../app/build/', 'index.html'));
     });
 
-    app.listen(5000, function () {
+    app.listen(5000, () => {
+        // eslint-disable-next-line no-console
         console.log('Example app listening on port 5000!');
     });
 }

@@ -107,7 +107,7 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
                                 placeholder={ this.props.value ? this.state.iconName : 'Select icon' }
                                 icon={ this.props.value as any }
                                 fill="none"
-                                color="gray50"
+                                color="gray"
                                 size="24"
                                 onClear={ this.props.value && this.handleClear }
                             />
