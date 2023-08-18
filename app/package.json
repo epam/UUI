@@ -42,6 +42,7 @@
     "query-string": "6.13.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-focus-lock": "^2.9.2",
     "react-imask": "6.0.7",
     "react-markdown": "8.0.4",
     "react-measure": "2.5.2",

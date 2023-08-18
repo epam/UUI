@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState, useEffect, HTMLAttributes } from 'react';
+import React, { useRef, useContext, useState, HTMLAttributes } from 'react';
 import FocusLock from 'react-focus-lock';
 import {
     cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
@@ -31,12 +31,8 @@ export enum IDropdownControlKeys {
 
 function DropdownMenuContainer(props: IDropdownMenuContainer) {
     const menuRef = useRef<HTMLMenuElement>(null);
-    const [currentlyFocused, setFocused] = useState<number>(-1);
+    const [currentlyFocused, setFocused] = useState<number>(0);
     const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`)) : [];
-
-    useEffect(() => {
-        menuRef.current?.focus();
-    }, [menuRef.current]);
 
     const changeFocus = (nextFocusedIndex: number) => {
         if (menuItems.length > 0) {
@@ -60,7 +56,7 @@ function DropdownMenuContainer(props: IDropdownMenuContainer) {
     };
 
     return (
-        <FocusLock as="menu" className={ css.menuRoot } returnFocus autoFocus={ false } ref={ menuRef } lockProps={ { onKeyDown: handleArrowKeys, tabIndex: -1 } }>
+        <FocusLock as="menu" className={ css.menuRoot } returnFocus ref={ menuRef } persistentFocus lockProps={ { onKeyDown: handleArrowKeys } }>
             <DropdownContainer { ...props } rawProps={ { ...props.rawProps, tabIndex: -1 } } />
         </FocusLock>
     );
@@ -76,7 +72,7 @@ export const DropdownMenuBody = withMods<IDropdownMenuBody>(
     () => [css.bodyRoot],
     (props) => {
         const dropdownRawProps = props.minWidth ? { ...props.rawProps, style: { minWidth: `${props.minWidth}px` } } : null;
-        return ({ ...props, rawProps: dropdownRawProps || props.rawProps }) as IDropdownMenuBody;
+        return ({ closeOnKey: IDropdownControlKeys.ESCAPE, ...props, rawProps: dropdownRawProps || props.rawProps }) as IDropdownMenuBody;
     },
 );
 
