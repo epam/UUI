@@ -22,7 +22,7 @@ const testData: IFoo = { dummy: '', tummy: '' };
 
 describe('useForm', () => {
     beforeEach(jest.clearAllMocks);
-    afterAll(() => {
+    afterEach(() => {
         jest.resetAllMocks();
     });
 
@@ -321,6 +321,23 @@ describe('useForm', () => {
             expect(result.current.isChanged).toBe(false);
         });
 
+        it('Should set isChange=false when fromValue equal initialValue', async () => {
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+                useForm<IFoo>({
+                    value: testData,
+                    onSave: (form) => Promise.resolve({ form: form }),
+                    onError: jest.fn(),
+                    getMetadata: () => testMetadata,
+                }));
+
+            act(() => result.current.lens.prop('dummy').set('hello'));
+            expect(result.current.isChanged).toBe(true);
+
+            act(() => result.current.lens.prop('dummy').set(''));
+
+            expect(result.current.isChanged).toBe(false);
+        });
+
         it('Should show the same value, if you: save => leave => come back', async () => {
             const saveMock = jest.fn().mockResolvedValue({ form: {} });
             const beforeLeaveMock = jest.fn().mockResolvedValue(true);
@@ -570,27 +587,54 @@ describe('useForm', () => {
         });
 
         it('Should restore data from local storage after leaving form without saving changes', async () => {
+            const loadUnsavedChangesMock = jest.fn().mockResolvedValue(true);
             const props: UseFormProps<IFoo> = {
                 value: testData,
                 settingsKey: 'form-test',
                 onSave: () => Promise.resolve(),
                 beforeLeave: null,
                 getMetadata: () => testMetadata,
+                loadUnsavedChanges: loadUnsavedChangesMock,
             };
 
-            const { result: firstRenderResult, unmount } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
+            const { result: firstRenderResult, unmount, svc } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
 
             act(() => firstRenderResult.current.lens.prop('dummy').set('hi'));
 
             unmount();
 
-            const { result: secondRenderResult } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
-                useForm({
-                    ...props,
-                    loadUnsavedChanges: jest.fn().mockResolvedValueOnce(true),
-                }));
+            const { result: secondRenderResult } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
 
+            expect(loadUnsavedChangesMock).toHaveBeenCalled();
             expect(secondRenderResult.current.lens.prop('dummy').get()).toBe('hi');
+            // reset localStorage value
+            svc.uuiUserSettings.set('form-test', null);
+        });
+
+        it('Should not invoke loadUnsavedChanges callback if localStorage value equal initial from value', async () => {
+            const loadUnsavedChangesMock = jest.fn().mockResolvedValue(true);
+            const props: UseFormProps<IFoo> = {
+                value: testData,
+                settingsKey: 'form-test',
+                onSave: () => Promise.resolve(),
+                beforeLeave: null,
+                getMetadata: () => testMetadata,
+                loadUnsavedChanges: loadUnsavedChangesMock,
+            };
+
+            const { result: firstRenderResult, unmount } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
+
+            act(() => firstRenderResult.current.lens.prop('dummy').set('hi'));
+            // return to initial value
+            act(() => firstRenderResult.current.lens.prop('dummy').set(''));
+
+            expect(firstRenderResult.current.isChanged).toBe(false);
+
+            unmount();
+
+            await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
+
+            expect(loadUnsavedChangesMock).not.toHaveBeenCalled();
         });
     });
 

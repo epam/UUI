@@ -8,7 +8,9 @@
 * Added focus state styles for Accordion, AvatarStack, Anchor, Badge, Button, Burger, Checkbox, Control Group, IconButton, LinkButton, MainMenu, RadioInput, Switch, TabButton, Tag.
 * [PickerInput]: when `searchPosition=input` a cursor is placed in textbox once PickerInput is focused via Tab key.
 * [PickerInput]: fix `searchPosition` when `editMode=modal`, it cannot be `input`.
-* [useForm]: after calling validate callback, form turning on mode where revalidating fields on change.
+* [useForm]: after calling validate callback, form switch to revalidating mode on fields change.
+* [useForm]: fixed isChanged prop calculation, in case when form value returned to initial
+* [useForm]: don't call loadUnsavedChanges callback when for was edited and then returned to the initial value
 
 
 # 5.1.2 - 10.08.2023
