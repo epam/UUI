@@ -1,5 +1,6 @@
 import React from 'react';
-import { Badge, Text } from '@epam/promo';
+import { Text } from '@epam/uui';
+import { Badge } from '@epam/promo';
 import css from './SizeExample.module.scss';
 
 export default function SizeExample() {

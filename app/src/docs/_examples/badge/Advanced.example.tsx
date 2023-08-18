@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Badge, FlexCell, FlexRow } from '@epam/promo';
+import { FlexCell, FlexRow } from '@epam/uui';
+import { Badge } from '@epam/promo';
 import { ReactComponent as MyIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 import css from './SizeExample.module.scss';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Anchor, FlexRow, IconContainer, Panel, Text } from '@epam/promo';
+import { Anchor, FlexRow, IconContainer, Panel, Text } from '@epam/uui';
 import { ReactComponent as ReactIcon } from '../../../icons/react.svg';
 import { ReactComponent as TypescriptIcon } from '../../../icons/typescript-icon.svg';
 
