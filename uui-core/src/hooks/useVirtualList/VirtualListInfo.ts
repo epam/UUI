@@ -29,22 +29,6 @@ export class VirtualListInfo {
         public readonly averageRowHeight?: Props['averageRowHeight'],
     ) {}
 
-    public update(props: Partial<Props>) {
-        return new VirtualListInfo(
-            props.scrollContainer ?? this.scrollContainer,
-            props.listContainer ?? this.listContainer,
-            props.value ?? this.value,
-            props.rowsCount ?? this.rowsCount,
-            props.blockSize ?? this.blockSize,
-            props.overdrawRows ?? this.overdrawRows,
-            props.rowHeights ?? this.rowHeights,
-            props.rowOffsets ?? this.rowOffsets,
-            props.listOffset ?? this.listOffset,
-            props.estimatedHeight ?? this.estimatedHeight,
-            props.averageRowHeight ?? this.averageRowHeight,
-        );
-    }
-
     get containerScrollTop() {
         return this.scrollContainer.scrollTop ?? 0;
     }
