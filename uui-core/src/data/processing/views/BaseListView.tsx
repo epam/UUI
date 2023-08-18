@@ -168,9 +168,13 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
     protected handleOnFold = (rowProps: DataRowProps<TItem, TId>) => {
         if (this.onValueChange) {
+            const fold = !rowProps.isFolded;
+            const indexToScroll = rowProps.index - (rowProps.path?.length ?? 0);
+            const scrollTo = fold && rowProps.isPinned ? { index: indexToScroll } : this.value.scrollTo;
             this.onValueChange({
                 ...this.value,
-                folded: this.setObjectFlag(this.value && this.value.folded, rowProps.rowKey, !rowProps.isFolded),
+                scrollTo,
+                folded: this.setObjectFlag(this.value && this.value.folded, rowProps.rowKey, fold),
             });
         }
     };
