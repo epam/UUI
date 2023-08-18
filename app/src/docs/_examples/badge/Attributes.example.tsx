@@ -1,7 +1,6 @@
 import React from 'react';
-import {
-    Avatar, Badge, FlexCell, FlexRow, Panel, Text,
-} from '@epam/promo';
+import { Avatar, FlexCell, FlexRow, Panel, Text } from '@epam/uui';
+import { Badge } from '@epam/promo';
 
 import { ReactComponent as notificationIcon } from '@epam/assets/icons/common/notification-done-12.svg';
 import css from './AttributesExample.module.scss';
@@ -13,10 +12,10 @@ export default function AttributesExample() {
                 <Avatar size="60" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" />
                 <FlexRow padding="12">
                     <FlexCell width="auto">
-                        <Text cx={ css.text } lineHeight="24" fontSize="18" color="gray80" font="sans-semibold">
+                        <Text cx={ css.text } lineHeight="24" fontSize="18" color="brand" font="semibold">
                             John Doe
                         </Text>
-                        <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">
+                        <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
                             Corporate Function Management | L3
                         </Text>
                     </FlexCell>
