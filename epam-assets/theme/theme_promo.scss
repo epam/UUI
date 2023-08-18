@@ -275,7 +275,7 @@
     --uui-shadow-level-3: 0 0 10px rgba(29, 30, 38, 0.05), 0 6px 24px rgba(29, 30, 38, 0.12), 0 9px 15px rgba(29, 30, 38, 0.1);
 
     /* Search results text highlighting */
-    --uui-search-result-highlight: #FFEDC9;
+    --uui-search-result-highlight: var(--uui-warning-10);//#FFEDC9;
 
     /* core variables end */
 
