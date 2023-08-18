@@ -18,8 +18,14 @@
     .anchor {
         fill: transparent;
 
-        &:hover, &:focus {
-            fill: var(--uui-icon-btn-hover);
+        &:focus {
+            fill: var(--uui-icon-btn);
+        }
+    }
+
+    &:hover {
+        .anchor {
+            fill: $blue;
         }
     }
 }
