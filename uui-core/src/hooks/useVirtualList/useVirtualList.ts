@@ -96,19 +96,14 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
 
         setEstimatedHeight(estimatedHeightToSet);
 
-        const topIndexWithOffset = getTopIndexWithOffset(value.scrollTo.index, overdrawRows, blockSize);
-
-        if (value.topIndex !== topIndexWithOffset && value.visibleCount !== value.scrollTo.index) {
-            onValueChange({ ...value, visibleCount: value.scrollTo.index });
-        }
         const [wasScrolled, ok] = scrollToIndex(value.scrollTo?.index);
+
+        const topIndex = getTopIndexWithOffset(value.scrollTo.index, overdrawRows, blockSize);
+        if ((ok && !wasScrolled) || value.topIndex !== topIndex) {
+            onValueChange({ ...value, topIndex });
+        }
         if (ok && wasScrolled) {
             setScrolledTo(value.scrollTo);
-        }
-
-        if (ok && !wasScrolled) {
-            const topIndex = getTopIndexWithOffset(value.scrollTo?.index, overdrawRows, blockSize);
-            onValueChange({ ...value, topIndex });
         }
     };
 
