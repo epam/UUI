@@ -4,7 +4,7 @@ import cx from 'classnames';
 import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
 
 import css from './Sidebar.module.scss';
-import { useLayoutIndex } from '../utils/useLayoutIndex';
+import { useLayer } from '@epam/uui-core';
 
 interface SidebarProps {
     isReadonly: boolean;
@@ -18,7 +18,7 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) 
     const [isVisible, setIsVisible] = useState(false);
     const sidebarRef = useRef<HTMLDivElement>(null);
     const timeoutIdRef = useRef<ReturnType<typeof setTimeout>>(null);
-    const zIndex = useLayoutIndex();
+    const zIndex = useLayer();
 
     useEffect(() => {
         const isSidebarVisible = true;
