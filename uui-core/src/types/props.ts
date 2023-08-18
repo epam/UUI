@@ -109,6 +109,7 @@ export interface IDropdownToggler extends IHasCaption, IClickable {
 
 export interface IDropdownBodyProps {
     onClose?: () => void;
+    handleEscape?: (e: React.KeyboardEvent<HTMLElement>) => void;
     togglerWidth?: number;
     togglerHeight?: number;
     scheduleUpdate?: () => void;

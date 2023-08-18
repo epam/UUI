@@ -223,6 +223,14 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         });
     }
 
+    private handleBodyKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+        console.log('keydown ' + e.key);
+        if (e.key === 'Escape' && this.isOpened()) {
+            e.stopPropagation();
+            this.handleOpenedChange(false);
+        }
+    };
+
     private renderDropdownBody = ({
         ref, placement, style, update, isReferenceHidden, arrowProps,
     }: PopperChildrenProps) => {
@@ -256,7 +264,6 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                     role="dialog"
                     className="uui-popper"
                     aria-hidden={ !this.isOpened() }
-                    aria-expanded={ this.isOpened() }
                     ref={ setRef }
                     style={ { ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex } }
                     data-placement={ placement }
@@ -269,6 +276,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                         isOpen: this.isOpened(),
                         arrowProps: arrowProps,
                         placement: placement,
+                        handleEscape: this.handleBodyKeyDown,
                     })}
                 </div>
             </FreeFocusInside>
