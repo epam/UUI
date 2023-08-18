@@ -3,25 +3,25 @@ import { DataRowProps } from '@epam/uui-core';
 import css from './DataRowsContainer.module.scss';
 import { getChildrenAndRest } from './utils';
 
-interface GroupProps<TItem, TId> {
+interface DataRowsGroupProps<TItem, TId> {
     row: DataRowProps<TItem, TId>;
-    childrenRows: DataRowProps<TItem, TId>[];
+    childRows: DataRowProps<TItem, TId>[];
     renderRow: (props: DataRowProps<TItem, TId>) => React.ReactNode;
     top: number;
 }
 
-export interface DataRowsProps<TItem, TId> {
+export interface DataRowsGroupsProps<TItem, TId> {
     rows: DataRowProps<TItem, TId>[],
     renderRow: (props: DataRowProps<TItem, TId>) => React.ReactNode;
     top: number;
 }
 
-function DataRowGroup<TItem, TId>({
+function DataRowsGroup<TItem, TId>({
     row,
-    childrenRows,
+    childRows,
     renderRow,
     top = 1,
-}: GroupProps<TItem, TId>) {
+}: DataRowsGroupProps<TItem, TId>) {
     const rowRef = useRef<HTMLDivElement>();
     const childrenPinnedTop = row.isPinned ? (top + (rowRef.current?.clientHeight ?? 0)) : top;
     return ( 
@@ -29,19 +29,19 @@ function DataRowGroup<TItem, TId>({
             <div className={ row.isPinned ? css.stickyHeader : css.header } style={ { zIndex: row.depth + 10, top } } ref={ rowRef }>
                 {renderRow(row)}
             </div>
-            {childrenRows.length > 0 && (
+            {childRows.length > 0 && (
                 <div>
-                    <DataRows rows={ childrenRows } renderRow={ renderRow } top={ childrenPinnedTop } />
+                    <DataRowsGroups rows={ childRows } renderRow={ renderRow } top={ childrenPinnedTop } />
                 </div>
             )}
         </div>
     );
 }
-export function DataRows<TItem, TId>({
+export function DataRowsGroups<TItem, TId>({
     rows,
     renderRow,
     top = 1,
-}: DataRowsProps<TItem, TId>) {
+}: DataRowsGroupsProps<TItem, TId>) {
     if (!rows.length) return null;
     const [row, ...rest] = rows;
     
@@ -53,16 +53,16 @@ export function DataRows<TItem, TId>({
         return (
             <>
                 {renderRow(row)}
-                <DataRows rows={ rest } renderRow={ renderRow } top={ top } />
+                <DataRowsGroups rows={ rest } renderRow={ renderRow } top={ top } />
             </>
         );
     }
 
-    const [children, otherRows] = getChildrenAndRest(row, rest);
+    const [childRows, otherRows] = getChildrenAndRest(row, rest);
     return (
         <>
-            <DataRowGroup row={ row } childrenRows={ children } renderRow={ renderRow } top={ top } key={ row.rowKey } />
-            <DataRows rows={ otherRows } renderRow={ renderRow } top={ top } />
+            <DataRowsGroup row={ row } childRows={ childRows } renderRow={ renderRow } top={ top } key={ row.rowKey } />
+            <DataRowsGroups rows={ otherRows } renderRow={ renderRow } top={ top } />
         </>
     );
 }
