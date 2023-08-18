@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, FlexCell, Text, SuccessAlert, WarningAlert, ErrorAlert, HintAlert } from '@epam/promo';
+import { Alert, FlexCell, Text, SuccessAlert, WarningAlert, ErrorAlert, HintAlert } from '@epam/uui';
 import css from './BasicExample.module.scss';
 import { ReactComponent as AccountIcon } from '@epam/assets/icons/common/action-account-24.svg';
 
@@ -30,7 +30,7 @@ export default function BasicAlertExample() {
 
             <Alert
                 icon={ AccountIcon }
-                color="amber"
+                color="warning"
                 onClose={ () => alert('close action') }
                 actions={ [{ name: 'ACTION 1', action: () => null }, { name: 'ACTION 2', action: () => null }] }
             >
