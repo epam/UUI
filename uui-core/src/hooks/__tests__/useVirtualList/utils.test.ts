@@ -1,5 +1,5 @@
 import { VirtualListState } from '../../../types';
-import { getAverageRowHeight, getNewEstimatedContainerHeight, getRowsToFetchForScroll, getTopCoordinate, getUpdatedRowHeights, getUpdatedRowOffsets, getUpdatedRowsInfo } from '../../useVirtualList/utils';
+import { assumeHeightForScrollToIndex, getAverageRowHeight, getNewEstimatedContainerHeight, getRowsToFetchForScroll, getTopCoordinate, getUpdatedRowHeights, getUpdatedRowOffsets, getUpdatedRowsInfo } from '../../useVirtualList/utils';
 import { VirtualListInfo } from '../../useVirtualList/VirtualListInfo';
 import { createListContainer, createScrollContainer } from './helpers';
 
@@ -427,5 +427,17 @@ describe('getTopCoordinate', () => {
             15,
         );
         expect(getTopCoordinate(info, 100)).toEqual(960);
+    });
+});
+
+describe('assumeHeightForScrollToIndex', () => {
+    it('should assume height for scroll to index', () => {
+        expect(assumeHeightForScrollToIndex({ topIndex: 5, visibleCount: 10, scrollTo: { index: 100 } }, 100, 10))
+            .toEqual(950);
+    });
+
+    it('should estimated height for scrollTo.index less than topIndex + visibleCount', () => {
+        expect(assumeHeightForScrollToIndex({ topIndex: 5, visibleCount: 10, scrollTo: { index: 2 } }, 100, 10))
+            .toEqual(100);
     });
 });

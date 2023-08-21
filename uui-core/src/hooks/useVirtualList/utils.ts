@@ -124,10 +124,10 @@ export const getTopCoordinate = (
 };
 
 export const assumeHeightForScrollToIndex = (value: VirtualListState, estimatedHeight: number, averageRowHeight: number) => {
-    const { topIndex = 0, visibleCount = 0 } = value;
-    return estimatedHeight
-            + (value.scrollTo.index - topIndex - visibleCount)
-            * averageRowHeight;
+    const { topIndex = 0, visibleCount = 0, scrollTo } = value;
+    const scrollToIndex = scrollTo?.index ?? 0;
+    const skipRowsCount = Math.max(0, scrollToIndex - topIndex - visibleCount);
+    return estimatedHeight + skipRowsCount * averageRowHeight;
 };
 
 export const getTopIndexWithOffset = (index: number, overdrawRows: number, blockSize: number) => {
