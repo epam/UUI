@@ -3,3 +3,5 @@
 exports[`Tooltip should be rendered correctly 1`] = `"Test"`;
 
 exports[`Tooltip should be rendered correctly with props 1`] = `"Test"`;
+
+exports[`Tooltip snapshot 1`] = `"Test"`;
