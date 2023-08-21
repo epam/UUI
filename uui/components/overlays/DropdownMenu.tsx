@@ -1,5 +1,4 @@
 import React, { useRef, useContext, useState, HTMLAttributes } from 'react';
-import FocusLock from 'react-focus-lock';
 import {
     cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
     IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IHasRawProps, IHasForwardedRef,
@@ -42,8 +41,6 @@ function DropdownMenuContainer(props: IDropdownMenuContainer) {
     };
 
     const handleArrowKeys = (e: React.KeyboardEvent<HTMLMenuElement>) => {
-        e.stopPropagation();
-
         const lastMenuItemsIndex = menuItems.length - 1;
 
         if (e.key === IDropdownControlKeys.UP_ARROW) {
@@ -55,10 +52,17 @@ function DropdownMenuContainer(props: IDropdownMenuContainer) {
         }
     };
 
+    const focusLockProps = {
+        as: 'menu',
+        className: css.menuRoot,
+        ref: menuRef,
+        returnFocus: true,
+        persistentFocus: true,
+        lockProps: { onKeyDown: handleArrowKeys },
+    };
+
     return (
-        <FocusLock as="menu" className={ css.menuRoot } returnFocus ref={ menuRef } persistentFocus lockProps={ { onKeyDown: handleArrowKeys } }>
-            <DropdownContainer { ...props } rawProps={ { ...props.rawProps, tabIndex: -1 } } />
-        </FocusLock>
+        <DropdownContainer { ...props } rawProps={ { ...props.rawProps } } focusLock={ focusLockProps } />
     );
 }
 

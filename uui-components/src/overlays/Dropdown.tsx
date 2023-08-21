@@ -223,14 +223,6 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         });
     }
 
-    private handleBodyKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
-        console.log('keydown ' + e.key);
-        if (e.key === 'Escape' && this.isOpened()) {
-            e.stopPropagation();
-            this.handleOpenedChange(false);
-        }
-    };
-
     private renderDropdownBody = ({
         ref, placement, style, update, isReferenceHidden, arrowProps,
     }: PopperChildrenProps) => {
@@ -276,7 +268,6 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                         isOpen: this.isOpened(),
                         arrowProps: arrowProps,
                         placement: placement,
-                        handleEscape: this.handleBodyKeyDown,
                     })}
                 </div>
             </FreeFocusInside>
