@@ -1,5 +1,5 @@
 import { VirtualListState } from '../../../types';
-import { getAverageRowHeight, getNewEstimatedContainerHeight, getRowsToFetchForScroll, getUpdatedRowHeights, getUpdatedRowOffsets, getUpdatedRowsInfo } from '../../useVirtualList/utils';
+import { getAverageRowHeight, getNewEstimatedContainerHeight, getRowsToFetchForScroll, getTopCoordinate, getUpdatedRowHeights, getUpdatedRowOffsets, getUpdatedRowsInfo } from '../../useVirtualList/utils';
 import { VirtualListInfo } from '../../useVirtualList/VirtualListInfo';
 import { createListContainer, createScrollContainer } from './helpers';
 
@@ -391,5 +391,41 @@ describe('getRowsToFetchForScroll', () => {
             visibleCount: 2,
             topIndex: 4,
         });
+    });
+});
+
+describe('getTopCoordinate', () => {
+    it('should get top coordinate for index to scroll by rowOffset', () => {
+        const info = new VirtualListInfo(
+            createScrollContainer({ scrollTop: 100, clientHeight: 200 }),
+            createListContainer([10, 20, 20, 20, 15, 10, 15]),
+            { topIndex: 1 },
+            5,
+            2,
+            0,
+            [10, 30, 50, 70, 85, 95, 110, 500, 510, 560],
+            [10, 40, 90, 160, 245, 355, 855, 1365, 1925],
+            50,
+            20,
+            15,
+        );
+        expect(getTopCoordinate(info, 3)).toEqual(110);
+    });
+
+    it('should assume top coordinate for index to scroll by rowOffset', () => {
+        const info = new VirtualListInfo(
+            createScrollContainer({ scrollTop: 100, clientHeight: 200 }),
+            createListContainer([10, 20, 20, 20, 15, 10, 15]),
+            { topIndex: 1, visibleCount: 9 },
+            5,
+            2,
+            0,
+            [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
+            [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
+            50,
+            20,
+            15,
+        );
+        expect(getTopCoordinate(info, 100)).toEqual(960);
     });
 });
