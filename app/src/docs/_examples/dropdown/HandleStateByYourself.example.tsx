@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Dropdown } from '@epam/uui-components';
-import {
-    Text, FlexRow, DropdownContainer, LinkButton, FlexCell, Avatar,
-} from '@epam/promo';
+import { Text, FlexRow, DropdownContainer, LinkButton, FlexCell, Avatar } from '@epam/uui';
 import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
 import css from './HandleStateExample.module.scss';
 
@@ -16,10 +14,10 @@ export default function BasicDropdownExample() {
                     <Avatar size="48" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" />
 
                     <FlexCell width="100%">
-                        <Text cx={ css.text } lineHeight="24" fontSize="16" color="gray80" font="sans-semibold">
+                        <Text cx={ css.text } lineHeight="24" fontSize="16" color="secondary" font="semibold">
                             John Doe
                         </Text>
-                        <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">
+                        <Text cx={ css.text } lineHeight="18" fontSize="12" color="brand">
                             Corporate Function Management | L3
                         </Text>
                     </FlexCell>
