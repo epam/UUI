@@ -1,5 +1,5 @@
 import { VirtualListState } from '../../../types';
-import { getAverageRowHeight, getNewEstimatedContainerHeight, getUpdatedRowHeights, getUpdatedRowOffsets } from '../../useVirtualList/utils';
+import { getAverageRowHeight, getNewEstimatedContainerHeight, getUpdatedRowHeights, getUpdatedRowOffsets, getUpdatedRowsInfo } from '../../useVirtualList/utils';
 import { VirtualListInfo } from '../../useVirtualList/VirtualListInfo';
 import { createListContainer, createScrollContainer } from './helpers';
 
@@ -79,11 +79,13 @@ describe('getUpdatedRowOffsets', () => {
             10,
             20,
             20,
-            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            new Array(11).fill(20),
             [5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
             50,
+            undefined,
+            15,
         );
-        expect(getUpdatedRowOffsets(info, new Array(11).fill(20), 15)).toEqual([
+        expect(getUpdatedRowOffsets(info)).toEqual([
             50, 70, 90, 110, 130, 150, 170, 190, 210, 230, 250,
         ]);
     });
@@ -96,15 +98,30 @@ describe('getUpdatedRowOffsets', () => {
             10,
             20,
             20,
-            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            new Array(11).fill(0),
             [5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
             50,
+            undefined,
+            15,
         );
-        expect(getUpdatedRowOffsets(info, new Array(11).fill(0), 15)).toEqual([
+        expect(getUpdatedRowOffsets(info)).toEqual([
             50, 65, 80, 95, 110, 125, 140, 155, 170, 185, 200,
         ]);
 
-        expect(getUpdatedRowOffsets(info, [], 15)).toEqual([
+        const info2 = new VirtualListInfo(
+            scrollContainer,
+            listContainer,
+            {},
+            10,
+            20,
+            20,
+            [],
+            [5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+            50,
+            undefined,
+            15,
+        );
+        expect(getUpdatedRowOffsets(info2)).toEqual([
             50, 65, 80, 95, 110, 125, 140, 155, 170, 185, 200,
         ]);
     });
@@ -113,5 +130,144 @@ describe('getUpdatedRowOffsets', () => {
 describe('getNewEstimatedContainerHeight', () => {
     it('should return new estimated height', () => {
         expect(getNewEstimatedContainerHeight([5, 15, 40, 100, 110], 4, 5)).toEqual(105);
+    });
+});
+
+describe('getUpdatedRowsInfo', () => {
+    it('should return old values if scroll container is not defined', () => {
+        const info = new VirtualListInfo(
+            undefined,
+            createListContainer([]),
+            {},
+            10,
+            20,
+            20,
+            [1],
+            [16],
+            50,
+            20,
+            15,
+        );
+        expect(getUpdatedRowsInfo(info)).toEqual({
+            rowHeights: [1],
+            rowOffsets: [16],
+            estimatedHeight: 20,
+        });
+    });
+
+    it('should return old values if list container is not defined', () => {
+        const info = new VirtualListInfo(
+            createScrollContainer(),
+            undefined,
+            {},
+            10,
+            20,
+            20,
+            [1],
+            [16],
+            50,
+            20,
+            15,
+        );
+        expect(getUpdatedRowsInfo(info)).toEqual({
+            rowHeights: [1],
+            rowOffsets: [16],
+            estimatedHeight: 20,
+        });
+    });
+
+    it('should return old values if list offset is not defined', () => {
+        const info = new VirtualListInfo(
+            createScrollContainer(),
+            createListContainer([]),
+            {},
+            10,
+            20,
+            20,
+            [1],
+            [16],
+            null,
+            20,
+            15,
+        );
+        expect(getUpdatedRowsInfo(info)).toEqual({
+            rowHeights: [1],
+            rowOffsets: [16],
+            estimatedHeight: 20,
+        });
+
+        const info2 = new VirtualListInfo(
+            createScrollContainer(),
+            createListContainer([]),
+            {},
+            10,
+            20,
+            20,
+            [1],
+            [16],
+            undefined,
+            20,
+            15,
+        );
+        expect(getUpdatedRowsInfo(info2)).toEqual({
+            rowHeights: [1],
+            rowOffsets: [16],
+            estimatedHeight: 20,
+        });
+    });
+
+    it('should return old values if value is not defined', () => {
+        const info = new VirtualListInfo(
+            createScrollContainer(),
+            createListContainer([]),
+            undefined,
+            10,
+            20,
+            20,
+            [1],
+            [16],
+            50,
+            20,
+            15,
+        );
+        expect(getUpdatedRowsInfo(info)).toEqual({
+            rowHeights: [1],
+            rowOffsets: [16],
+            estimatedHeight: 20,
+        });
+    });
+
+    it('should return updated values', () => {
+        const info = new VirtualListInfo(
+            createScrollContainer(),
+            createListContainer([10, 20, 20, 20, 15, 10, 15]),
+            { topIndex: 1 },
+            10,
+            20,
+            20,
+            [1, 1, 1],
+            [16],
+            50,
+            20,
+            15,
+        );
+        expect(getUpdatedRowsInfo(info)).toEqual({
+            rowHeights: [1, 10, 20, 20, 20, 15, 10, 15],
+            rowOffsets: [
+                50,
+                60,
+                80,
+                100,
+                120,
+                135,
+                145,
+                160,
+                173.875,
+                187.75,
+                201.625,
+            ],
+            estimatedHeight: 151.625,
+            averageRowHeight: 13.875,
+        });
     });
 });

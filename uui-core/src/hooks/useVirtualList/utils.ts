@@ -23,15 +23,13 @@ export const getAverageRowHeight = (rowHeights: Array<number | undefined>) => {
 };
 
 export const getUpdatedRowOffsets = (
-    { rowOffsets, rowsCount, listOffset }: VirtualListInfo,
-    newRowHeights: number[],
-    newAverageRowHeight: number,
+    { rowOffsets, rowsCount, listOffset, rowHeights, averageRowHeight }: VirtualListInfo,
 ) => {
     const newRowOffsets = [...rowOffsets];
     for (let n = 0; n <= rowsCount; n++) {
         newRowOffsets[n] = n === 0
             ? listOffset
-            : newRowOffsets[n - 1] + (newRowHeights[n] || newAverageRowHeight);
+            : newRowOffsets[n - 1] + (rowHeights[n] || averageRowHeight);
     }
     return newRowOffsets;
 };
@@ -55,7 +53,7 @@ export const getUpdatedRowsInfo = (
     }
     const rowHeights = getUpdatedRowHeights(virtualListInfo);
     const averageRowHeight = getAverageRowHeight(rowHeights);
-    const rowOffsets = getUpdatedRowOffsets(virtualListInfo, rowHeights, averageRowHeight);
+    const rowOffsets = getUpdatedRowOffsets({ ...virtualListInfo, rowHeights, averageRowHeight });
 
     const estimatedHeight = getNewEstimatedContainerHeight(
         rowOffsets,
@@ -70,8 +68,9 @@ export const getUpdatedRowsInfo = (
     };
 };
 
-const getNewTopIndex = ({ rowsCount, containerScrollTop, rowOffsets, overdrawRows, blockSize }: VirtualListInfo) => {
+const getNewTopIndex = ({ rowsCount, scrollContainer, rowOffsets, overdrawRows, blockSize }: VirtualListInfo) => {
     let newTopIndex = 0;
+    const containerScrollTop = scrollContainer?.scrollTop ?? 0;
     while (newTopIndex < rowsCount && rowOffsets[newTopIndex] < containerScrollTop) {
         newTopIndex += 1;
     }
@@ -82,10 +81,11 @@ const getNewTopIndex = ({ rowsCount, containerScrollTop, rowOffsets, overdrawRow
 };
 
 const getNewBottomIndex = (
-    { rowsCount, containerScrollBottom, rowOffsets, overdrawRows, blockSize }: VirtualListInfo,
-    newTopIndex: number,
+    { rowsCount, scrollContainer, rowOffsets, overdrawRows, blockSize, value: { topIndex } }: VirtualListInfo,
 ) => {
-    let bottomIndex = newTopIndex;
+    let bottomIndex = topIndex;
+    const containerScrollTop = scrollContainer?.scrollTop ?? 0;
+    const containerScrollBottom = containerScrollTop + scrollContainer?.clientHeight ?? 0;
     while (bottomIndex < rowsCount && rowOffsets[bottomIndex] < containerScrollBottom) {
         bottomIndex++;
     }
@@ -97,7 +97,7 @@ const getNewBottomIndex = (
 
 export const getRowsToFetchForScroll = (virtualListInfo: VirtualListInfo) => {
     const topIndex = getNewTopIndex(virtualListInfo);
-    const bottomIndex = getNewBottomIndex(virtualListInfo, topIndex);
+    const bottomIndex = getNewBottomIndex({ ...virtualListInfo, value: { ...virtualListInfo.value, topIndex } });
 
     const { value, blockSize } = virtualListInfo;
     // We never reduce visible count intentionally - it can be set so a larger value intentionally.

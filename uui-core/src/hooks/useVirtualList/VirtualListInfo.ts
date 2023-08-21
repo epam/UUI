@@ -1,15 +1,15 @@
 import type { VirtualListState } from '../../types';
 
 interface Props {
-    scrollContainer: HTMLElement,
-    listContainer: HTMLElement,
-    value: VirtualListState,
+    scrollContainer: HTMLElement | undefined,
+    listContainer: HTMLElement | undefined,
+    value: VirtualListState | undefined,
     rowsCount: number,
     blockSize: number,
     overdrawRows: number,
     rowHeights: number[],
     rowOffsets: number[],
-    listOffset: number,
+    listOffset: number | undefined | null,
     estimatedHeight?: number,
     averageRowHeight?: number,
 }
@@ -28,12 +28,4 @@ export class VirtualListInfo {
         public readonly estimatedHeight?: Props['estimatedHeight'],
         public readonly averageRowHeight?: Props['averageRowHeight'],
     ) {}
-
-    get containerScrollTop() {
-        return this.scrollContainer.scrollTop ?? 0;
-    }
-
-    get containerScrollBottom() {
-        return this.containerScrollTop + this.scrollContainer.clientHeight ?? 0;
-    }
 }
