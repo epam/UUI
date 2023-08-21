@@ -103,5 +103,9 @@ describe('getUpdatedRowOffsets', () => {
         expect(getUpdatedRowOffsets(info, new Array(11).fill(0), 15)).toEqual([
             50, 65, 80, 95, 110, 125, 140, 155, 170, 185, 200,
         ]);
+
+        expect(getUpdatedRowOffsets(info, [], 15)).toEqual([
+            50, 65, 80, 95, 110, 125, 140, 155, 170, 185, 200,
+        ]);
     });
 });
