@@ -136,7 +136,7 @@ export const getTopIndexWithOffset = (index: number, overdrawRows: number, block
     return Math.max(0, topIndex);
 };
 
-export const getOffsetYForIndex = (index: number, rowOffsets: number[], listOffset: number) => {
+export const getOffsetYForIndex = (index: number | null | undefined, rowOffsets: number[], listOffset: number) => {
     if (rowOffsets.length === 0 || index == null) return 0;
     return rowOffsets[index] - listOffset;
 };
