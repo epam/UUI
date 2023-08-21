@@ -23,6 +23,12 @@ export const imagePlugin = () => {
         isElement: true,
         isVoid: true,
         component: Image,
+        serializeHtml: ({ element }) => {
+            return React.createElement('img', {
+                src: element.url,
+                // style: {element.with}
+            });
+        },
         then: (editor, { type }) => ({
             deserializeHtml: {
                 rules: [{ validNodeName: 'IMG' }],
