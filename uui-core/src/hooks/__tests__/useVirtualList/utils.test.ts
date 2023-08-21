@@ -1,5 +1,5 @@
 import { VirtualListState } from '../../../types';
-import { assumeHeightForScrollToIndex, getAverageRowHeight, getNewEstimatedContainerHeight, getRowsToFetchForScroll, getTopCoordinate, getUpdatedRowHeights, getUpdatedRowOffsets, getUpdatedRowsInfo } from '../../useVirtualList/utils';
+import { assumeHeightForScrollToIndex, getAverageRowHeight, getNewEstimatedContainerHeight, getRowsToFetchForScroll, getTopCoordinate, getTopIndexWithOffset, getUpdatedRowHeights, getUpdatedRowOffsets, getUpdatedRowsInfo } from '../../useVirtualList/utils';
 import { VirtualListInfo } from '../../useVirtualList/VirtualListInfo';
 import { createListContainer, createScrollContainer } from './helpers';
 
@@ -439,5 +439,19 @@ describe('assumeHeightForScrollToIndex', () => {
     it('should estimated height for scrollTo.index less than topIndex + visibleCount', () => {
         expect(assumeHeightForScrollToIndex({ topIndex: 5, visibleCount: 10, scrollTo: { index: 2 } }, 100, 10))
             .toEqual(100);
+    });
+});
+
+describe('getTopIndexWithOffset', () => {
+    it('should return topIndex with offset', () => {
+        expect(getTopIndexWithOffset(99, 20, 20)).toEqual(60);
+    });
+
+    it('should return 0 if topIndex is less than overdrawRows', () => {
+        expect(getTopIndexWithOffset(5, 20, 20)).toEqual(0);
+    });
+
+    it('should return 0 if topIndex is equal to overdrawRows', () => {
+        expect(getTopIndexWithOffset(5, 5, 20)).toEqual(0);
     });
 });
