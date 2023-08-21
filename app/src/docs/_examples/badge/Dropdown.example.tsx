@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import FocusLock from 'react-focus-lock';
 import {
     Badge, Dropdown, DropdownMenuButton, FlexRow, Panel,
 } from '@epam/promo';
@@ -21,21 +20,19 @@ export default function TypesExample() {
 
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <FocusLock returnFocus persistentFocus lockProps={ { onKeyDown: props.handleEscape } }>
-                <Panel background="white" shadow>
-                    {dropdownMenuItems.map((item) => (
-                        <DropdownMenuButton
-                            key={ item.id }
-                            caption={ item.caption }
-                            icon={ () => statusDot(item.color) }
-                            onClick={ () => {
-                                handleDropdown(item.id);
-                                props.onClose();
-                            } }
-                        />
-                    ))}
-                </Panel>
-            </FocusLock>
+            <Panel background="white" shadow>
+                {dropdownMenuItems.map((item) => (
+                    <DropdownMenuButton
+                        key={ item.id }
+                        caption={ item.caption }
+                        icon={ () => statusDot(item.color) }
+                        onClick={ () => {
+                            handleDropdown(item.id);
+                            props.onClose();
+                        } }
+                    />
+                ))}
+            </Panel>
         );
     };
 

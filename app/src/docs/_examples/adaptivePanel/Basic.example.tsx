@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import FocusLock from 'react-focus-lock';
 import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
 import {
     Button, Dropdown, DropdownContainer, FlexCell, Slider, VerticalTabButton,
@@ -36,13 +35,11 @@ export default function BasicAdaptivePanelExample() {
                 <Dropdown
                     renderTarget={ (props) => <Button caption="Hidden items" { ...props } /> }
                     renderBody={ (props) => (
-                        <FocusLock returnFocus persistentFocus lockProps={ { onKeyDown: props.handleEscape } }>
-                            <DropdownContainer rawProps={ { tabIndex: -1 } }>
-                                {hiddenItems.map((i) => (
-                                    <VerticalTabButton caption={ i.data.caption } onClick={ () => {} } />
-                                ))}
-                            </DropdownContainer>
-                        </FocusLock>
+                        <DropdownContainer { ...props } focusLock>
+                            {hiddenItems.map((i) => (
+                                <VerticalTabButton caption={ i.data.caption } onClick={ () => {} } />
+                            ))}
+                        </DropdownContainer>
                     ) }
                 />
             ),

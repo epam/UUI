@@ -14435,7 +14435,7 @@ react-fast-compare@^3.0.1:
   resolved "https://registry.npmjs.org/react-fast-compare/-/react-fast-compare-3.2.2.tgz"
   integrity sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==
 
-react-focus-lock@2.9.2, react-focus-lock@^2.9.2:
+react-focus-lock@2.9.2:
   version "2.9.2"
   resolved "https://registry.npmjs.org/react-focus-lock/-/react-focus-lock-2.9.2.tgz"
   integrity sha512-5JfrsOKyA5Zn3h958mk7bAcfphr24jPoMoznJ8vaJF6fUrPQ8zrtEd3ILLOK8P5jvGxdMd96OxWNjDzATfR2qw==
