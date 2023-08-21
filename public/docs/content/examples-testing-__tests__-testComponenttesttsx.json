@@ -1,125 +1,83 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": "This is an example of how  "
+      },
+      {
+        "text": "@epam/uui-test-utils",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " could be used to simplify testing. In this specific case, the "
+      },
+      {
+        "text": "setupComponentForTest",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " simplifies testing of next use cases:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "This is an example of how  ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "@epam/uui-test-utils",
-            "marks": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "text": "wraps the component in UUI context."
               }
             ]
-          },
-          {
-            "object": "text",
-            "text": " could be used to simplify testing. In this specific case, the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "setupComponentForTest",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " simplifies testing of next use cases:",
-            "marks": []
           }
         ]
       },
       {
-        "object": "block",
-        "type": "unordered-list",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "props which are passed to the component are changed from outside (without unmounting the component)\r",
-                    "marks": []
-                  }
-                ]
+                "text": "props which are passed to the component are changed from outside (without unmounting the component)\r"
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "on-change workflow, when a callback prop (e.g. ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "onValueChange",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ") updates some other props (e.g. ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "value",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ")",
-                    "marks": []
-                  }
-                ]
+                "text": "on-change workflow, when a callback prop (e.g. "
+              },
+              {
+                "text": "onValueChange",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": ") updates some other props (e.g. "
+              },
+              {
+                "text": "value",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": ")"
               }
             ]
           }
@@ -127,4 +85,4 @@
       }
     ]
   }
-}
+]
