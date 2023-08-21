@@ -78,7 +78,21 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
 
     constructor(props: ComponentEditorProps) {
         super(props);
-        const { propsDocPath } = props;
+
+        this.state = {
+            docs: null,
+            isLoading: true,
+            showCode: false,
+            selectedPropsIds: {},
+            inputValues: {},
+            componentKey: undefined,
+        };
+    }
+
+    componentDidMount() {
+        const { propsDocPath } = this.props;
+        const selectedPropsIds = { ...this.state.selectedPropsIds };
+        const inputValues = { ...this.state.inputValues };
 
         if (propsDocPath) {
             const propsDocPathRelative = `.${propsDocPath.substring(PATH_PREFIX.length)}`;
@@ -97,26 +111,17 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                     }
 
                     if (defaultExample) {
-                        this.state.selectedPropsIds[prop.name] = defaultExample.id;
+                        selectedPropsIds[prop.name] = defaultExample.id;
                     }
 
                     if (prop.type === 'string') {
-                        this.state.inputValues[prop.name] = defaultExample?.value;
+                        inputValues[prop.name] = defaultExample?.value;
                     }
                 });
                 this.initialProps = this.state.selectedPropsIds;
-                this.setState({ docs: module, isLoading: false });
+                this.setState({ docs: module, selectedPropsIds: selectedPropsIds, inputValues: inputValues, isLoading: false });
             });
         }
-
-        this.state = {
-            docs: null,
-            isLoading: true,
-            showCode: false,
-            selectedPropsIds: {},
-            inputValues: {},
-            componentKey: undefined,
-        };
     }
 
     propExamples: { [propName: string]: PropExample<any>[] } = {};
