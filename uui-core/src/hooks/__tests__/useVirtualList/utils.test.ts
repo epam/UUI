@@ -1,5 +1,5 @@
 import { VirtualListState } from '../../../types';
-import { assumeHeightForScrollToIndex, getAverageRowHeight, getNewEstimatedContainerHeight, getRowsToFetchForScroll, getTopCoordinate, getTopIndexWithOffset, getUpdatedRowHeights, getUpdatedRowOffsets, getUpdatedRowsInfo } from '../../useVirtualList/utils';
+import { assumeHeightForScrollToIndex, getAverageRowHeight, getNewEstimatedContainerHeight, getOffsetYForIndex, getRowsToFetchForScroll, getTopCoordinate, getTopIndexWithOffset, getUpdatedRowHeights, getUpdatedRowOffsets, getUpdatedRowsInfo } from '../../useVirtualList/utils';
 import { VirtualListInfo } from '../../useVirtualList/VirtualListInfo';
 import { createListContainer, createScrollContainer } from './helpers';
 
@@ -453,5 +453,20 @@ describe('getTopIndexWithOffset', () => {
 
     it('should return 0 if topIndex is equal to overdrawRows', () => {
         expect(getTopIndexWithOffset(5, 5, 20)).toEqual(0);
+    });
+});
+
+describe('getOffsetYForIndex', () => {
+    it('should return 0 if rowOffsets is empty', () => {
+        expect(getOffsetYForIndex(10, [], 10)).toEqual(0);
+    });
+
+    it('should return 0 if index is null or undefined', () => {
+        expect(getOffsetYForIndex(null, [1, 2, 3], 10)).toEqual(0);
+        expect(getOffsetYForIndex(undefined, [1, 2, 3], 10)).toEqual(0);
+    });
+
+    it('should return offsetY', () => {
+        expect(getOffsetYForIndex(2, [10, 20, 30], 10)).toEqual(20);
     });
 });
