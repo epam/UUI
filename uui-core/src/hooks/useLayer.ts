@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useUuiContext } from '../services';
 
 export const useLayer = () => {
     const context = useUuiContext();
-    const layer = context.uuiLayout?.getLayer();
+    const layer = useRef(context.uuiLayout?.getLayer()).current;
 
     useEffect(() => {
         return () => layer && context.uuiLayout?.releaseLayer(layer);
