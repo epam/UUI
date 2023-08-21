@@ -1,5 +1,5 @@
 import { VirtualListState } from '../../../types';
-import { getAverageRowHeight, getNewEstimatedContainerHeight, getUpdatedRowHeights, getUpdatedRowOffsets, getUpdatedRowsInfo } from '../../useVirtualList/utils';
+import { getAverageRowHeight, getNewEstimatedContainerHeight, getRowsToFetchForScroll, getUpdatedRowHeights, getUpdatedRowOffsets, getUpdatedRowsInfo } from '../../useVirtualList/utils';
 import { VirtualListInfo } from '../../useVirtualList/VirtualListInfo';
 import { createListContainer, createScrollContainer } from './helpers';
 
@@ -268,6 +268,128 @@ describe('getUpdatedRowsInfo', () => {
             ],
             estimatedHeight: 151.625,
             averageRowHeight: 13.875,
+        });
+    });
+});
+
+describe('getRowsToFetchForScroll', () => {
+    it('should limit topIndex with rowsCount', () => {
+        const info = new VirtualListInfo(
+            createScrollContainer({ scrollTop: 100, clientHeight: 1000 }),
+            createListContainer([10, 20, 20, 20, 15, 10, 15]),
+            { topIndex: 1 },
+            5,
+            1,
+            1,
+            [],
+            [10, 30, 50, 70, 85, 95, 110, 500, 510, 560],
+            50,
+            20,
+            15,
+        );
+        expect(getRowsToFetchForScroll(info)).toEqual({
+            visibleCount: 1,
+            topIndex: 4,
+        });
+    });
+
+    it('should limit topIndex with scrollTop', () => {
+        const info = new VirtualListInfo(
+            createScrollContainer({ scrollTop: 100, clientHeight: 1000 }),
+            createListContainer([10, 20, 20, 20, 15, 10, 15]),
+            { topIndex: 1 },
+            20,
+            1,
+            1,
+            [],
+            [10, 30, 50, 70, 85, 95, 110, 500, 510, 560],
+            50,
+            20,
+            15,
+        );
+        expect(getRowsToFetchForScroll(info)).toEqual({
+            visibleCount: 6,
+            topIndex: 5,
+        });
+    });
+
+    it('should limit visibleCount with rowsCount', () => {
+        const info = new VirtualListInfo(
+            createScrollContainer({ scrollTop: 100, clientHeight: 1000 }),
+            createListContainer([10, 20, 20, 20, 15, 10, 15]),
+            { topIndex: 1 },
+            5,
+            1,
+            1,
+            [],
+            [10, 30, 50, 70, 85, 95, 110, 500, 510, 560],
+            50,
+            20,
+            15,
+        );
+        expect(getRowsToFetchForScroll(info)).toEqual({
+            visibleCount: 1,
+            topIndex: 4,
+        });
+    });
+
+    it('should limit visibleCount with clientHeight', () => {
+        const info = new VirtualListInfo(
+            createScrollContainer({ scrollTop: 100, clientHeight: 200 }),
+            createListContainer([10, 20, 20, 20, 15, 10, 15]),
+            { topIndex: 1 },
+            100,
+            1,
+            0,
+            [],
+            [10, 30, 50, 70, 85, 95, 110, 500, 510, 560],
+            50,
+            20,
+            15,
+        );
+        expect(getRowsToFetchForScroll(info)).toEqual({
+            visibleCount: 1,
+            topIndex: 6,
+        });
+    });
+
+    it('should overdraw rows', () => {
+        const info = new VirtualListInfo(
+            createScrollContainer({ scrollTop: 100, clientHeight: 200 }),
+            createListContainer([10, 20, 20, 20, 15, 10, 15]),
+            { topIndex: 1 },
+            100,
+            1,
+            5,
+            [],
+            [10, 30, 50, 70, 85, 95, 110, 500, 510, 560],
+            50,
+            20,
+            15,
+        );
+        expect(getRowsToFetchForScroll(info)).toEqual({
+            visibleCount: 11,
+            topIndex: 1,
+        });
+    });
+
+    it('should align to block size', () => {
+        const info = new VirtualListInfo(
+            createScrollContainer({ scrollTop: 100, clientHeight: 200 }),
+            createListContainer([10, 20, 20, 20, 15, 10, 15]),
+            { topIndex: 1 },
+            5,
+            2,
+            0,
+            [],
+            [10, 30, 50, 70, 85, 95, 110, 500, 510, 560],
+            50,
+            20,
+            15,
+        );
+        expect(getRowsToFetchForScroll(info)).toEqual({
+            visibleCount: 2,
+            topIndex: 4,
         });
     });
 });

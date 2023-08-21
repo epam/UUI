@@ -1,8 +1,15 @@
-export const createScrollContainer = () => {
-    return document.createElement('div');
+export const createScrollContainer = ({ scrollTop, clientHeight }: { scrollTop?: number, clientHeight?: number } = {}) => {
+    const scrollContainer = document.createElement('div');
+    scrollContainer.scrollTop = scrollTop ?? scrollContainer.scrollTop;
+    scrollContainer.style.height = '100px';
+    jest.spyOn(scrollContainer, 'clientHeight', 'get')
+        .mockImplementation(() => clientHeight ?? 0);
+    return scrollContainer;
 };
 
-export const createListContainer = (heights: number[]) => {
+export const createListContainer = (
+    heights: number[],
+) => {
     const listContainer = document.createElement('div');
     listContainer.style.height = '100%';
 
@@ -23,6 +30,7 @@ export const createListContainer = (heights: number[]) => {
             y: 0,
             toJSON: () => '',
         });
+
         listContainer.appendChild(element);
     });
 
