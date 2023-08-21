@@ -9,5 +9,5 @@ export const useLayer = () => {
         return () => layer && context.uuiLayout?.releaseLayer(layer);
     }, [context]);
 
-    return layer?.zIndex;
+    return layer;
 };
