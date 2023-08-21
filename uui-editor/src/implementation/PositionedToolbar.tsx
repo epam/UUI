@@ -8,6 +8,7 @@ import { Range } from 'slate';
 
 import { isImageSelected, isTextSelected } from '../helpers';
 import css from './Toolbar.module.scss';
+import { useLayer } from '@epam/uui-core';
 
 interface ToolbarProps {
     editor: any;
@@ -22,6 +23,7 @@ export function PositionedToolbar(props: ToolbarProps): any {
     const ref = useRef<HTMLElement | null>();
     const editor = usePlateEditorState();
     const inFocus = isEditorFocused(editor);
+    const zIndex = useLayer()?.zIndex;
 
     const virtualReferenceElement = (): any => ({
         getBoundingClientRect(): DOMRect {
@@ -51,7 +53,7 @@ export function PositionedToolbar(props: ToolbarProps): any {
                         <div
                             onMouseDown={ (e) => e.preventDefault() }
                             className={ cx(css.container, 'slate-prevent-blur') }
-                            style={ { ...popperProps.style, zIndex: 50 } }
+                            style={ { ...popperProps.style, zIndex } }
                             ref={ (node) => {
                                 ref.current = node;
                                 (popperProps.ref as React.RefCallback<HTMLDivElement>)(node);
