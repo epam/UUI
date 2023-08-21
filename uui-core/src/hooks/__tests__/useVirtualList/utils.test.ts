@@ -1,5 +1,5 @@
 import { VirtualListState } from '../../../types';
-import { getAverageRowHeight, getUpdatedRowHeights } from '../../useVirtualList/utils';
+import { getAverageRowHeight, getUpdatedRowHeights, getUpdatedRowOffsets } from '../../useVirtualList/utils';
 import { VirtualListInfo } from '../../useVirtualList/VirtualListInfo';
 import { createListContainer, createScrollContainer } from './helpers';
 
@@ -64,5 +64,44 @@ describe('getAverageRowHeight', () => {
 
     it('should return 1 for array without not empty values', () => {
         expect(getAverageRowHeight([undefined, undefined])).toBe(1);
+    });
+});
+
+describe('getUpdatedRowOffsets', () => {
+    const scrollContainer = createScrollContainer();
+    const listContainer = createListContainer([]);
+
+    it('should update row offsets', () => {
+        const info = new VirtualListInfo(
+            scrollContainer,
+            listContainer,
+            {},
+            10,
+            20,
+            20,
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            [5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+            50,
+        );
+        expect(getUpdatedRowOffsets(info, new Array(11).fill(20), 15)).toEqual([
+            50, 70, 90, 110, 130, 150, 170, 190, 210, 230, 250,
+        ]);
+    });
+
+    it('should use average height if row height is undefined or zero', () => {
+        const info = new VirtualListInfo(
+            scrollContainer,
+            listContainer,
+            {},
+            10,
+            20,
+            20,
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            [5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+            50,
+        );
+        expect(getUpdatedRowOffsets(info, new Array(11).fill(0), 15)).toEqual([
+            50, 65, 80, 95, 110, 125, 140, 155, 170, 185, 200,
+        ]);
     });
 });
