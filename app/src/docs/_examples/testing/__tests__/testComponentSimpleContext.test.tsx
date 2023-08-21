@@ -16,7 +16,7 @@ export function SomeComponent(props: SomeComponentProps) {
 
 describe('TestComponent', () => {
     it('should invoke onValuesChange when user types new value', async () => {
-        const onValueChangeMock = jest.fn;
+        const onValueChangeMock = jest.fn();
         await renderWithContextAsync(<SomeComponent value="monday" onValueChange={ onValueChangeMock } />);
         const input = screen.queryByRole('textbox') as HTMLInputElement;
         expect(input.value).toEqual('monday');
@@ -25,7 +25,7 @@ describe('TestComponent', () => {
     });
 
     it('should display new value when value property changes', async () => {
-        const onValueChangeMock = jest.fn;
+        const onValueChangeMock = jest.fn();
         const { rerender } = await renderWithContextAsync(<SomeComponent value="monday" onValueChange={ onValueChangeMock } />);
         rerender(<SomeComponent value="tuesday" onValueChange={ onValueChangeMock } />);
         const input = screen.queryByRole('textbox') as HTMLInputElement;
