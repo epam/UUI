@@ -1,5 +1,5 @@
 import { VirtualListState } from '../../../types';
-import { getAverageRowHeight, getUpdatedRowHeights, getUpdatedRowOffsets } from '../../useVirtualList/utils';
+import { getAverageRowHeight, getNewEstimatedContainerHeight, getUpdatedRowHeights, getUpdatedRowOffsets } from '../../useVirtualList/utils';
 import { VirtualListInfo } from '../../useVirtualList/VirtualListInfo';
 import { createListContainer, createScrollContainer } from './helpers';
 
@@ -107,5 +107,11 @@ describe('getUpdatedRowOffsets', () => {
         expect(getUpdatedRowOffsets(info, [], 15)).toEqual([
             50, 65, 80, 95, 110, 125, 140, 155, 170, 185, 200,
         ]);
+    });
+});
+
+describe('getNewEstimatedContainerHeight', () => {
+    it('should return new estimated height', () => {
+        expect(getNewEstimatedContainerHeight([5, 15, 40, 100, 110], 4, 5)).toEqual(105);
     });
 });
