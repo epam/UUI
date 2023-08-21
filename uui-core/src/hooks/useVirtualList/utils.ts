@@ -13,11 +13,11 @@ export const getUpdatedRowHeights = (virtualListInfo: VirtualListInfo) => {
     return newRowHeights;
 };
 
-export const getAverageRowHeight = (rowHeights: number[]) => {
-    if (!rowHeights.length) {
+export const getAverageRowHeight = (rowHeights: Array<number | undefined>) => {
+    const notEmptyRowsHeights = rowHeights.filter((height) => height !== undefined);
+    if (!notEmptyRowsHeights.length) {
         return 1;
     }
-    const notEmptyRowsHeights = rowHeights.filter((height) => height !== undefined);
     const totalRowHeights = notEmptyRowsHeights.reduce((sum, next) => sum + next, 0);
     return totalRowHeights / notEmptyRowsHeights.length;
 };
