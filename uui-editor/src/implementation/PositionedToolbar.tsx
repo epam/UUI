@@ -23,7 +23,7 @@ export function PositionedToolbar(props: ToolbarProps): any {
     const ref = useRef<HTMLElement | null>();
     const editor = usePlateEditorState();
     const inFocus = isEditorFocused(editor);
-    const zIndex = useLayer();
+    const zIndex = useLayer()?.zIndex;
 
     const virtualReferenceElement = (): any => ({
         getBoundingClientRect(): DOMRect {

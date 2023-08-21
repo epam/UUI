@@ -18,7 +18,7 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) 
     const [isVisible, setIsVisible] = useState(false);
     const sidebarRef = useRef<HTMLDivElement>(null);
     const timeoutIdRef = useRef<ReturnType<typeof setTimeout>>(null);
-    const zIndex = useLayer();
+    const zIndex = useLayer()?.zIndex;
 
     useEffect(() => {
         const isSidebarVisible = true;
