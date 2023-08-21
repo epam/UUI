@@ -1,9 +1,7 @@
 import React from 'react';
 import { Dropdown } from '@epam/uui-components';
 import { DropdownBodyProps } from '@epam/uui-core';
-import {
-    Button, Text, FlexRow, DropdownContainer, FlexCell,
-} from '@epam/promo';
+import { Button, Text, FlexRow, DropdownContainer, FlexCell } from '@epam/uui';
 import { IDropdownToggler } from '@epam/uui-core';
 
 export default function BasicDropdownExample() {
@@ -11,7 +9,7 @@ export default function BasicDropdownExample() {
         return (
             <DropdownContainer maxWidth={ 360 } vPadding="24" padding="18" { ...props }>
                 <FlexCell alignSelf="flex-start">
-                    <Text fontSize="18" lineHeight="24" color="gray90" font="museo-slab">
+                    <Text fontSize="18" lineHeight="24" color="secondary">
                         Some Title
                     </Text>
                     <Text fontSize="14">
@@ -20,8 +18,8 @@ export default function BasicDropdownExample() {
                 </FlexCell>
                 <FlexCell alignSelf="flex-start">
                     <FlexRow spacing="12">
-                        <Button color="green" size="30" caption="Some Action" onClick={ () => null } />
-                        <Button fill="white" size="30" color="gray" caption="Cancel" onClick={ () => props.onClose() } />
+                        <Button color="accent" size="30" caption="Some Action" onClick={ () => null } />
+                        <Button fill="outline" size="30" color="secondary" caption="Cancel" onClick={ () => props.onClose() } />
                     </FlexRow>
                 </FlexCell>
             </DropdownContainer>

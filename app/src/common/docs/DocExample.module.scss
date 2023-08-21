@@ -1,4 +1,4 @@
-@use '~@epam/promo/assets/styles/index' as *;
+@import '../../themes/themeVariables.module';
 
 .container {
     margin: 24px 0;
@@ -9,8 +9,8 @@
     width: fit-content;
 
     .title {
-        font-family: $font-museo-sans;
-        color: $gray80;
+        font-family: var(--font-primary);
+        color: var(--uui-docs-title);
         font-size: 24px;
         margin-bottom: 6px;
     }
