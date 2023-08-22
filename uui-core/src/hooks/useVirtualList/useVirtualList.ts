@@ -95,16 +95,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             : assumedHeight;
 
         setEstimatedHeight(estimatedHeightToSet);
-
-        const [wasScrolled, ok] = scrollToIndex(value.scrollTo?.index);
-
-        const topIndex = getTopIndexWithOffset(value.scrollTo.index, overdrawRows, blockSize);
-        if ((ok && !wasScrolled) || value.topIndex !== topIndex) {
-            onValueChange({ ...value, topIndex });
-        }
-        if (ok && wasScrolled) {
-            setScrolledTo(value.scrollTo);
-        }
+        scrollToIndex(value.scrollTo?.index);
     };
 
     const handleScrollOnRerender = (rowsInfo: RowsInfo) => {
@@ -123,7 +114,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         onValueChange, blockSize, rowOffsets.current, rowsCount, value, onScroll, scrollContainer.current,
     ]);
 
-    const scrollToIndex = React.useCallback(
+    const scrollContainerToIndex = React.useCallback(
         (index: number, behavior?: ScrollBehavior) => {
             const topCoordinate = getTopCoordinate(getVirtualListInfo(), index);
             if (!isNaN(topCoordinate)) {
@@ -133,6 +124,20 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             return [false, false];
         },
         [scrollContainer.current, rowOffsets.current],
+    );
+
+    const scrollToIndex = React.useCallback(
+        (index: number, behavior?: ScrollBehavior) => {
+            const [wasScrolled, ok] = scrollContainerToIndex(index, behavior);
+            const topIndex = getTopIndexWithOffset(index, overdrawRows, blockSize);
+            if ((ok && !wasScrolled) || value.topIndex !== topIndex) {
+                onValueChange({ ...value, topIndex, scrollTo: value.scrollTo?.index === index ? value.scrollTo : { index } });
+            }
+            if (ok && wasScrolled) {
+                setScrolledTo(value.scrollTo?.index === index ? value.scrollTo : { index });
+            }
+        },
+        [scrollContainer.current, rowOffsets.current, value.topIndex, overdrawRows, blockSize],
     );
 
     useLayoutEffectSafeForSsr(() => {
