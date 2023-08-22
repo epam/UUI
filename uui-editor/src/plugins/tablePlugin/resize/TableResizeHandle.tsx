@@ -145,12 +145,25 @@ export const useResizeHandle = ({
             if (isMergedCell) {
                 const tableElem = table[0] as TTableElement;
                 size = tableElem.colSizes[cellElement.colIndex!]!;
+                console.log('is merged cell', size);
             }
         } else {
             size = isHorizontal ? element.offsetWidth : element.offsetHeight;
         }
 
         setInitialSize(size);
+
+        // const { clientX, clientY } = event;
+        // setInitialPosition(isHorizontal ? clientX : clientY);
+
+        // const element = (event.target as HTMLElement).parentElement!;
+        // console.log(
+        //     'setting initial size',
+        //     event.target,
+        //     element.offsetWidth,
+        //     // isHorizontal ? element.offsetWidth : element.offsetHeight,
+        // );
+        // setInitialSize(isHorizontal ? element.offsetWidth : element.offsetHeight);
 
         setIsResizing(true);
 

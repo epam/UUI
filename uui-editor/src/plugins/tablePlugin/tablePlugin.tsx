@@ -31,13 +31,13 @@ function TableRenderer(props: any) {
     const hasEntries = !!cellEntries?.length;
     const showToolbar = !isReadonly && isSelected && isFocused && hasEntries;
 
-    /**
-     * Assigns valid colIndexes in case of merged cells.
-     * TODO: make less function invocations,
-     * ideally once on migration and pasting from documents
-     * Mutates table element object.
-     */
-    updateTableStructure(tableElem);
+    // /**
+    //  * Assigns valid colIndexes in case of merged cells.
+    //  * TODO: make less function invocations,
+    //  * ideally once on migration and pasting from documents
+    //  * Mutates table element object.
+    //  */
+    // updateTableStructure(tableElem);
 
     return (
         <Dropdown

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, useRef } from 'react';
 import {
     PlateElement,
     PlateElementProps,
@@ -8,6 +8,7 @@ import { ELEMENT_TABLE, TTableElement, TablePlugin, getTableColumnCount, useTabl
 import cx from 'classnames';
 import css from './TableElement.module.scss';
 import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
+import { TableCellResizer } from './TableCellResizer';
 
 interface OldTableElement extends TTableElement {
     data?: {
@@ -25,6 +26,7 @@ PlateElementProps
     const { editor } = props;
     const element: OldTableElement = props.element;
     const tableStore = useTableStore().get;
+    const tableRef = useRef<HTMLTableElement>();
     const { props: tableProps, colGroupProps } = useTableElement();
 
     const { minColumnWidth, disableMarginLeft } = getPluginOptions<TablePlugin>(
@@ -59,7 +61,7 @@ PlateElementProps
                 { ...tableProps }
                 { ...props }
             >
-                <table style={ { width: tableWidth } }>
+                <table ref={ tableRef } style={ { width: tableWidth } }>
                     <colgroup { ...colGroupProps }>
                         { currentColSizes.map((width, index) => (
                             <col
