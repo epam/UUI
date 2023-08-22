@@ -1,5 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
+import FocusLock from 'react-focus-lock';
 import {
     IHasCX, Icon, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';
@@ -76,18 +77,32 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
     }
 
     renderContent = (ref: Ref<HTMLElement>) => {
+        const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+            if (e.key === 'Escape' && this.state.isOpen) {
+                this.toggleBurgerMenu();
+            }
+        };
+
+        const handleOnClick = (e: React.SyntheticEvent) => { 
+            if (e.target === e.currentTarget) {
+                this.toggleBurgerMenu();
+            }
+        };
+
         return (
             <div
                 ref={ ref as Ref<HTMLDivElement> }
                 className={ cx(this.props.cx, this.props.burgerContentCx, uuiBurger.overlay, uuiBurger.overlayVisible, css.containerContent) }
-                onClick={ this.toggleBurgerMenu }
+                onClick={ handleOnClick }
             >
-                <div
+                <FocusLock
+                    returnFocus
+                    persistentFocus
                     className={ cx(this.props.cx, uuiBurger.items, uuiBurger.itemsVisible) }
-                    onClick={ (e) => e.stopPropagation() } // Temp solution
+                    lockProps={ { onKeyDown: handleKeyDown } }
                 >
                     {this.props.renderBurgerContent ? this.props.renderBurgerContent({ onClose: this.toggleBurgerMenu }) : undefined}
-                </div>
+                </FocusLock>
             </div>
         );
     };
