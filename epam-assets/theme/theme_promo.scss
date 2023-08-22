@@ -699,7 +699,7 @@
 
     /* DropSpot */
 
-    --uui-dropspot-border: var(--night400);
+    --uui-dropspot-border: var(--gray40);
     --uui-dropspot-border-dropstart: var(--uui-primary);
     --uui-dropspot-background-dropstart: var(--uui-primary-lightest);
     --uui-dropspot-link-color: var(--uui-primary);
@@ -708,10 +708,7 @@
 
     /* FileCard */
 
-    --uui-filecard-border-dropstart: var(--uui-primary);
-    --uui-filecard-background-dropstart: var(--uui-primary-lightest);
-    --uui-filecard-background: var(--night400);
-    --uui-filecard-background-loaading: var(--night400);
+    --uui-filecard-background: var(--gray40);
     --uui-filecard-icon-error: var(--uui-negative);
     --uui-filecard-border-error: var(--uui-negative);
     --uui-filecard-text-error: var(--uui-negative-darkest);
