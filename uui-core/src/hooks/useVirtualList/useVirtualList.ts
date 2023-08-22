@@ -162,10 +162,12 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     return {
         estimatedHeight,
         offsetY,
+        listOffset,
+
         scrollContainerRef: scrollContainer,
         listContainerRef: listContainer,
+
         handleScroll,
         scrollToIndex,
-        listOffset,
     };
 }
