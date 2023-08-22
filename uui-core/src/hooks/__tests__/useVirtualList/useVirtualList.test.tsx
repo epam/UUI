@@ -42,7 +42,7 @@ describe('useVirtualList', () => {
         jest.clearAllMocks();
     });
 
-    it('should render with minimum props', async () => {
+    it('should render with required estimatedHeight', async () => {
         const { result, rerender } = await renderHookWithContextAsync(useVirtualList, {
             value: { topIndex: 0, visibleCount: 10 },
             onValueChange: () => {},
@@ -67,6 +67,36 @@ describe('useVirtualList', () => {
         expect(result.current.listContainerRef.current).toBeInTheDocument();
         expect(result.current.estimatedHeight).toBe(200);
         expect(result.current.offsetY).toBe(0);
+        expect(result.current.listOffset).toBe(0);
+        expect(typeof result.current.scrollToIndex).toBe('function');
+        expect(typeof result.current.handleScroll).toBe('function');
+    });
+    
+    it('should render with offsetY for topIndex more than 0', async () => {
+        const { result, rerender } = await renderHookWithContextAsync(useVirtualList, {
+            value: { topIndex: 20, visibleCount: 10 },
+            onValueChange: () => {},
+            rowsCount: 40,
+        });
+
+        await renderWithContextAsync(
+            <VirtualListContainer
+                scrollContainerRef={ result.current.scrollContainerRef }
+                listContainerRef={ result.current.listContainerRef }
+                estimatedHeight={ result.current.estimatedHeight }
+            />,
+        );
+        
+        rerender({
+            value: { topIndex: 20, visibleCount: 10 },
+            onValueChange: () => {},
+            rowsCount: 40,
+        });
+        
+        expect(result.current.scrollContainerRef.current).toBeInTheDocument();
+        expect(result.current.listContainerRef.current).toBeInTheDocument();
+        expect(result.current.estimatedHeight).toBe(800);
+        expect(result.current.offsetY).toBe(400);
         expect(result.current.listOffset).toBe(0);
         expect(typeof result.current.scrollToIndex).toBe('function');
         expect(typeof result.current.handleScroll).toBe('function');
