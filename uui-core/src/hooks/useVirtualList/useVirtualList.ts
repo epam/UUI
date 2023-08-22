@@ -137,7 +137,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
                 setScrolledTo(value.scrollTo?.index === index ? value.scrollTo : { index });
             }
         },
-        [scrollContainer.current, rowOffsets.current, value.topIndex, overdrawRows, blockSize],
+        [scrollContainer.current, rowOffsets.current, value?.topIndex, overdrawRows, blockSize],
     );
 
     useLayoutEffectSafeForSsr(() => {
