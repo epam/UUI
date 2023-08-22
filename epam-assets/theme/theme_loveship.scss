@@ -738,15 +738,24 @@
 
     --uui-pagination-font: var(--font-regular);
 
+    /* DropSpot */
+
+    --uui-dropspot-border: var(--night400);
+    --uui-dropstart-border: var(--uui-primary);
+    --uui-dropstart-background: var(--uui-primary-lightest);
+    --uui-dropspot-link-color: var(--uui-primary);
+    --uui-dropspot-link-hover: var(--uui-primary-dark);
+    --uui-dropspot-icon: var(--uui-primary);
+
     /* FileCard */
-    --uui-file-card-background: var(--night400);
-    --uui-file-card-background-loaading: var(--night400);
-    --uui-file-card-error: var(--uui-negative);
-    --uui-file-card-error-block: var(--uui-negative-darkest);
-    --uui-file-card-default: var(--uui-secondary);
-    --uui-file-card-dropstart-border: var(--uui-primary);
-    --uui-file-card-dropstart-background: var(--uui-primary-lightest);
-    --uui-file-card-link-hover: var(--uui-primary-dark);
+
+    --uui-filecard-dropstart-border: var(--uui-primary);
+    --uui-filecard-dropstart-background: var(--uui-primary-lightest);
+    --uui-filecard-background: var(--night400);
+    --uui-filecard-background-loaading: var(--night400);
+    --uui-filecard-error: var(--uui-negative);
+    --uui-filecard-error-block: var(--uui-negative-darkest);
+    --uui-filecard-default: var(--uui-secondary);
 
     /* IndeterminateBar */
 
