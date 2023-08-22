@@ -23,10 +23,10 @@ export default function ConfigurePortalTargetAndPlacement() {
     const dataSource = useLazyDataSource({ api: loadPersons }, []);
 
     const renderDropdownBody = (props: DropdownBodyProps) => (
-        <DropdownContainer showArrow={ true } maxWidth={ 360 } { ...props }>
+        <DropdownContainer focusLock={ { lockProps: { onKeyDown: null }, shards: [portalTargetRef] } } showArrow={ true } maxWidth={ 360 } { ...props }>
             <Panel>
                 <FlexRow alignItems="top" padding="18" vPadding="24">
-                    <FlexCell grow={ 1 }>
+                    <FlexCell grow={ 1 } ref={ portalTargetRef }>
                         <Text fontSize="18" lineHeight="24" color="gray90" font="museo-slab">
                             Reporting to
                         </Text>
@@ -52,7 +52,7 @@ export default function ConfigurePortalTargetAndPlacement() {
     );
 
     return (
-        <div ref={ portalTargetRef }>
+        <div>
             <Dropdown renderBody={ renderDropdownBody } renderTarget={ (props: IDropdownToggler) => <Button caption="Click to open" { ...props } /> } />
         </div>
     );

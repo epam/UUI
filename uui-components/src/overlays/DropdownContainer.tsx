@@ -49,16 +49,18 @@ export function DropdownContainer(props: DropdownContainerProps) {
 
     const getFocusLockProps = () => {
         const { focusLock } = props;
+        const defaultProps = {
+            returnFocus: true,
+            persistentFocus: true,
+            lockProps: { onKeyDown: handleEscape },
+        };
 
         if (focusLock === true) {
-            return {
-                returnFocus: true,
-                persistentFocus: true,
-                lockProps: { onKeyDown: handleEscape },
-            };
+            return defaultProps;
         }
         if (typeof focusLock === 'object') {
             return {
+                ...defaultProps,
                 ...(focusLock as typeof FocusLock),
             };
         }
