@@ -97,7 +97,6 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
             >
                 <FocusLock
                     returnFocus
-                    persistentFocus
                     className={ cx(this.props.cx, uuiBurger.items, uuiBurger.itemsVisible) }
                     lockProps={ { onKeyDown: handleKeyDown } }
                 >
