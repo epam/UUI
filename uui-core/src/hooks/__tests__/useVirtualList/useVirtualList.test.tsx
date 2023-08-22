@@ -101,4 +101,42 @@ describe('useVirtualList', () => {
         expect(typeof result.current.scrollToIndex).toBe('function');
         expect(typeof result.current.handleScroll).toBe('function');
     });
+    
+    it('should change offsetY according to the new topIndex', async () => {
+        const { result, rerender } = await renderHookWithContextAsync(useVirtualList, {
+            value: { topIndex: 20, visibleCount: 10 },
+            onValueChange: () => {},
+            rowsCount: 50,
+        });
+
+        await renderWithContextAsync(
+            <VirtualListContainer
+                scrollContainerRef={ result.current.scrollContainerRef }
+                listContainerRef={ result.current.listContainerRef }
+                estimatedHeight={ result.current.estimatedHeight }
+            />,
+        );
+        
+        rerender({
+            value: { topIndex: 20, visibleCount: 10 },
+            onValueChange: () => {},
+            rowsCount: 50,
+        });
+        
+        expect(result.current.scrollContainerRef.current).toBeInTheDocument();
+        expect(result.current.listContainerRef.current).toBeInTheDocument();
+        expect(result.current.estimatedHeight).toBe(1000);
+        expect(result.current.listOffset).toBe(0);
+        expect(typeof result.current.scrollToIndex).toBe('function');
+        expect(typeof result.current.handleScroll).toBe('function');
+
+        expect(result.current.offsetY).toBe(400);
+        
+        rerender({
+            value: { topIndex: 40, visibleCount: 10 },
+            onValueChange: () => {},
+            rowsCount: 50,
+        });
+        expect(result.current.offsetY).toBe(800);
+    });
 });
