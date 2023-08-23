@@ -40,11 +40,13 @@ export const getDefaultUUiContextWrapper = () => {
  * @param [options.wrapper]
  */
 export async function renderHookWithContextAsync<TProps, TResult>(hook: (props: TProps) => TResult, initialProps?: TProps, options?: { wrapper?: CustomWrapperType }) {
-    const wrapper = options?.wrapper || getDefaultUUiContextWrapper().wrapper;
+    const contextWrapper = getDefaultUUiContextWrapper();
+    const wrapper = options?.wrapper || contextWrapper.wrapper;
     const result = renderHook<TResult, TProps>(hook, { wrapper, initialProps });
     await delayAct();
     return {
         ...result,
+        svc: contextWrapper.testUuiCtx,
     };
 }
 
