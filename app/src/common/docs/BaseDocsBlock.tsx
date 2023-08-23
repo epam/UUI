@@ -9,14 +9,14 @@ import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
 import css from './BaseDocsBlock.module.scss';
 
-export type UUI3 = 'UUI3_loveship';
-export type UUI4 = 'UUI4_promo';
-export type UUI = 'UUI';
-export type Skin = UUI3 | UUI4 | UUI;
+export type UUI3Type = 'UUI3_loveship';
+export type UUI4Type = 'UUI4_promo';
+export type UUIType = 'UUI';
+export type Skin = UUI3Type | UUI4Type | UUIType;
 
-export const UUI3: UUI3 = 'UUI3_loveship';
-export const UUI4: UUI4 = 'UUI4_promo';
-export const UUI: UUI = 'UUI';
+export const UUI3: UUI3Type = 'UUI3_loveship';
+export const UUI4: UUI4Type = 'UUI4_promo';
+export const UUI: UUIType = 'UUI';
 
 const items: { id: Skin; caption: string }[] = [
     { caption: 'UUI3 [Loveship]', id: UUI3 }, { caption: 'UUI4 [Promo]', id: UUI4 }, { caption: 'UUI [Themebale]', id: UUI },
@@ -38,36 +38,38 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     constructor(props: any) {
         super(props);
 
-        if (this.getPropsDocPath() !== null) {
-            const propsPromise = svc.api.getProps();
-            propsPromise
-                && propsPromise.then((res) => {
-                    const skin = this.getPropsDocPath()[UUI4] === undefined ? UUI3 : UUI4;
-                    const resProps = res.content.props;
-                    const docPath = this.getPropsDocPath()[skin];
-                    const docPathNorm = docPath.indexOf('.') === 0 ? docPath.substring(1) : docPath;
-                    const props = resProps[docPathNorm];
-                    /**
-                     * Keys in "public/docs/componentsPropsSet.json":
-                     * - always start from "/"
-                     * - are relative to the monorepo root.
-                     */
-                    if (props) {
-                        this.propsDS = new ArrayDataSource({
-                            items: props,
-                            getId: (i) => i.name,
-                        });
-                        this.setState({ props: props });
-                    }
-                });
-        }
-
         const { category, id } = svc.uuiRouter.getCurrentLink().query;
         svc.uuiAnalytics.sendEvent(analyticsEvents.document.pv(id, category));
 
         this.state = {
             tableState: {},
         };
+    }
+
+    componentDidMount() {
+        if (this.getPropsDocPath() !== null) {
+            const propsPromise = svc.api.getProps();
+            propsPromise
+            && propsPromise.then((res) => {
+                const skin = this.getPropsDocPath()[UUI4] === undefined ? UUI3 : UUI4;
+                const resProps = res.content.props;
+                const docPath = this.getPropsDocPath()[skin];
+                const docPathNorm = docPath.indexOf('.') === 0 ? docPath.substring(1) : docPath;
+                const props = resProps[docPathNorm];
+                /**
+                 * Keys in "public/docs/componentsPropsSet.json":
+                 * - always start from "/"
+                 * - are relative to the monorepo root.
+                 */
+                if (props) {
+                    this.propsDS = new ArrayDataSource({
+                        items: props,
+                        getId: (i) => i.name,
+                    });
+                    this.setState({ props: props });
+                }
+            });
+        }
     }
 
     abstract title: string;

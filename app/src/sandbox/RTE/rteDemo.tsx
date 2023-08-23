@@ -23,7 +23,7 @@ import {
     EditorValue,
 } from '@epam/uui-editor';
 import { svc } from '../../services';
-import { FlexCell, FlexRow, Switch, PickerInput, Panel } from '@epam/promo';
+import { FlexCell, FlexRow, Switch, PickerInput } from '@epam/promo';
 import { useAsyncDataSource } from '@epam/uui-core';
 import { useEffect } from 'react';
 
@@ -37,7 +37,7 @@ export function RichTextEditorDemo() {
     };
 
     const uploadFile = (file: File, onProgress: (progress: number) => any): any => {
-        return svc.uuiApi.uploadFile('/uploadFileMock', file, {
+        return svc.uuiApi.uploadFile('/upload/uploadFileMock', file, {
             onProgress,
         });
     };
@@ -81,7 +81,7 @@ export function RichTextEditorDemo() {
             return item;
         },
     }, []);
-    
+
     useEffect(() => {
         if (!contentName) return;
         svc.uuiApi.processRequest('/api/get-demo-doc-content', 'POST', { name: contentName }).then((res) => {

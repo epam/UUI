@@ -1,3 +1,5 @@
+@use  '../../../../assets/styles/effects' as *;
+
 .root {
     position: relative;
     display: flex;
@@ -6,19 +8,13 @@
         z-index: 1001;
     }
 
-    &:global(.uui-burger-menu-open) ~ :global(#global_menu_toggle) {
-        background-color: var(--uui-burger_menu-bg);
-        z-index: 1001;
-
-        :hover {
-            background-color: var(--uui-burger_menu-bg-hover);
-        }
-    }
-
     :global(.uui-burger-button) {
         width: 60px;
         cursor: pointer;
         fill: var(--uui-burger_icon);
+        background: transparent;
+        padding: 0;
+        border: none;
 
         &:hover {
             background-color: var(--uui-burger_menu-bg-hover);
@@ -26,6 +22,10 @@
 
         &:active {
             background-color: var(--uui-burger_menu-bg-hover);
+        }
+
+        &:focus-visible {
+            @include focus-visible-effect(-2px, 0);
         }
 
         :global(.uui-icon) svg {

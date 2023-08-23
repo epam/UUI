@@ -1,13 +1,14 @@
 import * as React from 'react';
 import {
-    Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag,
+    Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton,
 } from '@epam/promo';
-import { DataColumnProps } from '@epam/uui-core';
+import { DataColumnProps, DataQueryFilter } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './DemoTable.module.scss';
 import { ReactComponent as ViewIcon } from '@epam/assets/icons/common/action-eye-18.svg';
+import { PersonTableRecordId } from './types';
 
-export const personColumns: DataColumnProps<Person, number>[] = [
+export const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
     {
         key: 'name',
         caption: 'Name',

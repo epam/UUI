@@ -19,7 +19,7 @@
             cursor: pointer;
         }
 
-        &:hover {
+        &:hover, &:focus {
             border-color: var(--uui-filters-toggler-border-hover);
             background-color: var(--uui-filters-toggler-bg-hover);
         }
@@ -46,6 +46,7 @@
             padding-right: 6px;
 
             .title {
+                display: flex;
                 text-overflow: initial;
                 overflow: visible;
                 padding-top: 0;

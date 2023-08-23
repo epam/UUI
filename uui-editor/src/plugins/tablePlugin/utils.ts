@@ -1,22 +1,21 @@
+import { ExtendedTTableCellElement } from './types';
+import { DEFAULT_COL_WIDTH } from './constants';
 import {
-    ELEMENT_TABLE,
-    ELEMENT_TD,
-    ELEMENT_TH,
-    ELEMENT_TR,
     PlateEditor,
-    TTableCellElement,
-    TTableElement,
-    TTableRowElement,
-    createNode,
-    getBlockAbove,
     getPluginType,
     getStartPoint,
-    insertElements,
-    isBlockAboveEmpty,
+    getBlockAbove,
     selectEditor,
-} from "@udecode/plate";
-import { ExtendedTTableCellElement } from "./types";
-import { DEFAULT_COL_WIDTH } from "./constants";
+} from '@udecode/plate-common';
+import {
+    TTableElement,
+    TTableRowElement,
+    TTableCellElement,
+    ELEMENT_TABLE,
+    ELEMENT_TR,
+    ELEMENT_TH,
+    ELEMENT_TD,
+} from '@udecode/plate-table';
 
 export const getRowSpan = (cellElem: ExtendedTTableCellElement) => {
     const attrRowSpan = isNaN((cellElem?.attributes as any)?.rowspan)
@@ -36,8 +35,8 @@ export const getColSpan = (cellElem: ExtendedTTableCellElement) => {
 
 export const updateTableStructure = (tableElem: TTableElement) => {
     const structure: number[][][] = [];
-    let shifts: number[][] = [];
-    let hShifts: number[][] = [];
+    const shifts: number[][] = [];
+    const hShifts: number[][] = [];
 
     tableElem.children.forEach((cur, rowIndex) => {
         const rowElem = cur as TTableRowElement;
@@ -52,7 +51,7 @@ export const updateTableStructure = (tableElem: TTableElement) => {
             // shifts caused by [rowSpan]
             // decide which index to assign depending on col shifts
             if (!!shifts.length) {
-                shifts.forEach((sh, i) => {
+                shifts.forEach((sh) => {
                     if (!sh.length) return;
 
                     // - is it valid shift for this column
@@ -141,6 +140,7 @@ export const updateTableStructure = (tableElem: TTableElement) => {
         });
     });
 
+    // mutating table element
     tableElem.children.forEach((curRow, rowIndex) => {
         const rowElem = curRow as TTableRowElement;
 
@@ -150,15 +150,13 @@ export const updateTableStructure = (tableElem: TTableElement) => {
             cellElem.rowIndex = rowIndex;
         });
     });
-
-    return tableElem;
 };
 
 export const createCell = ({
     colSpan = 1,
     rowSpan = 1,
-    type = "table_cell",
-    textContent = "",
+    type = 'table_cell',
+    textContent = '',
 }: {
     type: string;
     colSpan?: number;
@@ -171,7 +169,7 @@ export const createCell = ({
         children: [
             {
                 data: {},
-                type: "paragraph",
+                type: 'paragraph',
                 children: [{ text: textContent }],
             },
         ],
@@ -187,12 +185,6 @@ export const selectFirstCell = (editor: PlateEditor) => {
 
         const startPoint = getStartPoint(editor, tableEntry[1]);
         selectEditor(editor, { at: startPoint });
-
-        const [tablePosition] = getStartPoint(editor, tableEntry[1]).path;
-        insertElements(editor, createNode(), {
-            at: [tablePosition + 1],
-            select: false,
-        });
     }
 };
 

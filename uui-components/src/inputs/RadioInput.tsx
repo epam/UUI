@@ -16,7 +16,7 @@ import {
     UuiContext,
     IHasForwardedRef,
 } from '@epam/uui-core';
-import { IconContainer } from '../layout';
+import { IconContainer } from '../layout/IconContainer';
 import css from './RadioInput.module.scss';
 
 export interface RadioInputProps
@@ -37,7 +37,7 @@ export interface RadioInputProps
 export class RadioInput extends React.Component<RadioInputProps> {
     static contextType = UuiContext;
     context: UuiContexts;
-    handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleChange = () => {
         this.props.onValueChange(!this.props.value);
 
         if (this.props.getValueChangeAnalyticsEvent) {

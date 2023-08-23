@@ -17,5 +17,7 @@ export function FilterItemBody(props: IFilterItemBodyProps<any>) {
             return <FilterDatePickerBody { ...props } format={ props.format || 'DD/MM/YYYY' } />;
         case 'rangeDatePicker':
             return <FilterRangeDatePickerBody { ...props } format={ props.format || 'DD/MM/YYYY' } value={ props.value || { from: null, to: null } } />;
+        case 'custom':
+            return props.render(props);
     }
 }

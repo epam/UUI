@@ -1,37 +1,18 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "An ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "AvatarStack",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " is a component that pushes avatars onto a stack and can add an overflow of type +n.",
-            "marks": []
-          }
-        ]
+        "text": "An "
+      },
+      {
+        "text": "AvatarStack",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " is a component that pushes avatars onto a stack and can add an overflow of type +n."
       }
     ]
   }
-}
+]

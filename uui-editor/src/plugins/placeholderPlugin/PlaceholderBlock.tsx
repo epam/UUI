@@ -1,8 +1,8 @@
 import * as React from 'react';
 import css from './PlaceholderPlugin.module.scss';
 import cx from 'classnames';
-import { useSelected } from "slate-react";
-import { uuiMod } from "@epam/uui-core";
+import { useSelected } from 'slate-react';
+import { uuiMod } from '@epam/uui-core';
 
 export function PlaceholderBlock(props: any) {
     const { attributes, element, children } = props;

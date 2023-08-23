@@ -7,12 +7,10 @@
     border-radius: var(--uui-text-area-border-radius);
 
     &:hover {
-        border-color: var(--uui-secondary-disabled);
+        border-color: var(--uui-text-area-border-hover);
     }
 
     &:global(.uui-focus) {
-        //TODO: implement when we get a design
-        //@include control-focus-effect();
         border-color: var(--uui-text-area-border-active);
     }
 }

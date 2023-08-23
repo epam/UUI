@@ -1,7 +1,7 @@
 import BTree from 'sorted-btree';
 import { DbQuery } from './types';
 import {
-    SortingOption, DataQueryFilterCondition, DataQueryFilter, getFilterPredicate,
+    DataQueryFilterCondition, DataQueryFilter, getFilterPredicate,
 } from '@epam/uui-core';
 import orderBy from 'lodash.orderby';
 
@@ -140,7 +140,7 @@ export class IxSet<TEntity, TId> {
         const filterFields = Object.keys(filter) as (keyof TEntity)[];
         const filterFieldTypes = {} as Record<keyof TEntity, FilterConditionType>;
         filterFields.forEach((f) => {
-            const condition = filter[f] as DataQueryFilterCondition<TEntity, any>;
+            const condition = filter[f] as DataQueryFilterCondition<any>;
             if (condition != null && typeof condition === 'object') {
                 if (condition.in) {
                     filterFieldTypes[f] = FilterConditionType.Multi;

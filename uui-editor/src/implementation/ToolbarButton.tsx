@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { Editor } from "slate";
 import { Button } from '@epam/uui-components';
+import { IHasCX, Icon, cx } from '@epam/uui-core';
+import * as React from 'react';
+import { Editor } from 'slate';
 import css from './ToolbarButton.module.scss';
-import { Icon, IHasCX, cx } from '@epam/uui-core';
 
 export interface ToolbarButtonProps extends IHasCX {
     isActive?: boolean;
-    onClick?: () => any;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     icon?: Icon;
     iconColor?: 'red' | 'green' | 'amber' | 'blue' | 'gray60';
     editor?: Editor;
@@ -17,8 +17,7 @@ export interface ToolbarButtonProps extends IHasCX {
 export const ToolbarButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ToolbarButtonProps>((props, ref) => (
     <Button
         onClick={ (e) => {
-            e.preventDefault();
-            props.onClick();
+            props.onClick(e);
         } }
         icon={ props.icon }
         caption={ props.caption }

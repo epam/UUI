@@ -1,6 +1,7 @@
 import React from 'react';
 import { ApiCallInfo, IHasCX, useUuiContext, useUuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren, ApiRecoveryReason, ApiCallErrorType } from '@epam/uui-core';
-import { ModalBlocker, ModalHeader, ModalWindow } from '../../components';
+import { ModalBlocker, ModalHeader } from '@epam/uui';
+import { ModalWindow } from '../../components/overlays';
 import { FlexRow } from '../layout';
 import { Text } from '../typography';
 import { RichTextView, FlexCell, Spinner, ErrorNotification } from '@epam/uui';
@@ -96,17 +97,17 @@ export function ErrorHandler(props: ErrorPageProps) {
 
     const showNotifications = (errors: ApiCallInfo[]) => {
         errors.forEach((c) => {
-            props.onNotificationError ? (
-                props.onNotificationError(c)
-            ) : (
-                uuiNotifications.show((props) => (
-                    <ErrorNotification { ...props }>
+            if (props.onNotificationError) {
+                props.onNotificationError(c);
+            } else {
+                uuiNotifications.show((notificationProps) => (
+                    <ErrorNotification { ...notificationProps }>
                         <Text size="36">
                             {c.responseData && c.responseData.errorMessage}
                         </Text>
                     </ErrorNotification>
-                ))
-            );
+                ));
+            }
             c.dismissError();
         });
     };

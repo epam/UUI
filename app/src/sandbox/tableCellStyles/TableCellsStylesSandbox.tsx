@@ -175,7 +175,7 @@ export default function TableCellsStylesSandbox() {
                             {Object.entries({
                                 ...item.meta, rowBG: item.altBackground, cellBG: item.cellBackground, isInvalid: row.isInvalid,
                             })
-                                .filter(([key, value]) => !!value)
+                                .filter(([, value]) => !!value)
                                 .map((e) => e[0])
                                 .join(', ')}
                         </skin.Text>
@@ -287,8 +287,8 @@ export default function TableCellsStylesSandbox() {
             listState: tableState,
             setListState: setTableState,
             items,
-            getId: ({ id }) => id,
-            getRowOptions: (item: Item, index: number) => ({
+            getId: ({ id: listId }) => listId,
+            getRowOptions: (_: Item, index: number) => ({
                 ...lens.prop('items').index(index).toProps(),
             }),
         },

@@ -1,34 +1,10 @@
-import React, { FunctionComponent, SVGProps } from 'react';
+import React from 'react';
 import { SkillsBatteryPopover } from './SkillsBatteryPopover';
 import { ReactComponent as doneIcon } from '@epam/assets/icons/common/notification-done-12.svg';
 import { ReactComponent as medalLogo } from './icons/Medal.svg';
 import { ReactComponent as personIconFilledSmall } from '@epam/assets/icons/common/social-person-12.svg';
 import { ReactComponent as clockIconSmall } from '@epam/assets/icons/common/action-schedule-12.svg';
-
-export type ISkillLevel = 1 | 2 | 3 | 4 | 'NA' | 'NoSkill' | 'Rank';
-type ColorValueHex = `#${string}`;
-
-export interface IInnerSkill {
-    icon: FunctionComponent<SVGProps<SVGSVGElement>>;
-    activeColor: ColorValueHex;
-    status: boolean;
-    prefix: string;
-    date: Date;
-}
-
-export interface ISkill {
-    caption: string;
-    level: ISkillLevel;
-    comment: string;
-    description: string;
-    options: {
-        isProfile: IInnerSkill;
-        isOutdated: IInnerSkill;
-        isConfirmed: IInnerSkill;
-        isRecommended: IInnerSkill;
-    };
-    lastUpdated: Date;
-}
+import { ISkill } from './utils';
 
 const trainingAndDev: ISkill = {
     caption: 'Training and Development',

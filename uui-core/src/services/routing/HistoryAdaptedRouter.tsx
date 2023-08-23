@@ -1,5 +1,7 @@
-import { IRouterContext, Link } from '../../types';
-import { queryToSearch, searchToQuery } from '../../helpers';
+import { Link } from '../../types/objects';
+import { IRouterContext } from '../../types/contexts';
+import { queryToSearch } from '../../helpers/queryToSearch';
+import { searchToQuery } from '../../helpers/searchToQuery';
 
 export interface IHistory4 {
     location: Link;
@@ -26,7 +28,7 @@ export class HistoryAdaptedRouter implements IRouterContext {
 
     public isActive(link: Link): boolean {
         const current = this.getCurrentLink();
-        return current.pathname == link.pathname;
+        return current.pathname === link.pathname;
     }
 
     public createHref(link: Link): string {

@@ -26,7 +26,6 @@ export const DemoTablePaged: React.FC = () => {
     }, []);
 
     const [totalCount, setTotalCount] = useState(0);
-    const [appliedFilter, setAppliedFilter] = useState<Person>();
 
     const api: LazyDataSourceApi<Person, number, Person> = useCallback(async (request) => {
         const result = await svc.api.demo.personsPaged({
@@ -42,8 +41,7 @@ export const DemoTablePaged: React.FC = () => {
     }, []);
 
     const applyFilter = useCallback(() => {
-        setAppliedFilter(tableState.filter);
-        setTableState({ ...tableState, indexToScroll: 0 });
+        setTableState({ ...tableState, scrollTo: { index: 0 } });
     }, [tableState]);
 
     // applying filter after parsing initial filter data from url
@@ -58,14 +56,6 @@ export const DemoTablePaged: React.FC = () => {
             rowProps.onSelect(rowProps);
         },
     };
-
-    const viewTableState = useMemo(
-        () => ({
-            ...tableState,
-            filter: appliedFilter,
-        }),
-        [tableState, appliedFilter],
-    );
 
     const { rows, listProps } = useList(
         {
@@ -101,7 +91,7 @@ export const DemoTablePaged: React.FC = () => {
                 <FlexSpacer />
                 <Paginator
                     value={ tableState.page }
-                    onValueChange={ (page: number) => setTableState({ ...tableState, page, indexToScroll: 0 }) }
+                    onValueChange={ (page: number) => setTableState({ ...tableState, page, scrollTo: { index: 0 } }) }
                     totalPages={ Math.ceil(totalCount / tableState.pageSize) }
                     size="30"
                 />

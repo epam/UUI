@@ -1,27 +1,71 @@
 # 5.x.x - xx.xx.2023
 
 **What's New**
-
-* [Tooltip][BreakingChange]: Removed prop `trigger`. Now tooltip always opens on hover, use dropdown for cases when you need to open body by click.
-* [DataTable]: Added column description tooltip to table header. DataTable now has an optional property-callback 'renderColumnsConfigurationModal?: (props) => React.ReactNode' for render your custom ColumnsConfigurationModal or you have our variant of it.
-* [ColumnsConfigurationModal]: Added 'renderItem?: (column) => React.ReactNode' optional property-callback for render your custom column name section.
-* [ColumnsConfigurationModal]: Added 'getSearchFields?: (column) => string[];' optional callback to define columns to search in the ColumnsConfigurationModal. We use 'column.caption' by default.
-* [DatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
-* Added adapter for react-router 6.
-  - Note: we strongly discourage the use of react-router 6, as it introduces too many breaking changes, and certain important features (like block and listen) are available only via unstable internal API.
+* [FiltersPanel]: added possibility to provide your own custom filter
+* [useForm]: validate callback now return new validationState
 
 **What's Fixed**
+* Added focus state styles for Accordion, AvatarStack, Anchor, Badge, Button, Burger, Checkbox, Control Group, IconButton, LinkButton, MainMenu, RadioInput, Switch, TabButton, Tag.
+* [PickerInput]: when `searchPosition=input` a cursor is placed in textbox once PickerInput is focused via Tab key.
+* [PickerInput]: fix `searchPosition` when `editMode=modal`, it cannot be `input`.
+* [useForm]: after calling validate callback, form switch to revalidating mode on fields change.
+* [useForm]: fixed isChanged prop calculation, in case when form value returned to initial
+* [useForm]: don't call loadUnsavedChanges callback when for was edited and then returned to the initial value
 
-* [Button]: add missing styles for 'sun' color in loveship skin
-* [FilterPanel]: fix RangeDatePicker 'to' value change
-* [LabeledInput]: removed specific class for loveship skin
-* [Rating]: fix rating behavior with 0.5 step
+
+# 5.1.2 - 10.08.2023
+
+**What's New**
+* Added support of UUI library proper work in shadow-dom container
+* [DropdownMenu]:
+  - [Breaking change]: reworked component in loveship skin to be aligned with @epam/uui implementation and with design specs
+* [Alert]: added size '36' option.
+* [DropdownMenu]: added minWidth prop to set up minWidth to DropdownMenu container.
+* [Avatar]: property `onClick` marked as @deprecated. It will be removed in future versions.
+* [TimePicker]: rework styles for loveship. Size '48' was marked as deprecated and will be deleted in the future releases.
+* [FileUpload]: file upload components was added to the Loveship skin.
+
+**What's Fixed**
+* [Button]: fixed disabled styles
+* [FiltersPanel]: fixed wrong filter order calculation on new filter adding.
+* [RangeDatePicker]: `presets.name` prop now accept ReactNode.
+* [PickerInput]: fixed selected value displaying if item id equals zero or false.
+* [ColumnsConfigurationModal]: fixed crashes when new column was added or deleted from columns array
+* [ControlWrapper]: component was marked as deprecated and will be removed in feature releases.
+* [InstanceItem]: component was marked as deprecated and will be removed in feature releases.
+* [MakeMeItem]: component was marked as deprecated and will be removed in feature releases.
+* [DraftRTE]: updated to the latest epam/assets package version
+* [DataPickerFooter]: added export from loveship and promo packages
+* [SlateEditor] fixed custom elements removal when they are last element in editor
+* [DataTable]: fixed paddings for first cell in edit mode
+
+# 5.1.1 - 27.07.2023
+
+**What's New**
+* [PickerInput]: Added highlighting of the search matching results.
+* [PickerInput]: Added search result sorting by search relevance.
+* [Tooltip][BreakingChange]: Removed prop `trigger`. Now tooltip always opens on hover, use dropdown for cases when you need to open body by click.
+* [DataTable]: Added column description tooltip to table header. DataTable now has an optional property-callback 'renderColumnsConfigurationModal?: (props) => React.ReactNode' for render your custom ColumnsConfigurationModal.
+* [ColumnsConfigurationModal]: Added 'renderItem?: (column) => React.ReactNode' optional property-callback for render your custom column name section.
+* [ColumnsConfigurationModal]: Added 'getSearchFields?: (column) => string[];' optional callback to define columns to search in the ColumnsConfigurationModal. We use 'column.caption' by default.
+* Added adapter for react-router 6.
+    - Note: we strongly discourage the use of react-router 6, as it introduces too many breaking changes, and certain important features (like block and listen) are available only via unstable internal API.
+
+**What's Fixed**
+* [uui-editor]: reduced package size.
+* [PickerInput]: fixed initialValue resetting in case of entity value type and async data source.
+* [Button]: added missing styles for 'sun' color in loveship skin.
+* [FilterPanel]: fixed RangeDatePicker 'to' value change.
+* [FilterPanel]: added `maxItems` prop for filter config, this prop will configure how much items will be shown in filter toggler before collapsing in '+ n items'. Also improved selected items collapsing when they don't fit toggler width.
+* [Rating]: fixed rating behavior with 0.5 step.
 * [ColumnsConfigurationConfig]: change 'Apply' button color to the 'primary'
-* [MainMenu]: fixed hover:background-color in nested menu items.
+* [MainMenu]: fixed hover styles for nested menu items.
+* [PickerInput]: reset 'Show only selected' to default value toggler on picker close.
 * [DropdownMenu]: fixed button's heigth and submenu position.
-* [DatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
-* [RangeDatePicker]: Size '48' marked as @deprecated. It will be removed in future versions. In dev-mode you can see an error if you use this size.
-* [SnackbarCard]: is deprecated and will be deleted in a future release. Please, use a NotificationCard instead it.
+* [LabeledInput]: changed `info` prop type from string to `ReactNode`.
+* [DatePicker]: size '48' marked as @deprecated. It will be removed in future releases.
+* [RangeDatePicker]: size '48' marked as @deprecated. It will be removed in future releases.
+* [SnackbarCard]: component deprecated and will be deleted in a future releases. Please, use a NotificationCard instead it.
 
 # 5.1.0 - 29.06.2023
 
@@ -29,8 +73,8 @@
 
 **Rich Text Editor component update and improvements**
 
-UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework.
-During the update the previous code based of RTE almost completely rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users. Therefore, update to the new version of `uui-editor` package should be seamless and easy.
+UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework. 
+During the update the previous code based of RTE almost completely rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users. Therefore, update to the new version of `uui-editor` package should be seamless and easy. 
 
 List of changes:
 * [Breaking change]: Changed RTE value format, now it's works with array instead of immutable.js object. Also, there are some additional changes inside slate value structure.

@@ -17,8 +17,8 @@ function FilterImpl<TFilter extends Record<string, any>>(props: IFilterProps<TFi
     const toggle = () => setIsOpened(!isOpened);
 
     const handleChange = useCallback(
-        (value: TFilter[keyof TFilter]) => {
-            onValueChange({ [filterConfig.field]: value } as TFilter);
+        (filterValue: TFilter[keyof TFilter]) => {
+            onValueChange({ [filterConfig.field]: filterValue } as TFilter);
         },
         [filterConfig.field, onValueChange],
     );

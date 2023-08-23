@@ -111,7 +111,7 @@ export class IconsDoc extends React.Component {
                     </Text>
                     <FlexSpacer />
                     <Button
-                        color="gray50"
+                        color="gray"
                         size="30"
                         fill="light"
                         icon={ this.state.isLocked ? LockedIcon : UnlockedIcon }
@@ -144,7 +144,7 @@ export class IconsDoc extends React.Component {
         const importCode = this.getImportCode(this.state.selectedIcon);
         return (
             <Tooltip placement="left" content="Copy code">
-                <div onClick={ () => copyTextToClipboard(importCode, this.showNotification) }>{importCode}</div>
+                <button className={ css.importButton } onClick={ () => copyTextToClipboard(importCode, this.showNotification) }>{importCode}</button>
             </Tooltip>
         );
     }
@@ -302,7 +302,7 @@ export class IconsDoc extends React.Component {
         return (
             <div
                 key={ item.id }
-                className={ cx(css.item, this.state.currentIcon && this.state.currentIcon.id == item.id && css.activeItem) }
+                className={ cx(css.item, this.state.currentIcon && this.state.currentIcon.id === item.id && css.activeItem) }
                 onClick={ () =>
                     this.setState({
                         currentIcon: item,

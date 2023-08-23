@@ -1,8 +1,9 @@
 import React, { ReactNode } from 'react';
 import { useForm } from './useForm';
-import {
-    IEditable, ILens, Metadata, ICanBeInvalid, ValidationMode,
-} from '../../../index';
+import { IEditable, ICanBeInvalid } from '../../types/props';
+import { Metadata } from '../../types/validation';
+import { ILens } from '../../data/lenses';
+import { ValidationMode } from '../../data/validation';
 
 export interface FormSaveResponse<T> {
     form?: T;
@@ -119,7 +120,7 @@ export interface IFormApi<T> extends IEditable<T>, ICanBeInvalid {
      * Validation is usually done automatically, according to validationOn prop.
      * Use this method only in corner cases.
      */
-    validate(): void;
+    validate(): ICanBeInvalid;
 
     /** True if there are changes to undo */
     canUndo: boolean;

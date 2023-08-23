@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {
-    DataRowProps, DataSourceListProps, DropdownBodyProps, IDropdownToggler, isMobile, uuiMarkers,
+    DataRowProps, DataSourceListProps, DropdownBodyProps, isMobile, uuiMarkers,
 } from '@epam/uui-core';
-import { PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
+import { PickerBodyBaseProps, PickerInputBase } from '@epam/uui-components';
 import { Panel } from '../layout';
 import {
     DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter,
@@ -19,8 +19,8 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
     shouldShowBody(): boolean {
         return this.props.isOpen;
     }
-     
-    toggleModalOpening(opened: boolean) {}
+
+    toggleModalOpening() {}
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
         return <PickerItem title={ this.getName(item) } size="36" { ...rowProps } />;
     };
@@ -45,8 +45,8 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
     renderFooter = () => {
         return <DataPickerFooter { ...this.getFooterProps() } size="36" />;
     };
-     
-    renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
+
+    renderTarget() {
         return <div></div>;
     }
 

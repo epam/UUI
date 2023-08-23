@@ -1,13 +1,19 @@
 import { Link, LayoutLayer } from './objects';
 import * as PropTypes from 'prop-types';
 import { IModal, INotification } from './props';
-import {
-    FileUploadOptions, FileUploadResponse, SkinContext, ModalOperation, NotificationOperation, IHistory4, Lock,
-} from '../services';
+import { TMouseCoords } from '../services/dnd/DndContext';
+import { Lock } from '../services/LockContext';
+import { IHistory4 } from '../services/routing/HistoryAdaptedRouter';
+import { NotificationOperation } from '../services/NotificationContext';
+import { SkinContext } from '../services/SkinContext';
+import { ModalOperation } from '../services/ModalContext';
+
+import { FileUploadOptions, FileUploadResponse } from '../services/ApiContext';
 
 export interface IBaseContext<TState = {}> {
     subscribe(handler: (state: TState) => void): void;
     unsubscribe(handler: (state: TState) => void): void;
+    destroyContext: () => void;
 }
 
 export interface NotificationParams {
@@ -25,6 +31,8 @@ export interface INotificationContext extends IBaseContext {
 export interface ILayoutContext {
     getLayer(): LayoutLayer;
     releaseLayer(layer: LayoutLayer): void;
+    getPortalRoot(): HTMLElement;
+    getPortalRootId(): string;
 }
 
 export interface ILockContext {
@@ -64,6 +72,7 @@ export interface IDndContext extends IBaseContext<DndContextState> {
     endDrag(): void;
     isDragging: boolean;
     dragData?: any;
+    getMouseCoords: () => TMouseCoords
 }
 
 export interface IUserSettingsContext {

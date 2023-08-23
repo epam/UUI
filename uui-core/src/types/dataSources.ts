@@ -20,6 +20,10 @@ export interface VirtualListRange {
     visibleCount?: number;
 }
 
+export interface ScrollToConfig {
+    index?: number;
+}
+
 /** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
 export interface VirtualListState extends VirtualListRange {
     /**
@@ -28,7 +32,7 @@ export interface VirtualListState extends VirtualListRange {
      * If this value is updated manually, Virtual List would scroll to the specified items.
      * It would attempt to put scroll so this item will be at the top of the list.
      */
-    indexToScroll?: number;
+    scrollTo?: ScrollToConfig;
     /**
      * Virtual List manually scroll to this Index when it appears not within the visible area.
      * It would attempt to put scroll so this item will be in the middle of the list.
@@ -90,6 +94,7 @@ export interface DataRowOptions<TItem, TId> extends IDisableable, Partial<IEdita
 
     /** Can be specified to make row act as a link (plain or SPA) */
     link?: Link;
+    pin?(rowProps: DataRowProps<TItem, TId>): boolean;
 }
 
 /** DataRowProps is a base shape of props, passed to items in various lists or trees.
@@ -193,8 +198,11 @@ DataRowOptions<TItem, TId> & {
     /** Handles row focusing.
          */
     onFocus?(focusedIndex: number): void;
+
+    isPinned?: boolean;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export interface BaseListViewProps<TItem, TId, TFilter> {
     /**
      * Should return unique ID of the TItem
@@ -264,6 +272,7 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
     selectAll?: true | false;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IDataSourceView<TItem, TId, TFilter> = {
     getById(id: TId, index: number): DataRowProps<TItem, TId>;
     getListProps(): DataSourceListProps;
@@ -305,6 +314,7 @@ export interface DataSourceListProps extends DataSourceListCounts {
 // Lazy Data Source API
 
 /** The common part of LazyDataSourceApiRequest, which defines how list should be filtered and sorted */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export interface LazyDataSourceApiRequestOptions<TItem, TFilter> {
     filter?: TFilter;
     sorting?: SortingOption[];

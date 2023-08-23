@@ -2,7 +2,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import {
-    DropdownBodyProps, UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, BaseRangeDatePickerProps,
+    DropdownBodyProps, UuiContexts, IDropdownToggler, UuiContext, isFocusReceiverInsideFocusLock, BaseRangeDatePickerProps,
     RangeDatePickerInputType, RangeDatePickerValue,
 } from '@epam/uui-core';
 import {
@@ -70,7 +70,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     }
 
     handleWrapperBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-        if (isChildFocusable(e)) return;
+        if (isFocusReceiverInsideFocusLock(e)) return;
         this.toggleOpening(false);
         if (!this.state.isOpen && this.state.inFocus) {
             this.setState({ inFocus: null });

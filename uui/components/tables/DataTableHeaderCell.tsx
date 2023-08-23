@@ -1,8 +1,13 @@
 import * as React from 'react';
 import { DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownToggler, cx } from '@epam/uui-core';
 import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from '@epam/uui-components';
-import { ColumnHeaderDropdown, DataTableHeaderCellMods } from './';
-import { FlexCell, Checkbox, Text, IconButton, Tooltip } from '../';
+import { ColumnHeaderDropdown } from './ColumnHeaderDropdown';
+import { DataTableHeaderCellMods } from './types';
+import { FlexCell } from '../layout';
+import { IconButton } from '../buttons';
+import { Checkbox } from '../inputs';
+import { Tooltip } from '../overlays';
+import { Text } from '../typography';
 import css from './DataTableHeaderCell.module.scss';
 import { ReactComponent as DefaultSortIcon } from '@epam/assets/icons/common/table-swap-18.svg';
 import { ReactComponent as SortIcon } from '@epam/assets/icons/common/table-sort_asc-18.svg';
@@ -25,7 +30,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         return css['font-size-14'];
     };
 
-    getTooltipContent = () => !this.state.isDropdownOpen && (
+    getTooltipContent = () => (
         <div className={ css.cellTooltipWrapper }>
             <Text fontSize="14" color="contrast" font="semibold" cx={ css.cellTooltipText }>{ this.props.column.caption }</Text>
             { this.props.column.info && <Text fontSize="12" color="contrast" cx={ css.cellTooltipText }>{ this.props.column.info }</Text> }

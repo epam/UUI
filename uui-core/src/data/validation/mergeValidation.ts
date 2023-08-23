@@ -1,6 +1,6 @@
-import { ICanBeInvalid } from '../../types';
+import { ICanBeInvalid } from '../../types/props';
 
-export function mergeValidation<T>(clientValidation: ICanBeInvalid, serverValidation: ICanBeInvalid) {
+export function mergeValidation(clientValidation: ICanBeInvalid, serverValidation: ICanBeInvalid) {
     const result = serverValidation.isInvalid ? serverValidation : clientValidation;
 
     if (clientValidation.isInvalid) mergeValidationProps(clientValidation.validationProps, result);
