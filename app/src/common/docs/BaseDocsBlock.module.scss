@@ -3,8 +3,6 @@
 .secondary-navigation {
     box-sizing: border-box;
     min-height: 60px;
-    background: var(--uui-surface);
-    border-top: 1px solid var(--uui-divider);
 }
 
 .container {
@@ -25,10 +23,6 @@
 .width-wrapper {
     padding: 0 60px 60px;
     max-width: 960px;
-
-    h1, h2, h3, h4, h5, h6 {
-        color: var(--uui-text-dark);
-    }
 }
 
 .not-support {

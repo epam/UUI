@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { ArrayDataSource, DataColumnProps, DataSourceState } from '@epam/uui-core';
-import {
-    DataTable, Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars,
-} from '@epam/uui';
+import { DataTable, Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars } from '@epam/uui';
 import { ComponentEditor } from './ComponentEditor';
 import { svc } from '../../services';
 import { getQuery } from '../../helpers';
@@ -107,7 +105,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         const view = this.propsDS.getView(this.state.tableState, this.onTableStateChange);
 
         return (
-            <>
+            <div className="uui-theme-promo">
                 <RichTextView>
                     <h2>Api</h2>
                 </RichTextView>
@@ -118,7 +116,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                     getRows={ view.getVisibleRows }
                     { ...view.getListProps() }
                 />
-            </>
+            </div>
         );
     }
 
@@ -135,7 +133,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderTabsNav() {
         return (
-            <FlexRow rawProps={ { role: 'tablist' } } padding="12" cx={ css.secondaryNavigation } borderBottom>
+            <FlexRow rawProps={ { role: 'tablist' } } padding="12" cx={ ['uui-theme-promo', css.secondaryNavigation] } borderBottom>
                 <TabButton size="60" caption="Documentation" isLinkActive={ getQuery('mode') === 'doc' } onClick={ () => this.handleChangeMode('doc') } />
                 <TabButton size="60" caption="Property Explorer" isLinkActive={ getQuery('mode') === 'propsEditor' } onClick={ () => this.handleChangeMode('propsEditor') } />
                 <FlexSpacer />
