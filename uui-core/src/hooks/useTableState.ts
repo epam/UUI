@@ -37,13 +37,9 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>
     const getValueFromUrl = () => {
         const urlParams = context.uuiRouter.getCurrentLink().query;
 
-        const activePreset = presets.find((p: ITablePreset<TFilter, TViewState>) => p.id === urlParams.presetId);
-        const filtersConfig = normalizeFilterConfig(activePreset?.filtersConfig, urlParams.filter, params?.filters);
-
         return {
             filter: urlParams.filter,
             columnsConfig: urlParams.columnsConfig,
-            filtersConfig: filtersConfig,
             presetId: urlParams.presetId,
             page: urlParams.page,
             pageSize: urlParams.pageSize,
@@ -81,8 +77,11 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>
 
     const [tableStateValue, setTableStateValue] = useState<DataTableState<TFilter, TViewState>>(() => {
         const value = getValueFromUrl();
+        const activePreset = presets.find((p: ITablePreset<TFilter, TViewState>) => p.id === value.presetId);
+        const filtersConfig = normalizeFilterConfig(activePreset?.filtersConfig, value.filter, params?.filters);
         return {
             ...value,
+            filtersConfig,
             topIndex: 0,
             visibleCount: 40,
         };
@@ -97,7 +96,6 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>
         return {
             ...tableStateValue,
             ...valueFromUrl,
-            filtersConfig: tableStateValue.filtersConfig ?? valueFromUrl.filtersConfig,
         };
     }, [params?.value, tableStateValue]);
 
