@@ -1,25 +1,25 @@
 .root {
     position: relative;
     min-height: 104px;
-    border: 2px dashed var(--uui-file-card-background);
+    border: 2px dashed var(--uui-dropspot-border);
     display: flex;
     align-items: center;
     justify-content: center;
     white-space: pre;
 
     &.drop-start {
-        border: 2px dashed var(--uui-file-card-dropstart-border);
+        border: 2px dashed var(--uui-dropspot-border-dropstart);
     }
 
     &.drop-over {
-        background-color: var(--uui-file-card-dropstart-background);
+        background-color: var(--uui-dropspot-background-dropstart);
     }
 
     .link {
-        color: var(--uui-file-card-dropstart-border);
+        color: var(--uui-dropspot-link-color);
 
         &:hover {
-            color: var(--uui-file-card-link-hover);
+            color: var(--uui-dropspot-link-hover);
         }
     }
 
@@ -36,7 +36,7 @@
     }
 
     .icon-blue {
-        fill: var(--uui-file-card-dropstart-border);
+        fill: var(--uui-dropspot-icon);
         margin-right: 6px;
     }
 }
