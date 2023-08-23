@@ -19,7 +19,7 @@ export class DataSourcesDataSourceStateDoc extends BaseDocsBlock {
                 <DocExample title="Checked" path="./_examples/dataSources/DataSourceStateChecked.example.tsx" />
                 <DocExample title="Folded" path="./_examples/dataSources/DataSourceStateFolded.example.tsx" />
                 <DocExample title="Visible rows count" path="./_examples/dataSources/DataSourceStateVisibleCount.example.tsx" />
-                {/* <DocExample title="Index to scroll" path="./_examples/dataSources/DataSourceStateIndexToScroll.example.tsx" /> */}
+                <DocExample title="Index to scroll" path="./_examples/dataSources/DataSourceStateIndexToScroll.example.tsx" />
                 <DocExample title="Paging" path="./_examples/dataSources/DataSourceStatePage.example.tsx" />
             </>
         );

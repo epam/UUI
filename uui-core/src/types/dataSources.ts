@@ -17,6 +17,10 @@ export interface VirtualListRange {
     visibleCount?: number;
 }
 
+export interface ScrollToConfig {
+    index?: number;
+}
+
 /** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
 export interface VirtualListState extends VirtualListRange {
     /**
@@ -25,7 +29,7 @@ export interface VirtualListState extends VirtualListRange {
      * If this value is updated manually, Virtual List would scroll to the specified items.
      * It would attempt to put scroll so this item will be at the top of the list.
      */
-    indexToScroll?: number;
+    scrollTo?: ScrollToConfig;
     /**
      * Virtual List manually scroll to this Index when it appears not within the visible area.
      * It would attempt to put scroll so this item will be in the middle of the list.
