@@ -83,7 +83,8 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
             }
         };
 
-        const handleOnClick = (e: React.SyntheticEvent) => { 
+        const handleOnClick = (e: React.SyntheticEvent) => {
+            // check whether it was clicked outside of burger menu list
             if (e.target === e.currentTarget) {
                 this.toggleBurgerMenu();
             }
