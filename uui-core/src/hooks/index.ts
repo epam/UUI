@@ -7,3 +7,4 @@ export * from './useForceUpdate';
 export * from './useUuiServices';
 export * from './useTableState';
 export * from './usePrevious';
+export * from './useLayer';
