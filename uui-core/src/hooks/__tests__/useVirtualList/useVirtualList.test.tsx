@@ -9,7 +9,7 @@ interface Props {
     estimatedHeight: number;
 }
 const rows = new Array(1000).fill(undefined).map((_, index) => 
-    <div key={ index } style={ { height: '20px' } }>{index}</div>);
+    <div key={ index } style={ { height: '20px' } } role="row">{index}</div>);
 
 function VirtualListContainer({ scrollContainerRef, listContainerRef, estimatedHeight }: Props) {
     return (
