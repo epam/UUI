@@ -13,7 +13,7 @@ import { PlateEditor, PlatePlugin, Value, getPluginType, insertNodes, someNode, 
 import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, TablePlugin, createTablePlugin, getTableGridAbove } from '@udecode/plate-table';
 import { MergeToolbarContent } from './MergeToolbarContent';
 import { TableToolbarContent } from './ToolbarContent';
-import { createInitialTable, selectFirstCell, updateTableStructure } from './utils';
+import { createInitialTable, selectFirstCell } from './utils';
 import { TableRowElement } from './TableRowElement';
 import { TableCellElement } from './TableCellElement';
 import { TableElement } from './TableElement';
@@ -21,7 +21,6 @@ import { TableElement } from './TableElement';
 const noop = () => {};
 
 function TableRenderer(props: any) {
-    const { element: tableElem } = props;
     const editor = usePlateEditorState();
     const isReadonly = useReadOnly();
     const isFocused = useFocused();
@@ -30,14 +29,6 @@ function TableRenderer(props: any) {
     const cellEntries = getTableGridAbove(editor, { format: 'cell' });
     const hasEntries = !!cellEntries?.length;
     const showToolbar = !isReadonly && isSelected && isFocused && hasEntries;
-
-    // /**
-    //  * Assigns valid colIndexes in case of merged cells.
-    //  * TODO: make less function invocations,
-    //  * ideally once on migration and pasting from documents
-    //  * Mutates table element object.
-    //  */
-    // updateTableStructure(tableElem);
 
     return (
         <Dropdown
