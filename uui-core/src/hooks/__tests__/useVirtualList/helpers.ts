@@ -17,6 +17,7 @@ export const createListContainer = (
 
     heights.forEach((height) => {
         const element = document.createElement('div');
+        element.setAttribute('role', 'row');
         element.textContent = `${height}`;
         element.style.height = `${height}px`;
         element.getBoundingClientRect = () => ({
