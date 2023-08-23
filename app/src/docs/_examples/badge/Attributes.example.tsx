@@ -12,7 +12,7 @@ export default function AttributesExample() {
                 <Avatar size="60" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" />
                 <FlexRow padding="12">
                     <FlexCell width="auto">
-                        <Text cx={ css.text } lineHeight="24" fontSize="18" color="brand" font="semibold">
+                        <Text cx={ css.text } lineHeight="24" fontSize="18" color="primary" font="semibold">
                             John Doe
                         </Text>
                         <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">

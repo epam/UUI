@@ -1,5 +1,5 @@
 import React, { RefObject, createRef } from 'react';
-import { Switch, FlexRow, IconButton } from '@epam/uui';
+import { Switch, FlexRow, IconButton } from '@epam/promo';
 import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
 import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
@@ -82,7 +82,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                 <FlexRow size={ null } vPadding="48" padding="24" borderBottom alignItems="top" spacing="12">
                     {this.state.component && React.createElement(this.state.component)}
                 </FlexRow>
-                <FlexRow padding="12" vPadding="12" cx={ css.containerFooter }>
+                <FlexRow padding="12" vPadding="12" cx={ [css.containerFooter, 'uui-theme-promo'] }>
                     <Switch value={ this.state.showCode } onValueChange={ this.onSwitchValueChange } label="View code" />
                     <CodesandboxLink raw={ raw } dirPath={ dirPath } />
                 </FlexRow>
@@ -99,7 +99,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                         <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title } ref={ this.titleRef }>
                             {this.props.title}
                         </div>
-                        <IconButton cx={ css.anchor } icon={ AnchorIcon } color="info" href={ `#${this.props.title.split(' ').join('_').toLowerCase()}` } />
+                        <IconButton cx={ css.anchor } icon={ AnchorIcon } color="blue" href={ `#${this.props.title.split(' ').join('_').toLowerCase()}` } />
                     </FlexRow>
                 )}
                 <EditableDocContent fileName={ this.getDescriptionFileName() } />

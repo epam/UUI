@@ -14,10 +14,10 @@ export default function BasicDropdownExample() {
                     <Avatar size="48" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" />
 
                     <FlexCell width="100%">
-                        <Text cx={ css.text } lineHeight="24" fontSize="16" color="secondary" font="semibold">
+                        <Text cx={ css.text } lineHeight="24" fontSize="16" color="primary" font="semibold">
                             John Doe
                         </Text>
-                        <Text cx={ css.text } lineHeight="18" fontSize="12" color="brand">
+                        <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
                             Corporate Function Management | L3
                         </Text>
                     </FlexCell>

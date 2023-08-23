@@ -1,3 +1,4 @@
+@use '~@epam/promo/assets/styles/index' as *;
 @import '../../themes/themeVariables.module';
 
 .container {
@@ -9,8 +10,8 @@
     width: fit-content;
 
     .title {
-        font-family: var(--font-primary);
-        color: var(--uui-docs-title);
+        font-family: $font-museo-sans;
+        color: $gray80;
         font-size: 24px;
         margin-bottom: 6px;
     }
@@ -21,18 +22,19 @@
 
     &:hover {
         .anchor {
-            fill: var(--uui-primary-50);
+            fill: $blue;
         }
     }
 }
 
 .container-footer {
     justify-content: space-between;
+    background-color: $white;
 }
 
 .preview-container {
     background: var(--uui-docs-background);
-    border: 1px solid var(--uui-secondary-20);
+    border: 1px solid $gray40;
     width: 960px;
     max-width: 100%;
 
@@ -43,9 +45,8 @@
     line-height: 18px;
     padding: 24px;
     margin: 0;
-    border-top: 1px solid var(--uui-secondary-20);
-    background-color: var(--uui-surface);
-    color: var(--uui-text-primary);
+    border-top: 1px solid $gray40;
+    background-color: white;
     font-family: monospace;
     white-space: pre-wrap;
     word-wrap: normal;
@@ -53,8 +54,8 @@
 
     /* Highly opinionated - make comments stand out and more readable // YakovZh */
     :global(.token):global(.comment) {
-        color: var(--uui-text-primary);
-        font-family: var(--font-regular);
+        color: $gray40;
+        font-family: $font-sans;
         font-size: 14px;
         position: relative;
 
@@ -68,10 +69,5 @@
             background: white;
             opacity: 0.7;
         }
-    }
-
-    :global(.token):global(.operator) {
-        background-color: var(--uui-surface);
-        color: var(--uui-warning-50);
     }
 }
