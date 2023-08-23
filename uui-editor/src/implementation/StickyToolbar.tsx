@@ -4,18 +4,21 @@ import cx from 'classnames';
 import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
 
 import css from './Sidebar.module.scss';
+import { useLayer } from '@epam/uui-core';
 
 interface SidebarProps {
     isReadonly: boolean;
     children: any;
 }
 
+// eslint-disable-next-line react/function-component-definition
 export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) => {
     const editor = usePlateEditorState();
     const isBlockSelected = isBlock(editor, editor.value);
     const [isVisible, setIsVisible] = useState(false);
     const sidebarRef = useRef<HTMLDivElement>(null);
     const timeoutIdRef = useRef<ReturnType<typeof setTimeout>>(null);
+    const zIndex = useLayer()?.zIndex;
 
     useEffect(() => {
         const isSidebarVisible = true;
@@ -47,7 +50,7 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) 
             bottom: 12,
             display: 'flex',
             minHeight: 0,
-            zIndex: 50,
+            zIndex,
         } }
         >
             <div onMouseDown={ onMouseDown } className={ cx('slate-prevent-blur', css.sidebar) } ref={ sidebarRef }>

@@ -5,8 +5,7 @@ import {
     getRowsToFetchForScroll, getUpdatedRowsInfo, getTopCoordinate, assumeHeightForScrollToIndex,
     getTopIndexWithOffset, getOffsetYForIndex,
 } from './utils';
-import { UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
-import { VirtualListInfo } from './VirtualListInfo';
+import { VirtualListInfo, UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
 
 export function useVirtualList<List extends HTMLElement = any, ScrollContainer extends HTMLElement = any>(
     props: UseVirtualListProps,
@@ -27,18 +26,18 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     const rowHeights = React.useRef<number[]>([]);
     const rowOffsets = React.useRef<number[]>([]);
 
-    const getVirtualListInfo = () => new VirtualListInfo(
-        scrollContainer.current,
-        listContainer.current,
+    const getVirtualListInfo = (): VirtualListInfo => ({
+        scrollContainer: scrollContainer.current,
+        listContainer: listContainer.current,
+        rowHeights: rowHeights.current,
+        rowOffsets: rowOffsets.current,
         value,
         rowsCount,
         blockSize,
         overdrawRows,
-        rowHeights.current,
-        rowOffsets.current,
         listOffset,
         estimatedHeight,
-    );
+    });
 
     useLayoutEffectSafeForSsr(() => {
         if (!scrollContainer.current || !listContainer.current) return;
@@ -95,16 +94,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             : assumedHeight;
 
         setEstimatedHeight(estimatedHeightToSet);
-
-        const [wasScrolled, ok] = scrollToIndex(value.scrollTo?.index);
-
-        const topIndex = getTopIndexWithOffset(value.scrollTo.index, overdrawRows, blockSize);
-        if ((ok && !wasScrolled) || value.topIndex !== topIndex) {
-            onValueChange({ ...value, topIndex });
-        }
-        if (ok && wasScrolled) {
-            setScrolledTo(value.scrollTo);
-        }
+        scrollToIndex(value.scrollTo?.index);
     };
 
     const handleScrollOnRerender = (rowsInfo: RowsInfo) => {
@@ -123,7 +113,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         onValueChange, blockSize, rowOffsets.current, rowsCount, value, onScroll, scrollContainer.current,
     ]);
 
-    const scrollToIndex = React.useCallback(
+    const scrollContainerToIndex = React.useCallback(
         (index: number, behavior?: ScrollBehavior) => {
             const topCoordinate = getTopCoordinate(getVirtualListInfo(), index);
             if (!isNaN(topCoordinate)) {
@@ -133,6 +123,20 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             return [false, false];
         },
         [scrollContainer.current, rowOffsets.current],
+    );
+
+    const scrollToIndex = React.useCallback(
+        (index: number, behavior?: ScrollBehavior) => {
+            const [wasScrolled, ok] = scrollContainerToIndex(index, behavior);
+            const topIndex = getTopIndexWithOffset(index, overdrawRows, blockSize);
+            if ((ok && !wasScrolled) || value.topIndex !== topIndex) {
+                onValueChange({ ...value, topIndex, scrollTo: value.scrollTo?.index === index ? value.scrollTo : { index } });
+            }
+            if (ok && wasScrolled) {
+                setScrolledTo(value.scrollTo?.index === index ? value.scrollTo : { index });
+            }
+        },
+        [scrollContainer.current, rowOffsets.current, value?.topIndex, overdrawRows, blockSize],
     );
 
     useLayoutEffectSafeForSsr(() => {
@@ -162,10 +166,12 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     return {
         estimatedHeight,
         offsetY,
+        listOffset,
+
         scrollContainerRef: scrollContainer,
         listContainerRef: listContainer,
+
         handleScroll,
         scrollToIndex,
-        listOffset,
     };
 }
