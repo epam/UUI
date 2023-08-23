@@ -126,7 +126,8 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     }
 
     public getVisibleRows = () => {
-        return this.rows.slice(this.value.topIndex, this.getLastRecordIndex());
+        const rows = this.rows.slice(this.value.topIndex, this.getLastRecordIndex());
+        return this.getRowsWithPinned(rows);
     };
 
     public getListProps = (): DataSourceListProps => {

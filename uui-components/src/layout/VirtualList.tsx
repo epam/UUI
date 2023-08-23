@@ -16,17 +16,27 @@ export interface VirtualListRenderRowsParams<List extends HTMLElement = any> {
         horizontalRight: boolean;
     };
 }
+type VirtualListRenderRows<List extends HTMLElement = any> = {
+    rows?: React.ReactNode[];
+    renderRows: (config: VirtualListRenderRowsParams<List>) => React.ReactNode;
+} | {
+    rows: React.ReactNode[];
+    renderRows?: (config: VirtualListRenderRowsParams<List>) => React.ReactNode;
+};
 
-export interface VirtualListProps<List extends HTMLElement = any, ScrollContainer extends HTMLElement = any>
+interface BaseVirtualListProps<ScrollContainer extends HTMLElement = any>
     extends IHasCX,
     IEditable<VirtualListState>,
     IHasRawProps<ScrollContainer> {
-    rows: React.ReactNode[];
     rowsCount?: number;
     role?: React.HTMLAttributes<HTMLDivElement>['role'];
-    renderRows?: (config: VirtualListRenderRowsParams<List>) => React.ReactNode;
     onScroll?(value: PositionValues): void;
 }
+
+export type VirtualListProps<
+    List extends HTMLElement = any,
+    ScrollContainer extends HTMLElement = any
+> = BaseVirtualListProps<ScrollContainer> & VirtualListRenderRows<List>;
 
 export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((props, ref) => {
     const {

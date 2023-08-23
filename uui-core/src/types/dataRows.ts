@@ -103,6 +103,8 @@ DataRowOptions<TItem, TId> & {
     /** Handles row focusing.
          */
     onFocus?(focusedIndex: number): void;
+
+    isPinned?: boolean;
 };
 
 /** Holds parent info for data rows */
@@ -130,4 +132,5 @@ export interface DataRowOptions<TItem, TId> extends IDisableable, Partial<IEdita
 
     /** Can be specified to make row act as a link (plain or SPA) */
     link?: Link;
+    pin?(rowProps: DataRowProps<TItem, TId>): boolean;
 }
