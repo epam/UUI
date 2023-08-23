@@ -305,4 +305,48 @@ describe('useVirtualList', () => {
         expect(onValueChange).toBeCalledTimes(4);
         expect(onValueChange).toHaveBeenLastCalledWith({ topIndex: 80, visibleCount: 40 });
     });
+    
+    it('should not update value if not necessary on rerender', async () => {
+        let value = { topIndex: 20, visibleCount: 10 } as VirtualListState;
+        const onValueChange = jest.fn().mockImplementation((newValue) => {
+            value = newValue;
+        });
+        const onScroll = jest.fn();
+        const { result, rerender } = await renderHookWithContextAsync(useVirtualList, {
+            value,
+            onValueChange,
+            rowsCount: 500,
+            onScroll,
+        });
+
+        await renderWithContextAsync(
+            <VirtualListContainer
+                scrollContainerRef={ result.current.scrollContainerRef }
+                listContainerRef={ result.current.listContainerRef }
+                estimatedHeight={ result.current.estimatedHeight }
+            />,
+        );
+        
+        rerender({ value, onValueChange, onScroll, rowsCount: 500 });
+        
+        expect(result.current.scrollContainerRef.current).toBeInTheDocument();
+        expect(result.current.listContainerRef.current).toBeInTheDocument();
+        expect(result.current.estimatedHeight).toBe(10000);
+        expect(result.current.listOffset).toBe(0);
+        expect(typeof result.current.scrollToIndex).toBe('function');
+        expect(typeof result.current.handleScroll).toBe('function');
+        expect(onScroll).toBeCalledTimes(3);
+
+        result.current.scrollContainerRef.current.scrollTop = 2000;
+
+        rerender({ value, onValueChange, onScroll, rowsCount: 500 });
+        expect(onScroll).toBeCalledTimes(4);
+        expect(onValueChange).toBeCalledTimes(4);
+        expect(onValueChange).toHaveBeenLastCalledWith({ topIndex: 80, visibleCount: 40 });
+        
+        rerender({ value, onValueChange, onScroll, rowsCount: 500 });
+        expect(onScroll).toBeCalledTimes(5);
+        expect(onValueChange).toBeCalledTimes(4);
+        expect(onValueChange).toHaveBeenLastCalledWith({ topIndex: 80, visibleCount: 40 });
+    });
 });
