@@ -1,33 +1,8 @@
 import * as React from 'react';
 import css from './ComplexForm.module.scss';
-import {
-    Panel,
-    FlexRow,
-    FlexCell,
-    LabeledInput,
-    TextInput,
-    PickerInput,
-    DatePicker,
-    ControlWrapper,
-    RadioGroup,
-    CheckboxGroup,
-    Rating,
-    TextArea,
-    NumericInput,
-    RangeDatePicker,
-    Slider,
-    RangeSlider,
-    Blocker,
-    DropSpotRenderParams,
-    Text,
-    DropSpot,
-    UploadFileToggler,
-    LinkButton,
-    TimePicker,
-} from '@epam/loveship';
-import {
-    ILens, cx, LazyDataSource, ArrayDataSource, AsyncDataSource, FileUploadResponse,
-} from '@epam/uui-core';
+import { Panel, FlexRow, FlexCell, LabeledInput, TextInput, PickerInput, DatePicker, ControlWrapper, RadioGroup, CheckboxGroup, Rating, TextArea, NumericInput, RangeDatePicker, Slider, RangeSlider, Blocker, Text, UploadFileToggler, LinkButton, TimePicker } from '@epam/loveship';
+import { DropSpotRenderParams, DropSpot } from '@epam/uui-components';
+import { ILens, cx, LazyDataSource, ArrayDataSource, AsyncDataSource, FileUploadResponse } from '@epam/uui-core';
 import { svc } from '../../services';
 import { City, PersonDetails } from '@epam/uui-docs';
 import { ExperienceEditor } from './ExperienceEditor';
@@ -63,7 +38,7 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
             attachments.push({ id: tempId, name: file.name, size: file.size });
 
             svc.uuiApi
-                .uploadFile('/uploadFileMock', file, {
+                .uploadFile('/upload/uploadFileMock', file, {
                     onProgress: (progress) => this.trackProgress(progress, tempId),
                 })
                 .then((res) => {

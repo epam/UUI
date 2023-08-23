@@ -18,4 +18,5 @@ export const colors = {
     gray70: '#474A59',
     gray80: '#303240',
     gray90: '#1D1E26',
+    gray: '#ACAFBF',
 };

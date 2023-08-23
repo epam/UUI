@@ -13,8 +13,7 @@ jobs:
     track_bundle_size_comment_pr:
         runs-on: ubuntu-latest
         if: >
-            github.event.workflow_run.event == 'pull_request' &&
-            github.event.workflow_run.conclusion == 'success'
+            github.event.workflow_run.event == 'pull_request'
         steps:
             - name: 'Download trackBundleSize.md and prNumber.txt'
               uses: actions/github-script@v6
@@ -32,18 +31,28 @@ jobs:
                         var matchArtifact = artifacts.data.artifacts.find((artifact) => {
                             return artName === artifact.name; 
                         });
-                        var download = await github.rest.actions.downloadArtifact({
-                             owner: context.repo.owner,
-                             repo: context.repo.repo,
-                             artifact_id: matchArtifact.id,
-                             archive_format: 'zip',
-                        });
-                        fs.writeFileSync('${{github.workspace}}/' + artName + '.zip', Buffer.from(download.data));
+                        if (matchArtifact) {
+                            var download = await github.rest.actions.downloadArtifact({
+                                 owner: context.repo.owner,
+                                 repo: context.repo.repo,
+                                 artifact_id: matchArtifact.id,
+                                 archive_format: 'zip',
+                            });
+                            fs.writeFileSync('${{github.workspace}}/' + artName + '.zip', Buffer.from(download.data));
+                            return true;
+                        } else {
+                            return false;
+                        }
                       }
-                      await Promise.all([
+                      const [a1found, a2found] = await Promise.all([
                         downloadArt(ART_1),
                         downloadArt(ART_2),
                       ]);
+                      if (!a1found) {
+                        core.setFailed('Unable to find artifact: ' + ART_1);
+                      } else if (!a2found) {
+                        core.setFailed('Unable to find artifact: ' + ART_2);
+                      }
 
             - run: unzip trackBundleSize.md.zip
 

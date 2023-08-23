@@ -3,7 +3,7 @@ import { Text, FlexRow } from '@epam/loveship';
 import { DataQueryFilter, DataColumnProps } from '@epam/uui-core';
 import type { Person } from '@epam/uui-docs';
 import type { PersonTableRecordId } from './types';
-import type { PersonsSummary } from './PersonsTableDemo';
+import type { PersonsSummary } from './types';
 
 export function getColumns() {
     const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
@@ -59,7 +59,7 @@ export function getColumns() {
             textAlign: 'right',
         }, {
             key: 'сonfig',
-            render: (p) => null,
+            render: () => null,
             width: 48,
             fix: 'right',
         },
@@ -124,7 +124,7 @@ export function getColumns() {
             textAlign: 'right',
         }, {
             key: 'сonfig',
-            render: (p) => null,
+            render: () => null,
             width: 48,
             fix: 'right',
         },

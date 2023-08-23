@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Icon, IEditable, IHasCX } from '@epam/uui-core/build/index';
+import { Icon, IEditable, IHasCX } from '@epam/uui-core';
 import cx from 'classnames';
 import css from './DatePickerHeader.module.scss';
 import dayjs, { Dayjs } from 'dayjs';
-import { PickerBodyValue, ViewType } from '@epam/uui-components/build/src/inputs/DatePicker/DatePickerBodyBase';
+import { PickerBodyValue, ViewType } from '@epam/uui-components';
 import { ReactComponent as LeftArrowIcon } from '@epam/assets/icons/common/navigation-chevron-left-18.svg';
 import { ReactComponent as RightArrowIcon } from '@epam/assets/icons/common/navigation-chevron-right-18.svg';
 import { Button } from '../buttons';

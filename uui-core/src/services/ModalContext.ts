@@ -2,8 +2,8 @@ import clone from 'lodash.clone';
 import { BaseContext } from './BaseContext';
 import { LayoutContext } from './LayoutContext';
 import * as React from 'react';
-import { IModal } from '../types/props';
 import { IModalContext } from '../types/contexts';
+import { IModal } from '../types/props';
 
 export interface ModalComponentProps<TParameters, TResult> {
     parameters?: TParameters;
@@ -28,6 +28,11 @@ export class ModalContext extends BaseContext implements IModalContext {
     private operations: ModalOperation[] = [];
     constructor(private layoutCtx: LayoutContext) {
         super();
+    }
+
+    public destroyContext() {
+        super.destroyContext();
+        this.closeAll();
     }
 
     public show<TResult, TParameters = {}>(render: (props: IModal<TResult>) => React.ReactElement<any>, parameters?: TParameters): Promise<TResult> {
@@ -83,7 +88,7 @@ export class ModalContext extends BaseContext implements IModalContext {
     public getOperations(): ModalOperation[] {
         return this.operations.map((op, n) => {
             op = clone(op);
-            op.props.isActive = n == this.operations.length - 1;
+            op.props.isActive = n === this.operations.length - 1;
             return op;
         });
     }

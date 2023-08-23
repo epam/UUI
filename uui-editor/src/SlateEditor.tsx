@@ -1,57 +1,26 @@
-import React, { useMemo, useRef, useEffect } from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { IEditable, uuiMod, IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import { ScrollBars } from '@epam/uui-components';
-import { useForceUpdate } from '@epam/uui-core';
+import { IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod } from '@epam/uui-core';
+import React, { Fragment, useMemo, useRef } from 'react';
 
 import {
     Plate,
-    createPlugins,
-    createPlateUI,
-    usePlateEditorState,
-    Toolbar,
-    createSoftBreakPlugin,
-    createExitBreakPlugin,
     PlateProvider,
-    useEventEditorSelectors,
-    isElementEmpty,
     Value,
-    createTextIndentPlugin,
-    createIndentListPlugin,
-} from '@udecode/plate';
-
-import { createJuicePlugin } from '@udecode/plate-juice';
-import { ToolbarButtons, MarkBalloonToolbar, } from './plugins/Toolbars';
-
-import { migrateSchema } from './migration';
-
-import { baseMarksPlugin, paragraphPlugin } from './plugins';
+    createPlugins,
+    useEventEditorSelectors,
+    usePlateEditorState,
+} from '@udecode/plate-common';
 
 import css from './SlateEditor.module.scss';
-import { createDeserializeDocxPlugin } from './plugins/deserializeDocxPlugin/deserializeDocxPlugin';
+import { createPlateUI } from './components';
+import { migrateSchema } from './migration';
+import { baseMarksPlugin } from './plugins';
+import { MainToolbar, MarksToolbar } from './plugins/Toolbars';
+import { EditorValue } from './types';
+import { defaultPlugins } from './defaultPlugins';
+import { isEditorValueEmpty } from './helpers';
 
-let components = createPlateUI();
-
-export type EditorValue = Value | null;
-
-
-/**
- * Please make sure defaultPlugins and all your plugins are not interfere
- * with the following list when disableCorePlugins prop hasn't been set
- * https://github.com/udecode/plate/blob/main/docs/BREAKING_CHANGES.md#general
- */
-export const defaultPlugins: any = [
-    createIndentListPlugin(),
-    createTextIndentPlugin(),
-    createSoftBreakPlugin(),
-    createExitBreakPlugin(),
-    createDeserializeDocxPlugin(),
-    createJuicePlugin(),
-    paragraphPlugin(),
-];
-
-export const basePlugins: any = [
+const basePlugins: any = [
     baseMarksPlugin(),
     ...defaultPlugins,
 ];
@@ -75,7 +44,7 @@ interface PlateEditorProps extends SlateEditorProps {
     id: string,
 }
 
-const Editor = (props: PlateEditorProps) => {
+function Editor(props: PlateEditorProps) {
     const editor = usePlateEditorState();
 
     const focusedEditorId = useEventEditorSelectors.focus();
@@ -88,7 +57,7 @@ const Editor = (props: PlateEditorProps) => {
     }
 
     const renderEditor = () => (
-        <DndProvider backend={ HTML5Backend }>
+        <Fragment>
             <Plate
                 { ...props }
                 id={ props.id }
@@ -97,34 +66,25 @@ const Editor = (props: PlateEditorProps) => {
                     readOnly: props.isReadonly,
                     placeholder: props.placeholder,
                     renderPlaceholder: ({ attributes }) => {
-                        const shouldShowPlaceholder = isElementEmpty(editor, editor.children[0]) && editor.children[0].type === 'paragraph';
-                        return shouldShowPlaceholder && (
+                        return isEditorValueEmpty(editor.children) && (
                             <div
                                 { ...attributes }
                                 style={ { pointerEvents: 'none' } }
-                                className={ css.placeholder }>
+                                className={ css.placeholder }
+                            >
                                 { props.placeholder }
                             </div>
                         );
                     },
-                    style: { padding: '0 24px', minHeight: props.minHeight }
+                    style: { padding: '0 24px', minHeight: props.minHeight },
                 } }
-
                 // we override plate core insertData plugin
                 // so, we need to disable default implementation
                 disableCorePlugins={ { insertData: true } }
             />
-            < MarkBalloonToolbar />
-            <Toolbar style={ {
-                position: 'sticky',
-                bottom: 12,
-                display: 'flex',
-                minHeight: 0,
-                zIndex: 50,
-            } }>
-                <ToolbarButtons />
-            </Toolbar>
-        </DndProvider >
+            <MainToolbar />
+            <MarksToolbar />
+        </Fragment>
     );
 
     return (
@@ -137,27 +97,31 @@ const Editor = (props: PlateEditorProps) => {
                 props.isReadonly && uuiMod.readonly,
                 props.scrollbars && css.withScrollbars,
                 css.typographyPromo,
-                props.fontSize == '16' ? css.typography16 : css.typography14,
+                props.fontSize === '16' ? css.typography16 : css.typography14,
             ) }
             style={ { minHeight: props.minHeight || 350 } }
             { ...props.rawProps }
         >
             { props.scrollbars
-                ? <ScrollBars cx={ css.scrollbars } style={ { width: '100%' } }>
-                    { renderEditor() }
-                </ScrollBars>
-                : renderEditor()
-            }
+                ? (
+                    <ScrollBars cx={ css.scrollbars } style={ { width: '100%' } }>
+                        { renderEditor() }
+                    </ScrollBars>
+                )
+                : renderEditor()}
         </div>
     );
-};
+}
 
-export function SlateEditor(props: SlateEditorProps) {
+function SlateEditor(props: SlateEditorProps) {
     const currentId = useRef(String(Date.now()));
 
-    const plugins = createPlugins((props.plugins || []).flat(), {
-        components,
-    });
+    const plugins = useMemo(
+        () => {
+            return createPlugins((props.plugins || []).flat(), { components: createPlateUI() });
+        },
+        [props.plugins],
+    );
 
     const onChange = (value: Value) => {
         if (props.isReadonly) return;
@@ -183,3 +147,5 @@ export function SlateEditor(props: SlateEditorProps) {
         </PlateProvider>
     );
 }
+
+export { SlateEditor, basePlugins };

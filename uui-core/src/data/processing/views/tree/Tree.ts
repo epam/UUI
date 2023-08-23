@@ -3,16 +3,17 @@ import { LoadableTree } from './LoadableTree';
 import {
     ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree,
 } from './ITree';
+import sortBy from 'lodash.sortby';
 
 export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
     public filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId> {
         const filter = options.getFilter?.(options.filter);
-        return this.applyMatchToTree(filter);
+        return this.applyFilterToTree(filter);
     }
 
     public search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): ITree<TItem, TId> {
         const search = this.buildSearchFilter(options);
-        return this.applyMatchToTree(search);
+        return this.applySearchToTree(search, options.sortSearchByRelevance);
     }
 
     public sort<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) {
@@ -41,20 +42,20 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
         return (i: TItem) => searchFilter(getSearchFields(i));
     }
 
-    private buildSorter<TFilter>({ sorting, sortBy }: ApplySortOptions<TItem, TId, TFilter>) {
+    private buildSorter<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) {
         const compareScalars = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
         const comparers: ((a: TItem, b: TItem) => number)[] = [];
 
-        if (sorting) {
-            sorting.forEach((sortingOption) => {
-                const sortByFn = sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] || '');
+        if (options.sorting) {
+            options.sorting.forEach((sortingOption) => {
+                const sortByFn = options.sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] || '');
                 const sign = sortingOption.direction === 'desc' ? -1 : 1;
                 comparers.push((a, b) => sign * compareScalars(sortByFn(a, sortingOption) + '', sortByFn(b, sortingOption) + ''));
             });
         }
 
         return (items: TItem[]) => {
-            if (comparers.length == 0) {
+            if (comparers.length === 0) {
                 return items;
             }
 
@@ -63,9 +64,9 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
 
             const comparer = (a: TItem, b: TItem) => {
                 for (let n = 0; n < comparers.length; n++) {
-                    const comparer = comparers[n];
-                    const result = comparer(a, b);
-                    if (result != 0) {
+                    const compare = comparers[n];
+                    const result = compare(a, b);
+                    if (result !== 0) {
                         return result;
                     }
                 }
@@ -80,15 +81,15 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
         };
     }
 
-    private applyMatchToTree(isMatchingFn: undefined | ((item: TItem) => boolean)) {
-        if (!isMatchingFn) return this;
+    private applyFilterToTree(isMatchingFilterFn: undefined | ((item: TItem) => number | boolean)) {
+        if (!isMatchingFilterFn) return this;
 
         const matchedItems: TItem[] = [];
-        const applyMatchRec = (items: TItem[]) => {
-            let isSomeMatching = false;
+        const applyFilterRec = (items: TItem[]) => {
+            let isSomeMatching: number | boolean = false;
             items.forEach((item) => {
-                const isItemMatching = isMatchingFn?.(item) ?? true;
-                const isSomeChildMatching = applyMatchRec(this.getChildren(item));
+                const isItemMatching = isMatchingFilterFn(item);
+                const isSomeChildMatching = applyFilterRec(this.getChildren(item));
                 const isMatching = isItemMatching || isSomeChildMatching;
                 if (isMatching) {
                     matchedItems.push(item);
@@ -102,8 +103,61 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
             return isSomeMatching;
         };
 
-        applyMatchRec(this.getRootItems());
-
+        applyFilterRec(this.getRootItems());
         return Tree.create({ ...this.params }, matchedItems);
     }
+
+    private applySearchToTree(isMatchingSearchFn: undefined | ((item: TItem) => number | boolean), sortSearchByRelevance?: boolean) {
+        if (!isMatchingSearchFn) return this;
+
+        const matchedItems: TItem[] = [];
+        const ranks: Map<TId, number> = new Map();
+        const applySearchRec = (items: TItem[]) => {
+            let isSomeMatching: number | boolean = false;
+            items.forEach((item) => {
+                const isItemMatching = isMatchingSearchFn(item);
+                const isSomeChildMatching = applySearchRec(this.getChildren(item));
+                const isMatching = isItemMatching || isSomeChildMatching;
+                if (isMatching !== false) {
+                    matchedItems.push(item);
+                    if (typeof isMatching !== 'boolean') {
+                        const id = this.getId(item);
+                        const rank = ranks.has(id) ? Math.max(ranks.get(id), isMatching) : isMatching;
+                        ranks.set(this.getId(item), rank);
+                    }
+                }
+
+                if (!isSomeMatching) {
+                    isSomeMatching = isMatching;
+                } else if (typeof isMatching === 'number') {
+                    isSomeMatching = typeof isSomeMatching === 'number'
+                        ? Math.max(isMatching, isSomeMatching)
+                        : isMatching;
+                }
+            });
+
+            return isSomeMatching;
+        };
+
+        applySearchRec(this.getRootItems());
+        return Tree.create(
+            { ...this.params },
+            sortSearchByRelevance ? this.sortByRanks(matchedItems, ranks) : matchedItems,
+        );
+    }
+
+    private sortByRanks = (items: TItem[], ranks: Map<TId, number>) => {
+        if (ranks.size === 0) {
+            return items;
+        }
+        const itemsToSort = [...items];
+
+        return sortBy(itemsToSort, (item) => {
+            const id = this.getId(item);
+            if (!ranks.has(id)) {
+                return 0;
+            }
+            return ranks.get(id) * -1;
+        });
+    };
 }

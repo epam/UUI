@@ -3,7 +3,8 @@ import { AnalyticsContext } from './AnalyticsContext';
 import {
     IApiContext, ApiStatus, ApiRecoveryReason, ApiCallOptions, ApiCallInfo,
 } from '../types';
-import { getCookie, isClientSide } from '../helpers';
+import { isClientSide } from '../helpers/ssr';
+import { getCookie } from '../helpers/cookie';
 import { ApiContextProps } from './ContextProvider';
 
 interface ApiCall extends ApiCallInfo {
@@ -49,21 +50,29 @@ export class ApiContext extends BaseContext implements IApiContext {
         this.props.apiReloginPath = this.props.apiReloginPath ?? '/auth/login';
         this.props.apiPingPath = this.props.apiPingPath ?? '/auth/ping';
         this.props.apiServerUrl = this.props.apiServerUrl ?? '';
-        isClientSide && this.runListeners();
+
+        if (isClientSide) {
+            // If we opened another window to relogin and check auth - close this window and resume
+            window.addEventListener('message', this.handleWindowMessage);
+        }
     }
 
-    private runListeners() {
-        // If we opened another window to relogin and check auth - close this window and resume
-        window.addEventListener('message', (e) => {
-            if (e.data == 'authSuccess') {
-                if (this.status === 'recovery' && this.recoveryReason === 'auth-lost') {
-                    this.setStatus('running');
-                    this.runQueue();
-                    this.update({});
-                }
-                (e.source as any).close();
+    private handleWindowMessage = (e: MessageEvent) => {
+        if (e.data === 'authSuccess') {
+            if (this.status === 'recovery' && this.recoveryReason === 'auth-lost') {
+                this.setStatus('running');
+                this.runQueue();
+                this.update({});
             }
-        });
+            (e.source as any).close();
+        }
+    };
+
+    public destroyContext() {
+        super.destroyContext();
+        if (isClientSide) {
+            window.removeEventListener('message', this.handleWindowMessage);
+        }
     }
 
     public getActiveCalls(): ApiCallInfo[] {
@@ -98,7 +107,11 @@ export class ApiContext extends BaseContext implements IApiContext {
                 return;
             }
             this.setStatus('recovery', reason);
-            reason === 'auth-lost' ? window.open(this.props.apiReloginPath) : this.recoverConnection();
+            if (reason === 'auth-lost') {
+                window.open(this.props.apiReloginPath);
+            } else {
+                this.recoverConnection();
+            }
         } else {
             call.status = 'error';
             this.setStatus('error');
@@ -155,7 +168,7 @@ export class ApiContext extends BaseContext implements IApiContext {
                 'apiTiming',
             );
 
-            if (response.status == 204) {
+            if (response.status === 204) {
                 return this.resolveCall(call, null);
             }
 

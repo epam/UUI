@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    BaseDocsBlock, EditableDocContent, DocExample, UUI4, UUI3, UUI,
-} from '../common/docs';
+import { BaseDocsBlock, EditableDocContent, DocExample, UUI4, UUI3, UUI } from '../common/docs';
 
 export class PickerInputDoc extends BaseDocsBlock {
     title = 'Picker Input';
@@ -22,15 +20,16 @@ export class PickerInputDoc extends BaseDocsBlock {
                 <DocExample title="Bug" path="./_examples/pickerInput/Bug.example.tsx" />
                 <DocExample title="Lazy list" path="./_examples/pickerInput/LazyPickerInput.example.tsx" />
                 <DocExample title="Lazy tree" path="./_examples/pickerInput/LazyTreeInput.example.tsx" />
-                <DocExample title="Search modes" path="./_examples/pickerInput/LazyTreeSearch.example.tsx" />
                 <DocExample title="Async list" path="./_examples/pickerInput/AsyncPickerInput.example.tsx" />
                 <DocExample title="Cascade selection modes" path="./_examples/pickerInput/CascadeSelectionModes.example.tsx" />
-                <DocExample title="Search positions" path="./_examples/pickerInput/SearchPositions.example.tsx" />
                 <DocExample title="Custom picker row" path="./_examples/pickerInput/CustomUserRow.example.tsx" />
                 <DocExample title="Custom picker footer" path="./_examples/pickerInput/PickerInputWithCustomFooter.example.tsx" />
+                <DocExample title="Picker toggler configuration and options" path="./_examples/pickerInput/TogglerConfiguration.example.tsx" />
                 <DocExample title="Setting row options" path="./_examples/pickerInput/GetRowOptions.example.tsx" />
                 <DocExample title="Getting selected entity" path="./_examples/pickerInput/ValueType.example.tsx" />
-                <DocExample title="Picker toggler configuration and options" path="./_examples/pickerInput/TogglerConfiguration.example.tsx" />
+                <DocExample title="Search positions" path="./_examples/pickerInput/SearchPositions.example.tsx" />
+                <DocExample title="Flatten search results mode" path="./_examples/pickerInput/LazyTreeSearch.example.tsx" />
+                <DocExample title="Turn off 'Select All' button in footer" path="./_examples/pickerInput/PickerInputTurnOffSelectAll.example.tsx" />
                 <DocExample title="Open picker in modal" path="./_examples/pickerInput/EditMode.example.tsx" />
                 <DocExample title="Picker with changed array of items" path="./_examples/pickerInput/PickerWithChangingItemsArray.example.tsx" />
                 <DocExample title="Linked pickers" path="./_examples/pickerInput/LinkedPickers.example.tsx" />

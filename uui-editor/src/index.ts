@@ -1,3 +1,6 @@
 export * from './SlateEditor';
+export * from './defaultPlugins';
 export * from './plugins';
-// export * from './helpers';
+export * from './types';
+export * from './helpers';
+export * from './migration';

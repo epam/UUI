@@ -1,7 +1,9 @@
-import React, { useRef, useContext, useState, useEffect } from 'react';
+import React, { useRef, useContext, useState, useEffect, HTMLAttributes } from 'react';
 import FocusLock from 'react-focus-lock';
-import { cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
-    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps } from '@epam/uui-core';
+import {
+    cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
+    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IHasRawProps, IHasForwardedRef,
+} from '@epam/uui-core';
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer } from '@epam/uui-components';
 import { Switch } from '../inputs';
 import { IconButton } from '../buttons';
@@ -59,15 +61,23 @@ function DropdownMenuContainer(props: IDropdownMenuContainer) {
 
     return (
         <FocusLock as="menu" className={ css.menuRoot } returnFocus autoFocus={ false } ref={ menuRef } lockProps={ { onKeyDown: handleArrowKeys, tabIndex: -1 } }>
-            <DropdownContainer { ...props } rawProps={ { tabIndex: -1 } } />
+            <DropdownContainer { ...props } rawProps={ { ...props.rawProps, tabIndex: -1 } } />
         </FocusLock>
     );
 }
 
-export const DropdownMenuBody = withMods<IDropdownMenuContainer>(
+interface IDropdownMenuBody extends DropdownBodyProps, IHasCX, IHasChildren, IHasRawProps<HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+    minWidth?: number;
+    closeOnKey?: React.KeyboardEvent<HTMLElement>['key'];
+}
+
+export const DropdownMenuBody = withMods<IDropdownMenuBody>(
     DropdownMenuContainer,
     () => [css.bodyRoot],
-    ({ style }) => ({ style }),
+    (props) => {
+        const dropdownRawProps = props.minWidth ? { ...props.rawProps, style: { minWidth: `${props.minWidth}px` } } : null;
+        return ({ ...props, rawProps: dropdownRawProps || props.rawProps }) as IDropdownMenuBody;
+    },
 );
 
 export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>((props, ref) => {
@@ -180,7 +190,13 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
         {
             name: 'offset',
             options: {
-                offset: [-6, 0],
+                offset: ({ placement } : { placement:string }) => {
+                    if (placement === 'right-start') {
+                        return [-6, 0];
+                    } else {
+                        return [6, 0];
+                    }
+                },
             },
         },
     ];

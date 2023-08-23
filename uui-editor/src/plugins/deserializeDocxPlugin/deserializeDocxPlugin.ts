@@ -1,8 +1,6 @@
-import {
-    KEY_DESERIALIZE_HTML,
-    createDeserializeDocxPlugin as createPlateDeserializeDocxPlugin,
-} from "@udecode/plate";
-import { cleanDocx } from "./cleanDocx";
+import { KEY_DESERIALIZE_HTML } from '@udecode/plate-common';
+import { cleanDocx } from './cleanDocx';
+import { createDeserializeDocxPlugin as createPlateDeserializeDocxPlugin } from '@udecode/plate-serializer-docx';
 
 export const createDeserializeDocxPlugin = () =>
     createPlateDeserializeDocxPlugin({
@@ -12,7 +10,7 @@ export const createDeserializeDocxPlugin = () =>
                     editor: {
                         insertData: {
                             transformData: (data, { dataTransfer }) => {
-                                const rtf = dataTransfer.getData("text/rtf");
+                                const rtf = dataTransfer.getData('text/rtf');
                                 return cleanDocx(data, rtf);
                             },
                         },

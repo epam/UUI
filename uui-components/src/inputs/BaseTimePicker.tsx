@@ -2,7 +2,7 @@ import * as React from 'react';
 import dayjs from 'dayjs';
 import {
     DropdownBodyProps,
-    isChildFocusable,
+    isFocusReceiverInsideFocusLock,
     IEditable,
     IDisableable,
     ICanBeReadonly,
@@ -87,7 +87,7 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
     };
 
     handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (isChildFocusable(e)) return;
+        if (isFocusReceiverInsideFocusLock(e)) return;
         this.onToggle(false);
 
         if (this.state.value === '') {

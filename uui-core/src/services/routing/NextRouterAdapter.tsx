@@ -1,5 +1,5 @@
 import { IRouterContext, Link } from '../../types';
-import { queryToSearch } from '../../helpers';
+import { queryToSearch } from '../../helpers/queryToSearch';
 
 const createHref = (location: Link, basePath: string) => {
     const { pathname, query } = location;
@@ -67,7 +67,7 @@ export class NextRouterAdapter implements IRouterContext {
 
     public isActive(link: Link): boolean {
         const current = this.getCurrentLink();
-        return current.pathname == link.pathname;
+        return current.pathname === link.pathname;
     }
 
     public createHref(link: Link): string {

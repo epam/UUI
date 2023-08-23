@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import css from './FilteredTableFooter.module.scss';
 import {
     FlexCell, LabeledInput, TextInput, Text, PickerInput,
@@ -17,8 +17,8 @@ interface IFilteredTableFooterProps {
 export function FilteredTableFooter(props: IFilteredTableFooterProps) {
     const [goToPage, setGoToPage] = useState('1');
     const totalPages = props.tableState.pageSize ? Math.ceil(props.totalCount / props.tableState.pageSize) : 0;
-    const goToPageHandler = () => props.setTableState({ ...props.tableState, page: +goToPage, indexToScroll: 0 });
-    const paginatorHandler = (newPage: number) => props.setTableState({ ...props.tableState, page: newPage, indexToScroll: 0 });
+    const goToPageHandler = () => props.setTableState({ ...props.tableState, page: +goToPage, scrollTo: { index: 0 } });
+    const paginatorHandler = (newPage: number) => props.setTableState({ ...props.tableState, page: newPage, scrollTo: { index: 0 } });
 
     const itemsPerPageDataSource = useArrayDataSource(
         {
@@ -71,7 +71,7 @@ export function FilteredTableFooter(props: IFilteredTableFooterProps) {
                     <TextInput size="24" value={ goToPage } onValueChange={ setGoToPageHandler } />
                 </LabeledInput>
             </div>
-            <Button cx={ css.goToPageButton } size="24" icon={ ArrowRightIcon_24 } onClick={ goToPageHandler } fill="white" color="gray50" />
+            <Button cx={ css.goToPageButton } size="24" icon={ ArrowRightIcon_24 } onClick={ goToPageHandler } fill="white" color="gray" />
             <Paginator value={ props.tableState.page } onValueChange={ paginatorHandler } totalPages={ totalPages } size="24" />
         </FlexRow>
     );

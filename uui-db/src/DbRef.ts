@@ -154,9 +154,9 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
         const id = this.lastSubscriptionId++;
 
         const subscription: DbSubscription<TValue, TParams> = {
-            update: (params: TParams) => {
-                subscription.currentParams = params;
-                subscription.currentValue = this.db.runView(view, params);
+            update: (subscriptionParams: TParams) => {
+                subscription.currentParams = subscriptionParams;
+                subscription.currentValue = this.db.runView(view, subscriptionParams);
                 return subscription.currentValue;
             },
             currentParams: null,

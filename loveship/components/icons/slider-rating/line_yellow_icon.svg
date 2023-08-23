@@ -4,7 +4,7 @@
     <title>Yellow line</title>
     <desc>Created with Sketch.</desc>
     <defs>
-        <linearGradient x1="3.23062819%" y1="0%" x2="100%" y2="0%" id="linearGradient-1">
+        <linearGradient x1="3.23062819%" y1="0%" x2="100%" y2="0%" id="linearGradient-line-yellow-1">
             <stop stop-color="#FAB309" offset="0%"></stop>
             <stop stop-color="#FBE600" offset="50.5719866%"></stop>
             <stop stop-color="#FAB309" offset="100%"></stop>
@@ -23,7 +23,7 @@
                         </g>
                     </g>
                     <g id="Group" transform="translate(36.000000, 0.000000)">
-                        <rect id="gradient_line" fill="url(#linearGradient-1)" x="4" y="3" width="36" height="2"></rect>
+                        <rect id="gradient_line" fill="url(#linearGradient-line-yellow-1)" x="4" y="3" width="36" height="2"></rect>
                         <circle id="base" stroke="#FAB309" stroke-width="2" fill="#FFFFFF" cx="40" cy="4" r="3"></circle>
                         <circle id="base" stroke="#FAB309" stroke-width="2" fill="#FFFFFF" cx="4" cy="4" r="3"></circle>
                     </g>

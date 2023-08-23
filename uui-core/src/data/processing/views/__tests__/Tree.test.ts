@@ -121,7 +121,7 @@ describe('Tree', () => {
         });
 
         it('can move node to a new parent', () => {
-            const newTree = testTree.patch([{ id: 110, parentId: 100 }]);
+            // const newTree = testTree.patch([{ id: 110, parentId: 100 }]);
             // TBD
             // expect(newTree.getNodeById(130)).toEqual(
             //     { id: 130, key: '130', parentId: 100, index: 2, item: { id: 130, parentId: 100 }}
@@ -184,7 +184,7 @@ describe('Tree', () => {
     describe('computeSubtotals', () => {
         it('can calculate child counts', () => {
             const subtotals = testTree.computeSubtotals(
-                (_) => 1,
+                () => 1,
                 (a, b) => a + b,
             );
             expect(subtotals.get(100)).toBe(5);
@@ -378,7 +378,7 @@ describe('Tree', () => {
 
     describe('search', () => {
         it('should return sorted tree', () => {
-            const searchTree = testTree.search({ search: 'item3', getSearchFields: ({ name }) => [name] });
+            const searchTree = testTree.search({ search: 'item3', getSearchFields: ({ name }) => [name!] });
 
             expect(searchTree.getRootIds()).toEqual([300]);
             expect(searchTree.getChildrenByParentId(300).map((n) => n.id)).toEqual([
@@ -390,7 +390,7 @@ describe('Tree', () => {
     describe('filter', () => {
         it('should return filtered tree', () => {
             const searchTree = testTree.filter({
-                filter: ({ value }: TestItem) => value > 3,
+                filter: ({ value }: TestItem) => value! > 3,
                 getFilter: (filter) => (item) => filter(item),
             });
 

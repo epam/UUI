@@ -244,8 +244,6 @@ export class TimelineController {
 
         const getX = (ms: number, vp: Viewport) => (ms - vp.center.getTime()) * vp.pxPerMs + vp.widthPx / 2;
 
-        const screenLeftX = (vp2.center.getTime() - vp2.widthPx / vp2.pxPerMs / 2 - vp2.center.getTime()) * vp2.pxPerMs - vp2.widthPx / 2;
-
         const deltaPx = Math.max(
             Math.abs(getX(screenLeftMs, nextViewport) - getX(screenLeftMs, vp2)),
             Math.abs(getX(screenRightMs, nextViewport) - getX(screenRightMs, vp2)),
@@ -367,11 +365,11 @@ export class TimelineController {
         }
     };
 
-    private handleMouseUp = (e: MouseEvent) => {
+    private handleMouseUp = () => {
         this.isDragging = false;
     };
 
-    private handleMouseLeave = (e: MouseEvent) => {
+    private handleMouseLeave = () => {
         this.isDragging = false;
     };
 }

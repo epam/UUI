@@ -1,26 +1,13 @@
 import React from 'react';
-import {
-    createLinkPlugin,
-    someNode,
-    LinkToolbarButton,
-    ELEMENT_LINK,
-    PlateEditor,
-    Value,
-    TElement,
-    withLink,
-    WithPlatePlugin,
-    LinkPlugin,
-    upsertLink,
-    getPluginType,
-    validateUrl,
-} from "@udecode/plate";
 import { useUuiContext } from '@epam/uui-core';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { ReactComponent as LinkIcon } from "../../icons/link.svg";
-import { AddLinkModal } from "./AddLinkModal";
+import { PlateEditor, TElement, Value, WithPlatePlugin, someNode } from '@udecode/plate-common';
+import { ELEMENT_LINK, LinkPlugin, createLinkPlugin, upsertLink, validateUrl, withLink } from '@udecode/plate-link';
 import { isPluginActive } from '../../helpers';
+import { ReactComponent as LinkIcon } from '../../icons/link.svg';
+import { AddLinkModal } from './AddLinkModal';
 import { isUrl } from './isUrl';
 
 export interface LinkElement extends TElement {
@@ -33,7 +20,7 @@ const withOurLink = <
     E extends PlateEditor<V> = PlateEditor<V>
 >(
     editor: E,
-    options: WithPlatePlugin<LinkPlugin, V, E>
+    options: WithPlatePlugin<LinkPlugin, V, E>,
 ) => {
     const { insertData } = editor;
 
@@ -56,22 +43,22 @@ const withOurLink = <
         }
 
         insertData(data);
-    }
+    };
     return editor;
-}
+};
 
 const LINK_ELEMENT = 'link';
 
 export const linkPlugin = () => createLinkPlugin({
     type: LINK_ELEMENT,
     withOverrides: withOurLink,
-    then: () => ({ options: { isUrl, } }),
+    then: () => ({ options: { isUrl } }),
     overrideByKey: {
         [ELEMENT_LINK]: {
             component: (props) => (
-                <a { ...props.attributes } style={ { display: 'inline' } } target='_blank' href={ props.element.url }>{ props.children }</a>
+                <a { ...props.attributes } style={ { display: 'inline' } } target="_blank" href={ props.element.url }>{ props.children }</a>
             ),
-        }
+        },
     },
 });
 
@@ -79,7 +66,7 @@ interface ToolbarLinkButtonProps {
     editor: PlateEditor;
 }
 
-export const LinkButton = ({ editor }: ToolbarLinkButtonProps) => {
+export function LinkButton({ editor }: ToolbarLinkButtonProps) {
     const context = useUuiContext();
 
     if (!isPluginActive(ELEMENT_LINK)) return null;
@@ -87,10 +74,8 @@ export const LinkButton = ({ editor }: ToolbarLinkButtonProps) => {
     const isLink = !!editor?.selection && someNode(editor, { match: { type: LINK_ELEMENT } });
 
     return (
-        <LinkToolbarButton
-            styles={ { root: { width: 'auto', height: 'auto', cursor: 'pointer', padding: '0px' } } }
-            active={ isLink }
-            onMouseDown={ async (event) => {
+        <ToolbarButton
+            onClick={ async (event) => {
                 if (!editor) return;
 
                 event.preventDefault();
@@ -101,11 +86,8 @@ export const LinkButton = ({ editor }: ToolbarLinkButtonProps) => {
                     />
                 )).catch(() => null);
             } }
-            icon={ <ToolbarButton
-                onClick={ () => {} }
-                icon={ LinkIcon }
-                isActive={ !!editor?.selection && isLink }
-            /> }
+            icon={ LinkIcon }
+            isActive={ !!editor?.selection && isLink }
         />
     );
-};
+}

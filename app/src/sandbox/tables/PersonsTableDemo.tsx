@@ -1,27 +1,14 @@
 import * as React from 'react';
 import { FlexRow, FlexCell, FlexSpacer, Text, PickerInput, Button, SearchInput, DataTable, DataTableRow } from '@epam/loveship';
-import { Person, PersonGroup } from '@epam/uui-docs';
-import { DataSourceState, useArrayDataSource, useList, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens, DataColumnProps, LazyDataSourceApi } from '@epam/uui-core';
-import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
+import { Person } from '@epam/uui-docs';
+import { DataSourceState, useArrayDataSource, useList, LazyDataSourceApiRequest, LazyDataSourceApiResponse, Lens, DataColumnProps, LazyDataSourceApi } from '@epam/uui-core';
+import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType, PersonsApiResponse, PersonsSummary, PersonsTableState } from './types';
 import { svc } from '../../services';
 import { getColumns } from './columns';
 import { getFilters } from './filters';
 import cx from 'classnames';
 import { useTheme } from '../../helpers/useTheme';
 import css from './PersonsTableDemo.module.scss';
-
-interface PersonsTableState extends DataSourceState {
-    isFolded?: boolean;
-}
-
-interface PersonsApiResponse extends LazyDataSourceApiResponse<Person | PersonGroup> {
-    summary: PersonsSummary;
-    totalCount: number;
-}
-
-export interface PersonsSummary extends Pick<PersonsApiResponse, 'totalCount'> {
-    totalSalary: string;
-}
 
 const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -54,7 +41,7 @@ export function PersonsTableDemo() {
         [],
     );
 
-    const [value, onValueChange] = React.useState<PersonsTableState>(() => ({
+    const [value, onValueChange] = React.useState<PersonsTableState & { filter?: PersonTableFilter }>(() => ({
         topIndex: 0,
         visibleCount: 100,
         sorting: [{ field: 'name' }],
@@ -77,10 +64,10 @@ export function PersonsTableDemo() {
             const response: LazyDataSourceApiResponse<PersonTableRecord> = { items: [] };
 
             const promises = typesToLoad.map(async (type) => {
-                const idsRequest: LazyDataSourceApiRequest<any, any, any> = { ids: idsByType[type] };
-                const api = type === 'Person' ? svc.api.demo.persons : type == 'PersonGroup' ? svc.api.demo.personGroups : type == 'Location' ? svc.api.demo.locations : null;
+                const idsRequest: LazyDataSourceApiRequest<any, any> = { ids: idsByType[type] };
+                const apiRequest = type === 'Person' ? svc.api.demo.persons : type === 'PersonGroup' ? svc.api.demo.personGroups : type === 'Location' ? svc.api.demo.locations : null;
 
-                const apiResponse = await api(idsRequest);
+                const apiResponse = await apiRequest(idsRequest);
                 response.items = [...response.items, ...apiResponse.items];
             });
 
@@ -88,27 +75,27 @@ export function PersonsTableDemo() {
             return response;
         }
 
-        const { groupBy, ...filter } = requestFilter || {};
+        const { groupBy, ...filter } = (requestFilter as PersonTableFilter) || {};
 
         const updateSummary = (response: PersonsApiResponse) => {
-            const { summary, totalCount } = response;
-            const totalSalary = formatCurrency(Number(summary.totalSalary));
+            const { summary: summaryRes, totalCount } = response;
+            const totalSalary = formatCurrency(Number(summaryRes.totalSalary));
             setSummary({ totalCount, totalSalary });
         };
 
-        const getPersons = async (rq: LazyDataSourceApiRequest<Person, number, DataQueryFilter<Person>>) => {
+        const getPersons = async (personRequest: LazyDataSourceApiRequest<Person, number>) => {
             if (groupBy && !ctx.parent) {
                 const personGroupsResponse = await svc.api.demo.personGroups({
-                    ...rq,
+                    ...personRequest,
                     filter: { groupBy },
                     search: null,
-                    itemsRequest: { filter, search: rq.search },
+                    itemsRequest: { filter, search: personRequest.search },
                     ids,
                 } as any);
                 updateSummary(personGroupsResponse as PersonsApiResponse);
                 return personGroupsResponse;
             } else {
-                const personsResponse = await svc.api.demo.persons(rq);
+                const personsResponse = await svc.api.demo.persons(personRequest);
                 updateSummary(personsResponse as PersonsApiResponse);
                 return personsResponse;
             }
@@ -116,7 +103,7 @@ export function PersonsTableDemo() {
 
         if (request.search) {
             return getPersons({ ...rq, filter });
-        } else if (groupBy == 'location') {
+        } else if (groupBy === 'location') {
             if (!ctx.parent) {
                 return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true } } });
             } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
@@ -148,16 +135,16 @@ export function PersonsTableDemo() {
             complexIds: true,
             getParentId: (i) => {
                 const groupBy = value.filter?.groupBy;
-                if (i.__typename == 'PersonGroup') {
+                if (i.__typename === 'PersonGroup') {
                     return null;
-                } else if (i.__typename == 'Location') {
+                } else if (i.__typename === 'Location') {
                     return i.parentId ? ['Location', i.parentId] : undefined;
-                } else if (i.__typename == 'Person') {
-                    if (groupBy == 'location') {
+                } else if (i.__typename === 'Person') {
+                    if (groupBy === 'location') {
                         return ['Location', i.locationId];
-                    } else if (groupBy == 'jobTitle') {
+                    } else if (groupBy === 'jobTitle') {
                         return ['PersonGroup', i.jobTitleId];
-                    } else if (groupBy == 'department') {
+                    } else if (groupBy === 'department') {
                         return ['PersonGroup', i.departmentId];
                     } else {
                         return undefined;
@@ -166,8 +153,8 @@ export function PersonsTableDemo() {
 
                 throw new Error('PersonTableDemo: unknown typename/groupBy combination');
             },
-            getChildCount: (item) => (item.__typename === 'PersonGroup' ? item.count : item.__typename === 'Location' ? (item.type == 'city' ? 1 : 10) : null),
-            fetchStrategy: value.filter?.groupBy == 'location' ? 'sequential' : 'parallel',
+            getChildCount: (item) => (item.__typename === 'PersonGroup' ? item.count : item.__typename === 'Location' ? (item.type === 'city' ? 1 : 10) : null),
+            fetchStrategy: value.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
             rowOptions: { checkbox: { isVisible: true } },
             isFoldedByDefault: () => value.isFolded,
             cascadeSelection: true,

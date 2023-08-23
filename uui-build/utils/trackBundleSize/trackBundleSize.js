@@ -4,7 +4,6 @@
  */
 const { logger } = require('../loggerUtils.js');
 const {
-    isAllLocalDependenciesBuilt,
     getAllMonorepoPackages, getAllLocalDependenciesInfo,
 } = require('../monorepoUtils.js');
 const path = require('path');
@@ -24,8 +23,10 @@ const { comparisonResultToMd } = require('./trackBundleSizeMdFormatter.js');
 const { compareBundleSizes } = require('./trackBundleSizeComparator.js');
 const { overrideBaseLineFileSync, getCurrentBaseLineSync, saveComparisonResultsMd } = require('./trackBundleSizeFileUtils.js');
 const { measureAllBundleSizes } = require('./trackBundleSizeMeasureUtils.js');
+const { createBaseLineJson } = require('./trackBundleSizeFileUtils.js');
 
 const epamPrefix = '@epam/';
+const appTargetParentDirResolved = path.resolve(uuiRoot, TEMPLATE_APP_TARGET_DIR, '..');
 const appTargetDirResolved = path.resolve(uuiRoot, TEMPLATE_APP_TARGET_DIR);
 const webpackConfigResolved = path.resolve(appTargetDirResolved, 'node_modules/react-scripts/config/webpack.config.js');
 const webpackPatch = { replaceWhat: 'resolve: {', replaceTo: 'resolve: {symlinks: false,' };
@@ -51,7 +52,7 @@ module.exports = { trackBundleSize };
  */
 async function trackBundleSize({ overrideBaseline } = {}) {
     await runSimpleWorkflow([
-        checkAllModulesAreBuilt,
+        buildAllModules,
         createCraFromUuiTemplate,
         symlinkAppDependencies,
         fixCraConfig,
@@ -83,16 +84,13 @@ async function runSimpleWorkflow(arr) {
     await logTimeTook(fn, 'main');
 }
 
-async function checkAllModulesAreBuilt() {
-    const { isBuilt } = isAllLocalDependenciesBuilt();
-    if (!isBuilt) {
-        runYarnScriptFromRootSync('build-modules');
-    }
+async function buildAllModules() {
+    runYarnScriptFromRootSync('build-modules');
 }
 
 async function createCraFromUuiTemplate() {
-    if (fs.existsSync(appTargetDirResolved)) {
-        fs.rmSync(appTargetDirResolved, { recursive: true, force: true });
+    if (fs.existsSync(appTargetParentDirResolved)) {
+        fs.rmSync(appTargetParentDirResolved, { recursive: true, force: true });
     }
     runCmdFromRootSync(CLI.createAppFromTemplate.cmd, CLI.createAppFromTemplate.args);
 }
@@ -153,15 +151,16 @@ async function compareWithBaseLine(params) {
     const newSizes = await measureAllBundleSizes();
     console.log('New sizes:');
     console.table(newSizes);
+    const newBaseLine = createBaseLineJson(newSizes);
     if (overrideBaseline) {
-        overrideBaseLineFileSync(newSizes);
+        overrideBaseLineFileSync(newBaseLine);
     }
     const currentBaseLine = getCurrentBaseLineSync();
     const baseLineSizes = currentBaseLine.sizes;
     console.log('Baseline sizes:');
     console.table(baseLineSizes);
     const comparisonResult = compareBundleSizes({ baseLineSizes, newSizes });
-    const comparisonResultMd = comparisonResultToMd({ comparisonResult, currentBaseLine });
+    const comparisonResultMd = comparisonResultToMd({ comparisonResult, currentBaseLine, newBaseLine });
     console.log('Comparison results:');
     console.table(comparisonResult);
     saveComparisonResultsMd(comparisonResultMd);

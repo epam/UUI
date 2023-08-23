@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    DataRowProps, DataSourceListProps, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers,
+    DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers,
 } from '@epam/uui-core';
 import { PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { PickerModal } from './PickerModal';
@@ -52,13 +52,21 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         return this.props.editMode === 'modal' ? '36' : this.props.size;
     }
 
-    renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
-        return <PickerItem title={ this.getName(item) } size={ this.getRowSize() } { ...rowProps } />;
+    renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>, dataSourceState: DataSourceState) => {
+        return (
+            <PickerItem
+                title={ this.getName(item) }
+                size={ this.getRowSize() }
+                dataSourceState={ dataSourceState }
+                highlightSearchMatches={ this.props.highlightSearchMatches ?? true }
+                { ...rowProps }
+            />
+        );
     };
 
-    renderRow = (rowProps: DataRowProps<TItem, TId>) => {
+    renderRow = (rowProps: DataRowProps<TItem, TId>, dataSourceState: DataSourceState) => {
         return this.props.renderRow ? (
-            this.props.renderRow(rowProps, this.state.dataSourceState)
+            this.props.renderRow(rowProps, dataSourceState)
         ) : (
             <DataPickerRow
                 { ...rowProps }
@@ -66,7 +74,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 borderBottom="none"
                 size={ this.getRowSize() }
                 padding={ this.props.editMode === 'modal' ? '24' : '12' }
-                renderItem={ this.renderItem }
+                renderItem={ (item, itemProps) => this.renderItem(item, itemProps, dataSourceState) }
             />
         );
     };
@@ -101,7 +109,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) {
-        const renderedDataRows = rows.map((row) => this.renderRow(row));
+        const renderedDataRows = rows.map((row) => this.renderRow(row, this.state.dataSourceState));
         const maxHeight = isMobile() ? document.documentElement.clientHeight : this.props.dropdownHeight || pickerHeight;
         const minBodyWidth = isMobile() ? document.documentElement.clientWidth : this.props.minBodyWidth || pickerWidth;
 

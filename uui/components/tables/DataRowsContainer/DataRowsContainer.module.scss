@@ -1,0 +1,21 @@
+.listContainer {
+    margin-top: 1px;
+    isolation: isolate;
+}
+
+.header {
+    top: 0;
+    z-index: 10;
+}
+
+.group {
+    margin-top: 0;
+    isolation: isolate;
+}
+
+.stickyHeader {
+    position: sticky;
+    top: 0;
+    isolation: isolate;
+    z-index: 5;
+}

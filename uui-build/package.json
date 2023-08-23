@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "5.1.0",
+  "version": "5.1.2",
   "bin": {
     "epam-uui-build": "./bin/cli.js"
   },
@@ -50,7 +50,7 @@
     "rollup-plugin-visualizer": "5.9.2",
     "sass": "^1.62.1",
     "source-map-explorer": "2.5.3",
-    "stylelint": "15.6.2",
+    "stylelint": "15.10.1",
     "stylelint-config-sass-guidelines": "9.0.1",
     "stylelint-config-standard": "33.0.0",
     "stylelint-scss": "5.0.0",

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ColumnsConfigurationModal } from '../ColumnsConfigurationModal';
-import { DataColumnProps, getDefaultColumnsConfig } from '@epam/uui-core';
+import { DataColumnProps, getColumnsConfig } from '@epam/uui-core';
 import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 const mockColumns: DataColumnProps[] = [
@@ -11,7 +11,6 @@ const mockColumns: DataColumnProps[] = [
         isSortable: true,
         isAlwaysVisible: true,
         grow: 0,
-        shrink: 0,
         width: 96,
     }, {
         key: 'level',
@@ -20,7 +19,6 @@ const mockColumns: DataColumnProps[] = [
         isSortable: true,
         isAlwaysVisible: true,
         grow: 0,
-        shrink: 0,
         width: 96,
     },
 ];
@@ -33,7 +31,6 @@ const mockHiddenColumns: DataColumnProps[] = [
         isSortable: true,
         isAlwaysVisible: false,
         grow: 0,
-        shrink: 0,
         width: 96,
         isHiddenByDefault: true,
     }, {
@@ -44,7 +41,6 @@ const mockHiddenColumns: DataColumnProps[] = [
         isAlwaysVisible: false,
         isHiddenByDefault: true,
         grow: 0,
-        shrink: 0,
         width: 96,
     },
 ];
@@ -59,7 +55,7 @@ const modalProps = {
 
 describe('ColumnsConfigurationModal', () => {
     it('should be rendered correctly', async () => {
-        const defaultConfig = getDefaultColumnsConfig(mockColumns);
+        const defaultConfig = getColumnsConfig(mockColumns, {});
         const tree = await renderSnapshotWithContextAsync(
             <ColumnsConfigurationModal { ...modalProps } columns={ mockColumns } columnsConfig={ defaultConfig } defaultConfig={ defaultConfig } />,
         );
@@ -67,7 +63,7 @@ describe('ColumnsConfigurationModal', () => {
     });
 
     it('should disable Apply button if all columns are hidden', async () => {
-        const defaultConfig = getDefaultColumnsConfig(mockHiddenColumns);
+        const defaultConfig = getColumnsConfig(mockHiddenColumns, {});
         const tree = await renderSnapshotWithContextAsync(
             <ColumnsConfigurationModal { ...modalProps } columns={ mockHiddenColumns } columnsConfig={ defaultConfig } defaultConfig={ defaultConfig } />,
         );

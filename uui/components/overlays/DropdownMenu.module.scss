@@ -1,6 +1,8 @@
 @use 'sass:math';
 @use '../../assets/styles/index' as *;
 
+// TODO: need to revamp
+
 @mixin icon-sizes($size, $font-size, $line-height) {
     $vpadding: math.div(($line-height - $size), 2);
 
@@ -79,7 +81,8 @@
     font-size: 14px;
     padding: 6px 0;
     background-color: var(--uui-dropdown-menu-bg);
-    box-shadow: var(--uui-shadow);
+    box-shadow: var(--uui-shadow-level-1);
+    border-radius: var(--uui-dropdown-container-border-radius);
 }
 
 .submenuRootItem {
@@ -135,11 +138,14 @@
     }
 
     &:global(.-clickable:not(.uui-disabled)) {
-        &:hover,
-        &:focus {
+        &:hover {
             background-color: var(--uui-dropdown-menu-item-hover);
             fill: var(--uui-icon-active);
             cursor: pointer;
+        }
+
+        &:focus-visible {
+            @include focus-visible-effect(-2px, null);
         }
     }
 

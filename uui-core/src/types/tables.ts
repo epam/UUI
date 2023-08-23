@@ -5,10 +5,11 @@ import {
 import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceState, IDataSource } from './dataSources';
-import { ILens } from '../data';
+import { ILens } from '../data/lenses/types';
 import * as CSS from 'csstype';
 import { RangeDatePickerPresets, TooltipCoreProps } from './components';
 import { Dayjs } from 'dayjs';
+import { IFilterItemBodyProps } from './components/filterItemBody';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
@@ -225,6 +226,8 @@ type FilterConfigBase<TFilter> = {
     columnKey: string;
     isAlwaysVisible?: boolean;
     predicates?: IFilterPredicate[];
+    /** Count of words to show in the Filter toggler. By default, 2 item will be shown. */
+    maxCount?: number;
 };
 
 export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
@@ -233,7 +236,10 @@ export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     getName?: (item: any) => string;
     renderRow?: (props: DataRowProps<any, any>) => ReactNode;
     valueType?: 'id';
-    /** default value: true */
+    /**
+     * Pass false to hide search in picker body.
+     * If omitted, true value will be used.
+     */
     showSearch?: boolean;
 };
 
@@ -254,8 +260,14 @@ type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: 'numeric';
 };
 
+type CustomFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+    type: 'custom';
+    render: (props: IFilterItemBodyProps<any>) => React.ReactElement;
+    getTogglerValue: (props: IFilterItemBodyProps<any>) => ReactNode;
+};
+
 export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter> | DatePickerFilterConfig<TFilter> |
-NumericFilterConfig<TFilter> | RangeDatePickerFilterConfig<TFilter>;
+NumericFilterConfig<TFilter> | RangeDatePickerFilterConfig<TFilter> | CustomFilterConfig<TFilter>;
 
 export interface ITablePreset<TFilter = any, TViewState = any> {
     name: string;
@@ -270,22 +282,36 @@ export interface ITablePreset<TFilter = any, TViewState = any> {
 }
 
 export interface IPresetsApi<TFilter = any, TViewState = any> {
+    /** ID of selected preset */
     activePresetId: number | null;
+    /** Function that selects given preset  */
     choosePreset(preset: ITablePreset<TFilter, TViewState>): void;
+    /** Function that gives preset name and create new preset with this name and current table state  */
     createNewPreset(name: string): Promise<number>;
+    /** Function that gives preset and return if this preset changed or not  */
     hasPresetChanged(preset: ITablePreset<TFilter, TViewState>): boolean;
+    /** Function that gives the preset and creat their duplicate  */
     duplicatePreset(preset: ITablePreset<TFilter, TViewState>): void;
+    /** Function that deletes given preset  */
     deletePreset(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
+    /** Function that updates given preset  */
     updatePreset(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
+    /** Function that gives preset and return URL link on given preset  */
     getPresetLink(preset: ITablePreset<TFilter, TViewState>): string;
+    /** Array of presets  */
     presets: ITablePreset<TFilter, TViewState>[];
 }
 
 export interface ITableState<TFilter = Record<string, any>, TViewState = any> extends IPresetsApi<TFilter, TViewState> {
+    /** Table state value */
     tableState: DataTableState<TFilter, TViewState>;
+    /** Function that updates table state value */
     setTableState(newState: DataTableState<TFilter, TViewState>): void;
+    /** Function that updates filter value */
     setFilter(filter: TFilter): void;
+    /** Function that updates columns config value */
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
+    /** Function that updates filters config value */
     setFiltersConfig(filtersConfig: FiltersConfig): void;
 }
 

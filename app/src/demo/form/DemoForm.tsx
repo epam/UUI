@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    useArrayDataSource, useLazyDataSource, ILens, Lens, useAsyncDataSource, AsyncDataSource, UuiContexts, useUuiContext, cx,
+    useArrayDataSource, useLazyDataSource, ILens, Lens, useAsyncDataSource, AsyncDataSource, UuiContexts, useUuiContext,
 } from '@epam/uui-core';
 import { demoData, Country } from '@epam/uui-docs';
 import type { TApi } from '../../data';
@@ -38,7 +38,6 @@ import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notificati
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as ClearIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 import css from './DemoForm.module.scss';
-import { useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 
 const tShirtSizes = [
@@ -353,13 +352,13 @@ function Visas({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
     const visasLens = lens.prop('visas').default([emptyInfo.visa]);
     const scansLens = Lens.onEditable(lens.prop('scans').toProps()).default([]);
 
-    const uploadFile = (files: File[], lens: ILens<Attachment[]>) => {
-        if (files.length + lens.get().length <= 20 && files.every((elem) => elem.size <= 5000000)) {
+    const uploadFile = (files: File[], fileLens: ILens<Attachment[]>) => {
+        if (files.length + fileLens.get().length <= 20 && files.every((elem) => elem.size <= 5000000)) {
             let tempIdCounter = 0;
-            const attachments = lens.default([]).get();
+            const attachments = fileLens.default([]).get();
 
             const updateAttachment = (newFile: Attachment, id: number) => {
-                lens.set(attachments.map((i) => (i.id === id ? newFile : i)));
+                fileLens.set(attachments.map((i) => (i.id === id ? newFile : i)));
             };
 
             const trackProgress = (progress: number, id: number) => {
@@ -378,12 +377,12 @@ function Visas({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                 };
 
                 attachments.push(fileToAttach);
-                svc.uuiApi.uploadFile('/uploadFileMock', file, { onProgress: (progress) => trackProgress(progress, tempId) }).then((res) => {
+                svc.uuiApi.uploadFile('/upload/uploadFileMock', file, { onProgress: (progress) => trackProgress(progress, tempId) }).then((res) => {
                     updateAttachment({ ...res, progress: 100 }, tempId);
                 });
             });
 
-            lens.set(attachments);
+            fileLens.set(attachments);
         } else {
             svc.uuiNotifications
                 .show(
@@ -472,11 +471,9 @@ function OtherInfo({ lens }: { lens: ILens<PersonDetails['otherInfo']> }) {
 
 export function DemoForm() {
     const svc = useUuiContext<TApi, UuiContexts>();
-    const [value, setValue] = useState(defaultData);
+    const value = defaultData;
 
-    const {
-        lens, revert, save, isChanged,
-    } = useForm<PersonDetails>({
+    const { lens, save } = useForm<PersonDetails>({
         settingsKey: 'form-test',
         value: value,
         getMetadata: personDetailsSchema,

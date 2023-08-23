@@ -1,15 +1,15 @@
 import * as React from 'react';
 import {
-    DropdownBodyProps, UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, DatePickerCoreProps,
+    DropdownBodyProps, UuiContexts, IDropdownToggler, UuiContext, isFocusReceiverInsideFocusLock, DatePickerCoreProps,
 } from '@epam/uui-core';
 import dayjs, { Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import utc from 'dayjs/plugin/utc.js';
 import {
     PickerBodyValue, defaultFormat, valueFormat, ViewType, supportedDateFormats,
-} from '../';
+} from './DatePickerBodyBase';
 import { toValueDateFormat, toCustomDateFormat } from './helpers';
-import { Dropdown } from '../../';
+import { Dropdown } from '../../overlays';
 
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);
@@ -78,7 +78,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
     };
 
     handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (isChildFocusable(e)) return;
+        if (isFocusReceiverInsideFocusLock(e)) return;
         this.onToggle(false);
         if (this.getIsValidDate(this.state.inputValue)) {
             const inputValue = toCustomDateFormat(this.state.inputValue, this.getFormat());

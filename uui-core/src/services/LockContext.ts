@@ -1,5 +1,6 @@
 import { BaseContext } from './BaseContext';
-import { IRouterContext, Link } from '../types';
+import { Link } from '../types/objects';
+import { IRouterContext } from '../types/contexts';
 import { isClientSide } from '../helpers/ssr';
 
 export class Lock {
@@ -11,6 +12,11 @@ export class LockContext extends BaseContext {
     private unblock: any;
     constructor(private router: IRouterContext) {
         super();
+    }
+
+    public destroyContext() {
+        this.clearLock();
+        super.destroyContext();
     }
 
     public acquire(tryRelease?: () => Promise<any>): Promise<Lock | null> {
@@ -66,11 +72,11 @@ export class LockContext extends BaseContext {
 
     private clearLock() {
         this.currentLock = null;
-        this.unblock();
+        this.unblock?.();
     }
 
     public release(lock: Lock) {
-        if (lock && this.currentLock == lock) {
+        if (lock && this.currentLock === lock) {
             this.clearLock();
         } else {
             throw new Error("Attempting to release a lock, which wasn't acquired");
