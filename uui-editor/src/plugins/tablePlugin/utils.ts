@@ -1,4 +1,3 @@
-import { ExtendedTTableCellElement } from './types';
 import { DEFAULT_COL_WIDTH } from './constants';
 import {
     PlateEditor,
@@ -13,22 +12,6 @@ import {
     ELEMENT_TH,
     ELEMENT_TD,
 } from '@udecode/plate-table';
-
-export const getRowSpan = (cellElem: ExtendedTTableCellElement) => {
-    const attrRowSpan = isNaN((cellElem?.attributes as any)?.rowspan)
-        ? undefined
-        : Number((cellElem?.attributes as any)?.rowspan);
-
-    return attrRowSpan || cellElem.data?.rowSpan || cellElem.rowSpan || 1;
-};
-
-export const getColSpan = (cellElem: ExtendedTTableCellElement) => {
-    const attrColSpan = isNaN((cellElem?.attributes as any)?.colspan)
-        ? undefined
-        : Number((cellElem?.attributes as any)?.colspan);
-
-    return attrColSpan || cellElem.data?.colSpan || cellElem.colSpan || 1;
-};
 
 export const selectFirstCell = (editor: PlateEditor) => {
     if (editor.selection) {
