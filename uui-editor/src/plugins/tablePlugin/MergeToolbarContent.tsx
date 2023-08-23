@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ReactComponent as TableMerge } from '../../icons/table-merge.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import { usePlateEditorState, TElementEntry, removeNodes, insertElements, getRange } from '@udecode/plate-common';
+import { usePlateEditorState, TElementEntry, removeNodes, insertElements } from '@udecode/plate-common';
 import { TTableCellElement, getEmptyCellNode } from '@udecode/plate-table';
 import { Path } from 'slate';
 
@@ -47,18 +47,41 @@ export function MergeToolbarContent({ cellEntries: selectedCellEntries }: { cell
         for (const cellEntry of selectedCellEntries) {
             const [el, path] = cellEntry;
             paths.push(path);
-            contents.push(...el.children);
+            contents.push(...el.children); // TODO: make deep clone here
         }
 
-        removeNodes(editor, {
-            at: getRange(editor, paths.at(0)!, paths.at(-1)!),
-            match: (_, path) => {
-                if (paths.some((p) => Path.equals(p, path))) {
-                    return true;
-                }
-                return false;
-            },
+        const cols: any = {};
+        let hasHeaderCell = false;
+        selectedCellEntries.forEach(([entry, path]) => {
+            if (!hasHeaderCell && entry.type === 'table_header_cell') {
+                hasHeaderCell = true;
+            }
+            if (cols[path[1]]) {
+                cols[path[1]].push(path);
+            } else {
+                cols[path[1]] = [path];
+            }
         });
+
+        // removes multiple cells with on same path.
+        // once cell removed, next cell in the row will settle down on that path
+        Object.values(cols).forEach((paths: any) => {
+            paths?.forEach(() => {
+                removeNodes(editor, { at: paths[0] });
+            });
+        });
+
+        // removeNodes(editor, {
+        //     at: getRange(editor, paths.at(0)!, paths.at(-1)!),
+        //     match: (_, path) => {
+        //         console.log('comparing', path);
+        //         if (paths.some((p) => Path.equals(p, path))) {
+        //             console.log('path equals', path);
+        //             return true;
+        //         }
+        //         return false;
+        //     },
+        // });
 
         const mergedCell = {
             ...getEmptyCellNode(editor, {
