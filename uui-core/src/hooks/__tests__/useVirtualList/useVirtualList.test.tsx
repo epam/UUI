@@ -146,9 +146,12 @@ describe('useVirtualList', () => {
         const onValueChange = jest.fn().mockImplementation((newValue) => {
             value = newValue;
         });
+        const onScroll = jest.fn();
+
         const { result, rerender } = await renderHookWithContextAsync(useVirtualList, {
             value,
             onValueChange,
+            onScroll,
             rowsCount: 500,
         });
 
@@ -160,8 +163,9 @@ describe('useVirtualList', () => {
             />,
         );
         
-        rerender({ value, onValueChange, rowsCount: 500 });
-        
+        rerender({ value, onValueChange, onScroll, rowsCount: 500 });
+        expect(onScroll).toBeCalledTimes(3);
+
         expect(result.current.scrollContainerRef.current).toBeInTheDocument();
         expect(result.current.listContainerRef.current).toBeInTheDocument();
         expect(result.current.estimatedHeight).toBe(10000);
@@ -171,10 +175,14 @@ describe('useVirtualList', () => {
 
         expect(result.current.offsetY).toBe(400);
         const scrollTo = { index: 100 };
-        rerender({ value: { ...value, scrollTo }, onValueChange, rowsCount: 500 });
+        rerender({ value: { ...value, scrollTo }, onValueChange, onScroll, rowsCount: 500 });
+        expect(onScroll).toBeCalledTimes(5);
+
         expect(onValueChange).toHaveBeenLastCalledWith({ visibleCount: 20, scrollTo, topIndex: 80 });
   
-        rerender({ value: { ...value, scrollTo }, onValueChange, rowsCount: 500 });
+        rerender({ value: { ...value, scrollTo }, onValueChange, onScroll, rowsCount: 500 });
+        expect(onScroll).toBeCalledTimes(6);
+
         expect(result.current.offsetY).toBe(1600);
         expect(result.current.estimatedHeight).toBe(10000);
     });
@@ -184,10 +192,13 @@ describe('useVirtualList', () => {
         const onValueChange = jest.fn().mockImplementation((newValue) => {
             value = newValue;
         });
+        const onScroll = jest.fn();
+
         const { result, rerender } = await renderHookWithContextAsync(useVirtualList, {
             value,
             onValueChange,
             rowsCount: 500,
+            onScroll,
         });
 
         await renderWithContextAsync(
@@ -198,8 +209,9 @@ describe('useVirtualList', () => {
             />,
         );
         
-        rerender({ value, onValueChange, rowsCount: 500 });
+        rerender({ value, onValueChange, onScroll, rowsCount: 500 });
         
+        expect(onScroll).toBeCalledTimes(3);
         expect(result.current.scrollContainerRef.current).toBeInTheDocument();
         expect(result.current.listContainerRef.current).toBeInTheDocument();
         expect(result.current.estimatedHeight).toBe(10000);
@@ -213,15 +225,73 @@ describe('useVirtualList', () => {
         
         result.current.scrollToIndex(100, 'auto');
 
+        expect(onScroll).toBeCalledTimes(3);
         expect(onValueChange).toBeCalledTimes(4);
         expect(onValueChange).toHaveBeenLastCalledWith({ topIndex: 80, visibleCount: 10, scrollTo: { index: 100 } });
 
-        rerender({ value, onValueChange, rowsCount: 500 });
+        rerender({ value, onValueChange, onScroll, rowsCount: 500 });
 
+        expect(onScroll).toBeCalledTimes(5);
         expect(onValueChange).toBeCalledTimes(5);
+        
         act(() => result.current.scrollToIndex(100, 'auto'));
+        
+        expect(onScroll).toBeCalledTimes(5);
         expect(onValueChange).toBeCalledTimes(5);
+        expect(result.current.offsetY).toBe(1600);
+        expect(result.current.estimatedHeight).toBe(10000);
+    });
 
+    it('should scroll to index if scrollTo was changed', async () => {
+        let value = { topIndex: 20, visibleCount: 10 } as VirtualListState;
+        const onValueChange = jest.fn().mockImplementation((newValue) => {
+            value = newValue;
+        });
+        const onScroll = jest.fn();
+        const { result, rerender } = await renderHookWithContextAsync(useVirtualList, {
+            value,
+            onValueChange,
+            rowsCount: 500,
+            onScroll,
+        });
+
+        await renderWithContextAsync(
+            <VirtualListContainer
+                scrollContainerRef={ result.current.scrollContainerRef }
+                listContainerRef={ result.current.listContainerRef }
+                estimatedHeight={ result.current.estimatedHeight }
+            />,
+        );
+        
+        rerender({ value, onValueChange, onScroll, rowsCount: 500 });
+        
+        expect(onScroll).toBeCalledTimes(3);
+        expect(result.current.scrollContainerRef.current).toBeInTheDocument();
+        expect(result.current.listContainerRef.current).toBeInTheDocument();
+        expect(result.current.estimatedHeight).toBe(10000);
+        expect(result.current.listOffset).toBe(0);
+        expect(typeof result.current.scrollToIndex).toBe('function');
+        expect(typeof result.current.handleScroll).toBe('function');
+
+        expect(result.current.offsetY).toBe(400);
+
+        expect(onValueChange).toBeCalledTimes(3);
+        
+        rerender({ value: { ...value, scrollTo: { index: 100 } }, onValueChange, onScroll, rowsCount: 500 });
+        
+        expect(onScroll).toBeCalledTimes(5);
+        expect(onValueChange).toBeCalledTimes(4);
+        expect(onValueChange).toHaveBeenLastCalledWith({ topIndex: 80, visibleCount: 20, scrollTo: { index: 100 } });
+
+        rerender({ value, onValueChange, onScroll, rowsCount: 500 });
+        
+        expect(onScroll).toBeCalledTimes(6);
+        expect(onValueChange).toBeCalledTimes(5);
+        
+        act(() => result.current.scrollToIndex(100, 'auto'));
+        
+        expect(onScroll).toBeCalledTimes(6);
+        expect(onValueChange).toBeCalledTimes(5);
         expect(result.current.offsetY).toBe(1600);
         expect(result.current.estimatedHeight).toBe(10000);
     });
