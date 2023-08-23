@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from 'react';
+import React, { useRef } from 'react';
 import {
     PlateElement,
     PlateElementProps,
@@ -8,7 +8,6 @@ import { ELEMENT_TABLE, TTableElement, TablePlugin, getTableColumnCount, useTabl
 import cx from 'classnames';
 import css from './TableElement.module.scss';
 import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
-import { TableCellResizer } from './TableCellResizer';
 
 interface OldTableElement extends TTableElement {
     data?: {
