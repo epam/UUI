@@ -1,0 +1,28 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "The "
+      },
+      {
+        "text": "@epam/test-utils",
+        "color": "rgb(48, 50, 64)",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "color": "rgb(48, 50, 64)",
+        "text": " library requires "
+      },
+      {
+        "color": "rgb(48, 50, 64)",
+        "text": "React ^18",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "color": "rgb(48, 50, 64)",
+        "text": " If this version of React cannot be used, then it's still possible to test UUI components using approach below."
+      }
+    ]
+  }
+]
