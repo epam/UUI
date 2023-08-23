@@ -188,6 +188,7 @@ export const useTableCellElementResizable = ({
     /* eslint-disable @typescript-eslint/no-shadow */
     const getHandleHoverProps = (colIndex: number) => ({
         onHover: () => {
+            // console.log('onHover', colIndex);
             if (hoveredColIndex === null) {
                 // console.log('hovering', colIndex);
                 setHoveredColIndex(colIndex);

@@ -12,9 +12,9 @@ import { ReactComponent as RemoveTable } from '../../icons/table-table_remove-24
 import css from './ToolbarContent.module.scss';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { deleteColumn } from './deleteColumn';
-import { createCell } from './utils';
-import { usePlateEditorState, insertElements, TElementEntry, removeNodes } from '@udecode/plate-common';
-import { getTableEntries, insertTableColumn, insertTableRow, deleteRow, deleteTable } from '@udecode/plate-table';
+import { usePlateEditorState, insertElements, TElementEntry, removeNodes, isCollapsed, getRange, createNode, TDescendant } from '@udecode/plate-common';
+import { getTableEntries, insertTableColumn, insertTableRow, deleteRow, deleteTable, getEmptyCellNode } from '@udecode/plate-table';
+import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 
 function StyledRemoveTable() {
     return <RemoveTable className={ css.removeTableIcon } />;
@@ -27,26 +27,52 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
     const cellPath = useMemo(() => cell && cell[1], [cell]);
     const rowPath = useMemo(() => row && row[1][2] !== 0 && row[1], [row]);
 
-    const unmergeCells = () => {
-        const [item]: any[] = cellEntries;
-        const [mergedCellElem] = item;
-        const textContent = cellEntries
-            .map(([data]: any) => data?.children[0]?.children[0]?.text)
-            .join(' ');
-        const mergedCell = createCell({ type: mergedCellElem.type, textContent });
-        const emptyCell = createCell({ type: mergedCellElem.type });
+    const canUnmerge = isCollapsed(editor.selection)
+    && cellEntries
+    && cellEntries.length === 1
+    && ((cellEntries[0][0] as any)?.colSpan > 1
+        || (cellEntries[0][0] as any)?.rowSpan > 1);
 
-        removeNodes(editor, { at: item[1] });
-        for (let i = 1; i < item[0].data.colSpan; i++) {
-            insertElements(editor, emptyCell, { at: item[1] });
-        }
-        for (let i = 1; i < item[0].data.rowSpan; i++) {
-            insertElements(editor, emptyCell, {
-                // plus one row, when is vertical align
-                at: item[1].map((itemRow: number, index: number) => index === 2 ? itemRow + 1 : itemRow),
+    const unmergeCells = () => {
+        const [[cellElem, path]] = cellEntries;
+
+        // creating new object per iteration is essential here
+        const createEmptyCell = (children?: TDescendant[]) => {
+            return {
+                ...getEmptyCellNode(editor, {
+                    header: cellElem.type === 'th',
+                    newCellChildren: children,
+                }),
+                colSpan: 1,
+                rowSpan: 1,
+            };
+        };
+
+        const tablePath = path.slice(0, -2);
+
+        const cellPath = path.slice(-2);
+        const [rowPath, colPath] = cellPath;
+        const colSpan = cellElem.colSpan;
+        const rowSpan = cellElem.rowSpan;
+
+        const colPaths = Array.from({ length: colSpan } as ArrayLike<number>, (_, index) => { return index; })
+            .map((current) => {
+                return colPath + current;
             });
-        }
-        insertElements(editor, mergedCell, { at: item[1] });
+
+        removeNodes(editor, { at: path });
+
+        Array.from({ length: rowSpan } as ArrayLike<number>, (_, index) => { return index; })
+            .map((current) => {
+                const currentRowPath = rowPath + current;
+                return colPaths.map((currentColPath) => [...tablePath, currentRowPath, currentColPath]);
+            })
+            .flat()
+            .forEach((p, index) => insertElements(
+                editor,
+                index === 0 ? createEmptyCell(cellElem.children) : createEmptyCell(),
+                { at: p },
+            ));
     };
 
     return (
@@ -94,14 +120,11 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
                 icon={ StyledRemoveTable }
                 cx={ css.removeTableButton }
             />
-            { cellEntries
-                && cellEntries.length === 1
-                && ((cellEntries[0][0]?.data as any)?.colSpan > 1
-                    || (cellEntries[0][0]?.data as any)?.rowSpan > 1) && (
+            { canUnmerge && (
                 <ToolbarButton
-                        key="unmerge-cells"
-                        onClick={ unmergeCells }
-                        icon={ UnmergeCellsIcon }
+                    key="unmerge-cells"
+                    onClick={ unmergeCells }
+                    icon={ UnmergeCellsIcon }
                 />
             ) }
         </Fragment>

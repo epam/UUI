@@ -12,27 +12,20 @@ export interface TableCellElementProps extends PlateElementProps {
     isHeader?: boolean;
 }
 
-const checkIsFirstCell = (colIndex: number, cellNode: TElement) => {
-    const cellColSpan = (cellNode.colSpan as number);
-    const isFirstMergedCell = colIndex + 1 === cellColSpan;
-    return colIndex === 0 || isFirstMergedCell;
+const getClosest = (target: number, offsets: number[]) => {
+    const closest = offsets.reduce((acc, current, index) => {
+        return Math.abs(current - target) < Math.abs(acc.value - target)
+            ? { value: current, index }
+            : acc;
+    }, {
+        value: 0,
+        index: 0,
+    });
+
+    // console.log('closest', closest);
+
+    return closest.index;
 };
-
-export function getCellFromTarget(node: Node): Node | null {
-    let currentNode: ParentNode | Node | null = node;
-
-    while (currentNode != null) {
-        const nodeName = currentNode.nodeName;
-
-        if (nodeName === 'TD' || nodeName === 'TH') {
-            return currentNode;
-        }
-
-        currentNode = currentNode.parentNode;
-    }
-
-    return null;
-}
 
 const TableCellElement = React.forwardRef<
 React.ElementRef<typeof PlateElement>,
@@ -70,72 +63,69 @@ TableCellElementProps
     const rowSizeOverrides = useTableStore().get.rowSizeOverrides();
     const rowSize = rowSizeOverrides.get(rowIndex) ?? rowElement?.size ?? undefined;
 
-    // const isFirstCell = colIndex === 0;
     const isFirstRow = tableElement.children?.[0] === rowElement;
 
     const isHeader = cellElement.type === 'table_header_cell';
     const Cell = isHeader ? 'th' : 'td';
 
     const colSizes = tableElement.colSizes;
-    // const currentColSizes = element.colSizes.map((size, index) => colSizeOverrides?.get(index) || size || EMPTY_COL_WIDTH);
 
     const content = cellElement.children
         .map((node) => (node as TTableCellElement).children[0].text)
         .join(' ');
 
-    const cIndex = useRef<number>(0);
+    const cIndex = useRef<number>(getTableColumnIndex(editor, cellElement));
+    const startCIndex = useRef<number>(getTableColumnIndex(editor, cellElement));
     const path = findNodePath(editor, cellElement);
-    const pathString = path.join();
-    const prevPathStringRef = useRef<string>();
+    // const pathString = path.join();
+    // const prevPathStringRef = useRef<string>();
 
-    // if (pathString !== prevPathStringRef.current) {
-    //     prevPathStringRef.current = pathString;
-    //     console.log('path changed', prevPathStringRef.current, content);
-    // }
-
-    if (cellRef.current && hoveredColIndex === null && pathString !== prevPathStringRef.current) {
-        prevPathStringRef.current = pathString;
+    if (cellRef.current && hoveredColIndex === null) {
+        // prevPathStringRef.current = pathString;
         // console.log('path changed', prevPathStringRef.current, content);
 
         const cellOffset = cellRef.current?.offsetLeft;
-        const cellWidth = cellRef.current?.offsetWidth;
 
         const { offsets } = colSizes.reduce((acc, current) => {
             const currentOffset = acc.prevOffset + current;
-
             acc.offsets.push(currentOffset);
             acc.prevOffset = currentOffset;
-
             return acc;
         }, {
-            offsets: [],
+            offsets: [0],
             prevOffset: 0,
         });
 
-        const startColIndex = offsets.findIndex((current) => current === cellOffset + cellWidth);
-        // const colIndex = cellElement.colSpan - 1 + startColIndex;
-        // const colIndex = startColIndex;
+        // const startColIndex = offsets.findIndex((current) => current === cellOffset);
+        const startColIndex = getClosest(cellOffset, offsets);
 
-        if (startColIndex !== -1) {
-            cellElement.colIndex = startColIndex;
-            cIndex.current = startColIndex;
-        }
+        cellElement.colIndex = startColIndex;
+        startCIndex.current = startColIndex;
+        cIndex.current = startColIndex + cellElement.colSpan - 1;
 
         console.log(
             'content',
             content,
+            'rowIndex',
+            rowIndex,
+            'colIndex',
+            cIndex.current,
+            'path',
+            path,
             // 'cellRef.current',
             // cellRef.current,
             // 'offset',
             // cellOffset,
-            'colIndex',
-            cIndex.current,
+            // 'colIndex',
+            // cIndex.current,
+            // 'startCIndex',
+            // startCIndex.current,
             // 'cellElement.colSpan',
             // cellElement.colSpan,
             // 'cIndex.current',
             // cIndex.current,
-            'hoveredColIndex',
-            hoveredColIndex,
+            // 'hoveredColIndex',
+            // hoveredColIndex,
             // 'cellWidth',
             // cellWidth,
             // 'offsets',
@@ -144,21 +134,19 @@ TableCellElementProps
             // startColIndex,
             // 'colSpan',
             // cellElement.colSpan,
-
             // colSizes,
         );
     }
 
-    console.log('hoveredColIndex', hoveredColIndex);
-
+    const isFirstCell = startCIndex.current === 0;
     const borders = getTableCellBorders(cellElement, {
-        isFirstCell: checkIsFirstCell(cIndex.current, cellElement),
+        isFirstCell,
         isFirstRow,
     });
 
     const selected = isCellSelected;
     const hovered = hoveredColIndex === cIndex.current;
-    // const hoveredLeft = checkIsFirstCell(colIndex, cellElement) && hoveredColIndex === -1;
+    const hoveredLeft = isFirstCell && hoveredColIndex === -1;
 
     return (
         <PlateElement
@@ -189,26 +177,25 @@ TableCellElementProps
                     { children }
                 </div>
 
-                {cellRef.current && (
-                    <div
-                        className={ css.resizableWrapper }
-                        contentEditable={ false }
-                    >
-                        <TableCellElementResizable
-                            colIndex={ cIndex.current }
-                            rowIndex={ rowIndex }
-                            readOnly={ readOnly }
-                        />
+                <div
+                    className={ css.resizableWrapper }
+                    contentEditable={ false }
+                >
+                    <TableCellElementResizable
+                        colIndex={ cIndex.current }
+                        rowIndex={ rowIndex }
+                        readOnly={ readOnly }
+                    />
 
-                        { !readOnly && hovered && (
-                            <div className={ cx(css.resizeHandleRight) } />
-                        ) }
+                    { !readOnly && hovered && (
+                        <div className={ cx(css.resizeHandleRight) } />
+                    ) }
 
-                        {/* { !readOnly && hoveredLeft && (
+                    { !readOnly && hoveredLeft && (
                         <div className={ cx(css.resizeHandleLeft) } />
-                    ) } */}
-                    </div>
-                )}
+                    ) }
+                </div>
+
             </Cell>
         </PlateElement>
     );
