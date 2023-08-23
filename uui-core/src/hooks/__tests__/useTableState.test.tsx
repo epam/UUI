@@ -1,14 +1,14 @@
 import { renderHookWithContextAsync, CustomWrapperType, act } from '@epam/uui-test-utils';
-import { useTableState, UseTableStateHookParams } from '../../useTableState';
+import { useTableState, UseTableStateHookParams } from '../useTableState';
 import {
     DataColumnProps, DataTableState, IRouterContext, ITablePreset, TableFiltersConfig, UuiContexts,
-} from '../../../types';
-import { StubAdaptedRouter, UuiContext } from '../../../services';
-import { useUuiServices } from '../../useUuiServices';
+} from '../../types';
+import { StubAdaptedRouter, UuiContext } from '../../services';
+import { useUuiServices } from '../useUuiServices';
 import React from 'react';
 
-import { ArrayDataSource } from '@epam/uui-core';
-import { defaultPredicates } from '@epam/uui';
+import { ArrayDataSource } from '../../../index';
+import { defaultPredicates } from '@epam/uui/build/index';
 
 const filters: TableFiltersConfig<any>[] = [
     {
