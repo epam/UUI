@@ -36,21 +36,11 @@ TableCellElementProps
     const cellElement = useElement<ExtendedTTableCellElement>();
     const cellRef = useRef<HTMLTableDataCellElement>();
 
-    /**
-     * Apply valid spans to element
-     */
-    // const attrColSpan = isNaN(cellElement.attributes?.colspan) ? 1 : Number(cellElement.attributes?.colspan);
-    // const attrRowSpan = isNaN(cellElement.attributes?.rowspan) ? 1 : Number(cellElement.attributes?.rowspan);
-    // const appliedSpans = {
-    //     colSpan: cellElement?.data?.colSpan ?? attrColSpan,
-    //     rowSpan: cellElement?.data?.rowSpan ?? attrRowSpan,
-    // };
-    cellElement.colSpan = cellElement.colSpan || 1;
-    cellElement.rowSpan = cellElement.rowSpan || 1;
+    const attrColSpan = Number(cellElement.attributes?.colspan);
+    const attrRowSpan = Number(cellElement.attributes?.rowspan);
+    cellElement.colSpan = cellElement.colSpan || attrColSpan || 1;
+    cellElement.rowSpan = cellElement.rowSpan || attrRowSpan || 1;
 
-    // TODO: move to plate
-    // const colIndex = cellElement.colIndex;
-    // let colIndex = getTableColumnIndex(editor, cellElement);
     const rowIndex = getTableRowIndex(editor, cellElement) + cellElement.rowSpan - 1;
 
     const readOnly = useReadOnly();
@@ -76,14 +66,9 @@ TableCellElementProps
 
     const cIndex = useRef<number>(getTableColumnIndex(editor, cellElement));
     const startCIndex = useRef<number>(getTableColumnIndex(editor, cellElement));
-    const path = findNodePath(editor, cellElement);
-    // const pathString = path.join();
-    // const prevPathStringRef = useRef<string>();
+    // const path = findNodePath(editor, cellElement);
 
     if (cellRef.current && hoveredColIndex === null) {
-        // prevPathStringRef.current = pathString;
-        // console.log('path changed', prevPathStringRef.current, content);
-
         const cellOffset = cellRef.current?.offsetLeft;
 
         const { offsets } = colSizes.reduce((acc, current) => {
@@ -103,39 +88,43 @@ TableCellElementProps
         startCIndex.current = startColIndex;
         cIndex.current = startColIndex + cellElement.colSpan - 1;
 
-        console.log(
-            'content',
-            content,
-            'rowIndex',
-            rowIndex,
-            'colIndex',
-            cIndex.current,
-            'path',
-            path,
-            // 'cellRef.current',
-            // cellRef.current,
-            // 'offset',
-            // cellOffset,
-            // 'colIndex',
-            // cIndex.current,
-            // 'startCIndex',
-            // startCIndex.current,
-            // 'cellElement.colSpan',
-            // cellElement.colSpan,
-            // 'cIndex.current',
-            // cIndex.current,
-            // 'hoveredColIndex',
-            // hoveredColIndex,
-            // 'cellWidth',
-            // cellWidth,
-            // 'offsets',
-            // offsets,
-            // 'startColIndex',
-            // startColIndex,
-            // 'colSpan',
-            // cellElement.colSpan,
-            // colSizes,
-        );
+        // console.log(
+        //     'content',
+        //     content,
+        //     // 'rowIndex',
+        //     // rowIndex,
+        //     // 'colIndex',
+        //     // cIndex.current,
+        //     // 'path',
+        //     // path,
+        //     // 'props.nodeProps',
+        //     // props.nodeProps,
+        //     // 'cellRef.current',
+        //     // cellRef.current,
+        //     // 'offset',
+        //     // cellOffset,
+        //     // 'colIndex',
+        //     // cIndex.current,
+        //     // 'startCIndex',
+        //     // startCIndex.current,
+        //     // 'cellElement.colSpan',
+        //     // cellElement.colSpan,
+        //     // 'cIndex.current',
+        //     // cIndex.current,
+        //     // 'hoveredColIndex',
+        //     // hoveredColIndex,
+        //     // 'cellWidth',
+        //     // cellWidth,
+        //     // 'offsets',
+        //     // offsets,
+        //     // 'startColIndex',
+        //     // startColIndex,
+        //     'colSpan',
+        //     cellElement.colSpan,
+        //     'rowSpan',
+        //     cellElement.rowSpan,
+        //     // colSizes,
+        // );
     }
 
     const isFirstCell = startCIndex.current === 0;
