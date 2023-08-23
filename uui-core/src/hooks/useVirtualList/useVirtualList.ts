@@ -5,8 +5,7 @@ import {
     getRowsToFetchForScroll, getUpdatedRowsInfo, getTopCoordinate, assumeHeightForScrollToIndex,
     getTopIndexWithOffset, getOffsetYForIndex,
 } from './utils';
-import { UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
-import { VirtualListInfo } from './VirtualListInfo';
+import { VirtualListInfo, UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
 
 export function useVirtualList<List extends HTMLElement = any, ScrollContainer extends HTMLElement = any>(
     props: UseVirtualListProps,
@@ -27,18 +26,18 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     const rowHeights = React.useRef<number[]>([]);
     const rowOffsets = React.useRef<number[]>([]);
 
-    const getVirtualListInfo = () => new VirtualListInfo(
-        scrollContainer.current,
-        listContainer.current,
+    const getVirtualListInfo = (): VirtualListInfo => ({
+        scrollContainer: scrollContainer.current,
+        listContainer: listContainer.current,
+        rowHeights: rowHeights.current,
+        rowOffsets: rowOffsets.current,
         value,
         rowsCount,
         blockSize,
         overdrawRows,
-        rowHeights.current,
-        rowOffsets.current,
         listOffset,
         estimatedHeight,
-    );
+    });
 
     useLayoutEffectSafeForSsr(() => {
         if (!scrollContainer.current || !listContainer.current) return;

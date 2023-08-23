@@ -43,3 +43,17 @@ export interface RowsInfo {
     rowOffsets: number[];
     averageRowHeight?: number;
 }
+
+export interface VirtualListInfo {
+    scrollContainer: HTMLElement | undefined,
+    listContainer: HTMLElement | undefined,
+    value: VirtualListState | undefined,
+    rowsCount: number,
+    blockSize: number,
+    overdrawRows: number,
+    rowHeights: number[],
+    rowOffsets: number[],
+    listOffset: number | undefined | null,
+    estimatedHeight?: number,
+    averageRowHeight?: number,
+}
