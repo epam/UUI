@@ -405,6 +405,15 @@
     /* Blocker */
     --uui-blocker-bg: var(--uui-app-bg);
 
+    /* DropSpot */
+
+    --uui-dropspot-border: var(--night400);
+    --uui-dropspot-border-dropstart: var(--uui-primary);
+    --uui-dropspot-background-dropstart: var(--uui-primary-lightest);
+    --uui-dropspot-link-color: var(--uui-primary);
+    --uui-dropspot-link-hover: var(--uui-primary-dark);
+    --uui-dropspot-icon: var(--uui-primary);
+
     /* FileCard */
     --uui-file-card-background: var(--night400);
     --uui-file-card-background-loaading: var(--night400);
@@ -414,6 +423,12 @@
     --uui-file-card-dropstart-border: var(--uui-primary-50);
     --uui-file-card-dropstart-background: var(--uui-primary-10);
     --uui-file-card-link-hover: var(--uui-primary-60);
+
+    --uui-filecard-background: var(--night400);
+    --uui-filecard-icon-error: var(--uui-negative);
+    --uui-filecard-border-error: var(--uui-negative);
+    --uui-filecard-text-error: var(--uui-negative-darkest);
+    --uui-filecard-default: var(--uui-secondary);
 
     /* ------------------------------------ */
 
