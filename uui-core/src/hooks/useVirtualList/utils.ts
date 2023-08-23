@@ -1,6 +1,5 @@
 import type { VirtualListState } from '../../types';
-import { VirtualListInfo } from './VirtualListInfo';
-import { RowsInfo } from './types';
+import { RowsInfo, VirtualListInfo } from './types';
 
 export const getUpdatedRowHeights = (virtualListInfo: VirtualListInfo) => {
     const newRowHeights = [...virtualListInfo.rowHeights];
