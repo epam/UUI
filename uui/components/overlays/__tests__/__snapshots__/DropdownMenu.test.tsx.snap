@@ -23,7 +23,6 @@ Array [
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
-    tabIndex={-1}
   >
     <div
       className="uui-dropdown-body bodyRoot -lock-focus container"

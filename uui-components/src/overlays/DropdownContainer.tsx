@@ -15,7 +15,7 @@ export interface DropdownContainerProps
     width?: number | 'auto';
     maxWidth?: number;
     /**
-     * If it's true DropdownContainer will be wrapped with FocusLock component to support keyboard navigation.
+     * If it's `true` DropdownContainer will be wrapped with FocusLock component to support keyboard navigation.
      * You can also specify the setting for FocusLock by passing an object.
      * If this prop it set to `true` the following FocusLock settings are used by default:
      *      {
@@ -34,49 +34,57 @@ export interface DropdownContainerProps
     style?: React.CSSProperties;
 }
 
-export class DropdownContainer extends React.Component<DropdownContainerProps> {
+class DropdownContainerInner extends React.Component<DropdownContainerProps> {
     render() {
-        const handleEscape = (e: React.KeyboardEvent<HTMLElement>) => {
-            if (e.key === 'Escape' && this.props.isOpen) {
-                this.props.onClose?.();
-            }
-        };
-    
-        const getFocusLockProps = () => {
-            const { focusLock } = this.props;
-            const defaultProps = {
-                returnFocus: true,
-                persistentFocus: true,
-                lockProps: { onKeyDown: handleEscape },
-            };
-    
-            if (focusLock === true) {
-                return defaultProps;
-            }
-            if (typeof focusLock === 'object') {
-                return {
-                    ...defaultProps,
-                    ...(focusLock as typeof FocusLock),
-                };
-            }
-        };
-
         return (
-            <FocusLock disabled={ !this.props.focusLock } { ...getFocusLockProps() }>
-                <VPanel
-                    forwardedRef={ this.props.forwardedRef }
-                    cx={ cx(uuiElement.dropdownBody, this.props.cx, uuiMarkers.lockFocus) }
-                    style={ {
-                        ...this.props.style, minWidth: this.props.width, minHeight: this.props.height, maxWidth: this.props.maxWidth,
-                    } }
-                    rawProps={ { tabIndex: this.props.focusLock ? -1 : 0, ...this.props.rawProps } }
-                >
-                    {this.props.children}
-                    {this.props.showArrow && (
-                        <PopoverArrow ref={ this.props?.arrowProps?.ref } arrowProps={ this.props?.arrowProps } placement={ this.props?.placement || 'bottom-start' } />
-                    )}
-                </VPanel>
-            </FocusLock>
+            <VPanel
+                forwardedRef={ this.props.forwardedRef }
+                cx={ cx(uuiElement.dropdownBody, this.props.cx, uuiMarkers.lockFocus) }
+                style={ {
+                    ...this.props.style, minWidth: this.props.width, minHeight: this.props.height, maxWidth: this.props.maxWidth,
+                } }
+                rawProps={ { tabIndex: this.props.focusLock ? -1 : 0, ...this.props.rawProps } }
+            >
+                {this.props.children}
+                {this.props.showArrow && (
+                    <PopoverArrow ref={ this.props?.arrowProps?.ref } arrowProps={ this.props?.arrowProps } placement={ this.props?.placement || 'bottom-start' } />
+                )}
+            </VPanel>
         );
     }
+}
+
+export function DropdownContainer(props: DropdownContainerProps) {
+    const handleEscape = (e: React.KeyboardEvent<HTMLElement>) => {
+        if (e.key === 'Escape' && props.isOpen) {
+            props.onClose?.();
+        }
+    };
+
+    const getFocusLockProps = () => {
+        const { focusLock } = props;
+        const defaultProps = {
+            returnFocus: true,
+            persistentFocus: true,
+            lockProps: { onKeyDown: handleEscape },
+        };
+
+        if (focusLock === true) {
+            return defaultProps;
+        }
+        if (typeof focusLock === 'object') {
+            return {
+                ...defaultProps,
+                ...(focusLock as typeof FocusLock),
+            };
+        }
+    };
+
+    return props.focusLock
+        ? (
+            <FocusLock { ...getFocusLockProps() }>
+                <DropdownContainerInner { ...props }>{props.children}</DropdownContainerInner>
+            </FocusLock>
+        )
+        : (<DropdownContainerInner { ...props }>{props.children}</DropdownContainerInner>);
 }
