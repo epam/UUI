@@ -2,12 +2,12 @@ import { renderHookWithContextAsync, CustomWrapperType, act } from '@epam/uui-te
 import { useTableState, UseTableStateHookParams } from '../useTableState';
 import {
     DataColumnProps, DataTableState, IRouterContext, ITablePreset, TableFiltersConfig, UuiContexts,
-} from '../../types';
-import { StubAdaptedRouter, UuiContext } from '../../services';
-import { useUuiServices } from '../useUuiServices';
+} from '../../../types';
+import { StubAdaptedRouter, UuiContext } from '../../../services';
+import { useUuiServices } from '../../useUuiServices';
 import React from 'react';
 
-import { ArrayDataSource } from '../../../index';
+import { ArrayDataSource } from '../../../../index';
 import { defaultPredicates } from '@epam/uui/build/index';
 
 const filters: TableFiltersConfig<any>[] = [
@@ -447,7 +447,11 @@ describe('useTableState', () => {
 
             expect(result.current.activePresetId).toEqual(undefined);
 
-            act(() => result.current.setTableState(complexURLFilterValue));
+            act(() => result.current.setTableState({
+                topIndex: 0,
+                visibleCount: 40,
+                ...complexURLFilterValue,
+            }));
 
             expect(result.current.hasPresetChanged(presets[0])).toEqual(true);
 
