@@ -23,7 +23,13 @@ export default function ConfigurePortalTargetAndPlacement() {
     const dataSource = useLazyDataSource({ api: loadPersons }, []);
 
     const renderDropdownBody = (props: DropdownBodyProps) => (
-        <DropdownContainer focusLock={ { lockProps: { onKeyDown: null }, shards: [portalTargetRef] } } showArrow={ true } maxWidth={ 360 } { ...props }>
+        <DropdownContainer
+            { ...props }
+            showArrow={ true }
+            maxWidth={ 360 }
+            closeOnEsc={ false }
+            shards={ [portalTargetRef] }
+        >
             <Panel>
                 <FlexRow alignItems="top" padding="18" vPadding="24">
                     <FlexCell grow={ 1 } ref={ portalTargetRef }>

@@ -55,14 +55,11 @@ function DropdownMenuContainer(props: IDropdownMenuContainer) {
     const focusLockProps = {
         as: 'menu',
         className: css.menuRoot,
-        ref: menuRef,
-        returnFocus: true,
-        persistentFocus: true,
         lockProps: { onKeyDown: handleArrowKeys },
     };
 
     return (
-        <DropdownContainer { ...props } rawProps={ { ...props.rawProps } } focusLock={ focusLockProps } />
+        <DropdownContainer { ...props } rawProps={ { ...props.rawProps } } { ...focusLockProps } forwardedRef={ menuRef as any } />
     );
 }
 

@@ -7,7 +7,7 @@ import { ReactComponent as navigationBack } from '@epam/assets/icons/common/navi
 import css from './DefaultExample.module.scss';
 
 export default function DefaultLinkButtonExample() {
-    const renderDropdownBody = (props: DropdownBodyProps) => <DropdownContainer { ...props } />;
+    const renderDropdownBody = (props: DropdownBodyProps) => <DropdownContainer focusLock={ false } { ...props } />;
 
     return (
         <>

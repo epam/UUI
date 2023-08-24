@@ -35,7 +35,7 @@ export default function BasicAdaptivePanelExample() {
                 <Dropdown
                     renderTarget={ (props) => <Button caption="Hidden items" { ...props } /> }
                     renderBody={ (props) => (
-                        <DropdownContainer { ...props } focusLock>
+                        <DropdownContainer { ...props }>
                             {hiddenItems.map((i) => (
                                 <VerticalTabButton caption={ i.data.caption } onClick={ () => {} } />
                             ))}

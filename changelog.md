@@ -3,7 +3,7 @@
 **What's New**
 * [FiltersPanel]: added possibility to provide your own custom filter
 * [useForm]: validate callback now return new validationState
-* [DropdownContainer]: added prop `focusLock` for support of keyboard navigation
+* [DropdownContainer]: added prop `focusLock` for support of keyboard navigation. It's `true` by default.
 
 **What's Fixed**
 * Added focus state styles for Accordion, AvatarStack, Anchor, Badge, Button, Burger, Checkbox, Control Group, IconButton, LinkButton, MainMenu, RadioInput, Switch, TabButton, Tag.

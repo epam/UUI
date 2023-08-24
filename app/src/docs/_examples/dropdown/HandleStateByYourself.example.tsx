@@ -11,7 +11,7 @@ export default function BasicDropdownExample() {
 
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownContainer showArrow={ true } vPadding="24" padding="18" { ...props }>
+            <DropdownContainer showArrow={ true } vPadding="24" padding="18" focusLock={ false } { ...props }>
                 <FlexRow alignItems="center" spacing="12">
                     <Avatar size="48" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" />
 
