@@ -9,7 +9,7 @@ import css from './HandleStateExample.module.scss';
 export default function CloseOpenModifiersExample() {
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownContainer vPadding="24" padding="18" { ...props }>
+            <DropdownContainer vPadding="24" padding="18" focusLock={ false } { ...props }>
                 <FlexRow alignItems="center" spacing="12">
                     <Avatar size="48" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" />
 

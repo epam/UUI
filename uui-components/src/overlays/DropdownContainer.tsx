@@ -6,29 +6,29 @@ import {
 import { VPanel } from '../layout/flexItems/VPanel';
 import PopoverArrow from './PopoverArrow';
 
+type FocusLockProps = Pick<React.ComponentProps<typeof FocusLock>, 'returnFocus' | 'persistentFocus' | 'lockProps' | 'shards' | 'as' | 'className'>;
 export interface DropdownContainerProps
     extends IHasCX,
     IHasChildren,
     IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
     IHasForwardedRef<HTMLDivElement>,
-    IDropdownBodyProps {
+    IDropdownBodyProps,
+    FocusLockProps {
     width?: number | 'auto';
     maxWidth?: number;
     /**
-     * If it's `true` DropdownContainer will be wrapped with FocusLock component to support keyboard navigation.
-     * You can also specify the setting for FocusLock by passing an object.
-     * If this prop it set to `true` the following FocusLock settings are used by default:
-     *      {
-     *          returnFocus: true,
-     *          persistentFocus: true,
-     *          lockProps: { onKeyDown },
-     *       }
-     * It means that after DropdownContainer appeared the focus will be set on the first focusable element.
-     * And the focus is locked inside the component.
-     * Also it returns focus into initial position on unmount.
-     * More over by default Escape key press is handled and `props.onClose()` is invoked.
+     * Wraps DropdownContainer with FocusLock component to support keyboard navigation. It's `true` by default.
+     * After DropdownContainer appeared the focus will be set on the first focusable element inside.
+     * 
+     * You can also specify the following props for FocusLock: 'returnFocus', 'persistentFocus', 'lockProps', 'shards', 'as' by passing them as DropdownContainer's props.
+     * By default 'returnFocus' and 'persistentFocus' are true. It means that the focus is locked inside the component and the focus returns into initial position on unmount.
      */
-    focusLock?: boolean | React.ComponentProps<typeof FocusLock>;
+    focusLock?: boolean;
+    /**
+     * If `true` it handles Escape key press on FocusLock wrappers (see `focusLock` prop) and calls `props.onClose()`.
+     * By default the value is `true`.
+     */
+    closeOnEsc?: boolean;
     height?: number;
     showArrow?: boolean;
     style?: React.CSSProperties;
@@ -43,7 +43,7 @@ class DropdownContainerInner extends React.Component<DropdownContainerProps> {
                 style={ {
                     ...this.props.style, minWidth: this.props.width, minHeight: this.props.height, maxWidth: this.props.maxWidth,
                 } }
-                rawProps={ { tabIndex: this.props.focusLock ? -1 : 0, ...this.props.rawProps } }
+                rawProps={ { tabIndex: -1, ...this.props.rawProps } }
             >
                 {this.props.children}
                 {this.props.showArrow && (
@@ -61,30 +61,42 @@ export function DropdownContainer(props: DropdownContainerProps) {
         }
     };
 
-    const getFocusLockProps = () => {
-        const { focusLock } = props;
-        const defaultProps = {
-            returnFocus: true,
-            persistentFocus: true,
-            lockProps: { onKeyDown: handleEscape },
-        };
+    const {
+        focusLock,
+        returnFocus,
+        persistentFocus,
+        closeOnEsc,
+        lockProps,
+        shards,
+        as,
+        className,
+    } = props;
 
-        if (focusLock === true) {
-            return defaultProps;
-        }
-        if (typeof focusLock === 'object') {
-            return {
-                ...defaultProps,
-                ...(focusLock as typeof FocusLock),
-            };
-        }
+    const focusLockProps = {
+        returnFocus,
+        persistentFocus,
+        lockProps: {
+            ...(closeOnEsc && { onKeyDown: handleEscape }),
+            ...lockProps,
+        },
+        ...(shards && { shards }),
+        ...(as && { as }),
+        ref: props.forwardedRef,
+        className,
     };
 
-    return props.focusLock
+    return focusLock
         ? (
-            <FocusLock { ...getFocusLockProps() }>
+            <FocusLock { ...focusLockProps }>
                 <DropdownContainerInner { ...props }>{props.children}</DropdownContainerInner>
             </FocusLock>
         )
         : (<DropdownContainerInner { ...props }>{props.children}</DropdownContainerInner>);
 }
+
+DropdownContainer.defaultProps = {
+    focusLock: true,
+    closeOnEsc: true,
+    returnFocus: true,
+    persistentFocus: true,
+};

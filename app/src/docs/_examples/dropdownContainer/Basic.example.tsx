@@ -11,7 +11,7 @@ import { ReactComponent as phoneIcon } from '@epam/assets/icons/common/communica
 export default function BasicExample() {
     const renderFirstDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownContainer maxWidth={ 360 } vPadding="12" padding="18" { ...props } focusLock>
+            <DropdownContainer maxWidth={ 360 } vPadding="12" padding="18" { ...props }>
                 <FlexCell alignSelf="flex-start">
                     <Text fontSize="18" lineHeight="24" color="gray90" font="museo-slab">
                         Some Title
@@ -32,7 +32,7 @@ export default function BasicExample() {
 
     const renderSecondDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownContainer showArrow={ true } width="auto" { ...props } focusLock>
+            <DropdownContainer showArrow={ true } width="auto" { ...props }>
                 <Panel>
                     <DropdownMenuButton caption="Export" icon={ ExportIcon } onClick={ () => {} } />
                     <DropdownMenuButton caption="Delete" icon={ DeleteIcon } onClick={ () => {} } />

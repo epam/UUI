@@ -9,7 +9,7 @@ import { IDropdownToggler } from '@epam/uui-core';
 export default function BasicDropdownExample() {
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownContainer maxWidth={ 360 } vPadding="24" padding="18" { ...props } focusLock>
+            <DropdownContainer maxWidth={ 360 } vPadding="24" padding="18" { ...props }>
                 <FlexCell alignSelf="flex-start">
                     <Text fontSize="18" lineHeight="24" color="gray90" font="museo-slab">
                         Some Title

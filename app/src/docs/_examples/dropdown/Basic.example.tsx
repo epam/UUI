@@ -23,7 +23,7 @@ import { ReactComponent as rightArrIcon } from '@epam/assets/icons/common/naviga
 export default function BasicDropdownExample() {
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownContainer showArrow={ true } cx={ css.container } { ...props } focusLock>
+            <DropdownContainer showArrow={ true } cx={ css.container } { ...props }>
                 <FlexRow alignItems="top" padding="12" vPadding="24">
                     <Panel style={ { width: '100%' } }>
                         <FlexRow cx={ css.containerItem } padding="6">

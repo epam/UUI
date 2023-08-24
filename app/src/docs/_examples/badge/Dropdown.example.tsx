@@ -20,7 +20,7 @@ export default function TypesExample() {
 
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownContainer focusLock { ...props } style={ { minWidth: null } }>
+            <DropdownContainer { ...props } width="auto">
                 {dropdownMenuItems.map((item) => (
                     <DropdownMenuButton
                         key={ item.id }
