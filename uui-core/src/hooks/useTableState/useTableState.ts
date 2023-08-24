@@ -194,7 +194,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>
 
     const [tableStateValue, setTableStateValue] = useState<DataTableState<TFilter, TViewState>>(() => {
         const value = getValueFromUrl(context.uuiRouter.getCurrentLink().query);
-        const activePreset = params.initialPresets.find((p: ITablePreset<TFilter, TViewState>) => p.id === value.presetId);
+        const activePreset = params.initialPresets?.find((p: ITablePreset<TFilter, TViewState>) => p.id === value.presetId);
         const filtersConfig = normalizeFilterConfig(activePreset?.filtersConfig, value.filter, params?.filters);
         return {
             ...value,
