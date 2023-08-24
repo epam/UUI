@@ -1,31 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { PlateElement, PlateElementProps, TElement, findNodePath, useElement, usePlateEditorRef } from '@udecode/plate-common';
+import React, { useRef } from 'react';
+import { PlateElement, PlateElementProps, useElement, usePlateEditorRef } from '@udecode/plate-common';
 import { ELEMENT_TABLE, ELEMENT_TR, TTableCellElement, TTableElement, TTableRowElement, getTableCellBorders, getTableColumnIndex, getTableRowIndex, useIsCellSelected, useTableStore } from '@udecode/plate-table';
 import cx from 'classnames';
 import css from './TableCell.module.scss';
 import { ExtendedTTableCellElement } from './types';
 import { TableCellElementResizable } from './resize/TableCellResizable';
 import { useReadOnly } from 'slate-react';
+import { getClosest } from './utils';
 
 export interface TableCellElementProps extends PlateElementProps {
     hideBorder?: boolean;
     isHeader?: boolean;
 }
-
-const getClosest = (target: number, offsets: number[]) => {
-    const closest = offsets.reduce((acc, current, index) => {
-        return Math.abs(current - target) < Math.abs(acc.value - target)
-            ? { value: current, index }
-            : acc;
-    }, {
-        value: 0,
-        index: 0,
-    });
-
-    // console.log('closest', closest);
-
-    return closest.index;
-};
 
 const TableCellElement = React.forwardRef<
 React.ElementRef<typeof PlateElement>,
@@ -60,11 +46,7 @@ TableCellElementProps
 
     const colSizes = tableElement.colSizes;
 
-    const content = cellElement.children
-        .map((node) => (node as TTableCellElement).children[0].text)
-        .join(' ');
-
-    const cIndex = useRef<number>(getTableColumnIndex(editor, cellElement));
+    const endColIndex = useRef<number>(getTableColumnIndex(editor, cellElement));
     const startCIndex = useRef<number>(getTableColumnIndex(editor, cellElement));
     // const path = findNodePath(editor, cellElement);
 
@@ -81,13 +63,14 @@ TableCellElementProps
             prevOffset: 0,
         });
 
-        // const startColIndex = offsets.findIndex((current) => current === cellOffset);
         const startColIndex = getClosest(cellOffset, offsets);
-
         cellElement.colIndex = startColIndex;
         startCIndex.current = startColIndex;
-        cIndex.current = startColIndex + cellElement.colSpan - 1;
+        endColIndex.current = startColIndex + cellElement.colSpan - 1;
 
+        // const content = cellElement.children
+        // .map((node) => (node as TTableCellElement).children[0].text)
+        // .join(' ');
         // console.log(
         //     'content',
         //     content,
@@ -104,13 +87,11 @@ TableCellElementProps
         //     // 'offset',
         //     // cellOffset,
         //     // 'colIndex',
-        //     // cIndex.current,
-        //     // 'startCIndex',
         //     // startCIndex.current,
         //     // 'cellElement.colSpan',
         //     // cellElement.colSpan,
-        //     // 'cIndex.current',
-        //     // cIndex.current,
+        //     // 'endColIndex.current',
+        //     // endColIndex.current,
         //     // 'hoveredColIndex',
         //     // hoveredColIndex,
         //     // 'cellWidth',
@@ -134,7 +115,7 @@ TableCellElementProps
     });
 
     const selected = isCellSelected;
-    const hovered = hoveredColIndex === cIndex.current;
+    const hovered = hoveredColIndex === endColIndex.current;
     const hoveredLeft = isFirstCell && hoveredColIndex === -1;
 
     return (
@@ -171,7 +152,7 @@ TableCellElementProps
                     contentEditable={ false }
                 >
                     <TableCellElementResizable
-                        colIndex={ cIndex.current }
+                        colIndex={ endColIndex.current }
                         rowIndex={ rowIndex }
                         readOnly={ readOnly }
                     />
