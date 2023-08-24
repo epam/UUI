@@ -12,9 +12,9 @@ import { ReactComponent as RemoveTable } from '../../icons/table-table_remove-24
 import css from './ToolbarContent.module.scss';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { deleteColumn } from './deleteColumn';
-import { usePlateEditorState, insertElements, TElementEntry, removeNodes, isCollapsed, getRange, createNode, TDescendant } from '@udecode/plate-common';
-import { getTableEntries, insertTableColumn, insertTableRow, deleteRow, deleteTable, getEmptyCellNode } from '@udecode/plate-table';
-import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
+import { usePlateEditorState, insertElements, TElementEntry, removeNodes, isCollapsed, TDescendant } from '@udecode/plate-common';
+import { getTableEntries, insertTableColumn, deleteRow, deleteTable, getEmptyCellNode } from '@udecode/plate-table';
+import { insertTableRow } from './insertTableRow';
 
 function StyledRemoveTable() {
     return <RemoveTable className={ css.removeTableIcon } />;

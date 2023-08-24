@@ -2,37 +2,18 @@ import React, { useRef } from 'react';
 import {
     PlateElement,
     PlateElementProps,
-    TElement,
     getPluginOptions,
 } from '@udecode/plate-common';
-import { ELEMENT_TABLE, TTableElement, TablePlugin, useTableElement, useTableStore } from '@udecode/plate-table';
+import { ELEMENT_TABLE, TTableElement, TablePlugin, getTableColumnCount, useTableElement, useTableStore } from '@udecode/plate-table';
 import cx from 'classnames';
 import css from './TableElement.module.scss';
 import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
-import { ExtendedTTableCellElement } from './types';
 
 interface OldTableElement extends TTableElement {
     data?: {
         cellSizes?: number[];
     }
 }
-
-const getTableColumnCount = (tableNode: TElement) => {
-    const firstRow = (tableNode.children as TElement[])?.[0];
-    const colCount = firstRow?.children.reduce((acc, current) => {
-        let next = acc + 1;
-
-        const cellElement = current as ExtendedTTableCellElement;
-        const attrColSpan = Number(cellElement.attributes?.colspan);
-        const colSpan = cellElement.colSpan || attrColSpan;
-        if (colSpan && colSpan > 1) {
-            next += colSpan - 1;
-        }
-
-        return next;
-    }, 0);
-    return colCount;
-};
 
 const getDefaultColWidths = (columnsNumber: number) =>
     Array.from({ length: columnsNumber }, () => DEFAULT_COL_WIDTH);
