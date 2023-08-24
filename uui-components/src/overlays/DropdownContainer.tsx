@@ -86,7 +86,7 @@ export function DropdownContainer(props: DropdownContainerProps) {
 
     return focusLock
         ? (
-            <FocusLock { ...focusLockProps } ref={ lockProps.lockRef }>
+            <FocusLock { ...focusLockProps } ref={ lockProps?.lockRef }>
                 <DropdownContainerInner { ...props }>{props.children}</DropdownContainerInner>
             </FocusLock>
         )
