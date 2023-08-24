@@ -7,7 +7,7 @@ describe('DropdownContainer', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(
-                <DropdownContainer>
+                <DropdownContainer focusLock={ false }>
                     <Button />
                 </DropdownContainer>,
             )
@@ -18,7 +18,7 @@ describe('DropdownContainer', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(
-                <DropdownContainer color="gray70" width={ 300 } height={ 600 }>
+                <DropdownContainer color="gray70" width={ 300 } height={ 600 } focusLock={ false }>
                     <Button />
                 </DropdownContainer>,
             )

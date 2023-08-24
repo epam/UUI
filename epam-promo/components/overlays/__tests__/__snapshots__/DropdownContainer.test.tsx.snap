@@ -10,7 +10,7 @@ exports[`DropdownContainer should be rendered correctly 1`] = `
       "minWidth": undefined,
     }
   }
-  tabIndex={0}
+  tabIndex={-1}
 >
   <button
     className="container uui-button-box uui-enabled button-primary root size-36 mode-solid"
@@ -31,7 +31,7 @@ exports[`DropdownContainer should be rendered correctly 2`] = `
       "minWidth": 300,
     }
   }
-  tabIndex={0}
+  tabIndex={-1}
 >
   <button
     className="container uui-button-box uui-enabled button-primary root size-36 mode-solid"

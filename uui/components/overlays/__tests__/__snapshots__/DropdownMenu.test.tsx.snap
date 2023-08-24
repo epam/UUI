@@ -20,6 +20,11 @@ Array [
   <menu
     className="menuRoot"
     data-focus-lock-disabled={false}
+    lockRef={
+      Object {
+        "current": null,
+      }
+    }
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
