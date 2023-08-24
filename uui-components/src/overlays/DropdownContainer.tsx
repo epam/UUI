@@ -20,7 +20,7 @@ export interface DropdownContainerProps
      * Wraps DropdownContainer with FocusLock component to support keyboard navigation. It's `true` by default.
      * After DropdownContainer appeared the focus will be set on the first focusable element inside.
      * 
-     * You can also specify the following props for FocusLock: 'returnFocus', 'persistentFocus', 'lockProps', 'shards', 'as' by passing them as DropdownContainer's props.
+     * You can also specify the following props for FocusLock: 'returnFocus', 'persistentFocus', 'lockProps', 'shards', 'as', 'className' by passing them as DropdownContainer's props.
      * By default 'returnFocus' and 'persistentFocus' are true. It means that the focus is locked inside the component and the focus returns into initial position on unmount.
      */
     focusLock?: boolean;
@@ -81,13 +81,12 @@ export function DropdownContainer(props: DropdownContainerProps) {
         },
         ...(shards && { shards }),
         ...(as && { as }),
-        ref: props.forwardedRef,
         className,
     };
 
     return focusLock
         ? (
-            <FocusLock { ...focusLockProps }>
+            <FocusLock { ...focusLockProps } ref={ lockProps.lockRef }>
                 <DropdownContainerInner { ...props }>{props.children}</DropdownContainerInner>
             </FocusLock>
         )

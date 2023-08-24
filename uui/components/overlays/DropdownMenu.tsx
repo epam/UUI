@@ -48,6 +48,7 @@ function DropdownMenuContainer(props: IDropdownMenuContainer) {
         } else if (e.key === IDropdownControlKeys.DOWN_ARROW) {
             changeFocus(currentlyFocused < lastMenuItemsIndex ? currentlyFocused + 1 : 0);
         } else if (e.key === props.closeOnKey && props.onClose) {
+            e.stopPropagation();
             props.onClose();
         }
     };
@@ -55,11 +56,11 @@ function DropdownMenuContainer(props: IDropdownMenuContainer) {
     const focusLockProps = {
         as: 'menu',
         className: css.menuRoot,
-        lockProps: { onKeyDown: handleArrowKeys },
+        lockProps: { onKeyDown: handleArrowKeys, lockRef: menuRef },
     };
 
     return (
-        <DropdownContainer { ...props } rawProps={ { ...props.rawProps } } { ...focusLockProps } forwardedRef={ menuRef as any } />
+        <DropdownContainer { ...props } rawProps={ { ...props.rawProps } } { ...focusLockProps } />
     );
 }
 
