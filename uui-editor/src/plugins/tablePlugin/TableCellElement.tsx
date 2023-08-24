@@ -44,7 +44,6 @@ TableCellElementProps
     const isHeader = cellElement.type === 'table_header_cell';
     const Cell = isHeader ? 'th' : 'td';
 
-    const colSizes = tableElement.colSizes;
 
     const endColIndex = useRef<number>(getTableColumnIndex(editor, cellElement));
     const startCIndex = useRef<number>(getTableColumnIndex(editor, cellElement));
@@ -53,6 +52,7 @@ TableCellElementProps
     if (cellRef.current && hoveredColIndex === null) {
         const cellOffset = cellRef.current?.offsetLeft;
 
+        const colSizes = tableElement.colSizes;
         const { offsets } = colSizes.reduce((acc, current) => {
             const currentOffset = acc.prevOffset + current;
             acc.offsets.push(currentOffset);
