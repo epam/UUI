@@ -86,9 +86,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     ]);
 
     const renderRowsContainer = React.useCallback(
-        ({
-            listContainerRef, estimatedHeight, offsetY, scrollShadows,
-        }: VirtualListRenderRowsParams) => (
+        ({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
             <>
                 <div className={ css.stickyHeader } ref={ headerRef }>
                     <DataTableHeaderRow
@@ -99,7 +97,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                         textCase={ props.headerTextCase }
                         allowColumnsReordering={ props.allowColumnsReordering }
                         allowColumnsResizing={ props.allowColumnsResizing }
-                        value={ props.value }
+                        value={ { ...props.value, columnsConfig: config } }
                         onValueChange={ props.onValueChange }
                     />
                     <div
