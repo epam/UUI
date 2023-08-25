@@ -69,11 +69,16 @@ export const getUpdatedRowsInfo = (
     };
 };
 
-const getNewTopIndex = ({ rowsCount, scrollContainer, rowOffsets, overdrawRows, blockSize }: VirtualListInfo) => {
+const getNewTopIndex = ({ rowsCount, scrollContainer, rowOffsets, overdrawRows, blockSize, value }: VirtualListInfo) => {
     let newTopIndex = 0;
     const containerScrollTop = scrollContainer?.scrollTop ?? 0;
     while (newTopIndex < rowsCount && rowOffsets[newTopIndex] < containerScrollTop) {
         newTopIndex += 1;
+    }
+
+    const topIndexDiff = Math.abs(value.topIndex - newTopIndex);
+    if (Math.abs(topIndexDiff - overdrawRows) < Math.round(blockSize / 4)) {
+        return value.topIndex;
     }
 
     newTopIndex = newTopIndex - overdrawRows; // draw more rows at the top to remove visible blank areas while scrolling up
