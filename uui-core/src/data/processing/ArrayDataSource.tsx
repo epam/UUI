@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { IDataSourceView, DataSourceState } from '../../types/dataSources';
 import { BaseDataSource } from './BaseDataSource';
 import { ArrayListView, ArrayListViewProps } from './views';
@@ -72,7 +72,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         };
 
         if (view) {
-            view.update(value, viewProps);
+            view.update({ value, onValueChange }, viewProps);
             return view;
         } else {
             const newView = new ArrayListView({ value, onValueChange }, viewProps);
@@ -85,9 +85,33 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         value: DataSourceState<TFilter, TId>,
         onValueChange: (val: DataSourceState<TFilter, TId>) => void,
         options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
+        deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
-        useEffect(() => () => this.unsubscribeView(onValueChange), [this]);
+        const viewProps: ArrayListViewProps<TItem, TId, TFilter> = {
+            ...this.props,
+            items: this.tree,
+            ...options,
+            // These defaults are added for compatibility reasons.
+            // We'll require getId and getParentId callbacks in other APIs, including the views.
+            getId: this.getId,
+            getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
+        };
+         
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const view = useMemo(
+            () => new ArrayListView({ value, onValueChange }, viewProps),
+            deps,
+        );
+         
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        useEffect(() => {
+            const unsubscribe = this.subscribe(view);
+            return () => {
+                unsubscribe();
+            };
+        }, [view]);
 
-        return this.getView(value, onValueChange, options);
+        view.update({ value, onValueChange }, viewProps);
+        return view;
     }
 }

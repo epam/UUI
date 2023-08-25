@@ -2,81 +2,77 @@ import * as React from 'react';
 import {
     DataRowProps, DataSourceListProps, DropdownBodyProps, isMobile, uuiMarkers,
 } from '@epam/uui-core';
-import { PickerBodyBaseProps, PickerInputBase } from '@epam/uui-components';
-import { Panel } from '../layout';
+import { PickerBodyBaseProps, PickerInputBaseProps, usePickerInput } from '@epam/uui-components';
 import {
-    DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter,
-} from '../pickers';
+    Panel, DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, PickerInputProps,
+} from '../..';
 
 const pickerHeight = 300;
 const pickerWidth = 360;
 
-interface FilterPickerBodyProps extends DropdownBodyProps {
-    showSearch?: boolean;
-}
+type FilterPickerBodyProps<TItem, TId> = DropdownBodyProps & PickerInputBaseProps<TItem, TId>;
 
-export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, FilterPickerBodyProps> {
-    shouldShowBody(): boolean {
-        return this.props.isOpen;
-    }
+export function FilterPickerBody<TItem, TId>(props: FilterPickerBodyProps<TItem, TId>) {
+    const shouldShowBody = () => props.isOpen;
 
-    toggleModalOpening() {}
-    renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
-        return <PickerItem title={ this.getName(item) } size="36" { ...rowProps } />;
+    const {
+        getName,
+        isSingleSelect,
+        getRows,
+        dataSourceState,
+        getFooterProps,
+        getPickerBodyProps,
+        getListProps,
+        handleDataSourceValueChange,
+    } = usePickerInput<TItem, TId, PickerInputProps>({ ...props, shouldShowBody });
+
+    const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
+        return <PickerItem title={ getName(item) } size="36" { ...rowProps } />;
     };
-
-    onSelect = (row: DataRowProps<TItem, TId>) => {
-        this.props.onClose();
-        this.handleDataSourceValueChange({ ...this.state.dataSourceState, search: '', selectedId: row.id });
+    
+    const onSelect = (row: DataRowProps<TItem, TId>) => {
+        props.onClose();
+        handleDataSourceValueChange({ ...dataSourceState, search: '', selectedId: row.id });
     };
-
-    renderRow = (rowProps: DataRowProps<TItem, TId>) => {
-        if (rowProps.isSelectable && this.isSingleSelect() && this.props.editMode !== 'modal') {
-            rowProps.onSelect = this.onSelect;
+    
+    const renderRow = (rowProps: DataRowProps<TItem, TId>) => {
+        if (rowProps.isSelectable && isSingleSelect() && props.editMode !== 'modal') {
+            rowProps.onSelect = onSelect;
         }
 
-        return this.props.renderRow ? (
-            this.props.renderRow(rowProps, this.state.dataSourceState)
+        return props.renderRow ? (
+            props.renderRow(rowProps, dataSourceState)
         ) : (
-            <DataPickerRow { ...rowProps } key={ rowProps.rowKey } borderBottom="none" size="36" padding="12" renderItem={ this.renderItem } />
+            <DataPickerRow { ...rowProps } key={ rowProps.rowKey } borderBottom="none" size="36" padding="12" renderItem={ renderItem } />
         );
     };
-
-    renderFooter = () => {
-        return <DataPickerFooter { ...this.getFooterProps() } size="36" />;
+    
+    const renderFooter = () => {
+        return <DataPickerFooter { ...getFooterProps() } size="36" />;
     };
-
-    renderTarget() {
-        return <div></div>;
-    }
-
-    renderBody(props: DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) {
-        const renderedDataRows = rows.map((props) => this.renderRow(props));
-        const maxHeight = isMobile() ? document.documentElement.clientHeight : this.props.dropdownHeight || pickerHeight;
-        const minBodyWidth = isMobile() ? document.documentElement.clientWidth : this.props.minBodyWidth || pickerWidth;
+    
+    const renderBody = (bodyProps: DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
+        const renderedDataRows = rows.map((props) => renderRow(props));
+        const maxHeight = isMobile() ? document.documentElement.clientHeight : props.dropdownHeight || pickerHeight;
+        const minBodyWidth = isMobile() ? document.documentElement.clientWidth : props.minBodyWidth || pickerWidth;
 
         return (
             <Panel style={ { width: minBodyWidth } } rawProps={ { tabIndex: -1 } } cx={ [uuiMarkers.lockFocus] }>
                 <DataPickerBody
-                    { ...props }
-                    selectionMode={ this.props.selectionMode }
+                    { ...bodyProps }
+                    selectionMode={ props.selectionMode }
                     rows={ renderedDataRows }
                     maxHeight={ maxHeight }
                     searchSize="36"
                     editMode="dropdown"
+                    showSearch={ true }
                 />
-                {this.renderFooter()}
+                {renderFooter()}
             </Panel>
         );
-    }
+    };
+    
+    const rows = getRows();
 
-    render(): JSX.Element {
-        const rows = this.getRows();
-
-        return this.renderBody({
-            ...this.getPickerBodyProps(rows),
-            ...this.getListProps(),
-            showSearch: this.props.showSearch ?? true,
-        }, rows);
-    }
+    return renderBody({ ...getPickerBodyProps(rows), ...getListProps() }, rows);
 }

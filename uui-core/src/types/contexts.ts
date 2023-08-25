@@ -1,4 +1,4 @@
-import { Link, LayoutLayer } from './objects';
+import { Link, LayoutLayer, AnalyticsEvent } from './objects';
 import * as PropTypes from 'prop-types';
 import { IModal, INotification } from './props';
 import { TMouseCoords } from '../services/dnd/DndContext';
@@ -175,11 +175,6 @@ export interface CommonContexts<TApi, TAppContext> extends UuiContexts {
     uuiApp: TAppContext;
     history?: IHistory4;
 }
-
-export type AnalyticsEvent = {
-    name: string;
-    [key: string]: any;
-} | null;
 
 export const uuiContextTypes = {
     uuiAnalytics: PropTypes.object,

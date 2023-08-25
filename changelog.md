@@ -119,6 +119,13 @@ We make an automatic migration from old state format to the new one, so it's not
 **What's Fixed**
 * [PickerInput]: fixed `unknown` in a `single` selection mode while data is loading in `AsyncDataSource` and `LazyDataSource`, and removed error of missing ids if data is still loading
 * [FiltersPanel]: fixed styles for body & toggler according to design
+* [Pickers]:
+  - rewritten `Pickers` to functional components;
+  - moved from `getView`to `useView` hook;
+
+* [DataSources][useView]:
+  - [BreakingChange]: `useView` is not recreating view on `onValueChange` update anymore;
+  - [BreakingChange]: added `deps` to `useView` as a last argument; changing the `deps` causes recreating of a `view`.
 
 # 5.0.0 - 06.06.2023
 
