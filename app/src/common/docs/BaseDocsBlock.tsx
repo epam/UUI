@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ArrayDataSource, DataColumnProps, DataSourceState } from '@epam/uui-core';
-import { DataTable, Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars } from '@epam/uui';
+import { DataTable, Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars } from '@epam/promo';
 import { ComponentEditor } from './ComponentEditor';
 import { svc } from '../../services';
 import { getQuery } from '../../helpers';
@@ -79,14 +79,14 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         {
             key: 'name',
             caption: 'NAME',
-            render: (prop) => <Text color="primary">{prop.name}</Text>,
+            render: (prop) => <Text color="gray80">{prop.name}</Text>,
             width: 200,
             isSortable: true,
         }, {
             key: 'value',
             caption: 'Type',
             render: (prop) => (
-                <Text color="primary">
+                <Text color="gray80">
                     <span style={ { whiteSpace: 'pre-wrap' } }>{prop.value}</span>
                 </Text>
             ),
