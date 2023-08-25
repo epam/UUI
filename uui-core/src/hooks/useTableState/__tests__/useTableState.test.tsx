@@ -7,8 +7,7 @@ import { StubAdaptedRouter, UuiContext } from '../../../services';
 import { useUuiServices } from '../../useUuiServices';
 import React from 'react';
 
-import { ArrayDataSource } from '../../../../index';
-import { defaultPredicates } from '@epam/uui/build/index';
+import { ArrayDataSource } from '../../../data';
 
 const filters: TableFiltersConfig<any>[] = [
     {
@@ -25,7 +24,7 @@ const filters: TableFiltersConfig<any>[] = [
         title: 'Title',
         type: 'multiPicker',
         dataSource: new ArrayDataSource({ items: [] }),
-        predicates: defaultPredicates.multiPicker,
+        predicates: [{ predicate: 'in', name: 'is', isDefault: true }, { predicate: 'nin', name: 'is not' }],
     },
     {
         field: 'filter3',
