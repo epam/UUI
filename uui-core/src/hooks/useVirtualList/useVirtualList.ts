@@ -17,6 +17,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         onScroll,
         blockSize = 20,
         overdrawRows = 20,
+        rowsSelector = '[role=row]',
     } = props;
     const [estimatedHeight, setEstimatedHeight] = React.useState<number>(0);
     const [listOffset, setListOffset] = React.useState<number>();
@@ -37,6 +38,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         overdrawRows,
         listOffset,
         estimatedHeight,
+        rowsSelector,
     });
 
     useLayoutEffectSafeForSsr(() => {
@@ -76,7 +78,6 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         const rowsInfo = getUpdatedRowsInfo(getVirtualListInfo());
         rowHeights.current = rowsInfo.rowHeights;
         rowOffsets.current = rowsInfo.rowOffsets;
-
         if (scrollContainer.current && value) onScroll?.(scrollContainer.current);
         if (!scrollContainer.current || !value) return;
 

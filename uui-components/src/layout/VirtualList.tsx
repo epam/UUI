@@ -31,6 +31,7 @@ interface BaseVirtualListProps<ScrollContainer extends HTMLElement = any>
     rowsCount?: number;
     role?: React.HTMLAttributes<HTMLDivElement>['role'];
     onScroll?(value: PositionValues): void;
+    rowsSelector?: string;
 }
 
 export type VirtualListProps<
@@ -46,6 +47,7 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
         onValueChange: props.onValueChange,
         onScroll: props.onScroll,
         rowsCount: props.rowsCount,
+        rowsSelector: props.rowsSelector,
     });
 
     React.useImperativeHandle(ref, () => scrollContainerRef.current, [scrollContainerRef.current]);

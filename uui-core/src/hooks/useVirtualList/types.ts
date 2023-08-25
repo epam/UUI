@@ -35,6 +35,7 @@ export interface UseVirtualListProps extends IEditable<VirtualListState> {
     overdrawRows?: number;
 
     onScroll?(value: Partial<UuiScrollPositionValues>): void;
+    rowsSelector?: string;
 }
 
 export interface RowsInfo {
@@ -45,15 +46,16 @@ export interface RowsInfo {
 }
 
 export interface VirtualListInfo {
-    scrollContainer: HTMLElement | undefined,
-    listContainer: HTMLElement | undefined,
-    value: VirtualListState | undefined,
-    rowsCount: number,
-    blockSize: number,
-    overdrawRows: number,
-    rowHeights: number[],
-    rowOffsets: number[],
-    listOffset: number | undefined | null,
-    estimatedHeight?: number,
-    averageRowHeight?: number,
+    scrollContainer: HTMLElement | undefined;
+    listContainer: HTMLElement | undefined;
+    value: VirtualListState | undefined;
+    rowsCount: number;
+    blockSize: number;
+    overdrawRows: number;
+    rowHeights: number[];
+    rowOffsets: number[];
+    listOffset: number | undefined | null;
+    estimatedHeight?: number;
+    averageRowHeight?: number;
+    rowsSelector: string;
 }
