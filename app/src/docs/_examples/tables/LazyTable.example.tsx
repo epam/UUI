@@ -28,7 +28,7 @@ export default function CitiesTable() {
                 key: 'id',
                 caption: 'Id',
                 render: (city) => (
-                    <Text color="brand" fontSize="14">
+                    <Text color="primary" fontSize="14">
                         {city.id}
                     </Text>
                 ),
@@ -39,7 +39,7 @@ export default function CitiesTable() {
                 key: 'name',
                 caption: 'Name',
                 render: (city) => (
-                    <Text color="brand" fontSize="14">
+                    <Text color="primary" fontSize="14">
                         {city.name}
                     </Text>
                 ),
@@ -50,7 +50,7 @@ export default function CitiesTable() {
                 key: 'countryName',
                 caption: 'Country',
                 render: (city) => (
-                    <Text color="brand" fontSize="14">
+                    <Text color="primary" fontSize="14">
                         {city.countryName}
                     </Text>
                 ),
@@ -62,7 +62,7 @@ export default function CitiesTable() {
                 caption: 'Population',
                 info: 'Number of this population in the country at the time of the last census.',
                 render: (city) => (
-                    <Text color="brand" fontSize="14">
+                    <Text color="primary" fontSize="14">
                         {city.population}
                     </Text>
                 ),
@@ -72,7 +72,7 @@ export default function CitiesTable() {
             }, {
                 key: 'altname',
                 caption: 'Alt. names',
-                render: (city) => <Text color="brand">{city.alternativeNames.join(', ')}</Text>,
+                render: (city) => <Text color="primary">{city.alternativeNames.join(', ')}</Text>,
                 info: 'Alternative city names',
                 width: 1200,
             }, {

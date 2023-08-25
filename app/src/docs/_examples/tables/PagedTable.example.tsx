@@ -23,7 +23,7 @@ export default function PagedTable() {
                 key: 'name',
                 caption: 'Name',
                 render: (person) => (
-                    <Text color="secondary" font="semibold">
+                    <Text color="primary" font="semibold">
                         {person.name}
                     </Text>
                 ),
