@@ -44,20 +44,20 @@ export default function TableWithDnDExample() {
             {
                 key: 'id',
                 caption: 'Id',
-                render: (item) => <Text color="secondary">{item.id}</Text>,
+                render: (item) => <Text color="primary">{item.id}</Text>,
                 isSortable: true,
                 isAlwaysVisible: true,
                 width: 100,
             }, {
                 key: 'name',
                 caption: 'Name',
-                render: (item) => <Text color="secondary">{item.name}</Text>,
+                render: (item) => <Text color="primary">{item.name}</Text>,
                 isSortable: true,
                 width: 300,
             }, {
                 key: 'description',
                 caption: 'Description',
-                render: (item) => <Text color="secondary">{item.description}</Text>,
+                render: (item) => <Text color="primary">{item.description}</Text>,
                 grow: 1,
                 width: 300,
             },

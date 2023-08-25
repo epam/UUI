@@ -30,7 +30,7 @@ export default function BasicDropdownExample() {
 
                             <FlexRow padding="12">
                                 <FlexCell width="auto">
-                                    <Text cx={ css.textTitle } lineHeight="24" fontSize="16" color="brand" font="semibold">
+                                    <Text cx={ css.textTitle } lineHeight="24" fontSize="16" color="primary" font="semibold">
                                         John Doe
                                     </Text>
                                     <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
@@ -121,7 +121,7 @@ export default function BasicDropdownExample() {
                             </FlexRow>
                             <FlexRow spacing="6" alignItems="center" padding="6">
                                 <IconContainer icon={ geoIcon } cx={ css.iconGray50 } />
-                                <Text fontSize="14" lineHeight="18" color="brand" cx={ css.text }>
+                                <Text fontSize="14" lineHeight="18" color="primary" cx={ css.text }>
                                     Gratkorn, Austria UTC+01:00 | 16:54
                                 </Text>
                             </FlexRow>
@@ -140,10 +140,10 @@ export default function BasicDropdownExample() {
                             <Avatar size="42" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar125.svg?background=%23EBEDF5&radius=50" />
 
                             <div>
-                                <Text cx={ css.textTitle } lineHeight="24" fontSize="14" color="secondary" font="semibold">
+                                <Text cx={ css.textTitle } lineHeight="24" fontSize="14" color="primary" font="semibold">
                                     John Wick
                                 </Text>
-                                <Text cx={ css.text } lineHeight="18" fontSize="12" color="brand">
+                                <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
                                     Senior Management | L4
                                 </Text>
                             </div>
