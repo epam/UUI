@@ -30,10 +30,10 @@ export default function BasicDropdownExample() {
 
                             <FlexRow padding="12">
                                 <FlexCell width="auto">
-                                    <Text cx={ css.textTitle } lineHeight="24" fontSize="16" color="secondary" font="semibold">
+                                    <Text cx={ css.textTitle } lineHeight="24" fontSize="16" color="brand" font="semibold">
                                         John Doe
                                     </Text>
-                                    <Text cx={ css.text } lineHeight="18" fontSize="12" color="brand">
+                                    <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
                                         Corporate Function Management | L3
                                     </Text>
                                 </FlexCell>
