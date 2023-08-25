@@ -52,7 +52,14 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                 )}
                 <FlexRow key="body" cx={ cx(css.body, css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight } } }>
                     {this.props.rowsCount > 0 ? (
-                        <VirtualList { ...this.lens.toProps() } rows={ this.props.rows } role="listbox" rawProps={ this.props.rawProps } rowsCount={ this.props.rowsCount } />
+                        <VirtualList 
+                            { ...this.lens.toProps() }
+                            rows={ this.props.rows }
+                            role="listbox"
+                            rawProps={ this.props.rawProps }
+                            rowsCount={ this.props.rowsCount }
+                            rowsSelector="[role=option]"
+                        />
                     ) : (
                         this.renderNotFound()
                     )}

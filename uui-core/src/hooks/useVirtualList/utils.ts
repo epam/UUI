@@ -3,7 +3,9 @@ import { RowsInfo, VirtualListInfo } from './types';
 
 export const getUpdatedRowHeights = (virtualListInfo: VirtualListInfo) => {
     const newRowHeights = [...virtualListInfo.rowHeights];
-    Array.from<Element>(virtualListInfo.listContainer.querySelectorAll('[role=row]')).forEach((node, index) => {
+    Array.from<Element>(
+        virtualListInfo.listContainer.querySelectorAll(virtualListInfo.rowsSelector),
+    ).forEach((node, index) => {
         const topIndex = virtualListInfo.value.topIndex || 0;
         const { height } = node.getBoundingClientRect();
         if (!height) return;
