@@ -1,12 +1,6 @@
-import React, {
-    useCallback, useEffect, useState, useMemo,
-} from 'react';
-import {
-    DataTableState, DataColumnProps, useLazyDataSource, useUuiContext,
-} from '@epam/uui-core';
-import {
-    Text, DataTable, Panel, IconButton,
-} from '@epam/promo';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import { DataTableState, DataColumnProps, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { Text, DataTable, Panel, IconButton } from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
 import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
@@ -26,7 +20,7 @@ export default function ColumnsConfigurationDataTableExample() {
                 key: 'id',
                 caption: 'Id',
                 render: (city) => (
-                    <Text color="gray80" fontSize="14">
+                    <Text color="primary" fontSize="14">
                         {city.id}
                     </Text>
                 ),
@@ -36,7 +30,7 @@ export default function ColumnsConfigurationDataTableExample() {
                 key: 'name',
                 caption: 'Name',
                 render: (city) => (
-                    <Text color="gray80" fontSize="14">
+                    <Text color="primary" fontSize="14">
                         {city.name}
                     </Text>
                 ),
@@ -46,7 +40,7 @@ export default function ColumnsConfigurationDataTableExample() {
                 key: 'countryName',
                 caption: 'Country',
                 render: (city) => (
-                    <Text color="gray80" fontSize="14">
+                    <Text color="primary" fontSize="14">
                         {city.countryName}
                     </Text>
                 ),
@@ -56,7 +50,7 @@ export default function ColumnsConfigurationDataTableExample() {
                 key: 'population',
                 caption: 'Population',
                 render: (city) => (
-                    <Text color="gray80" fontSize="14">
+                    <Text color="primary" fontSize="14">
                         {city.population}
                     </Text>
                 ),
@@ -66,12 +60,12 @@ export default function ColumnsConfigurationDataTableExample() {
             }, {
                 key: 'altname',
                 caption: 'Alt. names',
-                render: (city) => <Text color="gray80">{city.alternativeNames.join(', ')}</Text>,
+                render: (city) => <Text color="primary">{city.alternativeNames.join(', ')}</Text>,
                 info: 'Alternative city names',
                 width: 300,
             }, {
                 key: 'actions',
-                render: () => <IconButton icon={ MoreIcon } color="gray60" />,
+                render: () => <IconButton icon={ MoreIcon } color="secondary" />,
                 width: 54,
                 fix: 'right',
             },

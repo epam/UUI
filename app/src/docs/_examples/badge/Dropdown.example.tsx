@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import {
-    Badge, Dropdown, DropdownMenuButton, FlexRow, Panel,
-} from '@epam/promo';
+import { Dropdown, DropdownMenuButton, FlexRow, Panel } from '@epam/uui';
+import { Badge } from '@epam/promo';
 import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import { DropdownBodyProps } from '@epam/uui-core';
 import css from './DropdownExample.module.scss';
@@ -20,7 +19,7 @@ export default function TypesExample() {
 
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <Panel background="white" shadow>
+            <Panel shadow>
                 {dropdownMenuItems.map((item) => (
                     <DropdownMenuButton
                         key={ item.id }

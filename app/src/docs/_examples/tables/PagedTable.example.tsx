@@ -1,10 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import {
-    DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest, useUuiContext,
-} from '@epam/uui-core';
-import {
-    DataTable, Panel, Text, Paginator, FlexRow,
-} from '@epam/promo';
+import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest, useUuiContext } from '@epam/uui-core';
+import { DataTable, Panel, Text, Paginator, FlexRow } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
 import { FlexSpacer } from '@epam/uui-components';
@@ -27,7 +23,7 @@ export default function PagedTable() {
                 key: 'name',
                 caption: 'Name',
                 render: (person) => (
-                    <Text color="gray80" font="sans-semibold">
+                    <Text color="primary" font="semibold">
                         {person.name}
                     </Text>
                 ),
@@ -66,7 +62,7 @@ export default function PagedTable() {
     return (
         <Panel shadow cx={ css.container }>
             <DataTable { ...view.getListProps() } getRows={ view.getVisibleRows } value={ state } onValueChange={ setState } columns={ columns } headerTextCase="upper" />
-            <FlexRow size="36" padding="12" background="gray5">
+            <FlexRow size="36" padding="12">
                 <FlexSpacer />
                 <Paginator
                     value={ state.page }

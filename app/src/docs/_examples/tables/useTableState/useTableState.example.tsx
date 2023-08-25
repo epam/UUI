@@ -1,9 +1,7 @@
 import React, { useMemo } from 'react';
-import { DataTable, Panel, FlexRow, Text, Badge, EpamAdditionalColor, PresetsPanel } from '@epam/promo';
-import {
-    DataColumnProps, getSeparatedValue, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource,
-    useTableState, useUuiContext,
-} from '@epam/uui-core';
+import { DataTable, Panel, FlexRow, Text, PresetsPanel } from '@epam/uui';
+import { Badge, EpamAdditionalColor } from '@epam/promo';
+import { DataColumnProps, getSeparatedValue, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import dayjs from 'dayjs';
 

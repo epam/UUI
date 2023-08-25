@@ -1,5 +1,6 @@
 import React from 'react';
-import { Badge, FlexRow } from '@epam/promo';
+import { FlexRow } from '@epam/uui';
+import { Badge } from '@epam/promo';
 
 export default function IndicatorExample() {
     return (

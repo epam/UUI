@@ -1,23 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import {
-    DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource,
-} from '@epam/uui-core';
-import {
-    Button,
-    Checkbox,
-    DataTable,
-    DataTableCell,
-    DataTableRow,
-    DatePicker,
-    FlexCell,
-    FlexRow,
-    Panel,
-    PickerInput,
-    TextArea,
-    TextInput,
-    useForm,
-    IconButton,
-} from '@epam/promo';
+import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui-core';
+import { Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput, TextArea, TextInput, useForm, IconButton } from '@epam/uui';
 import { FlexSpacer } from '@epam/uui-components';
 import { ReactComponent as deleteIcon } from '@epam/assets/icons/common/content-clear-18.svg';
 import css from './TablesExamples.module.scss';
@@ -163,7 +146,7 @@ export default function EditableTableExample() {
                     grow: 1,
                 }, {
                     key: 'actions',
-                    render: () => <IconButton icon={ deleteIcon } onClick={ () => null } color="gray50" />,
+                    render: () => <IconButton icon={ deleteIcon } onClick={ () => null } color="secondary" />,
                     width: 55,
                     alignSelf: 'center',
                 },
@@ -200,16 +183,16 @@ export default function EditableTableExample() {
     return (
         <Panel shadow={ true }>
             {/* Render a panel with Save/Revert buttons to control the form */}
-            <FlexRow background="gray5" spacing="12" padding="12" vPadding="12" borderBottom>
+            <FlexRow spacing="12" padding="12" vPadding="12" borderBottom>
                 <FlexCell width="auto">
                     <Button caption="Add task" onClick={ handleNewItem } />
                 </FlexCell>
                 <FlexSpacer />
                 <FlexCell width="auto">
-                    <Button caption="Revert" onClick={ revert } isDisabled={ !isChanged } color="gray" />
+                    <Button caption="Revert" onClick={ revert } isDisabled={ !isChanged } color="secondary" />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Button caption="Save" onClick={ save } color="green" isDisabled={ !isChanged } />
+                    <Button caption="Save" onClick={ save } color="accent" isDisabled={ !isChanged } />
                 </FlexCell>
             </FlexRow>
             <FlexRow>
