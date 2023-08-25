@@ -19,7 +19,7 @@ export interface DropdownContainerProps
     /**
      * Wraps DropdownContainer with FocusLock component to support keyboard navigation. It's `true` by default.
      * After DropdownContainer appeared the focus will be set on the first focusable element inside.
-     * 
+     *
      * You can also specify the following props for FocusLock: 'returnFocus', 'persistentFocus', 'lockProps', 'shards', 'as', 'className' by passing them as DropdownContainer's props.
      * By default 'returnFocus' and 'persistentFocus' are true. It means that the focus is locked inside the component and the focus returns into initial position on unmount.
      */
@@ -34,68 +34,52 @@ export interface DropdownContainerProps
     style?: React.CSSProperties;
 }
 
-class DropdownContainerInner extends React.Component<DropdownContainerProps> {
-    render() {
+export const DropdownContainer = React.forwardRef((props: DropdownContainerProps, ref: any) => {
+    function renderDropdownContainer() {
         return (
             <VPanel
-                forwardedRef={ this.props.forwardedRef }
-                cx={ cx(uuiElement.dropdownBody, this.props.cx, uuiMarkers.lockFocus) }
+                forwardedRef={ !focusLock && ref }
+                cx={ cx(uuiElement.dropdownBody, !focusLock && cx(props.cx), uuiMarkers.lockFocus) }
                 style={ {
-                    ...this.props.style, minWidth: this.props.width, minHeight: this.props.height, maxWidth: this.props.maxWidth,
+                    ...props.style, minWidth: props.width, minHeight: props.height, maxWidth: props.maxWidth,
                 } }
-                rawProps={ { tabIndex: -1, ...this.props.rawProps } }
+                rawProps={ { tabIndex: -1, ...props.rawProps } }
             >
-                {this.props.children}
-                {this.props.showArrow && (
-                    <PopoverArrow ref={ this.props?.arrowProps?.ref } arrowProps={ this.props?.arrowProps } placement={ this.props?.placement || 'bottom-start' } />
+                {props.children}
+                {props.showArrow && (
+                    <PopoverArrow ref={ props?.arrowProps?.ref } arrowProps={ props?.arrowProps } placement={ props?.placement || 'bottom-start' } />
                 )}
             </VPanel>
         );
     }
-}
 
-export function DropdownContainer(props: DropdownContainerProps) {
     const handleEscape = (e: React.KeyboardEvent<HTMLElement>) => {
         if (e.key === 'Escape' && props.isOpen) {
             props.onClose?.();
         }
     };
 
+    // set default values if they're not specified
     const {
-        focusLock,
-        returnFocus,
-        persistentFocus,
-        closeOnEsc,
-        lockProps,
-        shards,
-        as,
-        className,
+        focusLock = true,
+        returnFocus = true,
+        persistentFocus = true,
+        closeOnEsc = true,
     } = props;
-
-    const focusLockProps = {
-        returnFocus,
-        persistentFocus,
-        lockProps: {
-            ...(closeOnEsc && { onKeyDown: handleEscape }),
-            ...lockProps,
-        },
-        ...(shards && { shards }),
-        ...(as && { as }),
-        className,
-    };
 
     return focusLock
         ? (
-            <FocusLock { ...focusLockProps } ref={ lockProps?.lockRef }>
-                <DropdownContainerInner { ...props }>{props.children}</DropdownContainerInner>
+            <FocusLock
+                ref={ ref }
+                returnFocus={ returnFocus }
+                persistentFocus={ persistentFocus }
+                lockProps={ { ...(closeOnEsc && { onKeyDown: handleEscape }), ...props.lockProps } }
+                className={ cx(props.cx) }
+                shards={ props.shards }
+                as={ props.as }
+            >
+                {renderDropdownContainer()}
             </FocusLock>
         )
-        : (<DropdownContainerInner { ...props }>{props.children}</DropdownContainerInner>);
-}
-
-DropdownContainer.defaultProps = {
-    focusLock: true,
-    closeOnEsc: true,
-    returnFocus: true,
-    persistentFocus: true,
-};
+        : renderDropdownContainer();
+});
