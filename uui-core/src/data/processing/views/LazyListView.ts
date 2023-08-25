@@ -107,7 +107,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 onUpdate: () => this._forceUpdate(),
             });
         }
-        this.update(editable.value, this.props);
+        this.update(editable, this.props);
     }
 
     private defaultGetId = (i: any) => i.id;
@@ -122,16 +122,20 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         };
     }
 
-    public update(newValue: DataSourceState<TFilter, TId>, props: LazyListViewProps<TItem, TId, TFilter>): void {
+    public update(
+        { value, onValueChange }: IEditable<DataSourceState<TFilter, TId>>,
+        props: LazyListViewProps<TItem, TId, TFilter>,
+    ): void {
         this.isUpdatePending = true;
-
-        if (!isEqual(newValue?.checked, this.value?.checked)) {
-            this.updateCheckedLookup(newValue.checked);
-        }
-
+        const { checked: prevChecked } = this.value ?? {};
         // We assume value to be immutable. However, we can't guarantee this.
         // Let's shallow-copy value to survive at least simple cases when it's mutated outside
-        this.value = { topIndex: 0, visibleCount: 20, ...newValue };
+        this.value = { topIndex: 0, visibleCount: 20, ...value };
+        this.onValueChange = onValueChange;
+
+        if (!isEqual(value?.checked, prevChecked)) {
+            this.updateCheckedLookup(value.checked);
+        }
 
         this.props = {
             ...props,
@@ -211,7 +215,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.tree = Tree.blank(this.props);
         this.reloading = true;
         this.initCache();
-        this.update(this.value, this.props);
+        this.update({ value: this.value, onValueChange: this.onValueChange }, this.props);
         this._forceUpdate();
     };
 

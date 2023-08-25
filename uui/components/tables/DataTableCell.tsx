@@ -33,6 +33,10 @@ function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TI
                 <div key="fold" className={ css.indent } style={ { marginLeft: (row.indent - 1) * 24 } }>
                     {row.isFoldable && (
                         <IconContainer
+                            rawProps={ {
+                                'aria-label': row.isFolded ? 'Unfold' : 'Fold',
+                                role: 'button',
+                            } }
                             key="icon"
                             icon={ FoldingArrow }
                             cx={ [

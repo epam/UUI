@@ -37,9 +37,9 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     abstract getById(id: TId, index: number): DataRowProps<TItem, TId>;
     abstract getVisibleRows(): DataRowProps<TItem, TId>[];
     abstract getListProps(): DataSourceListProps;
-    _forceUpdate() {
+    _forceUpdate = () => {
         !this.isDestroyed && this.onValueChange({ ...this.value });
-    }
+    };
 
     public destroy() {
         this.isDestroyed = true;
