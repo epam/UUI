@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, FlexRow } from '@epam/promo';
+import { Avatar, FlexRow } from '@epam/uui';
 
 export default function BasicExample() {
     return (

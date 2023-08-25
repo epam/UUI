@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    Blocker, Button, DatePicker, FlexCell, FlexRow, FlexSpacer, LabeledInput, NumericInput, TextInput,
-} from '@epam/promo';
+import { Blocker, Button, DatePicker, FlexCell, FlexRow, FlexSpacer, LabeledInput, NumericInput, TextInput } from '@epam/uui';
 import css from './BasicExample.module.scss';
 
 export default function AdvancedExample() {
@@ -28,8 +26,8 @@ export default function AdvancedExample() {
                 </FlexRow>
                 <FlexRow spacing="12" padding="24" vPadding="24">
                     <FlexSpacer />
-                    <Button isDisabled={ isLoading } color="green" caption="Submit" />
-                    <Button isDisabled={ isLoading } color="blue" fill="none" caption="Cancel" />
+                    <Button isDisabled={ isLoading } color="accent" caption="Submit" />
+                    <Button isDisabled={ isLoading } color="primary" fill="none" caption="Cancel" />
                 </FlexRow>
             </FlexCell>
         );

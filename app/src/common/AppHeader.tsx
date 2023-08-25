@@ -10,11 +10,17 @@ import css from './AppHeader.module.scss';
 import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
 
 type Theme = 'promo' | 'loveship' | 'loveship_dark' | 'vanilla_thunder';
+const themeName: Record<Theme, 'Promo' | 'Loveship' | 'Loveship Dark' | 'Vanilla Thunder'> = {
+    promo: 'Promo',
+    loveship: 'Loveship',
+    loveship_dark: 'Loveship Dark',
+    vanilla_thunder: 'Vanilla Thunder',
+};
 
 const GIT_LINK = 'https://github.com/epam/UUI';
 
 export function AppHeader() {
-    const [theme, setTheme] = useState(document.body.classList.value.match(/uui-theme-(\S+)\s*/)[1]);
+    const [theme, setTheme] = useState<Theme>(document.body.classList.value.match(/uui-theme-(\S+)\s*/)[1] as Theme);
 
     const sendEvent = (link: string) => {
         svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.trusted(link));
@@ -71,7 +77,7 @@ export function AppHeader() {
             </>
         );
 
-        return <MainMenuDropdown key="theme-switcher" caption="Select Theme" renderBody={ renderBodyItems } />;
+        return <MainMenuDropdown key="theme-switcher" caption={ `Theme: ${themeName[theme]}` } renderBody={ renderBodyItems } />;
     };
 
     const getMainMenuItems = () => {

@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Location } from '@epam/uui-docs';
-import {
-    DataSourceState, DataColumnProps, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse,
-} from '@epam/uui-core';
-import {
-    Text, LinkButton, DataTable, Panel,
-} from '@epam/promo';
+import { DataSourceState, DataColumnProps, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui-core';
+import { Text, LinkButton, DataTable, Panel } from '@epam/uui';
 import css from './TablesExamples.module.scss';
 
 export default function TreeTableExample() {

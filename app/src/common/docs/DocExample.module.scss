@@ -1,4 +1,5 @@
 @use '~@epam/promo/assets/styles/index' as *;
+@import '../../themes/themeVariables.module';
 
 .container {
     margin: 24px 0;
@@ -28,13 +29,15 @@
 
 .container-footer {
     justify-content: space-between;
+    background-color: $white;
 }
 
 .preview-container {
-    background: $white;
+    background: var(--uui-docs-background);
     border: 1px solid $gray40;
     width: 960px;
     max-width: 100%;
+
 }
 
 .code {

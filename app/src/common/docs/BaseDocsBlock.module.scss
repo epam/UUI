@@ -1,6 +1,7 @@
 @use '~@epam/promo/assets/styles/index.scss' as *;
 
 .secondary-navigation {
+    box-sizing: border-box;
     min-height: 60px;
 }
 
@@ -40,7 +41,7 @@
 }
 
 .table-border {
-    border: 1px solid $gray40;
+    border: 1px solid var(--uui-divider);
     border-bottom: none;
 }
 

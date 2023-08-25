@@ -302,7 +302,7 @@
 
     --uui-control-focus: #008ACE80;
 
-    --uui-search-result-highlight: #FFEDC9;
+    --uui-search-result-highlight: var(--uui-warning-10); //#FFEDC9;
 
     --uui-tag-bg: var(--night300); // one place of usage
     --uui-tag-bg-hover: var(--night400); // one place of usage
@@ -495,7 +495,7 @@
     --uui-filters-toggler-bg-hover: var(--uui-surface-lower);
     --uui-filters-toggler-text: var(--uui-text-brand);
     --uui-filters-toggler-label: var(--uui-text-tertiary);
-    --uui-filters-toggler-icon: var(--uui-text-input-icon-clickable);
+    --uui-filters-toggler-icon: var(--uui-icon);
     --uui-filters-toggler-shadow: none;
 
     --uui-filters-toggler-font: var(--font-regular);

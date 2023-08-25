@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexCell, Text, SuccessAlert, WarningAlert } from '@epam/promo';
+import { FlexCell, Text, SuccessAlert, WarningAlert } from '@epam/uui';
 import css from './BasicExample.module.scss';
 
 export default function BasicAlertExample() {

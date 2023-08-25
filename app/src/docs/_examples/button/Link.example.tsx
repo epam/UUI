@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button } from '@epam/promo';
+import { Button } from '@epam/uui';
 
 export default function ButtonWithLink() {
     return (
