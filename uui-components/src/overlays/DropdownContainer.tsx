@@ -47,6 +47,10 @@ export interface DropdownContainerProps
      */
     as?: string;
     /**
+     * Pass string to set the className of the FocusLock's internal wrapper.
+     */
+    className?: string;
+    /**
      * Pass true to handle Escape key press and call props.onClose().
      * If omitted, true value will be used. It's used if focusLock=true.
      */
@@ -58,7 +62,7 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
         return (
             <VPanel
                 forwardedRef={ !focusLock && ref as React.ForwardedRef<HTMLDivElement> }
-                cx={ cx(uuiElement.dropdownBody, !focusLock && cx(props.cx), uuiMarkers.lockFocus) }
+                cx={ cx(uuiElement.dropdownBody, props.cx, uuiMarkers.lockFocus) }
                 style={ {
                     ...props.style, minWidth: props.width, minHeight: props.height, maxWidth: props.maxWidth,
                 } }
@@ -93,7 +97,7 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
                 returnFocus={ returnFocus }
                 persistentFocus={ persistentFocus }
                 lockProps={ { ...(closeOnEsc && { onKeyDown: handleEscape }), ...props.lockProps } }
-                className={ cx(props.cx) }
+                className={ props.className }
                 shards={ props.shards }
                 as={ props.as }
             >
