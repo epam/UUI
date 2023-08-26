@@ -6,39 +6,58 @@ import {
 import { VPanel } from '../layout/flexItems/VPanel';
 import PopoverArrow from './PopoverArrow';
 
-type FocusLockProps = Pick<React.ComponentProps<typeof FocusLock>, 'returnFocus' | 'persistentFocus' | 'lockProps' | 'shards' | 'as' | 'className'>;
 export interface DropdownContainerProps
     extends IHasCX,
     IHasChildren,
     IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
     IHasForwardedRef<HTMLDivElement>,
-    IDropdownBodyProps,
-    FocusLockProps {
+    IDropdownBodyProps {
     width?: number | 'auto';
     maxWidth?: number;
-    /**
-     * Wraps DropdownContainer with FocusLock component to support keyboard navigation. It's `true` by default.
-     * After DropdownContainer appeared the focus will be set on the first focusable element inside.
-     *
-     * You can also specify the following props for FocusLock: 'returnFocus', 'persistentFocus', 'lockProps', 'shards', 'as', 'className' by passing them as DropdownContainer's props.
-     * By default 'returnFocus' and 'persistentFocus' are true. It means that the focus is locked inside the component and the focus returns into initial position on unmount.
-     */
-    focusLock?: boolean;
-    /**
-     * If `true` it handles Escape key press on FocusLock wrappers (see `focusLock` prop) and calls `props.onClose()`.
-     * By default the value is `true`.
-     */
-    closeOnEsc?: boolean;
     height?: number;
     showArrow?: boolean;
     style?: React.CSSProperties;
+    /**
+     * Pass true to wrap DropdownContainer with FocusLock component to support keyboard navigation.
+     * If omitted, true value will be used.
+     *
+     * After DropdownContainer appeared the focus will be set on the first focusable element inside.
+     */
+    focusLock?: boolean;
+    /**
+     * Pass true to return focus into initial position on unmount.
+     * If omitted, true value will be used. It's used if focusLock=true.
+     * */
+    returnFocus?: boolean;
+    /**
+     * Pass true to lock focus within DropdownContainer.
+     * If omitted, true value will be used. It's used if focusLock=true.
+     */
+    persistentFocus?: boolean;
+    /**
+     * Pass any extra props to the FocusLock wrapper.
+     */
+    lockProps?: Record<string, any>;
+    /**
+     * Pass an array of ref pointing to the nodes, which focus lock should consider and a part of it. This is a way of focus scattering.
+     */
+    shards?: Array<React.RefObject<HTMLElement>>;
+    /**
+     * Pass element name if you need to change internal FocusLock div element, to any other.
+     */
+    as?: string;
+    /**
+     * Pass true to handle Escape key press and call props.onClose().
+     * If omitted, true value will be used. It's used if focusLock=true.
+     */
+    closeOnEsc?: boolean;
 }
 
-export const DropdownContainer = React.forwardRef((props: DropdownContainerProps, ref: any) => {
+export const DropdownContainer = React.forwardRef((props: DropdownContainerProps, ref: React.ForwardedRef<HTMLElement>) => {
     function renderDropdownContainer() {
         return (
             <VPanel
-                forwardedRef={ !focusLock && ref }
+                forwardedRef={ !focusLock && ref as React.ForwardedRef<HTMLDivElement> }
                 cx={ cx(uuiElement.dropdownBody, !focusLock && cx(props.cx), uuiMarkers.lockFocus) }
                 style={ {
                     ...props.style, minWidth: props.width, minHeight: props.height, maxWidth: props.maxWidth,
