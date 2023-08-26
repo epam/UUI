@@ -3,7 +3,7 @@
 **What's New**
 * [FiltersPanel]: added possibility to provide your own custom filter
 * [useForm]: validate callback now return new validationState
-* [DropdownContainer]: added prop `focusLock` and `closeOnEsc` for support of keyboard navigation. They are `true` by default.
+* [DropdownContainer]: added props for keyboard navigation support: `focusLock`, `closeOnEsc`, `returnFocus`, `persistentFocus`, `lockProps`, `shards`, `as`, `className`.
 
 **What's Fixed**
 * Added focus state styles for Accordion, AvatarStack, Anchor, Badge, Button, Burger, Checkbox, Control Group, IconButton, LinkButton, MainMenu, RadioInput, Switch, TabButton, Tag.
@@ -12,6 +12,7 @@
 * [useForm]: after calling validate callback, form switch to revalidating mode on fields change.
 * [useForm]: fixed isChanged prop calculation, in case when form value returned to initial
 * [useForm]: don't call loadUnsavedChanges callback when for was edited and then returned to the initial value
+* [Burger]: fix keyboard navigation.
 
 
 # 5.1.2 - 10.08.2023
@@ -74,8 +75,8 @@
 
 **Rich Text Editor component update and improvements**
 
-UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework. 
-During the update the previous code based of RTE almost completely rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users. Therefore, update to the new version of `uui-editor` package should be seamless and easy. 
+UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework.
+During the update the previous code based of RTE almost completely rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users. Therefore, update to the new version of `uui-editor` package should be seamless and easy.
 
 List of changes:
 * [Breaking change]: Changed RTE value format, now it's works with array instead of immutable.js object. Also, there are some additional changes inside slate value structure.
