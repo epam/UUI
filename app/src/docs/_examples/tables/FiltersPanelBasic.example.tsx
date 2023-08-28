@@ -1,11 +1,7 @@
 import React, { useMemo } from 'react';
-import {
-    FiltersPanel, DataTable, Panel, FlexRow, Text, Badge, EpamAdditionalColor, Switch,
-} from '@epam/promo';
-import { defaultPredicates, rangeDatePickerPresets } from '@epam/uui';
-import {
-    DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext,
-} from '@epam/uui-core';
+import { Badge, EpamAdditionalColor } from '@epam/promo';
+import { defaultPredicates, rangeDatePickerPresets, FiltersPanel, DataTable, Panel, FlexRow, Text, Switch } from '@epam/uui';
+import { DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import dayjs from 'dayjs';
 
@@ -172,7 +168,7 @@ export default function FiltersPanelExample() {
 
     return (
         <Panel style={ { height: '400px' } }>
-            <FlexRow spacing="6" vPadding="12" rawProps={ { style: { flexWrap: 'wrap' } } }>
+            <FlexRow vPadding="12" rawProps={ { style: { flexWrap: 'wrap', gap: '3px' } } }>
                 <FiltersPanel filters={ filtersConfig } tableState={ tableState } setTableState={ setTableState } />
             </FlexRow>
             <DataTable getRows={ view.getVisibleRows } columns={ personColumns } value={ tableState } onValueChange={ setTableState } { ...view.getListProps() } />

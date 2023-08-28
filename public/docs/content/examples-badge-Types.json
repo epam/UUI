@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Use types in regard to feature context and solution, following examples placed below",
-            "marks": []
-          }
-        ]
+        "text": "Use types in regard to feature context and solution, following examples placed below"
       }
     ]
   }
-}
+]

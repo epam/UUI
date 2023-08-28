@@ -1,7 +1,6 @@
 import React from 'react';
-import {
-    Badge, Dropdown, FlexRow, Panel, Text,
-} from '@epam/promo';
+import { Dropdown, FlexRow, Panel, Text } from '@epam/uui';
+import { Badge } from '@epam/promo';
 import { ReactComponent as mediaIcon } from '@epam/assets/icons/common/media-play-fill-18.svg';
 import { ReactComponent as doneIcon } from '@epam/assets/icons/common/notification-done-24.svg';
 import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
@@ -9,7 +8,7 @@ import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/common/
 export default function TypesExample() {
     return (
         <>
-            <Panel style={ { rowGap: '18px', marginRight: '42px', padding: '4px' } }>
+            <Panel style={ { rowGap: '18px', marginRight: '42px', padding: '12px' } }>
                 <FlexRow spacing="18">
                     <Badge icon={ mediaIcon } color="orange" fill="semitransparent" caption="Video" />
                     <Text fontSize="14">Use as an attribute or label</Text>
@@ -23,7 +22,7 @@ export default function TypesExample() {
                     <Text fontSize="14">Filter chips</Text>
                 </FlexRow>
             </Panel>
-            <Panel style={ { rowGap: '18px', padding: '4px' } }>
+            <Panel style={ { rowGap: '18px', padding: '12px' } }>
                 <FlexRow spacing="18">
                     <Badge count={ 25 } color="red" fill="solid" caption="Rejected" onClick={ () => {} } />
                     <Text fontSize="14">Quick filters selection with informer</Text>
