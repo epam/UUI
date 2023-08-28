@@ -158,6 +158,12 @@ export function MasterDetailedTable() {
             setIsInfoPanelOpened(true);
         }
     }, []);
+    
+    const pin = useCallback(
+        ({ value: { __typename } }: DataRowProps<PersonTableRecord, PersonTableRecordId>) => 
+            __typename !== 'Person',
+        [],
+    );
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         getChildCount: (item) => {
@@ -174,9 +180,7 @@ export function MasterDetailedTable() {
             checkbox: { isVisible: true },
             isSelectable: true,
             onClick: clickHandler,
-            pin: (rowProps) => {
-                return rowProps.depth < 2;
-            },
+            pin,
         },
         cascadeSelection: true,
     });

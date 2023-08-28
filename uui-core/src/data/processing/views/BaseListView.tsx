@@ -585,13 +585,11 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         || newValue.page !== prevValue.page
         || newValue.pageSize !== prevValue.pageSize;
 
-    protected shouldRebuildRows = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => {
-        console.log('this.checkedWasChanged(prevValue, newValue)', this.checkedWasChanged(prevValue, newValue));
-        return !prevValue
+    protected shouldRebuildRows = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) =>
+        !prevValue
         || this.checkedWasChanged(prevValue, newValue)
         || newValue?.selectedId !== prevValue?.selectedId
         || newValue?.folded !== prevValue?.folded;
-    };
 
     protected checkedWasChanged = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => 
         (prevValue?.checked?.length ?? 0) !== (newValue?.checked?.length ?? 0)
