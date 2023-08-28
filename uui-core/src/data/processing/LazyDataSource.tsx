@@ -4,7 +4,9 @@ import { ListApiCache } from './ListApiCache';
 import { BaseDataSource } from './BaseDataSource';
 import { DataSourceState } from '../../types';
 
-export interface LazyDataSourceProps<TItem, TId, TFilter> extends LazyListViewProps<TItem, TId, TFilter> {}
+export interface LazyDataSourceProps<TItem, TId, TFilter> extends LazyListViewProps<TItem, TId, TFilter> {
+    type?: string;
+}
 
 export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> {
     props: LazyDataSourceProps<TItem, TId, TFilter>;

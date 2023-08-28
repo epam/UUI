@@ -585,12 +585,27 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         || newValue.page !== prevValue.page
         || newValue.pageSize !== prevValue.pageSize;
 
-    protected shouldRebuildRows = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) =>
-        !prevValue || !isEqual(newValue.checked, prevValue.checked) || newValue.selectedId !== prevValue.selectedId || newValue.folded !== prevValue.folded;
+    protected shouldRebuildRows = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => {
+        console.log('this.checkedWasChanged(prevValue, newValue)', this.checkedWasChanged(prevValue, newValue));
+        return !prevValue
+        || this.checkedWasChanged(prevValue, newValue)
+        || newValue?.selectedId !== prevValue?.selectedId
+        || newValue?.folded !== prevValue?.folded;
+    };
 
-    protected sortingWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) => !isEqual(newValue.sorting, prevValue.sorting);
-    protected filterWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) => !isEqual(newValue.filter, prevValue.filter);
-    protected searchWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) => newValue.search !== prevValue.search;
+    protected checkedWasChanged = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => 
+        (prevValue?.checked?.length ?? 0) !== (newValue?.checked?.length ?? 0)
+        || !isEqual(newValue?.checked, prevValue?.checked);
+    
+    protected sortingWasChanged = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => 
+        !isEqual(newValue?.sorting, prevValue?.sorting);
+
+    protected filterWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) =>
+        !isEqual(newValue?.filter, prevValue?.filter);
+
+    protected searchWasChanged = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => 
+        newValue?.search !== prevValue?.search;
+    
     protected abstract handleSelectAll(checked: boolean): void;
     protected abstract getChildCount(item: TItem): number | undefined;
     protected isFlattenSearch = () => false;
