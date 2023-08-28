@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Checkbox, FlexCell } from '@epam/promo';
+import { Checkbox, FlexCell } from '@epam/uui';
 import css from './BasicExample.module.scss';
 
 export default function BasicExample() {

@@ -270,7 +270,7 @@
 
     --uui-control-focus: #008ACE80;
 
-    --uui-search-result-highlight: #FFEDC9;
+    --uui-search-result-highlight: var(--uui-warning-20);
 
     --uui-skeleton: var(--night400);
     --uui-skeleton-gradient: linear-gradient(90deg, var(--night400) 0%, var(--night100) 50%, var(--night400) 100%);

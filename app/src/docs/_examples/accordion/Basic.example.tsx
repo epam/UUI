@@ -1,21 +1,19 @@
 import React from 'react';
-import {
-    Accordion, Button, FlexCell, FlexRow, FlexSpacer, Text,
-} from '@epam/promo';
+import { Accordion, Button, FlexCell, FlexRow, FlexSpacer, Text } from '@epam/uui';
 import css from './BasicExample.module.scss';
 import { demoData } from '@epam/uui-docs';
 
 const componentAsDemoContent = (
     <>
-        <Text fontSize="16" font="sans">
+        <Text fontSize="16" font="regular">
             {demoData.loremIpsum}
             {' '}
             {demoData.loremIpsum}
         </Text>
         <FlexRow spacing="12">
             <FlexSpacer />
-            <Button fill="white" color="gray" caption="Cancel" onClick={ () => {} } />
-            <Button color="green" caption="Accept" onClick={ () => {} } />
+            <Button fill="outline" color="secondary" caption="Cancel" onClick={ () => {} } />
+            <Button color="accent" caption="Accept" onClick={ () => {} } />
         </FlexRow>
     </>
 );
@@ -24,17 +22,17 @@ export default function BasicAccordionExample() {
     return (
         <FlexCell width="100%" cx={ css.container }>
             <Accordion title="Accordion block mode" mode="block">
-                <Text fontSize="16" font="sans">
+                <Text fontSize="16" font="regular">
                     {demoData.loremIpsum}
                 </Text>
             </Accordion>
             <Accordion title="Accordion inline mode" mode="inline">
-                <Text fontSize="16" font="sans">
+                <Text fontSize="16" font="regular">
                     {demoData.loremIpsum}
                 </Text>
             </Accordion>
             <Accordion title="Disabled Accordion" mode="block" isDisabled>
-                <Text fontSize="16" font="sans">
+                <Text fontSize="16" font="regular">
                     {demoData.loremIpsum}
                 </Text>
             </Accordion>
