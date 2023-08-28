@@ -30,7 +30,9 @@
     --uui-text-area-border-radius: var(--uui-border-radius);
 
     --uui-text-area-font: var(--font-regular);
+    --uui-text-area-font-weight: normal;
     --uui-text-area-counter-font: var(--font-regular);
+    --uui-text-area-counter-font-weight: normal;
     //
     :global(.uui-input) {
         color: var(--uui-text-area-text);
@@ -38,7 +40,7 @@
         border-style: solid;
         border-radius: var(--uui-text-area-border-radius);
         font-family: var(--uui-text-area-font);
-        font-weight: var(--uui-text-area-font-weight, normal);
+        font-weight: var(--uui-text-area-font-weight);
         box-sizing: border-box;
         padding-right: 18px;
         padding-left: 12px;
@@ -162,7 +164,7 @@
         font-size: 12px;
         color: var(--uui-text-area-icon);
         font-family: var(--uui-text-area-counter-font);
-        font-weight: var(--uui-text-area-counter-font-weight, normal);
+        font-weight: var(--uui-text-area-counter-font-weight);
     }
 
     //Sizes

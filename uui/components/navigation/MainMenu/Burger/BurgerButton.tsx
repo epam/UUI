@@ -12,7 +12,7 @@ export const BurgerButton = withMods<ButtonProps, BurgerButtonMods>(
     Button,
     (props) => [
         css.root,
-        'uui-mainMenu-burger-button',
+        'uui-main_menu-burger-button',
         css['button-' + (props.type || 'primary')],
         css['indent-' + (props.indentLevel || 0)],
         props.isDropdown && css.dropdown,

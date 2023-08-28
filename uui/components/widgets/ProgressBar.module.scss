@@ -11,9 +11,11 @@
     --uui-progress_bar-top-label: var(--uui-text-dark);
 
     --uui-progress_bar-font: var(--font-regular);
+    --uui-progress_bar-font-weight: normal;
     //
     background-color: var(--uui-progress_bar-wrapper);
     font-family: var(--uui-progress_bar-font);
+    font-weight: var(--uui-progress_bar-font-weight);
     color: var(--uui-progress_bar-label);
 
     :global(.bar) {

@@ -2,7 +2,7 @@
 
 exports[`ProgressBar should be rendered correctly 1`] = `
 <div
-  className="root size-12"
+  className="uui-indeterminate_bar root size-12"
 >
   <div
     className="bar"
@@ -12,7 +12,7 @@ exports[`ProgressBar should be rendered correctly 1`] = `
 
 exports[`ProgressBar should be rendered correctly with props 1`] = `
 <div
-  className="root size-24"
+  className="uui-indeterminate_bar root size-24"
 >
   <div
     className="bar"

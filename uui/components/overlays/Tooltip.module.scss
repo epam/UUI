@@ -6,13 +6,14 @@
 
     --uui-tooltip-border-radius: var(--uui-border-radius);
     --uui-tooltip-font: var(--font-regular);
+    --uui-tooltip-font-weight: normal;
     //
     :global(.uui-tooltip-body) {
         padding: 6px 12px;
         line-height: 24px;
         font-size: 14px;
         font-family: var(--uui-tooltip-font);
-        font-weight: var(--uui-tooltip-font-weight, normal);
+        font-weight: var(--uui-tooltip-font-weight);
         box-shadow: var(--uui-tooltip-shadow);
         word-wrap: break-word;
         border-radius: var(--uui-tooltip-border-radius);

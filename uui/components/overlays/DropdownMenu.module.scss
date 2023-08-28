@@ -10,7 +10,9 @@
     --uui-dropdown-menu-item-text: var(--uui-text-primary);
 
     --uui-dropdown-menu-body-font: var(--font-regular);
+    --uui-dropdown-menu-body-font-weight: normal;
     --uui-dropdown-menu-item-font: var(--font-regular);
+    --uui-dropdown-menu-item-font-weight: normal;
 }
 
 // TODO: need to revamp
@@ -69,7 +71,7 @@
     width: 100%;
     height: 36px;
     font-family: var(--uui-dropdown-menu-item-font);
-    font-weight: var(--uui-dropdown-menu-item-font-weight, normal);
+    font-weight: var(--uui-dropdown-menu-item-font-weight);
 
     &:focus {
         outline: none;
@@ -89,7 +91,7 @@
     @include icon-layout(36px);
     @include fillColor(var(--uui-icon), var(--uui-text-primary));
     font-family: var(--uui-dropdown-menu-body-font);
-    font-weight: var(--uui-dropdown-menu-body-font-weight, normal);
+    font-weight: var(--uui-dropdown-menu-body-font-weight);
     font-size: 14px;
     padding: 6px 0;
     background-color: var(--uui-dropdown-menu-bg);

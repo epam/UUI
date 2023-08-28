@@ -102,4 +102,7 @@ export const i18n = {
     fileCard: {
         fileSizeProgress: ' of ',
     },
+    colors: {
+        color: ['neutral', 'foo'],
+    },
 };

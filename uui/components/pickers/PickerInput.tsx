@@ -118,7 +118,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }
                 rawProps={ { tabIndex: -1 } }
                 cx={ [
-                    css.panel, uuiMarkers.lockFocus, this.props.bodyCx,
+                    css.root, css.body, uuiMarkers.lockFocus, this.props.bodyCx,
                 ] }
             >
                 <MobileDropdownWrapper

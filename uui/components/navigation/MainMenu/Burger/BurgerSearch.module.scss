@@ -3,7 +3,10 @@
     --uui-burger_search-fill: var(--uui-text-disabled);
     --uui-burger_search-bg: var(--uui-surface-contrast);
     --uui-burger_search-placeholder: var(--uui-text-disabled);
+
     --uui-burger_search-font: var(--font-regular);
+    --uui-burger_search-font-weight: normal;
+    //
     height: 60px;
     background-color: var(--uui-burger_search-bg);
     fill: var(--uui-burger_search-fill);
@@ -14,7 +17,7 @@
     :global(.uui-input) {
         color: var(--uui-burger_search);
         font-family: var(--uui-burger_search-font);
-        font-weight: var(--uui-burger_search-font-weight, normal);
+        font-weight: var(--uui-burger_search-font-weight);
 
         &::placeholder {
             color: var(--uui-burger_search-placeholder);
