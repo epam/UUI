@@ -179,9 +179,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             || this.props.getRowOptions !== prevProps?.getRowOptions
             || moreRowsNeeded
         ) {
-            console.log('this.shouldRebuildRows(this.value, prevValue)', this.shouldRebuildRows(this.value, prevValue));
-            console.log('moreRowsNeeded', moreRowsNeeded);
-            console.log('!isEqual(this.props.rowOptions, prevProps?.rowOptions)', !isEqual(this.props.rowOptions, prevProps?.rowOptions));
             this.rebuildRows();
         }
 
@@ -385,7 +382,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const visibleRows = this.getRowsWithPinned(rows);
         const listProps = this.getListProps();
 
-        console.log('this.hasMoreRows', this.hasMoreRows);
         if (this.hasMoreRows) {
             // We don't run rebuild rows on scrolling. We rather wait for the next load to happen.
             // So there can be a case when we haven't updated rows (to add more loading rows), and view is scrolled down
