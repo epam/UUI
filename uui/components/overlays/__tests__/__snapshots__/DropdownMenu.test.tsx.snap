@@ -18,15 +18,13 @@ Array [
     tabIndex={0}
   />,
   <menu
-    className="menuRoot"
     data-focus-lock-disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
-    tabIndex={-1}
   >
     <div
-      className="uui-dropdown-body bodyRoot -lock-focus container"
+      className="uui-dropdown-body -lock-focus root bodyRoot container"
       style={
         Object {
           "maxWidth": undefined,

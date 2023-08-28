@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4,
-} from '../common';
+import { BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4 } from '../common';
 
 export class DropdownContainerDoc extends BaseDocsBlock {
     title = 'Dropdown Container';
@@ -18,6 +16,7 @@ export class DropdownContainerDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="dropdownContainer-descriptions" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/dropdownContainer/Basic.example.tsx" />
+                <DocExample title="Focus lock and keyboard navigation" path="./_examples/dropdownContainer/FocusLockAndKeyboardNavigation.example.tsx" />
             </>
         );
     }
