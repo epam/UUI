@@ -5,8 +5,26 @@ import {
     useElement,
     usePlateEditorRef,
 } from '@udecode/plate-common';
-import { ResizeEvent, ResizeHandleProps, resizeLengthClampStatic } from '@udecode/resizable';
-import { ELEMENT_TABLE, TTableElement, TableCellElementState, TablePlugin, roundCellSizeToStep, setTableColSize, setTableMarginLeft, setTableRowSize, useOverrideColSize, useOverrideMarginLeft, useOverrideRowSize, useTableColSizes, useTableStore } from '@udecode/plate-table';
+import {
+    ResizeEvent,
+    ResizeHandleProps,
+    resizeLengthClampStatic,
+} from '@udecode/resizable';
+import {
+    ELEMENT_TABLE,
+    TTableElement,
+    TableCellElementState,
+    TablePlugin,
+    roundCellSizeToStep,
+    setTableColSize,
+    setTableMarginLeft,
+    setTableRowSize,
+    useOverrideColSize,
+    useOverrideMarginLeft,
+    useOverrideRowSize,
+    useTableColSizes,
+    useTableStore,
+} from '@udecode/plate-table';
 import { ResizeHandle } from './TableResizeHandle';
 
 export type TableCellElementResizableProps = Pick<
@@ -250,7 +268,7 @@ export function TableCellElementResizable(
         <>
             <ResizeHandle { ...rightProps } />
             <ResizeHandle { ...bottomProps } />
-            { hasLeftHandle && <ResizeHandle { ...leftProps } /> }
+            {hasLeftHandle && <ResizeHandle { ...leftProps } />}
         </>
     );
 }
