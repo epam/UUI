@@ -32,6 +32,7 @@ interface BaseVirtualListProps<ScrollContainer extends HTMLElement = any>
     role?: React.HTMLAttributes<HTMLDivElement>['role'];
     onScroll?(value: PositionValues): void;
     rowsSelector?: string;
+    disableScroll?: boolean;
 }
 
 export type VirtualListProps<
@@ -79,10 +80,16 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
                 [uuiMarkers.scrolledBottom]: scrollShadows.verticalBottom,
             }) }
             onScroll={ handleScroll }
+            disableScroll={ props.disableScroll }
             renderView={ ({ style, ...rest }: any) => (
                 <div
                     style={ {
-                        ...style, position: 'relative', flex: '1 1 auto', display: 'flex', flexDirection: 'column',
+                        ...style, 
+                        position: 'relative', 
+                        flex: '1 1 auto',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        ...(props.disableScroll ? { overflow: 'hidden' } : {}),
                     } }
                     { ...rest }
                     { ...props.rawProps }

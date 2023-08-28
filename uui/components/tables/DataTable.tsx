@@ -119,9 +119,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 ) : (
                     renderNoResultsBlock?.()
                 )}
-                <div className={ css.blocker }>
-                    <Blocker isEnabled={ true } />
-                </div>
+                { props.isReloading && <Blocker isEnabled={ props.isReloading } /> }
             </>
         ),
         [
@@ -138,6 +136,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 rowsCount={ props.rowsCount }
                 renderRows={ renderRowsContainer }
                 cx={ cx(css.table) }
+                disableScroll={ props.isReloading }
                 rawProps={ {
                     role: 'table',
                     'aria-colcount': columns.length,
