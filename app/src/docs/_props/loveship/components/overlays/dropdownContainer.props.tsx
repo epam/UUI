@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext } from '../../docs';
-import { DropdownContainer, Text, Button } from '@epam/loveship';
+import { DropdownContainer, Text, Button, FlexRow } from '@epam/loveship';
 
 const dropdownContainerDoc = new DocBuilder({
     name: 'DropdownContainer',
@@ -30,8 +30,10 @@ const dropdownContainerDoc = new DocBuilder({
                     value: (
                         <div>
                             {color === 'white' || !color ? <Text color="night700">{textContent}</Text> : <Text color="night50">{textContent}</Text>}
-                            <Button caption="Click first" href="/" rawProps={ { style: { margin: '6px' } } } />
-                            <Button caption="Click second" href="/" rawProps={ { style: { margin: '6px' } } } />
+                            <FlexRow spacing="12">
+                                <Button caption="Primary Action" onClick={ () => {} } />
+                                <Button caption="Secondary Action" color="gray" onClick={ () => {} } />
+                            </FlexRow>
                         </div>
                     ),
                     name: 'Basic',

@@ -60,7 +60,6 @@ function DropdownMenuContainer(props: IDropdownMenuContainer) {
             rawProps={ { ...props.rawProps } }
             as="menu"
             ref={ menuRef }
-            className={ css.menuRoot }
             lockProps={ { onKeyDown: handleArrowKeys } }
         />
     );
