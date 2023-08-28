@@ -1,40 +1,26 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": "DropdownContainer component is used as a wrapper over the content in the "
+      },
+      {
+        "data": {
+          "url": "https://uui.epam.com/documents?id=dropdown&mode=doc&skin=UUI4_promo&category=components"
+        },
+        "type": "link",
+        "url": "https://uui.epam.com/documents?id=dropdown&mode=doc&skin=UUI4_promo&category=components",
+        "children": [
           {
-            "object": "text",
-            "text": "DropdownContainer component is used as a wrapper over the content in the ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://uui.epam.com/documents?id=dropdown&mode=doc&skin=UUI4_promo&category=components"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "Dropdown",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ".",
-            "marks": []
+            "text": "Dropdown"
           }
         ]
+      },
+      {
+        "text": "."
       }
     ]
   }
-}
+]

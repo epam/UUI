@@ -1,171 +1,90 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": "DropdownContainer is a wrapper for your content provided as a "
+      },
+      {
+        "text": "children",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You can configure vertical and horizontal paddings in the container via "
+      },
+      {
+        "text": "padding",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "vPadding",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " props. Also, you can enable the arrow tip by providing "
+      },
+      {
+        "text": "showArrow={ true }",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-warning",
+    "children": [
+      {
+        "text": "Note:",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": " You can also select a "
+      },
+      {
+        "text": "placement",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " for the arrow and add offset with "
+      },
+      {
+        "text": "modifiers",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " in the "
+      },
+      {
+        "data": {
+          "url": "https://uui.epam.com/documents?id=dropdown&mode=doc&skin=UUI4_promo&category=components"
+        },
+        "type": "link",
+        "url": "https://uui.epam.com/documents?id=dropdown&mode=doc&skin=UUI4_promo&category=components",
+        "children": [
           {
-            "object": "text",
-            "text": "DropdownContainer is a wrapper for your content provided as a ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "children",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ". ",
-            "marks": []
+            "text": "Dropdown"
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "You can configure vertical and horizontal paddings in the container via ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "padding",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "vPadding",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " props. Also, you can enable the arrow tip by providing ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "showArrow={ true }",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "note-warning",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Note:",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " You can also select a ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "placement",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " for the arrow and add offset with ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "modifiers",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " in the ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://uui.epam.com/documents?id=dropdown&mode=doc&skin=UUI4_promo&category=components"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "Dropdown",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " component.",
-            "marks": []
-          }
-        ]
+        "text": " component."
       }
     ]
   }
-}
+]

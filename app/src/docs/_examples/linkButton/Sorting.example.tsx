@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
 import {
-    Dropdown, DropdownMenuButton, FlexRow, LinkButton, Panel, Text,
+    Dropdown, DropdownContainer, DropdownMenuButton, FlexRow, LinkButton, Text,
 } from '@epam/promo';
 
 const dropdownMenuItems = [
@@ -16,7 +16,7 @@ export default function SortingLinkButtonExample() {
 
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <Panel background="white" shadow>
+            <DropdownContainer { ...props } width="auto">
                 {dropdownMenuItems.map((item) => (
                     <DropdownMenuButton
                         key={ item.id }
@@ -27,7 +27,7 @@ export default function SortingLinkButtonExample() {
                         } }
                     />
                 ))}
-            </Panel>
+            </DropdownContainer>
         );
     };
 
