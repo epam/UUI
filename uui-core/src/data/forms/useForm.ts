@@ -5,7 +5,7 @@ import {
     mergeValidation, validate as uuiValidate, validateServerErrorState,
 } from '../../data/validation';
 import { useForceUpdate } from '../../hooks';
-import { UuiContexts } from '../../types';
+import { UuiContexts } from '../../types/contexts';
 import { ICanBeInvalid } from '../../types/props';
 import { useUuiContext } from '../../services';
 import { LensBuilder } from '../lenses/LensBuilder';
@@ -91,7 +91,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
 
     useEffect(() => {
         const unsavedChanges = getUnsavedChanges();
-        if (!unsavedChanges || !props.loadUnsavedChanges) return;
+        if (!unsavedChanges || !props.loadUnsavedChanges || isEqual(unsavedChanges, initialForm.current.form)) return;
         props
             .loadUnsavedChanges()
             .then(() => handleFormUpdate(() => unsavedChanges))
@@ -142,7 +142,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
             options.addCheckpoint = options.addCheckpoint ?? true;
 
             const newForm = update(currentState.form);
-            let { historyIndex, formHistory, isChanged } = currentState;
+            let { historyIndex, formHistory } = currentState;
 
             // Determine if change is significant and we need to create new checkpoint.
             // If false - we'll just update the latest checkpoint.
@@ -151,7 +151,6 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
 
             if (options.addCheckpoint && needCheckpoint) {
                 historyIndex++;
-                isChanged = !isEqual(initialForm.current, newForm);
             }
             formHistory = formHistory.slice(0, historyIndex).concat(newForm);
 
@@ -159,10 +158,12 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
                 context.uuiUserSettings.set(props.settingsKey, newForm);
             }
 
+            const isChanged = !isEqual(initialForm.current.form, newForm);
+
             let newState = {
                 ...currentState,
                 form: newForm,
-                isChanged,
+                isChanged: isChanged,
                 historyIndex,
                 formHistory,
             };
@@ -183,7 +184,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
             }
         });
 
-    const updateValidationStates = (state: FormState<T>) => {
+    const updateValidationStates = (state: FormState<T>): FormState<T> => {
         const valueToValidate = state.form;
         const metadata = getMetadata(valueToValidate);
         const isInSaveMode = state.isInSaveMode;
@@ -292,7 +293,11 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
     );
 
     const validate = useCallback(() => {
-        updateFormState((currentState) => updateValidationStates(currentState));
+        const formSate = { ...formState.current, isInSaveMode: true };
+        const newState = updateValidationStates(formSate);
+        updateFormState(() => newState);
+
+        return newState.validationState;
     }, []);
 
     const handleRevert = useCallback(() => {
@@ -311,13 +316,13 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
     }, []);
 
     const handleReplaceValue = useCallback((value: React.SetStateAction<T>) => {
-        handleFormUpdate(
-            (currentValue) => {
-                const newValue: T = value instanceof Function ? value(currentValue) : value;
-                return newValue;
-            },
-            { addCheckpoint: false },
-        );
+        updateFormState((currentValue) => {
+            const newFormValue = value instanceof Function ? value(currentValue.form) : value;
+            return {
+                ...currentValue,
+                form: newFormValue,
+            };
+        });
     }, []);
 
     const saveCallback = useCallback(() => {
