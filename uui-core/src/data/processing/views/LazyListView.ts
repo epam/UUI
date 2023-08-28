@@ -162,7 +162,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (prevValue == null || prevProps == null || this.reloading || this.shouldRebuildTree(this.value, prevValue) || filtersWereUpdated) {
             this.tree = this.tree.clearStructure();
             completeReset = true;
-            this.reloading = false;
         }
         const isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
 
@@ -172,6 +171,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         }
 
         if (
+            // on filters change skeleton should not appear
             (completeReset && !filtersWereUpdated)
             || this.shouldRebuildRows(this.value, prevValue)
             || !isEqual(this.props.rowOptions, prevProps?.rowOptions)
@@ -193,6 +193,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                     this.rebuildRows();
                     this._forceUpdate();
                 }
+            }).finally(() => {
+                this.reloading = false;
             });
         }
     }
