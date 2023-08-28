@@ -1,6 +1,8 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
+    --uui-rdtp_date-bg-selected: var(--uui-surface-active);
+
     :global(.uui-calendar-days) > div:last-child {
         :global(.uui-calendar-day-cell):last-child > :global(.uui-range-datepicker-in-range) {
             &:not(:global(.uui-range-datepicker-first-day-in-range-wrapper)) {
@@ -60,7 +62,7 @@
 
     :global(.uui-range-datepicker-in-range) {
         &:global(.uui-calendar-day-wrapper) {
-            background-color: var(--uui-rdtp-bg-selected-date);
+            background-color: var(--uui-rdtp_date-bg-selected);
             border-radius: 0;
             width: 40px;
         }

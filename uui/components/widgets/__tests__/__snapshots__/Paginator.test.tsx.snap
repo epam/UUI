@@ -2,7 +2,7 @@
 
 exports[`Paginator should be rendered correctly 1`] = `
 <nav
-  className="root"
+  className="root uui-paginator"
   role="navigation"
 >
   <button

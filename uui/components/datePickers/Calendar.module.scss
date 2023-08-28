@@ -1,6 +1,20 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
+    --uui-calendar-selected-hover: var(--uui-control-bg);
+    --uui-calendar-start-end-selected-hover: var(--uui-primary-60);
+    --uui-calendar-start-end-selected: var(--uui-control-border-checked);
+    --uui-calendar-weekends-weekdates: var(--uui-control-placeholder);
+    --uui-calendar-text: var(--uui-control-text);
+    --uui-calendar-text-filtered: var(--uui-control-text-disabled);
+
+    --uui-calendar-content-font: var(--font-regular);
+    --uui-calendar-content-font-weight: normal;
+    --uui-calendar-weekday-font: var(--font-regular);
+    --uui-calendar-weekday-font-weight: normal;
+    --uui-calendar-selected_day-font: var(--font-semibold);
+    --uui-calendar-selected_day-font-weight: normal;
+
     :global(.uui-calendar-content) {
         font-family: var(--uui-calendar-content-font);
         font-weight: var(--uui-calendar-content-font-weight, normal);

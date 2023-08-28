@@ -6,9 +6,25 @@
 }
 
 .root {
+    --uui-accordion-bg: var(--uui-surface);
+    --uui-accordion-border: var(--uui-divider);
+    --uui-accordion-border-radius: var(--uui-border-radius);
+    --uui-accordion-text: var(--uui-text-primary);
+    --uui-accordion-text-disabled: var(--uui-text-disabled);
+    --uui-accordion-icon: var(--uui-icon);
+    --uui-accordion-icon-disabled: var(--uui-text-input-icon-disabled);
+    --uui-accordion-focus: var(--uui-primary-50);
+    --uui-accordion-shadow: var(--uui-shadow-level-1);
+    --uui-accordion-shadow-hovered: var(--uui-shadow-level-2);
+
+    --uui-accordion-toggler-font: var(--font-semibold);
+    --uui-accordion-toggler-font-weight: normal;
+    --uui-accordion-body-font: var(--font-regular);
+    --uui-accordion-body-font-weight: normal;
+    //
     :global(.uui-accordion-toggler) {
         font-family: var(--uui-accordion-toggler-font);
-        font-weight: var(--uui-accordion-toggler-font-weight, normal);
+        font-weight: var(--uui-accordion-toggler-font-weight);
         color: var(--uui-accordion-text);
         cursor: pointer;
 
@@ -19,7 +35,7 @@
 
     :global(.uui-accordion-body) {
         font-family: var(--uui-accordion-body-font);
-        font-weight: var(--uui-accordion-body-font-weight, normal);
+        font-weight: var(--uui-accordion-body-font-weight);
         color: var(--uui-accordion-text);
     }
 
@@ -118,7 +134,7 @@
 
         &:global(.uui-opened) {
             :global(.uui-accordion-toggler) {
-                border-bottom: none;
+                border-bottom: 0 none;
             }
         }
 
@@ -128,7 +144,7 @@
                 fill: var(--uui-accordion-icon-disabled);
 
                 &:global(.uui-opened) {
-                    border-bottom: none;
+                    border-bottom: 0 none;
                 }
 
                 :global(.uui-accordion-title) {

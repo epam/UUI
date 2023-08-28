@@ -22,6 +22,7 @@
     --uui-text-input-border-radius: var(--uui-border-radius);
 
     --uui-text-input-font: var(--font-regular);
+    --uui-text-input-font-weight: normal;
     //
     fill: var(--uui-text-input-icon);
     border-style: solid;
@@ -33,7 +34,7 @@
     :global(.uui-input) {
         color: var(--uui-text-input-text);
         font-family: var(--uui-text-input-font);
-        font-weight: var(--uui-text-input-font-weight, normal);
+        font-weight: var(--uui-text-input-font-weight);
         padding-left: 6px;
         padding-right: 6px;
 

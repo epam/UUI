@@ -9,7 +9,8 @@
     }
 
     :global(.hero-header) {
-        font-family: var(--font-promo);
+        font-family: var(--font-sans);
+        font-weight: bold;
         margin: 30px 0;
         font-size: 66px;
         line-height: 72px;

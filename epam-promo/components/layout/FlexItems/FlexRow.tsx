@@ -7,5 +7,5 @@ export interface RowMods extends uuiRowMods, types.RowSizeMod {
 }
 
 export const FlexRow = withMods<FlexRowProps, RowMods>(uuiFlexRow, (props) => {
-    return [`flex-row-background-${props.background || 'none'}`];
+    return [props.background && props.background !== 'none' && `uui-color-${props.background}`];
 });

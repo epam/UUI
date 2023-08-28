@@ -2,7 +2,7 @@
 
 exports[`Tag should render with all new props 1`] = `
 <button
-  className="container uui-button-box uui-enabled -clickable size-24 root root fill-white"
+  className="container uui-button-box uui-enabled -clickable size-24 root uui-color-gray uui-tag root fill-white"
   onClick={[Function]}
   tabIndex={0}
   type="button"
@@ -40,7 +40,7 @@ exports[`Tag should render with all new props 1`] = `
 
 exports[`Tag should render with default props 1`] = `
 <button
-  className="container uui-button-box uui-enabled size-18 root root fill-solid"
+  className="container uui-button-box uui-enabled size-18 root uui-color-gray uui-tag root fill-solid"
   onClick={[Function]}
   tabIndex={-1}
   type="button"

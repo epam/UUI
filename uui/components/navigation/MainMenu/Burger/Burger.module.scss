@@ -8,6 +8,7 @@
     --uui-burger_menu-overlay: var(--uui-overlay);
     --uui-burger_icon: var(--uui-text-contrast);
     --uui-burger_item: var(--uui-text-brand);
+    //
     position: relative;
     display: flex;
 
@@ -21,7 +22,7 @@
         fill: var(--uui-burger_icon);
         background: transparent;
         padding: 0;
-        border: none;
+        border: 0 none;
 
         &:hover {
             background-color: var(--uui-burger_menu-bg-hover);

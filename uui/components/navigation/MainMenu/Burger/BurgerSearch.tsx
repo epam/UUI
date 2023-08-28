@@ -10,7 +10,7 @@ export interface BurgerSearchProps extends TextInputProps {}
 export function BurgerSearch(props: BurgerSearchProps) {
     return (
         <TextInput
-            cx={ cx(css.searchInput, 'uui-mainMenu-burger-search') }
+            cx={ cx(css.searchInput, 'uui-main_menu-burger-search') }
             iconPosition="left"
             icon={ LensIcon }
             placeholder={ props.placeholder }

@@ -9,7 +9,7 @@ export interface MainMenuMods {}
 function applyMainMenuMods() {
     return [
         css.root,
-        'uui-mainMenu',
+        'uui-main_menu',
     ];
 }
 

@@ -52,6 +52,7 @@
     --uui-switch-toggler-border-checked-disabled: var(--uui-color-20);
 
     --uui-switch-font: var(--font-regular);
+    --uui-switch-font-weight: normal;
     //Sizes
     &.size-12 {
         @include control-switch-size(12px);

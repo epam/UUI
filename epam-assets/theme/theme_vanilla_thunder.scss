@@ -270,9 +270,9 @@
     --uui-link-button-font-weight: 400;
 
     /*  DatePicker vars   */
-    --uui-dtp-title-bg: var(--uui-control-bg);
-    --uui-dtp-text-selected: var(--uui-control-border-checked);
-    --uui-dtp-text: var(--uui-control-text);
+    --uui-dtp_body-title-bg: var(--uui-control-bg);
+    --uui-dtp_body-text-selected: var(--uui-control-border-checked);
+    --uui-dtp_body-text: var(--uui-control-text);
 
     --uui-dtp_body-content-font: var(--font-inter);
     --uui-dtp_body-content-font-weight: 400;
@@ -613,12 +613,6 @@
     --uui-search-input-icon-clickable-hover: var(--uui-icon-hover);
     --uui-search-input-icon-disabled: var(--uui-icon-disabled);
     --uui-search-input-border-radius: var(--uui-border-radius);
-
-    /* Popover */
-    --uui-popover-shadow: var(--uui-shadow-level-2);
-
-    /* Footer */
-    --uui-footer-bg: var(--uui-surface-contrast);
 
     /* FilterPanelItemToggler vars */
     --uui-filters-toggler-border: var(--uui-surface);
