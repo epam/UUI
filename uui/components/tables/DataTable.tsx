@@ -119,7 +119,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 ) : (
                     renderNoResultsBlock?.()
                 )}
-                { props.isReloading && <Blocker isEnabled={ props.isReloading } /> }
+                <Blocker isEnabled={ props.isReloading } />
             </>
         ),
         [
