@@ -127,6 +127,7 @@ export function MasterDetailedTable() {
             api,
             getId: (i) => [i.__typename, i.id],
             complexIds: true,
+            backgroundReload: true,
             getParentId: (i) => {
                 const groupBy = tableStateApi.tableState.filter?.groupBy;
                 if (i.__typename === 'PersonGroup') {

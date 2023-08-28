@@ -89,7 +89,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     private isUpdatePending = false;
     private loadedValue: DataSourceState<TFilter, TId> = null;
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
-    private reloading: boolean = false;
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
         { legacyLoadDataBehavior = true, ...props }: LazyListViewProps<TItem, TId, TFilter>,
@@ -157,9 +156,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.isUpdatePending = false;
 
         let completeReset = false;
-        const filtersWereUpdated = !isEqual(this.props?.filter, prevProps?.filter) || this.filterWasChanged(this.value, prevValue);
+        const shouldReloadData = this.isReloading
+            || !isEqual(this.props?.filter, prevProps?.filter)
+            || this.shouldRebuildTree(this.value, prevValue);
 
-        if (prevValue == null || prevProps == null || this.reloading || this.shouldRebuildTree(this.value, prevValue) || filtersWereUpdated) {
+        if (prevValue == null || prevProps == null || shouldReloadData) {
+            if (shouldReloadData) {
+                this.isReloading = true;
+            }
             this.tree = this.tree.clearStructure();
             completeReset = true;
         }
@@ -170,9 +174,10 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             this.updateCheckedLookup(this.value.checked);
         }
 
+        const shouldShowPlacehodlers = !shouldReloadData || (shouldReloadData && !this.props.backgroundReload);
         if (
             // on filters change skeleton should not appear
-            (completeReset && !filtersWereUpdated)
+            (completeReset && shouldShowPlacehodlers)
             || this.shouldRebuildRows(this.value, prevValue)
             || !isEqual(this.props.rowOptions, prevProps?.rowOptions)
             || isFoldingChanged
@@ -194,7 +199,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                     this._forceUpdate();
                 }
             }).finally(() => {
-                this.reloading = false;
+                this.isReloading = false;
             });
         }
     }
@@ -216,7 +221,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     public reload = () => {
         this.tree = Tree.blank(this.props);
-        this.reloading = true;
+        this.isReloading = true;
         this.initCache();
         this.update({ value: this.value, onValueChange: this.onValueChange }, this.props);
         this._forceUpdate();
@@ -442,6 +447,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             exactRowsCount: this.rows.length,
             totalCount,
             selectAll: this.selectAll,
+            isReloading: this.isReloading,
         };
     };
 

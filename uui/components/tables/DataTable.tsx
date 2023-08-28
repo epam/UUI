@@ -9,7 +9,7 @@ import { DataTableHeaderRow } from './DataTableHeaderRow';
 import { DataTableRow } from './DataTableRow';
 import { DataTableMods, DataTableRowMods } from './types';
 import { ColumnsConfigurationModal, ColumnsConfigurationModalProps } from './columnsConfigurationModal';
-import { VirtualList } from '../layout';
+import { VirtualList, Blocker } from '../layout';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from '../typography';
 import css from './DataTable.module.scss';
@@ -119,6 +119,9 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 ) : (
                     renderNoResultsBlock?.()
                 )}
+                <div className={ css.blocker }>
+                    <Blocker isEnabled={ true } />
+                </div>
             </>
         ),
         [

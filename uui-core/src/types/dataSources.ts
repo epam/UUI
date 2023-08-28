@@ -134,6 +134,8 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
      * Enables or disables "select all" checkbox. Default is true.
      */
     selectAll?: true | false;
+
+    backgroundReload?: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -173,6 +175,7 @@ export type DataSourceListCounts = {
 
 export interface DataSourceListProps extends DataSourceListCounts {
     selectAll?: ICheckable;
+    isReloading?: boolean;
 }
 
 // Lazy Data Source API

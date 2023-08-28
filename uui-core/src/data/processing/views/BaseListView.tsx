@@ -34,6 +34,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     public selectAll?: ICheckable;
     protected isDestroyed = false;
     protected hasMoreRows = false;
+    protected isReloading: boolean = false;
+
     abstract getById(id: TId, index: number): DataRowProps<TItem, TId>;
     abstract getVisibleRows(): DataRowProps<TItem, TId>[];
     abstract getListProps(): DataSourceListProps;
@@ -582,8 +584,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         this.searchWasChanged(prevValue, newValue)
         || this.sortingWasChanged(prevValue, newValue)
         || this.filterWasChanged(prevValue, newValue)
-        || newValue.page !== prevValue.page
-        || newValue.pageSize !== prevValue.pageSize;
+        || newValue?.page !== prevValue?.page
+        || newValue?.pageSize !== prevValue?.pageSize;
 
     protected shouldRebuildRows = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) =>
         !prevValue
