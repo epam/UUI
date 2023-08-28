@@ -56,6 +56,7 @@
 
 .cell {
     position: relative;
+    display: flex; // fixes bug in ff
     z-index: 20;
     box-sizing: border-box;
     height: 100%;
