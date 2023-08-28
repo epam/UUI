@@ -24,7 +24,7 @@ Array [
     onKeyDown={[Function]}
   >
     <div
-      className="uui-dropdown-body root dropdown-container-white -lock-focus container"
+      className="uui-dropdown-body -lock-focus root dropdown-container-white container"
       style={
         Object {
           "maxWidth": undefined,
@@ -62,7 +62,7 @@ Array [
 
 exports[`DropdownContainer should be rendered correctly 2`] = `
 <div
-  className="uui-dropdown-body root dropdown-container-gray70 -lock-focus container"
+  className="uui-dropdown-body -lock-focus root dropdown-container-gray70 container"
   style={
     Object {
       "maxWidth": undefined,
