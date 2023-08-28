@@ -3,6 +3,7 @@
 
 .table-cell-wrapper {
     --background: 0 0% 100%;
+    height: 100%; // fixes bug in ff
     position: relative;
     overflow: visible;
     border-style: none;
@@ -56,7 +57,6 @@
 
 .cell {
     position: relative;
-    display: flex; // fixes bug in ff
     z-index: 20;
     box-sizing: border-box;
     height: 100%;
