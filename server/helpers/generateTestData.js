@@ -73,11 +73,15 @@ const getPersons = cached('persons', async () => {
         0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100,
     ];
     const persons = [];
+    const nationalities = ['en', 'it', 'nl', 'uk', 'de', 'jp', 'es', 'fr'];
 
     for (let n = 0; n < size; n++) {
+        if (n % 1000 === 0) {
+            await 0;
+        }
         const id = n + 1;
         const firstName = c.first();
-        const lastName = c.last();
+        const lastName = c.last({ nationality: c.pickone(nationalities) });
         const manager = c.pickone(managers);
         const email = `${firstName}_${lastName}@uui.com`;
         const department = c.pickone(departments);
