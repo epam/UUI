@@ -8,6 +8,7 @@ export class RichTextEditorDoc extends BaseDocsBlock {
             <>
                 <DocExample path="./_examples/richTextEditor/Basic.example.tsx" />
                 <DocExample title="Inner scroll behavior" path="./_examples/richTextEditor/WithInnerScroll.example.tsx" />
+                <DocExample title="Serialization" path="./_examples/richTextEditor/Serialization.example.tsx" />
             </>
         );
     }
