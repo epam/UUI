@@ -46,6 +46,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                                 { ...this.searchLens.toProps() }
                                 onKeyDown={ this.searchKeyDown }
                                 size={ searchSize }
+                                isDisabled={ this.props.isReloading }
                             />
                         </FlexCell>
                     </div>
@@ -59,6 +60,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                             rawProps={ this.props.rawProps }
                             rowsCount={ this.props.rowsCount }
                             rowsSelector="[role=option]"
+                            disableScroll={ this.props.isReloading }
                         />
                     ) : (
                         this.renderNotFound()
