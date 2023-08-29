@@ -36,15 +36,11 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     renderRowsContainer = ({ listContainerRef, estimatedHeight, offsetY }: VirtualListRenderRowsParams) => {
         return (
             <>
-                {this.props?.rowsCount > 0 ? (
-                    <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
-                        <div ref={ listContainerRef } role="rowgroup" style={ { marginTop: offsetY } }>
-                            {this.props.rows}
-                        </div>
+                <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
+                    <div ref={ listContainerRef } role="listbox" style={ { marginTop: offsetY } }>
+                        {this.props.rows}
                     </div>
-                ) : (
-                    this.renderNotFound()
-                )}
+                </div>
                 <Blocker isEnabled={ this.props.isReloading } />
             </>
         );
@@ -69,15 +65,16 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                     </div>
                 )}
                 <FlexRow key="body" cx={ cx(css.body, css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight } } }>
-                    <VirtualList 
-                        { ...this.lens.toProps() }
-                        renderRows={ this.renderRowsContainer }
-                        role="listbox"
-                        rawProps={ this.props.rawProps }
-                        rowsCount={ this.props.rowsCount }
-                        rowsSelector="[role=option]"
-                        disableScroll={ this.props.isReloading }
-                    />
+                    { this.props.rowsCount > 0 ? (
+                        <VirtualList 
+                            { ...this.lens.toProps() }
+                            renderRows={ this.renderRowsContainer }
+                            rawProps={ this.props.rawProps }
+                            rowsCount={ this.props.rowsCount }
+                            rowsSelector="[role=option]"
+                            disableScroll={ this.props.isReloading }
+                        />
+                    ) : (this.renderNotFound())}
                 </FlexRow>
             </>
         );

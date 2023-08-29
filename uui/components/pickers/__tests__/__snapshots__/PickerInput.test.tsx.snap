@@ -158,6 +158,11 @@ exports[`PickerInput should open body 1`] = `
                   </div>
                 </div>
               </div>
+              <div
+                class="container uui-blocker-container root"
+              >
+                <div />
+              </div>
             </div>
             <div
               class="uui-track-horizontal"
