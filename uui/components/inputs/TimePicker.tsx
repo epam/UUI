@@ -55,7 +55,7 @@ export class TimePicker extends BaseTimePicker<TimePickerProps> {
     renderBody = (props: DropdownBodyProps) => {
         return (
             !this.props.isDisabled && !this.props.isReadonly && (
-                <DropdownContainer { ...props }>
+                <DropdownContainer { ...props } focusLock={ false }>
                     <TimePickerBody
                         { ...this.props }
                         value={ this.props.value !== null ? this.props.value : { hours: null, minutes: null } }

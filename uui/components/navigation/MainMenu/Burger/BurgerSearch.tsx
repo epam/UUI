@@ -18,7 +18,6 @@ export function BurgerSearch(props: BurgerSearchProps) {
             onValueChange={ props.onValueChange }
             onCancel={ props.onCancel }
             cancelIcon={ props.value && CancelIcon }
-            autoFocus
         />
     );
 }

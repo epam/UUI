@@ -1,8 +1,10 @@
-import React, { useRef, useContext, useState, useEffect, HTMLAttributes } from 'react';
-import FocusLock from 'react-focus-lock';
-import { cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
-    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
-import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer } from '@epam/uui-components';
+import React, { useRef, useContext, useState, HTMLAttributes } from 'react';
+import {
+    cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
+    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IHasRawProps, IHasForwardedRef,
+} from '@epam/uui-core';
+import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer } from '@epam/uui-components';
+import { DropdownContainer } from './DropdownContainer';
 import { Switch } from '../inputs';
 import { IconButton } from '../buttons';
 import { systemIcons } from '../../icons/icons';
@@ -29,12 +31,8 @@ export enum IDropdownControlKeys {
 
 function DropdownMenuContainer(props: IDropdownMenuContainer) {
     const menuRef = useRef<HTMLMenuElement>(null);
-    const [currentlyFocused, setFocused] = useState<number>(-1);
+    const [currentlyFocused, setFocused] = useState<number>(0);
     const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`)) : [];
-
-    useEffect(() => {
-        menuRef.current?.focus();
-    }, [menuRef.current]);
 
     const changeFocus = (nextFocusedIndex: number) => {
         if (menuItems.length > 0) {
@@ -44,8 +42,6 @@ function DropdownMenuContainer(props: IDropdownMenuContainer) {
     };
 
     const handleArrowKeys = (e: React.KeyboardEvent<HTMLMenuElement>) => {
-        e.stopPropagation();
-
         const lastMenuItemsIndex = menuItems.length - 1;
 
         if (e.key === IDropdownControlKeys.UP_ARROW) {
@@ -53,14 +49,19 @@ function DropdownMenuContainer(props: IDropdownMenuContainer) {
         } else if (e.key === IDropdownControlKeys.DOWN_ARROW) {
             changeFocus(currentlyFocused < lastMenuItemsIndex ? currentlyFocused + 1 : 0);
         } else if (e.key === props.closeOnKey && props.onClose) {
+            e.stopPropagation();
             props.onClose();
         }
     };
 
     return (
-        <FocusLock as="menu" className={ cx(css.root, css.menuRoot) } returnFocus autoFocus={ false } ref={ menuRef } lockProps={ { onKeyDown: handleArrowKeys, tabIndex: -1 } }>
-            <DropdownContainer { ...props } rawProps={ { ...props.rawProps, tabIndex: -1 } } />
-        </FocusLock>
+        <DropdownContainer
+            { ...props }
+            rawProps={ { ...props.rawProps, role: 'menu' } }
+            ref={ menuRef }
+            lockProps={ { onKeyDown: handleArrowKeys } }
+            cx={ css.root }
+        />
     );
 }
 
@@ -74,7 +75,7 @@ export const DropdownMenuBody = withMods<IDropdownMenuBody>(
     () => [css.bodyRoot],
     (props) => {
         const dropdownRawProps = props.minWidth ? { ...props.rawProps, style: { minWidth: `${props.minWidth}px` } } : null;
-        return ({ ...props, rawProps: dropdownRawProps || props.rawProps }) as IDropdownMenuBody;
+        return ({ closeOnKey: IDropdownControlKeys.ESCAPE, ...props, rawProps: dropdownRawProps || props.rawProps }) as IDropdownMenuBody;
     },
 );
 

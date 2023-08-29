@@ -28,7 +28,6 @@ Array [
     data-no-focus-lock={true}
   >
     <div
-      aria-expanded={true}
       aria-hidden={false}
       className="uui-popper"
       data-placement="bottom-start"
