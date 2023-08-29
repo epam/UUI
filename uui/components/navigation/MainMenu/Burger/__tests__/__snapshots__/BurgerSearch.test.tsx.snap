@@ -16,7 +16,6 @@ exports[`BurgerSearch should be rendered correctly 1`] = `
     />
   </div>
   <input
-    autoFocus={true}
     className="uui-input"
     onChange={[Function]}
     onKeyDown={[Function]}
@@ -43,7 +42,6 @@ exports[`BurgerSearch should be rendered correctly 2`] = `
     />
   </div>
   <input
-    autoFocus={true}
     className="uui-input"
     onChange={[Function]}
     onKeyDown={[Function]}

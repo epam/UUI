@@ -25,7 +25,7 @@ export function Tooltip(props: TooltipProps) {
     const renderDropdownBody = (props: DropdownBodyProps) => {
         if (isTooltipExist()) {
             return (
-                <DropdownContainer showArrow={ true } maxWidth={ maxWidth ?? 300 } cx={ cx(tooltipCX, uuiElement.tooltipContainer) } { ...props }>
+                <DropdownContainer focusLock={ false } showArrow={ true } maxWidth={ maxWidth ?? 300 } cx={ cx(tooltipCX, uuiElement.tooltipContainer) } { ...props }>
                     {renderTooltip()}
                 </DropdownContainer>
             );

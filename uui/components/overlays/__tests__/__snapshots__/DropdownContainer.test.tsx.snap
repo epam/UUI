@@ -1,29 +1,68 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DropdownContainer should be rendered correctly 1`] = `
-<div
-  className="uui-dropdown-body uui-dropdown_container root -lock-focus container"
-  style={
-    Object {
-      "maxWidth": undefined,
-      "minHeight": undefined,
-      "minWidth": undefined,
+Array [
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
     }
-  }
-  tabIndex={0}
->
-  <button
-    className="container uui-button-box uui-enabled root uui-button uui-fill-solid uui-color-primary size-36"
-    onClick={[Function]}
-    tabIndex={-1}
-    type="button"
-  />
-</div>
+    tabIndex={0}
+  />,
+  <div
+    data-focus-lock-disabled={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+  >
+    <div
+      className="uui-dropdown-body -lock-focus uui-dropdown_container root container"
+      style={
+        Object {
+          "maxWidth": undefined,
+          "minHeight": undefined,
+          "minWidth": undefined,
+        }
+      }
+      tabIndex={-1}
+    >
+      <button
+        className="container uui-button-box uui-enabled root uui-button uui-fill-solid uui-color-primary size-36"
+        onClick={[Function]}
+        tabIndex={-1}
+        type="button"
+      />
+    </div>
+  </div>,
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={0}
+  />,
+]
 `;
 
 exports[`DropdownContainer should be rendered correctly 2`] = `
 <div
-  className="uui-dropdown-body uui-dropdown_container root vPadding-18 padding-24 -lock-focus container"
+  className="uui-dropdown-body -lock-focus uui-dropdown_container root vPadding-18 padding-24 container"
   style={
     Object {
       "maxWidth": undefined,
@@ -31,7 +70,7 @@ exports[`DropdownContainer should be rendered correctly 2`] = `
       "minWidth": 300,
     }
   }
-  tabIndex={0}
+  tabIndex={-1}
 >
   <button
     className="container uui-button-box uui-enabled root uui-button uui-fill-solid uui-color-primary size-36"

@@ -112,11 +112,16 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         const renderedDataRows = rows.map((row) => this.renderRow(row, this.state.dataSourceState));
         const maxHeight = isMobile() ? document.documentElement.clientHeight : this.props.dropdownHeight || pickerHeight;
         const minBodyWidth = isMobile() ? document.documentElement.clientWidth : this.props.minBodyWidth || pickerWidth;
+        const onKeyDownHandler = (e: React.KeyboardEvent<HTMLElement>) => {
+            if (e.key === 'Escape') {
+                props.onClose?.();
+            }
+        };
 
         return (
             <Panel
                 style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }
-                rawProps={ { tabIndex: -1 } }
+                rawProps={ { tabIndex: -1, onKeyDown: onKeyDownHandler } }
                 cx={ [
                     css.root, css.body, uuiMarkers.lockFocus, this.props.bodyCx,
                 ] }
