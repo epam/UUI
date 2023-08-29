@@ -444,14 +444,19 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         const pinnedIndexes = this.pinnedByParentId[this.idToKey(row.parentId)];
         if (!pinnedIndexes || !pinnedIndexes.length) return undefined;
 
-        const firstPinnedAfterRow = pinnedIndexes.findIndex((index) => {
+        const lastPinnedAfterRow = [...pinnedIndexes].reverse().findIndex((index) => {
             const pinnedRow = this.rows[index];
             if (!pinnedRow) return false;
-            return row.index <= index && !alreadyAdded.includes(pinnedRow.id);
+            return row.index > pinnedRow.index;
         });
 
-        if (firstPinnedAfterRow <= 0) return undefined;            
-        return this.rows[firstPinnedAfterRow - 1];
+        if (lastPinnedAfterRow === -1) {
+            return undefined;
+        }
+        const lastHiddenPinned = this.rows[lastPinnedAfterRow];
+        if (alreadyAdded.includes(lastHiddenPinned.id)) return undefined;
+         
+        return lastHiddenPinned;
     }
 
     protected getRowsWithPinned(rows: DataRowProps<TItem, TId>[]) {
@@ -463,7 +468,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         firstRow.path.forEach((item) => {
             const pinnedIndex = this.pinned[this.idToKey(item.id)];
             if (pinnedIndex === undefined) return;
-            
+
             const parent = this.rows[pinnedIndex];
             if (!parent || alreadyAdded.includes(parent.id)) return;
 
@@ -475,7 +480,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         if (lastHiddenPinned) {
             rowsWithPinned.push(lastHiddenPinned);                
         }
-    
+
         return rowsWithPinned.concat(rows);
     }
 
