@@ -17,7 +17,7 @@ Array [
     }
     tabIndex={0}
   />,
-  <menu
+  <div
     data-focus-lock-disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}
@@ -25,6 +25,7 @@ Array [
   >
     <div
       className="uui-dropdown-body -lock-focus root bodyRoot container"
+      role="menu"
       style={
         Object {
           "maxWidth": undefined,
@@ -107,7 +108,7 @@ Array [
         </button>
       </div>
     </div>
-  </menu>,
+  </div>,
   <div
     data-focus-guard={true}
     style={
