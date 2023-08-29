@@ -57,8 +57,7 @@ function DropdownMenuContainer(props: IDropdownMenuContainer) {
     return (
         <DropdownContainer
             { ...props }
-            rawProps={ { ...props.rawProps } }
-            as="menu"
+            rawProps={ { ...props.rawProps, role: 'menu' } }
             ref={ menuRef }
             lockProps={ { onKeyDown: handleArrowKeys } }
         />
