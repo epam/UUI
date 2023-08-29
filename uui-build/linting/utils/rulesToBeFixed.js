@@ -10,7 +10,7 @@
  *
  * Note: a rule must be removed from this array as soon as all errors/warnings related to this rule are fixed.
  */
-const { isCI, isLintStaged } = require('../../utils/envUtils.js');
+const { isCI, isLintStaged } = require('../../utils/envUtils');
 
 // Only CI & pre-commit hooks should ignore these rules.
 const shouldTurnOffRulesToBeFixed = Boolean(isCI() || isLintStaged());

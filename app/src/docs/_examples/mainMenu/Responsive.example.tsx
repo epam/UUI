@@ -1,20 +1,6 @@
 import React, { ReactNode, useState } from 'react';
-import {
-    BurgerButton,
-    GlobalMenu,
-    MainMenu,
-    MainMenuAvatar,
-    MainMenuButton,
-    MainMenuIcon,
-    FlexSpacer,
-    FlexCell,
-    MainMenuDropdown,
-    BurgerSearch,
-    DropdownMenuBody,
-    DropdownMenuButton,
-    DropdownMenuSplitter,
-    Slider,
-    Burger,
+import { BurgerButton, GlobalMenu, MainMenu, MainMenuAvatar, MainMenuButton, MainMenuIcon, FlexSpacer, FlexCell,
+    MainMenuDropdown, BurgerSearch, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, Slider, Burger,
 } from '@epam/promo';
 import { Dropdown, MainMenuLogo, AdaptiveItemProps } from '@epam/uui-components';
 import { ReactComponent as HelpIcon } from '@epam/assets/icons/common/notification-help-outline-24.svg';
@@ -47,6 +33,7 @@ export default function MainMenuResponsiveExample() {
     const renderAvatar = () => {
         return (
             <Dropdown
+                key="avatar"
                 renderTarget={ (props) => (
                     <MainMenuAvatar avatarUrl="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" isDropdown { ...props } />
                 ) }
@@ -68,30 +55,40 @@ export default function MainMenuResponsiveExample() {
                 id: 'burger',
                 priority: 100,
                 collapsedContainer: true,
-                render: (item, hiddenItems) => <Burger renderBurgerContent={ (props) => renderBurger(hiddenItems, props.onClose) } />,
-            }, {
+                render: (item, hiddenItems) => <Burger key={ item.id } renderBurgerContent={ (props) => renderBurger(hiddenItems, props.onClose) } />,
+            },
+            {
                 id: 'logo',
                 priority: 99,
-                render: () => <MainMenuLogo href="https://learn.epam.com/" logoUrl="https://uui.epam.com/static/images/app-logos/learn_logo.svg" />,
-            }, {
-                id: 'People', priority: 9, render: () => <MainMenuButton href="/" caption="People" />, caption: 'People',
-            }, {
-                id: 'Projects', priority: 7, render: () => <MainMenuButton caption="Projects" />, caption: 'Projects',
-            }, {
-                id: 'Positions', priority: 6, render: () => <MainMenuButton href="/" caption="Positions" />, caption: 'Positions',
-            }, {
-                id: 'Companies', priority: 5, render: () => <MainMenuButton href="/" caption="Companies" />, caption: 'Companies',
-            }, {
-                id: 'Processes', priority: 5, render: () => <MainMenuButton href="/" caption="Processes" />, caption: 'Processes',
-            }, {
-                id: 'Tasks', priority: 4, render: () => <MainMenuButton href="/" caption="Tasks" />, caption: 'Tasks',
-            }, {
-                id: 'Talks', priority: 4, render: () => <MainMenuButton href="/" caption="Talks" />, caption: 'Talks',
-            }, {
+                render: (p) => <MainMenuLogo key={ p.id } href="https://learn.epam.com/" logoUrl="https://uui.epam.com/static/images/app-logos/learn_logo.svg" />,
+            },
+            {
+                id: 'People', priority: 9, render: (p) => <MainMenuButton key={ p.id } href="/" caption="People" />, caption: 'People',
+            },
+            {
+                id: 'Projects', priority: 7, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Projects" />, caption: 'Projects',
+            },
+            {
+                id: 'Positions', priority: 6, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Positions" />, caption: 'Positions',
+            },
+            {
+                id: 'Companies', priority: 5, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Companies" />, caption: 'Companies',
+            },
+            {
+                id: 'Processes', priority: 5, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Processes" />, caption: 'Processes',
+            },
+            {
+                id: 'Tasks', priority: 4, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Tasks" />, caption: 'Tasks',
+            },
+            {
+                id: 'Talks', priority: 4, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Talks" />, caption: 'Talks',
+            },
+            {
                 id: 'Action Items',
                 priority: 3,
                 render: (item) => (
                     <MainMenuButton
+                        key={ item.id }
                         href="/"
                         caption="Action Items"
                         onClick={ () => {
@@ -100,21 +97,29 @@ export default function MainMenuResponsiveExample() {
                     />
                 ),
                 caption: 'Action Items',
-            }, {
-                id: 'Subscriptions', priority: 3, render: () => <MainMenuButton href="/" caption="Subscriptions" />, caption: 'Subscriptions',
-            }, {
+            },
+            {
+                id: 'Subscriptions', priority: 3, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Subscriptions" />, caption: 'Subscriptions',
+            },
+            {
                 id: 'moreContainer',
                 priority: 8,
                 collapsedContainer: true,
                 render: (item, hiddenItems) => (
                     <MainMenuDropdown
                         caption="More"
+                        key={ item.id }
                         renderBody={ (props) => {
                             return hiddenItems?.map((i) => i.render({ ...item, onClose: props.onClose }));
                         } }
                     />
                 ),
-            }, { id: 'flexSpacer', priority: 100, render: () => <FlexSpacer /> }, { id: 'pinIcon', priority: 8, render: () => <MainMenuIcon icon={ PinIcon } onClick={ () => {} } /> }, { id: 'helpIcon', priority: 8, render: () => <MainMenuIcon icon={ HelpIcon } onClick={ () => {} } /> }, { id: 'avatar', priority: 9, render: renderAvatar }, { id: 'globalMenu', priority: 100, render: () => <GlobalMenu /> },
+            },
+            { id: 'flexSpacer', priority: 100, render: (p) => <FlexSpacer key={ p.id } /> },
+            { id: 'pinIcon', priority: 8, render: (p) => <MainMenuIcon key={ p.id } icon={ PinIcon } onClick={ () => {} } /> },
+            { id: 'helpIcon', priority: 8, render: (p) => <MainMenuIcon key={ p.id } icon={ HelpIcon } onClick={ () => {} } /> },
+            { id: 'avatar', priority: 9, render: renderAvatar },
+            { id: 'globalMenu', priority: 100, render: (p) => <GlobalMenu key={ p.id } /> },
         ];
     };
 

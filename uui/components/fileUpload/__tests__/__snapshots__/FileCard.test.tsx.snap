@@ -74,7 +74,6 @@ exports[`FileCard should be rendered correctly 1`] = `
           cy={9}
           fill="transparent"
           r={3}
-          stroke="#ACAFBF"
           strokeDasharray={18.84955592153876}
           strokeDashoffset={18.84955592153876}
           strokeWidth={6}
@@ -84,7 +83,6 @@ exports[`FileCard should be rendered correctly 1`] = `
           cy={9}
           fill="transparent"
           r={8}
-          stroke="#ACAFBF"
           strokeWidth={1}
         />
       </svg>
@@ -167,7 +165,6 @@ exports[`FileCard should be rendered correctly 2`] = `
           cy={9}
           fill="transparent"
           r={3}
-          stroke="#ACAFBF"
           strokeDasharray={18.84955592153876}
           strokeDashoffset={18.84955592153876}
           strokeWidth={6}
@@ -177,7 +174,6 @@ exports[`FileCard should be rendered correctly 2`] = `
           cy={9}
           fill="transparent"
           r={8}
-          stroke="#ACAFBF"
           strokeWidth={1}
         />
       </svg>

@@ -17,7 +17,8 @@ export interface ButtonMods {
     color?: ButtonColor;
 }
 
-export type ButtonProps = ButtonMods & uuiButtonProps;
+export type ButtonProps<PropType = ButtonMods> =
+    (PropType extends ButtonMods ? ButtonMods : PropType) & uuiButtonProps;
 
 export function applyButtonMods(mods: ButtonProps) {
     return [

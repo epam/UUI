@@ -35,6 +35,15 @@ jest.mock('react-popper', () => ({
     },
 }));
 
+jest.mock('react-focus-lock', () => {
+    const actual = jest.requireActual('react-focus-lock');
+    return {
+        ...actual,
+        __esModule: true,
+        default: ({ children }) => (<>{ children }</>),
+    };
+});
+
 const filtersConfigWithoutPredicatesAll: TableFiltersConfig<TestItemType>[] = [
     {
         field: 'status',
