@@ -59,6 +59,8 @@ export function ImageElement({
         return captionEnabled;
     }, [currentWidth]);
 
+    console.log('image element', props.element);
+
     return (
         <PlateElement className={ cx(className) } { ...props }>
             <figure className={ cx(css.group) } contentEditable={ false }>
