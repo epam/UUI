@@ -2,9 +2,9 @@ import React from 'react';
 import {
     Lens, DataSourceState, isMobile, cx,
 } from '@epam/uui-core';
-import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
+import { FlexCell, PickerBodyBase, PickerBodyBaseProps, VirtualListRenderRowsParams } from '@epam/uui-components';
 import { SearchInput } from '../inputs';
-import { FlexRow, VirtualList } from '../layout';
+import { FlexRow, VirtualList, Blocker } from '../layout';
 import { Text } from '../typography';
 import { i18n } from '../../i18n';
 import { ControlSize } from '../types';
@@ -15,6 +15,7 @@ export interface DataPickerBodyProps extends PickerBodyBaseProps {
     editMode?: 'dropdown' | 'modal';
     searchSize?: ControlSize;
     selectionMode?: 'single' | 'multi';
+    addBlocker?: boolean;
 }
 
 export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
@@ -32,6 +33,23 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
         );
     }
 
+    renderRowsContainer = ({ listContainerRef, estimatedHeight, offsetY }: VirtualListRenderRowsParams) => {
+        return (
+            <>
+                {this.props?.rowsCount > 0 ? (
+                    <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
+                        <div ref={ listContainerRef } role="rowgroup" style={ { marginTop: offsetY } }>
+                            {this.props.rows}
+                        </div>
+                    </div>
+                ) : (
+                    this.renderNotFound()
+                )}
+                <Blocker isEnabled={ this.props.isReloading } />
+            </>
+        );
+    };
+
     render() {
         const searchSize = isMobile() ? '48' : this.props.searchSize || '36';
 
@@ -46,25 +64,20 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                                 { ...this.searchLens.toProps() }
                                 onKeyDown={ this.searchKeyDown }
                                 size={ searchSize }
-                                isDisabled={ this.props.isReloading }
                             />
                         </FlexCell>
                     </div>
                 )}
                 <FlexRow key="body" cx={ cx(css.body, css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight } } }>
-                    {this.props.rowsCount > 0 ? (
-                        <VirtualList 
-                            { ...this.lens.toProps() }
-                            rows={ this.props.rows }
-                            role="listbox"
-                            rawProps={ this.props.rawProps }
-                            rowsCount={ this.props.rowsCount }
-                            rowsSelector="[role=option]"
-                            disableScroll={ this.props.isReloading }
-                        />
-                    ) : (
-                        this.renderNotFound()
-                    )}
+                    <VirtualList 
+                        { ...this.lens.toProps() }
+                        renderRows={ this.renderRowsContainer }
+                        role="listbox"
+                        rawProps={ this.props.rawProps }
+                        rowsCount={ this.props.rowsCount }
+                        rowsSelector="[role=option]"
+                        disableScroll={ this.props.isReloading }
+                    />
                 </FlexRow>
             </>
         );
