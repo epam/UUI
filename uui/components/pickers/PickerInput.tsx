@@ -5,7 +5,7 @@ import { EditMode, IHasEditMode, SizeMod } from '../types';
 import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
-import { Panel } from '../layout';
+import { Panel, Blocker } from '../layout';
 import { MobileDropdownWrapper } from './MobileDropdownWrapper';
 import { DataPickerBody } from './DataPickerBody';
 import { DataPickerRow } from './DataPickerRow';
@@ -170,6 +170,7 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
                         }
                     />
                     { renderFooter() }
+                    <Blocker isEnabled={ bodyProps.isReloading } />
                 </MobileDropdownWrapper>
             </Panel>
         );
