@@ -1,4 +1,3 @@
-/** @deprecated Please replace i18n import from uui to import { i18n } from '@epam/uui-core' */
 export const i18n = {
     lenses: {
         validation: {

@@ -18,6 +18,10 @@
 
     .anchor {
         fill: transparent;
+
+        &:focus {
+            fill: var(--uui-icon-btn);
+        }
     }
 
     &:hover {

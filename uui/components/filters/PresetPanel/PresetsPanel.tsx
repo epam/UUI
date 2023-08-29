@@ -63,8 +63,8 @@ export function PresetsPanel(props: PresetsPanelProps) {
                         <Button fill="ghost" color="secondary" caption={ `${hiddenItems?.length || ''} more` } { ...props } />
                     </FlexRow>
                 ) }
-                renderBody={ () => (
-                    <DropdownContainer cx={ cx(css.dropContainer) } width={ 230 }>
+                renderBody={ (propsBody) => (
+                    <DropdownContainer cx={ cx(css.dropContainer) } width={ 230 } { ...propsBody }>
                         <ScrollBars>
                             {hiddenItems.map((hiddenItem) => (
                                 <DropdownMenuButton
