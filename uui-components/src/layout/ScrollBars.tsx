@@ -60,7 +60,7 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
         return rv || <div style={ { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto' } } } { ...rest } />;
     };
 
-    const trackStyle = disableScroll ? { display: 'none' } : {};
+    const trackStyle = disableScroll ? { display: 'none' } : undefined;
     return (
         <ReactCustomScrollBars
             className={ cx(css.root, props.cx, props.className, hasTopShadow && uuiScrollbars.uuiShadowTop, hasBottomShadow && uuiScrollbars.uuiShadowBottom) }
@@ -69,14 +69,14 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
                 <div
                     { ...props } 
                     className={ uuiScrollbars.uuiTrackHorizontal }
-                    style={ trackStyle }
+                    { ...(trackStyle ? { style: trackStyle } : {}) }
                 />
             ) }
             renderTrackVertical={ (props: any) => (
                 <div
                     { ...props }
                     className={ uuiScrollbars.uuiTrackVertical }
-                    style={ trackStyle }
+                    { ...(trackStyle ? { style: trackStyle } : {}) }
                 />
             ) }
             renderThumbHorizontal={ () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> }
