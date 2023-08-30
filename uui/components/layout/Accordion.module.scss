@@ -118,7 +118,7 @@
 
         &:global(.uui-opened) {
             :global(.uui-accordion-toggler) {
-                border-bottom: none;
+                border-bottom: 0 none;
             }
         }
 
@@ -128,7 +128,7 @@
                 fill: var(--uui-accordion-icon-disabled);
 
                 &:global(.uui-opened) {
-                    border-bottom: none;
+                    border-bottom: 0 none;
                 }
 
                 :global(.uui-accordion-title) {

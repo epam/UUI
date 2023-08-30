@@ -51,7 +51,7 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
 
     renderBody(props: DropdownBodyProps) {
         return (
-            <DropdownContainer { ...props }>
+            <DropdownContainer { ...props } focusLock={ false }>
                 <DatePickerBody
                     cx={ cx(this.props.bodyCx) }
                     filter={ this.props.filter }

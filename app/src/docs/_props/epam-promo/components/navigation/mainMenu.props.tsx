@@ -13,12 +13,12 @@ const mainMenuDoc = new DocBuilder<MainMenuMods & MainMenuProps>({ name: 'MainMe
             {
                 value: () => (
                     <>
-                        <BurgerButton caption="My" />
-                        <BurgerButton caption="My Team" />
-                        <BurgerButton caption="Skill Matrices" />
-                        <BurgerButton caption="Help" />
-                        <BurgerButton caption="Settings" />
-                        <BurgerButton caption="Log out" />
+                        <BurgerButton caption="My" href="/" />
+                        <BurgerButton caption="My Team" href="/" />
+                        <BurgerButton caption="Skill Matrices" href="/" />
+                        <BurgerButton caption="Help" href="/" />
+                        <BurgerButton caption="Settings" href="/" />
+                        <BurgerButton caption="Log out" href="/" />
                     </>
                 ),
                 name: 'Grow',
