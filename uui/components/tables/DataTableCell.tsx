@@ -4,7 +4,7 @@ import { DragHandle, DataTableCell as UuiDataTableCell } from '@epam/uui-compone
 import { DataTableCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
 import { Checkbox } from '../inputs';
-import { ReactComponent as FoldingArrow } from '../../icons/tree_folding_arrow.svg';
+import { ReactComponent as FoldingArrow } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import { Tooltip } from '../overlays';
 import { IconContainer } from '../layout';
 import css from './DataTableCell.module.scss';

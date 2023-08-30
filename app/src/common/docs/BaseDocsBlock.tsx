@@ -36,36 +36,38 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     constructor(props: any) {
         super(props);
 
-        if (this.getPropsDocPath() !== null) {
-            const propsPromise = svc.api.getProps();
-            propsPromise
-                && propsPromise.then((res) => {
-                    const skin = this.getPropsDocPath()[UUI4] === undefined ? UUI3 : UUI4;
-                    const resProps = res.content.props;
-                    const docPath = this.getPropsDocPath()[skin];
-                    const docPathNorm = docPath.indexOf('.') === 0 ? docPath.substring(1) : docPath;
-                    const props = resProps[docPathNorm];
-                    /**
-                     * Keys in "public/docs/componentsPropsSet.json":
-                     * - always start from "/"
-                     * - are relative to the monorepo root.
-                     */
-                    if (props) {
-                        this.propsDS = new ArrayDataSource({
-                            items: props,
-                            getId: (i) => i.name,
-                        });
-                        this.setState({ props: props });
-                    }
-                });
-        }
-
         const { category, id } = svc.uuiRouter.getCurrentLink().query;
         svc.uuiAnalytics.sendEvent(analyticsEvents.document.pv(id, category));
 
         this.state = {
             tableState: {},
         };
+    }
+
+    componentDidMount() {
+        if (this.getPropsDocPath() !== null) {
+            const propsPromise = svc.api.getProps();
+            propsPromise
+            && propsPromise.then((res) => {
+                const skin = this.getPropsDocPath()[UUI4] === undefined ? UUI3 : UUI4;
+                const resProps = res.content.props;
+                const docPath = this.getPropsDocPath()[skin];
+                const docPathNorm = docPath.indexOf('.') === 0 ? docPath.substring(1) : docPath;
+                const props = resProps[docPathNorm];
+                /**
+                 * Keys in "public/docs/componentsPropsSet.json":
+                 * - always start from "/"
+                 * - are relative to the monorepo root.
+                 */
+                if (props) {
+                    this.propsDS = new ArrayDataSource({
+                        items: props,
+                        getId: (i) => i.name,
+                    });
+                    this.setState({ props: props });
+                }
+            });
+        }
     }
 
     abstract title: string;

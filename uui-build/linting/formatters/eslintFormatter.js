@@ -1,9 +1,9 @@
 const {
     createSummaryFromMessages, convertSummaryToHtml, sumComparator, convertResultsToHtml, getReportLocationPath, logSummary,
-} = require('./formatterUtils.js');
-const { reportUnnecessaryRulesToBeFixed } = require('./formatterUtils.js');
-const { eslintRulesToBeFixed } = require('../utils/rulesToBeFixed.js');
-const { logger } = require('../../utils/loggerUtils.js');
+} = require('./formatterUtils');
+const { reportUnnecessaryRulesToBeFixed } = require('./formatterUtils');
+const { eslintRulesToBeFixed } = require('../utils/rulesToBeFixed');
+const { logger } = require('../../utils/loggerUtils');
 
 module.exports = (results) => {
     let summary;
