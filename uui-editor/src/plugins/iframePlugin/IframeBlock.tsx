@@ -17,7 +17,8 @@ export function IframeBlock(props: any) {
     const style = element.data.style;
 
     return (
-        <div { ...attributes }>
+        // style attr needed for serialization
+        <div { ...attributes } style={ { display: 'flex', justifyContent: 'center' } }>
             <iframe
                 title={ element.src }
                 allowFullScreen={ true }

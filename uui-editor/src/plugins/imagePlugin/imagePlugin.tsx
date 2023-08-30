@@ -4,7 +4,7 @@ import React from 'react';
 import { isPluginActive, isTextSelected } from '../../helpers';
 
 import { AddImageModal } from './AddImageModal';
-import { Image } from './ImageBlock';
+import { Image, toPlateAlign } from './ImageBlock';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
@@ -14,7 +14,7 @@ import isHotkey from 'is-hotkey';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 
-import { IMAGE_PLUGIN_TYPE, IMAGE_PLUGIN_KEY } from '../../types';
+import { IMAGE_PLUGIN_TYPE, IMAGE_PLUGIN_KEY, IImageElement } from '../../types';
 
 export const imagePlugin = () => {
     const createImagePlugin = createPluginFactory({
@@ -24,9 +24,13 @@ export const imagePlugin = () => {
         isVoid: true,
         component: Image,
         serializeHtml: ({ element }) => {
-            return React.createElement('img', {
-                src: element.url,
-            });
+            const imageElement = element as IImageElement;
+            const align = toPlateAlign(imageElement.data.align);
+            return (
+                <div style={ { textAlign: align } }>
+                    <img src={ element.url as string } style={ { width: imageElement.width } } alt="" />
+                </div>
+            );
         },
         then: (editor, { type }) => ({
             deserializeHtml: {
