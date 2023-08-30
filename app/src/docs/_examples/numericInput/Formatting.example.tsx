@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlexCell, LabeledInput, NumericInput } from '@epam/promo';
+import { FlexCell, LabeledInput, NumericInput } from '@epam/uui';
 import css from './BasicExample.module.scss';
 
 export default function BasicExample() {

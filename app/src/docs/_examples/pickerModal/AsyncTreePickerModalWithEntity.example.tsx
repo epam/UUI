@@ -1,6 +1,5 @@
 import React, { useCallback, useContext, useState } from 'react';
-import { PickerModal } from '@epam/uui';
-import { FlexRow, FlexCell, Button } from '@epam/promo';
+import { PickerModal, FlexRow, FlexCell, Button } from '@epam/uui';
 import { UuiContext, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
@@ -47,7 +46,7 @@ export default function AsyncTreePickerModalWithEntity() {
     return (
         <FlexCell width={ 612 }>
             <FlexRow spacing="12">
-                <Button color="blue" caption="Show locations" onClick={ handleModalOpening } />
+                <Button color="primary" caption="Show locations" onClick={ handleModalOpening } />
             </FlexRow>
         </FlexCell>
     );

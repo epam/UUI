@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexRow, LinkButton } from '@epam/promo';
+import { FlexRow, LinkButton } from '@epam/uui';
 import { ReactComponent as playIcon } from '@epam/assets/icons/common/media-play-outline-18.svg';
 import { ReactComponent as navigationIcon } from '@epam/assets/icons/common/navigation-chevron-right-18.svg';
 

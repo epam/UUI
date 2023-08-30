@@ -1,5 +1,3 @@
-@import '~@epam/assets/scss/index';
-
 .container {
     max-width: 100%;
 }
@@ -9,7 +7,7 @@
 }
 
 .menu {
-    border: 1px solid $night300;
+    border: 1px solid var(--uui-control-border);
     position: sticky;
     top: 1.5rem;
     margin: 8px;

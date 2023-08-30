@@ -1,6 +1,4 @@
-@use '~@epam/promo/assets/styles/colors' as *;
-
 .divider {
-    border-bottom: 1px solid $gray30;
+    border-bottom: 1px solid var(--uui-divider);
     width: 100%;
 }

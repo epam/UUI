@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    DropdownContainer, LinkButton, Text, Button, FlexRow, FlexCell, Panel, DropdownMenuButton,
-} from '@epam/promo';
+import { DropdownContainer, LinkButton, Text, Button, FlexRow, FlexCell, Panel, DropdownMenuButton } from '@epam/uui';
 import { Dropdown } from '@epam/uui-components';
 import { DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
 import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-delete-12.svg';
@@ -13,7 +11,7 @@ export default function BasicExample() {
         return (
             <DropdownContainer maxWidth={ 360 } vPadding="12" padding="18" { ...props }>
                 <FlexCell alignSelf="flex-start">
-                    <Text fontSize="18" lineHeight="24" color="gray90" font="museo-slab">
+                    <Text fontSize="18" lineHeight="24" color="brand" font="semibold">
                         Some Title
                     </Text>
                     <Text fontSize="14">
@@ -22,8 +20,8 @@ export default function BasicExample() {
                 </FlexCell>
                 <FlexCell alignSelf="flex-start">
                     <FlexRow spacing="12">
-                        <Button color="green" size="30" caption="Some Action" onClick={ () => null } />
-                        <Button fill="white" size="30" color="gray" caption="Cancel" onClick={ () => null } />
+                        <Button color="accent" size="30" caption="Some Action" onClick={ () => null } />
+                        <Button fill="ghost" size="30" color="secondary" caption="Cancel" onClick={ () => null } />
                     </FlexRow>
                 </FlexCell>
             </DropdownContainer>

@@ -1,11 +1,7 @@
 import React from 'react';
 import type { TApi } from '../../../data';
-import {
-    Metadata, useUuiContext, useAsyncDataSource, useLazyDataSource, UuiContexts,
-} from '@epam/uui-core';
-import {
-    useForm, FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, PickerInput, SuccessNotification, ErrorNotification,
-} from '@epam/promo';
+import { Metadata, useUuiContext, useAsyncDataSource, useLazyDataSource, UuiContexts } from '@epam/uui-core';
+import { useForm, FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, PickerInput, SuccessNotification, ErrorNotification } from '@epam/uui';
 import { ReactComponent as UndoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as RedoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 
@@ -80,10 +76,10 @@ export default function AdvancedFormExample() {
     return (
         <FlexCell width="100%">
             <FlexRow vPadding="12" spacing="12">
-                <Button caption="Revert changes" onClick={ revert } isDisabled={ !canRevert } fill="white" />
+                <Button caption="Revert changes" onClick={ revert } isDisabled={ !canRevert } fill="outline" />
                 <FlexSpacer />
-                <Button icon={ UndoIcon } onClick={ undo } isDisabled={ !canUndo } fill="light" />
-                <Button icon={ RedoIcon } onClick={ redo } isDisabled={ !canRedo } fill="light" />
+                <Button icon={ UndoIcon } onClick={ undo } isDisabled={ !canUndo } fill="ghost" />
+                <Button icon={ RedoIcon } onClick={ redo } isDisabled={ !canRedo } fill="ghost" />
             </FlexRow>
             <FlexRow vPadding="12">
                 <FlexCell grow={ 1 }>
@@ -122,7 +118,7 @@ export default function AdvancedFormExample() {
             </FlexRow>
             <FlexRow vPadding="12">
                 <FlexSpacer />
-                <Button caption="Save" onClick={ save } color="green" />
+                <Button caption="Save" onClick={ save } color="accent" />
             </FlexRow>
         </FlexCell>
     );

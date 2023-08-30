@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ProgressBar, Panel } from '@epam/promo';
+import { ProgressBar, Panel } from '@epam/uui';
 import css from './BasicExample.module.scss';
 
 export default function BasicProgressBarExample() {
