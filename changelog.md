@@ -12,6 +12,7 @@
 * [useForm]: after calling validate callback, form switch to revalidating mode on fields change.
 * [useForm]: fixed isChanged prop calculation, in case when form value returned to initial
 * [useForm]: don't call loadUnsavedChanges callback when for was edited and then returned to the initial value
+* [Accordion]: fixed outdated isOpen value of renderTitle and renderAdditionalItems callbacks in case when this.props.value provided
 * [Burger]: fix keyboard navigation.
 
 
