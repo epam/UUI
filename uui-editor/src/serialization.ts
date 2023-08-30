@@ -3,11 +3,11 @@ import {
     createPlugins,
     deserializeHtml,
     parseHtmlDocument,
-} from "@udecode/plate-common";
-import { serializeHtml } from "@udecode/plate-serializer-html";
-import { createPlateUI } from "./components";
-import { EditorValue } from "./types";
-import { migrateSchema } from "./migration";
+} from '@udecode/plate-common';
+import { serializeHtml } from '@udecode/plate-serializer-html';
+import { createPlateUI } from './components';
+import { EditorValue } from './types';
+import { migrateSchema } from './migration';
 import {
     baseMarksPlugin,
     headerPlugin,
@@ -20,7 +20,8 @@ import {
     iframePlugin,
     codeBlockPlugin,
     paragraphPlugin,
-} from "./plugins";
+    tablePlugin,
+} from './plugins';
 
 const workingPlugins = [
     paragraphPlugin(),

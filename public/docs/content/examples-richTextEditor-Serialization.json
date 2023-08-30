@@ -7,11 +7,18 @@
         "text": "You can serialize editor content by using "
       },
       {
-        "text": "serializeHTML(content)",
+        "text": "serializeHTML(...)",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " function"
+        "text": " and "
+      },
+      {
+        "text": "deserializeHTML(...)",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " functions"
       }
     ]
   }
