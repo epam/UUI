@@ -52,7 +52,9 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
         else scrollBars.classList.remove(uuiScrollbars.uuiShadowBottomVisible);
     };
 
-    useEffect(handleUpdateScroll);
+    useEffect(() => {
+        if (!disableScroll) handleUpdateScroll(); 
+    });
 
     const renderView = ({ style: innerStyle, ...rest }: { style: CSSProperties; rest: {} }) => {
         const propsRenderView = props.renderView as (p: any) => any;
@@ -82,7 +84,7 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
             renderThumbHorizontal={ () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> }
             renderThumbVertical={ () => <div className={ uuiScrollbars.uuiThumbVertical } /> }
             style={ { ...{ display: 'flex' }, ...outerStyle } }
-            onScroll={ handleUpdateScroll }
+            onScroll={ !disableScroll ? handleUpdateScroll : undefined }
             hideTracksWhenNotNeeded
             ref={ bars }
             { ...props }
