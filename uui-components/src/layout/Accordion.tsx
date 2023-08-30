@@ -72,9 +72,9 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
                 { ...this.props.rawProps }
             >
                 <div className={ cx(uuiAccordion.toggleContainer) }>
-                    {this.props.renderTitle ? this.props.renderTitle(this.state.opened) : <div className={ cx(uuiAccordion.title) }>{this.props.title}</div>}
+                    {this.props.renderTitle ? this.props.renderTitle(isAccordionOpened) : <div className={ cx(uuiAccordion.title) }>{this.props.title}</div>}
 
-                    {this.props.renderAdditionalItems?.(this.state.opened)}
+                    {this.props.renderAdditionalItems?.(isAccordionOpened)}
 
                     {this.props.dropdownIcon !== null && (
                         <IconContainer icon={ this.props.dropdownIcon } flipY={ isAccordionOpened } cx={ [this.props.isDisabled && uuiMod.disabled, css.arrow] } />
