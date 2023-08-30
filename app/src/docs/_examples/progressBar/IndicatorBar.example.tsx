@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IndicatorBar } from '@epam/uui';
-import { Panel } from '@epam/promo';
+import { IndicatorBar, Panel } from '@epam/uui';
 import css from './BasicExample.module.scss';
 
 export default function CustomLabelProgressBarExample() {
