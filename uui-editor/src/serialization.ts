@@ -35,7 +35,7 @@ const workingPlugins = [
     videoPlugin(),
     iframePlugin(),
     codeBlockPlugin(),
-    // tablePlugin(),
+    tablePlugin(),
 ];
 
 const createTempEditor = () => {
