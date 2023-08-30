@@ -1,13 +1,11 @@
 import React from 'react';
-import {
-    Avatar, FlexRow, Panel, Tooltip, Text,
-} from '@epam/promo';
+import { Avatar, FlexRow, Panel, Tooltip, Text } from '@epam/uui';
 import css from './DelayExample.module.scss';
 
 export default function TriggerConfigurationWithDelayExample() {
     return (
         <Panel shadow cx={ css.container }>
-            <Text fontSize="14" font="sans-semibold" cx={ css.caption }>
+            <Text fontSize="14" font="semibold" cx={ css.caption }>
                 Project Team
             </Text>
             <Tooltip content="Experiance Designer" openDelay={ 250 }>

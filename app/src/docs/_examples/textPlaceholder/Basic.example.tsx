@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexCell, TextPlaceholder } from '@epam/promo';
+import { FlexCell, TextPlaceholder } from '@epam/uui';
 import css from './BasicExample.module.scss';
 
 export default function BasicExample() {
