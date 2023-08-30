@@ -90,14 +90,13 @@ const deserializeHTML = createDeserializer();
 
 export default function SlateEditorBasicExample() {
     const svc = useUuiContext();
-    const [value, setValue] = useState<EditorValue>(demoData.slateInitialValue);
+    const [value, setValue] = useState<EditorValue>(demoData.slateSerializationInitialData);
 
     const [html, setHtml] = React.useState<string>();
     const [type, setType] = React.useState<'html' | 'edit'>('edit');
 
     const onSerialize = React.useCallback(() => {
-        const migratedValue = migrateSchema(value); // TODO: use migration on data receive only
-        console.log('value', value, 'migratedValue', migratedValue);
+        const migratedValue = migrateSchema(value);
         setHtml(serializeHTML(migratedValue));
         setType('html');
     }, [value]);
@@ -106,7 +105,7 @@ export default function SlateEditorBasicExample() {
 
     const onDeserialize = React.useCallback(() => {
         const deserialized = deserializeHTML(html);
-        setValue(deserialized as any); // TODO: improve typing here
+        setValue(deserialized as any);
         setType('edit');
     }, [html]);
 

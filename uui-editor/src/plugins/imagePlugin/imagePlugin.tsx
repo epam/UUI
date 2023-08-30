@@ -26,7 +26,6 @@ export const imagePlugin = () => {
         serializeHtml: ({ element }) => {
             return React.createElement('img', {
                 src: element.url,
-                // style: {element.with}
             });
         },
         then: (editor, { type }) => ({
