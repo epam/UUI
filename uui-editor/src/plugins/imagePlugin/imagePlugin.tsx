@@ -25,9 +25,9 @@ export const imagePlugin = () => {
         component: Image,
         serializeHtml: ({ element }) => {
             const imageElement = element as IImageElement;
-            const align = toPlateAlign(imageElement.data.align);
+            const align = toPlateAlign(imageElement.data?.align);
             return (
-                <div style={ { textAlign: align } }>
+                <div style={ { textAlign: align || 'center' } }>
                     <img src={ element.url as string } style={ { width: imageElement.width } } alt="" />
                 </div>
             );
