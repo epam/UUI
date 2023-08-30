@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, FlexRow, Tooltip } from '@epam/promo';
+import { Button, FlexRow, Tooltip } from '@epam/uui';
 
 export default function BasicTooltipExample() {
     return (

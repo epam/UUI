@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FlexCell, Slider } from '@epam/loveship';
+import { FlexCell } from '@epam/uui';
+import { Slider } from '@epam/loveship';
 import css from './BasicExample.module.scss';
 
 export default function BasicExample() {
