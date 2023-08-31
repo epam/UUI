@@ -83,16 +83,20 @@
     &.fill-white {
         @include button-colors(var(--white), var(--uui-badge-bg), var(--uui-badge-bg));
 
-        &:hover {
-            @include button-colors(var(--night50), var(--uui-badge-bg-hover), var(--uui-badge-bg));
+        &:global(.-clickable) {
+            &:hover {
+                @include button-colors(var(--night50), var(--uui-badge-bg-hover), var(--uui-badge-bg));
+            }
         }
     }
 
     &.fill-none {
         @include button-colors(transparent, var(--uui-badge-bg), var(--uui-badge-bg));
 
-        &:hover {
-            @include button-colors(transparent, var(--uui-badge-bg-hover), var(--uui-badge-bg-hover));
+        &:global(.-clickable) {
+            &:hover {
+                @include button-colors(transparent, var(--uui-badge-bg-hover), var(--uui-badge-bg-hover));
+            }
         }
     }
 

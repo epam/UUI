@@ -10,8 +10,8 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps>({ name: 'Dropdown', compon
         isRequired: true,
         examples: [
             {
-                value: () => (
-                    <DropdownMenuBody>
+                value: (props) => (
+                    <DropdownMenuBody { ...props }>
                         <DropdownMenuHeader caption="Tools" />
                         <DropdownMenuButton caption="Button111" />
                         <DropdownMenuButton caption="Button2" />

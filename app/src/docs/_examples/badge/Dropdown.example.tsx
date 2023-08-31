@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-    Badge, Dropdown, DropdownMenuButton, FlexRow, Panel,
+    Badge, Dropdown, DropdownContainer, DropdownMenuButton, FlexRow,
 } from '@epam/promo';
 import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import { DropdownBodyProps } from '@epam/uui-core';
@@ -20,7 +20,7 @@ export default function TypesExample() {
 
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <Panel background="white" shadow>
+            <DropdownContainer { ...props } width="auto">
                 {dropdownMenuItems.map((item) => (
                     <DropdownMenuButton
                         key={ item.id }
@@ -32,7 +32,7 @@ export default function TypesExample() {
                         } }
                     />
                 ))}
-            </Panel>
+            </DropdownContainer>
         );
     };
 
