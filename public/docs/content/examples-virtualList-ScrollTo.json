@@ -24,5 +24,13 @@
         "text": ". it accepts an object with an index of an element that you want to scroll to and updates the scroll position if a link to an object is updated."
       }
     ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "For accurate scrolling to the position of the expected row, it is required to provide rows of the same height."
+      }
+    ]
   }
 ]
