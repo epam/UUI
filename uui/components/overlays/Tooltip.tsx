@@ -12,7 +12,6 @@ export type TooltipProps = UuiTooltipProps & TooltipMods;
 function applyTooltipMods(mods: TooltipMods) {
     return [
         css.root,
-        'uui-tooltip',
         `uui-color-${mods.color || 'contrast'}`,
     ];
 }

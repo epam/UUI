@@ -35,10 +35,10 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
         ref={ ref }
         className={
             cx(
+                'uui-alert',
                 css.root,
                 css.alertWrapper,
-                'uui-alert',
-                `uui-color-${props.color}`,
+                props.color && `uui-color-${props.color}`,
                 props.cx,
                 (props.size === '36' ? css.size36 : css.size48),
             )

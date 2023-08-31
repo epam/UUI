@@ -242,17 +242,12 @@
     --uui-control-bg-hover: var(--night600);
     --uui-control-bg-disabled: var(--night600);
     --uui-control-bg-readonly: var(--night400);
-    --uui-control_switch-bg: var(--night400);
-    --uui-control_switch-toggler-bg: var(--white);
 
     --uui-control-border: var(--night400);
+    --uui-control-border-hover: var(--night200);
     --uui-control-border-disabled: var(--night400);
     --uui-control-border-readonly: var(--night400);
     --uui-control-border-checked: var(--uui-primary-50);
-
-
-    --uui-control_switch-border-hover: var(--night600);
-    --uui-control_textinput-border-hover: var(--night200);
 
     --uui-control-label: var(--uui-text-primary);
     --uui-control-label-disabled: var(--uui-text-secondary);
@@ -287,6 +282,14 @@
     /* override variables */
 
     --uui-accordion-border-radius: 6px;
+
+    .uui-switch {
+        --uui-switch-bg: var(--neutral50);
+    }
+
+    .uui-count {
+        --uui-badge-count: var(--uui-text-dark);
+    }
 
     /* begin color classes */
 
