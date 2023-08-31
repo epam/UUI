@@ -15,7 +15,6 @@ export interface DataPickerBodyProps extends PickerBodyBaseProps {
     editMode?: 'dropdown' | 'modal';
     searchSize?: ControlSize;
     selectionMode?: 'single' | 'multi';
-    addBlocker?: boolean;
 }
 
 export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
