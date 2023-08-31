@@ -1,6 +1,5 @@
 import React from 'react';
-import { Dropdown, FlexRow, Panel, Text } from '@epam/uui';
-import { Badge } from '@epam/promo';
+import { Dropdown, FlexRow, Panel, Text, Badge } from '@epam/uui';
 import { ReactComponent as mediaIcon } from '@epam/assets/icons/common/media-play-fill-18.svg';
 import { ReactComponent as doneIcon } from '@epam/assets/icons/common/notification-done-24.svg';
 import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
@@ -8,23 +7,23 @@ import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/common/
 export default function TypesExample() {
     return (
         <>
-            <Panel style={ { rowGap: '18px', marginRight: '42px', padding: '12px' } }>
+            <Panel style={ { rowGap: '18px', padding: '12px', flex: '1 1 auto' } }>
                 <FlexRow spacing="18">
-                    <Badge icon={ mediaIcon } color="orange" fill="semitransparent" caption="Video" />
+                    <Badge icon={ mediaIcon } color="warning" fill="semitransparent" caption="Video" />
                     <Text fontSize="14">Use as an attribute or label</Text>
                 </FlexRow>
                 <FlexRow spacing="18">
-                    <Badge icon={ doneIcon } color="green" fill="semitransparent" caption="Ready" />
+                    <Badge icon={ doneIcon } color="success" fill="semitransparent" caption="Ready" />
                     <Text fontSize="14">View statuses</Text>
                 </FlexRow>
                 <FlexRow spacing="18">
-                    <Badge color="blue" fill="semitransparent" caption="Java" onClick={ () => {} } onClear={ () => {} } />
+                    <Badge color="info" fill="semitransparent" caption="Java" onClick={ () => {} } onClear={ () => {} } />
                     <Text fontSize="14">Filter chips</Text>
                 </FlexRow>
             </Panel>
-            <Panel style={ { rowGap: '18px', padding: '12px' } }>
+            <Panel style={ { rowGap: '18px', padding: '12px', flex: '1 1 auto' } }>
                 <FlexRow spacing="18">
-                    <Badge count={ 25 } color="red" fill="solid" caption="Rejected" onClick={ () => {} } />
+                    <Badge count={ 25 } color="error" fill="solid" caption="Rejected" onClick={ () => {} } />
                     <Text fontSize="14">Quick filters selection with informer</Text>
                 </FlexRow>
                 <FlexRow spacing="18">
@@ -35,7 +34,7 @@ export default function TypesExample() {
                                 { ...props }
                                 dropdownIcon={ navigationDownIcon }
                                 dropdownIconPosition="right"
-                                color="gray30"
+                                color="default"
                                 fill="semitransparent"
                                 caption="In Progress"
                             />
@@ -45,7 +44,7 @@ export default function TypesExample() {
                     <Text fontSize="14">Label & trigger for selection using dropdown</Text>
                 </FlexRow>
                 <FlexRow spacing="18">
-                    <Badge color="gray30" fill="semitransparent" caption="Projects" />
+                    <Badge color="default" fill="semitransparent" caption="Projects" />
                     <Text fontSize="14">Simple attribute or label</Text>
                 </FlexRow>
             </Panel>
