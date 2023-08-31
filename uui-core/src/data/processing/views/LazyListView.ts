@@ -89,7 +89,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     private isUpdatePending = false;
     private loadedValue: DataSourceState<TFilter, TId> = null;
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
-    private reloading: boolean = false;
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
         { legacyLoadDataBehavior = true, ...props }: LazyListViewProps<TItem, TId, TFilter>,
@@ -157,12 +156,18 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.isUpdatePending = false;
 
         let completeReset = false;
-        if (prevValue == null || prevProps == null || this.reloading || this.shouldRebuildTree(this.value, prevValue) || !isEqual(this.props.filter, prevProps.filter)) {
+        const shouldReloadData = this.isForceReloading
+            || !isEqual(this.props?.filter, prevProps?.filter)
+            || this.shouldRebuildTree(this.value, prevValue);
+
+        if (prevValue == null || prevProps == null || shouldReloadData) {
+            if (shouldReloadData) {
+                this.isReloading = true;
+            }
             this.tree = this.tree.clearStructure();
             completeReset = true;
-            this.reloading = false;
+            this.isForceReloading = false;
         }
-
         const isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
 
         const moreRowsNeeded = this.areMoreRowsNeeded(prevValue, this.value);
@@ -170,12 +175,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             this.updateCheckedLookup(this.value.checked);
         }
 
+        const shouldShowPlacehodlers = !shouldReloadData || (shouldReloadData && !this.props.backgroundReload);
+
         if (
-            completeReset
+            // on filters change skeleton should not appear
+            (completeReset && shouldShowPlacehodlers)
             || this.shouldRebuildRows(this.value, prevValue)
-            || !isEqual(this.props.rowOptions, prevProps.rowOptions)
+            || !isEqual(this.props.rowOptions, prevProps?.rowOptions)
             || isFoldingChanged
-            || this.props.getRowOptions !== prevProps.getRowOptions
+            || this.props.getRowOptions !== prevProps?.getRowOptions
             || moreRowsNeeded
         ) {
             this.rebuildRows();
@@ -186,13 +194,16 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         }
 
         if (completeReset || isFoldingChanged || moreRowsNeeded) {
-            this.loadMissing(completeReset).then(({ isUpdated, isOutdated }) => {
-                if (isUpdated && !isOutdated) {
-                    this.updateCheckedLookup(this.value.checked);
-                    this.rebuildRows();
+            this.loadMissing(completeReset)
+                .then(({ isUpdated, isOutdated }) => {
+                    if (isUpdated && !isOutdated) {
+                        this.updateCheckedLookup(this.value.checked);
+                        this.rebuildRows();
+                    }
+                }).finally(() => {
+                    this.isReloading = false;
                     this._forceUpdate();
-                }
-            });
+                });
         }
     }
 
@@ -213,7 +224,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     public reload = () => {
         this.tree = Tree.blank(this.props);
-        this.reloading = true;
+        this.isForceReloading = true;
         this.initCache();
         this.update({ value: this.value, onValueChange: this.onValueChange }, this.props);
         this._forceUpdate();
@@ -439,6 +450,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             exactRowsCount: this.rows.length,
             totalCount,
             selectAll: this.selectAll,
+            isReloading: this.isReloading,
         };
     };
 

@@ -38,7 +38,7 @@ export default function BasicExample() {
     return (
         <div className={ css.root }>
             {renderForm()}
-            {isLoading && <Blocker isEnabled={ isLoading } />}
+            <Blocker isEnabled={ isLoading } />
         </div>
     );
 }
