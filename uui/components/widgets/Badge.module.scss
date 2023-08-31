@@ -11,7 +11,9 @@
     --uui-badge-count-bg: var(--white); // It should be a separate component
 
     --uui-badge-font: var(--font-regular);
+    --uui-badge-font-weight: normal;
     --uui-badge-count-font: var(--font-semibold);
+    --uui-badge-count-font-weight: normal;
     //
     background-color: var(--uui-badge-bg);
     color: var(--uui-badge-caption);
@@ -35,7 +37,7 @@
 
     :global(.uui-count) {
         font-family: var(--uui-badge-count-font);
-        font-weight: var(--uui-badge-count-font-weight, normal);
+        font-weight: var(--uui-badge-count-font-weight);
         margin: auto;
         height: 18px;
         line-height: 18px;
@@ -54,7 +56,7 @@
 
     :global(.uui-caption) {
         font-family: var(--uui-badge-font);
-        font-weight: var(--uui-badge-font-weight, normal);
+        font-weight: var(--uui-badge-font-weight);
     }
 
     &:global(.uui-button-box) {
@@ -269,8 +271,8 @@
         --uui-badge-bg-hover: var(--uui-color-10);
         --uui-badge-border: var(--uui-color-20);
         --uui-badge-border-hover: var(--uui-color-20);
-        --uui-badge-caption: var(--uui-color-70);
-        --uui-badge-caption-hover: var(--uui-color-70);
+        --uui-badge-caption: var(--uui-color-text);
+        --uui-badge-caption-hover: var(--uui-color-text);
         --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
         --uui-badge-count-bg: var(--white); // It should be a separate component
     }

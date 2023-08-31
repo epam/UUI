@@ -37,6 +37,7 @@
     --uui-checkbox-border-radius: var(--uui-border-radius);
 
     --uui-checkbox-font: var(--font-regular);
+    --uui-checkbox-font-weight: normal;
     //Colors
     &:hover, &:active, &:focus-within {
         :global(.uui-checkbox) {
@@ -64,7 +65,7 @@
 
     :global(.uui-input-label) {
         font-family: var(--uui-checkbox-font);
-        font-weight: var(--uui-checkbox-font-weigth, normal);
+        font-weight: var(--uui-checkbox-font-weigth);
         color: var(--uui-checkbox-label);
         margin-left: 12px;
         flex-grow: 1;

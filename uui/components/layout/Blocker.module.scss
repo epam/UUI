@@ -1,4 +1,6 @@
 .root {
+    --uui-blocker-bg: var(--uui-app-bg);
+
     &:global(.uui-blocker-container) {
         :global(.uui-blocker) {
             background-color: rgba(var(--uui-blocker-bg), 0.5);

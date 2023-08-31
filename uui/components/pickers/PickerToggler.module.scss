@@ -33,6 +33,25 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
 }
 
 .root {
+    --uui-picker-toggler-bg: var(--uui-control-bg);
+    --uui-picker-toggler-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-picker-toggler-border: var(--uui-control-border);
+    --uui-picker-toggler-border-disabled: var(--uui-control-border-disabled);
+    --uui-picker-toggler-border-hover: var(--uui-control-border-hover);
+    --uui-picker-toggler-border-active: var(--uui-control-border-checked);
+    --uui-picker-toggler-border-error: var(--uui-error-50);
+    --uui-picker-toggler-placeholder: var(--uui-control-placeholder);
+    --uui-picker-toggler-text: var(--uui-control-text);
+    --uui-picker-toggler-text-disabled: var(--uui-control-text-disabled);
+    --uui-picker-toggler-icon: var(--uui-control-icon);
+    --uui-picker-toggler-icon-disabled: var(--uui-control-icon-disabled);
+    --uui-picker-toggler-icon-clickable: var(--uui-icon);
+    --uui-picker-toggler-icon-clickable-hover: var(--uui-icon-hover);
+    --uui-picker-toggler-border-radius: var(--uui-border-radius);
+
+    --uui-picker-toggler-font: var(--font-regular);
+    --uui-picker-toggler-font-weight: normal;
+    //
     padding-top: 2px;
     padding-left: 5px;
     padding-right: 5px;

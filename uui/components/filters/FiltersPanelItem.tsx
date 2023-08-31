@@ -125,7 +125,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         const hideHeaderTitle = isPickersType && isMobileScreen;
         return (
             <DropdownContainer { ...dropdownProps }>
-                <Panel cx={ css.panel }>
+                <Panel cx={ [css.root, css.panel] }>
                     { isPickersType ? (
                         <MobileDropdownWrapper title={ props.title } close={ () => isOpenChange(false) }>
                             { renderHeader(hideHeaderTitle) }

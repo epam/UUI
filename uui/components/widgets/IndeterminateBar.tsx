@@ -9,7 +9,7 @@ export interface IndeterminateBarMods extends IHasCX {
 
 export const IndeterminateBar = React.forwardRef<HTMLDivElement, IndeterminateBarMods>((props, ref) => {
     return (
-        <div ref={ ref } className={ cx(props.cx, css.root, css[`size-${props.size || 12}`]) }>
+        <div ref={ ref } className={ cx('uui-indeterminate_bar', props.cx, css.root, css[`size-${props.size || 12}`]) }>
             <div className={ cx(css.bar) } />
         </div>
     );
