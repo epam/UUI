@@ -18,7 +18,7 @@
         "uui-richTextEditor-code": true
       },
       {
-        "text": " functions"
+        "text": " functions. For now, available plugins: paragraph, bold, underline, italic, header, superscript, list, quote, link, image, iframe, video, codeblock."
       }
     ]
   }
