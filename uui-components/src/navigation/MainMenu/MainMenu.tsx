@@ -2,7 +2,8 @@ import React, { MouseEvent } from 'react';
 import {
     IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx, IHasForwardedRef, DropdownBodyProps,
 } from '@epam/uui-core';
-import { BurgerProps, MainMenuLogo } from './index';
+import { BurgerProps } from './Burger/Burger';
+import { MainMenuLogo } from '../MainMenu/MainMenuLogo';
 import { AdaptivePanel, AdaptiveItemProps } from '../../layout';
 import { i18n } from '../../i18n';
 import css from './MainMenu.module.scss';

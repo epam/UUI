@@ -2,8 +2,11 @@ import * as React from 'react';
 import { PositionValues, VirtualListRenderRowsParams, IconContainer, DataTableSelectionProvider } from '@epam/uui-components';
 import { useColumnsWithFilters } from '../../helpers';
 import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx, TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData } from '@epam/uui-core';
-import { DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationModal, DataTableRowMods, ColumnsConfigurationModalProps } from './';
-import { VirtualList } from '../';
+import { DataTableHeaderRow } from './DataTableHeaderRow';
+import { DataTableRow } from './DataTableRow';
+import { DataTableMods, DataTableRowMods } from './types';
+import { ColumnsConfigurationModal, ColumnsConfigurationModalProps } from './columnsConfigurationModal';
+import { VirtualList } from '../layout';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from '../typography';
 import css from './DataTable.module.scss';
@@ -78,9 +81,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     ]);
 
     const renderRowsContainer = React.useCallback(
-        ({
-            listContainerRef, estimatedHeight, offsetY, scrollShadows,
-        }: VirtualListRenderRowsParams) => (
+        ({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
             <>
                 <div className={ css.stickyHeader }>
                     <DataTableHeaderRow
@@ -91,7 +92,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                         textCase={ props.headerTextCase }
                         allowColumnsReordering={ props.allowColumnsReordering }
                         allowColumnsResizing={ props.allowColumnsResizing }
-                        value={ props.value }
+                        value={ { ...props.value, columnsConfig: config } }
                         onValueChange={ props.onValueChange }
                     />
                     <div

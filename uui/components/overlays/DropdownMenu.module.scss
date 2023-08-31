@@ -64,15 +64,6 @@
     }
 }
 
-.menuRoot {
-    padding: 0;
-    margin: 0;
-
-    &:focus {
-        outline: none;
-    }
-}
-
 .bodyRoot {
     @include icon-layout(36px);
     @include fillColor(var(--uui-icon), var(--uui-text-primary));
@@ -138,11 +129,14 @@
     }
 
     &:global(.-clickable:not(.uui-disabled)) {
-        &:hover,
-        &:focus {
+        &:hover {
             background-color: var(--uui-dropdown-menu-item-hover);
             fill: var(--uui-icon-active);
             cursor: pointer;
+        }
+
+        &:focus-visible {
+            @include focus-visible-effect(-2px, null);
         }
     }
 

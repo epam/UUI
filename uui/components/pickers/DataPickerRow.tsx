@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataRowProps, DataColumnProps } from '@epam/uui-core';
 import { DataPickerRow as UUIDataPickerRow } from '@epam/uui-components';
 import { FlexSpacer, IconContainer } from '../layout';
-import { DataTableCell } from '../tables';
+import { DataTableCell } from '../tables/DataTableCell';
 import { ReactComponent as TickIcon_24 } from '@epam/assets/icons/common/notification-done-24.svg';
 import { ReactComponent as TickIcon_18 } from '@epam/assets/icons/common/notification-done-18.svg';
 import { ReactComponent as TickIcon_12 } from '@epam/assets/icons/common/notification-done-12.svg';

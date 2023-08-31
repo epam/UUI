@@ -2,19 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import css from './AdaptivePanel.module.scss';
 import { FlexRow } from '../layout/flexItems';
 import { measureAdaptiveItems } from './measureItemsUtils';
-import { IHasCX, IHasRawProps, useLayoutEffectSafeForSsr } from '@epam/uui-core';
+import { useLayoutEffectSafeForSsr } from '@epam/uui-core';
+import { AdaptivePanelProps } from './types';
 import cx from 'classnames';
-
-export type AdaptiveItemProps<T = unknown> = T & {
-    render: (item: AdaptiveItemProps<T>, hiddenItems?: AdaptiveItemProps<T>[], displayedItems?: AdaptiveItemProps<T>[]) => any;
-    priority: number;
-    collapsedContainer?: boolean;
-    id: string;
-};
-
-export interface AdaptivePanelProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
-    items: AdaptiveItemProps[];
-}
 
 export function AdaptivePanel(props: AdaptivePanelProps) {
     const [itemsWidth, setItemsWidth] = useState<Record<string, number>>();

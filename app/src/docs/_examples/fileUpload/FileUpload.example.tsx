@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useUuiContext } from '@epam/uui-core';
-import { DropSpot, FileCard, FileCardItem } from '@epam/promo';
+import { FileCardItem, FileCard, DropSpot } from '@epam/uui';
 import css from './FileUpload.module.scss';
 
 const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
@@ -35,7 +35,7 @@ export default function FileUploadExample() {
             newAttachments.push(newFile);
 
             uuiApi
-                .uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
+                .uploadFile(ORIGIN.concat('/upload/uploadFileMock'), file, {
                     onProgress: (progress) => trackProgress(progress, tempId),
                     getXHR: (xhr) => {
                         newFile.abortXHR = () => xhr.abort();

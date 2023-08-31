@@ -1,10 +1,7 @@
 import React, { useMemo, useState } from 'react';
-import {
-    DndActor, IEditable, cx, DropParams, uuiDndState, getOrderBetween, DndActorRenderParams,
-} from '@epam/uui-core';
-import {
-    FlexRow, DropMarker, FlexCell, Text, IconContainer, Panel,
-} from '@epam/promo';
+import { DndActor, IEditable, cx, DropParams, uuiDndState, getOrderBetween, DndActorRenderParams } from '@epam/uui-core';
+import { FlexRow, FlexCell, Text, IconContainer, Panel } from '@epam/promo';
+import { DropMarker } from '@epam/uui';
 import sortBy from 'lodash.sortby';
 import { DragHandle } from '@epam/uui-components';
 import { ReactComponent as FileIcon } from '@epam/assets/icons/common/file-file-24.svg';

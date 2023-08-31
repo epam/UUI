@@ -72,7 +72,7 @@ export function DescriptionModal(props: IDemoItemDescriptionModal) {
                 </ScrollBars>
                 <ModalFooter borderTop>
                     <FlexSpacer />
-                    <Button color="gray50" fill="white" caption="Cancel" onClick={ handleClose } />
+                    <Button color="gray" fill="white" caption="Cancel" onClick={ handleClose } />
                     {!isReadOnly() && <Button color="green" caption="Save" onClick={ handleSaveAndClose } />}
                 </ModalFooter>
             </ModalWindow>

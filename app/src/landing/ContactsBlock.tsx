@@ -49,8 +49,8 @@ export class ContactsBlock extends React.Component {
                                                 </div>
                                             </>
                                         ) : (
-                                            <Anchor rawProps={ { tabIndex: -1, 'aria-label': 'Github' } } href={ GIT_LINK } target="_blank">
-                                                <IconContainer icon={ GitIcon } size={ containerWidth > 768 ? 180 : null } cx={ css.cardIcon } />
+                                            <Anchor rawProps={ { 'aria-label': 'Github' } } href={ GIT_LINK } target="_blank">
+                                                <IconContainer icon={ GitIcon } size={ containerWidth > 768 ? 60 : null } cx={ css.cardIcon } />
                                             </Anchor>
                                         )}
                                     </div>
@@ -73,7 +73,7 @@ export class ContactsBlock extends React.Component {
                                                 </div>
                                             </>
                                         ) : (
-                                            <Anchor rawProps={ { tabIndex: -1, 'aria-label': 'Email' } } href={ `mailto:${EMAIL}` } target="_blank">
+                                            <Anchor rawProps={ { 'aria-label': 'Email' } } href={ `mailto:${EMAIL}` } target="_blank">
                                                 <IconContainer icon={ MailIcon } size={ containerWidth > 768 ? 180 : null } cx={ css.cardIcon } />
                                             </Anchor>
                                         )}

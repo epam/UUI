@@ -1,12 +1,12 @@
 import { Tag, allFillStyles, TagMods } from '@epam/loveship';
-import { DocBuilder, dropdownTogglerDoc } from '@epam/uui-docs';
+import { DocBuilder, dropdownTogglerDoc, onClickDoc } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
 import { DefaultContext, FormContext, ResizableContext } from '../../docs';
 import { iconDoc, iconOptionsDoc, basicPickerTogglerDoc } from '../../docs';
 
 const tagDoc = new DocBuilder<ButtonProps & TagMods>({ name: 'Tag', component: Tag })
     .implements([
-        iconDoc, basicPickerTogglerDoc, dropdownTogglerDoc, iconOptionsDoc,
+        iconDoc, basicPickerTogglerDoc, dropdownTogglerDoc, iconOptionsDoc, onClickDoc,
     ])
     .prop('caption', {
         examples: [

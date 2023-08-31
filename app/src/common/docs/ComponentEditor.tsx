@@ -78,7 +78,21 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
 
     constructor(props: ComponentEditorProps) {
         super(props);
-        const { propsDocPath } = props;
+
+        this.state = {
+            docs: null,
+            isLoading: true,
+            showCode: false,
+            selectedPropsIds: {},
+            inputValues: {},
+            componentKey: undefined,
+        };
+    }
+
+    componentDidMount() {
+        const { propsDocPath } = this.props;
+        const selectedPropsIds = { ...this.state.selectedPropsIds };
+        const inputValues = { ...this.state.inputValues };
 
         if (propsDocPath) {
             const propsDocPathRelative = `.${propsDocPath.substring(PATH_PREFIX.length)}`;
@@ -97,38 +111,21 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                     }
 
                     if (defaultExample) {
-                        this.state.selectedPropsIds[prop.name] = defaultExample.id;
+                        selectedPropsIds[prop.name] = defaultExample.id;
                     }
 
                     if (prop.type === 'string') {
-                        this.state.inputValues[prop.name] = defaultExample?.value;
+                        inputValues[prop.name] = defaultExample?.value;
                     }
                 });
                 this.initialProps = this.state.selectedPropsIds;
-                this.setState({ docs: module, isLoading: false });
-                this.setState({ code: this.renderCode(this.state.selectedPropsIds) });
+                this.setState({ docs: module, selectedPropsIds: selectedPropsIds, inputValues: inputValues, isLoading: false });
             });
         }
-
-        this.state = {
-            docs: null,
-            isLoading: true,
-            showCode: false,
-            selectedPropsIds: {},
-            inputValues: {},
-            componentKey: undefined,
-        };
     }
 
     propExamples: { [propName: string]: PropExample<any>[] } = {};
     initialProps: any;
-    componentDidUpdate(prevProps: any, prevState: any) {
-        if (this.state.selectedPropsIds !== prevState.selectedPropsIds) {
-            this.setState({
-                code: this.renderCode(this.state.selectedPropsIds),
-            });
-        }
-    }
 
     getPropValue(prop: PropDoc<any, any>) {
         if (typeof prop.examples === 'function') {
@@ -209,7 +206,13 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
             } else {
                 return (
                     <React.Fragment>
-                        <MultiSwitch items={ items } onValueChange={ onExampleClick } value={ this.state.selectedPropsIds[prop.name] } size="24" />
+                        <MultiSwitch
+                            items={ items }
+                            onValueChange={ onExampleClick }
+                            value={ this.state.selectedPropsIds[prop.name] }
+                            size="24"
+                            rawProps={ { style: { flexWrap: 'wrap' } } }
+                        />
                         {prop.description && (
                             <Tooltip placement="top" content={ prop.description }>
                                 <IconButton icon={ InfoIcon } color="default" />
@@ -352,7 +355,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
     }
 
     renderCodeBlock() {
-        return <pre className={ css.code }>{this.state.code}</pre>;
+        return <pre className={ css.code }>{this.renderCode(this.getProps())}</pre>;
     }
 
     showNotification() {
@@ -365,7 +368,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                 </NotificationCard>
             ),
             { duration: 3 },
-        );
+        ).catch(() => {});
     }
 
     getTheme(route: string) {
@@ -439,7 +442,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                                 <Switch label="View Code" value={ this.state.showCode } onValueChange={ () => this.setState({ showCode: !this.state.showCode }) } />
                                 <FlexSpacer />
                                 <Tooltip content="Copy code" placement="top">
-                                    <IconButton icon={ CopyIcon } onClick={ () => copyTextToClipboard(this.state.code, this.showNotification) } />
+                                    <IconButton icon={ CopyIcon } onClick={ () => copyTextToClipboard(this.renderCode(this.getProps()), this.showNotification) } />
                                 </Tooltip>
                             </FlexRow>
                             {this.state.showCode && (

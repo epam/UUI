@@ -25,13 +25,27 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
         props.onClick?.();
     };
 
+    const onKeyDownHandler = (e: React.KeyboardEvent<HTMLElement>) => {
+        if (props.isDisabled) return;
+
+        if (e.key === 'Enter' && !props.isOpen) {
+            e.preventDefault();
+            props.toggleDropdownOpening(true);
+        }
+
+        if (e.key === 'Escape' && props.isOpen) {
+            e.preventDefault();
+            props.toggleDropdownOpening(false);
+        }
+    };
+
     const getTitle = props.predicateName ? `${props.title} ${props.predicateName}` : `${props.title}${props.selection ? ':' : ''}`;
 
     const getSelectionText = () => props.selection.map((i, index) => (
-        <>
-            <Text key={ index } color="brand" size={ props.size } cx={ css.selection }>{i}</Text>
+        <React.Fragment key={ `${i}${index}` }>
+            <Text color="brand" size={ props.size } cx={ css.selection }>{ i }</Text>
             { (props.postfix || index !== props.selection.length - 1) && <span>,&nbsp;</span> }
-        </>
+        </React.Fragment>
     ));
 
     return (
@@ -40,6 +54,8 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
             rawProps={ {
                 style: { maxWidth: `${props.maxWidth ? props.maxWidth + 'px' : 'auto'}` },
                 role: 'button',
+                tabIndex: props.isDisabled ? -1 : 0,
+                onKeyDown: onKeyDownHandler,
             } }
             cx={ cx(css.root, uuiElement.inputBox, uuiMarkers.clickable, props.isOpen && uuiMod.opened, ['size-' + (props.size || defaultSize)], props.cx) }
             onClick={ togglerPickerOpened }

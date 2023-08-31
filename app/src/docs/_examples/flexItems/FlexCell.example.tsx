@@ -45,7 +45,7 @@ export default function FlexCellExample() {
                 <FlexSpacer />
 
                 <Button caption="Submit" onClick={ () => null } color="green" />
-                <Button caption="Cancel" onClick={ () => null } color="gray50" />
+                <Button caption="Cancel" onClick={ () => null } color="gray" />
             </FlexRow>
         </Panel>
     );

@@ -31,7 +31,6 @@ export class ProjectsBlock extends React.Component {
                                     <div className={ css.content }>
                                         {projects.map((project) => (
                                             <a
-                                                tabIndex={ -1 }
                                                 key={ project.projectName }
                                                 target="_blank"
                                                 className={ css.project }
@@ -48,7 +47,6 @@ export class ProjectsBlock extends React.Component {
                                         <Anchor
                                             key="allProjects"
                                             cx={ css.project }
-                                            rawProps={ { tabIndex: -1 } }
                                             link={ { pathname: '/documents', query: { id: 'projects' } } }
                                             onClick={ () => this.sendEvent('All') }
                                         >

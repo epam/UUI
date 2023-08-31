@@ -1,5 +1,5 @@
 const path = require('path');
-const { logger } = require('../../utils/loggerUtils.js');
+const { logger } = require('../../utils/loggerUtils');
 
 const SUM_TOP_N = 300;
 const ROOT_DIR = path.resolve(`${__dirname}/../../../.`);
