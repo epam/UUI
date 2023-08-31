@@ -35,7 +35,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
   >
     <div
       aria-modal={true}
-      className="uui-modal-window modal container"
+      className="uui-modal-window root modal container"
       role="modal"
       style={
         Object {
@@ -45,7 +45,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       }
     >
       <div
-        className="root size-36 padding-24 vPadding-12 borderBottom spacing-12 modalHeader container align-items-center"
+        className="root size-36 padding-24 vPadding-12 borderBottom spacing-12 root modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -159,7 +159,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+        className="root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -250,7 +250,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
   >
     <div
       aria-modal={true}
-      className="uui-modal-window modal container"
+      className="uui-modal-window root modal container"
       role="modal"
       style={
         Object {
@@ -260,7 +260,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
       }
     >
       <div
-        className="root size-36 padding-24 vPadding-12 borderBottom spacing-12 modalHeader container align-items-center"
+        className="root size-36 padding-24 vPadding-12 borderBottom spacing-12 root modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -382,7 +382,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         </div>
       </div>
       <div
-        className="root size-36 padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+        className="root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
         style={
           Object {
             "columnGap": undefined,

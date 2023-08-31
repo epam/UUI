@@ -5,13 +5,16 @@
     --uui-burger_btn_caption-hover: var(--uui-primary-50);
     --uui-burger_btn_caption-active: var(--uui-primary-50);
     --uui-burger_btn-border: var(--uui-disabled);
+
     --uui-burger_btn-font: var(--font-regular);
+    --uui-burger_btn-font-weight: normal;
+    //
     padding: 0 24px;
     background: none;
     border: 0;
     outline: none;
     font-family: var(--uui-burger_btn-font);
-    font-weight: var(--uui-burger_btn-font-weight, normal);
+    font-weight: var(--uui-burger_btn-font-weight);
     line-height: 48px;
     flex-shrink: 0;
 

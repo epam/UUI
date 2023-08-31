@@ -14,6 +14,7 @@
 }
 
 .root {
+    --uui-flex-row-bg: var(--uui-color-50);
     --uui-flex-row-border-bottom: 1px solid var(--uui-divider);
     //
     // If we have an "border-box" value here, an size-24 row with a bottom border, will have 23px min-height.

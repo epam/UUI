@@ -49,7 +49,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
             case 'mp4':
             case 'wmw':
             case 'mkv':
-                return <IconContainer size={ 24 } icon={ fileIcons.videoIcon } cx={ css.movieColor } />;
+                return <IconContainer size={ 24 } icon={ fileIcons.videoIcon } cx={ css.movColor } />;
             case 'csv':
             case 'xml':
                 return <IconContainer size={ 24 } icon={ fileIcons.tableIcon } cx={ css.defaultColor } />;
@@ -112,7 +112,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
     return (
         <FlexCell
             ref={ ref }
-            cx={ cx(css.fileCardWrapper, (isLoading || error?.isError) && uuiMod.loading, componentCx, error?.isError && css.errorCardWrapper) }
+            cx={ cx(css.root, css.fileCardWrapper, (isLoading || error?.isError) && uuiMod.loading, componentCx, error?.isError && css.errorCardWrapper) }
             minWidth={ width }
             width={ !width ? '100%' : undefined }
         >
