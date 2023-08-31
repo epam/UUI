@@ -1,6 +1,5 @@
 import React from 'react';
-import { Avatar, FlexCell, FlexRow, Panel, Text } from '@epam/uui';
-import { Badge } from '@epam/promo';
+import { Avatar, FlexCell, FlexRow, Panel, Text, Badge } from '@epam/uui';
 
 import { ReactComponent as notificationIcon } from '@epam/assets/icons/common/notification-done-12.svg';
 import css from './AttributesExample.module.scss';
@@ -24,9 +23,9 @@ export default function AttributesExample() {
             <FlexRow>
                 <Panel>
                     <FlexRow alignItems="center" spacing="6">
-                        <Badge color="green" size="24" fill="semitransparent" icon={ notificationIcon } caption="Available" />
-                        <Badge color="blue" size="24" fill="semitransparent" caption="Bench" />
-                        <Badge color="cyan" size="24" fill="semitransparent" caption="Remote" />
+                        <Badge color="success" size="24" fill="semitransparent" icon={ notificationIcon } caption="Available" />
+                        <Badge color="info" size="24" fill="semitransparent" caption="Bench" />
+                        <Badge color="warning" size="24" fill="semitransparent" caption="Remote" />
                     </FlexRow>
                 </Panel>
             </FlexRow>
