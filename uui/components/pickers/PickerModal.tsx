@@ -131,7 +131,6 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                     rows={ rows }
                     renderNotFound={ renderNotFound }
                     editMode="modal"
-                    addBlocker={ true }
                 />
                 <ModalFooter padding="24" vPadding="24">
                     {props.renderFooter ? props.renderFooter(getFooterProps()) : renderFooter()}
