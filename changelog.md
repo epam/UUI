@@ -2083,3 +2083,4 @@ To update, please add make this changes:
 * Fixed dropdown crash and popper flickering
 * [breaking change] withMods helper API changed. Now default props in a function accepting mods. This allow to change child components according to mods (e.g. PickerInput can change color of PickerInputToggler according to it's mods)
 * [breaking change] VirtualList reworked, now it's delegates visible range state via IEditable<VirtualListStateProps>. This allows parent component to know up-front what rows are visible.
+
