@@ -9,7 +9,7 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
-import { IframeBlock } from './IframeBlock';
+import { IframeBlock, SerializationIframe } from './IframeBlock';
 import { IFRAME_PLUGIN_KEY, IFRAME_PLUGIN_TYPE } from '../../types';
 
 export const iframePlugin = () => {
@@ -19,6 +19,7 @@ export const iframePlugin = () => {
         isElement: true,
         isVoid: true,
         component: IframeBlock,
+        serializeHtml: SerializationIframe,
         // paste iframe from clipboard
         then: (editor, { type }) => ({
             deserializeHtml: {

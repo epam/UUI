@@ -1,154 +1,95 @@
-import React, { Fragment, useState } from 'react';
-import {
-    CommonContexts,
-    FileUploadResponse,
-    useUuiContext,
-} from '@epam/uui-core';
+import React, { useState } from 'react';
 import { Panel, FlexRow, Button, RichTextView } from '@epam/promo';
 import {
     SlateEditor,
-    defaultPlugins,
     imagePlugin,
     videoPlugin,
-    attachmentPlugin,
-    toDoListPlugin,
     baseMarksPlugin,
     linkPlugin,
     iframePlugin,
-    notePlugin,
-    separatorPlugin,
-    uploadFilePlugin,
-    tablePlugin,
     quotePlugin,
-    colorPlugin,
     superscriptPlugin,
     headerPlugin,
     listPlugin,
-    placeholderPlugin,
     EditorValue,
     codeBlockPlugin,
     createSerializer,
     isEditorValueEmpty,
     migrateSchema,
     createDeserializer,
+    paragraphPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.module.scss';
 
-const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
-
-const getAllPlugins = (svc: CommonContexts<any, any>) => {
-    const uploadFile = (
-        file: File,
-        onProgress: (progress: number) => unknown,
-    ): Promise<FileUploadResponse> => {
-        return svc.uuiApi.uploadFile(
-            ORIGIN.concat('/upload/uploadFileMock'),
-            file,
-            {
-                onProgress,
-            },
-        );
-    };
-
-    return [
-        ...defaultPlugins,
-        baseMarksPlugin(),
-        headerPlugin(),
-        colorPlugin(),
-        superscriptPlugin(),
-        listPlugin(),
-        toDoListPlugin(),
-        quotePlugin(),
-        linkPlugin(),
-        notePlugin(),
-        uploadFilePlugin({ uploadFile }),
-        attachmentPlugin(),
-        imagePlugin(),
-        videoPlugin(),
-        iframePlugin(),
-        separatorPlugin(),
-        tablePlugin(),
-        placeholderPlugin({
-            items: [
-                {
-                    name: 'Name',
-                    field: 'name',
-                },
-                {
-                    name: 'Email',
-                    field: 'email',
-                },
-            ],
-        }),
-        codeBlockPlugin(),
-    ];
-};
+const plugins = [
+    paragraphPlugin(),
+    baseMarksPlugin(),
+    headerPlugin(),
+    superscriptPlugin(),
+    listPlugin(),
+    quotePlugin(),
+    linkPlugin(),
+    imagePlugin(),
+    videoPlugin(),
+    iframePlugin(),
+    codeBlockPlugin(),
+];
 
 const serializeHTML = createSerializer();
 const deserializeHTML = createDeserializer();
 
 export default function SlateEditorBasicExample() {
-    const svc = useUuiContext();
-    const [value, setValue] = useState<EditorValue>(demoData.slateSerializationInitialData);
+    const [value, setValue] = useState<EditorValue>(migrateSchema(demoData.slateSerializationInitialData));
 
-    const [html, setHtml] = React.useState<string>();
+    const [serializedHtml, setSerializedHtml] = useState(serializeHTML(value));
     const [type, setType] = React.useState<'html' | 'edit'>('edit');
 
-    const onSerialize = React.useCallback(() => {
-        const migratedValue = migrateSchema(value);
-        setHtml(serializeHTML(migratedValue));
+    const onChangeEditorValue = (newValue: EditorValue) => {
+        setValue(newValue);
+    };
+
+    const onView = () => {
+        setSerializedHtml(serializeHTML(value));
         setType('html');
-    }, [value]);
+    };
 
-    const onBackToEdit = React.useCallback(() => setType('edit'), []);
-
-    const onDeserialize = React.useCallback(() => {
-        const deserialized = deserializeHTML(html);
-        setValue(deserialized as any);
+    const onEdit = () => {
+        setValue(deserializeHTML(serializedHtml));
         setType('edit');
-    }, [html]);
+    };
 
     return (
         <Panel cx={ css.root }>
             <FlexRow spacing="18" vPadding="12">
                 {type === 'edit' && (
                     <Button
-                        caption="Serialize"
-                        onClick={ onSerialize }
-                        isDisabled={ isEditorValueEmpty(migrateSchema(value)) }
+                        caption="View"
+                        onClick={ onView }
+                        isDisabled={ isEditorValueEmpty(value) }
                         size="30"
                     />
                 )}
                 {type === 'html' && (
-                    <Fragment>
-                        <Button
-                            caption="Back to edit"
-                            onClick={ onBackToEdit }
-                            isDisabled={ html === '' }
-                            size="30"
-                        />
-                        <Button
-                            caption="Deserialize and edit"
-                            onClick={ onDeserialize }
-                            isDisabled={ html === '' }
-                            size="30"
-                        />
-                    </Fragment>
+                    <Button
+                        caption="Edit"
+                        onClick={ onEdit }
+                        isDisabled={ !serializedHtml }
+                        size="30"
+                    />
                 )}
-
             </FlexRow>
             {
                 type === 'html'
                     ? (
-                        <RichTextView htmlContent={ html } />
+                        <RichTextView cx={ css.richTextView } htmlContent={ serializedHtml } />
                     )
                     : (
                         <SlateEditor
                             value={ value }
-                            onValueChange={ setValue }
+                            onValueChange={ onChangeEditorValue }
                             isReadonly={ false }
-                            plugins={ getAllPlugins(svc) }
+                            plugins={ plugins }
                             mode="form"
                             placeholder="Add description"
                             minHeight="none"

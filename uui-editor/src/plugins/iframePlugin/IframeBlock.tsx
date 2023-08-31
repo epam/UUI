@@ -18,7 +18,7 @@ export function IframeBlock(props: any) {
 
     return (
         // style attr needed for serialization
-        <div { ...attributes } style={ { display: 'flex', justifyContent: 'center' } }>
+        <div { ...attributes }>
             <iframe
                 title={ element.src }
                 allowFullScreen={ true }
@@ -27,6 +27,40 @@ export function IframeBlock(props: any) {
                 className={ cx(css.content, isSelected && uuiMod.focus, IFRAME_GLOBAL_CLASS, isPdf && PDF_GLOBAL_CLASS) }
             />
             { children }
+        </div>
+    );
+}
+
+export function SerializationIframe(props: any) {
+    const { element } = props;
+    const src = element.data.src || element.src;
+    const isPdf = element.data.extension === 'pdf';
+
+    return (
+        <div>
+            <div
+                style={ {
+                    position: 'relative',
+                    paddingTop: '56.25%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                } }
+            >
+                <iframe
+                    frameBorder={ 0 }
+                    title={ element.src }
+                    src={ sanitizeUrl(src) }
+                    style={ {
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                    } }
+                    className={ cx(css.content, IFRAME_GLOBAL_CLASS, isPdf && PDF_GLOBAL_CLASS) }
+                    allowFullScreen
+                />
+            </div>
         </div>
     );
 }
