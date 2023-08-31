@@ -35,6 +35,11 @@ export interface UseVirtualListProps extends IEditable<VirtualListState> {
     overdrawRows?: number;
 
     onScroll?(value: Partial<UuiScrollPositionValues>): void;
+
+    /**
+     * Selector of `VirtualList` rows.
+     * @default '[role=row]'
+     */
     rowsSelector?: string;
 }
 
@@ -57,5 +62,10 @@ export interface VirtualListInfo {
     listOffset: number | undefined | null;
     estimatedHeight?: number;
     averageRowHeight?: number;
+
+    /**
+     * Selector of `VirtualList` rows.
+     * @default '[role=row]'
+     */
     rowsSelector: string;
 }

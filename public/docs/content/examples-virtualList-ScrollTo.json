@@ -1,0 +1,28 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "VirtualList",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " supports "
+      },
+      {
+        "text": "scrollTo",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " as a part of the "
+      },
+      {
+        "uui-richTextEditor-code": true,
+        "text": "state"
+      },
+      {
+        "text": ". it accepts an object with an index of an element that you want to scroll to and updates the scroll position if a link to an object is updated."
+      }
+    ]
+  }
+]
