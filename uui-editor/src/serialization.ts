@@ -20,7 +20,6 @@ import {
     iframePlugin,
     codeBlockPlugin,
     paragraphPlugin,
-    tablePlugin,
 } from './plugins';
 
 const workingPlugins = [
@@ -35,7 +34,6 @@ const workingPlugins = [
     videoPlugin(),
     iframePlugin(),
     codeBlockPlugin(),
-    tablePlugin(),
 ];
 
 const createTempEditor = () => {
@@ -51,7 +49,7 @@ export const createDeserializer = () => {
 
     return (data: string) => {
         const document = parseHtmlDocument(data);
-        return deserializeHtml(editor, { element: document.body });
+        return deserializeHtml(editor, { element: document.body }) as EditorValue;
     };
 };
 
