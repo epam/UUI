@@ -3,6 +3,7 @@
 **What's New**
 * [FiltersPanel]: added possibility to provide your own custom filter
 * [useForm]: validate callback now return new validationState
+* [DropdownContainer]: added props for keyboard navigation support: `focusLock`, `closeOnEsc`, `returnFocus`, `persistentFocus`, `lockProps`, `shards`, `as`, `className`.
 
 **What's Fixed**
 * Added focus state styles for Accordion, AvatarStack, Anchor, Badge, Button, Burger, Checkbox, Control Group, IconButton, LinkButton, MainMenu, RadioInput, Switch, TabButton, Tag.
@@ -11,6 +12,9 @@
 * [useForm]: after calling validate callback, form switch to revalidating mode on fields change.
 * [useForm]: fixed isChanged prop calculation, in case when form value returned to initial
 * [useForm]: don't call loadUnsavedChanges callback when for was edited and then returned to the initial value
+* [Accordion]: fixed outdated isOpen value of renderTitle and renderAdditionalItems callbacks in case when this.props.value provided
+* [Burger]: fix keyboard navigation
+* [Badge]: fixed hover effects for non-clickable badges in loveship
 
 
 # 5.1.2 - 10.08.2023
