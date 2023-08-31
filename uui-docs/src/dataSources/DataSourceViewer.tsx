@@ -63,6 +63,7 @@ export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {
                     rows={ renderedRows }
                     { ...listProps }
                     cx={ css.list }
+                    rowsSelector="[role=option]"
                 />
             </FlexRow>
             <FlexRow cx={ css.row }>
