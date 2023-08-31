@@ -27,7 +27,7 @@ export default function BasicExample() {
                 items={ [
                     { id: 1, caption: 'Mentee' }, { id: 2, caption: 'Mentor' }, { id: 3, caption: 'Coordinator' },
                 ] }
-                color="gray50"
+                color="gray"
                 value={ value }
                 onValueChange={ onValueChange }
             />

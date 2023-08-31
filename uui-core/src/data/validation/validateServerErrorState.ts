@@ -1,4 +1,4 @@
-import { ICanBeInvalid } from '../../types';
+import { ICanBeInvalid } from '../../types/props';
 
 export function validateServerErrorState<T extends any>(currentFormState: T, lastSentFormState: T, serverValidation: ICanBeInvalid) {
     let result: ICanBeInvalid = { isInvalid: false };

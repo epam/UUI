@@ -37,7 +37,7 @@ export function RichTextEditorDemo() {
     };
 
     const uploadFile = (file: File, onProgress: (progress: number) => any): any => {
-        return svc.uuiApi.uploadFile('/uploadFileMock', file, {
+        return svc.uuiApi.uploadFile('/upload/uploadFileMock', file, {
             onProgress,
         });
     };

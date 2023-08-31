@@ -2,44 +2,25 @@ import { ScrollBars } from '@epam/uui-components';
 import { IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod } from '@epam/uui-core';
 import React, { Fragment, useMemo, useRef } from 'react';
 
-import { createExitBreakPlugin, createSoftBreakPlugin } from '@udecode/plate-break';
 import {
     Plate,
     PlateProvider,
     Value,
     createPlugins,
-    isElementEmpty,
     useEventEditorSelectors,
     usePlateEditorState,
 } from '@udecode/plate-common';
-import { createTextIndentPlugin } from '@udecode/plate-indent';
-import { createIndentListPlugin } from '@udecode/plate-indent-list';
-import { createJuicePlugin } from '@udecode/plate-juice';
-import { createDeserializeDocxPlugin } from './plugins/deserializeDocxPlugin/deserializeDocxPlugin';
 
 import css from './SlateEditor.module.scss';
 import { createPlateUI } from './components';
 import { migrateSchema } from './migration';
-import { baseMarksPlugin, paragraphPlugin } from './plugins';
+import { baseMarksPlugin } from './plugins';
 import { MainToolbar, MarksToolbar } from './plugins/Toolbars';
 import { EditorValue } from './types';
+import { defaultPlugins } from './defaultPlugins';
+import { isEditorValueEmpty } from './helpers';
 
-/**
- * Please make sure defaultPlugins and all your plugins are not interfere
- * with the following list when disableCorePlugins prop hasn't been set
- * https://github.com/udecode/plate/blob/main/docs/BREAKING_CHANGES.md#general
- */
-export const defaultPlugins: any = [
-    createIndentListPlugin(),
-    createTextIndentPlugin(),
-    createSoftBreakPlugin(),
-    createExitBreakPlugin(),
-    createDeserializeDocxPlugin(),
-    createJuicePlugin(),
-    paragraphPlugin(),
-];
-
-export const basePlugins: any = [
+const basePlugins: any = [
     baseMarksPlugin(),
     ...defaultPlugins,
 ];
@@ -85,8 +66,7 @@ function Editor(props: PlateEditorProps) {
                     readOnly: props.isReadonly,
                     placeholder: props.placeholder,
                     renderPlaceholder: ({ attributes }) => {
-                        const shouldShowPlaceholder = isElementEmpty(editor, editor.children[0]);
-                        return shouldShowPlaceholder && (
+                        return isEditorValueEmpty(editor.children) && (
                             <div
                                 { ...attributes }
                                 style={ { pointerEvents: 'none' } }
@@ -133,7 +113,7 @@ function Editor(props: PlateEditorProps) {
     );
 }
 
-export function SlateEditor(props: SlateEditorProps) {
+function SlateEditor(props: SlateEditorProps) {
     const currentId = useRef(String(Date.now()));
 
     const plugins = useMemo(
@@ -167,3 +147,5 @@ export function SlateEditor(props: SlateEditorProps) {
         </PlateProvider>
     );
 }
+
+export { SlateEditor, basePlugins };

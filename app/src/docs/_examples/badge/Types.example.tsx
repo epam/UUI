@@ -9,7 +9,7 @@ import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/common/
 export default function TypesExample() {
     return (
         <>
-            <Panel style={ { rowGap: '18px', marginRight: '42px' } }>
+            <Panel style={ { rowGap: '18px', marginRight: '42px', padding: '4px' } }>
                 <FlexRow spacing="18">
                     <Badge icon={ mediaIcon } color="orange" fill="semitransparent" caption="Video" />
                     <Text fontSize="14">Use as an attribute or label</Text>
@@ -19,11 +19,11 @@ export default function TypesExample() {
                     <Text fontSize="14">View statuses</Text>
                 </FlexRow>
                 <FlexRow spacing="18">
-                    <Badge color="blue" fill="semitransparent" caption="Java" onClear={ () => {} } />
+                    <Badge color="blue" fill="semitransparent" caption="Java" onClick={ () => {} } onClear={ () => {} } />
                     <Text fontSize="14">Filter chips</Text>
                 </FlexRow>
             </Panel>
-            <Panel style={ { rowGap: '18px' } }>
+            <Panel style={ { rowGap: '18px', padding: '4px' } }>
                 <FlexRow spacing="18">
                     <Badge count={ 25 } color="red" fill="solid" caption="Rejected" onClick={ () => {} } />
                     <Text fontSize="14">Quick filters selection with informer</Text>

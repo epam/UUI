@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { cx, DataColumnProps, DndActor, DndActorRenderParams, IColumnConfig } from '@epam/uui-core';
-import { FlexRow, Checkbox, DropMarker } from '../../../components';
+import { FlexRow } from '../../layout';
+import { Checkbox } from '../../inputs';
+import { DropMarker } from '../../dnd';
 import { DragHandle, FlexSpacer, ColumnsConfigurationRowProps } from '@epam/uui-components';
 import { PinIconButton } from './PinIconButton';
 import styles from './ColumnRow.module.scss';

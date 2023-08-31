@@ -1,0 +1,7 @@
+@use  '../../assets/styles/effects' as *;
+
+.root {
+    &:global(.-clickable):focus-visible {
+        @include focus-visible-effect();
+    }
+}

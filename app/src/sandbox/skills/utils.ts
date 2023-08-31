@@ -1,5 +1,35 @@
+import { FunctionComponent, SVGProps } from 'react';
 import dayjs from 'dayjs';
-import { ISkillLevel } from './index';
+
+export type ISkillLevel = 1 | 2 | 3 | 4 | 'NA' | 'NoSkill' | 'Rank';
+
+export interface ISmallBatteryProps {
+    rating: ISkillLevel;
+}
+
+type ColorValueHex = `#${string}`;
+
+export interface IInnerSkill {
+    icon: FunctionComponent<SVGProps<SVGSVGElement>>;
+    activeColor: ColorValueHex;
+    status: boolean;
+    prefix: string;
+    date: Date;
+}
+
+export interface ISkill {
+    caption: string;
+    level: ISkillLevel;
+    comment: string;
+    description: string;
+    options: {
+        isProfile: IInnerSkill;
+        isOutdated: IInnerSkill;
+        isConfirmed: IInnerSkill;
+        isRecommended: IInnerSkill;
+    };
+    lastUpdated: Date;
+}
 
 export const getDateInFormat = (date: Date) => dayjs(date).format('MMM DD, YYYY');
 

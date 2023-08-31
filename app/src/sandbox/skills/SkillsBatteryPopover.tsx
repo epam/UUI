@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import css from './SkillsBatteryPopover.module.scss';
 import { SmallBattery } from './components/SmallBattery';
 import { BigBattery } from './components/BigBattery';
-import { IInnerSkill, ISkill, ISkillLevel } from './index';
+import { ISkillLevel, IInnerSkill, ISkill } from './utils';
 import {
     Button, Dropdown, FlexRow, Text, DropdownContainer, IconContainer, IconButton, TextInput,
 } from '@epam/promo';
@@ -59,18 +59,18 @@ export function SkillsBatteryPopover(props: ISkillsBatteryProps) {
                         cx={ css.iconBtn }
                         icon={ isFavorite?.status ? heartIconFilled : heartIconOutline }
                         fill="light"
-                        color={ isFavorite?.status ? 'red' : 'gray50' }
+                        color={ isFavorite?.status ? 'red' : 'gray' }
                         onClick={ () => setIsFavorite((prev) => ({ ...prev, status: !prev.status })) }
                     />
                     <Button
                         cx={ css.iconBtn }
                         icon={ recommendedIcon }
                         fill="light"
-                        color={ isRecommended?.status ? 'green' : 'gray50' }
+                        color={ isRecommended?.status ? 'green' : 'gray' }
                         onClick={ () => setIsRecommended((prev) => ({ ...prev, status: !prev.status })) }
                     />
-                    <Button cx={ css.iconBtn } icon={ noSkillIcon } fill="light" color="gray50" onClick={ () => setLevel('NoSkill') } />
-                    <Button cx={ css.iconBtn } icon={ noActiveIcon } fill="light" color="gray50" onClick={ () => setLevel('NA') } />
+                    <Button cx={ css.iconBtn } icon={ noSkillIcon } fill="light" color="gray" onClick={ () => setLevel('NoSkill') } />
+                    <Button cx={ css.iconBtn } icon={ noActiveIcon } fill="light" color="gray" onClick={ () => setLevel('NA') } />
                 </FlexRow>
                 <div className={ css.infoBlock }>
                     {Object.entries(props?.data.options).map((val, index) => (

@@ -1,5 +1,5 @@
 import css from './text-layout.module.scss';
-import { ControlSize } from '../components';
+import { ControlSize } from '../components/types';
 
 export interface TextSettings {
     lineHeight?: '12' | '18' | '24' | '30';

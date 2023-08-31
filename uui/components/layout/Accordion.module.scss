@@ -1,3 +1,5 @@
+@use  '../../assets/styles/effects' as *;
+
 @mixin padding($size) {
     padding-left: $size + px;
     padding-right: $size + px;
@@ -9,6 +11,10 @@
         font-weight: var(--uui-accordion-toggler-font-weight, normal);
         color: var(--uui-accordion-text);
         cursor: pointer;
+
+        &:focus-visible {
+            @include focus-visible-effect(-2px, 0);
+        }
     }
 
     :global(.uui-accordion-body) {

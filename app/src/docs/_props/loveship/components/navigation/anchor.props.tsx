@@ -21,7 +21,7 @@ const AnchorDoc = new DocBuilder<AnchorProps>({ name: 'Anchor', component: Ancho
         examples: [
             {
                 value: [
-                    <Panel cx={ css.panel }>
+                    <Panel cx={ css.panel } style={ { display: 'inline-flex' } }>
                         <FlexRow alignItems="center" spacing="6" cx={ css.iconRow }>
                             <IconContainer icon={ gitIcon } cx={ css.icon } />
                             <IconContainer icon={ PinterestIcon } cx={ css.icon } />
