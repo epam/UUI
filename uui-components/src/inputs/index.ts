@@ -9,3 +9,4 @@ export * from './Switch';
 export * from './TextArea';
 export * from './TextInput';
 export * from './TimePickerBody';
+export * from './InputAddon';

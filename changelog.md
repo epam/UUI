@@ -1,6 +1,7 @@
 # 5.x.x - xx.xx.2023
 
 **What's New**
+* [InputAddon]: added InputAddon component that can be used for Prefix/Suffix with ControlGroup.
 
 **What's Fixed**
 
