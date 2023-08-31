@@ -4,7 +4,6 @@
 * [FiltersPanel]: added possibility to provide your own custom filter
 * [useForm]: validate callback now return new validationState
 * [DropdownContainer]: added props for keyboard navigation support: `focusLock`, `closeOnEsc`, `returnFocus`, `persistentFocus`, `lockProps`, `shards`, `as`, `className`.
-* [InputAddon]: conmonent created, and axample added in ControlGroup doc.
 
 **What's Fixed**
 * Added focus state styles for Accordion, AvatarStack, Anchor, Badge, Button, Burger, Checkbox, Control Group, IconButton, LinkButton, MainMenu, RadioInput, Switch, TabButton, Tag.
