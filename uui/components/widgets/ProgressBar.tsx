@@ -13,7 +13,7 @@ export function applyProgressBarMods(mods: ProgressBarMods) {
     const size = mods.size || defaultSize;
 
     return [
-        'uui-progress_bar', css.root, css[`size-${size}`], mods.striped && css.striped,
+        css.root, css[`size-${size}`], mods.striped && css.striped,
     ];
 }
 

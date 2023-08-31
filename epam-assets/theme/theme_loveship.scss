@@ -281,16 +281,12 @@
     --uui-control-bg-hover: var(--neutral60);
     --uui-control-bg-disabled: var(--neutral5);
     --uui-control-bg-readonly: var(--neutral5);
-    --uui-control_switch-bg: var(--neutral40);
-    --uui-control_switch-toggler-bg: var(--uui-surface);
 
     --uui-control-border: var(--neutral40);
+    --uui-control-border-hover: var(--neutral60);
     --uui-control-border-disabled: var(--neutral30);
     --uui-control-border-readonly: var(--neutral30);
     --uui-control-border-checked: var(--uui-primary-50);
-
-    --uui-control_switch-border-hover: var(--neutral60);
-    --uui-control_textinput-border-hover: var(--neutral60);
 
     --uui-control-label: var(--uui-text-primary);
     --uui-control-label-disabled: var(--uui-text-disabled);
@@ -308,7 +304,7 @@
 
     --uui-control-focus: #008ACE80;
 
-    --uui-search-result-highlight: var(--uui-warning-10); //#FFEDC9;
+    --uui-search-result-highlight: var(--uui-warning-10);
 
     --uui-skeleton: var(--neutral40);
     --uui-skeleton-gradient: linear-gradient(90deg, var(--neutral40) 0%, var(--neutral10) 50%, var(--neutral40) 100%);

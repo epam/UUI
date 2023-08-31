@@ -11,7 +11,6 @@ export interface DropdownContainerProps extends uuiDropdownContainerProps, Dropd
 
 function applyDropdownContainerMods(mods: DropdownContainerMods) {
     return [
-        'uui-dropdown_container',
         css.root,
         mods.vPadding && `vPadding-${mods.vPadding}`,
         mods.padding && `padding-${mods.padding}`,

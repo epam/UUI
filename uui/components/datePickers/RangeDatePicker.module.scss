@@ -48,10 +48,10 @@
     }
 
     &:hover {
-        border-color: var(--uui-control_textinput-border-hover);
+        border-color: var(--uui-control-border-hover);
 
         .separator {
-            background: var(--uui-control_textinput-border-hover);
+            background: var(--uui-control-border-hover);
         }
 
         &:global(.uui-disabled), &:global(.uui-readonly) {
@@ -72,7 +72,7 @@
 
         .date-input {
             &:hover {
-                outline: 1px solid var(--uui-control_textinput-border-hover);
+                outline: 1px solid var(--uui-control-border-hover);
             }
 
             &:global(.uui-focus) {
