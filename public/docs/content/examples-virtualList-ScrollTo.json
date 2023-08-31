@@ -49,7 +49,7 @@
     ]
   },
   {
-    "type": "paragraph",
+    "type": "note-warning",
     "children": [
       {
         "text": "For accurate scrolling to the position of the expected row, it is required to provide rows of the same height."
