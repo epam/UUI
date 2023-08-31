@@ -40,7 +40,7 @@ export default function AdvancedVirtualList() {
             <div className={ css.mainContainerWrapper } style={ { minHeight: `${estimatedHeight}px` } }>
                 <ul ref={ listContainerRef } style={ { marginTop: `${offsetY}px` } } className={ css.mainContainerList }>
                     {getVisibleRows().map((row) => (
-                        <li className={ css.mainContainerListItem } key={ row.key + String(row.index) }>
+                        <li className={ css.mainContainerListItem } key={ row.key + String(row.index) } role="row">
                             {row.value ? (
                                 <>
                                     <Text font="museo-sans" size="36">
