@@ -43,6 +43,7 @@
     --uui-radio-input-error: var(--uui-negative-50);
 
     --uui-radio-input-font: var(--font-regular);
+    --uui-radio-input-font-weight: normal;
     //
     &:hover, &:focus-within {
         :global(.uui-radioinput) {
@@ -98,7 +99,7 @@
         color: var(--uui-radio-input-label);
         flex-grow: 1;
         font-family: var(--uui-radio-input-font);
-        font-weight: var(--uui-radio-input-font-weight, normal);
+        font-weight: var(--uui-radio-input-font-weight);
         margin-left: 12px;
         display: flex;
         align-items: center;

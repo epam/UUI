@@ -10,7 +10,7 @@ import { ReactComponent as ArrowRightIcon_30 } from '@epam/assets/icons/common/n
 
 export function Paginator(props: PaginatorProps) {
     const renderPaginator = (params: PaginatorParams) => (
-        <nav role="navigation" className={ css.root } { ...params.rawProps }>
+        <nav role="navigation" className={ cx(css.root, 'uui-paginator') } { ...params.rawProps }>
             <Button
                 cx={ css[`navigation-size-${params.size ?? '30'}`] }
                 size={ params.size }

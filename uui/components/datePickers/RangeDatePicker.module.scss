@@ -4,21 +4,6 @@
     align-items: normal;
 }
 
-.container {
-    display: flex;
-    padding: 9px 30px;
-    justify-content: space-between;
-    border-top: 1px solid var(--uui-control-border);
-    align-items: center;
-    background-color: var(--uui-rdtp-bg);
-    position: relative;
-}
-
-.button-group {
-    display: flex;
-    justify-content: flex-end;
-}
-
 .date-input {
     min-width: 0;
     padding: 0 5px;
@@ -51,7 +36,7 @@
 .date-input-group {
     display: flex;
     min-width: 0;
-    background-color: var(--uui-rdtp-bg);
+    background-color: var(--uui-control-bg);
     border: 1px solid var(--uui-control-border);
     border-radius: var(--uui-border-radius);
 
@@ -63,10 +48,10 @@
     }
 
     &:hover {
-        border-color: var(--uui-control_textinput-border-hover);
+        border-color: var(--uui-control-border-hover);
 
         .separator {
-            background: var(--uui-control_textinput-border-hover);
+            background: var(--uui-control-border-hover);
         }
 
         &:global(.uui-disabled), &:global(.uui-readonly) {
@@ -87,7 +72,7 @@
 
         .date-input {
             &:hover {
-                outline: 1px solid var(--uui-control_textinput-border-hover);
+                outline: 1px solid var(--uui-control-border-hover);
             }
 
             &:global(.uui-focus) {

@@ -1,10 +1,19 @@
 .root {
+    --uui-tooltip-bg: var(--uui-color-50);
+    --uui-tooltip-text: var(--uui-color-contrast-text);
+    --uui-tooltip-shadow: var(--uui-shadow-level-2, 0 2px 18px 0 rgba(44, 47, 60, 0.3), 0 1px 4px 0 rgba(44, 47, 60, 0.5)); /* WebStorm Bag Report https://youtrack.jetbrains.com/issue/WEB-54442 */
+    --uui-tooltip-arrow-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+
+    --uui-tooltip-border-radius: var(--uui-border-radius);
+    --uui-tooltip-font: var(--font-regular);
+    --uui-tooltip-font-weight: normal;
+    //
     :global(.uui-tooltip-body) {
         padding: 6px 12px;
         line-height: 24px;
         font-size: 14px;
         font-family: var(--uui-tooltip-font);
-        font-weight: var(--uui-tooltip-font-weight, normal);
+        font-weight: var(--uui-tooltip-font-weight);
         box-shadow: var(--uui-tooltip-shadow);
         word-wrap: break-word;
         border-radius: var(--uui-tooltip-border-radius);

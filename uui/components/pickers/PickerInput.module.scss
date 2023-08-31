@@ -1,8 +1,13 @@
 @use  '../../assets/styles/index' as *;
 
-.panel {
-    background: var(--uui-picker_input-bg);
-    box-shadow: var(--uui-dropdown-container-shadow);
+.root {
+    --uui-picker_input_body-bg: var(--uui-surface);
+    --uui-picker_input_body-shadow: var(--uui-shadow-level-2);
+}
+
+.body {
+    background: var(--uui-picker_input_body-bg);
+    box-shadow: var(--uui-picker_input_body-shadow);
 
     @media screen and (max-width: 720px) {
         height: var(--app-mobile-height);

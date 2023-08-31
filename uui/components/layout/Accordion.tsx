@@ -10,7 +10,9 @@ export interface AccordionMods {
 
 function applyAccordionMods(mods: AccordionMods & AccordionProps) {
     return [
-        css.root, css['mode-' + (mods.mode || 'block')], mods.padding && css['padding-' + mods.padding],
+        css.root,
+        css['mode-' + (mods.mode || 'block')],
+        mods.padding && css['padding-' + mods.padding],
     ];
 }
 

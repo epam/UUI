@@ -1,52 +1,35 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": "An alert is a simple interactive informational text message."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Use alerts when you need to inform users about the result of their action or place inline notifications for the user. Place alert into (inside) page content. For overlay notifications, we recommend using the "
+      },
+      {
+        "data": {
+          "url": "https://uui.epam.com/documents?id=notificationCard&mode=doc&skin=UUI4_promo&category=components"
+        },
+        "type": "link",
+        "url": "https://uui.epam.com/documents?id=notificationCard&mode=doc&skin=UUI4_promo&category=components",
+        "children": [
           {
-            "object": "text",
-            "text": "An alert is a simple interactive informational text message.",
-            "marks": []
+            "text": "NotificationCard"
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Use alerts when you need to inform users about the result of their action or place inline notifications for the user. Place alert into (inside) page content. For overlay notifications, we recommend using the ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://uui.epam.com/documents?id=notificationCard&mode=doc&skin=UUI4_promo&category=components"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "NotificationCard",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " component.",
-            "marks": []
-          }
-        ]
+        "text": " component."
       }
     ]
   }
-}
+]

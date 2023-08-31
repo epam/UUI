@@ -1,264 +1,162 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Dropdown has may ways to customization open/close logic:",
-            "marks": []
-          }
-        ]
-      },
+        "text": "Dropdown has may ways to customization open/close logic:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
       {
-        "object": "block",
-        "type": "unordered-list",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
+                "text": "closeOnMouseLeave: 'toggler' | 'boundary' | false",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " prop. This prop will work only with "
+              },
+              {
+                "text": "openOnHover={ true }",
+                "uui-richTextEditor-code": true
+              }
+            ]
+          },
+          {
+            "data": {},
+            "type": "unordered-list",
+            "children": [
+              {
                 "data": {},
-                "nodes": [
+                "type": "list-item",
+                "children": [
                   {
-                    "object": "text",
-                    "text": "closeOnMouseLeave: 'toggler' | 'boundary' | false",
-                    "marks": [
+                    "data": {},
+                    "type": "list-item-child",
+                    "children": [
                       {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " prop. This prop will work only with ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "openOnHover={ true }",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
+                        "text": "toggler — means that the dropdown will be closed when a mouse leaves the target component, in our case - Button"
                       }
                     ]
                   }
                 ]
               },
               {
-                "object": "block",
-                "type": "unordered-list",
                 "data": {},
-                "nodes": [
+                "type": "list-item",
+                "children": [
                   {
-                    "object": "block",
-                    "type": "list-item",
                     "data": {},
-                    "nodes": [
+                    "type": "list-item-child",
+                    "children": [
                       {
-                        "object": "block",
-                        "type": "list-item-child",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "toggler — means that the dropdown will be closed when a mouse leaves the target component, in our case - Button",
-                            "marks": []
-                          }
-                        ]
+                        "text": "boundary — will not to close the dropdown when a mouse is on target or in 30px around target area"
                       }
                     ]
-                  },
+                  }
+                ]
+              },
+              {
+                "data": {},
+                "type": "list-item",
+                "children": [
                   {
-                    "object": "block",
-                    "type": "list-item",
                     "data": {},
-                    "nodes": [
+                    "type": "list-item-child",
+                    "children": [
                       {
-                        "object": "block",
-                        "type": "list-item-child",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "list-item",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "list-item-child",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "false — will not close dropdown by mouse move event",
-                            "marks": []
-                          }
-                        ]
+                        "text": "false — will not close dropdown by mouse move event"
                       }
                     ]
                   }
                 ]
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
                 "data": {},
-                "nodes": [
+                "type": "paragraph",
+                "children": [
                   {
-                    "object": "block",
-                    "type": "paragraph",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "closeOnClickOutside",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " - by default, it's ",
-                        "marks": []
-                      },
-                      {
-                        "object": "text",
-                        "text": "true",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": ". When ",
-                        "marks": []
-                      },
-                      {
-                        "object": "text",
-                        "text": "false",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " , don't close the dropdown by click outside the body.",
-                        "marks": []
-                      }
-                    ]
+                    "text": "closeOnClickOutside",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": " - by default, it's "
+                  },
+                  {
+                    "text": "true",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": ". When "
+                  },
+                  {
+                    "text": "false",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": " , don't close the dropdown by click outside the body."
                   }
                 ]
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
                 "data": {},
-                "nodes": [
+                "type": "paragraph",
+                "children": [
                   {
-                    "object": "block",
-                    "type": "paragraph",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "closeOnTargetClick",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " - by default, it's ",
-                        "marks": []
-                      },
-                      {
-                        "object": "text",
-                        "text": "true",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": ". When ",
-                        "marks": []
-                      },
-                      {
-                        "object": "text",
-                        "text": "false",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": ", don't close the dropdown by click on target component.",
-                        "marks": []
-                      }
-                    ]
+                    "text": "closeOnTargetClick",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": " - by default, it's "
+                  },
+                  {
+                    "text": "true",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": ". When "
+                  },
+                  {
+                    "text": "false",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": ", don't close the dropdown by click on target component."
                   }
                 ]
               }
@@ -268,4 +166,4 @@
       }
     ]
   }
-}
+]
