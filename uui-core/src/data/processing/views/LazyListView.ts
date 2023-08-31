@@ -156,7 +156,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.isUpdatePending = false;
 
         let completeReset = false;
-        const shouldReloadData = this.isReloading
+        const shouldReloadData = this.isForceReloading
             || !isEqual(this.props?.filter, prevProps?.filter)
             || this.shouldRebuildTree(this.value, prevValue);
 
@@ -166,6 +166,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             }
             this.tree = this.tree.clearStructure();
             completeReset = true;
+            this.isForceReloading = false;
         }
         const isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
 
@@ -175,6 +176,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         }
 
         const shouldShowPlacehodlers = !shouldReloadData || (shouldReloadData && !this.props.backgroundReload);
+
         if (
             // on filters change skeleton should not appear
             (completeReset && shouldShowPlacehodlers)
@@ -192,15 +194,16 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         }
 
         if (completeReset || isFoldingChanged || moreRowsNeeded) {
-            this.loadMissing(completeReset).then(({ isUpdated, isOutdated }) => {
-                if (isUpdated && !isOutdated) {
-                    this.updateCheckedLookup(this.value.checked);
-                    this.rebuildRows();
+            this.loadMissing(completeReset)
+                .then(({ isUpdated, isOutdated }) => {
+                    if (isUpdated && !isOutdated) {
+                        this.updateCheckedLookup(this.value.checked);
+                        this.rebuildRows();
+                    }
+                }).finally(() => {
+                    this.isReloading = false;
                     this._forceUpdate();
-                }
-            }).finally(() => {
-                this.isReloading = false;
-            });
+                });
         }
     }
 
@@ -221,7 +224,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     public reload = () => {
         this.tree = Tree.blank(this.props);
-        this.isReloading = true;
+        this.isForceReloading = true;
         this.initCache();
         this.update({ value: this.value, onValueChange: this.onValueChange }, this.props);
         this._forceUpdate();

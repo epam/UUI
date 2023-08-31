@@ -78,6 +78,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
     public reload = () => {
         this.update(this.editable, { ...this.props, items: [] });
+        this.isForceReloading = true;
         this._forceUpdate();
     };
 
