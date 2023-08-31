@@ -1,5 +1,12 @@
 @use  '../../assets/styles/index' as *;
 
+.root {
+    --uui-modals-border-radius: var(--uui-border-radius);
+    --uui-modals-overlay: rgba(29, 30, 38, 0.8);
+    --uui-modals-shadow: var(--uui-shadow-level-3);
+    --uui-modals-bg: var(--uui-surface);
+}
+
 .modal-blocker {
     animation-duration: 0.3s;
     animation-name: animateModalBlocker;

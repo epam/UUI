@@ -3,11 +3,14 @@
     --uui-alert-bg: var(--uui-color-10);
     --uui-alert-border: var(--uui-color-50);
     --uui-alert-icon: var(--uui-color-50);
-
-    --uui-alert-border-radius: 3px;
+    --uui-alert-border-radius: var(--uui-border-radius);
     //
     background-color: var(--uui-alert-bg);
     border-left: 6px solid var(--uui-alert-border);
+
+    :global(.uui-text) {
+        color: var(--uui-alert-text);
+    }
 
     .icon-wrapper {
         :global(.uui-icon) {

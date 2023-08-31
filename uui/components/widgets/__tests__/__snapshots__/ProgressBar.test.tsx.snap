@@ -2,7 +2,7 @@
 
 exports[`ProgressBar should be rendered correctly 1`] = `
 <div
-  className="root size-12 container"
+  className="uui-progress_bar root size-12 container"
 >
   <div
     aria-valuemax={100}
@@ -36,7 +36,7 @@ exports[`ProgressBar should be rendered correctly 1`] = `
 
 exports[`ProgressBar should be rendered correctly with custom label 1`] = `
 <div
-  className="root size-18 container"
+  className="uui-progress_bar root size-18 container"
 >
   <div
     aria-valuemax={100}
@@ -70,7 +70,7 @@ exports[`ProgressBar should be rendered correctly with custom label 1`] = `
 
 exports[`ProgressBar should be rendered correctly with striped animation 1`] = `
 <div
-  className="root size-18 striped container"
+  className="uui-progress_bar root size-18 striped container"
 >
   <div
     aria-valuemax={100}
@@ -89,7 +89,7 @@ exports[`ProgressBar should be rendered correctly with striped animation 1`] = `
 
 exports[`ProgressBar should be rendered correctly without label 1`] = `
 <div
-  className="root size-18 container"
+  className="uui-progress_bar root size-18 container"
 >
   <div
     aria-valuemax={100}

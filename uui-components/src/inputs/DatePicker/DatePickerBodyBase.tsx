@@ -38,7 +38,7 @@ export interface PickerBodyValue<TSelection> {
 }
 
 export abstract class DatePickerBodyBase<TSelection, TProps> extends React.Component<DatePickerBodyBaseProps<TSelection> & TProps> {
-    abstract renderDatePicker: () => React.ReactElement<Element>;
+    abstract renderBody: () => React.ReactElement<Element>;
     onMonthClick = (newDate: Dayjs) => {
         this.props.setDisplayedDateAndView(newDate, 'DAY_SELECTION');
     };
@@ -50,7 +50,7 @@ export abstract class DatePickerBodyBase<TSelection, TProps> extends React.Compo
     render() {
         return (
             <div ref={ this.props.forwardedRef } className={ cx(uuiDatePickerBodyBase.container, this.props.cx) } { ...this.props.rawProps }>
-                {this.renderDatePicker()}
+                {this.renderBody()}
             </div>
         );
     }

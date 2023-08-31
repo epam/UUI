@@ -1,9 +1,12 @@
 .root {
+    --uui-indeterminate_bar-wrapper: var(--uui-secondary-20);
+    --uui-indeterminate_bar-background: var(--uui-primary-50);
+    //
     position: relative;
-    background-color: var(--uui-indeterminate-bar-wrapper);
+    background-color: var(--uui-indeterminate_bar-wrapper);
 
     .bar {
-        background-color: var(--uui-indeterminate-bar-background);
+        background-color: var(--uui-indeterminate_bar-background);
         width: 33%;
         top: 0;
         bottom: 0;

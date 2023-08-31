@@ -14,7 +14,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, IProgressBarProps>((
     const barLabel = label || `${props.progress || 0}%`;
 
     return (
-        <div ref={ ref } className={ cx(props.cx, css.container) } { ...props.rawProps }>
+        <div ref={ ref } className={ cx('uui-progress_bar', props.cx, css.container) } { ...props.rawProps }>
             <div
                 role="progressbar"
                 className={ cx(css.bar, 'bar') }

@@ -24,7 +24,7 @@ Array [
     onKeyDown={[Function]}
   >
     <div
-      className="uui-dropdown-body root -lock-focus container"
+      className="uui-dropdown-body -lock-focus root container"
       style={
         Object {
           "maxWidth": undefined,

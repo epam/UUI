@@ -1,5 +1,11 @@
+.root {
+    --uui-drop-marker: var(--uui-primary-50);
+
+    --uui-drop-marker-offset: -1px;
+    --uui-drop-marker-width: 2px;
+}
+
 .blocker {
-    //background-color: var(--uui-drop-marker-blocked);
     opacity: 0.1;
     position: absolute;
     left: 0;
@@ -9,8 +15,6 @@
 }
 
 .marker {
-    --uui-drop-marker-offset: -1px;
-    --uui-drop-marker-width: 2px;
     position: absolute;
     pointer-events: none;
     z-index: 10;

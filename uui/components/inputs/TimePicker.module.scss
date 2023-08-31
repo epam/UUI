@@ -1,4 +1,18 @@
 .root {
+    --uui-time-picker-bg: var(--uui-control-bg);
+    --uui-time-picker-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-time-picker-border: var(--uui-control-border);
+    --uui-time-picker-border-disabled: var(--uui-control-border-disabled);
+    --uui-time-picker-border-hover: var(--uui-control-border-hover);
+    --uui-time-picker-border-active: var(--uui-control-border-checked);
+    --uui-time-picker-border-error: var(--uui-error-50);
+    --uui-time-picker-placeholder: var(--uui-control-text);
+    --uui-time-picker-text: var(--uui-control-text);
+    --uui-time-picker-text-disabled: var(--uui-control-text-disabled);
+    --uui-time-picker-icon-clickable: var(--uui-icon);
+    --uui-time-picker-icon-clickable-hover: var(--uui-icon-hover);
+    --uui-time-picker-border-radius: var(--uui-border-radius);
+
     &:global(.uui-timepicker-container) {
         display: flex;
         padding: 15px 12px;
@@ -17,6 +31,10 @@
                 line-height: 24px;
                 color: var(--uui-time-picker-text);
                 font-family: var(--font-regular);
+
+                &::placeholder {
+                    color: var(--uui-time-picker-text);
+                }
             }
         }
 

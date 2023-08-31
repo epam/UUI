@@ -21,7 +21,7 @@ export interface TagMods {
 }
 
 export function applyTagMods(mods: TagMods) {
-    return [css['size-' + (mods.size || defaultSize)], css.root];
+    return [css['size-' + (mods.size || defaultSize)], css.root, 'uui-color-gray', 'uui-tag'];
 }
 
 export type TagProps = ButtonProps & TagMods;
