@@ -23,10 +23,10 @@ function DataRowsGroup<TItem, TId>({
     top = 1,
 }: DataRowsGroupProps<TItem, TId>) {
     const rowRef = useRef<HTMLDivElement>();
-    const childrenPinnedTop = row.isPinned ? (top + (rowRef.current?.clientHeight ?? 0)) : top;
+    const childrenPinnedTop = row.isPinned ? (top + (rowRef.current?.clientHeight ?? 0) - 0.5) : top;
     return ( 
         <div className={ css.group } key={ row.rowKey }>
-            <div className={ row.isPinned ? css.stickyHeader : css.header } style={ { zIndex: row.depth + 10, top } } ref={ rowRef }>
+            <div className={ row.isPinned ? css.stickyHeader : css.header } style={ { zIndex: row.depth + 10, top: top - 0.5 } } ref={ rowRef }>
                 {renderRow(row)}
             </div>
             {childRows.length > 0 && (

@@ -134,6 +134,15 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
      * Enables or disables "select all" checkbox. Default is true.
      */
     selectAll?: true | false;
+
+    /**
+     * Enables background reloading of data on search/sort/filter/reload, which turns off the rows placeholders displaying while data loading.
+     * During data reloading, previous data is displayed. To prevent any interaction with visible not actual rows, a blocker/spinner should be displayed.
+     * In UUI components, such as `PickerInput`, `PickerList`, `PickerModal` and `DataTable`, blockers are added.
+     * It is required to add blockers/spinners to the components, built on your own.
+     * If reloading is started, `view.getListProps` returns `isReloading` flag, set to `true`.
+     */
+    backgroundReload?: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -173,6 +182,11 @@ export type DataSourceListCounts = {
 
 export interface DataSourceListProps extends DataSourceListCounts {
     selectAll?: ICheckable;
+
+    /**
+     * Signals that data is reloading on search/sort/filter/reload.
+     */
+    isReloading?: boolean;
 }
 
 // Lazy Data Source API
