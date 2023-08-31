@@ -34,7 +34,6 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
     public reload = () => {
         this.isLoading = false;
         this.isLoaded = false;
-        this.isReloading = true;
         super.reload();
     };
 

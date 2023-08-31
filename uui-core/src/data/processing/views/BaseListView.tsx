@@ -35,6 +35,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected isDestroyed = false;
     protected hasMoreRows = false;
     protected isReloading: boolean = false;
+    protected isForceReloading: boolean = false;
 
     abstract getById(id: TId, index: number): DataRowProps<TItem, TId>;
     abstract getVisibleRows(): DataRowProps<TItem, TId>[];
