@@ -3,9 +3,12 @@ import { RowsInfo, VirtualListInfo } from './types';
 
 export const getUpdatedRowHeights = (virtualListInfo: VirtualListInfo) => {
     const newRowHeights = [...virtualListInfo.rowHeights];
-    Array.from<Element>(
-        virtualListInfo.listContainer.querySelectorAll(virtualListInfo.rowsSelector),
-    ).forEach((node, index) => {
+    const { listContainer, rowsSelector } = virtualListInfo;
+    const rows = rowsSelector
+        ? listContainer.querySelectorAll(rowsSelector)
+        : listContainer.children;
+
+    Array.from<Element>(rows).forEach((node, index) => {
         const topIndex = virtualListInfo.value.topIndex || 0;
         const { height } = node.getBoundingClientRect();
         if (!height) return;
