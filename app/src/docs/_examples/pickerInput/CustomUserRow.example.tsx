@@ -1,10 +1,6 @@
 import React, { useCallback, useState } from 'react';
-import {
-    PickerInput, DataPickerRow, PickerItem, FlexCell,
-} from '@epam/promo';
-import {
-    DataRowProps, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext,
-} from '@epam/uui-core';
+import { PickerInput, DataPickerRow, PickerItem, FlexCell } from '@epam/uui';
+import { DataRowProps, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 
 export default function LazyPersonsMultiPickerWithCustomUserRow() {

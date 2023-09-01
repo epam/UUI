@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlexCell, VerticalTabButton } from '@epam/promo';
+import { FlexCell, VerticalTabButton } from '@epam/uui';
 
 export default function BasicTabButtonExample() {
     const [value, onValueChange] = useState('Home');

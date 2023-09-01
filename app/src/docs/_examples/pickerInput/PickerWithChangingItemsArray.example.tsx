@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { demoData } from '@epam/uui-docs';
 import { useArrayDataSource } from '@epam/uui-core';
-import {
-    PickerInput, MultiSwitch, FlexRow, FlexCell,
-} from '@epam/promo';
+import { PickerInput, MultiSwitch, FlexRow, FlexCell } from '@epam/uui';
 
 const fullLevelsList = demoData.languageLevels;
 const shortLevelsList = demoData.languageLevels.slice(5);

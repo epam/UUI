@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { RangeDatePicker, FlexRow, Text } from '@epam/promo';
-import { rangeDatePickerPresets, RangeDatePickerValue } from '@epam/uui';
+import { rangeDatePickerPresets, RangeDatePickerValue, RangeDatePicker, FlexRow, Text } from '@epam/uui';
 import dayjs from 'dayjs';
 import css from './PresetsAndFooter.module.scss';
 
@@ -30,7 +29,7 @@ export default function DatePickerBaseExample() {
                 } }
                 renderFooter={ (value: RangeDatePickerValue) => (
                     <div className={ css.container }>
-                        <Text color="gray80" size="30">
+                        <Text color="primary" size="30">
                             { (!value?.from || !value?.to) && 'Please select range' }
                             { value?.from && value?.to && dayjs(value?.from).format('MMMM DD, YYYY') }
                             { (value?.from && value?.to) && ' - ' }

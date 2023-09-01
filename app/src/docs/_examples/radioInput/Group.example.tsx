@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlexCell, RadioGroup } from '@epam/promo';
+import { FlexCell, RadioGroup } from '@epam/uui';
 import css from './GroupExample.module.scss';
 
 export default function GroupExample() {

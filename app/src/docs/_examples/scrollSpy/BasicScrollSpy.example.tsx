@@ -1,8 +1,6 @@
 import React, { useMemo } from 'react';
 import { useScrollSpy } from '@epam/uui-components';
-import {
-    FlexCell, FlexRow, LinkButton, Text,
-} from '@epam/promo';
+import { FlexCell, FlexRow, LinkButton, Text } from '@epam/uui';
 import css from './BasicExample.module.scss';
 
 export default function BasicScrollSpy() {
@@ -29,8 +27,8 @@ export default function BasicScrollSpy() {
             </FlexCell>
             <FlexCell grow={ 4 }>
                 <section ref={ setRef }>
-                    <Text font="museo-slab" size="48" cx={ css.content } lineHeight="30">
-                        <Text rawProps={ { 'data-spy': 'a' } } cx={ css.header } color="gray90">
+                    <Text font="regular" size="48" cx={ css.content } lineHeight="30">
+                        <Text rawProps={ { 'data-spy': 'a' } } cx={ css.header } color="brand">
                             Section 1
                         </Text>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id
@@ -45,7 +43,7 @@ export default function BasicScrollSpy() {
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id
                         dolor consectetur quas optio vero possimus quae accusamus rerum quod! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates
                         veritatis laborum, dolores atque, quos soluta nisi delectus placeat id dolor consectetur quas optio vero possimus quae accusamus rerum quod!
-                        <Text rawProps={ { 'data-spy': 'b' } } cx={ css.header } color="gray90">
+                        <Text rawProps={ { 'data-spy': 'b' } } cx={ css.header } color="brand">
                             Section 2
                         </Text>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id

@@ -1,5 +1,5 @@
 .textBlock:not(:last-child) {
-    border-right: 1px solid #FAFAFC;
+    border-right: 1px solid var(--uui-text-contrast);
 }
 
 .text {

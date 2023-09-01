@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexCell, FlexRow, LabeledInput, TextInput, Form, Text, SuccessNotification, ErrorNotification, FlexSpacer, Button } from '@epam/promo';
+import { FlexCell, FlexRow, LabeledInput, TextInput, Form, Text, SuccessNotification, ErrorNotification, FlexSpacer, Button } from '@epam/uui';
 import { IFormApi, useUuiContext } from '@epam/uui-core';
 
 interface Person {
@@ -35,8 +35,8 @@ export default function FormWIthClassesExample() {
             </FlexRow>
             <FlexRow vPadding="12" spacing="12">
                 <FlexSpacer />
-                <Button caption="Validate" onClick={ validate } color="blue" />
-                <Button caption="Save" onClick={ save } color="green" />
+                <Button caption="Validate" onClick={ validate } color="primary" />
+                <Button caption="Save" onClick={ save } color="accent" />
             </FlexRow>
         </FlexCell>
     );

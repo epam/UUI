@@ -1,9 +1,15 @@
+.wrapper {
+    background-color: var(--uui-surface);
+    display: flex;
+    flex: 1 1 100%;
+    padding: 12px;
+}
+
 .components {
     row-gap: 12px;
     align-items: flex-end;
     margin-right: 12px;
     min-width: 120px;
-    padding: 4px;
 }
 
 .descriptions {

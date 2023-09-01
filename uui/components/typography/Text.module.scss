@@ -31,29 +31,29 @@
         --uui-color-50: var(--uui-text-white);
     }
 
-    .uui-font-regular {
+    &:global(.uui-font-regular) {
         --uui-font: var(--font-regular);
         --uui-font-weight: normal;
     }
 
-    .uui-font-semibold {
+    &:global(.uui-font-semibold) {
         --uui-font: var(--font-semibold);
         --uui-font-weight: normal;
 
     }
 
-    .uui-font-italic {
+    &:global(.uui-font-italic) {
         --uui-font: var(--font-italic);
         --uui-font-weight: normal;
 
     }
 
-    .uui-font-primary {
+    &:global(.uui-font-primary) {
         --uui-font: var(--font-primary);
         --uui-font-weight: normal;
     }
 
-    .uui-font-promo {
+    &:global(.uui-font-promo) {
         --uui-font: var(--font-promo);
         --uui-font-weight: normal;
     }

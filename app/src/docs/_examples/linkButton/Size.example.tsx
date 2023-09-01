@@ -1,5 +1,5 @@
 import React from 'react';
-import { LinkButton, Text } from '@epam/promo';
+import { LinkButton, Text } from '@epam/uui';
 import css from './SizeExample.module.scss';
 
 export default function SizeExample() {

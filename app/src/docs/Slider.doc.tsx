@@ -13,11 +13,11 @@ export class SliderDoc extends BaseDocsBlock {
 
     renderContent() {
         return (
-            <>
+            <span className="uui-theme-loveship">
                 <EditableDocContent fileName="slider-descriptions" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/slider/Basic.example.tsx" />
-            </>
+            </span>
         );
     }
 }

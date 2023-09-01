@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexCell, FlexRow, Tag } from '@epam/promo';
+import { FlexCell, FlexRow, Tag } from '@epam/uui';
 import css from './SizeExample.module.scss';
 
 export default function SizeExample() {

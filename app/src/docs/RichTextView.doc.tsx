@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI,
-} from '../common';
+import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI } from '../common';
 
 export class RichTextViewDoc extends BaseDocsBlock {
     title = 'RichTextView';
@@ -15,11 +13,11 @@ export class RichTextViewDoc extends BaseDocsBlock {
 
     renderContent() {
         return (
-            <>
+            <span className="uui-theme-promo">
                 <EditableDocContent fileName="richTextView-descriptions" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/richTextView/Basic.example.tsx" />
-            </>
+            </span>
         );
     }
 }

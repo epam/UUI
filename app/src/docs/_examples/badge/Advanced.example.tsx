@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { FlexCell, FlexRow } from '@epam/uui';
-import { Badge } from '@epam/promo';
+import { FlexCell, FlexRow, Badge } from '@epam/uui';
 import { ReactComponent as MyIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 import css from './SizeExample.module.scss';
 
@@ -10,16 +9,16 @@ export default function AdvancedBadgeExample() {
     return (
         <FlexCell width="auto" cx={ css.container }>
             <FlexRow spacing="12">
-                <Badge color="blue" fill="solid" caption="Status" onClick={ () => null } />
-                <Badge color="blue" fill="solid" caption="Status" onClear={ () => null } />
-                <Badge color="blue" fill="solid" caption="Status" count={ value } />
-                <Badge color="blue" fill="solid" caption="Status" icon={ MyIcon } onIconClick={ () => null } />
+                <Badge color="info" fill="solid" caption="Status" onClick={ () => null } />
+                <Badge color="info" fill="solid" caption="Status" onClear={ () => null } />
+                <Badge color="info" fill="solid" caption="Status" count={ value } />
+                <Badge color="info" fill="solid" caption="Status" icon={ MyIcon } onIconClick={ () => null } />
             </FlexRow>
             <FlexRow spacing="12">
-                <Badge color="blue" fill="semitransparent" caption="Status" onClick={ () => null } />
-                <Badge color="blue" fill="semitransparent" caption="Status" onClear={ () => null } />
-                <Badge color="blue" fill="semitransparent" caption="Status" count={ value } countPosition="right" />
-                <Badge color="blue" fill="semitransparent" caption="Status" icon={ MyIcon } iconPosition="right" onIconClick={ () => null } />
+                <Badge color="info" fill="semitransparent" caption="Status" onClick={ () => null } />
+                <Badge color="info" fill="semitransparent" caption="Status" onClear={ () => null } />
+                <Badge color="info" fill="semitransparent" caption="Status" count={ value } countPosition="right" />
+                <Badge color="info" fill="semitransparent" caption="Status" icon={ MyIcon } iconPosition="right" onIconClick={ () => null } />
             </FlexRow>
         </FlexCell>
     );
