@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { City, Country } from '@epam/uui-docs';
 import { useAsyncDataSource, useLazyDataSource, useUuiContext } from '@epam/uui-core';
-import { FlexCell, LabeledInput, PickerInput } from '@epam/promo';
+import { FlexCell, LabeledInput, PickerInput } from '@epam/uui';
 
 export default function ArrayLinkedPickers() {
     const svc = useUuiContext();

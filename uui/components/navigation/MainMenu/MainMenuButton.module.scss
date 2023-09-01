@@ -1,6 +1,9 @@
 @use  '../../../assets/styles/index' as *;
 
 .root {
+    --uui-main_menu_button-font: var(--font-semibold);
+    --uui-main_menu_button-font-weight: normal;
+    //
     flex-shrink: 0;
     color: var(--uui-main_menu-text);
     fill: var(--uui-main_menu-icon);
@@ -9,8 +12,8 @@
         padding: 22px 6px;
         line-height: 16px;
         margin-bottom: -3px;
-        font-family: var(--uui-main_menu-font);
-        font-weight: var(--uui-main_menu-font-weight, normal);
+        font-family: var(--uui-main_menu_button-font);
+        font-weight: var(--uui-main_menu_button-font-weight);
     }
 
     &:global(.uui-button-box), &:global(.uui-input-box) {

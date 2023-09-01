@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import {
-    FlexRow, PickerInput, FlexCell, Text,
-} from '@epam/promo';
+import { FlexRow, PickerInput, FlexCell, Text } from '@epam/uui';
 import { useArrayDataSource } from '@epam/uui-core';
 
 const languageLevels = [
@@ -44,7 +42,7 @@ export default function PickerInputWithCustomFooter() {
                         return (
                             <FlexRow padding="12">
                                 <FlexCell width="auto">
-                                    <Text color="gray80">Language Levels according to the CEFR scale</Text>
+                                    <Text color="primary">Language Levels according to the CEFR scale</Text>
                                 </FlexCell>
                             </FlexRow>
                         );

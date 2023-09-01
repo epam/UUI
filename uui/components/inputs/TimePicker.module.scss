@@ -32,8 +32,10 @@
                 color: var(--uui-time-picker-text);
                 font-family: var(--font-regular);
 
-                &::placeholder {
+                &::placeholder,
+                &::-webkit-input-placeholder {
                     color: var(--uui-time-picker-text);
+                    opacity: 1; /* for Firefox */
                 }
             }
         }

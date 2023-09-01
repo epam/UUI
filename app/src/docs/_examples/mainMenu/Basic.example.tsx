@@ -1,7 +1,5 @@
 import React from 'react';
-import { BurgerButton, GlobalMenu, MainMenu, MainMenuAvatar, MainMenuButton, MainMenuIcon, FlexSpacer, FlexCell,
-    DropdownMenuButton, DropdownMenuSplitter, DropdownMenuBody, Burger,
-} from '@epam/promo';
+import { BurgerButton, GlobalMenu, MainMenu, MainMenuAvatar, MainMenuButton, MainMenuIcon, FlexSpacer, FlexCell, DropdownMenuButton, DropdownMenuSplitter, DropdownMenuBody, Burger } from '@epam/uui';
 import { Dropdown, AdaptiveItemProps, MainMenuLogo } from '@epam/uui-components';
 import { ReactComponent as HelpIcon } from '@epam/assets/icons/common/notification-help-outline-24.svg';
 

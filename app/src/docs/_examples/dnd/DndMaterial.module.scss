@@ -1,4 +1,3 @@
-@use '~@epam/promo/assets/styles/colors' as *;
 @use '~@epam/uui/assets/styles/dnd' as *;
 
 .drag-element {
@@ -8,7 +7,7 @@
     margin: 0 24px;
 
     .material-row {
-        border: 1px solid $gray40;
+        border: 1px solid var(--uui-control-border);
     }
 
     &:hover .drag-handle {
@@ -19,7 +18,11 @@
         padding: 12px 24px;
 
         &:first-child {
-            border-right: 1px solid $gray40;
+            border-right: 1px solid var(--uui-control-border);
+        }
+
+        svg {
+            fill: var(--uui-icon);
         }
     }
 

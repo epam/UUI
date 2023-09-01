@@ -13,11 +13,11 @@ export class SliderRatingDoc extends BaseDocsBlock {
 
     renderContent() {
         return (
-            <>
+            <span className="uui-theme-loveship">
                 <EditableDocContent fileName="sliderRating-descriptions" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/sliderRating/Basic.example.tsx" />
-            </>
+            </span>
         );
     }
 }
