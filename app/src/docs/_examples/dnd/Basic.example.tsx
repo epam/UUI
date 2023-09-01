@@ -82,7 +82,7 @@ export default function DndMaterial() {
                                 <Text cx={ css.text } size="24" lineHeight="24" fontSize="16" font="semibold">
                                     {item.name}
                                 </Text>
-                                <Text cx={ css.text } size="24" lineHeight="24" fontSize="14" color="primary">
+                                <Text cx={ css.text } size="24" lineHeight="24" fontSize="14" color="secondary">
                                     {item.description}
                                 </Text>
                             </FlexCell>

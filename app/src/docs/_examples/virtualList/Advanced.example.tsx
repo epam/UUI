@@ -39,7 +39,7 @@ export default function AdvancedVirtualList() {
                         <li className={ css.mainContainerListItem } key={ row.key + String(row.index) }>
                             {row.value ? (
                                 <>
-                                    <Text font="regular" size="36">
+                                    <Text font="primary" size="36">
                                         {row.value.countryName}
                                         ,
                                         <br />
