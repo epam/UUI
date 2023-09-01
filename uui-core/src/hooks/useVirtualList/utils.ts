@@ -76,14 +76,15 @@ const getNewTopIndex = ({ rowsCount, scrollContainer, rowOffsets, overdrawRows, 
         newTopIndex += 1;
     }
 
+    newTopIndex = newTopIndex - overdrawRows;
+    newTopIndex = Math.max(0, newTopIndex);
+
     const topIndexDiff = Math.abs(value.topIndex - newTopIndex);
-    if (Math.abs(topIndexDiff - overdrawRows) < Math.round(blockSize / 4)) {
+    if (topIndexDiff < Math.round(blockSize / 4)) {
         return value.topIndex;
     }
 
-    newTopIndex = newTopIndex - overdrawRows; // draw more rows at the top to remove visible blank areas while scrolling up
-    newTopIndex = Math.floor(newTopIndex / blockSize) * blockSize; // Align to blockSize
-    return Math.max(0, newTopIndex);
+    return Math.floor(newTopIndex / blockSize) * blockSize; // Align to blockSize
 };
 
 const getNewBottomIndex = (
