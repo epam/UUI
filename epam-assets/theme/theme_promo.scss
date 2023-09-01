@@ -528,17 +528,17 @@
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
-    .uui-tooltip.uui-color-white, .uui-tooltip.uui-color-default {
+    .uui-tooltip-container.uui-color-white, .uui-tooltip-container.uui-color-default {
         --uui-color-50: var(--white);
         --uui-color-contrast-text: var(--uui-text-dark);
     }
 
-    .uui-tooltip.uui-color-red, .uui-tooltip.uui-color-critical {
+    .uui-tooltip-container.uui-color-red, .uui-tooltip-container.uui-color-critical {
         --uui-color-50: var(--uui-error-60);
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
-    .uui-tooltip.uui-color-gray, .uui-tooltip.uui-color-contrast {
+    .uui-tooltip-container.uui-color-gray, .uui-tooltip-container.uui-color-contrast {
         --uui-color-50: var(--gray80);
         --uui-color-contrast-text: var(--uui-text-white);
     }
