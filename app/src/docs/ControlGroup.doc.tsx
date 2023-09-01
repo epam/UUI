@@ -18,6 +18,7 @@ export class ControlGroupDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="controlGroup-descriptions" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/controlGroup/Basic.example.tsx" />
+                <DocExample title="Prefix" path="./_examples/controlGroup/Prefix.example.tsx" />
             </>
         );
     }
