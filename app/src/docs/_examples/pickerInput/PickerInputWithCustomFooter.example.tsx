@@ -42,7 +42,7 @@ export default function PickerInputWithCustomFooter() {
                         return (
                             <FlexRow padding="12">
                                 <FlexCell width="auto">
-                                    <Text color="secondary">Language Levels according to the CEFR scale</Text>
+                                    <Text color="primary">Language Levels according to the CEFR scale</Text>
                                 </FlexCell>
                             </FlexRow>
                         );
