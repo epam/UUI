@@ -1,350 +1,264 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
+        "text": "Picker Input is used when you need to select some value(s) from a list."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "PickerInput, "
+      },
+      {
+        "text": "alongside",
+        "font-size": "12pt",
+        "font-family": null,
+        "color": "#0e101a",
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " with DataSource approach, provides the following functionality: "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "Picker Input is used when you need to select some value(s) from a list.",
-            "marks": []
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Single or multi select."
+              }
+            ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "PickerInput, ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "alongside",
-            "marks": [
+            "data": {},
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
+                "text": ""
+              },
+              {
                 "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#0e101a",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
+                  "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#basic"
+                },
+                "type": "link",
+                "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#basic",
+                "children": [
+                  {
+                    "text": "Static"
                   }
-                }
+                ]
+              },
+              {
+                "text": " or "
+              },
+              {
+                "data": {
+                  "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#lazy_list"
+                },
+                "type": "link",
+                "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#lazy_list",
+                "children": [
+                  {
+                    "text": "lazy"
+                  }
+                ]
+              },
+              {
+                "text": " loaded lists."
               }
             ]
-          },
-          {
-            "object": "text",
-            "text": " with DataSource approach, provides the following functionality: ",
-            "marks": []
           }
         ]
       },
       {
-        "object": "block",
-        "type": "unordered-list",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Single or multi select.",
-                    "marks": []
-                  }
-                ]
+                "text": "List virtualisation (only visible items are in the DOM)."
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
+                "text": ""
+              },
+              {
+                "data": {
+                  "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#lazy_tree"
+                },
+                "type": "link",
+                "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#lazy_tree",
+                "children": [
                   {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#basic"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "Static",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " or ",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#lazy_list"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "lazy",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " loaded lists.",
-                    "marks": []
+                    "text": "Tree"
                   }
                 ]
+              },
+              {
+                "text": " lists with cascade selection."
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
+                "text": "Selection as id or "
+              },
+              {
+                "data": {
+                  "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#getting_selected_entity"
+                },
+                "type": "link",
+                "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#getting_selected_entity",
+                "children": [
                   {
-                    "object": "text",
-                    "text": "List virtualisation (only visible items are in the DOM).",
-                    "marks": []
+                    "text": "entity"
                   }
                 ]
+              },
+              {
+                "text": "."
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
+                "text": "Opening body in dropdown or "
+              },
+              {
+                "data": {
+                  "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#open_picker_in_modal"
+                },
+                "type": "link",
+                "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#open_picker_in_modal",
+                "children": [
                   {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#lazy_tree"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "Tree",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " lists with cascade selection.",
-                    "marks": []
+                    "text": "modal"
                   }
                 ]
+              },
+              {
+                "text": "."
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
+                "text": "Picker "
+              },
+              {
+                "data": {
+                  "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#custom_picker_row"
+                },
+                "type": "link",
+                "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#custom_picker_row",
+                "children": [
                   {
-                    "object": "text",
-                    "text": "Selection as id or ",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#getting_selected_entity"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "entity",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ".",
-                    "marks": []
+                    "text": "row"
                   }
                 ]
+              },
+              {
+                "text": ", "
+              },
+              {
+                "data": {
+                  "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#picker_toggler_configuration_and_options"
+                },
+                "type": "link",
+                "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#picker_toggler_configuration_and_options",
+                "children": [
+                  {
+                    "text": "toggler"
+                  }
+                ]
+              },
+              {
+                "text": ", and footer customizations."
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Opening body in dropdown or ",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#open_picker_in_modal"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "modal",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ".",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Picker ",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#custom_picker_row"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "row",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ", ",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://uui.epam.com/documents?category=components&id=pickerInput&mode=doc&skin=UUI4_promo#picker_toggler_configuration_and_options"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "toggler",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ", and footer customizations.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Picker body opening depends on the entered amount of symbols in the search.",
-                    "marks": []
-                  }
-                ]
+                "text": "Picker body opening depends on the entered amount of symbols in the search."
               }
             ]
           }
@@ -352,4 +266,4 @@
       }
     ]
   }
-}
+]
