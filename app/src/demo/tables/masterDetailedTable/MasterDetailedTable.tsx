@@ -145,11 +145,10 @@ export function MasterDetailedTable() {
                         return undefined;
                     }
                 }
-    
                 throw new Error('PersonTableDemo: unknown typename/groupBy combination');
             },
         },
-        [],
+        [tableStateApi.tableState.filter?.groupBy],
     );
 
     const clickHandler = useCallback((rowProps: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
