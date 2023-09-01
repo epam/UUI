@@ -82,6 +82,7 @@ export default function ColumnsConfigurationDataTableExample() {
     const citiesDS = useLazyDataSource<City, string, unknown>(
         {
             api: svc.api.demo.cities,
+            backgroundReload: true,
         },
         [],
     );

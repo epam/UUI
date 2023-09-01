@@ -37,7 +37,6 @@ exports[`PickerInput should open body 1`] = `
     data-no-focus-lock="true"
   >
     <div
-      aria-expanded="true"
       aria-hidden="false"
       class="uui-popper"
       data-placement="bottom-start"
@@ -157,6 +156,11 @@ exports[`PickerInput should open body 1`] = `
                     </div>
                   </div>
                 </div>
+              </div>
+              <div
+                class="container uui-blocker-container root"
+              >
+                <div />
               </div>
             </div>
             <div

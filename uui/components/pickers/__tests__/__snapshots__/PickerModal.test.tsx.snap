@@ -307,6 +307,16 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 </div>
               </div>
             </div>
+            <div
+              className="container uui-blocker-container root"
+              style={
+                Object {
+                  "minHeight": undefined,
+                }
+              }
+            >
+              <div />
+            </div>
           </div>
           <div
             className="uui-track-horizontal"
@@ -1371,6 +1381,16 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 </div>
               </div>
             </div>
+            <div
+              className="container uui-blocker-container root"
+              style={
+                Object {
+                  "minHeight": undefined,
+                }
+              }
+            >
+              <div />
+            </div>
           </div>
           <div
             className="uui-track-horizontal"
@@ -1642,6 +1662,11 @@ exports[`PickerModal should open body 1`] = `
                       </div>
                     </div>
                   </div>
+                </div>
+                <div
+                  class="container uui-blocker-container root"
+                >
+                  <div />
                 </div>
               </div>
               <div

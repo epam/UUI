@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IDropdownMenuItemProps, DropdownMenuBody, DropdownMenuButton, DropdownMenuSwitchButton, DropdownMenuSplitter, DropdownMenuHeader, DropdownSubMenu,
-    Dropdown, Panel, ControlGroup, Button, LinkButton } from '@epam/uui';
+    Dropdown, ControlGroup, Button, LinkButton } from '@epam/uui';
 import { DropdownBodyProps } from '@epam/uui-core';
 import { ReactComponent as LogoutIcon } from '@epam/assets/icons/common/navigation-logout-24.svg';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-12.svg';
@@ -71,22 +71,22 @@ export default function BasicDropdownMenuExample() {
         );
     };
 
-    const renderSecondDropdownBody = () => {
+    const renderSecondDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <Panel shadow={ true }>
+            <DropdownMenuBody { ...props }>
                 <DropdownMenuButton caption="Cancel Data Loads" onClick={ () => {} } />
                 <DropdownMenuButton caption="Deactivate" onClick={ () => {} } />
                 <DropdownMenuButton caption="Delete" onClick={ () => {} } />
-            </Panel>
+            </DropdownMenuBody>
         );
     };
 
-    const renderThirdDropdownBody = () => {
+    const renderThirdDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <Panel shadow={ true }>
+            <DropdownMenuBody { ...props } rawProps={ { style: { padding: 0 } } }>
                 <DropdownMenuButton caption="Export" icon={ ExportIcon } onClick={ () => {} } />
                 <DropdownMenuButton caption="Delete" icon={ DeleteIcon } onClick={ () => {} } />
-            </Panel>
+            </DropdownMenuBody>
         );
     };
 

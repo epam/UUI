@@ -1,0 +1,7 @@
+@use '~@epam/assets/scss/index' as *;
+
+.prefixWrapper {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
