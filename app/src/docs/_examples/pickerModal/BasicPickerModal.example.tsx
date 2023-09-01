@@ -3,7 +3,7 @@ import { FlexRow, FlexCell, Button, PickerModal } from '@epam/uui';
 import { UuiContext, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
-export default function LanguagesPickerModal() {
+export default function BasicPickerModal() {
     const [value, onValueChange] = useState([]);
     const context = useContext(UuiContext);
     const svc = useUuiContext();

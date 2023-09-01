@@ -84,6 +84,7 @@ export function DbDemoImpl() {
             getChildCount: (item: PersonTableRecord) => (item.__typename === 'PersonGroup' ? item.count : null),
             getRowOptions: () => ({ checkbox: { isVisible: true } }),
             isFoldedByDefault: () => false,
+            backgroundReload: true,
         },
         [],
     );

@@ -16,17 +16,33 @@ export interface VirtualListRenderRowsParams<List extends HTMLElement = any> {
         horizontalRight: boolean;
     };
 }
+type VirtualListRenderRows<List extends HTMLElement = any> = {
+    rows?: React.ReactNode[];
+    renderRows: (config: VirtualListRenderRowsParams<List>) => React.ReactNode;
+} | {
+    rows: React.ReactNode[];
+    renderRows?: (config: VirtualListRenderRowsParams<List>) => React.ReactNode;
+};
 
-export interface VirtualListProps<List extends HTMLElement = any, ScrollContainer extends HTMLElement = any>
+interface BaseVirtualListProps<ScrollContainer extends HTMLElement = any>
     extends IHasCX,
     IEditable<VirtualListState>,
     IHasRawProps<ScrollContainer> {
-    rows: React.ReactNode[];
     rowsCount?: number;
     role?: React.HTMLAttributes<HTMLDivElement>['role'];
-    renderRows?: (config: VirtualListRenderRowsParams<List>) => React.ReactNode;
     onScroll?(value: PositionValues): void;
+    /**
+     * Selector of `VirtualList` rows.
+     * @default '[role=row]'
+     */
+    rowsSelector?: string;
+    disableScroll?: boolean;
 }
+
+export type VirtualListProps<
+    List extends HTMLElement = any,
+    ScrollContainer extends HTMLElement = any
+> = BaseVirtualListProps<ScrollContainer> & VirtualListRenderRows<List>;
 
 export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((props, ref) => {
     const {
@@ -36,6 +52,7 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
         onValueChange: props.onValueChange,
         onScroll: props.onScroll,
         rowsCount: props.rowsCount,
+        rowsSelector: props.rowsSelector,
     });
 
     React.useImperativeHandle(ref, () => scrollContainerRef.current, [scrollContainerRef.current]);
@@ -67,10 +84,16 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
                 [uuiMarkers.scrolledBottom]: scrollShadows.verticalBottom,
             }) }
             onScroll={ handleScroll }
+            disableScroll={ props.disableScroll }
             renderView={ ({ style, ...rest }: any) => (
                 <div
                     style={ {
-                        ...style, position: 'relative', flex: '1 1 auto', display: 'flex', flexDirection: 'column',
+                        ...style, 
+                        position: 'relative', 
+                        flex: '1 1 auto',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        ...(props.disableScroll ? { overflow: 'hidden' } : {}),
                     } }
                     { ...rest }
                     { ...props.rawProps }

@@ -108,6 +108,7 @@ export default function FiltersPanelExample() {
     const dataSource = useLazyDataSource<Person, number, Person>(
         {
             api: svc.api.demo.persons,
+            backgroundReload: true,
         },
         [],
     );

@@ -81,6 +81,7 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
 
     const handleEscape = (e: React.KeyboardEvent<HTMLElement>) => {
         if (e.key === 'Escape' && props.isOpen) {
+            e.preventDefault();
             props.onClose?.();
         }
     };

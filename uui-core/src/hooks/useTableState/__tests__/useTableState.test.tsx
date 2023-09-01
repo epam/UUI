@@ -1,5 +1,5 @@
 import { renderHookWithContextAsync, CustomWrapperType, act } from '@epam/uui-test-utils';
-import { useTableState, UseTableStateHookParams } from '../../useTableState';
+import { useTableState, UseTableStateHookParams } from '../useTableState';
 import {
     DataColumnProps, DataTableState, IRouterContext, ITablePreset, TableFiltersConfig, UuiContexts,
 } from '../../../types';
@@ -7,8 +7,7 @@ import { StubAdaptedRouter, UuiContext } from '../../../services';
 import { useUuiServices } from '../../useUuiServices';
 import React from 'react';
 
-import { ArrayDataSource } from '@epam/uui-core';
-import { defaultPredicates } from '@epam/uui';
+import { ArrayDataSource } from '../../../data';
 
 const filters: TableFiltersConfig<any>[] = [
     {
@@ -25,7 +24,7 @@ const filters: TableFiltersConfig<any>[] = [
         title: 'Title',
         type: 'multiPicker',
         dataSource: new ArrayDataSource({ items: [] }),
-        predicates: defaultPredicates.multiPicker,
+        predicates: [{ predicate: 'in', name: 'is', isDefault: true }, { predicate: 'nin', name: 'is not' }],
     },
     {
         field: 'filter3',
@@ -447,7 +446,11 @@ describe('useTableState', () => {
 
             expect(result.current.activePresetId).toEqual(undefined);
 
-            act(() => result.current.setTableState(complexURLFilterValue));
+            act(() => result.current.setTableState({
+                topIndex: 0,
+                visibleCount: 40,
+                ...complexURLFilterValue,
+            }));
 
             expect(result.current.hasPresetChanged(presets[0])).toEqual(true);
 

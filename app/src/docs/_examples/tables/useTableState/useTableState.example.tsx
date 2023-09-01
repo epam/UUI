@@ -121,6 +121,7 @@ export default function FiltersPanelExample() {
     const dataSource = useLazyDataSource<Person, number, Person>(
         {
             api: api.demo.persons,
+            backgroundReload: true,
         },
         [],
     );

@@ -110,7 +110,7 @@ describe('LazyListView', () => {
         let rows = view.getVisibleRows();
         value.visibleCount = 6;
         ds.getView(value, onValueChanged, {});
-        rows[0].onFold(rows[0]);
+        rows[0].onFold?.(rows[0]);
         view = ds.getView(value, onValueChanged, {});
         expectViewToLookLike(
             view,
@@ -142,7 +142,7 @@ describe('LazyListView', () => {
 
         // Unfold more rows
         rows = view.getVisibleRows();
-        rows[2].onFold(rows[2]);
+        rows[2].onFold?.(rows[2]);
         value.visibleCount = 6;
         view = ds.getView(value, onValueChanged, {});
         expectViewToLookLike(view, [
@@ -206,7 +206,7 @@ describe('LazyListView', () => {
 
         // fold row #120
         let rows = view.getVisibleRows();
-        rows[2].onFold(rows[2]);
+        rows[2].onFold?.(rows[2]);
         view = getView();
         await delay();
 
@@ -216,7 +216,7 @@ describe('LazyListView', () => {
 
         // fold row #100
         rows = view.getVisibleRows();
-        rows[0].onFold(rows[0]);
+        rows[0].onFold?.(rows[0]);
         view = getView();
         await delay();
 
@@ -272,7 +272,7 @@ describe('LazyListView', () => {
         let row110 = view.getVisibleRows()[1];
         expect(row110.id).toBe(110);
         expect(row110.isChecked).toBe(false);
-        row110.onCheck(row110);
+        row110.onCheck?.(row110);
 
         await delay();
 
@@ -284,7 +284,7 @@ describe('LazyListView', () => {
         ]);
 
         row110 = view.getVisibleRows()[1];
-        row110.onCheck(row110);
+        row110.onCheck?.(row110);
         await delay();
 
         view = getView();
@@ -311,7 +311,7 @@ describe('LazyListView', () => {
         const row110 = view.getVisibleRows()[1];
         expect(row110.id).toBe(110);
         expect(row110.isChecked).toBe(false);
-        row110.onCheck(row110);
+        row110.onCheck?.(row110);
 
         await delay();
         view = getView();
@@ -323,7 +323,7 @@ describe('LazyListView', () => {
             { id: 100, isChecked: false }, { id: 110, isChecked: false }, { id: 120, isChecked: false },
         ]);
 
-        view.update({ ...value, checked: [row110.id] }, view.props);
+        view.update({ value: { ...value, checked: [row110.id] }, onValueChange: mockOnValueChanged }, view.props);
 
         expect(mockOnValueChanged).toBeCalledWith({ checked: [row110.id], topIndex: 0, visibleCount: 3 });
 
@@ -378,7 +378,7 @@ describe('LazyListView', () => {
             let row120 = view.getVisibleRows()[2];
             expect(row120.id).toBe(120);
             expect(row120.isChecked).toBe(false);
-            row120.onCheck(row120);
+            row120.onCheck?.(row120);
 
             await delay();
 
@@ -395,7 +395,7 @@ describe('LazyListView', () => {
             ]);
 
             row120 = view.getVisibleRows()[2];
-            row120.onCheck(row120);
+            row120.onCheck?.(row120);
             await delay();
 
             view = getView();
@@ -413,7 +413,7 @@ describe('LazyListView', () => {
 
         it('Cascade selection - handles quick (simultaneous) clicks', async () => {
             const ds = treeDataSource;
-            let view: LazyListView<TestItem, number> = null;
+            let view: LazyListView<TestItem, number>;
             value.visibleCount = 10;
 
             const onValueChangedLocal = (newValue: DataSourceState) => {
@@ -435,13 +435,13 @@ describe('LazyListView', () => {
 
             const row120 = view.getVisibleRows()[2];
             expect(row120.id).toBe(120);
-            row120.onCheck(row120);
+            row120.onCheck?.(row120);
 
             await delay();
 
             const row300 = view.getVisibleRows()[6];
             expect(row300.id).toBe(300);
-            row300.onCheck(row300);
+            row300.onCheck?.(row300);
 
             await delay();
 
@@ -477,10 +477,10 @@ describe('LazyListView', () => {
             await delay();
 
             let selectAll = view.getListProps().selectAll;
-            expect(selectAll.value).toBe(false);
-            expect(selectAll.indeterminate).toBe(true);
+            expect(selectAll?.value).toBe(false);
+            expect(selectAll?.indeterminate).toBe(true);
 
-            selectAll.onValueChange(true);
+            selectAll?.onValueChange(true);
             await delay();
 
             value.visibleCount = 10;
@@ -488,8 +488,8 @@ describe('LazyListView', () => {
             await delay();
 
             selectAll = view.getListProps().selectAll;
-            expect(selectAll.value).toBe(true);
-            expect(selectAll.indeterminate).toBe(false);
+            expect(selectAll?.value).toBe(true);
+            expect(selectAll?.indeterminate).toBe(false);
             expectViewToLookLike(
                 view,
                 [
@@ -507,15 +507,15 @@ describe('LazyListView', () => {
                 10,
             );
 
-            selectAll.onValueChange(false);
+            selectAll?.onValueChange(false);
             await delay();
 
             view = getView();
             await delay();
 
             selectAll = view.getListProps().selectAll;
-            expect(selectAll.value).toBe(false);
-            expect(selectAll.indeterminate).toBe(false);
+            expect(selectAll?.value).toBe(false);
+            expect(selectAll?.indeterminate).toBe(false);
             expectViewToLookLike(
                 view,
                 [
@@ -553,7 +553,7 @@ describe('LazyListView', () => {
             let row120 = view.getVisibleRows()[2];
             expect(row120.id).toBe(120);
             expect(row120.isChecked).toBe(false);
-            row120.onCheck(row120);
+            row120.onCheck?.(row120);
 
             await delay();
 
@@ -572,7 +572,7 @@ describe('LazyListView', () => {
             expect(value.checked).toEqual([120]);
 
             row120 = view.getVisibleRows()[2];
-            row120.onCheck(row120);
+            row120.onCheck?.(row120);
             await delay();
 
             view = getView();
@@ -592,7 +592,7 @@ describe('LazyListView', () => {
 
         it('Cascade selection - handles quick (simultaneous) clicks', async () => {
             const ds = treeDataSource;
-            let view: LazyListView<TestItem, number> = null;
+            let view: LazyListView<TestItem, number>;
             value.visibleCount = 10;
 
             const onValueChangedLocal = (newValue: DataSourceState) => {
@@ -614,13 +614,13 @@ describe('LazyListView', () => {
 
             const row120 = view.getVisibleRows()[2];
             expect(row120.id).toBe(120);
-            row120.onCheck(row120);
+            row120.onCheck?.(row120);
 
             await delay();
 
             const row300 = view.getVisibleRows()[6];
             expect(row300.id).toBe(300);
-            row300.onCheck(row300);
+            row300.onCheck?.(row300);
 
             await delay();
 
@@ -658,10 +658,10 @@ describe('LazyListView', () => {
             await delay();
 
             let selectAll = view.getListProps().selectAll;
-            expect(selectAll.value).toBe(false);
-            expect(selectAll.indeterminate).toBe(true);
+            expect(selectAll?.value).toBe(false);
+            expect(selectAll?.indeterminate).toBe(true);
 
-            selectAll.onValueChange(true);
+            selectAll?.onValueChange(true);
             await delay();
 
             value.visibleCount = 10;
@@ -669,8 +669,8 @@ describe('LazyListView', () => {
             await delay();
 
             selectAll = view.getListProps().selectAll;
-            expect(selectAll.value).toBe(true);
-            expect(selectAll.indeterminate).toBe(false);
+            expect(selectAll?.value).toBe(true);
+            expect(selectAll?.indeterminate).toBe(false);
             await delay();
 
             expectViewToLookLike(
@@ -693,15 +693,15 @@ describe('LazyListView', () => {
             expect(value.checked).toEqual([
                 100, 200, 300,
             ]);
-            selectAll.onValueChange(false);
+            selectAll?.onValueChange(false);
             await delay();
 
             view = getView();
             await delay();
 
             selectAll = view.getListProps().selectAll;
-            expect(selectAll.value).toBe(false);
-            expect(selectAll.indeterminate).toBe(false);
+            expect(selectAll?.value).toBe(false);
+            expect(selectAll?.indeterminate).toBe(false);
             expectViewToLookLike(
                 view,
                 [
@@ -723,7 +723,7 @@ describe('LazyListView', () => {
 
     it('FocusedIndex works', async () => {
         const ds = treeDataSource;
-        let view: LazyListView<TestItem, number> = null;
+        let view: LazyListView<TestItem, number>;
         value.visibleCount = 3;
 
         const onValueChangedLocal = (newValue: DataSourceState) => {
@@ -878,7 +878,7 @@ describe('LazyListView', () => {
 
         const ds = new LazyDataSource({
             api: (rq, ctx) =>
-                ctx.parent
+                ctx?.parent
                     ? testApiLocal({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
                     : testApiLocal({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
             getChildCount: (i) => i.childrenCount,
@@ -898,7 +898,7 @@ describe('LazyListView', () => {
 
         // fold row #100
         let rows = view.getVisibleRows();
-        rows[0].onFold(rows[0]);
+        rows[0].onFold?.(rows[0]);
         view = getView();
         rows = view.getVisibleRows();
 
@@ -918,7 +918,7 @@ describe('LazyListView', () => {
     it('should check/uncheck parents if all/no siblings checked', async () => {
         const ds = treeDataSource;
         value.visibleCount = 10;
-        let view: LazyListView<TestItem, number> = null;
+        let view: LazyListView<TestItem, number>;
 
         const onValueChangedLocal = (newValue: DataSourceState) => {
             value = newValue;
@@ -937,11 +937,11 @@ describe('LazyListView', () => {
         await delay();
 
         let row121 = view.getVisibleRows()[3];
-        row121.onCheck(row121);
+        row121.onCheck?.(row121);
         await delay();
 
         const row122 = view.getVisibleRows()[4];
-        row122.onCheck(row122);
+        row122.onCheck?.(row122);
         await delay();
 
         expectViewToLookLike(view, [
@@ -958,7 +958,7 @@ describe('LazyListView', () => {
         ]);
 
         row121 = view.getVisibleRows()[3];
-        row121.onCheck(row121);
+        row121.onCheck?.(row121);
         await delay();
 
         expectViewToLookLike(view, [

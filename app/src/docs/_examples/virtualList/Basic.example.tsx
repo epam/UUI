@@ -8,7 +8,7 @@ import css from './BasicExample.module.scss';
 const MyListItem: FC<{ index: number }> = (props) => {
     const [isFolded, setIsFolded] = useState<boolean>(true);
     return (
-        <div className={ css.itemContainer }>
+        <div className={ css.itemContainer } role="row">
             <Panel cx={ css.item } shadow>
                 <FlexRow cx={ css.header } onClick={ () => setIsFolded(!isFolded) }>
                     <IconButton icon={ isFolded ? FoldedIcon : UnfoldedIcon } />

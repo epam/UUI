@@ -1,74 +1,83 @@
 import React from 'react';
-import { PickerListBase, PickerModalOptions } from '@epam/uui-components';
-import { DataRowProps, IClickable, IDisableable, IHasCaption, IHasPlaceholder, UuiContext, UuiContexts } from '@epam/uui-core';
+import { DataRowProps, IClickable, IDisableable, IHasCaption, IHasPlaceholder } from '@epam/uui-core';
+import { PickerListBaseProps, PickerModalOptions, usePickerList } from '@epam/uui-components';
+import { IHasEditMode, SizeMod, TextSize } from '../types';
 import { Text } from '../typography';
-import { SizeMod, TextSize } from '../types';
-import { LinkButton } from '../buttons';
 import { PickerListItem } from './PickerListItem';
 import { PickerModal } from './PickerModal';
+import { LinkButton } from '../buttons';
 
 export type PickerListProps<TItem, TId> = SizeMod &
 IHasPlaceholder &
 PickerModalOptions<TItem, TId> & {
     renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode;
     noOptionsMessage?: React.ReactNode;
-};
+} & PickerListBaseProps<TItem, TId> & IHasEditMode;
 
-export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerListProps<TItem, TId>> {
-    static contextType = UuiContext;
-    sessionStartTime = new Date().getTime();
-    context: UuiContexts;
-    renderRow = (row: DataRowProps<TItem, TId>) => {
-        return <PickerListItem getName={ (item) => this.getName(item) } { ...row } key={ row.rowKey } />;
+export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
+    const {
+        context,
+        view,
+        getName,
+        getEntityName,
+        appendLastSelected,
+        getSelectedIdsArray,
+        buildRowsList,
+        getMaxDefaultItems,
+        dataSourceState,
+        getModalTogglerCaption,
+    } = usePickerList<TItem, TId, PickerListProps<TItem, TId>>(props);
+
+    const defaultRenderRow = (row: DataRowProps<TItem, TId>) => {
+        return <PickerListItem getName={ (item) => getName(item) } { ...row } key={ row.rowKey } />;
     };
-
-    handleShowPicker = () => {
-        this.context.uuiModals
-            .show((props) => (
+    
+    const handleShowPicker = () => {
+        context.uuiModals
+            .show((modalProps) => (
                 <PickerModal<TItem, TId>
+                    { ...modalProps }
                     { ...props }
-                    { ...this.props }
-                    caption={ this.props.placeholder || `Please select ${this.getEntityName() ? this.getEntityName() : ''}` }
-                    initialValue={ this.props.value as any }
-                    selectionMode={ this.props.selectionMode }
-                    valueType={ this.props.valueType }
+                    caption={ props.placeholder || `Please select ${getEntityName() ? getEntityName() : ''}` }
+                    initialValue={ props.value as any }
+                    selectionMode={ props.selectionMode }
+                    valueType={ props.valueType }
                 />
             ))
             .then((value: any) => {
-                this.appendLastSelected([...this.getSelectedIdsArray(value)]);
-                this.props.onValueChange(value);
-            });
+                appendLastSelected([...getSelectedIdsArray(value)]);
+                props.onValueChange(value);
+            })
+            .catch(() => {});
     };
+    
+    const defaultRenderToggler = (props: IClickable) => <LinkButton caption="Show all" { ...props } />;
 
-    defaultRenderToggler = (props: IClickable) => <LinkButton caption="Show all" { ...props } />;
-    render() {
-        const view = this.getView();
-        const viewProps = view.getListProps();
-        const selectedRows = view.getSelectedRows();
-        const rows = this.buildRowsList();
-        const showPicker = viewProps.totalCount == null || viewProps.totalCount > this.getMaxDefaultItems();
-        const renderToggler = this.props.renderModalToggler || this.defaultRenderToggler;
-        const renderRow = this.props.renderRow || this.renderRow;
+    const viewProps = view.getListProps();
+    const selectedRows = view.getSelectedRows();
+    const rows = buildRowsList();
+    const showPicker = viewProps.totalCount == null || viewProps.totalCount > getMaxDefaultItems();
+    const renderToggler = props.renderModalToggler || defaultRenderToggler;
+    const renderRow = props.renderRow || defaultRenderRow;
 
-        return (
-            <div>
-                {!rows.length
-                    && (this.props.noOptionsMessage || (
-                        <Text color="secondary" size={ this.props.size as TextSize }>
-                            No options available
-                        </Text>
-                    ))}
-                {rows.map((row) => renderRow({ ...row, isDisabled: this.props.isDisabled }, this.state.dataSourceState))}
-                {showPicker
-                    && renderToggler(
-                        {
-                            onClick: this.handleShowPicker,
-                            caption: this.getModalTogglerCaption(viewProps.totalCount, view.getSelectedRowsCount()),
-                            isDisabled: this.props.isDisabled,
-                        },
-                        selectedRows,
-                    )}
-            </div>
-        );
-    }
+    return (
+        <div>
+            {!rows.length
+                && (props.noOptionsMessage || (
+                    <Text color="secondary" size={ props.size as TextSize }>
+                        No options available
+                    </Text>
+                ))}
+            {rows.map((row) => renderRow({ ...row, isDisabled: props.isDisabled }, dataSourceState))}
+            {showPicker
+                && renderToggler(
+                    {
+                        onClick: handleShowPicker,
+                        caption: getModalTogglerCaption(viewProps.totalCount, view.getSelectedRowsCount()),
+                        isDisabled: props.isDisabled,
+                    },
+                    selectedRows,
+                )}
+        </div>
+    );
 }
