@@ -545,31 +545,26 @@
 
     // fonts
 
-    .uui-font-regular,
     .uui-font-sans {
         --uui-text-font: var(--font-regular);
         --uui-font-weight: normal;
     }
 
-    .uui-font-semibold,
     .uui-font-sans-semibold {
         --uui-text-font: var(--font-semibold);
         --uui-font-weight: normal;
     }
 
-    .uui-font-italic,
     .uui-font-sans-italic {
         --uui-text-font: var(--font-italic);
         --uui-font-weight: normal;
     }
 
-    .uui-font-primary,
     .uui-font-museo-sans {
         --uui-text-font: var(--font-primary);
         --uui-font-weight: normal;
     }
 
-    .uui-font-promo,
     .uui-font-museo-slab {
         --uui-text-font: var(--font-promo);
         --uui-font-weight: normal;
