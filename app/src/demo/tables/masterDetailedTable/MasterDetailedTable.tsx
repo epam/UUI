@@ -127,6 +127,7 @@ export function MasterDetailedTable() {
             api,
             getId: (i) => [i.__typename, i.id],
             complexIds: true,
+            backgroundReload: true,
             getParentId: (i) => {
                 const groupBy = tableStateApi.tableState.filter?.groupBy;
                 if (i.__typename === 'PersonGroup') {
@@ -157,6 +158,12 @@ export function MasterDetailedTable() {
             setIsInfoPanelOpened(true);
         }
     }, []);
+    
+    const pin = useCallback(
+        ({ value: { __typename } }: DataRowProps<PersonTableRecord, PersonTableRecordId>) => 
+            __typename !== 'Person',
+        [],
+    );
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         getChildCount: (item) => {
@@ -173,6 +180,7 @@ export function MasterDetailedTable() {
             checkbox: { isVisible: true },
             isSelectable: true,
             onClick: clickHandler,
+            pin,
         },
         cascadeSelection: true,
     });

@@ -1,33 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PickerToggler should be rendered correctly 1`] = `
-<div
-  className="container uui-input-box root size-36 mode-form"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  tabIndex={0}
->
-  <div
-    className="body"
-  >
-    <input
-      aria-haspopup={true}
-      autoComplete="no"
-      className="uui-input singleInput"
-      onChange={[Function]}
-      tabIndex={-1}
-      type="text"
-      value=""
-    />
-  </div>
-  <div
-    className="actions"
-  />
-</div>
-`;
-
-exports[`PickerToggler should be rendered correctly 2`] = `
+exports[`PickerToggler should render with maximum props 1`] = `
 <div
   className="container uui-input-box -clickable root size-48 mode-form"
   onBlur={[Function]}
@@ -65,6 +38,7 @@ exports[`PickerToggler should be rendered correctly 2`] = `
     className="actions"
   >
     <div
+      aria-label="Clear"
       className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
       onClick={[Function]}
       role="button"
@@ -76,5 +50,32 @@ exports[`PickerToggler should be rendered correctly 2`] = `
       />
     </div>
   </div>
+</div>
+`;
+
+exports[`PickerToggler should render with minimum props 1`] = `
+<div
+  className="container uui-input-box root size-36 mode-form"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="body"
+  >
+    <input
+      aria-haspopup={true}
+      autoComplete="no"
+      className="uui-input singleInput"
+      onChange={[Function]}
+      tabIndex={-1}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="actions"
+  />
 </div>
 `;

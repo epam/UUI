@@ -1,4 +1,5 @@
-import { AnalyticsEvent, IAnalyticsListener } from '../../types/contexts';
+import { IAnalyticsListener } from '../../types/contexts';
+import { AnalyticsEvent } from '../../types/objects';
 
 export class GAListener implements IAnalyticsListener {
     public gaCode: string;

@@ -93,7 +93,10 @@ export default function CitiesTable() {
 
     // Create DataSource instance for your table.
     // For more details go to the DataSources example
-    const citiesDS = useLazyDataSource<City, string, unknown>({ api: svc.api.demo.cities }, []);
+    const citiesDS = useLazyDataSource<City, string, unknown>({
+        api: svc.api.demo.cities,
+        backgroundReload: true,
+    }, []);
 
     // IMPORTANT! Unsubscribe view from DataSource when you don't need it more.
     // Pass this.handleTableStateChange function which you provided to getView as a second argument

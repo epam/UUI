@@ -104,6 +104,16 @@ Array [
             }
           />
         </div>
+        <div
+          className="container uui-blocker-container root"
+          style={
+            Object {
+              "minHeight": undefined,
+            }
+          }
+        >
+          <div />
+        </div>
       </div>
       <div
         className="uui-track-horizontal"

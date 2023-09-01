@@ -36,7 +36,7 @@ export default function AdvancedExample() {
     return (
         <div className={ css.root }>
             {renderForm()}
-            {isLoading && <Blocker isEnabled={ isLoading } hideSpinner={ true } spacerHeight={ 350 } />}
+            <Blocker isEnabled={ isLoading } hideSpinner={ true } spacerHeight={ 350 } />
         </div>
     );
 }
