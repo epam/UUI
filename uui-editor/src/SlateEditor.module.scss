@@ -49,6 +49,10 @@
     blockquote p {
         margin: 0;
     }
+
+    :focus-visible {
+        outline: none;
+    }
 }
 
 .mode-form {

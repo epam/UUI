@@ -28,5 +28,13 @@
         "text": " prop."
       }
     ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Current example illustrate behaviour with disabled close on 'Escape' and without locked focus. This case can be useful for dropdown which opened by hover."
+      }
+    ]
   }
 ]
