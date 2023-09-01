@@ -55,6 +55,7 @@ export function ProductsTableDemo() {
             getRowOptions: (product) => ({ ...lens.prop('items').prop(product.ProductID).default(product).toProps() }),
             listState: tableState,
             setListState: setTableState,
+            backgroundReload: true,
         },
         [],
     );

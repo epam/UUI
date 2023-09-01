@@ -33,7 +33,7 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
 
     render() {
         const {
-            size, avatarUrl, isLoading, isDisabled, icon, highlightSearchMatches,
+            size, avatarUrl, isLoading, isDisabled, icon, highlightSearchMatches, cx,
         } = this.props;
         const itemSize = size && size !== 'none' ? size : defaultSize;
         const isMultiline = !!(this.props.title && this.props.subtitle);
@@ -43,7 +43,7 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
         const subtitle = highlightSearchMatches ? getHighlightedSearchMatches(this.props.subtitle, search) : this.props.subtitle;
 
         return (
-            <FlexCell width="auto" cx={ css.root }>
+            <FlexCell width="auto" cx={ [css.root, cx] }>
                 <FlexRow size={ itemSize } cx={ isMultiline && css[`multiline-vertical-padding-${itemSize}`] } spacing="12">
                     {avatarUrl && <Avatar isLoading={ isLoading } img={ avatarUrl } size={ this.getAvatarSize(itemSize, isMultiline).toString() as AvatarProps['size'] } />}
                     {icon && <IconContainer icon={ icon } />}

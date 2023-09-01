@@ -140,7 +140,7 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
         return (
             <Panel
                 style={ { width: bodyProps.togglerWidth > minBodyWidth ? bodyProps.togglerWidth : minBodyWidth } }
-                rawProps={ { tabIndex: -1 } }
+                rawProps={ { tabIndex: -1, onKeyDown: bodyProps.onKeyDown } }
                 cx={ [
                     css.panel, uuiMarkers.lockFocus, props.bodyCx,
                 ] }

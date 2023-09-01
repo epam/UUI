@@ -60,7 +60,10 @@ export default function PagedTable() {
         [state.page, state.pageSize],
     );
 
-    const dataSource = useLazyDataSource<Person, number, unknown>({ api }, [state.page]);
+    const dataSource = useLazyDataSource<Person, number, unknown>({
+        api,
+        backgroundReload: true,
+    }, [state.page]);
     const view = dataSource.useView(state, setState, {});
 
     return (

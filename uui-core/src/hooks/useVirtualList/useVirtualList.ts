@@ -130,10 +130,15 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         (index: number, behavior?: ScrollBehavior) => {
             const [wasScrolled, ok] = scrollContainerToIndex(index, behavior);
             const topIndex = getTopIndexWithOffset(index, overdrawRows, blockSize);
+            const shouldScrollToUnknownIndex = value.topIndex === topIndex && rowsCount <= value.scrollTo?.index;
             if ((ok && !wasScrolled) || value.topIndex !== topIndex) {
-                onValueChange({ ...value, topIndex, scrollTo: value.scrollTo?.index === index ? value.scrollTo : { index } });
+                let scrollTo = value.scrollTo?.index === index ? value.scrollTo : { index };
+                if (shouldScrollToUnknownIndex) {
+                    scrollTo = { index: rowsCount - 1 };
+                }
+                onValueChange({ ...value, topIndex, scrollTo });
             }
-            if (ok && wasScrolled) {
+            if ((ok && wasScrolled) || (shouldScrollToUnknownIndex)) {
                 setScrolledTo(value.scrollTo?.index === index ? value.scrollTo : { index });
             }
         },

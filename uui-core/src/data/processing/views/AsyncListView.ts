@@ -25,6 +25,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
             this.isLoaded = true;
             this.isLoading = false;
             this.update({ value: this.value, onValueChange: this.onValueChange }, { ...this.props, items });
+            this.isReloading = false;
             this._forceUpdate();
             return items;
         });
@@ -60,6 +61,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
                 exactRowsCount: this.value.visibleCount,
                 totalCount: this.value.visibleCount,
                 selectAll: this.selectAll,
+                isReloading: this.isReloading,
             };
         }
 
@@ -69,6 +71,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
             exactRowsCount: this.rows.length,
             totalCount: this.originalTree?.getTotalRecursiveCount(),
             selectAll: this.selectAll,
+            isReloading: this.isReloading,
         };
     };
 

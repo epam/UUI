@@ -1,17 +1,33 @@
 # 5.x.x - xx.xx.2023
 
 **What's New**
-* [FiltersPanel]: added possibility to provide your own custom filter
-* [useForm]: validate callback now return new validationState
+* [InputAddon]: added InputAddon component that can be used for Prefix/Suffix with ControlGroup.
 
 **What's Fixed**
-* Added focus state styles for Accordion, AvatarStack, Anchor, Badge, Button, Burger, Checkbox, Control Group, IconButton, LinkButton, MainMenu, RadioInput, Switch, TabButton, Tag.
+* [PickerItem]: fixed 'cx' prop
+
+
+# 5.1.3 - 31.08.2023
+
+**What's New**
+* Added focus state styles for Accordion, AvatarStack, Anchor, Badge, Button, Burger, Checkbox, Control Group, IconButton, LinkButton, MainMenu, RadioInput, Switch, TabButton, Tag. This focus styles works via :focus-visible pseudo class and will be applied only when using the keyboard.
+* [FiltersPanel]: added possibility to provide your own custom filter
+* [useForm]: `validate` callback now return new `validationState`
+* [DropdownContainer]: improved keyboard support. Now DropdownContainer by default lock focus inside and return to the toggler by closing. Also implemented close by 'Esc'.
+
+**What's Fixed**
 * [PickerInput]: when `searchPosition=input` a cursor is placed in textbox once PickerInput is focused via Tab key.
 * [PickerInput]: fix `searchPosition` when `editMode=modal`, it cannot be `input`.
 * [useForm]: after calling validate callback, form switch to revalidating mode on fields change.
 * [useForm]: fixed isChanged prop calculation, in case when form value returned to initial
-* [useForm]: don't call loadUnsavedChanges callback when for was edited and then returned to the initial value
-
+* [useForm]: don't call `loadUnsavedChanges` callback when for was edited and then returned to the initial value
+* [Accordion]: fixed outdated isOpen value of renderTitle and renderAdditionalItems callbacks in case when this.props.value provided
+* [Burger]: fixed keyboard navigation
+* [Badge]: fixed hover effects for non-clickable badges in loveship
+* [SliderRating] fixed colors of icons when it's 2+ sliders on one page
+* [LabeledInput]: fixed default Tooltip color
+* [SlateEditor]: get zIndex from layer context for RTE toolbars
+* [DataTable]: fixed columns resize
 
 # 5.1.2 - 10.08.2023
 
