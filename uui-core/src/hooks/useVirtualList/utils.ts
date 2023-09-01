@@ -69,16 +69,26 @@ export const getUpdatedRowsInfo = (
     };
 };
 
-const getNewTopIndex = ({ rowsCount, scrollContainer, rowOffsets, overdrawRows, blockSize }: VirtualListInfo) => {
+const getNewTopIndex = ({ rowsCount, scrollContainer, rowOffsets, overdrawRows, blockSize, value }: VirtualListInfo) => {
     let newTopIndex = 0;
     const containerScrollTop = scrollContainer?.scrollTop ?? 0;
     while (newTopIndex < rowsCount && rowOffsets[newTopIndex] < containerScrollTop) {
         newTopIndex += 1;
     }
 
-    newTopIndex = newTopIndex - overdrawRows; // draw more rows at the top to remove visible blank areas while scrolling up
-    newTopIndex = Math.floor(newTopIndex / blockSize) * blockSize; // Align to blockSize
-    return Math.max(0, newTopIndex);
+    newTopIndex = newTopIndex - overdrawRows;
+    newTopIndex = Math.max(0, newTopIndex);
+
+    const topIndexDiff = Math.abs(value.topIndex - newTopIndex);
+    // Number of rows to be scrolled up or down to trigger topIndex change.
+    // This tolerance is required to avoid problems when scroll position is close to blocks boundaries, and even tiny difference
+    // in row heights (e.g. 1px margin collapse) can cause endless loop of re-renderings
+    const loadingThreshold = 5;
+    if (topIndexDiff < loadingThreshold) {
+        return value.topIndex;
+    }
+
+    return Math.floor(newTopIndex / blockSize) * blockSize; // Align to blockSize
 };
 
 const getNewBottomIndex = (
