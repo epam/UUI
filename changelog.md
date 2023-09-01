@@ -4,6 +4,7 @@
 * [InputAddon]: added InputAddon component that can be used for Prefix/Suffix with ControlGroup.
 
 **What's Fixed**
+* [PickerItem]: fixed 'cx' prop
 
 
 # 5.1.3 - 31.08.2023
