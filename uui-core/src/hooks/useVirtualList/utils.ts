@@ -80,7 +80,11 @@ const getNewTopIndex = ({ rowsCount, scrollContainer, rowOffsets, overdrawRows, 
     newTopIndex = Math.max(0, newTopIndex);
 
     const topIndexDiff = Math.abs(value.topIndex - newTopIndex);
-    if (topIndexDiff < Math.round(blockSize / 4)) {
+    // Number of rows to be scrolled up or down to trigger topIndex change.
+    // This tolerance is required to avoid problems when scroll position is close to blocks boundaries, and even tiny difference
+    // in row heights (e.g. 1px margin collapse) can cause endless loop of re-renderings
+    const loadingThreshold = 5;
+    if (topIndexDiff < loadingThreshold) {
         return value.topIndex;
     }
 
