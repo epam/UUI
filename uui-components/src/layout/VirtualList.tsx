@@ -31,10 +31,6 @@ interface BaseVirtualListProps<ScrollContainer extends HTMLElement = any>
     rowsCount?: number;
     role?: React.HTMLAttributes<HTMLDivElement>['role'];
     onScroll?(value: PositionValues): void;
-    /**
-     * Selector of `VirtualList` rows.
-     * @default '[role=row]'
-     */
     rowsSelector?: string;
     disableScroll?: boolean;
 }
