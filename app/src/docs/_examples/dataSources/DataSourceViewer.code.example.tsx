@@ -61,7 +61,6 @@ export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {
                     onValueChange={ onValueChange }
                     rows={ renderedRows }
                     { ...listProps }
-                    rowsSelector="[role=option]"
                 />
             </FlexRow>
             <FlexRow>

@@ -17,7 +17,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         onScroll,
         blockSize = 20,
         overdrawRows = 20,
-        rowsSelector = '[role=row]',
+        rowsSelector,
     } = props;
     const [estimatedHeight, setEstimatedHeight] = React.useState<number>(0);
     const [listOffset, setListOffset] = React.useState<number>();

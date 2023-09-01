@@ -137,6 +137,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 renderRows={ renderRowsContainer }
                 cx={ cx(css.table) }
                 disableScroll={ props.isReloading }
+                rowsSelector="[role=row]"
                 rawProps={ {
                     role: 'table',
                     'aria-colcount': columns.length,
