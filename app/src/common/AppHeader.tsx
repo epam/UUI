@@ -163,7 +163,7 @@ export function AppHeader() {
                 render: () => <MainMenuButton caption="Sandbox" link={ { pathname: '/sandbox' } } isLinkActive={ pathName === '/sandbox' } key="sandbox" />,
             },
             { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> },
-            window.location.host.includes('localhost') && { id: 'theme', priority: 3, render: renderThemeSwitcher },
+            { id: 'theme', priority: 3, render: renderThemeSwitcher },
             {
                 id: 'git',
                 priority: 0,

@@ -92,7 +92,7 @@ Array [
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled uui-icon_button uui-color-default root root icon iconAfter"
+          className="container uui-button-box uui-enabled uui-icon_button uui-color-neutral root root icon iconAfter"
           onClick={[Function]}
           tabIndex={-1}
           type="button"

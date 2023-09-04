@@ -60,7 +60,7 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
                 </div>
                 {props.onClose && (
                     <div className={ css.closeWrapper }>
-                        <IconButton icon={ CrossIcon } color="default" onClick={ props.onClose } cx={ css.closeIcon } />
+                        <IconButton icon={ CrossIcon } color="neutral" onClick={ props.onClose } cx={ css.closeIcon } />
                     </div>
                 )}
             </div>

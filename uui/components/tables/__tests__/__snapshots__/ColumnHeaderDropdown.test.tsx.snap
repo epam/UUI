@@ -110,7 +110,7 @@ Array [
             tabIndex={0}
           >
             <button
-              className="container uui-button-box uui-enabled uui-icon_button uui-color-default root root icon iconBefore"
+              className="container uui-button-box uui-enabled uui-icon_button uui-color-neutral root root icon iconBefore"
               onClick={[Function]}
               tabIndex={-1}
               type="button"

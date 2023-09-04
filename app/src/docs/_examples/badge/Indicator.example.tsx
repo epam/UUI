@@ -6,7 +6,7 @@ export default function IndicatorExample() {
         <FlexRow alignItems="center" spacing="18">
             <Badge color="success" fill="transparent" caption="Ready" />
             <Badge color="warning" fill="transparent" caption="In Progress" />
-            <Badge color="default" fill="transparent" caption="Draft" />
+            <Badge color="neutral" fill="transparent" caption="Draft" />
         </FlexRow>
     );
 }

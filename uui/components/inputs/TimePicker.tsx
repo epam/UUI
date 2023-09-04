@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { devLogger, DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
 import { BaseTimePickerProps, BaseTimePicker } from '@epam/uui-components';
 import { IHasEditMode, SizeMod, EditMode } from '../types';
-import { DropdownContainer } from '../overlays';
+import { DropdownContainer } from '../overlays/DropdownContainer';
 import { TextInput } from './TextInput';
 import { TimePickerBody } from './TimePickerBody';
 import css from './TimePicker.module.scss';

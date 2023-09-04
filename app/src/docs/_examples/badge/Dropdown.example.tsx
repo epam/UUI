@@ -43,7 +43,7 @@ export default function TypesExample() {
                         { ...props }
                         dropdownIcon={ navigationDownIcon }
                         dropdownIconPosition="right"
-                        color="default"
+                        color="neutral"
                         icon={ () => statusDot(selectedItem.color) }
                         fill="semitransparent"
                         caption={ selectedItem.caption }

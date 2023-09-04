@@ -10,7 +10,7 @@ export default function ColorsExample() {
                 <Badge color="info" fill="solid" caption="Info" />
                 <Badge color="success" fill="solid" caption="Success" />
                 <Badge color="error" fill="solid" caption="Error" />
-                <Badge color="default" fill="solid" caption="Default" />
+                <Badge color="neutral" fill="solid" caption="Default" />
                 <Badge color="warning" fill="solid" caption="Warning" />
             </FlexRow>
         </Panel>

@@ -44,7 +44,7 @@ exports[`PickerInput should open body 1`] = `
       style="z-index: 2000;"
     >
       <div
-        class="uui-panel root panel -lock-focus container"
+        class="uui-panel root root body -lock-focus container"
         style="width: 360px;"
         tabindex="-1"
       >
@@ -76,7 +76,7 @@ exports[`PickerInput should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-12 padding-left-12 align-widgets-top"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-12 padding-left-12 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -98,7 +98,7 @@ exports[`PickerInput should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 text container"
+                                  class="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 text container"
                                 >
                                   Elementary
                                 </div>
@@ -119,7 +119,7 @@ exports[`PickerInput should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-12 padding-left-12 align-widgets-top"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-12 padding-left-12 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -141,7 +141,7 @@ exports[`PickerInput should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 text container"
+                                  class="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 text container"
                                 >
                                   Elementary+
                                 </div>
@@ -194,7 +194,7 @@ exports[`PickerInput should open body 1`] = `
             <button
               aria-disabled="true"
               aria-label="CLEAR"
-              class="container uui-button-box uui-disabled -clickable root size-36 uui-no-left-icon uui-no-right-icon link-button-primary"
+              class="container uui-button-box uui-disabled -clickable uui-link_button root size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
               tabindex="-1"
               type="button"
             >

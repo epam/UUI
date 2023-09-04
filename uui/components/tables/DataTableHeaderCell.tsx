@@ -57,7 +57,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                         <IconButton
                             key="sort"
                             cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
-                            color={ this.props.sortDirection ? 'default' : 'secondary' }
+                            color={ this.props.sortDirection ? 'neutral' : 'secondary' }
                             icon={ this.props.sortDirection === 'desc' ? SortIconDesc : this.props.sortDirection === 'asc' ? SortIcon : DefaultSortIcon }
                         />
                     )}
@@ -65,7 +65,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                         <IconButton
                             key="filter"
                             cx={ cx(css.icon, !this.props.sortDirection && css.filterIcon, uuiDataTableHeaderCell.uuiTableHeaderFilterIcon) }
-                            color="default"
+                            color="neutral"
                             icon={ FilterIcon }
                         />
                     )}

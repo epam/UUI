@@ -198,7 +198,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                         </FlexCell>
                         {prop.description && (
                             <Tooltip placement="top" content={ prop.description }>
-                                <IconButton icon={ InfoIcon } color="default" />
+                                <IconButton icon={ InfoIcon } color="neutral" />
                             </Tooltip>
                         )}
                     </>
@@ -215,7 +215,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                         />
                         {prop.description && (
                             <Tooltip placement="top" content={ prop.description }>
-                                <IconButton icon={ InfoIcon } color="default" />
+                                <IconButton icon={ InfoIcon } color="neutral" />
                             </Tooltip>
                         )}
                     </React.Fragment>
@@ -232,7 +232,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                     />
                     {prop.description && (
                         <Tooltip placement="top" content={ prop.description }>
-                            <IconButton icon={ InfoIcon } color="default" />
+                            <IconButton icon={ InfoIcon } color="neutral" />
                         </Tooltip>
                     )}
                 </React.Fragment>

@@ -41,7 +41,7 @@ exports[`Alert should render with maximum props 1`] = `
       </div>
     </div>
     <button
-      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root closeIcon"
+      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root closeIcon"
       onClick={[Function]}
       tabIndex={0}
       type="button"

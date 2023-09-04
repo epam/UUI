@@ -10,6 +10,7 @@ exports[`Modals should be rendered correctly 1`] = `
   }
 >
   <div
+    aria-label="Click to close a modal"
     className="uui-modal-blocker"
     onClick={[Function]}
   />
@@ -92,6 +93,7 @@ exports[`Modals should be rendered correctly 2`] = `
   }
 >
   <div
+    aria-label="Click to close a modal"
     className="uui-modal-blocker"
     onClick={[Function]}
   />
@@ -157,6 +159,7 @@ exports[`Modals should be rendered correctly 2`] = `
           }
         >
           <button
+            aria-label="Close modal"
             className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root"
             onClick={[Function]}
             tabIndex={0}

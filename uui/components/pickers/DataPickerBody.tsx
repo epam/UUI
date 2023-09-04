@@ -70,7 +70,6 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                             renderRows={ this.renderRowsContainer }
                             rawProps={ this.props.rawProps }
                             rowsCount={ this.props.rowsCount }
-                            rowsSelector="[role=option]"
                             disableScroll={ this.props.isReloading }
                         />
                     ) : (this.renderNotFound())}
