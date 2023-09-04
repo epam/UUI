@@ -17,8 +17,14 @@ export interface VirtualListRange {
     visibleCount?: number;
 }
 
+interface ScrollConditions {
+    notVisible?: boolean;
+}
+
 export interface ScrollToConfig {
     index?: number;
+    behavior?: ScrollBehavior;
+    when?: ScrollConditions;
 }
 
 /** Holds state of a Virtual List - top visible item index, and estimated count of visible items */

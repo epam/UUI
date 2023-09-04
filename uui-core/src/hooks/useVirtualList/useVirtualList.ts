@@ -58,7 +58,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         if (focusedIndexOffset < scrollTop - focusedIndexHeight || scrollBottom < focusedIndexOffset) {
             const middleOffset = focusedIndexOffset - clientHeight / 2 + focusedIndexHeight / 2;
             const indexToScroll = rowOffsets.current.findIndex((rowOffset) => middleOffset <= rowOffset);
-            scrollToIndex(indexToScroll, 'smooth');
+            scrollToIndex({ index: indexToScroll, behavior: 'smooth' });
         }
     };
 
@@ -95,7 +95,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             : assumedHeight;
 
         setEstimatedHeight(estimatedHeightToSet);
-        scrollToIndex(value.scrollTo?.index);
+        scrollToIndex(value.scrollTo);
     };
 
     const handleScrollOnRerender = (rowsInfo: RowsInfo) => {
@@ -126,20 +126,40 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         [scrollContainer.current, rowOffsets.current],
     );
 
+    const shouldScroll = React.useCallback((scrollTo: ScrollToConfig) => {
+        const { index, when } = scrollTo;
+        if (!when?.notVisible) {
+            return true;
+        }
+        // console.log('index', index);
+        // console.log('topIndex', value?.topIndex, );
+        // console.log('value?.visibleCount', value?.visibleCount);
+        // console
+
+        if (index < value.topIndex + overdrawRows) {
+            return true;
+        }
+        return false;
+    }, [value?.topIndex, value?.visibleCount]);
+
     const scrollToIndex = React.useCallback(
-        (index: number, behavior?: ScrollBehavior) => {
-            const [wasScrolled, ok] = scrollContainerToIndex(index, behavior);
-            const topIndex = getTopIndexWithOffset(index, overdrawRows, blockSize);
+        (scrollTo: ScrollToConfig) => {
+            if (!shouldScroll(scrollTo)) {
+                return;
+            }
+
+            const [wasScrolled, ok] = scrollContainerToIndex(scrollTo.index, scrollTo.behavior);
+            const topIndex = getTopIndexWithOffset(scrollTo.index, overdrawRows, blockSize);
             const shouldScrollToUnknownIndex = value.topIndex === topIndex && rowsCount <= value.scrollTo?.index;
             if ((ok && !wasScrolled) || value.topIndex !== topIndex) {
-                let scrollTo = value.scrollTo?.index === index ? value.scrollTo : { index };
+                let newScrollTo = value.scrollTo?.index === scrollTo.index ? value.scrollTo : { ...scrollTo, index: scrollTo.index };
                 if (shouldScrollToUnknownIndex) {
-                    scrollTo = { index: rowsCount - 1 };
+                    newScrollTo = { ...scrollTo, index: rowsCount - 1 };
                 }
-                onValueChange({ ...value, topIndex, scrollTo });
+                onValueChange({ ...value, topIndex, scrollTo: newScrollTo });
             }
             if ((ok && wasScrolled) || (shouldScrollToUnknownIndex)) {
-                setScrolledTo(value.scrollTo?.index === index ? value.scrollTo : { index });
+                setScrolledTo(value.scrollTo?.index === scrollTo.index ? value.scrollTo : { ...scrollTo, index: scrollTo.index });
             }
         },
         [scrollContainer.current, rowOffsets.current, value?.topIndex, overdrawRows, blockSize],
