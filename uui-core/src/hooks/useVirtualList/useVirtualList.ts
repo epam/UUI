@@ -3,7 +3,7 @@ import type { ScrollToConfig } from '../../types';
 import { useLayoutEffectSafeForSsr } from '../../ssr';
 import {
     getRowsToFetchForScroll, getUpdatedRowsInfo, getTopCoordinate, assumeHeightForScrollToIndex,
-    getTopIndexWithOffset, getOffsetYForIndex,
+    getTopIndexWithOffset, getOffsetYForIndex, shouldScroll,
 } from './utils';
 import { VirtualListInfo, UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
 
@@ -115,10 +115,13 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     ]);
 
     const scrollContainerToIndex = React.useCallback(
-        (index: number, behavior?: ScrollBehavior) => {
-            const topCoordinate = getTopCoordinate(getVirtualListInfo(), index);
+        (scrollTo: ScrollToConfig) => {
+            if (!shouldScroll(scrollTo, getVirtualListInfo())) {
+                return [true, true];
+            }
+            const topCoordinate = getTopCoordinate(getVirtualListInfo(), scrollTo.index);
             if (!isNaN(topCoordinate)) {
-                scrollContainer.current.scrollTo({ top: topCoordinate, behavior });
+                scrollContainer.current.scrollTo({ top: topCoordinate, behavior: scrollTo.behavior });
                 return [scrollToOffsetY === topCoordinate, true];
             }
             return [false, false];
@@ -126,29 +129,9 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         [scrollContainer.current, rowOffsets.current],
     );
 
-    const shouldScroll = React.useCallback((scrollTo: ScrollToConfig) => {
-        const { index, when } = scrollTo;
-        if (!when?.notVisible) {
-            return true;
-        }
-        // console.log('index', index);
-        // console.log('topIndex', value?.topIndex, );
-        // console.log('value?.visibleCount', value?.visibleCount);
-        // console
-
-        if (index < value.topIndex + overdrawRows) {
-            return true;
-        }
-        return false;
-    }, [value?.topIndex, value?.visibleCount]);
-
     const scrollToIndex = React.useCallback(
         (scrollTo: ScrollToConfig) => {
-            if (!shouldScroll(scrollTo)) {
-                return;
-            }
-
-            const [wasScrolled, ok] = scrollContainerToIndex(scrollTo.index, scrollTo.behavior);
+            const [wasScrolled, ok] = scrollContainerToIndex(scrollTo);
             const topIndex = getTopIndexWithOffset(scrollTo.index, overdrawRows, blockSize);
             const shouldScrollToUnknownIndex = value.topIndex === topIndex && rowsCount <= value.scrollTo?.index;
             if ((ok && !wasScrolled) || value.topIndex !== topIndex) {

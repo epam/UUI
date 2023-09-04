@@ -1,4 +1,4 @@
-import type { VirtualListState } from '../../types';
+import type { ScrollToConfig, VirtualListState } from '../../types';
 import { RowsInfo, VirtualListInfo } from './types';
 
 export const getUpdatedRowHeights = (virtualListInfo: VirtualListInfo) => {
@@ -153,4 +153,16 @@ export const getTopIndexWithOffset = (index: number, overdrawRows: number, block
 export const getOffsetYForIndex = (index: number | null | undefined, rowOffsets: number[], listOffset: number) => {
     if (rowOffsets.length === 0 || index == null) return 0;
     return rowOffsets[index] - listOffset;
+};
+
+export const shouldScroll = (scrollTo: ScrollToConfig, { scrollContainer, rowOffsets }: VirtualListInfo) => {
+    const { index, when } = scrollTo;
+    if (!when?.notVisible) return true;
+
+    let realTopIndex = 0;
+    while (rowOffsets[realTopIndex] < scrollContainer?.scrollTop ?? 0) {
+        realTopIndex += 1;
+    }
+
+    return index < realTopIndex;
 };
