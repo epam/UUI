@@ -37,6 +37,7 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
         this.views.forEach((view) => view.destroy());
         this.views.clear();
         this.subscriptions.forEach((_, view) => view.destroy());
+        this.subscriptions.clear();
     }
 
     public getId = (item: TItem & { id?: TId }) => {
