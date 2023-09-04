@@ -34,7 +34,7 @@ export default function TypesExample() {
                                 { ...props }
                                 dropdownIcon={ navigationDownIcon }
                                 dropdownIconPosition="right"
-                                color="default"
+                                color="neutral"
                                 fill="semitransparent"
                                 caption="In Progress"
                             />
@@ -44,7 +44,7 @@ export default function TypesExample() {
                     <Text fontSize="14">Label & trigger for selection using dropdown</Text>
                 </FlexRow>
                 <FlexRow spacing="18">
-                    <Badge color="default" fill="semitransparent" caption="Projects" />
+                    <Badge color="neutral" fill="semitransparent" caption="Projects" />
                     <Text fontSize="14">Simple attribute or label</Text>
                 </FlexRow>
             </Panel>

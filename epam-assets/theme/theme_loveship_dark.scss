@@ -456,7 +456,7 @@
     }
 
 
-    .uui-badge.uui-color-default {
+    .uui-badge.uui-color-neutral {
         --uui-color-5: var(--night800);
         --uui-color-10: var(--night700);
         --uui-color-20: var(--night400);
@@ -471,7 +471,7 @@
         --uui-color-70: var(--night50);
     }
 
-    .uui-icon_button.uui-color-default {
+    .uui-icon_button.uui-color-neutral {
         --uui-color-50: var(--night100);
         --uui-color-60: var(--night50);
         --uui-color-70: var(--night50);
@@ -586,3 +586,4 @@
         --uui-font-weight: normal;
     }
 }
+

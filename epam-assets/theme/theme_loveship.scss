@@ -297,7 +297,7 @@
     --uui-control-text: var(--neutral80);
     --uui-control-text-disabled: var(--neutral50);
 
-    --uui-control-icon: var(--neutral500);
+    --uui-control-icon: var(--neutral50);
     --uui-control-icon-disabled: var(--neutral50);
 
     --uui-control-checkbox-icon: var(--neutral0);
@@ -440,7 +440,6 @@
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
-    .uui-icon_button.uui-color-default,
     .uui-color-night600,
     .uui-color-gray,
     .uui-color-secondary {
@@ -564,7 +563,7 @@
         --uui-color-contrast-text: var(--uui-text-dark);
     }
 
-    .uui-badge.uui-color-default, .uui-badge.uui-color-night300 {
+    .uui-badge.uui-color-neutral, .uui-badge.uui-color-night300 {
         --uui-color-5: var(--night200);
         --uui-color-10: var(--night300);
         --uui-color-20: var(--night400);
@@ -575,7 +574,7 @@
         --uui-color-contrast-text: var(--uui-text-primary);
     }
 
-    .uui-icon_button.uui-color-default {
+    .uui-icon_button.uui-color-neutral {
         --uui-color-5: var(--uui-secondary-5);
         --uui-color-10: var(--uui-secondary-10);
         --uui-color-20: var(--uui-secondary-20);

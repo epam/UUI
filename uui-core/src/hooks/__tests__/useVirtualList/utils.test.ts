@@ -22,7 +22,6 @@ describe('getUpdatedRowHeights', () => {
         rowHeights,
         rowOffsets: [],
         listOffset: 10,
-        rowsSelector: '[role=row]',
     });
 
     it('should update row heights, starting from topIndex', () => {
@@ -86,7 +85,6 @@ describe('getUpdatedRowOffsets', () => {
         listOffset: 50,
         estimatedHeight: undefined,
         averageRowHeight: 15,
-        rowsSelector: '[role=row]',
     };
 
     it('should update row offsets', () => {
@@ -129,7 +127,6 @@ describe('getUpdatedRowsInfo', () => {
         listOffset: 50,
         estimatedHeight: 20,
         averageRowHeight: 15,
-        rowsSelector: '[role=row]',
     };
     it('should return old values if scroll container is not defined', () => {
         const info = {
@@ -233,34 +230,34 @@ describe('getRowsToFetchForScroll', () => {
         listOffset: 50,
         estimatedHeight: 20,
         averageRowHeight: 15,
-        rowsSelector: '[role=row]',
     };
 
     it('should limit topIndex with rowsCount', () => {
         const info: VirtualListInfo = {
             ...defaultInfo,
+            value: { topIndex: 10 },
             scrollContainer: createScrollContainer({ scrollTop: 100, clientHeight: 1000 }),
             listContainer: createListContainer([10, 20, 20, 20, 15, 10, 15]),
-            rowsCount: 5,
+            rowsCount: 10,
         };
 
         expect(getRowsToFetchForScroll(info)).toEqual({
-            visibleCount: 1,
-            topIndex: 4,
+            visibleCount: 5,
+            topIndex: 5,
         });
     });
 
     it('should limit topIndex with scrollTop', () => {
         const info: VirtualListInfo = {
             ...defaultInfo,
-            scrollContainer: createScrollContainer({ scrollTop: 100, clientHeight: 1000 }),
+            scrollContainer: createScrollContainer({ scrollTop: 200, clientHeight: 1000 }),
             listContainer: createListContainer([10, 20, 20, 20, 15, 10, 15]),
             rowsCount: 20,
         };
 
         expect(getRowsToFetchForScroll(info)).toEqual({
-            visibleCount: 6,
-            topIndex: 5,
+            visibleCount: 5,
+            topIndex: 6,
         });
     });
 
@@ -273,8 +270,8 @@ describe('getRowsToFetchForScroll', () => {
         };
 
         expect(getRowsToFetchForScroll(info)).toEqual({
-            visibleCount: 1,
-            topIndex: 4,
+            visibleCount: 4,
+            topIndex: 1,
         });
     });
 
@@ -311,7 +308,8 @@ describe('getRowsToFetchForScroll', () => {
     it('should align to block size', () => {
         const info: VirtualListInfo = {
             ...defaultInfo,
-            scrollContainer: createScrollContainer({ scrollTop: 100, clientHeight: 200 }),
+            value: { topIndex: 10 },
+            scrollContainer: createScrollContainer({ scrollTop: 200, clientHeight: 200 }),
             listContainer: createListContainer([10, 20, 20, 20, 15, 10, 15]),
             rowsCount: 5,
             blockSize: 2,
@@ -338,7 +336,6 @@ describe('getTopCoordinate', () => {
         listOffset: 50,
         estimatedHeight: 20,
         averageRowHeight: 15,
-        rowsSelector: '[role=row]',
     };
     it('should get top coordinate for index to scroll by rowOffset', () => {
         const info: VirtualListInfo = {

@@ -61,7 +61,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
                     </div>
                 )}
             </div>
-            {props.onClose && <IconButton icon={ CrossIcon } color="default" onClick={ props.onClose } cx={ css.closeIcon } />}
+            {props.onClose && <IconButton icon={ CrossIcon } color="neutral" onClick={ props.onClose } cx={ css.closeIcon } />}
         </div>
     </div>
 ));

@@ -3,9 +3,8 @@ import {
     DataRowProps, DataSourceListProps, DropdownBodyProps, isMobile, uuiMarkers,
 } from '@epam/uui-core';
 import { PickerBodyBaseProps, PickerInputBaseProps, usePickerInput } from '@epam/uui-components';
-import {
-    Panel, DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, PickerInputProps,
-} from '../..';
+import { Panel } from '../layout';
+import { DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, PickerInputProps } from '../pickers';
 
 const pickerHeight = 300;
 const pickerWidth = 360;

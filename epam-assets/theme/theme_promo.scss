@@ -371,7 +371,7 @@
         --uui-color-contrast-text: var(--uui-text-dark);
     }
 
-    .uui-badge.uui-color-default,
+    .uui-badge.uui-color-neutral,
     .uui-color-gray30 {
         --uui-color-5: var(--gray20);
         --uui-color-10: var(--gray30);
@@ -395,8 +395,6 @@
     }
 
     .uui-button.uui-color-gray50,
-    .uui-icon_button.uui-color-default,
-    .uui-icon_button.uui-color-secondary,
     .uui-color-gray60 {
         --uui-color-5: var(--gray20);
         --uui-color-10: var(--gray60);
@@ -515,7 +513,7 @@
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
-    .uui-icon_button.uui-color-default,
+    .uui-icon_button.uui-color-neutral,
     .uui-icon_button.uui-color-gray60,
     .uui-icon_button.uui-color-secondary {
         --uui-color-5: var(--uui-secondary-5);
@@ -541,6 +539,10 @@
     .uui-tooltip-container.uui-color-gray, .uui-tooltip-container.uui-color-contrast {
         --uui-color-50: var(--gray80);
         --uui-color-contrast-text: var(--uui-text-white);
+    }
+
+    .uui-tag {
+        --uui-tag-border-radius: 0;
     }
 
     // fonts

@@ -125,7 +125,7 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
         return (
             <IconButton
                 cx={ dropdownProps.isOpen && css.targetOpen }
-                color={ props.preset.id === props.activePresetId ? 'info' : 'default' }
+                color={ props.preset.id === props.activePresetId ? 'info' : 'neutral' }
                 { ...dropdownProps }
                 icon={ menuIcon }
             />
