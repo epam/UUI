@@ -38,32 +38,43 @@ function DataRowsGroup<TItem, TId>({
     );
 }
 
+export const renderRows = <TItem, TId>(
+    rows: DataRowProps<TItem, TId>[],
+    renderRow: (props: DataRowProps<TItem, TId>) => React.ReactNode,
+    top?: number,
+): React.ReactNode[] => {
+    if (!rows.length) return [];
+
+    const [row, ...rest] = rows;
+    
+    if (!rest.length) {
+        return [renderRow(row)];
+    }
+    const [next] = rest;
+    if (next.depth <= row.depth && !row.isPinned) {
+        return [renderRow(row)].concat(renderRows(rest, renderRow, top));
+    }
+    
+    const [children, otherRows] = getChildrenAndRest(row, rest);
+    const group: React.ReactNode = (
+        <DataRowsGroup 
+            row={ row } 
+            childRows={ children }
+            renderRow={ renderRow }
+            top={ top }
+            key={ row.rowKey }
+        />
+    );
+
+    return [group].concat(renderRows(otherRows, renderRow, top) as JSX.Element[]);
+};
+
 export function DataRowsGroups<TItem, TId>({
     rows,
     renderRow,
     top = 1,
 }: DataRowsGroupsProps<TItem, TId>) {
-    if (!rows.length) return null;
-    const [row, ...rest] = rows;
-    
-    if (!rest.length) {
-        return <>{renderRow(row)}</>;
-    }
-    const [next] = rest;
-    if (next.depth <= row.depth && !row.isPinned) {
-        return (
-            <>
-                {renderRow(row)}
-                <DataRowsGroups rows={ rest } renderRow={ renderRow } top={ top } />
-            </>
-        );
-    }
-
-    const [childRows, otherRows] = getChildrenAndRest(row, rest);
-    return (
-        <>
-            <DataRowsGroup row={ row } childRows={ childRows } renderRow={ renderRow } top={ top } key={ row.rowKey } />
-            <DataRowsGroups rows={ otherRows } renderRow={ renderRow } top={ top } />
-        </>
-    );
+    const rowsWithGroups = renderRows(rows, renderRow, top);
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    return (<>{ rowsWithGroups }</>);
 }
