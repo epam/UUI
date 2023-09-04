@@ -175,7 +175,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             const indexToScroll = rowProps.index - (rowProps.path?.length ?? 0);
             const scrollTo = fold && rowProps.isPinned 
                 ? { scrollTo: { index: indexToScroll, when: { notVisible: true } } }
-                : undefined;
+                : {};
 
             this.onValueChange({
                 ...this.value,
