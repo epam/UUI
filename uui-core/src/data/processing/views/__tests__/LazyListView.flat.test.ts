@@ -149,7 +149,7 @@ describe('LazyListView - flat list test', () => {
         ], 5);
 
         const rows = view.getVisibleRows();
-        rows[0].onCheck(rows[0]);
+        rows[0].onCheck?.(rows[0]);
         await delay();
 
         view = ds.getView(value, onValueChange, { getRowOptions: () => ({ checkbox: { isVisible: true } }) });
@@ -168,7 +168,8 @@ describe('LazyListView - flat list test', () => {
         expectViewToLookLike(view, [{ id: 320 }, { id: 330 }], 2);
     });
 
-    const testApiNoCount = (rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve({ ...runDataQuery(testData, rq), count: null });
+    const testApiNoCount = (rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) =>
+        Promise.resolve({ ...runDataQuery(testData, rq), count: undefined });
 
     const flatDataSourceNoCount = new LazyDataSource({
         api: testApiNoCount,

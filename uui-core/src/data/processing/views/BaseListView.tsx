@@ -29,15 +29,20 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
     protected checkedByKey: Record<string, boolean> = {};
     protected someChildCheckedByKey: Record<string, boolean> = {};
+    protected pinned: Record<string, number> = {};
+    protected pinnedByParentId: Record<string, number[]> = {};
     public selectAll?: ICheckable;
     protected isDestroyed = false;
     protected hasMoreRows = false;
+    protected isReloading: boolean = false;
+    protected isForceReloading: boolean = false;
+
     abstract getById(id: TId, index: number): DataRowProps<TItem, TId>;
     abstract getVisibleRows(): DataRowProps<TItem, TId>[];
     abstract getListProps(): DataSourceListProps;
-    _forceUpdate() {
+    _forceUpdate = () => {
         !this.isDestroyed && this.onValueChange({ ...this.value });
-    }
+    };
 
     public destroy() {
         this.isDestroyed = true;
@@ -94,7 +99,11 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected keyToId(key: string) {
-        return JSON.parse(key);
+        try {
+            return JSON.parse(key);            
+        } catch (e) {
+            return key;
+        }
     }
 
     protected setObjectFlag(object: any, key: string, value: boolean) {
@@ -162,9 +171,13 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
     protected handleOnFold = (rowProps: DataRowProps<TItem, TId>) => {
         if (this.onValueChange) {
+            const fold = !rowProps.isFolded;
+            const indexToScroll = rowProps.index - (rowProps.path?.length ?? 0);
+            const scrollTo = fold && rowProps.isPinned ? { index: indexToScroll } : this.value.scrollTo;
             this.onValueChange({
                 ...this.value,
-                folded: this.setObjectFlag(this.value && this.value.folded, rowProps.rowKey, !rowProps.isFolded),
+                scrollTo,
+                folded: this.setObjectFlag(this.value && this.value.folded, rowProps.rowKey, fold),
             });
         }
     };
@@ -299,6 +312,9 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     // Extracts a flat list of currently visible rows from the tree
     protected rebuildRows() {
         const rows: DataRowProps<TItem, TId>[] = [];
+        const pinned: Record<string, number> = {};
+        const pinnedByParentId: Record<string, number[]> = {};
+
         const lastIndex = this.getLastRecordIndex();
 
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
@@ -322,7 +338,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 }
 
                 const row = this.getRowProps(item, rows.length);
-
                 if (appendRows && (!this.isPartialLoad() || (this.isPartialLoad() && rows.length < lastIndex))) {
                     rows.push(row);
                     layerRows.push(row);
@@ -358,6 +373,15 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                             }
                         }
                     }
+                }
+
+                row.isPinned = row.pin?.(row) ?? false;
+                if (row.isPinned) {
+                    pinned[this.idToKey(row.id)] = row.index;
+                    if (!pinnedByParentId[this.idToKey(row.parentId)]) {
+                        pinnedByParentId[this.idToKey(row.parentId)] = [];                        
+                    }
+                    pinnedByParentId[this.idToKey(row.parentId)]?.push(row.index);
                 }
             }
 
@@ -412,7 +436,53 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         }
 
         this.rows = rows;
+        this.pinned = pinned;
+        this.pinnedByParentId = pinnedByParentId;
         this.hasMoreRows = rootStats.hasMoreRows;
+    }
+
+    protected getLastHiddenPinnedByParent(row: DataRowProps<TItem, TId>, alreadyAdded: TId[]) {
+        const pinnedIndexes = this.pinnedByParentId[this.idToKey(row.parentId)];
+        if (!pinnedIndexes || !pinnedIndexes.length) return undefined;
+
+        const lastPinnedAfterRow = [...pinnedIndexes].reverse().findIndex((index) => {
+            const pinnedRow = this.rows[index];
+            if (!pinnedRow) return false;
+            return row.index > pinnedRow.index;
+        });
+
+        if (lastPinnedAfterRow === -1) {
+            return undefined;
+        }
+        const lastHiddenPinned = this.rows[lastPinnedAfterRow];
+        if (alreadyAdded.includes(lastHiddenPinned.id)) return undefined;
+         
+        return lastHiddenPinned;
+    }
+
+    protected getRowsWithPinned(rows: DataRowProps<TItem, TId>[]) {
+        if (!rows.length) return [];
+
+        const rowsWithPinned: DataRowProps<TItem, TId>[] = [];
+        const alreadyAdded = rows.map(({ id }) => id);
+        const [firstRow] = rows;
+        firstRow.path.forEach((item) => {
+            const pinnedIndex = this.pinned[this.idToKey(item.id)];
+            if (pinnedIndex === undefined) return;
+
+            const parent = this.rows[pinnedIndex];
+            if (!parent || alreadyAdded.includes(parent.id)) return;
+
+            rowsWithPinned.push(parent);
+            alreadyAdded.push(parent.id);
+        });
+
+        const lastHiddenPinned = this.getLastHiddenPinnedByParent(firstRow, alreadyAdded);
+        if (lastHiddenPinned) {
+            rowsWithPinned.push(lastHiddenPinned);                
+        }
+
+        return rowsWithPinned.concat(rows);
     }
 
     private getEstimatedChildrenCount = (id: TId) => {
@@ -520,15 +590,28 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         this.searchWasChanged(prevValue, newValue)
         || this.sortingWasChanged(prevValue, newValue)
         || this.filterWasChanged(prevValue, newValue)
-        || newValue.page !== prevValue.page
-        || newValue.pageSize !== prevValue.pageSize;
+        || newValue?.page !== prevValue?.page
+        || newValue?.pageSize !== prevValue?.pageSize;
 
-    protected shouldRebuildRows = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) =>
-        !prevValue || !isEqual(newValue.checked, prevValue.checked) || newValue.selectedId !== prevValue.selectedId || newValue.folded !== prevValue.folded;
+    protected shouldRebuildRows = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) =>
+        !prevValue
+        || this.checkedWasChanged(prevValue, newValue)
+        || newValue?.selectedId !== prevValue?.selectedId
+        || newValue?.folded !== prevValue?.folded;
 
-    protected sortingWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) => !isEqual(newValue.sorting, prevValue.sorting);
-    protected filterWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) => !isEqual(newValue.filter, prevValue.filter);
-    protected searchWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) => newValue.search !== prevValue.search;
+    protected checkedWasChanged = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => 
+        (prevValue?.checked?.length ?? 0) !== (newValue?.checked?.length ?? 0)
+        || !isEqual(newValue?.checked, prevValue?.checked);
+    
+    protected sortingWasChanged = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => 
+        !isEqual(newValue?.sorting, prevValue?.sorting);
+
+    protected filterWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) =>
+        !isEqual(newValue?.filter, prevValue?.filter);
+
+    protected searchWasChanged = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => 
+        newValue?.search !== prevValue?.search;
+    
     protected abstract handleSelectAll(checked: boolean): void;
     protected abstract getChildCount(item: TItem): number | undefined;
     protected isFlattenSearch = () => false;

@@ -30,7 +30,7 @@ describe('LazyListView', () => {
         return testApi({ ...rq, filter, search });
     };
 
-    const ds = new LazyDataSource({ api, getChildCount: (i) => i.childrenCount });
+    const ds = new LazyDataSource({ api, getChildCount: (i) => i.childrenCount ?? 0 });
     const viewProps = {
         flattenSearchResults: true,
         getRowOptions: () => ({ checkbox: { isVisible: true } }),
@@ -45,7 +45,7 @@ describe('LazyListView', () => {
     const view = getView();
 
     it('should search for nested children and build correct path, indent, depth, isLastChild', async () => {
-        view.update({ search: 'ABC5', topIndex: 0, visibleCount: 20 }, viewProps);
+        view.update({ value: { search: 'ABC5', topIndex: 0, visibleCount: 20 }, onValueChange: onValueChanged }, viewProps);
 
         view.getVisibleRows();
         await delay();
@@ -77,7 +77,7 @@ describe('LazyListView', () => {
     });
 
     it('should detect if found item is last child in parent', async () => {
-        view.update({ search: 'ABC', topIndex: 0, visibleCount: 20 }, viewProps);
+        view.update({ value: { search: 'ABC', topIndex: 0, visibleCount: 20 }, onValueChange: onValueChanged }, viewProps);
 
         view.getVisibleRows();
         await delay();

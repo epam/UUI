@@ -1,6 +1,6 @@
 import { DataSourceState, LazyDataSourceApi, DataQueryFilter } from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { LoadTreeOptions, Tree, TreeNodeInfo } from '../tree';
+import { ITree, LoadTreeOptions, Tree, TreeNodeInfo } from '../tree';
 
 interface TestItem {
     id: number;
@@ -50,7 +50,7 @@ describe('Tree - load', () => {
 
     const loadParams: LoadTreeOptions<TestItem, number, DataQueryFilter<TestItem>> = {
         api: testApi,
-        getChildCount: (i) => i.childrenCount,
+        getChildCount: (i) => i.childrenCount ?? 0,
         isFolded: () => true,
     };
 
@@ -61,14 +61,14 @@ describe('Tree - load', () => {
     });
 
     function expectTreeToLookLike(
-        actual: Tree<TestItem, number>,
+        actual: ITree<TestItem, number>,
         expectedById: Record<any, TestItem>,
         expectedByParentId: Record<any, number[]>,
         expectedNodeInfos: Record<any, TreeNodeInfo>,
     ) {
-        expect(Object.fromEntries(actual.byId)).toEqual(expectedById);
-        expect(Object.fromEntries(actual.byParentId)).toEqual(expectedByParentId);
-        expect(Object.fromEntries(actual.nodeInfoById)).toEqual(expectedNodeInfos);
+        expect(Object.fromEntries(actual['byId'])).toEqual(expectedById);
+        expect(Object.fromEntries(actual['byParentId'])).toEqual(expectedByParentId);
+        expect(Object.fromEntries(actual['nodeInfoById'])).toEqual(expectedNodeInfos);
     }
 
     it('Can load items (folded)', async () => {

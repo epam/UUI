@@ -6,3 +6,4 @@ export * from './MultiSwitch';
 export * from './NumericInput';
 export * from './TextArea';
 export * from './TimePicker';
+export * from './InputAddon';

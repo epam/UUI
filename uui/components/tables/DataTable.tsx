@@ -1,16 +1,20 @@
 import * as React from 'react';
 import { PositionValues, VirtualListRenderRowsParams, IconContainer, DataTableSelectionProvider } from '@epam/uui-components';
 import { useColumnsWithFilters } from '../../helpers';
-import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx, TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData } from '@epam/uui-core';
+import {
+    ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions,
+    DataSourceListProps, DataColumnProps, cx, TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData,
+} from '@epam/uui-core';
 import { DataTableHeaderRow } from './DataTableHeaderRow';
 import { DataTableRow } from './DataTableRow';
 import { DataTableMods, DataTableRowMods } from './types';
 import { ColumnsConfigurationModal, ColumnsConfigurationModalProps } from './columnsConfigurationModal';
-import { VirtualList } from '../layout';
+import { VirtualList, Blocker } from '../layout';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from '../typography';
 import css from './DataTable.module.scss';
 import { i18n } from '../../i18n';
+import { DataRowsContainer } from './DataRowsContainer';
 
 export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
@@ -26,15 +30,16 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
+    const headerRef = React.useRef<HTMLDivElement>();
     const columnsWithFilters = useColumnsWithFilters(props.columns, props.filters);
     const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
 
-    const renderRow = React.useCallback((rowProps: DataRowProps<TItem, TId> & DataTableRowMods) => {
-        return <DataTableRow key={ rowProps.rowKey } size={ props.size } borderBottom={ props.border } { ...rowProps } />;
+    const defaultRenderRow = React.useCallback((rowProps: DataRowProps<TItem, TId> & DataTableRowMods) => {
+        return <DataTableRow key={ rowProps.rowKey } size={ props.size } borderBottom={ props.border } { ...rowProps } cx={ css.cell } />;
     }, []);
 
+    const renderRow = (row: DataRowProps<TItem, TId>) => (props.renderRow ?? defaultRenderRow)({ ...row, columns });
     const rows = props.getRows();
-    const renderedRows = rows.map((row) => (props.renderRow || renderRow)({ ...row, columns }));
 
     const renderNoResultsBlock = React.useCallback(() => {
         return (
@@ -83,7 +88,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const renderRowsContainer = React.useCallback(
         ({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
             <>
-                <div className={ css.stickyHeader }>
+                <div className={ css.stickyHeader } ref={ headerRef }>
                     <DataTableHeaderRow
                         columns={ columns }
                         onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
@@ -102,12 +107,19 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                     />
                 </div>
                 {props.exactRowsCount !== 0 ? (
-                    <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
-                        <div ref={ listContainerRef } role="rowgroup" style={ { marginTop: offsetY } } children={ renderedRows } />
-                    </div>
+                    <DataRowsContainer
+                        headerRef={ headerRef }
+                        listContainerRef={ listContainerRef }
+                        estimatedHeight={ estimatedHeight } 
+                        offsetY={ offsetY } 
+                        scrollShadows={ scrollShadows }
+                        renderRow={ renderRow }
+                        rows={ rows }
+                    />
                 ) : (
                     renderNoResultsBlock?.()
                 )}
+                <Blocker isEnabled={ props.isReloading } />
             </>
         ),
         [
@@ -121,10 +133,11 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 value={ props.value }
                 onValueChange={ props.onValueChange }
                 onScroll={ props.onScroll }
-                rows={ renderedRows }
                 rowsCount={ props.rowsCount }
                 renderRows={ renderRowsContainer }
                 cx={ cx(css.table) }
+                disableScroll={ props.isReloading }
+                rowsSelector="[role=row]"
                 rawProps={ {
                     role: 'table',
                     'aria-colcount': columns.length,

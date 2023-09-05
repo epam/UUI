@@ -196,7 +196,7 @@ describe('LazyListView with tree table', () => {
         let rows = view.getVisibleRows();
         value.visibleCount = 6;
         view = ds.getView(value, onValueChanged, {});
-        rows[0].onFold(rows[0]);
+        rows[0].onFold?.(rows[0]);
         view = ds.getView(value, onValueChanged, {});
         expectViewToLookLike(
             view,
@@ -228,7 +228,7 @@ describe('LazyListView with tree table', () => {
 
         // // Unfold more rows
         rows = view.getVisibleRows();
-        rows[2].onFold(rows[2]);
+        rows[2].onFold?.(rows[2]);
         value.visibleCount = 5;
         // value.topIndex = 5;
 

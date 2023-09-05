@@ -63,6 +63,7 @@ export function FilteredTable() {
         {
             api: api,
             selectAll: false,
+            backgroundReload: true,
         },
         [],
     );

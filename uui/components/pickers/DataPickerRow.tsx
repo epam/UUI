@@ -42,7 +42,13 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
                 <FlexSpacer />
                 {(rowProps.isChildrenSelected || rowProps.isSelected) && (
                     <div className={ css.iconWrapper }>
-                        <IconContainer icon={ this.getIcon(this.props.size) } cx={ rowProps.isChildrenSelected ? css.iconDefault : css.iconPrimary } />
+                        <IconContainer 
+                            icon={ this.getIcon(this.props.size) } 
+                            cx={ rowProps.isChildrenSelected ? css.iconDefault : css.iconPrimary }
+                            rawProps={ { 'aria-label': rowProps.isChildrenSelected 
+                                ? 'Child is selected' 
+                                : 'Selected' } }
+                        />
                     </div>
                 )}
             </div>

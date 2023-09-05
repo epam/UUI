@@ -17,8 +17,8 @@ interface IFilteredTableFooterProps {
 export function FilteredTableFooter(props: IFilteredTableFooterProps) {
     const [goToPage, setGoToPage] = useState('1');
     const totalPages = props.tableState.pageSize ? Math.ceil(props.totalCount / props.tableState.pageSize) : 0;
-    const goToPageHandler = () => props.setTableState({ ...props.tableState, page: +goToPage, indexToScroll: 0 });
-    const paginatorHandler = (newPage: number) => props.setTableState({ ...props.tableState, page: newPage, indexToScroll: 0 });
+    const goToPageHandler = () => props.setTableState({ ...props.tableState, page: +goToPage, scrollTo: { index: 0 } });
+    const paginatorHandler = (newPage: number) => props.setTableState({ ...props.tableState, page: newPage, scrollTo: { index: 0 } });
 
     const itemsPerPageDataSource = useArrayDataSource(
         {
