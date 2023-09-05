@@ -16,9 +16,11 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     private ghostWidth: number = 300;
     private renderGhostCallback: () => React.ReactNode = null;
     private lastScrollTime = new Date().getTime();
-    private mouseCoordsService = new MouseCoordsService();
-    constructor() {
+    private mouseCoordsService;
+    constructor(public id: number) {
         super();
+        console.log('constructor id', id);
+        this.mouseCoordsService = new MouseCoordsService(id)
         if (isClientSide) {
             this.mouseCoordsService.init();
             window.addEventListener('pointermove', this.windowPointerMoveHandler);
@@ -172,6 +174,8 @@ export type TMouseCoords = {
 
 class MouseCoordsService {
     private _prevMouseCoords: TMouseCoords;
+    constructor(public id: number) {
+    }
 
     init = () => {
         this._prevMouseCoords = {
@@ -197,10 +201,14 @@ class MouseCoordsService {
     }
 
     private handleMouseCoordsChange = (e: PointerEvent) => {
+        console.log('pointer change id', this.id);
+
         this._prevMouseCoords = getMouseCoordsFromPointerEvent(e, this._prevMouseCoords);
     };
 
     public getCoords = () => {
+        console.log('get cords', this.id);
+
         return this._prevMouseCoords;
     };
 }

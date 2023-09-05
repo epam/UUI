@@ -12,7 +12,7 @@ import {
 } from '../services';
 import { ApiCallOptions, CommonContexts, IRouterContext } from '../types';
 import { UserSettingsContext } from '../services/UserSettingsContext';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 
 export interface IUseUuiServicesProps<TApi, TAppContext> extends IUuiServicesProps<TApi> {
     appContext?: TAppContext;
@@ -23,6 +23,8 @@ type TCreateServicesReturnValue<TApi, TAppContext> = {
     services: CommonContexts<TApi, TAppContext>,
     destroyServices: () => void
 };
+
+let id = 1;
 
 function createServices<TApi, TAppContext>(props: IUseUuiServicesProps<TApi, TAppContext>): TCreateServicesReturnValue<TApi, TAppContext> {
     const {
@@ -42,7 +44,7 @@ function createServices<TApi, TAppContext>(props: IUseUuiServicesProps<TApi, TAp
     const api = { ...rawApi, withOptions };
 
     const uuiUserSettings = new UserSettingsContext();
-    const uuiDnD = new DndContext();
+    const uuiDnD = new DndContext(id);
     const services = {
         uuiAnalytics,
         uuiErrors,
@@ -57,7 +59,9 @@ function createServices<TApi, TAppContext>(props: IUseUuiServicesProps<TApi, TAp
         uuiLocks,
         uuiApp: appContext || ({} as TAppContext),
         uuiSkin,
+        id: id,
     };
+    id = id + 1;
     return {
         services,
         destroyServices: () => {
@@ -86,7 +90,9 @@ export const useUuiServices = <TApi, TAppContext>(props: IUseUuiServicesProps<TA
 
     useEffect(() => {
         (window as any).UUI_VERSION = __PACKAGE_VERSION__; // it replaced with current uui version during build time
+        console.log('effect', services.id);
         return () => {
+            console.log('destroy', services.id)
             destroyServices();
         };
     }, []);
