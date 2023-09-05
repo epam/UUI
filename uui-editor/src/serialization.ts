@@ -21,7 +21,6 @@ import {
     codeBlockPlugin,
     paragraphPlugin,
 } from './plugins';
-import { suppressLayoutEffectWarnings } from './utils/suppressLayoutEffectWarn';
 
 const workingPlugins = [
     paragraphPlugin(),
@@ -36,9 +35,6 @@ const workingPlugins = [
     iframePlugin(),
     codeBlockPlugin(),
 ];
-
-// https://github.com/udecode/plate/issues/1123
-suppressLayoutEffectWarnings();
 
 const createTempEditor = () => {
     return createPlateEditor({
