@@ -1,11 +1,21 @@
-[
-  {
+{
+  "object": "value",
+  "document": {
+    "object": "document",
     "data": {},
-    "type": "paragraph",
-    "children": [
+    "nodes": [
       {
-        "text": "Basic checkbox usage"
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Basic checkbox usage",
+            "marks": []
+          }
+        ]
       }
     ]
   }
-]
+}
