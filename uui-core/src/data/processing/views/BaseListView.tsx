@@ -450,7 +450,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             if (!pinnedRow) {
                 return false;
             }
-
             return row.index >= pinnedRow.index;
         };
 
@@ -476,7 +475,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         }
 
         const lastPinnedBeforeRow = this.getLastPinnedBeforeRow(row, pinnedIndexes);
-        if (!lastPinnedBeforeRow) {
+        if (lastPinnedBeforeRow === undefined) {
             return undefined;
         }
 
