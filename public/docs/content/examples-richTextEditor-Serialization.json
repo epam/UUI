@@ -4,24 +4,37 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "You can serialize editor content by calling "
+        "text": "By default "
       },
       {
-        "text": "serializeHTML(...)",
+        "text": "SlateEditor",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " and then display it via "
+        "text": " component worked with JSON format of value, but you can serialize/deserialize json value to the HTML format via "
       },
       {
-        "text": "RichTextView",
+        "text": "serializeHTML",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " component. "
+        "text": " and "
       },
       {
-        "text": "For now, only available plugins are: paragraph, bold, underline, italic, header, superscript, list, quote, link, image, iframe, video, codeblock."
+        "text": "deserializeHTML",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " helpers."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-warning",
+    "children": [
+      {
+        "text": "Note, HTML format supports blocks which can be represented as html elements, therefore  worked only with limited set of plugins, such as: paragraphPlugin, baseMarksPlugin, headerPlugin, superscriptPlugin, listPlugin, quotePlugin, linkPlugin, imagePlugin, videoPlugin, iframePlugin, codeBlockPlugin."
       }
     ]
   }
