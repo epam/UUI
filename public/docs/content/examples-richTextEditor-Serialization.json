@@ -4,21 +4,24 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "You can serialize editor content by using "
+        "text": "You can serialize editor content by calling "
       },
       {
         "text": "serializeHTML(...)",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " and "
+        "text": " and then display it via "
       },
       {
-        "text": "deserializeHTML(...)",
+        "text": "RichTextView",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " functions. For now, available plugins: paragraph, bold, underline, italic, header, superscript, list, quote, link, image, iframe, video, codeblock."
+        "text": " component. "
+      },
+      {
+        "text": "For now, only available plugins are: paragraph, bold, underline, italic, header, superscript, list, quote, link, image, iframe, video, codeblock."
       }
     ]
   }
