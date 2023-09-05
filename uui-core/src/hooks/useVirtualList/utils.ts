@@ -164,5 +164,5 @@ export const shouldScroll = (scrollTo: ScrollToConfig, { scrollContainer, rowOff
         realTopIndex += 1;
     }
 
-    return index < realTopIndex;
+    return index <= realTopIndex;
 };
