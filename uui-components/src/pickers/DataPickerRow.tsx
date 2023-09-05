@@ -30,6 +30,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
                 onClick={ clickHandler && (() => clickHandler(this.props)) }
                 rawProps={ {
                     role: 'option',
+                    'aria-busy': this.props.isLoading,
                     'aria-posinset': this.props.index + 1,
                     ...(this.props.checkbox?.isVisible && { 'aria-checked': this.props.isChecked }),
                     ...(this.props.isSelectable && { 'aria-selected': this.props.isSelected }),

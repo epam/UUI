@@ -66,7 +66,7 @@ export default function MainMenuResponsiveExample() {
                 id: 'People', priority: 9, render: (p) => <MainMenuButton key={ p.id } href="/" caption="People" />, caption: 'People',
             },
             {
-                id: 'Projects', priority: 7, render: (p) => <MainMenuButton key={ p.id } caption="Projects" />, caption: 'Projects',
+                id: 'Projects', priority: 7, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Projects" />, caption: 'Projects',
             },
             {
                 id: 'Positions', priority: 6, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Positions" />, caption: 'Positions',

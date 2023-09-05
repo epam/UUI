@@ -158,6 +158,7 @@ export function PersonsTableDemo() {
             rowOptions: { checkbox: { isVisible: true } },
             isFoldedByDefault: () => value.isFolded,
             cascadeSelection: true,
+            backgroundReload: true,
         },
         [value.filter?.groupBy],
     );

@@ -1,298 +1,180 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
+        "text": "In case the standard "
+      },
+      {
+        "text": "VirtualList",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " doesn't fit you, we provide a separate "
+      },
+      {
+        "text": "useVirtualList",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "  ",
+        "uui-richTextEditor-italic": true
+      },
+      {
+        "text": "hook in case you would like to build something your own based on it."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "text": "useVirtualList",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " hook returns the following api:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
         "data": {},
-        "nodes": [
+        "type": "unordered-list",
+        "children": [
           {
-            "object": "text",
-            "text": "In case the standard ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "VirtualList",
-            "marks": [
+            "data": {},
+            "type": "list-item",
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "data": {},
+                "type": "list-item-child",
+                "children": [
+                  {
+                    "text": "scrollContainerRef",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": " - ref to scroll container. This should be a DOM Element with scrollbars inside. We'll use this ref to calculate the estimated height of the list precisely."
+                  }
+                ]
               }
             ]
           },
           {
-            "object": "text",
-            "text": " doesn't fit you, we provide a separate ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "useVirtualList",
-            "marks": [
+            "data": {},
+            "type": "list-item",
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "data": {},
+                "type": "list-item-child",
+                "children": [
+                  {
+                    "text": "listContainerRef",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": " - ref to the list wrapper that is going to be virtualized."
+                  }
+                ]
               }
             ]
           },
           {
-            "object": "text",
-            "text": "  ",
-            "marks": [
+            "data": {},
+            "type": "list-item",
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
+                "data": {},
+                "type": "list-item-child",
+                "children": [
+                  {
+                    "text": "estimatedHeight",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": " - to measure the approximate height of the list."
+                  }
+                ]
               }
             ]
           },
           {
-            "object": "text",
-            "text": "hook in case you would like to build something your own based on it.",
-            "marks": []
+            "data": {},
+            "type": "list-item",
+            "children": [
+              {
+                "data": {},
+                "type": "list-item-child",
+                "children": [
+                  {
+                    "text": "offsetY",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": " - must be provided in case listContainer and scrollContainer are different."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "data": {},
+            "type": "list-item",
+            "children": [
+              {
+                "data": {},
+                "type": "list-item-child",
+                "children": [
+                  {
+                    "text": "handleScroll",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": " - must be applied to the container as a scroll event handler."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "data": {},
+            "type": "list-item",
+            "children": [
+              {
+                "data": {},
+                "type": "list-item-child",
+                "children": [
+                  {
+                    "text": "scrollToIndex",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": " - to scroll to a particular item."
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "\n",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "useVirtualList",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " hook returns the following api:",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
         "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "children": [
           {
-            "object": "block",
-            "type": "unordered-list",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "list-item-child",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "scrollContainerRef",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " - ref to scroll container. This should be a DOM Element with scrollbars inside. We'll use this ref to calculate the estimated height of the list precisely.",
-                        "marks": []
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "list-item",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "list-item-child",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "listContainerRef",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " - ref to the list wrapper that is going to be virtualized.",
-                        "marks": []
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "list-item",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "list-item-child",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "estimatedHeight",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " - to measure the approximate height of the list.",
-                        "marks": []
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "list-item",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "list-item-child",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "offsetY",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " - must be provided in case listContainer and scrollContainer are different.",
-                        "marks": []
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "list-item",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "list-item-child",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "handleScroll",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " - must be applied to the container as a scroll event handler.",
-                        "marks": []
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "list-item",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "list-item-child",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "scrollToIndex",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " - to scroll to a particular item.",
-                        "marks": []
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "paragraph",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "In this example, we show how to make a virtualized list when scrollContainer is a whole page with a header(which dont't need to be virtualized), with a list of items inside.",
-                "marks": []
-              }
-            ]
+            "text": "In this example, we show how to make a virtualized list when scrollContainer is a whole page with a header(which dont't need to be virtualized), with a list of items inside."
           }
         ]
       }
     ]
   }
-}
+]

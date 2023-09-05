@@ -5,11 +5,6 @@
     z-index: 5;
 }
 
-.listContainer {
-    margin-top: 1px;
-    isolation: isolate;
-}
-
 .table {
     &:global(.-scrolled-left) {
         :global(.uui-scroll-shadow-left) {

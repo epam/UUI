@@ -7,6 +7,7 @@ const fileUpload = require('express-fileupload');
 const api = require('./api');
 const fileUploadApi = require('./api/fileUpload');
 const { isDevServer } = require('./utils/envUtils');
+const actuator = require('express-actuator');
 const staticMiddleware = require('./static');
 
 const app = express();
@@ -37,6 +38,8 @@ app.use((req, res, next) => {
 
     next();
 });
+
+app.use(actuator({ basePath: '/actuator' }));
 
 app.use('/upload', fileUploadApi);
 app.use('/api', api);

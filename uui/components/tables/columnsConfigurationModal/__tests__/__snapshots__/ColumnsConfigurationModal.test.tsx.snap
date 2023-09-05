@@ -10,6 +10,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
   }
 >
   <div
+    aria-label="Click to close a modal"
     className="uui-modal-blocker"
     onClick={[Function]}
   />
@@ -75,6 +76,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           }
         >
           <button
+            aria-label="Close modal"
             className="container uui-button-box uui-enabled -clickable icon-button-default root"
             onClick={[Function]}
             tabIndex={0}
@@ -528,6 +530,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
   }
 >
   <div
+    aria-label="Click to close a modal"
     className="uui-modal-blocker"
     onClick={[Function]}
   />
@@ -593,6 +596,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
           }
         >
           <button
+            aria-label="Close modal"
             className="container uui-button-box uui-enabled -clickable icon-button-default root"
             onClick={[Function]}
             tabIndex={0}

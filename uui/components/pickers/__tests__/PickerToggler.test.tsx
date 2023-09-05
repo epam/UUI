@@ -3,12 +3,12 @@ import { renderer } from '@epam/uui-test-utils';
 import { PickerToggler } from '../PickerToggler';
 
 describe('PickerToggler', () => {
-    it('should be rendered correctly', () => {
+    it('should render with minimum props', () => {
         const tree = renderer.create(<PickerToggler pickerMode="single" searchPosition="none" />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
+    it('should render with maximum props', () => {
         const tree = renderer
             .create(
                 <PickerToggler
