@@ -1,13 +1,8 @@
-@use '~@epam/assets/scss/promo/colors' as *;
-
 .root {
     overflow: unset;
     width: 100%;
 }
 
 .rich-text-view {
-    padding: 0 24px;
-    border-width: 1px;
-    border-color: $gray40;
-    border-style: solid;
+    padding: 1px 25px;
 }
