@@ -18,6 +18,7 @@ import { getApi, TApi } from './data';
 import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
 import './index.module.scss';
+import { createRoot } from 'react-dom/client';
 
 const router6 = createBrowserRouter([
     { path: '*', element: <App /> },
@@ -59,13 +60,12 @@ function UuiEnhancedApp() {
     }
     return null;
 }
-
+const root = createRoot(document.getElementById('root'));
 function initApp() {
-    render(
+    root.render(
         <React.StrictMode>
             <UuiEnhancedApp />
         </React.StrictMode>,
-        document.getElementById('root'),
     );
 }
 
