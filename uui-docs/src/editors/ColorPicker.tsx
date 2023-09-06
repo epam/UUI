@@ -17,7 +17,7 @@ export class ColorPicker extends React.Component<ColorPickerProps, any> {
     getUuiClass = (color: Color) => {
         switch (color.value) {
             case 'white': return 'var(--neutral0)';
-            case 'neutral': return 'var(--neutral30)';
+            case 'neutral': return 'var(--neutral50)';
             default: return `var(--uui-${color.value}-50)`;
         }
     };
