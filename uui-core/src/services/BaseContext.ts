@@ -2,6 +2,11 @@ import ReactDOM from 'react-dom';
 
 export class BaseContext<TState = {}> {
     private handlers: ((state: TState) => void)[] = [];
+
+    init() {
+
+    }
+
     subscribe(handler: (state: TState) => void) {
         this.handlers.push(handler);
     }
