@@ -2,6 +2,7 @@ import { TTableCellElement } from '@udecode/plate-table';
 
 export type ExtendedTTableCellElement = TTableCellElement & {
     rowSpan?: number;
+    startColIndex?: number;
     colIndex?: number;
     rowIndex?: number;
     data: {
