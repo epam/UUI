@@ -17,8 +17,10 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     private renderGhostCallback: () => React.ReactNode = null;
     private lastScrollTime = new Date().getTime();
     private mouseCoordsService = new MouseCoordsService();
-    constructor() {
-        super();
+
+    init() {
+        super.init();
+
         if (isClientSide) {
             this.mouseCoordsService.init();
             window.addEventListener('pointermove', this.windowPointerMoveHandler);
