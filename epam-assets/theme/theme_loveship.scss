@@ -600,6 +600,14 @@
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
+    /* Informer */
+
+    .uui-informer.uui-color-gray,
+    .uui-informer.uui-color-neutral {
+        --uui-color-50: var(--neutral30);
+        --uui-color-contrast-text: var(--uui-text-dark);
+    }
+
     // fonts
 
     .uui-font-sans {

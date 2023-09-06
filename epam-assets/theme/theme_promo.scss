@@ -334,7 +334,7 @@
         --uui-color-60: var(--uui-warning-60);
         --uui-color-70: var(--uui-warning-70);
         --uui-color-text: var(--uui-warning-50);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-color-contrast-text: var(--uui-text-dark);
     }
 
     .uui-color-white {
@@ -539,6 +539,14 @@
     .uui-tooltip-container.uui-color-gray, .uui-tooltip-container.uui-color-contrast {
         --uui-color-50: var(--gray80);
         --uui-color-contrast-text: var(--uui-text-white);
+    }
+
+    /* Informer */
+
+    .uui-informer.uui-color-gray,
+    .uui-informer.uui-color-neutral {
+        --uui-color-50: var(--neutral30);
+        --uui-color-contrast-text: var(--uui-text-dark);
     }
 
     .uui-tag {
