@@ -27,7 +27,9 @@ TableCellElementProps
     cellElement.colSpan = cellElement.colSpan || attrColSpan || 1;
     cellElement.rowSpan = cellElement.rowSpan || attrRowSpan || 1;
 
-    const rowIndex = getTableRowIndex(editor, cellElement) + cellElement.rowSpan - 1;
+    const rowIndex = getTableRowIndex(editor, cellElement);
+    cellElement.rowIndex = rowIndex;
+    const endRowIndex = rowIndex + cellElement.rowSpan - 1;
 
     const readOnly = useReadOnly();
 
@@ -37,13 +39,12 @@ TableCellElementProps
     const tableElement = useElement<TTableElement>(ELEMENT_TABLE);
     const rowElement = useElement<TTableRowElement>(ELEMENT_TR);
     const rowSizeOverrides = useTableStore().get.rowSizeOverrides();
-    const rowSize = rowSizeOverrides.get(rowIndex) ?? rowElement?.size ?? undefined;
+    const rowSize = rowSizeOverrides.get(endRowIndex) ?? rowElement?.size ?? undefined;
 
     const isFirstRow = tableElement.children?.[0] === rowElement;
 
     const isHeader = cellElement.type === 'table_header_cell';
     const Cell = isHeader ? 'th' : 'td';
-
 
     const endColIndex = useRef<number>(getTableColumnIndex(editor, cellElement));
     const startCIndex = useRef<number>(getTableColumnIndex(editor, cellElement));
@@ -153,7 +154,7 @@ TableCellElementProps
                 >
                     <TableCellElementResizable
                         colIndex={ endColIndex.current }
-                        rowIndex={ rowIndex }
+                        rowIndex={ endRowIndex }
                         readOnly={ readOnly }
                     />
 

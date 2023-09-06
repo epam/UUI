@@ -4,11 +4,12 @@ import {
     PlateElementProps,
     getPluginOptions,
 } from '@udecode/plate-common';
-import { ELEMENT_TABLE, TTableElement, TablePlugin, useTableElement, useTableStore } from '@udecode/plate-table';
+import { ELEMENT_TABLE, TTableElement, TablePlugin, useTableStore } from '@udecode/plate-table';
 import cx from 'classnames';
 import css from './TableElement.module.scss';
 import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
 import { getTableColumnCount } from './utils';
+import { useTableElement } from './useTableElement';
 
 interface OldTableElement extends TTableElement {
     data?: {

@@ -10,13 +10,16 @@ import { PositionedToolbar } from '../../implementation/PositionedToolbar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { PlateEditor, PlatePlugin, Value, getPluginType, insertNodes, someNode, usePlateEditorState, withoutNormalizing } from '@udecode/plate-common';
-import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, TablePlugin, createTablePlugin, getTableGridAbove } from '@udecode/plate-table';
+import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, TablePlugin, createTablePlugin } from '@udecode/plate-table';
 import { MergeToolbarContent } from './MergeToolbarContent';
 import { TableToolbarContent } from './ToolbarContent';
 import { createInitialTable, selectFirstCell } from './utils';
 import { TableRowElement } from './TableRowElement';
 import { TableCellElement } from './TableCellElement';
 import { TableElement } from './TableElement';
+import { withSelectionTable } from './withSelectionTable';
+import { useSelectedCells } from './useSelectedCells';
+import { getTableGridAbove } from './getTableGridAbove';
 
 const noop = () => {};
 
@@ -90,6 +93,7 @@ export const tablePlugin: CreateTablePlugin = () => createTablePlugin({
         [ELEMENT_TABLE]: {
             type: 'table',
             component: TableRenderer,
+            withOverrides: withSelectionTable,
         },
         [ELEMENT_TR]: {
             type: 'table_row',
