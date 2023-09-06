@@ -14,6 +14,7 @@ const icons = systemIcons['36'];
 export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick, IDropdownToggler {
     isSelected?: boolean;
     isActive?: boolean;
+    indent?: boolean;
 }
 
 export interface IDropdownMenuContainer extends VPanelProps, DropdownBodyProps {
@@ -113,9 +114,14 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             />
         );
 
+        let iconElementDraw = false;
+        if (isIconBefore || props.indent) {
+            iconElementDraw = true;
+        }
+
         return (
             <>
-                {isIconBefore && iconElement}
+                {iconElementDraw && iconElement}
                 <Text cx={ css.caption }>{caption}</Text>
                 {isIconAfter && (
                     <>
