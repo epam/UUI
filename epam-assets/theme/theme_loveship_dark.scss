@@ -563,19 +563,27 @@
 
     .uui-informer.uui-color-neutral {
         --uui-color-50: var(--neutral60);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-informer-caption: var(--uui-text-white);
     }
 
-    .uui-informer.uui-color-info,
-    .uui-informer.uui-color-success,
+    .uui-informer.uui-color-info {
+        --uui-color-50: var(--blue-40);
+        --uui-informer-caption: var(--uui-text-white);
+    }
+
+    .uui-informer.uui-color-success {
+        --uui-color-50: var(--green-40);
+        --uui-informer-caption: var(--uui-text-white);
+    }
+
     .uui-informer.uui-color-negative {
-        --uui-color-50: var(--uui-color-60);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-color-50: var(--red-40);
+        --uui-informer-caption: var(--uui-text-white);
     }
 
     .uui-informer.uui-color-warning {
-        --uui-color-50: var(--uui-color-60);
-        --uui-color-contrast-text: var(--uui-text-contrast);
+        --uui-color-50: var(--amber-40);
+        --uui-informer-caption: var(--uui-text-contrast);
     }
 
     // fonts
