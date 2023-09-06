@@ -2,8 +2,8 @@ import React from 'react';
 
 import { ReactComponent as TableMerge } from '../../icons/table-merge.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import { usePlateEditorState, TElementEntry, removeNodes, insertElements, getRange } from '@udecode/plate-common';
-import { getEmptyCellNode } from '@udecode/plate-table';
+import { usePlateEditorState, TElementEntry, removeNodes, insertElements, getRange, findNode } from '@udecode/plate-common';
+import { getCellTypes, getEmptyCellNode } from '@udecode/plate-table';
 import { Path } from 'slate';
 import { getColSpan, getRowSpan } from './utils';
 import { ExtendedTTableCellElement } from './types';
@@ -73,64 +73,33 @@ export function MergeToolbarContent({ cellEntries: selectedCellEntries }: { cell
             }
         });
 
-        // // removes multiple cells with on same path.
-        // // once cell removed, next cell in the row will settle down on that path
-        // Object.values(cols).forEach((paths: any) => {
-        //     paths?.forEach(() => {
-        //         removeNodes(editor, { at: paths[0] });
-        //     });
-        // });
+        // removes multiple cells with on same path.
+        // once cell removed, next cell in the row will settle down on that path
+        Object.values(cols).forEach((paths: any) => {
+            paths?.forEach(() => {
+                const validEntry = findNode(editor, {
+                    at: paths[0],
+                    match: { type: getCellTypes(editor) },
+                });
+                const validNode = validEntry?.[0] as ExtendedTTableCellElement;
+                console.log('validNode', validNode);
 
-        removeNodes(editor, {
-            at: getRange(editor, paths.at(0)!, paths.at(-1)!),
-            match: (element, path) => {
-                if (element.type === 'table_cell' || element.type === 'table_header_cell') {
-                    const currentCellElem = element as ExtendedTTableCellElement;
-                    // console.log('comparing', element);
+                const shouldRemove = !!selectedCellEntries.find((entry) => {
+                    const cellElem = entry[0] as ExtendedTTableCellElement;
+                    if (cellElem === validNode) {
+                        console.log('ar equal', validNode);
+                    }
 
-                    return !!selectedCellEntries.find((entry) => {
-                        const cellElem = entry[0] as ExtendedTTableCellElement;
-                        if (cellElem === element) {
-                            console.log('ar equal', element);
-                        }
-                        // Path.equals(p, path)
-                        return cellElem === element;
-                    });
+                    return cellElem === validNode;
+                });
 
-                    // const curEndingRowIndex = currentCellElem.rowIndex + currentCellElem.rowSpan - 1;
-                    // const curEndingColIndex = currentCellElem.colIndex + currentCellElem.colSpan - 1;
-
-                    // if (
-                    //     startRowIndex >= currentCellElem.rowIndex
-                    //      && startColIndex >= currentCellElem.colIndex
-                    //        && endRowIndex <= curEndingRowIndex
-                    //         && endColIndex <= curEndingColIndex
-                    // ) {
-                    //     return true;
-                    // }
-
-                    // if (
-                    //     currentCellElem.rowIndex >= startRowIndex
-                    //      && currentCellElem.colIndex >= startColIndex
-                    // //    && endRowIndex <= curEndingRowIndex
-                    // //     && endColIndex <= curEndingColIndex
-                    // ) {
-                    //     console.log('current to delete', element);
-                    //     return true;
-                    // }
-
-                    // const _startRowIndex = element.rowIndex;
-                    // const _endRowIndex = endCell.rowIndex + endCell.rowSpan - 1;
-                    // const _startColIndex = element.colIndex;
-                    // const _endColIndex = endCell.colIndex + endCell.colSpan - 1;
+                if (validNode && shouldRemove) {
+                    removeNodes(editor, { at: paths[0] });
                 }
-
-                // if (paths.some((p) => Path.equals(p, path))) {
-                //     return true;
-                // }
-                return false;
-            },
+            });
         });
+
+        console.log('paths', paths);
 
         const mergedCell = {
             ...getEmptyCellNode(editor, {
