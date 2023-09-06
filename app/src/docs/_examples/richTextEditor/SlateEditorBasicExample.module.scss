@@ -5,4 +5,9 @@
 
 .rich-text-view {
     padding: 1px 25px;
+
+    iframe {
+        height: 400px;
+        width: 100%;
+    }
 }

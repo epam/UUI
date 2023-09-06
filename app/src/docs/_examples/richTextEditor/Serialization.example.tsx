@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Panel, FlexRow, Button, RichTextView } from '@epam/promo';
+import { Panel, FlexRow, RichTextView, Switch } from '@epam/promo';
 import {
     SlateEditor,
     imagePlugin,
@@ -14,8 +14,6 @@ import {
     EditorValue,
     codeBlockPlugin,
     createSerializer,
-    isEditorValueEmpty,
-    migrateSchema,
     createDeserializer,
     paragraphPlugin,
 } from '@epam/uui-editor';
@@ -40,47 +38,32 @@ const serializeHTML = createSerializer();
 const deserializeHTML = createDeserializer();
 
 export default function SlateEditorBasicExample() {
-    const [value, setValue] = useState<EditorValue>(migrateSchema(demoData.slateSerializationInitialData));
+    const [value, setValue] = useState<EditorValue>(demoData.slateSerializationInitialData);
 
-    const [serializedHtml, setSerializedHtml] = useState(serializeHTML(value));
-    const [type, setType] = React.useState<'html' | 'edit'>('edit');
+    const [serializedHtml, setSerializedHtml] = useState('');
+    const [type, setType] = React.useState<'view' | 'edit'>('edit');
 
     const onChangeEditorValue = (newValue: EditorValue) => {
         setValue(newValue);
     };
 
-    const onView = () => {
-        setSerializedHtml(serializeHTML(value));
-        setType('html');
-    };
-
-    const onEdit = () => {
-        setValue(deserializeHTML(serializedHtml));
-        setType('edit');
+    const onToggleViewMode = () => {
+        if (type === 'edit') {
+            setSerializedHtml(serializeHTML(value));
+            setType('view');
+        } else {
+            setValue(deserializeHTML(serializedHtml));
+            setType('edit');
+        }
     };
 
     return (
         <Panel cx={ css.root }>
             <FlexRow spacing="18" vPadding="12">
-                {type === 'edit' && (
-                    <Button
-                        caption="View"
-                        onClick={ onView }
-                        isDisabled={ isEditorValueEmpty(value) }
-                        size="30"
-                    />
-                )}
-                {type === 'html' && (
-                    <Button
-                        caption="Edit"
-                        onClick={ onEdit }
-                        isDisabled={ !serializedHtml }
-                        size="30"
-                    />
-                )}
+                <Switch value={ type === 'view' } onValueChange={ onToggleViewMode } label="View mode" />
             </FlexRow>
             {
-                type === 'html'
+                type === 'view'
                     ? (
                         <RichTextView cx={ css.richTextView } htmlContent={ serializedHtml } />
                     )
