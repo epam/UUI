@@ -1,5 +1,5 @@
-import { PlateEditor, TElementEntry, getNode, TElement, Value, findNode, getPluginType } from '@udecode/plate-common';
-import { ELEMENT_TABLE, TTableElement, TTableRowElement, getCellTypes, getEmptyTableNode } from '@udecode/plate-table';
+import { PlateEditor, TElementEntry, getNode, TElement, Value, findNode, getPluginType, findNodePath } from '@udecode/plate-common';
+import { ELEMENT_TABLE, TTableCellElement, TTableElement, TTableRowElement, getCellTypes, getEmptyTableNode } from '@udecode/plate-table';
 import { } from 'slate';
 import { ExtendedTTableCellElement } from './types';
 
@@ -74,6 +74,7 @@ export const getTableGridByRange = <V extends Value>(
         colCount: relativeColIndex + 1,
         newCellChildren: [],
     });
+    console.log('initial table', table);
 
     const tableEntry = findNode(editor, {
         at: tablePath,
@@ -87,8 +88,12 @@ export const getTableGridByRange = <V extends Value>(
 
     const cellEntries: TElementEntry[] = [];
 
+    const cellsSet = new Set();
+
+    console.log('-------------');
+
     while (true) {
-        const cellPath = tablePath.concat([rowIndex, colIndex]);
+        // const cellPath = tablePath.concat([rowIndex, colIndex]);
 
         // console.log('current cellPath', cellPath);
 
@@ -99,30 +104,70 @@ export const getTableGridByRange = <V extends Value>(
             // console.log('breaking, cant find cell with', rowIndex, colIndex);
             break;
         }
+        const cellPath = findNodePath(editor, cell);
 
-        // console.log('cell found', cell);
+        const path = cellPath.join();
+        // console.log('cell found', cell, path);
 
-        const rows = table.children[rowIndex - startRowIndex]
-            .children as TElement[];
+        if (!cellsSet.has(path)) {
+            cellsSet.add(path);
+            const content = cell.children.map((node: any) => node.children[0].text).join(' ');
+            const rows = table.children[rowIndex - startRowIndex]
+                .children as TElement[];
+            rows[colIndex - startColIndex] = cell;
+            // console.log(
+            //     'adding new cell',
+            //     content,
+            //     'path',
+            //     path,
+            //     // 'current set',
+            //     // ...cellsSet.entries(),
+            //     'current table',
+            //     JSON.stringify(
+            //         table.children,
+            //     ),
+            // );
 
-        rows[colIndex - startColIndex] = cell;
+            cellEntries.push([cell, cellPath]);
+        }
 
-        cellEntries.push([cell, cellPath]);
+        // console.log('updated rows', table.children);
 
         if (colIndex + 1 <= endColIndex) {
-            colIndex += 1;
+            colIndex = colIndex + 1;
+            // console.log('next col', colIndex);
         } else if (rowIndex + 1 <= endRowIndex) {
             colIndex = startColIndex;
-            rowIndex += 1;
+            rowIndex = rowIndex + 1;
+            // console.log('next row', rowIndex, colIndex);
         } else {
             // console.log('breaking with condition', rowIndex, colIndex, 'but', endColIndex, endRowIndex);
             break;
         }
     }
 
+    // console.log('table', table);
+
     if (format === 'cell') {
         return cellEntries;
     }
+
+    // clear redundant cells
+
+    table.children?.forEach((rowEl) => {
+        const rowElement = rowEl as TTableRowElement;
+
+        const filteredChildren = rowElement.children?.filter((cellEl) => {
+            const cellElement = cellEl as TTableCellElement;
+            console.log('current cell', cellElement);
+            return !!cellElement?.children.length;
+        });
+
+        rowElement.children = filteredChildren;
+
+        // console.log('rowEl', rowElement.children, 'filtered', filteredChildren);
+    });
+    // console.log('return table', table);
 
     return [[table, tablePath]];
 };
