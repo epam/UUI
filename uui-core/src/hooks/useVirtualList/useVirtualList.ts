@@ -124,8 +124,8 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             if (isNaN(topCoordinate)) {
                 return [false, false];
             }
-            const offset = getOffsetForScrollTo(getVirtualListInfo(), scrollTo);
             scrollContainer.current.scrollTo({ top: topCoordinate, behavior: scrollTo.behavior });
+            const offset = getOffsetForScrollTo(getVirtualListInfo(), scrollTo);
             return [offset === topCoordinate, true];
         },
         [scrollContainer.current, rowOffsets.current],
