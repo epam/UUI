@@ -72,13 +72,9 @@ export const getUpdatedRowsInfo = (
     };
 };
 
-const getNewTopIndex = ({ rowsCount, scrollContainer, rowOffsets, overdrawRows, blockSize, value }: VirtualListInfo) => {
-    let newTopIndex = 0;
-    const containerScrollTop = scrollContainer?.scrollTop ?? 0;
-    while (newTopIndex < rowsCount && rowOffsets[newTopIndex] < containerScrollTop) {
-        newTopIndex += 1;
-    }
-
+const getNewTopIndex = (info: VirtualListInfo) => {
+    const { overdrawRows, blockSize, value } = info;
+    let newTopIndex = getRealTopIndex(info);
     newTopIndex = newTopIndex - overdrawRows;
     newTopIndex = Math.max(0, newTopIndex);
 
@@ -94,19 +90,32 @@ const getNewTopIndex = ({ rowsCount, scrollContainer, rowOffsets, overdrawRows, 
     return Math.floor(newTopIndex / blockSize) * blockSize; // Align to blockSize
 };
 
-const getNewBottomIndex = (
-    { rowsCount, scrollContainer, rowOffsets, overdrawRows, blockSize, value: { topIndex } }: VirtualListInfo,
-) => {
+const getNewBottomIndex = (info: VirtualListInfo) => {
+    const { rowsCount, overdrawRows, blockSize } = info;
+
+    let bottomIndex = getRealBottomIndex(info);
+    bottomIndex = bottomIndex + overdrawRows; // draw more rows at the bottom to remove visible blank areas while scrolling down
+    bottomIndex = Math.floor(bottomIndex / blockSize) * blockSize; // Align to block size
+    return Math.min(bottomIndex, rowsCount); // clamp to rowsCount
+};
+
+const getRealTopIndex = ({ rowsCount, scrollContainer, rowOffsets }: VirtualListInfo) => {
+    let realTopIndex = 0;
+    const containerScrollTop = scrollContainer?.scrollTop ?? 0;
+    while (realTopIndex < rowsCount && rowOffsets[realTopIndex] < containerScrollTop) {
+        realTopIndex += 1;
+    }
+    return realTopIndex;
+};
+
+const getRealBottomIndex = ({ rowsCount, scrollContainer, rowOffsets, value: { topIndex } }: VirtualListInfo) => {
     let bottomIndex = topIndex;
     const containerScrollTop = scrollContainer?.scrollTop ?? 0;
     const containerScrollBottom = containerScrollTop + scrollContainer?.clientHeight ?? 0;
     while (bottomIndex < rowsCount && rowOffsets[bottomIndex] < containerScrollBottom) {
         bottomIndex++;
     }
-
-    bottomIndex = bottomIndex + overdrawRows; // draw more rows at the bottom to remove visible blank areas while scrolling down
-    bottomIndex = Math.floor(bottomIndex / blockSize) * blockSize; // Align to block size
-    return Math.min(bottomIndex, rowsCount); // clamp to rowsCount
+    return bottomIndex;
 };
 
 export const getRowsToFetchForScroll = (virtualListInfo: VirtualListInfo) => {
@@ -121,14 +130,39 @@ export const getRowsToFetchForScroll = (virtualListInfo: VirtualListInfo) => {
     return { visibleCount, topIndex };
 };
 
+export const getScrollToCoordinate = (
+    info: VirtualListInfo,
+    scrollTo: ScrollToConfig,
+) => {
+    const { index, align } = scrollTo;
+    if (!align || align === 'top') {
+        return getTopCoordinate(info, scrollTo);
+    }
+
+    const realTopIndex = getRealTopIndex(info);
+    const realBottomIndex = getRealBottomIndex({
+        ...info, value: { ...info.value, topIndex: realTopIndex },
+    });
+
+    if (index < realTopIndex) {
+        return getTopCoordinate(info, scrollTo);
+    }
+
+    if (index >= realBottomIndex - 1) {
+        return getTopCoordinate(info, { ...scrollTo, index: scrollTo.index + 1 }) - info.scrollContainer?.clientHeight;
+    }
+
+    return undefined;
+};
+
 export const getTopCoordinate = (
     { rowOffsets, listOffset, value, rowHeights }: VirtualListInfo,
-    indexToScroll: number,
+    scrollTo: ScrollToConfig,
 ) => {
-    let rowCoordinate = rowOffsets[indexToScroll];
+    let rowCoordinate = rowOffsets[scrollTo.index];
     if (rowCoordinate === undefined) {
         const { topIndex = 0, visibleCount = 0 } = value;
-        const assumedRowsCount = indexToScroll - topIndex - visibleCount;
+        const assumedRowsCount = scrollTo.index - topIndex - visibleCount;
         const averageRowHeight = getAverageRowHeight(rowHeights);
         const assumedRowsHeight = assumedRowsCount * averageRowHeight;
         const heightOfExistingRows = rowOffsets[topIndex + visibleCount] ?? 0;
@@ -152,17 +186,32 @@ export const getTopIndexWithOffset = (index: number, overdrawRows: number, block
 
 export const getOffsetYForIndex = (index: number | null | undefined, rowOffsets: number[], listOffset: number) => {
     if (rowOffsets.length === 0 || index == null) return 0;
-    return rowOffsets[index] - listOffset;
+    const offsetY = rowOffsets[index] - listOffset;
+    if (isNaN(offsetY)) {
+        return 0;
+    }
+    return offsetY;
 };
 
-export const shouldScroll = (scrollTo: ScrollToConfig, { scrollContainer, rowOffsets }: VirtualListInfo) => {
-    const { index, when } = scrollTo;
-    if (!when?.notVisible) return true;
-
-    let realTopIndex = 0;
-    while (rowOffsets[realTopIndex] < scrollContainer?.scrollTop ?? 0) {
-        realTopIndex += 1;
+export const getOffsetForScrollTo = (info: VirtualListInfo, scrollTo: ScrollToConfig) => {
+    const { index, align } = scrollTo;
+    const offsetY = getOffsetYForIndex(index, info.rowOffsets, info.listOffset);
+    if (!align || align === 'top') {
+        return offsetY;
     }
 
-    return index <= realTopIndex;
+    const realTopIndex = getRealTopIndex(info);
+    if (index <= realTopIndex) {
+        return offsetY;
+    }
+
+    const realBottomIndex = getRealBottomIndex({
+        ...info, value: { ...info.value, topIndex: realTopIndex },
+    });
+    if (index >= realBottomIndex - 1) {
+        const offsetYForBottom = getOffsetYForIndex(index + 1, info.rowOffsets, info.listOffset);
+        return offsetYForBottom - info.scrollContainer?.clientHeight;
+    }
+
+    return offsetY;
 };

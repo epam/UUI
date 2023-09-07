@@ -11,6 +11,7 @@ import {
     DataRowPathItem,
     CascadeSelectionTypes,
     VirtualListRange,
+    ScrollToConfig,
 } from '../../../types';
 import { ITree, NOT_FOUND_RECORD } from './tree/ITree';
 
@@ -173,13 +174,13 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         if (this.onValueChange) {
             const fold = !rowProps.isFolded;
             const indexToScroll = rowProps.index - (rowProps.path?.length ?? 0);
-            const scrollTo = fold && rowProps.isPinned 
-                ? { scrollTo: { index: indexToScroll, when: { notVisible: true } } }
-                : {};
+            const scrollTo: ScrollToConfig = fold && rowProps.isPinned
+                ? { index: indexToScroll, align: 'nearest' }
+                : this.value.scrollTo;
 
             this.onValueChange({
                 ...this.value,
-                ...scrollTo,
+                scrollTo,
                 folded: this.setObjectFlag(this.value && this.value.folded, rowProps.rowKey, fold),
             });
         }
