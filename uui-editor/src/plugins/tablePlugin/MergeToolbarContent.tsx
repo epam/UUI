@@ -9,24 +9,48 @@ import { getColSpan, getRowSpan } from './utils';
 import { ExtendedTTableCellElement } from './types';
 import { getTableGridAbove } from './getTableGridAbove';
 
-export function MergeToolbarContent({ cellEntries: selectedCellEntries }: { cellEntries: TElementEntry[] }) {
+const getRowSpanInCol = (table: TTableCellElement, colIndex: number) => {
+    return table.children.reduce((acc, cur) => {
+        const rowEl = cur as TTableRowElement;
+        const cellEl = rowEl.children.find((cell) => {
+            const cellElem = cell as ExtendedTTableCellElement;
+            return cellElem?.colIndex === colIndex;
+        }) as ExtendedTTableCellElement;
+
+        // console.log('cellEl', cellEl);
+
+        if (colIndex === cellEl?.colIndex) {
+            const curRowSpan = cellEl?.rowSpan || 1;
+            return acc + curRowSpan;
+        }
+        return acc;
+    }, 0);
+};
+
+export function MergeToolbarContent({
+    cellEntries: selectedCellEntries,
+    cellEntriesAsTable,
+}: {
+    cellEntries: TElementEntry[],
+    cellEntriesAsTable: TElementEntry[]
+}) {
     const editor = usePlateEditorState();
 
-    const cellEntriesWithinTable = getTableGridAbove(editor, { format: 'table' });
+    // const cellEntriesWithinTable = getTableGridAbove(editor, { format: 'table' });
 
-    useEffect(() => {
-        const cells = selectedCellEntries.map(
-            ([el, path]) => JSON.stringify(
-                el.children.flatMap((node: any) => ([node.children[0].text, path])),
-            ),
-        );
-        const [[table]] = cellEntriesWithinTable;
-        const tableEl = table as TTableElement;
-        // console.log('selected', cells, 'cellEntriesWithinTable', tableEl.children);
-    }, [selectedCellEntries, cellEntriesWithinTable]);
+    // useEffect(() => {
+    //     const cells = selectedCellEntries.map(
+    //         ([el, path]) => JSON.stringify(
+    //             el.children.flatMap((node: any) => ([node.children[0].text, path])),
+    //         ),
+    //     );
+    //     const [[table]] = cellEntriesAsTable;
+    //     const tableEl = table as TTableElement;
+    //     // console.log('selected', cells, 'cellEntriesWithinTable', tableEl.children);
+    // }, [selectedCellEntries, cellEntriesAsTable]);
 
     const mergeCells = () => {
-        const [[table]] = cellEntriesWithinTable;
+        const [[table]] = cellEntriesAsTable;
         const firstRow = table.children?.[0] as TTableRowElement;
 
         // define colSpan
@@ -38,17 +62,17 @@ export function MergeToolbarContent({ cellEntries: selectedCellEntries }: { cell
         // define rowSpan
         const firstCell = firstRow.children?.[0] as ExtendedTTableCellElement;
         const firstColIndex = firstCell.colIndex;
-        const rowSpan = table.children.reduce((acc, cur) => {
-            const rowEl = cur as TTableRowElement;
-            const cellEl = rowEl.children?.[0] as ExtendedTTableCellElement;
+        const rowSpan = getRowSpanInCol(table, firstColIndex);
 
-            // consider only first col
-            if (firstColIndex === cellEl?.colIndex) {
-                const curRowSpan = cellEl?.rowSpan || 1;
-                return acc + curRowSpan;
-            }
-            return acc;
-        }, 0);
+        // const isValid = isTableRectangular(table);
+        // console.log('isValid', isValid);
+
+        // const rowSpans = Array.from({ length: colSpan } as ArrayLike<number>, (_, index) => {
+        //     const relativeColIndex = firstColIndex + index;
+        //     return getRowSpanInCol(table, relativeColIndex);
+        // });
+        // const rowsValid = allEqual(rowSpans);
+        // console.log('rowsValid', rowsValid, 'rowSpans', rowSpans);
 
         const [startElem, startCellPath] = selectedCellEntries[0];
         const startCellElem = startElem as ExtendedTTableCellElement;
