@@ -464,7 +464,8 @@
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
-    .uui-color-sun, .uui-color-warning {
+    .uui-color-sun,
+    .uui-color-warning {
         --uui-color-5: var(--sun-soft);
         --uui-color-10: var(--sun-lightest);
         --uui-color-20: var(--sun-light);
@@ -563,7 +564,8 @@
         --uui-color-contrast-text: var(--uui-text-dark);
     }
 
-    .uui-badge.uui-color-neutral, .uui-badge.uui-color-night300 {
+    .uui-badge.uui-color-neutral,
+    .uui-badge.uui-color-night300 {
         --uui-color-5: var(--night200);
         --uui-color-10: var(--night300);
         --uui-color-20: var(--night400);
@@ -585,19 +587,30 @@
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
-    .uui-tooltip-container.uui-color-white, .uui-tooltip-container.uui-color-default {
+    .uui-tooltip-container.uui-color-white,
+    .uui-tooltip-container.uui-color-default {
         --uui-color-50: var(--white);
         --uui-color-contrast-text: var(--uui-text-dark);
     }
 
-    .uui-tooltip-container.uui-color-red, .uui-tooltip-container.uui-color-critical {
+    .uui-tooltip-container.uui-color-red,
+    .uui-tooltip-container.uui-color-critical {
         --uui-color-50: var(--uui-error-60);
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
-    .uui-tooltip-container.uui-color-gray, .uui-tooltip-container.uui-color-contrast {
+    .uui-tooltip-container.uui-color-gray,
+    .uui-tooltip-container.uui-color-contrast {
         --uui-color-50: var(--night800);
         --uui-color-contrast-text: var(--uui-text-white);
+    }
+
+    /* Informer */
+
+    .uui-informer.uui-color-gray,
+    .uui-informer.uui-color-neutral {
+        --uui-color-50: var(--neutral30);
+        --uui-informer-caption: var(--uui-text-dark);
     }
 
     // fonts

@@ -1,0 +1,50 @@
+.root {
+    --uui-informer-font: var(--font-semibold);
+    --uui-informer-font-weight: normal;
+    --uui-informer-bg: var(--uui-color-50);
+    --uui-informer-border: var(--uui-color-50);
+    --uui-informer-caption: var(--uui-color-contrast-text);
+
+    &:global(.uui-informer) {
+        box-sizing: border-box;
+        font-family: var(--uui-informer-font);
+        font-weight: var(--uui-informer-font-weight);
+        margin: auto;
+        text-align: center;
+        flex-shrink: 0;
+        //
+        background-color: var(--uui-informer-bg);
+        border: 1px solid var(--uui-informer-border);
+        color: var(--uui-informer-caption);
+
+        &:global(.size-24) {
+            height: 24px;
+            min-width: 24px;
+            font-size: 14px;
+            line-height: 22px;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 12px;
+        }
+
+        &:global(.size-18) {
+            height: 18px;
+            min-width: 18px;
+            font-size: 12px;
+            line-height: 16px;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 9px;
+        }
+
+        &:global(.size-12) {
+            height: 12px;
+            min-width: 12px;
+            font-size: 8px;
+            line-height: 10px;
+            padding-left: 2px;
+            padding-right: 2px;
+            border-radius: 6px;
+        }
+    }
+}
