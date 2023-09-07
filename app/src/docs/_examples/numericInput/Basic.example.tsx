@@ -3,12 +3,12 @@ import { FlexCell, LabeledInput, NumericInput } from '@epam/promo';
 import css from './BasicExample.module.scss';
 
 export default function BasicExample() {
-    const [value, onValueChange] = useState(null);
+    const [value, onValueChange] = useState<number>();
 
     return (
         <FlexCell width="auto" cx={ css.container }>
             <LabeledInput label="Default settings">
-                <NumericInput value={ value } onValueChange={ onValueChange } />
+                <NumericInput value={ value } onValueChange={ onValueChange } min={ -15 } />
             </LabeledInput>
             <LabeledInput label="With placeholder">
                 <NumericInput placeholder="Amount" value={ value } onValueChange={ onValueChange } />
