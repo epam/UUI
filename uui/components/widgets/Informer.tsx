@@ -8,8 +8,6 @@ export interface InformerProps extends IHasCaption {
     color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'negative' | null;
 }
 
-export const InformerColors:InformerProps['color'][] = ['neutral', 'white', 'info', 'success', 'warning', 'negative'];
-
 export const Informer = forwardRef<HTMLDivElement, InformerProps>((props, ref) => {
     return (
         <div

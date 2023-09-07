@@ -5,8 +5,6 @@ export interface InformerMods {
     color: 'gray' | 'white' | 'sky' | 'grass' | 'sun' | 'fire' | null;
 }
 
-export const InformerColors:InformerMods['color'][] = ['gray', 'white', 'sky', 'grass', 'sun', 'fire'];
-
 export type InformerProps = Omit<UuiInformerProps, 'color'> & InformerMods;
 
 export const Informer = withMods<Omit<UuiInformerProps, 'color'>, InformerMods>(

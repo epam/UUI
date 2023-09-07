@@ -10,7 +10,6 @@
         font-family: var(--uui-informer-font);
         font-weight: var(--uui-informer-font-weight);
         margin: auto;
-        border-radius: 50px;
         text-align: center;
         flex-shrink: 0;
         //
@@ -25,6 +24,7 @@
             line-height: 22px;
             padding-left: 5px;
             padding-right: 5px;
+            border-radius: 12px;
         }
 
         &:global(.size-18) {
@@ -34,6 +34,7 @@
             line-height: 16px;
             padding-left: 5px;
             padding-right: 5px;
+            border-radius: 9px;
         }
 
         &:global(.size-12) {
@@ -43,6 +44,7 @@
             line-height: 10px;
             padding-left: 2px;
             padding-right: 2px;
+            border-radius: 6px;
         }
     }
 }
