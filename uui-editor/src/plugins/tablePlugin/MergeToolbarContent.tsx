@@ -22,7 +22,7 @@ export function MergeToolbarContent({ cellEntries: selectedCellEntries }: { cell
         );
         const [[table]] = cellEntriesWithinTable;
         const tableEl = table as TTableElement;
-        console.log('selected', cells, 'cellEntriesWithinTable', tableEl.children);
+        // console.log('selected', cells, 'cellEntriesWithinTable', tableEl.children);
     }, [selectedCellEntries, cellEntriesWithinTable]);
 
     const mergeCells = () => {

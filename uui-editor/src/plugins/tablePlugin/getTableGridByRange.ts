@@ -74,7 +74,7 @@ export const getTableGridByRange = <V extends Value>(
         colCount: relativeColIndex + 1,
         newCellChildren: [],
     });
-    console.log('initial table', table);
+    // console.log('initial table', table);
 
     const tableEntry = findNode(editor, {
         at: tablePath,
@@ -146,26 +146,20 @@ export const getTableGridByRange = <V extends Value>(
         }
     }
 
-    // console.log('table', table);
-
     if (format === 'cell') {
         return cellEntries;
     }
 
     // clear redundant cells
-
     table.children?.forEach((rowEl) => {
         const rowElement = rowEl as TTableRowElement;
 
         const filteredChildren = rowElement.children?.filter((cellEl) => {
             const cellElement = cellEl as TTableCellElement;
-            console.log('current cell', cellElement);
             return !!cellElement?.children.length;
         });
 
         rowElement.children = filteredChildren;
-
-        // console.log('rowEl', rowElement.children, 'filtered', filteredChildren);
     });
     // console.log('return table', table);
 
