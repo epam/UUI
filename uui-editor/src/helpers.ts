@@ -50,7 +50,8 @@ export function isPluginActive(key: string): boolean {
 
 export const isEditorValueEmpty = (value: EditorValue) => {
     return (
-        value.length === 0
-        || (value.length === 1 && value[0].type === 'paragraph' && value[0].children[0].text === '')
+        !value
+        || (value.length === 0
+        || (value.length === 1 && value[0].type === 'paragraph' && value[0].children[0].text === ''))
     );
 };
