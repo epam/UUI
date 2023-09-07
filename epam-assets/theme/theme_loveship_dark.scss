@@ -284,7 +284,7 @@
     --uui-accordion-border-radius: 6px;
 
     .uui-switch {
-        --uui-switch-bg: var(--neutral50);
+        --uui-switch-bg: var(--uui-neutral50);
     }
 
     .uui-count {
@@ -304,6 +304,7 @@
         --uui-color-contrast-text: var(--uui-text-dark);
     }
 
+    .uui-color-basic,
     .uui-color-gray,
     .uui-color-secondary {
         --uui-color-5: var(--night800);
@@ -556,6 +557,33 @@
     .uui-tooltip-container.uui-color-contrast {
         --uui-color-50: var(--uui-surface-contrast-low);
         --uui-color-contrast-text: var(--uui-text-contrast);
+    }
+
+    /* Informer */
+
+    .uui-informer.uui-color-neutral {
+        --uui-color-50: var(--neutral60);
+        --uui-informer-caption: var(--uui-text-white);
+    }
+
+    .uui-informer.uui-color-info {
+        --uui-color-50: var(--blue-40);
+        --uui-informer-caption: var(--uui-text-white);
+    }
+
+    .uui-informer.uui-color-success {
+        --uui-color-50: var(--green-40);
+        --uui-informer-caption: var(--uui-text-white);
+    }
+
+    .uui-informer.uui-color-negative {
+        --uui-color-50: var(--red-40);
+        --uui-informer-caption: var(--uui-text-white);
+    }
+
+    .uui-informer.uui-color-warning {
+        --uui-color-50: var(--amber-40);
+        --uui-informer-caption: var(--uui-text-contrast);
     }
 
     // fonts
