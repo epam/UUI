@@ -344,7 +344,7 @@ describe('getTopCoordinate', () => {
             rowOffsets: [10, 40, 90, 160, 245, 355, 855, 1365, 1925],
         };
 
-        expect(getTopCoordinate(info, 3)).toEqual(110);
+        expect(getTopCoordinate(info, { index: 3 })).toEqual(110);
     });
 
     it('should assume top coordinate for index to scroll by rowOffset', () => {
@@ -355,7 +355,7 @@ describe('getTopCoordinate', () => {
             rowOffsets: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
         };
 
-        expect(getTopCoordinate(info, 100)).toEqual(960);
+        expect(getTopCoordinate(info, { index: 100 })).toEqual(960);
     });
 });
 
