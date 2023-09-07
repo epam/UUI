@@ -1,0 +1,41 @@
+[
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "By default "
+      },
+      {
+        "text": "SlateEditor",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " component worked with JSON format of value, but you can serialize/deserialize json value to the HTML format via "
+      },
+      {
+        "text": "serializeHTML",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "deserializeHTML",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " helpers."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-warning",
+    "children": [
+      {
+        "text": "Note, HTML format supports blocks which can be represented as html elements, therefore  worked only with limited set of plugins, such as: paragraphPlugin, baseMarksPlugin, headerPlugin, superscriptPlugin, listPlugin, quotePlugin, linkPlugin, imagePlugin, videoPlugin, iframePlugin, codeBlockPlugin."
+      }
+    ]
+  }
+]
