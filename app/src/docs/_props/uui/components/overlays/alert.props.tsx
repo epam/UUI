@@ -1,11 +1,13 @@
 import React from 'react';
-import { DocBuilder } from '@epam/uui-docs';
-import { ResizableContext, iconWithInfoDoc, colorDoc } from '../../docs';
-import { Text } from '@epam/promo';
-import { AlertProps, Alert } from '@epam/promo';
+import { ColorPicker, DocBuilder } from '@epam/uui-docs';
+import { ResizableContext, iconWithInfoDoc } from '../../docs';
+import { AlertProps, Alert, Text } from '@epam/uui';
 
 const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: Alert })
-    .implements([iconWithInfoDoc, colorDoc])
+    .implements([iconWithInfoDoc])
+    .prop('color', {
+        renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i })) } { ...editable } />,
+        examples: [{ value: 'info', isDefault: true }, 'success', 'warning', 'error'] })
     .prop('children', {
         examples: [
             {
