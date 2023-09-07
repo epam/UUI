@@ -1,10 +1,10 @@
 @use  '../../assets/styles/buttonLayout' as *;
 
 .root {
-    --uui-link_button-text: var(--uui-color-50);
-    --uui-link_button-text-hover: var(--uui-color-60);
+    --uui-link_button-text: var(--uui-color-60);
+    --uui-link_button-text-hover: var(--uui-color-70);
     --uui-link_button-text-active: var(--uui-color-70);
-    --uui-link_button-text-disabled: var(--uui-text-disabled);
+    --uui-link_button-text-disabled: var(--uui-secondary-20);
 
     --uui-link-button-font: var(--font-semibold);
     --uui-link-button-font-weight: normal;
