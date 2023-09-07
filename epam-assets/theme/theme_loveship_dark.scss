@@ -490,6 +490,12 @@
         --uui-color-70: var(--night50);
     }
 
+    .uui-link_button.uui-color-primary {
+        --uui-link_button-text: var(--uui-color-60);
+        --uui-link_button-text-hover: var(--uui-color-70);
+        --uui-link_button-text-disabled: var(--uui-secondary-20);
+    }
+
     .uui-button.uui-fill-outline.uui-color-secondary,
     .uui-button.uui-fill-none.uui-color-secondary {
         --uui-color-50: var(--night200);
