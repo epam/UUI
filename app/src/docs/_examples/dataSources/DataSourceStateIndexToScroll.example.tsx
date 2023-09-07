@@ -16,6 +16,7 @@ export default function DataSourceStateVisibleCountExample() {
             <FlexRow spacing="12">
                 <Button onClick={ () => onValueChange1({ ...value1, scrollTo: { index: 0 } }) } caption="Scroll top" />
                 <Button onClick={ () => onValueChange1({ ...value1, scrollTo: { index: 200 } }) } caption="Scroll bottom" />
+                <Button onClick={ () => onValueChange1({ ...value1, scrollTo: { index: 200, align: 'nearest' } }) } caption="Scroll nearest 200" />
             </FlexRow>
             <DataSourceViewer
                 value={ value1 }

@@ -2,8 +2,8 @@ import * as React from 'react';
 import type { ScrollToConfig } from '../../types';
 import { useLayoutEffectSafeForSsr } from '../../ssr';
 import {
-    getRowsToFetchForScroll, getUpdatedRowsInfo, getTopCoordinate, assumeHeightForScrollToIndex,
-    getTopIndexWithOffset, getOffsetYForIndex, shouldScroll,
+    getRowsToFetchForScroll, getUpdatedRowsInfo, assumeHeightForScrollToIndex,
+    getTopIndexWithOffset, getOffsetYForIndex, getScrollToCoordinate, getOffsetForScrollTo,
 } from './utils';
 import { VirtualListInfo, UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
 
@@ -114,24 +114,26 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         onValueChange, blockSize, rowOffsets.current, rowsCount, value, onScroll, scrollContainer.current,
     ]);
 
-    const scrollContainerToIndex = React.useCallback(
+    const scrollContainerToPosition = React.useCallback(
         (scrollTo: ScrollToConfig) => {
-            if (!shouldScroll(scrollTo, getVirtualListInfo())) {
-                return [true, true];
+            const topCoordinate = getScrollToCoordinate(getVirtualListInfo(), scrollTo);
+            if (topCoordinate === undefined) {
+                return [true, true]; // already at the necessary position, scroll doesn't have to be performed.
             }
-            const topCoordinate = getTopCoordinate(getVirtualListInfo(), scrollTo.index);
-            if (!isNaN(topCoordinate)) {
-                scrollContainer.current.scrollTo({ top: topCoordinate, behavior: scrollTo.behavior });
-                return [scrollToOffsetY === topCoordinate, true];
+
+            if (isNaN(topCoordinate)) {
+                return [false, false];
             }
-            return [false, false];
+            const offset = getOffsetForScrollTo(getVirtualListInfo(), scrollTo);
+            scrollContainer.current.scrollTo({ top: topCoordinate, behavior: scrollTo.behavior });
+            return [offset === topCoordinate, true];
         },
         [scrollContainer.current, rowOffsets.current],
     );
 
     const scrollToIndex = React.useCallback(
         (scrollTo: ScrollToConfig) => {
-            const [wasScrolled, ok] = scrollContainerToIndex(scrollTo);
+            const [wasScrolled, ok] = scrollContainerToPosition(scrollTo);
             const topIndex = getTopIndexWithOffset(scrollTo.index, overdrawRows, blockSize);
             const shouldScrollToUnknownIndex = value.topIndex === topIndex && rowsCount <= value.scrollTo?.index;
             if ((ok && !wasScrolled) || value.topIndex !== topIndex) {
@@ -151,11 +153,6 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     useLayoutEffectSafeForSsr(() => {
         handleScrollToFocus();
     }, [value?.focusedIndex]);
-
-    const scrollToOffsetY = React.useMemo(
-        () => getOffsetYForIndex(value?.scrollTo?.index, rowOffsets.current, listOffset),
-        [rowOffsets.current, listOffset, value?.scrollTo?.index],
-    );
 
     const offsetY = React.useMemo(
         () => getOffsetYForIndex(value?.topIndex, rowOffsets.current, listOffset),
