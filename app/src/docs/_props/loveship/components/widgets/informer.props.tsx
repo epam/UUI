@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
-import { InformerProps, Informer, InformerColors } from '@epam/loveship';
+import { InformerProps, Informer } from '@epam/loveship';
 import { DefaultContext } from '../../docs';
 
 const colors = {
@@ -15,7 +15,7 @@ const colors = {
 const informerDoc = new DocBuilder<InformerProps>({ name: 'Informer', component: Informer })
     .prop('color', {
         renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
-        examples: [{ value: 'gray', isDefault: true }, ...InformerColors.slice(1)],
+        examples: [{ value: 'gray', isDefault: true }, 'white', 'sky', 'grass', 'sun', 'fire'],
     })
     .prop('caption', {
         examples: [
