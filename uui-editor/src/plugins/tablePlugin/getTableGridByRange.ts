@@ -115,6 +115,7 @@ export const getTableGridByRange = <V extends Value>(
             const rows = table.children[rowIndex - startRowIndex]
                 .children as TElement[];
             rows[colIndex - startColIndex] = cell;
+
             // console.log(
             //     'adding new cell',
             //     content,
@@ -161,7 +162,7 @@ export const getTableGridByRange = <V extends Value>(
 
         rowElement.children = filteredChildren;
     });
-    // console.log('return table', table);
+    console.log('return table', table);
 
     return [[table, tablePath]];
 };
