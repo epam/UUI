@@ -3,7 +3,7 @@ import type { ScrollToConfig } from '../../types';
 import { useLayoutEffectSafeForSsr } from '../../ssr';
 import {
     getRowsToFetchForScroll, getUpdatedRowsInfo, assumeHeightForScrollToIndex,
-    getTopIndexWithOffset, getOffsetYForIndex, getScrollToCoordinate,
+    getTopIndexWithOffset, getOffsetYForIndex, getScrollToCoordinate, getRealTopIndex,
 } from './utils';
 import { VirtualListInfo, UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
 
@@ -93,7 +93,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         const estimatedHeightToSet = rowsCount >= value.scrollTo.index
             ? rowsInfo.estimatedHeight
             : assumedHeight;
-
+        console.log('estimatedHeightToSet', estimatedHeightToSet);
         setEstimatedHeight(estimatedHeightToSet);
         scrollToIndex(value.scrollTo);
     };
@@ -124,9 +124,10 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             if (isNaN(topCoordinate)) {
                 return [false, false];
             }
+
             scrollContainer.current.scrollTo({ top: topCoordinate, behavior: scrollTo.behavior });
             const scrollPositionDiff = (+topCoordinate.toFixed(0)) - (+scrollContainer.current.scrollTop.toFixed(0));
-            return [scrollPositionDiff === 0, true];
+            return [scrollPositionDiff <= 1, true];
         },
         [scrollContainer.current, rowOffsets.current],
     );
@@ -135,16 +136,17 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         (scrollTo: ScrollToConfig) => {
             const [wasScrolled, ok] = scrollContainerToPosition(scrollTo);
             const topIndex = getTopIndexWithOffset(scrollTo.index, overdrawRows, blockSize);
-            const shouldScrollToUnknownIndex = value.topIndex === topIndex && rowsCount <= value.scrollTo?.index;
+            const realTopIndex = getRealTopIndex(getVirtualListInfo());
+            const shouldScrollToUnknownIndex = value.topIndex === topIndex && value.scrollTo?.index > realTopIndex;
+
             if ((ok && !wasScrolled) || value.topIndex !== topIndex) {
-                let newScrollTo = value.scrollTo?.index === scrollTo.index ? value.scrollTo : { ...scrollTo, index: scrollTo.index };
-                if (shouldScrollToUnknownIndex) {
-                    newScrollTo = { ...scrollTo, index: rowsCount - 1 };
+                const newScrollTo = value.scrollTo?.index === scrollTo.index ? value.scrollTo : { ...scrollTo, index: scrollTo.index };
+                if (newScrollTo !== value.scrollTo || value.topIndex !== topIndex) {
+                    onValueChange({ ...value, topIndex, scrollTo: newScrollTo });
                 }
-                onValueChange({ ...value, topIndex, scrollTo: newScrollTo });
             }
 
-            if ((ok && wasScrolled) || (shouldScrollToUnknownIndex)) {
+            if ((ok && wasScrolled) || shouldScrollToUnknownIndex) {
                 setScrolledTo(value.scrollTo?.index === scrollTo.index ? value.scrollTo : { ...scrollTo, index: scrollTo.index });
             }
         },
