@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IDropdownMenuItemProps, DropdownMenuBody, DropdownMenuButton, DropdownMenuSwitchButton, DropdownMenuSplitter, DropdownMenuHeader, DropdownSubMenu,
     Dropdown, ControlGroup, Button, LinkButton } from '@epam/uui';
 import { DropdownBodyProps } from '@epam/uui-core';
-import { ReactComponent as LogoutIcon } from '@epam/assets/icons/common/navigation-logout-24.svg';
+import { ReactComponent as LogoutIcon } from '@epam/assets/icons/common/navigation-logout-18.svg';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-12.svg';
 import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-delete-12.svg';
 import { ReactComponent as ExportIcon } from '@epam/assets/icons/common/file-export-12.svg';
@@ -93,8 +93,6 @@ export default function BasicDropdownMenuExample() {
     return (
         <>
             <Dropdown
-                closeOnMouseLeave="boundary"
-                closeDelay={ 400 }
                 renderBody={ (props) => renderDropdownBody(props) }
                 renderTarget={ (props) => (
                     <LinkButton
