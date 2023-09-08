@@ -164,10 +164,10 @@ export const getTopCoordinate = (
     if (rowCoordinate === undefined) {
         const { topIndex = 0, visibleCount = 0 } = value;
         const visibleRowsCount = topIndex + visibleCount;
-        const assumedRowsCount = scrollTo.index - visibleRowsCount;
+        const assumedRowsCount = Math.max(scrollTo.index - visibleRowsCount, 0);
         const averageRowHeight = getAverageRowHeight(rowHeights);
         const assumedRowsHeight = assumedRowsCount * averageRowHeight;
-        const heightOfExistingRows = rowOffsets[visibleRowsCount] ?? 0;
+        const heightOfExistingRows = rowOffsets[visibleRowsCount] ?? rowOffsets[rowOffsets.length - 1];
         rowCoordinate = heightOfExistingRows + assumedRowsHeight;
     }
     return rowCoordinate - listOffset;
