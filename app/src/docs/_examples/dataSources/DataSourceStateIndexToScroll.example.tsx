@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { DataSourceViewer } from '@epam/uui-docs';
-import { Button, Panel, FlexRow } from '@epam/promo';
+import { Button, Panel, FlexRow, NumericInput } from '@epam/promo';
 
 export default function DataSourceStateVisibleCountExample() {
     const svc = useUuiContext();
@@ -10,13 +10,20 @@ export default function DataSourceStateVisibleCountExample() {
     const dataSource1 = useLazyDataSource({ 
         api: svc.api.demo.countries,
     }, []);
+    const [tempScrollTo, setTempScrollTo] = useState(value1.scrollTo?.index);
 
     return (
         <Panel>
             <FlexRow spacing="12">
-                <Button onClick={ () => onValueChange1({ ...value1, scrollTo: { index: 0 } }) } caption="Scroll top" />
-                <Button onClick={ () => onValueChange1({ ...value1, scrollTo: { index: 200 } }) } caption="Scroll bottom" />
-                <Button onClick={ () => onValueChange1({ ...value1, scrollTo: { index: 200, align: 'nearest' } }) } caption="Scroll nearest 200" />
+                <NumericInput
+                    placeholder="Type index"
+                    value={ tempScrollTo }
+                    onValueChange={ (index) => {
+                        setTempScrollTo(index);
+                    } }
+                /> 
+                <Button onClick={ () => onValueChange1({ ...value1, scrollTo: { index: tempScrollTo } }) } caption="Scroll align='top'" />
+                <Button onClick={ () => onValueChange1({ ...value1, scrollTo: { index: tempScrollTo, align: 'nearest' } }) } caption="Scroll align='nearest'" />
             </FlexRow>
             <DataSourceViewer
                 value={ value1 }

@@ -99,7 +99,7 @@ const getNewBottomIndex = (info: VirtualListInfo) => {
     return Math.min(bottomIndex, rowsCount); // clamp to rowsCount
 };
 
-const getRealTopIndex = ({ rowsCount, scrollContainer, rowOffsets }: VirtualListInfo) => {
+export const getRealTopIndex = ({ rowsCount, scrollContainer, rowOffsets }: VirtualListInfo) => {
     let realTopIndex = 0;
     const containerScrollTop = scrollContainer?.scrollTop ?? 0;
     while (realTopIndex < rowsCount && rowOffsets[realTopIndex] < containerScrollTop) {
@@ -134,9 +134,10 @@ export const getScrollToCoordinate = (
     info: VirtualListInfo,
     scrollTo: ScrollToConfig,
 ) => {
+    const topCoordinate = getTopCoordinate(info, scrollTo);
     const { index, align } = scrollTo;
     if (!align || align === 'top') {
-        return getTopCoordinate(info, scrollTo);
+        return topCoordinate;
     }
 
     const realTopIndex = getRealTopIndex(info);
@@ -145,7 +146,7 @@ export const getScrollToCoordinate = (
     });
 
     if (index < realTopIndex) {
-        return getTopCoordinate(info, scrollTo);
+        return topCoordinate;
     }
 
     if (index >= realBottomIndex - 1) {
