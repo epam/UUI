@@ -90,7 +90,7 @@ export const getTableGridByRange = <V extends Value>(
 
     const cellsSet = new Set();
 
-    console.log('-------------');
+    // console.log('-------------');
 
     while (true) {
         // const cellPath = tablePath.concat([rowIndex, colIndex]);
@@ -162,7 +162,7 @@ export const getTableGridByRange = <V extends Value>(
 
         rowElement.children = filteredChildren;
     });
-    console.log('return table', table);
+    // console.log('return table', table);
 
     return [[table, tablePath]];
 };

@@ -26,7 +26,7 @@ const noop = () => {};
 
 const allEqual = (arr: number[]) => arr.every((val) => val === arr[0]);
 
-const isTableRectangular = (table: TTableElement) => {
+const isTableRectangular = (table?: TTableElement) => {
     const arr: number[] = [];
     table?.children?.forEach((row, rI) => {
         const rowEl = row as TTableRowElement;
@@ -34,9 +34,9 @@ const isTableRectangular = (table: TTableElement) => {
         rowEl.children?.forEach((cell) => {
             const cellElem = cell as ExtendedTTableCellElement;
 
-            console.log('current cell', cellElem);
+            // console.log('current cell', cellElem);
             Array.from({ length: cellElem?.rowSpan || 1 } as ArrayLike<number>).forEach((_, i) => {
-                console.log('pushing into arr, index', rI + i, 'value', cellElem?.colSpan || 1);
+                // console.log('pushing into arr, index', rI + i, 'value', cellElem?.colSpan || 1);
                 if (!arr[rI + i]) {
                     arr[rI + i] = 0;
                 }
@@ -45,7 +45,7 @@ const isTableRectangular = (table: TTableElement) => {
         });
     });
 
-    console.log('arr', arr);
+    // console.log('arr', arr);
 
     return allEqual(arr);
 };

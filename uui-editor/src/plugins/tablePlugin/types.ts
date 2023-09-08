@@ -5,6 +5,7 @@ export type ExtendedTTableCellElement = TTableCellElement & {
     startColIndex?: number;
     colIndex?: number;
     rowIndex?: number;
+    dummy?: boolean;
     data: {
         colSpan?: number;
         rowSpan?: number;

@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from 'react';
+import React, { Fragment, useEffect, useMemo } from 'react';
 
 import { ReactComponent as UnmergeCellsIcon } from '../../icons/table-un-merge.svg';
 import { ReactComponent as InsertColumnBefore } from '../../icons/table-add-column-left.svg';
@@ -12,8 +12,8 @@ import { ReactComponent as RemoveTable } from '../../icons/table-table_remove-24
 import css from './ToolbarContent.module.scss';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { deleteColumn } from './deleteColumn';
-import { usePlateEditorState, insertElements, TElementEntry, removeNodes, isCollapsed, TDescendant } from '@udecode/plate-common';
-import { getTableEntries, insertTableColumn, deleteRow, deleteTable, getEmptyCellNode } from '@udecode/plate-table';
+import { usePlateEditorState, insertElements, TElementEntry, removeNodes, isCollapsed, TDescendant, findNode, getPluginType, findNodePath } from '@udecode/plate-common';
+import { getTableEntries, insertTableColumn, deleteRow, deleteTable, getEmptyCellNode, ELEMENT_TABLE, TTableElement, getCellTypes, TTableRowElement } from '@udecode/plate-table';
 import { insertTableRow } from './insertTableRow';
 
 function StyledRemoveTable() {
@@ -32,6 +32,15 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
     && cellEntries.length === 1
     && ((cellEntries[0][0] as any)?.colSpan > 1
         || (cellEntries[0][0] as any)?.rowSpan > 1);
+
+    useEffect(() => {
+        const [[cellElem, path]] = cellEntries;
+        const tableEntry = findNode(editor, {
+            at: path,
+            match: { type: getPluginType(editor, ELEMENT_TABLE) },
+        });
+        console.log('tableNode', tableEntry[0]);
+    }, [cellEntries]);
 
     const unmergeCells = () => {
         const [[cellElem, path]] = cellEntries;
@@ -55,18 +64,91 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
         const colSpan = cellElem.colSpan;
         const rowSpan = cellElem.rowSpan;
 
+        console.log('cellPath', cellPath, 'rowSpan', rowSpan, 'colSpan', colSpan);
+
         const colPaths = Array.from({ length: colSpan } as ArrayLike<number>, (_, index) => { return index; })
             .map((current) => {
                 return colPath + current;
             });
 
-        removeNodes(editor, { at: path });
-
-        Array.from({ length: rowSpan } as ArrayLike<number>, (_, index) => { return index; })
+        let paths = Array.from({ length: rowSpan } as ArrayLike<number>, (_, index) => { return index; })
             .map((current) => {
                 const currentRowPath = rowPath + current;
                 return colPaths.map((currentColPath) => [...tablePath, currentRowPath, currentColPath]);
-            })
+            });
+
+        const tableEntry = findNode(editor, {
+            at: path,
+            match: { type: getPluginType(editor, ELEMENT_TABLE) },
+        });
+        const table = tableEntry?.[0] as TTableElement;
+        // console.log('found table', table);
+
+        paths = paths.map((cellsPaths) => {
+            const currentPath = cellsPaths[0]; // pick starting cell in the row
+            const [rowIndex, colIndex] = currentPath.slice(-2);
+            console.log('cellsPaths', cellsPaths);
+
+            let newCellPaths = cellsPaths;
+            if (colIndex > 0) {
+                const prevCellInRowPath = [...tablePath, rowIndex, colIndex - 1];
+                const foundEntry = findNode(editor, {
+                    at: prevCellInRowPath,
+                    match: { type: getCellTypes(editor) },
+                });
+                console.log('prevCellInRowPath', prevCellInRowPath, 'foundEntry', foundEntry);
+
+                /**
+                 * Search for the last cell path in the row.
+                 * We can't just paste new cell with path gaps.
+                 * Slate needs elements with paths one by each other.
+                 */
+                if (!foundEntry) {
+                    const currentRow = table.children[rowIndex] as TTableRowElement;
+                    console.log('table', table, rowIndex, currentRow);
+                    const endingCell = currentRow.children.at(-1);
+                    const endingCellPath = findNodePath(editor, endingCell);
+                    console.log('endingCell', endingCell, 'endingCellPath', endingCellPath);
+
+                    const [, startingColIndex] = endingCellPath.slice(-2);
+                    const startWith = startingColIndex === 0 ? startingColIndex : startingColIndex + 1;
+
+                    newCellPaths = cellsPaths.map((currentCellPath, i) => {
+                        const currentRowPath = currentCellPath.slice(0, -1);
+                        const newPath = [...currentRowPath, startWith + i];
+                        return newPath;
+                    });
+                    // if (startingColIndex === 0) {
+
+                    //     // removeNodes(editor, { at: endingCellPath.slice(0, -1) });
+
+                    //     // const newRow =
+                    //     newCellPaths = cellsPaths.map((currentCellPath, i) => {
+                    //         const currentRowPath = currentCellPath.slice(0, -1);
+                    //         const newPath = [...currentRowPath, startingColIndex + i];
+                    //         return newPath;
+                    //     });
+                    // } else {
+
+                    //     newCellPaths = cellsPaths.map((currentCellPath, i) => {
+                    //         const currentRowPath = currentCellPath.slice(0, -1);
+                    //         const newPath = [...currentRowPath, startingColIndex + i + 1];
+                    //         return newPath;
+                    //     });
+                    // }
+
+                    // console.log('newCellPaths', newCellPaths);
+                }
+            }
+            return newCellPaths;
+        });
+
+        console.log('-----------------');
+
+        removeNodes(editor, { at: path });
+
+        console.log('paths', paths);
+        paths
             .flat()
             .forEach((p, index) => insertElements(
                 editor,
