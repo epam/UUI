@@ -3,7 +3,7 @@ import type { ScrollToConfig } from '../../types';
 import { useLayoutEffectSafeForSsr } from '../../ssr';
 import {
     getRowsToFetchForScroll, getUpdatedRowsInfo, assumeHeightForScrollToIndex,
-    getTopIndexWithOffset, getOffsetYForIndex, getScrollToCoordinate, getOffsetForScrollTo,
+    getTopIndexWithOffset, getOffsetYForIndex, getScrollToCoordinate,
 } from './utils';
 import { VirtualListInfo, UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
 
@@ -125,8 +125,8 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
                 return [false, false];
             }
             scrollContainer.current.scrollTo({ top: topCoordinate, behavior: scrollTo.behavior });
-            const offset = getOffsetForScrollTo(getVirtualListInfo(), scrollTo);
-            return [offset === topCoordinate, true];
+            const scrollPositionDiff = (+topCoordinate.toFixed(4)) - (+scrollContainer.current.scrollTop.toFixed(4));
+            return [scrollPositionDiff < 0.001, true];
         },
         [scrollContainer.current, rowOffsets.current],
     );
@@ -143,6 +143,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
                 }
                 onValueChange({ ...value, topIndex, scrollTo: newScrollTo });
             }
+
             if ((ok && wasScrolled) || (shouldScrollToUnknownIndex)) {
                 setScrolledTo(value.scrollTo?.index === scrollTo.index ? value.scrollTo : { ...scrollTo, index: scrollTo.index });
             }
