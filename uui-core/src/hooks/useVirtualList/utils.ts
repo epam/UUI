@@ -56,7 +56,6 @@ export const getUpdatedRowsInfo = (
         };
     }
     const rowHeights = getUpdatedRowHeights(virtualListInfo);
-    // console.log('virtualListInfo.value', virtualListInfo.value);
     const averageRowHeight = getAverageRowHeight(rowHeights);
     const rowOffsets = getUpdatedRowOffsets({ ...virtualListInfo, rowHeights, averageRowHeight });
 
@@ -192,28 +191,5 @@ export const getOffsetYForIndex = (index: number | null | undefined, rowOffsets:
     if (isNaN(offsetY)) {
         return 0;
     }
-    return offsetY;
-};
-
-export const getOffsetForScrollTo = (info: VirtualListInfo, scrollTo: ScrollToConfig) => {
-    const { index, align } = scrollTo;
-    const offsetY = getOffsetYForIndex(index, info.rowOffsets, info.listOffset);
-    if (!align || align === 'top') {
-        return offsetY;
-    }
-
-    const realTopIndex = getRealTopIndex(info);
-    if (index <= realTopIndex) {
-        return offsetY;
-    }
-
-    const realBottomIndex = getRealBottomIndex({
-        ...info, value: { ...info.value, topIndex: realTopIndex },
-    });
-    if (index >= realBottomIndex - 1) {
-        const offsetYForBottom = getOffsetYForIndex(index + 1, info.rowOffsets, info.listOffset);
-        return offsetYForBottom - info.scrollContainer?.clientHeight;
-    }
-
     return offsetY;
 };
