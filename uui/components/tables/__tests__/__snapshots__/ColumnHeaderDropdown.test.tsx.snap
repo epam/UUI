@@ -92,7 +92,7 @@ Array [
               </div>
             </button>
             <div
-              className="caption container"
+              className="container"
             >
               Sort Ascending
             </div>
@@ -126,7 +126,7 @@ Array [
               </div>
             </button>
             <div
-              className="caption container"
+              className="container"
             >
               Sort Descending
             </div>
