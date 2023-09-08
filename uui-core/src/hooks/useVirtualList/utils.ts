@@ -56,6 +56,7 @@ export const getUpdatedRowsInfo = (
         };
     }
     const rowHeights = getUpdatedRowHeights(virtualListInfo);
+    // console.log('virtualListInfo.value', virtualListInfo.value);
     const averageRowHeight = getAverageRowHeight(rowHeights);
     const rowOffsets = getUpdatedRowOffsets({ ...virtualListInfo, rowHeights, averageRowHeight });
 
@@ -162,10 +163,11 @@ export const getTopCoordinate = (
     let rowCoordinate = rowOffsets[scrollTo.index];
     if (rowCoordinate === undefined) {
         const { topIndex = 0, visibleCount = 0 } = value;
-        const assumedRowsCount = scrollTo.index - topIndex - visibleCount;
+        const visibleRowsCount = topIndex + visibleCount;
+        const assumedRowsCount = scrollTo.index - visibleRowsCount;
         const averageRowHeight = getAverageRowHeight(rowHeights);
         const assumedRowsHeight = assumedRowsCount * averageRowHeight;
-        const heightOfExistingRows = rowOffsets[topIndex + visibleCount] ?? 0;
+        const heightOfExistingRows = rowOffsets[visibleRowsCount] ?? 0;
         rowCoordinate = heightOfExistingRows + assumedRowsHeight;
     }
     return rowCoordinate - listOffset;
@@ -174,7 +176,7 @@ export const getTopCoordinate = (
 export const assumeHeightForScrollToIndex = (value: VirtualListState, estimatedHeight: number, averageRowHeight: number) => {
     const { topIndex = 0, visibleCount = 0, scrollTo } = value;
     const scrollToIndex = scrollTo?.index ?? 0;
-    const skipRowsCount = Math.max(0, scrollToIndex - topIndex - visibleCount);
+    const skipRowsCount = Math.max(0, scrollToIndex - (topIndex + visibleCount - 1));
     return estimatedHeight + skipRowsCount * averageRowHeight;
 };
 

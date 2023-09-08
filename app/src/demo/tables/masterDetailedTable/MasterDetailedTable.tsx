@@ -163,14 +163,6 @@ export function MasterDetailedTable() {
             __typename !== 'Person',
         [],
     );
-    const getRowOptions = useCallback((item: PersonTableRecord) => {
-        return {
-            checkbox: { isVisible: item.__typename === 'Location' ? false : true },
-            isSelectable: true,
-            onClick: clickHandler,
-            pin,
-        };
-    }, [pin, clickHandler]);
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         getChildCount: (item) => {
@@ -183,7 +175,12 @@ export function MasterDetailedTable() {
             return null;
         },
         fetchStrategy: tableStateApi.tableState.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
-        getRowOptions,
+        rowOptions: {
+            checkbox: { isVisible: true },
+            isSelectable: true,
+            onClick: clickHandler,
+            pin,
+        },
         cascadeSelection: true,
         selectAll: tableStateApi.tableState.filter?.groupBy === 'location' ? false : true,
     });
