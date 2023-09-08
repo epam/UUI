@@ -125,6 +125,8 @@
     .icon {
         @include withActive;
         justify-content: flex-start;
+        width: 18px;
+        height: 18px;
     }
 
     &.link {
@@ -166,6 +168,6 @@
     }
 }
 
-.indentMargin {
-    padding-left: 19px;
+.indent {
+    padding-left: 24px;
 }

@@ -117,7 +117,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
         return (
             <>
                 {isIconBefore && iconElement}
-                <Text cx={ props.indent ? [css.caption, css.indentMargin] : css.caption }>{caption}</Text>
+                <Text cx={ props.indent && css.indent }>{caption}</Text>
                 {isIconAfter && (
                     <>
                         <FlexSpacer />
@@ -257,7 +257,7 @@ export function DropdownMenuSwitchButton(props: IDropdownMenuSwitchButton) {
             rawProps={ { role: 'menuitem', onKeyDown: handleKeySelect, tabIndex: isDisabled ? -1 : 0 } }
         >
             {icon && <IconContainer icon={ icon } cx={ css.iconBefore } />}
-            <Text cx={ css.caption }>{caption}</Text>
+            <Text>{caption}</Text>
             <FlexSpacer />
             <Switch value={ isSelected } tabIndex={ -1 } onValueChange={ onHandleValueChange } />
         </FlexRow>
