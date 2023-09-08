@@ -102,6 +102,13 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
         }
     };
 
+    const getIconPlaceholder = () => {
+        return (
+            <div style={ { width: '12px', height: '24px' } }>
+            </div>
+        );
+    };
+
     const getMenuButtonContent = () => {
         const isIconBefore = Boolean(icon && iconPosition !== 'right');
         const isIconAfter = Boolean(icon && iconPosition === 'right');
@@ -114,14 +121,10 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             />
         );
 
-        let iconElementDraw = false;
-        if (isIconBefore || props.indent) {
-            iconElementDraw = true;
-        }
-
         return (
             <>
-                {iconElementDraw && iconElement}
+                {isIconBefore && iconElement}
+                {props.indent && getIconPlaceholder()}
                 <Text cx={ css.caption }>{caption}</Text>
                 {isIconAfter && (
                     <>
