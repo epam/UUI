@@ -125,8 +125,8 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
                 return [false, false];
             }
             scrollContainer.current.scrollTo({ top: topCoordinate, behavior: scrollTo.behavior });
-            const scrollPositionDiff = (+topCoordinate.toFixed(4)) - (+scrollContainer.current.scrollTop.toFixed(4));
-            return [scrollPositionDiff < 0.001, true];
+            const scrollPositionDiff = (+topCoordinate.toFixed(0)) - (+scrollContainer.current.scrollTop.toFixed(0));
+            return [scrollPositionDiff === 0, true];
         },
         [scrollContainer.current, rowOffsets.current],
     );
