@@ -109,7 +109,7 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
                         renderToggler={ (props) => (
                             <Button
                                 { ...props }
-                                placeholder={ this.props.value ? '' : 'Select icon' }
+                                caption={ this.props.value ? '' : 'Select icon' }
                                 icon={ this.props.value as Icon }
                                 shape="square"
                                 fill="none"
