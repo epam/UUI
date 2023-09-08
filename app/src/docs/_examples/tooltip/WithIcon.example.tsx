@@ -20,7 +20,7 @@ export default function IconTooltipExample() {
 
     return (
         <FlexRow alignItems="center">
-            <Tooltip content={ renderIconMarkup() } color="default">
+            <Tooltip content={ renderIconMarkup() } color="neutral">
                 <Text fontSize="14" cx={ css.text }>
                     Jun 21, 2022 09:16
                     {' '}
