@@ -44,7 +44,7 @@ export const overrideSelectionFromCell = <V extends Value = Value>(
 
     if (!hotkey) return;
 
-    console.log('overrideFromSelection 2');
+    // console.log('overrideFromSelection 2');
 
     const edge = (keyShiftEdges as any)[hotkey];
 
@@ -56,14 +56,14 @@ export const overrideSelectionFromCell = <V extends Value = Value>(
             match: { type: getCellTypes(editor) },
         })
     ) {
-        console.log('overrideFromSelection 3');
+        // console.log('overrideFromSelection 3');
         return;
     }
 
     const prevSelection = editor.selection;
     const reverse = ['up', 'shift+up'].includes(hotkey);
 
-    console.log('overrideFromSelection');
+    // console.log('overrideFromSelection');
 
     setTimeout(() => {
         moveSelectionFromCell(editor, {

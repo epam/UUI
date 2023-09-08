@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 
 import { ReactComponent as TableMerge } from '../../icons/table-merge.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import { usePlateEditorState, TElementEntry, removeNodes, insertElements, getRange, findNode, TElement, getPluginType } from '@udecode/plate-common';
-import { ELEMENT_TABLE, TTableCellElement, TTableElement, TTableRowElement, getCellTypes, getEmptyCellNode } from '@udecode/plate-table';
+import { usePlateEditorState, TElementEntry, removeNodes, insertElements, getRange, findNode, TElement, getPluginType, TDescendant } from '@udecode/plate-common';
+import { ELEMENT_TABLE, ELEMENT_TR, TTableCellElement, TTableElement, TTableRowElement, getCellTypes, getEmptyCellNode, getEmptyRowNode } from '@udecode/plate-table';
 import { Path } from 'slate';
 import { getColSpan, getRowSpan } from './utils';
 import { ExtendedTTableCellElement } from './types';
@@ -106,7 +106,7 @@ export function MergeToolbarContent({
             }
         });
 
-        console.log('colSpan', colSpan, 'rowSpan', rowSpan, 'cols', cols);
+        // console.log('colSpan', colSpan, 'rowSpan', rowSpan, 'cols', cols);
 
         // removes multiple cells with on same path.
         // once cell removed, next cell in the row will settle down on that path
@@ -123,7 +123,30 @@ export function MergeToolbarContent({
                 });
 
                 if (validNode && shouldRemove) {
+                    console.log('removing node at path', paths[0]);
                     removeNodes(editor, { at: paths[0] });
+
+                    const colIndex = paths[0].at(-1);
+                    if (colIndex === 0) {
+                        // just removed last cell in the row
+                        const rowPath = paths[0].slice(0, -1);
+                        console.log('rowPath', rowPath);
+
+                        // const emptyRow = {
+                        //     type: getPluginType(editor, ELEMENT_TR),
+                        //     children: [] as TDescendant[],
+                        // };
+                        // removeNodes(editor, { at: paths[0].slice(0, -1) });
+                        // insertElements(editor, {
+                        //     ...getEmptyCellNode(editor, {
+                        //         header: selectedCellEntries[0][0].type === 'th',
+                        //         // newCellChildren: contents,
+                        //     }),
+                        //     dummy: true,
+                        //     colSpan: 0,
+                        //     rowSpan: 0,
+                        // }, { at: paths[0] });
+                    }
                 }
             });
         });
