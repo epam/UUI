@@ -133,12 +133,12 @@
     --uui-secondary-60: var(--night400);
     --uui-secondary-70: var(--night300);
 
-    --uui-negative-5: var(--red-5);
-    --uui-negative-10: var(--red-10);
-    --uui-negative-20: var(--red-20);
-    --uui-negative-50: var(--red-30);
-    --uui-negative-60: var(--red-40);
-    --uui-negative-70: var(--red-50);
+    --uui-critical-5: var(--red-5);
+    --uui-critical-10: var(--red-10);
+    --uui-critical-20: var(--red-20);
+    --uui-critical-50: var(--red-30);
+    --uui-critical-60: var(--red-40);
+    --uui-critical-70: var(--red-50);
 
     /* semantic colors */
 
@@ -281,7 +281,9 @@
 
     /* override variables */
 
-    --uui-accordion-border-radius: 6px;
+    .uui-accordion-container {
+        --uui-accordion-border-radius: 6px;
+    }
 
     .uui-switch {
         --uui-switch-bg: var(--uui-neutral50);
@@ -292,6 +294,17 @@
     }
 
     /* begin color classes */
+
+    .uui-color-none {
+        --uui-color-5: transparent;
+        --uui-color-10: transparent;
+        --uui-color-20: transparent;
+        --uui-color-50: transparent;
+        --uui-color-60: transparent;
+        --uui-color-70: transparent;
+        --uui-color-text: transparent;
+        --uui-color-contrast-text: transparent;
+    }
 
     .uui-color-white {
         --uui-color-5: var(--night700);
@@ -318,8 +331,7 @@
     }
 
     .uui-color-accent,
-    .uui-color-green,
-    .uui-color-success {
+    .uui-color-green {
         --uui-color-5: var(--green-5);
         --uui-color-10: var(--green-10);
         --uui-color-20: var(--green-20);
@@ -331,8 +343,7 @@
     }
 
     .uui-color-primary,
-    .uui-color-blue,
-    .uui-color-info {
+    .uui-color-blue {
         --uui-color-5: var(--blue-5);
         --uui-color-10: var(--blue-10);
         --uui-color-20: var(--blue-20);
@@ -343,9 +354,8 @@
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
-    .uui-color-negative,
-    .uui-color-red,
-    .uui-color-error {
+    .uui-color-critical,
+    .uui-color-red {
         --uui-color-5: var(--red-5);
         --uui-color-10: var(--red-10);
         --uui-color-20: var(--red-20);
@@ -353,6 +363,28 @@
         --uui-color-60: var(--red-40);
         --uui-color-70: var(--red-50);
         --uui-color-text: var(--red-30);
+        --uui-color-contrast-text: var(--uui-text-white);
+    }
+
+    .uui-color-info {
+        --uui-color-5: var(--uui-info-5);
+        --uui-color-10: var(--uui-info-10);
+        --uui-color-20: var(--uui-info-20);
+        --uui-color-50: var(--uui-info-50);
+        --uui-color-60: var(--uui-info-60);
+        --uui-color-70: var(--uui-info-70);
+        --uui-color-text: var(--uui-info-50);
+        --uui-color-contrast-text: var(--uui-text-white);
+    }
+
+    .uui-color-success {
+        --uui-color-5: var(--uui-success-5);
+        --uui-color-10: var(--uui-success-10);
+        --uui-color-20: var(--uui-success-20);
+        --uui-color-50: var(--uui-success-50);
+        --uui-color-60: var(--uui-success-60);
+        --uui-color-70: var(--uui-success-70);
+        --uui-color-text: var(--uui-success-50);
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
@@ -365,6 +397,17 @@
         --uui-color-60: var(--amber-40);
         --uui-color-70: var(--amber-50);
         --uui-color-text: var(--amber-30);
+        --uui-color-contrast-text: var(--uui-text-white);
+    }
+
+    .uui-color-error {
+        --uui-color-5: var(--uui-error-5);
+        --uui-color-10: var(--uui-error-10);
+        --uui-color-20: var(--uui-error-20);
+        --uui-color-50: var(--uui-error-50);
+        --uui-color-60: var(--uui-error-60);
+        --uui-color-70: var(--uui-error-40);
+        --uui-color-text: var(--uui-error-50);
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
@@ -550,14 +593,9 @@
         --uui-burger_search-placeholder: var(--uui-secondary-70);
     }
 
-    .uui-tooltip-container.uui-color-default {
+    .uui-tooltip-container.uui-color-neutral {
         --uui-color-50: var(--uui-surface);
         --uui-color-contrast-text: var(--uui-text-primary);
-    }
-
-    .uui-tooltip-container.uui-color-critical {
-        --uui-color-50: var(--uui-error-50);
-        --uui-color-contrast-text: var(--uui-text-white);
     }
 
     .uui-tooltip-container.uui-color-contrast {
@@ -642,4 +680,3 @@
         --uui-font-weight: normal;
     }
 }
-

@@ -21,11 +21,6 @@ export const allSemanticColors: SemanticColor[] = [
     'info', 'success', 'warning', 'error',
 ];
 
-export type ButtonSemanticColor = 'accent' | 'primary' | 'secondary' | 'negative';
-export const allButtonSemanticColors: ButtonSemanticColor[] = [
-    'accent', 'primary', 'secondary', 'negative',
-];
-
 export type EpamBadgeSemanticColor = 'info' | 'success' | 'warning' | 'error' | 'neutral';
 export const allEpamBadgeSemanticColors: EpamBadgeSemanticColor[] = [
     'info', 'success', 'warning', 'error', 'neutral',

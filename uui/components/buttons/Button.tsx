@@ -4,9 +4,9 @@ import { ControlSize, ButtonFill } from '../types';
 import { systemIcons } from '../../icons/icons';
 import css from './Button.module.scss';
 
-export type ButtonColor = 'accent' | 'primary' | 'secondary' | 'negative';
+export type ButtonColor = 'accent' | 'primary' | 'secondary' | 'critical';
 export const allButtonColors: ButtonColor[] = [
-    'accent', 'primary', 'secondary', 'negative',
+    'accent', 'primary', 'secondary', 'critical',
 ];
 
 const defaultSize = '36';
