@@ -6,6 +6,7 @@
 **What's Fixed**
 * [PickerItem]: fixed 'cx' prop
 * [Contexts]: fixed context initialization for react 18 with strict mode
+* [ModalWindow]: changed role attribute value from 'modal' to 'dialog'
 
 
 # 5.1.3 - 31.08.2023
