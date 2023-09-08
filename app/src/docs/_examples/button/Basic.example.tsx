@@ -6,7 +6,7 @@ export default function BasicExample() {
         <>
             <Button color="primary" caption="Primary Action" onClick={ () => null } />
             <Button color="accent" caption="Call to action" onClick={ () => null } />
-            <Button color="negative" caption="Negative Action" onClick={ () => null } />
+            <Button color="critical" caption="Critical Action" onClick={ () => null } />
         </>
     );
 }
