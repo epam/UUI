@@ -4,7 +4,7 @@ import css from './Tooltip.module.scss';
 
 export interface TooltipMods {
     /** Tooltip color */
-    color?: 'default' | 'contrast' | 'critical';
+    color?: 'neutral' | 'contrast' | 'critical';
 }
 
 export type TooltipProps = UuiTooltipProps & TooltipMods;
