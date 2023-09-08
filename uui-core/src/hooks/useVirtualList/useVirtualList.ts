@@ -93,7 +93,6 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         const estimatedHeightToSet = rowsCount >= value.scrollTo.index
             ? rowsInfo.estimatedHeight
             : assumedHeight;
-        console.log('estimatedHeightToSet', estimatedHeightToSet);
         setEstimatedHeight(estimatedHeightToSet);
         scrollToIndex(value.scrollTo);
     };
