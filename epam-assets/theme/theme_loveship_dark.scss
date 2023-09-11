@@ -331,7 +331,7 @@
     }
 
     .uui-color-accent,
-    .uui-color-green {
+    .uui-color-grass {
         --uui-color-5: var(--green-5);
         --uui-color-10: var(--green-10);
         --uui-color-20: var(--green-20);
@@ -343,7 +343,7 @@
     }
 
     .uui-color-primary,
-    .uui-color-blue {
+    .uui-color-sky {
         --uui-color-5: var(--blue-5);
         --uui-color-10: var(--blue-10);
         --uui-color-20: var(--blue-20);
@@ -355,7 +355,7 @@
     }
 
     .uui-color-critical,
-    .uui-color-red {
+    .uui-color-fire {
         --uui-color-5: var(--red-5);
         --uui-color-10: var(--red-10);
         --uui-color-20: var(--red-20);
@@ -388,7 +388,7 @@
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
-    .uui-color-amber,
+    .uui-color-sun,
     .uui-color-warning {
         --uui-color-5: var(--amber-5);
         --uui-color-10: var(--amber-10);
@@ -615,6 +615,7 @@
         --uui-informer-caption: var(--uui-text-white);
     }
 
+    .uui-informer.uui-color-grass,
     .uui-informer.uui-color-success {
         --uui-color-50: var(--green-40);
         --uui-informer-caption: var(--uui-text-white);
