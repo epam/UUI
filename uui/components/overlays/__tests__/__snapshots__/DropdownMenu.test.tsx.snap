@@ -36,7 +36,7 @@ Array [
       tabIndex={-1}
     >
       <div
-        className="root itemRoot container -clickable align-items-center"
+        className="uui-flex-row root itemRoot container -clickable align-items-center"
         onClick={[Function]}
         onKeyDown={[Function]}
         role="menuitem"
@@ -62,7 +62,7 @@ Array [
         />
       </div>
       <div
-        className="root headerRoot"
+        className="uui-dropdown-menu-header root headerRoot"
       >
         <span
           className="header"
@@ -71,7 +71,7 @@ Array [
         </span>
       </div>
       <div
-        className="root root submenuRootItem itemRoot container -clickable align-items-center"
+        className="uui-flex-row root root submenuRootItem itemRoot container -clickable align-items-center"
         onClick={[Function]}
         onKeyDown={[Function]}
         role="menuitem"

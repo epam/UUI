@@ -38,7 +38,7 @@ exports[`DataTable should be rendered correctly 1`] = `
       className="stickyHeader"
     >
       <div
-        className="container uui-table-row-container root root uui-dt-vars uui-table-header-row container align-items-center"
+        className="uui-flex-row container uui-table-row-container root root uui-dt-vars uui-table-header-row container align-items-center"
         role="row"
         style={
           Object {
