@@ -34,6 +34,8 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
             ...(isDndAllowed ? { onTouchStart, onPointerDown } : {}),
         };
 
+        const { ref, ...dndActorPropsWithoutRef } = dndActorParams;
+
         return (
             <FlexRow size="30" cx={ wrapperClasses } { ...wrapperAttrs }>
                 <FlexRow size="30" spacing="6" cx={ styles.title }>
@@ -50,7 +52,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
                 <FlexRow size="30" cx={ styles.pinIconButton }>
                     <PinIconButton id={ column.key } isPinned={ !!isPinned } canUnpin={ !isPinnedAlways } onTogglePin={ togglePin } />
                 </FlexRow>
-                <DropMarker { ...dndActorParams } />
+                <DropMarker { ...dndActorPropsWithoutRef } />
             </FlexRow>
         );
     };

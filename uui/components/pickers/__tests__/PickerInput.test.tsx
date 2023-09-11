@@ -628,7 +628,8 @@ describe('PickerInput', () => {
             editMode: 'modal',
         });
         fireEvent.click(dom.input);
-        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        expect(screen.getByAria('modal', 'true')).toBeInTheDocument();
+
         expect(
             await PickerInputTestObject.findOptionsText({ busy: false, editMode: 'modal' }),
         ).toEqual(

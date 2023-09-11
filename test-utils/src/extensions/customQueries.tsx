@@ -10,6 +10,11 @@ function queryAllByRoleAndText(container: HTMLElement, params: { role: string, t
     });
 }
 
+function queryAllByAria(container: HTMLElement, name: string, value: string) {
+    const arr = container.querySelectorAll(`[aria-${name}=${value}]`);
+    return [...arr] as HTMLElement[];
+}
+
 function buildQueryByRoleAndText() {
     const [
         queryByRoleAndText, getAllByRoleAndText, getByRoleAndText, findAllByRoleAndText, findByRoleAndText,
@@ -29,10 +34,31 @@ function buildQueryByRoleAndText() {
     };
 }
 
+function buildQueryByAria() {
+    const [
+        queryByAria, getAllByAria, getByAria, findAllByAria, findByAria,
+    ] = buildQueries(
+        queryAllByAria,
+        (c, name, value) => `Found multiple elements with aria-${name}=${value}`,
+        (c, name, value) => `Unable to find an element with aria-${name}=${value}`,
+    );
+
+    return {
+        queryAllByAria,
+        queryByAria,
+        getAllByAria,
+        getByAria,
+        findAllByAria,
+        findByAria,
+    };
+}
+
 const buildQueryByRoleAndTextApi = buildQueryByRoleAndText();
+const buildQueryByAriaAPi = buildQueryByAria();
 
 const allCustomQueries = {
     ...buildQueryByRoleAndTextApi,
+    ...buildQueryByAriaAPi,
 };
 
 export default allCustomQueries;
