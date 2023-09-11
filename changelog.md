@@ -3,6 +3,7 @@
 **What's New**
 * [InputAddon]: added InputAddon component that can be used for Prefix/Suffix with ControlGroup.
 * [useVirtualList]: `scrollTo` and `scrollToIndex` API was changed. `scrollTo` is an object, with index, behavior and align configuration.
+* [DataTable]: added pinned rows functionality.
 
 **What's Fixed**
 * [PickerItem]: fixed 'cx' prop
