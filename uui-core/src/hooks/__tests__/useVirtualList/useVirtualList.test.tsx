@@ -176,7 +176,7 @@ describe('useVirtualList', () => {
         expect(result.current.offsetY).toBe(400);
         const scrollTo = { index: 100 };
         rerender({ value: { ...value, scrollTo }, onValueChange, onScroll, rowsCount: 500 });
-        expect(onScroll).toBeCalledTimes(5);
+        expect(onScroll).toBeCalledTimes(4);
 
         expect(onValueChange).toHaveBeenLastCalledWith({ visibleCount: 20, scrollTo, topIndex: 80 });
   
@@ -223,18 +223,22 @@ describe('useVirtualList', () => {
 
         expect(onValueChange).toBeCalledTimes(3);
         
-        result.current.scrollToIndex(100, 'auto');
+        result.current.scrollToIndex({ index: 100, behavior: 'auto' });
 
         expect(onScroll).toBeCalledTimes(3);
         expect(onValueChange).toBeCalledTimes(4);
-        expect(onValueChange).toHaveBeenLastCalledWith({ topIndex: 80, visibleCount: 10, scrollTo: { index: 100 } });
+        expect(onValueChange).toHaveBeenLastCalledWith({
+            topIndex: 80,
+            visibleCount: 10,
+            scrollTo: { index: 100, behavior: 'auto' },
+        });
 
         rerender({ value, onValueChange, onScroll, rowsCount: 500 });
 
         expect(onScroll).toBeCalledTimes(5);
         expect(onValueChange).toBeCalledTimes(5);
         
-        act(() => result.current.scrollToIndex(100, 'auto'));
+        act(() => result.current.scrollToIndex({ index: 100, behavior: 'auto' }));
         
         expect(onScroll).toBeCalledTimes(5);
         expect(onValueChange).toBeCalledTimes(5);
@@ -279,7 +283,7 @@ describe('useVirtualList', () => {
         
         rerender({ value: { ...value, scrollTo: { index: 100 } }, onValueChange, onScroll, rowsCount: 500 });
         
-        expect(onScroll).toBeCalledTimes(5);
+        expect(onScroll).toBeCalledTimes(4);
         expect(onValueChange).toBeCalledTimes(4);
         expect(onValueChange).toHaveBeenLastCalledWith({ topIndex: 80, visibleCount: 20, scrollTo: { index: 100 } });
 
@@ -288,7 +292,7 @@ describe('useVirtualList', () => {
         expect(onScroll).toBeCalledTimes(6);
         expect(onValueChange).toBeCalledTimes(5);
         
-        act(() => result.current.scrollToIndex(100, 'auto'));
+        act(() => result.current.scrollToIndex({ index: 100, behavior: 'auto' }));
         
         expect(onScroll).toBeCalledTimes(6);
         expect(onValueChange).toBeCalledTimes(5);

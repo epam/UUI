@@ -359,7 +359,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                         // If cascadeSelection is implicit and the element is unchecked, it is necessary to load all children
                         // of all parents of the unchecked element to be checked explicitly. Only one layer of each parent should be loaded.
                         // Otherwise, should be loaded only checked element and all its nested children.
-                        loadAllChildren: (id) => (isImplicitMode ? id === ROOT_ID || parents.includes(id) : isRoot || id === checkedId),
+                        loadAllChildren: (id) => {
+                            if (isImplicitMode) {
+                                return id === ROOT_ID || parents.some((parent) => isEqual(parent, id));
+                            }
+                            // `isEqual` is used, because complex ids can be recreated after fetching of parents.
+                            // So, they should be compared not by reference, but by value.
+                            return isRoot || isEqual(id, checkedId);
+                        },
                     },
                     loadNestedLayersChildren,
                 );

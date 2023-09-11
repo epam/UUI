@@ -11,6 +11,7 @@ import {
     DataRowPathItem,
     CascadeSelectionTypes,
     VirtualListRange,
+    ScrollToConfig,
 } from '../../../types';
 import { ITree, NOT_FOUND_RECORD } from './tree/ITree';
 
@@ -100,7 +101,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
     protected keyToId(key: string) {
         try {
-            return JSON.parse(key);            
+            return JSON.parse(key);
         } catch (e) {
             return key;
         }
@@ -173,7 +174,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         if (this.onValueChange) {
             const fold = !rowProps.isFolded;
             const indexToScroll = rowProps.index - (rowProps.path?.length ?? 0);
-            const scrollTo = fold && rowProps.isPinned ? { index: indexToScroll } : this.value.scrollTo;
+            const scrollTo: ScrollToConfig = fold && rowProps.isPinned
+                ? { index: indexToScroll, align: 'nearest' }
+                : this.value.scrollTo;
+
             this.onValueChange({
                 ...this.value,
                 scrollTo,
@@ -379,7 +383,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 if (row.isPinned) {
                     pinned[this.idToKey(row.id)] = row.index;
                     if (!pinnedByParentId[this.idToKey(row.parentId)]) {
-                        pinnedByParentId[this.idToKey(row.parentId)] = [];                        
+                        pinnedByParentId[this.idToKey(row.parentId)] = [];
                     }
                     pinnedByParentId[this.idToKey(row.parentId)]?.push(row.index);
                 }
@@ -441,22 +445,46 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         this.hasMoreRows = rootStats.hasMoreRows;
     }
 
-    protected getLastHiddenPinnedByParent(row: DataRowProps<TItem, TId>, alreadyAdded: TId[]) {
-        const pinnedIndexes = this.pinnedByParentId[this.idToKey(row.parentId)];
-        if (!pinnedIndexes || !pinnedIndexes.length) return undefined;
+    private getLastPinnedBeforeRow(row: DataRowProps<TItem, TId>, pinnedIndexes: number[]) {
+        const isBeforeOrEqualToRow = (pinnedRowIndex: number) => {
+            const pinnedRow = this.rows[pinnedRowIndex];
+            if (!pinnedRow) {
+                return false;
+            }
+            return row.index >= pinnedRow.index;
+        };
 
-        const lastPinnedAfterRow = [...pinnedIndexes].reverse().findIndex((index) => {
-            const pinnedRow = this.rows[index];
-            if (!pinnedRow) return false;
-            return row.index > pinnedRow.index;
-        });
+        let foundRowIndex = -1;
+        for (const pinnedRowIndex of pinnedIndexes) {
+            if (isBeforeOrEqualToRow(pinnedRowIndex)) {
+                foundRowIndex = pinnedRowIndex;
+            } else if (foundRowIndex !== -1) {
+                break;
+            }
+        }
 
-        if (lastPinnedAfterRow === -1) {
+        if (foundRowIndex === -1) {
             return undefined;
         }
-        const lastHiddenPinned = this.rows[lastPinnedAfterRow];
-        if (alreadyAdded.includes(lastHiddenPinned.id)) return undefined;
-         
+        return foundRowIndex;
+    }
+
+    protected getLastHiddenPinnedByParent(row: DataRowProps<TItem, TId>, alreadyAdded: TId[]) {
+        const pinnedIndexes = this.pinnedByParentId[this.idToKey(row.parentId)];
+        if (!pinnedIndexes || !pinnedIndexes.length) {
+            return undefined;
+        }
+
+        const lastPinnedBeforeRow = this.getLastPinnedBeforeRow(row, pinnedIndexes);
+        if (lastPinnedBeforeRow === undefined) {
+            return undefined;
+        }
+
+        const lastHiddenPinned = this.rows[lastPinnedBeforeRow];
+        if (!lastHiddenPinned || alreadyAdded.includes(lastHiddenPinned.id)) {
+            return undefined;
+        }
+
         return lastHiddenPinned;
     }
 
@@ -479,7 +507,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
         const lastHiddenPinned = this.getLastHiddenPinnedByParent(firstRow, alreadyAdded);
         if (lastHiddenPinned) {
-            rowsWithPinned.push(lastHiddenPinned);                
+            rowsWithPinned.push(lastHiddenPinned);
         }
 
         return rowsWithPinned.concat(rows);
