@@ -4,7 +4,6 @@ import { IEditable, IHasCX, uuiMarkers, uuiElement, ICanBeReadonly } from '@epam
 import { Toolbar } from './common';
 import { linkDecorator } from './decorators';
 import css from './RichTextEditor.module.scss';
-import style from '@epam/assets/scss/typography.scss';
 import { convertHtmlToDraftState, convertDraftStateToHtml } from './utils';
 import { ToolbarButton } from './types';
 import * as I from 'immutable';
@@ -183,12 +182,12 @@ export class RichTextEditor extends React.Component<RichTextEditorProps> {
     render() {
 
         const defaultStructure: ToolbarButton[] = [
-            'bold', 'italic', 'underline',  'link', 'separator', 'header', 'unordered-list', 'ordered-list', 'separator', 'image', 'separator', 'undo', 'redo',
+            'bold', 'italic', 'underline', 'link', 'separator', 'header', 'unordered-list', 'ordered-list', 'separator', 'image', 'separator', 'undo', 'redo',
         ];
 
         // const defaultTextColors: ToolbarTextColor[] = ['sky', 'grass', 'carbon', 'night', 'cobalt', 'lavanda', 'fuchsia', 'fire', 'sun'];
 
-        const editorClass = this.props.customClass ? this.props.customClass : [style.typographyLoveship, style.typography14];
+        const editorClass = this.props.customClass ? this.props.customClass : [css.typographyLoveship, css.typography14];
 
         const structure = this.props.structure || defaultStructure;
 

@@ -62,7 +62,10 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
                         size={ size }
                         caption={ hasSelection ? clearAllText : selectAllText }
                         onClick={ hasSelection ? clearSelection : () => view.selectAll.onValueChange(true) }
-                        rawProps={ { onKeyDown: handleKeyDown } }
+                        rawProps={ {
+                            onKeyDown: handleKeyDown,
+                            'aria-label': hasSelection ? clearAllText : selectAllText,
+                        } }
                     />
                 )}
                 {!view.selectAll && (
@@ -71,7 +74,10 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
                         size={ size }
                         caption={ isSinglePicker ? clearSingleText : clearAllText }
                         onClick={ clearSelection }
-                        rawProps={ { onKeyDown: handleKeyDown } }
+                        rawProps={ {
+                            onKeyDown: handleKeyDown,
+                            'aria-label': isSinglePicker ? clearSingleText : clearAllText,
+                        } }
                     />
                 )}
             </FlexCell>

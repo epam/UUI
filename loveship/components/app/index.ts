@@ -1,2 +1,2 @@
-export * from './ErrorHandler';
 export * from './ErrorPage';
+export * from './ErrorHandler';

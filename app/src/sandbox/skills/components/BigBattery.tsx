@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import css from './BigBattery.module.scss';
 import { Button, FlexRow, Text } from '@epam/promo';
-import { ISkillLevel } from '../index';
+import { ISkillLevel } from '../utils';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigation-close-18.svg';
 
 interface IBigBatteryProps {
@@ -48,7 +48,7 @@ export function BigBattery(props: IBigBatteryProps) {
             {props.isExtended && (
                 <>
                     <div className={ css.batteryDivider }></div>
-                    <Button fill="none" color="gray50" icon={ CrossIcon } cx={ cx(css.mainCloseBtn) } onClick={ () => props.setRating('NoSkill') } />
+                    <Button fill="none" color="gray" icon={ CrossIcon } cx={ cx(css.mainCloseBtn) } onClick={ () => props.setRating('NoSkill') } />
                 </>
             )}
         </FlexRow>

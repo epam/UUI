@@ -6,5 +6,7 @@ export * from './contexts';
 export * from './dataQuery';
 export * from './validation';
 export * from './components';
+export * from './dataRows';
 export * from './dataSources';
+export * from './pickers';
 export * from './components/filterItemBody';

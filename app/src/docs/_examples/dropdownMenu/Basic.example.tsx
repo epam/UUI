@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { IDropdownMenuItemProps, DropdownMenuBody, DropdownMenuButton, DropdownMenuSwitchButton, DropdownMenuSplitter, DropdownMenuHeader, DropdownSubMenu,
-    Dropdown, Panel, ControlGroup, Button, LinkButton } from '@epam/uui';
+    Dropdown, ControlGroup, Button, LinkButton } from '@epam/uui';
 import { DropdownBodyProps } from '@epam/uui-core';
 import { ReactComponent as LogoutIcon } from '@epam/assets/icons/common/navigation-logout-18.svg';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-delete-18.svg';
 import { ReactComponent as ExportIcon } from '@epam/assets/icons/common/file-export-18.svg';
 import { ReactComponent as PersonIcon } from '@epam/assets/icons/common/social-person-18.svg';
+
 
 function DropdownMenuSwitchButtonElement(props: IDropdownMenuItemProps) {
     const [selected, setSelected] = useState(false);
@@ -71,30 +72,28 @@ export default function BasicDropdownMenuExample() {
         );
     };
 
-    const renderSecondDropdownBody = () => {
+    const renderSecondDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <Panel shadow={ true }>
+            <DropdownMenuBody { ...props }>
                 <DropdownMenuButton caption="Cancel Data Loads" indent={ true } onClick={ () => {} } />
                 <DropdownMenuButton caption="Deactivate" indent={ true } onClick={ () => {} } />
                 <DropdownMenuButton caption="Delete" icon={ DeleteIcon } onClick={ () => {} } />
-            </Panel>
+            </DropdownMenuBody>
         );
     };
 
-    const renderThirdDropdownBody = () => {
+    const renderThirdDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <Panel shadow={ true }>
+            <DropdownMenuBody { ...props } rawProps={ { style: { padding: 0 } } }>
                 <DropdownMenuButton caption="Export" icon={ ExportIcon } onClick={ () => {} } />
                 <DropdownMenuButton caption="Delete" icon={ DeleteIcon } onClick={ () => {} } />
-            </Panel>
+            </DropdownMenuBody>
         );
     };
 
     return (
         <>
             <Dropdown
-                closeOnMouseLeave="boundary"
-                closeDelay={ 400 }
                 renderBody={ (props) => renderDropdownBody(props) }
                 renderTarget={ (props) => (
                     <LinkButton

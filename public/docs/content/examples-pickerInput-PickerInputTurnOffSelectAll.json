@@ -3,16 +3,25 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "To hide "
+        "text": "To hide 'Select All' button in footer, you need to provide "
       },
       {
-        "text": "'Select All' ",
+        "text": "selectAll: false",
         "uui-richTextEditor-code": true
       },
       {
-        "text": "button you need to provide selectAll: false to the DataSource params."
+        "text": " to the DataSource params. "
       }
     ],
     "data": {}
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "It can be useful for huge lazy list, where you can't afford to load all list by 'Select all' action."
+      }
+    ]
   }
 ]

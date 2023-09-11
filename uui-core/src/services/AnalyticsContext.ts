@@ -1,6 +1,7 @@
 import { BaseContext } from './BaseContext';
-import { AnalyticsEvent, IRouterContext, IAnalyticsListener, Link } from '../types';
-import { isClientSide } from '../helpers';
+import { IRouterContext, IAnalyticsListener } from '../types/contexts';
+import { AnalyticsEvent, Link } from '../types/objects';
+import { isClientSide } from '../helpers/ssr';
 
 interface AnalyticsContextOptions {
     router: IRouterContext;
@@ -13,19 +14,22 @@ export class AnalyticsContext extends BaseContext {
     public listeners: IAnalyticsListener[] = [];
     constructor(options: AnalyticsContextOptions) {
         super();
-
         this.router = options.router;
-
-        if (isClientSide) {
-            this.currentLocation = window.location?.pathname;
-            this.removeRouteListener = this.router?.listen(this.handleChangeRoute);
-        }
     }
 
     public destroyContext() {
         super.destroyContext();
         if (isClientSide) {
             this.removeRouteListener?.();
+        }
+    }
+
+    init() {
+        super.init();
+
+        if (isClientSide) {
+            this.currentLocation = window.location?.pathname;
+            this.removeRouteListener = this.router?.listen(this.handleChangeRoute);
         }
     }
 

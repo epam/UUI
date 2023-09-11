@@ -27,6 +27,7 @@ export interface SliderRatingProps<TValue> extends IEditable<TValue>, IHasRawPro
     size?: '18' | '24';
     getScaleIcon?: (value: number) => Icon;
     getHandlerIcon?: (value: number) => Icon;
+    tooltipColor?: 'white' | 'fire' | 'gray';
 }
 
 const maxValue = 5;
@@ -79,7 +80,7 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
 
     renderTooltipBox(rating: number) {
         const tooltipContent = this.props.renderTooltip ? this.props.renderTooltip(rating) : `${rating}`;
-        return <TooltipBox content={ tooltipContent } size={ this.props.size || '18' } />;
+        return <TooltipBox tooltipColor={ this.props.tooltipColor } content={ tooltipContent } size={ this.props.size || '18' } />;
     }
 
     renderRating = (sliderRating: number, markWidth: number, numberOfMarks: number) => {
@@ -102,7 +103,7 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
                         this.handlerWidth = handler && handler.offsetWidth;
                     } }
                 >
-                    <Tooltip cx={ css.tooltip } content={ this.props.renderTooltip ? this.props.renderTooltip(rating) : `${rating}` }>
+                    <Tooltip color={ this.props.tooltipColor } cx={ css.tooltip } content={ this.props.renderTooltip ? this.props.renderTooltip(rating) : `${rating}` }>
                         <IconContainer cx={ css.handlerIcon } icon={ this.props.getHandlerIcon ? this.props.getHandlerIcon(rating) : this.getHandlerIcon(rating) } />
                     </Tooltip>
                 </div>
@@ -118,7 +119,7 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
             return <IconContainer cx={ cx(css.naIcon, css[`size-${size}`], css.disabled) } icon={ NaIcon } />;
         } else {
             return (
-                <Tooltip content={ this.props.renderTooltip ? this.props.renderTooltip(0) : i18n.sliderRating.notAvailableMessage }>
+                <Tooltip color={ this.props.tooltipColor } content={ this.props.renderTooltip ? this.props.renderTooltip(0) : i18n.sliderRating.notAvailableMessage }>
                     <IconContainer
                         cx={ cx(css.naIcon, css[`size-${size}`], isReadonly && css.disabled) }
                         icon={ this.props.value === 0 ? NaActiveIcon : NaIcon }
@@ -149,11 +150,12 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
 
 type TooltipBoxProps = {
     size: string;
+    tooltipColor: 'white' | 'fire' | 'gray';
     content: React.ReactNode | string;
 };
 
 function TooltipBox(props: TooltipBoxProps) {
-    const { content, size } = props;
+    const { content, size, tooltipColor } = props;
     const tooltipBoxRef = useRef<HTMLDivElement>(null);
     const [left, setLeft] = useState<number>(0);
 
@@ -161,7 +163,7 @@ function TooltipBox(props: TooltipBoxProps) {
 
     return (
         <div className={ css.tooltipsBox } ref={ tooltipBoxRef } onMouseMove={ (event: React.MouseEvent) => setLeft(event.clientX) }>
-            <Tooltip placement="top" content={ content } cx={ css.tooltip }>
+            <Tooltip color={ tooltipColor } placement="top" content={ content } cx={ css.tooltip }>
                 <div
                     className={ css.tooltipsBoxItem }
                     style={ {
@@ -171,7 +173,7 @@ function TooltipBox(props: TooltipBoxProps) {
                     } }
                 />
             </Tooltip>
-            <Tooltip placement="top" content={ content } cx={ css.tooltip }>
+            <Tooltip color={ tooltipColor } placement="top" content={ content } cx={ css.tooltip }>
                 <div
                     className={ css.tooltipsBoxItem }
                     style={ {
@@ -181,7 +183,7 @@ function TooltipBox(props: TooltipBoxProps) {
                     } }
                 />
             </Tooltip>
-            <Tooltip placement="top" content={ content } cx={ css.tooltip }>
+            <Tooltip color={ tooltipColor } placement="top" content={ content } cx={ css.tooltip }>
                 <div
                     className={ css.tooltipsBoxItem }
                     style={ {

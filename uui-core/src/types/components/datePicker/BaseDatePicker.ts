@@ -2,8 +2,9 @@ import React, { ReactElement, ReactNode } from 'react';
 import { Dayjs } from 'dayjs';
 import { Placement } from '@popperjs/core';
 import {
-    IAnalyticableOnChange, ICanBeReadonly, ICanFocus, IDisableable, IDropdownToggler, IEditable, IHasPlaceholder, IHasRawProps,
+    IAnalyticableOnChange, ICanBeReadonly, ICanFocus, IDisableable, IEditable, IHasPlaceholder, IHasRawProps,
 } from '../../props';
+import { IDropdownToggler } from '../../pickers';
 import { CX } from '../../objects';
 
 export interface BaseDatePickerProps

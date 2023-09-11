@@ -27,22 +27,14 @@ import { FlexCell, FlexRow, Switch, PickerInput } from '@epam/promo';
 import { useAsyncDataSource } from '@epam/uui-core';
 import { useEffect } from 'react';
 
-export function RichTextEditorDemo() {
-    const [value, setValue] = React.useState<EditorValue>();
-    const [contentName, setContentName] = React.useState<string>();
-    const [isReadonly, setIsReadonly] = React.useState<boolean>();
-
-    const onChange = (newValue: EditorValue) => {
-        setValue(newValue);
-    };
-
+const getPlugins = () => {
     const uploadFile = (file: File, onProgress: (progress: number) => any): any => {
-        return svc.uuiApi.uploadFile('/uploadFileMock', file, {
+        return svc.uuiApi.uploadFile('/upload/uploadFileMock', file, {
             onProgress,
         });
     };
 
-    const plugins = [
+    return [
         ...defaultPlugins,
         baseMarksPlugin(),
         headerPlugin(),
@@ -74,6 +66,19 @@ export function RichTextEditorDemo() {
         }),
         codeBlockPlugin(),
     ];
+};
+
+export function RichTextEditorDemo() {
+    const [value, setValue] = React.useState<EditorValue>();
+    const [contentName, setContentName] = React.useState<string>();
+    const [isReadonly, setIsReadonly] = React.useState<boolean>();
+
+    useEffect(() => {
+        if (!contentName) return;
+        svc.uuiApi.processRequest('/api/get-demo-doc-content', 'POST', { name: contentName }).then((res) => {
+            setValue(res);
+        });
+    }, [contentName]);
 
     const contentsDataSource = useAsyncDataSource<string, string, any>({
         api: () => svc.uuiApi.processRequest('/api/get-contents-list', 'GET'),
@@ -82,12 +87,9 @@ export function RichTextEditorDemo() {
         },
     }, []);
 
-    useEffect(() => {
-        if (!contentName) return;
-        svc.uuiApi.processRequest('/api/get-demo-doc-content', 'POST', { name: contentName }).then((res) => {
-            setValue(res);
-        });
-    }, [contentName]);
+    const onChange = React.useCallback((newValue: EditorValue) => {
+        setValue(newValue);
+    }, []);
 
     return (
         <div style={ { flexGrow: 1, margin: '24px' } }>
@@ -101,7 +103,11 @@ export function RichTextEditorDemo() {
                         selectionMode="single"
                     />
                 </FlexCell>
-                <Switch value={ isReadonly } onValueChange={ setIsReadonly } label="Readonly" />
+                <Switch
+                    value={ isReadonly }
+                    onValueChange={ setIsReadonly }
+                    label="Readonly"
+                />
             </FlexRow>
             <FlexCell grow={ 1 } style={ { marginTop: '12px' } }>
                 <SlateEditor
@@ -109,7 +115,7 @@ export function RichTextEditorDemo() {
                     onValueChange={ onChange }
                     key={ contentName }
                     autoFocus={ true }
-                    plugins={ plugins }
+                    plugins={ getPlugins() }
                     isReadonly={ isReadonly }
                     placeholder="Add description"
                     minHeight={ 300 }

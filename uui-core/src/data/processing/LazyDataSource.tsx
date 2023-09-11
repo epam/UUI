@@ -1,7 +1,7 @@
+import { useEffect, useMemo } from 'react';
 import { LazyListView, LazyListViewProps, NOT_FOUND_RECORD } from './views';
 import { ListApiCache } from './ListApiCache';
 import { BaseDataSource } from './BaseDataSource';
-import { useEffect } from 'react';
 import { DataSourceState } from '../../types';
 
 export interface LazyDataSourceProps<TItem, TId, TFilter> extends LazyListViewProps<TItem, TId, TFilter> {}
@@ -56,7 +56,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         };
 
         if (view) {
-            view.update(value, viewProps);
+            view.update({ value, onValueChange }, viewProps);
             return view;
         } else {
             const newView = new LazyListView({ value, onValueChange }, viewProps, this.cache);
@@ -67,11 +67,31 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
 
     useView<TState extends DataSourceState<any, TId>>(
         value: TState,
-        onValueChange: (value: TState) => any,
+        onValueChange: (val: TState) => void,
         props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
+        deps: any[] = [],
     ): LazyListView<TItem, TId, TFilter> {
-        useEffect(() => () => this.unsubscribeView(onValueChange), [this]);
+        const viewProps: LazyListViewProps<TItem, TId, TFilter> = {
+            ...this.props,
+            getId: this.getId,
+            ...props,
+        };
+         
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const view = useMemo(
+            () => new LazyListView({ value, onValueChange }, viewProps, this.cache),
+            [...deps, this], // every time, datasource is updated, view should be recreated
+        );
 
-        return this.getView(value, onValueChange, props);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        useEffect(() => {
+            const unsubscribe = this.subscribe(view);
+            return () => {
+                unsubscribe();
+            };
+        }, [view]);
+
+        view.update({ value, onValueChange }, viewProps);
+        return view;
     }
 }

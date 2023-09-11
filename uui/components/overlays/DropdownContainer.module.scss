@@ -9,6 +9,10 @@
         border: 0;
         border-radius: var(--uui-dropdown-container-border-radius);
         overflow: hidden;
+
+        &:focus-visible {
+            outline: none;
+        }
     }
 
     :global(.uui-popover-arrow) {

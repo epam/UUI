@@ -1,22 +1,27 @@
 import React, { useState } from 'react';
-import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
+import { DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { DataSourceViewer } from '@epam/uui-docs';
-
-const items = Array(1000).fill(0).map((_, index) => ({ id: index, name: `Parent ${index}` }));
+import { Button, Panel, FlexRow } from '@epam/promo';
 
 export default function DataSourceStateVisibleCountExample() {
-    const [value1, onValueChange1] = useState<DataSourceState>({
-        indexToScroll: 100,
-    });
-    const dataSource1 = useArrayDataSource({
-        items,
+    const svc = useUuiContext();
+
+    const [value1, onValueChange1] = useState<DataSourceState>({});
+    const dataSource1 = useLazyDataSource({ 
+        api: svc.api.demo.countries,
     }, []);
-    
+
     return (
-        <DataSourceViewer
-            value={ value1 }
-            onValueChange={ onValueChange1 }
-            dataSource={ dataSource1 }
-        />
+        <Panel>
+            <FlexRow spacing="12">
+                <Button onClick={ () => onValueChange1({ ...value1, scrollTo: { index: 0 } }) } caption="Scroll top" />
+                <Button onClick={ () => onValueChange1({ ...value1, scrollTo: { index: 200 } }) } caption="Scroll bottom" />
+            </FlexRow>
+            <DataSourceViewer
+                value={ value1 }
+                onValueChange={ onValueChange1 }
+                dataSource={ dataSource1 }
+            />
+        </Panel>
     );
 }

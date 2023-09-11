@@ -1,28 +1,8 @@
 import React from 'react';
-import {
-    IModal, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse,
-} from '@epam/uui-core';
+import { IModal, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui-core';
 import { Country } from '@epam/uui-docs';
-import {
-    ModalBlocker,
-    ModalWindow,
-    FlexSpacer,
-    ModalHeader,
-    FlexRow,
-    LabeledInput,
-    TextInput,
-    Button,
-    ScrollBars,
-    ModalFooter,
-    SuccessNotification,
-    useForm,
-    Text,
-    Panel,
-    FlexCell,
-    ControlWrapper,
-    RadioGroup,
-    PickerInput,
-} from '@epam/promo';
+import { ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, FlexRow, LabeledInput, TextInput, Button, ScrollBars, ModalFooter, SuccessNotification, useForm, Text,
+    Panel, FlexCell, ControlWrapper, RadioGroup, PickerInput } from '@epam/promo';
 
 interface Person {
     firstName?: string;
@@ -98,7 +78,7 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
                     </Panel>
                     <ModalFooter borderTop>
                         <FlexSpacer />
-                        <Button color="gray50" fill="white" onClick={ () => close().then(modalProps.abort) } caption="Cancel" />
+                        <Button color="gray" fill="white" onClick={ () => close().then(modalProps.abort) } caption="Cancel" />
                         <Button color="green" caption="Confirm" onClick={ save } />
                     </ModalFooter>
                     <FlexSpacer />
@@ -129,7 +109,8 @@ export default function ModalWithFormExampleToggler() {
                                 </SuccessNotification>
                             ),
                             { duration: 2 },
-                        )) }
+                        ))
+                    .catch(() => {}) }
         />
     );
 }

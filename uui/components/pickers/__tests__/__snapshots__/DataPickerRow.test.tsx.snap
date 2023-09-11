@@ -98,6 +98,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
           className="iconWrapper"
         >
           <div
+            aria-label="Selected"
             className="container uui-icon uui-enabled iconPrimary"
             style={Object {}}
           >

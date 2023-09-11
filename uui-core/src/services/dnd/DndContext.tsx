@@ -1,10 +1,8 @@
-import {
-    isClientSide,
-    getOffset,
-    getScrollParentOfEventTarget,
-} from '../../helpers';
+import { isClientSide } from '../../helpers/ssr';
+import { getOffset } from '../../helpers/getOffset';
+import { getScrollParentOfEventTarget } from '../../helpers/events';
 import * as React from 'react';
-import { IDndContext, DndContextState } from '../../types';
+import { IDndContext, DndContextState } from '../../types/contexts';
 import { BaseContext } from '../BaseContext';
 
 const maxScrollSpeed = 2000; // px/second
@@ -19,8 +17,10 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     private renderGhostCallback: () => React.ReactNode = null;
     private lastScrollTime = new Date().getTime();
     private mouseCoordsService = new MouseCoordsService();
-    constructor() {
-        super();
+
+    init() {
+        super.init();
+
         if (isClientSide) {
             this.mouseCoordsService.init();
             window.addEventListener('pointermove', this.windowPointerMoveHandler);

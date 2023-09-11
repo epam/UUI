@@ -1,10 +1,9 @@
 import React from 'react';
 import { PlateElement, PlateElementProps, TElement, useElement, usePlateEditorRef } from '@udecode/plate-common';
-import { ELEMENT_TABLE, ELEMENT_TR, TTableElement, TTableRowElement, getTableCellBorders, getTableRowIndex, useIsCellSelected, useTableStore } from '@udecode/plate-table';
+import { ELEMENT_TABLE, ELEMENT_TR, TTableElement, TTableRowElement, TableCellElementResizable, getTableCellBorders, getTableRowIndex, useIsCellSelected, useTableStore } from '@udecode/plate-table';
 import cx from 'classnames';
 import css from './TableCell.module.scss';
 import { ExtendedTTableCellElement } from './types';
-import { TableCellElementResizable } from './resize/TableCellResizable';
 import { useReadOnly } from 'slate-react';
 
 export interface TableCellElementProps extends PlateElementProps {

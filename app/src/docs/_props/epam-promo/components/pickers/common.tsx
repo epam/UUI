@@ -93,9 +93,4 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
             'Language', 'City', 'Role', 'Location', 'Person',
         ],
     })
-    .prop('entityPluralName', { examples: ['Cities'] })
-    .prop('cascadeSelection', {
-        examples: [
-            true, 'explicit', 'implicit',
-        ],
-    });
+    .prop('entityPluralName', { examples: ['Cities'] });

@@ -7,10 +7,10 @@ export class ContextProviderDoc extends BaseDocsBlock {
         return (
             <>
                 <EditableDocContent fileName="context-provider-descriptions" />
-                <DocExample title="Example" path="./_examples/contexts/UseUuiServices.example.tsx" onlyCode={ true } />
-                <DocExample title="Example (advanced)" path="./_examples/contexts/UseUuiServicesAdvanced.example.tsx" onlyCode={ true } />
-                <DocExample title="Example (with react-router v.6)" path="./_examples/contexts/UseUuiServicesRR6.example.tsx" onlyCode={ true } />
-                <DocExample title="(Deprecated) Example with ContextProvider" path="./_examples/contexts/ContextProvider.example.tsx" onlyCode={ true } />
+                <DocExample title="Initialization" path="./_examples/contexts/UseUuiServices.example.tsx" onlyCode={ true } />
+                <DocExample title="Usage" path="./_examples/contexts/UuiServicesUsage.example.tsx" onlyCode={ true } />
+                <DocExample title="Advanced setup" path="./_examples/contexts/UseUuiServicesAdvanced.example.tsx" onlyCode={ true } />
+                <DocExample title="With react-router v.6" path="./_examples/contexts/UseUuiServicesRR6.example.tsx" onlyCode={ true } />
             </>
         );
     }

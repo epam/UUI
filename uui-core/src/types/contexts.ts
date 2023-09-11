@@ -1,16 +1,14 @@
-import { Link, LayoutLayer } from './objects';
+import { Link, LayoutLayer, AnalyticsEvent } from './objects';
 import * as PropTypes from 'prop-types';
 import { IModal, INotification } from './props';
-import {
-    FileUploadOptions,
-    FileUploadResponse,
-    SkinContext,
-    ModalOperation,
-    NotificationOperation,
-    IHistory4,
-    Lock,
-    TMouseCoords,
-} from '../services';
+import { TMouseCoords } from '../services/dnd/DndContext';
+import { Lock } from '../services/LockContext';
+import { IHistory4 } from '../services/routing/HistoryAdaptedRouter';
+import { NotificationOperation } from '../services/NotificationContext';
+import { SkinContext } from '../services/SkinContext';
+import { ModalOperation } from '../services/ModalContext';
+
+import { FileUploadOptions, FileUploadResponse } from '../services/ApiContext';
 
 export interface IBaseContext<TState = {}> {
     subscribe(handler: (state: TState) => void): void;
@@ -177,11 +175,6 @@ export interface CommonContexts<TApi, TAppContext> extends UuiContexts {
     uuiApp: TAppContext;
     history?: IHistory4;
 }
-
-export type AnalyticsEvent = {
-    name: string;
-    [key: string]: any;
-} | null;
 
 export const uuiContextTypes = {
     uuiAnalytics: PropTypes.object,
