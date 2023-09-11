@@ -14,6 +14,7 @@ const icons = systemIcons['36'];
 export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick, IDropdownToggler {
     isSelected?: boolean;
     isActive?: boolean;
+    indent?: boolean;
 }
 
 export interface IDropdownMenuContainer extends VPanelProps, DropdownBodyProps {
@@ -114,7 +115,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
         return (
             <>
                 {isIconBefore && iconElement}
-                <Text cx={ css.caption }>{caption}</Text>
+                <Text cx={ props.indent && css.indent }>{caption}</Text>
                 {isIconAfter && (
                     <>
                         <FlexSpacer />
@@ -254,7 +255,7 @@ export function DropdownMenuSwitchButton(props: IDropdownMenuSwitchButton) {
             rawProps={ { role: 'menuitem', onKeyDown: handleKeySelect, tabIndex: isDisabled ? -1 : 0 } }
         >
             {icon && <IconContainer icon={ icon } cx={ css.iconBefore } />}
-            <Text cx={ css.caption }>{caption}</Text>
+            <Text>{caption}</Text>
             <FlexSpacer />
             <Switch value={ isSelected } tabIndex={ -1 } onValueChange={ onHandleValueChange } />
         </FlexRow>
