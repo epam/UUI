@@ -8,7 +8,6 @@ import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-d
 import { ReactComponent as ExportIcon } from '@epam/assets/icons/common/file-export-18.svg';
 import { ReactComponent as PersonIcon } from '@epam/assets/icons/common/social-person-18.svg';
 
-
 function DropdownMenuSwitchButtonElement(props: IDropdownMenuItemProps) {
     const [selected, setSelected] = useState(false);
     return <DropdownMenuSwitchButton { ...props } onValueChange={ setSelected } isSelected={ selected } />;
