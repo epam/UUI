@@ -8,7 +8,7 @@ export default function BasicExample() {
     return (
         <FlexCell width="auto" cx={ css.container }>
             <LabeledInput label="Default settings">
-                <NumericInput value={ value } onValueChange={ onValueChange } min={ -15 } />
+                <NumericInput value={ value } onValueChange={ onValueChange } />
             </LabeledInput>
             <LabeledInput label="With placeholder">
                 <NumericInput placeholder="Amount" value={ value } onValueChange={ onValueChange } />
