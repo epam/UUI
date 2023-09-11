@@ -5,8 +5,8 @@ import {
 import { useArrayDataSource } from '@epam/uui-core';
 import { InputAddon } from '@epam/uui';
 
-const languageLevels = [
-    { id: 2, level: 'A1' }, { id: 3, level: 'A1+' }, { id: 4, level: 'A2' }, { id: 5, level: 'A2+' }, { id: 6, level: 'B1' }, { id: 7, level: 'B1+' }, { id: 8, level: 'B2' }, { id: 9, level: 'B2+' }, { id: 10, level: 'C1' }, { id: 11, level: 'C1+' }, { id: 12, level: 'C2' },
+const vendorsList = [
+    { id: 2, level: 'Victor Grudenberg' }, { id: 3, level: 'John Halivanger' }, { id: 4, level: 'Alex Yetisport' }, { id: 5, level: 'Peter Bremen' }, { id: 6, level: 'John Halivanger' }, { id: 7, level: 'Pablo Lipa' },
 ];
 
 export default function PrefixExample() {
@@ -15,7 +15,7 @@ export default function PrefixExample() {
     const [multiPickerValue, multiOnValueChange] = useState(null);
     const dataSource = useArrayDataSource(
         {
-            items: languageLevels,
+            items: vendorsList,
         },
         [],
     );
@@ -23,13 +23,14 @@ export default function PrefixExample() {
     return (
         <>
             <ControlGroup>
-                <InputAddon content="test" />
+                <InputAddon content="Vendor" />
                 <PickerInput
                     dataSource={ dataSource }
                     value={ multiPickerValue }
                     onValueChange={ multiOnValueChange }
                     getName={ (item) => item.level }
-                    entityName="Level"
+                    entityName="Vendor"
+                    placeholder="All vendors"
                     selectionMode="multi"
                     valueType="id"
                     sorting={ { field: 'level', direction: 'asc' } }

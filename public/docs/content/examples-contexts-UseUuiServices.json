@@ -4,23 +4,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "This is an example of how "
-      },
-      {
-        "text": "UuiContext",
-        "uui-richTextEditor-code": true
-      },
-      {
-        "text": " can be initialized. "
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "Notes: "
+        "text": "To initialize UUI contexts in your app you need to do following steps:"
       }
     ]
   },
@@ -37,14 +21,11 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "Create router using "
+                "text": "Create router adapter using "
               },
               {
                 "text": "HistoryAdaptedRouter",
                 "uui-richTextEditor-code": true
-              },
-              {
-                "text": "."
               }
             ]
           }
@@ -59,21 +40,18 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "The  "
+                "text": "Get services via  "
               },
               {
                 "text": "useUuiServices",
                 "uui-richTextEditor-code": true
               },
               {
-                "text": " hook returns an object with context services. The object must be passed as "
+                "text": " hook and provide it to the "
               },
               {
                 "text": "UuiContext.Provider",
                 "uui-richTextEditor-code": true
-              },
-              {
-                "text": " value (see the example)"
               }
             ]
           }
@@ -82,18 +60,23 @@
     ]
   },
   {
-    "data": {},
     "type": "note-link",
     "children": [
       {
-        "text": "Note: We use the "
+        "text": "Note that this example will work only for react-router version 5 and lower. For react-router version 6 see this "
       },
       {
-        "text": "svc",
-        "uui-richTextEditor-code": true
+        "type": "link",
+        "url": "/documents?id=contextProvider&mode=doc&skin=UUI4_promo&category=contexts#with_react-router_v.6",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "example"
+          }
+        ]
       },
       {
-        "text": " variable in all our examples, but you can use services from react context."
+        "text": "."
       }
     ]
   }

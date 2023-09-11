@@ -9,7 +9,7 @@ import { ReactComponent as TableIcon } from '../../icons/table-add.svg';
 import { PositionedToolbar } from '../../implementation/PositionedToolbar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { PlateEditor, PlatePlugin, Value, getPluginType, insertNodes, someNode, usePlateEditorState, withoutNormalizing } from '@udecode/plate-common';
+import { PlateEditor, PlatePlugin, Value, getPluginType, insertNodes, someNode, useEditorRef, withoutNormalizing } from '@udecode/plate-common';
 import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, TablePlugin, createTablePlugin, getTableGridAbove } from '@udecode/plate-table';
 import { MergeToolbarContent } from './MergeToolbarContent';
 import { TableToolbarContent } from './ToolbarContent';
@@ -22,7 +22,7 @@ const noop = () => {};
 
 function TableRenderer(props: any) {
     const { element: tableElem } = props;
-    const editor = usePlateEditorState();
+    const editor = useEditorRef();
     const isReadonly = useReadOnly();
     const isFocused = useFocused();
     const isSelected = useSelected();
