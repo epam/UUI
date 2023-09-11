@@ -6,9 +6,9 @@ import { CommonContexts } from '../types/contexts';
 import { HistoryAdaptedRouter, IHistory4, StubAdaptedRouter } from './routing';
 import { DragGhost } from './dnd/DragGhost';
 import { GAListener } from './analytics';
-import { IUuiServicesProps, useUuiServices } from '../hooks/useUuiServices';
+import { UuiServicesProps, useUuiServices } from '../hooks/useUuiServices';
 
-export interface ContextProviderProps<TApi, TAppContext> extends IUuiServicesProps<TApi>, IHasChildren {
+export interface ContextProviderProps<TApi, TAppContext> extends UuiServicesProps<TApi>, IHasChildren {
     loadAppContext?: (api: TApi) => Promise<TAppContext>;
     onInitCompleted(svc: CommonContexts<TApi, TAppContext>): void;
     history?: IHistory4;
