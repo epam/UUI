@@ -15,7 +15,7 @@ exports[`FileCard should be rendered correctly 1`] = `
   }
 >
   <div
-    className="root size-36 spacing-6 fileCardRow container align-items-top"
+    className="uui-flex-row root size-36 spacing-6 fileCardRow container align-items-top"
     style={
       Object {
         "columnGap": undefined,
@@ -106,7 +106,7 @@ exports[`FileCard should be rendered correctly 2`] = `
   }
 >
   <div
-    className="root size-36 spacing-6 fileCardRow container align-items-top"
+    className="uui-flex-row root size-36 spacing-6 fileCardRow container align-items-top"
     style={
       Object {
         "columnGap": undefined,
@@ -197,7 +197,7 @@ exports[`FileCard should be rendered correctly 3`] = `
   }
 >
   <div
-    className="root size-36 spacing-6 fileCardRow container align-items-top"
+    className="uui-flex-row root size-36 spacing-6 fileCardRow container align-items-top"
     style={
       Object {
         "columnGap": undefined,
@@ -246,7 +246,7 @@ exports[`FileCard should be rendered correctly 3`] = `
       onMouseLeave={[Function]}
     >
       <button
-        className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root"
+        className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
         onClick={[Function]}
         tabIndex={0}
         type="button"
