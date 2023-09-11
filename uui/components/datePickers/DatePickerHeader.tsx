@@ -7,6 +7,9 @@ import { PickerBodyValue, ViewType } from '@epam/uui-components';
 import { ReactComponent as LeftArrowIcon } from '@epam/assets/icons/common/navigation-chevron-left-18.svg';
 import { ReactComponent as RightArrowIcon } from '@epam/assets/icons/common/navigation-chevron-right-18.svg';
 import { Button } from '../buttons';
+import localeData from 'dayjs/plugin/localeData';
+
+dayjs.extend(localeData);
 
 export const uuiHeader = {
     container: 'uui-datepickerheader-container',

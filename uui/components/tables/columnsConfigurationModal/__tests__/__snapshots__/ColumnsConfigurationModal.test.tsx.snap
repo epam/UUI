@@ -37,7 +37,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
     <div
       aria-modal={true}
       className="uui-modal-window modal container"
-      role="modal"
+      role="dialog"
       style={
         Object {
           "height": "700px",
@@ -557,7 +557,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
     <div
       aria-modal={true}
       className="uui-modal-window modal container"
-      role="modal"
+      role="dialog"
       style={
         Object {
           "height": "700px",

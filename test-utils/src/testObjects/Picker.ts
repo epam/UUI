@@ -89,15 +89,24 @@ export class PickerTestObject {
     }
 
     public static async findDialog(editMode?: string) {
-        return await screen.findByRole(editMode ?? this.editMode ?? 'dialog');
+        if (editMode === 'modal') {
+            return await screen.findByAria('modal', 'true');
+        }
+        return await screen.findByRole('dialog');
     }
 
     public static getDialog(editMode?: string) {
-        return screen.getByRole(editMode ?? this.editMode ?? 'dialog');
+        if (editMode === 'modal') {
+            return screen.getByAria('modal', 'true');
+        }
+        return screen.getByRole('dialog');
     }
 
     public static queryDialog(editMode?: string) {
-        return screen.queryByRole(editMode ?? this.editMode ?? 'dialog');
+        if (editMode === 'modal') {
+            return screen.queryByAria('modal', 'true');
+        }
+        return screen.queryByRole('dialog');
     }
 
     protected static async findOption(optionText: string, { editMode }: OptionConfig = {}) {
