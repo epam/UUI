@@ -6,7 +6,6 @@ import type { TApi } from '../../data';
 import { productColumns } from './columns';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
-import { useTheme } from '../../helpers/useTheme';
 import css from './ProductsTableDemo.module.scss';
 
 interface FormState {
@@ -32,7 +31,6 @@ let savedValue: FormState = { items: {} };
 
 export function ProductsTableDemo() {
     const svc = useUuiContext<TApi, UuiContexts>();
-    useTheme('uui-theme-loveship');
 
     const {
         lens, save, isChanged, revert, undo, canUndo, redo, canRedo,
@@ -61,7 +59,7 @@ export function ProductsTableDemo() {
     );
 
     return (
-        <Panel cx={ css.container }>
+        <Panel cx={ [css.container, 'uui-theme-loveship'] }>
             <DataTable
                 headerTextCase="upper"
                 getRows={ () => rows }
