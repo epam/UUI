@@ -2,7 +2,7 @@
 
 exports[`Anchor should rendered correctly 1`] = `
 <a
-  className="container uui-anchor uui-enabled -clickable"
+  className="container uui-anchor uui-enabled -clickable root"
   onClick={[Function]}
   onKeyDown={[Function]}
   role="link"
@@ -15,7 +15,7 @@ exports[`Anchor should rendered correctly 1`] = `
 exports[`Anchor should rendered with props correctly 1`] = `
 <a
   aria-disabled={true}
-  className="container uui-anchor uui-disabled -clickable"
+  className="container uui-anchor uui-disabled -clickable root"
   disabled={true}
   href="https://uui.epam.com"
   onClick={[Function]}

@@ -1,27 +1,14 @@
 import * as React from 'react';
 import { FlexRow, FlexCell, FlexSpacer, Text, PickerInput, Button, SearchInput, DataTable, DataTableRow } from '@epam/loveship';
-import { Person, PersonGroup } from '@epam/uui-docs';
+import { Person } from '@epam/uui-docs';
 import { DataSourceState, useArrayDataSource, useList, LazyDataSourceApiRequest, LazyDataSourceApiResponse, Lens, DataColumnProps, LazyDataSourceApi } from '@epam/uui-core';
-import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
+import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType, PersonsApiResponse, PersonsSummary, PersonsTableState } from './types';
 import { svc } from '../../services';
 import { getColumns } from './columns';
 import { getFilters } from './filters';
 import cx from 'classnames';
 import { useTheme } from '../../helpers/useTheme';
 import css from './PersonsTableDemo.module.scss';
-
-interface PersonsTableState extends DataSourceState {
-    isFolded?: boolean;
-}
-
-interface PersonsApiResponse extends LazyDataSourceApiResponse<Person | PersonGroup> {
-    summary: PersonsSummary;
-    totalCount: number;
-}
-
-export interface PersonsSummary extends Pick<PersonsApiResponse, 'totalCount'> {
-    totalSalary: string;
-}
 
 const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -171,6 +158,7 @@ export function PersonsTableDemo() {
             rowOptions: { checkbox: { isVisible: true } },
             isFoldedByDefault: () => value.isFolded,
             cascadeSelection: true,
+            backgroundReload: true,
         },
         [value.filter?.groupBy],
     );

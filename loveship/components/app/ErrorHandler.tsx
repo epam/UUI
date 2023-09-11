@@ -1,6 +1,7 @@
 import React from 'react';
 import { ApiCallInfo, IHasCX, useUuiContext, useUuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren, ApiRecoveryReason, ApiCallErrorType } from '@epam/uui-core';
-import { ModalBlocker, ModalHeader, ModalWindow } from '../../components';
+import { ModalBlocker, ModalHeader } from '@epam/uui';
+import { ModalWindow } from '../../components/overlays';
 import { FlexRow } from '../layout';
 import { Text } from '../typography';
 import { RichTextView, FlexCell, Spinner, ErrorNotification } from '@epam/uui';
@@ -15,13 +16,13 @@ const imageUrl = {
         404: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages/error-404.svg',
         403: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages/error-403.svg',
         500: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages/error-500.svg',
-        502: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages/error-502.svg',
+        503: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages/error-503.svg',
     },
     dark: {
         404: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages/error-404-dark.svg',
         403: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages/error-403-dark.svg',
         500: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages/error-500-dark.svg',
-        502: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages/error-502-dark.svg',
+        503: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages/error-503-dark.svg',
     },
 };
 
@@ -62,7 +63,7 @@ export const getDefaultErrorPageProps = (theme: Theme = 'light'): Record<ApiCall
             subtitle: 'Sorry for the inconvenience, we’ll get it fixed.',
         },
         serviceUnavailable: {
-            imageUrl: imageUrl[theme][502],
+            imageUrl: imageUrl[theme][503],
             title: 'The page request was canceled, because it took too long to complete',
             subtitle: 'Sorry for the inconvenience, we’ll get it fixed.',
         },

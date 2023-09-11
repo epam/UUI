@@ -1,672 +1,515 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "UUI stands for \"Unified User Interface.\"",
-            "marks": []
-          }
-        ]
-      },
+        "text": "UUI stands for \"Unified User Interface.\""
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "UUI is a set of React-based NPM package that provides:",
-            "marks": []
-          }
-        ]
-      },
+        "text": "UUI is a set of React-based NPM package that provides:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
       {
-        "object": "block",
-        "type": "unordered-list",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Rich components, from buttons to tables and rich text editors.",
-                    "marks": []
-                  }
-                ]
+                "text": "Rich components, from buttons to tables and rich text editors."
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Common services: modals, notifications, error recovery, forms, data binding, monitoring, and more.",
-                    "marks": []
-                  }
-                ]
+                "text": "Common services: modals, notifications, error recovery, forms, data binding, monitoring, and more."
               }
             ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Unified UI is also:",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "unordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Open for contribution, actively evolving, supported, and used by dozens of production projects.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Non-opinionated, compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Ready to jump in? Visit the ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://uui.epam.com/documents?id=installation"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "installation",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " section and the ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://uui.epam.com/demo"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "demo",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " page to get an overview of UUI's capabilities.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Why we built UUI?",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "UUI started somewhere in 2013. We were building an app for EPAM and fell in love with the newly born React and TypeScript. We were among the first production users. Back in those days, there were no UI libraries, so we built our own components.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "The component sets from those early days were growing, traveling via tons of projects. We tried different approaches, picking the best fit. Finally, at some point in 2016, we extracted them into a separate Git repo. Later, we wholly revisited almost all our shortcomings and mistakes. Twice. We changed the look and feel several times.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "The current code base results from years of evolution - each piece rewritten from scratch 3–4 times. The team behind UUI built three comprehensive UI/UX Design Systems and tens applications.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "At the beginning of 2020, the library was used by almost 20 EPAM production projects. So we praised backward compatibility and focused more on the solution completeness and existing projects’ maintenance. At the end of 2020, we open-sourced UUI.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "note-link",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "UUI's value is not in lines of code. It is in years of experience that led to them.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "We watched other evolving UI frameworks (Material UI, Ant Design, and similar) progress to become more stable and mature. Whereas, we were always ahead in many aspects, and UUI matches our needs better.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Which apps UUI fits?",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Our focus is modern business applications. In our applications, users discover data, get context-aware information, and make decisions. Therefore, we put a lot of effort into UX design and custom solutions.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Most apps also have many admin/back-office screens, which we build on top of usual UI/UX approaches – like Tables and Forms. UUI puts a lot of effort into accelerating the creation of such screens.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Besides similar solutions, UUI doesn't limit itself to a components-only library. We can make API calls (with error handling and retries), attach Google Analytics easily, and handle forms and validation. For sure, all this can be obtained from 3rd-party libraries. However, the 3rd-party solution needs efforts to choose and integrate and would never work seamlessly.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "UUI's strong points are:",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "unordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "CRUD-heavy applications. UUI has complete components to build data input (Forms) and Data-Discovery (Filtering, Lists, Tables) screens. This also includes state-management primitives",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "WYSIWYG editing experiences – we have a full-featured rich-text editor, built-in drag-n-drop support, an inline mode for input components",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Sharing common patterns. We help developers to build whole screens – with examples, high-level components, consulting, and teaching.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "UUI components can be perfectly fit into a completely custom layout",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "\"Skins.\" UUI is designed to support building-derived libraries with brand-styled components on top of it. This allows deep customization, including component layout changes, custom palettes, and size sets. Two existing 'skins' UUI has built this way.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Explore our ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "demo"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "Demos",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " to get an overview of the use-cases we support.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Is it a Framework or a library?",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Some component libraries build around not being a \"Framework\" but a \"Library.\" React itself is an example. \"Just a library\" means being non-opinionated at all costs, i.e., not dictating how you build your app, structure your code, or handle your state management. It's up to the developers or architects to decide how to develop their apps.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "On the other hand, there is a \"frameworks\" camp, gathering supporters of frameworks like Angular. They see that it's beneficial to have something that guides your team to success - guidelines on how to structure your code, manage state, and even which folder to put each type of file into. They often push this idea to the limits.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "UUI is somewhere in between these two approaches. We support common application-wide tasks, like state management, API calls, and error handling, but we don't force you to use any of them.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "note-link",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "We never dictate; we give a hand.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Furthermore, we have tons of helpers for:",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "unordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Form state management - including validation",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "List/Table/Tree state management - including lazy-loading, virtualization, filtering and paging",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Services - API calls with error-handing, convenient web-analytics events, managing modal windows and notifications",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Stand-alone utilities to filter/sort data sets",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Examples and guidelines illustrating how to combine these to build your app",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "However, if you want to take your own approach, then UUI works just fine as a visual components library. The only thing required is to provide some context via our ContextProvider - as some components need to know how, for example, to use your Routing approach.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "But with our helpers, you'll find that 80% of your screens can be built in a breeze without complicated solutions like Redux.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "\n",
-            "marks": []
           }
         ]
       }
     ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Unified UI is also:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Open for contribution, actively evolving, supported, and used by dozens of production projects."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Non-opinionated, compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Ready to jump in? Visit the "
+      },
+      {
+        "data": {
+          "url": "https://uui.epam.com/documents?id=installation"
+        },
+        "type": "link",
+        "url": "https://uui.epam.com/documents?id=installation",
+        "children": [
+          {
+            "text": "installation"
+          }
+        ]
+      },
+      {
+        "text": " section and the "
+      },
+      {
+        "data": {
+          "url": "https://uui.epam.com/demo"
+        },
+        "type": "link",
+        "url": "https://uui.epam.com/demo",
+        "children": [
+          {
+            "text": "demo"
+          }
+        ]
+      },
+      {
+        "text": " page to get an overview of UUI's capabilities."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Why we built UUI?"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI started somewhere in 2013. We were building an app for EPAM and fell in love with the newly born React and TypeScript. We were among the first production users. Back in those days, there were no UI libraries, so we built our own components."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "The component sets from those early days were growing, traveling via tons of projects. We tried different approaches, picking the best fit. Finally, at some point in 2016, we extracted them into a separate Git repo. Later, we wholly revisited almost all our shortcomings and mistakes. Twice. We changed the look and feel several times."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "The current code base results from years of evolution - each piece rewritten from scratch 3–4 times. The team behind UUI built three comprehensive UI/UX Design Systems and tens applications."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "At the beginning of 2020, the library was used by almost 20 EPAM production projects. So we praised backward compatibility and focused more on the solution completeness and existing projects’ maintenance. At the end of 2020, we open-sourced UUI."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-link",
+    "children": [
+      {
+        "text": "UUI's value is not in lines of code. It is in years of experience that led to them."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "We watched other evolving UI frameworks (Material UI, Ant Design, and similar) progress to become more stable and mature. Whereas, we were always ahead in many aspects, and UUI matches our needs better."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Which apps UUI fits?"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Our focus is modern business applications. In our applications, users discover data, get context-aware information, and make decisions. Therefore, we put a lot of effort into UX design and custom solutions."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Most apps also have many admin/back-office screens, which we build on top of usual UI/UX approaches – like Tables and Forms. UUI puts a lot of effort into accelerating the creation of such screens."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Besides similar solutions, UUI doesn't limit itself to a components-only library. We can make API calls (with error handling and retries), attach Google Analytics easily, and handle forms and validation. For sure, all this can be obtained from 3rd-party libraries. However, the 3rd-party solution needs efforts to choose and integrate and would never work seamlessly."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI's strong points are:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "CRUD-heavy applications. UUI has complete components to build data input (Forms) and Data-Discovery (Filtering, Lists, Tables) screens. This also includes state-management primitives"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "WYSIWYG editing experiences – we have a full-featured rich-text editor, built-in drag-n-drop support, an inline mode for input components"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Sharing common patterns. We help developers to build whole screens – with examples, high-level components, consulting, and teaching."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "UUI components can be perfectly fit into a completely custom layout"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "\"Skins.\" UUI is designed to support building-derived libraries with brand-styled components on top of it. This allows deep customization, including component layout changes, custom palettes, and size sets. Two existing 'skins' UUI has built this way."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Explore our "
+      },
+      {
+        "data": {
+          "url": "demo"
+        },
+        "type": "link",
+        "url": "demo",
+        "children": [
+          {
+            "text": "Demos"
+          }
+        ]
+      },
+      {
+        "text": " to get an overview of the use-cases we support."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Is it a Framework or a library?"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Some component libraries build around not being a \"Framework\" but a \"Library.\" React itself is an example. \"Just a library\" means being non-opinionated at all costs, i.e., not dictating how you build your app, structure your code, or handle your state management. It's up to the developers or architects to decide how to develop their apps."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "On the other hand, there is a \"frameworks\" camp, gathering supporters of frameworks like Angular. They see that it's beneficial to have something that guides your team to success - guidelines on how to structure your code, manage state, and even which folder to put each type of file into. They often push this idea to the limits."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI is somewhere in between these two approaches. We support common application-wide tasks, like state management, API calls, and error handling, but we don't force you to use any of them."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-link",
+    "children": [
+      {
+        "text": "We never dictate; we give a hand."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Furthermore, we have tons of helpers for:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Form state management - including validation"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "List/Table/Tree state management - including lazy-loading, virtualization, filtering and paging"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Services - API calls with error-handing, convenient web-analytics events, managing modal windows and notifications"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Stand-alone utilities to filter/sort data sets"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Examples and guidelines illustrating how to combine these to build your app"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "However, if you want to take your own approach, then UUI works just fine as a visual components library. The only thing required is to provide some context via our ContextProvider - as some components need to know how, for example, to use your Routing approach."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "But with our helpers, you'll find that 80% of your screens can be built in a breeze without complicated solutions like Redux."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "\n"
+      }
+    ]
   }
-}
+]

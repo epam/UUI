@@ -4,7 +4,7 @@ import { DragHandle, DataTableCell as UuiDataTableCell } from '@epam/uui-compone
 import { DataTableCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
 import { Checkbox } from '../inputs';
-import { ReactComponent as FoldingArrow } from '../../icons/tree_folding_arrow.svg';
+import { ReactComponent as FoldingArrow } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import css from './DataTableCell.module.scss';
 import { Tooltip } from '../overlays';
 import { IconContainer } from '../layout';
@@ -33,6 +33,10 @@ function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TI
                 <div key="fold" className={ css.indent } style={ { marginLeft: (row.indent - 1) * 24 } }>
                     {row.isFoldable && (
                         <IconContainer
+                            rawProps={ {
+                                'aria-label': row.isFolded ? 'Unfold' : 'Fold',
+                                role: 'button',
+                            } }
                             key="icon"
                             icon={ FoldingArrow }
                             cx={ [

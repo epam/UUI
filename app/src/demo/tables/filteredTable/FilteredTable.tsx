@@ -63,6 +63,7 @@ export function FilteredTable() {
         {
             api: api,
             selectAll: false,
+            backgroundReload: true,
         },
         [],
     );
@@ -73,7 +74,10 @@ export function FilteredTable() {
         },
     });
 
-    const searchHandler = (val: string | undefined) => tableStateApi.setTableState({ ...tableStateApi.tableState, search: val });
+    const searchHandler = (val: string | undefined) => tableStateApi.setTableState({
+        ...tableStateApi.tableState,
+        search: val,
+    });
 
     const {
         setTableState, setFilter, setColumnsConfig, setFiltersConfig, ...presetsApi

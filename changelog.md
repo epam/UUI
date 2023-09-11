@@ -4,6 +4,10 @@
 * [InputAddon]: added InputAddon component that can be used for Prefix/Suffix with ControlGroup.
 
 **What's Fixed**
+* [PickerItem]: fixed 'cx' prop
+* [Contexts]: fixed context initialization for react 18 with strict mode
+* [ModalWindow]: changed role attribute value from 'modal' to 'dialog'
+* [PickerItem]: Remove the dropdown icon if minCharsToSearch is passed and fix the top and bottom spacing in the dropdown list.
 
 
 # 5.1.3 - 31.08.2023
@@ -134,6 +138,13 @@ We make an automatic migration from old state format to the new one, so it's not
 **What's Fixed**
 * [PickerInput]: fixed `unknown` in a `single` selection mode while data is loading in `AsyncDataSource` and `LazyDataSource`, and removed error of missing ids if data is still loading
 * [FiltersPanel]: fixed styles for body & toggler according to design
+* [Pickers]:
+  - rewritten `Pickers` to functional components;
+  - moved from `getView`to `useView` hook;
+
+* [DataSources][useView]:
+  - [BreakingChange]: `useView` is not recreating view on `onValueChange` update anymore;
+  - [BreakingChange]: added `deps` to `useView` as a last argument; changing the `deps` causes recreating of a `view`.
 
 # 5.0.0 - 06.06.2023
 

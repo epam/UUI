@@ -3,8 +3,8 @@ import { AnalyticsContext } from './AnalyticsContext';
 import {
     IApiContext, ApiStatus, ApiRecoveryReason, ApiCallOptions, ApiCallInfo,
 } from '../types';
-import { getCookie, isClientSide } from '../helpers';
-import { ApiContextProps } from './ContextProvider';
+import { isClientSide } from '../helpers/ssr';
+import { getCookie } from '../helpers/cookie';
 
 interface ApiCall extends ApiCallInfo {
     resolve: (value?: any) => any;
@@ -38,6 +38,11 @@ export interface FileUploadResponse {
 export type IProcessRequest = (url: string, method: string, data?: any, options?: ApiCallOptions) => Promise<any>;
 
 export type BlockTypes = 'attachment' | 'iframe' | 'image';
+export interface ApiContextProps {
+    apiReloginPath?: string;
+    apiPingPath?: string;
+    apiServerUrl?: string;
+}
 
 export class ApiContext extends BaseContext implements IApiContext {
     private queue: ApiCall[] = [];
@@ -49,6 +54,10 @@ export class ApiContext extends BaseContext implements IApiContext {
         this.props.apiReloginPath = this.props.apiReloginPath ?? '/auth/login';
         this.props.apiPingPath = this.props.apiPingPath ?? '/auth/ping';
         this.props.apiServerUrl = this.props.apiServerUrl ?? '';
+    }
+
+    init() {
+        super.init();
 
         if (isClientSide) {
             // If we opened another window to relogin and check auth - close this window and resume

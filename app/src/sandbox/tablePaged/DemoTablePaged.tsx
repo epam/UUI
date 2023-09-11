@@ -41,7 +41,7 @@ export const DemoTablePaged: React.FC = () => {
     }, []);
 
     const applyFilter = useCallback(() => {
-        setTableState({ ...tableState, indexToScroll: 0 });
+        setTableState({ ...tableState, scrollTo: { index: 0 } });
     }, [tableState]);
 
     // applying filter after parsing initial filter data from url
@@ -66,6 +66,7 @@ export const DemoTablePaged: React.FC = () => {
             rowOptions,
             getId: ({ id }) => id,
             isFoldedByDefault: () => true,
+            backgroundReload: true,
         },
         [api],
     );
@@ -91,7 +92,7 @@ export const DemoTablePaged: React.FC = () => {
                 <FlexSpacer />
                 <Paginator
                     value={ tableState.page }
-                    onValueChange={ (page: number) => setTableState({ ...tableState, page, indexToScroll: 0 }) }
+                    onValueChange={ (page: number) => setTableState({ ...tableState, page, scrollTo: { index: 0 } }) }
                     totalPages={ Math.ceil(totalCount / tableState.pageSize) }
                     size="30"
                 />

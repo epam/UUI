@@ -19,24 +19,30 @@ export const applyColumnsConfig = <TItem, TId>(columns: DataColumnProps<TItem, T
     return sortBy(newColumns, (i) => config[i.key].order);
 };
 
-export const getColumnsConfig = <TItem, TId>(columns: DataColumnProps<TItem, TId>[], prevConfig: ColumnsConfig) => {
-    const config = { ...prevConfig };
+export const getColumnsConfig = <TItem, TId>(columns: DataColumnProps<TItem, TId>[], config: ColumnsConfig) => {
+    const resultConfig: ColumnsConfig = { };
 
-    let prevOrder = 'a';
+    const sortedOrders = sortBy(config, (f) => f?.order);
+    const lastItemOrder: string | null = sortedOrders?.length ? sortedOrders[sortedOrders.length - 1]?.order : null;
+
+    let prevOrder = lastItemOrder || 'a';
 
     columns.forEach((column) => {
-        const order = getOrderBetween(prevOrder, null);
-        const hasPrevColumnConfig = !!config[column.key];
-        const columnConfig = hasPrevColumnConfig ? config[column.key] : {};
+        const hasPrevColumnConfig = !!config?.[column.key];
+        if (hasPrevColumnConfig) {
+            resultConfig[column.key] = config?.[column.key];
+        } else {
+            const order = getOrderBetween(prevOrder, null);
 
-        config[column.key] = {
-            width: columnConfig.width || column.width,
-            fix: hasPrevColumnConfig ? columnConfig.fix : column.fix,
-            isVisible: columnConfig.isVisible !== undefined ? columnConfig.isVisible : !column.isHiddenByDefault,
-            order: columnConfig.order || getOrderBetween(order, null),
-        };
-        prevOrder = order;
+            resultConfig[column.key] = {
+                width: column.width,
+                fix: column.fix,
+                isVisible: !column.isHiddenByDefault,
+                order: order,
+            };
+            prevOrder = order;
+        }
     });
 
-    return config;
+    return resultConfig;
 };

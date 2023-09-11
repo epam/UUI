@@ -173,6 +173,8 @@
     --uui-icon-active: var(--gray80);
     --uui-icon-disabled: var(--gray50);
 
+    --uui-control-focus: #008ACE80;
+
     /* Surfaces Figma - https://www.figma.com/file/UyChXPLmyv5zMrOU37KdUL/Promo-aka-UUI4-(Components)?type=design&node-id=39112-321568&mode=dev */
 
     --uui-app-bg: var(--gray10);
@@ -694,6 +696,34 @@
     /* Pagination */
 
     --uui-pagination-font: var(--font-regular);
+
+    /* DropSpot */
+
+    --uui-dropspot-border: var(--gray40);
+    --uui-dropspot-border-dropstart: var(--uui-primary);
+    --uui-dropspot-background-dropstart: var(--uui-primary-lightest);
+    --uui-dropspot-link-color: var(--uui-primary);
+    --uui-dropspot-link-hover: var(--uui-primary-dark);
+    --uui-dropspot-icon: var(--uui-primary);
+
+    /* FileCard */
+
+    --uui-filecard-background: var(--gray40);
+    --uui-filecard-icon-error: var(--uui-negative);
+    --uui-filecard-border-error: var(--uui-negative);
+    --uui-filecard-text-error: var(--uui-negative-darkest);
+    --uui-filecard-default: var(--uui-secondary);
+
+    /* IndeterminateBar */
+
+    --uui-indeterminate-bar-wrapper: var(--uui-secondary-light);
+    --uui-indeterminate-bar-background: var(--uui-primary);
+
+    /* ProgressBar */
+
+    --uui-progress-bar-wrapper: var(--uui-secondary-light);
+    --uui-progress-bar-background: var(--uui-primary);
+    --uui-progress-bar-label: var(--uui-surface-contrast-lower);
 
     /* ------------------------------------ */
 

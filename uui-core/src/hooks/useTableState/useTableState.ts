@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import isEqual from 'lodash.isequal';
 import {
     ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, IEditable, ITablePreset, ITableState, TableFiltersConfig,
@@ -6,236 +6,136 @@ import {
 import { getOrderBetween } from '../../helpers';
 import { useUuiContext } from '../../services';
 import sortBy from 'lodash.sortby';
-import { normalizeFilterConfig } from './normalizeFilterConfig';
-import { clearEmptyValueFromRecord } from './clearEmptyValueFromRecord';
+import { stateToQueryObject, getValueFromUrl, normalizeTableStateValue, normalizeFilterConfig } from './utils';
 
-export const useTableState = <TFilter = Record<string, any>, TViewState = any>(params: TableStateParams<TFilter, TViewState>): ITableState<TFilter, TViewState> => {
+interface UseTableStateHookBaseParams<TFilter = Record<string, any>, TViewState = any> {
+    /** Columns configuration, can be omitted if used without tables */
+    columns?: DataColumnProps[];
+    /** Filters configuration, can be omitted if you don't need filters */
+    filters?: TableFiltersConfig<TFilter>[];
+    /** Initial presets array */
+    initialPresets?: ITablePreset<TFilter, TViewState>[];
+    /** Called when preset was created. Should return the ID of new preset */
+    onPresetCreate?(preset: ITablePreset<TFilter, TViewState>): Promise<number>;
+    /** Called when preset was updated */
+    onPresetUpdate?(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
+    /** Called when preset was deleted */
+    onPresetDelete?(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
+}
+
+interface UseTableStateHookImplParams<TFilter = Record<string, any>, TViewState = any> extends UseTableStateHookBaseParams<TFilter, TViewState> {
+    value: DataTableState<TFilter, TViewState>;
+    onValueChange: (update: (val: DataTableState<TFilter, TViewState>) => DataTableState<TFilter, TViewState>) => void;
+}
+
+export const useTableStateImpl = <TFilter = Record<string, any>, TViewState = any>
+(params: UseTableStateHookImplParams<TFilter, TViewState>): ITableState<TFilter, TViewState> => {
     const context = useUuiContext();
-    const [presets, setPresets] = useState(params.initialPresets ?? []);
+    const [presets, setPresets] = useState(params?.initialPresets ?? []);
 
-    const getValueFromUrl = () => {
-        const urlParams = context.uuiRouter.getCurrentLink().query;
-
-        const activePreset = presets.find((p: ITablePreset<TFilter, TViewState>) => p.id === urlParams.presetId);
-        const filtersConfig = normalizeFilterConfig(activePreset?.filtersConfig, urlParams.filter, params.filters);
-
-        return {
-            filter: urlParams.filter,
-            columnsConfig: urlParams.columnsConfig,
-            filtersConfig: filtersConfig,
-            presetId: urlParams.presetId,
-            page: urlParams.page,
-            pageSize: urlParams.pageSize,
-            sorting: urlParams.sorting,
-            viewState: urlParams.viewState,
-        };
-    };
-
-    const stateToQueryObject = (state: DataTableState<TFilter, TViewState>) => {
-        return {
-            ...context.uuiRouter.getCurrentLink().query,
-            filter: state.filter,
-            presetId: state.presetId,
-            sorting: state.sorting,
-            viewState: state.viewState,
-            columnsConfig: state.columnsConfig,
-            page: state.page,
-            pageSize: state.pageSize,
-        };
-    };
-
-    const setValueToUrl = (value: DataTableState<TFilter, TViewState>) => {
-        const oldQuery = context.uuiRouter.getCurrentLink().query;
-        const newQuery = stateToQueryObject(value);
-
-        if (JSON.stringify(oldQuery) !== JSON.stringify(newQuery)) {
-            context.uuiRouter.redirect({
-                pathname: context.uuiRouter.getCurrentLink().pathname,
-                query: newQuery,
-            });
-        }
-    };
-
-    const [tableStateValue, setTableStateValue] = useState<DataTableState<TFilter, TViewState>>(() => {
-        const value = getValueFromUrl();
-        return {
-            ...value,
-            topIndex: 0,
-            visibleCount: 40,
-        };
-    });
-
-    const getTableStateValue = useCallback(() => {
-        if (params.onValueChange) {
-            return params.value;
-        }
-
-        const valueFromUrl = getValueFromUrl();
-        return {
-            ...tableStateValue,
-            ...valueFromUrl,
-            filtersConfig: tableStateValue.filtersConfig ?? valueFromUrl.filtersConfig,
-        };
-    }, [params.value, tableStateValue]);
-
-    const normalizeTableStateValue = (value: DataTableState<TFilter, TViewState>) => {
-        const newFilter = clearEmptyValueFromRecord(value.filter);
-        const newViewState = clearEmptyValueFromRecord(value.viewState);
-        const filtersConfig = normalizeFilterConfig(value?.filtersConfig, newFilter, params.filters);
-        const prevValue = getTableStateValue();
-
-        const newTableState = {
-            ...prevValue,
-            ...value,
-            filtersConfig: filtersConfig,
-            filter: newFilter,
-            viewState: newViewState,
-        };
-
-        // reset paging on filter change
-        if (prevValue?.page !== undefined && !isEqual(prevValue?.filter, newFilter)) {
-            newTableState.page = 1;
-        }
-        return newTableState;
-    };
-
-    const setTableState = useCallback((newValue: DataTableState<TFilter, TViewState>) => {
-        const resultValue = normalizeTableStateValue(newValue);
-
-        if (params.onValueChange) {
-            params.onValueChange(resultValue);
-        } else {
-            setValueToUrl(resultValue);
-            setTableStateValue(resultValue);
-        }
+    const setColumnsConfig = useCallback((columnsConfig: ColumnsConfig) => {
+        params.onValueChange((val) => ({
+            ...val,
+            columnsConfig,
+        }));
     }, []);
 
-    const setColumnsConfig = useCallback(
-        (columnsConfig: ColumnsConfig) => {
-            setTableState({
-                ...getTableStateValue(),
-                columnsConfig,
-            });
-        },
-        [getTableStateValue],
-    );
+    const setFiltersConfig = useCallback((filtersConfig: FiltersConfig) => {
+        params.onValueChange((val) => ({
+            ...val,
+            filtersConfig,
+        }));
+    }, []);
 
-    const setFiltersConfig = useCallback(
-        (filtersConfig: FiltersConfig) => {
-            setTableState({
-                ...getTableStateValue(),
-                filtersConfig,
-            });
-        },
-        [getTableStateValue],
-    );
-
-    const setFilter = useCallback(
-        (filter: TFilter) => {
-            setTableState({
-                ...getTableStateValue(),
-                filter,
-            });
-        },
-        [getTableStateValue],
-    );
+    const setFilter = useCallback((filter: TFilter) => {
+        params.onValueChange((val) => ({
+            ...val,
+            filter,
+        }));
+    }, []);
 
     const getActivePresetId = () => {
-        const presetId = getTableStateValue()?.presetId;
+        const presetId = params.value?.presetId;
         return presetId ? +presetId : undefined;
     };
 
-    const choosePreset = useCallback(
-        (preset: ITablePreset<TFilter, TViewState>) => {
-            setTableState({
-                ...getTableStateValue(),
-                filter: preset.filter,
-                columnsConfig: preset.columnsConfig,
-                filtersConfig: preset.filtersConfig,
-                sorting: preset.sorting,
-                presetId: preset.id,
-                viewState: preset.viewState,
-            });
-        },
-        [getTableStateValue],
-    );
+    const choosePreset = useCallback((preset: ITablePreset<TFilter, TViewState>) => {
+        params.onValueChange((val) => ({
+            ...val,
+            filter: preset.filter,
+            columnsConfig: preset.columnsConfig,
+            filtersConfig: preset.filtersConfig,
+            sorting: preset.sorting,
+            presetId: preset.id,
+            viewState: preset.viewState,
+        }));
+    }, []);
 
     const getNewPresetOrder = useCallback(() => {
         const maxOrder = sortBy(presets, (i) => i.order).reverse()[0]?.order;
         return getOrderBetween(maxOrder, null);
     }, [presets]);
 
-    const createPreset = useCallback(
-        async (preset: ITablePreset<TFilter, TViewState>) => {
-            preset.id = await params?.onPresetCreate?.(preset);
+    const createPreset = useCallback(async (preset: ITablePreset<TFilter, TViewState>) => {
+        const newId = await params?.onPresetCreate?.(preset);
+        const newPreset = {
+            ...preset,
+            id: newId,
+        };
 
-            setPresets((prevValue) => [...prevValue, preset]);
-            choosePreset(preset);
+        setPresets((prevValue) => [...prevValue, newPreset]);
+        choosePreset(newPreset);
 
-            return preset.id;
-        },
-        [choosePreset, params?.onPresetCreate],
-    );
+        return newId;
+    }, [params?.onPresetCreate]);
 
-    const createNewPreset = useCallback(
-        (name: string) => {
-            const currentTableStateValue = getTableStateValue();
-            const newPreset: ITablePreset<TFilter, TViewState> = {
-                id: null,
-                name: name,
-                filter: currentTableStateValue.filter,
-                columnsConfig: currentTableStateValue.columnsConfig,
-                filtersConfig: currentTableStateValue.filtersConfig,
-                sorting: currentTableStateValue.sorting,
-                viewState: currentTableStateValue.viewState,
-                isReadonly: false,
-                order: getNewPresetOrder(),
-            };
+    const createNewPreset = useCallback((name: string) => {
+        const currentTableStateValue = params.value;
+        const newPreset: ITablePreset<TFilter, TViewState> = {
+            id: null,
+            name: name,
+            filter: currentTableStateValue.filter,
+            columnsConfig: currentTableStateValue.columnsConfig,
+            filtersConfig: currentTableStateValue.filtersConfig,
+            sorting: currentTableStateValue.sorting,
+            viewState: currentTableStateValue.viewState,
+            isReadonly: false,
+            order: getNewPresetOrder(),
+        };
 
-            return createPreset(newPreset);
-        },
-        [getTableStateValue, getNewPresetOrder],
-    );
+        return createPreset(newPreset);
+    }, [params.value, getNewPresetOrder]);
 
-    const hasPresetChanged = useCallback(
-        (preset: ITablePreset<TFilter, TViewState>) => {
-            const currentTableStateValue = getTableStateValue();
-            return (
-                !isEqual(preset.filter, currentTableStateValue.filter)
-                || !isEqual(preset.columnsConfig, currentTableStateValue.columnsConfig)
-                || !isEqual(preset.sorting, currentTableStateValue.sorting)
-                || !isEqual(preset.viewState, currentTableStateValue.viewState)
-            );
-        },
-        [getTableStateValue],
-    );
+    const hasPresetChanged = useCallback((preset: ITablePreset<TFilter, TViewState>) => {
+        const currentTableStateValue = params.value;
+        return (
+            !isEqual(preset.filter, currentTableStateValue.filter)
+            || !isEqual(preset.columnsConfig, currentTableStateValue.columnsConfig)
+            || !isEqual(preset.sorting, currentTableStateValue.sorting)
+            || !isEqual(preset.viewState, currentTableStateValue.viewState)
+        );
+    }, [params.value]);
 
-    const duplicatePreset = useCallback(
-        async (preset: ITablePreset<TFilter, TViewState>) => {
-            const newPreset: ITablePreset<TFilter, TViewState> = {
-                ...preset,
-                isReadonly: false,
-                id: null,
-                name: preset.name + '_copy',
-                order: getNewPresetOrder(),
-            };
+    const duplicatePreset = useCallback(async (preset: ITablePreset<TFilter, TViewState>) => {
+        const newPreset: ITablePreset<TFilter, TViewState> = {
+            ...preset,
+            isReadonly: false,
+            id: null,
+            name: preset.name + '_copy',
+            order: getNewPresetOrder(),
+        };
 
-            return createPreset(newPreset);
-        },
-        [createPreset, getNewPresetOrder],
-    );
+        return createPreset(newPreset);
+    }, [createPreset, getNewPresetOrder]);
 
-    const deletePreset = useCallback(
-        async (preset: ITablePreset<TFilter, TViewState>) => {
-            await params?.onPresetDelete(preset);
-            setTableState({
-                ...getTableStateValue(),
-                presetId: undefined,
-            });
-            setPresets((prevValue) => prevValue.filter((p) => p.id !== preset.id));
-        },
-        [getTableStateValue],
-    );
+    const deletePreset = useCallback(async (preset: ITablePreset<TFilter, TViewState>) => {
+        await params?.onPresetDelete(preset);
+        params.onValueChange((val) => ({
+            ...val,
+            presetId: undefined,
+        }));
+        setPresets((prevValue) => prevValue.filter((p) => p.id !== preset.id));
+    }, [params?.onPresetDelete]);
 
     const updatePreset = useCallback(async (preset: ITablePreset<TFilter, TViewState>) => {
         setPresets((prevValue) => {
@@ -249,23 +149,24 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
         });
 
         params?.onPresetUpdate(preset);
-    }, []);
+    }, [params?.onPresetUpdate]);
 
     const getPresetLink = useCallback((preset: ITablePreset<TFilter, TViewState>) => {
         return (
             window.location.origin
             + context.uuiRouter.createHref({
                 pathname: context.uuiRouter.getCurrentLink().pathname,
-                query: stateToQueryObject({
-                    ...preset,
-                    presetId: preset.id,
-                }),
+                query: stateToQueryObject({ ...preset, presetId: preset.id }, context.uuiRouter.getCurrentLink().query),
             })
         );
     }, []);
 
+    const setTableState = useCallback((newValue: DataTableState<TFilter, TViewState>) => {
+        params.onValueChange(() => newValue);
+    }, []);
+
     return {
-        tableState: getTableStateValue(),
+        tableState: params.value,
         setTableState,
         setColumnsConfig,
         setFiltersConfig,
@@ -282,17 +183,70 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
     };
 };
 
-interface TableStateParams<TFilter = Record<string, any>, TViewState = any> extends Partial<IEditable<DataTableState<TFilter, TViewState>>> {
-    /** Columns configuration, can be omitted if used without tables */
-    columns?: DataColumnProps[];
-    /** Filters configuration, can be omitted if you don't need filters */
-    filters?: TableFiltersConfig<TFilter>[];
-    /** Initial presets array */
-    initialPresets?: ITablePreset<TFilter, TViewState>[];
-    /** Called when preset was created. Should return the ID of new preset */
-    onPresetCreate?(preset: ITablePreset<TFilter, TViewState>): Promise<number>;
-    /** Called when preset was updated */
-    onPresetUpdate?(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
-    /** Called when preset was deleted */
-    onPresetDelete?(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
-}
+export interface UseTableStateHookParams<TFilter = Record<string, any>, TViewState = any>
+    extends UseTableStateHookBaseParams<TFilter, TViewState>, Partial<IEditable<DataTableState<TFilter, TViewState>>> {}
+
+export const useTableState = <TFilter = Record<string, any>, TViewState = any>
+(params: UseTableStateHookParams<TFilter, TViewState>): ITableState<TFilter, TViewState> => {
+    const context = useUuiContext();
+
+    const externalValue = useRef(params.value);
+
+    const [tableStateValue, setTableStateValue] = useState<DataTableState<TFilter, TViewState>>(() => {
+        const value = getValueFromUrl(context.uuiRouter.getCurrentLink().query);
+        const activePreset = params.initialPresets?.find((p: ITablePreset<TFilter, TViewState>) => p.id === value.presetId);
+        const filtersConfig = normalizeFilterConfig(activePreset?.filtersConfig, value.filter, params?.filters);
+        return {
+            ...value,
+            filtersConfig,
+            topIndex: 0,
+            visibleCount: 40,
+        };
+    });
+
+    const getTableStateValue = () => {
+        if (params?.onValueChange) {
+            return params.value;
+        }
+
+        const valueFromUrl = getValueFromUrl(context.uuiRouter.getCurrentLink().query);
+        return {
+            ...tableStateValue,
+            ...valueFromUrl,
+        };
+    };
+
+    const setValueToUrl = (value: DataTableState<TFilter, TViewState>) => {
+        const oldQuery = context.uuiRouter.getCurrentLink().query;
+        const newQuery = stateToQueryObject(value, context.uuiRouter.getCurrentLink().query);
+
+        if (JSON.stringify(oldQuery) !== JSON.stringify(newQuery)) {
+            context.uuiRouter.redirect({
+                pathname: context.uuiRouter.getCurrentLink().pathname,
+                query: newQuery,
+            });
+        }
+    };
+    const onValueChange = useCallback((update: (val: DataTableState<TFilter, TViewState>) => DataTableState<TFilter, TViewState>) => {
+        if (params.onValueChange) {
+            const newValue = update(externalValue.current);
+            const resultValue = normalizeTableStateValue(newValue, externalValue.current, params.filters);
+            externalValue.current = resultValue;
+            params.onValueChange(resultValue);
+        } else {
+            setTableStateValue((currentValue) => {
+                const newValue = update(currentValue);
+                const resultValue = normalizeTableStateValue(newValue, currentValue, params.filters);
+                setValueToUrl(resultValue);
+
+                return resultValue;
+            });
+        }
+    }, []);
+
+    return useTableStateImpl({
+        ...params,
+        onValueChange,
+        value: getTableStateValue(),
+    });
+};

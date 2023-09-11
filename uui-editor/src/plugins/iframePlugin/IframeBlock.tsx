@@ -17,15 +17,16 @@ export function IframeBlock(props: any) {
     const style = element.data.style;
 
     return (
-        <>
+        // style attr needed for serialization
+        <div { ...attributes }>
             <iframe
+                title={ element.src }
                 allowFullScreen={ true }
-                { ...attributes }
                 src={ sanitizeUrl(src) }
                 style={ style }
                 className={ cx(css.content, isSelected && uuiMod.focus, IFRAME_GLOBAL_CLASS, isPdf && PDF_GLOBAL_CLASS) }
             />
             { children }
-        </>
+        </div>
     );
 }

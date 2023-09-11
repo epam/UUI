@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataRowProps, DataColumnProps } from '@epam/uui-core';
 import { DataPickerRow as UUIDataPickerRow } from '@epam/uui-components';
 import { FlexSpacer, IconContainer } from '../layout';
-import { DataTableCell } from '../tables';
+import { DataTableCell } from '../tables/DataTableCell';
 import { ReactComponent as TickIcon_24 } from '@epam/assets/icons/common/notification-done-24.svg';
 import { ReactComponent as TickIcon_18 } from '@epam/assets/icons/common/notification-done-18.svg';
 import { ReactComponent as TickIcon_12 } from '@epam/assets/icons/common/notification-done-12.svg';
@@ -42,7 +42,13 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
                 <FlexSpacer />
                 {(rowProps.isChildrenSelected || rowProps.isSelected) && (
                     <div className={ css.iconWrapper }>
-                        <IconContainer icon={ this.getIcon(this.props.size) } cx={ rowProps.isChildrenSelected ? css.iconDefault : css.iconPrimary } />
+                        <IconContainer 
+                            icon={ this.getIcon(this.props.size) } 
+                            cx={ rowProps.isChildrenSelected ? css.iconDefault : css.iconPrimary }
+                            rawProps={ { 'aria-label': rowProps.isChildrenSelected 
+                                ? 'Child is selected' 
+                                : 'Selected' } }
+                        />
                     </div>
                 )}
             </div>

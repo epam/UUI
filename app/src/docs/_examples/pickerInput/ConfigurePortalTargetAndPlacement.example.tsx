@@ -23,10 +23,16 @@ export default function ConfigurePortalTargetAndPlacement() {
     const dataSource = useLazyDataSource({ api: loadPersons }, []);
 
     const renderDropdownBody = (props: DropdownBodyProps) => (
-        <DropdownContainer showArrow={ true } maxWidth={ 360 } { ...props }>
-            <FlexRow alignItems="top" padding="18" vPadding="24">
-                <Panel style={ { width: '100%' } }>
-                    <FlexCell alignSelf="flex-start">
+        <DropdownContainer
+            { ...props }
+            showArrow={ true }
+            maxWidth={ 360 }
+            closeOnEsc={ false }
+            shards={ [portalTargetRef] }
+        >
+            <Panel>
+                <FlexRow alignItems="top" padding="18" vPadding="24">
+                    <FlexCell grow={ 1 } ref={ portalTargetRef }>
                         <Text fontSize="18" lineHeight="24" color="gray90" font="museo-slab">
                             Reporting to
                         </Text>
@@ -41,26 +47,18 @@ export default function ConfigurePortalTargetAndPlacement() {
                             portalTarget={ portalTargetRef.current }
                         />
                     </FlexCell>
-                </Panel>
-            </FlexRow>
-
-            <div className={ css.divider }></div>
-
-            <FlexRow alignItems="top" padding="18" vPadding="24">
-                <Panel style={ { width: '100%' } }>
-                    <FlexCell alignSelf="flex-start">
-                        <FlexRow spacing="12">
-                            <Button color="green" size="30" caption="Save" onClick={ () => null } />
-                            <Button fill="white" size="30" color="gray50" caption="Cancel" onClick={ () => props.onClose() } />
-                        </FlexRow>
-                    </FlexCell>
-                </Panel>
-            </FlexRow>
+                </FlexRow>
+                <div className={ css.divider }></div>
+                <FlexRow spacing="12" padding="18" vPadding="24">
+                    <Button color="green" size="30" caption="Save" onClick={ () => null } />
+                    <Button fill="white" size="30" color="gray" caption="Cancel" onClick={ () => props.onClose() } />
+                </FlexRow>
+            </Panel>
         </DropdownContainer>
     );
 
     return (
-        <div ref={ portalTargetRef }>
+        <div>
             <Dropdown renderBody={ renderDropdownBody } renderTarget={ (props: IDropdownToggler) => <Button caption="Click to open" { ...props } /> } />
         </div>
     );

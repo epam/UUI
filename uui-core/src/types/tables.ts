@@ -1,14 +1,17 @@
 import React, { Attributes, ReactNode } from 'react';
 import {
-    IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps,
+    IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus,
 } from './props';
+import { IDropdownToggler, IDropdownBodyProps } from './pickers';
+import { DataRowProps } from './dataRows';
 import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
-import { DataRowProps, DataSourceState, IDataSource } from './dataSources';
-import { ILens } from '../data';
+import { DataSourceState, IDataSource } from './dataSources';
+import { ILens } from '../data/lenses/types';
 import * as CSS from 'csstype';
 import { RangeDatePickerPresets, TooltipCoreProps } from './components';
 import { Dayjs } from 'dayjs';
+import { IFilterItemBodyProps } from './components/filterItemBody';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
@@ -259,8 +262,14 @@ type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: 'numeric';
 };
 
+type CustomFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+    type: 'custom';
+    render: (props: IFilterItemBodyProps<any>) => React.ReactElement;
+    getTogglerValue: (props: IFilterItemBodyProps<any>) => ReactNode;
+};
+
 export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter> | DatePickerFilterConfig<TFilter> |
-NumericFilterConfig<TFilter> | RangeDatePickerFilterConfig<TFilter>;
+NumericFilterConfig<TFilter> | RangeDatePickerFilterConfig<TFilter> | CustomFilterConfig<TFilter>;
 
 export interface ITablePreset<TFilter = any, TViewState = any> {
     name: string;

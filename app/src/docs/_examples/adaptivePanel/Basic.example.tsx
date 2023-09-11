@@ -11,7 +11,7 @@ export default function BasicAdaptivePanelExample() {
     const renderItem = (item: AdaptiveItemProps<{ data?: { caption: string } }>) => {
         return (
             <div>
-                <Button cx={ css.itemWithMargins } caption={ item.data.caption } />
+                <Button cx={ css.itemWithMargins } caption={ item.data.caption } onClick={ () => {} } />
             </div>
         );
     };
@@ -34,10 +34,10 @@ export default function BasicAdaptivePanelExample() {
             render: (item, hiddenItems) => (
                 <Dropdown
                     renderTarget={ (props) => <Button caption="Hidden items" { ...props } /> }
-                    renderBody={ () => (
-                        <DropdownContainer>
+                    renderBody={ (props) => (
+                        <DropdownContainer { ...props }>
                             {hiddenItems.map((i) => (
-                                <VerticalTabButton caption={ i.data.caption } />
+                                <VerticalTabButton caption={ i.data.caption } onClick={ () => {} } />
                             ))}
                         </DropdownContainer>
                     ) }

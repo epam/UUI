@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext } from '../../docs';
-import { DropdownContainer, Text } from '@epam/loveship';
+import { DropdownContainer, Text, Button, FlexRow } from '@epam/loveship';
 
 const dropdownContainerDoc = new DocBuilder({
     name: 'DropdownContainer',
@@ -27,12 +27,23 @@ const dropdownContainerDoc = new DocBuilder({
 
             return [
                 {
-                    value: color === 'white' || !color ? <Text color="night700">{textContent}</Text> : <Text color="night50">{textContent}</Text>,
+                    value: (
+                        <div>
+                            {color === 'white' || !color ? <Text color="night700">{textContent}</Text> : <Text color="night50">{textContent}</Text>}
+                            <FlexRow spacing="12">
+                                <Button caption="Primary Action" onClick={ () => {} } />
+                                <Button caption="Secondary Action" color="gray" onClick={ () => {} } />
+                            </FlexRow>
+                        </div>
+                    ),
                     name: 'Basic',
                 },
             ];
         },
         isRequired: true,
+    })
+    .prop('focusLock', {
+        examples: [{ value: false, isDefault: true }, true],
     })
     .withContexts(DefaultContext);
 

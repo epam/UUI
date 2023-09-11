@@ -1,0 +1,69 @@
+.file-card-wrapper {
+    box-sizing: border-box;
+    min-height: 48px;
+    padding: 5px;
+    border: 1px solid var(--uui-filecard-background);
+
+    .file-name {
+        white-space: nowrap;
+    }
+}
+
+.error-card-wrapper {
+    border: 1px solid var(--uui-filecard-border-error);
+}
+
+.default-color {
+    fill: var(--uui-filecard-default);
+}
+
+.doc-color {
+    fill: #2B579A;
+}
+
+.xls-color {
+    fill: #217346;
+}
+
+.pdf-color {
+    fill: #FA0F01;
+}
+
+.movie-color {
+    fill: #5214CC;
+}
+
+.img-color {
+    fill: #E67E17;
+}
+
+:global(.uui-loading) {
+    .default-color,
+    .doc-color,
+    .xls-color,
+    .pdf-color,
+    .movie-color,
+    .img-color {
+        fill: var(--uui-icon-disabled);
+    }
+}
+
+.error-block {
+    font-family: var(--font-regular);
+    font-size: 12px;
+    color: var(--uui-filecard-text-error);
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+
+    svg {
+        margin-right: 4px;
+        fill: var(--uui-filecard-icon-error);
+    }
+}
+
+.icons-block {
+    min-width: 18px;
+    flex-basis: 0;
+}

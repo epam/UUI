@@ -214,6 +214,8 @@
     --uui-icon-active: var(--night800);
     --uui-icon-disabled: var(--night500);
 
+    --uui-control-focus: #008ACE80;
+
     /* Surfaces Figma - https://www.figma.com/file/M5Njgc6SQJ3TPUccp5XHQx/Loveship-aka-UUI3-(Components)?type=design&node-id=20044%3A300925&mode=design&t=R433dqGrpXDGoFli-1 */
 
     --uui-app-bg: var(--night100);
@@ -684,7 +686,7 @@
     --uui-notification-card-shadow: var(--uui-shadow-level-2); //TODO: may change in the future
 
     /* Alert */
-    --uui-alert-border-radius: 6px;
+    --uui-alert-border-radius: 3px;
 
     /* Panel */
 
@@ -735,6 +737,34 @@
     /* Pagination */
 
     --uui-pagination-font: var(--font-regular);
+
+    /* DropSpot */
+
+    --uui-dropspot-border: var(--night400);
+    --uui-dropspot-border-dropstart: var(--uui-primary);
+    --uui-dropspot-background-dropstart: var(--uui-primary-lightest);
+    --uui-dropspot-link-color: var(--uui-primary);
+    --uui-dropspot-link-hover: var(--uui-primary-dark);
+    --uui-dropspot-icon: var(--uui-primary);
+
+    /* FileCard */
+
+    --uui-filecard-background: var(--night400);
+    --uui-filecard-icon-error: var(--uui-negative);
+    --uui-filecard-border-error: var(--uui-negative);
+    --uui-filecard-text-error: var(--uui-negative-darkest);
+    --uui-filecard-default: var(--uui-secondary);
+
+    /* IndeterminateBar */
+
+    --uui-indeterminate-bar-wrapper: var(--uui-secondary-light);
+    --uui-indeterminate-bar-background: var(--uui-primary);
+
+    /* ProgressBar */
+
+    --uui-progress-bar-wrapper: var(--uui-secondary-light);
+    --uui-progress-bar-background: var(--uui-primary);
+    --uui-progress-bar-label: var(--uui-surface-contrast-lower);
 
     /* ------------------------------------ */
 

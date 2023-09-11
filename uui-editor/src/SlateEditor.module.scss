@@ -21,6 +21,10 @@
     }
 }
 
+// .editor {
+//     outline: none;
+// }
+
 .container {
     position: relative;
     border-width: 1px;
@@ -48,6 +52,10 @@
 
     blockquote p {
         margin: 0;
+    }
+
+    :focus-visible {
+        outline: none;
     }
 }
 

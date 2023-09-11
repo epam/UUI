@@ -17,6 +17,7 @@ export default function StyledColumnsExample() {
     const dataSource = useLazyDataSource<Person, number, Person>(
         {
             api: svc.api.demo.persons,
+            backgroundReload: true,
         },
         [],
     );

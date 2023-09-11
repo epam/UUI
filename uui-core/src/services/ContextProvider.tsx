@@ -1,24 +1,12 @@
 import React, {
     createContext, useContext, useEffect, useState,
 } from 'react';
-import { CommonContexts, IHasChildren } from '../types';
-import { IProcessRequest } from './index';
+import { IHasChildren } from '../types/props';
+import { CommonContexts } from '../types/contexts';
 import { HistoryAdaptedRouter, IHistory4, StubAdaptedRouter } from './routing';
-import { DragGhost } from './dnd';
-import { ISkin } from './SkinContext';
-import { useUuiServices } from '../hooks';
+import { DragGhost } from './dnd/DragGhost';
 import { GAListener } from './analytics';
-
-export interface ApiContextProps {
-    apiReloginPath?: string;
-    apiPingPath?: string;
-    apiServerUrl?: string;
-}
-
-export interface IUuiServicesProps<TApi> extends ApiContextProps {
-    apiDefinition?: (processRequest: IProcessRequest) => TApi;
-    skinContext?: ISkin;
-}
+import { IUuiServicesProps, useUuiServices } from '../hooks/useUuiServices';
 
 export interface ContextProviderProps<TApi, TAppContext> extends IUuiServicesProps<TApi>, IHasChildren {
     loadAppContext?: (api: TApi) => Promise<TAppContext>;

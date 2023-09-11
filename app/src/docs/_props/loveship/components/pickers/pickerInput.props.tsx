@@ -14,12 +14,16 @@ import {
 import { pickerBaseOptionsDoc } from './common';
 import { FlexCell, FlexRow } from '@epam/loveship';
 import { Text } from '@epam/loveship';
-import css from './DataPickerRowDoc.module.scss';
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
     .implements([
         sizeDoc, isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, modeDoc, iconDoc, iconOptionsDoc,
     ])
+    .prop('cascadeSelection', {
+        examples: [
+            true, 'explicit', 'implicit',
+        ],
+    })
     .prop('value', {
         examples: [
             { name: '1', value: 1 }, { name: '[1, 2]', value: [1, 2] }, { name: '{ id: 1, name: "Test"}', value: { id: 1, name: 'Test' } }, { name: '[{ id: 1, name: "Test"}]', value: [{ id: 1, name: 'Test' }] },
@@ -68,7 +72,7 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
             },
         ],
     })
-    .prop('getRowOptions', { examples: [{ name: 'Disabled rows', value: () => ({ isDisabled: true }) }] })
+    .prop('getRowOptions', { examples: [{ name: 'Disabled rows', value: () => ({ isDisabled: true, isSelectable: false }) }] })
     .prop('searchPosition', {
         examples: [
             'input', 'body', 'none',
@@ -105,35 +109,23 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
         examples: (ctx) => [
             {
                 name: 'UserPickerRow',
-                value: (props) => (
+                value: (props, dataSourceState) => (
                     <DataPickerRow
                         { ...props }
                         key={ props.rowKey }
                         alignActions="center"
                         padding={ (ctx.getSelectedProps() as any).editMode === 'modal' ? '24' : '12' }
-                        renderItem={ (item, rowProps) => <PickerItem { ...rowProps } avatarUrl={ item.avatarUrl } title={ item.name } subtitle={ item.jobTitle } /> }
+                        renderItem={ (item, rowProps) => (
+                            <PickerItem
+                                { ...rowProps } 
+                                avatarUrl={ item.avatarUrl } 
+                                title={ item.name } 
+                                subtitle={ item.jobTitle }
+                                dataSourceState={ dataSourceState }
+                            />
+                        ) }
                     />
                 ),
-            }, {
-                name: 'Skills',
-                value: (rowProps) => {
-                    const isParent = !rowProps.value.parentId;
-                    return (
-                        <DataPickerRow
-                            { ...rowProps }
-                            depth={ isParent ? 0 : 1 }
-                            cx={ isParent && css.parent }
-                            isFoldable={ false }
-                            isChecked={ isParent ? false : rowProps.isChecked }
-                            isChildrenChecked={ false }
-                            isSelectable={ isParent ? false : rowProps.isSelectable }
-                            isFocused={ isParent ? false : rowProps.isFocused }
-                            borderBottom="none"
-                            size="36"
-                            renderItem={ (i) => <Text size="36">{i.name}</Text> }
-                        />
-                    );
-                },
             },
         ],
     })
