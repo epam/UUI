@@ -93,7 +93,7 @@ const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
 
 export function NumericInput(props: NumericInputProps) {
     let {
-        value, min, max, step, formatValue, formatOptions,
+        value = null, min, max, step, formatValue, formatOptions,
     } = props;
 
     if (value != null) {

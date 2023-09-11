@@ -182,6 +182,7 @@ export function MasterDetailedTable() {
             pin,
         },
         cascadeSelection: true,
+        selectAll: tableStateApi.tableState.filter?.groupBy === 'location' ? false : true,
     });
 
     const panelInfo = tableStateApi.tableState.selectedId && (view.getById(tableStateApi.tableState.selectedId, 0).value);
