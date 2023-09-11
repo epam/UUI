@@ -136,8 +136,6 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             const [wasScrolled, ok] = scrollContainerToPosition(scrollTo);
             const topIndex = getTopIndexWithOffset(scrollTo.index, overdrawRows, blockSize);
             const realTopIndex = getRealTopIndex(getVirtualListInfo());
-            const shouldScrollToUnknownIndex = value.topIndex === topIndex && value.scrollTo?.index > realTopIndex;
-
             if ((ok && !wasScrolled) || value.topIndex !== topIndex) {
                 const newScrollTo = value.scrollTo?.index === scrollTo.index ? value.scrollTo : { ...scrollTo, index: scrollTo.index };
                 if (newScrollTo !== value.scrollTo || value.topIndex !== topIndex) {
@@ -145,6 +143,8 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
                 }
             }
 
+            // prevents from cycling, while force scrolling to a row, which will never appear, when using LazyListView.
+            const shouldScrollToUnknownIndex = value.topIndex === topIndex && value.scrollTo?.index > realTopIndex;
             if ((ok && wasScrolled) || shouldScrollToUnknownIndex) {
                 setScrolledTo(value.scrollTo?.index === scrollTo.index ? value.scrollTo : { ...scrollTo, index: scrollTo.index });
             }
