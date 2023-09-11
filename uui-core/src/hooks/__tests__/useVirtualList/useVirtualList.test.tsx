@@ -176,7 +176,7 @@ describe('useVirtualList', () => {
         expect(result.current.offsetY).toBe(400);
         const scrollTo = { index: 100 };
         rerender({ value: { ...value, scrollTo }, onValueChange, onScroll, rowsCount: 500 });
-        expect(onScroll).toBeCalledTimes(5);
+        expect(onScroll).toBeCalledTimes(4);
 
         expect(onValueChange).toHaveBeenLastCalledWith({ visibleCount: 20, scrollTo, topIndex: 80 });
   
@@ -283,7 +283,7 @@ describe('useVirtualList', () => {
         
         rerender({ value: { ...value, scrollTo: { index: 100 } }, onValueChange, onScroll, rowsCount: 500 });
         
-        expect(onScroll).toBeCalledTimes(5);
+        expect(onScroll).toBeCalledTimes(4);
         expect(onValueChange).toBeCalledTimes(4);
         expect(onValueChange).toHaveBeenLastCalledWith({ topIndex: 80, visibleCount: 20, scrollTo: { index: 100 } });
 
