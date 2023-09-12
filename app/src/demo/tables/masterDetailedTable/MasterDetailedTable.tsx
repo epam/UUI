@@ -3,8 +3,8 @@ import React, {
 } from 'react';
 import { Person } from '@epam/uui-docs';
 import {
-    cx, useLazyDataSource, useUuiContext, UuiContexts, ITablePreset, useTableState, DataRowProps,
-    LazyDataSourceApi, LazyDataSourceApiResponse, LazyDataSourceApiRequest, DataColumnProps,
+    cx, useUuiContext, UuiContexts, ITablePreset, useTableState, DataRowProps,
+    LazyDataSourceApiRequest, DataColumnProps, LazyDataSourceApiRequestContext,
 } from '@epam/uui-core';
 import { FlexRow } from '@epam/uui';
 import { DataTable } from '@epam/promo';
@@ -17,7 +17,7 @@ import { FilterPanel } from './FilterPanel';
 import { InfoSidebarPanel } from './InfoSidebarPanel';
 import { SlidingPanel } from './SlidingPanel';
 import { FilterPanelOpener } from './FilterPanelOpener';
-import { PersonTableFilter, PersonTableGroups, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
+import { PersonTableFilter, PersonTableGroups, PersonTableRecord, PersonTableRecordId } from './types';
 import { useLazyDataSourceWithGrouping } from './useLazyDataSourceWithGrouping';
 
 export function MasterDetailedTable() {
@@ -57,91 +57,31 @@ export function MasterDetailedTable() {
         }
     }, []);
 
-    const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = async (request, ctx) => {
-        const { ids, filter: requestFilter, ...rq } = request;
-        // DONE ------->
-        if (ids != null) {
-            const idsByType: Record<PersonTableRecordType, (string | number)[]> = {} as any;
-            ids.forEach(([type, id]) => {
-                idsByType[type] = idsByType[type] || [];
-                idsByType[type].push(id);
-            });
-
-            const typesToLoad = Object.keys(idsByType) as PersonTableRecordType[];
-            const response: LazyDataSourceApiResponse<PersonTableRecord> = { items: [] };
-
-            const promises = typesToLoad.map(async (type) => {
-                const idsRequest: LazyDataSourceApiRequest<any, any> = { ids: idsByType[type] };
-                
-                let apiRequest = null;
-                if (type === 'Person') {
-                    apiRequest = svc.api.demo.persons; 
+    const dataSource = useLazyDataSourceWithGrouping<PersonTableGroups, PersonTableRecordId, PersonTableFilter>(
+        (config) => {        
+            const getPersons = async (
+                personRequest: LazyDataSourceApiRequest<Person, number>,
+                ctx: LazyDataSourceApiRequestContext<PersonTableRecord, PersonTableRecordId>,
+            ) => {
+                const { groupBy, ...filter } = (personRequest.filter ?? {}) as PersonTableFilter;
+                if (groupBy && !ctx.parent) {
+                    const personGroupsResponse = await svc.api.demo.personGroups({
+                        ...personRequest,
+                        filter: { groupBy },
+                        search: null,
+                        itemsRequest: { filter, search: personRequest.search },
+                    } as any);
+                    return personGroupsResponse;
                 }
-                
-                if (type === 'PersonGroup') { 
-                    apiRequest = svc.api.demo.personGroups;
-                } 
-                
-                if (type === 'Location') { 
-                    apiRequest = svc.api.demo.locations;
-                }
-
-                const apiResponse = await apiRequest(idsRequest);
-                response.items = [...response.items, ...apiResponse.items];
-            });
-
-            await Promise.all(promises);
-            return response;
-        }
-        // DONE ------->
-
-        const { groupBy, ...filter } = (requestFilter as PersonTableFilter) || {};
-
-        const getPersons = async (personRequest: LazyDataSourceApiRequest<Person, number>) => {
-            if (groupBy && !ctx.parent) {
-                const personGroupsResponse = await svc.api.demo.personGroups({
-                    ...personRequest,
-                    filter: { groupBy },
-                    search: null,
-                    itemsRequest: { filter, search: personRequest.search },
-                    ids,
-                } as any);
-                return personGroupsResponse;
-            }
-            const personsResponse = await svc.api.demo.persons(personRequest);
-            return personsResponse;
-        };
-
-        if (request.search) {
-            return getPersons({ ...rq, filter });
-        } else if (groupBy === 'location') {
-            if (!ctx.parent) {
-                return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true } } });
-            }
-            if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
-                return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id } });
-            } 
-            return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id } });
-        } else if (groupBy && !ctx.parent) {
-            return getPersons({
-                ...rq,
-                filter: { groupBy },
-                search: null,
-                itemsRequest: { filter, search: rq.search },
-                ids,
-            } as any);
-        }
-        
-        const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
-        return getPersons({ ...rq, filter: { ...filter, ...parentFilter } });
-    };
-
-    const ds = useLazyDataSourceWithGrouping<PersonTableGroups, PersonTableRecordId, PersonTableFilter>(
-        (config) => {
+                const personsResponse = await svc.api.demo.persons(personRequest);
+                return personsResponse;
+            };
+            
             config.addDefault({
                 getType: ({ __typename }) => __typename,
                 getTypeAndId: (id) => id,
                 getId: (i) => [i.__typename, i.id],
+                getGroupBy: (filter) => filter.groupBy,
                 complexIds: true,
                 backgroundReload: true,
                 fetchStrategy: tableStateApi.tableState.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
@@ -150,6 +90,7 @@ export function MasterDetailedTable() {
                     checkbox: { isVisible: true },
                     isSelectable: true,
                     pin,
+                    onClick: clickHandler,
                 },
             });
 
@@ -158,10 +99,23 @@ export function MasterDetailedTable() {
                 getParentId: (loc) => loc.parentId ? ['Location', loc.parentId] : undefined,
                 getChildCount: (location) => location.type === 'city' ? 1 : 10,
                 api: async (request, ctx) => {
+                    const { groupBy, ...filter } = (request.filter as PersonTableFilter) ?? {};
                     if (request.ids != null) {
                         const ids = request.ids.map(([, id]) => `${id}`); 
                         return await svc.api.demo.locations({ ids });
                     }
+
+                    if (request.search) {
+                        return getPersons({ ...request, ids: [], filter }, ctx);
+                    }
+
+                    if (!ctx.parent) {
+                        return svc.api.demo.locations({ range: request.range, filter: { parentId: { isNull: true } } });
+                    }
+                    if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
+                        return svc.api.demo.locations({ range: request.range, filter: { parentId: ctx.parent.id } });
+                    }
+                    return getPersons({ range: request.range, filter: { locationId: ctx.parent.id } }, ctx);
                 },
             });
             
@@ -170,14 +124,27 @@ export function MasterDetailedTable() {
                 getParentId: () => null,
                 getChildCount: (group) => group.count,
                 api: async (request, ctx) => {
+                    const { groupBy, ...filter } = (request.filter as PersonTableFilter) ?? {};
                     if (request.ids != null) {
                         const ids = request.ids.map(([, id]) => id as number); 
                         return await svc.api.demo.personGroups({ ids });
                     }
+                    
+                    if (request.search) {
+                        return getPersons({ ...request, ids: [], filter }, ctx);
+                    }
+
+                    if (groupBy && !ctx.parent) {
+                        return getPersons({ ...request, filter: { groupBy }, search: null, itemsRequest: { filter, search: request.search } } as any, ctx);
+                    }
+                    
+                    const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
+                    return getPersons({ ...request, ids: [], filter: { ...filter, ...parentFilter } }, ctx);
                 },
             });
             
             config.addEntity('Person', {
+                groupBy: null,
                 getParentId: (person) => {
                     const groupBy = tableStateApi.tableState.filter?.groupBy;
                     if (groupBy === 'location') {
@@ -193,17 +160,18 @@ export function MasterDetailedTable() {
                     return undefined;
                 },
                 getChildCount: () => null,
-                rowOptions: {
-                    checkbox: { isVisible: true },
-                    isSelectable: true,
-                    pin,
-                    onClick: clickHandler,
-                },
                 api: async (request, ctx) => {
+                    const { groupBy, ...filter } = (request.filter as PersonTableFilter) ?? {};
                     if (request.ids != null) {
                         const ids = request.ids.map(([, id]) => id as number); 
                         return await svc.api.demo.persons({ ids });
                     }
+                    if (request.search) {
+                        return getPersons({ ...request, ids: [], filter }, ctx);
+                    }
+
+                    const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
+                    return getPersons({ ...request, ids: [], filter: { ...filter, ...parentFilter } }, ctx);
                 },
             });
 
@@ -212,54 +180,7 @@ export function MasterDetailedTable() {
         [tableStateApi.tableState.filter?.groupBy],
     );
 
-    const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>(
-        {
-            api,
-            getId: (i) => [i.__typename, i.id],
-            complexIds: true,
-            backgroundReload: true,
-            getParentId: (i) => {
-                const groupBy = tableStateApi.tableState.filter?.groupBy;
-                if (i.__typename === 'PersonGroup') {
-                    return null;
-                } else if (i.__typename === 'Location') {
-                    return i.parentId ? ['Location', i.parentId] : undefined;
-                } else if (i.__typename === 'Person') {
-                    if (groupBy === 'location') {
-                        return ['Location', i.locationId];
-                    } else if (groupBy === 'jobTitle') {
-                        return ['PersonGroup', i.jobTitleId];
-                    } else if (groupBy === 'department') {
-                        return ['PersonGroup', i.departmentId];
-                    } else {
-                        return undefined;
-                    }
-                }
-                throw new Error('PersonTableDemo: unknown typename/groupBy combination');
-            },
-        },
-        [tableStateApi.tableState.filter?.groupBy],
-    );
-
-    const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
-        getChildCount: (item) => {
-            if (item.__typename === 'PersonGroup') {
-                return item.count;
-            } 
-            if (item.__typename === 'Location') {
-                return item.type === 'city' ? 1 : 10;
-            } 
-            return null;
-        },
-        fetchStrategy: tableStateApi.tableState.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
-        rowOptions: {
-            checkbox: { isVisible: true },
-            isSelectable: true,
-            onClick: clickHandler,
-            pin,
-        },
-        cascadeSelection: true,
-    });
+    const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {});
 
     const panelInfo = tableStateApi.tableState.selectedId && (view.getById(tableStateApi.tableState.selectedId, 0).value);
 
