@@ -1,5 +1,3 @@
-import { GroupingConfigBuilder } from './groupingConfigBuilder';
-
 export type UnboxGroupsFromUnion<TypeField extends keyof Record, Record extends { [k in TypeField]: string }> = {
     [typename in Record[TypeField]]: Extract<Record, { [k in TypeField]: typename }>;
 };

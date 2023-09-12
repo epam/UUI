@@ -57,64 +57,9 @@ export function MasterDetailedTable() {
         }
     }, []);
 
-    const ds = useLazyDataSourceWithGrouping<PersonTableGroups, PersonTableRecordId, PersonTableFilter>(
-        (config) => {
-            config.addDefault({
-                getType: ({ __typename }) => __typename,
-                getTypeAndId: (id) => id,
-                getId: (i) => [i.__typename, i.id],
-                complexIds: true,
-                backgroundReload: true,
-                fetchStrategy: tableStateApi.tableState.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
-                cascadeSelection: true,
-                rowOptions: {
-                    checkbox: { isVisible: true },
-                    isSelectable: true,
-                    pin,
-                },
-            });
-
-            config.addEntity('Location', {
-                getParentId: (loc) => loc.parentId ? ['Location', loc.parentId] : undefined,
-                getChildCount: (location) => location.type === 'city' ? 1 : 10,
-            });
-            
-            config.addEntity('PersonGroup', {
-                getParentId: () => null,
-                getChildCount: (group) => group.count,
-            });
-            
-            config.addEntity('Person', {
-                getParentId: (person) => {
-                    const groupBy = tableStateApi.tableState.filter?.groupBy;
-                    if (groupBy === 'location') {
-                        return ['Location', person.locationId];
-                    }
-                    if (groupBy === 'jobTitle') {
-                        return ['PersonGroup', person.jobTitleId];
-                    }
-                    if (groupBy === 'department') {
-                        return ['PersonGroup', person.departmentId];
-                    }
-                    
-                    return undefined;
-                },
-                getChildCount: () => null,
-                rowOptions: {
-                    checkbox: { isVisible: true },
-                    isSelectable: true,
-                    pin,
-                    onClick: clickHandler,
-                },
-            });
-
-            return config;
-        },
-        [tableStateApi.tableState.filter?.groupBy],
-    );
     const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = async (request, ctx) => {
         const { ids, filter: requestFilter, ...rq } = request;
-
+        // DONE ------->
         if (ids != null) {
             const idsByType: Record<PersonTableRecordType, (string | number)[]> = {} as any;
             ids.forEach(([type, id]) => {
@@ -148,6 +93,7 @@ export function MasterDetailedTable() {
             await Promise.all(promises);
             return response;
         }
+        // DONE ------->
 
         const { groupBy, ...filter } = (requestFilter as PersonTableFilter) || {};
 
@@ -161,10 +107,9 @@ export function MasterDetailedTable() {
                     ids,
                 } as any);
                 return personGroupsResponse;
-            } else {
-                const personsResponse = await svc.api.demo.persons(personRequest);
-                return personsResponse;
             }
+            const personsResponse = await svc.api.demo.persons(personRequest);
+            return personsResponse;
         };
 
         if (request.search) {
@@ -172,11 +117,11 @@ export function MasterDetailedTable() {
         } else if (groupBy === 'location') {
             if (!ctx.parent) {
                 return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true } } });
-            } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
-                return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id } });
-            } else {
-                return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id } });
             }
+            if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
+                return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id } });
+            } 
+            return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id } });
         } else if (groupBy && !ctx.parent) {
             return getPersons({
                 ...rq,
@@ -185,11 +130,87 @@ export function MasterDetailedTable() {
                 itemsRequest: { filter, search: rq.search },
                 ids,
             } as any);
-        } else {
-            const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
-            return getPersons({ ...rq, filter: { ...filter, ...parentFilter } });
         }
+        
+        const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
+        return getPersons({ ...rq, filter: { ...filter, ...parentFilter } });
     };
+
+    const ds = useLazyDataSourceWithGrouping<PersonTableGroups, PersonTableRecordId, PersonTableFilter>(
+        (config) => {
+            config.addDefault({
+                getType: ({ __typename }) => __typename,
+                getTypeAndId: (id) => id,
+                getId: (i) => [i.__typename, i.id],
+                complexIds: true,
+                backgroundReload: true,
+                fetchStrategy: tableStateApi.tableState.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
+                cascadeSelection: true,
+                rowOptions: {
+                    checkbox: { isVisible: true },
+                    isSelectable: true,
+                    pin,
+                },
+            });
+
+            config.addEntity('Location', {
+                groupBy: 'location',
+                getParentId: (loc) => loc.parentId ? ['Location', loc.parentId] : undefined,
+                getChildCount: (location) => location.type === 'city' ? 1 : 10,
+                api: async (request, ctx) => {
+                    if (request.ids != null) {
+                        const ids = request.ids.map(([, id]) => `${id}`); 
+                        return await svc.api.demo.locations({ ids });
+                    }
+                },
+            });
+            
+            config.addEntity('PersonGroup', {
+                groupBy: ['department', 'jobTitle'],
+                getParentId: () => null,
+                getChildCount: (group) => group.count,
+                api: async (request, ctx) => {
+                    if (request.ids != null) {
+                        const ids = request.ids.map(([, id]) => id as number); 
+                        return await svc.api.demo.personGroups({ ids });
+                    }
+                },
+            });
+            
+            config.addEntity('Person', {
+                getParentId: (person) => {
+                    const groupBy = tableStateApi.tableState.filter?.groupBy;
+                    if (groupBy === 'location') {
+                        return ['Location', person.locationId];
+                    }
+                    if (groupBy === 'jobTitle') {
+                        return ['PersonGroup', person.jobTitleId];
+                    }
+                    if (groupBy === 'department') {
+                        return ['PersonGroup', person.departmentId];
+                    }
+                    
+                    return undefined;
+                },
+                getChildCount: () => null,
+                rowOptions: {
+                    checkbox: { isVisible: true },
+                    isSelectable: true,
+                    pin,
+                    onClick: clickHandler,
+                },
+                api: async (request, ctx) => {
+                    if (request.ids != null) {
+                        const ids = request.ids.map(([, id]) => id as number); 
+                        return await svc.api.demo.persons({ ids });
+                    }
+                },
+            });
+
+            return config;
+        },
+        [tableStateApi.tableState.filter?.groupBy],
+    );
 
     const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>(
         {
