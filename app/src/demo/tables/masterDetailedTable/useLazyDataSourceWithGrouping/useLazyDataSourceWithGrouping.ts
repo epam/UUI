@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { LazyDataSourceApi, LazyDataSourceApiRequest, LazyDataSourceApiResponse } from '@epam/uui-core';
+import { LazyDataSourceApi, LazyDataSourceApiRequest, LazyDataSourceApiResponse, useLazyDataSource } from '@epam/uui-core';
 import { GroupingConfigBuilder } from './groupingConfigBuilder';
 import { UnboxUnionFromGroups } from './types';
 
@@ -18,17 +18,16 @@ export function useLazyDataSourceWithGrouping<TGroups, TId, TFilter>(
     );
 
     const api: LazyDataSourceApi<UnboxUnionFromGroups<TGroups>, TId, TFilter> = async (request, ctx) => {
-        const { ids, filter: requestFilter, ...rq } = request;
+        const { ids } = request;
         if (ids != null) {
-            const idsByType: Record<keyof TGroups, TId[]> = {} as any;
-
+            const idsByType = {} as Record<keyof TGroups, TId[]>;
             ids.forEach((id) => {
                 const [type] = config.getTypeAndId(id);
                 idsByType[type] = idsByType[type] || [];
                 idsByType[type].push(id);
             });
 
-            const typesToLoad = Object.keys(idsByType) as Array<keyof TGroups>
+            const typesToLoad = Object.keys(idsByType) as Array<keyof TGroups>;
             const response: LazyDataSourceApiResponse<UnboxUnionFromGroups<TGroups>> = { items: [] };
 
             const promises = typesToLoad.map(async (type) => {
@@ -40,5 +39,25 @@ export function useLazyDataSourceWithGrouping<TGroups, TId, TFilter>(
             await Promise.all(promises);
             return response;
         }
+
+        const groupBy = config.getGroupBy(request.filter);
+        if (groupBy) {
+            return config.apiByGroupBy(groupBy, request, ctx);
+        }
+
+        return config.defaultApiByGroupBy(request, ctx);
     };
+
+    return useLazyDataSource<UnboxUnionFromGroups<TGroups>, TId, TFilter>(
+        {
+            ...config.getDefaultConfigProps(),
+            api,
+            getId: (i) => config.getId(i),
+            getParentId: (i) => config.getParentId(i),
+            getChildCount: (i) => config.getChildCount(i),
+            getRowOptions: (...args) => config.getRowOptions(...args),
+            isFoldedByDefault: (i) => config.isFoldedByDefault(i),
+        },
+        deps,
+    );
 }

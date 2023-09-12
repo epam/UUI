@@ -4,7 +4,8 @@ export type UnboxGroupsFromUnion<TypeField extends keyof Record, Record extends 
 
 export type UnboxUnionFromGroups<TGroups> = TGroups[keyof TGroups];
 
-export interface GetType<TGroups, TId> {
-    getType: (entity: UnboxUnionFromGroups<TGroups>) => string;
+export interface GetType<TGroups, TId, TFilter> {
+    getType: (entity: UnboxUnionFromGroups<TGroups>) => keyof TGroups;
     getTypeAndId: (id: TId) => [keyof TGroups, string | number];
+    getGroupBy: (filter: TFilter) => string;
 }
