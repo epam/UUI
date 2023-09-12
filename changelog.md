@@ -10,6 +10,7 @@
 * [Contexts]: fixed context initialization for react 18 with strict mode
 * [ModalWindow]: changed role attribute value from 'modal' to 'dialog'
 * [PickerItem]: Remove the dropdown icon if minCharsToSearch is passed and fix the top and bottom spacing in the dropdown list.
+* [useUuiServices]: fixed apiPingPath, apiReloginPath, apiServerUrl props
 
 
 # 5.1.3 - 31.08.2023
