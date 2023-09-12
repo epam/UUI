@@ -14,7 +14,7 @@ export interface ButtonCoreProps extends ButtonBaseCoreProps, IHasCaption, IBasi
     dropdownIconPosition?: 'left' | 'right';
 
     countPosition?: 'left' | 'right';
-    count?: number | React.ReactNode;
+    count?: React.ReactNode;
 }
 
 export interface ButtonSemanticProps {
