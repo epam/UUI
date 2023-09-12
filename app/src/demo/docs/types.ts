@@ -11,7 +11,10 @@ export type TTypeProp = {
     value: string;
     comment?: string[];
     optional?: boolean;
-    inheritedFrom?: string;
+    inheritedFrom?: {
+        module?: string,
+        name: string,
+    };
 };
 
 export type TPropsV2Response = Record<string, TType>;

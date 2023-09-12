@@ -11,6 +11,16 @@ describe('docsGen', () => {
                 bProp: number;
             }
             
+            type TIntersectionMemberA = {
+                a1: number;
+                a2: string;
+            }
+            interface IIntersectionMemberB {
+                b1: number;
+                b2: string;
+            }
+            export type TIntersection = TIntersectionMemberA & IIntersectionMemberB;
+            
             export type TPrimitives = {
                 pBool: boolean;
                 pNumber: number;
@@ -69,7 +79,9 @@ describe('docsGen', () => {
                             value: "'black' | 'white'",
                         },
                         {
-                            inheritedFrom: 'ITestB',
+                            inheritedFrom: {
+                                name: 'ITestB',
+                            },
                             kind: 'PropertySignature',
                             name: 'bProp',
                             optional: false,
@@ -143,6 +155,49 @@ describe('docsGen', () => {
                     kind: 'TypeAliasDeclaration',
                     name: 'TExternalTypeTest',
                     value: 'HTMLElement',
+                },
+                TIntersection: {
+                    kind: 'TypeAliasDeclaration',
+                    name: 'TIntersection',
+                    props: [
+                        {
+                            inheritedFrom: {
+                                name: 'TIntersectionMemberA',
+                            },
+                            kind: 'PropertySignature',
+                            name: 'a1',
+                            optional: false,
+                            value: 'number',
+                        },
+                        {
+                            inheritedFrom: {
+                                name: 'TIntersectionMemberA',
+                            },
+                            kind: 'PropertySignature',
+                            name: 'a2',
+                            optional: false,
+                            value: 'string',
+                        },
+                        {
+                            inheritedFrom: {
+                                name: 'IIntersectionMemberB',
+                            },
+                            kind: 'PropertySignature',
+                            name: 'b1',
+                            optional: false,
+                            value: 'number',
+                        },
+                        {
+                            inheritedFrom: {
+                                name: 'IIntersectionMemberB',
+                            },
+                            kind: 'PropertySignature',
+                            name: 'b2',
+                            optional: false,
+                            value: 'string',
+                        },
+                    ],
+                    value: 'TIntersection',
                 },
                 TPrimitives: {
                     kind: 'TypeAliasDeclaration',
@@ -231,7 +286,6 @@ describe('docsGen', () => {
                             name: 'pUnion',
                             optional: true,
                             value: 'undefined | null | string | number | bigint | false | true | symbol | void | object | string[]',
-
                         },
                         {
                             kind: 'PropertySignature',

@@ -32,7 +32,7 @@ export class Converter implements IConverter {
         const name = ConverterUtils.getTypeName(typeNode.getSymbol());
         const value = this.getTypeString(typeNode);
         const comment = ConverterUtils.getCommentFromNode(typeNode);
-        const props = this.isPropsSupported(typeNode) ? extractMembers(name, type, this.context) : undefined;
+        const props = this.isPropsSupported(typeNode) ? extractMembers(typeNode, type, this.context) : undefined;
         return {
             kind,
             name,
@@ -43,7 +43,7 @@ export class Converter implements IConverter {
     }
 }
 
-function mapSingleMember(originName: string, node: Node, context: IConverterContext): TTypeProp {
+function mapSingleMember(originTypeNode: Node, node: Node, context: IConverterContext): TTypeProp {
     let prop: TTypeProp = undefined;
     const nKind = node.getKind();
     const isSupported = [
@@ -57,7 +57,7 @@ function mapSingleMember(originName: string, node: Node, context: IConverterCont
 
     if (isSupported) {
         const comment = ConverterUtils.getCommentFromNode(node);
-        const inheritedFrom = ConverterUtils.getTypeParentName(node);
+        const inheritedFrom = ConverterUtils.getTypeParentRef(node, originTypeNode);
         let name = Node.isPropertyNamed(node) ? node.getName() : '';
         const typeNode = Node.isTypeAliasDeclaration(node) ? node.getTypeNode() : node;
         let value = context.convert(typeNode).value;
@@ -77,7 +77,7 @@ function mapSingleMember(originName: string, node: Node, context: IConverterCont
             name,
             comment,
             value,
-            inheritedFrom: inheritedFrom === originName ? undefined : inheritedFrom,
+            inheritedFrom,
             optional: ConverterUtils.getTypeFromNode(typeNode).isNullable() || hasQuestionToken,
         };
     } else {
@@ -86,13 +86,13 @@ function mapSingleMember(originName: string, node: Node, context: IConverterCont
     return prop;
 }
 
-function extractMembers(originName: string, type: Type, context: IConverterContext): TTypeProp[] | undefined {
+function extractMembers(originTypeNode: Node, type: Type, context: IConverterContext): TTypeProp[] | undefined {
     const props = type.getProperties();
     if (props.length > 0) {
         const propsUnsorted: TTypeProp[] = props.map((symb) => {
             const decls = symb.getDeclarations();
             const node = decls[0];
-            return mapSingleMember(originName, node, context);
+            return mapSingleMember(originTypeNode, node, context);
         });
         return sortProps(propsUnsorted);
     }
