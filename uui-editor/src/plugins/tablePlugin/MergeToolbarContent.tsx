@@ -112,42 +112,7 @@ export function MergeToolbarContent({
         // once cell removed, next cell in the row will settle down on that path
         Object.values(cols).forEach((paths: any) => {
             paths?.forEach(() => {
-                const validEntry = findNode(editor, {
-                    at: paths[0],
-                    match: { type: getCellTypes(editor) },
-                });
-                const validNode = validEntry?.[0] as ExtendedTTableCellElement;
-                const shouldRemove = !!selectedCellEntries.find((entry) => {
-                    const cellElem = entry[0] as ExtendedTTableCellElement;
-                    return cellElem === validNode;
-                });
-
-                if (validNode && shouldRemove) {
-                    console.log('removing node at path', paths[0]);
-                    removeNodes(editor, { at: paths[0] });
-
-                    const colIndex = paths[0].at(-1);
-                    if (colIndex === 0) {
-                        // just removed last cell in the row
-                        const rowPath = paths[0].slice(0, -1);
-                        console.log('rowPath', rowPath);
-
-                        // const emptyRow = {
-                        //     type: getPluginType(editor, ELEMENT_TR),
-                        //     children: [] as TDescendant[],
-                        // };
-                        // removeNodes(editor, { at: paths[0].slice(0, -1) });
-                        // insertElements(editor, {
-                        //     ...getEmptyCellNode(editor, {
-                        //         header: selectedCellEntries[0][0].type === 'th',
-                        //         // newCellChildren: contents,
-                        //     }),
-                        //     dummy: true,
-                        //     colSpan: 0,
-                        //     rowSpan: 0,
-                        // }, { at: paths[0] });
-                    }
-                }
+                removeNodes(editor, { at: paths[0] });
             });
         });
 
