@@ -70,7 +70,6 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
             } else if (
                 currentCell.rowSpan > 1
                 && (currentCell.rowIndex + currentCell.rowSpan - 1) > endingRowIndex
-                // && (currentCell.rowIndex + currentCell.rowSpan - 1) >= deletingRowIndex
             ) {
                 acc.moveToNextRowCells.push(currentCell);
             }
@@ -88,12 +87,10 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
             moveToNextRowCells.forEach((cur, index) => {
                 const curRowCell = cur as ExtendedTTableCellElement;
 
-                console.log('current row', nextRow.children, 'current cell', curRowCell);
+                // console.log('current row', nextRow.children, 'current cell', curRowCell);
+                // search for anchor cell where to place current cell
                 const startingCellIndex = nextRow.children.findIndex((curC) => {
                     const cell = curC as ExtendedTTableCellElement;
-                    // const cP = findNodePath(editor, cell);
-
-                    // console.log('cell', cell, 'cP', cP);
                     return cell.colIndex >= curRowCell.colIndex;
                 });
                 let startingCell: ExtendedTTableCellElement;
@@ -103,15 +100,17 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
                     startingCell = nextRow.children[startingCellIndex] as ExtendedTTableCellElement;
                 }
 
+                // consider already inserted cell by adding index each time to the col path
                 let incrementBy = index;
                 if (startingCell.colIndex < curRowCell.colIndex) {
+                    // place current cell after starting cell, if placing cell col index is grather than col index of starting cell
                     incrementBy += 1;
                 }
 
                 const startingCellPath = findNodePath(editor, startingCell);
                 const tablePath = startingCellPath.slice(0, -2);
                 const colPath = startingCellPath.at(-1);
-                console.log('startingCell', startingCell, 'startingCellPath', startingCellPath);
+                // console.log('startingCell', startingCell, 'startingCellPath', startingCellPath);
 
                 const nextRowStartCellPath = [...tablePath, nextRowIndex, colPath + incrementBy];
                 // console.log('startingCell', startingCell, 'startingCellPath', startingCellPath, 'nextRowStartCellPath', nextRowStartCellPath);
@@ -124,10 +123,6 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
                 // making cell smaller and moving it to next row
                 const newCell = { ...curRowCell, rowSpan: curRowCell.rowSpan - rowsNumberAffected };
                 insertElements(editor, newCell, { at: nextRowStartCellPath });
-
-                // get updated elements
-                // table = getCurrentTable(editor);
-                // nextRow = table.children[nextRowIndex] as TTableCellElement | undefined;
             });
         }
 
@@ -149,18 +144,12 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
         });
 
         const rowToDelete = table.children[deletingRowIndex] as TTableRowElement;
-        if (
-            rowToDelete
-            // Cannot delete the last row
-            && rowToDelete.children.length > 1
-        ) {
-            const rowPath = findNodePath(editor, rowToDelete);
-            console.log('starting row to delete', rowToDelete, 'at path', rowPath, 'times', rowsDeleteNumber);
-            Array.from({ length: rowsDeleteNumber }).forEach(() => {
-                removeNodes(editor, {
-                    at: rowPath,
-                });
+        const rowPath = findNodePath(editor, rowToDelete);
+        console.log('starting row to delete', rowToDelete, 'at path', rowPath, 'times', rowsDeleteNumber);
+        Array.from({ length: rowsDeleteNumber }).forEach(() => {
+            removeNodes(editor, {
+                at: rowPath,
             });
-        }
+        });
     }
 };
