@@ -2,14 +2,17 @@ import { TTypeProp } from '../types';
 import React, { useMemo } from 'react';
 import { DataTable, FlexCell } from '@epam/uui';
 import { useTableState, useArrayDataSource, DataColumnProps } from '@epam/uui-core';
-import { RichTextView, Text, FlexRow, Panel } from '@epam/promo';
+import { RichTextView, Text, FlexRow, Panel, LinkButton } from '@epam/promo';
 import { useGetTsDocsForPackage } from '../dataHooks';
+import { svc } from '../../../services';
+import { ContentSection } from '../../../common';
 
 function formatInheritedFrom(inheritedFrom: TTypeProp['inheritedFrom']) {
     if (inheritedFrom) {
         const { module, name } = inheritedFrom;
         if (module && name) {
-            return `${module}/${name}`;
+            const link = { pathname: '/documents', query: { id: `${module}/${name}` } };
+            return <LinkButton link={ link } caption={ `(${module}) ${name}` } />;
         }
         return name;
     }
@@ -62,7 +65,19 @@ type TExportInfoParams = {
     packageName: string;
 };
 
-export function ExportInfo(params: TExportInfoParams) {
+export function ApiReferenceItem() {
+    const { id } = svc.uuiRouter.getCurrentLink().query;
+    const [p1, p2, exportName] = id.split('/');
+    const packageName = `${p1}/${p2}`;
+
+    return (
+        <ContentSection>
+            <PackageExportDescription exportName={ exportName } packageName={ packageName } />
+        </ContentSection>
+    );
+}
+
+export function PackageExportDescription(params: TExportInfoParams) {
     const { packageName, exportName } = params;
     const exportsMap = useGetTsDocsForPackage(packageName);
     const exportPropsDsItems: TTypeProp[] = useMemo(() => {
@@ -111,7 +126,8 @@ export function ExportInfo(params: TExportInfoParams) {
                     { comment?.length > 0 && <NameValue name="Comment" value={ <Comment comment={ comment } /> } /> }
                 </Panel>
                 { exportPropsDsItems?.length > 0 && (
-                    <Panel margin="24">
+                    <Panel>
+                        <Text font="sans-semibold" color="gray80">Props</Text>
                         <DataTable
                             value={ tableState }
                             onValueChange={ setTableState }

@@ -21,11 +21,13 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
     const [value, setValue] = React.useState<DataSourceState>({ search: '', folded: {} });
 
     React.useEffect(() => {
-        const { parentId } = props.items.find((i) => i.id === props.value);
-        if (parentId != null) {
-            setValue((stateValue) => ({ ...stateValue, folded: { ...stateValue.folded, [parentId]: false } }));
+        if (props.items) {
+            const { parentId } = props.items.find((i) => i.id === props.value);
+            if (parentId != null) {
+                setValue((stateValue) => ({ ...stateValue, folded: { ...stateValue.folded, [parentId]: false } }));
+            }
         }
-    }, [props.value]);
+    }, [props.value, props.items]);
 
     const handleClick = React.useCallback((row: DataRowProps<TItem, string>) => {
         row.isFoldable && row.onFold(row);
