@@ -62,4 +62,16 @@ router.get('/get-ts-docs/:packageName', (req, res) => {
     });
 });
 
+router.get('/get-ts-docs-api', (req, res) => {
+    const propsFilePath = path.join(__dirname, '../../public/docs/componentsPropsSet_v2.json');
+    const json = JSON.parse(fs.readFileSync(propsFilePath, 'utf8'));
+    const content = Object.keys(json).reduce((acc, packageName) => {
+        acc[packageName] = Object.keys(json[packageName]);
+        return acc;
+    }, {});
+    res.send({
+        content,
+    });
+});
+
 module.exports = router;
