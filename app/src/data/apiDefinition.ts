@@ -47,6 +47,10 @@ export function getApi(params: { processRequest: IProcessRequest, origin?: strin
         getProps(): Promise<any> {
             return processRequest(origin.concat('/api/get-props/'), 'GET');
         },
+        getTsDocs(packageName: string): Promise<any> {
+            const packageNameEnc = encodeURIComponent(packageName);
+            return processRequest(origin.concat(`/api/get-ts-docs/${packageNameEnc}`), 'GET');
+        },
         presets: {
             async getPresets(): Promise<ITablePreset[]> {
                 await delay(500);

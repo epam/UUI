@@ -49,4 +49,17 @@ router.get('/get-props', (req, res) => {
     });
 });
 
+router.get('/get-ts-docs/:packageName', (req, res) => {
+    const propsFilePath = path.join(__dirname, '../../public/docs/componentsPropsSet_v2.json');
+    const json = JSON.parse(fs.readFileSync(propsFilePath, 'utf8'));
+    const packageName = req.params.packageName;
+    if (!packageName) {
+        res.sendStatus(400);
+    }
+    const content = json[packageName];
+    res.send({
+        content,
+    });
+});
+
 module.exports = router;
