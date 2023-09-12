@@ -7,7 +7,9 @@ export function sortProps(propsArr: TTypeProp[]): TTypeProp[] {
     }
     const arr = [...propsArr];
     arr.sort((p1, p2) => {
-        return compareStr(p1.name, p2.name) || compareStr(p1.inheritedFrom, p2.inheritedFrom) || compareStr(p1.optional, p2.optional);
+        return compareStr(p1.name, p2.name)
+            || compareStr(`${p1.inheritedFrom.module}/${p1.inheritedFrom.name}`, `${p2.inheritedFrom.module}/${p2.inheritedFrom.name}`)
+            || compareStr(p1.optional, p2.optional);
     });
     return arr;
 }

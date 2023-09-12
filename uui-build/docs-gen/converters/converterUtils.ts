@@ -1,6 +1,6 @@
 import { EmitHint, Node, Symbol, SyntaxKind, ts, Type } from 'ts-morph';
 import { isExternalFile } from '../utils';
-import { SYNTAX_KIND_NAMES } from '../constants';
+import { getUuiModuleNameFromPath, SYNTAX_KIND_NAMES } from '../constants';
 
 export class ConverterUtils {
     static isExternalNode(typeNode: Node) {
@@ -51,10 +51,17 @@ export class ConverterUtils {
         return typeSymbol ? typeSymbol.getEscapedName() : '';
     }
 
-    static getTypeParentName(typeNode: Node) {
+    static getTypeParentRef(typeNode: Node, originTypeNode: Node): { module: string, name: string } | undefined {
         const ta = typeNode.getAncestors().find((a) => Node.isTypeAliasDeclaration(a) || Node.isInterfaceDeclaration(a) || Node.isClassDeclaration(a));
         const symbol = ta.getSymbol();
-        return ConverterUtils.getTypeName(symbol);
+        if (ta !== originTypeNode) {
+            const module = getUuiModuleNameFromPath(ta.getSourceFile().compilerNode.fileName);
+            const name = ConverterUtils.getTypeName(symbol);
+            return {
+                module,
+                name,
+            };
+        }
     }
 
     static getCompilerTypeText(type: Type): string {

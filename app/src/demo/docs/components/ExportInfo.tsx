@@ -5,6 +5,16 @@ import { useTableState, useArrayDataSource, DataColumnProps } from '@epam/uui-co
 import { RichTextView, Text, FlexRow, Panel } from '@epam/promo';
 import { useGetTsDocsForPackage } from '../dataHooks';
 
+function formatInheritedFrom(inheritedFrom: TTypeProp['inheritedFrom']) {
+    if (inheritedFrom) {
+        const { module, name } = inheritedFrom;
+        if (module && name) {
+            return `${module}/${name}`;
+        }
+        return name;
+    }
+}
+
 const propsTableColumns: DataColumnProps<TTypeProp>[] = [
     {
         key: 'name',
@@ -34,7 +44,7 @@ const propsTableColumns: DataColumnProps<TTypeProp>[] = [
     {
         key: 'inheritedFrom',
         caption: 'Inherited From',
-        render: (prop) => <Text color="gray80">{prop.inheritedFrom}</Text>,
+        render: (prop) => <Text color="gray80">{formatInheritedFrom(prop.inheritedFrom)}</Text>,
         width: 200,
         isSortable: true,
     },

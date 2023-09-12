@@ -16,6 +16,18 @@ function fullPath(relative: string) {
     return path.resolve(uuiRoot, relative);
 }
 
+export function getUuiModuleNameFromPath(absolutePath: string) {
+    const rel = path.relative(uuiRoot, absolutePath);
+    const moduleFolderName = rel.split(path.sep)[0];
+    const foundEntry = Object.entries(INCLUDED_UUI_PACKAGES).find((e) => {
+        const folderName = path.relative(uuiRoot, e[1]);
+        return folderName === moduleFolderName;
+    });
+    if (foundEntry) {
+        return foundEntry[0];
+    }
+}
+
 export const INCLUDED_UUI_PACKAGES: Record<string, string> = {
     '@epam/uui-core': fullPath('./uui-core'),
     '@epam/uui-components': fullPath('./uui-components'),
