@@ -1,14 +1,15 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { FlexRow } from '@epam/promo';
-import { AppHeader, ContentSection, Page, Sidebar } from '../common';
+import { AppHeader, Page, Sidebar } from '../common';
 import { svc } from '../services';
 import { UUI4Type, UUI3Type, UUI4 } from '../common';
 import { items as itemsStructure, DocItem } from './structure';
 import { getQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
 import { TreeListItem } from '@epam/uui-components';
-import { DataRowProps } from '@epam/uui-core';
+import { DataRowProps, useUuiContext } from '@epam/uui-core';
 import { ApiReferenceItem } from '../demo/docs/components/ApiReferenceItem';
+import { TApi, TAppContext } from '../data';
 
 type DocsQuery = {
     id: string;
@@ -18,25 +19,16 @@ type DocsQuery = {
 };
 
 function useApiReferenceNav(): DocItem[] | undefined {
-    const [data, setData] = useState<Record<string, string[]>>();
-    useEffect(() => {
-        const promise = svc.api.getTsDocsApiReference();
-        promise.then((response) => {
-            setData(response.content);
+    const { uuiApp } = useUuiContext<TApi, TAppContext>();
+    const apiRef = uuiApp.docsApiReference;
+    const root = { id: 'ApiReference', name: 'Api Reference' };
+    return Object.keys(apiRef).reduce<DocItem[]>((acc, moduleName) => {
+        acc.push({ id: moduleName, name: moduleName, parentId: root.id });
+        apiRef[moduleName].forEach((eName) => {
+            acc.push({ id: `${moduleName}/${eName}`, name: eName, parentId: moduleName, component: ApiReferenceItem });
         });
-    }, []);
-    return useMemo(() => {
-        if (data) {
-            const root = { id: 'ApiReference', name: 'Api Reference' };
-            return Object.keys(data).reduce<DocItem[]>((acc, moduleName) => {
-                acc.push({ id: moduleName, name: moduleName, parentId: root.id });
-                data[moduleName].forEach((eName) => {
-                    acc.push({ id: `${moduleName}/${eName}`, name: eName, parentId: moduleName, component: ApiReferenceItem });
-                });
-                return acc;
-            }, [root]);
-        }
-    }, [data]);
+        return acc;
+    }, [root]);
 }
 
 function useItems(selectedId: string): { items: DocItem[], PageComponent: any } | undefined {
@@ -91,6 +83,10 @@ export function DocumentsPage() {
         return () => codesandboxService.clearFiles();
     }, []);
 
+    if (!PageComponent) {
+        return null;
+    }
+
     return (
         <Page renderHeader={ () => <AppHeader /> }>
             <FlexRow alignItems="stretch">
@@ -110,7 +106,7 @@ export function DocumentsPage() {
                             },
                         } }
                 />
-                { PageComponent ? <PageComponent /> : <ContentSection /> }
+                <PageComponent />
             </FlexRow>
         </Page>
     );

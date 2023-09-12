@@ -79,7 +79,7 @@ function createServices<TApi, TAppContext>(props: UseUuiServicesProps<TApi, TApp
     };
 }
 export const useUuiServices = <TApi, TAppContext>(props: UseUuiServicesProps<TApi, TAppContext>) => {
-    const [result] = useState(() => createServices(props));
+    const [result] = useState(() => createServices<TApi, TAppContext>(props));
 
     // Workaround to discard all errors on navigation. Need to find a better way. YakovZh
     result.services.uuiErrors.discardError();
