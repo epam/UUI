@@ -16,7 +16,10 @@ export class Converter implements IConverter {
 
     protected isPropsSupported(typeNode: Node) {
         const type = ConverterUtils.getTypeFromNode(typeNode);
-        return type.isClassOrInterface() || type.isIntersection();
+        if (ConverterUtils.isExternalNode(typeNode) || type.isTuple()) {
+            return false;
+        }
+        return type.isClassOrInterface() || type.isIntersection() || type.isObject();
     }
 
     public isSupported(typeNode: Node) {
@@ -25,10 +28,8 @@ export class Converter implements IConverter {
 
     public convert(typeNode: Node): TType {
         const type = ConverterUtils.getTypeFromNode(typeNode);
-        const typeSymbol = ConverterUtils.getSymbolFromType(type);
-        //
         const kind = ConverterUtils.getSyntaxKindNameFromNode(typeNode);
-        const name = ConverterUtils.getTypeName(typeSymbol);
+        const name = ConverterUtils.getTypeName(typeNode.getSymbol());
         const value = this.getTypeString(typeNode);
         const comment = ConverterUtils.getCommentFromNode(typeNode);
         const props = this.isPropsSupported(typeNode) ? extractMembers(name, type, this.context) : undefined;
@@ -44,6 +45,7 @@ export class Converter implements IConverter {
 
 function mapSingleMember(originName: string, node: Node, context: IConverterContext): TTypeProp {
     let prop: TTypeProp = undefined;
+    const nKind = node.getKind();
     const isSupported = [
         SyntaxKind.PropertySignature,
         SyntaxKind.MethodSignature,
@@ -51,11 +53,11 @@ function mapSingleMember(originName: string, node: Node, context: IConverterCont
         SyntaxKind.SetAccessor,
         SyntaxKind.MethodDeclaration,
         SyntaxKind.PropertyDeclaration,
-    ].indexOf(node.getKind()) !== -1;
+    ].indexOf(nKind) !== -1;
 
     if (isSupported) {
         const comment = ConverterUtils.getCommentFromNode(node);
-        const inheritedFrom = ConverterUtils.getTypeName(node.getParent().getSymbol());
+        const inheritedFrom = ConverterUtils.getTypeParentName(node);
         let name = Node.isPropertyNamed(node) ? node.getName() : '';
         const typeNode = Node.isTypeAliasDeclaration(node) ? node.getTypeNode() : node;
         let value = context.convert(typeNode).value;
@@ -79,7 +81,7 @@ function mapSingleMember(originName: string, node: Node, context: IConverterCont
             optional: ConverterUtils.getTypeFromNode(typeNode).isNullable() || hasQuestionToken,
         };
     } else {
-        console.warn(`[Converter.mapSingleMember] Unsupported kind=${node.getKind()}`);
+        console.warn(`[Converter.mapSingleMember] Unsupported kind=${nKind}`);
     }
     return prop;
 }

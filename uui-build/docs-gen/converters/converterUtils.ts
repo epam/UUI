@@ -51,6 +51,12 @@ export class ConverterUtils {
         return typeSymbol ? typeSymbol.getEscapedName() : '';
     }
 
+    static getTypeParentName(typeNode: Node) {
+        const ta = typeNode.getAncestors().find((a) => Node.isTypeAliasDeclaration(a) || Node.isInterfaceDeclaration(a) || Node.isClassDeclaration(a));
+        const symbol = ta.getSymbol();
+        return ConverterUtils.getTypeName(symbol);
+    }
+
     static getCompilerTypeText(type: Type): string {
         return type.getText().replace(/import.*"\)\.*/g, '').replace(/"/g, "'");
     }
