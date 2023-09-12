@@ -12,15 +12,39 @@ import { ReactComponent as RemoveTable } from '../../icons/table-table_remove-24
 import css from './ToolbarContent.module.scss';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { deleteColumn } from './deleteColumn';
-import { usePlateEditorState, insertElements, TElementEntry, removeNodes, isCollapsed, TDescendant, findNode, getPluginType, findNodePath } from '@udecode/plate-common';
-import { getTableEntries, insertTableColumn, deleteRow, deleteTable, getEmptyCellNode, ELEMENT_TABLE, TTableElement, getCellTypes, TTableRowElement } from '@udecode/plate-table';
+import {
+    usePlateEditorState,
+    insertElements,
+    TElementEntry,
+    removeNodes,
+    isCollapsed,
+    TDescendant,
+    findNode,
+    getPluginType,
+    findNodePath,
+} from '@udecode/plate-common';
+import {
+    getTableEntries,
+    insertTableColumn,
+    deleteTable,
+    getEmptyCellNode,
+    ELEMENT_TABLE,
+    TTableElement,
+    getCellTypes,
+    TTableRowElement,
+} from '@udecode/plate-table';
 import { insertTableRow } from './insertTableRow';
+import { deleteRow } from './deleteRow';
 
 function StyledRemoveTable() {
     return <RemoveTable className={ css.removeTableIcon } />;
 }
 
-export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntry[] }) {
+export function TableToolbarContent({
+    cellEntries,
+}: {
+    cellEntries: TElementEntry[];
+}) {
     const editor = usePlateEditorState();
 
     const { cell, row } = getTableEntries(editor) || {};
@@ -28,10 +52,10 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
     const rowPath = useMemo(() => row && row[1][2] !== 0 && row[1], [row]);
 
     const canUnmerge = isCollapsed(editor.selection)
-    && cellEntries
-    && cellEntries.length === 1
-    && ((cellEntries[0][0] as any)?.colSpan > 1
-        || (cellEntries[0][0] as any)?.rowSpan > 1);
+        && cellEntries
+        && cellEntries.length === 1
+        && ((cellEntries[0][0] as any)?.colSpan > 1
+            || (cellEntries[0][0] as any)?.rowSpan > 1);
 
     useEffect(() => {
         const [[cellElem, path]] = cellEntries;
@@ -39,7 +63,7 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
             at: path,
             match: { type: getPluginType(editor, ELEMENT_TABLE) },
         });
-        console.log('tableNode', tableEntry[0]);
+        // console.log("tableNode", tableEntry[0]);
     }, [cellEntries]);
 
     const unmergeCells = () => {
@@ -64,18 +88,37 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
         const colSpan = cellElem.colSpan;
         const rowSpan = cellElem.rowSpan;
 
-        console.log('cellPath', cellPath, 'rowSpan', rowSpan, 'colSpan', colSpan);
+        console.log(
+            'cellPath',
+            cellPath,
+            'rowSpan',
+            rowSpan,
+            'colSpan',
+            colSpan,
+        );
 
-        const colPaths = Array.from({ length: colSpan } as ArrayLike<number>, (_, index) => { return index; })
-            .map((current) => {
-                return colPath + current;
-            });
+        const colPaths = Array.from(
+            { length: colSpan } as ArrayLike<number>,
+            (_, index) => {
+                return index;
+            },
+        ).map((current) => {
+            return colPath + current;
+        });
 
-        let paths = Array.from({ length: rowSpan } as ArrayLike<number>, (_, index) => { return index; })
-            .map((current) => {
-                const currentRowPath = rowPath + current;
-                return colPaths.map((currentColPath) => [...tablePath, currentRowPath, currentColPath]);
-            });
+        let paths = Array.from(
+            { length: rowSpan } as ArrayLike<number>,
+            (_, index) => {
+                return index;
+            },
+        ).map((current) => {
+            const currentRowPath = rowPath + current;
+            return colPaths.map((currentColPath) => [
+                ...tablePath,
+                currentRowPath,
+                currentColPath,
+            ]);
+        });
 
         const tableEntry = findNode(editor, {
             at: path,
@@ -91,12 +134,21 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
 
             let newCellPaths = cellsPaths;
             if (colIndex > 0) {
-                const prevCellInRowPath = [...tablePath, rowIndex, colIndex - 1];
+                const prevCellInRowPath = [
+                    ...tablePath,
+                    rowIndex,
+                    colIndex - 1,
+                ];
                 const foundEntry = findNode(editor, {
                     at: prevCellInRowPath,
                     match: { type: getCellTypes(editor) },
                 });
-                console.log('prevCellInRowPath', prevCellInRowPath, 'foundEntry', foundEntry);
+                console.log(
+                    'prevCellInRowPath',
+                    prevCellInRowPath,
+                    'foundEntry',
+                    foundEntry,
+                );
 
                 /**
                  * Search for the last cell path in the row.
@@ -104,14 +156,23 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
                  * Slate needs elements with paths one by each other.
                  */
                 if (!foundEntry) {
-                    const currentRow = table.children[rowIndex] as TTableRowElement;
+                    const currentRow = table.children[
+                        rowIndex
+                    ] as TTableRowElement;
                     console.log('table', table, rowIndex, currentRow);
                     const endingCell = currentRow.children.at(-1);
                     const endingCellPath = findNodePath(editor, endingCell);
-                    console.log('endingCell', endingCell, 'endingCellPath', endingCellPath);
+                    console.log(
+                        'endingCell',
+                        endingCell,
+                        'endingCellPath',
+                        endingCellPath,
+                    );
 
                     const [, startingColIndex] = endingCellPath.slice(-2);
-                    const startWith = startingColIndex === 0 ? startingColIndex : startingColIndex + 1;
+                    const startWith = startingColIndex === 0
+                        ? startingColIndex
+                        : startingColIndex + 1;
 
                     newCellPaths = cellsPaths.map((currentCellPath, i) => {
                         const currentRowPath = currentCellPath.slice(0, -1);
@@ -150,11 +211,14 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
         console.log('paths', paths);
         paths
             .flat()
-            .forEach((p, index) => insertElements(
-                editor,
-                index === 0 ? createEmptyCell(cellElem.children) : createEmptyCell(),
-                { at: p },
-            ));
+            .forEach((p, index) =>
+                insertElements(
+                    editor,
+                    index === 0
+                        ? createEmptyCell(cellElem.children)
+                        : createEmptyCell(),
+                    { at: p },
+                ));
     };
 
     return (
@@ -177,18 +241,20 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
             />
             <ToolbarButton
                 key="insert-row-before"
-                onClick={ () => insertTableRow(editor, {
-                    header: cell[0].type === 'table_header_cell',
-                    at: rowPath,
-                    disableSelect: true,
-                }) }
+                onClick={ () =>
+                    insertTableRow(editor, {
+                        header: cell[0].type === 'table_header_cell',
+                        at: rowPath,
+                        disableSelect: true,
+                    }) }
                 icon={ InsertRowBefore }
             />
             <ToolbarButton
                 key="insert-row-after"
-                onClick={ () => insertTableRow(editor, {
-                    header: cell[0].type === 'table_header_cell',
-                }) }
+                onClick={ () =>
+                    insertTableRow(editor, {
+                        header: cell[0].type === 'table_header_cell',
+                    }) }
                 icon={ InsertRowAfter }
             />
             <ToolbarButton
@@ -202,13 +268,13 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
                 icon={ StyledRemoveTable }
                 cx={ css.removeTableButton }
             />
-            { canUnmerge && (
+            {canUnmerge && (
                 <ToolbarButton
                     key="unmerge-cells"
                     onClick={ unmergeCells }
                     icon={ UnmergeCellsIcon }
                 />
-            ) }
+            )}
         </Fragment>
     );
 }
