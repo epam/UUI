@@ -5,7 +5,7 @@ exports[`AdaptivePanel should render no items provided 1`] = `
   className="mainWrapper"
 >
   <div
-    className="container align-items-center"
+    className="uui-flex-row container align-items-center"
     style={
       Object {
         "columnGap": undefined,
@@ -21,7 +21,7 @@ exports[`AdaptivePanel should render some items 1`] = `
   className="mainWrapper"
 >
   <div
-    className="container align-items-center"
+    className="uui-flex-row container align-items-center"
     style={
       Object {
         "columnGap": undefined,

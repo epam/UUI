@@ -229,22 +229,25 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                 skin: skin,
             },
         });
-        this.handleChangeBodyTheme(skin);
+
+        if (skin !== UUI) {
+            this.handleChangeBodyTheme(skin as Skin);
+        }
     }
 
     handleChangeBodyTheme(skin: Skin) {
-        const theme = document.body.classList.value.match(/uui-theme-(\S+)\s*/)[1];
-        if (theme === skin.split('_')[1]) return;
-        document.body.classList.remove(`uui-theme-${theme}`);
-        document.body.classList.add(`uui-theme-${skin === UUI3 ? 'loveship' : 'promo'}`);
-    }
-
-    componentWillUnmount() {
-        this.handleChangeBodyTheme(UUI4);
+        if (skin === UUI3) {
+            svc.uuiApp.toggleTheme('uui-theme-loveship');
+        } else if (skin === UUI4) {
+            svc.uuiApp.toggleTheme('uui-theme-promo');
+        }
     }
 
     handleChangeMode(mode: 'doc' | 'propsEditor') {
-        this.handleChangeBodyTheme(UUI4);
+        const skin = getQuery('skin');
+        if (mode === 'propsEditor' && skin !== UUI) {
+            this.handleChangeBodyTheme(skin as Skin);
+        }
 
         svc.uuiRouter.redirect({
             pathname: '/documents',

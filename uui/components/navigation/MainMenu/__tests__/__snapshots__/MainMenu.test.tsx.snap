@@ -8,7 +8,7 @@ exports[`MainMenu should be rendered correctly 1`] = `
     className="itemsContainer mainWrapper"
   >
     <div
-      className="container align-items-center"
+      className="uui-flex-row container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -52,7 +52,7 @@ exports[`MainMenu should be rendered correctly 2`] = `
     className="itemsContainer mainWrapper"
   >
     <div
-      className="container align-items-center"
+      className="uui-flex-row container align-items-center"
       style={
         Object {
           "columnGap": undefined,
