@@ -11,7 +11,7 @@ import { skinContext } from '@epam/promo';
 import { AmplitudeListener } from './analyticsEvents';
 import { svc } from './services';
 import App from './App';
-import { getApi, TApi } from './data';
+import { getApi, TApi, loadAppContext, TAppContext } from './data';
 import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
 import './index.module.scss';
@@ -45,13 +45,17 @@ apm.addLabels({ project: 'epm-uui', service_type: 'ui' });
 
 function UuiEnhancedApp() {
     const [isLoaded, setIsLoaded] = React.useState(false);
-    const { services } = useUuiServices<TApi, UuiContexts>({ apiDefinition, router, skinContext });
+    const { services } = useUuiServices<TApi, TAppContext>({ apiDefinition, router, skinContext });
 
     React.useEffect(() => {
         Object.assign(svc, services);
         services.uuiAnalytics.addListener(new GAListener(GA_CODE));
         services.uuiAnalytics.addListener(new AmplitudeListener(AMP_CODE));
-        setIsLoaded(true);
+
+        loadAppContext().then((appCtx) => {
+            services.uuiApp = appCtx;
+            setIsLoaded(true);
+        });
     }, [services]);
 
     if (isLoaded) {

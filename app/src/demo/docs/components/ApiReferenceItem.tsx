@@ -12,7 +12,14 @@ function formatInheritedFrom(inheritedFrom: TTypeProp['inheritedFrom']) {
         const { module, name } = inheritedFrom;
         if (module && name) {
             const link = { pathname: '/documents', query: { id: `${module}/${name}` } };
-            return <LinkButton link={ link } caption={ `(${module}) ${name}` } />;
+            return (
+                <>
+                    <LinkButton link={ link } caption={ name } />
+                    (
+                    {module}
+                    )
+                </>
+            );
         }
         return name;
     }
