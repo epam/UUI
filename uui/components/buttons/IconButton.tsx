@@ -14,7 +14,7 @@ export interface IconButtonMods {
 export interface IconButtonProps extends IconButtonBaseProps, IconButtonMods {}
 
 function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
-    return ['uui-icon_button', `uui-color-${mods.color || 'default'}`, css.root]; // TODO: default - wrong naming need fix it
+    return ['uui-icon_button', `uui-color-${mods.color || 'neutral'}`, css.root];
 }
 
 export const IconButton = withMods<IconButtonProps, IconButtonMods>(uuiIconButton, applyIconButtonMods);

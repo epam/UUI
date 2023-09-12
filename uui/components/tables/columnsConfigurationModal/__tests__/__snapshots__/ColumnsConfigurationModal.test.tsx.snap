@@ -46,7 +46,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       }
     >
       <div
-        className="root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -77,7 +77,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         >
           <button
             aria-label="Close modal"
-            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root"
+            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -94,7 +94,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 padding-24 borderBottom spacing-12 searchArea container align-items-center"
+        className="uui-flex-row root size-36 padding-24 borderBottom spacing-12 searchArea container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -187,7 +187,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             }
           >
             <div
-              className="root size-24 padding-24 spacing-6 groupTitle container align-items-center"
+              className="uui-flex-row root size-24 padding-24 spacing-6 groupTitle container align-items-center"
               style={
                 Object {
                   "columnGap": undefined,
@@ -214,7 +214,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               </button>
             </div>
             <div
-              className="root size-30 groupItems container align-items-center"
+              className="uui-flex-row root size-30 groupItems container align-items-center"
               style={
                 Object {
                   "columnGap": undefined,
@@ -223,7 +223,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               }
             >
               <div
-                className="root size-30 rowWrapper notPinned -draggable container align-items-center"
+                className="uui-flex-row root size-30 rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -236,7 +236,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="root size-30 spacing-6 title container align-items-center"
+                  className="uui-flex-row root size-30 spacing-6 title container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -285,7 +285,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   className="flexSpacer"
                 />
                 <div
-                  className="root size-30 pinIconButton container align-items-center"
+                  className="uui-flex-row root size-30 pinIconButton container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -299,7 +299,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root"
+                      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -317,7 +317,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 </div>
               </div>
               <div
-                className="root size-30 rowWrapper notPinned -draggable container align-items-center"
+                className="uui-flex-row root size-30 rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -330,7 +330,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="root size-30 spacing-6 title container align-items-center"
+                  className="uui-flex-row root size-30 spacing-6 title container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -379,7 +379,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   className="flexSpacer"
                 />
                 <div
-                  className="root size-30 pinIconButton container align-items-center"
+                  className="uui-flex-row root size-30 pinIconButton container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -393,7 +393,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root"
+                      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -443,7 +443,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 padding-24 vPadding-24 spacing-12 root modalFooter borderTop container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter borderTop container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -566,7 +566,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
       }
     >
       <div
-        className="root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -597,7 +597,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         >
           <button
             aria-label="Close modal"
-            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root"
+            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -614,7 +614,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         </div>
       </div>
       <div
-        className="root size-36 padding-24 borderBottom spacing-12 searchArea container align-items-center"
+        className="uui-flex-row root size-36 padding-24 borderBottom spacing-12 searchArea container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -707,7 +707,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
             }
           >
             <div
-              className="root size-24 padding-24 spacing-6 groupTitle container align-items-center"
+              className="uui-flex-row root size-24 padding-24 spacing-6 groupTitle container align-items-center"
               style={
                 Object {
                   "columnGap": undefined,
@@ -734,7 +734,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
               </button>
             </div>
             <div
-              className="root size-30 groupItems container align-items-center"
+              className="uui-flex-row root size-30 groupItems container align-items-center"
               style={
                 Object {
                   "columnGap": undefined,
@@ -743,7 +743,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
               }
             >
               <div
-                className="root size-30 rowWrapper notPinned -draggable container align-items-center"
+                className="uui-flex-row root size-30 rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -756,7 +756,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                 }
               >
                 <div
-                  className="root size-30 spacing-6 title container align-items-center"
+                  className="uui-flex-row root size-30 spacing-6 title container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -796,7 +796,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   className="flexSpacer"
                 />
                 <div
-                  className="root size-30 pinIconButton container align-items-center"
+                  className="uui-flex-row root size-30 pinIconButton container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -810,7 +810,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root"
+                      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -828,7 +828,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                 </div>
               </div>
               <div
-                className="root size-30 rowWrapper notPinned -draggable container align-items-center"
+                className="uui-flex-row root size-30 rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -841,7 +841,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                 }
               >
                 <div
-                  className="root size-30 spacing-6 title container align-items-center"
+                  className="uui-flex-row root size-30 spacing-6 title container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -881,7 +881,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   className="flexSpacer"
                 />
                 <div
-                  className="root size-30 pinIconButton container align-items-center"
+                  className="uui-flex-row root size-30 pinIconButton container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -895,7 +895,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root"
+                      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -945,7 +945,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         </div>
       </div>
       <div
-        className="root size-36 padding-24 vPadding-24 spacing-12 root modalFooter borderTop container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter borderTop container align-items-center"
         style={
           Object {
             "columnGap": undefined,

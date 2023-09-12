@@ -2,7 +2,7 @@
 
 exports[`IconButton should be rendered correctly 1`] = `
 <button
-  className="container uui-button-box uui-enabled uui-icon_button uui-color-default root"
+  className="container uui-button-box uui-enabled uui-icon_button uui-color-neutral root"
   onClick={[Function]}
   tabIndex={-1}
   type="button"

@@ -172,12 +172,12 @@
     --uui-secondary-60: var(--night700);
     --uui-secondary-70: var(--night800);
 
-    --uui-negative-5: var(--fire-soft);
-    --uui-negative-10: var(--fire-lightest);
-    --uui-negative-20: var(--fire-light);
-    --uui-negative-50: var(--fire);
-    --uui-negative-60: var(--fire-dark);
-    --uui-negative-70: var(--fire-darkest);
+    --uui-critical-5: var(--fire-soft);
+    --uui-critical-10: var(--fire-lightest);
+    --uui-critical-20: var(--fire-light);
+    --uui-critical-50: var(--fire);
+    --uui-critical-60: var(--fire-dark);
+    --uui-critical-70: var(--fire-darkest);
 
     /* semantic colors */
 
@@ -351,15 +351,15 @@
     }
 
     .uui-color-fire,
-    .uui-color-negative,
+    .uui-color-critical,
     .uui-color-error {
-        --uui-color-5: var(--uui-negative-5);
-        --uui-color-10: var(--uui-negative-10);
-        --uui-color-20: var(--uui-negative-20);
-        --uui-color-50: var(--uui-negative-50);
-        --uui-color-60: var(--uui-negative-60);
-        --uui-color-70: var(--uui-negative-70);
-        --uui-color-text: var(--uui-negative-50);
+        --uui-color-5: var(--uui-critical-5);
+        --uui-color-10: var(--uui-critical-10);
+        --uui-color-20: var(--uui-critical-20);
+        --uui-color-50: var(--uui-critical-50);
+        --uui-color-60: var(--uui-critical-60);
+        --uui-color-70: var(--uui-critical-70);
+        --uui-color-text: var(--uui-critical-50);
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
@@ -588,15 +588,14 @@
     }
 
     .uui-tooltip-container.uui-color-white,
-    .uui-tooltip-container.uui-color-default {
+    .uui-tooltip-container.uui-color-neutral {
         --uui-color-50: var(--white);
         --uui-color-contrast-text: var(--uui-text-dark);
     }
 
     .uui-tooltip-container.uui-color-red,
     .uui-tooltip-container.uui-color-critical {
-        --uui-color-50: var(--uui-error-60);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-color-50: var(--uui-critical-60);
     }
 
     .uui-tooltip-container.uui-color-gray,
@@ -611,6 +610,30 @@
     .uui-informer.uui-color-neutral {
         --uui-color-50: var(--neutral30);
         --uui-informer-caption: var(--uui-text-dark);
+    }
+
+    .uui-flex-row.uui-color-white {
+        --uui-flex-row-bg: var(--white);
+    }
+
+    .uui-flex-row.uui-color-night50 {
+        --uui-flex-row-bg: var(--night50);
+    }
+
+    .uui-flex-row.uui-color-night100 {
+        --uui-flex-row-bg: var(--night100);
+    }
+
+    .uui-panel {
+        --uui-panel-bg: transparent;
+    }
+
+    .uui-panel.uui-color-white {
+        --uui-panel-bg: var(--white);
+    }
+
+    .uui-panel.uui-color-night50 {
+        --uui-panel-bg: var(--night50);
     }
 
     // fonts

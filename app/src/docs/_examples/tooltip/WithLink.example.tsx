@@ -20,7 +20,7 @@ export default function LinkTooltipExample() {
     return (
         <FlexRow alignItems="center">
             <Text fontSize="14">Working from home allowed for employees only</Text>
-            <Tooltip content={ renderTypesMarkup() } placement="top" color="default" closeOnMouseLeave="boundary">
+            <Tooltip content={ renderTypesMarkup() } placement="top" color="neutral" closeOnMouseLeave="boundary">
                 <IconContainer icon={ myIcon } style={ { justifyContent: 'center', marginLeft: '3px' } } cx={ css.iconAmber } />
             </Tooltip>
         </FlexRow>
