@@ -4,6 +4,7 @@ import { TimelineDemo } from './timeline/TimelineDemo';
 import { MasterDetailedTable } from './tables/masterDetailedTable';
 import { FilteredTable } from './tables/filteredTable';
 import { RichTextEditorDemo } from './RTE/RichTextEditorDemo';
+import { Docs } from './docs/components/Docs';
 
 export interface DemoItem {
     id: string;
@@ -64,5 +65,13 @@ export const demoItems: DemoItem[] = [
         previewImage: '/static/images/DemoTimeline.png',
         shortDescription:
             '@epam/uui-timeline module provides components to build Gantt-chart-like experiences. It’s intended to be used as a basis to build your own experiences. You can render Gantt diagrams, time-based charts, etc. Components can be placed in various context – for example as table columns/cells.',
+    }, {
+        id: 'docs',
+        name: 'Docs',
+        component: Docs,
+        source: 'none',
+        previewImage: undefined,
+        shortDescription:
+            'Docs',
     },
 ];
