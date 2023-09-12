@@ -15,16 +15,25 @@ import { ExtendedTTableCellElement } from './types';
 import { findCellByIndexes } from './findCellByIndexes';
 import { getTableColumnCount } from './utils';
 
+const getCurrentTable = <V extends Value>(editor: PlateEditor<V>) => {
+    const currentTableItem = getAboveNode<TTableElement>(editor, {
+        match: { type: getPluginType(editor, ELEMENT_TABLE) },
+    });
+    const table = currentTableItem[0] as TTableElement;
+    return table;
+};
+
 export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
     if (
         someNode(editor, {
             match: { type: getPluginType(editor, ELEMENT_TABLE) },
         })
     ) {
-        const currentTableItem = getAboveNode<TTableElement>(editor, {
-            match: { type: getPluginType(editor, ELEMENT_TABLE) },
-        });
-        const table = currentTableItem[0] as TTableElement;
+        const table = getCurrentTable(editor);
+        // const currentTableItem = getAboveNode<TTableElement>(editor, {
+        //     match: { type: getPluginType(editor, ELEMENT_TABLE) },
+        // });
+        // const table = currentTableItem[0] as TTableElement;
 
         const selectedCellEntry = getAboveNode(editor, {
             match: { type: getCellTypes(editor) },
@@ -69,18 +78,22 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
             return acc;
         }, { squizeRowSpanCells: [], moveToNextRowCells: [] });
 
-        // console.log('moveToNextRowCells', moveToNextRowCells);
+        console.log('moveToNextRowCells', moveToNextRowCells);
 
         const nextRowIndex = deletingRowIndex + rowsDeleteNumber;
         const nextRow = table.children[nextRowIndex] as TTableCellElement | undefined;
 
         if (nextRow) {
             // console.log('nextRow', nextRow);
-            moveToNextRowCells.forEach((cur) => {
+            moveToNextRowCells.forEach((cur, index) => {
                 const curRowCell = cur as ExtendedTTableCellElement;
 
+                console.log('current row', nextRow.children, 'current cell', curRowCell);
                 const startingCellIndex = nextRow.children.findIndex((curC) => {
                     const cell = curC as ExtendedTTableCellElement;
+                    // const cP = findNodePath(editor, cell);
+
+                    // console.log('cell', cell, 'cP', cP);
                     return cell.colIndex >= curRowCell.colIndex;
                 });
                 let startingCell: ExtendedTTableCellElement;
@@ -90,11 +103,17 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
                     startingCell = nextRow.children[startingCellIndex] as ExtendedTTableCellElement;
                 }
 
+                let incrementBy = index;
+                if (startingCell.colIndex < curRowCell.colIndex) {
+                    incrementBy += 1;
+                }
+
                 const startingCellPath = findNodePath(editor, startingCell);
                 const tablePath = startingCellPath.slice(0, -2);
                 const colPath = startingCellPath.at(-1);
+                console.log('startingCell', startingCell, 'startingCellPath', startingCellPath);
 
-                const nextRowStartCellPath = [...tablePath, nextRowIndex, colPath];
+                const nextRowStartCellPath = [...tablePath, nextRowIndex, colPath + incrementBy];
                 // console.log('startingCell', startingCell, 'startingCellPath', startingCellPath, 'nextRowStartCellPath', nextRowStartCellPath);
 
                 const curCellStartingRowIndex = curRowCell.rowIndex;
@@ -105,6 +124,10 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
                 // making cell smaller and moving it to next row
                 const newCell = { ...curRowCell, rowSpan: curRowCell.rowSpan - rowsNumberAffected };
                 insertElements(editor, newCell, { at: nextRowStartCellPath });
+
+                // get updated elements
+                // table = getCurrentTable(editor);
+                // nextRow = table.children[nextRowIndex] as TTableCellElement | undefined;
             });
         }
 
