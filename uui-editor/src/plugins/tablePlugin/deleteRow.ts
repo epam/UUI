@@ -1,7 +1,6 @@
 import {
     findNodePath,
     getAboveNode,
-    getParentNode,
     getPluginType,
     insertElements,
     PlateEditor,
@@ -30,10 +29,6 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
         })
     ) {
         const table = getCurrentTable(editor);
-        // const currentTableItem = getAboveNode<TTableElement>(editor, {
-        //     match: { type: getPluginType(editor, ELEMENT_TABLE) },
-        // });
-        // const table = currentTableItem[0] as TTableElement;
 
         const selectedCellEntry = getAboveNode(editor, {
             match: { type: getCellTypes(editor) },
