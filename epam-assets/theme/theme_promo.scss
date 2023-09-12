@@ -280,18 +280,11 @@
 
     /* ------------------------------------ */
 
-    /* begin color classes */
-
-    .uui-color-none {
-        --uui-color-5: transparent;
-        --uui-color-10: transparent;
-        --uui-color-20: transparent;
-        --uui-color-50: transparent;
-        --uui-color-60: transparent;
-        --uui-color-70: transparent;
-        --uui-color-text: transparent;
-        --uui-color-contrast-text: transparent;
+    .uui-accordion-container {
+        --uui-accordion-border-radius: 0;
     }
+
+    /* begin color classes */
 
     .uui-color-accent,
     .uui-color-green {
@@ -600,14 +593,24 @@
         --uui-informer-caption: var(--uui-text-dark);
     }
 
-    .uui-flex-row.uui-color-white,
-    .uui-flex-row.uui-color-gray5 {
-        --uui-flex-row-bg: var(--uui-color-50);
+    .uui-flex-row.uui-color-white {
+        --uui-flex-row-bg: var(--white);
     }
 
-    .uui-panel.uui-color-white,
+    .uui-flex-row.uui-color-gray5 {
+        --uui-flex-row-bg: var(--gray5);
+    }
+
+    .uui-panel {
+        --uui-panel-bg: transparent;
+    }
+
+    .uui-panel.uui-color-white {
+        --uui-panel-bg: var(--white);
+    }
+
     .uui-panel.uui-color-gray90 {
-        --uui-panel-bg: var(--uui-color-50);
+        --uui-panel-bg: var(--gray90);
     }
 
     .uui-tag {

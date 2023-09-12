@@ -9,5 +9,5 @@ export interface PanelMods {
 
 export const Panel = withMods<VPanelProps, PanelMods>(
     uuiPanel,
-    (props) => [`uui-color-${props.background || 'none'}`],
+    (props) => [props.background && `uui-color-${props.background}`],
 );
