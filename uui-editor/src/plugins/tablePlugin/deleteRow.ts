@@ -39,22 +39,17 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
         const colNumber = getTableColumnCount(table);
 
         const affectedCellsSet = new Set();
-        // const arr: ExtendedTTableCellElement[] = [];
         Array.from({ length: colNumber }, (_, i) => i).forEach((cI) => {
             return Array.from({ length: rowsDeleteNumber }, (_, i) => i).forEach((rI) => {
                 const rowIndex = deletingRowIndex + rI;
 
-                // if (cI === 3 && rowIndex === 1) {
-                //     console.log('should return people');
-                // }
                 // console.log('current', rowIndex, cI);
                 const found = findCellByIndexes(table, rowIndex, cI);
                 affectedCellsSet.add(found);
-                // arr.push(found);
             });
         });
         const affectedCells = Array.from(affectedCellsSet) as ExtendedTTableCellElement[];
-        console.log('affectedCells', affectedCells);
+        // console.log('affectedCells', affectedCells);
 
         const { moveToNextRowCells, squizeRowSpanCells } = affectedCells.reduce((acc, cur) => {
             if (!cur) return acc;
@@ -74,7 +69,7 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
             return acc;
         }, { squizeRowSpanCells: [], moveToNextRowCells: [] });
 
-        console.log('moveToNextRowCells', moveToNextRowCells);
+        // console.log('moveToNextRowCells', moveToNextRowCells);
 
         const nextRowIndex = deletingRowIndex + rowsDeleteNumber;
         const nextRow = table.children[nextRowIndex] as TTableCellElement | undefined;
@@ -83,15 +78,28 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
             // console.log('nextRow', nextRow);
             moveToNextRowCells.forEach((cur) => {
                 const curRowCell = cur as ExtendedTTableCellElement;
-                const curCellPath = findNodePath(editor, curRowCell)!;
-                const tablePath = curCellPath.slice(0, -2);
 
-                const nextRowStartCellPath = [...tablePath, nextRowIndex, curRowCell.colIndex];
-                // console.log('curRowCell', curRowCell, curCellPath, nextRowIndex, curRowCell.colIndex);
+                const startingCellIndex = nextRow.children.findIndex((curC) => {
+                    const cell = curC as ExtendedTTableCellElement;
+                    return cell.colIndex >= curRowCell.colIndex;
+                });
+                let startingCell: ExtendedTTableCellElement;
+                if (startingCellIndex === -1) {
+                    startingCell = nextRow.children.at(-1) as ExtendedTTableCellElement;
+                } else {
+                    startingCell = nextRow.children[startingCellIndex] as ExtendedTTableCellElement;
+                }
+
+                const startingCellPath = findNodePath(editor, startingCell);
+                const tablePath = startingCellPath.slice(0, -2);
+                const colPath = startingCellPath.at(-1);
+
+                const nextRowStartCellPath = [...tablePath, nextRowIndex, colPath];
+                // console.log('startingCell', startingCell, 'startingCellPath', startingCellPath, 'nextRowStartCellPath', nextRowStartCellPath);
 
                 const curCellStartingRowIndex = curRowCell.rowIndex;
                 const rowsNumberAffected = endingRowIndex - curCellStartingRowIndex + 1;
-                console.log('curRowCell', curRowCell, 'curCellStartingRowIndex', curCellStartingRowIndex, 'endingRowIndex', endingRowIndex, 'rowsNumberAffected', rowsNumberAffected);
+                // console.log('curRowCell', curRowCell, 'curCellStartingRowIndex', curCellStartingRowIndex, 'endingRowIndex', endingRowIndex, 'rowsNumberAffected', rowsNumberAffected);
 
                 // TODO: consider make deep clone here
                 // making cell smaller and moving it to next row
@@ -106,9 +114,9 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
             const curRowCell = cur as ExtendedTTableCellElement;
             const curCellPath = findNodePath(editor, curRowCell)!;
 
-            const curCellEndingRowIndex = curRowCell.rowIndex + curRowCell.rowSpan - 1;
+            const curCellEndingRowIndex = Math.min(curRowCell.rowIndex + curRowCell.rowSpan - 1, endingRowIndex);
             const rowsNumberAffected = curCellEndingRowIndex - deletingRowIndex + 1;
-            // console.log('curCellEndingRowIndex', curCellEndingRowIndex, 'rowsNumberAffected', rowsNumberAffected);
+            // console.log('curCellEndingRowIndex', curCellEndingRowIndex, 'deletingRowIndex', deletingRowIndex, 'rowsNumberAffected', rowsNumberAffected);
 
             setNodes<ExtendedTTableCellElement>(
                 editor,
