@@ -17,7 +17,8 @@ import { FilterPanel } from './FilterPanel';
 import { InfoSidebarPanel } from './InfoSidebarPanel';
 import { SlidingPanel } from './SlidingPanel';
 import { FilterPanelOpener } from './FilterPanelOpener';
-import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
+import { PersonTableFilter, PersonTableGroups, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
+import { useLazyDataSourceWithGrouping } from './useLazyDataSourceWithGrouping';
 
 export function MasterDetailedTable() {
     const svc = useUuiContext<TApi, UuiContexts>();
@@ -43,6 +44,74 @@ export function MasterDetailedTable() {
         onPresetDelete: svc.api.presets.deletePreset,
     });
 
+    const pin = useCallback(
+        ({ value: { __typename } }: DataRowProps<PersonTableRecord, PersonTableRecordId>) => 
+            __typename !== 'Person',
+        [],
+    );
+
+    const clickHandler = useCallback((rowProps: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
+        if (rowProps.value.__typename === 'Person') {
+            rowProps.onSelect(rowProps);
+            setIsInfoPanelOpened(true);
+        }
+    }, []);
+
+    const ds = useLazyDataSourceWithGrouping<PersonTableGroups, PersonTableRecordId, PersonTableFilter>(
+        (config) => {
+            config.addDefault({
+                getType: ({ __typename }) => __typename,
+                getTypeAndId: (id) => id,
+                getId: (i) => [i.__typename, i.id],
+                complexIds: true,
+                backgroundReload: true,
+                fetchStrategy: tableStateApi.tableState.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
+                cascadeSelection: true,
+                rowOptions: {
+                    checkbox: { isVisible: true },
+                    isSelectable: true,
+                    pin,
+                },
+            });
+
+            config.addEntity('Location', {
+                getParentId: (loc) => loc.parentId ? ['Location', loc.parentId] : undefined,
+                getChildCount: (location) => location.type === 'city' ? 1 : 10,
+            });
+            
+            config.addEntity('PersonGroup', {
+                getParentId: () => null,
+                getChildCount: (group) => group.count,
+            });
+            
+            config.addEntity('Person', {
+                getParentId: (person) => {
+                    const groupBy = tableStateApi.tableState.filter?.groupBy;
+                    if (groupBy === 'location') {
+                        return ['Location', person.locationId];
+                    }
+                    if (groupBy === 'jobTitle') {
+                        return ['PersonGroup', person.jobTitleId];
+                    }
+                    if (groupBy === 'department') {
+                        return ['PersonGroup', person.departmentId];
+                    }
+                    
+                    return undefined;
+                },
+                getChildCount: () => null,
+                rowOptions: {
+                    checkbox: { isVisible: true },
+                    isSelectable: true,
+                    pin,
+                    onClick: clickHandler,
+                },
+            });
+
+            return config;
+        },
+        [tableStateApi.tableState.filter?.groupBy],
+    );
     const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = async (request, ctx) => {
         const { ids, filter: requestFilter, ...rq } = request;
 
@@ -149,19 +218,6 @@ export function MasterDetailedTable() {
             },
         },
         [tableStateApi.tableState.filter?.groupBy],
-    );
-
-    const clickHandler = useCallback((rowProps: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
-        if (rowProps.value.__typename === 'Person') {
-            rowProps.onSelect(rowProps);
-            setIsInfoPanelOpened(true);
-        }
-    }, []);
-    
-    const pin = useCallback(
-        ({ value: { __typename } }: DataRowProps<PersonTableRecord, PersonTableRecordId>) => 
-            __typename !== 'Person',
-        [],
     );
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
