@@ -39,24 +39,34 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
         const colNumber = getTableColumnCount(table);
 
         const affectedCellsSet = new Set();
+        // const arr: ExtendedTTableCellElement[] = [];
         Array.from({ length: colNumber }, (_, i) => i).forEach((cI) => {
             return Array.from({ length: rowsDeleteNumber }, (_, i) => i).forEach((rI) => {
                 const rowIndex = deletingRowIndex + rI;
-                affectedCellsSet.add(findCellByIndexes(table, rowIndex, cI));
+
+                // if (cI === 3 && rowIndex === 1) {
+                //     console.log('should return people');
+                // }
+                // console.log('current', rowIndex, cI);
+                const found = findCellByIndexes(table, rowIndex, cI);
+                affectedCellsSet.add(found);
+                // arr.push(found);
             });
         });
         const affectedCells = Array.from(affectedCellsSet) as ExtendedTTableCellElement[];
-        // console.log('affectedCells', affectedCells);
+        console.log('affectedCells', affectedCells);
 
         const { moveToNextRowCells, squizeRowSpanCells } = affectedCells.reduce((acc, cur) => {
             if (!cur) return acc;
 
             const currentCell = cur as ExtendedTTableCellElement;
+            // console.log('current', currentCell, currentCell.rowIndex + currentCell.rowSpan - 1, deletingRowIndex);
             if (currentCell.rowIndex < deletingRowIndex && currentCell.rowSpan > 1) {
                 acc.squizeRowSpanCells.push(currentCell);
             } else if (
                 currentCell.rowSpan > 1
                 && (currentCell.rowIndex + currentCell.rowSpan - 1) > endingRowIndex
+                // && (currentCell.rowIndex + currentCell.rowSpan - 1) >= deletingRowIndex
             ) {
                 acc.moveToNextRowCells.push(currentCell);
             }
@@ -64,7 +74,7 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
             return acc;
         }, { squizeRowSpanCells: [], moveToNextRowCells: [] });
 
-        // console.log('moveToNextRowCells', moveToNextRowCells);
+        console.log('moveToNextRowCells', moveToNextRowCells);
 
         const nextRowIndex = deletingRowIndex + rowsDeleteNumber;
         const nextRow = table.children[nextRowIndex] as TTableCellElement | undefined;
@@ -79,9 +89,13 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
                 const nextRowStartCellPath = [...tablePath, nextRowIndex, curRowCell.colIndex];
                 // console.log('curRowCell', curRowCell, curCellPath, nextRowIndex, curRowCell.colIndex);
 
+                const curCellStartingRowIndex = curRowCell.rowIndex;
+                const rowsNumberAffected = endingRowIndex - curCellStartingRowIndex + 1;
+                console.log('curRowCell', curRowCell, 'curCellStartingRowIndex', curCellStartingRowIndex, 'endingRowIndex', endingRowIndex, 'rowsNumberAffected', rowsNumberAffected);
+
                 // TODO: consider make deep clone here
                 // making cell smaller and moving it to next row
-                const newCell = { ...curRowCell, rowSpan: curRowCell.rowSpan - rowsDeleteNumber };
+                const newCell = { ...curRowCell, rowSpan: curRowCell.rowSpan - rowsNumberAffected };
                 insertElements(editor, newCell, { at: nextRowStartCellPath });
             });
         }
