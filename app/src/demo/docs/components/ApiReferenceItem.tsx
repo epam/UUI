@@ -181,12 +181,20 @@ function NameValue(props: { name: string; value?: any }) {
 function MultiLineText(props: { text?: string[], keepBreaks: boolean }) {
     const { text, keepBreaks } = props;
 
+    function escape(htmlStr: string) {
+        return htmlStr.replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
     const textStr = useMemo(() => {
         if (text && text.length > 0) {
             if (keepBreaks) {
-                return `<pre>${text.join('\n')}</pre>`;
+                return `<pre>${escape(text.join('\n'))}</pre>`;
             }
-            return `<p>${text.join('\n')}</p>`;
+            return `<p>${escape(text.join(' '))}</p>`;
         }
     }, [text, keepBreaks]);
 
