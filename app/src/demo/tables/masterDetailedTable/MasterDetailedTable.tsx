@@ -82,6 +82,7 @@ export function MasterDetailedTable() {
                 complexIds: true,
                 backgroundReload: true,
                 fetchStrategy: tableStateApi.tableState.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
+                selectAll: tableStateApi.tableState.filter?.groupBy === 'location' ? false : true,
                 cascadeSelection: true,
                 rowOptions: {
                     checkbox: { isVisible: true },

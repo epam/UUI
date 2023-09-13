@@ -32,6 +32,7 @@ export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {
                 key={ rowProps.rowKey }
                 padding="12"
                 renderItem={ renderItem }
+                cx={ css.pickerRow }
             />
         );
     };

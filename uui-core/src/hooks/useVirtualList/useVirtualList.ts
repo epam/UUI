@@ -2,8 +2,8 @@ import * as React from 'react';
 import type { ScrollToConfig } from '../../types';
 import { useLayoutEffectSafeForSsr } from '../../ssr';
 import {
-    getRowsToFetchForScroll, getUpdatedRowsInfo, getTopCoordinate, assumeHeightForScrollToIndex,
-    getTopIndexWithOffset, getOffsetYForIndex,
+    getRowsToFetchForScroll, getUpdatedRowsInfo, assumeHeightForScrollToIndex,
+    getTopIndexWithOffset, getOffsetYForIndex, getScrollToCoordinate, getRealTopIndex,
 } from './utils';
 import { VirtualListInfo, UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
 
@@ -27,7 +27,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     const rowHeights = React.useRef<number[]>([]);
     const rowOffsets = React.useRef<number[]>([]);
 
-    const getVirtualListInfo = (): VirtualListInfo => ({
+    const virtualListInfo = React.useMemo((): VirtualListInfo => ({
         scrollContainer: scrollContainer.current,
         listContainer: listContainer.current,
         rowHeights: rowHeights.current,
@@ -39,7 +39,19 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         listOffset,
         estimatedHeight,
         rowsSelector,
-    });
+    }), [
+        scrollContainer.current,
+        listContainer.current,
+        rowHeights.current,
+        rowOffsets.current,
+        value,
+        rowsCount,
+        blockSize,
+        overdrawRows,
+        listOffset,
+        estimatedHeight,
+        rowsSelector,
+    ]);
 
     useLayoutEffectSafeForSsr(() => {
         if (!scrollContainer.current || !listContainer.current) return;
@@ -58,12 +70,11 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         if (focusedIndexOffset < scrollTop - focusedIndexHeight || scrollBottom < focusedIndexOffset) {
             const middleOffset = focusedIndexOffset - clientHeight / 2 + focusedIndexHeight / 2;
             const indexToScroll = rowOffsets.current.findIndex((rowOffset) => middleOffset <= rowOffset);
-            scrollToIndex(indexToScroll, 'smooth');
+            scrollToIndex({ index: indexToScroll, behavior: 'smooth' });
         }
     };
 
-    const getTopIndexAndVisibleCountOnScroll = () => {
-        const virtualListInfo = getVirtualListInfo();
+    const getTopIndexAndVisibleCountOnScroll = React.useCallback(() => {
         if (!virtualListInfo.scrollContainer || !virtualListInfo.value) {
             return {
                 visibleCount: virtualListInfo.value?.visibleCount,
@@ -72,10 +83,10 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         }
 
         return getRowsToFetchForScroll(virtualListInfo);
-    };
+    }, [virtualListInfo]);
 
     useLayoutEffectSafeForSsr(() => {
-        const rowsInfo = getUpdatedRowsInfo(getVirtualListInfo());
+        const rowsInfo = getUpdatedRowsInfo(virtualListInfo);
         rowHeights.current = rowsInfo.rowHeights;
         rowOffsets.current = rowsInfo.rowOffsets;
         if (scrollContainer.current && value) onScroll?.(scrollContainer.current);
@@ -93,9 +104,8 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         const estimatedHeightToSet = rowsCount >= value.scrollTo.index
             ? rowsInfo.estimatedHeight
             : assumedHeight;
-
         setEstimatedHeight(estimatedHeightToSet);
-        scrollToIndex(value.scrollTo?.index);
+        scrollToIndex(value.scrollTo);
     };
 
     const handleScrollOnRerender = (rowsInfo: RowsInfo) => {
@@ -110,49 +120,59 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         if (topIndex !== value.topIndex || visibleCount > value.visibleCount) {
             onValueChange({ ...value, topIndex, visibleCount });
         }
-    }, [
-        onValueChange, blockSize, rowOffsets.current, rowsCount, value, onScroll, scrollContainer.current,
-    ]);
+    }, [getTopIndexAndVisibleCountOnScroll, onValueChange, value]);
 
-    const scrollContainerToIndex = React.useCallback(
-        (index: number, behavior?: ScrollBehavior) => {
-            const topCoordinate = getTopCoordinate(getVirtualListInfo(), index);
-            if (!isNaN(topCoordinate)) {
-                scrollContainer.current.scrollTo({ top: topCoordinate, behavior });
-                return [scrollToOffsetY === topCoordinate, true];
+    const scrollContainerToPosition = React.useCallback(
+        (scrollTo: ScrollToConfig) => {
+            const topCoordinate = getScrollToCoordinate(virtualListInfo, scrollTo);
+            if (topCoordinate === undefined) {
+                return [true, true]; // already at the necessary position, scroll doesn't have to be performed.
             }
-            return [false, false];
+
+            if (isNaN(topCoordinate)) {
+                return [false, false];
+            }
+
+            scrollContainer.current.scrollTo({ top: topCoordinate, behavior: scrollTo.behavior });
+            const scrollPositionDiff = (+topCoordinate.toFixed(0)) - (+scrollContainer.current.scrollTop.toFixed(0));
+            return [scrollPositionDiff <= 1, true];
         },
-        [scrollContainer.current, rowOffsets.current],
+        [scrollContainer.current, rowOffsets.current, virtualListInfo],
     );
 
     const scrollToIndex = React.useCallback(
-        (index: number, behavior?: ScrollBehavior) => {
-            const [wasScrolled, ok] = scrollContainerToIndex(index, behavior);
-            const topIndex = getTopIndexWithOffset(index, overdrawRows, blockSize);
-            const shouldScrollToUnknownIndex = value.topIndex === topIndex && rowsCount <= value.scrollTo?.index;
+        (scrollTo: ScrollToConfig) => {
+            const [wasScrolled, ok] = scrollContainerToPosition(scrollTo);
+            const topIndex = getTopIndexWithOffset(scrollTo.index, overdrawRows, blockSize);
+            const realTopIndex = getRealTopIndex(virtualListInfo);
             if ((ok && !wasScrolled) || value.topIndex !== topIndex) {
-                let scrollTo = value.scrollTo?.index === index ? value.scrollTo : { index };
-                if (shouldScrollToUnknownIndex) {
-                    scrollTo = { index: rowsCount - 1 };
+                const newScrollTo = value.scrollTo?.index === scrollTo.index ? value.scrollTo : { ...scrollTo, index: scrollTo.index };
+                if (newScrollTo !== value.scrollTo || value.topIndex !== topIndex) {
+                    onValueChange({ ...value, topIndex, scrollTo: newScrollTo });
                 }
-                onValueChange({ ...value, topIndex, scrollTo });
             }
-            if ((ok && wasScrolled) || (shouldScrollToUnknownIndex)) {
-                setScrolledTo(value.scrollTo?.index === index ? value.scrollTo : { index });
+
+            // prevents from cycling, while force scrolling to a row, which will never appear, when using LazyListView.
+            const shouldScrollToUnknownIndex = value.topIndex === topIndex && value.scrollTo?.index > realTopIndex;
+            if ((ok && wasScrolled) || shouldScrollToUnknownIndex) {
+                setScrolledTo(value.scrollTo?.index === scrollTo.index ? value.scrollTo : { ...scrollTo, index: scrollTo.index });
             }
         },
-        [scrollContainer.current, rowOffsets.current, value?.topIndex, overdrawRows, blockSize],
+        [
+            scrollContainer.current,
+            rowOffsets.current,
+            value?.topIndex,
+            value?.scrollTo,
+            overdrawRows,
+            blockSize,
+            scrollContainerToPosition,
+            virtualListInfo,
+        ],
     );
 
     useLayoutEffectSafeForSsr(() => {
         handleScrollToFocus();
     }, [value?.focusedIndex]);
-
-    const scrollToOffsetY = React.useMemo(
-        () => getOffsetYForIndex(value?.scrollTo?.index, rowOffsets.current, listOffset),
-        [rowOffsets.current, listOffset, value?.scrollTo?.index],
-    );
 
     const offsetY = React.useMemo(
         () => getOffsetYForIndex(value?.topIndex, rowOffsets.current, listOffset),
@@ -167,7 +187,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             return;
         }
         getNewRowsOnScroll();
-    }, [value, onScroll, scrollContainer.current, getNewRowsOnScroll]);
+    }, [value, onScroll, scrolledTo, scrollContainer.current, getNewRowsOnScroll]);
 
     return {
         estimatedHeight,

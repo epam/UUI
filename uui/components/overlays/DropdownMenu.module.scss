@@ -116,6 +116,8 @@
     .icon {
         @include withActive;
         justify-content: flex-start;
+        width: 18px;
+        height: 18px;
     }
 
     &.link {
@@ -158,4 +160,8 @@
     & > *:not(:last-child) {
         margin: 0 7px 0 0;
     }
+}
+
+.indent {
+    padding-left: 24px;
 }
