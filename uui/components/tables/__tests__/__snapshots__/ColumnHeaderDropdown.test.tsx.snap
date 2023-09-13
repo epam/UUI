@@ -63,7 +63,7 @@ Array [
           }
         >
           <div
-            className="root itemRoot uui-active container -clickable align-items-center"
+            className="uui-flex-row root itemRoot uui-active container -clickable align-items-center"
             onClick={[Function]}
             onKeyDown={[Function]}
             role="menuitem"
@@ -97,7 +97,7 @@ Array [
             </div>
           </div>
           <div
-            className="root itemRoot container -clickable align-items-center"
+            className="uui-flex-row root itemRoot container -clickable align-items-center"
             onClick={[Function]}
             onKeyDown={[Function]}
             role="menuitem"

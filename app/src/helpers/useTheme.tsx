@@ -1,23 +1,21 @@
-import * as React from 'react';
+import { useState, useEffect, MutableRefObject } from 'react';
 
-export const useTheme = (className: string = '') => {
-    const rootEl = document.querySelector('body');
-    const prevThemeClass = React.useRef(null);
+export const useTheme = (initialTheme: MutableRefObject<string>) => {
+    const [theme, setTheme] = useState<string>(initialTheme.current);
 
-    React.useEffect(() => {
-        prevThemeClass.current = [...rootEl.classList].find((val) => val.includes('uui-theme'));
+    const toggleTheme = (newTheme: string) => {
+        setTheme(newTheme);
+        initialTheme.current = newTheme;
+    };
 
-        if (prevThemeClass.current) {
-            rootEl.classList.replace(prevThemeClass.current, className);
-        } else {
-            rootEl.classList.add(className);
-        }
-        return () => {
-            if (prevThemeClass.current) {
-                rootEl.classList.replace(className, prevThemeClass.current);
-            } else {
-                rootEl.classList.remove(className);
-            }
-        };
-    }, [className]);
+    // Apply the current theme to the body element
+    useEffect(() => {
+        const currentTheme = document.body.classList.value.match(/uui-theme-(\S+)\s*/)[0];
+        document.body.classList.replace(currentTheme, theme);
+    }, [theme]);
+
+    return {
+        theme,
+        toggleTheme,
+    };
 };

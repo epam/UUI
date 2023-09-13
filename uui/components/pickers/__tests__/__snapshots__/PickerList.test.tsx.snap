@@ -161,7 +161,7 @@ exports[`PickerList should open body 1`] = `
           style="width: 600px; height: 700px;"
         >
           <div
-            class="root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
+            class="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
           >
             <div
               class="root uui-text uui-font-semibold uui-color-primary line-height-24 font-size-18 v-padding-12 container"
@@ -177,7 +177,7 @@ exports[`PickerList should open body 1`] = `
             >
               <button
                 aria-label="Close modal"
-                class="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root"
+                class="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
                 tabindex="0"
                 type="button"
               >
@@ -196,7 +196,7 @@ exports[`PickerList should open body 1`] = `
             style="min-width: 0; flex-basis: 0px;"
           >
             <div
-              class="root size-36 vPadding-24 container align-items-center"
+              class="uui-flex-row root size-36 vPadding-24 container align-items-center"
             >
               <div
                 class="container uui-input-box -clickable uui-focus root size-36 mode-form"
@@ -222,7 +222,7 @@ exports[`PickerList should open body 1`] = `
             </div>
           </div>
           <div
-            class="root size-36 body modal undefined container align-items-center"
+            class="uui-flex-row root size-36 body modal undefined container align-items-center"
           >
             <div
               class="root scrollContainer"
@@ -243,7 +243,7 @@ exports[`PickerList should open body 1`] = `
                     <div
                       aria-posinset="1"
                       aria-selected="false"
-                      class="pickerRow container -clickable align-items-center"
+                      class="uui-flex-row pickerRow container -clickable align-items-center"
                       role="option"
                     >
                       <div
@@ -272,7 +272,7 @@ exports[`PickerList should open body 1`] = `
                     <div
                       aria-posinset="2"
                       aria-selected="false"
-                      class="pickerRow container -clickable align-items-center"
+                      class="uui-flex-row pickerRow container -clickable align-items-center"
                       role="option"
                     >
                       <div
@@ -301,7 +301,7 @@ exports[`PickerList should open body 1`] = `
                     <div
                       aria-posinset="3"
                       aria-selected="false"
-                      class="pickerRow container -clickable align-items-center"
+                      class="uui-flex-row pickerRow container -clickable align-items-center"
                       role="option"
                     >
                       <div
@@ -330,7 +330,7 @@ exports[`PickerList should open body 1`] = `
                     <div
                       aria-posinset="4"
                       aria-selected="false"
-                      class="pickerRow container -clickable align-items-center"
+                      class="uui-flex-row pickerRow container -clickable align-items-center"
                       role="option"
                     >
                       <div
@@ -359,7 +359,7 @@ exports[`PickerList should open body 1`] = `
                     <div
                       aria-posinset="5"
                       aria-selected="false"
-                      class="pickerRow container -clickable align-items-center"
+                      class="uui-flex-row pickerRow container -clickable align-items-center"
                       role="option"
                     >
                       <div
@@ -388,7 +388,7 @@ exports[`PickerList should open body 1`] = `
                     <div
                       aria-posinset="6"
                       aria-selected="false"
-                      class="pickerRow container -clickable align-items-center"
+                      class="uui-flex-row pickerRow container -clickable align-items-center"
                       role="option"
                     >
                       <div
@@ -417,7 +417,7 @@ exports[`PickerList should open body 1`] = `
                     <div
                       aria-posinset="7"
                       aria-selected="false"
-                      class="pickerRow container -clickable align-items-center"
+                      class="uui-flex-row pickerRow container -clickable align-items-center"
                       role="option"
                     >
                       <div
@@ -446,7 +446,7 @@ exports[`PickerList should open body 1`] = `
                     <div
                       aria-posinset="8"
                       aria-selected="false"
-                      class="pickerRow container -clickable align-items-center"
+                      class="uui-flex-row pickerRow container -clickable align-items-center"
                       role="option"
                     >
                       <div
@@ -475,7 +475,7 @@ exports[`PickerList should open body 1`] = `
                     <div
                       aria-posinset="9"
                       aria-selected="false"
-                      class="pickerRow container -clickable align-items-center"
+                      class="uui-flex-row pickerRow container -clickable align-items-center"
                       role="option"
                     >
                       <div
@@ -504,7 +504,7 @@ exports[`PickerList should open body 1`] = `
                     <div
                       aria-posinset="10"
                       aria-selected="false"
-                      class="pickerRow container -clickable align-items-center"
+                      class="uui-flex-row pickerRow container -clickable align-items-center"
                       role="option"
                     >
                       <div
@@ -533,7 +533,7 @@ exports[`PickerList should open body 1`] = `
                     <div
                       aria-posinset="11"
                       aria-selected="false"
-                      class="pickerRow container -clickable align-items-center"
+                      class="uui-flex-row pickerRow container -clickable align-items-center"
                       role="option"
                     >
                       <div
@@ -586,7 +586,7 @@ exports[`PickerList should open body 1`] = `
             </div>
           </div>
           <div
-            class="root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
+            class="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
           >
             <div
               class="flexSpacer"

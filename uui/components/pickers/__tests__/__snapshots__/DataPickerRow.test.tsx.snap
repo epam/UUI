@@ -3,7 +3,7 @@
 exports[`DataPickerRow should be rendered correctly 1`] = `
 <div
   aria-posinset={2}
-  className="pickerRow container align-items-center"
+  className="uui-flex-row pickerRow container align-items-center"
   role="option"
   style={
     Object {
@@ -53,7 +53,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
 <div
   aria-posinset={2}
   aria-selected={true}
-  className="uui-focus pickerRow container -clickable align-items-center"
+  className="uui-flex-row uui-focus pickerRow container -clickable align-items-center"
   onClick={[Function]}
   role="option"
   style={

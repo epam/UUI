@@ -2,7 +2,7 @@
 
 exports[`DataTableRow should be rendered correctly 1`] = `
 <div
-  className="container uui-table-row-container uui-table-row root uui-dt-vars uui-dt-row-border size-36 container align-items-center"
+  className="uui-flex-row container uui-table-row-container uui-table-row root uui-dt-vars uui-dt-row-border size-36 container align-items-center"
   role="row"
   style={
     Object {
