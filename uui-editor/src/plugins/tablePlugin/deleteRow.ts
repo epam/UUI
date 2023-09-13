@@ -43,6 +43,7 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
         const colNumber = getTableColumnCount(table);
 
         const affectedCellsSet = new Set();
+        // iterating by columns is important here to keep the order of affected cells
         Array.from({ length: colNumber }, (_, i) => i).forEach((cI) => {
             return Array.from({ length: rowsDeleteNumber }, (_, i) => i).forEach((rI) => {
                 const rowIndex = deletingRowIndex + rI;
@@ -90,6 +91,7 @@ export const deleteRow = <V extends Value>(editor: PlateEditor<V>) => {
                 });
                 let startingCell: ExtendedTTableCellElement;
                 if (startingCellIndex === -1) {
+                    // make it explicit, we know we do it
                     startingCell = nextRow.children.at(-1) as ExtendedTTableCellElement;
                 } else {
                     startingCell = nextRow.children[startingCellIndex] as ExtendedTTableCellElement;
