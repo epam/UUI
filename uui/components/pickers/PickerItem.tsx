@@ -16,15 +16,15 @@ export interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId>, S
     title?: string;
     subtitle?: string;
     dataSourceState?: DataSourceState;
-    /** 
-     * Enables highlighting of the items' text with search-matching results. 
+    /**
+     * Enables highlighting of the items' text with search-matching results.
      * @default true
      * */
     highlightSearchMatches?: boolean;
 }
 export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TItem, TId>> {
     public static defaultProps = {
-        highlightSearchMatches: true,   
+        highlightSearchMatches: true,
     };
 
     getAvatarSize = (size: string, isMultiline: boolean): string | number => {
@@ -44,7 +44,7 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
 
         return (
             <FlexCell width="auto" cx={ [css.root, cx] }>
-                <FlexRow size={ itemSize } cx={ isMultiline && css[`multiline-vertical-padding-${itemSize}`] } spacing="12">
+                <FlexRow size={ itemSize } cx={ isMultiline && [css.multiline, css[`vertical-padding-${itemSize}`]] } spacing="12">
                     {avatarUrl && <Avatar isLoading={ isLoading } img={ avatarUrl } size={ this.getAvatarSize(itemSize, isMultiline).toString() as AvatarProps['size'] } />}
                     {icon && <IconContainer icon={ icon } />}
                     <FlexCell width="auto">
