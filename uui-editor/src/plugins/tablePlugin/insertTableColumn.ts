@@ -90,8 +90,8 @@ export const insertTableColumn = <V extends Value>(
     const { newCellChildren, initialTableWidth, minColumnWidth } = getPluginOptions<TablePlugin, V>(editor, ELEMENT_TABLE);
 
     let nextCell: ExtendedTTableCellElement;
-    let nextCellColIndex: number;
     let insertLastCol = false;
+    let nextCellColIndex: number;
     if (!nextCellEntry) {
         const columnNumber = getTableColumnCount(tableNode);
         // nextCell = findCellByIndexes(tableNode, 0, 0);
@@ -124,8 +124,13 @@ export const insertTableColumn = <V extends Value>(
         console.log('first column');
     } else {
         nextCell = nextCellEntry[0] as ExtendedTTableCellElement;
-        console.log('nextCell', nextCell);
-        nextCellColIndex = nextCell.colIndex + nextCell.colSpan - 1;
+        console.log('nextCellColIndex', nextCellColIndex, 'at', at);
+
+        if (Path.isPath(at)) {
+            nextCellColIndex = at.at(-1)!;
+        } else {
+            nextCellColIndex = nextCell.colIndex + nextCell.colSpan - 1;
+        }
     }
 
     console.log('selectedCell', selectedCell, 'nextCellPath', nextCellPath, 'nextCellEntry', nextCellEntry);
@@ -145,6 +150,7 @@ export const insertTableColumn = <V extends Value>(
         affectedCells.forEach((cur) => {
             const currentCell = cur as ExtendedTTableCellElement;
             const currentCellPath = findNodePath(editor, currentCell);
+            console.log('current cell', currentCell, currentCellPath);
 
             if (currentCell.colIndex < nextCell.colIndex) {
                 // make wider
