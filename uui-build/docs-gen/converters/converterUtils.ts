@@ -44,7 +44,12 @@ export class ConverterUtils {
 
     static printNode(node: Node): string[] {
         const printer = ts.createPrinter();
-        return printer.printNode(EmitHint.Unspecified, node.compilerNode, node.getSourceFile().compilerNode).split('\n');
+        function removeLeadingExportKw(s: string) {
+            return s.replace(/^(export\s+)(type|interface|enum)(.*)$/g, '$2$3');
+        }
+        return printer.printNode(EmitHint.Unspecified, node.compilerNode, node.getSourceFile().compilerNode)
+            .split('\n')
+            .map(removeLeadingExportKw);
     }
 
     static getTypeName(typeSymbol: Symbol) {
