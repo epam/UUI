@@ -125,7 +125,7 @@ export function MergeToolbarContent({
             rowSpan,
         };
 
-        insertElements(editor, mergedCell, { at: startCellPath });
+        insertElements(editor, mergedCell, { at: startCellPath, select: true });
     };
 
     return (
