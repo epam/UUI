@@ -22,6 +22,13 @@ export class GroupingConfigBuilder<TGroups, TId, TFilter = any> implements LazyD
         } else {
             this.setGroupByToEntity(entityType, LOW_LEVEL_ENTITY);
         }
+
+        return this;
+    }
+
+    addDefault(config: ConfigDefault<TGroups, TId, TFilter>) {
+        this[DEFAULT_CONFIG] = config;
+        return this;
     }
 
     private setGroupByToEntity<TType extends keyof TGroups>(entityType: TType, groupBy: string | string[] | typeof LOW_LEVEL_ENTITY) {
@@ -32,10 +39,6 @@ export class GroupingConfigBuilder<TGroups, TId, TFilter = any> implements LazyD
         } else {
             this.groupByToEntityType[groupBy] = entityType;
         }
-    }
-
-    addDefault(config: ConfigDefault<TGroups, TId, TFilter>) {
-        this[DEFAULT_CONFIG] = config;
     }
 
     getType(entity: UnboxUnionFromGroups<TGroups>) {
