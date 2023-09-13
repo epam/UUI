@@ -1,2 +1,2 @@
 export * from './useLazyDataSourceWithGrouping';
-export * from './types';
+export type { UnboxGroupsFromUnion } from './types';

@@ -20,7 +20,7 @@ export function useLazyDataSourceWithGrouping<TGroups, TId, TFilter>(
     const api: LazyDataSourceApi<UnboxUnionFromGroups<TGroups>, TId, TFilter> = async (request, ctx) => {
         const { ids } = request;
         if (ids != null) {
-            const idsByType = {} as Record<keyof TGroups, TId[]>;
+            const idsByType: { [Type in keyof TGroups]?: TId[] } = {};
             ids.forEach((id) => {
                 const [type] = config.getTypeAndId(id);
                 idsByType[type] = idsByType[type] || [];

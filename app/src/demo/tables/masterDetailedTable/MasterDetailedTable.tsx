@@ -1,7 +1,4 @@
-import React, {
-    useCallback, useEffect, useMemo, useState,
-} from 'react';
-import { Person } from '@epam/uui-docs';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
     cx, useUuiContext, UuiContexts, ITablePreset, useTableState, DataRowProps,
     LazyDataSourceApiRequest, DataColumnProps, LazyDataSourceApiRequestContext,
@@ -60,10 +57,10 @@ export function MasterDetailedTable() {
     const dataSource = useLazyDataSourceWithGrouping<PersonTableGroups, PersonTableRecordId, PersonTableFilter>(
         (config) => {        
             const getPersons = async (
-                personRequest: LazyDataSourceApiRequest<Person, number>,
+                personRequest: LazyDataSourceApiRequest<PersonTableRecord, number, PersonTableFilter>,
                 ctx: LazyDataSourceApiRequestContext<PersonTableRecord, PersonTableRecordId>,
             ) => {
-                const { groupBy, ...filter } = (personRequest.filter ?? {}) as PersonTableFilter;
+                const { groupBy, ...filter } = personRequest.filter ?? {};
                 if (groupBy && !ctx.parent) {
                     const personGroupsResponse = await svc.api.demo.personGroups({
                         ...personRequest,
@@ -99,7 +96,7 @@ export function MasterDetailedTable() {
                 getParentId: (loc) => loc.parentId ? ['Location', loc.parentId] : undefined,
                 getChildCount: (location) => location.type === 'city' ? 1 : 10,
                 api: async (request, ctx) => {
-                    const { groupBy, ...filter } = (request.filter as PersonTableFilter) ?? {};
+                    const { groupBy, ...filter } = request.filter ?? {};
                     if (request.ids != null) {
                         const ids = request.ids.map(([, id]) => `${id}`); 
                         return await svc.api.demo.locations({ ids });
@@ -124,7 +121,7 @@ export function MasterDetailedTable() {
                 getParentId: () => null,
                 getChildCount: (group) => group.count,
                 api: async (request, ctx) => {
-                    const { groupBy, ...filter } = (request.filter as PersonTableFilter) ?? {};
+                    const { groupBy, ...filter } = request.filter ?? {};
                     if (request.ids != null) {
                         const ids = request.ids.map(([, id]) => id as number); 
                         return await svc.api.demo.personGroups({ ids });
@@ -204,7 +201,7 @@ export function MasterDetailedTable() {
                 <DataTable
                     headerTextCase="upper"
                     getRows={ view.getVisibleRows }
-                    columns={ personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId, any>[] }
+                    columns={ personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId, PersonTableFilter>[] }
                     filters={ filters }
                     value={ tableStateApi.tableState }
                     onValueChange={ tableStateApi.setTableState }
