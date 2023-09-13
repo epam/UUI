@@ -100,8 +100,7 @@ export class ConverterUtils {
             if (isTsDoc) {
                 const LF = '\n';
                 return closestDoc.split(LF).map(cleanAsteriks).join(LF).trim()
-                    .split(LF)
-                    .map(formatComment);
+                    .split(LF);
             }
         }
         function cleanAsteriks(line: string): string {
@@ -109,13 +108,6 @@ export class ConverterUtils {
             const regex2 = /^(.*)([\s]*[*]{1,2}\/)$/; // trailing */ or **/
             const regex3 = /^([\s]*[*]{1,1})(.*)$/; // leading *
             return line.replace(regex1, '$2').replace(regex2, '$1').replace(regex3, '$2');
-        }
-        function formatComment(commentInput: string) {
-            // Playground to modify and debug https://regex101.com/r/dd4hyi/1
-            const linksRegex = /(?:\[(.*)])?\{\s*@link\s*(https:\/\/\S+?)\s*}/gm;
-            let comment = commentInput;
-            comment = comment.replace(linksRegex, (_, a, b) => `<a href='${b}'>${a ?? b}</a>`);
-            return comment;
         }
     }
 }

@@ -1725,7 +1725,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "optional": true
@@ -2075,7 +2075,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -2176,7 +2176,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -2314,7 +2314,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -3178,7 +3178,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -3432,7 +3432,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -3723,7 +3723,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -3958,7 +3958,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -4775,7 +4775,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -7351,7 +7351,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -7563,7 +7563,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -7854,7 +7854,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -8094,7 +8094,7 @@
      "kind": "PropertySignature",
      "name": "autoComplete",
      "comment": [
-      "Standard <a href='https://www.w3schools.com/tags/att_input_autocomplete.asp'>autocomplete attribute</a>"
+      "Standard [autocomplete attribute]{@link https://www.w3schools.com/tags/att_input_autocomplete.asp}"
      ],
      "value": "undefined | string",
      "optional": true
@@ -8125,7 +8125,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -8187,7 +8187,7 @@
      "kind": "PropertySignature",
      "name": "inputMode",
      "comment": [
-      "Standard <a href='https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode'>inputMode attribute</a>"
+      "Standard [inputMode attribute]{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode}"
      ],
      "value": "undefined | 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search'",
      "optional": true
@@ -8296,7 +8296,7 @@
      "kind": "PropertySignature",
      "name": "name",
      "comment": [
-      "Standard <a href='https://www.w3schools.com/tags/att_input_name.asp'>name attribute</a>"
+      "Standard [name attribute]{@link https://www.w3schools.com/tags/att_input_name.asp}"
      ],
      "value": "undefined | string",
      "optional": true
@@ -8521,7 +8521,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -8595,7 +8595,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -8691,7 +8691,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -8811,7 +8811,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -8877,7 +8877,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -8934,7 +8934,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -10449,7 +10449,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -10533,7 +10533,7 @@
      "kind": "PropertySignature",
      "name": "offset",
      "comment": [
-      "See <a href='https://popper.js.org/docs/v2/modifiers/offset/'>Popper docs</a>"
+      "See [Popper docs]{@link https://popper.js.org/docs/v2/modifiers/offset/}"
      ],
      "value": "undefined | OffsetsFunction | [number | null | undefined, number | null | undefined]",
      "optional": true
@@ -11166,7 +11166,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -17072,7 +17072,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -17288,7 +17288,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -17486,7 +17486,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -17653,7 +17653,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -17848,7 +17848,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -18031,7 +18031,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -18134,7 +18134,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -18296,7 +18296,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -19361,7 +19361,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -22628,7 +22628,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -22749,7 +22749,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -23026,7 +23026,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -23114,7 +23114,7 @@
      "kind": "PropertySignature",
      "name": "offset",
      "comment": [
-      "See <a href='https://popper.js.org/docs/v2/modifiers/offset/'>Popper docs</a>"
+      "See [Popper docs]{@link https://popper.js.org/docs/v2/modifiers/offset/}"
      ],
      "value": "undefined | OffsetsFunction | [number | null | undefined, number | null | undefined]",
      "inheritedFrom": {
@@ -23303,7 +23303,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -23359,7 +23359,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -23603,7 +23603,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -23929,7 +23929,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -24029,7 +24029,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -24109,7 +24109,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -24190,7 +24190,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -24497,7 +24497,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -24658,7 +24658,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -24856,7 +24856,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -25182,7 +25182,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -25391,7 +25391,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -25574,7 +25574,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -25810,7 +25810,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -26107,7 +26107,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -26339,7 +26339,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -29413,7 +29413,7 @@
      "kind": "PropertySignature",
      "name": "autoComplete",
      "comment": [
-      "Standard <a href='https://www.w3schools.com/tags/att_input_autocomplete.asp'>autocomplete attribute</a>"
+      "Standard [autocomplete attribute]{@link https://www.w3schools.com/tags/att_input_autocomplete.asp}"
      ],
      "value": "undefined | string",
      "inheritedFrom": {
@@ -29461,7 +29461,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -29545,7 +29545,7 @@
      "kind": "PropertySignature",
      "name": "inputMode",
      "comment": [
-      "Standard <a href='https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode'>inputMode attribute</a>"
+      "Standard [inputMode attribute]{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode}"
      ],
      "value": "undefined | 'none' | 'search' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal'",
      "inheritedFrom": {
@@ -29662,7 +29662,7 @@
      "kind": "PropertySignature",
      "name": "name",
      "comment": [
-      "Standard <a href='https://www.w3schools.com/tags/att_input_name.asp'>name attribute</a>"
+      "Standard [name attribute]{@link https://www.w3schools.com/tags/att_input_name.asp}"
      ],
      "value": "undefined | string",
      "inheritedFrom": {
@@ -29926,7 +29926,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -30105,7 +30105,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -30198,7 +30198,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -30506,7 +30506,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -30700,7 +30700,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -30901,7 +30901,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -31005,7 +31005,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -31060,7 +31060,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -31120,7 +31120,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -31488,7 +31488,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -31603,7 +31603,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -32210,7 +32210,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -32371,7 +32371,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -32483,7 +32483,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -32691,7 +32691,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -33121,7 +33121,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -33863,7 +33863,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -34386,7 +34386,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -34750,7 +34750,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -35045,7 +35045,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -35446,7 +35446,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -35832,7 +35832,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -36493,7 +36493,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -37009,7 +37009,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -37232,7 +37232,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -37417,7 +37417,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -37733,7 +37733,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -38023,7 +38023,7 @@
      "kind": "PropertySignature",
      "name": "autoComplete",
      "comment": [
-      "Standard <a href='https://www.w3schools.com/tags/att_input_autocomplete.asp'>autocomplete attribute</a>"
+      "Standard [autocomplete attribute]{@link https://www.w3schools.com/tags/att_input_autocomplete.asp}"
      ],
      "value": "undefined | string",
      "inheritedFrom": {
@@ -38075,7 +38075,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -38167,7 +38167,7 @@
      "kind": "PropertySignature",
      "name": "inputMode",
      "comment": [
-      "Standard <a href='https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode'>inputMode attribute</a>"
+      "Standard [inputMode attribute]{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode}"
      ],
      "value": "undefined | 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search'",
      "inheritedFrom": {
@@ -38294,7 +38294,7 @@
      "kind": "PropertySignature",
      "name": "name",
      "comment": [
-      "Standard <a href='https://www.w3schools.com/tags/att_input_name.asp'>name attribute</a>"
+      "Standard [name attribute]{@link https://www.w3schools.com/tags/att_input_name.asp}"
      ],
      "value": "undefined | string",
      "inheritedFrom": {
@@ -38765,7 +38765,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -39204,7 +39204,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -39833,7 +39833,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -39976,7 +39976,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -40112,7 +40112,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -40395,7 +40395,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -40660,7 +40660,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -40859,7 +40859,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -40982,7 +40982,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -41149,7 +41149,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -41283,7 +41283,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -41408,7 +41408,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -41601,7 +41601,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -41689,7 +41689,7 @@
      "kind": "PropertySignature",
      "name": "offset",
      "comment": [
-      "See <a href='https://popper.js.org/docs/v2/modifiers/offset/'>Popper docs</a>"
+      "See [Popper docs]{@link https://popper.js.org/docs/v2/modifiers/offset/}"
      ],
      "value": "undefined | OffsetsFunction | [number | null | undefined, number | null | undefined]",
      "inheritedFrom": {
@@ -42287,7 +42287,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -42924,7 +42924,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -43553,7 +43553,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -44236,7 +44236,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -44341,7 +44341,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -44398,7 +44398,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -44611,7 +44611,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -45023,7 +45023,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -45326,7 +45326,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -45377,7 +45377,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -46437,7 +46437,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -46694,7 +46694,7 @@
      "kind": "PropertySignature",
      "name": "autoComplete",
      "comment": [
-      "Standard <a href='https://www.w3schools.com/tags/att_input_autocomplete.asp'>autocomplete attribute</a>"
+      "Standard [autocomplete attribute]{@link https://www.w3schools.com/tags/att_input_autocomplete.asp}"
      ],
      "value": "undefined | string",
      "inheritedFrom": {
@@ -46746,7 +46746,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -46838,7 +46838,7 @@
      "kind": "PropertySignature",
      "name": "inputMode",
      "comment": [
-      "Standard <a href='https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode'>inputMode attribute</a>"
+      "Standard [inputMode attribute]{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode}"
      ],
      "value": "undefined | 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search'",
      "inheritedFrom": {
@@ -46955,7 +46955,7 @@
      "kind": "PropertySignature",
      "name": "name",
      "comment": [
-      "Standard <a href='https://www.w3schools.com/tags/att_input_name.asp'>name attribute</a>"
+      "Standard [name attribute]{@link https://www.w3schools.com/tags/att_input_name.asp}"
      ],
      "value": "undefined | string",
      "inheritedFrom": {
@@ -47272,7 +47272,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -47436,7 +47436,7 @@
      "kind": "PropertySignature",
      "name": "autoComplete",
      "comment": [
-      "Standard <a href='https://www.w3schools.com/tags/att_input_autocomplete.asp'>autocomplete attribute</a>"
+      "Standard [autocomplete attribute]{@link https://www.w3schools.com/tags/att_input_autocomplete.asp}"
      ],
      "value": "undefined | string",
      "inheritedFrom": {
@@ -47508,7 +47508,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -47610,7 +47610,7 @@
      "kind": "PropertySignature",
      "name": "inputMode",
      "comment": [
-      "Standard <a href='https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode'>inputMode attribute</a>"
+      "Standard [inputMode attribute]{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode}"
      ],
      "value": "undefined | 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search'",
      "inheritedFrom": {
@@ -47727,7 +47727,7 @@
      "kind": "PropertySignature",
      "name": "name",
      "comment": [
-      "Standard <a href='https://www.w3schools.com/tags/att_input_name.asp'>name attribute</a>"
+      "Standard [name attribute]{@link https://www.w3schools.com/tags/att_input_name.asp}"
      ],
      "value": "undefined | string",
      "inheritedFrom": {
@@ -48099,7 +48099,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -48650,7 +48650,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -48826,7 +48826,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -49255,7 +49255,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -49628,7 +49628,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -49908,7 +49908,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -50263,7 +50263,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -50396,7 +50396,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -50597,7 +50597,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -50685,7 +50685,7 @@
      "kind": "PropertySignature",
      "name": "offset",
      "comment": [
-      "See <a href='https://popper.js.org/docs/v2/modifiers/offset/'>Popper docs</a>"
+      "See [Popper docs]{@link https://popper.js.org/docs/v2/modifiers/offset/}"
      ],
      "value": "undefined | OffsetsFunction | [number | null | undefined, number | null | undefined]",
      "inheritedFrom": {
@@ -51088,7 +51088,7 @@
      "kind": "PropertySignature",
      "name": "autoComplete",
      "comment": [
-      "Standard <a href='https://www.w3schools.com/tags/att_input_autocomplete.asp'>autocomplete attribute</a>"
+      "Standard [autocomplete attribute]{@link https://www.w3schools.com/tags/att_input_autocomplete.asp}"
      ],
      "value": "undefined | string",
      "inheritedFrom": {
@@ -51140,7 +51140,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -51232,7 +51232,7 @@
      "kind": "PropertySignature",
      "name": "inputMode",
      "comment": [
-      "Standard <a href='https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode'>inputMode attribute</a>"
+      "Standard [inputMode attribute]{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode}"
      ],
      "value": "undefined | 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search'",
      "inheritedFrom": {
@@ -51359,7 +51359,7 @@
      "kind": "PropertySignature",
      "name": "name",
      "comment": [
-      "Standard <a href='https://www.w3schools.com/tags/att_input_name.asp'>name attribute</a>"
+      "Standard [name attribute]{@link https://www.w3schools.com/tags/att_input_name.asp}"
      ],
      "value": "undefined | string",
      "inheritedFrom": {
@@ -52110,7 +52110,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -52225,7 +52225,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -52392,7 +52392,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -52767,7 +52767,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -53047,7 +53047,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -53425,7 +53425,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -54017,7 +54017,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -54400,7 +54400,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -54488,7 +54488,7 @@
      "kind": "PropertySignature",
      "name": "offset",
      "comment": [
-      "See <a href='https://popper.js.org/docs/v2/modifiers/offset/'>Popper docs</a>"
+      "See [Popper docs]{@link https://popper.js.org/docs/v2/modifiers/offset/}"
      ],
      "value": "undefined | OffsetsFunction | [number | null | undefined, number | null | undefined]",
      "inheritedFrom": {
@@ -54810,7 +54810,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -54958,7 +54958,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -55195,7 +55195,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -55917,7 +55917,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
@@ -56300,7 +56300,7 @@
      "kind": "PropertySignature",
      "name": "cx",
      "comment": [
-      "CSS class(es) to put on component's root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details"
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
      ],
      "value": "undefined | null | string | number | false | true | ClassDictionary | ClassArray",
      "inheritedFrom": {
