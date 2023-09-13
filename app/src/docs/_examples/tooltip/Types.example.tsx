@@ -28,7 +28,7 @@ export default function TypesTooltipExample() {
                 </Tooltip>
             </FlexRow>
 
-            <Tooltip content={ renderTypesMarkup() } placement="bottom" color="default">
+            <Tooltip content={ renderTypesMarkup() } placement="bottom" color="neutral">
                 <Button icon={ plusIcon } onClick={ () => null } cx={ css.firstColumn } />
             </Tooltip>
 

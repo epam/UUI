@@ -6,8 +6,10 @@ import { systemIcons } from '../../icons/icons';
 import { Informer } from '../widgets';
 import css from './Button.module.scss';
 
-export type ButtonColor = 'accent' | 'primary' | 'secondary' | 'negative';
-export const allButtonColors: ButtonColor[] = ['accent', 'primary', 'secondary', 'negative'];
+export type ButtonColor = 'accent' | 'primary' | 'secondary' | 'critical';
+export const allButtonColors: ButtonColor[] = [
+    'accent', 'primary', 'secondary', 'critical',
+];
 
 const defaultSize = '36';
 

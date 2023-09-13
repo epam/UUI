@@ -46,7 +46,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       }
     >
       <div
-        className="root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -77,7 +77,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         >
           <button
             aria-label="Close modal"
-            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root"
+            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -107,7 +107,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="root size-36 vPadding-24 container align-items-center"
+          className="uui-flex-row root size-36 vPadding-24 container align-items-center"
           style={
             Object {
               "columnGap": undefined,
@@ -145,7 +145,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 body modal undefined container align-items-center"
+        className="uui-flex-row root size-36 body modal undefined container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -204,7 +204,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 <div
                   aria-posinset={1}
                   aria-selected={false}
-                  className="pickerRow container -clickable align-items-center"
+                  className="uui-flex-row pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
                   style={
@@ -256,7 +256,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 <div
                   aria-posinset={2}
                   aria-selected={false}
-                  className="pickerRow container -clickable align-items-center"
+                  className="uui-flex-row pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
                   style={
@@ -349,7 +349,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -451,7 +451,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       }
     >
       <div
-        className="root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -482,7 +482,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         >
           <button
             aria-label="Close modal"
-            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root"
+            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -512,7 +512,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         }
       >
         <div
-          className="root size-36 vPadding-24 container align-items-center"
+          className="uui-flex-row root size-36 vPadding-24 container align-items-center"
           style={
             Object {
               "columnGap": undefined,
@@ -575,7 +575,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         </label>
       </div>
       <div
-        className="root size-36 body modal undefined container align-items-center"
+        className="uui-flex-row root size-36 body modal undefined container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -634,7 +634,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 <div
                   aria-checked={false}
                   aria-posinset={1}
-                  className="pickerRow container -clickable align-items-center"
+                  className="uui-flex-row pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
                   style={
@@ -702,7 +702,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 <div
                   aria-checked={false}
                   aria-posinset={2}
-                  className="pickerRow container -clickable align-items-center"
+                  className="uui-flex-row pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
                   style={
@@ -770,7 +770,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 <div
                   aria-checked={false}
                   aria-posinset={3}
-                  className="pickerRow container -clickable align-items-center"
+                  className="uui-flex-row pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
                   style={
@@ -838,7 +838,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 <div
                   aria-checked={false}
                   aria-posinset={4}
-                  className="pickerRow container -clickable align-items-center"
+                  className="uui-flex-row pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
                   style={
@@ -906,7 +906,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 <div
                   aria-checked={false}
                   aria-posinset={5}
-                  className="pickerRow container -clickable align-items-center"
+                  className="uui-flex-row pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
                   style={
@@ -974,7 +974,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 <div
                   aria-checked={false}
                   aria-posinset={6}
-                  className="pickerRow container -clickable align-items-center"
+                  className="uui-flex-row pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
                   style={
@@ -1042,7 +1042,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 <div
                   aria-checked={false}
                   aria-posinset={7}
-                  className="pickerRow container -clickable align-items-center"
+                  className="uui-flex-row pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
                   style={
@@ -1110,7 +1110,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 <div
                   aria-checked={false}
                   aria-posinset={8}
-                  className="pickerRow container -clickable align-items-center"
+                  className="uui-flex-row pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
                   style={
@@ -1178,7 +1178,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 <div
                   aria-checked={false}
                   aria-posinset={9}
-                  className="pickerRow container -clickable align-items-center"
+                  className="uui-flex-row pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
                   style={
@@ -1246,7 +1246,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 <div
                   aria-checked={false}
                   aria-posinset={10}
-                  className="pickerRow container -clickable align-items-center"
+                  className="uui-flex-row pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
                   style={
@@ -1314,7 +1314,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 <div
                   aria-checked={false}
                   aria-posinset={11}
-                  className="pickerRow container -clickable align-items-center"
+                  className="uui-flex-row pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
                   style={
@@ -1423,7 +1423,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -1524,7 +1524,7 @@ exports[`PickerModal should open body 1`] = `
           style="width: 600px; height: 700px;"
         >
           <div
-            class="root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
+            class="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
           >
             <div
               class="root uui-text uui-font-semibold uui-color-primary line-height-24 font-size-18 v-padding-12 container"
@@ -1540,7 +1540,7 @@ exports[`PickerModal should open body 1`] = `
             >
               <button
                 aria-label="Close modal"
-                class="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-default root"
+                class="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
                 tabindex="0"
                 type="button"
               >
@@ -1559,7 +1559,7 @@ exports[`PickerModal should open body 1`] = `
             style="min-width: 0; flex-basis: 0px;"
           >
             <div
-              class="root size-36 vPadding-24 container align-items-center"
+              class="uui-flex-row root size-36 vPadding-24 container align-items-center"
             >
               <div
                 class="container uui-input-box -clickable uui-focus root size-36 mode-form"
@@ -1585,7 +1585,7 @@ exports[`PickerModal should open body 1`] = `
             </div>
           </div>
           <div
-            class="root size-36 body modal undefined container align-items-center"
+            class="uui-flex-row root size-36 body modal undefined container align-items-center"
           >
             <div
               class="root scrollContainer"
@@ -1606,7 +1606,7 @@ exports[`PickerModal should open body 1`] = `
                     <div
                       aria-posinset="1"
                       aria-selected="false"
-                      class="pickerRow container -clickable align-items-center"
+                      class="uui-flex-row pickerRow container -clickable align-items-center"
                       role="option"
                     >
                       <div
@@ -1635,7 +1635,7 @@ exports[`PickerModal should open body 1`] = `
                     <div
                       aria-posinset="2"
                       aria-selected="false"
-                      class="pickerRow container -clickable align-items-center"
+                      class="uui-flex-row pickerRow container -clickable align-items-center"
                       role="option"
                     >
                       <div
@@ -1688,7 +1688,7 @@ exports[`PickerModal should open body 1`] = `
             </div>
           </div>
           <div
-            class="root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
+            class="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
           >
             <div
               class="flexSpacer"

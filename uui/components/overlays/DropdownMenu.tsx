@@ -174,7 +174,7 @@ interface IDropdownMenuHeader extends IHasCX, IHasCaption {}
 
 export function DropdownMenuHeader(props: IDropdownMenuHeader) {
     return (
-        <div className={ cx(css.root, props.cx, css.headerRoot) }>
+        <div className={ cx('uui-dropdown-menu-header', css.root, props.cx, css.headerRoot) }>
             <span className={ css.header }>{props.caption}</span>
         </div>
     );

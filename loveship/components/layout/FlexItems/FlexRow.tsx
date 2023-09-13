@@ -32,14 +32,10 @@ const rowTypesDefaults: Record<string, RowMods & FlexRowProps> = {
 export const FlexRow = withMods<FlexRowProps, RowMods>(
     uuiFlexRow,
     (props) => {
-        return [props.background && props.background !== 'none' && `uui-color-${props.background}`];
+        return [props.background !== 'none' && `uui-color-${props.background}`];
     },
     (props) => {
         const defaults = rowTypesDefaults[props.type || 'panel'];
-        props = { ...defaults, ...props };
-
-        return {
-            ...props,
-        } as FlexRowProps;
+        return { ...defaults, ...props };
     },
 );

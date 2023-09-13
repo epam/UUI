@@ -4,12 +4,12 @@
 
 .root {
     :global(.uui-tooltip-body) {
-        background-color: $gray70;
+        background-color: var(--neutral70);
         padding: 0 10px;
         color: white;
         line-height: 24px;
         font-size: 14px;
-        font-family: $font-sans;
+        font-family: var(--font-regular);
         box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
     }
 
@@ -19,8 +19,8 @@
 
     :global(.uui-slider-scale-number) {
         font-size: 11px;
-        font-family: $font-sans;
-        color: $gray70;
+        font-family: var(--font-regular);
+        color: var(--neutral70);
         margin-top: 10px;
     }
 
@@ -39,7 +39,7 @@
             width: 100%;
             height: 3px;
             border-radius: 10px;
-            background: $gray30;
+            background: var(--neutral30);
             min-width: 100px;
         }
 
@@ -51,7 +51,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background-color: $blue;
+            background-color: var(--uui-info-50);
             cursor: pointer;
         }
 
@@ -59,22 +59,22 @@
             margin: 0 6px;
             height: 3px;
             border-radius: 10px;
-            background-color: $blue;
+            background-color: var(--uui-info-50);
         }
 
         :global(.uui-slider-scale-dot) {
-            background-color: $gray50;
-            border: 1px $gray30 solid;
+            background-color: var(--neutral50);
+            border: 1px var(--neutral30) solid;
         }
 
         &:hover {
             :global(.uui-slider) {
-                background-color: $blue;
+                background-color: var(--uui-info-50);
             }
 
             :global(.uui-slider-scale-dot):not(:global(.uui-slider-scale-filled-dot)) {
-                border-color: $blue;
-                background-color: $blue;
+                border-color: var(--uui-info-50);
+                background-color: var(--uui-info-50);
             }
         }
 
