@@ -25,7 +25,6 @@ import {
 } from '@udecode/plate-common';
 import {
     getTableEntries,
-    insertTableColumn,
     deleteTable,
     getEmptyCellNode,
     ELEMENT_TABLE,
@@ -35,6 +34,7 @@ import {
 } from '@udecode/plate-table';
 import { insertTableRow } from './insertTableRow';
 import { deleteRow } from './deleteRow';
+import { insertTableColumn } from './insertTableColumn';
 
 function StyledRemoveTable() {
     return <RemoveTable className={ css.removeTableIcon } />;

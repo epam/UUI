@@ -49,11 +49,11 @@ TableCellElementProps
     const endColIndex = useRef<number>(getTableColumnIndex(editor, cellElement));
     const startCIndex = useRef<number>(getTableColumnIndex(editor, cellElement));
 
-    const content = cellElement.children
-        .map((node) => (node as TTableCellElement).children[0].text)
-        .join(' ');
+    // const content = cellElement.children
+    //     .map((node) => (node as TTableCellElement).children[0].text)
+    //     .join(' ');
 
-    const path = findNodePath(editor, cellElement);
+    // const path = findNodePath(editor, cellElement);
 
     // console.log(content, path);
 
