@@ -1,11 +1,12 @@
 import { TRef, TTypeProp } from '../types';
 import React, { useMemo, useState } from 'react';
-import { DataTable, FlexCell } from '@epam/uui';
+import { DataTable, LinkButton, RichTextView, Text, ScrollBars } from '@epam/uui';
 import { useTableState, useArrayDataSource, DataColumnProps, SortingOption, DataTableState } from '@epam/uui-core';
-import { RichTextView, Text, FlexRow, Panel, LinkButton } from '@epam/promo';
 import { useGetTsDocsForPackage } from '../dataHooks';
 import { svc } from '../../../services';
 import { ContentSection } from '../../../common';
+import { Code } from '../../../common/docs/Code';
+import css from './ApiReferenceItem.module.scss';
 
 function formatRef(ref: TRef) {
     if (ref) {
@@ -15,6 +16,7 @@ function formatRef(ref: TRef) {
             return (
                 <React.Fragment key={ name }>
                     <LinkButton link={ link } caption={ name } />
+                    {' '}
                     (
                     {module}
                     )
@@ -28,42 +30,35 @@ function formatRef(ref: TRef) {
 const propsTableColumns: DataColumnProps<TTypeProp>[] = [
     {
         key: 'name',
-        caption: 'NAME',
-        render: (prop) => <Text color="gray80">{prop.name}</Text>,
+        alignSelf: 'center',
+        caption: 'Name',
+        render: (prop) => <Text color="primary">{prop.name}</Text>,
         width: 200,
         isSortable: true,
     },
     {
         key: 'value',
         caption: 'Type',
+        alignSelf: 'center',
         render: (prop) => (
-            <Text color="gray80">
-                <span style={ { whiteSpace: 'pre-wrap' } }>{prop.value}</span>
-            </Text>
+            <Code codeAsHtml={ prop.value } isCompact={ true } />
         ),
         width: 300,
-        isSortable: true,
-    },
-    {
-        key: 'optional',
-        caption: 'Required',
-        render: (prop) => <Text color="gray80">{prop.optional ? '' : 'Y'}</Text>,
-        width: 110,
-        isSortable: true,
-    },
-    {
-        key: 'inheritedFrom',
-        caption: 'Inherited From',
-        render: (prop) => <Text color="gray80">{formatRef(prop.inheritedFrom)}</Text>,
-        width: 160,
-        isSortable: true,
+        isSortable: false,
     },
     {
         key: 'comment',
         caption: 'Comment',
-        render: (prop) => <MultiLineText text={ prop.comment } keepBreaks={ false } />,
+        render: (prop) => <TsComment text={ prop.comment } keepBreaks={ false } />,
         width: 200,
         grow: 1,
+    },
+    {
+        key: 'inheritedFrom',
+        caption: 'From',
+        render: (prop) => <Text color="primary">{formatRef(prop.inheritedFrom)}</Text>,
+        width: 160,
+        isSortable: true,
     },
 ];
 
@@ -121,9 +116,7 @@ export function PackageExportDescription(params: TExportInfoParams) {
     const view = exportPropsDs.getView(tableState, setTableState);
     const info = exportsMap?.[exportName];
     const {
-        kind,
         name,
-        value,
         valuePrint,
         comment,
     } = info || {};
@@ -132,53 +125,60 @@ export function PackageExportDescription(params: TExportInfoParams) {
         return null;
     }
 
+    const hasComment = comment?.length > 0;
+    const hasProps = exportPropsDsItems?.length > 0;
+
     return (
-        <FlexRow>
-            <FlexCell width="auto">
-                <h2>
-                    <Text fontSize="18">
-                        {`[${kind}] `}
-                        {name}
-                    </Text>
-                </h2>
-                <Panel shadow={ true }>
-                    { value !== name && <NameValue name="Value" value={ value } /> }
-                    { valuePrint && <NameValue name="Print" value={ <MultiLineText text={ valuePrint } keepBreaks={ true } /> } /> }
-                    { comment?.length > 0 && <NameValue name="Comment" value={ <MultiLineText text={ comment } keepBreaks={ true } /> } /> }
-                </Panel>
-                { exportPropsDsItems?.length > 0 && (
-                    <Panel>
-                        <Text font="sans-semibold" color="gray80">Props</Text>
-                        <DataTable
-                            value={ tableState }
-                            onValueChange={ setTableState }
-                            columns={ propsTableColumns }
-                            getRows={ view.getVisibleRows }
-                            { ...view.getListProps() }
-                        />
-                    </Panel>
+        <ScrollBars>
+            <div className={ css.root }>
+                <RichTextView>
+                    <h1>{name}</h1>
+                </RichTextView>
+                { hasComment && (
+                    <InnerBlock title="Description">
+                        <TsComment text={ comment } keepBreaks={ false } />
+                    </InnerBlock>
                 )}
-            </FlexCell>
-        </FlexRow>
+                {
+                    hasProps && (
+                        <InnerBlock>
+                            <DataTable
+                                allowColumnsResizing={ true }
+                                value={ tableState }
+                                onValueChange={ setTableState }
+                                columns={ propsTableColumns }
+                                getRows={ view.getVisibleRows }
+                                { ...view.getListProps() }
+                            />
+                        </InnerBlock>
+                    )
+                }
+                <InnerBlock>
+                    <Code codeAsHtml={ valuePrint.join('\n') } />
+                </InnerBlock>
+            </div>
+        </ScrollBars>
     );
 }
 
-function NameValue(props: { name: string; value?: any }) {
-    const { name, value } = props;
-    if (!value) {
-        return null;
-    }
+type TInnerBlock = {
+    title?: string;
+    children: React.ReactNode;
+};
+function InnerBlock(props: TInnerBlock) {
     return (
-        <FlexRow spacing="6">
-            <label>
-                <Text font="sans-semibold" color="gray80">{name}</Text>
-                <Text>{value}</Text>
-            </label>
-        </FlexRow>
+        <div className={ css.innerBlock }>
+            { props.title && (
+                <RichTextView>
+                    <h2>{props.title}</h2>
+                </RichTextView>
+            )}
+            { props.children }
+        </div>
     );
 }
 
-function MultiLineText(props: { text?: string[], keepBreaks: boolean }) {
+function TsComment(props: { text?: string[], keepBreaks: boolean }) {
     const { text, keepBreaks } = props;
 
     function formatComment(commentInput: string) {
@@ -208,5 +208,5 @@ function MultiLineText(props: { text?: string[], keepBreaks: boolean }) {
     if (!textStr) {
         return null;
     }
-    return <RichTextView htmlContent={ textStr } />;
+    return <RichTextView htmlContent={ textStr } size="16" />;
 }

@@ -3,7 +3,8 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
-const { isDevServer } = require('../utils/envUtils.js');
+const { isDevServer } = require('../utils/envUtils');
+const { highlightTsCode } = require('./prism');
 
 router.post('/get-doc-content', (req, res) => {
     const docContentPath = path.join(__dirname, '../../', 'public/docs/content/', `${req.body.name}.json`);
@@ -57,6 +58,15 @@ router.get('/get-ts-docs/:packageName', (req, res) => {
         res.sendStatus(400);
     }
     const content = json[packageName];
+    Object.keys(content).forEach((eName) => {
+        const valuePrintSrc = content[eName].valuePrint.join('\n');
+        const propsSrc = content[eName].props;
+        content[eName].valuePrint = highlightTsCode(valuePrintSrc).split('\n');
+        content[eName].props = propsSrc ? propsSrc.map((p) => {
+            p.value = highlightTsCode(p.value);
+            return p;
+        }) : propsSrc;
+    });
     res.send({
         content,
     });
