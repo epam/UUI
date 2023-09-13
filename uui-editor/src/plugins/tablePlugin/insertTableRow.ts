@@ -1,5 +1,5 @@
 import { PlateEditor, findNode, getPluginType, getBlockAbove, getPluginOptions, withoutNormalizing, insertElements, TElement, select, Value } from '@udecode/plate-common';
-import { ELEMENT_TR, ELEMENT_TABLE, TablePlugin, getEmptyRowNode, getCellTypes } from '@udecode/plate-table';
+import { ELEMENT_TR, ELEMENT_TABLE, TablePlugin, getEmptyRowNode, getCellTypes, TTableRowElement } from '@udecode/plate-table';
 import { Path } from 'slate';
 import { getRowSpan, getTableColumnCount } from './utils';
 import { ExtendedTTableCellElement } from './types';
@@ -45,11 +45,15 @@ export const insertTableRow = <V extends Value>(
         ELEMENT_TABLE,
     );
 
+    const rowElem = trEntry[0] as TTableRowElement;
+    console.log('rowElem', rowElem);
+
     const [cellNode] = findNode(editor, {
         at: fromRow,
         match: { type: getCellTypes(editor) },
     });
     const cellElement = cellNode as ExtendedTTableCellElement;
+
     const rowSpan = getRowSpan(cellElement);
 
     // consider merged cell with rowSpan > 1
