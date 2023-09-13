@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { PlateElement, PlateElementProps, useElement, usePlateEditorRef } from '@udecode/plate-common';
+import { PlateElement, PlateElementProps, findNodePath, useElement, usePlateEditorRef } from '@udecode/plate-common';
 import { ELEMENT_TABLE, ELEMENT_TR, TTableCellElement, TTableElement, TTableRowElement, getTableCellBorders, getTableColumnIndex, getTableRowIndex, useIsCellSelected, useTableStore } from '@udecode/plate-table';
 import cx from 'classnames';
 import css from './TableCell.module.scss';
@@ -48,7 +48,14 @@ TableCellElementProps
 
     const endColIndex = useRef<number>(getTableColumnIndex(editor, cellElement));
     const startCIndex = useRef<number>(getTableColumnIndex(editor, cellElement));
-    // const path = findNodePath(editor, cellElement);
+
+    const content = cellElement.children
+        .map((node) => (node as TTableCellElement).children[0].text)
+        .join(' ');
+
+    const path = findNodePath(editor, cellElement);
+
+    // console.log(content, path);
 
     if (cellRef.current && hoveredColIndex === null) {
         const cellOffset = cellRef.current?.offsetLeft;
