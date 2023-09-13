@@ -95,15 +95,14 @@ export function MasterDetailedTable() {
                 groupBy: 'location',
                 getParentId: (loc) => loc.parentId ? ['Location', loc.parentId] : undefined,
                 getChildCount: (location) => location.type === 'city' ? 1 : 10,
-                api: async (request, ctx) => {
+                api: async ({ ids, ...request }, ctx) => {
                     const { groupBy, ...filter } = request.filter ?? {};
-                    if (request.ids != null) {
-                        const ids = request.ids.map(([, id]) => `${id}`); 
-                        return await svc.api.demo.locations({ ids });
+                    if (ids != null) {
+                        return await svc.api.demo.locations({ ids: ids.map(([, id]) => `${id}`) });
                     }
 
                     if (request.search) {
-                        return getPersons({ ...request, ids: [], filter }, ctx);
+                        return getPersons({ ...request, filter }, ctx);
                     }
 
                     if (!ctx.parent) {
@@ -120,15 +119,14 @@ export function MasterDetailedTable() {
                 groupBy: ['department', 'jobTitle'],
                 getParentId: () => null,
                 getChildCount: (group) => group.count,
-                api: async (request, ctx) => {
+                api: async ({ ids, ...request }, ctx) => {
                     const { groupBy, ...filter } = request.filter ?? {};
-                    if (request.ids != null) {
-                        const ids = request.ids.map(([, id]) => id as number); 
-                        return await svc.api.demo.personGroups({ ids });
+                    if (ids != null) {
+                        return await svc.api.demo.personGroups({ ids: ids.map(([, id]) => id as number) });
                     }
                     
                     if (request.search) {
-                        return getPersons({ ...request, ids: [], filter }, ctx);
+                        return getPersons({ ...request, filter }, ctx);
                     }
 
                     if (groupBy && !ctx.parent) {
@@ -136,7 +134,7 @@ export function MasterDetailedTable() {
                     }
                     
                     const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
-                    return getPersons({ ...request, ids: [], filter: { ...filter, ...parentFilter } }, ctx);
+                    return getPersons({ ...request, filter: { ...filter, ...parentFilter } }, ctx);
                 },
             });
             
@@ -157,18 +155,17 @@ export function MasterDetailedTable() {
                     return undefined;
                 },
                 getChildCount: () => null,
-                api: async (request, ctx) => {
-                    const { groupBy, ...filter } = (request.filter as PersonTableFilter) ?? {};
-                    if (request.ids != null) {
-                        const ids = request.ids.map(([, id]) => id as number); 
-                        return await svc.api.demo.persons({ ids });
+                api: async ({ ids, ...request }, ctx) => {
+                    const { groupBy, ...filter } = request.filter ?? {};
+                    if (ids != null) {
+                        return await svc.api.demo.persons({ ids: ids.map(([, id]) => id as number) });
                     }
                     if (request.search) {
-                        return getPersons({ ...request, ids: [], filter }, ctx);
+                        return getPersons({ ...request, filter }, ctx);
                     }
 
                     const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
-                    return getPersons({ ...request, ids: [], filter: { ...filter, ...parentFilter } }, ctx);
+                    return getPersons({ ...request, filter: { ...filter, ...parentFilter } }, ctx);
                 },
             });
 
