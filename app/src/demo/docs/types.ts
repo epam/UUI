@@ -2,6 +2,7 @@ type TType = {
     kind: string;
     name: string;
     value: string;
+    valuePrint: string[];
     comment?: string[];
     props?: TTypeProp[];
 };

@@ -1,7 +1,7 @@
 import { TTypeProp } from '../types';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { DataTable, FlexCell } from '@epam/uui';
-import { useTableState, useArrayDataSource, DataColumnProps } from '@epam/uui-core';
+import { useTableState, useArrayDataSource, DataColumnProps, SortingOption, DataTableState } from '@epam/uui-core';
 import { RichTextView, Text, FlexRow, Panel, LinkButton } from '@epam/promo';
 import { useGetTsDocsForPackage } from '../dataHooks';
 import { svc } from '../../../services';
@@ -41,27 +41,27 @@ const propsTableColumns: DataColumnProps<TTypeProp>[] = [
                 <span style={ { whiteSpace: 'pre-wrap' } }>{prop.value}</span>
             </Text>
         ),
-        width: 200,
+        width: 300,
         isSortable: true,
     },
     {
         key: 'optional',
-        caption: 'Optional',
-        render: (prop) => <Text color="gray80">{prop.optional ? 'Optional' : ''}</Text>,
-        width: 200,
+        caption: 'Required',
+        render: (prop) => <Text color="gray80">{prop.optional ? '' : 'Y'}</Text>,
+        width: 110,
         isSortable: true,
     },
     {
         key: 'inheritedFrom',
         caption: 'Inherited From',
         render: (prop) => <Text color="gray80">{formatInheritedFrom(prop.inheritedFrom)}</Text>,
-        width: 200,
+        width: 160,
         isSortable: true,
     },
     {
         key: 'comment',
-        caption: 'Description',
-        render: (prop) => <Comment comment={ prop.comment } />,
+        caption: 'Comment',
+        render: (prop) => <MultiLineText text={ prop.comment } keepBreaks={ false } />,
         width: 200,
         grow: 1,
     },
@@ -85,6 +85,7 @@ export function ApiReferenceItem() {
 }
 
 export function PackageExportDescription(params: TExportInfoParams) {
+    const [tState, setTState] = useState<DataTableState>({});
     const { packageName, exportName } = params;
     const exportsMap = useGetTsDocsForPackage(packageName);
     const exportPropsDsItems: TTypeProp[] = useMemo(() => {
@@ -98,11 +99,22 @@ export function PackageExportDescription(params: TExportInfoParams) {
         {
             items: exportPropsDsItems,
             getId: (item) => item.name,
+            sortBy(item: TTypeProp, sorting: SortingOption): any {
+                if (sorting.field === 'inheritedFrom') {
+                    if (item.inheritedFrom) {
+                        const { module, name } = item.inheritedFrom;
+                        return `${name}_${module || ''}`;
+                    }
+                }
+                return item[sorting.field as keyof TTypeProp];
+            },
         },
         [exportPropsDsItems],
     );
 
     const tableStateApi = useTableState({
+        value: tState,
+        onValueChange: (v) => setTState(v),
         columns: propsTableColumns,
     });
     const { tableState, setTableState } = tableStateApi;
@@ -112,6 +124,7 @@ export function PackageExportDescription(params: TExportInfoParams) {
         kind,
         name,
         value,
+        valuePrint,
         comment,
     } = info || {};
 
@@ -130,7 +143,8 @@ export function PackageExportDescription(params: TExportInfoParams) {
                 </h2>
                 <Panel shadow={ true }>
                     { value !== name && <NameValue name="Value" value={ value } /> }
-                    { comment?.length > 0 && <NameValue name="Comment" value={ <Comment comment={ comment } /> } /> }
+                    { valuePrint && <NameValue name="Print" value={ <MultiLineText text={ valuePrint } keepBreaks={ true } /> } /> }
+                    { comment?.length > 0 && <NameValue name="Comment" value={ <MultiLineText text={ comment } keepBreaks={ true } /> } /> }
                 </Panel>
                 { exportPropsDsItems?.length > 0 && (
                     <Panel>
@@ -164,12 +178,20 @@ function NameValue(props: { name: string; value?: any }) {
     );
 }
 
-function Comment(props: { comment?: string[] }) {
-    function formatCommentForHtml(comment?: string[]) {
-        if (comment) {
-            const str = comment.join(' ');
-            return '<p>' + str + '</p>';
+function MultiLineText(props: { text?: string[], keepBreaks: boolean }) {
+    const { text, keepBreaks } = props;
+
+    const textStr = useMemo(() => {
+        if (text && text.length > 0) {
+            if (keepBreaks) {
+                return `<pre>${text.join('\n')}</pre>`;
+            }
+            return `<p>${text.join('\n')}</p>`;
         }
+    }, [text, keepBreaks]);
+
+    if (!textStr) {
+        return null;
     }
-    return <RichTextView htmlContent={ formatCommentForHtml(props.comment) } />;
+    return <RichTextView htmlContent={ textStr } />;
 }

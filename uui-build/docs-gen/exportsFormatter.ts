@@ -2,10 +2,10 @@ import { TUuiModuleFormattedExport, TUuiModulesExports } from './types';
 import { convertType } from './converters/convertType';
 
 export function formatExports(exports: TUuiModulesExports): Record<string, TUuiModuleFormattedExport> {
-    return Object.keys(exports).reduce((acc, moduleName) => {
+    return Object.keys(exports).reduce<Record<string, TUuiModuleFormattedExport>>((acc, moduleName) => {
         acc[moduleName] = formatModuleLevelDeclarations(exports[moduleName]);
         return acc;
-    }, {} as Record<string, TUuiModuleFormattedExport>);
+    }, {});
 }
 
 function formatModuleLevelDeclarations(exports: TUuiModulesExports[keyof TUuiModulesExports]): TUuiModuleFormattedExport {
