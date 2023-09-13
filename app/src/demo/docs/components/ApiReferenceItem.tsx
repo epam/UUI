@@ -1,4 +1,4 @@
-import { TTypeProp } from '../types';
+import { TRef, TTypeProp } from '../types';
 import React, { useMemo, useState } from 'react';
 import { DataTable, FlexCell } from '@epam/uui';
 import { useTableState, useArrayDataSource, DataColumnProps, SortingOption, DataTableState } from '@epam/uui-core';
@@ -7,21 +7,21 @@ import { useGetTsDocsForPackage } from '../dataHooks';
 import { svc } from '../../../services';
 import { ContentSection } from '../../../common';
 
-function formatInheritedFrom(inheritedFrom: TTypeProp['inheritedFrom']) {
-    if (inheritedFrom) {
-        const { module, name } = inheritedFrom;
+function formatRef(ref: TRef) {
+    if (ref) {
+        const { module, name } = ref;
         if (module && name) {
             const link = { pathname: '/documents', query: { id: `${module}/${name}` } };
             return (
-                <>
+                <React.Fragment key={ name }>
                     <LinkButton link={ link } caption={ name } />
                     (
                     {module}
                     )
-                </>
+                </React.Fragment>
             );
         }
-        return name;
+        return <React.Fragment key={ name }>name</React.Fragment>;
     }
 }
 
@@ -54,7 +54,7 @@ const propsTableColumns: DataColumnProps<TTypeProp>[] = [
     {
         key: 'inheritedFrom',
         caption: 'Inherited From',
-        render: (prop) => <Text color="gray80">{formatInheritedFrom(prop.inheritedFrom)}</Text>,
+        render: (prop) => <Text color="gray80">{formatRef(prop.inheritedFrom)}</Text>,
         width: 160,
         isSortable: true,
     },

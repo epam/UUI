@@ -1,5 +1,10 @@
 import { ExportedDeclarations, Project, Node, SyntaxKind, TypeChecker } from 'ts-morph';
 
+type TRef = {
+    module?: string,
+    name: string,
+};
+
 export type TType = {
     kind: string;
     name: string;
@@ -14,10 +19,7 @@ export type TTypeProp = {
     value: string;
     comment?: string[];
     optional?: boolean;
-    inheritedFrom?: {
-        module?: string,
-        name: string,
-    };
+    inheritedFrom?: TRef;
 };
 
 export type TUuiModuleFormattedExport = Record<string, TType>;
