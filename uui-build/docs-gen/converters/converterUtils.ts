@@ -42,9 +42,9 @@ export class ConverterUtils {
         return type.getSymbol() || type.getAliasSymbol();
     }
 
-    static printNode(node: Node) {
+    static printNode(node: Node): string[] {
         const printer = ts.createPrinter();
-        return printer.printNode(EmitHint.Unspecified, node.compilerNode, node.getSourceFile().compilerNode);
+        return printer.printNode(EmitHint.Unspecified, node.compilerNode, node.getSourceFile().compilerNode).split('\n');
     }
 
     static getTypeName(typeSymbol: Symbol) {

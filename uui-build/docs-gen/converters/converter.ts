@@ -32,11 +32,13 @@ export class Converter implements IConverter {
         const name = ConverterUtils.getTypeName(typeNode.getSymbol());
         const value = this.getTypeString(typeNode);
         const comment = ConverterUtils.getCommentFromNode(typeNode);
+        const valuePrint = ConverterUtils.printNode(typeNode);
         const props = this.isPropsSupported(typeNode) ? extractMembers(typeNode, type, this.context) : undefined;
         return {
             kind,
             name,
             value,
+            valuePrint,
             comment,
             props,
         };

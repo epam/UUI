@@ -22,6 +22,7 @@ export class ConverterContext implements IConverterContext {
                 // avoid infinite loop for recursive types
                 return {
                     value: ConverterUtils.getTypeTextFromNode(typeNode),
+                    valuePrint: [],
                     name: ConverterUtils.getTypeName(typeNode.getSymbol()),
                     kind: ConverterUtils.getSyntaxKindNameFromNode(typeNode),
                 };
