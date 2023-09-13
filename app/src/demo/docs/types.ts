@@ -1,3 +1,8 @@
+export type TRef = {
+    module?: string,
+    name: string,
+};
+
 type TType = {
     kind: string;
     name: string;
@@ -12,10 +17,6 @@ export type TTypeProp = {
     value: string;
     comment?: string[];
     optional?: boolean;
-    inheritedFrom?: {
-        module?: string,
-        name: string,
-    };
+    inheritedFrom?: TRef;
 };
-
 export type TPropsV2Response = Record<string, TType>;
