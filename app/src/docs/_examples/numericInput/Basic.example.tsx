@@ -3,7 +3,7 @@ import { FlexCell, LabeledInput, NumericInput } from '@epam/promo';
 import css from './BasicExample.module.scss';
 
 export default function BasicExample() {
-    const [value, onValueChange] = useState(null);
+    const [value, onValueChange] = useState<number>();
 
     return (
         <FlexCell width="auto" cx={ css.container }>

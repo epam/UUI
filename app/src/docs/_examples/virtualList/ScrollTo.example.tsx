@@ -32,7 +32,7 @@ function MyListItem(props: { index: number }) {
 // Generate some data. In the real app data items are retrieved from the server.
 const someData: number[] = [];
 for (let n = 0; n < 1000; n++) {
-    someData.push(n + 1);
+    someData.push(n);
 }
 
 export default function VirtualListExample() {
@@ -57,12 +57,9 @@ export default function VirtualListExample() {
                         setTempScrollTo(index);
                     } }
                 /> 
-                <Button
-                    onClick={ () => {
-                        setState((current) => ({ ...current, scrollTo: { index: tempScrollTo } })); 
-                    } }
-                    caption="Scroll"
-                />
+                <Button onClick={ () => setState({ ...state, scrollTo: { index: tempScrollTo } }) } caption="Scroll align='top'" />
+                <Button onClick={ () => setState({ ...state, scrollTo: { index: tempScrollTo, align: 'nearest' } }) } caption="Scroll align='nearest'" />
+ 
             </FlexRow>
             <VirtualList
                 cx={ css.list } // User needs to define height for container, otherwise it would extend to fit the whole content

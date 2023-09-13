@@ -2,12 +2,16 @@
 
 **What's New**
 * [InputAddon]: added InputAddon component that can be used for Prefix/Suffix with ControlGroup.
+* [useVirtualList]: `scrollTo` and `scrollToIndex` API was changed. `scrollTo` is an object, with index, behavior and align configuration.
+* [DataTable]: added pinned rows functionality.
 
 **What's Fixed**
 * [PickerItem]: fixed 'cx' prop
 * [Contexts]: fixed context initialization for react 18 with strict mode
 * [ModalWindow]: changed role attribute value from 'modal' to 'dialog'
 * [PickerItem]: Remove the dropdown icon if minCharsToSearch is passed and fix the top and bottom spacing in the dropdown list.
+* [useUuiServices]: fixed apiPingPath, apiReloginPath, apiServerUrl props
+* [AdaptivePanel]: fixed items width calculation in case of decimal values
 
 
 # 5.1.3 - 31.08.2023
