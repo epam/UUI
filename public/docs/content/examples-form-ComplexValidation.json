@@ -1,0 +1,10 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This example shows how to validate array data and provide your own custom validators."
+      }
+    ]
+  }
+]
