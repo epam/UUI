@@ -1,6 +1,84 @@
 import { generateDocs } from './utils/test-utils';
 
 describe('docsGen', () => {
+    test('should convert type intersection with Omit', () => {
+        const input = `
+            interface IFirstPart1 {
+                f1: number;
+                f2: number;
+            }
+            interface IFirstPart2 {
+                f3: number;
+                f4: number;
+            } 
+            type TFirst = IFirstPart1 & IFirstPart2;
+            type TSecond = {
+                s1: number;
+                s2: number;
+            }
+            export type TIntersection = Omit<TFirst, 'f2'> & TSecond;
+        `;
+        const output = {
+            '@epam/test-module': {
+                TIntersection: {
+                    kind: 'TypeAliasDeclaration',
+                    name: 'TIntersection',
+                    props: [
+                        {
+                            inheritedFrom: {
+                                name: 'IFirstPart1',
+                            },
+                            kind: 'PropertySignature',
+                            name: 'f1',
+                            optional: false,
+                            value: 'number',
+                        },
+                        {
+                            inheritedFrom: {
+                                name: 'IFirstPart2',
+                            },
+                            kind: 'PropertySignature',
+                            name: 'f3',
+                            optional: false,
+                            value: 'number',
+                        },
+                        {
+                            inheritedFrom: {
+                                name: 'IFirstPart2',
+                            },
+                            kind: 'PropertySignature',
+                            name: 'f4',
+                            optional: false,
+                            value: 'number',
+                        },
+                        {
+                            inheritedFrom: {
+                                name: 'TSecond',
+                            },
+                            kind: 'PropertySignature',
+                            name: 's1',
+                            optional: false,
+                            value: 'number',
+                        },
+                        {
+                            inheritedFrom: {
+                                name: 'TSecond',
+                            },
+                            kind: 'PropertySignature',
+                            name: 's2',
+                            optional: false,
+                            value: 'number',
+                        },
+                    ],
+                    value: 'TIntersection',
+                    valuePrint: [
+                        'export type TIntersection = Omit<TFirst, "f2"> & TSecond;',
+                    ],
+                },
+            },
+        };
+        expect(generateDocs(input)).toEqual(output);
+    });
     test('should convert all types', () => {
         const input = `
             /**
