@@ -1,65 +1,55 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "For saving form data to localStorage, you need to provide ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "settingsKey",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop. It will be a localStorage filed key for this form; it should be unique.",
-            "marks": []
-          }
-        ]
+        "text": "The "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Also, the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "useForm",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " hook provides undo/redo and revert form functionality.",
-            "marks": []
-          }
-        ]
+        "text": "useForm",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " hook  provides undo/redo and revert form functionality out of the box. For this use relative "
+      },
+      {
+        "text": "undo",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "redo",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "revert",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " callbacks from the hook."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Also, you can store unsaved changes into the local storage and then restore it, when open form again. To turn on this behavior you need to provide "
+      },
+      {
+        "text": "settingsKey",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop, which defines local storage key where date will be stored."
       }
     ]
   }
-}
+]
