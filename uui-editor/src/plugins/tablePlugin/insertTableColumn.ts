@@ -18,17 +18,20 @@ import { Path } from 'slate';
 import { findCellByIndexes } from './findCellByIndexes';
 import { ExtendedTTableCellElement } from './types';
 
-const createEmptyCell = <V extends Value>(editor: PlateEditor<V>, row: TTableRowElement, newCellChildren: TDescendant[], header?: boolean) => {
+const createEmptyCell = <V extends Value>(editor: PlateEditor<V>, row: TTableRowElement, newCellChildren: TDescendant[], rowSpan: number, header?: boolean) => {
     const isHeaderRow = header === undefined
         ? (row as TElement).children.every(
             (c) => c.type === getPluginType(editor, ELEMENT_TH),
         )
         : header;
 
-    return getEmptyCellNode(editor, {
-        header: isHeaderRow,
-        newCellChildren,
-    });
+    return {
+        ...getEmptyCellNode(editor, {
+            header: isHeaderRow,
+            newCellChildren,
+        }),
+        rowSpan,
+    };
 };
 
 export const insertTableColumn = <V extends Value>(
@@ -77,7 +80,6 @@ export const insertTableColumn = <V extends Value>(
     const [tableNode, tablePath] = tableEntry;
 
     let nextCellPath: Path;
-
     if (Path.isPath(at)) {
         nextCellPath = at;
     } else {
@@ -87,6 +89,7 @@ export const insertTableColumn = <V extends Value>(
     const nextCellEntry = findNode(editor, {
         at: nextCellPath, match: { type: getCellTypes(editor) },
     });
+    const nextCellNode = nextCellEntry?.[0] as ExtendedTTableCellElement;
     const { newCellChildren, initialTableWidth, minColumnWidth } = getPluginOptions<TablePlugin, V>(editor, ELEMENT_TABLE);
 
     let nextCell: ExtendedTTableCellElement;
@@ -94,8 +97,6 @@ export const insertTableColumn = <V extends Value>(
     let nextCellColIndex: number;
     if (!nextCellEntry) {
         const columnNumber = getTableColumnCount(tableNode);
-        // nextCell = findCellByIndexes(tableNode, 0, 0);
-        console.log('last column', columnNumber, nextCell);
         insertLastCol = true;
         nextCellColIndex = columnNumber - 1;
 
@@ -110,30 +111,24 @@ export const insertTableColumn = <V extends Value>(
             const colPath = cellPath.at(-1);
             const placementPath = [...rowPath, colPath + 1];
 
-            console.log('current cell', currentCell, cellPath, placementPath);
-
-            const emptyCell = createEmptyCell(editor, rowElem, newCellChildren, header);
+            const emptyCell = createEmptyCell(editor, rowElem, newCellChildren, 1, header);
             insertElements(editor, emptyCell, {
                 at: placementPath,
                 select: !disableSelect,
             });
         });
-    } else if (nextCellPath.at(-1) === 0) {
+    } else if (nextCellNode?.colIndex === 0) {
         nextCell = findCellByIndexes(tableNode, 0, 0);
         nextCellColIndex = 0;
-        console.log('first column');
     } else {
         nextCell = nextCellEntry[0] as ExtendedTTableCellElement;
-        console.log('nextCellColIndex', nextCellColIndex, 'at', at);
 
         if (Path.isPath(at)) {
-            nextCellColIndex = at.at(-1)!;
+            nextCellColIndex = nextCell.colIndex;
         } else {
             nextCellColIndex = nextCell.colIndex + nextCell.colSpan - 1;
         }
     }
-
-    console.log('selectedCell', selectedCell, 'nextCellPath', nextCellPath, 'nextCellEntry', nextCellEntry);
 
     const rowNumber = tableNode.children.length;
 
@@ -145,12 +140,10 @@ export const insertTableColumn = <V extends Value>(
             affectedCellsSet.add(found);
         });
         const affectedCells = Array.from(affectedCellsSet) as ExtendedTTableCellElement[];
-        console.log('affectedCells', affectedCells);
 
         affectedCells.forEach((cur) => {
             const currentCell = cur as ExtendedTTableCellElement;
             const currentCellPath = findNodePath(editor, currentCell);
-            console.log('current cell', currentCell, currentCellPath);
 
             if (currentCell.colIndex < nextCell.colIndex) {
                 // make wider
@@ -163,8 +156,7 @@ export const insertTableColumn = <V extends Value>(
                 // add new
                 const row = getParentNode(editor, currentCellPath)!;
                 const rowElement = row[0] as TTableRowElement;
-                // console.log('row', row);
-                const emptyCell = createEmptyCell(editor, rowElement, newCellChildren, header);
+                const emptyCell = createEmptyCell(editor, rowElement, newCellChildren, currentCell.rowSpan, header);
                 insertElements(editor, emptyCell, {
                     at: currentCellPath,
                     select: !disableSelect,
