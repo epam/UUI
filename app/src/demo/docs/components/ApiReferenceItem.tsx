@@ -181,6 +181,13 @@ function NameValue(props: { name: string; value?: any }) {
 function MultiLineText(props: { text?: string[], keepBreaks: boolean }) {
     const { text, keepBreaks } = props;
 
+    function formatComment(commentInput: string) {
+        // Playground to modify and debug https://regex101.com/r/dd4hyi/1
+        const linksRegex = /(?:\[(.*)])?\{\s*@link\s*(https:\/\/\S+?)\s*}/gm;
+        let comment = commentInput;
+        comment = comment.replace(linksRegex, (_, a, b) => `<a href='${b}'>${a ?? b}</a>`);
+        return comment;
+    }
     function escape(htmlStr: string) {
         return htmlStr.replace(/&/g, '&amp;')
             .replace(/</g, '&lt;')
@@ -192,9 +199,9 @@ function MultiLineText(props: { text?: string[], keepBreaks: boolean }) {
     const textStr = useMemo(() => {
         if (text && text.length > 0) {
             if (keepBreaks) {
-                return `<pre>${escape(text.join('\n'))}</pre>`;
+                return `<pre>${formatComment(escape(text.join('\n')))}</pre>`;
             }
-            return `<p>${escape(text.join(' '))}</p>`;
+            return `<p>${formatComment(escape(text.join(' ')))}</p>`;
         }
     }, [text, keepBreaks]);
 
