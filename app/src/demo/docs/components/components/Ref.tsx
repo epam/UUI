@@ -15,7 +15,7 @@ export function Ref(props: { refData: TRef }) {
                 <>
                     <Anchor link={ link }>{name}</Anchor>
                     <span className={ css.moduleName }>
-                        {`(${module})`}
+                        {`${module}`}
                     </span>
                 </>
             );
