@@ -115,7 +115,6 @@ export function MasterDetailedTable() {
                     getChildCount: (group) => group.count,
                     api: async ({ ids, ...request }, ctx) => {
                         const { groupBy, ...filter } = request.filter ?? {};
-                        console.log('here', groupBy);
                         if (ids != null) {
                             return await svc.api.demo.personGroups({ ids });
                         }
@@ -151,8 +150,6 @@ export function MasterDetailedTable() {
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {});
 
     const panelInfo = tableStateApi.tableState.selectedId && (view.getById(tableStateApi.tableState.selectedId, 0).value);
-
-    console.log('here');
     return (
         <div className={ css.wrapper }>
             <FilterPanelOpener isFilterPanelOpened={ isFilterPanelOpened } setIsFilterPanelOpened={ setIsFilterPanelOpened } />
