@@ -2,8 +2,7 @@ export type TRef = {
     module?: string,
     name: string,
 };
-
-type TType = {
+export type TType = {
     kind: string;
     name: string;
     value: string;
