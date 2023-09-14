@@ -13,6 +13,10 @@
         }
     }
 
+    .checkbox {
+        flex-grow: 1;
+    }
+
     &:hover {
         background-color: var(--uui-surface-lowest);
     }
