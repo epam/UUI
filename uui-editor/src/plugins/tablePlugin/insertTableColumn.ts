@@ -103,13 +103,13 @@ export const insertTableColumn = <V extends Value>(
 
     const currentRowIndex = cellPath.at(-2); // recheck it
     const rowNumber = tableNode.children.length;
-    const firstRow = nextColIndex <= 0;
+    const firstCol = nextColIndex <= 0;
 
     // const colCount = getTableColumnCount(tableNode);
     // const lastRow = nextColIndex === colCount;
 
     let placementCorrection = 1;
-    if (firstRow) {
+    if (firstCol) {
         checkingColIndex = 0;
         placementCorrection = 0;
     }
@@ -126,7 +126,7 @@ export const insertTableColumn = <V extends Value>(
         const currentCellPath = findNodePath(editor, curCell);
 
         const endCurI = curCell.colIndex + curCell.colSpan - 1;
-        if (endCurI >= nextColIndex && !firstRow) {
+        if (endCurI >= nextColIndex && !firstCol) {
             // make wider
             setNodes<ExtendedTTableCellElement>(
                 editor,
