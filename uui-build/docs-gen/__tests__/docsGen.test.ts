@@ -25,54 +25,54 @@ describe('docsGen', () => {
                     name: 'TIntersection',
                     props: [
                         {
-                            inheritedFrom: {
+                            from: {
                                 name: 'IFirstPart1',
                             },
                             kind: 'PropertySignature',
                             name: 'f1',
-                            optional: false,
+                            required: true,
                             value: 'number',
                         },
                         {
-                            inheritedFrom: {
+                            from: {
                                 name: 'IFirstPart2',
                             },
                             kind: 'PropertySignature',
                             name: 'f3',
-                            optional: false,
+                            required: true,
                             value: 'number',
                         },
                         {
-                            inheritedFrom: {
+                            from: {
                                 name: 'IFirstPart2',
                             },
                             kind: 'PropertySignature',
                             name: 'f4',
-                            optional: false,
+                            required: true,
                             value: 'number',
                         },
                         {
-                            inheritedFrom: {
+                            from: {
                                 name: 'TSecond',
                             },
                             kind: 'PropertySignature',
                             name: 's1',
-                            optional: false,
+                            required: true,
                             value: 'number',
                         },
                         {
-                            inheritedFrom: {
+                            from: {
                                 name: 'TSecond',
                             },
                             kind: 'PropertySignature',
                             name: 's2',
-                            optional: false,
+                            required: true,
                             value: 'number',
                         },
                     ],
                     value: 'TIntersection',
                     valuePrint: [
-                        'type TIntersection = Omit<TFirst, \'f2\'> & TSecond;',
+                        "type TIntersection = Omit<TFirst, 'f2'> & TSecond;",
                     ],
                 },
             },
@@ -153,16 +153,16 @@ describe('docsGen', () => {
                         {
                             kind: 'PropertySignature',
                             name: 'aProp',
-                            optional: false,
+                            required: true,
                             value: "'black' | 'white'",
                         },
                         {
-                            inheritedFrom: {
+                            from: {
                                 name: 'ITestB',
                             },
                             kind: 'PropertySignature',
                             name: 'bProp',
-                            optional: false,
+                            required: true,
                             value: 'number',
                         },
                         {
@@ -171,7 +171,7 @@ describe('docsGen', () => {
                             ],
                             kind: 'GetAccessor',
                             name: 'get someBool',
-                            optional: false,
+                            required: true,
                             value: 'get someBool(): boolean',
                         },
                         {
@@ -180,7 +180,7 @@ describe('docsGen', () => {
                             ],
                             kind: 'PropertySignature',
                             name: 'methodDeclarationTest',
-                            optional: false,
+                            required: true,
                             value: '(p: number) => number',
                         },
                         {
@@ -189,13 +189,13 @@ describe('docsGen', () => {
                             ],
                             kind: 'PropertySignature',
                             name: 'methodSignatureTest',
-                            optional: false,
+                            required: true,
                             value: '(a?: number | undefined, b?: number | undefined) => number | undefined',
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'propExternalTypeTest',
-                            optional: false,
+                            required: true,
                             value: 'HTMLElement',
                         },
                         {
@@ -204,13 +204,13 @@ describe('docsGen', () => {
                             ],
                             kind: 'PropertySignature',
                             name: 'propSignatureTest',
-                            optional: false,
+                            required: true,
                             value: '{ name: string; value: any; }[]',
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'unionPropTest',
-                            optional: false,
+                            required: true,
                             value: "false | true | 'one' | 'two' | 'three' | 'four'",
                         },
                     ],
@@ -244,7 +244,7 @@ describe('docsGen', () => {
                         {
                             kind: 'PropertySignature',
                             name: 'bProp',
-                            optional: false,
+                            required: true,
                             value: 'number',
                         },
                     ],
@@ -266,39 +266,39 @@ describe('docsGen', () => {
                     name: 'TIntersection',
                     props: [
                         {
-                            inheritedFrom: {
+                            from: {
                                 name: 'TIntersectionMemberA',
                             },
                             kind: 'PropertySignature',
                             name: 'a1',
-                            optional: false,
+                            required: true,
                             value: 'number',
                         },
                         {
-                            inheritedFrom: {
+                            from: {
                                 name: 'TIntersectionMemberA',
                             },
                             kind: 'PropertySignature',
                             name: 'a2',
-                            optional: false,
+                            required: true,
                             value: 'string',
                         },
                         {
-                            inheritedFrom: {
+                            from: {
                                 name: 'IIntersectionMemberB',
                             },
                             kind: 'PropertySignature',
                             name: 'b1',
-                            optional: false,
+                            required: true,
                             value: 'number',
                         },
                         {
-                            inheritedFrom: {
+                            from: {
                                 name: 'IIntersectionMemberB',
                             },
                             kind: 'PropertySignature',
                             name: 'b2',
-                            optional: false,
+                            required: true,
                             value: 'string',
                         },
                     ],
@@ -314,97 +314,97 @@ describe('docsGen', () => {
                         {
                             kind: 'PropertySignature',
                             name: 'pAny',
-                            optional: false,
+                            required: true,
                             value: 'any',
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pArray',
-                            optional: false,
+                            required: true,
                             value: 'string[]',
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pBigint',
-                            optional: false,
+                            required: true,
                             value: 'bigint',
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pBool',
-                            optional: false,
+                            required: true,
                             value: 'false | true',
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pLiteral',
-                            optional: false,
+                            required: true,
                             value: "'test'",
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pNever',
-                            optional: false,
+                            required: true,
                             value: 'never',
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pNull',
-                            optional: false,
+                            required: true,
                             value: 'null',
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pNumber',
-                            optional: false,
+                            required: true,
                             value: 'number',
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pObject',
-                            optional: false,
+                            required: true,
                             value: 'object',
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pString',
-                            optional: false,
+                            required: true,
                             value: 'string',
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pSymbol',
-                            optional: false,
+                            required: true,
                             value: 'symbol',
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pTuple',
-                            optional: false,
+                            required: true,
                             value: "[boolean, number, string, any, unknown, never, void, null, undefined, string[], object, bigint, symbol, 'test']",
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pUndefined',
-                            optional: false,
+                            required: true,
                             value: 'undefined',
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pUnion',
-                            optional: true,
+                            required: false,
                             value: 'undefined | null | string | number | bigint | false | true | symbol | void | object | string[]',
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pUnknown',
-                            optional: false,
+                            required: true,
                             value: 'unknown',
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pVoid',
-                            optional: false,
+                            required: true,
                             value: 'void',
                         },
                     ],

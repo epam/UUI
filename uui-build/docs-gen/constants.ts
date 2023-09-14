@@ -7,10 +7,10 @@ export const OUTPUT_FILE_FULL_PATH = path.resolve(uuiRoot, 'public/docs/componen
 export const TSCONFIG_PATH = './tsconfig.json';
 export const INDEX_PATH = './index.tsx';
 
-export const SYNTAX_KIND_NAMES: Record<number, string> = Object.keys(SyntaxKind).reduce((acc, name) => {
+export const SYNTAX_KIND_NAMES = Object.keys(SyntaxKind).reduce<Record<number, string>>((acc, name) => {
     acc[SyntaxKind[name as any] as any] = name;
     return acc;
-}, {} as Record<number, string>);
+}, {});
 
 function fullPath(relative: string) {
     return path.resolve(uuiRoot, relative);
@@ -37,3 +37,8 @@ export const INCLUDED_UUI_PACKAGES: Record<string, string> = {
     '@epam/uui-editor': fullPath('./uui-editor'),
     '@epam/uui-timeline': fullPath('./uui-timeline'),
 };
+
+export const INCLUDED_EXPORT_KINDS = [
+    SyntaxKind.TypeAliasDeclaration,
+    SyntaxKind.InterfaceDeclaration,
+];

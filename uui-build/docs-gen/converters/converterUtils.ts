@@ -63,13 +63,6 @@ export class ConverterUtils {
         return ConverterUtils.mapAncestorsToRefs(anc)?.[0];
     }
 
-    static getBaseDeclarationsRefs(typeNode: Node) {
-        if (Node.isInterfaceDeclaration(typeNode)) {
-            const anc = typeNode.getBaseDeclarations();
-            return ConverterUtils.mapAncestorsToRefs(anc);
-        }
-    }
-
     private static mapAncestorsToRefs(ancParam: Node[]) {
         const anc = ancParam.filter((a) => {
             return (Node.isTypeAliasDeclaration(a) || Node.isInterfaceDeclaration(a) || Node.isClassDeclaration(a));
