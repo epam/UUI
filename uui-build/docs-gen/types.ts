@@ -1,4 +1,4 @@
-import { ExportedDeclarations, Project, Node, SyntaxKind, TypeChecker } from 'ts-morph';
+import { ExportedDeclarations, Project, Node, SyntaxKind } from 'ts-morph';
 
 type TRef = {
     module?: string,
@@ -18,15 +18,15 @@ export type TTypeProp = {
     name: string;
     value: string;
     comment?: string[];
-    optional?: boolean;
-    inheritedFrom?: TRef;
+    required: boolean;
+    from?: TRef;
 };
 
 export type TUuiModuleFormattedExport = Record<string, TType>;
 type TExportName = string;
 type TModuleName = string;
 export type TExportedDeclarations = Record<TExportName, { entry: ExportedDeclarations[]; kind: SyntaxKind }>;
-export type TUuiModulesExports = Record<TModuleName, { project: Project, typeChecker: TypeChecker, exportedDeclarations: TExportedDeclarations }>;
+export type TUuiModulesExports = Record<TModuleName, { project: Project, exportedDeclarations: TExportedDeclarations }>;
 
 export interface IConverterConstructor {
     new (context: IConverterContext): IConverter;
@@ -36,6 +36,6 @@ export interface IConverter {
     convert(typeNode: Node): TType
 }
 export interface IConverterContext {
-    typeChecker: TypeChecker;
+    project: Project
     convert(typeNode: Node): TType
 }

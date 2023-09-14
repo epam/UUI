@@ -1,21 +1,19 @@
 import { TTypeProp } from './types';
 import fs from 'fs';
 
-export function sortProps(propsArr: TTypeProp[]): TTypeProp[] {
-    if (!propsArr) {
-        return undefined;
+function propsComparator(p1: TTypeProp, p2: TTypeProp) {
+    function compareStr(s1: string, s2: string) {
+        return String(s1).localeCompare(String(s2));
     }
-    const arr = [...propsArr];
-    arr.sort((p1, p2) => {
-        return compareStr(p1.name, p2.name)
-            || compareStr(`${p1.inheritedFrom.module}/${p1.inheritedFrom.name}`, `${p2.inheritedFrom.module}/${p2.inheritedFrom.name}`)
-            || compareStr(p1.optional, p2.optional);
-    });
-    return arr;
+    return compareStr(p1.name, p2.name)
+        || compareStr(`${p1.from.module}/${p1.from.name}`, `${p2.from.module}/${p2.from.name}`)
+        || compareStr(String(p1.required), String(p2.required));
 }
 
-function compareStr(s1?: string | boolean, s2?: string | boolean) {
-    return String(s1).localeCompare(String(s2));
+export function sortProps(propsArr: TTypeProp[]): TTypeProp[] {
+    if (propsArr) {
+        return [...propsArr].sort(propsComparator);
+    }
 }
 
 export function saveJsonToFile(fullPath: string, jsonToSave: object) {

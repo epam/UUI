@@ -59,7 +59,7 @@ function mapSingleMember(originTypeNode: Node, node: Node, context: IConverterCo
 
     if (isSupported) {
         const comment = ConverterUtils.getCommentFromNode(node);
-        const inheritedFrom = ConverterUtils.getTypeParentRef(node, originTypeNode);
+        const from = ConverterUtils.getTypeParentRef(node, originTypeNode);
         let name = Node.isPropertyNamed(node) ? node.getName() : '';
         const typeNode = Node.isTypeAliasDeclaration(node) ? node.getTypeNode() : node;
         let value = context.convert(typeNode).value;
@@ -74,13 +74,14 @@ function mapSingleMember(originTypeNode: Node, node: Node, context: IConverterCo
         }
         const kind = ConverterUtils.getSyntaxKindNameFromNode(typeNode);
         const hasQuestionToken = Node.isQuestionTokenable(node) ? node.hasQuestionToken() : false;
+        const required = !(ConverterUtils.getTypeFromNode(typeNode).isNullable() || hasQuestionToken);
         prop = {
             kind,
             name,
             comment,
             value,
-            inheritedFrom,
-            optional: ConverterUtils.getTypeFromNode(typeNode).isNullable() || hasQuestionToken,
+            from,
+            required,
         };
     } else {
         console.warn(`[Converter.mapSingleMember] Unsupported kind=${nKind}`);

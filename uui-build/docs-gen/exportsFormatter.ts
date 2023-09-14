@@ -9,13 +9,13 @@ export function formatExports(exports: TUuiModulesExports): Record<string, TUuiM
 }
 
 function formatModuleLevelDeclarations(exports: TUuiModulesExports[keyof TUuiModulesExports]): TUuiModuleFormattedExport {
-    const { exportedDeclarations, typeChecker } = exports;
+    const { exportedDeclarations, project } = exports;
     const result: TUuiModuleFormattedExport = {};
     Object.keys(exportedDeclarations).forEach((name) => {
         const { entry } = exportedDeclarations[name];
         entry.forEach((decl) => {
             const declList = decl.getSymbol().getDeclarations();
-            const res = convertType(declList[0], typeChecker);
+            const res = convertType(declList[0], project);
             result[res.name] = {
                 ...res,
             };

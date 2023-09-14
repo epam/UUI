@@ -37,7 +37,6 @@ export function generateDocs(fileContent: string) {
     return formatExports({
         [TEST_DEFAULT_MODULE_NAME]: {
             project,
-            typeChecker: project.getTypeChecker(),
             exportedDeclarations,
         },
     });

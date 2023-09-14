@@ -1,4 +1,4 @@
-import { Node, TypeChecker } from 'ts-morph';
+import { Node, Project } from 'ts-morph';
 import { IConverter, IConverterConstructor, IConverterContext } from '../types';
 import { ConverterUtils } from './converterUtils';
 
@@ -7,7 +7,7 @@ export class ConverterContext implements IConverterContext {
     private seenNodes: Set<Node> = new Set();
 
     constructor(
-        public readonly typeChecker: TypeChecker,
+        public readonly project: Project,
     ) {}
 
     public registerConverter(c: IConverterConstructor) {

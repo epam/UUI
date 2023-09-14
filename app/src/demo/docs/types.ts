@@ -15,7 +15,7 @@ export type TTypeProp = {
     name: string;
     value: string;
     comment?: string[];
-    optional?: boolean;
-    inheritedFrom?: TRef;
+    required: boolean;
+    from?: TRef;
 };
 export type TPropsV2Response = Record<string, TType>;
