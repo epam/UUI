@@ -1,28 +1,38 @@
 import { LazyDataSourceProps } from '@epam/uui-core';
-import { ConfigDefault, EntitiesConfig, EntityConfig, LazyDataSourceGetters, UnboxUnionFromGroups } from './types';
+import {
+    ComplexId, ConfigDefault, EntitiesConfig, EntityConfig, GroupByKey, GroupByKeys,
+    GroupingConfig, GroupingsConfig, UnboxUnionFromGroups,
+} from './types';
 
 const DEFAULT_CONFIG = Symbol('DEFAULT_CONFIG');
-const LOW_LEVEL_ENTITY = Symbol('LOW_LEVEL_ENTITY');
 
-export class GroupingConfigBuilder<TGroups, TId, TFilter = any> implements LazyDataSourceGetters<UnboxUnionFromGroups<TGroups>, TId, TFilter> {
+export class GroupingConfigBuilder<
+    TGroups extends { [k in string]: Record<string, unknown> },
+    TId extends { [K in keyof TGroups]: unknown },
+    TFilter extends { groupBy: GroupByKeys<TGroups> }
+> {
     private entitiesConfig: EntitiesConfig<TGroups, TId, TFilter> = {};
-    private groupByToEntityType: Record<string | typeof LOW_LEVEL_ENTITY, keyof TGroups> = {
-        [LOW_LEVEL_ENTITY]: null,
-    };
+    private groupingsConfig: GroupingsConfig<TGroups, TId, TFilter> = {};
+    private groupByToEntityType: Partial<Record<GroupByKey<TGroups>, keyof TGroups>> = {};
 
     private [DEFAULT_CONFIG]: ConfigDefault<TGroups, TId, TFilter> = null;
+    private defaultEntity: keyof TGroups = null;
 
     addEntity<TType extends keyof TGroups>(
         entityType: TType,
         config: EntityConfig<TGroups, TType, TId, TFilter>,
     ) {
         this.entitiesConfig[entityType] = config;
-        if (config.groupBy !== null) {
-            this.setGroupByToEntity(entityType, config.groupBy);
-        } else {
-            this.setGroupByToEntity(entityType, LOW_LEVEL_ENTITY);
-        }
+        this.defaultEntity = entityType;
+        return this;
+    }
 
+    addGrouping<TType extends keyof TGroups>(
+        groupBy: GroupByKeys<TGroups>,
+        config: GroupingConfig<TGroups, TType, TId, TFilter>,
+    ) {
+        this.setGroupByToEntity(config.type, groupBy);
+        this.groupingsConfig[config.type] = config;
         return this;
     }
 
@@ -31,10 +41,10 @@ export class GroupingConfigBuilder<TGroups, TId, TFilter = any> implements LazyD
         return this;
     }
 
-    private setGroupByToEntity<TType extends keyof TGroups>(entityType: TType, groupBy: string | string[] | typeof LOW_LEVEL_ENTITY) {
+    private setGroupByToEntity<TType extends keyof TGroups>(entityType: TType, groupBy: GroupByKeys<TGroups>) {
         if (Array.isArray(groupBy)) {
-            groupBy?.forEach((gBy) => {
-                this.groupByToEntityType[gBy] = entityType;
+            groupBy.forEach((gb) => {
+                this.groupByToEntityType[gb] = entityType;
             });
         } else {
             this.groupByToEntityType[groupBy] = entityType;
@@ -45,64 +55,71 @@ export class GroupingConfigBuilder<TGroups, TId, TFilter = any> implements LazyD
         return this[DEFAULT_CONFIG].getType(entity);
     }
 
-    getTypeAndId(id: TId) {
-        return this[DEFAULT_CONFIG].getTypeAndId(id);
-    }
-
-    getGroupBy(filter: TFilter) {
-        return this[DEFAULT_CONFIG].getGroupBy(filter);
+    getGroupBy() {
+        return this[DEFAULT_CONFIG].getGroupBy();
     }
 
     getDefaultConfigProps() {
-        const { getType, getTypeAndId, getGroupBy, ...props } = this[DEFAULT_CONFIG];
+        const { getType, getGroupBy, ...props } = this[DEFAULT_CONFIG];
         return props;
     }
 
-    async api<TType extends keyof TGroups>(type: TType, ...apiArgs: Parameters<LazyDataSourceProps<TGroups[TType], TId, TFilter>['api']>) {
-        return (this.entitiesConfig[type].api ?? this[DEFAULT_CONFIG].api)(...apiArgs);
+    async api<TType extends keyof TGroups>(type: TType, ...apiArgs: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['api']>) {
+        return (this.entitiesConfig[type]?.api ?? this.groupingsConfig[type]?.api)(...apiArgs);
     }
 
-    async apiByGroupBy(groupBy: string, ...apiArgs: Parameters<LazyDataSourceProps<UnboxUnionFromGroups<TGroups>, TId, TFilter>['api']>) {
+    async defaultApi<TType extends keyof TGroups>(...apiArgs: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['api']>) {
+        return this.entitiesConfig[this.defaultEntity].api(...apiArgs);
+    }
+
+    async apiByGroupBy(groupBy: GroupByKeys<TGroups>, ...apiArgs: Parameters<LazyDataSourceProps<UnboxUnionFromGroups<TGroups>, TId[keyof TGroups], TFilter>['api']>) {
+        if (Array.isArray(groupBy)) {
+            return; // TODO: think about it...
+        }
         const type = this.groupByToEntityType[groupBy];
-        if (!type) {
+        if (!type || !this.groupingsConfig[type].api) {
             throw new Error(`No entity type was associated with groupBy=${groupBy}`);
         }
 
-        return (this.entitiesConfig[type].api ?? this[DEFAULT_CONFIG].api)(...apiArgs);
+        return this.groupingsConfig[type].api(...apiArgs);
     }
 
-    async defaultApiByGroupBy(...apiArgs: Parameters<LazyDataSourceProps<UnboxUnionFromGroups<TGroups>, TId, TFilter>['api']>) {
-        const type = this.groupByToEntityType[LOW_LEVEL_ENTITY];
-        if (!type) {
-            throw new Error('No entity type was associated with groupBy=null');
+    getId(item: UnboxUnionFromGroups<TGroups>): UnboxUnionFromGroups<ComplexId<TGroups, TId>> {
+        const type = this.getType(item);
+        const id = (this.entitiesConfig[type]?.getId ?? this[DEFAULT_CONFIG].getId ?? ((i: any) => i.id))(item);
+        return [type, id];
+    }
+
+    getParentId(item: UnboxUnionFromGroups<TGroups>): UnboxUnionFromGroups<ComplexId<TGroups, TId>> {
+        const type = this.getType(item);
+        const parentId = (
+            this.entitiesConfig[type]?.getParentId
+            ?? this.groupingsConfig[type]?.getParentId
+            ?? this[DEFAULT_CONFIG].getParentId
+            ?? ((i: any) => i.parentId)
+        )(item);
+
+        if (parentId != null) {
+            return [type, parentId];
         }
-
-        return (this.entitiesConfig[type].api ?? this[DEFAULT_CONFIG].api)(...apiArgs);
-    }
-
-    getId(item: UnboxUnionFromGroups<TGroups>) {
-        const type = this.getType(item);
-        return (this.entitiesConfig[type].getId ?? this[DEFAULT_CONFIG].getId ?? ((i: any) => i.id))(item);
-    }
-
-    getParentId(item: UnboxUnionFromGroups<TGroups>) {
-        const type = this.getType(item);
-        const getParentId = (this.entitiesConfig[type].getParentId ?? this[DEFAULT_CONFIG].getParentId ?? ((i: any) => i.parentId));
-        return getParentId(item);
+        const groupBy = this.getGroupBy();
+        if (groupBy) {
+            if (Array.isArray(groupBy)) {
+                const key = `${groupBy}Id`;
+                return [this.groupByToEntityType[groupBy[0]], key in item ? item[key] as TId[keyof TGroups] : undefined];
+            }
+            const key = `${groupBy}Id`;
+            return [this.groupByToEntityType[groupBy], key in item ? item[key] as TId[keyof TGroups] : undefined];
+        }
+        return null;
     }
 
     getChildCount(item: UnboxUnionFromGroups<TGroups>): number {
         const type = this.getType(item);
-        return (this.entitiesConfig[type].getChildCount ?? this[DEFAULT_CONFIG].getChildCount)?.(item);
-    }
-
-    getRowOptions(item: UnboxUnionFromGroups<TGroups>, index: number) {
-        const type = this.getType(item);
-        return (this.entitiesConfig[type].getRowOptions ?? this[DEFAULT_CONFIG].getRowOptions)?.(item, index);
-    }
-
-    isFoldedByDefault(item: UnboxUnionFromGroups<TGroups>) {
-        const type = this.getType(item);
-        return (this.entitiesConfig[type].isFoldedByDefault ?? this[DEFAULT_CONFIG].isFoldedByDefault)?.(item) ?? true;
+        return (
+            this.entitiesConfig[type]?.getChildCount
+            ?? this.groupingsConfig[type]?.getChildCount
+            ?? this[DEFAULT_CONFIG]?.getChildCount
+        )?.(item);
     }
 }

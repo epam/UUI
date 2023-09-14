@@ -14,7 +14,7 @@ import { FilterPanel } from './FilterPanel';
 import { InfoSidebarPanel } from './InfoSidebarPanel';
 import { SlidingPanel } from './SlidingPanel';
 import { FilterPanelOpener } from './FilterPanelOpener';
-import { PersonTableFilter, PersonTableGroups, PersonTableRecord, PersonTableRecordId } from './types';
+import { PersonTableFilter, PersonTableGroups, PersonTableIdGroups, PersonTableRecord, PersonTableRecordId } from './types';
 import { useLazyDataSourceWithGrouping } from './useLazyDataSourceWithGrouping';
 
 export function MasterDetailedTable() {
@@ -54,11 +54,11 @@ export function MasterDetailedTable() {
         }
     }, []);
 
-    const dataSource = useLazyDataSourceWithGrouping<PersonTableGroups, PersonTableRecordId, PersonTableFilter>(
+    const dataSource = useLazyDataSourceWithGrouping<PersonTableGroups, PersonTableIdGroups, { groupBy: 'department' }>(
         (config) => {        
             const getPersons = async (
                 personRequest: LazyDataSourceApiRequest<PersonTableRecord, number, PersonTableFilter>,
-                ctx: LazyDataSourceApiRequestContext<PersonTableRecord, PersonTableRecordId>,
+                ctx: LazyDataSourceApiRequestContext<PersonTableRecord, unknown>,
             ) => {
                 const { groupBy, ...filter } = personRequest.filter ?? {};
                 if (groupBy && !ctx.parent) {
@@ -77,9 +77,7 @@ export function MasterDetailedTable() {
             return config
                 .addDefault({
                     getType: ({ __typename }) => __typename,
-                    getTypeAndId: (id) => id,
-                    getId: (i) => [i.__typename, i.id],
-                    getGroupBy: (filter) => filter.groupBy,
+                    getGroupBy: () => tableStateApi.tableState.filter?.groupBy,
 
                     complexIds: true,
                     backgroundReload: true,
@@ -93,18 +91,13 @@ export function MasterDetailedTable() {
                         onClick: clickHandler,
                     },
                 })
-                .addEntity('Location', {
-                    groupBy: 'location',
-                    getParentId: (loc) => loc.parentId ? ['Location', loc.parentId] : undefined,
+                .addGrouping('location', {
+                    type: 'Location',
+                    getParentId: (loc) => loc.parentId,
                     getChildCount: (location) => location.type === 'city' ? 1 : 10,
                     api: async ({ ids, ...request }, ctx) => {
-                        const { groupBy, ...filter } = request.filter ?? {};
                         if (ids != null) {
-                            return await svc.api.demo.locations({ ids: ids.map(([, id]) => `${id}`) });
-                        }
-
-                        if (request.search) {
-                            return getPersons({ ...request, filter }, ctx);
+                            return await svc.api.demo.locations({ ids });
                         }
 
                         if (!ctx.parent) {
@@ -116,18 +109,15 @@ export function MasterDetailedTable() {
                         return getPersons({ range: request.range, filter: { locationId: ctx.parent.id } }, ctx);
                     },
                 })
-                .addEntity('PersonGroup', {
-                    groupBy: ['department', 'jobTitle'],
+                .addGrouping(['jobTitle', 'department'], {
+                    type: 'PersonGroup',
                     getParentId: () => null,
                     getChildCount: (group) => group.count,
                     api: async ({ ids, ...request }, ctx) => {
                         const { groupBy, ...filter } = request.filter ?? {};
+                        console.log('here', groupBy);
                         if (ids != null) {
-                            return await svc.api.demo.personGroups({ ids: ids.map(([, id]) => id as number) });
-                        }
-                        
-                        if (request.search) {
-                            return getPersons({ ...request, filter }, ctx);
+                            return await svc.api.demo.personGroups({ ids });
                         }
 
                         if (groupBy && !ctx.parent) {
@@ -139,26 +129,12 @@ export function MasterDetailedTable() {
                     },
                 })
                 .addEntity('Person', {
-                    groupBy: null,
-                    getParentId: (person) => {
-                        const groupBy = tableStateApi.tableState.filter?.groupBy;
-                        if (groupBy === 'location') {
-                            return ['Location', person.locationId];
-                        }
-                        if (groupBy === 'jobTitle') {
-                            return ['PersonGroup', person.jobTitleId];
-                        }
-                        if (groupBy === 'department') {
-                            return ['PersonGroup', person.departmentId];
-                        }
-                        
-                        return undefined;
-                    },
+                    getParentId: () => undefined,
                     getChildCount: () => null,
                     api: async ({ ids, ...request }, ctx) => {
                         const { groupBy, ...filter } = request.filter ?? {};
                         if (ids != null) {
-                            return await svc.api.demo.persons({ ids: ids.map(([, id]) => id as number) });
+                            return await svc.api.demo.persons({ ids });
                         }
                         if (request.search) {
                             return getPersons({ ...request, filter }, ctx);
@@ -176,6 +152,7 @@ export function MasterDetailedTable() {
 
     const panelInfo = tableStateApi.tableState.selectedId && (view.getById(tableStateApi.tableState.selectedId, 0).value);
 
+    console.log('here');
     return (
         <div className={ css.wrapper }>
             <FilterPanelOpener isFilterPanelOpened={ isFilterPanelOpened } setIsFilterPanelOpened={ setIsFilterPanelOpened } />
