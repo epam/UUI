@@ -102,6 +102,10 @@ export class GroupingConfigBuilder<
         if (parentId != null) {
             return [type, parentId];
         }
+
+        if (!this.entitiesConfig[type] && parentId == null) {
+            return parentId;
+        }
         const groupBy = this.getGroupBy();
         if (groupBy) {
             if (Array.isArray(groupBy)) {
