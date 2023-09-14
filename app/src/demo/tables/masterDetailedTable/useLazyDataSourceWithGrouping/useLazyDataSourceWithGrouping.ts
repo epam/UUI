@@ -1,13 +1,17 @@
 import { useMemo } from 'react';
 import { LazyDataSourceApi, LazyDataSourceApiRequest, LazyDataSourceApiResponse, useLazyDataSource } from '@epam/uui-core';
 import { GroupingConfigBuilder } from './groupingConfigBuilder';
-import { UnboxUnionFromGroups } from './types';
+import { ComplexId, GroupByKeys, UnboxUnionFromGroups } from './types';
 
-type Setup<TGroups, TId, TFilter> = (
-    configBuilder: GroupingConfigBuilder<TGroups, TId, TFilter>
+type Setup<TGroups extends { [k in string]: {} }, TId extends { [K in keyof TGroups]: unknown }, TFilter extends { groupBy: GroupByKeys<TGroups> }> = (
+    configBuilder: GroupingConfigBuilder<TGroups, TId, TFilter>,
 ) => GroupingConfigBuilder<TGroups, TId, TFilter>;
 
-export function useLazyDataSourceWithGrouping<TGroups, TId, TFilter>(
+export function useLazyDataSourceWithGrouping<
+    TGroups extends { [k in string]: {} },
+    TId extends { [K in keyof TGroups]: unknown },
+    TFilter extends { groupBy: GroupByKeys<TGroups> }
+>(
     setup: Setup<TGroups, TId, TFilter>,
     deps: unknown[] = [],
 ) {
@@ -17,12 +21,11 @@ export function useLazyDataSourceWithGrouping<TGroups, TId, TFilter>(
         deps,
     );
 
-    const api: LazyDataSourceApi<UnboxUnionFromGroups<TGroups>, TId, TFilter> = async (request, ctx) => {
-        const { ids } = request;
+    const api: LazyDataSourceApi<UnboxUnionFromGroups<TGroups>, UnboxUnionFromGroups<ComplexId<TGroups, TId>>, TFilter> = async (request, ctx) => {
+        const { ids, ...rq } = request;
         if (ids != null) {
-            const idsByType: { [Type in keyof TGroups]?: TId[] } = {};
-            ids.forEach((id) => {
-                const [type] = config.getTypeAndId(id);
+            const idsByType: { [Type in keyof TGroups]?: Array<TId[keyof TGroups]> } = {};
+            ids.forEach(([type, id]) => {
                 idsByType[type] = idsByType[type] || [];
                 idsByType[type].push(id);
             });
@@ -40,23 +43,25 @@ export function useLazyDataSourceWithGrouping<TGroups, TId, TFilter>(
             return response;
         }
 
-        const groupBy = config.getGroupBy(request.filter);
+        const [, parentId] = ctx.parentId ?? [];
+        if (request.search) {
+            return config.defaultApi(rq, { ...ctx, parentId });
+        }
+        const groupBy = config.getGroupBy();
         if (groupBy) {
-            return config.apiByGroupBy(groupBy, request, ctx);
+            return config.apiByGroupBy(groupBy, rq, { ...ctx, parentId });
         }
 
-        return config.defaultApiByGroupBy(request, ctx);
+        return config.defaultApi(rq, { ...ctx, parentId });
     };
 
-    return useLazyDataSource<UnboxUnionFromGroups<TGroups>, TId, TFilter>(
+    return useLazyDataSource<UnboxUnionFromGroups<TGroups>, UnboxUnionFromGroups<ComplexId<TGroups, TId>>, TFilter>(
         {
             ...config.getDefaultConfigProps(),
             api,
             getId: (i) => config.getId(i),
             getParentId: (i) => config.getParentId(i),
             getChildCount: (i) => config.getChildCount(i),
-            getRowOptions: (...args) => config.getRowOptions(...args),
-            isFoldedByDefault: (i) => config.isFoldedByDefault(i),
         },
         deps,
     );
