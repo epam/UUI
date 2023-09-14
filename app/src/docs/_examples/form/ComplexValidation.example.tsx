@@ -34,7 +34,7 @@ export default function ComplexFormValidationExample() {
     const renderUser = (user: Person, index: number) => {
         const userLens = lens.index(index);
         return (
-            <>
+            <div key={ index }>
                 <Text size="42" font="semibold">{`User ${index + 1}`}</Text>
                 <FlexRow vPadding="12">
                     <FlexCell grow={ 1 }>
@@ -54,7 +54,7 @@ export default function ComplexFormValidationExample() {
                     </FlexCell>
                 </FlexRow>
 
-            </>
+            </div>
         );
     };
 
