@@ -8,7 +8,7 @@ import { getQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
 import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps, useUuiContext } from '@epam/uui-core';
-import { ApiReferenceItem } from '../demo/docs/components/ApiReferenceItem';
+import { ApiReferenceItem } from '../demo/apiDocs/components/ApiReferenceItem';
 import { TApi, TAppContext } from '../data';
 
 type DocsQuery = {

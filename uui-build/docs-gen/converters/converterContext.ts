@@ -18,12 +18,13 @@ export class ConverterContext implements IConverterContext {
     public convert(typeNode: Node): ReturnType<IConverterContext['convert']> {
         const instance = this.allConverters.find((c) => c.isSupported(typeNode));
         if (instance) {
-            if (this.seenNodes.has(typeNode) || ConverterUtils.isExternalNode(typeNode)) {
+            const isSeen = this.seenNodes.has(typeNode);
+            const isExternal = ConverterUtils.isExternalNode(typeNode);
+            if (isSeen || isExternal) {
                 // avoid infinite loop for recursive types
                 return {
-                    value: ConverterUtils.getTypeTextFromNode(typeNode),
-                    valuePrint: [],
-                    name: ConverterUtils.getTypeName(typeNode.getSymbol()),
+                    typeValue: ConverterUtils.getTypeValueFromNode(typeNode, !isSeen),
+                    typeName: ConverterUtils.getTypeName(typeNode.getSymbol()),
                     kind: ConverterUtils.getSyntaxKindNameFromNode(typeNode),
                 };
             }

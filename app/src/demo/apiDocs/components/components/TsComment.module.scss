@@ -1,0 +1,7 @@
+.root {
+    word-break: break-all;
+
+    &.compact {
+        font-size: 14px;
+    }
+}

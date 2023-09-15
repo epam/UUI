@@ -1,6 +1,98 @@
 import { generateDocs } from './utils/test-utils';
 
 describe('docsGen', () => {
+    test('should convert alias of external type', () => {
+        const input = `
+            type TLocal = {
+                p1: number;
+                p2: string;
+            }
+            export type TTest = Omit<TLocal, 'p1'>;
+        `;
+        const output = {
+            '@epam/test-module': {
+                TTest: {
+                    kind: 'TypeAliasDeclaration',
+                    typeName: {
+                        name: 'TTest',
+                        nameFull: 'TTest',
+                    },
+                    typeValue: {
+                        print: [
+                            "type TTest = Omit<TLocal, 'p1'>;",
+                        ],
+                        raw: 'TTest',
+                    },
+                },
+            },
+        };
+        expect(generateDocs(input)).toEqual(output);
+    });
+    test('should show generic parameters in type name', () => {
+        const input = `
+            export interface IA<T> {
+                p1: Record<string, T>;
+            }
+            export type TA<S> = {
+                p1: Record<string, S>;
+            }
+        `;
+        const output = {
+            '@epam/test-module': {
+                IA: {
+                    kind: 'InterfaceDeclaration',
+                    props: [
+                        {
+                            kind: 'PropertySignature',
+                            name: 'p1',
+                            required: true,
+                            typeValue: {
+                                raw: 'Record<string, T>',
+                            },
+                        },
+                    ],
+                    typeName: {
+                        name: 'IA',
+                        nameFull: 'IA<T>',
+                    },
+                    typeValue: {
+                        print: [
+                            'interface IA<T> {',
+                            '    p1: Record<string, T>;',
+                            '}',
+                        ],
+                        raw: 'IA<T>',
+                    },
+                },
+                TA: {
+                    kind: 'TypeAliasDeclaration',
+                    props: [
+                        {
+                            kind: 'PropertySignature',
+                            name: 'p1',
+                            required: true,
+                            typeValue: {
+                                raw: 'Record<string, S>',
+                            },
+                        },
+                    ],
+                    typeName: {
+                        name: 'TA',
+                        nameFull: 'TA<S>',
+                    },
+                    typeValue: {
+                        print: [
+                            'type TA<S> = {',
+                            '    p1: Record<string, S>;',
+                            '};',
+                        ],
+                        raw: 'TA<S>',
+                    },
+                },
+            },
+        };
+        expect(generateDocs(input)).toEqual(output);
+    });
     test('should convert type intersection with Omit', () => {
         const input = `
             interface IFirstPart1 {
@@ -10,7 +102,7 @@ describe('docsGen', () => {
             interface IFirstPart2 {
                 f3: number;
                 f4: number;
-            } 
+            }
             type TFirst = IFirstPart1 & IFirstPart2;
             type TSecond = {
                 s1: number;
@@ -22,58 +114,88 @@ describe('docsGen', () => {
             '@epam/test-module': {
                 TIntersection: {
                     kind: 'TypeAliasDeclaration',
-                    name: 'TIntersection',
                     props: [
                         {
                             from: {
-                                name: 'IFirstPart1',
+                                typeName: {
+                                    name: 'IFirstPart1',
+                                    nameFull: 'IFirstPart1',
+                                },
                             },
                             kind: 'PropertySignature',
                             name: 'f1',
                             required: true,
-                            value: 'number',
+                            typeValue: {
+                                raw: 'number',
+                            },
                         },
                         {
                             from: {
-                                name: 'IFirstPart2',
+                                typeName: {
+                                    name: 'IFirstPart2',
+                                    nameFull: 'IFirstPart2',
+                                },
                             },
                             kind: 'PropertySignature',
                             name: 'f3',
                             required: true,
-                            value: 'number',
+                            typeValue: {
+                                raw: 'number',
+                            },
                         },
                         {
                             from: {
-                                name: 'IFirstPart2',
+                                typeName: {
+                                    name: 'IFirstPart2',
+                                    nameFull: 'IFirstPart2',
+                                },
                             },
                             kind: 'PropertySignature',
                             name: 'f4',
                             required: true,
-                            value: 'number',
+                            typeValue: {
+                                raw: 'number',
+                            },
                         },
                         {
                             from: {
-                                name: 'TSecond',
+                                typeName: {
+                                    name: 'TSecond',
+                                    nameFull: 'TSecond',
+                                },
                             },
                             kind: 'PropertySignature',
                             name: 's1',
                             required: true,
-                            value: 'number',
+                            typeValue: {
+                                raw: 'number',
+                            },
                         },
                         {
                             from: {
-                                name: 'TSecond',
+                                typeName: {
+                                    name: 'TSecond',
+                                    nameFull: 'TSecond',
+                                },
                             },
                             kind: 'PropertySignature',
                             name: 's2',
                             required: true,
-                            value: 'number',
+                            typeValue: {
+                                raw: 'number',
+                            },
                         },
                     ],
-                    value: 'TIntersection',
-                    valuePrint: [
-                        "type TIntersection = Omit<TFirst, 'f2'> & TSecond;",
-                    ],
+                    typeName: {
+                        name: 'TIntersection',
+                        nameFull: 'TIntersection',
+                    },
+                    typeValue: {
+                        print: [
+                            "type TIntersection = Omit<TFirst, 'f2'> & TSecond;",
+                        ],
+                        raw: 'TIntersection',
+                    },
                 },
             },
         };
@@ -82,13 +204,13 @@ describe('docsGen', () => {
     test('should convert all types', () => {
         const input = `
             /**
-             * This is a multiline TSDoc for direct export of union type. 
+             * This is a multiline TSDoc for direct export of union type.
              */
             export type TUnionTest = 'one' | 'two' | 'three' | 'four' | boolean;
             export interface ITestB {
                 bProp: number;
             }
-            
+
             type TIntersectionMemberA = {
                 a1: number;
                 a2: string;
@@ -98,7 +220,7 @@ describe('docsGen', () => {
                 b2: string;
             }
             export type TIntersection = TIntersectionMemberA & IIntersectionMemberB;
-            
+
             export type TPrimitives = {
                 pBool: boolean;
                 pNumber: number;
@@ -117,29 +239,29 @@ describe('docsGen', () => {
                 pTuple: [boolean, number, string, any, unknown, never, void, null, undefined, string[], object, bigint, symbol, 'test'];
                 pUnion: boolean | number | string | never | void | null | undefined | string[] | object | bigint | symbol | 'test';
             }
-            
+
             export type TExternalTypeTest = HTMLElement;
-            
+
             export interface ITestA extends ITestB {
                 // This comment must be ignored, because it's not TSDoc
                 aProp: 'black' | 'white';
-                
+
                 propExternalTypeTest: HTMLElement;
-                
+
                 unionPropTest: TUnionTest;
-                
+
                 /** This is PropertySignature */
                 propSignatureTest: { name: string; value: any }[];
-                
+
                 /** This is MethodSignature */
                 methodSignatureTest: (a?: number, b?: number) => number | undefined;
-                
+
                 /** This is MethodDeclaration */
                 methodDeclarationTest: (p: number) => number;
-                
+
                 /** This is GetAccessor */
                 get someBool(): boolean;
-                
+
                 /** This is SetAccessor */
                 set someBool(b: boolean);
             }
@@ -148,22 +270,28 @@ describe('docsGen', () => {
             '@epam/test-module': {
                 ITestA: {
                     kind: 'InterfaceDeclaration',
-                    name: 'ITestA',
                     props: [
                         {
                             kind: 'PropertySignature',
                             name: 'aProp',
                             required: true,
-                            value: "'black' | 'white'",
+                            typeValue: {
+                                raw: "'black' | 'white'",
+                            },
                         },
                         {
                             from: {
-                                name: 'ITestB',
+                                typeName: {
+                                    name: 'ITestB',
+                                    nameFull: 'ITestB',
+                                },
                             },
                             kind: 'PropertySignature',
                             name: 'bProp',
                             required: true,
-                            value: 'number',
+                            typeValue: {
+                                raw: 'number',
+                            },
                         },
                         {
                             comment: [
@@ -172,7 +300,9 @@ describe('docsGen', () => {
                             kind: 'GetAccessor',
                             name: 'get someBool',
                             required: true,
-                            value: 'get someBool(): boolean',
+                            typeValue: {
+                                raw: 'get someBool(): boolean',
+                            },
                         },
                         {
                             comment: [
@@ -181,7 +311,9 @@ describe('docsGen', () => {
                             kind: 'PropertySignature',
                             name: 'methodDeclarationTest',
                             required: true,
-                            value: '(p: number) => number',
+                            typeValue: {
+                                raw: '(p: number) => number',
+                            },
                         },
                         {
                             comment: [
@@ -190,13 +322,17 @@ describe('docsGen', () => {
                             kind: 'PropertySignature',
                             name: 'methodSignatureTest',
                             required: true,
-                            value: '(a?: number | undefined, b?: number | undefined) => number | undefined',
+                            typeValue: {
+                                raw: '(a?: number | undefined, b?: number | undefined) => number | undefined',
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'propExternalTypeTest',
                             required: true,
-                            value: 'HTMLElement',
+                            typeValue: {
+                                raw: 'HTMLElement',
+                            },
                         },
                         {
                             comment: [
@@ -205,259 +341,350 @@ describe('docsGen', () => {
                             kind: 'PropertySignature',
                             name: 'propSignatureTest',
                             required: true,
-                            value: '{ name: string; value: any; }[]',
+                            typeValue: {
+                                raw: '{ name: string; value: any; }[]',
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'unionPropTest',
                             required: true,
-                            value: "false | true | 'one' | 'two' | 'three' | 'four'",
+                            typeValue: {
+                                raw: "false | true | 'one' | 'two' | 'three' | 'four'",
+                            },
                         },
                     ],
-                    value: 'ITestA',
-                    valuePrint: [
-                        'interface ITestA extends ITestB {',
-                        "    // This comment must be ignored, because it's not TSDoc",
-                        "    aProp: 'black' | 'white';",
-                        '    propExternalTypeTest: HTMLElement;',
-                        '    unionPropTest: TUnionTest;',
-                        '    /** This is PropertySignature */',
-                        '    propSignatureTest: {',
-                        '        name: string;',
-                        '        value: any;',
-                        '    }[];',
-                        '    /** This is MethodSignature */',
-                        '    methodSignatureTest: (a?: number, b?: number) => number | undefined;',
-                        '    /** This is MethodDeclaration */',
-                        '    methodDeclarationTest: (p: number) => number;',
-                        '    /** This is GetAccessor */',
-                        '    get someBool(): boolean;',
-                        '    /** This is SetAccessor */',
-                        '    set someBool(b: boolean);',
-                        '}',
-                    ],
+                    typeName: {
+                        name: 'ITestA',
+                        nameFull: 'ITestA',
+                    },
+                    typeValue: {
+                        print: [
+                            'interface ITestA extends ITestB {',
+                            "    // This comment must be ignored, because it's not TSDoc",
+                            "    aProp: 'black' | 'white';",
+                            '    propExternalTypeTest: HTMLElement;',
+                            '    unionPropTest: TUnionTest;',
+                            '    /** This is PropertySignature */',
+                            '    propSignatureTest: {',
+                            '        name: string;',
+                            '        value: any;',
+                            '    }[];',
+                            '    /** This is MethodSignature */',
+                            '    methodSignatureTest: (a?: number, b?: number) => number | undefined;',
+                            '    /** This is MethodDeclaration */',
+                            '    methodDeclarationTest: (p: number) => number;',
+                            '    /** This is GetAccessor */',
+                            '    get someBool(): boolean;',
+                            '    /** This is SetAccessor */',
+                            '    set someBool(b: boolean);',
+                            '}',
+                        ],
+                        raw: 'ITestA',
+                    },
                 },
                 ITestB: {
                     kind: 'InterfaceDeclaration',
-                    name: 'ITestB',
                     props: [
                         {
                             kind: 'PropertySignature',
                             name: 'bProp',
                             required: true,
-                            value: 'number',
+                            typeValue: {
+                                raw: 'number',
+                            },
                         },
                     ],
-                    value: 'ITestB',
-                    valuePrint: [
-                        'interface ITestB {',
-                        '    bProp: number;',
-                        '}',
-                    ],
+                    typeName: {
+                        name: 'ITestB',
+                        nameFull: 'ITestB',
+                    },
+                    typeValue: {
+                        print: [
+                            'interface ITestB {',
+                            '    bProp: number;',
+                            '}',
+                        ],
+                        raw: 'ITestB',
+                    },
                 },
                 TExternalTypeTest: {
                     kind: 'TypeAliasDeclaration',
-                    name: 'TExternalTypeTest',
-                    value: 'HTMLElement',
-                    valuePrint: [],
+                    typeName: {
+                        name: 'TExternalTypeTest',
+                        nameFull: 'TExternalTypeTest',
+                    },
+                    typeValue: {
+                        print: [
+                            'type TExternalTypeTest = HTMLElement;',
+                        ],
+                        raw: 'HTMLElement',
+                    },
                 },
                 TIntersection: {
                     kind: 'TypeAliasDeclaration',
-                    name: 'TIntersection',
                     props: [
                         {
                             from: {
-                                name: 'TIntersectionMemberA',
+                                typeName: {
+                                    name: 'TIntersectionMemberA',
+                                    nameFull: 'TIntersectionMemberA',
+                                },
                             },
                             kind: 'PropertySignature',
                             name: 'a1',
                             required: true,
-                            value: 'number',
+                            typeValue: {
+                                raw: 'number',
+                            },
                         },
                         {
                             from: {
-                                name: 'TIntersectionMemberA',
+                                typeName: {
+                                    name: 'TIntersectionMemberA',
+                                    nameFull: 'TIntersectionMemberA',
+                                },
                             },
                             kind: 'PropertySignature',
                             name: 'a2',
                             required: true,
-                            value: 'string',
+                            typeValue: {
+                                raw: 'string',
+                            },
                         },
                         {
                             from: {
-                                name: 'IIntersectionMemberB',
+                                typeName: {
+                                    name: 'IIntersectionMemberB',
+                                    nameFull: 'IIntersectionMemberB',
+                                },
                             },
                             kind: 'PropertySignature',
                             name: 'b1',
                             required: true,
-                            value: 'number',
+                            typeValue: {
+                                raw: 'number',
+                            },
                         },
                         {
                             from: {
-                                name: 'IIntersectionMemberB',
+                                typeName: {
+                                    name: 'IIntersectionMemberB',
+                                    nameFull: 'IIntersectionMemberB',
+                                },
                             },
                             kind: 'PropertySignature',
                             name: 'b2',
                             required: true,
-                            value: 'string',
+                            typeValue: {
+                                raw: 'string',
+                            },
                         },
                     ],
-                    value: 'TIntersection',
-                    valuePrint: [
-                        'type TIntersection = TIntersectionMemberA & IIntersectionMemberB;',
-                    ],
+                    typeName: {
+                        name: 'TIntersection',
+                        nameFull: 'TIntersection',
+                    },
+                    typeValue: {
+                        print: [
+                            'type TIntersection = TIntersectionMemberA & IIntersectionMemberB;',
+                        ],
+                        raw: 'TIntersection',
+                    },
                 },
                 TPrimitives: {
                     kind: 'TypeAliasDeclaration',
-                    name: 'TPrimitives',
                     props: [
                         {
                             kind: 'PropertySignature',
                             name: 'pAny',
                             required: true,
-                            value: 'any',
+                            typeValue: {
+                                raw: 'any',
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pArray',
                             required: true,
-                            value: 'string[]',
+                            typeValue: {
+                                raw: 'string[]',
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pBigint',
                             required: true,
-                            value: 'bigint',
+                            typeValue: {
+                                raw: 'bigint',
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pBool',
                             required: true,
-                            value: 'false | true',
+                            typeValue: {
+                                raw: 'false | true',
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pLiteral',
                             required: true,
-                            value: "'test'",
+                            typeValue: {
+                                raw: "'test'",
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pNever',
                             required: true,
-                            value: 'never',
+                            typeValue: {
+                                raw: 'never',
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pNull',
                             required: true,
-                            value: 'null',
+                            typeValue: {
+                                raw: 'null',
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pNumber',
                             required: true,
-                            value: 'number',
+                            typeValue: {
+                                raw: 'number',
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pObject',
                             required: true,
-                            value: 'object',
+                            typeValue: {
+                                raw: 'object',
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pString',
                             required: true,
-                            value: 'string',
+                            typeValue: {
+                                raw: 'string',
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pSymbol',
                             required: true,
-                            value: 'symbol',
+                            typeValue: {
+                                raw: 'symbol',
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pTuple',
                             required: true,
-                            value: "[boolean, number, string, any, unknown, never, void, null, undefined, string[], object, bigint, symbol, 'test']",
+                            typeValue: {
+                                raw: "[boolean, number, string, any, unknown, never, void, null, undefined, string[], object, bigint, symbol, 'test']",
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pUndefined',
                             required: true,
-                            value: 'undefined',
+                            typeValue: {
+                                raw: 'undefined',
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pUnion',
                             required: false,
-                            value: 'undefined | null | string | number | bigint | false | true | symbol | void | object | string[]',
+                            typeValue: {
+                                raw: 'undefined | null | string | number | bigint | false | true | symbol | void | object | string[]',
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pUnknown',
                             required: true,
-                            value: 'unknown',
+                            typeValue: {
+                                raw: 'unknown',
+                            },
                         },
                         {
                             kind: 'PropertySignature',
                             name: 'pVoid',
                             required: true,
-                            value: 'void',
+                            typeValue: {
+                                raw: 'void',
+                            },
                         },
                     ],
-                    value: 'TPrimitives',
-                    valuePrint: [
-                        'type TPrimitives = {',
-                        '    pBool: boolean;',
-                        '    pNumber: number;',
-                        '    pString: string;',
-                        '    pAny: any;',
-                        '    pUnknown: unknown;',
-                        '    pNever: never;',
-                        '    pVoid: void;',
-                        '    pNull: null;',
-                        '    pUndefined: undefined;',
-                        '    pArray: string[];',
-                        '    pObject: object;',
-                        '    pBigint: bigint;',
-                        '    pSymbol: symbol;',
-                        "    pLiteral: 'test';",
-                        '    pTuple: [',
-                        '        boolean,',
-                        '        number,',
-                        '        string,',
-                        '        any,',
-                        '        unknown,',
-                        '        never,',
-                        '        void,',
-                        '        null,',
-                        '        undefined,',
-                        '        string[],',
-                        '        object,',
-                        '        bigint,',
-                        '        symbol,',
-                        "        'test'",
-                        '    ];',
-                        "    pUnion: boolean | number | string | never | void | null | undefined | string[] | object | bigint | symbol | 'test';",
-                        '};',
-                    ],
+                    typeName: {
+                        name: 'TPrimitives',
+                        nameFull: 'TPrimitives',
+                    },
+                    typeValue: {
+                        print: [
+                            'type TPrimitives = {',
+                            '    pBool: boolean;',
+                            '    pNumber: number;',
+                            '    pString: string;',
+                            '    pAny: any;',
+                            '    pUnknown: unknown;',
+                            '    pNever: never;',
+                            '    pVoid: void;',
+                            '    pNull: null;',
+                            '    pUndefined: undefined;',
+                            '    pArray: string[];',
+                            '    pObject: object;',
+                            '    pBigint: bigint;',
+                            '    pSymbol: symbol;',
+                            "    pLiteral: 'test';",
+                            '    pTuple: [',
+                            '        boolean,',
+                            '        number,',
+                            '        string,',
+                            '        any,',
+                            '        unknown,',
+                            '        never,',
+                            '        void,',
+                            '        null,',
+                            '        undefined,',
+                            '        string[],',
+                            '        object,',
+                            '        bigint,',
+                            '        symbol,',
+                            "        'test'",
+                            '    ];',
+                            "    pUnion: boolean | number | string | never | void | null | undefined | string[] | object | bigint | symbol | 'test';",
+                            '};',
+                        ],
+                        raw: 'TPrimitives',
+                    },
                 },
                 TUnionTest: {
                     comment: [
                         'This is a multiline TSDoc for direct export of union type.',
                     ],
                     kind: 'TypeAliasDeclaration',
-                    name: 'TUnionTest',
-                    value: "false | true | 'one' | 'two' | 'three' | 'four'",
-                    valuePrint: [
-                        '/**',
-                        ' * This is a multiline TSDoc for direct export of union type.',
-                        ' */',
-                        "type TUnionTest = 'one' | 'two' | 'three' | 'four' | boolean;",
-                    ],
+                    typeName: {
+                        name: 'TUnionTest',
+                        nameFull: 'TUnionTest',
+                    },
+                    typeValue: {
+                        print: [
+                            '/**',
+                            ' * This is a multiline TSDoc for direct export of union type.',
+                            ' */',
+                            "type TUnionTest = 'one' | 'two' | 'three' | 'four' | boolean;",
+                        ],
+                        raw: "false | true | 'one' | 'two' | 'three' | 'four'",
+                    },
                 },
             },
         };

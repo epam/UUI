@@ -4,14 +4,14 @@ import {
     Type,
 } from 'ts-morph';
 import { sortProps } from '../utils';
-import { IConverter, IConverterContext, TType, TTypeProp } from '../types';
+import { IConverter, IConverterContext, TType, TTypeProp, TTypeValue } from '../types';
 import { ConverterUtils } from './converterUtils';
 
 export class Converter implements IConverter {
     constructor(public readonly context: IConverterContext) {}
 
-    protected getTypeString(typeNode: Node): string {
-        return ConverterUtils.getTypeTextFromNode(typeNode);
+    protected getTypeValue(typeNode: Node, print?: boolean): TTypeValue {
+        return ConverterUtils.getTypeValueFromNode(typeNode, print);
     }
 
     protected isPropsSupported(typeNode: Node) {
@@ -27,18 +27,17 @@ export class Converter implements IConverter {
     }
 
     public convert(typeNode: Node): TType {
+        const symbol = typeNode.getSymbol();
         const type = ConverterUtils.getTypeFromNode(typeNode);
         const kind = ConverterUtils.getSyntaxKindNameFromNode(typeNode);
-        const name = ConverterUtils.getTypeName(typeNode.getSymbol());
-        const value = this.getTypeString(typeNode);
+        const typeName = ConverterUtils.getTypeName(symbol);
+        const typeValue = this.getTypeValue(typeNode, true);
         const comment = ConverterUtils.getCommentFromNode(typeNode);
-        const valuePrint = ConverterUtils.printNode(typeNode);
         const props = this.isPropsSupported(typeNode) ? extractMembers(typeNode, type, this.context) : undefined;
         return {
             kind,
-            name,
-            value,
-            valuePrint,
+            typeName,
+            typeValue,
             comment,
             props,
         };
@@ -62,15 +61,16 @@ function mapSingleMember(originTypeNode: Node, node: Node, context: IConverterCo
         const from = ConverterUtils.getTypeParentRef(node, originTypeNode);
         let name = Node.isPropertyNamed(node) ? node.getName() : '';
         const typeNode = Node.isTypeAliasDeclaration(node) ? node.getTypeNode() : node;
-        let value = context.convert(typeNode).value;
+        const converted = context.convert(typeNode);
+        let { raw } = converted.typeValue;
         if (Node.isGetAccessorDeclaration(node)) {
             const returnType = node.getStructure().returnType;
             name = `get ${name}`;
-            value = `${name}(): ${returnType}`;
+            raw = `${name}(): ${returnType}`;
         } else if (Node.isSetAccessorDeclaration(node)) {
             const params = node.getStructure().parameters[0];
             name = `set ${name}`;
-            value = `${name}(${params.name}: ${params.type})`;
+            raw = `${name}(${params.name}: ${params.type})`;
         }
         const kind = ConverterUtils.getSyntaxKindNameFromNode(typeNode);
         const hasQuestionToken = Node.isQuestionTokenable(node) ? node.hasQuestionToken() : false;
@@ -79,7 +79,7 @@ function mapSingleMember(originTypeNode: Node, node: Node, context: IConverterCo
             kind,
             name,
             comment,
-            value,
+            typeValue: { raw },
             from,
             required,
         };

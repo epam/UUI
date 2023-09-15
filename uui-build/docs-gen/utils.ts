@@ -6,7 +6,7 @@ function propsComparator(p1: TTypeProp, p2: TTypeProp) {
         return String(s1).localeCompare(String(s2));
     }
     return compareStr(p1.name, p2.name)
-        || compareStr(`${p1.from.module}/${p1.from.name}`, `${p2.from.module}/${p2.from.name}`)
+        || compareStr(`${p1.from.module}/${p1.from.typeName.name}`, `${p2.from.module}/${p2.from.typeName.name}`)
         || compareStr(String(p1.required), String(p2.required));
 }
 

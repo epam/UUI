@@ -58,14 +58,30 @@ router.get('/get-ts-docs/:packageName', (req, res) => {
         res.sendStatus(400);
     }
     const content = json[packageName];
+    function prettyPrintTypeValue(typeValue) {
+        if (typeValue) {
+            const pp = {};
+            if (typeValue.print) {
+                pp.print = highlightTsCode(typeValue.print.join('\n')).split('\n');
+            }
+            if (typeValue.raw) {
+                pp.raw = highlightTsCode(typeValue.raw);
+            }
+            return {
+                ...typeValue,
+                ...pp,
+            };
+        }
+    }
     Object.keys(content).forEach((eName) => {
-        const valuePrintSrc = content[eName].valuePrint.join('\n');
-        const propsSrc = content[eName].props;
-        content[eName].valuePrint = highlightTsCode(valuePrintSrc).split('\n');
-        content[eName].props = propsSrc ? propsSrc.map((p) => {
-            p.value = highlightTsCode(p.value);
-            return p;
-        }) : propsSrc;
+        const data = content[eName];
+        data.typeValue = prettyPrintTypeValue(data.typeValue);
+        if (data.props) {
+            data.props = data.props.map((p) => {
+                p.typeValue = prettyPrintTypeValue(p.typeValue);
+                return p;
+            });
+        }
     });
     res.send({
         content,

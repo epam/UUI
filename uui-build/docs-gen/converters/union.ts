@@ -1,6 +1,7 @@
 import { Node } from 'ts-morph';
 import { Converter } from './converter';
 import { ConverterUtils } from './converterUtils';
+import { TTypeValue } from '../types';
 
 export class Union extends Converter {
     override isSupported(typeNode: Node) {
@@ -11,10 +12,13 @@ export class Union extends Converter {
         return false;
     }
 
-    protected override getTypeString(typeNode: Node) {
+    protected override getTypeValue(typeNode: Node): TTypeValue {
         const types = typeNode.getType().getUnionTypes();
-        return types.map((t) => {
-            return ConverterUtils.getCompilerTypeText(t);
-        }).join(' | ');
+        return {
+            raw: types.map((t) => {
+                return ConverterUtils.getCompilerTypeText(t);
+            }).join(' | '),
+            print: ConverterUtils.printNode(typeNode),
+        };
     }
 }
