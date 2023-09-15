@@ -29,10 +29,10 @@
     --uui-text-area-icon: var(--uui-icon);
     --uui-text-area-border-radius: var(--uui-border-radius);
 
-    --uui-text-area-font: var(--font-regular);
-    --uui-text-area-font-weight: normal;
-    --uui-text-area-counter-font: var(--font-regular);
-    --uui-text-area-counter-font-weight: normal;
+    --uui-text-area-font: var(--uui-font);
+    --uui-text-area-font-weight: 400;
+    --uui-text-area-counter-font: var(--uui-font);
+    --uui-text-area-counter-font-weight: 400;
     //
     :global(.uui-input) {
         color: var(--uui-text-area-text);

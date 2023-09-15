@@ -21,8 +21,8 @@
 
     --uui-btn-border-radius: var(--uui-border-radius);
 
-    --uui-btn-font: var(--font-semibold);
-    --uui-btn-font-weight: var(--uui-font-weight);
+    --uui-btn-font: var(--uui-font);
+    --uui-btn-font-weight: var(--uui-font-weight, 600);
     //
     background-color: var(--uui-btn-bg);
     color: var(--uui-btn-caption);

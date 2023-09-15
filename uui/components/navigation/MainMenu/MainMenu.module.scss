@@ -18,10 +18,10 @@
     --uui-main_menu-icon-hover: var(--uui-text-contrast);
     --uui-main_menu-icon-active: var(--uui-text-contrast);
 
-    --uui-main_menu-font: var(--font-semibold);
-    --uui-main_menu-font-weight: normal;
-    --uui-main_menu-search-font: var(--font-regular);
-    --uui-main_menu-search-font-weight: normal;
+    --uui-main_menu-font: var(--uui-font);
+    --uui-main_menu-font-weight: 600;
+    --uui-main_menu-search-font: var(--uui-font);
+    --uui-main_menu-search-font-weight: 400;
     //
     height: 60px;
     min-height: 60px;
@@ -38,7 +38,7 @@
 
     :global(.uui-mainmenu-server-badge-label) {
         padding: 0 5px;
-        border: 2px solid var(--neutral0); /* for CI/CD, not themeable  */
+        border: 2px solid var(--uui-neutral-0); /* for CI/CD, not themeable  */
         border-radius: 5px 5px 0 0;
         border-bottom: 0;
         font-family: var(--uui-main_menu-font);

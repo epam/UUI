@@ -4,7 +4,8 @@
     color: var(--uui-text-tertiary);
     background-color: var(--uui-surface-low);
     font-size: 14px;
-    font-family: var(--font-regular);
+    font-family: var(--uui-font);
+    font-weight: 400;
     border: 1px solid var(--uui-control-border);
     padding: 6px;
 }

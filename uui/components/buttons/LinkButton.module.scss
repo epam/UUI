@@ -6,8 +6,8 @@
     --uui-link_button-text-active: var(--uui-color-70);
     --uui-link_button-text-disabled: var(--uui-text-disabled);
 
-    --uui-link-button-font: var(--font-semibold);
-    --uui-link-button-font-weight: normal;
+    --uui-link-button-font: var(--uui-font);
+    --uui-link-button-font-weight: 600;
 
     &:global(.uui-button-box) {
         background-color: transparent;
