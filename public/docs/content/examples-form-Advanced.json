@@ -35,21 +35,5 @@
         "text": " callbacks from the hook."
       }
     ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "Also, you can store unsaved changes into the local storage and then restore it, when open form again. To turn on this behavior you need to provide "
-      },
-      {
-        "text": "settingsKey",
-        "uui-richTextEditor-code": true
-      },
-      {
-        "text": " prop, which defines local storage key where date will be stored."
-      }
-    ]
   }
 ]
