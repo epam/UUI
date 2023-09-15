@@ -26,10 +26,10 @@ $text-size-count: 24px;
     --uui-tab_button-text-hover: var(--uui-primary-50);
     --uui-tab_button-text-active: var(--uui-primary-50);
     --uui-tab_button-text-disabled: var(--uui-text-disabled);
-    --uui-tab_button-font: var(--font-semibold);
-    --uui-tab_button-font-weight: normal;
+    --uui-tab_button-font: var(--uui-font);
+    --uui-tab_button-font-weight: 600;
     // TODO: need to move informer to separate component
-    --uui-informer-bg: var(--neutral30);
+    --uui-informer-bg: var(--uui-neutral-30);
     --uui-informer-caption: var(--uui-text-secondary);
 
     @include link-button-horizontal-layout(36px);

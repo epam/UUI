@@ -29,7 +29,7 @@
 }
 
 .root {
-    --uui-switch-bg: var(--neutral40);
+    --uui-switch-bg: var(--uui-neutral-40);
     --uui-switch-bg-checked: var(--uui-color-50);
     --uui-switch-bg-hover: var(--uui-control-bg-hover);
     --uui-switch-bg-disabled: var(--uui-control-bg-disabled);
@@ -51,8 +51,8 @@
     --uui-switch-toggler-border-checked-hover: var(--uui-color-60);
     --uui-switch-toggler-border-checked-disabled: var(--uui-color-20);
 
-    --uui-switch-font: var(--font-regular);
-    --uui-switch-font-weight: normal;
+    --uui-switch-font: var(--uui-font);
+    --uui-switch-font-weight: 400;
     //
     //Sizes
     &.size-12 {
