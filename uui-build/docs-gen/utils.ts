@@ -16,11 +16,11 @@ export function sortProps(propsArr: TTypeProp[]): TTypeProp[] {
     }
 }
 
-export function saveJsonToFile(fullPath: string, jsonToSave: object) {
+export function saveContentToFile(fullPath: string, contentToSave: object | string) {
     if (fs.existsSync(fullPath)) {
         fs.rmSync(fullPath, { force: true });
     }
-    const content = JSON.stringify(jsonToSave, undefined, 1);
+    const content = typeof contentToSave === 'string' ? contentToSave : JSON.stringify(contentToSave, undefined, 1);
     fs.writeFileSync(fullPath, content);
 }
 

@@ -1,10 +1,19 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI, DocProps,
 } from '../common';
 
 export class ButtonDoc extends BaseDocsBlock {
     title = 'Button';
+
+    override getTsDocProps(): DocProps {
+        return {
+            [UUI3]: '@epam/loveship:ButtonProps',
+            [UUI4]: '@epam/promo:ButtonProps',
+            [UUI]: '@epam/uui:ButtonProps',
+        };
+    }
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/buttons/button.props.tsx',

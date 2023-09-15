@@ -4,6 +4,7 @@ import { uuiRoot } from '../utils/constants';
 import { SyntaxKind } from 'ts-morph';
 
 export const OUTPUT_FILE_FULL_PATH = path.resolve(uuiRoot, 'public/docs/componentsPropsSet_v2.json');
+export const OUTPUT_DTS_FILE_FULL_PATH = path.resolve(uuiRoot, 'public/docs/componentsPropsSet.d.ts');
 export const TSCONFIG_PATH = './tsconfig.json';
 export const INDEX_PATH = './index.tsx';
 

@@ -8,6 +8,8 @@ import { svc } from '../../services';
 import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
 import css from './BaseDocsBlock.module.scss';
+import { TTsDocExportedEntry } from '../../demo/apiDocs/types';
+import { ApiReferenceItemTable } from '../../demo/apiDocs/components/ApiReferenceItemTable';
 
 export type UUI3Type = 'UUI3_loveship';
 export type UUI4Type = 'UUI4_promo';
@@ -22,6 +24,11 @@ const items: { id: Skin; caption: string }[] = [
     { caption: 'UUI3 [Loveship]', id: UUI3 }, { caption: 'UUI4 [Promo]', id: UUI4 }, { caption: 'UUI [Themebale]', id: UUI },
 ];
 
+export interface DocProps {
+    [UUI3]?: TTsDocExportedEntry;
+    [UUI4]?: TTsDocExportedEntry;
+    [UUI]?: TTsDocExportedEntry;
+}
 interface DocPath {
     [UUI3]?: string;
     [UUI4]?: string;
@@ -72,10 +79,18 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         }
     }
 
+    private getSkin(): typeof UUI3 | typeof UUI4 | typeof UUI {
+        return getQuery('skin') || UUI4;
+    }
+
     abstract title: string;
     abstract renderContent(): React.ReactNode;
     getPropsDocPath(): DocPath {
         return null;
+    }
+
+    protected getTsDocProps(): DocProps | undefined {
+        return undefined;
     }
 
     onTableStateChange = (newState: DataSourceState) => this.setState({ tableState: newState });
@@ -106,6 +121,12 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     ];
 
     renderApiBlock() {
+        const tsDocProps = this.getTsDocProps()?.[this.getSkin()];
+        if (tsDocProps) {
+            return (
+                <ApiReferenceItemTable entry={ tsDocProps } />
+            );
+        }
         const view = this.propsDS.getView(this.state.tableState, this.onTableStateChange);
 
         return (

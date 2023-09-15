@@ -5,6 +5,7 @@ import { TsComment } from './components/TsComment';
 import { Layout } from './components/Layout';
 import { ApiReferenceItemTable } from './ApiReferenceItemTable';
 import { useSearchParams } from 'react-router-dom';
+import { TTsDocExportedEntry } from '../types';
 
 export function ApiReferenceItem() {
     const [params] = useSearchParams();
@@ -31,8 +32,9 @@ export function ApiReferenceItem() {
     }
     const hasProps = exportInfo?.props?.length > 0;
     if (hasProps) {
+        const entry = `${packageName}:${exportName}` as TTsDocExportedEntry;
         items.push({
-            node: <ApiReferenceItemTable packageName={ packageName } exportName={ exportName } showCode={ true } />,
+            node: <ApiReferenceItemTable entry={ entry } showCode={ true } />,
         });
     }
     if (!hasProps) {
