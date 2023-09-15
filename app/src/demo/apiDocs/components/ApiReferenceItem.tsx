@@ -1,14 +1,14 @@
 import React from 'react';
 import { useGetTsDocsForPackage } from '../dataHooks';
-import { svc } from '../../../services';
 import { Code } from '../../../common/docs/Code';
 import { TsComment } from './components/TsComment';
 import { Layout } from './components/Layout';
 import { ApiReferenceItemTable } from './ApiReferenceItemTable';
+import { useSearchParams } from 'react-router-dom';
 
 export function ApiReferenceItem() {
-    const { id } = svc.uuiRouter.getCurrentLink().query;
-    const [p1, p2, exportName] = id.split('/');
+    const [params] = useSearchParams();
+    const [p1, p2, exportName] = params.get('id').split('/');
     const packageName = `${p1}/${p2}`;
     const exportsMap = useGetTsDocsForPackage(packageName);
     const exportInfo = exportsMap?.[exportName];
@@ -29,14 +29,17 @@ export function ApiReferenceItem() {
             node: <TsComment text={ comment } keepBreaks={ false } />,
         });
     }
-    if (exportInfo?.props?.length > 0) {
+    const hasProps = exportInfo?.props?.length > 0;
+    if (hasProps) {
         items.push({
-            node: <ApiReferenceItemTable packageName={ packageName } exportName={ exportName } />,
+            node: <ApiReferenceItemTable packageName={ packageName } exportName={ exportName } showCode={ true } />,
         });
     }
-    items.push({
-        node: <Code codeAsHtml={ typeValue.print?.join('\n') } />,
-    });
+    if (!hasProps) {
+        items.push({
+            node: <Code codeAsHtml={ typeValue.print?.join('\n') } />,
+        });
+    }
 
     return (
         <Layout title={ typeName.nameFull }>

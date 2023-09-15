@@ -1,8 +1,6 @@
 import React from 'react';
 import { RichTextView, ScrollBars } from '@epam/uui';
 import css from './Layout.module.scss';
-//
-import { ContentSection } from '../../../../common';
 
 type TLayoutProps = {
     title: string;
@@ -27,15 +25,15 @@ export function Layout(props: TLayoutProps) {
     };
 
     return (
-        <ContentSection>
+        <div className={ css.root }>
             <ScrollBars>
-                <div className={ css.root }>
+                <div className={ css.main }>
                     <RichTextView>
                         <h1>{title}</h1>
                     </RichTextView>
                     { children.map(renderItem) }
                 </div>
             </ScrollBars>
-        </ContentSection>
+        </div>
     );
 }
