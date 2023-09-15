@@ -3,7 +3,7 @@ import type { ScrollToConfig } from '../../types';
 import { useLayoutEffectSafeForSsr } from '../../ssr';
 import {
     getRowsToFetchForScroll, getUpdatedRowsInfo, assumeHeightForScrollToIndex,
-    getOffsetYForIndex, getScrollToCoordinate,
+    getOffsetYForIndex, getScrollToCoordinate, getRealTopIndex, getTopIndexWithOffset,
 } from './utils';
 import { VirtualListInfo, UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
 
@@ -111,12 +111,12 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     const handleScrollOnRerender = (rowsInfo: RowsInfo) => {
         const { topIndex } = value;
         const { topIndex: newTopIndex, visibleCount } = getNewRowsOnScroll();
+
+        if (estimatedHeight !== rowsInfo.estimatedHeight) {
+            setEstimatedHeight(rowsInfo.estimatedHeight);
+        }
         if (topIndex !== newTopIndex || visibleCount !== value.visibleCount) {
             onValueChange({ ...value, topIndex: newTopIndex, visibleCount });
-        }
-
-        if (estimatedHeight !== rowsInfo.estimatedHeight && topIndex < newTopIndex) {
-            setEstimatedHeight(rowsInfo.estimatedHeight);
         }
     };
 
@@ -142,6 +142,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
 
             scrollContainer.current.scrollTo({ top: topCoordinate, behavior: scrollTo.behavior });
             const scrollPositionDiff = (+topCoordinate.toFixed(0)) - (+scrollContainer.current.scrollTop.toFixed(0));
+
             return [
                 scrollPositionDiff <= 1 // if scroll position is equal to expected one
                 && virtualListInfo.rowHeights[scrollTo.index] !== undefined, // and required row with necessary index is present
@@ -153,15 +154,18 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
 
     const scrollToIndex = React.useCallback(
         (scrollTo: ScrollToConfig) => {
+            const topIndex = getTopIndexWithOffset(scrollTo.index, overdrawRows, blockSize);
+            const { visibleCount } = getTopIndexAndVisibleCountOnScroll();
+
             const [wasScrolled, ok] = scrollContainerToPosition(scrollTo);
-            if ((ok && !wasScrolled) || value.topIndex !== scrollTo.index) {
-                const newScrollTo = { ...scrollTo };
-                if (value.topIndex !== scrollTo.index) {
-                    onValueChange({ ...value, topIndex: scrollTo.index, scrollTo: newScrollTo });
-                }
+            if ((ok && !wasScrolled) || value.topIndex !== topIndex || value.visibleCount !== visibleCount) {
+                onValueChange({ ...value, topIndex, visibleCount, scrollTo });
             }
 
-            if (ok && wasScrolled) {
+            const realTopIndex = getRealTopIndex(virtualListInfo);
+            // prevents from cycling, while force scrolling to a row, which will never appear, when using LazyListView.
+            const shouldScrollToUnknownIndex = value.topIndex === topIndex && value.scrollTo?.index > realTopIndex;
+            if ((ok && wasScrolled) || shouldScrollToUnknownIndex) {
                 if (value.scrollTo?.index === scrollTo.index) {
                     setScrolledTo(value.scrollTo);
                 } else {
