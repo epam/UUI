@@ -5,7 +5,7 @@ import {
     useArrayDataSource,
     useTableState,
 } from '@epam/uui-core';
-import { TType, TTypeProp } from '../types';
+import { TTsDocExportedEntry, TType, TTypeProp } from '../types';
 import { Code } from '../../../common/docs/Code';
 import { TsComment } from './components/TsComment';
 import { Ref } from './components/Ref';
@@ -96,12 +96,6 @@ function getColumns(params: { isGroupedByFrom: boolean, hasFrom: boolean }): Dat
     return propsTableColumns;
 }
 
-type ApiReferenceItemApiProps = {
-    packageName: string;
-    exportName: string;
-    showCode: boolean;
-};
-
 function fromToString(from: TTypeProp['from']) {
     if (from) {
         if (from.module) {
@@ -127,13 +121,18 @@ function useIsGrouped(exportInfo: TType): { canGroup: boolean, setIsGrouped: (is
     };
 }
 
+type ApiReferenceItemApiProps = {
+    entry: TTsDocExportedEntry;
+    showCode?: boolean;
+};
 export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
-    const { packageName, exportName, showCode } = props;
+    const { entry, showCode = false } = props;
+    const [packageName, exportName] = entry.split(':');
     const exportsMap = useGetTsDocsForPackage(packageName);
     const exportInfo = exportsMap?.[exportName];
     const { canGroup, isGrouped, setIsGrouped } = useIsGrouped(exportInfo);
     const columns = getColumns({ isGroupedByFrom: isGrouped, hasFrom: canGroup });
-
+    const isNoData = !exportInfo?.props?.length;
     const [tState, setTState] = useState<DataTableState>({});
     const exportPropsDsItems: TItem[] = useMemo(() => {
         if (exportInfo?.props) {
@@ -194,6 +193,10 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
             return true;
         },
     });
+
+    if (isNoData) {
+        return null;
+    }
 
     return (
         <div className={ css.root }>

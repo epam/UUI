@@ -47252,6 +47252,19 @@
     }
    ]
   },
+  "AccordionProps": {
+   "kind": "TypeAliasDeclaration",
+   "typeName": {
+    "name": "AccordionProps",
+    "nameFull": "AccordionProps"
+   },
+   "typeValue": {
+    "raw": "AccordionMods & GeneralAccordionProps | IEditable<boolean>",
+    "print": [
+     "type AccordionProps = AccordionMods & UuiComponentsAccordionProps;"
+    ]
+   }
+  },
   "AlertProps": {
    "kind": "InterfaceDeclaration",
    "typeName": {
