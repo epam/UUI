@@ -16,15 +16,30 @@ export interface SidebarProps<TItem extends TreeListItem = TreeListItem> {
     getSearchFields?(item: TItem): string[];
 }
 
+function getItemParents<TItem extends TreeListItem>(allItems: TItem[], itemId: string): string[] {
+    const { parentId } = allItems.find((i) => i.id === itemId);
+    const parents = [];
+    if (parentId) {
+        parents.push(parentId);
+        const otherParents = getItemParents(allItems, parentId);
+        parents.push(...otherParents);
+    }
+    return parents;
+}
+
 export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) {
     const { uuiAnalytics } = useUuiContext();
     const [value, setValue] = React.useState<DataSourceState>({ search: '', folded: {} });
 
     React.useEffect(() => {
         if (props.items) {
-            const { parentId } = props.items.find((i) => i.id === props.value);
-            if (parentId != null) {
-                setValue((stateValue) => ({ ...stateValue, folded: { ...stateValue.folded, [parentId]: false } }));
+            const parents = getItemParents(props.items, props.value);
+            if (parents.length > 0) {
+                const unfold = parents.reduce<Record<string, boolean>>((acc, parentId) => {
+                    acc[parentId] = false;
+                    return acc;
+                }, {});
+                setValue((stateValue) => ({ ...stateValue, folded: { ...stateValue.folded, ...unfold } }));
             }
         }
     }, [props.value, props.items]);
@@ -33,7 +48,7 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
         row.isFoldable && row.onFold(row);
         const type = row.isFoldable ? 'folder' : 'document';
         uuiAnalytics.sendEvent(analyticsEvents.document.clickDocument(type, row.value.name, row.parentId));
-    }, []);
+    }, [uuiAnalytics]);
 
     return (
         <aside className={ cx(css.root, 'uui-theme-promo') }>

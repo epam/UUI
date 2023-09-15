@@ -5,13 +5,15 @@ import {
     useArrayDataSource,
     useTableState,
 } from '@epam/uui-core';
-import { TTypeProp } from '../types';
+import { TType, TTypeProp } from '../types';
 import { Code } from '../../../common/docs/Code';
 import { TsComment } from './components/TsComment';
 import { Ref } from './components/Ref';
 import React, { useMemo, useState } from 'react';
 import { Checkbox, DataTable, FlexRow, Text } from '@epam/uui';
 import { useGetTsDocsForPackage } from '../dataHooks';
+import { CodeExpandable } from './components/CodeExpandable';
+import css from './ApiReferenceTable.module.scss';
 
 type TTypeGroup = { _group: true, from: TTypeProp['from'] };
 type TItem = TTypeProp | TTypeGroup;
@@ -20,7 +22,16 @@ function isGroup(item: TTypeProp | TTypeGroup): item is TTypeGroup {
     return (item as TTypeGroup)._group;
 }
 
-function getColumns(isGrouped: boolean): DataColumnProps<TItem>[] {
+function getColumns(params: { isGroupedByFrom: boolean, hasFrom: boolean }): DataColumnProps<TItem>[] {
+    const { hasFrom, isGroupedByFrom } = params;
+    const isFromVisible = hasFrom && !isGroupedByFrom;
+    const WIDTH = {
+        name: 200,
+        typeValue: isFromVisible ? 300 : 300 + 160,
+        comment: 200,
+        from: isFromVisible ? 160 : 0,
+    };
+
     const propsTableColumns: DataColumnProps<TItem>[] = [
         {
             key: 'name',
@@ -36,11 +47,11 @@ function getColumns(isGrouped: boolean): DataColumnProps<TItem>[] {
                     </span>
                 );
             },
-            width: 200,
+            width: WIDTH.name,
             isSortable: true,
         },
         {
-            key: 'value',
+            key: 'typeValue',
             caption: 'Type',
             alignSelf: 'center',
             render: (item) => {
@@ -51,7 +62,7 @@ function getColumns(isGrouped: boolean): DataColumnProps<TItem>[] {
                     <Code codeAsHtml={ item.typeValue.raw } isCompact={ true } />
                 );
             },
-            width: isGrouped ? 460 : 300,
+            width: WIDTH.typeValue,
             isSortable: false,
         },
         {
@@ -66,18 +77,18 @@ function getColumns(isGrouped: boolean): DataColumnProps<TItem>[] {
                     <TsComment text={ item.comment } keepBreaks={ false } isCompact={ true } />
                 );
             },
-            width: 200,
+            width: WIDTH.comment,
             grow: 1,
         },
     ];
-    if (!isGrouped) {
+    if (isFromVisible) {
         return propsTableColumns.concat([
             {
                 key: 'from',
                 caption: 'From',
                 alignSelf: 'center',
                 render: (item) => <Ref refData={ item.from } />,
-                width: 160,
+                width: WIDTH.from,
                 isSortable: true,
             },
         ]);
@@ -88,6 +99,7 @@ function getColumns(isGrouped: boolean): DataColumnProps<TItem>[] {
 type ApiReferenceItemApiProps = {
     packageName: string;
     exportName: string;
+    showCode: boolean;
 };
 
 function fromToString(from: TTypeProp['from']) {
@@ -99,18 +111,34 @@ function fromToString(from: TTypeProp['from']) {
     }
 }
 
+function useIsGrouped(exportInfo: TType): { canGroup: boolean, setIsGrouped: (isGrouped: boolean) => void, isGrouped: boolean } {
+    const [isGrouped, setIsGrouped] = useState(false);
+    const canGroup = useMemo(() => {
+        if (exportInfo) {
+            return exportInfo.props?.some(({ from }) => !!from);
+        }
+        return false;
+    }, [exportInfo]);
+
+    return {
+        canGroup,
+        isGrouped: canGroup && isGrouped,
+        setIsGrouped,
+    };
+}
+
 export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
-    const [grouped, setGrouped] = useState(false);
-    const { packageName, exportName } = props;
+    const { packageName, exportName, showCode } = props;
     const exportsMap = useGetTsDocsForPackage(packageName);
     const exportInfo = exportsMap?.[exportName];
-    const columns = getColumns(grouped);
+    const { canGroup, isGrouped, setIsGrouped } = useIsGrouped(exportInfo);
+    const columns = getColumns({ isGroupedByFrom: isGrouped, hasFrom: canGroup });
 
     const [tState, setTState] = useState<DataTableState>({});
     const exportPropsDsItems: TItem[] = useMemo(() => {
         if (exportInfo?.props) {
             const parents = new Map<string, TItem>();
-            if (grouped) {
+            if (isGrouped) {
                 exportInfo.props.forEach(({ from }) => {
                     if (from) {
                         parents.set(fromToString(from), { _group: true, from });
@@ -126,7 +154,7 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
             return (exportInfo.props as TItem[]).concat(parentsArr);
         }
         return [];
-    }, [exportInfo, grouped]);
+    }, [exportInfo, isGrouped]);
     const exportPropsDs = useArrayDataSource<TItem, string, unknown>(
         {
             items: exportPropsDsItems,
@@ -146,12 +174,12 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
                 return item[sorting.field as keyof TItem];
             },
             getParentId(item: TItem): string | undefined {
-                if (grouped && !isGroup(item)) {
+                if (isGrouped && !isGroup(item)) {
                     return fromToString(item.from);
                 }
             },
         },
-        [exportPropsDsItems, grouped],
+        [exportPropsDsItems, isGrouped],
     );
 
     const tableStateApi = useTableState({
@@ -168,10 +196,12 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
     });
 
     return (
-        <>
-            <FlexRow>
-                <Checkbox value={ grouped } onValueChange={ setGrouped } label="Group By: From" />
-            </FlexRow>
+        <div className={ css.root }>
+            { canGroup && (
+                <FlexRow>
+                    <Checkbox value={ isGrouped } onValueChange={ setIsGrouped } label="Group By: From" />
+                </FlexRow>
+            )}
             <DataTable
                 allowColumnsResizing={ true }
                 value={ tableState }
@@ -180,6 +210,7 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
                 getRows={ view.getVisibleRows }
                 { ...view.getListProps() }
             />
-        </>
+            <CodeExpandable showCode={ showCode } exportInfo={ exportInfo } />
+        </div>
     );
 }

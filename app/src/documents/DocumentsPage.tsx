@@ -4,7 +4,7 @@ import { AppHeader, Page, Sidebar } from '../common';
 import { svc } from '../services';
 import { UUI4Type, UUI3Type, UUI4 } from '../common';
 import { items as itemsStructure, DocItem } from './structure';
-import { getQuery } from '../helpers';
+import { useQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
 import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps, useUuiContext } from '@epam/uui-core';
@@ -55,21 +55,11 @@ const redirectTo = (query: DocsQuery) =>
         pathname: '/documents',
         query,
     });
-const onChange = (row: DataRowProps<TreeListItem, string>) => {
-    if (row.parentId === 'components') {
-        redirectTo({
-            id: row.id,
-            mode: getQuery('mode') || 'doc',
-            skin: getQuery<DocsQuery['skin']>('skin') || UUI4,
-            category: row.parentId,
-        });
-    } else {
-        redirectTo({ id: row.id, category: row.parentId });
-    }
-};
 
 export function DocumentsPage() {
-    const queryParamId: string = getQuery('id');
+    const queryParamId: string = useQuery('id');
+    const mode = useQuery('mode') || 'doc';
+    const skin = useQuery<DocsQuery['skin']>('skin') || UUI4;
     const { items, PageComponent } = useItems(queryParamId);
 
     useEffect(() => {
@@ -87,6 +77,19 @@ export function DocumentsPage() {
         return null;
     }
 
+    const onChange = (row: DataRowProps<TreeListItem, string>) => {
+        if (row.parentId === 'components') {
+            redirectTo({
+                id: row.id,
+                mode,
+                skin,
+                category: row.parentId,
+            });
+        } else {
+            redirectTo({ id: row.id, category: row.parentId });
+        }
+    };
+
     return (
         <Page renderHeader={ () => <AppHeader /> }>
             <FlexRow alignItems="stretch">
@@ -100,9 +103,9 @@ export function DocumentsPage() {
                             pathname: '/documents',
                             query: {
                                 id: row.id,
-                                mode: (row.parentId && svc.uuiRouter.getCurrentLink().query.mode) || 'doc',
-                                skin: (row.parentId && svc.uuiRouter.getCurrentLink().query.skin) || UUI4,
-                                category: row.parentId && row.parentId,
+                                mode: (row.parentId && mode) || 'doc',
+                                skin: (row.parentId && skin) || UUI4,
+                                category: row.parentId,
                             },
                         } }
                 />
