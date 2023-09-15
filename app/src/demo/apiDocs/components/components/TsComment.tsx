@@ -2,8 +2,8 @@ import React, { useMemo } from 'react';
 import { RichTextView } from '@epam/promo';
 import css from './TsComment.module.scss';
 
-export function TsComment(props: { text?: string[], keepBreaks: boolean }) {
-    const { text, keepBreaks } = props;
+export function TsComment(props: { text?: string[], keepBreaks: boolean, isCompact?: boolean }) {
+    const { text, keepBreaks, isCompact } = props;
 
     function formatComment(commentInput: string) {
         // Playground to modify and debug https://regex101.com/r/dd4hyi/1
@@ -32,5 +32,5 @@ export function TsComment(props: { text?: string[], keepBreaks: boolean }) {
     if (!textStr) {
         return null;
     }
-    return <RichTextView htmlContent={ textStr } size="16" cx={ css.root } />;
+    return <RichTextView htmlContent={ textStr } size="16" cx={ [css.root, isCompact && css.compact] } />;
 }

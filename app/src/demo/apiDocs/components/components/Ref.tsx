@@ -1,19 +1,19 @@
-import { TRef } from '../../types';
+import { TTypeRef } from '../../types';
 import React from 'react';
 import { Anchor, Text } from '@epam/uui';
 import css from './Ref.module.scss';
 
-export function Ref(props: { refData: TRef }) {
+export function Ref(props: { refData: TTypeRef }) {
     const { refData } = props;
 
     if (refData) {
-        const { module, name } = refData;
-        let contentNode: React.ReactNode = name;
-        if (module && name) {
-            const link = { pathname: '/documents', query: { id: `${module}/${name}` } };
+        const { module, typeName } = refData;
+        let contentNode: React.ReactNode = typeName.nameFull;
+        if (module && typeName) {
+            const link = { pathname: '/documents', query: { id: `${module}/${typeName.name}` } };
             contentNode = (
                 <>
-                    <Anchor link={ link }>{name}</Anchor>
+                    <Anchor link={ link }>{typeName.nameFull}</Anchor>
                     <span className={ css.moduleName }>
                         {`${module}`}
                     </span>
@@ -21,7 +21,7 @@ export function Ref(props: { refData: TRef }) {
             );
         }
         return (
-            <Text key={ name } cx={ css.root }>
+            <Text key={ typeName.name } cx={ css.root }>
                 { contentNode }
             </Text>
         );

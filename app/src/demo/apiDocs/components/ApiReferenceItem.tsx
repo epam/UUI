@@ -13,8 +13,8 @@ export function ApiReferenceItem() {
     const exportsMap = useGetTsDocsForPackage(packageName);
     const exportInfo = exportsMap?.[exportName];
     const {
-        name,
-        valuePrint,
+        typeName,
+        typeValue,
         comment,
     } = exportInfo || {};
 
@@ -35,11 +35,11 @@ export function ApiReferenceItem() {
         });
     }
     items.push({
-        node: <Code codeAsHtml={ valuePrint.join('\n') } />,
+        node: <Code codeAsHtml={ typeValue.print?.join('\n') } />,
     });
 
     return (
-        <Layout title={ name }>
+        <Layout title={ typeName.nameFull }>
             {items}
         </Layout>
     );

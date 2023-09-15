@@ -48,7 +48,7 @@ function getColumns(isGrouped: boolean): DataColumnProps<TItem>[] {
                     return null;
                 }
                 return (
-                    <Code codeAsHtml={ item.value } isCompact={ true } />
+                    <Code codeAsHtml={ item.typeValue.raw } isCompact={ true } />
                 );
             },
             width: isGrouped ? 460 : 300,
@@ -63,7 +63,7 @@ function getColumns(isGrouped: boolean): DataColumnProps<TItem>[] {
                     return null;
                 }
                 return (
-                    <TsComment text={ item.comment } keepBreaks={ false } />
+                    <TsComment text={ item.comment } keepBreaks={ false } isCompact={ true } />
                 );
             },
             width: 200,
@@ -93,9 +93,9 @@ type ApiReferenceItemApiProps = {
 function fromToString(from: TTypeProp['from']) {
     if (from) {
         if (from.module) {
-            return `${from.module}/${from.name}`;
+            return `${from.module}/${from.typeName.nameFull}`;
         }
-        return from.name;
+        return from.typeName.nameFull;
     }
 }
 
@@ -121,7 +121,7 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
                 const from1 = (f1 as TTypeGroup).from;
                 const from2 = (f2 as TTypeGroup).from;
                 return String(from1.module).localeCompare(String(from2.module))
-                    || String(from1.name).localeCompare(String(from2.name));
+                    || String(from1.typeName.name).localeCompare(String(from2.typeName.name));
             });
             return (exportInfo.props as TItem[]).concat(parentsArr);
         }
@@ -139,8 +139,8 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
             sortBy(item: TItem, sorting: SortingOption): any {
                 if (sorting.field === 'from') {
                     if (item.from) {
-                        const { module, name } = item.from;
-                        return `${name}_${module || ''}`;
+                        const { module, typeName } = item.from;
+                        return `${typeName.name}_${module || ''}`;
                     }
                 }
                 return item[sorting.field as keyof TItem];

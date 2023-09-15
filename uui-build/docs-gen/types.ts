@@ -1,25 +1,31 @@
 import { ExportedDeclarations, Project, Node, SyntaxKind } from 'ts-morph';
 
-type TRef = {
-    module?: string,
-    name: string,
+export type TTypeName = {
+    name: string;
+    nameFull: string;
 };
-
+export type TTypeValue = {
+    raw: string;
+    print?: string[];
+};
+export type TTypeRef = {
+    module?: string,
+    typeName: TTypeName,
+};
 export type TType = {
     kind: string;
-    name: string;
-    value: string;
-    valuePrint: string[];
+    typeName: TTypeName;
+    typeValue: TTypeValue;
     comment?: string[];
     props?: TTypeProp[];
 };
 export type TTypeProp = {
     kind: string;
     name: string;
-    value: string;
+    typeValue: TTypeValue;
     comment?: string[];
     required: boolean;
-    from?: TRef;
+    from?: TTypeRef;
 };
 
 export type TUuiModuleFormattedExport = Record<string, TType>;

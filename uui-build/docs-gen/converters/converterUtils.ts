@@ -1,6 +1,7 @@
 import { EmitHint, Node, Symbol, SyntaxKind, ts, Type } from 'ts-morph';
 import { isExternalFile } from '../utils';
 import { getUuiModuleNameFromPath, SYNTAX_KIND_NAMES } from '../constants';
+import { TTypeName, TTypeRef, TTypeValue } from '../types';
 
 export class ConverterUtils {
     static isExternalNode(typeNode: Node) {
@@ -13,6 +14,16 @@ export class ConverterUtils {
             const filePath = d.getSourceFile().compilerNode.fileName;
             return isExternalFile(filePath);
         });
+    }
+
+    static getTypeValueFromNode(typeNode: Node, print?: boolean): TTypeValue {
+        const result: TTypeValue = {
+            raw: ConverterUtils.getTypeTextFromNode(typeNode),
+        };
+        if (print) {
+            result.print = ConverterUtils.printNode(typeNode);
+        }
+        return result;
     }
 
     static getTypeTextFromNode(typeNode: Node) {
@@ -52,18 +63,39 @@ export class ConverterUtils {
             .map(removeLeadingExportKw);
     }
 
-    static getTypeName(typeSymbol: Symbol) {
-        return typeSymbol ? typeSymbol.getEscapedName() : '';
+    static getTypeName(typeSymbol: Symbol): TTypeName {
+        const result: TTypeName = { name: '', nameFull: '' };
+        if (typeSymbol) {
+            result.name = typeSymbol.getEscapedName();
+            const declared = typeSymbol.getDeclaredType();
+            const ta = declared.getTypeArguments();
+            const ata = declared.getAliasTypeArguments();
+            const argsArr = ta.length > 0 ? ta : ata;
+            if (argsArr.length > 0) {
+                const params = argsArr.map((a) => {
+                    const s = a.getSymbol();
+                    if (s) {
+                        return s.getEscapedName();
+                    }
+                    return ConverterUtils.getCompilerTypeText(a); // need to check that the output isn't too big in such case
+                }).join(', ');
+                result.nameFull = `${result.name}<${params}>`;
+            } else {
+                result.nameFull = result.name;
+            }
+        }
+        return result;
     }
 
-    static getTypeParentRef(typeNode: Node, originTypeNode: Node): { module: string, name: string } | undefined {
+    static getTypeParentRef(typeNode: Node, originTypeNode: Node): TTypeRef | undefined {
         const anc = typeNode.getAncestors().filter((a) => {
             return a !== originTypeNode;
         });
-        return ConverterUtils.mapAncestorsToRefs(anc)?.[0];
+        const mapped = ConverterUtils.mapAncestorsToRefs(anc);
+        return mapped?.[0];
     }
 
-    private static mapAncestorsToRefs(ancParam: Node[]) {
+    private static mapAncestorsToRefs(ancParam: Node[]): TTypeRef[] {
         const anc = ancParam.filter((a) => {
             return (Node.isTypeAliasDeclaration(a) || Node.isInterfaceDeclaration(a) || Node.isClassDeclaration(a));
         });
@@ -73,10 +105,10 @@ export class ConverterUtils {
         return anc.map((ta) => {
             const symbol = ta.getSymbol();
             const module = getUuiModuleNameFromPath(ta.getSourceFile().compilerNode.fileName);
-            const name = ConverterUtils.getTypeName(symbol);
+            const typeName = ConverterUtils.getTypeName(symbol);
             return {
                 module,
-                name,
+                typeName,
             };
         });
     }
