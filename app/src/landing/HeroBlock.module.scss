@@ -4,6 +4,7 @@
     margin: 0 auto;
     background-color: $gray10;
     overflow: hidden;
+    gap: 36px;
 
     .hero {
         max-width: 1200px;
@@ -20,6 +21,7 @@
                 font-size: 72px;
                 line-height: 90px;
                 padding: 0;
+                font-family: var(--font-primary);
             }
 
             .hero-secondary {
