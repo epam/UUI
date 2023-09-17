@@ -2,7 +2,6 @@ import React from 'react';
 
 import { StartedBlock } from './StartedBlock';
 import { ContactsBlock } from './ContactsBlock';
-import { TechnologiesBlock } from './TechnologiesBlock';
 import { HeroBlock } from './HeroBlock';
 import { ExploreBlock } from './ExploreBlock';
 import { ReleasesBlock } from './ReleasesBlock';
@@ -34,7 +33,6 @@ export class LandingPage extends React.Component {
                     <ExploreBlock />
                     <ReleasesBlock />
                     <ContactsBlock />
-                    <TechnologiesBlock />
                 </FlexCell>
             </Page>
         );

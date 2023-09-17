@@ -19,9 +19,32 @@ export class ExploreBlock extends React.Component {
                 <FlexRow cx={ css.explore } borderBottom>
                     <div className={ css.wrapper }>
                         <Text font="museo-sans" cx={ css.header }>
-                            Explore & Download
+                            Explore
                         </Text>
                         <div className={ css.content }>
+                            <Anchor
+                                rawProps={ { tabIndex: -1 } }
+                                link={ {
+                                    pathname: '/documents',
+                                    query: {
+                                        id: 'accordion', mode: 'doc', skin: UUI4, category: 'components',
+                                    },
+                                } }
+                                onClick={ () => this.sendEvent('Components') }
+                            >
+                                <div tabIndex={ 0 } className={ css.components }>
+                                    <Text font="sans-semibold" lineHeight="30" fontSize="24" cx={ css.caption }>
+                                        Components
+                                    </Text>
+                                </div>
+                            </Anchor>
+                            <Anchor rawProps={ { tabIndex: -1 } } link={ { pathname: '/demo' } } onClick={ () => this.sendEvent('Demo') }>
+                                <div tabIndex={ 0 } className={ css.demo }>
+                                    <Text font="sans-semibold" lineHeight="30" fontSize="24" cx={ css.caption }>
+                                        Demos
+                                    </Text>
+                                </div>
+                            </Anchor>
                             <Anchor
                                 rawProps={ { tabIndex: -1 } }
                                 link={ { pathname: '/documents', query: { id: 'promoColors', category: 'assets' } } }
@@ -62,29 +85,6 @@ export class ExploreBlock extends React.Component {
                                         Download Assets
                                     </Text>
                                     <IconContainer rawProps={ { tabIndex: -1 } } icon={ DownloadIcon } cx={ css.downloadIcon } />
-                                </div>
-                            </Anchor>
-                            <Anchor
-                                rawProps={ { tabIndex: -1 } }
-                                link={ {
-                                    pathname: '/documents',
-                                    query: {
-                                        id: 'accordion', mode: 'doc', skin: UUI4, category: 'components',
-                                    },
-                                } }
-                                onClick={ () => this.sendEvent('Components') }
-                            >
-                                <div tabIndex={ 0 } className={ css.components }>
-                                    <Text font="sans-semibold" lineHeight="30" fontSize="24" cx={ css.caption }>
-                                        Components
-                                    </Text>
-                                </div>
-                            </Anchor>
-                            <Anchor rawProps={ { tabIndex: -1 } } link={ { pathname: '/demo' } } onClick={ () => this.sendEvent('Demo') }>
-                                <div tabIndex={ 0 } className={ css.demo }>
-                                    <Text font="sans-semibold" lineHeight="30" fontSize="24" cx={ css.caption }>
-                                        Demo
-                                    </Text>
                                 </div>
                             </Anchor>
                         </div>
