@@ -103,10 +103,11 @@ export class HeroBlock extends React.Component<HeroBlockProps, HeroBlockState> {
                                         EPAM UUI
                                     </Text>
                                     <Text font="sans" fontSize="24" cx={ css.heroSecondary }>
-                                        React-based library to accelerate business applications development.
+                                        UI development accelerator for business applications.
                                     </Text>
                                     <Text font="sans" fontSize="24" cx={ css.heroSecondary }>
-                                        Complete components set, Figma libraries, state management facilities, guidelines, blueprints, examples, and more.
+                                        Complete set of components,
+                                        guidelines, blueprints, examples, to build your apps on top of React, Figma, TypeScript.
                                     </Text>
                                 </div>
                                 <div className={ cx(css.heroWrapper, this.state.showAnimation && containerWidth > 1280 && 'show-animation') }>
