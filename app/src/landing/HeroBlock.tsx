@@ -106,7 +106,7 @@ export class HeroBlock extends React.Component<HeroBlockProps, HeroBlockState> {
                                         UI development accelerator for business applications.
                                     </Text>
                                     <Text font="sans" fontSize="24" cx={ css.heroSecondary }>
-                                        A complete set of components,
+                                        Complete set of components,
                                         guidelines, blueprints, examples, to build your apps on top of React, Figma, TypeScript.
                                     </Text>
                                 </div>
