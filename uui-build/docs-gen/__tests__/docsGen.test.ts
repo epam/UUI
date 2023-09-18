@@ -1,7 +1,34 @@
 import { generateDocs } from './utils/test-utils';
 
 describe('docsGen', () => {
-    test('should convert alias of external type', () => {
+    test('should convert mapped type', () => {
+        const input = `
+            export type TLocal = {
+                [key: number]: string;
+            }
+        `;
+        const output = {
+            '@epam/test-module': {
+                TLocal: {
+                    kind: 'TypeAliasDeclaration',
+                    typeName: {
+                        name: 'TLocal',
+                        nameFull: 'TLocal',
+                    },
+                    typeValue: {
+                        print: [
+                            'type TLocal = {',
+                            '    [key: number]: string;',
+                            '};',
+                        ],
+                        raw: 'TLocal',
+                    },
+                },
+            },
+        };
+        expect(generateDocs(input)).toEqual(output);
+    });
+    test('should convert internal type if it is wrapped in utility type', () => {
         const input = `
             type TLocal = {
                 p1: number;
@@ -13,6 +40,22 @@ describe('docsGen', () => {
             '@epam/test-module': {
                 TTest: {
                     kind: 'TypeAliasDeclaration',
+                    props: [
+                        {
+                            from: {
+                                typeName: {
+                                    name: 'TLocal',
+                                    nameFull: 'TLocal',
+                                },
+                            },
+                            kind: 'PropertySignature',
+                            name: 'p2',
+                            required: true,
+                            typeValue: {
+                                raw: 'string',
+                            },
+                        },
+                    ],
                     typeName: {
                         name: 'TTest',
                         nameFull: 'TTest',
