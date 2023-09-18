@@ -3,11 +3,24 @@ import { isExternalFile } from '../utils';
 import { getUuiModuleNameFromPath, SYNTAX_KIND_NAMES } from '../constants';
 import { TTypeName, TTypeRef, TTypeValue } from '../types';
 
+function isInternalWithUtility(typeNode: Node): boolean {
+    const typeRef = typeNode.getChildren().find(Node.isTypeReference);
+    const name = typeRef?.getTypeName().getText();
+    // TODO: tests, Record is missed.
+    if (['Omit', 'Pick', 'Partial', 'Awaited', 'Required', 'Readonly'].indexOf(name) !== -1) {
+        const [t] = typeRef.getTypeArguments();
+        return !ConverterUtils.isExternalNode(t);
+    }
+}
+
 export class ConverterUtils {
-    static isExternalNode(typeNode: Node) {
+    static isExternalNode(typeNode: Node): boolean {
         const type = ConverterUtils.getTypeFromNode(typeNode);
         const symbol = ConverterUtils.getSymbolFromType(type);
         if (!symbol) {
+            return false;
+        }
+        if (isInternalWithUtility(typeNode)) {
             return false;
         }
         return (symbol.getDeclarations() || []).some((d) => {

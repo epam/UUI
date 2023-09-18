@@ -23152,17 +23152,195 @@
    ]
   },
   "UseFormProps": {
+   "kind": "TypeAliasDeclaration",
+   "typeName": {
+    "name": "UseFormProps",
+    "nameFull": "UseFormProps<T>"
+   },
    "typeValue": {
     "raw": "UseFormProps<T>",
     "print": [
      "type UseFormProps<T> = Omit<FormProps<T>, 'renderForm'>;"
     ]
    },
-   "typeName": {
-    "name": "UseFormProps",
-    "nameFull": "UseFormProps<T>"
-   },
-   "kind": "TypeAliasDeclaration"
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "beforeLeave",
+     "comment": [
+      "Called when form is unmounted, but user still have unsaved changes.",
+      " Accepts a Promise<boolean> to be returned. If promise resolves to true - save procedure is performed.",
+      " The common use-case is to show a modal with \"Save Changes?\" dialog",
+      " Skins usually implement this as default behavior. To prevent it, you can pass null to this prop to override it."
+     ],
+     "typeValue": {
+      "raw": "undefined | null | () => Promise<boolean>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FormProps",
+       "nameFull": "FormProps<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "getMetadata",
+     "comment": [
+      "Returns form metadata - information used to validate the form.",
+      " @param state Metadata can depend on state, and will be re-computed on updates"
+     ],
+     "typeValue": {
+      "raw": "undefined | (state: T) => Metadata<T>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FormProps",
+       "nameFull": "FormProps<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "loadUnsavedChanges",
+     "comment": [
+      "Used to restore unsaved user edits from the last session (usually to localstorage, via uuiUserSettings context)",
+      " If unsaved changes are detected, this callback is called. If it is resolved - the form restores unsaved edits.",
+      " The common use-case is to show a modal with \"You have unsaved changes, restore them?\" dialog",
+      " Skins usually implement this as default behavior. To prevent it, you can pass null to this prop to override it."
+     ],
+     "typeValue": {
+      "raw": "undefined | () => Promise<void>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FormProps",
+       "nameFull": "FormProps<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onError",
+     "comment": [
+      "Called when save fails"
+     ],
+     "typeValue": {
+      "raw": "undefined | (error: any) => any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FormProps",
+       "nameFull": "FormProps<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onSave",
+     "comment": [
+      "Occurs when 'save' function is called on Form.",
+      " Should save form data (usually with API call to server).",
+      " Server can also reject form, and provide validation errors in response.",
+      " @param state Form state to save"
+     ],
+     "typeValue": {
+      "raw": "(state: T) => Promise<void | FormSaveResponse<T>>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FormProps",
+       "nameFull": "FormProps<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onSuccess",
+     "comment": [
+      "Called after successful save.",
+      " @param state Saved state",
+      " @param isSavedBeforeLeave true, if save is triggered via leaving the page, and \"Save Changes?\" dialog"
+     ],
+     "typeValue": {
+      "raw": "undefined | (state: T, isSavedBeforeLeave?: boolean | undefined) => any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FormProps",
+       "nameFull": "FormProps<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "settingsKey",
+     "comment": [
+      "The key, under which form save unsaved state usually to localstorage, via uuiUserSettings context)"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FormProps",
+       "nameFull": "FormProps<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationOn",
+     "comment": [
+      "Controls when form validation occurs:",
+      " save (default, recommended) - form is validated on save. If form is invalid - it will be revalidated on every change, until become valid",
+      " change - form is validated on every user change. Only fields changes in current edit session are validated"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'change' | 'save'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FormProps",
+       "nameFull": "FormProps<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "value",
+     "comment": [
+      "Current value of the form state"
+     ],
+     "typeValue": {
+      "raw": "T"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FormProps",
+       "nameFull": "FormProps<T>"
+      }
+     },
+     "required": true
+    }
+   ]
   },
   "UseTableStateHookParams": {
    "kind": "InterfaceDeclaration",
