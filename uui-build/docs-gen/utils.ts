@@ -1,5 +1,12 @@
 import { TTypeProp } from './types';
 import fs from 'fs';
+import path from 'path';
+// @ts-ignore
+import { uuiRoot } from '../utils/constants';
+
+export function makeRelativeToUuiRoot(fullPath: string) {
+    return path.relative(uuiRoot, fullPath).replace(/\\/g, '/');
+}
 
 function propsComparator(p1: TTypeProp, p2: TTypeProp) {
     function compareStr(s1: string, s2: string) {
