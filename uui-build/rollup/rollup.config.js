@@ -19,6 +19,13 @@ const { readPackageJsonContentSync } = require('../utils/packageJsonUtils.js');
 const EXTRACTED_CSS_FILE_NAME = 'styles.css';
 const BUILD_OUTPUT_DIR = 'build';
 
+function genUniqueId() {
+    return [new Date().getTime(), Math.random()].reduce((acc, n) => (acc + n.toString(36).substring(2)), '');
+}
+const svgPrefix = {
+    toString: () => `${genUniqueId()}_`,
+};
+
 module.exports = { createRollupConfigForModule };
 
 /**
@@ -102,12 +109,12 @@ async function createRollupConfigForModule(options) {
                                     removeViewBox: false,
                                     cleanupIDs: {
                                         remove: true,
-                                        minify: false, // minifying IDs makes our IDs non-unique, so we have turned it OFF.
+                                        minify: true,
+                                        prefix: svgPrefix,
                                     },
                                 },
                             },
                         },
-                        // 'prefixIds', TBD: we may want to enable this plugin so that we don't rely on uniqueness of original IDs.
                     ],
                 },
             }),
