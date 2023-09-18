@@ -1,24 +1,22 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI, DocProps,
+    EditableDocContent, DocExample, BaseDocsBlock, TUuiTsDoc, TSkin,
 } from '../common';
 
 export class ButtonDoc extends BaseDocsBlock {
     title = 'Button';
 
-    override getTsDocProps(): DocProps {
-        return {
-            [UUI3]: '@epam/loveship:ButtonProps',
-            [UUI4]: '@epam/promo:ButtonProps',
-            [UUI]: '@epam/uui:ButtonProps',
-        };
-    }
+    override getUuiTsDoc = (): TUuiTsDoc => ({
+        [TSkin.UUI3_loveship]: '@epam/loveship:ButtonProps',
+        [TSkin.UUI4_promo]: '@epam/promo:ButtonProps',
+        [TSkin.UUI]: '@epam/uui:ButtonProps',
+    });
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docs/_props/loveship/components/buttons/button.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/buttons/button.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/buttons/button.props.tsx',
+            [TSkin.UUI3_loveship]: './app/src/docs/_props/loveship/components/buttons/button.props.tsx',
+            [TSkin.UUI4_promo]: './app/src/docs/_props/epam-promo/components/buttons/button.props.tsx',
+            [TSkin.UUI]: './app/src/docs/_props/uui/components/buttons/button.props.tsx',
         };
     }
 

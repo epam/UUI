@@ -11,29 +11,27 @@ import css from './BaseDocsBlock.module.scss';
 import { TTsDocExportedEntry } from '../../demo/apiDocs/types';
 import { ApiReferenceItemTable } from '../../demo/apiDocs/components/ApiReferenceItemTable';
 
-export type UUI3Type = 'UUI3_loveship';
-export type UUI4Type = 'UUI4_promo';
-export type UUIType = 'UUI';
-export type Skin = UUI3Type | UUI4Type | UUIType;
+export enum TSkin {
+    UUI3_loveship = 'UUI3_loveship',
+    UUI4_promo = 'UUI4_promo',
+    UUI = 'UUI'
+}
+const DEFAULT_SKIN = TSkin.UUI4_promo;
 
-export const UUI3: UUI3Type = 'UUI3_loveship';
-export const UUI4: UUI4Type = 'UUI4_promo';
-export const UUI: UUIType = 'UUI';
+export const UUI3 = TSkin.UUI3_loveship;
+export const UUI4 = TSkin.UUI4_promo;
+export const UUI = TSkin.UUI;
 
-const items: { id: Skin; caption: string }[] = [
-    { caption: 'UUI3 [Loveship]', id: UUI3 }, { caption: 'UUI4 [Promo]', id: UUI4 }, { caption: 'UUI [Themebale]', id: UUI },
+const items: { id: TSkin; caption: string }[] = [
+    { caption: 'UUI3 [Loveship]', id: TSkin.UUI3_loveship }, { caption: 'UUI4 [Promo]', id: TSkin.UUI4_promo }, { caption: 'UUI [Themebale]', id: TSkin.UUI },
 ];
 
-export interface DocProps {
-    [UUI3]?: TTsDocExportedEntry;
-    [UUI4]?: TTsDocExportedEntry;
-    [UUI]?: TTsDocExportedEntry;
-}
-interface DocPath {
-    [UUI3]?: string;
-    [UUI4]?: string;
-    [UUI]?: string;
-}
+export type TUuiTsDoc = {
+    [skin in TSkin]?: TTsDocExportedEntry;
+};
+type DocPath = {
+    [key in TSkin]?: string;
+};
 
 interface BaseDocsBlockState {
     props?: any;
@@ -42,6 +40,7 @@ interface BaseDocsBlockState {
 
 export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockState> {
     propsDS: ArrayDataSource;
+
     constructor(props: any) {
         super(props);
 
@@ -79,8 +78,8 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         }
     }
 
-    private getSkin(): typeof UUI3 | typeof UUI4 | typeof UUI {
-        return getQuery('skin') || UUI4;
+    private getSkin(): TSkin {
+        return getQuery('skin') || DEFAULT_SKIN;
     }
 
     abstract title: string;
@@ -89,7 +88,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         return null;
     }
 
-    protected getTsDocProps(): DocProps | undefined {
+    protected getUuiTsDoc(): TUuiTsDoc | undefined {
         return undefined;
     }
 
@@ -121,12 +120,16 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     ];
 
     renderApiBlock() {
-        const tsDocProps = this.getTsDocProps()?.[this.getSkin()];
+        const tsDocProps = this.getUuiTsDoc()?.[this.getSkin()];
         if (tsDocProps) {
             return (
                 <ApiReferenceItemTable entry={ tsDocProps } />
             );
         }
+        return this.renderLegacyApiBlock();
+    }
+
+    private renderLegacyApiBlock() {
         const view = this.propsDS.getView(this.state.tableState, this.onTableStateChange);
 
         return (
@@ -147,11 +150,11 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderMultiSwitch() {
         return (
-            <MultiSwitch<Skin>
+            <MultiSwitch<TSkin>
                 size="36"
-                items={ items.filter((i) => (!window.location.host.includes('localhost') ? i.id !== UUI : true)) }
-                value={ getQuery('skin') || UUI4 }
-                onValueChange={ (newValue: Skin) => this.handleChangeSkin(newValue) }
+                items={ items.filter((i) => (!window.location.host.includes('localhost') ? i.id !== TSkin.UUI : true)) }
+                value={ this.getSkin() }
+                onValueChange={ (newValue: TSkin) => this.handleChangeSkin(newValue) }
             />
         );
     }
@@ -181,11 +184,13 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
             });
             return null;
         }
-        if (!this.getPropsDocPath()[getQuery('skin') as Skin]) {
+        const skin = getQuery('skin') as TSkin;
+        const propsDoc = this.getPropsDocPath()[skin];
+        if (!propsDoc) {
             return this.renderNotSupportPropExplorer();
         }
         return (
-            <ComponentEditor key={ this.getPropsDocPath()[getQuery('skin') as Skin] } propsDocPath={ this.getPropsDocPath()[getQuery('skin') as Skin] } title={ this.title } />
+            <ComponentEditor key={ propsDoc } propsDocPath={ propsDoc } title={ this.title } />
         );
     }
 
@@ -242,7 +247,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         );
     }
 
-    handleChangeSkin(skin: Skin) {
+    handleChangeSkin(skin: TSkin) {
         svc.uuiRouter.redirect({
             pathname: '/documents',
             query: {
@@ -255,7 +260,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         this.handleChangeBodyTheme(skin);
     }
 
-    handleChangeBodyTheme(skin: Skin) {
+    handleChangeBodyTheme(skin: TSkin) {
         const theme = document.body.classList.value.match(/uui-theme-(\S+)\s*/)[1];
         if (theme === skin.split('_')[1]) return;
         document.body.classList.remove(`uui-theme-${theme}`);
@@ -263,11 +268,11 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     }
 
     componentWillUnmount() {
-        this.handleChangeBodyTheme(UUI4);
+        this.handleChangeBodyTheme(TSkin.UUI4_promo);
     }
 
     handleChangeMode(mode: 'doc' | 'propsEditor') {
-        this.handleChangeBodyTheme(UUI4);
+        this.handleChangeBodyTheme(TSkin.UUI4_promo);
 
         svc.uuiRouter.redirect({
             pathname: '/documents',
