@@ -1,9 +1,8 @@
 import React, { useEffect, useMemo } from 'react';
 import { FlexRow } from '@epam/promo';
-import { AppHeader, Page, Sidebar } from '../common';
+import { AppHeader, Page, Sidebar, TSkin } from '../common';
 import { svc } from '../services';
-import { UUI4Type, UUI3Type, UUI4 } from '../common';
-import { items as itemsStructure, DocItem } from './structure';
+import { DocItem, items as itemsStructure } from './structure';
 import { useQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
 import { TreeListItem } from '@epam/uui-components';
@@ -14,7 +13,7 @@ import { TApi, TAppContext } from '../data';
 type DocsQuery = {
     id: string;
     mode?: string;
-    skin?: UUI4Type | UUI3Type;
+    skin?: TSkin.UUI3_loveship | TSkin.UUI4_promo;
     category?: string;
 };
 
@@ -59,12 +58,12 @@ const redirectTo = (query: DocsQuery) =>
 export function DocumentsPage() {
     const queryParamId: string = useQuery('id');
     const mode = useQuery('mode') || 'doc';
-    const skin = useQuery<DocsQuery['skin']>('skin') || UUI4;
+    const skin = useQuery<DocsQuery['skin']>('skin') || TSkin.UUI4_promo;
     const { items, PageComponent } = useItems(queryParamId);
 
     useEffect(() => {
         if (items && !PageComponent) {
-            redirectTo({ id: items[0].id, mode: 'doc', skin: UUI4 });
+            redirectTo({ id: items[0].id, mode: 'doc', skin: TSkin.UUI4_promo });
         }
     }, [items, PageComponent]);
 
@@ -104,7 +103,7 @@ export function DocumentsPage() {
                             query: {
                                 id: row.id,
                                 mode: (row.parentId && mode) || 'doc',
-                                skin: (row.parentId && skin) || UUI4,
+                                skin: (row.parentId && skin) || TSkin.UUI4_promo,
                                 category: row.parentId,
                             },
                         } }
