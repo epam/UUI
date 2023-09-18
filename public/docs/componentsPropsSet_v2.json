@@ -1103,7 +1103,177 @@
      "    ] | null;",
      "} & IEditable<TItem[]>);"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "emptyValue",
+     "typeValue": {
+      "raw": "undefined | null | []"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isDisabled",
+     "comment": [
+      "Disable editing, and visually de-emphasize value of the component"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDisableable",
+       "nameFull": "IDisableable"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isInvalid",
+     "comment": [
+      "True if component contains invalid input"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isReadonly",
+     "comment": [
+      "Disable editing. Unlike isDisabled, keep component's value readable."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeReadonly",
+       "nameFull": "ICanBeReadonly"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isRequired",
+     "comment": [
+      "Marks that component's value is required"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeRequired",
+       "nameFull": "ICanBeRequired"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onValueChange",
+     "comment": [
+      "Called when value needs to be changed (usually due to user interaction)"
+     ],
+     "typeValue": {
+      "raw": "(newValue: T) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "typeValue": {
+      "raw": "'multi'"
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationMessage",
+     "comment": [
+      "Message describing why the value is invalid"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationProps",
+     "comment": [
+      "If T is a complex value (object or array), this property contains validation states of inner items"
+     ],
+     "typeValue": {
+      "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "value",
+     "comment": [
+      "The current value of component"
+     ],
+     "typeValue": {
+      "raw": "T"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "typeValue": {
+      "raw": "undefined | 'id'"
+     },
+     "required": false
+    }
+   ]
   },
   "AsyncDataSourceProps": {
    "kind": "InterfaceDeclaration",
@@ -13437,7 +13607,377 @@
      "    selectedPredicate?: string;",
      "};"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "arrowProps",
+     "typeValue": {
+      "raw": "undefined | PopperArrowProps"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDropdownBodyProps",
+       "nameFull": "IDropdownBodyProps"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "columnKey",
+     "typeValue": {
+      "raw": "string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FilterConfigBase",
+       "nameFull": "FilterConfigBase<TFilter>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "field",
+     "typeValue": {
+      "raw": "keyof TFilter"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FilterConfigBase",
+       "nameFull": "FilterConfigBase<TFilter>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isAlwaysVisible",
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FilterConfigBase",
+       "nameFull": "FilterConfigBase<TFilter>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isDisabled",
+     "comment": [
+      "Disable editing, and visually de-emphasize value of the component"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDisableable",
+       "nameFull": "IDisableable"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isInvalid",
+     "comment": [
+      "True if component contains invalid input"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isOpen",
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDropdownBodyProps",
+       "nameFull": "IDropdownBodyProps"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isReadonly",
+     "comment": [
+      "Disable editing. Unlike isDisabled, keep component's value readable."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeReadonly",
+       "nameFull": "ICanBeReadonly"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isRequired",
+     "comment": [
+      "Marks that component's value is required"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeRequired",
+       "nameFull": "ICanBeRequired"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "maxCount",
+     "comment": [
+      "Count of words to show in the Filter toggler. By default, 2 item will be shown."
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FilterConfigBase",
+       "nameFull": "FilterConfigBase<TFilter>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "onClose",
+     "typeValue": {
+      "raw": "undefined | () => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDropdownBodyProps",
+       "nameFull": "IDropdownBodyProps"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onValueChange",
+     "comment": [
+      "Called when value needs to be changed (usually due to user interaction)"
+     ],
+     "typeValue": {
+      "raw": "(newValue: T) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "placement",
+     "comment": [
+      "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDropdownBodyProps",
+       "nameFull": "IDropdownBodyProps"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "predicates",
+     "typeValue": {
+      "raw": "undefined | IFilterPredicate[]"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FilterConfigBase",
+       "nameFull": "FilterConfigBase<TFilter>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "scheduleUpdate",
+     "typeValue": {
+      "raw": "undefined | () => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDropdownBodyProps",
+       "nameFull": "IDropdownBodyProps"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectedPredicate",
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "title",
+     "typeValue": {
+      "raw": "string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FilterConfigBase",
+       "nameFull": "FilterConfigBase<TFilter>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "togglerHeight",
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDropdownBodyProps",
+       "nameFull": "IDropdownBodyProps"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "togglerWidth",
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDropdownBodyProps",
+       "nameFull": "IDropdownBodyProps"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "type",
+     "typeValue": {
+      "raw": "'singlePicker' | 'multiPicker'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerFilterConfig",
+       "nameFull": "PickerFilterConfig<TFilter>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationMessage",
+     "comment": [
+      "Message describing why the value is invalid"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationProps",
+     "comment": [
+      "If T is a complex value (object or array), this property contains validation states of inner items"
+     ],
+     "typeValue": {
+      "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "value",
+     "comment": [
+      "The current value of component"
+     ],
+     "typeValue": {
+      "raw": "T"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    }
+   ]
   },
   "IFilterPredicate": {
    "kind": "TypeAliasDeclaration",
@@ -17744,7 +18284,79 @@
     "print": [
      "type LoadingStatus = typeof UNKNOWN | typeof LOADING | typeof PENDING | typeof LOADED | typeof FAILED;"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "MethodSignature",
+     "name": "[Symbol.toPrimitive]",
+     "typeValue": {
+      "raw": "(hint: string) => symbol"
+     },
+     "from": {
+      "typeName": {
+       "name": "Symbol",
+       "nameFull": "Symbol"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "[Symbol.toStringTag]",
+     "typeValue": {
+      "raw": "string"
+     },
+     "from": {
+      "typeName": {
+       "name": "Symbol",
+       "nameFull": "Symbol"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "description",
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "typeName": {
+       "name": "Symbol",
+       "nameFull": "Symbol"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "toString",
+     "typeValue": {
+      "raw": "() => string"
+     },
+     "from": {
+      "typeName": {
+       "name": "Symbol",
+       "nameFull": "Symbol"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "valueOf",
+     "typeValue": {
+      "raw": "() => symbol"
+     },
+     "from": {
+      "typeName": {
+       "name": "Symbol",
+       "nameFull": "Symbol"
+      }
+     },
+     "required": true
+    }
+   ]
   },
   "LoadTreeOptions": {
    "kind": "InterfaceDeclaration",
@@ -18927,7 +19539,468 @@
     "print": [
      "type PickerBaseProps<TItem, TId> = PickerBaseOptions<TItem, TId> & PickerBindingProps<TItem, TId> & IAnalyticableOnChange<any>;"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "cascadeSelection",
+     "comment": [
+      "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
+      " - false: All nodes are selected independently (default).",
+      " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
+      " - 'implicit': Selecting a parent node means that all children are considered checked.",
+      "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
+      "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
+      "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
+      "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true | 'implicit' | 'explicit'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "dataSource",
+     "comment": [
+      "Provides items to the Picker"
+     ],
+     "typeValue": {
+      "raw": "IDataSource<TItem, TId, any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "emptyValue",
+     "comment": [
+      "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | []"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityName",
+     "comment": [
+      "Name of the entity being selected. Affects wording like \"Please select [entity]\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityPluralName",
+     "comment": [
+      "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "filter",
+     "comment": [
+      "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+     ],
+     "typeValue": {
+      "raw": "any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getName",
+     "comment": [
+      "Gets entity display name. Default it item.name."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getRowOptions",
+     "comment": [
+      "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, index: number) => DataRowOptions<TItem, TId>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "getSearchFields",
+     "comment": [
+      "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string[]"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getValueChangeAnalyticsEvent",
+     "comment": [
+      "Given a value, returns an analytics event to send when component is edited.",
+      " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+     ],
+     "typeValue": {
+      "raw": "undefined | (newValue: T | null, oldValue: T | null) => AnalyticsEvent"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IAnalyticableOnChange",
+       "nameFull": "IAnalyticableOnChange<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isDisabled",
+     "comment": [
+      "Disable editing, and visually de-emphasize value of the component"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDisableable",
+       "nameFull": "IDisableable"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "isFoldedByDefault",
+     "comment": [
+      "You can return true for all, or some items to fold them."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => boolean"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isInvalid",
+     "comment": [
+      "True if component contains invalid input"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isReadonly",
+     "comment": [
+      "Disable editing. Unlike isDisabled, keep component's value readable."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeReadonly",
+       "nameFull": "ICanBeReadonly"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isRequired",
+     "comment": [
+      "Marks that component's value is required"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeRequired",
+       "nameFull": "ICanBeRequired"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onValueChange",
+     "comment": [
+      "Called when value needs to be changed (usually due to user interaction)"
+     ],
+     "typeValue": {
+      "raw": "(newValue: T) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderNotFound",
+     "comment": [
+      "Overrides the default 'no records found' banner.",
+      " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: { search: string; onClose: () => void; }) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderRow",
+     "comment": [
+      "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "comment": [
+      "'single' - only one item is selected. 'multi' - multiple items are selected"
+     ],
+     "typeValue": {
+      "raw": "'single'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "sortBy",
+     "comment": [
+      "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, sorting: SortingOption<any>) => any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "sorting",
+     "comment": [
+      "Defines sorting to pass to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | SortingOption<any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationMessage",
+     "comment": [
+      "Message describing why the value is invalid"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationProps",
+     "comment": [
+      "If T is a complex value (object or array), this property contains validation states of inner items"
+     ],
+     "typeValue": {
+      "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "value",
+     "comment": [
+      "The current value of component"
+     ],
+     "typeValue": {
+      "raw": "T"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "comment": [
+      "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'id'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": false
+    }
+   ]
   },
   "PickerBindingProps": {
    "kind": "TypeAliasDeclaration",
@@ -18940,7 +20013,189 @@
     "print": [
      "type PickerBindingProps<TItem, TId> = SinglePickerProps<TId, TItem> | ArrayPickerProps<TId, TItem>;"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "isDisabled",
+     "comment": [
+      "Disable editing, and visually de-emphasize value of the component"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDisableable",
+       "nameFull": "IDisableable"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isInvalid",
+     "comment": [
+      "True if component contains invalid input"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isReadonly",
+     "comment": [
+      "Disable editing. Unlike isDisabled, keep component's value readable."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeReadonly",
+       "nameFull": "ICanBeReadonly"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isRequired",
+     "comment": [
+      "Marks that component's value is required"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeRequired",
+       "nameFull": "ICanBeRequired"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onValueChange",
+     "comment": [
+      "Called when value needs to be changed (usually due to user interaction)"
+     ],
+     "typeValue": {
+      "raw": "(newValue: T) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "comment": [
+      "'single' - only one item is selected. 'multi' - multiple items are selected"
+     ],
+     "typeValue": {
+      "raw": "'single'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationMessage",
+     "comment": [
+      "Message describing why the value is invalid"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationProps",
+     "comment": [
+      "If T is a complex value (object or array), this property contains validation states of inner items"
+     ],
+     "typeValue": {
+      "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "value",
+     "comment": [
+      "The current value of component"
+     ],
+     "typeValue": {
+      "raw": "T"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "comment": [
+      "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'id'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": false
+    }
+   ]
   },
   "PickerBindingValueType": {
    "kind": "TypeAliasDeclaration",
@@ -20221,7 +21476,175 @@
      "    valueType: 'entity';",
      "} & IEditable<TItem>);"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "isDisabled",
+     "comment": [
+      "Disable editing, and visually de-emphasize value of the component"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDisableable",
+       "nameFull": "IDisableable"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isInvalid",
+     "comment": [
+      "True if component contains invalid input"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isReadonly",
+     "comment": [
+      "Disable editing. Unlike isDisabled, keep component's value readable."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeReadonly",
+       "nameFull": "ICanBeReadonly"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isRequired",
+     "comment": [
+      "Marks that component's value is required"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeRequired",
+       "nameFull": "ICanBeRequired"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onValueChange",
+     "comment": [
+      "Called when value needs to be changed (usually due to user interaction)"
+     ],
+     "typeValue": {
+      "raw": "(newValue: T) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "comment": [
+      "'single' - only one item is selected. 'multi' - multiple items are selected"
+     ],
+     "typeValue": {
+      "raw": "'single'"
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationMessage",
+     "comment": [
+      "Message describing why the value is invalid"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationProps",
+     "comment": [
+      "If T is a complex value (object or array), this property contains validation states of inner items"
+     ],
+     "typeValue": {
+      "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "value",
+     "comment": [
+      "The current value of component"
+     ],
+     "typeValue": {
+      "raw": "T"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "comment": [
+      "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'id'"
+     },
+     "required": false
+    }
+   ]
   },
   "SkinContextComponentProps": {
    "kind": "TypeAliasDeclaration",
@@ -20419,7 +21842,117 @@
     "print": [
      "type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter> | DatePickerFilterConfig<TFilter> | NumericFilterConfig<TFilter> | RangeDatePickerFilterConfig<TFilter> | CustomFilterConfig<TFilter>;"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "columnKey",
+     "typeValue": {
+      "raw": "string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FilterConfigBase",
+       "nameFull": "FilterConfigBase<TFilter>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "field",
+     "typeValue": {
+      "raw": "keyof TFilter"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FilterConfigBase",
+       "nameFull": "FilterConfigBase<TFilter>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isAlwaysVisible",
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FilterConfigBase",
+       "nameFull": "FilterConfigBase<TFilter>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "maxCount",
+     "comment": [
+      "Count of words to show in the Filter toggler. By default, 2 item will be shown."
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FilterConfigBase",
+       "nameFull": "FilterConfigBase<TFilter>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "predicates",
+     "typeValue": {
+      "raw": "undefined | IFilterPredicate[]"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FilterConfigBase",
+       "nameFull": "FilterConfigBase<TFilter>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "title",
+     "typeValue": {
+      "raw": "string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "FilterConfigBase",
+       "nameFull": "FilterConfigBase<TFilter>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "type",
+     "typeValue": {
+      "raw": "'singlePicker' | 'multiPicker'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerFilterConfig",
+       "nameFull": "PickerFilterConfig<TFilter>"
+      }
+     },
+     "required": true
+    }
+   ]
   },
   "TextInputCoreProps": {
    "kind": "InterfaceDeclaration",
@@ -22674,7 +24207,168 @@
     "print": [
      "type AccordionProps = GeneralAccordionProps | EditableAccordionProps;"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "children",
+     "typeValue": {
+      "raw": "React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasChildren",
+       "nameFull": "IHasChildren"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "cx",
+     "comment": [
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasCX",
+       "nameFull": "IHasCX"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "dropdownIcon",
+     "comment": [
+      "Overrides the default dropdown (folding) icon.Pass null to disable the folding icon completely"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | Icon"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "GeneralAccordionProps",
+       "nameFull": "GeneralAccordionProps"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "forwardedRef",
+     "comment": [
+      "this ref is passed to the underlying component"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | (instance: T | null) => void | React.MutableRefObject<T | null>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasForwardedRef",
+       "nameFull": "IHasForwardedRef<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isDisabled",
+     "comment": [
+      "Disable editing, and visually de-emphasize value of the component"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDisableable",
+       "nameFull": "IDisableable"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "rawProps",
+     "comment": [
+      "Any HTML attributes (native or 'data-') to put on the underlying component"
+     ],
+     "typeValue": {
+      "raw": "undefined | T & Record<`data-${string}`, string>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasRawProps",
+       "nameFull": "IHasRawProps<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderAdditionalItems",
+     "comment": [
+      "Renders additional items to component's header (after the title, and before the folding icon)"
+     ],
+     "typeValue": {
+      "raw": "undefined | (isOpen: boolean) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "GeneralAccordionProps",
+       "nameFull": "GeneralAccordionProps"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderTitle",
+     "comment": [
+      "Overrides default title rendering."
+     ],
+     "typeValue": {
+      "raw": "undefined | (isOpen: boolean) => React.ReactElement<any, string | React.JSXElementConstructor<any>>"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "GeneralAccordionProps",
+       "nameFull": "GeneralAccordionProps"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "title",
+     "comment": [
+      "Accordion title"
+     ],
+     "typeValue": {
+      "raw": "undefined | string | React.ReactElement<any, string | React.JSXElementConstructor<any>>"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "GeneralAccordionProps",
+       "nameFull": "GeneralAccordionProps"
+      }
+     },
+     "required": false
+    }
+   ]
   },
   "AccordionState": {
    "kind": "InterfaceDeclaration",
@@ -23047,7 +24741,177 @@
      "    ] | null;",
      "} & IEditable<TItem[]>);"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "emptyValue",
+     "typeValue": {
+      "raw": "undefined | null | []"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isDisabled",
+     "comment": [
+      "Disable editing, and visually de-emphasize value of the component"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDisableable",
+       "nameFull": "IDisableable"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isInvalid",
+     "comment": [
+      "True if component contains invalid input"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isReadonly",
+     "comment": [
+      "Disable editing. Unlike isDisabled, keep component's value readable."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeReadonly",
+       "nameFull": "ICanBeReadonly"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isRequired",
+     "comment": [
+      "Marks that component's value is required"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeRequired",
+       "nameFull": "ICanBeRequired"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onValueChange",
+     "comment": [
+      "Called when value needs to be changed (usually due to user interaction)"
+     ],
+     "typeValue": {
+      "raw": "(newValue: T) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "typeValue": {
+      "raw": "'multi'"
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationMessage",
+     "comment": [
+      "Message describing why the value is invalid"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationProps",
+     "comment": [
+      "If T is a complex value (object or array), this property contains validation states of inner items"
+     ],
+     "typeValue": {
+      "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "value",
+     "comment": [
+      "The current value of component"
+     ],
+     "typeValue": {
+      "raw": "T"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "typeValue": {
+      "raw": "'id'"
+     },
+     "required": true
+    }
+   ]
   },
   "AvatarProps": {
    "kind": "InterfaceDeclaration",
@@ -35150,7 +37014,183 @@
     "print": [
      "type PickerBindingProps<TItem, TId> = SinglePickerProps<TId, TItem> | ArrayPickerProps<TId, TItem>;"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "isDisabled",
+     "comment": [
+      "Disable editing, and visually de-emphasize value of the component"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDisableable",
+       "nameFull": "IDisableable"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isInvalid",
+     "comment": [
+      "True if component contains invalid input"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isReadonly",
+     "comment": [
+      "Disable editing. Unlike isDisabled, keep component's value readable."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeReadonly",
+       "nameFull": "ICanBeReadonly"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isRequired",
+     "comment": [
+      "Marks that component's value is required"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeRequired",
+       "nameFull": "ICanBeRequired"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onValueChange",
+     "comment": [
+      "Called when value needs to be changed (usually due to user interaction)"
+     ],
+     "typeValue": {
+      "raw": "(newValue: T) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "typeValue": {
+      "raw": "'single'"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationMessage",
+     "comment": [
+      "Message describing why the value is invalid"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationProps",
+     "comment": [
+      "If T is a complex value (object or array), this property contains validation states of inner items"
+     ],
+     "typeValue": {
+      "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "value",
+     "comment": [
+      "The current value of component"
+     ],
+     "typeValue": {
+      "raw": "T"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "typeValue": {
+      "raw": "'id'"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": true
+    }
+   ]
   },
   "PickerBindingValueType": {
    "kind": "TypeAliasDeclaration",
@@ -35621,7 +37661,779 @@
      "    highlightSearchMatches?: boolean;",
      "};"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "autoFocus",
+     "comment": [
+      "Sets focus to component when it's mounted"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "bodyCx",
+     "comment": [
+      "CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "cascadeSelection",
+     "comment": [
+      "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
+      " - false: All nodes are selected independently (default).",
+      " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
+      " - 'implicit': Selecting a parent node means that all children are considered checked.",
+      "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
+      "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
+      "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
+      "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true | 'implicit' | 'explicit'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "dataSource",
+     "comment": [
+      "Provides items to the Picker"
+     ],
+     "typeValue": {
+      "raw": "IDataSource<TItem, TId, any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "disableClear",
+     "comment": [
+      "Disallow to clear Picker value (cross icon)"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "dropdownHeight",
+     "comment": [
+      "Overrides default height of the dropdown body"
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "dropdownPlacement",
+     "comment": [
+      "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'right' | 'left' | 'top' | 'bottom' | 'auto' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "editMode",
+     "comment": [
+      "dropdown (default) - show selection in dropdown; modal - opens modal window to select items"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'dropdown' | 'modal'"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "emptyValue",
+     "comment": [
+      "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | []"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityName",
+     "comment": [
+      "Name of the entity being selected. Affects wording like \"Please select [entity]\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityPluralName",
+     "comment": [
+      "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "filter",
+     "comment": [
+      "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+     ],
+     "typeValue": {
+      "raw": "any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "fixedBodyPosition",
+     "comment": [
+      "Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getName",
+     "comment": [
+      "Gets entity display name. Default it item.name."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getRowOptions",
+     "comment": [
+      "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, index: number) => DataRowOptions<TItem, TId>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "getSearchFields",
+     "comment": [
+      "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string[]"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getValueChangeAnalyticsEvent",
+     "comment": [
+      "Given a value, returns an analytics event to send when component is edited.",
+      " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+     ],
+     "typeValue": {
+      "raw": "undefined | (newValue: T | null, oldValue: T | null) => AnalyticsEvent"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IAnalyticableOnChange",
+       "nameFull": "IAnalyticableOnChange<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "highlightSearchMatches",
+     "comment": [
+      "Enables highlighting of the items' text with search-matching results."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "icon",
+     "comment": [
+      "Icon can be an React element (usually an SVG element)"
+     ],
+     "typeValue": {
+      "raw": "undefined | Icon"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasIcon",
+       "nameFull": "IHasIcon"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "iconPosition",
+     "comment": [
+      "Position of the icon (left of right)"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'right' | 'left'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasIcon",
+       "nameFull": "IHasIcon"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "inputCx",
+     "comment": [
+      "CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isDisabled",
+     "comment": [
+      "Disable editing, and visually de-emphasize value of the component"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDisableable",
+       "nameFull": "IDisableable"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "isFoldedByDefault",
+     "comment": [
+      "You can return true for all, or some items to fold them."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => boolean"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isInvalid",
+     "comment": [
+      "True if component contains invalid input"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isReadonly",
+     "comment": [
+      "Disable editing. Unlike isDisabled, keep component's value readable."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeReadonly",
+       "nameFull": "ICanBeReadonly"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isRequired",
+     "comment": [
+      "Marks that component's value is required"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeRequired",
+       "nameFull": "ICanBeRequired"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isSingleLine",
+     "comment": [
+      "Prevents selected items tags to occupy multiple lines"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "maxItems",
+     "comment": [
+      "Maximum number of tags to display in input, before collapsing to \"N items selected\" mode"
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "minBodyWidth",
+     "comment": [
+      "Minimum width of dropdown body"
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "minCharsToSearch",
+     "comment": [
+      "Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.",
+      " By default search triggers after input value is changed.",
+      "",
+      " Note: defined minCharsToSearch isn't compatible with searchPosition=body."
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "onBlur",
+     "comment": [
+      "Called when component looses input focus"
+     ],
+     "typeValue": {
+      "raw": "undefined | (e: React.FocusEvent<T, Element>) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanFocus",
+       "nameFull": "ICanFocus<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "onFocus",
+     "comment": [
+      "Called when component gets input focus"
+     ],
+     "typeValue": {
+      "raw": "undefined | (e: React.FocusEvent<T, Element>) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanFocus",
+       "nameFull": "ICanFocus<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onIconClick",
+     "comment": [
+      "Click handler for the icon"
+     ],
+     "typeValue": {
+      "raw": "undefined | () => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasIcon",
+       "nameFull": "IHasIcon"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onValueChange",
+     "comment": [
+      "Called when value needs to be changed (usually due to user interaction)"
+     ],
+     "typeValue": {
+      "raw": "(newValue: T) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "placeholder",
+     "comment": [
+      "Placeholder to display when empty"
+     ],
+     "typeValue": {
+      "raw": "any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasPlaceholder",
+       "nameFull": "IHasPlaceholder"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "portalTarget",
+     "typeValue": {
+      "raw": "undefined | HTMLElement"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "rawProps",
+     "comment": [
+      "HTML attributes to put directly to the input and body elements"
+     ],
+     "typeValue": {
+      "raw": "undefined | { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderFooter",
+     "comment": [
+      "Adds custom footer to the dropdown body"
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: PickerInputFooterProps<TItem, TId>) => React.ReactNode"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderNotFound",
+     "comment": [
+      "Overrides the default 'no records found' banner.",
+      " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: { search: string; onClose: () => void; }) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderRow",
+     "comment": [
+      "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderToggler",
+     "comment": [
+      "Replaces default 'toggler' - an input to which Picker attaches dropdown"
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: PickerTogglerProps<TItem, TId>) => React.ReactNode"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "searchPosition",
+     "comment": [
+      "Defines where search field is:",
+      " 'input' - try to place search inside the toggler (default for single-select),",
+      " 'body' - put search inside the dropdown (default for multi-select)",
+      " 'none' - disables search completely",
+      "",
+      " Note: 'searchPosition' cannot be 'input' if 'editMode' is 'modal'"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'none' | 'input' | 'body'"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "comment": [
+      "'single' - only one item is selected. 'multi' - multiple items are selected"
+     ],
+     "typeValue": {
+      "raw": "'single'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "sortBy",
+     "comment": [
+      "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, sorting: SortingOption<any>) => any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "sorting",
+     "comment": [
+      "Defines sorting to pass to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | SortingOption<any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationMessage",
+     "comment": [
+      "Message describing why the value is invalid"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationProps",
+     "comment": [
+      "If T is a complex value (object or array), this property contains validation states of inner items"
+     ],
+     "typeValue": {
+      "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "value",
+     "comment": [
+      "The current value of component"
+     ],
+     "typeValue": {
+      "raw": "T"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "comment": [
+      "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'id'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": false
+    }
+   ]
   },
   "PickerListBaseProps": {
    "kind": "TypeAliasDeclaration",
@@ -35650,7 +38462,514 @@
      "    sortBy?(item: TItem, sorting: SortingOption): string;",
      "};"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "cascadeSelection",
+     "comment": [
+      "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
+      " - false: All nodes are selected independently (default).",
+      " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
+      " - 'implicit': Selecting a parent node means that all children are considered checked.",
+      "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
+      "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
+      "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
+      "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true | 'implicit' | 'explicit'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "dataSource",
+     "comment": [
+      "Provides items to the Picker"
+     ],
+     "typeValue": {
+      "raw": "IDataSource<TItem, TId, any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "defaultIds",
+     "comment": [
+      "Ids of items to show first.",
+      " If not specified, top props.maxDefaultItems will be shown according to the DataSource sorting settings (default is 10)"
+     ],
+     "typeValue": {
+      "raw": "undefined | TId[]"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "emptyValue",
+     "comment": [
+      "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | []"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityName",
+     "comment": [
+      "Name of the entity being selected. Affects wording like \"Please select [entity]\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityPluralName",
+     "comment": [
+      "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "filter",
+     "comment": [
+      "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+     ],
+     "typeValue": {
+      "raw": "any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getName",
+     "comment": [
+      "Gets entity display name. Default it item.name."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getRowOptions",
+     "comment": [
+      "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, index: number) => DataRowOptions<TItem, TId>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "getSearchFields",
+     "comment": [
+      "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string[]"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getValueChangeAnalyticsEvent",
+     "comment": [
+      "Given a value, returns an analytics event to send when component is edited.",
+      " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+     ],
+     "typeValue": {
+      "raw": "undefined | (newValue: T | null, oldValue: T | null) => AnalyticsEvent"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IAnalyticableOnChange",
+       "nameFull": "IAnalyticableOnChange<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isDisabled",
+     "comment": [
+      "Disable editing, and visually de-emphasize value of the component"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDisableable",
+       "nameFull": "IDisableable"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "isFoldedByDefault",
+     "comment": [
+      "You can return true for all, or some items to fold them."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => boolean"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isInvalid",
+     "comment": [
+      "True if component contains invalid input"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isReadonly",
+     "comment": [
+      "Disable editing. Unlike isDisabled, keep component's value readable."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeReadonly",
+       "nameFull": "ICanBeReadonly"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isRequired",
+     "comment": [
+      "Marks that component's value is required"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeRequired",
+       "nameFull": "ICanBeRequired"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "maxDefaultItems",
+     "comment": [
+      "Number of default items to show initially, when nothing is selected.",
+      " Default it 10 items"
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "maxTotalItems",
+     "comment": [
+      "Maximum total number of items to show, including selected"
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onValueChange",
+     "comment": [
+      "Called when value needs to be changed (usually due to user interaction)"
+     ],
+     "typeValue": {
+      "raw": "(newValue: T) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderNotFound",
+     "comment": [
+      "Overrides the default 'no records found' banner.",
+      " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: { search: string; onClose: () => void; }) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderRow",
+     "comment": [
+      "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "comment": [
+      "'single' - only one item is selected. 'multi' - multiple items are selected"
+     ],
+     "typeValue": {
+      "raw": "'single'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "settingsKey",
+     "comment": [
+      "If provided, top picks will be automatically adjusted based on last user selection, and stored as user setting under provided key"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "sortBy",
+     "comment": [
+      "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, sorting: SortingOption<any>) => any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "sorting",
+     "comment": [
+      "Defines sorting to pass to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | SortingOption<any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationMessage",
+     "comment": [
+      "Message describing why the value is invalid"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationProps",
+     "comment": [
+      "If T is a complex value (object or array), this property contains validation states of inner items"
+     ],
+     "typeValue": {
+      "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "value",
+     "comment": [
+      "The current value of component"
+     ],
+     "typeValue": {
+      "raw": "T"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "comment": [
+      "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'id'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": false
+    }
+   ]
   },
   "PickerModalArrayProps": {
    "kind": "TypeAliasDeclaration",
@@ -35671,7 +38990,108 @@
      "    initialValue: TItem[];",
      "} & IModal<TItem[]>);"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "MethodSignature",
+     "name": "abort",
+     "typeValue": {
+      "raw": "(result?: any) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "initialValue",
+     "typeValue": {
+      "raw": "TId[]"
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isActive",
+     "typeValue": {
+      "raw": "false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "key",
+     "typeValue": {
+      "raw": "string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "typeValue": {
+      "raw": "'multi'"
+     },
+     "required": true
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "success",
+     "typeValue": {
+      "raw": "(result: TResult) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "typeValue": {
+      "raw": "'id'"
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "zIndex",
+     "typeValue": {
+      "raw": "number"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    }
+   ]
   },
   "PickerModalOptions": {
    "kind": "InterfaceDeclaration",
@@ -35753,7 +39173,108 @@
      "    initialValue: TItem;",
      "} & IModal<TItem>);"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "MethodSignature",
+     "name": "abort",
+     "typeValue": {
+      "raw": "(result?: any) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "initialValue",
+     "typeValue": {
+      "raw": "TId"
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isActive",
+     "typeValue": {
+      "raw": "false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "key",
+     "typeValue": {
+      "raw": "string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "typeValue": {
+      "raw": "'single'"
+     },
+     "required": true
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "success",
+     "typeValue": {
+      "raw": "(result: TResult) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "typeValue": {
+      "raw": "'id'"
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "zIndex",
+     "typeValue": {
+      "raw": "number"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    }
+   ]
   },
   "PickerTogglerProps": {
    "kind": "InterfaceDeclaration",
@@ -43931,7 +47452,169 @@
      "    valueType?: 'entity';",
      "} & IEditable<TItem>);"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "isDisabled",
+     "comment": [
+      "Disable editing, and visually de-emphasize value of the component"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDisableable",
+       "nameFull": "IDisableable"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isInvalid",
+     "comment": [
+      "True if component contains invalid input"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isReadonly",
+     "comment": [
+      "Disable editing. Unlike isDisabled, keep component's value readable."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeReadonly",
+       "nameFull": "ICanBeReadonly"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isRequired",
+     "comment": [
+      "Marks that component's value is required"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeRequired",
+       "nameFull": "ICanBeRequired"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onValueChange",
+     "comment": [
+      "Called when value needs to be changed (usually due to user interaction)"
+     ],
+     "typeValue": {
+      "raw": "(newValue: T) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "typeValue": {
+      "raw": "'single'"
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationMessage",
+     "comment": [
+      "Message describing why the value is invalid"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationProps",
+     "comment": [
+      "If T is a complex value (object or array), this property contains validation states of inner items"
+     ],
+     "typeValue": {
+      "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "value",
+     "comment": [
+      "The current value of component"
+     ],
+     "typeValue": {
+      "raw": "T"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "typeValue": {
+      "raw": "'id'"
+     },
+     "required": true
+    }
+   ]
   },
   "SliderBaseProps": {
    "kind": "InterfaceDeclaration",
@@ -46882,7 +50565,921 @@
      "    shouldShowBody?(): boolean;",
      "};"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "autoFocus",
+     "comment": [
+      "Sets focus to component when it's mounted"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "bodyCx",
+     "comment": [
+      "CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "cascadeSelection",
+     "comment": [
+      "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
+      " - false: All nodes are selected independently (default).",
+      " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
+      " - 'implicit': Selecting a parent node means that all children are considered checked.",
+      "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
+      "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
+      "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
+      "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true | 'implicit' | 'explicit'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "dataSource",
+     "comment": [
+      "Provides items to the Picker"
+     ],
+     "typeValue": {
+      "raw": "IDataSource<TItem, TId, any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "disableClear",
+     "comment": [
+      "Disallow to clear Picker value (cross icon)"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "dropdownHeight",
+     "comment": [
+      "Overrides default height of the dropdown body"
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "dropdownPlacement",
+     "comment": [
+      "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'right' | 'left' | 'top' | 'bottom' | 'auto' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "editMode",
+     "comment": [
+      "dropdown (default) - show selection in dropdown; modal - opens modal window to select items"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'dropdown' | 'modal'"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "emptyValue",
+     "comment": [
+      "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | []"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityName",
+     "comment": [
+      "Name of the entity being selected. Affects wording like \"Please select [entity]\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityPluralName",
+     "comment": [
+      "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "filter",
+     "comment": [
+      "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+     ],
+     "typeValue": {
+      "raw": "any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "fixedBodyPosition",
+     "comment": [
+      "Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getName",
+     "comment": [
+      "Gets entity display name. Default it item.name."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getRowOptions",
+     "comment": [
+      "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, index: number) => DataRowOptions<TItem, TId>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "getSearchFields",
+     "comment": [
+      "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string[]"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getValueChangeAnalyticsEvent",
+     "comment": [
+      "Given a value, returns an analytics event to send when component is edited.",
+      " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+     ],
+     "typeValue": {
+      "raw": "undefined | (newValue: T | null, oldValue: T | null) => AnalyticsEvent"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IAnalyticableOnChange",
+       "nameFull": "IAnalyticableOnChange<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "highlightSearchMatches",
+     "comment": [
+      "Enables highlighting of the items' text with search-matching results."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "icon",
+     "comment": [
+      "Icon can be an React element (usually an SVG element)"
+     ],
+     "typeValue": {
+      "raw": "undefined | Icon"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasIcon",
+       "nameFull": "IHasIcon"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "iconPosition",
+     "comment": [
+      "Position of the icon (left of right)"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'right' | 'left'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasIcon",
+       "nameFull": "IHasIcon"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "inputCx",
+     "comment": [
+      "CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isDisabled",
+     "comment": [
+      "Disable editing, and visually de-emphasize value of the component"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDisableable",
+       "nameFull": "IDisableable"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "isFoldedByDefault",
+     "comment": [
+      "You can return true for all, or some items to fold them."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => boolean"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isInvalid",
+     "comment": [
+      "True if component contains invalid input"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isReadonly",
+     "comment": [
+      "Disable editing. Unlike isDisabled, keep component's value readable."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeReadonly",
+       "nameFull": "ICanBeReadonly"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isRequired",
+     "comment": [
+      "Marks that component's value is required"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeRequired",
+       "nameFull": "ICanBeRequired"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isSingleLine",
+     "comment": [
+      "Prevents selected items tags to occupy multiple lines"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "maxItems",
+     "comment": [
+      "Maximum number of tags to display in input, before collapsing to \"N items selected\" mode"
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "minBodyWidth",
+     "comment": [
+      "Minimum width of dropdown body"
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "minCharsToSearch",
+     "comment": [
+      "Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.",
+      " By default search triggers after input value is changed.",
+      "",
+      " Note: defined minCharsToSearch isn't compatible with searchPosition=body."
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "onBlur",
+     "comment": [
+      "Called when component looses input focus"
+     ],
+     "typeValue": {
+      "raw": "undefined | (e: React.FocusEvent<T, Element>) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanFocus",
+       "nameFull": "ICanFocus<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "onFocus",
+     "comment": [
+      "Called when component gets input focus"
+     ],
+     "typeValue": {
+      "raw": "undefined | (e: React.FocusEvent<T, Element>) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanFocus",
+       "nameFull": "ICanFocus<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onIconClick",
+     "comment": [
+      "Click handler for the icon"
+     ],
+     "typeValue": {
+      "raw": "undefined | () => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasIcon",
+       "nameFull": "IHasIcon"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onValueChange",
+     "comment": [
+      "Called when value needs to be changed (usually due to user interaction)"
+     ],
+     "typeValue": {
+      "raw": "(newValue: T) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "placeholder",
+     "comment": [
+      "Placeholder to display when empty"
+     ],
+     "typeValue": {
+      "raw": "any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasPlaceholder",
+       "nameFull": "IHasPlaceholder"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "portalTarget",
+     "typeValue": {
+      "raw": "undefined | HTMLElement"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "rawProps",
+     "comment": [
+      "HTML attributes to put directly to the input and body elements"
+     ],
+     "typeValue": {
+      "raw": "undefined | { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderFooter",
+     "comment": [
+      "Adds custom footer to the dropdown body"
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: PickerInputFooterProps<TItem, TId>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderNotFound",
+     "comment": [
+      "Overrides the default 'no records found' banner.",
+      " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: { search: string; onClose: () => void; }) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderRow",
+     "comment": [
+      "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderToggler",
+     "comment": [
+      "Replaces default 'toggler' - an input to which Picker attaches dropdown"
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: PickerTogglerProps<TItem, TId>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "searchPosition",
+     "comment": [
+      "Defines where search field is:",
+      " 'input' - try to place search inside the toggler (default for single-select),",
+      " 'body' - put search inside the dropdown (default for multi-select)",
+      " 'none' - disables search completely",
+      "",
+      " Note: 'searchPosition' cannot be 'input' if 'editMode' is 'modal'"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'none' | 'input' | 'body'"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerInputBaseProps",
+       "nameFull": "PickerInputBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "comment": [
+      "'single' - only one item is selected. 'multi' - multiple items are selected"
+     ],
+     "typeValue": {
+      "raw": "'single'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "shouldShowBody",
+     "typeValue": {
+      "raw": "undefined | () => boolean"
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "sortBy",
+     "comment": [
+      "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, sorting: SortingOption<any>) => any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "sorting",
+     "comment": [
+      "Defines sorting to pass to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | SortingOption<any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "toggleModalOpening",
+     "typeValue": {
+      "raw": "undefined | (opened: boolean) => void"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationMessage",
+     "comment": [
+      "Message describing why the value is invalid"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationProps",
+     "comment": [
+      "If T is a complex value (object or array), this property contains validation states of inner items"
+     ],
+     "typeValue": {
+      "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "value",
+     "comment": [
+      "The current value of component"
+     ],
+     "typeValue": {
+      "raw": "T"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "comment": [
+      "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'id'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": false
+    }
+   ]
   },
   "UsePickerListProps": {
    "kind": "TypeAliasDeclaration",
@@ -46895,7 +51492,542 @@
     "print": [
      "type UsePickerListProps<TItem, TId, TProps> = PickerListBaseProps<TItem, TId> & TProps & {};"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "cascadeSelection",
+     "comment": [
+      "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
+      " - false: All nodes are selected independently (default).",
+      " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
+      " - 'implicit': Selecting a parent node means that all children are considered checked.",
+      "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
+      "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
+      "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
+      "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true | 'implicit' | 'explicit'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "dataSource",
+     "comment": [
+      "Provides items to the Picker"
+     ],
+     "typeValue": {
+      "raw": "IDataSource<TItem, TId, any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "defaultIds",
+     "comment": [
+      "Ids of items to show first.",
+      " If not specified, top props.maxDefaultItems will be shown according to the DataSource sorting settings (default is 10)"
+     ],
+     "typeValue": {
+      "raw": "undefined | TId[]"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerListBaseProps",
+       "nameFull": "PickerListBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "emptyValue",
+     "comment": [
+      "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | []"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityName",
+     "comment": [
+      "Name of the entity being selected. Affects wording like \"Please select [entity]\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityPluralName",
+     "comment": [
+      "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "filter",
+     "comment": [
+      "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+     ],
+     "typeValue": {
+      "raw": "any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getName",
+     "comment": [
+      "Gets entity display name. Default it item.name."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getRowOptions",
+     "comment": [
+      "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, index: number) => DataRowOptions<TItem, TId>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "getSearchFields",
+     "comment": [
+      "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string[]"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getValueChangeAnalyticsEvent",
+     "comment": [
+      "Given a value, returns an analytics event to send when component is edited.",
+      " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+     ],
+     "typeValue": {
+      "raw": "undefined | (newValue: T | null, oldValue: T | null) => AnalyticsEvent"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IAnalyticableOnChange",
+       "nameFull": "IAnalyticableOnChange<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isDisabled",
+     "comment": [
+      "Disable editing, and visually de-emphasize value of the component"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDisableable",
+       "nameFull": "IDisableable"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "isFoldedByDefault",
+     "comment": [
+      "You can return true for all, or some items to fold them."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => boolean"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isInvalid",
+     "comment": [
+      "True if component contains invalid input"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isReadonly",
+     "comment": [
+      "Disable editing. Unlike isDisabled, keep component's value readable."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeReadonly",
+       "nameFull": "ICanBeReadonly"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isRequired",
+     "comment": [
+      "Marks that component's value is required"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeRequired",
+       "nameFull": "ICanBeRequired"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "maxDefaultItems",
+     "comment": [
+      "Number of default items to show initially, when nothing is selected.",
+      " Default it 10 items"
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerListBaseProps",
+       "nameFull": "PickerListBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "maxTotalItems",
+     "comment": [
+      "Maximum total number of items to show, including selected"
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerListBaseProps",
+       "nameFull": "PickerListBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onValueChange",
+     "comment": [
+      "Called when value needs to be changed (usually due to user interaction)"
+     ],
+     "typeValue": {
+      "raw": "(newValue: T) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderNotFound",
+     "comment": [
+      "Overrides the default 'no records found' banner.",
+      " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: { search: string; onClose: () => void; }) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderRow",
+     "comment": [
+      "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "comment": [
+      "'single' - only one item is selected. 'multi' - multiple items are selected"
+     ],
+     "typeValue": {
+      "raw": "'single'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "settingsKey",
+     "comment": [
+      "If provided, top picks will be automatically adjusted based on last user selection, and stored as user setting under provided key"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerListBaseProps",
+       "nameFull": "PickerListBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "sortBy",
+     "comment": [
+      "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, sorting: SortingOption<any>) => any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "sorting",
+     "comment": [
+      "Defines sorting to pass to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | SortingOption<any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationMessage",
+     "comment": [
+      "Message describing why the value is invalid"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationProps",
+     "comment": [
+      "If T is a complex value (object or array), this property contains validation states of inner items"
+     ],
+     "typeValue": {
+      "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "value",
+     "comment": [
+      "The current value of component"
+     ],
+     "typeValue": {
+      "raw": "T"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "comment": [
+      "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'id'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": false
+    }
+   ]
   },
   "UsePickerModalProps": {
    "kind": "TypeAliasDeclaration",
@@ -46908,7 +52040,470 @@
     "print": [
      "type UsePickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> & IHasCaption & (PickerModalScalarProps<TId, TItem> | PickerModalArrayProps<TId, TItem>) & PickerModalOptions<TItem, TId>;"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "MethodSignature",
+     "name": "abort",
+     "typeValue": {
+      "raw": "(result?: any) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "caption",
+     "comment": [
+      "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+     ],
+     "typeValue": {
+      "raw": "any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasCaption",
+       "nameFull": "IHasCaption"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "cascadeSelection",
+     "comment": [
+      "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
+      " - false: All nodes are selected independently (default).",
+      " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
+      " - 'implicit': Selecting a parent node means that all children are considered checked.",
+      "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
+      "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
+      "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
+      "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true | 'implicit' | 'explicit'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "dataSource",
+     "comment": [
+      "Provides items to the Picker"
+     ],
+     "typeValue": {
+      "raw": "IDataSource<TItem, TId, any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "disallowClickOutside",
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerModalOptions",
+       "nameFull": "PickerModalOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "emptyValue",
+     "comment": [
+      "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | []"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityName",
+     "comment": [
+      "Name of the entity being selected. Affects wording like \"Please select [entity]\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityPluralName",
+     "comment": [
+      "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "filter",
+     "comment": [
+      "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+     ],
+     "typeValue": {
+      "raw": "any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getName",
+     "comment": [
+      "Gets entity display name. Default it item.name."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getRowOptions",
+     "comment": [
+      "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, index: number) => DataRowOptions<TItem, TId>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "getSearchFields",
+     "comment": [
+      "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string[]"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "initialValue",
+     "typeValue": {
+      "raw": "TId"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerModalScalarProps",
+       "nameFull": "PickerModalScalarProps<TId, TItem>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isActive",
+     "typeValue": {
+      "raw": "false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "isFoldedByDefault",
+     "comment": [
+      "You can return true for all, or some items to fold them."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => boolean"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "key",
+     "typeValue": {
+      "raw": "string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "rawProps",
+     "comment": [
+      "Any HTML attributes (native or 'data-') to put on the underlying component"
+     ],
+     "typeValue": {
+      "raw": "undefined | T & Record<`data-${string}`, string>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasRawProps",
+       "nameFull": "IHasRawProps<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "renderFilter",
+     "typeValue": {
+      "raw": "undefined | (editableFilter: IEditable<any>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerModalOptions",
+       "nameFull": "PickerModalOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderFooter",
+     "typeValue": {
+      "raw": "undefined | (props: IModal<any>>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerModalOptions",
+       "nameFull": "PickerModalOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderNotFound",
+     "comment": [
+      "Overrides the default 'no records found' banner.",
+      " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: { search: string; onClose: () => void; }) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderRow",
+     "comment": [
+      "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "typeValue": {
+      "raw": "'single'"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerModalScalarProps",
+       "nameFull": "PickerModalScalarProps<TId, TItem>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "sortBy",
+     "comment": [
+      "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, sorting: SortingOption<any>) => any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "sorting",
+     "comment": [
+      "Defines sorting to pass to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | SortingOption<any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "success",
+     "typeValue": {
+      "raw": "(result: TResult) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "typeValue": {
+      "raw": "'id'"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerModalScalarProps",
+       "nameFull": "PickerModalScalarProps<TId, TItem>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "zIndex",
+     "typeValue": {
+      "raw": "number"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    }
+   ]
   },
   "ViewType": {
    "kind": "TypeAliasDeclaration",
@@ -46934,7 +52529,294 @@
     "print": [
      "type VirtualListProps<List extends HTMLElement = any, ScrollContainer extends HTMLElement = any> = BaseVirtualListProps<ScrollContainer> & VirtualListRenderRows<List>;"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "cx",
+     "comment": [
+      "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasCX",
+       "nameFull": "IHasCX"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "disableScroll",
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "BaseVirtualListProps",
+       "nameFull": "BaseVirtualListProps<ScrollContainer>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isDisabled",
+     "comment": [
+      "Disable editing, and visually de-emphasize value of the component"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDisableable",
+       "nameFull": "IDisableable"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isInvalid",
+     "comment": [
+      "True if component contains invalid input"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isReadonly",
+     "comment": [
+      "Disable editing. Unlike isDisabled, keep component's value readable."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeReadonly",
+       "nameFull": "ICanBeReadonly"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isRequired",
+     "comment": [
+      "Marks that component's value is required"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeRequired",
+       "nameFull": "ICanBeRequired"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onScroll",
+     "typeValue": {
+      "raw": "undefined | (value: PositionValues) => void"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "BaseVirtualListProps",
+       "nameFull": "BaseVirtualListProps<ScrollContainer>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onValueChange",
+     "comment": [
+      "Called when value needs to be changed (usually due to user interaction)"
+     ],
+     "typeValue": {
+      "raw": "(newValue: T) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "rawProps",
+     "comment": [
+      "Any HTML attributes (native or 'data-') to put on the underlying component"
+     ],
+     "typeValue": {
+      "raw": "undefined | T & Record<`data-${string}`, string>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasRawProps",
+       "nameFull": "IHasRawProps<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderRows",
+     "typeValue": {
+      "raw": "(config: VirtualListRenderRowsParams<List>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "VirtualListRenderRows",
+       "nameFull": "VirtualListRenderRows<List>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "role",
+     "typeValue": {
+      "raw": "undefined | 'search' | 'button' | 'checkbox' | 'radio' | string & {} | 'alert' | 'alertdialog' | 'application' | 'article' | 'banner' | 'cell' | 'columnheader' | 'combobox' | 'complementary' | 'contentinfo' | 'definition' | 'dialog' | 'directory' | 'document' | 'feed' | 'figure' | 'form' | 'grid' | 'gridcell' | 'group' | 'heading' | 'img' | 'link' | 'list' | 'listbox' | 'listitem' | 'log' | 'main' | 'marquee' | 'math' | 'menu' | 'menubar' | 'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'navigation' | 'none' | 'note' | 'option' | 'presentation' | 'progressbar' | 'radiogroup' | 'region' | 'row' | 'rowgroup' | 'rowheader' | 'scrollbar' | 'searchbox' | 'separator' | 'slider' | 'spinbutton' | 'status' | 'switch' | 'tab' | 'table' | 'tablist' | 'tabpanel' | 'term' | 'textbox' | 'timer' | 'toolbar' | 'tooltip' | 'tree' | 'treegrid' | 'treeitem'"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "BaseVirtualListProps",
+       "nameFull": "BaseVirtualListProps<ScrollContainer>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "rows",
+     "typeValue": {
+      "raw": "undefined | React.ReactNode[]"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "VirtualListRenderRows",
+       "nameFull": "VirtualListRenderRows<List>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "rowsCount",
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "BaseVirtualListProps",
+       "nameFull": "BaseVirtualListProps<ScrollContainer>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "rowsSelector",
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "BaseVirtualListProps",
+       "nameFull": "BaseVirtualListProps<ScrollContainer>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationMessage",
+     "comment": [
+      "Message describing why the value is invalid"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationProps",
+     "comment": [
+      "If T is a complex value (object or array), this property contains validation states of inner items"
+     ],
+     "typeValue": {
+      "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "value",
+     "comment": [
+      "The current value of component"
+     ],
+     "typeValue": {
+      "raw": "T"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    }
+   ]
   },
   "VirtualListRenderRowsParams": {
    "kind": "InterfaceDeclaration",
@@ -47251,19 +53133,6 @@
      "required": false
     }
    ]
-  },
-  "AccordionProps": {
-   "kind": "TypeAliasDeclaration",
-   "typeName": {
-    "name": "AccordionProps",
-    "nameFull": "AccordionProps"
-   },
-   "typeValue": {
-    "raw": "AccordionMods & GeneralAccordionProps | IEditable<boolean>",
-    "print": [
-     "type AccordionProps = AccordionMods & UuiComponentsAccordionProps;"
-    ]
-   }
   },
   "AlertProps": {
    "kind": "InterfaceDeclaration",
@@ -60041,7 +65910,7 @@
      "kind": "PropertySignature",
      "name": "highlightSearchMatches",
      "comment": [
-      "Enables highlighting of the items' text with search-matching results. ",
+      "Enables highlighting of the items' text with search-matching results.",
       " @default true"
      ],
      "typeValue": {
@@ -61570,7 +67439,669 @@
      "    noOptionsMessage?: React.ReactNode;",
      "} & PickerListBaseProps<TItem, TId> & IHasEditMode;"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "PropertySignature",
+     "name": "cascadeSelection",
+     "comment": [
+      "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
+      " - false: All nodes are selected independently (default).",
+      " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
+      " - 'implicit': Selecting a parent node means that all children are considered checked.",
+      "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
+      "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
+      "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
+      "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true | 'implicit' | 'explicit'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "dataSource",
+     "comment": [
+      "Provides items to the Picker"
+     ],
+     "typeValue": {
+      "raw": "IDataSource<TItem, TId, any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "defaultIds",
+     "comment": [
+      "Ids of items to show first.",
+      " If not specified, top props.maxDefaultItems will be shown according to the DataSource sorting settings (default is 10)"
+     ],
+     "typeValue": {
+      "raw": "undefined | TId[]"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerListBaseProps",
+       "nameFull": "PickerListBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "disallowClickOutside",
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerModalOptions",
+       "nameFull": "PickerModalOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "emptyValue",
+     "comment": [
+      "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | []"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityName",
+     "comment": [
+      "Name of the entity being selected. Affects wording like \"Please select [entity]\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityPluralName",
+     "comment": [
+      "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "filter",
+     "comment": [
+      "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+     ],
+     "typeValue": {
+      "raw": "any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getName",
+     "comment": [
+      "Gets entity display name. Default it item.name."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getRowOptions",
+     "comment": [
+      "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, index: number) => DataRowOptions<TItem, TId>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "getSearchFields",
+     "comment": [
+      "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string[]"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getValueChangeAnalyticsEvent",
+     "comment": [
+      "Given a value, returns an analytics event to send when component is edited.",
+      " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+     ],
+     "typeValue": {
+      "raw": "undefined | (newValue: T | null, oldValue: T | null) => AnalyticsEvent"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IAnalyticableOnChange",
+       "nameFull": "IAnalyticableOnChange<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isDisabled",
+     "comment": [
+      "Disable editing, and visually de-emphasize value of the component"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IDisableable",
+       "nameFull": "IDisableable"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "isFoldedByDefault",
+     "comment": [
+      "You can return true for all, or some items to fold them."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => boolean"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isInvalid",
+     "comment": [
+      "True if component contains invalid input"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isReadonly",
+     "comment": [
+      "Disable editing. Unlike isDisabled, keep component's value readable."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeReadonly",
+       "nameFull": "ICanBeReadonly"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isRequired",
+     "comment": [
+      "Marks that component's value is required"
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeRequired",
+       "nameFull": "ICanBeRequired"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "maxDefaultItems",
+     "comment": [
+      "Number of default items to show initially, when nothing is selected.",
+      " Default it 10 items"
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerListBaseProps",
+       "nameFull": "PickerListBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "maxTotalItems",
+     "comment": [
+      "Maximum total number of items to show, including selected"
+     ],
+     "typeValue": {
+      "raw": "undefined | number"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerListBaseProps",
+       "nameFull": "PickerListBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "mode",
+     "typeValue": {
+      "raw": "undefined | 'inline' | 'form' | 'cell'"
+     },
+     "from": {
+      "module": "@epam/uui",
+      "typeName": {
+       "name": "IHasEditMode",
+       "nameFull": "IHasEditMode"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "noOptionsMessage",
+     "typeValue": {
+      "raw": "React.ReactNode"
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "onValueChange",
+     "comment": [
+      "Called when value needs to be changed (usually due to user interaction)"
+     ],
+     "typeValue": {
+      "raw": "(newValue: T) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "placeholder",
+     "comment": [
+      "Placeholder to display when empty"
+     ],
+     "typeValue": {
+      "raw": "any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasPlaceholder",
+       "nameFull": "IHasPlaceholder"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "rawProps",
+     "comment": [
+      "Any HTML attributes (native or 'data-') to put on the underlying component"
+     ],
+     "typeValue": {
+      "raw": "undefined | T & Record<`data-${string}`, string>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasRawProps",
+       "nameFull": "IHasRawProps<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "renderFilter",
+     "typeValue": {
+      "raw": "undefined | (editableFilter: IEditable<any>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerModalOptions",
+       "nameFull": "PickerModalOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderFooter",
+     "typeValue": {
+      "raw": "undefined | (props: IModal<any>>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerModalOptions",
+       "nameFull": "PickerModalOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "renderModalToggler",
+     "typeValue": {
+      "raw": "undefined | (props: DataRowProps<TItem, TId>[]) => React.ReactNode"
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderNotFound",
+     "comment": [
+      "Overrides the default 'no records found' banner.",
+      " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: { search: string; onClose: () => void; }) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderRow",
+     "comment": [
+      "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "comment": [
+      "'single' - only one item is selected. 'multi' - multiple items are selected"
+     ],
+     "typeValue": {
+      "raw": "'single'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "settingsKey",
+     "comment": [
+      "If provided, top picks will be automatically adjusted based on last user selection, and stored as user setting under provided key"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerListBaseProps",
+       "nameFull": "PickerListBaseProps<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "size",
+     "typeValue": {
+      "raw": "undefined | '36' | '48' | '24' | '30' | '42' | 'none'"
+     },
+     "from": {
+      "module": "@epam/uui",
+      "typeName": {
+       "name": "SizeMod",
+       "nameFull": "SizeMod"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "sortBy",
+     "comment": [
+      "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, sorting: SortingOption<any>) => any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "sorting",
+     "comment": [
+      "Defines sorting to pass to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | SortingOption<any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationMessage",
+     "comment": [
+      "Message describing why the value is invalid"
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "validationProps",
+     "comment": [
+      "If T is a complex value (object or array), this property contains validation states of inner items"
+     ],
+     "typeValue": {
+      "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "ICanBeInvalid",
+       "nameFull": "ICanBeInvalid"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "value",
+     "comment": [
+      "The current value of component"
+     ],
+     "typeValue": {
+      "raw": "T"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IEditable",
+       "nameFull": "IEditable<T>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "comment": [
+      "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+     ],
+     "typeValue": {
+      "raw": "undefined | 'id'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "SinglePickerProps",
+       "nameFull": "SinglePickerProps<TId, TItem>"
+      }
+     },
+     "required": false
+    }
+   ]
   },
   "PickerModalProps": {
    "kind": "TypeAliasDeclaration",
@@ -61583,7 +68114,470 @@
     "print": [
      "type PickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> & IHasCaption & (PickerModalScalarProps<TId, TItem> | PickerModalArrayProps<TId, TItem>) & PickerModalOptions<TItem, TId>;"
     ]
-   }
+   },
+   "props": [
+    {
+     "kind": "MethodSignature",
+     "name": "abort",
+     "typeValue": {
+      "raw": "(result?: any) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "caption",
+     "comment": [
+      "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+     ],
+     "typeValue": {
+      "raw": "any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasCaption",
+       "nameFull": "IHasCaption"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "cascadeSelection",
+     "comment": [
+      "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
+      " - false: All nodes are selected independently (default).",
+      " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
+      " - 'implicit': Selecting a parent node means that all children are considered checked.",
+      "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
+      "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
+      "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
+      "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
+     ],
+     "typeValue": {
+      "raw": "undefined | false | true | 'implicit' | 'explicit'"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "dataSource",
+     "comment": [
+      "Provides items to the Picker"
+     ],
+     "typeValue": {
+      "raw": "IDataSource<TItem, TId, any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "disallowClickOutside",
+     "typeValue": {
+      "raw": "undefined | false | true"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerModalOptions",
+       "nameFull": "PickerModalOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "emptyValue",
+     "comment": [
+      "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
+     ],
+     "typeValue": {
+      "raw": "undefined | null | []"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityName",
+     "comment": [
+      "Name of the entity being selected. Affects wording like \"Please select [entity]\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "entityPluralName",
+     "comment": [
+      "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
+     ],
+     "typeValue": {
+      "raw": "undefined | string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "filter",
+     "comment": [
+      "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+     ],
+     "typeValue": {
+      "raw": "any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getName",
+     "comment": [
+      "Gets entity display name. Default it item.name."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "getRowOptions",
+     "comment": [
+      "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, index: number) => DataRowOptions<TItem, TId>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "getSearchFields",
+     "comment": [
+      "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => string[]"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "initialValue",
+     "typeValue": {
+      "raw": "TId"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerModalScalarProps",
+       "nameFull": "PickerModalScalarProps<TId, TItem>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "isActive",
+     "typeValue": {
+      "raw": "false | true"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "isFoldedByDefault",
+     "comment": [
+      "You can return true for all, or some items to fold them."
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem) => boolean"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "key",
+     "typeValue": {
+      "raw": "string"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "rawProps",
+     "comment": [
+      "Any HTML attributes (native or 'data-') to put on the underlying component"
+     ],
+     "typeValue": {
+      "raw": "undefined | T & Record<`data-${string}`, string>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IHasRawProps",
+       "nameFull": "IHasRawProps<T>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "renderFilter",
+     "typeValue": {
+      "raw": "undefined | (editableFilter: IEditable<any>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerModalOptions",
+       "nameFull": "PickerModalOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderFooter",
+     "typeValue": {
+      "raw": "undefined | (props: IModal<any>>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerModalOptions",
+       "nameFull": "PickerModalOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderNotFound",
+     "comment": [
+      "Overrides the default 'no records found' banner.",
+      " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: { search: string; onClose: () => void; }) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "renderRow",
+     "comment": [
+      "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
+     ],
+     "typeValue": {
+      "raw": "undefined | (props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "selectionMode",
+     "typeValue": {
+      "raw": "'single'"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerModalScalarProps",
+       "nameFull": "PickerModalScalarProps<TId, TItem>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "sortBy",
+     "comment": [
+      "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | (item: TItem, sorting: SortingOption<any>) => any"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "sorting",
+     "comment": [
+      "Defines sorting to pass to the DataSource"
+     ],
+     "typeValue": {
+      "raw": "undefined | SortingOption<any>"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "PickerBaseOptions",
+       "nameFull": "PickerBaseOptions<TItem, TId>"
+      }
+     },
+     "required": false
+    },
+    {
+     "kind": "MethodSignature",
+     "name": "success",
+     "typeValue": {
+      "raw": "(result: TResult) => void"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "valueType",
+     "typeValue": {
+      "raw": "'id'"
+     },
+     "from": {
+      "module": "@epam/uui-components",
+      "typeName": {
+       "name": "PickerModalScalarProps",
+       "nameFull": "PickerModalScalarProps<TId, TItem>"
+      }
+     },
+     "required": true
+    },
+    {
+     "kind": "PropertySignature",
+     "name": "zIndex",
+     "typeValue": {
+      "raw": "number"
+     },
+     "from": {
+      "module": "@epam/uui-core",
+      "typeName": {
+       "name": "IModal",
+       "nameFull": "IModal<TResult>"
+      }
+     },
+     "required": true
+    }
+   ]
   },
   "pickerPart": {
    "kind": "TypeAliasDeclaration",
