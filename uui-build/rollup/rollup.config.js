@@ -93,7 +93,23 @@ async function createRollupConfigForModule(options) {
                 exportType: 'named',
                 jsxRuntime: 'classic',
                 // list of plugins in "preset-default": https://github.com/svg/svgo/blob/cb1569b2215dda19b0d4b046842344218fd31f06/plugins/preset-default.js
-                svgoConfig: { plugins: [{ name: 'preset-default', params: { overrides: { removeViewBox: false } } }] },
+                svgoConfig: {
+                    plugins: [
+                        {
+                            name: 'preset-default',
+                            params: {
+                                overrides: {
+                                    removeViewBox: false,
+                                    cleanupIDs: {
+                                        remove: true,
+                                        minify: false, // minifying IDs makes our IDs non-unique, so we have turned it OFF.
+                                    },
+                                },
+                            },
+                        },
+                        // 'prefixIds', TBD: we may want to enable this plugin so that we don't rely on uniqueness of original IDs.
+                    ],
+                },
             }),
             postcss({
                 sourceMap: true,
