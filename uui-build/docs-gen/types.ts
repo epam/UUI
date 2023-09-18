@@ -17,6 +17,7 @@ export type TType = {
     typeName: TTypeName;
     typeValue: TTypeValue;
     comment?: string[];
+    source?: string;
     props?: TTypeProp[];
 };
 export type TTypeProp = {

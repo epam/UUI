@@ -9,14 +9,7 @@ export class Union extends Converter {
     }
 
     protected override isPropsSupported(typeNode: Node) {
-        if (ConverterUtils.isExternalNode(typeNode)) {
-            return false;
-        }
-        const types = typeNode.getType().getUnionTypes();
-        const allNonLiterals = types.every((t) => {
-            return !t.isLiteral();
-        });
-        return allNonLiterals;
+        return ConverterUtils.isPropsSupported(typeNode);
     }
 
     protected override getTypeValue(typeNode: Node): TTypeValue {

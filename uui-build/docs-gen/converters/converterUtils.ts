@@ -1,26 +1,64 @@
 import { EmitHint, Node, Symbol, SyntaxKind, ts, Type } from 'ts-morph';
-import { isExternalFile } from '../utils';
+import { isExternalFile, makeRelativeToUuiRoot } from '../utils';
 import { getUuiModuleNameFromPath, SYNTAX_KIND_NAMES } from '../constants';
 import { TTypeName, TTypeRef, TTypeValue } from '../types';
 
-function isInternalWithUtility(typeNode: Node): boolean {
-    const typeRef = typeNode.getChildren().find(Node.isTypeReference);
-    const name = typeRef?.getTypeName().getText();
-    // TODO: tests, Record is missed.
-    if (['Omit', 'Pick', 'Partial', 'Awaited', 'Required', 'Readonly'].indexOf(name) !== -1) {
-        const [t] = typeRef.getTypeArguments();
-        return !ConverterUtils.isExternalNode(t);
-    }
-}
-
 export class ConverterUtils {
+    static getRelativeSource(typeNode: Node) {
+        const src = typeNode.getSourceFile();
+        const fullPath = src.getFilePath();
+        return makeRelativeToUuiRoot(fullPath);
+    }
+
+    static isPropsSupported(typeNode: Node): boolean {
+        if (ConverterUtils.isExternalNode(typeNode)) {
+            return false;
+        }
+        if (ConverterUtils.isInternalNodeWrappedInUtility(typeNode)) {
+            const t = ConverterUtils.unWrapTypeNodeFromUtility(typeNode);
+            return innerIsPropsSupported(t.getType());
+        }
+        return innerIsPropsSupported(ConverterUtils.getTypeFromNode(typeNode));
+
+        function innerIsPropsSupported(type: Type): boolean {
+            const types = type.getUnionTypes();
+            const allNonLiterals = types.every((t) => {
+                return !t.isLiteral();
+            });
+            if (allNonLiterals) {
+                return true;
+            }
+            if (type.isTuple()) {
+                return false;
+            }
+            return type.isClassOrInterface() || type.isIntersection() || type.isObject();
+        }
+    }
+
+    static unWrapTypeNodeFromUtility(typeNode: Node): Node | undefined {
+        const typeRef = typeNode.getChildren().find(Node.isTypeReference);
+        const name = typeRef?.getTypeName().getText();
+        // TODO: tests, Record is missed.
+        if (['Omit', 'Pick', 'Partial', 'Awaited', 'Required', 'Readonly'].indexOf(name) !== -1) {
+            const [t] = typeRef.getTypeArguments();
+            return t;
+        }
+    }
+
+    static isInternalNodeWrappedInUtility(typeNode: Node): boolean {
+        const node = ConverterUtils.unWrapTypeNodeFromUtility(typeNode);
+        if (node) {
+            return !ConverterUtils.isExternalNode(node);
+        }
+    }
+
     static isExternalNode(typeNode: Node): boolean {
         const type = ConverterUtils.getTypeFromNode(typeNode);
         const symbol = ConverterUtils.getSymbolFromType(type);
         if (!symbol) {
             return false;
         }
-        if (isInternalWithUtility(typeNode)) {
+        if (ConverterUtils.isInternalNodeWrappedInUtility(typeNode)) {
             return false;
         }
         return (symbol.getDeclarations() || []).some((d) => {

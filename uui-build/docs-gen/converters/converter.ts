@@ -15,11 +15,7 @@ export class Converter implements IConverter {
     }
 
     protected isPropsSupported(typeNode: Node) {
-        const type = ConverterUtils.getTypeFromNode(typeNode);
-        if (ConverterUtils.isExternalNode(typeNode) || type.isTuple()) {
-            return false;
-        }
-        return type.isClassOrInterface() || type.isIntersection() || type.isObject();
+        return ConverterUtils.isPropsSupported(typeNode);
     }
 
     public isSupported(typeNode: Node) {
@@ -34,12 +30,14 @@ export class Converter implements IConverter {
         const typeValue = this.getTypeValue(typeNode, true);
         const comment = ConverterUtils.getCommentFromNode(typeNode);
         const props = this.isPropsSupported(typeNode) ? extractMembers(typeNode, type, this.context) : undefined;
+        const source = ConverterUtils.getRelativeSource(typeNode);
         return {
             kind,
             typeName,
             typeValue,
             comment,
             props,
+            source,
         };
     }
 }
