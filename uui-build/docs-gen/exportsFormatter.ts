@@ -21,5 +21,9 @@ function formatModuleLevelDeclarations(exports: TUuiModulesExports[keyof TUuiMod
             };
         });
     });
-    return result;
+
+    return Object.keys(result).sort((e1, e2) => e1.localeCompare(e2)).reduce<TUuiModuleFormattedExport>((acc, eName) => {
+        acc[eName] = result[eName];
+        return acc;
+    }, {});
 }
