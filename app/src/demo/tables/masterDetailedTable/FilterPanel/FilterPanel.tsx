@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataColumnProps, TableFiltersConfig, ITableState, DataSourceState, Lens } from '@epam/uui-core';
+import { DataColumnProps, TableFiltersConfig, ITableState } from '@epam/uui-core';
 import {
     FlexRow, IconButton, ScrollBars, Text, FlexSpacer,
 } from '@epam/uui';
@@ -19,11 +19,6 @@ export interface IFilterPanelProps<TFilter extends Record<string, any>> extends 
 }
 
 function FilterPanel<TFilter = any>(props: IFilterPanelProps<TFilter>) {
-    const lens = Lens.onEditable<DataSourceState['filter']>({
-        value: props.tableState.filter,
-        onValueChange: props.setFilter,
-    });
-
     return (
         <>
             <FlexRow borderBottom size="48" padding="18">
@@ -38,7 +33,7 @@ function FilterPanel<TFilter = any>(props: IFilterPanelProps<TFilter>) {
                 <PresetsBlock { ...props } />
                 <FiltersBlock value={ props.tableState.filter } onValueChange={ props.setFilter } filters={ props.filters } />
                 <ColumnsBlock columnsConfig={ props.tableState.columnsConfig } onColumnsConfigChange={ props.setColumnsConfig } columns={ props.columns } />
-                <GroupingBlock groupings={ props.groupings } { ...lens.prop('groupBy').toProps() } />
+                <GroupingBlock groupings={ props.groupings } tableState={ props.tableState } setTableState={ props.setTableState } />
             </ScrollBars>
         </>
     );
