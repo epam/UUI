@@ -37,7 +37,7 @@ if (!isProduction) {
     const apm = initApm({
         serviceName: 'uui-ui',
         serverUrl: isProduction ? 'https://apm.app.epam.com' : 'https://apm-sandbox.cloudapp.epam.com/',
-        serviceVersion: '0.5.12',
+        serviceVersion: __COMMIT_HASH__,
         environment: isProduction ? 'prod' : 'qa',
         breakdownMetrics: true,
         transactionSampleRate: 0.2,
