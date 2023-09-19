@@ -138,6 +138,11 @@ export class ConverterUtils {
         return result;
     }
 
+    static isDirectExportFromFile(typeNode: Node) {
+        const ancs = typeNode.getAncestors();
+        return ancs?.length === 1 && ancs[0].isKind(SyntaxKind.SourceFile);
+    }
+
     static getTypeParentRef(typeNode: Node, originTypeNode: Node): TTypeRef | undefined {
         const anc = typeNode.getAncestors().filter((a) => {
             return a !== originTypeNode;

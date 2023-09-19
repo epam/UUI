@@ -26,9 +26,7 @@ const items: { id: TSkin; caption: string }[] = [
     { caption: 'UUI3 [Loveship]', id: TSkin.UUI3_loveship }, { caption: 'UUI4 [Promo]', id: TSkin.UUI4_promo }, { caption: 'UUI [Themebale]', id: TSkin.UUI },
 ];
 
-export type TUuiTsDoc = {
-    [skin in TSkin]?: TTsDocExportedEntry;
-};
+export type TUuiTsDoc = TTsDocExportedEntry;
 type DocPath = {
     [key in TSkin]?: string;
 };
@@ -120,7 +118,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     ];
 
     renderApiBlock() {
-        const tsDocProps = this.getUuiTsDoc()?.[this.getSkin()];
+        const tsDocProps = this.getUuiTsDoc();
         if (tsDocProps) {
             return (
                 <ApiReferenceItemTable entry={ tsDocProps } />

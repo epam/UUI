@@ -190,7 +190,7 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
     const { tableState, setTableState } = tableStateApi;
     const view = exportPropsDs.getView(tableState, setTableState, {
         isFoldedByDefault(): boolean {
-            return true;
+            return false;
         },
     });
 

@@ -50,14 +50,34 @@ export interface IConverterContext {
 
 export type TDocGenStatsResult = {
     // maps export key (module:exportName) to array of prop names
-    missingPropComment: { typeRef: TTypeRef, propNames: string[] }[],
-    missingTypeComment: TTypeRef[],
+    missingPropComment: {
+        totals: {
+            amountProps: number,
+            amountTypes: number,
+        },
+        value: { typeRef: TTypeRef, value: string[] }[],
+    },
+    missingTypeComment: {
+        totals: {
+            amountTypes: number,
+        },
+        value: TTypeRef[],
+    },
     // maps module name to export kind/name
-    ignoredExports: Record<string, { [kind: string]: string[] }>,
+    ignoredExports: {
+        totals: {
+            amountExports: number
+        },
+        value: Record<string, { [kind: string]: string[] }>,
+    },
 };
 
 export interface IDocGenStats {
     addIgnoredExport(e: { module: string, kind: string, name: string }): void;
-    checkConvertedExport(converted: TType): void;
+    checkConvertedExport(converted: TType, isDirectExport: boolean): void;
     getResults(): TDocGenStatsResult;
+}
+
+export function typeRefToUniqueString(ref: TTypeRef) {
+    return `${ref.module}:${ref.typeName.name}`;
 }
