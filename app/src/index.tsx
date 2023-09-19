@@ -36,7 +36,7 @@ function apiDefinition(processRequest: IProcessRequest) {
 if (!isProduction) {
     const apm = initApm({
         serviceName: 'uui-ui',
-        serverUrl: isProduction ? 'https://apm-sandbox.cloudapp.epam.com/' : 'https://apm.app.epam.com',
+        serverUrl: isProduction ? 'https://apm.app.epam.com' : 'https://apm-sandbox.cloudapp.epam.com/',
         serviceVersion: '0.5.12',
         environment: isProduction ? 'prod' : 'qa',
         breakdownMetrics: true,
