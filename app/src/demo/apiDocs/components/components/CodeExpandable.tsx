@@ -5,13 +5,15 @@ import { FlexSpacer } from '@epam/uui-components';
 import { Code } from '../../../../common/docs/Code';
 import { TType } from '../../types';
 
-function buildGitURL(relativePath: string) {
-    return `https://github.com/epam/UUI/blob/main/${relativePath}`;
+function buildGitURL(relativePath?: string) {
+    if (relativePath) {
+        return `https://github.com/epam/UUI/blob/main/${relativePath}`;
+    }
 }
 
 export function CodeExpandable(props: { showCode: boolean; exportInfo: TType }) {
     const { showCode, exportInfo } = props;
-    const [isCodeExpanded, setIsCodeExpanded] = useState<boolean>();
+    const [isCodeExpanded, setIsCodeExpanded] = useState<boolean>(false);
     if (!showCode) {
         return null;
     }
@@ -26,7 +28,7 @@ export function CodeExpandable(props: { showCode: boolean; exportInfo: TType }) 
             </FlexRow>
             {isCodeExpanded && (
                 <FlexRow key="code" size="36" padding="12">
-                    <Code codeAsHtml={ exportInfo?.typeValue.print?.join('\n') } />
+                    <Code codeAsHtml={ exportInfo?.typeValue.print?.join('\n') || '' } />
                 </FlexRow>
             )}
         </div>

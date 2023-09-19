@@ -16,11 +16,14 @@ export class ConverterUtils {
         }
         if (ConverterUtils.isInternalNodeWrappedInUtility(typeNode)) {
             const t = ConverterUtils.unWrapTypeNodeFromUtility(typeNode);
-            return innerIsPropsSupported(t.getType());
+            return innerIsPropsSupported(t?.getType());
         }
         return innerIsPropsSupported(ConverterUtils.getTypeFromNode(typeNode));
 
-        function innerIsPropsSupported(type: Type): boolean {
+        function innerIsPropsSupported(type?: Type): boolean {
+            if (!type) {
+                return false;
+            }
             const types = type.getUnionTypes();
             const allNonLiterals = types.every((t) => {
                 return !t.isLiteral();
@@ -37,11 +40,11 @@ export class ConverterUtils {
 
     static unWrapTypeNodeFromUtility(typeNode: Node): Node | undefined {
         const typeRef = typeNode.getChildren().find(Node.isTypeReference);
-        const name = typeRef?.getTypeName().getText();
+        const name = typeRef?.getTypeName().getText() || '';
         // TODO: tests, Record is missed.
         if (['Omit', 'Pick', 'Partial', 'Awaited', 'Required', 'Readonly'].indexOf(name) !== -1) {
-            const [t] = typeRef.getTypeArguments();
-            return t;
+            const t = typeRef?.getTypeArguments();
+            return t?.[0];
         }
     }
 
@@ -50,6 +53,7 @@ export class ConverterUtils {
         if (node) {
             return !ConverterUtils.isExternalNode(node);
         }
+        return false;
     }
 
     static isExternalNode(typeNode: Node): boolean {
@@ -114,7 +118,7 @@ export class ConverterUtils {
             .map(removeLeadingExportKw);
     }
 
-    static getTypeName(typeSymbol: Symbol): TTypeName {
+    static getTypeName(typeSymbol?: Symbol): TTypeName {
         const result: TTypeName = { name: '', nameFull: '' };
         if (typeSymbol) {
             result.name = typeSymbol.getEscapedName();
@@ -151,19 +155,19 @@ export class ConverterUtils {
         return mapped?.[0];
     }
 
-    private static mapAncestorsToRefs(ancParam: Node[]): TTypeRef[] {
+    private static mapAncestorsToRefs(ancParam: Node[]): TTypeRef[] | undefined {
         const anc = ancParam.filter((a) => {
             return (Node.isTypeAliasDeclaration(a) || Node.isInterfaceDeclaration(a) || Node.isClassDeclaration(a));
         });
         if (anc.length === 0) {
-            return;
+            return undefined;
         }
         return anc.map((ta) => {
             return ConverterUtils.getTypeRef(ta);
         });
     }
 
-    static getUuiModuleNameFromPath(fullPath: string): string {
+    static getUuiModuleNameFromPath(fullPath: string): string | undefined {
         return getUuiModuleNameFromPath(fullPath);
     }
 
@@ -182,7 +186,7 @@ export class ConverterUtils {
         return type.getText().replace(/import.*"\)\.*/g, '').replace(/"/g, "'");
     }
 
-    static getCommentFromNode(prop: Node): string[] {
+    static getCommentFromNode(prop: Node): string[] | undefined {
         const ranges = prop.getLeadingCommentRanges();
         if (ranges.length > 0) {
             const closestDoc = ranges[ranges.length - 1].getText().trim();

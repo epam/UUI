@@ -42,8 +42,8 @@ export class Converter implements IConverter {
     }
 }
 
-function mapSingleMember(originTypeNode: Node, node: Node, context: IConverterContext): TTypeProp {
-    let prop: TTypeProp = undefined;
+function mapSingleMember(originTypeNode: Node, node: Node, context: IConverterContext): TTypeProp | undefined {
+    let prop: TTypeProp | undefined = undefined;
     const nKind = node.getKind();
     const isSupported = [
         SyntaxKind.PropertySignature,
@@ -59,16 +59,24 @@ function mapSingleMember(originTypeNode: Node, node: Node, context: IConverterCo
         const from = ConverterUtils.getTypeParentRef(node, originTypeNode);
         let name = Node.isPropertyNamed(node) ? node.getName() : '';
         const typeNode = Node.isTypeAliasDeclaration(node) ? node.getTypeNode() : node;
+        if (!typeNode) {
+            return;
+        }
         const converted = context.convert(typeNode);
+        if (!converted) {
+            return;
+        }
         let { raw } = converted.typeValue;
         if (Node.isGetAccessorDeclaration(node)) {
             const returnType = node.getStructure().returnType;
             name = `get ${name}`;
             raw = `${name}(): ${returnType}`;
         } else if (Node.isSetAccessorDeclaration(node)) {
-            const params = node.getStructure().parameters[0];
-            name = `set ${name}`;
-            raw = `${name}(${params.name}: ${params.type})`;
+            const params = node.getStructure().parameters?.[0];
+            if (params) {
+                name = `set ${name}`;
+                raw = `${name}(${params.name}: ${params.type})`;
+            }
         }
         const kind = ConverterUtils.getSyntaxKindNameFromNode(typeNode);
         const hasQuestionToken = Node.isQuestionTokenable(node) ? node.hasQuestionToken() : false;
@@ -90,11 +98,15 @@ function mapSingleMember(originTypeNode: Node, node: Node, context: IConverterCo
 function extractMembers(originTypeNode: Node, type: Type, context: IConverterContext): TTypeProp[] | undefined {
     const props = type.getProperties();
     if (props.length > 0) {
-        const propsUnsorted: TTypeProp[] = props.map((symb) => {
+        const propsUnsorted = props.reduce<TTypeProp[]>((acc, symb) => {
             const decls = symb.getDeclarations();
             const node = decls[0];
-            return mapSingleMember(originTypeNode, node, context);
-        });
+            const mapped = mapSingleMember(originTypeNode, node, context);
+            if (mapped) {
+                acc.push(mapped);
+            }
+            return acc;
+        }, []);
         return sortProps(propsUnsorted);
     }
 }

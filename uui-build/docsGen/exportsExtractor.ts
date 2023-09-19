@@ -42,14 +42,17 @@ export function extractExportsFromTsProject(params: { project: Project, mainFile
     return ed.reduce<TExportedDeclarations>((accEd, [name, entry]) => {
         const kind = getExportKind(entry);
         const isAllowed = filterExportDeclaration(kind, name);
+        const module = ConverterUtils.getUuiModuleNameFromPath(mainFilePath);
+        const kindStr = ConverterUtils.kindToString(kind);
+
         if (isAllowed) {
             accEd[name] = {
                 entry,
                 kind: getExportKind(entry),
             };
+            stats.addIncludedExport({ module, kind: kindStr, name });
         } else {
-            const module = ConverterUtils.getUuiModuleNameFromPath(mainFilePath);
-            stats.addIgnoredExport({ module, kind: ConverterUtils.kindToString(kind), name });
+            stats.addIgnoredExport({ module, kind: kindStr, name });
         }
         return accEd;
     }, {});

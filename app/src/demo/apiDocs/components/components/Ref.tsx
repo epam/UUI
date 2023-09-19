@@ -3,7 +3,7 @@ import React from 'react';
 import { Anchor, Text } from '@epam/uui';
 import css from './Ref.module.scss';
 
-export function Ref(props: { refData: TTypeRef }) {
+export function Ref(props: { refData?: TTypeRef }) {
     const { refData } = props;
 
     if (refData) {

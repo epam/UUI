@@ -14,11 +14,17 @@ function formatModuleLevelDeclarations(exports: TUuiModulesExports[keyof TUuiMod
     Object.keys(exportedDeclarations).forEach((name) => {
         const { entry } = exportedDeclarations[name];
         entry.forEach((decl) => {
-            const declList = decl.getSymbol().getDeclarations();
-            const res = convertType(declList[0], project);
-            result[res.typeRef.typeName.name] = {
-                ...res,
-            };
+            const declList = decl.getSymbol()?.getDeclarations();
+            const typeNode = declList?.[0];
+            if (typeNode) {
+                const res = convertType(typeNode, project);
+                const tn = res?.typeRef.typeName.name;
+                if (tn) {
+                    result[tn] = {
+                        ...res,
+                    };
+                }
+            }
         });
     });
 

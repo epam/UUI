@@ -22,6 +22,16 @@ function isGroup(item: TTypeProp | TTypeGroup): item is TTypeGroup {
     return (item as TTypeGroup)._group;
 }
 
+function groupComparator(f1: TTypeGroup, f2: TTypeGroup) {
+    const from1 = (f1).from;
+    const from2 = (f2).from;
+    if (from1 && from2) {
+        return String(from1.typeName.name).localeCompare(String(from2.typeName.name))
+            || String(from1.module).localeCompare(String(from2.module));
+    }
+    return 0;
+}
+
 function getColumns(params: { isGroupedByFrom: boolean, hasFrom: boolean }): DataColumnProps<TItem>[] {
     const { hasFrom, isGroupedByFrom } = params;
     const isFromVisible = hasFrom && !isGroupedByFrom;
@@ -96,27 +106,28 @@ function getColumns(params: { isGroupedByFrom: boolean, hasFrom: boolean }): Dat
     return propsTableColumns;
 }
 
-function fromToString(from: TTypeProp['from']) {
+function fromToString(from?: TTypeProp['from']) {
     if (from) {
         if (from.module) {
-            return `${from.module}/${from.typeName.nameFull}`;
+            return `${from.module}:${from.typeName.name}`;
         }
-        return from.typeName.nameFull;
+        return from.typeName.name;
     }
+    return '';
 }
 
-function useIsGrouped(exportInfo: TType): { canGroup: boolean, setIsGrouped: (isGrouped: boolean) => void, isGrouped: boolean } {
+function useIsGrouped(exportInfo?: TType): { canGroup: boolean, setIsGrouped: (isGrouped: boolean) => void, isGrouped: boolean } {
     const [isGrouped, setIsGrouped] = useState(false);
     const canGroup = useMemo(() => {
         if (exportInfo) {
-            return exportInfo.props?.some(({ from }) => !!from);
+            return Boolean(exportInfo.props?.some(({ from }) => !!from));
         }
         return false;
     }, [exportInfo]);
 
     return {
         canGroup,
-        isGrouped: canGroup && isGrouped,
+        isGrouped: Boolean(canGroup && isGrouped),
         setIsGrouped,
     };
 }
@@ -136,7 +147,7 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
     const [tState, setTState] = useState<DataTableState>({});
     const exportPropsDsItems: TItem[] = useMemo(() => {
         if (exportInfo?.props) {
-            const parents = new Map<string, TItem>();
+            const parents = new Map<string, TTypeGroup>();
             if (isGrouped) {
                 exportInfo.props.forEach(({ from }) => {
                     if (from) {
@@ -144,12 +155,7 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
                     }
                 });
             }
-            const parentsArr = [...parents.values()].sort((f1, f2) => {
-                const from1 = (f1 as TTypeGroup).from;
-                const from2 = (f2 as TTypeGroup).from;
-                return String(from1.module).localeCompare(String(from2.module))
-                    || String(from1.typeName.name).localeCompare(String(from2.typeName.name));
-            });
+            const parentsArr = Array.from(parents.values()).sort(groupComparator);
             return (exportInfo.props as TItem[]).concat(parentsArr);
         }
         return [];
@@ -167,7 +173,8 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
                 if (sorting.field === 'from') {
                     if (item.from) {
                         const { module, typeName } = item.from;
-                        return `${typeName.name}_${module || ''}`;
+                        // name goes first here, so that it's sorted by name and then by module.
+                        return `${typeName.name}:${module}`;
                     }
                 }
                 return item[sorting.field as keyof TItem];

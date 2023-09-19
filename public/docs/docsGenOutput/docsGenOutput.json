@@ -80493,7 +80493,7 @@
    "typeValue": {
     "raw": "ButtonProps",
     "print": [
-     "type ButtonProps = Omit<UuiButtonProps, 'color'> & ButtonMods;"
+     "type ButtonProps = Omit<UuiTypes.ButtonProps, 'color'> & ButtonMods;"
     ]
    },
    "props": [

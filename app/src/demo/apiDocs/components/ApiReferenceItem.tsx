@@ -9,7 +9,7 @@ import { TTsDocExportedEntry } from '../types';
 
 export function ApiReferenceItem() {
     const [params] = useSearchParams();
-    const [p1, p2, exportName] = params.get('id').split('/');
+    const [p1, p2, exportName] = params?.get('id')?.split('/') || [];
     const packageName = `${p1}/${p2}`;
     const exportsMap = useGetTsDocsForPackage(packageName);
     const exportInfo = exportsMap?.[exportName];
@@ -24,13 +24,13 @@ export function ApiReferenceItem() {
     }
 
     const items: { title?: string, node: React.ReactNode }[] = [];
-    if (comment?.length > 0) {
+    if (comment?.length) {
         items.push({
             title: 'Description',
             node: <TsComment text={ comment } keepBreaks={ true } />,
         });
     }
-    const hasProps = exportInfo?.props?.length > 0;
+    const hasProps = !!exportInfo?.props?.length;
     if (hasProps) {
         const entry = `${packageName}:${exportName}` as TTsDocExportedEntry;
         items.push({
@@ -39,12 +39,12 @@ export function ApiReferenceItem() {
     }
     if (!hasProps) {
         items.push({
-            node: <Code codeAsHtml={ typeValue.print?.join('\n') } />,
+            node: <Code codeAsHtml={ typeValue?.print?.join('\n') || '' } />,
         });
     }
 
     return (
-        <Layout title={ typeRef.typeName.nameFull }>
+        <Layout title={ typeRef?.typeName.nameFull }>
             {items}
         </Layout>
     );
