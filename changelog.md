@@ -12,6 +12,9 @@
 * [PickerItem]: Remove the dropdown icon if minCharsToSearch is passed and fix the top and bottom spacing in the dropdown list.
 * [useUuiServices]: fixed apiPingPath, apiReloginPath, apiServerUrl props
 * [AdaptivePanel]: fixed items width calculation in case of decimal values
+* [useForm]: recover from `isInProgress=true` state if `onSave` is rejected
+* [TabButton]: fixed notify dot, that it will not change button width
+* [FiltersPanel]: fixed height of filter body in mobile view
 
 
 # 5.1.3 - 31.08.2023

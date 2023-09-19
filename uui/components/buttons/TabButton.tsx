@@ -16,7 +16,7 @@ function applyTabButtonMods(mods: TabButtonProps) {
         css.root,
         'informer-default',
         css['size-' + (mods.size || '48')],
-        mods.withNotify && css.uuiNotification,
+        mods.withNotify && css.withNotify,
         ...getIconClass(mods),
     ];
 }

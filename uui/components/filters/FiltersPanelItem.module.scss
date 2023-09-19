@@ -9,7 +9,7 @@
     padding: 9px 12px 0;
     margin-bottom: 9px;
 
-    button.removeButton {
+    .removeButton {
         padding-left: 24px;
         margin-left: auto;
 
@@ -24,8 +24,6 @@
 }
 
 .panel {
-    display: block;
-
     @media screen and (max-width: 720px) {
         height: var(--app-mobile-height);
     }

@@ -1,209 +1,104 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
+        "text": "Pickers support the selection of various types. "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "Pickers support the selection of various types. ",
-            "marks": []
+            "data": {
+              "checked": false
+            },
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "cascadeSelection = false",
+                "uui-richTextEditor-span-mark": true,
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": ". S",
+                "uui-richTextEditor-span-mark": true
+              },
+              {
+                "text": "ingle selection: a",
+                "uui-richTextEditor-span-mark": true
+              },
+              {
+                "text": "ll nodes are selected independently (default)."
+              }
+            ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "unordered-list",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+            "data": {
+              "checked": false
+            },
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {
-                  "checked": false
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "cascadeSelection = false",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      },
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ". S",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "ingle selection: a",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "ll nodes are selected independently (default).",
-                    "marks": []
-                  }
-                ]
+                "text": "cascadeSelection = true",
+                "uui-richTextEditor-span-mark": true,
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " or  "
+              },
+              {
+                "text": "'explicit'",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": ".  Explicit selection: selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent."
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+            "data": {
+              "checked": false
+            },
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {
-                  "checked": false
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "cascadeSelection = true",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      },
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " or  ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "'explicit'",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ".  Explicit selection: selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+                "text": "cascadeSelection =",
+                "uui-richTextEditor-span-mark": true,
+                "uui-richTextEditor-code": true
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {
-                  "checked": false
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "cascadeSelection =",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      },
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "'implicit'",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ". Implicit selection: selecting a parent node means that all children are considered checked. The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked parent is present in the Picker's value or ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "DataSourceState.checked",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " array. When the user unchecks the first child of such a parent, its parents become unchecked and all children, but the unchecked one become checked, making children's selection explicit. If the last unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.",
-                    "marks": []
-                  }
-                ]
+                "text": "'implicit'",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": ". Implicit selection: selecting a parent node means that all children are considered checked. The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked parent is present in the Picker's value or "
+              },
+              {
+                "text": "DataSourceState.checked",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " array. When the user unchecks the first child of such a parent, its parents become unchecked and all children, but the unchecked one become checked, making children's selection explicit. If the last unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
               }
             ]
           }
@@ -211,4 +106,4 @@
       }
     ]
   }
-}
+]

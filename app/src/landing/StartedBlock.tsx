@@ -25,7 +25,7 @@ export class StartedBlock extends React.Component {
                                     <IconContainer icon={ ReactIcon } />
                                 </div>
                                 <Text fontSize="24" lineHeight="30" cx={ css.contentText }>
-                                    Learn more about React Components, Demos, Packages & Documentation
+                                    React Components, Demos, Packages
                                 </Text>
                                 <FlexRow alignItems="center">
                                     <Button
@@ -47,7 +47,7 @@ export class StartedBlock extends React.Component {
                                     <IconContainer icon={ CrystalIcon } />
                                 </div>
                                 <Text fontSize="24" lineHeight="30" cx={ css.contentText }>
-                                    Learn more about Design Library, Specifications, Palettes & Typography
+                                    Design Library, Guidelines, Palettes
                                 </Text>
                                 <FlexRow alignItems="center">
                                     <Button
