@@ -36,7 +36,8 @@ export class Converter implements IConverter {
             comment,
             props,
         };
-        this.context.stats.checkConvertedExport(res);
+        this.context.stats.checkConvertedExport(res, ConverterUtils.isDirectExportFromFile(typeNode));
+
         return res;
     }
 }

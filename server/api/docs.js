@@ -51,7 +51,7 @@ router.get('/get-props', (req, res) => {
 });
 
 function readDocsGenResultsJson() {
-    const filePath = path.join(__dirname, '../../public/docs/docsGenOutput/componentsPropsSet_v2.json');
+    const filePath = path.join(__dirname, '../../public/docs/docsGenOutput/docsGenOutput.json');
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 router.get('/get-ts-docs/:packageName', (req, res) => {

@@ -6,11 +6,7 @@ import {
 export class ButtonDoc extends BaseDocsBlock {
     title = 'Button';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ({
-        [TSkin.UUI3_loveship]: '@epam/loveship:ButtonProps',
-        [TSkin.UUI4_promo]: '@epam/promo:ButtonProps',
-        [TSkin.UUI]: '@epam/uui:ButtonProps',
-    });
+    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:ButtonProps');
 
     getPropsDocPath() {
         return {
