@@ -6,7 +6,7 @@ function formatComment(commentInput: string) {
     // Playground to modify and debug https://regex101.com/r/dd4hyi/1
     const linksRegex = /(?:\[(.*)])?\{\s*@link\s*(https:\/\/\S+?)\s*}/gm;
     let comment = commentInput;
-    comment = comment.replace(linksRegex, (_, a, b) => `<a href='${b}'>${a ?? b}</a>`);
+    comment = comment.replace(linksRegex, (_, a, b) => `<a href='${b}' class="${css.link}">${a ?? b}</a>`);
     return comment;
 }
 
