@@ -1,39 +1,62 @@
-import { SyntaxKind } from 'ts-morph';
-import { ConverterUtils } from './converters/converterUtils';
+import { TDocGenStatsResult, TType, IDocGenStats, TTypeRef } from './types';
 
-class DocGenStatsBucket {
-    private data: Record<string, Set<string>> = {};
-    add(kind: SyntaxKind, value: string) {
-        const kindStr = ConverterUtils.kindToString(kind);
-        if (typeof this.data[kindStr] === 'undefined') {
-            this.data[kindStr] = new Set();
+class DocGenStats implements IDocGenStats {
+    private _mapTypeKeyToTypeRef = new Map<string, TTypeRef>();
+    private _missingPropComment = new Map<string, string[]>();
+
+    private result: TDocGenStatsResult = {
+        missingPropComment: [],
+        missingTypeComment: [],
+        ignoredExports: {},
+    };
+
+    checkConvertedExport(converted: TType) {
+        if (!converted.comment?.length) {
+            this.result.missingTypeComment.push(converted.typeRef);
         }
-        this.data[kindStr].add(value);
+
+        if (converted.props?.length) {
+            converted.props.forEach((prop) => {
+                // check only props which aren't inherited to avoid duplicates.
+                if (!prop.comment?.length && !prop.from) {
+                    const typeKey = `${converted.typeRef.module}:${converted.typeRef.typeName.name}`;
+                    this._mapTypeKeyToTypeRef.set(typeKey, converted.typeRef);
+                    let bucket = this._missingPropComment.get(typeKey);
+                    if (!bucket) {
+                        bucket = [];
+                        this._missingPropComment.set(typeKey, bucket);
+                    }
+                    bucket.push(prop.name);
+                }
+            });
+        }
     }
 
-    toString() {
-        const r = Object.keys(this.data).reduce<Record<string, string[]>>((acc, kind) => {
-            acc[kind] = [...this.data[kind]];
-            return acc;
-        }, {});
-        return JSON.stringify(r, undefined, 1);
+    addIgnoredExport(e: { module: string, kind: string, name: string }) {
+        let bucket = this.result.ignoredExports[e.module];
+        if (!bucket) {
+            bucket = {};
+            this.result.ignoredExports[e.module] = bucket;
+        }
+        if (!bucket[e.kind]) {
+            bucket[e.kind] = [];
+        }
+        bucket[e.kind].push(e.name);
+    }
+
+    getResults(): TDocGenStatsResult {
+        const missingPropComment: TDocGenStatsResult['missingPropComment'] = [];
+        [...this._missingPropComment.entries()].forEach(([typeKeyStr, propNames]) => {
+            missingPropComment.push({
+                typeRef: this._mapTypeKeyToTypeRef.get(typeKeyStr),
+                propNames,
+            });
+        });
+        return {
+            ...this.result,
+            missingPropComment,
+        };
     }
 }
 
-export class DocGenStats {
-    private ignoredExports = new DocGenStatsBucket();
-    private collectedExports = new DocGenStatsBucket();
-
-    addIgnored(kind: SyntaxKind, name: string) {
-        this.ignoredExports.add(kind, name);
-    }
-
-    addCollected(kind: SyntaxKind, name: string) {
-        this.collectedExports.add(kind, name);
-    }
-
-    printIgnored() {
-        // eslint-disable-next-line no-console
-        console.log(`Ignored.\n${this.ignoredExports.toString()}`);
-    }
-}
+export const stats: IDocGenStats = new DocGenStats();

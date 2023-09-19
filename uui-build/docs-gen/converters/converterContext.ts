@@ -1,5 +1,5 @@
 import { Node, Project } from 'ts-morph';
-import { IConverter, IConverterConstructor, IConverterContext } from '../types';
+import { IConverter, IConverterConstructor, IConverterContext, IDocGenStats } from '../types';
 import { ConverterUtils } from './converterUtils';
 
 export class ConverterContext implements IConverterContext {
@@ -8,6 +8,7 @@ export class ConverterContext implements IConverterContext {
 
     constructor(
         public readonly project: Project,
+        public readonly stats: IDocGenStats,
     ) {}
 
     public registerConverter(c: IConverterConstructor) {
@@ -24,7 +25,7 @@ export class ConverterContext implements IConverterContext {
                 // avoid infinite loop for recursive types
                 return {
                     typeValue: ConverterUtils.getTypeValueFromNode(typeNode, !isSeen),
-                    typeName: ConverterUtils.getTypeName(typeNode.getSymbol()),
+                    typeRef: ConverterUtils.getTypeRef(typeNode),
                     kind: ConverterUtils.getSyntaxKindNameFromNode(typeNode),
                 };
             }

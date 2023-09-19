@@ -154,14 +154,23 @@ export class ConverterUtils {
             return;
         }
         return anc.map((ta) => {
-            const symbol = ta.getSymbol();
-            const module = getUuiModuleNameFromPath(ta.getSourceFile().compilerNode.fileName);
-            const typeName = ConverterUtils.getTypeName(symbol);
-            return {
-                module,
-                typeName,
-            };
+            return ConverterUtils.getTypeRef(ta);
         });
+    }
+
+    static getUuiModuleNameFromPath(fullPath: string): string {
+        return getUuiModuleNameFromPath(fullPath);
+    }
+
+    static getTypeRef(typeNode: Node): TTypeRef {
+        const module = getUuiModuleNameFromPath(typeNode.getSourceFile().compilerNode.fileName);
+        const typeName = ConverterUtils.getTypeName(typeNode.getSymbol());
+        const source = ConverterUtils.getRelativeSource(typeNode);
+        return {
+            module,
+            typeName,
+            source,
+        };
     }
 
     static getCompilerTypeText(type: Type): string {

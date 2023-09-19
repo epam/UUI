@@ -9,15 +9,15 @@ export type TTypeValue = {
     print?: string[];
 };
 export type TTypeRef = {
-    module?: string,
     typeName: TTypeName,
+    module?: string,
+    source?: string;
 };
 export type TType = {
     kind: string;
-    typeName: TTypeName;
+    typeRef: TTypeRef;
     typeValue: TTypeValue;
     comment?: string[];
-    source?: string;
     props?: TTypeProp[];
 };
 export type TTypeProp = {
@@ -44,5 +44,20 @@ export interface IConverter {
 }
 export interface IConverterContext {
     project: Project
+    stats: IDocGenStats
     convert(typeNode: Node): TType
+}
+
+export type TDocGenStatsResult = {
+    // maps export key (module:exportName) to array of prop names
+    missingPropComment: { typeRef: TTypeRef, propNames: string[] }[],
+    missingTypeComment: TTypeRef[],
+    // maps module name to export kind/name
+    ignoredExports: Record<string, { [kind: string]: string[] }>,
+};
+
+export interface IDocGenStats {
+    addIgnoredExport(e: { module: string, kind: string, name: string }): void;
+    checkConvertedExport(converted: TType): void;
+    getResults(): TDocGenStatsResult;
 }

@@ -16,7 +16,7 @@ export function CodeExpandable(props: { showCode: boolean; exportInfo: TType }) 
             <FlexRow size="36" padding="12" spacing="6" borderBottom={ isCodeExpanded }>
                 <Switch label="View Code" value={ isCodeExpanded } onValueChange={ () => setIsCodeExpanded((prev) => !prev) } />
                 <FlexSpacer />
-                <Text>{exportInfo.source}</Text>
+                <Text>{exportInfo.typeRef.source}</Text>
             </FlexRow>
             {isCodeExpanded && (
                 <FlexRow key="code" size="36" padding="12">
