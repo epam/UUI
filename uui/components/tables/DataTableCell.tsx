@@ -61,14 +61,14 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
 
     props.renderPlaceholder = props.renderPlaceholder
         || (() => (
-            <Text key="t" size={ props.size !== '60' ? props.size : '48' }>
+            <Text key="t" size={ props.size !== '60' ? props.size : '30' } lineHeight="12">
                 <TextPlaceholder />
             </Text>
         ));
 
     props.renderUnknown = props.renderUnknown
         || (() => (
-            <Text key="t" size={ props.size !== '60' ? props.size : '48' }>
+            <Text key="t" size={ props.size !== '60' ? props.size : '30' } lineHeight="12">
                 Unknown
             </Text>
         ));
