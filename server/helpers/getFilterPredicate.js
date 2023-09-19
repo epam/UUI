@@ -35,7 +35,7 @@ function simplifyPredicates(filter) {
                     }
                 };
             }
-            if (Array.isArray(condition)) {
+            if (Array.isArray(condition) && condition.length) {
                 result[key] = {
                     "in": condition
                 };
