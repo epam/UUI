@@ -27,7 +27,7 @@ export function ApiReferenceItem() {
     if (comment?.length > 0) {
         items.push({
             title: 'Description',
-            node: <TsComment text={ comment } keepBreaks={ false } />,
+            node: <TsComment text={ comment } keepBreaks={ true } />,
         });
     }
     const hasProps = exportInfo?.props?.length > 0;
