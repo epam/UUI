@@ -34,7 +34,7 @@ export function ApiReferenceItem() {
     if (hasProps) {
         const entry = `${packageName}:${exportName}` as TTsDocExportedEntry;
         items.push({
-            node: <ApiReferenceItemTable entry={ entry } showCode={ true } />,
+            node: <ApiReferenceItemTable key={ entry } entry={ entry } showCode={ true } />,
         });
     }
     if (!hasProps) {
