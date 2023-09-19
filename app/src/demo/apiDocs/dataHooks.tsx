@@ -8,13 +8,14 @@ const load = (() => {
     // simple in-memory cache to avoid duplicated requests.
     const cache = new Map<string, TAsyncResponse>();
     return (packageName: string): TAsyncResponse => {
+        // @ts-ignore
         const cached = cache.get(packageName) || svc.api.getTsDocs(packageName);
         cache.set(packageName, cached);
         return cached;
     };
 })();
 
-export function useGetTsDocsForPackage(packageName?: string): TPropsV2Response {
+export function useGetTsDocsForPackage(packageName?: string): TPropsV2Response | undefined {
     const [response, setResponse] = useState<TPropsV2Response>();
     useEffect(() => {
         if (packageName) {

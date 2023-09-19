@@ -1,6 +1,50 @@
-import { TDocGenStatsResult, TType, IDocGenStats, TTypeRef, typeRefToUniqueString } from './types';
+import {
+    TDocGenStatsResult,
+    TType,
+    IDocGenStats,
+    TTypeRef,
+    typeRefToUniqueString,
+    TDocGenStatsResult_Exports,
+} from './types';
 
-class MapByTypeRef<TValue = string> {
+class ExportStat {
+    private value: Record<string, { [kind: string]: string[] }> = {};
+
+    add(e: { module: string, kind: string, name: string }) {
+        let bucket = this.value[e.module];
+        if (!bucket) {
+            bucket = {};
+            this.value[e.module] = bucket;
+        }
+        if (!bucket[e.kind]) {
+            bucket[e.kind] = [];
+        }
+        bucket[e.kind].push(e.name);
+    }
+
+    toJSON(): TDocGenStatsResult_Exports {
+        const byModule: Record<string, number> = {};
+        let allExports = 0;
+
+        Object.keys(this.value).forEach((moduleKey) => {
+            const amountInModule = Object.keys(this.value[moduleKey]).reduce((acc, kindKey) => {
+                return acc + this.value[moduleKey][kindKey].length;
+            }, 0);
+            byModule[moduleKey] = amountInModule;
+            allExports += amountInModule;
+        });
+
+        return {
+            totals: {
+                allExports,
+                byModule,
+            },
+            value: this.value,
+        };
+    }
+}
+
+class MapByTypeRef<TValue extends string[]> {
     private _mapTypeKeyToTypeRef = new Map<string, TTypeRef>();
     private _mapTypeKeyToValue = new Map<string, TValue>();
 
@@ -12,15 +56,15 @@ class MapByTypeRef<TValue = string> {
 
     get(key: TTypeRef): TValue {
         const k = typeRefToUniqueString(key);
-        return this._mapTypeKeyToValue.get(k);
+        return this._mapTypeKeyToValue.get(k) as TValue;
     }
 
     toJSON(): { typeRef: TTypeRef, value: TValue }[] {
         const result: { typeRef: TTypeRef, value: TValue }[] = [];
         [...this._mapTypeKeyToValue.entries()].forEach(([typeKeyStr, value]) => {
             result.push({
-                typeRef: this._mapTypeKeyToTypeRef.get(typeKeyStr),
-                value,
+                typeRef: this._mapTypeKeyToTypeRef.get(typeKeyStr) as TTypeRef,
+                value: [...value].sort() as TValue,
             });
         });
         return result;
@@ -30,7 +74,8 @@ class MapByTypeRef<TValue = string> {
 class DocGenStats implements IDocGenStats {
     private missingPropComment = new MapByTypeRef<string[]>();
     private missingTypeComment: TDocGenStatsResult['missingTypeComment']['value'] = [];
-    private ignoredExports: TDocGenStatsResult['ignoredExports']['value'] = {};
+    private ignoredExports = new ExportStat();
+    private includedExports = new ExportStat();
 
     checkConvertedExport(converted: TType, isDirectExport: boolean) {
         if (isDirectExport && !converted.comment?.length) {
@@ -52,16 +97,12 @@ class DocGenStats implements IDocGenStats {
         }
     }
 
+    addIncludedExport(e: { module: string, kind: string, name: string }) {
+        this.includedExports.add(e);
+    }
+
     addIgnoredExport(e: { module: string, kind: string, name: string }) {
-        let bucket = this.ignoredExports[e.module];
-        if (!bucket) {
-            bucket = {};
-            this.ignoredExports[e.module] = bucket;
-        }
-        if (!bucket[e.kind]) {
-            bucket[e.kind] = [];
-        }
-        bucket[e.kind].push(e.name);
+        this.ignoredExports.add(e);
     }
 
     getResults(): TDocGenStatsResult {
@@ -83,17 +124,8 @@ class DocGenStats implements IDocGenStats {
                 },
                 value: this.missingTypeComment,
             },
-            ignoredExports: {
-                totals: {
-                    amountExports: Object.keys(this.ignoredExports).reduce((acc, moduleMapKey) => {
-                        return acc + Object.keys(this.ignoredExports[moduleMapKey])
-                            .reduce((accInner, kindMapKey) => {
-                                return accInner + this.ignoredExports[moduleMapKey][kindMapKey].length;
-                            }, 0);
-                    }, 0),
-                },
-                value: this.ignoredExports,
-            },
+            ignoredExports: this.ignoredExports.toJSON(),
+            includedExports: this.includedExports.toJSON(),
         };
     }
 }

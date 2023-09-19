@@ -3,7 +3,7 @@ import { RichTextView, ScrollBars } from '@epam/uui';
 import css from './Layout.module.scss';
 
 type TLayoutProps = {
-    title: string;
+    title?: string;
     children: { title?: string, node?: React.ReactNode }[]
 };
 
@@ -28,9 +28,11 @@ export function Layout(props: TLayoutProps) {
         <div className={ css.root }>
             <ScrollBars>
                 <div className={ css.main }>
-                    <RichTextView>
-                        <h1>{title}</h1>
-                    </RichTextView>
+                    { title && (
+                        <RichTextView>
+                            <h1>{title}</h1>
+                        </RichTextView>
+                    )}
                     { children.map(renderItem) }
                 </div>
             </ScrollBars>

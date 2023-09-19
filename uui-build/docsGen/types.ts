@@ -45,9 +45,16 @@ export interface IConverter {
 export interface IConverterContext {
     project: Project
     stats: IDocGenStats
-    convert(typeNode: Node): TType
+    convert(typeNode: Node): TType | undefined
 }
 
+export type TDocGenStatsResult_Exports = {
+    totals: {
+        allExports: number,
+        byModule: Record<string, number>,
+    },
+    value: Record<string, { [kind: string]: string[] }>,
+};
 export type TDocGenStatsResult = {
     // maps export key (module:exportName) to array of prop names
     missingPropComment: {
@@ -64,16 +71,13 @@ export type TDocGenStatsResult = {
         value: TTypeRef[],
     },
     // maps module name to export kind/name
-    ignoredExports: {
-        totals: {
-            amountExports: number
-        },
-        value: Record<string, { [kind: string]: string[] }>,
-    },
+    ignoredExports: TDocGenStatsResult_Exports,
+    includedExports: TDocGenStatsResult_Exports,
 };
 
 export interface IDocGenStats {
-    addIgnoredExport(e: { module: string, kind: string, name: string }): void;
+    addIgnoredExport(e: { module?: string, kind: string, name: string }): void;
+    addIncludedExport(e: { module?: string, kind: string, name: string }): void;
     checkConvertedExport(converted: TType, isDirectExport: boolean): void;
     getResults(): TDocGenStatsResult;
 }
