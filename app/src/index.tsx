@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 import {
-    UuiContexts, Router6AdaptedRouter, useUuiServices, DragGhost,
+    Router6AdaptedRouter, useUuiServices, DragGhost,
     UuiContext, GAListener, IProcessRequest,
 } from '@epam/uui-core';
 import { Snackbar, Modals, PortalRoot } from '@epam/uui-components';
