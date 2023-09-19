@@ -23,22 +23,21 @@ export class Converter implements IConverter {
     }
 
     public convert(typeNode: Node): TType {
-        const symbol = typeNode.getSymbol();
         const type = ConverterUtils.getTypeFromNode(typeNode);
         const kind = ConverterUtils.getSyntaxKindNameFromNode(typeNode);
-        const typeName = ConverterUtils.getTypeName(symbol);
+        const typeRef = ConverterUtils.getTypeRef(typeNode);
         const typeValue = this.getTypeValue(typeNode, true);
         const comment = ConverterUtils.getCommentFromNode(typeNode);
         const props = this.isPropsSupported(typeNode) ? extractMembers(typeNode, type, this.context) : undefined;
-        const source = ConverterUtils.getRelativeSource(typeNode);
-        return {
+        const res: TType = {
             kind,
-            typeName,
+            typeRef,
             typeValue,
             comment,
             props,
-            source,
         };
+        this.context.stats.checkConvertedExport(res);
+        return res;
     }
 }
 

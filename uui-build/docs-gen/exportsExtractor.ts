@@ -2,12 +2,11 @@ import { ExportedDeclarations, Project, SyntaxKind } from 'ts-morph';
 import path from 'path';
 import { TExportedDeclarations, TUuiModulesExports } from './types';
 import { INCLUDED_EXPORT_KINDS, INCLUDED_UUI_PACKAGES, INDEX_PATH, TSCONFIG_PATH } from './constants';
-import { DocGenStats } from './stats';
-
-const stats = new DocGenStats();
+import { stats } from './stats';
+import { ConverterUtils } from './converters/converterUtils';
 
 export function extractExports() {
-    const result = Object.keys(INCLUDED_UUI_PACKAGES).reduce<TUuiModulesExports>((acc, packageName) => {
+    return Object.keys(INCLUDED_UUI_PACKAGES).reduce<TUuiModulesExports>((acc, packageName) => {
         const moduleRootDir = INCLUDED_UUI_PACKAGES[packageName];
         const {
             project,
@@ -20,8 +19,6 @@ export function extractExports() {
         };
         return acc;
     }, {});
-    stats.printIgnored();
-    return result;
 }
 
 function initProject(tsProjectRootDir: string) {
@@ -51,7 +48,8 @@ export function extractExportsFromTsProject(params: { project: Project, mainFile
                 kind: getExportKind(entry),
             };
         } else {
-            stats.addIgnored(kind, name);
+            const module = ConverterUtils.getUuiModuleNameFromPath(mainFilePath);
+            stats.addIgnoredExport({ module, kind: ConverterUtils.kindToString(kind), name });
         }
         return accEd;
     }, {});

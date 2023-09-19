@@ -14,7 +14,7 @@ export function ApiReferenceItem() {
     const exportsMap = useGetTsDocsForPackage(packageName);
     const exportInfo = exportsMap?.[exportName];
     const {
-        typeName,
+        typeRef,
         typeValue,
         comment,
     } = exportInfo || {};
@@ -44,7 +44,7 @@ export function ApiReferenceItem() {
     }
 
     return (
-        <Layout title={ typeName.nameFull }>
+        <Layout title={ typeRef.typeName.nameFull }>
             {items}
         </Layout>
     );

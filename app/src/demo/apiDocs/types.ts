@@ -7,15 +7,15 @@ export type TTypeValue = {
     print?: string[];
 };
 export type TTypeRef = {
-    module?: string,
     typeName: TTypeName,
+    module?: string,
+    source?: string;
 };
 export type TType = {
     kind: string;
-    typeName: TTypeName;
+    typeRef: TTypeRef;
     typeValue: TTypeValue;
     comment?: string[];
-    source?: string;
     props?: TTypeProp[];
 };
 export type TTypeProp = {

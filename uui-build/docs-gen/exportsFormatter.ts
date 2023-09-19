@@ -16,7 +16,7 @@ function formatModuleLevelDeclarations(exports: TUuiModulesExports[keyof TUuiMod
         entry.forEach((decl) => {
             const declList = decl.getSymbol().getDeclarations();
             const res = convertType(declList[0], project);
-            result[res.typeName.name] = {
+            result[res.typeRef.typeName.name] = {
                 ...res,
             };
         });

@@ -50,9 +50,12 @@ router.get('/get-props', (req, res) => {
     });
 });
 
+function readDocsGenResultsJson() {
+    const filePath = path.join(__dirname, '../../public/docs/docsGenOutput/componentsPropsSet_v2.json');
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
 router.get('/get-ts-docs/:packageName', (req, res) => {
-    const propsFilePath = path.join(__dirname, '../../public/docs/componentsPropsSet_v2.json');
-    const json = JSON.parse(fs.readFileSync(propsFilePath, 'utf8'));
+    const json = readDocsGenResultsJson();
     const packageName = req.params.packageName;
     if (!packageName) {
         res.sendStatus(400);
@@ -89,8 +92,7 @@ router.get('/get-ts-docs/:packageName', (req, res) => {
 });
 
 router.get('/get-ts-docs-api', (req, res) => {
-    const propsFilePath = path.join(__dirname, '../../public/docs/componentsPropsSet_v2.json');
-    const json = JSON.parse(fs.readFileSync(propsFilePath, 'utf8'));
+    const json = readDocsGenResultsJson();
     const content = Object.keys(json).reduce((acc, packageName) => {
         acc[packageName] = Object.keys(json[packageName]);
         return acc;
