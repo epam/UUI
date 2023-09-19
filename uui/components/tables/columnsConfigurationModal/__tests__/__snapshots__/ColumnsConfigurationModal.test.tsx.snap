@@ -236,54 +236,41 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="root size-30 spacing-6 title container align-items-center"
-                  style={
-                    Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
-                    }
-                  }
+                  className="dragHandle container uui-drag-handle"
+                  onPointerDown={[Function]}
+                  onTouchStart={[Function]}
+                />
+                <label
+                  className="container uui-checkbox-container root size-18 mode-form checkbox uui-disabled"
+                  tabIndex={-1}
                 >
                   <div
-                    className="dragHandle container uui-drag-handle"
-                    onPointerDown={[Function]}
-                    onTouchStart={[Function]}
-                  />
-                  <label
-                    className="container uui-checkbox-container root size-18 mode-form uui-disabled"
-                    tabIndex={-1}
+                    className="uui-checkbox uui-checked"
                   >
+                    <input
+                      aria-checked={true}
+                      aria-disabled={true}
+                      checked={true}
+                      disabled={true}
+                      onChange={[Function]}
+                      tabIndex={-1}
+                      type="checkbox"
+                    />
                     <div
-                      className="uui-checkbox uui-checked"
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
                     >
-                      <input
-                        aria-checked={true}
-                        aria-disabled={true}
-                        checked={true}
-                        disabled={true}
-                        onChange={[Function]}
-                        tabIndex={-1}
-                        type="checkbox"
+                      <svg
+                        className=""
                       />
-                      <div
-                        className="container uui-icon uui-enabled"
-                        style={Object {}}
-                      >
-                        <svg
-                          className=""
-                        />
-                      </div>
                     </div>
-                    <div
-                      className="uui-input-label"
-                    >
-                      ID
-                    </div>
-                  </label>
-                </div>
-                <div
-                  className="flexSpacer"
-                />
+                  </div>
+                  <div
+                    className="uui-input-label"
+                  >
+                    ID
+                  </div>
+                </label>
                 <div
                   className="root size-30 pinIconButton container align-items-center"
                   style={
@@ -330,54 +317,41 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="root size-30 spacing-6 title container align-items-center"
-                  style={
-                    Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
-                    }
-                  }
+                  className="dragHandle container uui-drag-handle"
+                  onPointerDown={[Function]}
+                  onTouchStart={[Function]}
+                />
+                <label
+                  className="container uui-checkbox-container root size-18 mode-form checkbox uui-disabled"
+                  tabIndex={-1}
                 >
                   <div
-                    className="dragHandle container uui-drag-handle"
-                    onPointerDown={[Function]}
-                    onTouchStart={[Function]}
-                  />
-                  <label
-                    className="container uui-checkbox-container root size-18 mode-form uui-disabled"
-                    tabIndex={-1}
+                    className="uui-checkbox uui-checked"
                   >
+                    <input
+                      aria-checked={true}
+                      aria-disabled={true}
+                      checked={true}
+                      disabled={true}
+                      onChange={[Function]}
+                      tabIndex={-1}
+                      type="checkbox"
+                    />
                     <div
-                      className="uui-checkbox uui-checked"
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
                     >
-                      <input
-                        aria-checked={true}
-                        aria-disabled={true}
-                        checked={true}
-                        disabled={true}
-                        onChange={[Function]}
-                        tabIndex={-1}
-                        type="checkbox"
+                      <svg
+                        className=""
                       />
-                      <div
-                        className="container uui-icon uui-enabled"
-                        style={Object {}}
-                      >
-                        <svg
-                          className=""
-                        />
-                      </div>
                     </div>
-                    <div
-                      className="uui-input-label"
-                    >
-                      Level
-                    </div>
-                  </label>
-                </div>
-                <div
-                  className="flexSpacer"
-                />
+                  </div>
+                  <div
+                    className="uui-input-label"
+                  >
+                    Level
+                  </div>
+                </label>
                 <div
                   className="root size-30 pinIconButton container align-items-center"
                   style={
@@ -756,45 +730,32 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                 }
               >
                 <div
-                  className="root size-30 spacing-6 title container align-items-center"
-                  style={
-                    Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
-                    }
-                  }
+                  className="dragHandle container uui-drag-handle"
+                  onPointerDown={[Function]}
+                  onTouchStart={[Function]}
+                />
+                <label
+                  className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                  tabIndex={-1}
                 >
                   <div
-                    className="dragHandle container uui-drag-handle"
-                    onPointerDown={[Function]}
-                    onTouchStart={[Function]}
-                  />
-                  <label
-                    className="container uui-checkbox-container root size-18 mode-form -clickable"
-                    tabIndex={-1}
+                    className="uui-checkbox"
                   >
-                    <div
-                      className="uui-checkbox"
-                    >
-                      <input
-                        aria-checked={false}
-                        checked={false}
-                        disabled={false}
-                        onChange={[Function]}
-                        tabIndex={0}
-                        type="checkbox"
-                      />
-                    </div>
-                    <div
-                      className="uui-input-label"
-                    >
-                      ID
-                    </div>
-                  </label>
-                </div>
-                <div
-                  className="flexSpacer"
-                />
+                    <input
+                      aria-checked={false}
+                      checked={false}
+                      disabled={false}
+                      onChange={[Function]}
+                      tabIndex={0}
+                      type="checkbox"
+                    />
+                  </div>
+                  <div
+                    className="uui-input-label"
+                  >
+                    ID
+                  </div>
+                </label>
                 <div
                   className="root size-30 pinIconButton container align-items-center"
                   style={
@@ -841,45 +802,32 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                 }
               >
                 <div
-                  className="root size-30 spacing-6 title container align-items-center"
-                  style={
-                    Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
-                    }
-                  }
+                  className="dragHandle container uui-drag-handle"
+                  onPointerDown={[Function]}
+                  onTouchStart={[Function]}
+                />
+                <label
+                  className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                  tabIndex={-1}
                 >
                   <div
-                    className="dragHandle container uui-drag-handle"
-                    onPointerDown={[Function]}
-                    onTouchStart={[Function]}
-                  />
-                  <label
-                    className="container uui-checkbox-container root size-18 mode-form -clickable"
-                    tabIndex={-1}
+                    className="uui-checkbox"
                   >
-                    <div
-                      className="uui-checkbox"
-                    >
-                      <input
-                        aria-checked={false}
-                        checked={false}
-                        disabled={false}
-                        onChange={[Function]}
-                        tabIndex={0}
-                        type="checkbox"
-                      />
-                    </div>
-                    <div
-                      className="uui-input-label"
-                    >
-                      Level
-                    </div>
-                  </label>
-                </div>
-                <div
-                  className="flexSpacer"
-                />
+                    <input
+                      aria-checked={false}
+                      checked={false}
+                      disabled={false}
+                      onChange={[Function]}
+                      tabIndex={0}
+                      type="checkbox"
+                    />
+                  </div>
+                  <div
+                    className="uui-input-label"
+                  >
+                    Level
+                  </div>
+                </label>
                 <div
                   className="root size-30 pinIconButton container align-items-center"
                   style={
