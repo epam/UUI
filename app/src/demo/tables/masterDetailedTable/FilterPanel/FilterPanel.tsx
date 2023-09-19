@@ -31,7 +31,7 @@ function FilterPanel<TFilter = any>(props: IFilterPanelProps<TFilter>) {
 
             <ScrollBars>
                 <PresetsBlock { ...props } />
-                <FiltersBlock value={ props.tableState.filter } onValueChange={ props.setFilter } filters={ props.filters } />
+                <FiltersBlock filters={ props.filters } tableState={ props.tableState } setTableState={ props.setTableState } />
                 <ColumnsBlock columnsConfig={ props.tableState.columnsConfig } onColumnsConfigChange={ props.setColumnsConfig } columns={ props.columns } />
                 <GroupingBlock groupings={ props.groupings } tableState={ props.tableState } setTableState={ props.setTableState } />
             </ScrollBars>
