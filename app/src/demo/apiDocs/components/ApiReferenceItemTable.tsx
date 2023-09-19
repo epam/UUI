@@ -74,7 +74,7 @@ function getColumns(params: { isGroupedByFrom: boolean, hasFrom: boolean }): Dat
                     return null;
                 }
                 return (
-                    <TsComment text={ item.comment } keepBreaks={ false } isCompact={ true } />
+                    <TsComment text={ item.comment } keepBreaks={ true } isCompact={ true } />
                 );
             },
             width: WIDTH.comment,
