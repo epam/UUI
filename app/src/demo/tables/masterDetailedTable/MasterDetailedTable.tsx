@@ -91,8 +91,25 @@ export function MasterDetailedTable() {
                         onClick: clickHandler,
                     },
                 })
+                .addEntity('Person', {
+                    getParentId: () => undefined,
+                    getChildCount: () => null,
+                    api: async ({ ids, ...request }, ctx) => {
+                        const { groupBy, ...filter } = request.filter ?? {};
+                        if (ids != null) {
+                            return await svc.api.demo.persons({ ids });
+                        }
+                        if (request.search) {
+                            return getPersons({ ...request, filter }, ctx);
+                        }
+
+                        const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
+                        return getPersons({ ...request, filter: { ...filter, ...parentFilter } }, ctx);
+                    },
+                })
                 .addGrouping('location', {
                     type: 'Location',
+                    getRowOptions: () => ({ checkbox: { isVisible: false } }),
                     getParentId: (loc) => loc.parentId,
                     getChildCount: (location) => location.type === 'city' ? 1 : 10,
                     api: async ({ ids, ...request }, ctx) => {
@@ -123,22 +140,6 @@ export function MasterDetailedTable() {
                             return getPersons({ ...request, filter: { groupBy }, search: null, itemsRequest: { filter, search: request.search } } as any, ctx);
                         }
                         
-                        const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
-                        return getPersons({ ...request, filter: { ...filter, ...parentFilter } }, ctx);
-                    },
-                })
-                .addEntity('Person', {
-                    getParentId: () => undefined,
-                    getChildCount: () => null,
-                    api: async ({ ids, ...request }, ctx) => {
-                        const { groupBy, ...filter } = request.filter ?? {};
-                        if (ids != null) {
-                            return await svc.api.demo.persons({ ids });
-                        }
-                        if (request.search) {
-                            return getPersons({ ...request, filter }, ctx);
-                        }
-
                         const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
                         return getPersons({ ...request, filter: { ...filter, ...parentFilter } }, ctx);
                     },

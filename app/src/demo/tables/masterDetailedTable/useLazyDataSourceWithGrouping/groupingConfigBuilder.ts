@@ -1,4 +1,4 @@
-import { LazyDataSourceProps } from '@epam/uui-core';
+import { DataRowOptions, LazyDataSourceProps } from '@epam/uui-core';
 import {
     ComplexId, ConfigDefault, EntitiesConfig, EntityConfig, GroupByKey, GroupByKeys,
     GroupingConfig, GroupingsConfig, UnboxUnionFromGroups,
@@ -110,7 +110,7 @@ export class GroupingConfigBuilder<
         if (groupBy) {
             if (Array.isArray(groupBy)) {
                 const key = `${groupBy}Id`;
-                return [this.groupByToEntityType[groupBy[0]], key in item ? item[key] as TId[keyof TGroups] : undefined];
+                return [this.groupByToEntityType[groupBy[0]], key in item ? item[key] as TId[keyof TGroups] : undefined]; // TODO: think about it
             }
             const key = `${groupBy}Id`;
             return [this.groupByToEntityType[groupBy], key in item ? item[key] as TId[keyof TGroups] : undefined];
@@ -125,5 +125,18 @@ export class GroupingConfigBuilder<
             ?? this.groupingsConfig[type]?.getChildCount
             ?? this[DEFAULT_CONFIG]?.getChildCount
         )?.(item);
+    }
+
+    getRowOptions?(item: UnboxUnionFromGroups<TGroups>, index: number): DataRowOptions<UnboxUnionFromGroups<TGroups>, [keyof TGroups, TId[keyof TGroups]]> {
+        const type = this.getType(item);
+        const getRowOptions = this.entitiesConfig[type]?.getRowOptions
+            ?? this.groupingsConfig[type]?.getRowOptions
+            ?? this[DEFAULT_CONFIG]?.getRowOptions;
+
+        if (!getRowOptions) {
+            return this[DEFAULT_CONFIG]?.rowOptions;
+        }
+
+        return getRowOptions(item, index);
     }
 }
