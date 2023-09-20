@@ -55,7 +55,7 @@ export function MasterDetailedTable() {
     }, []);
 
     const dataSource = useLazyDataSourceWithGrouping<PersonTableGroups, PersonTableIdGroups, { groupBy: 'department' }>(
-        (config) => {        
+        (config) => {
             const getPersons = async (
                 personRequest: LazyDataSourceApiRequest<PersonTableRecord, number, PersonTableFilter>,
                 ctx: LazyDataSourceApiRequestContext<PersonTableRecord, unknown>,
@@ -145,7 +145,7 @@ export function MasterDetailedTable() {
                     },
                 });
         },
-        [tableStateApi.tableState.filter?.groupBy],
+        [JSON.stringify(tableStateApi.tableState.filter?.groupBy)],
     );
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {});

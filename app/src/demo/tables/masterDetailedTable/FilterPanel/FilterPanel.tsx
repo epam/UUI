@@ -38,7 +38,7 @@ function FilterPanel<TFilter = any>(props: IFilterPanelProps<TFilter>) {
                 <PresetsBlock { ...props } />
                 <FiltersBlock value={ props.tableState.filter } onValueChange={ props.setFilter } filters={ props.filters } />
                 <ColumnsBlock columnsConfig={ props.tableState.columnsConfig } onColumnsConfigChange={ props.setColumnsConfig } columns={ props.columns } />
-                <GroupingBlock groupings={ props.groupings } { ...lens.prop('groupBy').toProps() } />
+                <GroupingBlock { ...lens.prop('groupBy').toProps() } />
             </ScrollBars>
         </>
     );

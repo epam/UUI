@@ -13,7 +13,7 @@ export interface GetType<TGroups> {
     getGroupBy: () => GroupByKeys<TGroups>;
 }
 
-export type ConfigDefault<TGroups, TId extends { [K in keyof TGroups]: unknown }, TFilter extends { groupBy: GroupByKeys<TGroups> }> =
+export type ConfigDefault<TGroups, TId extends { [K in keyof TGroups]: unknown }, TFilter extends { groupBy?: GroupByKeys<TGroups> }> =
     Partial<LazyDataSourceProps<UnboxUnionFromGroups<TGroups>, [keyof TGroups, TId[keyof TGroups]], TFilter>>
     & GetType<TGroups>;
 
@@ -24,7 +24,7 @@ type EntityLazyDataSourceProps<
     TGroups,
     TType extends keyof TGroups,
     TId extends { [K in keyof TGroups]: unknown },
-    TFilter extends { groupBy: GroupByKeys<TGroups> }
+    TFilter extends { groupBy?: GroupByKeys<TGroups> }
 > =
     LazyDataSourceGetters<TGroups[TType], TId[TType], TFilter>
     & {
@@ -41,7 +41,7 @@ export type EntityConfig<
     TGroups,
     TType extends keyof TGroups,
     TId extends { [K in keyof TGroups]: unknown },
-    TFilter extends { groupBy: GroupByKeys<TGroups> }
+    TFilter extends { groupBy?: GroupByKeys<TGroups> }
 > =
     Partial<EntityLazyDataSourceProps<TGroups, TType, TId, TFilter>>;
 
@@ -49,14 +49,14 @@ export type GroupingConfig<
     TGroups,
     TType extends keyof TGroups,
     TId extends { [K in keyof TGroups]: unknown },
-    TFilter extends { groupBy: GroupByKeys<TGroups> }
+    TFilter extends { groupBy?: GroupByKeys<TGroups> }
 > =
     Partial<EntityLazyDataSourceProps<TGroups, TType, TId, TFilter>> & { type: TType };
 
 export type EntitiesConfig<
     TGroups,
     TId extends { [K in keyof TGroups]: unknown },
-    TFilter extends { groupBy: GroupByKeys<TGroups> }
+    TFilter extends { groupBy?: GroupByKeys<TGroups> }
 > = {
     [TType in keyof TGroups]?: EntityConfig<TGroups, TType, TId, TFilter>;
 };
@@ -64,7 +64,7 @@ export type EntitiesConfig<
 export type GroupingsConfig<
     TGroups,
     TId extends { [K in keyof TGroups]: unknown },
-    TFilter extends { groupBy: GroupByKeys<TGroups> }
+    TFilter extends { groupBy?: GroupByKeys<TGroups> }
 > = {
     [TType in keyof TGroups]?: GroupingConfig<TGroups, TType, TId, TFilter>;
 };
