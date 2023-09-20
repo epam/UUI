@@ -60,7 +60,6 @@ export default function AdvancedFormExample() {
                 </ErrorNotification>
             )),
         getMetadata,
-        settingsKey: 'advanced-form-example',
     });
 
     const countriesDataSource = useAsyncDataSource(
