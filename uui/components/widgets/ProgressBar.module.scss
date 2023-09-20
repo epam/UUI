@@ -10,8 +10,8 @@
     --uui-progress_bar-label: var(--uui-text-white);
     --uui-progress_bar-top-label: var(--uui-text-dark);
 
-    --uui-progress_bar-font: var(--font-regular);
-    --uui-progress_bar-font-weight: normal;
+    --uui-progress_bar-font: var(--uui-font);
+    --uui-progress_bar-font-weight: 400;
     //
     background-color: var(--uui-progress_bar-wrapper);
     font-family: var(--uui-progress_bar-font);
