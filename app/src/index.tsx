@@ -42,7 +42,7 @@ if (!isProduction) {
         breakdownMetrics: true,
         transactionSampleRate: 0.2,
     });
-    apm.addLabels({ project: 'epm-uui', service_type: 'UI' });
+    apm.addLabels({ project: 'epm-uui', service_type: 'ui' });
 }
 
 function UuiEnhancedApp() {
