@@ -18,14 +18,23 @@ export type ConfigDefault<TGroups, TId extends { [K in keyof TGroups]: unknown }
     & GetType<TGroups>;
 
 export type LazyDataSourceGetters<TItem, TId, TFilter> =
-    Pick<LazyDataSourceProps<TItem, TId, TFilter>, 'getId' | 'getParentId' | 'getChildCount' | 'getRowOptions' | 'isFoldedByDefault'>;
+    Pick<LazyDataSourceProps<TItem, TId, TFilter>, 'getId' | 'getParentId' | 'getChildCount' | 'isFoldedByDefault'>;
 
-type EntityLazyDataSourceProps<TGroups, TType extends keyof TGroups, TId, TFilter extends { groupBy: GroupByKeys<TGroups> }> =
-    LazyDataSourceGetters<TGroups[TType], TId, TFilter>
+type EntityLazyDataSourceProps<
+    TGroups,
+    TType extends keyof TGroups,
+    TId extends { [K in keyof TGroups]: unknown },
+    TFilter extends { groupBy: GroupByKeys<TGroups> }
+> =
+    LazyDataSourceGetters<TGroups[TType], TId[TType], TFilter>
     & {
         api: (
-            ...args: Parameters<LazyDataSourceProps<TGroups[TType], TId, TFilter>['api']>
-        ) => ReturnType<LazyDataSourceProps<TGroups[keyof TGroups], TId, TFilter>['api']>;
+            ...args: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['api']>
+        ) => ReturnType<LazyDataSourceProps<TGroups[keyof TGroups], TId[TType], TFilter>['api']>;
+    } & {
+        getRowOptions: (
+            ...args: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['getRowOptions']>
+        ) => ReturnType<LazyDataSourceProps<TGroups[keyof TGroups], [keyof TGroups, TId[keyof TGroups]], TFilter>['getRowOptions']>;
     };
 
 export type EntityConfig<
@@ -34,7 +43,7 @@ export type EntityConfig<
     TId extends { [K in keyof TGroups]: unknown },
     TFilter extends { groupBy: GroupByKeys<TGroups> }
 > =
-    Partial<EntityLazyDataSourceProps<TGroups, TType, TId[TType], TFilter>>;
+    Partial<EntityLazyDataSourceProps<TGroups, TType, TId, TFilter>>;
 
 export type GroupingConfig<
     TGroups,
@@ -42,7 +51,7 @@ export type GroupingConfig<
     TId extends { [K in keyof TGroups]: unknown },
     TFilter extends { groupBy: GroupByKeys<TGroups> }
 > =
-    Partial<EntityLazyDataSourceProps<TGroups, TType, TId[TType], TFilter>> & { type: TType };
+    Partial<EntityLazyDataSourceProps<TGroups, TType, TId, TFilter>> & { type: TType };
 
 export type EntitiesConfig<
     TGroups,

@@ -62,6 +62,7 @@ export function useLazyDataSourceWithGrouping<
             getId: (i) => config.getId(i),
             getParentId: (i) => config.getParentId(i),
             getChildCount: (i) => config.getChildCount(i),
+            getRowOptions: (i, index) => config.getRowOptions(i, index),
         },
         deps,
     );
