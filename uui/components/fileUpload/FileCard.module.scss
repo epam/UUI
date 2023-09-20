@@ -62,7 +62,8 @@
 }
 
 .error-block {
-    font-family: var(--font-regular);
+    font-family: var(--uui-font);
+    font-weight: 400;
     font-size: 12px;
     color: var(--uui-filecard-text-error);
     display: inline-flex;

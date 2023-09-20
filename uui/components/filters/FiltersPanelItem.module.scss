@@ -1,8 +1,8 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
-    --uui-filters-panel-header-font: var(--font-regular);
-    --uui-filters-panel-header-font-weight: normal;
+    --uui-filters-panel-header-font: var(--uui-font);
+    --uui-filters-panel-header-font-weight: 400;
 }
 
 .header {

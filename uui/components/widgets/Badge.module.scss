@@ -10,10 +10,10 @@
     --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
     --uui-badge-count-bg: var(--white); // It should be a separate component
 
-    --uui-badge-font: var(--font-regular);
-    --uui-badge-font-weight: normal;
-    --uui-badge-count-font: var(--font-semibold);
-    --uui-badge-count-font-weight: normal;
+    --uui-badge-font: var(--uui-font);
+    --uui-badge-font-weight: 400;
+    --uui-badge-count-font: var(--uui-font);
+    --uui-badge-count-font-weight: 600;
     //
     background-color: var(--uui-badge-bg);
     color: var(--uui-badge-caption);

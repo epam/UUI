@@ -5,8 +5,8 @@
     --uui-tooltip-arrow-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
 
     --uui-tooltip-border-radius: var(--uui-border-radius);
-    --uui-tooltip-font: var(--font-regular);
-    --uui-tooltip-font-weight: normal;
+    --uui-tooltip-font: var(--uui-font);
+    --uui-tooltip-font-weight: 400;
     //
     :global(.uui-tooltip-body) {
         padding: 6px 12px;

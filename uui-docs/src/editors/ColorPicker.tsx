@@ -16,8 +16,8 @@ interface ColorPickerProps extends IEditable<string> {
 export class ColorPicker extends React.Component<ColorPickerProps, any> {
     getUuiClass = (color: Color) => {
         switch (color.value) {
-            case 'white': return 'var(--neutral0)';
-            case 'neutral': return 'var(--neutral50)';
+            case 'white': return 'var(--uui-neutral-0)';
+            case 'neutral': return 'var(--uui-neutral-50)';
             default: return `var(--uui-${color.value}-50)`;
         }
     };

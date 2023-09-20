@@ -1,7 +1,23 @@
-$font-sans: 'Sans Regular', Arial, sans-serif;
-$font-sans-light: 'Sans Light', Arial, sans-serif;
-$font-sans-bold: 'Sans Bold', Arial, sans-serif;
-$font-sans-semibold: 'Sans Semibold', Arial, sans-serif;
-$font-sans-italic: 'Sans Italic', Arial, sans-serif;
+$font-source-sans: 'Source Sans Pro', sans-serif;
 $font-roboto-condensed: 'Roboto Condensed', Arial, sans-serif;
 $font-redacted: 'Redacted', Arial, sans-serif;
+/**
+ * @deprecated Please use "$font-source-sans" us "font-weight: 300" instead "$font-sans-light"!
+ */
+$font-sans-light: 'Sans Light', Arial, sans-serif;
+/**
+ * @deprecated Please use "$font-source-sans" us "font-weight: 400" instead "$font-sans"!
+ */
+$font-sans: 'Sans Regular', Arial, sans-serif;
+/**
+ * @deprecated Please use "$font-source-sans" us "font-weight: 600" instead "$font-sans-semibold"!
+ */
+$font-sans-semibold: 'Sans Semibold', Arial, sans-serif;
+/**
+ * @deprecated Please use "$font-source-sans" us "font-weight: 700" instead "$font-sans-bold"!
+ */
+$font-sans-bold: 'Sans Bold', Arial, sans-serif;
+/**
+ * @deprecated Please use "$font-source-sans" us "font-weight: 400" & "font-style: italic" instead "$font-sans-italic"!
+ */
+$font-sans-italic: 'Sans Italic', Arial, sans-serif;

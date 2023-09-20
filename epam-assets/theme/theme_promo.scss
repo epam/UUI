@@ -1,15 +1,13 @@
 /*  Name convention  */
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 
-.uui-theme-promo {
-    --font-regular: 'Sans Regular', Arial, sans-serif;
-    --font-semibold: 'Sans Semibold', Arial, sans-serif;
-    --font-italic: 'Sans Italic', Arial, sans-serif;
-    --font-primary: 'Museo Sans', 'Sans Semibold', Arial, sans-serif;
+.uui-theme-promo,
+[class^='uui-theme-'] .uui-theme-promo,
+[class^='uui-theme-'] [class^='uui-theme-'] .uui-theme-promo {
+    --uui-font: 'Source Sans Pro', sans-serif;
+    --font-primary: 'Museo Sans', 'Source Sans Pro', Arial, sans-serif;
     --font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
-    --font-mono: 'Roboto Mono', Arial, sans-serif;
-    --font-redacted: 'Redacted';
-    --font-light: 'Sans Light', Arial, sans-serif;
+    --font-mono: 'Roboto Mono', monospace;
 
     --gray5: #FAFAFC;
     --gray10: #F5F6FA;
@@ -170,47 +168,47 @@
     --uui-error-60: var(--red-dark);
     --uui-error-70: var(--red-darkest);
 
-    --neutral0: #FFFFFF;
-    --neutral5: var(--gray5);
-    --neutral10: var(--gray10);
-    --neutral20: var(--gray20);
-    --neutral30: var(--gray30);
-    --neutral40: var(--gray40);
-    --neutral50: var(--gray50);
-    --neutral60: var(--gray60);
-    --neutral70: var(--gray70);
-    --neutral80: var(--gray80);
-    --neutral90: var(--gray90);
-    --neutral100: #000000;
+    --uui-neutral-0: #FFFFFF;
+    --uui-neutral-5: var(--gray5);
+    --uui-neutral-10: var(--gray10);
+    --uui-neutral-20: var(--gray20);
+    --uui-neutral-30: var(--gray30);
+    --uui-neutral-40: var(--gray40);
+    --uui-neutral-50: var(--gray50);
+    --uui-neutral-60: var(--gray60);
+    --uui-neutral-70: var(--gray70);
+    --uui-neutral-80: var(--gray80);
+    --uui-neutral-90: var(--gray90);
+    --uui-neutral-100: #000000;
 
     /* Surfaces Figma - https://www.figma.com/file/UyChXPLmyv5zMrOU37KdUL/Promo-aka-UUI4-(Components)?type=design&node-id=39112-321568&mode=dev */
 
-    --uui-app-bg: var(--neutral10);
+    --uui-app-bg: var(--uui-neutral-10);
     --uui-overlay: rgba(29, 30, 38, 0.8);
 
-    --uui-surface: var(--neutral0);
-    --uui-surface-low: var(--neutral5);
-    --uui-surface-lower: var(--neutral10);
-    --uui-surface-lowest: var(--neutral20);
-    --uui-surface-contrast: var(--neutral70);
-    --uui-surface-contrast-low: var(--neutral80);
-    --uui-surface-contrast-lower: var(--neutral90);
+    --uui-surface: var(--uui-neutral-0);
+    --uui-surface-low: var(--uui-neutral-5);
+    --uui-surface-lower: var(--uui-neutral-10);
+    --uui-surface-lowest: var(--uui-neutral-20);
+    --uui-surface-contrast: var(--uui-neutral-70);
+    --uui-surface-contrast-low: var(--uui-neutral-80);
+    --uui-surface-contrast-lower: var(--uui-neutral-90);
 
     --uui-surface-active: var(--blue-lightest);
     --uui-surface-critical: var(--red-lightest);
     --uui-surface-warning: var(--amber-lightest);
 
-    --uui-divider: var(--neutral40);
-    --uui-divider-light: var(--neutral30);
+    --uui-divider: var(--uui-neutral-40);
+    --uui-divider-light: var(--uui-neutral-30);
 
-    --uui-text-brand: var(--neutral90);
-    --uui-text-primary: var(--neutral80);
-    --uui-text-secondary: var(--neutral70);
-    --uui-text-tertiary: var(--neutral60);
-    --uui-text-disabled: var(--neutral50);
-    --uui-text-contrast: var(--neutral5);
+    --uui-text-brand: var(--uui-neutral-90);
+    --uui-text-primary: var(--uui-neutral-80);
+    --uui-text-secondary: var(--uui-neutral-70);
+    --uui-text-tertiary: var(--uui-neutral-60);
+    --uui-text-disabled: var(--uui-neutral-50);
+    --uui-text-contrast: var(--uui-neutral-5);
     --uui-text-white: var(--white);
-    --uui-text-dark: var(--neutral80);
+    --uui-text-dark: var(--uui-neutral-80);
 
     --uui-text-info: var(--uui-info-50);
     --uui-text-warning: var(--uui-warning-50);
@@ -219,57 +217,57 @@
 
     /* not accepted part */
 
-    --uui-disabled: var(--neutral30); // TODO: name does not clearly reflect the meaning
+    --uui-disabled: var(--uui-neutral-30); // TODO: name does not clearly reflect the meaning
 
     /* control specific */
 
     --uui-link: var(--blue);
     --uui-link-soft: var(--blue-soft);
     --uui-link-hover: var(--blue-dark);
-    --uui-link-wite-hover: var(--neutral40);
-    --uui-link-black-hover: var(--neutral80);
+    --uui-link-wite-hover: var(--uui-neutral-40);
+    --uui-link-black-hover: var(--uui-neutral-80);
     --uui-link-visited: #5214CC;
-    --uui-link-disabled: var(--neutral50);
+    --uui-link-disabled: var(--uui-neutral-50);
 
-    --uui-icon: var(--neutral60);
-    --uui-icon-hover: var(--neutral70);
-    --uui-icon-active: var(--neutral80);
-    --uui-icon-disabled: var(--neutral50);
+    --uui-icon: var(--uui-neutral-60);
+    --uui-icon-hover: var(--uui-neutral-70);
+    --uui-icon-active: var(--uui-neutral-80);
+    --uui-icon-disabled: var(--uui-neutral-50);
 
-    --uui-scroll_bars-bg: var(--neutral40);
-    --uui-scroll_bars-bg-active: var(--neutral60);
+    --uui-scroll_bars-bg: var(--uui-neutral-40);
+    --uui-scroll_bars-bg-active: var(--uui-neutral-60);
 
-    --uui-control-bg: var(--neutral0);
-    --uui-control-bg-hover: var(--neutral60);
-    --uui-control-bg-disabled: var(--neutral5);
-    --uui-control-bg-readonly: var(--neutral5);
+    --uui-control-bg: var(--uui-neutral-0);
+    --uui-control-bg-hover: var(--uui-neutral-60);
+    --uui-control-bg-disabled: var(--uui-neutral-5);
+    --uui-control-bg-readonly: var(--uui-neutral-5);
 
-    --uui-control-border: var(--neutral40);
-    --uui-control-border-hover: var(--neutral60);
-    --uui-control-border-disabled: var(--neutral30);
-    --uui-control-border-readonly: var(--neutral30);
+    --uui-control-border: var(--uui-neutral-40);
+    --uui-control-border-hover: var(--uui-neutral-60);
+    --uui-control-border-disabled: var(--uui-neutral-30);
+    --uui-control-border-readonly: var(--uui-neutral-30);
     --uui-control-border-checked: var(--uui-primary-50);
 
     --uui-control-label: var(--uui-text-primary);
     --uui-control-label-disabled: var(--uui-text-disabled);
 
-    --uui-control-placeholder: var(--neutral60);
-    --uui-control-placeholder-disabled: var(--neutral50);
+    --uui-control-placeholder: var(--uui-neutral-60);
+    --uui-control-placeholder-disabled: var(--uui-neutral-50);
 
     --uui-control-text: var(--uui-text-primary);
     --uui-control-text-disabled: var(--uui-text-disabled);
 
-    --uui-control-icon: var(--neutral50);
-    --uui-control-icon-disabled: var(--neutral50);
+    --uui-control-icon: var(--uui-neutral-50);
+    --uui-control-icon-disabled: var(--uui-neutral-50);
 
-    --uui-control-checkbox-icon: var(--neutral0);
+    --uui-control-checkbox-icon: var(--uui-neutral-0);
 
     --uui-control-focus: #008ACE80;
 
     --uui-search-result-highlight: var(--uui-warning-10);
 
-    --uui-skeleton: var(--neutral40);
-    --uui-skeleton-gradient: linear-gradient(90deg, var(--neutral40) 0%, var(--neutral10) 50%, var(--neutral40) 100%);
+    --uui-skeleton: var(--uui-neutral-40);
+    --uui-skeleton-gradient: linear-gradient(90deg, var(--uui-neutral-40) 0%, var(--uui-neutral-10) 50%, var(--uui-neutral-40) 100%);
 
     --uui-border-radius: 0;
     --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
@@ -589,7 +587,7 @@
 
     .uui-informer.uui-color-gray,
     .uui-informer.uui-color-neutral {
-        --uui-color-50: var(--neutral30);
+        --uui-color-50: var(--uui-neutral-30);
         --uui-informer-caption: var(--uui-text-dark);
     }
 
@@ -620,18 +618,19 @@
     // fonts
 
     .uui-font-sans {
-        --uui-text-font: var(--font-regular);
-        --uui-font-weight: normal;
+        --uui-text-font: var(--uui-font);
+        --uui-font-weight: 400;
     }
 
     .uui-font-sans-semibold {
-        --uui-text-font: var(--font-semibold);
-        --uui-font-weight: normal;
+        --uui-text-font: var(--uui-font);
+        --uui-font-weight: 600;
     }
 
     .uui-font-sans-italic {
-        --uui-text-font: var(--font-italic);
-        --uui-font-weight: normal;
+        --uui-text-font: var(--uui-font);
+        --uui-font-weight: 400;
+        --uui-font-style: italic;
     }
 
     .uui-font-museo-sans {
@@ -644,4 +643,11 @@
         --uui-font-weight: normal;
 
     }
+
+    .typography-uui {
+        :global(.promo-header), h1, h2, h3 {
+            font-family: var(--font-primary);
+        }
+    }
 }
+

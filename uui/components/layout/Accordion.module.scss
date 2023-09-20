@@ -17,10 +17,10 @@
     --uui-accordion-shadow: var(--uui-shadow-level-1);
     --uui-accordion-shadow-hovered: var(--uui-shadow-level-2);
 
-    --uui-accordion-toggler-font: var(--font-semibold);
-    --uui-accordion-toggler-font-weight: normal;
-    --uui-accordion-body-font: var(--font-regular);
-    --uui-accordion-body-font-weight: normal;
+    --uui-accordion-toggler-font: var(--uui-font);
+    --uui-accordion-toggler-font-weight: 600;
+    --uui-accordion-body-font: var(--uui-font);
+    --uui-accordion-body-font-weight: 400;
     //
     :global(.uui-accordion-toggler) {
         font-family: var(--uui-accordion-toggler-font);
