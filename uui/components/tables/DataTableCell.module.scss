@@ -115,3 +115,9 @@
 .icon-container {
     fill: var(--uui-icon);
 }
+
+.loading-cell {
+    div[aria-busy='true'] > span {
+        margin: 0;
+    }
+}
