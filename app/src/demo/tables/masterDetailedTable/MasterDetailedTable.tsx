@@ -106,7 +106,7 @@ export function MasterDetailedTable() {
             } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
                 return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id } });
             } else {
-                return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id } });
+                return getPersons({ range: rq.range, filter: { ...filter, locationId: ctx.parent.id } });
             }
         } else if (groupBy && !ctx.parent) {
             return getPersons({
