@@ -3,14 +3,14 @@ import { LazyDataSourceApi, LazyDataSourceApiRequest, LazyDataSourceApiResponse,
 import { GroupingConfigBuilder } from './groupingConfigBuilder';
 import { ComplexId, GroupByKeys, UnboxUnionFromGroups } from './types';
 
-type Setup<TGroups extends { [k in string]: {} }, TId extends { [K in keyof TGroups]: unknown }, TFilter extends { groupBy: GroupByKeys<TGroups> }> = (
+type Setup<TGroups extends { [k in string]: {} }, TId extends { [K in keyof TGroups]: unknown }, TFilter extends { groupBy?: GroupByKeys<TGroups> }> = (
     configBuilder: GroupingConfigBuilder<TGroups, TId, TFilter>,
 ) => GroupingConfigBuilder<TGroups, TId, TFilter>;
 
 export function useLazyDataSourceWithGrouping<
     TGroups extends { [k in string]: {} },
     TId extends { [K in keyof TGroups]: unknown },
-    TFilter extends { groupBy: GroupByKeys<TGroups> }
+    TFilter extends { groupBy?: GroupByKeys<TGroups> }
 >(
     setup: Setup<TGroups, TId, TFilter>,
     deps: unknown[] = [],
@@ -20,7 +20,6 @@ export function useLazyDataSourceWithGrouping<
         // eslint-disable-next-line react-hooks/exhaustive-deps
         deps,
     );
-
     const api: LazyDataSourceApi<UnboxUnionFromGroups<TGroups>, UnboxUnionFromGroups<ComplexId<TGroups, TId>>, TFilter> = async (request, ctx) => {
         const { ids, ...rq } = request;
         if (ids != null) {

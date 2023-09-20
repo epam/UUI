@@ -9,7 +9,7 @@ const DEFAULT_CONFIG = Symbol('DEFAULT_CONFIG');
 export class GroupingConfigBuilder<
     TGroups extends { [k in string]: Record<string, unknown> },
     TId extends { [K in keyof TGroups]: unknown },
-    TFilter extends { groupBy: GroupByKeys<TGroups> }
+    TFilter extends { groupBy?: GroupByKeys<TGroups> }
 > {
     private entitiesConfig: EntitiesConfig<TGroups, TId, TFilter> = {};
     private groupingsConfig: GroupingsConfig<TGroups, TId, TFilter> = {};
@@ -64,7 +64,10 @@ export class GroupingConfigBuilder<
         return props;
     }
 
-    async api<TType extends keyof TGroups>(type: TType, ...apiArgs: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['api']>) {
+    async api<TType extends keyof TGroups>(
+        type: TType,
+        ...apiArgs: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['api']>
+    ) {
         return (this.entitiesConfig[type]?.api ?? this.groupingsConfig[type]?.api)(...apiArgs);
     }
 
@@ -72,9 +75,21 @@ export class GroupingConfigBuilder<
         return this.entitiesConfig[this.defaultEntity].api(...apiArgs);
     }
 
-    async apiByGroupBy(groupBy: GroupByKeys<TGroups>, ...apiArgs: Parameters<LazyDataSourceProps<UnboxUnionFromGroups<TGroups>, TId[keyof TGroups], TFilter>['api']>) {
+    async apiByGroupBy(
+        groupBy: GroupByKeys<TGroups>,
+        ...apiArgs: Parameters<LazyDataSourceProps<UnboxUnionFromGroups<TGroups>, TId[keyof TGroups], TFilter>['api']>
+    ) {
         if (Array.isArray(groupBy)) {
-            return; // TODO: think about it...
+            const promises = groupBy.map((gb) => {
+                const type = this.groupByToEntityType[gb];
+                if (!type || !this.groupingsConfig[type].api) {
+                    throw new Error(`No entity type was associated with groupBy=${gb}`);
+                }
+                const [request, ...rest] = apiArgs;
+                return this.groupingsConfig[type].api({ ...request, filter: { ...request.filter, groupBy: gb } }, ...rest);
+            });
+            const response = await Promise.all(promises);
+            return { items: response.flatMap(({ items }) => items) };
         }
         const type = this.groupByToEntityType[groupBy];
         if (!type || !this.groupingsConfig[type].api) {
@@ -90,6 +105,29 @@ export class GroupingConfigBuilder<
         return [type, id];
     }
 
+    private getParentIdForGroupsBy(item: UnboxUnionFromGroups<TGroups>, groupsBy: GroupByKey<TGroups>[]): UnboxUnionFromGroups<ComplexId<TGroups, TId>> {
+        const type = this.getType(item);
+        const groupByIndex = groupsBy.findIndex((gb) => this.groupByToEntityType[gb] === type);
+        if (groupByIndex !== -1) {
+            if (groupByIndex === 0) {
+                return null;
+            }
+
+            const actualGroupBy = groupsBy[groupByIndex - 1];
+            const key = `${actualGroupBy}Id`;
+            return [this.groupByToEntityType[actualGroupBy], key in item ? item[key] as TId[keyof TGroups] : undefined];
+        }
+
+        const actualGroupBy = groupsBy[groupsBy.length - 1];
+        const key = `${actualGroupBy}Id`;
+        return [this.groupByToEntityType[actualGroupBy], key in item ? item[key] as TId[keyof TGroups] : undefined];
+    }
+
+    private getParentIdForGroupBy(item: UnboxUnionFromGroups<TGroups>, groupBy: GroupByKey<TGroups>): UnboxUnionFromGroups<ComplexId<TGroups, TId>> {
+        const key = `${groupBy}Id`;
+        return [this.groupByToEntityType[groupBy], key in item ? item[key] as TId[keyof TGroups] : undefined];
+    }
+
     getParentId(item: UnboxUnionFromGroups<TGroups>): UnboxUnionFromGroups<ComplexId<TGroups, TId>> {
         const type = this.getType(item);
         const parentId = (
@@ -98,22 +136,16 @@ export class GroupingConfigBuilder<
             ?? this[DEFAULT_CONFIG].getParentId
             ?? ((i: any) => i.parentId)
         )(item);
-
         if (parentId != null) {
             return [type, parentId];
         }
 
-        if (!this.entitiesConfig[type] && parentId == null) {
-            return parentId;
-        }
         const groupBy = this.getGroupBy();
         if (groupBy) {
             if (Array.isArray(groupBy)) {
-                const key = `${groupBy}Id`;
-                return [this.groupByToEntityType[groupBy[0]], key in item ? item[key] as TId[keyof TGroups] : undefined]; // TODO: think about it
+                return this.getParentIdForGroupsBy(item, groupBy);
             }
-            const key = `${groupBy}Id`;
-            return [this.groupByToEntityType[groupBy], key in item ? item[key] as TId[keyof TGroups] : undefined];
+            return this.getParentIdForGroupBy(item, groupBy);
         }
         return null;
     }
