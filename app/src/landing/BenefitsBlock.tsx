@@ -13,7 +13,7 @@ const benefits: any = {
     BattleTestedSolution: {
         caption: 'Battle-Tested Solution',
         points: [
-            '15+ products are already built, 10+ products are currently in development.', 'UUI design skins comply with EPAM branding. So, every internal product promotes EPAM in that way.', '50 person-years of experience baked in. UUI is the product of 5 years developing 20+ apps.',
+            '50+ products are already built, 10+ products are currently in development.', 'UUI design skins comply with EPAM branding. So, every internal product promotes EPAM in that way.', '50 person-years of experience baked in. UUI is the product of 5 years developing 20+ apps.',
         ],
     },
     SavesEfforts: {

@@ -100,14 +100,14 @@ export class HeroBlock extends React.Component<HeroBlockProps, HeroBlockState> {
                             <FlexRow cx={ css.hero }>
                                 <div className={ css.heroText }>
                                     <Text rawProps={ { role: 'heading', 'aria-level': 1 } } font="museo-slab" cx={ css.heroHeader }>
-                                        Unified UI
+                                        EPAM UUI
                                     </Text>
                                     <Text font="sans" fontSize="24" cx={ css.heroSecondary }>
-                                        Digital Platform UX/UI accelerator used to build all EPAM internal products in one effective & consistent way.
+                                        UI development accelerator for business applications.
                                     </Text>
                                     <Text font="sans" fontSize="24" cx={ css.heroSecondary }>
-                                        No more need to build user interface from scratch every time. Just use "lego blocks" to assemble new pages in a quick way for any
-                                        current or new EPAM product.
+                                        Complete set of components,
+                                        guidelines, blueprints, examples, to build your apps on top of React, Figma, TypeScript.
                                     </Text>
                                 </div>
                                 <div className={ cx(css.heroWrapper, this.state.showAnimation && containerWidth > 1280 && 'show-animation') }>
