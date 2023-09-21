@@ -54,7 +54,7 @@ export function MasterDetailedTable() {
         }
     }, []);
 
-    const dataSource = useLazyDataSourceWithGrouping<PersonTableGroups, PersonTableIdGroups, { groupBy: 'department' }>(
+    const dataSource = useLazyDataSourceWithGrouping<PersonTableGroups, PersonTableIdGroups, PersonTableFilter>(
         (config) => {
             const getPersons = async (
                 personRequest: LazyDataSourceApiRequest<PersonTableRecord, number, PersonTableFilter>,
@@ -112,6 +112,7 @@ export function MasterDetailedTable() {
                     getRowOptions: () => ({ checkbox: { isVisible: false } }),
                     getParentId: (loc) => loc.parentId,
                     getChildCount: (location) => location.type === 'city' ? 1 : 10,
+                    isLastNestingLevel: (location) => location.type === 'city',
                     api: async ({ ids, ...request }, ctx) => {
                         if (ids != null) {
                             return await svc.api.demo.locations({ ids });
