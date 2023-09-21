@@ -1,4 +1,5 @@
 import { LazyDataSourceProps } from '@epam/uui-core';
+import { ID, PATH } from './constants';
 
 export type UnboxGroupsFromUnion<TypeField extends keyof Group, Group extends { [K in TypeField]: string }> = {
     [Type in Group[TypeField] as Type]: Extract<Group, { [K in TypeField]: Type }>;
@@ -15,7 +16,10 @@ export interface GetType<TGroups> {
 
 export type ConfigDefault<TGroups, TId extends { [K in keyof TGroups]: unknown }, TFilter extends { groupBy?: GroupByKeys<TGroups> }> =
     Partial<LazyDataSourceProps<UnboxUnionFromGroups<TGroups>, [keyof TGroups, TId[keyof TGroups]], TFilter>>
-    & GetType<TGroups>;
+    & GetType<TGroups>
+    & {
+        isLastNestingLevel?: (item: TGroups[keyof TGroups]) => boolean;
+    };
 
 export type LazyDataSourceGetters<TItem, TId, TFilter> =
     Pick<LazyDataSourceProps<TItem, TId, TFilter>, 'getId' | 'getParentId' | 'getChildCount' | 'isFoldedByDefault'>;
@@ -31,10 +35,11 @@ type EntityLazyDataSourceProps<
         api: (
             ...args: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['api']>
         ) => ReturnType<LazyDataSourceProps<TGroups[keyof TGroups], TId[TType], TFilter>['api']>;
-    } & {
         getRowOptions: (
             ...args: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['getRowOptions']>
         ) => ReturnType<LazyDataSourceProps<TGroups[keyof TGroups], [keyof TGroups, TId[keyof TGroups]], TFilter>['getRowOptions']>;
+
+        isLastNestingLevel: (item: TGroups[TType]) => boolean;
     };
 
 export type EntityConfig<
@@ -80,3 +85,19 @@ export type GroupByKey<TGroups> = {
 }[keyof TGroups];
 
 export type GroupByKeys<TGroups> = GroupByKey<TGroups> | GroupByKey<TGroups>[];
+
+export type TGroupWithMeta<
+    TGroups,
+    TType extends keyof TGroups,
+    TId extends { [K in keyof TGroups]: unknown }
+> = TGroups[TType] & {
+    [ID]?: Array<GroupByKey<TGroups> | TId[keyof TGroups]>,
+    [PATH]?: GroupByKey<TGroups>[];
+};
+
+export type TGroupsWithMeta<
+    TGroups,
+    TId extends { [K in keyof TGroups]: unknown }
+> = {
+    [TType in keyof TGroups]: TGroupWithMeta<TGroups, TType, TId>;
+};
