@@ -124,7 +124,6 @@ export function MasterDetailedTable() {
                         if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
                             return svc.api.demo.locations({ range: request.range, filter: { parentId: ctx.parent.id } });
                         }
-                        return getPersons({ range: request.range, filter: { locationId: ctx.parent.id } }, ctx);
                     },
                 })
                 .addGrouping(['jobTitle', 'department'], {
@@ -139,6 +138,16 @@ export function MasterDetailedTable() {
 
                         if (groupBy && !ctx.parent) {
                             return getPersons({ ...request, filter: { groupBy }, search: null, itemsRequest: { filter, search: request.search } } as any, ctx);
+                        }
+                        
+                        if (groupBy && ctx.parent) {
+                            const personGroupsResponse = await svc.api.demo.personGroups({
+                                ...request,
+                                filter: { groupBy },
+                                search: null,
+                                itemsRequest: { filter, search: request.search },
+                            } as any);
+                            return personGroupsResponse;
                         }
                         
                         const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
