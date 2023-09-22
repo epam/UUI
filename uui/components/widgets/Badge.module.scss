@@ -284,7 +284,7 @@
     }
 
     &:global(.fill-outline) {
-        --uui-badge-font: var(--font-semibold);
+        --uui-badge-font-weight: 600;
         --uui-badge-bg: var(--uui-color-5);
         --uui-badge-bg-hover: var(--uui-color-10);
         --uui-badge-border: var(--uui-color-20);
