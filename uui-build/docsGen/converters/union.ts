@@ -12,13 +12,13 @@ export class Union extends Converter {
         return super.isPropsSupported(typeNode);
     }
 
-    protected override getTypeValue(typeNode: Node): TTypeValue {
+    public override getTypeValue(typeNode: Node, print: boolean): TTypeValue {
         const types = typeNode.getType().getUnionTypes();
         return {
             raw: types.map((t) => {
                 return ConverterUtils.getCompilerTypeText(t);
             }).join(' | '),
-            print: ConverterUtils.printNode(typeNode),
+            print: print ? ConverterUtils.printNode(typeNode) : undefined,
         };
     }
 }

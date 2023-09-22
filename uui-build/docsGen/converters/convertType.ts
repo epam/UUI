@@ -8,5 +8,5 @@ export function convertType(typeNode: Node, project: Project) {
     const context = new ConverterContext(project, stats);
     context.registerConverter(Union);
     context.registerConverter(Converter); // generic converter always goes last
-    return context.convert(typeNode);
+    return context.convert({ typeNode, isTypeProp: false });
 }

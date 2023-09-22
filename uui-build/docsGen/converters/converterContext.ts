@@ -16,7 +16,8 @@ export class ConverterContext implements IConverterContext {
         this.allConverters.push(converter);
     }
 
-    public convert(typeNode: Node): ReturnType<IConverterContext['convert']> {
+    public convert(params: { typeNode: Node, isTypeProp: boolean }): ReturnType<IConverterContext['convert']> {
+        const { typeNode, isTypeProp } = params;
         const instance = this.allConverters.find((c) => c.isSupported(typeNode));
         if (instance) {
             const isSeen = this.seenNodes.has(typeNode);
@@ -25,6 +26,12 @@ export class ConverterContext implements IConverterContext {
                 // avoid infinite loop for recursive types
                 return {
                     typeValue: ConverterUtils.getTypeValueFromNode(typeNode, !isSeen),
+                    typeRef: ConverterUtils.getTypeRef(typeNode),
+                    kind: ConverterUtils.getSyntaxKindNameFromNode(typeNode),
+                };
+            } else if (isTypeProp) {
+                return {
+                    typeValue: instance.getTypeValue(typeNode, false),
                     typeRef: ConverterUtils.getTypeRef(typeNode),
                     kind: ConverterUtils.getSyntaxKindNameFromNode(typeNode),
                 };

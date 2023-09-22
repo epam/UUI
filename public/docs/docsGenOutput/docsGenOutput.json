@@ -25477,7 +25477,7 @@
       "Standard [inputMode attribute]{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode}"
      ],
      "typeValue": {
-      "raw": "undefined | 'search' | 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal'"
+      "raw": "undefined | 'search' | 'numeric' | 'none' | 'text' | 'tel' | 'url' | 'email' | 'decimal'"
      },
      "required": false
     },
