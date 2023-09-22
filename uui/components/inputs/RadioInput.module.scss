@@ -42,8 +42,8 @@
     --uui-radio-input-fill-checked-disabled: var(--uui-color-20);
     --uui-radio-input-error: var(--uui-error-50);
 
-    --uui-radio-input-font: var(--font-regular);
-    --uui-radio-input-font-weight: normal;
+    --uui-radio-input-font: var(--uui-font);
+    --uui-radio-input-font-weight: 400;
     //
     &:hover, &:focus-within {
         :global(.uui-radioinput) {

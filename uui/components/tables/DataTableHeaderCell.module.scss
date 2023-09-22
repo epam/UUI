@@ -52,7 +52,7 @@
 
     .caption {
         font-family: var(--uui-dt-header-cell-font);
-        font-weight: var(--uui-dt-header-cell-font-weight, normal);
+        font-weight: var(--uui-dt-header-cell-font-weight);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;

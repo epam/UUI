@@ -12,7 +12,8 @@
     }
 
     :global(.hero-header), h2 {
-        font-family: $font-sans-bold;
+        font-family: $font-source-sans;
+        font-weight: 700;
     }
 
     :global(.hero-header) {
@@ -22,7 +23,8 @@
     }
 
     h3, h4, h5, h6 {
-        font-family: $font-sans-semibold;
+        font-family: $font-source-sans;
+        font-weight: 600;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -58,12 +60,15 @@
 
 @mixin typography-inline() {
     b, strong {
-        font-family: $font-sans-semibold;
+        font-family: $font-source-sans;
+        font-weight: 600;
         color: $night900;
     }
 
     i, em {
-        font-family: $font-sans-italic;
+        font-family: $font-source-sans;
+        font-weight: 400;
+        font-style: italic;
     }
 
     a {
@@ -83,6 +88,7 @@
         background-color: $night700;
         border-radius: 3px;
         font-family: monospace;
+        font-weight: 400;
         white-space: pre-wrap;
         word-wrap: normal;
     }
@@ -108,6 +114,7 @@
         background-color: $night700;
         border-radius: 3px;
         font-family: monospace;
+        font-weight: 400;
         white-space: pre-wrap;
         word-wrap: normal;
     }
@@ -148,6 +155,6 @@
     @include typography-header();
     @include typography-block();
     @include typography-inline();
-    font-family: $font-sans;
+    font-family: $font-source-sans;
     color: $night700;
 }

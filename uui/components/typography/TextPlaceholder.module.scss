@@ -13,7 +13,7 @@
 
 .loading-word {
     user-select: none;
-    font-family: var(--font-redacted);
+    font-family: 'Redacted', cursive; // https://fonts.google.com/specimen/Redacted
     letter-spacing: -1px;
     margin: 0 3px 3px 0;
     color: var(--uui-text-placeholder);

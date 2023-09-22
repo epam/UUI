@@ -28,7 +28,7 @@ app.use((req, res, next) => {
     res.set(
         'Content-Security-Policy',
         "default-src 'self' https://*.epam.com;"
-        + "style-src 'self' 'unsafe-inline' https://*.epam.com https://cdnjs.cloudflare.com/; "
+        + "style-src 'self' 'unsafe-inline' https://*.epam.com https://cdnjs.cloudflare.com/ https://fonts.googleapis.com/; "
         + "font-src 'self' https://*.epam.com https://fonts.gstatic.com/; "
         + "connect-src 'self' https://*.epam.com https://api.amplitude.com/ wss://menu.epam.com/*' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; "
         + 'frame-src *; '

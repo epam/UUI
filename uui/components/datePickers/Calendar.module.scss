@@ -8,12 +8,12 @@
     --uui-calendar-text: var(--uui-control-text);
     --uui-calendar-text-filtered: var(--uui-control-text-disabled);
 
-    --uui-calendar-content-font: var(--font-regular);
-    --uui-calendar-content-font-weight: normal;
-    --uui-calendar-weekday-font: var(--font-regular);
-    --uui-calendar-weekday-font-weight: normal;
-    --uui-calendar-selected_day-font: var(--font-semibold);
-    --uui-calendar-selected_day-font-weight: normal;
+    --uui-calendar-content-font: var(--uui-font);
+    --uui-calendar-content-font-weight: 400;
+    --uui-calendar-weekday-font: var(--uui-font);
+    --uui-calendar-weekday-font-weight: 400;
+    --uui-calendar-selected_day-font: var(--uui-font);
+    --uui-calendar-selected_day-font-weight: 600;
 
     :global(.uui-calendar-content) {
         font-family: var(--uui-calendar-content-font);

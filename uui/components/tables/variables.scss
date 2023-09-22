@@ -20,5 +20,6 @@
     --uui-dt-right-shadow: linear-gradient(to right, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
     --uui-dt_header-drop_marker: var(--uui-primary-50);
 
-    --uui-dt-header-cell-font: var(--font-semibold);
+    --uui-dt-header-cell-font: var(--uui-font);
+    --uui-dt-header-cell-font-weight: 600;
 }
