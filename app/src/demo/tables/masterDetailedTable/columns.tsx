@@ -8,7 +8,7 @@ import css from './DemoTable.module.scss';
 import { ReactComponent as ViewIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 import { PersonTableRecordId } from './types';
 
-export const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
+export const personColumns: DataColumnProps<Person, PersonTableRecordId[], DataQueryFilter<Person>>[] = [
     {
         key: 'name',
         caption: 'Name',

@@ -100,8 +100,7 @@ export class GroupingConfigBuilder<
                 return {
                     items: results.items.map((item) => {
                         item[PATH] = [gb];
-                        // TODO: fix types
-                        item[ID] = [this.buildId(item) as any];
+                        item[ID] = [this.buildId(item)];
                         return item;
                     }),
                 };
@@ -114,7 +113,6 @@ export class GroupingConfigBuilder<
 
             const grouping = context.parent[PATH];
             if (isLastNestingLevel(context.parent)) {
-                // TODO: write logic for jumping to the next level of grouping or fetching entity level elements.
                 if (isEqual(grouping, groupBy)) {
                     const results = await this.entitiesConfig[this.defaultEntity].api({
                         ...request,
@@ -123,8 +121,7 @@ export class GroupingConfigBuilder<
                     return {
                         items: results.items.map((item) => {
                             item[PATH] = groupBy;
-                            // TODO: fix types
-                            item[ID] = [...(context.parent?.[ID] ?? []), this.buildId(item) as any];
+                            item[ID] = [...(context.parent?.[ID] ?? []), this.buildId(item)];
                             return item;
                         }),
                     };
@@ -136,8 +133,7 @@ export class GroupingConfigBuilder<
                 return {
                     items: results.items.map((item) => {
                         item[PATH] = [...grouping, gb];
-                        // TODO: fix types
-                        item[ID] = [...(context.parent?.[ID] ?? []), this.buildId(item) as any];
+                        item[ID] = [...(context.parent?.[ID] ?? []), this.buildId(item)];
                         return item;
                     }),
                 };
@@ -152,8 +148,7 @@ export class GroupingConfigBuilder<
             return {
                 items: results.items.map((item) => {
                     item[PATH] = grouping;
-                    // TODO: fix types
-                    item[ID] = [...(context.parent?.[ID] ?? []), this.buildId(item) as any];
+                    item[ID] = [...(context.parent?.[ID] ?? []), this.buildId(item)];
                     return item;
                 }),
             };
@@ -166,8 +161,7 @@ export class GroupingConfigBuilder<
         return {
             items: results.items.map((item) => {
                 item[PATH] = [];
-                // TODO: fix types
-                item[ID] = [...(context.parent?.[ID] ?? []), this.buildId(item) as any];
+                item[ID] = [...(context.parent?.[ID] ?? []), this.buildId(item)];
                 return item;
             }),
         };
@@ -192,13 +186,13 @@ export class GroupingConfigBuilder<
         return [type, id];
     }
 
-    getId(item: UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId>>): UnboxUnionFromGroups<ComplexId<TGroups, TId>> {
-        return this.extractIdFromMeta(item) as UnboxUnionFromGroups<ComplexId<TGroups, TId>>;
+    getId(item: UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId>>): UnboxUnionFromGroups<ComplexId<TGroups, TId>>[] {
+        return this.extractIdFromMeta(item);
     }
 
     getParentId(
         item: UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId>>,
-    ): UnboxUnionFromGroups<ComplexId<TGroups, TId>> {
+    ): UnboxUnionFromGroups<ComplexId<TGroups, TId>>[] {
         const type = this.getType(item);
         const parentId = (
             this.entitiesConfig[type]?.getParentId
@@ -208,7 +202,7 @@ export class GroupingConfigBuilder<
         )(item);
         const groupBy = this.getGroupBy();
         if (parentId != null || groupBy) {
-            return this.extractParentIdFromMeta(item) as UnboxUnionFromGroups<ComplexId<TGroups, TId>>;
+            return this.extractParentIdFromMeta(item);
         }
 
         return null;
@@ -226,7 +220,7 @@ export class GroupingConfigBuilder<
     getRowOptions?(
         item: UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId>>,
         index: number,
-    ): DataRowOptions<UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId>>, [keyof TGroups, TId[keyof TGroups]]> {
+    ): DataRowOptions<UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId>>, UnboxUnionFromGroups<ComplexId<TGroups, TId>>[]> {
         const type = this.getType(item);
         const getRowOptions = this.entitiesConfig[type]?.getRowOptions
             ?? this.groupingsConfig[type]?.getRowOptions
