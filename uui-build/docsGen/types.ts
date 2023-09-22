@@ -18,6 +18,7 @@ export type TType = {
     typeRef: TTypeRef;
     typeValue: TTypeValue;
     comment?: string[];
+    propsFromUnion?: boolean;
     props?: TTypeProp[];
 };
 export type TTypeProp = {

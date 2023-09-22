@@ -103,6 +103,7 @@ describe('docsGen:union', () => {
                             uniqueId: '3',
                         },
                     ],
+                    propsFromUnion: true,
                     typeRef: {
                         source: '../../../../test/test.tsx',
                         typeName: {
@@ -159,6 +160,7 @@ describe('docsGen:union', () => {
                             uniqueId: '3',
                         },
                     ],
+                    propsFromUnion: true,
                     typeRef: {
                         source: '../../../../test/test.tsx',
                         typeName: {

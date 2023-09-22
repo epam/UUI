@@ -10,10 +10,11 @@ import { Code } from '../../../common/docs/Code';
 import { TsComment } from './components/TsComment';
 import { Ref } from './components/Ref';
 import React, { useMemo, useState } from 'react';
-import { Checkbox, DataTable, FlexRow, Text } from '@epam/uui';
+import { Checkbox, DataTable, FlexRow, FlexSpacer, IconContainer, RichTextView, Text, Tooltip } from '@epam/uui';
 import { useGetTsDocsForPackage } from '../dataHooks';
 import { CodeExpandable } from './components/CodeExpandable';
 import css from './ApiReferenceTable.module.scss';
+import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/table-info-fill-18.svg';
 
 type TTypeGroup = { _group: true, from: TTypeProp['from'] };
 type TItem = TTypeProp | TTypeGroup;
@@ -144,6 +145,7 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
     const { canGroup, isGrouped, setIsGrouped } = useIsGrouped(exportInfo);
     const columns = getColumns({ isGroupedByFrom: isGrouped, hasFrom: canGroup });
     const isNoData = !exportInfo?.props?.length;
+    const propsFromUnion = exportInfo?.propsFromUnion;
     const [tState, setTState] = useState<DataTableState>({});
     const exportPropsDsItems: TItem[] = useMemo(() => {
         if (exportInfo?.props) {
@@ -204,14 +206,57 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
     if (isNoData) {
         return null;
     }
+    const hasToolbar = canGroup || propsFromUnion;
+    const renderGroupBy = () => {
+        if (canGroup) {
+            return (
+                <Checkbox value={ isGrouped } onValueChange={ setIsGrouped } label="Group By: From" />
+            );
+        }
+    };
+    const renderPropsInfo = () => {
+        if (propsFromUnion) {
+            const renderContent = () => {
+                const html = `
+                        <h5>The props are generated from a type which is effectively a union of types</h5>
+                        <p>
+                            So, the list of props may include the following:
+                            <ul>
+                             <li>Props with duplicated 'Name' but different 'Type'</li>
+                             <li>Props with duplicated 'Name' and 'Type' but different 'From'</li>
+                             <li>Props with duplicated 'Name', 'Type' and 'From' are collapsed to a single prop</li>
+                            </ul>
+                        </p>
+                `;
+                return (
+                    <RichTextView htmlContent={ html } />
+                );
+            };
+            return (
+                <>
+                    <Text>Union props</Text>
+                    <Tooltip renderContent={ renderContent } color="default">
+                        <IconContainer icon={ InfoIcon } style={ { fill: '#008ACE', marginLeft: '5px' } }></IconContainer>
+                    </Tooltip>
+                </>
+            );
+        }
+    };
+    const renderToolbar = () => {
+        if (hasToolbar) {
+            return (
+                <FlexRow>
+                    { renderGroupBy() }
+                    <FlexSpacer />
+                    { renderPropsInfo() }
+                </FlexRow>
+            );
+        }
+    };
 
     return (
         <div className={ css.root }>
-            { canGroup && (
-                <FlexRow>
-                    <Checkbox value={ isGrouped } onValueChange={ setIsGrouped } label="Group By: From" />
-                </FlexRow>
-            )}
+            { renderToolbar() }
             <DataTable
                 allowColumnsResizing={ true }
                 value={ tableState }

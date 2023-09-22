@@ -1452,7 +1452,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "AsyncDataSourceProps": {
    "kind": "InterfaceDeclaration",
@@ -15957,7 +15958,8 @@
      },
      "required": false
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "IFilterPredicate": {
    "kind": "TypeAliasDeclaration",
@@ -22705,7 +22707,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "PickerBindingProps": {
    "kind": "TypeAliasDeclaration",
@@ -23006,7 +23009,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "PickerBindingValueType": {
    "kind": "TypeAliasDeclaration",
@@ -24652,7 +24656,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "SkinContextComponentProps": {
    "kind": "TypeAliasDeclaration",
@@ -25286,7 +25291,8 @@
      },
      "required": false
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "TextInputCoreProps": {
    "kind": "InterfaceDeclaration",
@@ -28345,7 +28351,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "AccordionState": {
    "kind": "InterfaceDeclaration",
@@ -28968,7 +28975,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "AvatarProps": {
    "kind": "InterfaceDeclaration",
@@ -42894,7 +42902,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "PickerBindingValueType": {
    "kind": "TypeAliasDeclaration",
@@ -44338,7 +44347,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "PickerListBaseProps": {
    "kind": "TypeAliasDeclaration",
@@ -44997,7 +45007,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "PickerModalArrayProps": {
    "kind": "TypeAliasDeclaration",
@@ -45154,7 +45165,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "PickerModalOptions": {
    "kind": "InterfaceDeclaration",
@@ -45381,7 +45393,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "PickerTogglerProps": {
    "kind": "InterfaceDeclaration",
@@ -54844,7 +54857,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "SliderBaseProps": {
    "kind": "InterfaceDeclaration",
@@ -59228,7 +59242,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "UsePickerListProps": {
    "kind": "TypeAliasDeclaration",
@@ -59903,7 +59918,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "UsePickerModalProps": {
    "kind": "TypeAliasDeclaration",
@@ -60556,7 +60572,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "ViewType": {
    "kind": "TypeAliasDeclaration",
@@ -60945,7 +60962,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "VirtualListRenderRowsParams": {
    "kind": "InterfaceDeclaration",
@@ -78235,7 +78253,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "PickerModalProps": {
    "kind": "TypeAliasDeclaration",
@@ -78888,7 +78907,8 @@
      },
      "required": true
     }
-   ]
+   ],
+   "propsFromUnion": true
   },
   "pickerPart": {
    "kind": "TypeAliasDeclaration",

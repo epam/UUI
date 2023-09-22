@@ -25,14 +25,17 @@ export class Converter implements IConverter {
         const typeRef = ConverterUtils.getTypeRef(typeNode);
         const typeValue = this.getTypeValue(typeNode, true);
         const comment = ConverterUtils.getCommentFromNode(typeNode);
-        const props = this.isPropsSupported(typeNode) ? extractProps(typeNode, this.context) : undefined;
+        const propsGen = this.isPropsSupported(typeNode) ? extractProps(typeNode, this.context) : undefined;
         const res: TType = {
             kind,
             typeRef,
             typeValue,
             comment,
-            props,
+            props: propsGen?.props,
         };
+        if (propsGen?.fromUnion) {
+            res.propsFromUnion = true;
+        }
         this.context.stats.checkConvertedExport(res, ConverterUtils.isDirectExportFromFile(typeNode));
 
         return res;
@@ -95,7 +98,10 @@ function mapSingleMember(params: { parentNode?: Node, propertyNode: Node, contex
     return prop;
 }
 
-function extractProps(parentNode: Node, context: IConverterContext): TTypeProp[] | undefined {
+function extractProps(parentNode: Node, context: IConverterContext): {
+    props: TTypeProp[],
+    fromUnion: boolean
+} | undefined {
     const type = ConverterUtils.getTypeFromNode(parentNode);
     const idGen = new SimpleIdGen();
     if (type.isUnion()) {
@@ -115,10 +121,18 @@ function extractProps(parentNode: Node, context: IConverterContext): TTypeProp[]
                 acc.push(PropsSet.fromArray(utProps));
                 return acc;
             }, []);
-            return PropsSet.concatAndSort(allPropsSets);
+            const props = PropsSet.concatAndSort(allPropsSets);
+            return {
+                props,
+                fromUnion: true,
+            };
         }
     } else {
-        return extractPropsFromNonUnionType({ parentNode, type, context, sort: true, idGen });
+        const props = extractPropsFromNonUnionType({ parentNode, type, context, sort: true, idGen });
+        return {
+            props,
+            fromUnion: false,
+        };
     }
 }
 
