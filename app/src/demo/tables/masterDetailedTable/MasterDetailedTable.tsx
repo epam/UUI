@@ -125,12 +125,11 @@ export function MasterDetailedTable() {
                             return await svc.api.demo.locations({ ids });
                         }
 
-                        if (!ctx.parent) {
+                        if (!ctx.parent || ctx.parent.__typename !== 'Location') {
                             return svc.api.demo.locations({ range: request.range, filter: { parentId: { isNull: true } } });
                         }
-                        if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
-                            return svc.api.demo.locations({ range: request.range, filter: { parentId: ctx.parent.id } });
-                        }
+
+                        return svc.api.demo.locations({ range: request.range, filter: { parentId: ctx.parent.id } });
                     },
                 })
                 .addGrouping(['jobTitle', 'department'], {
