@@ -49,6 +49,7 @@ type EntityLazyDataSourceProps<
             request: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['api']>[0],
             context: Parameters<LazyDataSourceProps<TGroups[keyof TGroups], TId[TType], TFilter>['api']>[1],
         ) => ReturnType<LazyDataSourceProps<TGroups[keyof TGroups], TId[TType], TFilter>['api']>;
+
         getRowOptions: (
             ...args: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['getRowOptions']>
         ) => ReturnType<LazyDataSourceProps<TGroups[keyof TGroups], ToUnion<ComplexId<TGroups, TId, TFilter>>[], TFilter>['getRowOptions']>;

@@ -1,4 +1,4 @@
-import { DataRowOptions, LazyDataSourceProps } from '@epam/uui-core';
+import { DataRowOptions, LazyDataSourceApiResponse, LazyDataSourceProps } from '@epam/uui-core';
 import {
     BaseGroups,
     BaseGroupsIds,
@@ -99,20 +99,14 @@ export class GroupingConfigBuilder<
         if (Array.isArray(groupBy)) {
             if (!context.parent) {
                 const [gb] = groupBy;
-                const type = this.groupByToEntityType[gb];
-                if (!type || !this.groupingsConfig[type].api) {
-                    throw new Error(`No entity type was associated with groupBy=${gb}`);
-                }
-                const results = await this.groupingsConfig[type].api({ ...request, filter: { ...request.filter, ...filterFromGroupBy, groupBy: gb } }, context);
-                return {
-                    items: results.items.map((item) => {
-                        const idWithType = this.buildId(item, gb);
-                        item[PATH] = [gb];
-                        item[ID] = [idWithType];
+                this.checkApiForGroupBy(gb);
 
-                        return item;
-                    }),
-                };
+                const type = this.groupByToEntityType[gb];
+                const results = await this.groupingsConfig[type].api(
+                    { ...request, filter: { ...request.filter, ...filterFromGroupBy, groupBy: gb } },
+                    context,
+                );
+                return this.getResultsWithMeta(results, context.parent, [gb]);
             }
 
             const parentType = this.getType(context.parent);
@@ -124,62 +118,66 @@ export class GroupingConfigBuilder<
             if (isLastNestingLevel(context.parent)) {
                 if (isEqual(grouping, groupBy)) {
                     const gb = groupBy[groupBy.length - 1];
+                    this.checkApiForGroupBy(gb);
+
                     const results = await this.entitiesConfig[this.defaultEntity].api({
                         ...request,
                         filter: { ...request.filter, ...filterFromGroupBy, groupBy: gb },
                     }, context);
-                    return {
-                        items: results.items.map((item) => {
-                            const idWithType = this.buildId(item, gb);
-                            item[PATH] = groupBy;
-                            item[ID] = [...(context.parent?.[ID] ?? []), idWithType];
-
-                            return item;
-                        }),
-                    };
+                    return this.getResultsWithMeta(results, context.parent, groupBy);
                 }
 
                 const gb = groupBy[grouping.length];
-                const type = this.groupByToEntityType[gb];
-                const results = await this.groupingsConfig[type].api({ ...request, filter: { ...request.filter, ...filterFromGroupBy, groupBy: gb } }, context);
-                return {
-                    items: results.items.map((item) => {
-                        const idWithType = this.buildId(item, gb);
-                        item[PATH] = [...grouping, gb];
-                        item[ID] = [...(context.parent?.[ID] ?? []), idWithType];
+                this.checkApiForGroupBy(gb);
 
-                        return item;
-                    }),
-                };
+                const type = this.groupByToEntityType[gb];
+                const results = await this.groupingsConfig[type].api(
+                    { ...request, filter: { ...request.filter, ...filterFromGroupBy, groupBy: gb } },
+                    context,
+                );
+                return this.getResultsWithMeta(results, context.parent, [...grouping, gb]);
             }
 
             const gb = grouping[grouping.length - 1];
-            const type = this.groupByToEntityType[gb];
-            if (!type || !this.groupingsConfig[type].api) {
-                throw new Error(`No entity type was associated with groupBy=${gb}`);
-            }
-            const results = await this.groupingsConfig[type].api({ ...request, filter: { ...request.filter, ...filterFromGroupBy, groupBy: gb } }, context);
-            return {
-                items: results.items.map((item) => {
-                    const idWithType = this.buildId(item, gb);
-                    item[PATH] = grouping;
-                    item[ID] = [...(context.parent?.[ID] ?? []), idWithType];
+            this.checkApiForGroupBy(gb);
 
-                    return item;
-                }),
-            };
+            const type = this.groupByToEntityType[gb];
+            const results = await this.groupingsConfig[type].api(
+                { ...request, filter: { ...request.filter, ...filterFromGroupBy, groupBy: gb } },
+                context,
+            );
+            return this.getResultsWithMeta(results, context.parent, grouping);
         }
+
+        this.checkApiForGroupBy(groupBy);
+
+        const type = this.groupByToEntityType[groupBy];
+
+        const results = await this.groupingsConfig[type].api(
+            { ...request, filter: { ...request.filter, ...filterFromGroupBy } },
+            context,
+        );
+        return this.getResultsWithMeta(results, context.parent, [groupBy]);
+    }
+
+    private checkApiForGroupBy(groupBy: GroupByTokens<TGroups, TFilter>) {
         const type = this.groupByToEntityType[groupBy];
         if (!type || !this.groupingsConfig[type].api) {
             throw new Error(`No entity type was associated with groupBy=${groupBy}`);
         }
-        const results = await this.groupingsConfig[type].api({ ...request, filter: { ...request.filter, ...filterFromGroupBy } }, context);
+    }
+
+    private getResultsWithMeta(
+        results: LazyDataSourceApiResponse<TGroupsWithMeta<TGroups, TId, TFilter>[keyof TGroups]>,
+        parent: ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>> | undefined,
+        groupBy: GroupByTokens<TGroups, TFilter>[],
+    ) {
         return {
             items: results.items.map((item) => {
-                const idWithType = this.buildId(item, groupBy);
-                item[PATH] = [];
-                item[ID] = [...(context.parent?.[ID] ?? []), idWithType];
-
+                const currentGroupBy: GroupByTokens<TGroups, TFilter> | undefined = groupBy[groupBy.length - 1];
+                const idWithType = this.buildId(item, currentGroupBy);
+                item[PATH] = groupBy;
+                item[ID] = [...(parent?.[ID] ?? []), idWithType];
                 return item;
             }),
         };

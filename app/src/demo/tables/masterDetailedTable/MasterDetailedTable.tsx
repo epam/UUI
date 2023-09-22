@@ -108,8 +108,7 @@ export function MasterDetailedTable() {
                             return getPersons({ ...request, filter }, ctx);
                         }
 
-                        const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
-                        return getPersons({ ...request, filter: { ...filter, ...parentFilter } }, ctx);
+                        return getPersons({ ...request, filter: { ...filter } }, ctx);
                     },
                 })
                 .addGrouping('location', {
