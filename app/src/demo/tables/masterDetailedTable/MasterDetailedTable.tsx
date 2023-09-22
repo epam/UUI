@@ -78,7 +78,12 @@ export function MasterDetailedTable() {
                 .addDefault({
                     getType: ({ __typename }) => __typename,
                     getGroupBy: () => tableStateApi.tableState.filter?.groupBy,
-
+                    getFilterFromGroupByPath: (path) => path.reduce(
+                        (filter, [, groupBy, id]) =>
+                            groupBy ? { ...filter, [`${groupBy}Id`]: id } : filter,
+                        {},
+                    ),
+                    
                     complexIds: true,
                     backgroundReload: true,
                     fetchStrategy: tableStateApi.tableState.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
@@ -109,10 +114,12 @@ export function MasterDetailedTable() {
                 })
                 .addGrouping('location', {
                     type: 'Location',
+
+                    isLastNestingLevel: (location) => location.type === 'city',
+
                     getRowOptions: () => ({ checkbox: { isVisible: false } }),
                     getParentId: (loc) => loc.parentId,
                     getChildCount: (location) => location.type === 'city' ? 1 : 10,
-                    isLastNestingLevel: (location) => location.type === 'city',
                     api: async ({ ids, ...request }, ctx) => {
                         if (ids != null) {
                             return await svc.api.demo.locations({ ids });
