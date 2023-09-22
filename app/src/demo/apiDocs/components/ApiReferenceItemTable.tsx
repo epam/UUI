@@ -167,7 +167,7 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
                 if (isGroup(item)) {
                     return fromToString(item.from);
                 }
-                return item.name;
+                return item.uniqueId;
             },
             sortBy(item: TItem, sorting: SortingOption): any {
                 if (sorting.field === 'from') {
@@ -180,7 +180,7 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
                 return item[sorting.field as keyof TItem];
             },
             getParentId(item: TItem): string | undefined {
-                if (isGrouped && !isGroup(item)) {
+                if (isGrouped && !isGroup(item) && item.from) {
                     return fromToString(item.from);
                 }
             },

@@ -19,6 +19,7 @@ export type TType = {
     props?: TTypeProp[];
 };
 export type TTypeProp = {
+    uniqueId: string;
     kind: string;
     name: string;
     typeValue: TTypeValue;

@@ -29,8 +29,8 @@ describe('docsGen:union', () => {
     });
     test('should convert union of two object types', () => {
         const input = `
-            type N1 = ({ p1First: 'single', p1Second: string });
-            type N2 = ({ p2First: 'single', p2Second: string });
+            type N1 = ({ sameProp: string, n1Prop: string });
+            type N2 = ({ sameProp: string, n2Prop: string });
             export type TTest = N1 | N2;
         `;
         const output = {
@@ -47,11 +47,28 @@ describe('docsGen:union', () => {
                                 },
                             },
                             kind: 'PropertySignature',
-                            name: 'p1First',
+                            name: 'n1Prop',
                             required: true,
                             typeValue: {
-                                raw: "'single'",
+                                raw: 'string',
                             },
+                            uniqueId: '2',
+                        },
+                        {
+                            from: {
+                                source: '../../../../test/test.tsx',
+                                typeName: {
+                                    name: 'N2',
+                                    nameFull: 'N2',
+                                },
+                            },
+                            kind: 'PropertySignature',
+                            name: 'n2Prop',
+                            required: true,
+                            typeValue: {
+                                raw: 'string',
+                            },
+                            uniqueId: '4',
                         },
                         {
                             from: {
@@ -62,11 +79,12 @@ describe('docsGen:union', () => {
                                 },
                             },
                             kind: 'PropertySignature',
-                            name: 'p1Second',
+                            name: 'sameProp',
                             required: true,
                             typeValue: {
                                 raw: 'string',
                             },
+                            uniqueId: '1',
                         },
                         {
                             from: {
@@ -77,26 +95,12 @@ describe('docsGen:union', () => {
                                 },
                             },
                             kind: 'PropertySignature',
-                            name: 'p2First',
-                            required: true,
-                            typeValue: {
-                                raw: "'single'",
-                            },
-                        },
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'N2',
-                                    nameFull: 'N2',
-                                },
-                            },
-                            kind: 'PropertySignature',
-                            name: 'p2Second',
+                            name: 'sameProp',
                             required: true,
                             typeValue: {
                                 raw: 'string',
                             },
+                            uniqueId: '3',
                         },
                     ],
                     typeRef: {
@@ -111,6 +115,98 @@ describe('docsGen:union', () => {
                             'type TTest = N1 | N2;',
                         ],
                         raw: 'N1 | N2',
+                    },
+                },
+            },
+        };
+        expect(generateDocs(input)).toEqual(output);
+    });
+
+    test('should convert union of two anonymous object types', () => {
+        const input = `
+            export type TTest = ({ sameProp: string, n1Prop: string }) | ({ sameProp: string, n2Prop: string });
+        `;
+        const output = {
+            '@epam/test-module': {
+                TTest: {
+                    kind: 'TypeAliasDeclaration',
+                    props: [
+                        {
+                            kind: 'PropertySignature',
+                            name: 'n1Prop',
+                            required: true,
+                            typeValue: {
+                                raw: 'string',
+                            },
+                            uniqueId: '2',
+                        },
+                        {
+                            kind: 'PropertySignature',
+                            name: 'n2Prop',
+                            required: true,
+                            typeValue: {
+                                raw: 'string',
+                            },
+                            uniqueId: '4',
+                        },
+                        {
+                            kind: 'PropertySignature',
+                            name: 'sameProp',
+                            required: true,
+                            typeValue: {
+                                raw: 'string',
+                            },
+                            uniqueId: '3',
+                        },
+                    ],
+                    typeRef: {
+                        source: '../../../../test/test.tsx',
+                        typeName: {
+                            name: 'TTest',
+                            nameFull: 'TTest',
+                        },
+                    },
+                    typeValue: {
+                        print: [
+                            'type TTest = ({',
+                            '    sameProp: string;',
+                            '    n1Prop: string;',
+                            '}) | ({',
+                            '    sameProp: string;',
+                            '    n2Prop: string;',
+                            '});',
+                        ],
+                        raw: '{ sameProp: string; n1Prop: string; } | { sameProp: string; n2Prop: string; }',
+                    },
+                },
+            },
+        };
+        expect(generateDocs(input)).toEqual(output);
+    });
+
+    test('should not try to expand props if union contains an external type', () => {
+        const input = `
+            export type TTest = ({ a: string, b: string }) | HTMLElement;
+        `;
+        const output = {
+            '@epam/test-module': {
+                TTest: {
+                    kind: 'TypeAliasDeclaration',
+                    typeRef: {
+                        source: '../../../../test/test.tsx',
+                        typeName: {
+                            name: 'TTest',
+                            nameFull: 'TTest',
+                        },
+                    },
+                    typeValue: {
+                        print: [
+                            'type TTest = ({',
+                            '    a: string;',
+                            '    b: string;',
+                            '}) | HTMLElement;',
+                        ],
+                        raw: '{ a: string; b: string; } | HTMLElement',
                     },
                 },
             },

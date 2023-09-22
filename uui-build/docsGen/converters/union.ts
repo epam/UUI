@@ -9,9 +9,7 @@ export class Union extends Converter {
     }
 
     protected override isPropsSupported(typeNode: Node) {
-        const type = typeNode.getType();
-        const isExternalType = ConverterUtils.isExternalNode(typeNode);
-        return ConverterUtils.isPropsSupportedByType({ type, isExternalType });
+        return super.isPropsSupported(typeNode);
     }
 
     protected override getTypeValue(typeNode: Node): TTypeValue {

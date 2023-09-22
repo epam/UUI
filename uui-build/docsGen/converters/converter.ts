@@ -1,5 +1,5 @@
 import { Node, SyntaxKind, Type } from 'ts-morph';
-import { sortProps } from '../utils';
+import { PropsSet, SimpleIdGen, sortProps } from '../utils';
 import { IConverter, IConverterContext, TType, TTypeProp, TTypeValue } from '../types';
 import { ConverterUtils } from './converterUtils';
 
@@ -39,8 +39,8 @@ export class Converter implements IConverter {
     }
 }
 
-function mapSingleMember(params: { parentNode?: Node, propertyNode: Node, context: IConverterContext }): TTypeProp | undefined {
-    const { parentNode, propertyNode, context } = params;
+function mapSingleMember(params: { parentNode?: Node, propertyNode: Node, context: IConverterContext, idGen: SimpleIdGen }): TTypeProp | undefined {
+    const { parentNode, propertyNode, context, idGen } = params;
     let prop: TTypeProp | undefined = undefined;
     const nKind = propertyNode.getKind();
     const isSupported = [
@@ -79,7 +79,9 @@ function mapSingleMember(params: { parentNode?: Node, propertyNode: Node, contex
         const kind = ConverterUtils.getSyntaxKindNameFromNode(typeNode);
         const hasQuestionToken = Node.isQuestionTokenable(propertyNode) ? propertyNode.hasQuestionToken() : false;
         const required = !(ConverterUtils.getTypeFromNode(typeNode).isNullable() || hasQuestionToken);
+        const uniqueId = idGen.getNextId();
         prop = {
+            uniqueId,
             kind,
             name,
             comment,
@@ -95,38 +97,47 @@ function mapSingleMember(params: { parentNode?: Node, propertyNode: Node, contex
 
 function extractProps(parentNode: Node, context: IConverterContext): TTypeProp[] | undefined {
     const type = ConverterUtils.getTypeFromNode(parentNode);
+    const idGen = new SimpleIdGen();
     if (type.isUnion()) {
         const unionTypes = type.getUnionTypes();
         const allSupportProps = unionTypes.every((singleUnionType) => {
-            const isExternalType = false; // TODO: hardcode!
+            const typeNode = ConverterUtils.getNodeFromType(singleUnionType);
+            /*
+             * If node isn't available for this type, then we treat it as internal.
+             * I hope it's OK - in the worst case, the end user will see a bunch of props from the external type.
+             */
+            const isExternalType = typeNode ? ConverterUtils.isExternalNode(typeNode) : false;
             return ConverterUtils.isPropsSupportedByType({ type: singleUnionType, isExternalType });
         });
         if (allSupportProps) {
-            const allProps = unionTypes.reduce<TTypeProp[]>((acc, unionTypeItem) => {
-                const utProps = extractPropsFromNonUnionType({ parentNode, type: unionTypeItem, context });
-                acc.push(...utProps);
+            const allPropsSets = unionTypes.reduce<PropsSet[]>((acc, unionTypeItem) => {
+                const utProps = extractPropsFromNonUnionType({ parentNode, type: unionTypeItem, context, idGen });
+                acc.push(PropsSet.fromArray(utProps));
                 return acc;
             }, []);
-            return sortProps(allProps);
+            return PropsSet.concatAndSort(allPropsSets);
         }
     } else {
-        return extractPropsFromNonUnionType({ parentNode, type, context });
+        return extractPropsFromNonUnionType({ parentNode, type, context, sort: true, idGen });
     }
 }
 
-function extractPropsFromNonUnionType(params: { parentNode: Node, type: Type, context: IConverterContext }): TTypeProp[] | undefined {
-    const { parentNode, type, context } = params;
+function extractPropsFromNonUnionType(params: { parentNode: Node, type: Type, context: IConverterContext, sort?: boolean, idGen: SimpleIdGen }): TTypeProp[] | undefined {
+    const { parentNode, type, context, sort, idGen } = params;
     const props = type.getProperties();
     if (props.length > 0) {
         const propsUnsorted = props.reduce<TTypeProp[]>((acc, symb) => {
             const decls = symb.getDeclarations();
             const propertyNode = decls[0];
-            const mapped = mapSingleMember({ parentNode, propertyNode, context });
+            const mapped = mapSingleMember({ parentNode, propertyNode, context, idGen });
             if (mapped) {
                 acc.push(mapped);
             }
             return acc;
         }, []);
-        return sortProps(propsUnsorted);
+        if (sort) {
+            return sortProps(propsUnsorted);
+        }
+        return propsUnsorted;
     }
 }

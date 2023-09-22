@@ -21,6 +21,7 @@ export type TType = {
     props?: TTypeProp[];
 };
 export type TTypeProp = {
+    uniqueId: string;
     kind: string;
     name: string;
     typeValue: TTypeValue;
@@ -80,6 +81,9 @@ export interface IDocGenStats {
     getResults(): TDocGenStatsResult;
 }
 
-export function typeRefToUniqueString(ref: TTypeRef) {
-    return `${ref.module}:${ref.typeName.name}`;
+export function typeRefToUniqueString(ref?: TTypeRef) {
+    if (ref) {
+        return `${ref.module}:${ref.typeName.name}`;
+    }
+    return '';
 }
