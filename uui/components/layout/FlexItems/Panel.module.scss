@@ -27,4 +27,8 @@
     &:global(.-clickable):hover {
         cursor: pointer;
     }
+
+    &:global(.uui-panel.uui-color-surface) {
+        --uui-panel-bg: var(--uui-surface);
+    }
 }

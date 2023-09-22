@@ -6,7 +6,7 @@ import css from './AttributesExample.module.scss';
 
 export default function AttributesExample() {
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel background="surface" shadow cx={ css.container }>
             <FlexRow cx={ css.containerItem }>
                 <Avatar size="60" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" />
                 <FlexRow padding="12">

@@ -7,7 +7,7 @@ import {
     LazyDataSourceApi, LazyDataSourceApiResponse, LazyDataSourceApiRequest, DataColumnProps,
 } from '@epam/uui-core';
 import { FlexRow } from '@epam/uui';
-import { DataTable } from '@epam/promo';
+import { DataTable } from '@epam/uui';
 import css from './DemoTable.module.scss';
 import type { TApi } from '../../../data';
 import { groupings as groupingsList } from './groupings'; 

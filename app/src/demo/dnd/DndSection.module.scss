@@ -32,7 +32,7 @@
 
     .grab-area:hover {
         @include visibility;
-        background-color: white;
+        background-color: var(--uui-surface);
     }
 
     &:global(.uui-dragged-out) {
@@ -48,5 +48,5 @@
 @include drag-handle(8px, 11px, 11px, 130%);
 
 .icon-gray60 {
-    fill: var(--gray60);
+    fill: var(--uui-icon);
 }

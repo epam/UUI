@@ -9,7 +9,7 @@
     margin: 0 24px;
 
     .material-row {
-        border: 1px solid $gray40;
+        border: 1px solid var(--uui-divider);
     }
 
     &:hover .drag-handle {
@@ -19,8 +19,12 @@
     .icon-wrapper {
         padding: 12px 24px;
 
+        .icon {
+            fill: var(--uui-icon);
+        }
+
         &:first-child {
-            border-right: 1px solid $gray40;
+            border-right: 1px solid var(--uui-divider);
         }
     }
 
