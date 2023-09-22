@@ -56,7 +56,7 @@ export function FilterPickerBody<TItem, TId>(props: FilterPickerBodyProps<TItem,
         const minBodyWidth = isMobile() ? document.documentElement.clientWidth : props.minBodyWidth || pickerWidth;
 
         return (
-            <Panel style={ { width: minBodyWidth } } rawProps={ { tabIndex: -1 } } cx={ [uuiMarkers.lockFocus] }>
+            <Panel background="surface" style={ { width: minBodyWidth } } rawProps={ { tabIndex: -1 } } cx={ [uuiMarkers.lockFocus] }>
                 <DataPickerBody
                     { ...bodyProps }
                     selectionMode={ props.selectionMode }

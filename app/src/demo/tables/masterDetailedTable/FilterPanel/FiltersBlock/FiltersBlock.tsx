@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { Filter } from './Filter';
-import { Accordion } from '@epam/promo';
+import { Accordion } from '@epam/uui';
 import { TableFiltersConfig, IEditable } from '@epam/uui-core';
 
 interface IFiltersProps<TFilter extends Record<string, any>> extends IEditable<TFilter> {

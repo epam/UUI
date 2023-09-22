@@ -5,6 +5,7 @@ import css from './Panel.module.scss';
 export interface PanelMods {
     shadow?: boolean;
     margin?: '24';
+    background?: 'surface';
 }
 
 export const Panel = withMods<VPanelProps, PanelMods>(VPanel, (props) => [
@@ -12,4 +13,5 @@ export const Panel = withMods<VPanelProps, PanelMods>(VPanel, (props) => [
     css.root,
     props.shadow && css.shadow,
     props.margin && css['margin-' + props.margin],
+    props.background && `uui-color-${props.background}`,
 ]);
