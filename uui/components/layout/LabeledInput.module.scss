@@ -9,13 +9,13 @@
     --uui-labeled-input-optional-text: var(--uui-text-tertiary);
     --uui-labeled-input-asterisk: var(--uui-error-50);
 
-    --uui-labeled-input-font: var(--font-semibold);
-    --uui-labeled-input-font-weight: normal;
-    --uui-labeled-input-optional-font: var(--font-italic);
-    --uui-labeled-input-optional-font-weight: normal;
-    //--uui-labeled-input-optional-font-style: italic;
-    --uui-labeled-input-invalid-msg-font: var(--font-regular);
-    --uui-labeled-input-invalid-msg-font-weight: normal;
+    --uui-labeled-input-font: var(--uui-font);
+    --uui-labeled-input-font-weight: 600;
+    --uui-labeled-input-optional-font: var(--uui-font);
+    --uui-labeled-input-optional-font-weight: 400;
+    --uui-labeled-input-optional-font-style: italic;
+    --uui-labeled-input-invalid-msg-font: var(--uui-font);
+    --uui-labeled-input-invalid-msg-font-weight: 400;
     //
     width: 100%;
 
@@ -38,7 +38,7 @@
         :global(.uui-labeled-input-optional) {
             font-family: var(--uui-labeled-input-optional-font);
             font-weight: var(--uui-labeled-input-optional-font-weight);
-            //font-style: var(--uui-labeled-input-optional-font-style);
+            font-style: var(--uui-labeled-input-optional-font-style);
             font-size: 12px;
             line-height: 18px;
             color: var(--uui-labeled-input-optional-text);

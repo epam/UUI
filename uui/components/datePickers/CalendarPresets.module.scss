@@ -6,14 +6,16 @@
     }
 
     :global(.uui-presets-header) {
-        font-family: var(--font-semibold);
+        font-family: var(--uui-font);
+        font-weight: 600;
         font-size: 14px;
         line-height: 24px;
         padding-bottom: 12px;
     }
 
     :global(.uui-presets-item) {
-        font-family: var(--font-semibold);
+        font-family: var(--uui-font);
+        font-weight: 600;
         font-size: 12px;
         line-height: 18px;
         color: var(--uui-link);

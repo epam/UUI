@@ -1,8 +1,8 @@
 @use  '../../../assets/styles/index' as *;
 
 .root {
-    --uui-main_menu_button-font: var(--font-semibold);
-    --uui-main_menu_button-font-weight: normal;
+    --uui-main_menu_button-font: var(--uui-font);
+    --uui-main_menu_button-font-weight: 600;
     //
     flex-shrink: 0;
     color: var(--uui-main_menu-text);

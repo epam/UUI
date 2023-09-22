@@ -126,7 +126,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         return (
             <MultiSwitch
                 size="36"
-                items={ items.filter((i) => (!window.location.host.includes('localhost') ? i.id !== UUI : true)) }
+                items={ items }
                 value={ getQuery('skin') || UUI4 }
                 onValueChange={ (newValue: Skin) => this.handleChangeSkin(newValue) }
             />

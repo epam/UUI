@@ -26,8 +26,8 @@ $text-size-count: 24px;
     --uui-tab_button-text-hover: var(--uui-primary-50);
     --uui-tab_button-text-active: var(--uui-primary-50);
     --uui-tab_button-text-disabled: var(--uui-text-disabled);
-    --uui-tab_button-font: var(--font-semibold);
-    --uui-tab_button-font-weight: normal;
+    --uui-tab_button-font: var(--uui-font);
+    --uui-tab_button-font-weight: 600;
 
     @include link-button-horizontal-layout(36px);
     @include tab-button-color(var(--uui-tab_button-text), var(--uui-tab_button-text-active), transparent);

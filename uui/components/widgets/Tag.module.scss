@@ -10,10 +10,10 @@
     --uui-tag-count: var(--uui-text-secondary);
     --uui-tag-border-radius: 30px;
 
-    --uui-tag-font: var(--font-regular);
-    --uui-tag-font-weight: normal;
-    --uui-tag-count-font: var(--font-semibold);
-    --uui-tag-count-font-weight: normal;
+    --uui-tag-font: var(--uui-font);
+    --uui-tag-font-weight: 400;
+    --uui-tag-count-font: var(--uui-font);
+    --uui-tag-count-font-weight: 600;
     //
     &:global(.uui-button-box) {
         border-radius: var(--uui-tag-border-radius);
