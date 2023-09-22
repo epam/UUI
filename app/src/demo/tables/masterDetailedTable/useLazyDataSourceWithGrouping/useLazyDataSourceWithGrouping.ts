@@ -26,14 +26,15 @@ export function useLazyDataSourceWithGrouping<
     );
     const api: LazyDataSourceApi<
     UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId>>,
-    UnboxUnionFromGroups<ComplexId<TGroups, TId>>,
+    UnboxUnionFromGroups<ComplexId<TGroups, TId>>[],
     TFilter
     > = async (request, ctx) => {
         const { ids, ...rq } = request;
         if (ids != null) {
             const idsByType: { [Type in keyof TGroups]?: Array<TId[keyof TGroups]> } = {};
-            ids.forEach(([type, id]) => {
-                idsByType[type] = idsByType[type] || [];
+            ids.forEach((fullId) => {
+                const [type, id] = fullId[fullId.length - 1];
+                idsByType[type] = idsByType[type] ?? [];
                 idsByType[type].push(id);
             });
 
@@ -50,7 +51,8 @@ export function useLazyDataSourceWithGrouping<
             return response;
         }
 
-        const [, parentId] = ctx.parentId ?? [];
+        const pathIds = ctx.parentId ?? [];
+        const [, parentId] = pathIds.length ? pathIds[pathIds.length - 1] : [];
         if (request.search) {
             return config.defaultApi(rq, { ...ctx, parentId });
         }
@@ -64,7 +66,7 @@ export function useLazyDataSourceWithGrouping<
 
     return useLazyDataSource<
     UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId>>,
-    UnboxUnionFromGroups<ComplexId<TGroups, TId>>,
+    UnboxUnionFromGroups<ComplexId<TGroups, TId>>[],
     TFilter>(
         {
             ...config.getDefaultConfigProps(),

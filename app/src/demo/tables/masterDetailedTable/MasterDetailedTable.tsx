@@ -42,12 +42,12 @@ export function MasterDetailedTable() {
     });
 
     const pin = useCallback(
-        ({ value: { __typename } }: DataRowProps<PersonTableRecord, PersonTableRecordId>) => 
+        ({ value: { __typename } }: DataRowProps<PersonTableRecord, PersonTableRecordId[]>) => 
             __typename !== 'Person',
         [],
     );
 
-    const clickHandler = useCallback((rowProps: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
+    const clickHandler = useCallback((rowProps: DataRowProps<PersonTableRecord, PersonTableRecordId[]>) => {
         if (rowProps.value.__typename === 'Person') {
             rowProps.onSelect(rowProps);
             setIsInfoPanelOpened(true);
@@ -181,7 +181,7 @@ export function MasterDetailedTable() {
                 <DataTable
                     headerTextCase="upper"
                     getRows={ view.getVisibleRows }
-                    columns={ personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId, PersonTableFilter>[] }
+                    columns={ personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId[], PersonTableFilter>[] }
                     filters={ filters }
                     value={ tableStateApi.tableState }
                     onValueChange={ tableStateApi.setTableState }

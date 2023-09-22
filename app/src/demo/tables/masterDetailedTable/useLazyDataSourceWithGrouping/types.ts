@@ -15,7 +15,7 @@ export interface GetType<TGroups> {
 }
 
 export type ConfigDefault<TGroups, TId extends { [K in keyof TGroups]: unknown }, TFilter extends { groupBy?: GroupByKeys<TGroups> }> =
-    Partial<LazyDataSourceProps<UnboxUnionFromGroups<TGroups>, [keyof TGroups, TId[keyof TGroups]], TFilter>>
+    Partial<LazyDataSourceProps<UnboxUnionFromGroups<TGroups>, UnboxUnionFromGroups<ComplexId<TGroups, TId>>[], TFilter>>
     & GetType<TGroups>
     & {
         isLastNestingLevel?: (item: TGroups[keyof TGroups]) => boolean;
@@ -37,7 +37,7 @@ type EntityLazyDataSourceProps<
         ) => ReturnType<LazyDataSourceProps<TGroups[keyof TGroups], TId[TType], TFilter>['api']>;
         getRowOptions: (
             ...args: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['getRowOptions']>
-        ) => ReturnType<LazyDataSourceProps<TGroups[keyof TGroups], [keyof TGroups, TId[keyof TGroups]], TFilter>['getRowOptions']>;
+        ) => ReturnType<LazyDataSourceProps<TGroups[keyof TGroups], UnboxUnionFromGroups<ComplexId<TGroups, TId>>[], TFilter>['getRowOptions']>;
 
         isLastNestingLevel: (item: TGroups[TType]) => boolean;
     };
@@ -91,7 +91,7 @@ export type TGroupWithMeta<
     TType extends keyof TGroups,
     TId extends { [K in keyof TGroups]: unknown }
 > = TGroups[TType] & {
-    [ID]?: Array<GroupByKey<TGroups> | TId[keyof TGroups]>,
+    [ID]?: UnboxUnionFromGroups<ComplexId<TGroups, TId>>[],
     [PATH]?: GroupByKey<TGroups>[];
 };
 
