@@ -21,22 +21,8 @@
         fill: var(--uui-tag-fill);
         border: 0;
 
-        :global(.uui-count) {
-            background-color: var(--uui-tag-count-bg);
-            color: var(--uui-tag-count);
-            font-family: var(--uui-tag-count-font);
-            font-weight: var(--uui-tag-count-font-weight);
-            margin: auto;
-            height: 18px;
-            line-height: 18px;
-            font-size: 12px;
-            border-radius: 9px;
-            padding-left: 6px;
-            padding-right: 6px;
-        }
-
-        :global(.uui-count):not(:first-child) {
-            margin-left: 6px;
+        :global(.uui-count_indicator):not(:last-child) {
+            margin-right: 6px;
         }
 
         &:global(.-clickable) {
@@ -65,19 +51,8 @@
         padding-left: 3px;
         padding-right: 3px;
 
-        :global(.uui-count) {
-            height: 12px;
-            line-height: 12px;
-            font-size: 8px;
-            border-radius: 6px;
-            padding-left: 3px;
-            padding-right: 3px;
-            min-width: 6px;
-            flex-shrink: 0;
-        }
-
-        :global(.uui-count):not(:first-child) {
-            margin-left: 3px;
+        :global(.uui-count_indicator):not(:last-child) {
+            margin-right: 3px;
         }
 
         :global(.uui-caption), :global(.uui-input) {
@@ -133,15 +108,6 @@
             line-height: 24px;
             font-size: 16px;
         }
-
-        :global(.uui-count) {
-            height: 24px;
-            line-height: 24px;
-            font-size: 14px;
-            border-radius: 12px;
-            min-width: 12px;
-            flex-shrink: 0;
-        }
     }
 
     &.size-48 {
@@ -153,15 +119,6 @@
             padding-bottom: 12px;
             line-height: 24px;
             font-size: 16px;
-        }
-
-        :global(.uui-count) {
-            height: 24px;
-            line-height: 24px;
-            font-size: 14px;
-            border-radius: 12px;
-            min-width: 12px;
-            flex-shrink: 0;
         }
     }
 }

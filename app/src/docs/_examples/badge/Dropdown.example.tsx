@@ -45,7 +45,7 @@ export default function TypesExample() {
                         dropdownIconPosition="right"
                         color="neutral"
                         icon={ () => statusDot(selectedItem.color) }
-                        fill="semitransparent"
+                        fill="outline"
                         caption={ selectedItem.caption }
                     />
                 ) }

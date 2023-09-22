@@ -14,11 +14,15 @@ export interface ButtonProps
     /** CSS classes to put on the caption */
     captionCX?: CX;
 
-    /** Informer component */
-    informer?: React.ComponentType<IHasCaption> ;
+    /** CountIndicator component */
+    countIndicator?: React.ComponentType<IHasCaption> ;
+
+    /** Indicator property, default = false */
+    indicator?: boolean;
 }
 
 export class Button extends ButtonBase<ButtonProps> {
+    indicator = false;
     constructor(props: ButtonProps) {
         super(props);
     }
@@ -28,7 +32,7 @@ export class Button extends ButtonBase<ButtonProps> {
     }
 
     getChildren() {
-        const Informer = this.props.informer;
+        const CountIndicator = this.props.countIndicator;
         return [
             this.props.isDropdown && this.props.dropdownIconPosition === 'left' && (
                 <IconContainer key="dropdown-icon-left" icon={ this.props.dropdownIcon } flipY={ this.props.isOpen } />
@@ -36,12 +40,13 @@ export class Button extends ButtonBase<ButtonProps> {
             this.props.icon && this.props.iconPosition !== 'right' && (
                 <IconContainer key="icon-left" icon={ this.props.icon } onClick={ !this.props.isDisabled ? this.props.onIconClick : undefined } />
             ),
+            this.props.indicator && <div key="indicator" className={ uuiElement.indicator }></div>,
             this.props.caption && (
                 <div key="caption" className={ cx(uuiElement.caption, this.props.captionCX) }>
                     {this.props.caption}
                 </div>
             ),
-            this.props.count && <Informer caption={ this.props.count } />,
+            this.props.count !== undefined && this.props.count !== null && <CountIndicator caption={ this.props.count } />,
             this.props.icon && this.props.iconPosition === 'right' && (
                 <IconContainer key="icon-right" icon={ this.props.icon } onClick={ !this.props.isDisabled ? this.props.onIconClick : undefined } />
             ),

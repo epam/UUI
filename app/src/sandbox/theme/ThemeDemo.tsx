@@ -1,28 +1,6 @@
 import React from 'react';
 import { useAsyncDataSource, useForm, useUuiContext } from '@epam/uui-core';
-import {
-    Button,
-    Checkbox,
-    Switch,
-    TextInput,
-    SuccessNotification,
-    ErrorNotification,
-    Text,
-    LabeledInput,
-    Panel,
-    PickerInput,
-    FlexRow,
-    FlexCell,
-    FlexSpacer,
-    RadioGroup,
-    ScrollBars,
-    IconButton,
-    ModalBlocker,
-    ModalWindow,
-    ModalHeader,
-    Badge,
-    DatePicker,
-} from '@epam/uui';
+import { Button, Checkbox, Switch, TextInput, SuccessNotification, ErrorNotification, Text, LabeledInput, Panel, PickerInput, FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton, ModalBlocker, ModalWindow, ModalHeader, Badge, DatePicker } from '@epam/uui';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 import { ReactComponent as LocationIcon } from '@epam/assets/icons/common/action-map_pin-18.svg';
@@ -151,8 +129,8 @@ export function ThemeDemo() {
                     <FlexRow vPadding="12">
                         <LabeledInput label="Status">
                             <FlexRow spacing="12">
-                                <Badge color="success" fill="semitransparent" caption="Approved" size="24" />
-                                <Badge color="info" fill="semitransparent" caption="Active" size="24" />
+                                <Badge color="success" fill="outline" caption="Approved" size="24" />
+                                <Badge color="info" fill="outline" caption="Active" size="24" />
                             </FlexRow>
                         </LabeledInput>
                     </FlexRow>

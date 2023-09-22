@@ -14,7 +14,7 @@ import {
     TablesOverviewDoc, AdvancedTablesDoc, PresetsPanelDoc, GettingStartedDoc, UtGuideBasicsDoc, UtGuideToolsDoc,
     UtGuideCookbookDoc, DataSourcesGettingStartedDoc, DataSourcesRowOptionsDoc, DataSourcesBaseDataSourcePropsDoc,
     DataSourcesDataSourceStateDoc, DataSourcesArrayDataSourceDoc, DataSourcesAsyncDataSourceDoc,
-    DataSourcesLazyDataSourceDoc, DataSourcesUsageDoc, useTableStateDoc, InformerDoc,
+    DataSourcesLazyDataSourceDoc, DataSourcesUsageDoc, useTableStateDoc, CountIndicatorDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
@@ -53,7 +53,7 @@ const componentsStructure = sortBy(
         { id: 'flexSpacer', name: 'Flex Spacer', component: FlexSpacerDoc, parentId: 'flexItems', order: 4 },
         { id: 'iconButton', name: 'Icon Button', component: IconButtonDoc, parentId: 'components' },
         { id: 'iconContainer', name: 'Icon Container', component: IconContainerDoc, parentId: 'components' },
-        { id: 'informer', name: 'Informer', component: InformerDoc, parentId: 'components' },
+        { id: 'countIndicator', name: 'Count Indicator', component: CountIndicatorDoc, parentId: 'components' },
         { id: 'labeledInput', name: 'Labeled Input', component: LabeledInputDoc, parentId: 'components' },
         { id: 'linkButton', name: 'Link Button', component: LinkButtonDoc, parentId: 'components' },
         { id: 'mainMenu', name: 'Main Menu', component: MainMenuDoc, parentId: 'components' },

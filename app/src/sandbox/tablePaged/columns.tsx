@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton,
-} from '@epam/promo';
+import { Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton } from '@epam/promo';
 import { DataColumnProps } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './DemoTablePaged.module.scss';

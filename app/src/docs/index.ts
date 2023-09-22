@@ -63,4 +63,4 @@ export * from './ScrollSpy.doc';
 export * from './VerticalTabButton.doc';
 export * from './DropdownContainer.doc';
 export * from './AdaptivePanel.doc';
-export * from './Informer.doc';
+export * from './CountIndicator.doc';

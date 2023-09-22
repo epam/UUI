@@ -26,9 +26,9 @@ export const allEpamPrimaryColors: EpamPrimaryColor[] = [
     'blue', 'green', 'amber', 'red',
 ];
 
-export type EpamAdditionalColor = EpamPrimaryColor | 'cyan' | 'orange' | 'purple' | 'violet';
+export type EpamAdditionalColor = EpamPrimaryColor | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'lavanda' | 'cobalt';
 export const allEpamAdditionalColors: EpamAdditionalColor[] = [
-    ...allEpamPrimaryColors, 'cyan', 'orange', 'purple', 'violet',
+    ...allEpamPrimaryColors, 'yellow', 'orange', 'fuchsia', 'purple', 'lavanda', 'cobalt',
 ];
 
 export type EpamGrayscaleColor = 'white' | 'gray5' | 'gray10' | 'gray20' | 'gray30' | 'gray40' | 'gray50' | 'gray60' | 'gray70' | 'gray80' | 'gray90';

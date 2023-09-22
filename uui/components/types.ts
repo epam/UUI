@@ -16,14 +16,14 @@ export const allRowSizes: RowSize[] = [
     null, '24', '30', '36', '42', '48',
 ];
 
-export type SemanticColor = 'info' | 'success' | 'warning' | 'error';
+export type SemanticColor = 'info' | 'success' | 'warning' | 'critical';
 export const allSemanticColors: SemanticColor[] = [
-    'info', 'success', 'warning', 'error',
+    'info', 'success', 'warning', 'critical',
 ];
 
-export type EpamBadgeSemanticColor = 'info' | 'success' | 'warning' | 'error' | 'neutral';
+export type EpamBadgeSemanticColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'white';
 export const allEpamBadgeSemanticColors: EpamBadgeSemanticColor[] = [
-    'info', 'success', 'warning', 'error', 'neutral',
+    'info', 'success', 'warning', 'critical', 'neutral', 'white',
 ];
 
 export type TextSize = 'none' | '18' | '24' | '30' | '36' | '48';

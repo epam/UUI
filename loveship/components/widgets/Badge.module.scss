@@ -6,19 +6,6 @@
         min-width: 12px;
         padding: 0 2px;
 
-        :global(.uui-count) {
-            height: 10px;
-            line-height: 10px;
-            font-size: 8px;
-            border-radius: 5px;
-            padding-left: 3px;
-            padding-right: 3px;
-
-            &:not(:first-child) {
-                margin-left: 3px;
-            }
-        }
-
         :global(.uui-caption), :global(.uui-input) {
             line-height: 10px;
             font-size: 10px;
@@ -70,26 +57,27 @@
         border-radius: var(--uui-border-radius);
     }
 
-    &:global(.fill-white) {
-        --uui-badge-bg: var(--white);
-        --uui-badge-bg-hover: var(--night50);
-        --uui-badge-border: var(--uui-color-50);
-        --uui-badge-border-hover: var(--uui-color-50);
-        --uui-badge-caption: var(--uui-color-50);
-        --uui-badge-caption-hover: var(--uui-color-60);
-        --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
-        --uui-badge-count-bg: var(--white); // It should be a separate component
-    }
-
-    &:global(.fill-none) {
+    &:global(.fill-transparent) {
         --uui-badge-bg: transparent;
         --uui-badge-bg-hover: transparent;
-        --uui-badge-border: var(--uui-color-50);
-        --uui-badge-border-hover: var(--uui-color-60);
-        --uui-badge-caption: var(--uui-color-50);
-        --uui-badge-caption-hover: var(--uui-color-60);
-        --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
-        --uui-badge-count-bg: var(--white); // It should be a separate component
+        --uui-badge-border: transparent;
+        --uui-badge-border-hover: transparent;
+        --uui-badge-caption: var(--uui-text-primary);
+        --uui-badge-caption-hover: var(--uui-text-primary);
+
+        &:global(.-clickable) {
+            &:hover {
+                fill: var(--uui-color-60);
+                cursor: pointer;
+            }
+        }
+
+        &::before {
+            position: absolute;
+            content: '';
+            border-radius: 50%;
+            background-color: var(--uui-color-50);
+        }
     }
 }
 
