@@ -1,7 +1,9 @@
 import { DataRowOptions, LazyDataSourceProps } from '@epam/uui-core';
 import {
+    BaseGroups,
+    BaseGroupsIds,
     ComplexId, ConfigDefault, EntitiesConfig, EntityConfig, GroupByKeys,
-    GroupingConfig, GroupingsConfig, TGroupsWithMeta, UnboxArray, UnboxUnionFromGroups,
+    GroupingConfig, GroupingsConfig, TGroupsWithMeta, ToUnion, GroupByTokens, GroupBy,
 } from './types';
 import { ID, PATH } from './constants';
 import isEqual from 'lodash.isequal';
@@ -9,20 +11,20 @@ import isEqual from 'lodash.isequal';
 const DEFAULT_CONFIG = Symbol('DEFAULT_CONFIG');
 
 export class GroupingConfigBuilder<
-    TGroups extends { [k in string]: Record<string, unknown> },
-    TId extends { [K in keyof TGroups]: unknown },
+    TGroups extends BaseGroups,
+    TId extends BaseGroupsIds<TGroups>,
     TFilter extends { groupBy?: GroupByKeys<TGroups> }
 > {
-    private entitiesConfig: EntitiesConfig<TGroupsWithMeta<TGroups, TId, TFilter>, TId, TFilter> = {};
-    private groupingsConfig: GroupingsConfig<TGroupsWithMeta<TGroups, TId, TFilter>, TId, TFilter> = {};
-    private groupByToEntityType: Partial<Record<UnboxArray<TFilter['groupBy']>, keyof TGroups>> = {};
+    private entitiesConfig: EntitiesConfig<TGroups, TId, TFilter> = {};
+    private groupingsConfig: GroupingsConfig<TGroups, TId, TFilter> = {};
+    private groupByToEntityType: { [K in GroupByTokens<TGroups, TFilter>]?: keyof TGroups } = {};
 
-    private [DEFAULT_CONFIG]: ConfigDefault<TGroupsWithMeta<TGroups, TId, TFilter>, TId, TFilter> = null;
+    private [DEFAULT_CONFIG]: ConfigDefault<TGroups, TId, TFilter> = null;
     private defaultEntity: keyof TGroups = null;
 
     addEntity<TType extends keyof TGroups>(
         entityType: TType,
-        config: EntityConfig<TGroupsWithMeta<TGroups, TId, TFilter>, TType, TId, TFilter>,
+        config: EntityConfig<TGroups, TType, TId, TFilter>,
     ) {
         this.entitiesConfig[entityType] = config;
         this.defaultEntity = entityType;
@@ -30,15 +32,15 @@ export class GroupingConfigBuilder<
     }
 
     addGrouping<TType extends keyof TGroups>(
-        groupBy: UnboxArray<TFilter['groupBy']> | UnboxArray<TFilter['groupBy']>[],
-        config: GroupingConfig<TGroupsWithMeta<TGroups, TId, TFilter>, TType, TId, TFilter>,
+        groupBy: GroupBy<TGroups, TFilter>,
+        config: GroupingConfig<TGroups, TType, TId, TFilter>,
     ) {
         this.setGroupByToEntity(config.type, groupBy);
         this.groupingsConfig[config.type] = config;
         return this;
     }
 
-    addDefault(config: ConfigDefault<TGroupsWithMeta<TGroups, TId, TFilter>, TId, TFilter>) {
+    addDefault(config: ConfigDefault<TGroups, TId, TFilter>) {
         this[DEFAULT_CONFIG] = {
             isLastNestingLevel: () => true,
             ...config,
@@ -46,7 +48,10 @@ export class GroupingConfigBuilder<
         return this;
     }
 
-    private setGroupByToEntity<TType extends keyof TGroups>(entityType: TType, groupBy: UnboxArray<TFilter['groupBy']> | UnboxArray<TFilter['groupBy']>[]) {
+    private setGroupByToEntity<TType extends keyof TGroups>(
+        entityType: TType,
+        groupBy: GroupBy<TGroups, TFilter>,
+    ) {
         if (Array.isArray(groupBy)) {
             groupBy.forEach((gb) => {
                 this.groupByToEntityType[gb] = entityType;
@@ -56,7 +61,7 @@ export class GroupingConfigBuilder<
         }
     }
 
-    getType(entity: UnboxUnionFromGroups<TGroups>) {
+    getType(entity: ToUnion<TGroups>) {
         return this[DEFAULT_CONFIG].getType(entity);
     }
 
@@ -85,8 +90,8 @@ export class GroupingConfigBuilder<
     }
 
     async apiByGroupBy(
-        groupBy: UnboxArray<TFilter['groupBy']> | UnboxArray<TFilter['groupBy']>[],
-        ...apiArgs: Parameters<LazyDataSourceProps<UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId, TFilter>>, TId[keyof TGroups], TFilter>['api']>
+        groupBy: GroupBy<TGroups, TFilter>,
+        ...apiArgs: Parameters<LazyDataSourceProps<ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>, TId[keyof TGroups], TFilter>['api']>
     ) {
         const [request, context] = apiArgs;
         const filterFromGroupBy = context.parent ? this[DEFAULT_CONFIG].getFilterFromGroupByPath(context.parent[ID]) : undefined;
@@ -180,7 +185,7 @@ export class GroupingConfigBuilder<
         };
     }
 
-    private extractParentIdFromMeta(item: UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId, TFilter>>) {
+    private extractParentIdFromMeta(item: ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>) {
         const parentId = item[ID].slice(0, item[ID].length - 1);
         if (!parentId.length) {
             return null;
@@ -189,26 +194,26 @@ export class GroupingConfigBuilder<
         return parentId;
     }
 
-    private extractIdFromMeta(item: UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId, TFilter>>) {
+    private extractIdFromMeta(item: ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>) {
         return item[ID];
     }
 
     private buildId(
-        item: UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId, TFilter>>,
-        groupBy?: UnboxArray<TFilter['groupBy']>,
-    ): UnboxUnionFromGroups<ComplexId<TGroups, TId, TFilter>> {
+        item: ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>,
+        groupBy?: GroupByTokens<TGroups, TFilter>,
+    ): ToUnion<ComplexId<TGroups, TId, TFilter>> {
         const type = this.getType(item);
         const id = (this.entitiesConfig[type]?.getId ?? this[DEFAULT_CONFIG].getId ?? ((i: any) => i.id))(item);
         return [type, groupBy, id];
     }
 
-    getId(item: UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId, TFilter>>): UnboxUnionFromGroups<ComplexId<TGroups, TId, TFilter>>[] {
+    getId(item: ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>): ToUnion<ComplexId<TGroups, TId, TFilter>>[] {
         return this.extractIdFromMeta(item);
     }
 
     getParentId(
-        item: UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId, TFilter>>,
-    ): UnboxUnionFromGroups<ComplexId<TGroups, TId, TFilter>>[] {
+        item: ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>,
+    ): ToUnion<ComplexId<TGroups, TId, TFilter>>[] {
         const type = this.getType(item);
         const parentId = (
             this.entitiesConfig[type]?.getParentId
@@ -224,7 +229,7 @@ export class GroupingConfigBuilder<
         return null;
     }
 
-    getChildCount(item: UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId, TFilter>>): number {
+    getChildCount(item: ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>): number {
         const type = this.getType(item);
         return (
             this.entitiesConfig[type]?.getChildCount
@@ -234,9 +239,9 @@ export class GroupingConfigBuilder<
     }
 
     getRowOptions?(
-        item: UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId, TFilter>>,
+        item: ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>,
         index: number,
-    ): DataRowOptions<UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId, TFilter>>, UnboxUnionFromGroups<ComplexId<TGroups, TId, TFilter>>[]> {
+    ): DataRowOptions<ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>, ToUnion<ComplexId<TGroups, TId, TFilter>>[]> {
         const type = this.getType(item);
         const getRowOptions = this.entitiesConfig[type]?.getRowOptions
             ?? this.groupingsConfig[type]?.getRowOptions
