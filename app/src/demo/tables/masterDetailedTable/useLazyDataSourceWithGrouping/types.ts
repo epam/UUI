@@ -37,6 +37,25 @@ export type ConfigDefault<TGroups, TId extends BaseGroupsIds<TGroups>, TFilter e
 export type LazyDataSourceGetters<TItem, TId, TFilter> =
     Pick<LazyDataSourceProps<TItem, TId, TFilter>, 'getId' | 'getParentId' | 'getChildCount' | 'isFoldedByDefault'>;
 
+type ApiType<
+    TGroups,
+    TType extends keyof TGroups,
+    TId extends BaseGroupsIds<TGroups>,
+    TFilter extends BaseFilter<TGroups>
+> = (
+    request: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['api']>[0],
+    context: Parameters<LazyDataSourceProps<TGroups[keyof TGroups], TId[TType], TFilter>['api']>[1],
+) => ReturnType<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['api']>;
+
+type GetRowOptionsType<
+    TGroups,
+    TType extends keyof TGroups,
+    TId extends BaseGroupsIds<TGroups>,
+    TFilter extends BaseFilter<TGroups>
+> = (
+    ...args: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['getRowOptions']>
+) => ReturnType<LazyDataSourceProps<TGroups[keyof TGroups], ToUnion<ComplexId<TGroups, TId, TFilter>>[], TFilter>['getRowOptions']>;
+
 type EntityLazyDataSourceProps<
     TGroups,
     TType extends keyof TGroups,
@@ -45,15 +64,8 @@ type EntityLazyDataSourceProps<
 > =
     LazyDataSourceGetters<TGroups[TType], TId[TType], TFilter>
     & {
-        api: (
-            request: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['api']>[0],
-            context: Parameters<LazyDataSourceProps<TGroups[keyof TGroups], TId[TType], TFilter>['api']>[1],
-        ) => ReturnType<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['api']>;
-
-        getRowOptions: (
-            ...args: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['getRowOptions']>
-        ) => ReturnType<LazyDataSourceProps<TGroups[keyof TGroups], ToUnion<ComplexId<TGroups, TId, TFilter>>[], TFilter>['getRowOptions']>;
-
+        api: ApiType<TGroups, TType, TId, TFilter>;
+        getRowOptions: GetRowOptionsType<TGroups, TType, TId, TFilter>;
         isLastNestingLevel: (item: TGroups[TType]) => boolean;
     };
 
