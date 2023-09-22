@@ -54,8 +54,6 @@ export function useLazyDataSourceWithGrouping<
         const pathIds = ctx.parentId ?? [];
         const [, , parentId] = pathIds.length ? pathIds[pathIds.length - 1] : [];
 
-        // TODO: write logic for search...
-
         const groupBy = config.getGroupBy();
         if (groupBy && !(Array.isArray(groupBy) && !groupBy.length)) {
             return config.apiByGroupBy(groupBy, rq, { ...ctx, parentId });
