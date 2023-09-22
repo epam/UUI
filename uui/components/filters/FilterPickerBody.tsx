@@ -1,12 +1,9 @@
 import * as React from 'react';
-import { DataRowProps, DataSourceListProps, DropdownBodyProps, isMobile, uuiMarkers } from '@epam/uui-core';
+import { DataRowProps, DataSourceListProps, DropdownBodyProps, isMobile } from '@epam/uui-core';
 import { PickerBodyBaseProps, PickerInputBaseProps, usePickerInput } from '@epam/uui-components';
 import { DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, PickerInputProps } from '../pickers';
-import { Panel } from '../layout';
-import css from './FilterPickerBody.module.scss';
 
 const pickerHeight = 300;
-const pickerWidth = 360;
 
 type FilterPickerBodyProps<TItem, TId> = DropdownBodyProps & PickerInputBaseProps<TItem, TId>;
 
@@ -52,10 +49,9 @@ export function FilterPickerBody<TItem, TId>(props: FilterPickerBodyProps<TItem,
     const renderBody = (bodyProps: DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
         const renderedDataRows = rows.map((props) => renderRow(props));
         const maxHeight = isMobile() ? document.documentElement.clientHeight : props.dropdownHeight || pickerHeight;
-        const minBodyWidth = isMobile() ? document.documentElement.clientWidth : props.minBodyWidth || pickerWidth;
 
         return (
-            <Panel style={ { width: minBodyWidth } } rawProps={ { tabIndex: -1 } } cx={ [uuiMarkers.lockFocus, css.listContainer] }>
+            <>
                 <DataPickerBody
                     { ...bodyProps }
                     selectionMode={ props.selectionMode }
@@ -66,7 +62,7 @@ export function FilterPickerBody<TItem, TId>(props: FilterPickerBodyProps<TItem,
                     showSearch={ true }
                 />
                 {renderFooter()}
-            </Panel>
+            </>
         );
     };
     
