@@ -42,12 +42,13 @@ export interface IConverterConstructor {
 }
 export interface IConverter {
     isSupported(typeNode: Node): boolean;
+    getTypeValue(typeNode: Node, print: boolean): TTypeValue
     convert(typeNode: Node): TType
 }
 export interface IConverterContext {
     project: Project
     stats: IDocGenStats
-    convert(typeNode: Node): TType | undefined
+    convert(params: { typeNode: Node, isTypeProp: boolean }): TType | undefined
 }
 
 export type TDocGenStatsResult_Exports = {

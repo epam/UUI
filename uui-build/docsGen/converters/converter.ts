@@ -6,7 +6,7 @@ import { ConverterUtils } from './converterUtils';
 export class Converter implements IConverter {
     constructor(public readonly context: IConverterContext) {}
 
-    protected getTypeValue(typeNode: Node, print?: boolean): TTypeValue {
+    public getTypeValue(typeNode: Node, print: boolean): TTypeValue {
         return ConverterUtils.getTypeValueFromNode(typeNode, print);
     }
 
@@ -63,7 +63,7 @@ function mapSingleMember(params: { parentNode?: Node, propertyNode: Node, contex
         if (!typeNode) {
             return;
         }
-        const converted = context.convert(typeNode);
+        const converted = context.convert({ typeNode, isTypeProp: true });
         if (!converted) {
             return;
         }
