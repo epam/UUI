@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 import { LazyDataSourceApi, LazyDataSourceApiRequest, LazyDataSourceApiResponse, useLazyDataSource } from '@epam/uui-core';
 import { GroupingConfigBuilder } from './groupingConfigBuilder';
-import { ComplexId, GroupByKeys, TGroupsWithMeta, UnboxUnionFromGroups } from './types';
+import { ComplexId, TFilterWithGroupBy, TGroupsWithMeta, UnboxUnionFromGroups } from './types';
 
 type Setup<
     TGroups extends { [k in string]: {} },
     TId extends { [K in keyof TGroups]: unknown },
-    TFilter extends { groupBy?: GroupByKeys<TGroups> }
+    TFilter extends TFilterWithGroupBy<TGroups>
 > = (
     configBuilder: GroupingConfigBuilder<TGroups, TId, TFilter>,
 ) => GroupingConfigBuilder<TGroups, TId, TFilter>;
@@ -14,32 +14,32 @@ type Setup<
 export function useLazyDataSourceWithGrouping<
     TGroups extends { [k in string]: {} },
     TId extends { [K in keyof TGroups]: unknown },
-    TFilter extends { groupBy?: GroupByKeys<TGroups> }
+    TFilter extends TFilterWithGroupBy<TGroups>
 >(
     setup: Setup<TGroups, TId, TFilter>,
     deps: unknown[] = [],
 ) {
     const config = useMemo(
-        () => setup(new GroupingConfigBuilder<TGroupsWithMeta<TGroups, TId>, TId, TFilter>()),
+        () => setup(new GroupingConfigBuilder<TGroupsWithMeta<TGroups, TId, TFilter>, TId, TFilter>()),
         // eslint-disable-next-line react-hooks/exhaustive-deps
         deps,
     );
     const api: LazyDataSourceApi<
-    UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId>>,
-    UnboxUnionFromGroups<ComplexId<TGroups, TId>>[],
+    UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId, TFilter>>,
+    UnboxUnionFromGroups<ComplexId<TGroups, TId, TFilter>>[],
     TFilter
     > = async (request, ctx) => {
         const { ids, ...rq } = request;
         if (ids != null) {
             const idsByType: { [Type in keyof TGroups]?: Array<TId[keyof TGroups]> } = {};
             ids.forEach((fullId) => {
-                const [type, id] = fullId[fullId.length - 1];
+                const [type, , id] = fullId[fullId.length - 1];
                 idsByType[type] = idsByType[type] ?? [];
                 idsByType[type].push(id);
             });
 
             const typesToLoad = Object.keys(idsByType) as Array<keyof TGroups>;
-            const response: LazyDataSourceApiResponse<UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId>>> = { items: [] };
+            const response: LazyDataSourceApiResponse<UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId, TFilter>>> = { items: [] };
 
             const promises = typesToLoad.map(async (type) => {
                 const idsRequest: LazyDataSourceApiRequest<any, any, TFilter> = { ids: idsByType[type] };
@@ -52,7 +52,7 @@ export function useLazyDataSourceWithGrouping<
         }
 
         const pathIds = ctx.parentId ?? [];
-        const [, parentId] = pathIds.length ? pathIds[pathIds.length - 1] : [];
+        const [, , parentId] = pathIds.length ? pathIds[pathIds.length - 1] : [];
         if (request.search) {
             return config.defaultApi(rq, { ...ctx, parentId });
         }
@@ -65,8 +65,8 @@ export function useLazyDataSourceWithGrouping<
     };
 
     return useLazyDataSource<
-    UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId>>,
-    UnboxUnionFromGroups<ComplexId<TGroups, TId>>[],
+    UnboxUnionFromGroups<TGroupsWithMeta<TGroups, TId, TFilter>>,
+    UnboxUnionFromGroups<ComplexId<TGroups, TId, TFilter>>[],
     TFilter>(
         {
             ...config.getDefaultConfigProps(),
