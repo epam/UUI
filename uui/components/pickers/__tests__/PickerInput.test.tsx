@@ -687,8 +687,8 @@ describe('PickerInput', () => {
         const dialog = await screen.findByRole('dialog');
         expect(dialog).toBeInTheDocument();
 
-        const dialogBody = dialog.firstElementChild;
-        expect(dialogBody).toHaveStyle('width: 300px');
+        const dialogBody = dialog.getElementsByClassName('uui-dropdown-body')[0];
+        expect(dialogBody).toHaveStyle('min-width: 300px');
     });
 
     it('should define dropdownHeight', async () => {
