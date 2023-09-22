@@ -41,7 +41,7 @@ export function BasicModalExample(modalProps: IModal<string>) {
     return (
         <ModalBlocker { ...modalProps }>
             <ModalWindow>
-                <Panel>
+                <Panel background="surface">
                     <ModalHeader title="Simple modal example " onClose={ () => modalProps.abort() } />
                     <ScrollBars hasTopShadow hasBottomShadow>
                         <FlexRow padding="24">

@@ -16,7 +16,7 @@ export class ConfirmationModal extends React.Component<ConfirmationModalWindowPr
         let bodyContent;
 
         if (this.props.bodyContent) {
-            bodyContent = <Panel margin="24">{this.props.bodyContent}</Panel>;
+            bodyContent = <Panel background="surface" margin="24">{this.props.bodyContent}</Panel>;
         }
 
         return (

@@ -610,6 +610,10 @@
         --uui-informer-caption: var(--uui-text-dark);
     }
 
+    .uui-flex-row.uui-color-none {
+        --uui-flex-row-bg: transparent;
+    }
+
     .uui-flex-row.uui-color-white {
         --uui-flex-row-bg: var(--white);
     }

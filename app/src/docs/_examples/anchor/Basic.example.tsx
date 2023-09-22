@@ -5,7 +5,7 @@ import { ReactComponent as TypescriptIcon } from '../../../icons/typescript-icon
 
 export default function BasicExample() {
     return (
-        <Panel style={ { padding: '4px' } }>
+        <Panel background="surface" style={ { padding: '4px' } }>
             <Text>Opens in a new window (target _blank)</Text>
             <FlexRow>
                 <Anchor rawProps={ { 'aria-label': 'ReactJS' } } href="https://reactjs.org/" target="_blank">

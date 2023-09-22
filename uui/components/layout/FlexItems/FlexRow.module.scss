@@ -114,5 +114,9 @@
     &.spacing-18 {
         @include items-spacing(18px);
     }
+
+    &:global(.uui-flex-row.uui-color-surface) {
+        --uui-flex-row-bg: var(--uui-surface);
+    }
 }
 
