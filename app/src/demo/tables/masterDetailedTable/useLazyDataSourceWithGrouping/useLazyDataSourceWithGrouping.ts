@@ -20,7 +20,7 @@ export function useLazyDataSourceWithGrouping<
     deps: unknown[] = [],
 ) {
     const config = useMemo(
-        () => setup(new GroupingConfigBuilder<TGroups, TId, TFilter>()),
+        () => setup(new GroupingConfigBuilder()),
         // eslint-disable-next-line react-hooks/exhaustive-deps
         deps,
     );
