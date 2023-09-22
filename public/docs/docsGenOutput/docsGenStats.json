@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 934,
-   "amountTypes": 299
+   "amountProps": 943,
+   "amountTypes": 300
   },
   "value": [
    {
@@ -158,6 +158,7 @@
     "value": [
      "emptyValue",
      "selectionMode",
+     "valueType",
      "valueType"
     ]
    },
@@ -1660,6 +1661,20 @@
     "typeRef": {
      "module": "@epam/uui-core",
      "typeName": {
+      "name": "SinglePickerProps",
+      "nameFull": "SinglePickerProps<TId, TItem>"
+     },
+     "source": "uui-core/src/types/pickers.ts"
+    },
+    "value": [
+     "selectionMode",
+     "valueType"
+    ]
+   },
+   {
+    "typeRef": {
+     "module": "@epam/uui-core",
+     "typeName": {
       "name": "SkinContextComponentProps",
       "nameFull": "SkinContextComponentProps<TProps, TSemanticProps>"
      },
@@ -1938,6 +1953,7 @@
     "value": [
      "emptyValue",
      "selectionMode",
+     "valueType",
      "valueType"
     ]
    },
@@ -2470,7 +2486,9 @@
     },
     "value": [
      "initialValue",
+     "initialValue",
      "selectionMode",
+     "valueType",
      "valueType"
     ]
    },
@@ -2500,7 +2518,9 @@
     },
     "value": [
      "initialValue",
+     "initialValue",
      "selectionMode",
+     "valueType",
      "valueType"
     ]
    },
@@ -2675,6 +2695,7 @@
     },
     "value": [
      "selectionMode",
+     "valueType",
      "valueType"
     ]
    },

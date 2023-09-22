@@ -28,6 +28,7 @@ describe('docsGen:comments', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '1',
                         },
                         {
                             comment: [
@@ -39,6 +40,7 @@ describe('docsGen:comments', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '2',
                         },
                     ],
                     typeRef: {

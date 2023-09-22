@@ -32,6 +32,7 @@ describe('docsGen:intersection', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '1',
                         },
                         {
                             from: {
@@ -47,6 +48,7 @@ describe('docsGen:intersection', () => {
                             typeValue: {
                                 raw: 'string',
                             },
+                            uniqueId: '2',
                         },
                         {
                             from: {
@@ -62,6 +64,7 @@ describe('docsGen:intersection', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '3',
                         },
                         {
                             from: {
@@ -77,6 +80,7 @@ describe('docsGen:intersection', () => {
                             typeValue: {
                                 raw: 'string',
                             },
+                            uniqueId: '4',
                         },
                     ],
                     typeRef: {
@@ -133,6 +137,7 @@ describe('docsGen:intersection', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '1',
                         },
                         {
                             from: {
@@ -148,6 +153,7 @@ describe('docsGen:intersection', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '2',
                         },
                         {
                             from: {
@@ -163,6 +169,7 @@ describe('docsGen:intersection', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '3',
                         },
                         {
                             from: {
@@ -178,6 +185,7 @@ describe('docsGen:intersection', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '4',
                         },
                         {
                             from: {
@@ -193,6 +201,7 @@ describe('docsGen:intersection', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '5',
                         },
                     ],
                     typeRef: {

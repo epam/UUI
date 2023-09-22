@@ -34,6 +34,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'any',
                             },
+                            uniqueId: '4',
                         },
                         {
                             kind: 'PropertySignature',
@@ -42,6 +43,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'string[]',
                             },
+                            uniqueId: '10',
                         },
                         {
                             kind: 'PropertySignature',
@@ -50,6 +52,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'bigint',
                             },
+                            uniqueId: '12',
                         },
                         {
                             kind: 'PropertySignature',
@@ -58,6 +61,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'false | true',
                             },
+                            uniqueId: '1',
                         },
                         {
                             kind: 'PropertySignature',
@@ -66,6 +70,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: "'test'",
                             },
+                            uniqueId: '14',
                         },
                         {
                             kind: 'PropertySignature',
@@ -74,6 +79,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'never',
                             },
+                            uniqueId: '6',
                         },
                         {
                             kind: 'PropertySignature',
@@ -82,6 +88,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'null',
                             },
+                            uniqueId: '8',
                         },
                         {
                             kind: 'PropertySignature',
@@ -90,6 +97,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '2',
                         },
                         {
                             kind: 'PropertySignature',
@@ -98,6 +106,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'object',
                             },
+                            uniqueId: '11',
                         },
                         {
                             kind: 'PropertySignature',
@@ -106,6 +115,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'string',
                             },
+                            uniqueId: '3',
                         },
                         {
                             kind: 'PropertySignature',
@@ -114,6 +124,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'symbol',
                             },
+                            uniqueId: '13',
                         },
                         {
                             kind: 'PropertySignature',
@@ -122,6 +133,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: "[boolean, number, string, any, unknown, never, void, null, undefined, string[], object, bigint, symbol, 'test']",
                             },
+                            uniqueId: '15',
                         },
                         {
                             kind: 'PropertySignature',
@@ -130,6 +142,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'undefined',
                             },
+                            uniqueId: '9',
                         },
                         {
                             kind: 'PropertySignature',
@@ -138,6 +151,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'undefined | null | string | number | bigint | false | true | symbol | void | object | string[]',
                             },
+                            uniqueId: '16',
                         },
                         {
                             kind: 'PropertySignature',
@@ -146,6 +160,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'unknown',
                             },
+                            uniqueId: '5',
                         },
                         {
                             kind: 'PropertySignature',
@@ -154,6 +169,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'void',
                             },
+                            uniqueId: '7',
                         },
                     ],
                     typeRef: {
@@ -257,6 +273,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '8',
                         },
                         {
                             kind: 'PropertySignature',
@@ -265,6 +282,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: "'black' | 'white'",
                             },
+                            uniqueId: '1',
                         },
                         {
                             comment: [
@@ -283,6 +301,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '9',
                         },
                         {
                             comment: [
@@ -294,6 +313,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'get someBool(): boolean',
                             },
+                            uniqueId: '7',
                         },
                         {
                             comment: [
@@ -305,6 +325,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: '(p: number) => number',
                             },
+                            uniqueId: '6',
                         },
                         {
                             comment: [
@@ -316,6 +337,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: '(a?: number | undefined, b?: number | undefined) => number | undefined',
                             },
+                            uniqueId: '5',
                         },
                         {
                             kind: 'PropertySignature',
@@ -324,6 +346,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'HTMLElement',
                             },
+                            uniqueId: '2',
                         },
                         {
                             comment: [
@@ -335,6 +358,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: '{ name: string; value: any; }[]',
                             },
+                            uniqueId: '4',
                         },
                         {
                             kind: 'PropertySignature',
@@ -343,6 +367,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'TUnionTest',
                             },
+                            uniqueId: '3',
                         },
                     ],
                     typeRef: {
@@ -387,6 +412,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '1',
                         },
                         {
                             comment: [
@@ -398,6 +424,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '2',
                         },
                     ],
                     typeRef: {
@@ -475,6 +502,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'string',
                             },
+                            uniqueId: '1',
                         },
                     ],
                     typeRef: {
@@ -517,6 +545,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'Record<string, T>',
                             },
+                            uniqueId: '1',
                         },
                     ],
                     typeRef: {
@@ -545,6 +574,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'Record<string, S>',
                             },
+                            uniqueId: '1',
                         },
                     ],
                     typeRef: {
@@ -591,6 +621,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'undefined | TDstData',
                             },
+                            uniqueId: '2',
                         },
                         {
                             kind: 'PropertySignature',
@@ -599,6 +630,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '3',
                         },
                         {
                             kind: 'PropertySignature',
@@ -607,6 +639,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '4',
                         },
                         {
                             kind: 'PropertySignature',
@@ -615,6 +648,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'TSrcData',
                             },
+                            uniqueId: '1',
                         },
                         {
                             kind: 'PropertySignature',
@@ -623,6 +657,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '6',
                         },
                         {
                             kind: 'PropertySignature',
@@ -631,6 +666,7 @@ describe('docsGen:complexTypes', () => {
                             typeValue: {
                                 raw: 'number',
                             },
+                            uniqueId: '5',
                         },
                     ],
                     typeRef: {

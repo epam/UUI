@@ -102,6 +102,14 @@ export class ConverterUtils {
         return typeNode.getType();
     }
 
+    /**
+     * Sometimes it's just not possible to get Node from type, it will return undefined in such case.
+     * @param type
+     */
+    static getNodeFromType(type: Type): Node | undefined {
+        return type.getSymbol()?.getDeclarations()?.[0];
+    }
+
     static getSyntaxKindNameFromNode(node: Node): string {
         const kind = node.getKind();
         return SYNTAX_KIND_NAMES[kind] || String(kind);
