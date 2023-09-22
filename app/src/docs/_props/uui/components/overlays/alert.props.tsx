@@ -7,7 +7,7 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
     .implements([iconWithInfoDoc])
     .prop('color', {
         renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i })) } { ...editable } />,
-        examples: [{ value: 'info', isDefault: true }, 'success', 'warning', 'error'] })
+        examples: [{ value: 'info', isDefault: true }, 'success', 'warning', 'critical'] })
     .prop('children', {
         examples: [
             {

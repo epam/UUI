@@ -3,7 +3,7 @@ import { Button as uuiButton, ButtonProps as uuiButtonProps } from '@epam/uui-co
 import { withMods } from '@epam/uui-core';
 import { ControlSize, ButtonFill } from '../types';
 import { systemIcons } from '../../icons/icons';
-import { Informer } from '../widgets';
+import { CountIndicator } from '../widgets';
 import css from './Button.module.scss';
 
 export type ButtonColor = 'accent' | 'primary' | 'secondary' | 'critical';
@@ -20,7 +20,7 @@ export interface ButtonMods {
 }
 
 export type ButtonProps<PropType = ButtonMods> =
-    (PropType extends ButtonMods ? ButtonMods : PropType) & uuiButtonProps;
+    (PropType extends ButtonMods ? ButtonMods : PropType) & Omit<uuiButtonProps, 'count' | 'indicator'>;
 
 export function applyButtonMods(mods: ButtonProps) {
     return [
@@ -32,8 +32,12 @@ export function applyButtonMods(mods: ButtonProps) {
     ];
 }
 
-export const Button = withMods<uuiButtonProps, ButtonMods>(uuiButton, applyButtonMods, (props) => ({
-    dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
-    clearIcon: systemIcons[props.size || defaultSize].clear,
-    informer: (informerProps) => <Informer { ...informerProps } color="white" />,
-}));
+export const Button = withMods<Omit<uuiButtonProps, 'count' | 'indicator'>, ButtonMods>(
+    uuiButton,
+    applyButtonMods,
+    (props) => ({
+        dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
+        clearIcon: systemIcons[props.size || defaultSize].clear,
+        countIndicator: (countIndicatorProps) => <CountIndicator { ...countIndicatorProps } color="white" />,
+    }),
+);

@@ -1,4 +1,4 @@
-@use  '../../assets/styles/index' as *;
+@use '../../assets/styles/index' as *;
 
 .root {
     --uui-badge-bg: var(--uui-color-50);
@@ -7,8 +7,8 @@
     --uui-badge-border-hover: var(--uui-color-60);
     --uui-badge-caption: var(--uui-color-contrast-text);
     --uui-badge-caption-hover: var(--uui-color-contrast-text);
-    --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
-    --uui-badge-count-bg: var(--white); // It should be a separate component
+    --uui-badge-count: var(--uui-text-secondary); // Delete after count be deprecated
+    --uui-badge-count-bg: var(--white); // Delete after count be deprecated
 
     --uui-badge-font: var(--font-regular);
     --uui-badge-font-weight: normal;
@@ -19,10 +19,11 @@
     color: var(--uui-badge-caption);
     fill: var(--uui-badge-caption); // ??? separate variable
     border-color: var(--uui-badge-border);
+    justify-content: center;
 
-    :global(.uui-count) {
-        background-color: var(--uui-badge-count-bg);
-        color: var(--uui-badge-count);
+    :global(.uui-indicator) {
+        background-color: var(--uui-badge-caption);
+        border-radius: 50%;
     }
 
     &:global(.-clickable) {
@@ -33,25 +34,6 @@
             fill: var(--uui-badge-caption-hover); // ??? separate variable
             cursor: pointer;
         }
-    }
-
-    :global(.uui-count) {
-        font-family: var(--uui-badge-count-font);
-        font-weight: var(--uui-badge-count-font-weight);
-        margin: auto;
-        height: 18px;
-        line-height: 18px;
-        font-size: 12px;
-        border-radius: 9px;
-        padding-left: 6px;
-        padding-right: 6px;
-        min-width: 6px;
-        text-align: center;
-        flex-shrink: 0;
-    }
-
-    :global(.uui-count):not(:first-child) {
-        margin-left: 6px;
     }
 
     :global(.uui-caption) {
@@ -76,17 +58,14 @@
         padding-right: 3px;
         border-radius: 9px;
 
-        :global(.uui-count) {
-            height: 12px;
-            line-height: 12px;
-            font-size: 8px;
-            border-radius: 6px;
-            padding-left: 3px;
-            padding-right: 3px;
+        :global(.uui-count_indicator) {
+            margin-right: 3px;
         }
 
-        :global(.uui-count):not(:first-child) {
-            margin-left: 3px;
+        :global(.uui-indicator) {
+            min-width: 4px;
+            min-height: 4px;
+            margin: auto 0 auto 3px;
         }
 
         :global(.uui-caption) {
@@ -114,6 +93,16 @@
         border-radius: 12px;
         min-height: 24px;
 
+        :global(.uui-count_indicator) {
+            margin-right: 6px;
+        }
+
+        :global(.uui-indicator) {
+            min-width: 8px;
+            min-height: 8px;
+            margin: auto 0 auto 6px;
+        }
+
         :global(.uui-caption) {
             padding-top: 2px;
             padding-bottom: 2px;
@@ -139,6 +128,16 @@
         @include button-horizontal-layout(30px, 1px);
         border-radius: 15px;
         min-height: 30px;
+
+        :global(.uui-count_indicator) {
+            margin-right: 6px;
+        }
+
+        :global(.uui-indicator) {
+            min-width: 8px;
+            min-height: 8px;
+            margin: auto 0 auto 6px;
+        }
 
         :global(.uui-caption) {
             padding-top: 5px;
@@ -166,6 +165,16 @@
         border-radius: 18px;
         min-height: 36px;
 
+        :global(.uui-count_indicator) {
+            margin-right: 6px;
+        }
+
+        :global(.uui-indicator) {
+            min-width: 8px;
+            min-height: 8px;
+            margin: auto 0 auto 6px;
+        }
+
         :global(.uui-caption) {
             padding-top: 5px;
             padding-bottom: 5px;
@@ -192,12 +201,14 @@
         border-radius: 21px;
         min-height: 42px;
 
-        :global(.uui-count) {
-            height: 24px;
-            line-height: 24px;
-            font-size: 14px;
-            border-radius: 12px;
+        :global(.uui-count_indicator) {
+            margin-right: 6px;
+        }
+
+        :global(.uui-indicator) {
             min-width: 12px;
+            min-height: 12px;
+            margin: auto 0 auto 6px;
         }
 
         :global(.uui-caption) {
@@ -226,12 +237,14 @@
         border-radius: 24px;
         min-height: 48px;
 
-        :global(.uui-count) {
-            height: 24px;
-            line-height: 24px;
-            font-size: 14px;
-            border-radius: 12px;
+        :global(.uui-count_indicator) {
+            margin-right: 6px;
+        }
+
+        :global(.uui-indicator) {
             min-width: 12px;
+            min-height: 12px;
+            margin: auto 0 auto 6px;
         }
 
         :global(.uui-caption) {
@@ -255,6 +268,10 @@
         }
     }
 
+    :global(.uui-count_indicator):last-child {
+        margin-right: 0;
+    }
+
     &:global(.fill-solid) {
         --uui-badge-bg: var(--uui-color-50);
         --uui-badge-bg-hover: var(--uui-color-60);
@@ -266,7 +283,8 @@
         --uui-badge-count-bg: var(--white); // It should be a separate component
     }
 
-    &:global(.fill-semitransparent) {
+    &:global(.fill-outline) {
+        --uui-badge-font: var(--font-semibold);
         --uui-badge-bg: var(--uui-color-5);
         --uui-badge-bg-hover: var(--uui-color-10);
         --uui-badge-border: var(--uui-color-20);
@@ -276,109 +294,4 @@
         --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
         --uui-badge-count-bg: var(--white); // It should be a separate component
     }
-
-    &:global(.fill-transparent) {
-        --uui-badge-bg: transparent;
-        --uui-badge-bg-hover: transparent;
-        --uui-badge-border: transparent;
-        --uui-badge-border-hover: transparent;
-        --uui-badge-caption: var(--uui-text-primary);
-        --uui-badge-caption-hover: var(--uui-text-primary);
-        --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
-        --uui-badge-count-bg: var(--white); // It should be a separate component
-
-        &:global(.-clickable) {
-            &:hover {
-                fill: var(--uui-color-60);
-                cursor: pointer;
-            }
-        }
-
-        &::before {
-            position: absolute;
-            content: '';
-            border-radius: 50%;
-            background-color: var(--uui-color-50);
-        }
-    }
-
-    //&.fill-solid {
-    //    background-color: var(--uui-badge-bg);
-    //    color: var(--uui-badge-caption-solid);
-    //    fill: var(--uui-badge-caption-solid);
-    //    border-color: var(--uui-badge-bg);
-    //
-    //    :global(.uui-count) {
-    //        background-color: var(--uui-badge-count-bg);
-    //        color: var(--uui-badge-count);
-    //    }
-    //
-    //    &:global(.-clickable) {
-    //        &:hover {
-    //            background-color: var(--uui-badge-bg-hover);
-    //            border-color: var(--uui-badge-bg-hover);
-    //            cursor: pointer;
-    //        }
-    //    }
-    //}
-    //
-    //&.fill-semitransparent {
-    //    background-color: var(--uui-badge-bg-halftone);
-    //    color: var(--uui-badge-caption-halftone);
-    //    fill: var(--uui-badge-caption-halftone);
-    //    border-color: var(--uui-badge-border-halftone);
-    //
-    //    :global(.uui-count) {
-    //        background-color: var(--uui-badge-count-bg);
-    //        color: var(--uui-badge-count);
-    //    }
-    //
-    //    &:global(.-clickable) {
-    //        &:hover {
-    //            background-color: var(--uui-badge-bg-halftone-hover);
-    //            color: var(--uui-badge-caption-halftone);
-    //            fill: var(--uui-badge-caption-halftone);
-    //            border-color: var(--uui-badge-border-halftone-hover);
-    //            cursor: pointer;
-    //        }
-    //    }
-    //}
-    //
-    //&.fill-transparent {
-    //    background-color: transparent;
-    //    color: var(--uui-text-primary);
-    //    fill: var(--uui-text-primary);
-    //    border-color: transparent;
-    //
-    //    &:global(.-clickable) {
-    //        &:hover {
-    //            fill: var(--uui-badge-bg-hover);
-    //            cursor: pointer;
-    //        }
-    //    }
-    //
-    //    &::before {
-    //        position: absolute;
-    //        content: '';
-    //        border-radius: 50%;
-    //        background-color: var(--uui-badge-bg);
-    //    }
-    //}
 }
-
-
-//:global(.uui-badge) {
-//    --uui-badge-bg: var(--uui-color-50);
-//    --uui-badge-bg-hover: var(--uui-color-60);
-//    --uui-badge-bg-halftone: var(--uui-color-10);
-//    --uui-badge-bg-halftone-hover: var(--uui-color-20);
-//    --uui-badge-border-halftone: var(--uui-color-20);
-//    --uui-badge-border-halftone-hover: var(--uui-main);
-//    --uui-badge-caption: var(--uui-color-contrast-text);
-//    --uui-badge-caption-halftone: var(--uui-color-70);
-//    --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
-//    --uui-badge-count-bg: var(--white); // It should be a separate component
-//}
-
-
-

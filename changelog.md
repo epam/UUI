@@ -2,6 +2,8 @@
 
 **What's New**
 * [InputAddon]: added InputAddon component that can be used for Prefix/Suffix with ControlGroup.
+* [Badge]: deprecated mode fill="transparent", and deprecated mode fill="semitransparent", use fill="outline" instead it.
+* [Badge]: removed mode fill="white", and "none", use fill="outline" + color instead them.
 
 **What's Fixed**
 * [PickerItem]: fixed 'cx' prop

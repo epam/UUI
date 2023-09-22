@@ -26,14 +26,14 @@ exports[`Badge should be rendered correctly with props 1`] = `
     />
   </div>
   <div
-    className="uui-count"
-  >
-    12
-  </div>
-  <div
     className="uui-caption"
   >
     Test badge
+  </div>
+  <div
+    className="root uui-count_indicator size-18 fill-semitransparent"
+  >
+    12
   </div>
   <div
     className="container uui-icon uui-enabled -clickable -clickable"

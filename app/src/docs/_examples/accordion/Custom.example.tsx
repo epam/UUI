@@ -10,7 +10,7 @@ const renderTitle = () => (
                 John Doe
             </Text>
             <FlexSpacer />
-            <Badge color="success" fill="transparent" caption="Employee" />
+            <Badge color="success" fill="outline" indicator={ true } caption="Employee" />
         </FlexRow>
     </FlexCell>
 );

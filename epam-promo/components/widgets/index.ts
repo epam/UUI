@@ -1,2 +1,2 @@
 export * from './Badge';
-export * from './Informer';
+export * from './CountIndicator';

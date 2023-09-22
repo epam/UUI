@@ -6,7 +6,7 @@ export default function StylesExample() {
         <FlexRow rawProps={ { style: { width: '100%' } } }>
             <Panel style={ { rowGap: '18px', marginRight: '12px', padding: '12px', flex: '0 1 auto' } }>
                 <Badge color="info" fill="solid" caption="Solid" />
-                <Badge color="info" fill="semitransparent" caption="Halftone" />
+                <Badge color="info" fill="outline" caption="Halftone" />
             </Panel>
             <Panel style={ { rowGap: '18px', padding: '12px', flex: '1 1 auto' } }>
                 <Text fontSize="14">Mostly used as an accent, primary information or feature </Text>

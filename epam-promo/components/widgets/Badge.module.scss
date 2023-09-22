@@ -1,0 +1,24 @@
+.root {
+    &:global(.fill-transparent) {
+        --uui-badge-bg: transparent;
+        --uui-badge-bg-hover: transparent;
+        --uui-badge-border: transparent;
+        --uui-badge-border-hover: transparent;
+        --uui-badge-caption: var(--uui-text-primary);
+        --uui-badge-caption-hover: var(--uui-text-primary);
+
+        &:global(.-clickable) {
+            &:hover {
+                fill: var(--uui-color-60);
+                cursor: pointer;
+            }
+        }
+
+        &::before {
+            position: absolute;
+            content: '';
+            border-radius: 50%;
+            background-color: var(--uui-color-50);
+        }
+    }
+}
