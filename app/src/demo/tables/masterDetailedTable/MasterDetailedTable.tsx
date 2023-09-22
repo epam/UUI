@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-    cx, useUuiContext, UuiContexts, ITablePreset, useTableState, DataRowProps,
-    LazyDataSourceApiRequest, DataColumnProps, LazyDataSourceApiRequestContext,
+    cx, useUuiContext, UuiContexts, ITablePreset, useTableState, DataRowProps, DataColumnProps,
 } from '@epam/uui-core';
 import { FlexRow } from '@epam/uui';
 import { DataTable } from '@epam/promo';
@@ -55,111 +54,80 @@ export function MasterDetailedTable() {
     }, []);
 
     const dataSource = useLazyDataSourceWithGrouping<PersonTableGroups, PersonTableIdGroups, PersonTableFilter>(
-        (config) => {
-            const getPersons = async (
-                personRequest: LazyDataSourceApiRequest<PersonTableRecord, number, PersonTableFilter>,
-                ctx: LazyDataSourceApiRequestContext<PersonTableRecord, unknown>,
-            ) => {
-                const { groupBy, ...filter } = personRequest.filter ?? {};
-                if (groupBy && !ctx.parent) {
-                    const personGroupsResponse = await svc.api.demo.personGroups({
-                        ...personRequest,
-                        filter: { groupBy },
-                        search: null,
-                        itemsRequest: { filter, search: personRequest.search },
-                    } as any);
-                    return personGroupsResponse;
-                }
-                const personsResponse = await svc.api.demo.persons(personRequest);
-                return personsResponse;
-            };
-            
-            return config
-                .addDefault({
-                    getType: ({ __typename }) => __typename,
-                    getGroupBy: () => tableStateApi.tableState.filter?.groupBy,
-                    getFilterFromGroupByPath: (path) => path.reduce(
-                        (filter, [, groupBy, id]) =>
-                            groupBy ? { ...filter, [`${groupBy}Id`]: id } : filter,
-                        {},
-                    ),
+        (config) => config
+            .addDefault({
+                getType: ({ __typename }) => __typename,
+                getGroupBy: () => tableStateApi.tableState.filter?.groupBy,
+                getFilterFromGroupByPath: (path) => path.reduce(
+                    (filter, [, groupBy, id]) =>
+                        groupBy ? { ...filter, [`${groupBy}Id`]: id } : filter,
+                    {},
+                ),
                     
-                    complexIds: true,
-                    backgroundReload: true,
-                    fetchStrategy: tableStateApi.tableState.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
-                    selectAll: tableStateApi.tableState.filter?.groupBy === 'location' ? false : true,
-                    cascadeSelection: true,
-                    rowOptions: {
-                        checkbox: { isVisible: true },
-                        isSelectable: true,
-                        pin,
-                        onClick: clickHandler,
-                    },
-                })
-                .addEntity('Person', {
-                    getParentId: () => undefined,
-                    getChildCount: () => null,
-                    api: async ({ ids, ...request }, ctx) => {
-                        const { groupBy, ...filter } = request.filter ?? {};
-                        if (ids != null) {
-                            return await svc.api.demo.persons({ ids });
-                        }
-                        if (request.search) {
-                            return getPersons({ ...request, filter }, ctx);
-                        }
+                complexIds: true,
+                backgroundReload: true,
+                fetchStrategy: tableStateApi.tableState.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
+                selectAll: tableStateApi.tableState.filter?.groupBy === 'location' ? false : true,
+                cascadeSelection: true,
+                rowOptions: {
+                    checkbox: { isVisible: true },
+                    isSelectable: true,
+                    pin,
+                    onClick: clickHandler,
+                },
+            })
+            .addEntity('Person', {
+                getParentId: () => undefined,
+                getChildCount: () => null,
+                api: async ({ ids, ...request }) => {
+                    const { groupBy, ...filter } = request.filter ?? {};
+                    if (ids != null) {
+                        return await svc.api.demo.persons({ ids });
+                    }
+                    return await svc.api.demo.persons({ ...request, filter });
+                },
+            })
+            .addGrouping('location', {
+                type: 'Location',
 
-                        return getPersons({ ...request, filter: { ...filter } }, ctx);
-                    },
-                })
-                .addGrouping('location', {
-                    type: 'Location',
+                isLastNestingLevel: (location) => location.type === 'city',
 
-                    isLastNestingLevel: (location) => location.type === 'city',
+                getRowOptions: () => ({ checkbox: { isVisible: false } }),
+                getParentId: (loc) => loc.parentId,
+                getChildCount: (location) => location.type === 'city' ? 1 : 10,
+                api: async ({ ids, ...request }, ctx) => {
+                    if (ids != null) {
+                        return await svc.api.demo.locations({ ids });
+                    }
 
-                    getRowOptions: () => ({ checkbox: { isVisible: false } }),
-                    getParentId: (loc) => loc.parentId,
-                    getChildCount: (location) => location.type === 'city' ? 1 : 10,
-                    api: async ({ ids, ...request }, ctx) => {
-                        if (ids != null) {
-                            return await svc.api.demo.locations({ ids });
-                        }
+                    if (!ctx.parent || ctx.parent.__typename !== 'Location') {
+                        return svc.api.demo.locations({ range: request.range, filter: { parentId: { isNull: true } } });
+                    }
 
-                        if (!ctx.parent || ctx.parent.__typename !== 'Location') {
-                            return svc.api.demo.locations({ range: request.range, filter: { parentId: { isNull: true } } });
-                        }
-
-                        return svc.api.demo.locations({ range: request.range, filter: { parentId: ctx.parent.id } });
-                    },
-                })
-                .addGrouping(['jobTitle', 'department'], {
-                    type: 'PersonGroup',
-                    getParentId: () => null,
-                    getChildCount: (group) => group.count,
-                    api: async ({ ids, ...request }, ctx) => {
-                        const { groupBy, ...filter } = request.filter ?? {};
-                        if (ids != null) {
-                            return await svc.api.demo.personGroups({ ids });
-                        }
-
-                        if (groupBy && !ctx.parent) {
-                            return getPersons({ ...request, filter: { groupBy }, search: null, itemsRequest: { filter, search: request.search } } as any, ctx);
-                        }
-                        
-                        if (groupBy && ctx.parent) {
-                            const personGroupsResponse = await svc.api.demo.personGroups({
-                                ...request,
-                                filter: { groupBy },
-                                search: null,
-                                itemsRequest: { filter, search: request.search },
-                            } as any);
-                            return personGroupsResponse;
-                        }
-                        
-                        const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
-                        return getPersons({ ...request, filter: { ...filter, ...parentFilter } }, ctx);
-                    },
-                });
-        },
+                    return svc.api.demo.locations({ range: request.range, filter: { parentId: ctx.parent.id } });
+                },
+            })
+            .addGrouping(['jobTitle', 'department'], {
+                type: 'PersonGroup',
+                getParentId: () => null,
+                getChildCount: (group) => group.count,
+                api: async ({ ids, ...request }) => {
+                    const { groupBy, ...filter } = request.filter ?? {};
+                    if (ids != null) {
+                        return await svc.api.demo.personGroups({ ids });
+                    }
+                    
+                    if (groupBy) {
+                        return await svc.api.demo.personGroups(
+                            { ...request, filter: { groupBy }, search: null, itemsRequest: { filter, search: request.search } } as any,
+                        );
+                    }
+ 
+                    return await svc.api.demo.personGroups(
+                        { ...request, filter, search: null, itemsRequest: { filter, search: request.search } } as any,
+                    );
+                },
+            }),
         [JSON.stringify(tableStateApi.tableState.filter?.groupBy)],
     );
 
