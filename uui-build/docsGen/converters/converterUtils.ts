@@ -10,32 +10,39 @@ export class ConverterUtils {
         return makeRelativeToUuiRoot(fullPath);
     }
 
-    static isPropsSupported(typeNode: Node): boolean {
-        if (ConverterUtils.isExternalNode(typeNode)) {
+    // TODO: review kinds, add tests
+    static isPropsSupportedByType(params: { type: Type, isExternalType: boolean }): boolean {
+        const { type, isExternalType } = params;
+        if (isExternalType) {
             return false;
         }
-        if (ConverterUtils.isInternalNodeWrappedInUtility(typeNode)) {
-            const t = ConverterUtils.unWrapTypeNodeFromUtility(typeNode);
-            return innerIsPropsSupported(t?.getType());
+        if (!type) {
+            return false;
         }
-        return innerIsPropsSupported(ConverterUtils.getTypeFromNode(typeNode));
-
-        function innerIsPropsSupported(type?: Type): boolean {
-            if (!type) {
-                return false;
-            }
-            const types = type.getUnionTypes();
-            const allNonLiterals = types.every((t) => {
-                return !t.isLiteral();
+        const unionTypes = type.getUnionTypes();
+        if (unionTypes.length) {
+            const allSupportProps = unionTypes.every((t) => {
+                const all = [
+                    t.isLiteral(),
+                    t.isUndefined(),
+                    t.isNull(),
+                    t.isNever(),
+                    t.isAny(),
+                    t.isUnknown(),
+                    t.isVoid(),
+                    t.isTypeParameter(),
+                    t.isTuple(),
+                ];
+                return all.indexOf(true) === -1;
             });
-            if (allNonLiterals) {
+            if (allSupportProps) {
                 return true;
             }
-            if (type.isTuple()) {
-                return false;
-            }
-            return type.isClassOrInterface() || type.isIntersection() || type.isObject();
         }
+        if (type.isTuple()) {
+            return false;
+        }
+        return type.isClassOrInterface() || type.isIntersection() || type.isObject();
     }
 
     static unWrapTypeNodeFromUtility(typeNode: Node): Node | undefined {
@@ -48,10 +55,10 @@ export class ConverterUtils {
         }
     }
 
-    static isInternalNodeWrappedInUtility(typeNode: Node): boolean {
-        const node = ConverterUtils.unWrapTypeNodeFromUtility(typeNode);
-        if (node) {
-            return !ConverterUtils.isExternalNode(node);
+    static isInternalTypeNodeWrappedInUtility(typeNode: Node): boolean {
+        const typeNodeUnwrapped = ConverterUtils.unWrapTypeNodeFromUtility(typeNode);
+        if (typeNodeUnwrapped) {
+            return !ConverterUtils.isExternalNode(typeNodeUnwrapped);
         }
         return false;
     }
@@ -62,7 +69,7 @@ export class ConverterUtils {
         if (!symbol) {
             return false;
         }
-        if (ConverterUtils.isInternalNodeWrappedInUtility(typeNode)) {
+        if (ConverterUtils.isInternalTypeNodeWrappedInUtility(typeNode)) {
             return false;
         }
         return (symbol.getDeclarations() || []).some((d) => {
@@ -147,9 +154,9 @@ export class ConverterUtils {
         return ancs?.length === 1 && ancs[0].isKind(SyntaxKind.SourceFile);
     }
 
-    static getTypeParentRef(typeNode: Node, originTypeNode: Node): TTypeRef | undefined {
+    static getTypeParentRef(typeNode: Node, parentNode?: Node): TTypeRef | undefined {
         const anc = typeNode.getAncestors().filter((a) => {
-            return a !== originTypeNode;
+            return a !== parentNode;
         });
         const mapped = ConverterUtils.mapAncestorsToRefs(anc);
         return mapped?.[0];

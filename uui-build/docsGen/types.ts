@@ -56,7 +56,6 @@ export type TDocGenStatsResult_Exports = {
     value: Record<string, { [kind: string]: string[] }>,
 };
 export type TDocGenStatsResult = {
-    // maps export key (module:exportName) to array of prop names
     missingPropComment: {
         totals: {
             amountProps: number,
@@ -70,7 +69,6 @@ export type TDocGenStatsResult = {
         },
         value: TTypeRef[],
     },
-    // maps module name to export kind/name
     ignoredExports: TDocGenStatsResult_Exports,
     includedExports: TDocGenStatsResult_Exports,
 };
