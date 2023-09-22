@@ -28,7 +28,7 @@ import {
     DropSpot,
     FileCard,
     useForm,
-} from '@epam/promo';
+} from '@epam/uui';
 import type {
     PersonDetails, Attachment, PersonLanguageInfo, PersonTravelVisa,
 } from './types';
@@ -388,7 +388,7 @@ function Visas({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                 .show(
                     (props) => (
                         <ErrorNotification { ...props }>
-                            <Text size="36" font="sans" fontSize="14">
+                            <Text size="36" font="regular" fontSize="14">
                                 File size shouldn't exceed 5 MB and cannot upload more than 20 files!
                             </Text>
                         </ErrorNotification>
@@ -483,7 +483,7 @@ export function DemoForm() {
                 .show(
                     (props) => (
                         <SuccessNotification { ...props }>
-                            <Text size="36" font="sans" fontSize="14">
+                            <Text size="36" font="regular" fontSize="14">
                                 Data has been saved!
                             </Text>
                         </SuccessNotification>
@@ -508,7 +508,7 @@ export function DemoForm() {
                 </RichTextView>
                 <FlexSpacer />
             </FlexRow>
-            <Panel cx={ css.formPanel } background="white" shadow>
+            <Panel background="surface" cx={ css.formPanel } shadow>
                 <FlexCell width="100%">
                     <PersonalInfo lens={ lens.prop('personalInfo') } />
                     <Location lens={ lens.prop('location') } countriesDS={ countriesDS } />
@@ -520,7 +520,7 @@ export function DemoForm() {
                     <hr className={ css.divider } />
                     <FlexRow spacing="12">
                         <FlexSpacer />
-                        <Button caption="Save" color="green" onClick={ save } />
+                        <Button caption="Save" color="accent" onClick={ save } />
                     </FlexRow>
                 </FlexCell>
             </Panel>

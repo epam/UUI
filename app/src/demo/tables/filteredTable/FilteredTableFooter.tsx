@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import css from './FilteredTableFooter.module.scss';
 import {
-    FlexCell, LabeledInput, TextInput, Text, PickerInput,
+    FlexCell, LabeledInput, TextInput, Text, PickerInput, Button, Paginator, FlexRow,
 } from '@epam/uui';
-import { Button, Paginator, FlexRow } from '@epam/promo';
 import { DataTableState, useArrayDataSource } from '@epam/uui-core';
 import { ReactComponent as ArrowRightIcon_24 } from '@epam/assets/icons/common/navigation-chevron-right-18.svg';
 import { FlexSpacer } from '@epam/uui-components';
@@ -41,7 +40,7 @@ export function FilteredTableFooter(props: IFilteredTableFooterProps) {
     };
 
     return (
-        <FlexRow cx={ css.paginatorWrapper } padding="24" vPadding="12" background="gray5">
+        <FlexRow cx={ css.paginatorWrapper } padding="24" vPadding="12">
             <FlexCell width="auto">
                 <Text>
                     {!!props.totalCount && props.totalCount}
@@ -71,7 +70,7 @@ export function FilteredTableFooter(props: IFilteredTableFooterProps) {
                     <TextInput size="24" value={ goToPage } onValueChange={ setGoToPageHandler } />
                 </LabeledInput>
             </div>
-            <Button cx={ css.goToPageButton } size="24" icon={ ArrowRightIcon_24 } onClick={ goToPageHandler } fill="white" color="gray" />
+            <Button cx={ css.goToPageButton } size="24" icon={ ArrowRightIcon_24 } onClick={ goToPageHandler } fill="outline" color="secondary" />
             <Paginator value={ props.tableState.page } onValueChange={ paginatorHandler } totalPages={ totalPages } size="24" />
         </FlexRow>
     );

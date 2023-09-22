@@ -37,14 +37,14 @@ body {
     display: flex;
     height: calc(100vh - 102px);
     width: 360px;
-    border-left: 1px solid $gray40;
+    border-left: 1px solid var(--uui-divider);
 
     .status {
         &:global(.uui-button-box) {
             padding-left: 0;
 
             :global(.uui-caption) {
-                font-family: $font-sans;
+                font-family: var(--uui-font);
             }
         }
     }

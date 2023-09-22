@@ -44,7 +44,7 @@ exports[`PickerInput should open body 1`] = `
       style="z-index: 2000;"
     >
       <div
-        class="uui-panel root root body -lock-focus container"
+        class="uui-panel root uui-color-surface root body -lock-focus container"
         style="width: 360px;"
         tabindex="-1"
       >

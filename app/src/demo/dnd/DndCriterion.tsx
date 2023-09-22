@@ -3,7 +3,7 @@ import css from './DndCriterion.module.scss';
 import {
     DndActor, IEditable, cx, DropParams, getOrderBetween,
 } from '@epam/uui-core';
-import { FlexRow, DropMarker, Checkbox } from '@epam/promo';
+import { FlexRow, DropMarker, Checkbox } from '@epam/uui';
 import { DragHandle } from '@epam/uui-components';
 
 export interface CriterionItem {
@@ -50,7 +50,7 @@ export class DndCriterion extends React.Component<DndCriterionProps> {
                         <div ref={ props.ref } { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
                             <div className={ css.dndItem }>
                                 <DragHandle cx={ [css.dragHandle] } />
-                                <FlexRow background="white" vPadding="12" padding="18" cx={ css.row }>
+                                <FlexRow vPadding="12" padding="18" cx={ css.row }>
                                     <Checkbox
                                         value={ item.isChecked }
                                         onValueChange={ (newValue) => this.props.onValueChange({ ...item, isChecked: newValue }) }
