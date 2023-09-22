@@ -247,7 +247,7 @@
     --uui-text-disabled: var(--uui-neutral-50);
     --uui-text-contrast: var(--uui-neutral-5);
     --uui-text-white: var(--white);
-    --uui-text-dark: var(--neutral80);
+    --uui-text-dark: var(--uui-neutral-80);
 
     --uui-text-info: var(--uui-info-50);
     --uui-text-warning: var(--uui-warning-50);
@@ -566,8 +566,8 @@
     .uui-badge.fill-outline {
         .uui-count_indicator.fill-outline {
             --uui-count_indicator-bg: var(--white);
-            --uui-count_indicator-border: var(--neutral40);
-            --uui-count_indicator-caption: var(--neutral70);
+            --uui-count_indicator-border: var(--uui-neutral-40);
+            --uui-count_indicator-caption: var(--uui-neutral-70);
         }
     }
 
@@ -597,34 +597,34 @@
     }
 
     .uui-badge.uui-color-white {
-        --uui-badge-bg-hover: var(--neutral10);
-        --uui-badge-border-hover: var(--neutral10);
+        --uui-badge-bg-hover: var(--uui-neutral-10);
+        --uui-badge-border-hover: var(--uui-neutral-10);
 
         .uui-count_indicator {
-            --uui-count_indicator-bg: var(--neutral30);
-            --uui-count_indicator-border: var(--neutral30);
+            --uui-count_indicator-bg: var(--uui-neutral-30);
+            --uui-count_indicator-border: var(--uui-neutral-30);
         }
 
         &.fill-outline {
-            --uui-badge-border: var(--neutral30);
+            --uui-badge-border: var(--uui-neutral-30);
             --uui-color-text: var(--uui-text-dark);
-            --uui-badge-border-hover: var(--neutral30);
+            --uui-badge-border-hover: var(--uui-neutral-30);
         }
     }
 
     .uui-badge.uui-color-night100 {
-        --uui-badge-bg-hover: var(--neutral20);
-        --uui-badge-border-hover: var(--neutral20);
+        --uui-badge-bg-hover: var(--uui-neutral-20);
+        --uui-badge-border-hover: var(--uui-neutral-20);
 
         .uui-count_indicator {
-            --uui-count_indicator-bg: var(--neutral30);
-            --uui-count_indicator-border: var(--neutral30);
+            --uui-count_indicator-bg: var(--uui-neutral-30);
+            --uui-count_indicator-border: var(--uui-neutral-30);
         }
 
         &.fill-outline {
-            --uui-badge-border: var(--neutral30);
+            --uui-badge-border: var(--uui-neutral-30);
             --uui-color-text: var(--uui-text-dark);
-            --uui-badge-border-hover: var(--neutral30);
+            --uui-badge-border-hover: var(--uui-neutral-30);
         }
     }
 
@@ -635,9 +635,9 @@
         }
 
         &.fill-outline {
-            --uui-badge-border: var(--neutral60);
+            --uui-badge-border: var(--uui-neutral-60);
             --uui-color-text: var(--uui-text-dark);
-            --uui-badge-border-hover: var(--neutral60);
+            --uui-badge-border-hover: var(--uui-neutral-60);
         }
     }
 
