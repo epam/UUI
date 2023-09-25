@@ -87,7 +87,7 @@ export class DndSection extends React.Component<DndSectionProps> {
                                     <Text font="semibold">Deadline:</Text>
                                     <Text color="secondary">{item.deadline}</Text>
                                 </FlexRow>
-                                <Badge fill="semitransparent" size="24" color={ item.status === 'Green' ? 'success' : 'warning' } caption={ `${item.status} Status` } />
+                                <Badge fill="outline" size="24" color={ item.status === 'Green' ? 'success' : 'warning' } caption={ `${item.status} Status` } />
                                 <IconContainer icon={ DownIcon } rotate={ item.isFolded ? '180' : '0' } cx={ css.iconGray60 } />
                             </FlexRow>
                             {item.isFolded && (

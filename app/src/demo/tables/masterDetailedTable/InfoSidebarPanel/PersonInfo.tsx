@@ -9,7 +9,7 @@ interface PersonInfoProps {
 }
 
 const statusMap: Record<string, EpamBadgeSemanticColor> = {
-    Red: 'error',
+    Red: 'critical',
     Amber: 'warning',
     Green: 'success',
 };
@@ -18,7 +18,7 @@ export function PersonInfo({ data }: PersonInfoProps) {
     return (
         <ScrollBars>
             <InfoRow title="Name" value={ data.name } />
-            <InfoRow title="Status" value={ <Badge cx={ css.status } caption={ data.profileStatus } fill="transparent" color={ statusMap[data.profileStatus] } /> } />
+            <InfoRow title="Status" value={ <Badge cx={ css.status } caption={ data.profileStatus } color={ statusMap[data.profileStatus] } /> } />
             <InfoRow title="Job Title" value={ data.jobTitle } />
             <InfoRow title="Title Level" value={ data.titleLevel } />
             <InfoRow title="Office" value={ data.officeAddress } />
