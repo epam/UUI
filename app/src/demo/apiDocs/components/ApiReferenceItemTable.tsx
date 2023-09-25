@@ -1,5 +1,5 @@
 import {
-    DataColumnProps,
+    DataColumnProps, DataTableRowProps,
     DataTableState,
     SortingOption,
     useArrayDataSource,
@@ -10,13 +10,23 @@ import { Code } from '../../../common/docs/Code';
 import { TsComment } from './components/TsComment';
 import { Ref } from './components/Ref';
 import React, { useMemo, useState } from 'react';
-import { Checkbox, DataTable, FlexRow, FlexSpacer, IconContainer, RichTextView, Text, Tooltip } from '@epam/uui';
-import { useGetTsDocsForPackage } from '../dataHooks';
+import {
+    Checkbox,
+    DataTable,
+    DataTableRow,
+    FlexRow,
+    FlexSpacer,
+    IconContainer,
+    RichTextView,
+    Text,
+    Tooltip,
+} from '@epam/uui';
+import { useTsDocs } from '../dataHooks';
 import { CodeExpandable } from './components/CodeExpandable';
 import css from './ApiReferenceTable.module.scss';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/table-info-fill-18.svg';
 
-type TTypeGroup = { _group: true, from: TTypeProp['from'] };
+type TTypeGroup = { _group: true, from: TTypeProp['from'], comment: TTypeProp['comment'] };
 type TItem = TTypeProp | TTypeGroup;
 
 function isGroup(item: TTypeProp | TTypeGroup): item is TTypeGroup {
@@ -33,8 +43,8 @@ function groupComparator(f1: TTypeGroup, f2: TTypeGroup) {
     return 0;
 }
 
-function getColumns(params: { isGroupedByFrom: boolean, hasFrom: boolean }): DataColumnProps<TItem>[] {
-    const { hasFrom, isGroupedByFrom } = params;
+function getColumns(params: { isGroupedByFrom?: boolean, hasFrom?: boolean, isGroupColumns?: boolean }): DataColumnProps<TItem>[] {
+    const { hasFrom = false, isGroupedByFrom = false, isGroupColumns = false } = params;
     const isFromVisible = hasFrom && !isGroupedByFrom;
     const WIDTH = {
         name: 200,
@@ -81,9 +91,6 @@ function getColumns(params: { isGroupedByFrom: boolean, hasFrom: boolean }): Dat
             caption: 'Comment',
             alignSelf: 'center',
             render: (item) => {
-                if (isGroup(item)) {
-                    return null;
-                }
                 return (
                     <TsComment text={ item.comment } keepBreaks={ true } isCompact={ true } />
                 );
@@ -92,6 +99,17 @@ function getColumns(params: { isGroupedByFrom: boolean, hasFrom: boolean }): Dat
             grow: 1,
         },
     ];
+
+    if (isGroupColumns) {
+        return [
+            {
+                ...propsTableColumns[0],
+                width: propsTableColumns[0].width + propsTableColumns[1].width,
+            },
+            propsTableColumns[2],
+        ];
+    }
+
     if (isFromVisible) {
         return propsTableColumns.concat([
             {
@@ -140,8 +158,8 @@ type ApiReferenceItemApiProps = {
 export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
     const { entry, showCode = false } = props;
     const [packageName, exportName] = entry.split(':');
-    const exportsMap = useGetTsDocsForPackage(packageName);
-    const exportInfo = exportsMap?.[exportName];
+    const tsDocs = useTsDocs();
+    const exportInfo = tsDocs.get(packageName, exportName);
     const { canGroup, isGrouped, setIsGrouped } = useIsGrouped(exportInfo);
     const columns = getColumns({ isGroupedByFrom: isGrouped, hasFrom: canGroup });
     const isNoData = !exportInfo?.props?.length;
@@ -153,7 +171,8 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
             if (isGrouped) {
                 exportInfo.props.forEach(({ from }) => {
                     if (from) {
-                        parents.set(fromToString(from), { _group: true, from });
+                        const comment = tsDocs.get(from.module, from.typeName.name)?.comment;
+                        parents.set(fromToString(from), { _group: true, from, comment });
                     }
                 });
             }
@@ -161,7 +180,7 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
             return (exportInfo.props as TItem[]).concat(parentsArr);
         }
         return [];
-    }, [exportInfo, isGrouped]);
+    }, [exportInfo, isGrouped, tsDocs]);
     const exportPropsDs = useArrayDataSource<TItem, string, unknown>(
         {
             items: exportPropsDsItems,
@@ -194,7 +213,6 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
         value: tState,
         onValueChange: (v) => setTState(v),
         columns,
-
     });
     const { tableState, setTableState } = tableStateApi;
     const view = exportPropsDs.getView(tableState, setTableState, {
@@ -218,14 +236,10 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
         if (propsFromUnion) {
             const renderContent = () => {
                 const html = `
-                        <h5>The props are generated from a type which is effectively a union of types</h5>
+                        <h5>This type uses unions</h5>
                         <p>
-                            So, the list of props may include the following:
-                            <ul>
-                             <li>Props with duplicated 'Name' but different 'Type'</li>
-                             <li>Props with duplicated 'Name' and 'Type' but different 'From'</li>
-                             <li>Props with duplicated 'Name', 'Type' and 'From' are collapsed to a single prop</li>
-                            </ul>
+                            The table may contain same props with same or different types. 
+                            Please see the source code to better understand exact typing.
                         </p>
                 `;
                 return (
@@ -234,7 +248,7 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
             };
             return (
                 <>
-                    <Text>Union props</Text>
+                    <Text>Union</Text>
                     <Tooltip renderContent={ renderContent } color="default">
                         <IconContainer icon={ InfoIcon } style={ { fill: '#008ACE', marginLeft: '5px' } }></IconContainer>
                     </Tooltip>
@@ -258,11 +272,17 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
         <div className={ css.root }>
             { renderToolbar() }
             <DataTable
-                allowColumnsResizing={ true }
+                allowColumnsResizing={ false }
                 value={ tableState }
                 onValueChange={ setTableState }
                 columns={ columns }
                 getRows={ view.getVisibleRows }
+                renderRow={ (props: DataTableRowProps<TItem, string>) => {
+                    if (isGroup(props.value)) {
+                        return <DataTableRow key={ props.id } { ...props } columns={ getColumns({ isGroupColumns: true }) } />;
+                    }
+                    return <DataTableRow key={ props.id } { ...props } indent={ 0 } columns={ columns } />;
+                } }
                 { ...view.getListProps() }
             />
             <CodeExpandable showCode={ showCode } exportInfo={ exportInfo } />

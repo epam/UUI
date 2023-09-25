@@ -1,30 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { svc } from '../../services';
-import { TPropsV2Response } from './types';
+import { TtsDocsResponse, TType } from './types';
 
-type TAsyncResponse = Promise<{ content: TPropsV2Response }>;
+type TAsyncResponse = Promise<{ content: TtsDocsResponse }>;
 
 const load = (() => {
     // simple in-memory cache to avoid duplicated requests.
-    const cache = new Map<string, TAsyncResponse>();
-    return (packageName: string): TAsyncResponse => {
+    let cachedPromise: TAsyncResponse = undefined;
+    return (): TAsyncResponse => {
         // @ts-ignore
-        const cached = cache.get(packageName) || svc.api.getTsDocs(packageName);
-        cache.set(packageName, cached);
+        const cached = cachedPromise || svc.api.getTsDocs();
+        cachedPromise = cached;
         return cached;
     };
 })();
 
-export function useGetTsDocsForPackage(packageName?: string): TPropsV2Response | undefined {
-    const [response, setResponse] = useState<TPropsV2Response>();
+type TUseGetTsDocsForPackageResult = {
+    get: (packageName: string, exportName: string) => TType | undefined;
+};
+export function useTsDocs(): TUseGetTsDocsForPackageResult {
+    const [response, setResponse] = useState<TtsDocsResponse>();
     useEffect(() => {
-        if (packageName) {
-            load(packageName).then((res) => {
-                setResponse(() => res.content);
-            });
-        } else {
-            setResponse(undefined);
+        load().then((res) => {
+            setResponse(() => res.content);
+        });
+    }, []);
+    const get = useCallback((packageName: string, exportName: string) => {
+        if (response) {
+            return response[packageName]?.[exportName];
         }
-    }, [packageName]);
-    return response;
+    }, [response]);
+    return useMemo(() => {
+        return { get };
+    }, [get]);
 }

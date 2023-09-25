@@ -47,12 +47,11 @@ export function getApi(params: { processRequest: IProcessRequest, origin?: strin
         getProps(): Promise<any> {
             return processRequest(origin.concat('/api/get-props/'), 'GET');
         },
-        getTsDocs(packageName: string): Promise<any> {
-            const packageNameEnc = encodeURIComponent(packageName);
-            return processRequest(origin.concat(`/api/get-ts-docs/${packageNameEnc}`), 'GET');
+        getTsDocs(): Promise<any> {
+            return processRequest(origin.concat('/api/ts-docs/all'), 'GET');
         },
         getTsDocsApiReference(): Promise<{ content: Record<string, string[]> }> {
-            return processRequest(origin.concat('/api/get-ts-docs-api'), 'GET');
+            return processRequest(origin.concat('/api/ts-docs/structure'), 'GET');
         },
         presets: {
             async getPresets(): Promise<ITablePreset[]> {
