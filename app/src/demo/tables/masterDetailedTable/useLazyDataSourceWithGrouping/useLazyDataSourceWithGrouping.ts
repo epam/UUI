@@ -53,6 +53,7 @@ export function useLazyDataSourceWithGrouping<
     >(
         {
             ...config.getDefaultConfigProps(),
+            complexIds: true,
             api,
             getId: (i) => config.getId(i),
             getParentId: (i) => config.getParentId(i),
