@@ -3,10 +3,7 @@ import { render } from 'react-dom';
 import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 import {
-    UuiContexts,
-    Router6AdaptedRouter,
-    useUuiServices,
-    DragGhost,
+    UuiContexts, Router6AdaptedRouter, useUuiServices, DragGhost,
     UuiContext, GAListener, IProcessRequest,
 } from '@epam/uui-core';
 import { Snackbar, Modals, PortalRoot } from '@epam/uui-components';
@@ -18,6 +15,7 @@ import { getApi, TApi } from './data';
 import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
 import './index.module.scss';
+import { init as initApm } from '@elastic/apm-rum';
 
 const router6 = createBrowserRouter([
     { path: '*', element: <App /> },
@@ -34,6 +32,16 @@ const AMP_CODE = isProduction ? '94e0dbdbd106e5b208a33e72b58a1345' : 'b2260a6d42
 function apiDefinition(processRequest: IProcessRequest) {
     return getApi({ processRequest, fetchOptions: { credentials: undefined } });
 }
+
+const apm = initApm({
+    serviceName: 'uui-ui',
+    serverUrl: isProduction ? 'https://apm.app.epam.com' : 'https://apm-sandbox.cloudapp.epam.com/',
+    serviceVersion: __COMMIT_HASH__,
+    environment: isProduction ? 'prod' : 'qa',
+    breakdownMetrics: true,
+    transactionSampleRate: 0.2,
+});
+apm.addLabels({ project: 'epm-uui', service_type: 'ui' });
 
 function UuiEnhancedApp() {
     const [isLoaded, setIsLoaded] = React.useState(false);
