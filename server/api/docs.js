@@ -54,13 +54,8 @@ function readDocsGenResultsJson() {
     const filePath = path.join(__dirname, '../../public/docs/docsGenOutput/docsGenOutput.json');
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
-router.get('/get-ts-docs/:packageName', (req, res) => {
+router.get('/ts-docs/all', (req, res) => {
     const json = readDocsGenResultsJson();
-    const packageName = req.params.packageName;
-    if (!packageName) {
-        res.sendStatus(400);
-    }
-    const content = json[packageName];
     function prettyPrintTypeValue(typeValue) {
         if (typeValue) {
             const pp = {};
@@ -76,22 +71,25 @@ router.get('/get-ts-docs/:packageName', (req, res) => {
             };
         }
     }
-    Object.keys(content).forEach((eName) => {
-        const data = content[eName];
-        data.typeValue = prettyPrintTypeValue(data.typeValue);
-        if (data.props) {
-            data.props = data.props.map((p) => {
-                p.typeValue = prettyPrintTypeValue(p.typeValue);
-                return p;
-            });
-        }
+    Object.keys(json).forEach((packageName) => {
+        const content = json[packageName];
+        Object.keys(content).forEach((exportName) => {
+            const data = content[exportName];
+            data.typeValue = prettyPrintTypeValue(data.typeValue);
+            if (data.props) {
+                data.props = data.props.map((p) => {
+                    p.typeValue = prettyPrintTypeValue(p.typeValue);
+                    return p;
+                });
+            }
+        });
     });
     res.send({
-        content,
+        content: json,
     });
 });
 
-router.get('/get-ts-docs-api', (req, res) => {
+router.get('/ts-docs/structure', (req, res) => {
     const json = readDocsGenResultsJson();
     const content = Object.keys(json).reduce((acc, packageName) => {
         acc[packageName] = Object.keys(json[packageName]);

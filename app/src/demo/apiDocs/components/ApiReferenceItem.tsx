@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGetTsDocsForPackage } from '../dataHooks';
+import { useTsDocs } from '../dataHooks';
 import { Code } from '../../../common/docs/Code';
 import { TsComment } from './components/TsComment';
 import { Layout } from './components/Layout';
@@ -11,8 +11,8 @@ export function ApiReferenceItem() {
     const [params] = useSearchParams();
     const [p1, p2, exportName] = params?.get('id')?.split('/') || [];
     const packageName = `${p1}/${p2}`;
-    const exportsMap = useGetTsDocsForPackage(packageName);
-    const exportInfo = exportsMap?.[exportName];
+    const tsDocs = useTsDocs();
+    const exportInfo = tsDocs.get(packageName, exportName);
     const {
         typeRef,
         typeValue,
