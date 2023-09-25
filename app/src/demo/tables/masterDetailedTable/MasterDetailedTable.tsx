@@ -58,13 +58,12 @@ export function MasterDetailedTable() {
             .addDefault({
                 getType: ({ __typename }) => __typename,
                 getGroupBy: () => tableStateApi.tableState.filter?.groupBy,
-                getFilterFromGroupByPath: (path) => path.reduce(
-                    (filter, [, groupBy, id]) =>
-                        groupBy ? { ...filter, [`${groupBy}Id`]: id } : filter,
+                getFilterFromGroupByPath: (parents) => parents.reduce(
+                    (filter, [, groupBy, parentId]) =>
+                        groupBy ? { ...filter, [`${groupBy}Id`]: parentId } : filter,
                     {},
                 ),
                     
-                complexIds: true,
                 backgroundReload: true,
                 fetchStrategy: tableStateApi.tableState.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
                 selectAll: tableStateApi.tableState.filter?.groupBy === 'location' ? false : true,
@@ -77,8 +76,6 @@ export function MasterDetailedTable() {
                 },
             })
             .addEntity('Person', {
-                getParentId: () => undefined,
-                getChildCount: () => null,
                 api: async ({ ids, ...request }) => {
                     const { groupBy, ...filter } = request.filter ?? {};
                     if (ids != null) {
@@ -117,6 +114,7 @@ export function MasterDetailedTable() {
                         return await svc.api.demo.personGroups({ ids });
                     }
                     
+                    // TODO: check case, when groupBy is not passed
                     if (groupBy) {
                         return await svc.api.demo.personGroups(
                             { ...request, filter: { groupBy }, search: null, itemsRequest: { filter, search: request.search } } as any,
