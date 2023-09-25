@@ -1,13 +1,11 @@
 import * as React from 'react';
-import {
-    Text, Badge, FlexRow, LinkButton, EpamBadgeSemanticColor,
-} from '@epam/uui';
+import { Text, Badge, FlexRow, LinkButton, EpamBadgeSemanticColor } from '@epam/uui';
 import { DataColumnProps, getSeparatedValue } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './FilteredTable.module.scss';
 
 const statusMap: Record<string, EpamBadgeSemanticColor> = {
-    Red: 'error',
+    Red: 'critical',
     Amber: 'warning',
     Green: 'success',
 };
@@ -28,7 +26,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge fill="transparent" color={ statusMap[p.profileStatus] } caption={ p.profileStatus } />
+                    <Badge color={ statusMap[p.profileStatus] } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         grow: 0,
