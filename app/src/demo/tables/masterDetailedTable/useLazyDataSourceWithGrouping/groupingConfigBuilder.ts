@@ -1,4 +1,4 @@
-import { DataRowOptions, LazyDataSourceApiResponse, LazyDataSourceProps } from '@epam/uui-core';
+import { DataRowOptions, LazyDataSourceApiRequest, LazyDataSourceApiRequestContext, LazyDataSourceApiResponse, LazyDataSourceProps } from '@epam/uui-core';
 import {
     BaseGroups,
     BaseGroupsIds,
@@ -74,14 +74,43 @@ export class GroupingConfigBuilder<
         return props;
     }
 
-    async api<TType extends keyof TGroups>(
+    private async api<TType extends keyof TGroups>(
         type: TType,
         ...apiArgs: Parameters<LazyDataSourceProps<TGroupsWithMeta<TGroups, TId, TFilter>[TType], TId[TType], TFilter>['api']>
     ) {
         return (this.entitiesConfig[type]?.api ?? this.groupingsConfig[type]?.api)(...apiArgs);
     }
 
-    async defaultApi<TType extends keyof TGroups>(
+    async getByIdsApi(
+        ids: ToUnion<ComplexId<TGroups, TId, TFilter>>[][],
+        groupBy: GroupBy<TGroups, TFilter>,
+        context: LazyDataSourceApiRequestContext<
+        ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>,
+        ToUnion<ComplexId<TGroups, TId, TFilter>>[]
+        >,
+    ) {
+        const idsByType: { [Type in keyof TGroups]?: Array<TId[keyof TGroups]> } = {};
+        ids.forEach((fullId) => {
+            const [type, , id] = fullId[fullId.length - 1];
+            idsByType[type] = idsByType[type] ?? [];
+            idsByType[type].push(id);
+        });
+
+        const typesToLoad = Object.keys(idsByType) as Array<keyof TGroups>;
+        const response: LazyDataSourceApiResponse<ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>> = { items: [] };
+
+        const promises = typesToLoad.map(async (type) => {
+            const idsRequest: LazyDataSourceApiRequest<any, any, TFilter> = { ids: idsByType[type] };
+            const apiResponse = await this.api(type, idsRequest);
+            response.items = [...response.items, ...apiResponse.items];
+        });
+
+        await Promise.all(promises);
+        const currentGroupBy = this.getGroupByPathForParent(groupBy as GroupBy<TGroups, TFilter>, context.parent);
+        return this.getResultsWithMeta(response, context.parent, currentGroupBy);
+    }
+
+    async entityApi<TType extends keyof TGroups>(
         ...apiArgs: Parameters<
         LazyDataSourceProps<TGroupsWithMeta<TGroups, TId, TFilter>[TType], TId[TType], TFilter>['api']
         >
@@ -89,24 +118,52 @@ export class GroupingConfigBuilder<
         return this.entitiesConfig[this.defaultEntity].api(...apiArgs);
     }
 
-    async apiByGroupBy(
+    private getGroupByPathForParent(
+        groupBy: GroupBy<TGroups, TFilter>,
+        parent: ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>> | undefined,
+    ): GroupByTokens<TGroups, TFilter>[] {
+        if (!groupBy) return [];
+
+        if (Array.isArray(groupBy)) {
+            if (!parent) {
+                return [groupBy[0]];
+            }
+            const grouping = parent[PATH];
+            const parentType = this.getType(parent);
+            const isLastNestingLevel = this.entitiesConfig[parentType]?.isLastNestingLevel
+                ?? this.groupingsConfig[parentType]?.isLastNestingLevel
+                ?? this[DEFAULT_CONFIG].isLastNestingLevel;
+
+            if (isLastNestingLevel(parent)) {
+                if (isEqual(grouping, groupBy)) {
+                    return groupBy;
+                }
+                return [...grouping, groupBy[grouping.length]];
+            }
+            return grouping;
+        }
+        return [groupBy];
+    }
+
+    async groupByApi(
         groupBy: GroupBy<TGroups, TFilter>,
         ...apiArgs: Parameters<LazyDataSourceProps<ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>, TId[keyof TGroups], TFilter>['api']>
     ) {
         const [request, context] = apiArgs;
         const filterFromGroupBy = context.parent ? this[DEFAULT_CONFIG].getFilterFromGroupByPath(context.parent[ID]) : undefined;
 
+        const groupByPath = this.getGroupByPathForParent(groupBy, context.parent);
+        const lastGroupBy = groupByPath[groupByPath.length - 1];
         if (Array.isArray(groupBy)) {
             if (!context.parent) {
-                const [gb] = groupBy;
-                this.checkApiForGroupBy(gb);
+                this.checkApiForGroupBy(lastGroupBy);
 
-                const type = this.groupByToEntityType[gb];
-                const results = await this.groupingsConfig[type].api(
-                    { ...request, filter: { ...request.filter, ...filterFromGroupBy, groupBy: gb } },
+                const type = this.groupByToEntityType[lastGroupBy];
+                const response = await this.groupingsConfig[type].api(
+                    { ...request, filter: { ...request.filter, ...filterFromGroupBy, groupBy: lastGroupBy } },
                     context,
                 );
-                return this.getResultsWithMeta(results, context.parent, [gb]);
+                return this.getResultsWithMeta(response, context.parent, groupByPath);
             }
 
             const parentType = this.getType(context.parent);
@@ -117,47 +174,43 @@ export class GroupingConfigBuilder<
             const grouping = context.parent[PATH];
             if (isLastNestingLevel(context.parent)) {
                 if (isEqual(grouping, groupBy)) {
-                    const gb = groupBy[groupBy.length - 1];
-                    this.checkApiForGroupBy(gb);
+                    this.checkApiForGroupBy(lastGroupBy);
 
-                    const results = await this.entitiesConfig[this.defaultEntity].api({
+                    const response = await this.entitiesConfig[this.defaultEntity].api({
                         ...request,
-                        filter: { ...request.filter, ...filterFromGroupBy, groupBy: gb },
+                        filter: { ...request.filter, ...filterFromGroupBy, groupBy: lastGroupBy },
                     }, context);
-                    return this.getResultsWithMeta(results, context.parent, groupBy);
+                    return this.getResultsWithMeta(response, context.parent, groupByPath);
                 }
 
-                const gb = groupBy[grouping.length];
-                this.checkApiForGroupBy(gb);
+                this.checkApiForGroupBy(lastGroupBy);
 
-                const type = this.groupByToEntityType[gb];
-                const results = await this.groupingsConfig[type].api(
-                    { ...request, filter: { ...request.filter, ...filterFromGroupBy, groupBy: gb } },
+                const type = this.groupByToEntityType[lastGroupBy];
+                const response = await this.groupingsConfig[type].api(
+                    { ...request, filter: { ...request.filter, ...filterFromGroupBy, groupBy: lastGroupBy } },
                     context,
                 );
-                return this.getResultsWithMeta(results, context.parent, [...grouping, gb]);
+                return this.getResultsWithMeta(response, context.parent, groupByPath);
             }
 
-            const gb = grouping[grouping.length - 1];
-            this.checkApiForGroupBy(gb);
+            this.checkApiForGroupBy(lastGroupBy);
 
-            const type = this.groupByToEntityType[gb];
-            const results = await this.groupingsConfig[type].api(
-                { ...request, filter: { ...request.filter, ...filterFromGroupBy, groupBy: gb } },
+            const type = this.groupByToEntityType[lastGroupBy];
+            const response = await this.groupingsConfig[type].api(
+                { ...request, filter: { ...request.filter, ...filterFromGroupBy, groupBy: lastGroupBy } },
                 context,
             );
-            return this.getResultsWithMeta(results, context.parent, grouping);
+            return this.getResultsWithMeta(response, context.parent, groupByPath);
         }
 
-        this.checkApiForGroupBy(groupBy);
+        this.checkApiForGroupBy(lastGroupBy);
 
-        const type = this.groupByToEntityType[groupBy];
-
-        const results = await this.groupingsConfig[type].api(
+        const type = this.groupByToEntityType[lastGroupBy];
+        const response = await this.groupingsConfig[type].api(
             { ...request, filter: { ...request.filter, ...filterFromGroupBy } },
             context,
         );
-        return this.getResultsWithMeta(results, context.parent, [groupBy]);
+        return this.getResultsWithMeta(response, context.parent, groupByPath);
     }
 
     private checkApiForGroupBy(groupBy: GroupByTokens<TGroups, TFilter>) {
