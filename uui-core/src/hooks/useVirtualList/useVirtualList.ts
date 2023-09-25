@@ -3,7 +3,7 @@ import type { ScrollToConfig } from '../../types';
 import { useLayoutEffectSafeForSsr } from '../../ssr';
 import {
     getRowsToFetchForScroll, getUpdatedRowsInfo, assumeHeightForScrollToIndex,
-    getTopIndexWithOffset, getOffsetYForIndex, getScrollToCoordinate, getRealTopIndex,
+    getOffsetYForIndex, getScrollToCoordinate, getRealTopIndex, getTopIndexWithOffset,
 } from './utils';
 import { VirtualListInfo, UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
 
@@ -109,17 +109,24 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     };
 
     const handleScrollOnRerender = (rowsInfo: RowsInfo) => {
+        const { topIndex } = value;
+        const { topIndex: newTopIndex, visibleCount } = getNewRowsOnScroll();
+
         if (estimatedHeight !== rowsInfo.estimatedHeight) {
             setEstimatedHeight(rowsInfo.estimatedHeight);
         }
-        getNewRowsOnScroll();
+        if (topIndex !== newTopIndex || visibleCount !== value.visibleCount) {
+            onValueChange({ ...value, topIndex: newTopIndex, visibleCount });
+        }
     };
 
     const getNewRowsOnScroll = React.useCallback(() => {
         const { topIndex, visibleCount } = getTopIndexAndVisibleCountOnScroll();
         if (topIndex !== value.topIndex || visibleCount > value.visibleCount) {
-            onValueChange({ ...value, topIndex, visibleCount });
+            return { topIndex, visibleCount };
         }
+
+        return value;
     }, [getTopIndexAndVisibleCountOnScroll, onValueChange, value]);
 
     const scrollContainerToPosition = React.useCallback(
@@ -135,27 +142,36 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
 
             scrollContainer.current.scrollTo({ top: topCoordinate, behavior: scrollTo.behavior });
             const scrollPositionDiff = (+topCoordinate.toFixed(0)) - (+scrollContainer.current.scrollTop.toFixed(0));
-            return [scrollPositionDiff <= 1, true];
+
+            return [
+                scrollPositionDiff <= 1 // if scroll position is equal to expected one
+                && virtualListInfo.rowHeights[scrollTo.index] !== undefined, // and required row with necessary index is present
+                true,
+            ];
         },
         [scrollContainer.current, rowOffsets.current, virtualListInfo],
     );
 
     const scrollToIndex = React.useCallback(
         (scrollTo: ScrollToConfig) => {
-            const [wasScrolled, ok] = scrollContainerToPosition(scrollTo);
             const topIndex = getTopIndexWithOffset(scrollTo.index, overdrawRows, blockSize);
-            const realTopIndex = getRealTopIndex(virtualListInfo);
-            if ((ok && !wasScrolled) || value.topIndex !== topIndex) {
-                const newScrollTo = value.scrollTo?.index === scrollTo.index ? value.scrollTo : { ...scrollTo, index: scrollTo.index };
-                if (newScrollTo !== value.scrollTo || value.topIndex !== topIndex) {
-                    onValueChange({ ...value, topIndex, scrollTo: newScrollTo });
-                }
+            const { visibleCount } = getTopIndexAndVisibleCountOnScroll();
+
+            const [wasScrolled, ok] = scrollContainerToPosition(scrollTo);
+            if ((ok && !wasScrolled) || value.topIndex !== topIndex || value.visibleCount !== visibleCount) {
+                onValueChange({ ...value, topIndex, visibleCount, scrollTo });
             }
 
+            const realTopIndex = getRealTopIndex(virtualListInfo);
             // prevents from cycling, while force scrolling to a row, which will never appear, when using LazyListView.
             const shouldScrollToUnknownIndex = value.topIndex === topIndex && value.scrollTo?.index > realTopIndex;
             if ((ok && wasScrolled) || shouldScrollToUnknownIndex) {
-                setScrolledTo(value.scrollTo?.index === scrollTo.index ? value.scrollTo : { ...scrollTo, index: scrollTo.index });
+                if (value.scrollTo?.index === scrollTo.index) {
+                    setScrolledTo(value.scrollTo);
+                } else {
+                    onValueChange({ ...value, scrollTo });
+                    setScrolledTo(scrollTo);
+                }
             }
         },
         [
@@ -186,7 +202,10 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         if (value.scrollTo !== scrolledTo && value.scrollTo?.index != null) {
             return;
         }
-        getNewRowsOnScroll();
+        const newValue = getNewRowsOnScroll();
+        if (value.topIndex !== newValue.topIndex || value.visibleCount !== newValue.visibleCount) {
+            onValueChange({ ...value, ...newValue });
+        }
     }, [value, onScroll, scrolledTo, scrollContainer.current, getNewRowsOnScroll]);
 
     return {

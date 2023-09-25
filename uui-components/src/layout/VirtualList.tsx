@@ -89,7 +89,10 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
                         flex: '1 1 auto',
                         display: 'flex',
                         flexDirection: 'column',
-                        ...(props.disableScroll ? { overflow: 'hidden' } : {}),
+                        ...(props.disableScroll ? {
+                            position: 'static',
+                            overflowY: 'auto',
+                        } : {}),
                     } }
                     { ...rest }
                     { ...props.rawProps }

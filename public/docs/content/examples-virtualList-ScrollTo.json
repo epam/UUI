@@ -21,7 +21,7 @@
         "text": "state"
       },
       {
-        "text": ". it accepts an object with an index of an element that you want to scroll to and updates the scroll position if a reference to an object is updated."
+        "text": ". It accepts an object with an index of an element that you want to scroll to and updates the scroll position if a reference to an object is updated."
       }
     ]
   },
@@ -52,7 +52,7 @@
     "type": "note-warning",
     "children": [
       {
-        "text": "For accurate scrolling to the position of the expected row, it is required to provide rows of the same height."
+        "text": "For accurate scrolling to the position of the expected row and for correct scrolling behavior after scrolling to a specific row, it is required to provide rows of the same height."
       }
     ]
   }
