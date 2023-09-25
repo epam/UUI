@@ -116,7 +116,7 @@ export default function CitiesTable() {
     });
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel background="surface" shadow cx={ css.container }>
             <DataTable
                 value={ tableState }
                 onValueChange={ setTableState }

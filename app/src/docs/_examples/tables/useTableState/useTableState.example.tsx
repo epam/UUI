@@ -129,7 +129,7 @@ export default function FiltersPanelExample() {
     const view = dataSource.useView(tableState, setTableState);
 
     return (
-        <Panel style={ { height: '400px' } }>
+        <Panel background="surface" style={ { height: '400px' } }>
             <FlexRow>
                 <PresetsPanel { ...tableStateApi } />
             </FlexRow>

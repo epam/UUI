@@ -146,7 +146,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </button>
       </div>
       <div
-        className="uui-panel root mainPanel container"
+        className="uui-panel root uui-color-surface mainPanel container"
       >
         <div
           className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
@@ -666,7 +666,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         </button>
       </div>
       <div
-        className="uui-panel root mainPanel container"
+        className="uui-panel root uui-color-surface mainPanel container"
       >
         <div
           className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
