@@ -63,7 +63,7 @@ export default function PagedTable() {
     const view = dataSource.useView(state, setState, {});
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel background="surface" shadow cx={ css.container }>
             <DataTable { ...view.getListProps() } getRows={ view.getVisibleRows } value={ state } onValueChange={ setState } columns={ columns } headerTextCase="upper" />
             <FlexRow size="36" padding="12">
                 <FlexSpacer />

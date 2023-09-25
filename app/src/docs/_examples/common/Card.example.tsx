@@ -6,7 +6,7 @@ import css from './CardExample.module.scss';
 
 export default function AttributesExample() {
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel background="surface" shadow cx={ css.container }>
             <div className={ css.wrapper }>
                 <FlexRow>
                     <Avatar size="60" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" />

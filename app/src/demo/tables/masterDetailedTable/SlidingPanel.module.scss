@@ -59,7 +59,7 @@ body {
 .container {
     overflow: hidden;
     height: calc(100vh - 102px);
-    border-right: 1px solid var(--divider-color, $gray40);
+    border-right: 1px solid var(--uui-divider);
     flex-shrink: 0;
 
     &-left {

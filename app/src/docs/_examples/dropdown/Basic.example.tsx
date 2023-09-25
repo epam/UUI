@@ -1,7 +1,6 @@
 import React from 'react';
 import { Dropdown, FlexSpacer } from '@epam/uui-components';
-import { Panel, Text, FlexRow, LinkButton, DropdownContainer, IconButton, FlexCell, IconContainer, Avatar } from '@epam/uui';
-import { Badge } from '@epam/promo';
+import { Badge, Panel, Text, FlexRow, LinkButton, DropdownContainer, IconButton, FlexCell, IconContainer, Avatar } from '@epam/uui';
 import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
 import css from './BasicExample.module.scss';
 import { ReactComponent as pinIcon } from '@epam/assets/icons/common/action-pin_on-18.svg';
@@ -24,7 +23,7 @@ export default function BasicDropdownExample() {
         return (
             <DropdownContainer showArrow={ true } cx={ css.container } { ...props }>
                 <FlexRow alignItems="top" padding="12" vPadding="24">
-                    <Panel style={ { width: '100%' } }>
+                    <Panel background="surface" style={ { width: '100%' } }>
                         <FlexRow cx={ css.containerItem } padding="6">
                             <Avatar size="48" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" />
 
@@ -46,11 +45,11 @@ export default function BasicDropdownExample() {
                         </FlexRow>
 
                         <FlexRow padding="6">
-                            <Panel>
+                            <Panel background="surface">
                                 <FlexRow alignItems="center" spacing="6">
-                                    <Badge cx={ css.badge } color="green" size="18" fill="outline" icon={ notificationIcon } caption="Available" />
-                                    <Badge cx={ css.badge } color="blue" size="18" fill="outline" caption="Bench" />
-                                    <Badge cx={ css.badge } color="yellow" size="18" fill="outline" caption="Remote" />
+                                    <Badge cx={ css.badge } color="success" size="18" fill="semitransparent" icon={ notificationIcon } caption="Available" />
+                                    <Badge cx={ css.badge } color="warning" size="18" fill="semitransparent" caption="Bench" />
+                                    <Badge cx={ css.badge } color="info" size="18" fill="semitransparent" caption="Remote" />
                                 </FlexRow>
                                 <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
                                     On vacation till 19 Aug till 26 Aug
@@ -63,7 +62,7 @@ export default function BasicDropdownExample() {
                 <div className={ css.divider }></div>
 
                 <FlexRow padding="12" vPadding="24">
-                    <Panel>
+                    <Panel background="surface">
                         <FlexRow alignItems="center" spacing="12" padding="6">
                             <IconButton icon={ telescopeIcon } color="info" onClick={ () => null } />
                             <IconButton icon={ chatIcon } color="info" onClick={ () => null } />
@@ -132,7 +131,7 @@ export default function BasicDropdownExample() {
                 <div className={ css.divider }></div>
 
                 <FlexRow padding="18" vPadding="24">
-                    <Panel>
+                    <Panel background="surface">
                         <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
                             Reporting to
                         </Text>

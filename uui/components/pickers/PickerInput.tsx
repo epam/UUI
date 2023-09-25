@@ -139,6 +139,7 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
 
         return (
             <Panel
+                background="surface"
                 style={ { width: bodyProps.togglerWidth > minBodyWidth ? bodyProps.togglerWidth : minBodyWidth } }
                 rawProps={ { tabIndex: -1, onKeyDown: bodyProps.onKeyDown } }
                 cx={ [
