@@ -35,10 +35,6 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const clearSingleText = i18n.pickerInput.clearSelectionButtonSingle;
     const selectAllText = i18n.pickerInput.selectAllButton;
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-        if (!e.shiftKey && e.key === 'Tab') e.preventDefault();
-    };
-
     // show always for multi picker and for single only in case if search not disabled.
     const shouldShowFooter = isSinglePicker ? !props.disableClear : true;
 
@@ -63,7 +59,6 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
                         caption={ hasSelection ? clearAllText : selectAllText }
                         onClick={ hasSelection ? clearSelection : () => view.selectAll.onValueChange(true) }
                         rawProps={ {
-                            onKeyDown: handleKeyDown,
                             'aria-label': hasSelection ? clearAllText : selectAllText,
                         } }
                     />
@@ -75,7 +70,6 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
                         caption={ isSinglePicker ? clearSingleText : clearAllText }
                         onClick={ clearSelection }
                         rawProps={ {
-                            onKeyDown: handleKeyDown,
                             'aria-label': isSinglePicker ? clearSingleText : clearAllText,
                         } }
                     />

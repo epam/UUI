@@ -1,7 +1,7 @@
-import React, { useMemo, useRef, useEffect } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { Modifier } from 'react-popper';
 import {
-    DataRowProps, isMobile, mobilePopperModifier, IDropdownToggler, Lens, PickerFooterProps, DataSourceState,
+    DataRowProps, isMobile, mobilePopperModifier, Lens, PickerFooterProps, DataSourceState,
 } from '@epam/uui-core';
 import { PickerTogglerProps } from '../PickerToggler';
 import { PickerBodyBaseProps } from '../PickerBodyBase';
@@ -23,7 +23,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         }, mobilePopperModifier,
     ], []);
 
-    const togglerRef = useRef<HTMLElement>();
     const pickerInputState = usePickerInputState({
         dataSourceState: { visibleCount: initialRowsVisible },
     });
@@ -107,7 +106,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const onSelect = (row: DataRowProps<TItem, TId>) => {
         toggleDropdownOpening(false);
         handleDataSourceValueChange({ ...dataSourceState, search: '', selectedId: row.id });
-        togglerRef.current?.focus();
     };
 
     const getSearchPosition = () => {
@@ -152,7 +150,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         if (e.key === 'Escape' && opened) {
             e.preventDefault();
             toggleDropdownOpening(false);
-            togglerRef.current?.focus();
         }
 
         handleDataSourceKeyboard(
@@ -251,10 +248,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         };
     };
 
-    const returnFocusToInput = (): void => {
-        togglerRef.current.focus();
-    };
-
     const getSearchValue = (): string | null => {
         // only for selectionMode = 'single': we're getting current value and put it into search, and when search changed we turn value to dataSourceState.search
         if (props.selectionMode === 'single' && !isSearchChanged && (props.value !== undefined && props.value !== null)) {
@@ -331,25 +324,14 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         };
     };
 
-    const getTargetRef = (props: IDropdownToggler & PickerTogglerProps<TItem, TId>) => {
-        return {
-            ref: (node: HTMLElement) => {
-                (togglerRef as React.MutableRefObject<HTMLElement>).current = node;
-                (props.ref as React.RefCallback<HTMLElement>)(node);
-            },
-        };
-    };
-
     return {
         context,
         dataSourceState,
         getPlaceholder,
         getName,
         getRows,
-        getTargetRef,
         getTogglerProps,
         getFooterProps,
-        returnFocusToInput,
         shouldShowBody,
         toggleBodyOpening,
         isSingleSelect,
@@ -359,5 +341,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         handleTogglerSearchChange,
         handleDataSourceValueChange,
         handleSelectionValueChange,
+        getSearchPosition,
     };
 }

@@ -2,7 +2,13 @@ import { ATTACHMENT_PLUGIN_TYPE } from '../attachmentPlugin/attachmentPlugin';
 import { IFRAME_PLUGIN_TYPE, IMAGE_PLUGIN_TYPE } from '../../types';
 import { useCallback } from 'react';
 import type { FileUploadResponse } from '@epam/uui-core';
-import { PlateEditor, getPlugin, KEY_INSERT_DATA, deleteBackward, insertEmptyElement } from '@udecode/plate-common';
+import {
+    PlateEditor,
+    getPlugin,
+    KEY_INSERT_DATA,
+    deleteBackward,
+    insertEmptyElement,
+} from '@udecode/plate-common';
 
 export type UploadType = keyof typeof UPLOAD_BLOCKS;
 
@@ -103,12 +109,18 @@ export const createFileUploader = (options: UploadFileOptions) =>
 
 export const useFilesUploader = (editor: PlateEditor) => {
     return useCallback(
-        (files: File[], overriddenAction?: UploadType): Promise<void> =>
-            getPlugin(editor, KEY_INSERT_DATA).options.uploadFiles(
-                editor,
-                files,
-                overriddenAction,
-            ),
+        (files: File[], overriddenAction?: UploadType): Promise<void> => {
+            const callback = getPlugin(editor, KEY_INSERT_DATA)?.options?.uploadFiles;
+            if (callback) {
+                return callback(
+                    editor,
+                    files,
+                    overriddenAction,
+                );
+            }
+
+            console.error('Upload function was not provided for upload plugin.');
+        },
         [editor],
     );
 };
