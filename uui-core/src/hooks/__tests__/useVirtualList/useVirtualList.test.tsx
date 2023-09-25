@@ -229,19 +229,19 @@ describe('useVirtualList', () => {
         expect(onValueChange).toBeCalledTimes(4);
         expect(onValueChange).toHaveBeenLastCalledWith({
             topIndex: 80,
-            visibleCount: 10,
+            visibleCount: 20,
             scrollTo: { index: 100, behavior: 'auto' },
         });
 
         rerender({ value, onValueChange, onScroll, rowsCount: 500 });
 
         expect(onScroll).toBeCalledTimes(5);
-        expect(onValueChange).toBeCalledTimes(5);
+        expect(onValueChange).toBeCalledTimes(6);
         
         act(() => result.current.scrollToIndex({ index: 100, behavior: 'auto' }));
         
         expect(onScroll).toBeCalledTimes(5);
-        expect(onValueChange).toBeCalledTimes(5);
+        expect(onValueChange).toBeCalledTimes(7);
         expect(result.current.offsetY).toBe(1600);
         expect(result.current.estimatedHeight).toBe(10000);
     });
@@ -290,12 +290,12 @@ describe('useVirtualList', () => {
         rerender({ value, onValueChange, onScroll, rowsCount: 500 });
         
         expect(onScroll).toBeCalledTimes(6);
-        expect(onValueChange).toBeCalledTimes(5);
+        expect(onValueChange).toBeCalledTimes(6);
         
         act(() => result.current.scrollToIndex({ index: 100, behavior: 'auto' }));
         
         expect(onScroll).toBeCalledTimes(6);
-        expect(onValueChange).toBeCalledTimes(5);
+        expect(onValueChange).toBeCalledTimes(7);
         expect(result.current.offsetY).toBe(1600);
         expect(result.current.estimatedHeight).toBe(10000);
     });
