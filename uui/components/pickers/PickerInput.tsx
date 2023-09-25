@@ -2,10 +2,9 @@ import React from 'react';
 import { PickerBodyBaseProps, PickerInputBaseProps, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
 import { Dropdown } from '../overlays/Dropdown';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
-import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
+import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile } from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
-import { Panel } from '../layout';
 import { MobileDropdownWrapper } from './MobileDropdownWrapper';
 import { DataPickerBody } from './DataPickerBody';
 import { DataPickerRow } from './DataPickerRow';
@@ -38,11 +37,8 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
             ))
             .then((newSelection) => {
                 handleSelectionValueChange(newSelection);
-                returnFocusToInput();
             })
-            .catch(() => {
-                returnFocusToInput();
-            });
+            .catch(() => {});
     };
 
     const {
@@ -51,10 +47,8 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
         getName,
         getPlaceholder,
         handleSelectionValueChange,
-        returnFocusToInput,
         getTogglerProps,
         getRows,
-        getTargetRef,
         handleTogglerSearchChange,
         toggleBodyOpening,
         dataSourceState,
@@ -62,6 +56,7 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
         getPickerBodyProps,
         getListProps,
         shouldShowBody,
+        getSearchPosition,
     } = usePickerInput<TItem, TId, CompletePickerInputProps<TItem, TId>>({ ...props, toggleModalOpening });
 
     const getTogglerMods = (): PickerTogglerMods => {
@@ -90,11 +85,7 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
     const renderFooter = () => {
         const footerProps = getFooterProps();
 
-        return props.renderFooter ? (
-            props.renderFooter(footerProps)
-        ) : (
-            <DataPickerFooter { ...footerProps } size={ props.size } />
-        );
+        return props.renderFooter ? props.renderFooter(footerProps) : <DataPickerFooter { ...footerProps } size={ props.size } />;
     };
 
     const getRowSize = () => {
@@ -134,44 +125,37 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
 
     const renderBody = (bodyProps: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
         const renderedDataRows = rows.map((row) => renderRow(row, dataSourceState));
-        const maxHeight = isMobile() ? document.documentElement.clientHeight : props.dropdownHeight || pickerHeight;
-        const minBodyWidth = isMobile() ? document.documentElement.clientWidth : props.minBodyWidth || pickerWidth;
+        const bodyHeight = isMobile() ? document.documentElement.clientHeight : props.dropdownHeight || pickerHeight;
+        const minBodyWidth = props.minBodyWidth || pickerWidth;
 
         return (
-            <Panel
-                style={ { width: bodyProps.togglerWidth > minBodyWidth ? bodyProps.togglerWidth : minBodyWidth } }
-                rawProps={ { tabIndex: -1, onKeyDown: bodyProps.onKeyDown } }
-                cx={ [
-                    css.panel, uuiMarkers.lockFocus, props.bodyCx,
-                ] }
+            <MobileDropdownWrapper
+                title={ props.entityName }
+                onClose={ () => toggleBodyOpening(false) }
+                cx={ [css.panel, props.bodyCx] }
+                onKeyDown={ bodyProps.onKeyDown }
+                width={ bodyProps.togglerWidth > minBodyWidth ? bodyProps.togglerWidth : minBodyWidth }
+                focusLock={ getSearchPosition() === 'body' }
             >
-                <MobileDropdownWrapper
-                    title={ props.entityName }
-                    close={ () => {
-                        returnFocusToInput();
-                        toggleBodyOpening(false);
-                    } }
-                >
-                    <DataPickerBody
-                        { ...bodyProps }
-                        rows={ renderedDataRows }
-                        maxHeight={ maxHeight }
-                        searchSize={ props.size }
-                        editMode="dropdown"
-                        selectionMode={ props.selectionMode }
-                        renderNotFound={
-                            props.renderNotFound
-                                ? () =>
-                                    props.renderNotFound({
-                                        search: dataSourceState.search,
-                                        onClose: () => toggleBodyOpening(false),
-                                    })
-                                : undefined
-                        }
-                    />
-                    { renderFooter() }
-                </MobileDropdownWrapper>
-            </Panel>
+                <DataPickerBody
+                    { ...bodyProps }
+                    rows={ renderedDataRows }
+                    maxHeight={ bodyHeight }
+                    searchSize={ props.size }
+                    editMode="dropdown"
+                    selectionMode={ props.selectionMode }
+                    renderNotFound={
+                        props.renderNotFound
+                            ? () =>
+                                props.renderNotFound({
+                                    search: dataSourceState.search,
+                                    onClose: () => toggleBodyOpening(false),
+                                })
+                            : undefined
+                    }
+                />
+                { renderFooter() }
+            </MobileDropdownWrapper>
         );
     };
     
@@ -181,8 +165,7 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
         <Dropdown
             renderTarget={ (dropdownProps) => {
                 const targetProps = getTogglerProps(rows);
-                const targetRef = getTargetRef({ ...targetProps, ...dropdownProps });
-                return renderTarget({ ...dropdownProps, ...targetProps, ...targetRef });
+                return renderTarget({ ...dropdownProps, ...targetProps });
             } }
             renderBody={ (bodyProps) => renderBody({ ...bodyProps, ...getPickerBodyProps(rows), ...getListProps() }, rows) }
             value={ shouldShowBody() }
