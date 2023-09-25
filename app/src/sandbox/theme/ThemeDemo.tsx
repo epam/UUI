@@ -31,7 +31,7 @@ export function ThemeDemo() {
                 <ModalWindow width={ 360 }>
                     <ModalHeader borderBottom title="Simple modal example " onClose={ () => props.abort() } />
                     <ScrollBars>
-                        <Panel margin="24">
+                        <Panel background="surface" margin="24">
                             <Text color="primary" fontSize="16">
                                 Changes will be undone!
                             </Text>
@@ -234,7 +234,7 @@ export function ThemeDemo() {
 
     return (
         <div style={ { height: 'calc(100vh - 60px)', margin: '0 auto', display: 'flex' } }>
-            <Panel shadow rawProps={ { style: { margin: '24px auto' } } }>
+            <Panel background="surface" shadow rawProps={ { style: { margin: '24px auto' } } }>
                 <ScrollBars>{renderDemoForm()}</ScrollBars>
             </Panel>
         </div>

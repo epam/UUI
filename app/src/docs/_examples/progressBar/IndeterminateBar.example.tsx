@@ -4,7 +4,7 @@ import css from './BasicExample.module.scss';
 
 export default function CustomLabelProgressBarExample() {
     return (
-        <Panel style={ { flexBasis: '100%' } } cx={ css.root }>
+        <Panel background="surface" style={ { flexBasis: '100%' } } cx={ css.root }>
             <IndeterminateBar />
             <IndeterminateBar size="18" />
             <IndeterminateBar size="24" />

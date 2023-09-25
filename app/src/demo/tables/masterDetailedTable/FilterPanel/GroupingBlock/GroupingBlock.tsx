@@ -1,6 +1,6 @@
 import React from 'react';
 import { Accordion } from '@epam/uui';
-import { LinkButton, RadioGroup } from '@epam/promo';
+import { LinkButton, RadioGroup } from '@epam/uui';
 import { Grouping } from '../../types';
 import css from './GroupingBlock.module.scss';
 

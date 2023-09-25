@@ -117,7 +117,7 @@ export default function ColumnsConfigurationDataTableExample() {
     const view = dataSource.useView(tableState, setTableState);
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel background="surface" shadow cx={ css.container }>
             <DataTable
                 getRows={ view.getVisibleRows }
                 columns={ personColumns }

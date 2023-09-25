@@ -98,7 +98,7 @@ export default function ColumnsConfigurationDataTableExample() {
     });
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel background="surface" shadow cx={ css.container }>
             <DataTable
                 value={ tableState }
                 onValueChange={ handleTableStateChange }
