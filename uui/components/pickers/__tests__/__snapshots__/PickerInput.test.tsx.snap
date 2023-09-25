@@ -44,8 +44,8 @@ exports[`PickerInput should open body 1`] = `
       style="z-index: 2000;"
     >
       <div
-        class="uui-panel root panel -lock-focus container"
-        style="width: 360px;"
+        class="uui-dropdown-body -lock-focus root container panel container"
+        style="min-width: 360px;"
         tabindex="-1"
       >
         <div
