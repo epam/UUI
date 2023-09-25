@@ -16,9 +16,17 @@ import {
     createSerializer,
     createDeserializer,
     paragraphPlugin,
+    uploadFilePlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.module.scss';
+import { svc } from '../../../services';
+
+const uploadFile = (file: File, onProgress: (progress: number) => any): any => {
+    return svc.uuiApi.uploadFile('/upload/uploadFileMock', file, {
+        onProgress,
+    });
+};
 
 const plugins = [
     paragraphPlugin(),
@@ -28,6 +36,7 @@ const plugins = [
     listPlugin(),
     quotePlugin(),
     linkPlugin(),
+    uploadFilePlugin({ uploadFile }),
     imagePlugin(),
     videoPlugin(),
     iframePlugin(),

@@ -1,76 +1,38 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "LazyDataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " allows you to load hierarchical data lazily. ",
-            "marks": []
-          }
-        ]
+        "text": "LazyDataSource",
+        "uui-richTextEditor-code": true
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Note that It's required to pass the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "getChildCount",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " callback to ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "LazyDataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " for lazy loading in tree lists.",
-            "marks": []
-          }
-        ]
+        "text": " allows you to load hierarchical data lazily. "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Note that It's required to pass the "
+      },
+      {
+        "text": "getChildCount",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " callback to "
+      },
+      {
+        "text": "LazyDataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " for lazy loading in tree lists."
       }
     ]
   }
-}
+]
