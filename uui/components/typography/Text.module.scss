@@ -2,10 +2,11 @@
     --uui-text: var(--uui-color-50);
     --uui-text-font: var(--uui-font);
     --uui-text-font-weight: 400;
+    --uui-text-font-style: normal;
     //
     font-family: var(--uui-text-font);
     font-weight: var(--uui-text-font-weight);
-    font-style: var(--uui-font-style, normal);
+    font-style: var(--uui-text-font-style);
     color: var(--uui-text);
 
     &:global(.uui-text.uui-color-brand) {
@@ -34,29 +35,29 @@
 
     &:global(.uui-font-regular) {
         --uui-text-font: var(--uui-font);
-        --uui-font-weight: 400;
+        --uui-text-font-weight: 400;
     }
 
     &:global(.uui-font-semibold) {
         --uui-text-font: var(--uui-font);
-        --uui-font-weight: 600;
+        --uui-text-font-weight: 600;
 
     }
 
     &:global(.uui-font-italic) {
         --uui-text-font: var(--uui-font);
-        --uui-font-weight: 400;
-        --uui-font-style: italic;
+        --uui-text-font-weight: 400;
+        --uui-text-font-style: italic;
 
     }
 
     &:global(.uui-font-primary) {
         --uui-text-font: var(--font-primary);
-        --uui-font-weight: normal;
+        --uui-text-font-weight: 400;
     }
 
     &:global(.uui-font-promo) {
         --uui-text-font: var(--font-promo);
-        --uui-font-weight: normal;
+        --uui-text-font-weight: 400;
     }
 }
