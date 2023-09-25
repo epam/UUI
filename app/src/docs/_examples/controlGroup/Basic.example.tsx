@@ -5,7 +5,7 @@ import { ReactComponent as menuIcon } from '@epam/assets/icons/common/navigation
 export default function BasicExample() {
     const renderBody = () => {
         return (
-            <Panel shadow={ true }>
+            <Panel background="surface" shadow={ true }>
                 <DropdownMenuButton caption="Duplicate" onClick={ () => {} } />
                 <DropdownMenuButton caption="Rename" onClick={ () => {} } />
                 <DropdownMenuButton caption="Delete" onClick={ () => {} } />

@@ -76,7 +76,7 @@ export default function StyledColumnsExample() {
     );
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel background="surface" shadow cx={ css.container }>
             <DataTable
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }

@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import css from './Filter.module.scss';
 import {
     DatePicker, IconContainer, PickerList, RangeDatePicker,
-} from '@epam/promo';
+} from '@epam/uui';
 import { TableFiltersConfig, IEditable, RangeDatePickerValue } from '@epam/uui-core';
 import { ReactComponent as ArrowDown } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 
@@ -58,7 +58,7 @@ function FilterImpl<TFilter extends Record<string, any>>(props: IFilterProps<TFi
         <div>
             <div className={ css.title } onClick={ toggle }>
                 <div>{props.filterConfig.title}</div>
-                <IconContainer icon={ ArrowDown } flipY={ isOpened } />
+                <IconContainer icon={ ArrowDown } flipY={ isOpened } cx={ css.icon } />
             </div>
 
             {isOpened && <div>{renderPicker()}</div>}

@@ -12,7 +12,7 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps>({ name: 'Dropdown', compon
             {
                 value: () => {
                     return (
-                        <Panel shadow={ true }>
+                        <Panel background="surface" shadow={ true }>
                             <FlexRow padding="12" vPadding="12">
                                 <Text>Dropdown body content. You can use any components as a dropdown body.</Text>
                             </FlexRow>

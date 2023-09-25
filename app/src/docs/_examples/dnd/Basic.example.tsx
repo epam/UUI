@@ -69,6 +69,7 @@ export default function DndMaterial() {
             render={ (params: DndActorRenderParams) => (
                 <div ref={ params.ref } { ...params.eventHandlers } className={ cx(css.dragElement, params.classNames) }>
                     <Panel
+                        background="surface"
                         cx={ cx(css.dndItem, {
                             [uuiDndState.dragGhost]: params.isDragGhost,
                         }) }

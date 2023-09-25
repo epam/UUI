@@ -85,7 +85,7 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
     const renderBody = () => {
         const isReadonlyPreset = props.preset.isReadonly;
         return (
-            <Panel shadow={ true } cx={ css.presetDropdownPanel }>
+            <Panel background="surface" shadow={ true } cx={ css.presetDropdownPanel }>
                 {props.activePresetId === props.preset.id && props.hasPresetChanged(props.preset) && (
                     <>
                         {!isReadonlyPreset && (
