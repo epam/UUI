@@ -29,66 +29,12 @@ describe('docsGen:complexTypes', () => {
                     props: [
                         {
                             kind: 'PropertySignature',
-                            name: 'pAny',
-                            required: true,
-                            typeValue: {
-                                raw: 'any',
-                            },
-                            uniqueId: '4',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pArray',
-                            required: true,
-                            typeValue: {
-                                raw: 'string[]',
-                            },
-                            uniqueId: '10',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pBigint',
-                            required: true,
-                            typeValue: {
-                                raw: 'bigint',
-                            },
-                            uniqueId: '12',
-                        },
-                        {
-                            kind: 'PropertySignature',
                             name: 'pBool',
                             required: true,
                             typeValue: {
                                 raw: 'false | true',
                             },
                             uniqueId: '1',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pLiteral',
-                            required: true,
-                            typeValue: {
-                                raw: "'test'",
-                            },
-                            uniqueId: '14',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pNever',
-                            required: true,
-                            typeValue: {
-                                raw: 'never',
-                            },
-                            uniqueId: '6',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pNull',
-                            required: true,
-                            typeValue: {
-                                raw: 'null',
-                            },
-                            uniqueId: '8',
                         },
                         {
                             kind: 'PropertySignature',
@@ -101,15 +47,6 @@ describe('docsGen:complexTypes', () => {
                         },
                         {
                             kind: 'PropertySignature',
-                            name: 'pObject',
-                            required: true,
-                            typeValue: {
-                                raw: 'object',
-                            },
-                            uniqueId: '11',
-                        },
-                        {
-                            kind: 'PropertySignature',
                             name: 'pString',
                             required: true,
                             typeValue: {
@@ -119,39 +56,12 @@ describe('docsGen:complexTypes', () => {
                         },
                         {
                             kind: 'PropertySignature',
-                            name: 'pSymbol',
+                            name: 'pAny',
                             required: true,
                             typeValue: {
-                                raw: 'symbol',
+                                raw: 'any',
                             },
-                            uniqueId: '13',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pTuple',
-                            required: true,
-                            typeValue: {
-                                raw: "[boolean, number, string, any, unknown, never, void, null, undefined, string[], object, bigint, symbol, 'test']",
-                            },
-                            uniqueId: '15',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pUndefined',
-                            required: true,
-                            typeValue: {
-                                raw: 'undefined',
-                            },
-                            uniqueId: '9',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pUnion',
-                            required: false,
-                            typeValue: {
-                                raw: 'undefined | null | string | number | bigint | false | true | symbol | void | object | string[]',
-                            },
-                            uniqueId: '16',
+                            uniqueId: '4',
                         },
                         {
                             kind: 'PropertySignature',
@@ -164,12 +74,102 @@ describe('docsGen:complexTypes', () => {
                         },
                         {
                             kind: 'PropertySignature',
+                            name: 'pNever',
+                            required: true,
+                            typeValue: {
+                                raw: 'never',
+                            },
+                            uniqueId: '6',
+                        },
+                        {
+                            kind: 'PropertySignature',
                             name: 'pVoid',
                             required: true,
                             typeValue: {
                                 raw: 'void',
                             },
                             uniqueId: '7',
+                        },
+                        {
+                            kind: 'PropertySignature',
+                            name: 'pNull',
+                            required: true,
+                            typeValue: {
+                                raw: 'null',
+                            },
+                            uniqueId: '8',
+                        },
+                        {
+                            kind: 'PropertySignature',
+                            name: 'pUndefined',
+                            required: true,
+                            typeValue: {
+                                raw: 'undefined',
+                            },
+                            uniqueId: '9',
+                        },
+                        {
+                            kind: 'PropertySignature',
+                            name: 'pArray',
+                            required: true,
+                            typeValue: {
+                                raw: 'string[]',
+                            },
+                            uniqueId: '10',
+                        },
+                        {
+                            kind: 'PropertySignature',
+                            name: 'pObject',
+                            required: true,
+                            typeValue: {
+                                raw: 'object',
+                            },
+                            uniqueId: '11',
+                        },
+                        {
+                            kind: 'PropertySignature',
+                            name: 'pBigint',
+                            required: true,
+                            typeValue: {
+                                raw: 'bigint',
+                            },
+                            uniqueId: '12',
+                        },
+                        {
+                            kind: 'PropertySignature',
+                            name: 'pSymbol',
+                            required: true,
+                            typeValue: {
+                                raw: 'symbol',
+                            },
+                            uniqueId: '13',
+                        },
+                        {
+                            kind: 'PropertySignature',
+                            name: 'pLiteral',
+                            required: true,
+                            typeValue: {
+                                raw: "'test'",
+                            },
+                            uniqueId: '14',
+                        },
+                        {
+                            kind: 'PropertySignature',
+                            name: 'pTuple',
+                            required: true,
+                            typeValue: {
+                                raw: "[boolean, number, string, any, unknown, never, void, null, undefined, string[], object, bigint, symbol, 'test']",
+                            },
+                            uniqueId: '15',
+                        },
+                        {
+                            kind: 'PropertySignature',
+                            name: 'pUnion',
+                            required: false,
+                            typeValue: {
+                                raw: 'undefined | null | string | number | bigint | false | true | symbol | void | object | string[]',
+                            },
+                            uniqueId: '16',
                         },
                     ],
                     typeRef: {
@@ -260,6 +260,81 @@ describe('docsGen:complexTypes', () => {
                     kind: 'InterfaceDeclaration',
                     props: [
                         {
+                            kind: 'PropertySignature',
+                            name: 'aProp',
+                            required: true,
+                            typeValue: {
+                                raw: "'black' | 'white'",
+                            },
+                            uniqueId: '1',
+                        },
+                        {
+                            kind: 'PropertySignature',
+                            name: 'propExternalTypeTest',
+                            required: true,
+                            typeValue: {
+                                raw: 'HTMLElement',
+                            },
+                            uniqueId: '2',
+                        },
+                        {
+                            kind: 'PropertySignature',
+                            name: 'unionPropTest',
+                            required: true,
+                            typeValue: {
+                                raw: 'TUnionTest',
+                            },
+                            uniqueId: '3',
+                        },
+                        {
+                            comment: [
+                                'This is PropertySignature',
+                            ],
+                            kind: 'PropertySignature',
+                            name: 'propSignatureTest',
+                            required: true,
+                            typeValue: {
+                                raw: '{ name: string; value: any; }[]',
+                            },
+                            uniqueId: '4',
+                        },
+                        {
+                            comment: [
+                                'This is MethodSignature',
+                            ],
+                            kind: 'PropertySignature',
+                            name: 'methodSignatureTest',
+                            required: true,
+                            typeValue: {
+                                raw: '(a?: number | undefined, b?: number | undefined) => number | undefined',
+                            },
+                            uniqueId: '5',
+                        },
+                        {
+                            comment: [
+                                'This is MethodDeclaration',
+                            ],
+                            kind: 'PropertySignature',
+                            name: 'methodDeclarationTest',
+                            required: true,
+                            typeValue: {
+                                raw: '(p: number) => number',
+                            },
+                            uniqueId: '6',
+                        },
+                        {
+                            comment: [
+                                'This is GetAccessor',
+                            ],
+                            kind: 'GetAccessor',
+                            name: 'get someBool',
+                            required: true,
+                            typeValue: {
+                                raw: 'get someBool(): boolean',
+                            },
+                            uniqueId: '7',
+                        },
+                        {
                             from: {
                                 source: '../../../../test/test.tsx',
                                 typeName: {
@@ -274,15 +349,6 @@ describe('docsGen:complexTypes', () => {
                                 raw: 'number',
                             },
                             uniqueId: '8',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'aProp',
-                            required: true,
-                            typeValue: {
-                                raw: "'black' | 'white'",
-                            },
-                            uniqueId: '1',
                         },
                         {
                             comment: [
@@ -302,72 +368,6 @@ describe('docsGen:complexTypes', () => {
                                 raw: 'number',
                             },
                             uniqueId: '9',
-                        },
-                        {
-                            comment: [
-                                'This is GetAccessor',
-                            ],
-                            kind: 'GetAccessor',
-                            name: 'get someBool',
-                            required: true,
-                            typeValue: {
-                                raw: 'get someBool(): boolean',
-                            },
-                            uniqueId: '7',
-                        },
-                        {
-                            comment: [
-                                'This is MethodDeclaration',
-                            ],
-                            kind: 'PropertySignature',
-                            name: 'methodDeclarationTest',
-                            required: true,
-                            typeValue: {
-                                raw: '(p: number) => number',
-                            },
-                            uniqueId: '6',
-                        },
-                        {
-                            comment: [
-                                'This is MethodSignature',
-                            ],
-                            kind: 'PropertySignature',
-                            name: 'methodSignatureTest',
-                            required: true,
-                            typeValue: {
-                                raw: '(a?: number | undefined, b?: number | undefined) => number | undefined',
-                            },
-                            uniqueId: '5',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'propExternalTypeTest',
-                            required: true,
-                            typeValue: {
-                                raw: 'HTMLElement',
-                            },
-                            uniqueId: '2',
-                        },
-                        {
-                            comment: [
-                                'This is PropertySignature',
-                            ],
-                            kind: 'PropertySignature',
-                            name: 'propSignatureTest',
-                            required: true,
-                            typeValue: {
-                                raw: '{ name: string; value: any; }[]',
-                            },
-                            uniqueId: '4',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'unionPropTest',
-                            required: true,
-                            typeValue: {
-                                raw: 'TUnionTest',
-                            },
-                            uniqueId: '3',
                         },
                     ],
                     typeRef: {
@@ -616,6 +616,15 @@ describe('docsGen:complexTypes', () => {
                     props: [
                         {
                             kind: 'PropertySignature',
+                            name: 'srcData',
+                            required: true,
+                            typeValue: {
+                                raw: 'TSrcData',
+                            },
+                            uniqueId: '1',
+                        },
+                        {
+                            kind: 'PropertySignature',
                             name: 'dstData',
                             required: false,
                             typeValue: {
@@ -643,12 +652,12 @@ describe('docsGen:complexTypes', () => {
                         },
                         {
                             kind: 'PropertySignature',
-                            name: 'srcData',
+                            name: 'targetWidth',
                             required: true,
                             typeValue: {
-                                raw: 'TSrcData',
+                                raw: 'number',
                             },
-                            uniqueId: '1',
+                            uniqueId: '5',
                         },
                         {
                             kind: 'PropertySignature',
@@ -658,15 +667,6 @@ describe('docsGen:complexTypes', () => {
                                 raw: 'number',
                             },
                             uniqueId: '6',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'targetWidth',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
-                            },
-                            uniqueId: '5',
                         },
                     ],
                     typeRef: {
@@ -716,13 +716,13 @@ describe('docsGen:complexTypes', () => {
                                     nameFull: 'IBaseInterface<T>',
                                 },
                             },
-                            kind: 'MethodSignature',
-                            name: 'onValueChange',
+                            kind: 'PropertySignature',
+                            name: 'value',
                             required: true,
                             typeValue: {
-                                raw: '(newValue: string) => void',
+                                raw: 'string',
                             },
-                            uniqueId: '2',
+                            uniqueId: '1',
                         },
                         {
                             from: {
@@ -732,13 +732,13 @@ describe('docsGen:complexTypes', () => {
                                     nameFull: 'IBaseInterface<T>',
                                 },
                             },
-                            kind: 'PropertySignature',
-                            name: 'value',
+                            kind: 'MethodSignature',
+                            name: 'onValueChange',
                             required: true,
                             typeValue: {
-                                raw: 'string',
+                                raw: '(newValue: string) => void',
                             },
-                            uniqueId: '1',
+                            uniqueId: '2',
                         },
                     ],
                     typeRef: {

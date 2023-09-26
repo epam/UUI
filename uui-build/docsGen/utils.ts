@@ -8,21 +8,6 @@ export function makeRelativeToUuiRoot(fullPath: string) {
     return path.relative(uuiRoot, fullPath).replace(/\\/g, '/');
 }
 
-function propsComparator(p1: TTypeProp, p2: TTypeProp) {
-    function compareStr(s1: string, s2: string) {
-        return String(s1).localeCompare(String(s2));
-    }
-    return compareStr(p1.name, p2.name)
-        || compareStr(`${p1.from?.module}/${p1.from?.typeName.name}`, `${p2.from?.module}/${p2.from?.typeName.name}`)
-        || compareStr(String(p1.required), String(p2.required));
-}
-
-export function sortProps(propsArr: TTypeProp[]): TTypeProp[] | undefined {
-    if (propsArr) {
-        return [...propsArr].sort(propsComparator);
-    }
-}
-
 export function saveContentToFile(fullPath: string, contentToSave: object | string) {
     if (fs.existsSync(fullPath)) {
         fs.rmSync(fullPath, { force: true });
@@ -67,12 +52,12 @@ export class PropsSet {
         return [...this._propsMap.values()];
     }
 
-    static concatAndSort(psa: PropsSet[]): TTypeProp[] {
+    static concat(psa: PropsSet[]): TTypeProp[] {
         const tempPs = psa.reduce<PropsSet>((acc, ps) => {
             acc.addAll(ps.toArray());
             return acc;
         }, new PropsSet());
-        return sortProps(tempPs.toArray());
+        return tempPs.toArray();
     }
 
     static fromArray(pa: TTypeProp[]): PropsSet {
