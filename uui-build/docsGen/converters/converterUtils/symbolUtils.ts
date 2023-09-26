@@ -2,6 +2,7 @@ import { Node, Symbol, Type, TypeChecker } from 'ts-morph';
 import { TTypeName, TTypeValue } from '../../types';
 // eslint-disable-next-line import/no-cycle
 import { TypeUtils } from './typeUtils';
+// eslint-disable-next-line import/no-cycle
 import { NodeUtils } from './nodeUtils';
 
 export class SymbolUtils {

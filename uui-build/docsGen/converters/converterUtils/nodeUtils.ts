@@ -2,6 +2,7 @@ import { EmitHint, Node, SyntaxKind, ts } from 'ts-morph';
 import { isExternalFile, makeRelativeToUuiRoot } from '../../utils';
 import { getUuiModuleNameFromPath, SYNTAX_KIND_NAMES } from '../../constants';
 import { TTypeRef, TTypeValue } from '../../types';
+// eslint-disable-next-line import/no-cycle
 import { SymbolUtils } from './symbolUtils';
 import { TypeUtils } from './typeUtils';
 

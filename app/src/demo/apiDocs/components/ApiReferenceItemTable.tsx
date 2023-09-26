@@ -33,16 +33,6 @@ function isGroup(item: TTypeProp | TTypeGroup): item is TTypeGroup {
     return (item as TTypeGroup)._group;
 }
 
-function groupComparator(f1: TTypeGroup, f2: TTypeGroup) {
-    const from1 = (f1).from;
-    const from2 = (f2).from;
-    if (from1 && from2) {
-        return String(from1.typeName.name).localeCompare(String(from2.typeName.name))
-            || String(from1.module).localeCompare(String(from2.module));
-    }
-    return 0;
-}
-
 function getColumns(params: { isGroupedByFrom?: boolean, hasFrom?: boolean, isGroupColumns?: boolean }): DataColumnProps<TItem>[] {
     const { hasFrom = false, isGroupedByFrom = false, isGroupColumns = false } = params;
     const isFromVisible = hasFrom && !isGroupedByFrom;
@@ -176,7 +166,7 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
                     }
                 });
             }
-            const parentsArr = Array.from(parents.values()).sort(groupComparator);
+            const parentsArr = Array.from(parents.values());
             return (exportInfo.props as TItem[]).concat(parentsArr);
         }
         return [];

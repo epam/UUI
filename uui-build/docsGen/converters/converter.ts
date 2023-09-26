@@ -1,5 +1,5 @@
 import { Node, SyntaxKind, Type, Symbol, TypeChecker } from 'ts-morph';
-import { PropsSet, SimpleIdGen, sortProps } from '../utils';
+import { PropsSet, SimpleIdGen } from '../utils';
 import { IConverter, IConverterContext, TConvertable, TType, TTypeProp, TTypeValue } from '../types';
 import { NodeUtils } from './converterUtils/nodeUtils';
 import { TypeUtils } from './converterUtils/typeUtils';
@@ -134,14 +134,14 @@ function extractProps(parentNode: Node, context: IConverterContext): {
                 acc.push(PropsSet.fromArray(utProps));
                 return acc;
             }, []);
-            const props = PropsSet.concatAndSort(allPropsSets);
+            const props = PropsSet.concat(allPropsSets);
             return {
                 props,
                 fromUnion: true,
             };
         }
     } else {
-        const props = extractPropsFromNonUnionType({ parentNode, type, context, sort: true, idGen });
+        const props = extractPropsFromNonUnionType({ parentNode, type, context, idGen });
         return {
             props,
             fromUnion: false,
@@ -149,8 +149,8 @@ function extractProps(parentNode: Node, context: IConverterContext): {
     }
 }
 
-function extractPropsFromNonUnionType(params: { parentNode: Node, type: Type, context: IConverterContext, sort?: boolean, idGen: SimpleIdGen }): TTypeProp[] | undefined {
-    const { parentNode, type, context, sort, idGen } = params;
+function extractPropsFromNonUnionType(params: { parentNode: Node, type: Type, context: IConverterContext, idGen: SimpleIdGen }): TTypeProp[] | undefined {
+    const { parentNode, type, context, idGen } = params;
     const props = type.getProperties();
     if (props.length > 0) {
         const propsUnsorted = props.reduce<TTypeProp[]>((acc, propertySymbol) => {
@@ -160,9 +160,6 @@ function extractPropsFromNonUnionType(params: { parentNode: Node, type: Type, co
             }
             return acc;
         }, []);
-        if (sort) {
-            return sortProps(propsUnsorted);
-        }
         return propsUnsorted;
     }
 }
