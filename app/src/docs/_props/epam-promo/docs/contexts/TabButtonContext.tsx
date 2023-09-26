@@ -8,7 +8,7 @@ interface DemoComponentState {
     activeTab: 'Main' | 'demoTab' | 'Tools' | 'Options';
 }
 
-export class TabButtonContext extends React.Component<DemoComponentProps<ButtonProps & TabButtonMods>, DemoComponentState> {
+export class TabButtonContext<T extends DemoComponentProps> extends React.Component<DemoComponentProps<ButtonProps<T> & TabButtonMods>, DemoComponentState> {
     public static displayName = 'TabButtonContext';
     state: DemoComponentState = {
         activeTab: 'Main',

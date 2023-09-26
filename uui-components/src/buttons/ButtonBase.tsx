@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     cx,
-    ButtonBaseCoreProps,
     IHasForwardedRef,
     UuiContexts,
     isEventTargetInsideClickable,
@@ -10,15 +9,17 @@ import {
     uuiMarkers,
     UuiContext,
     isAnyParentHasClass,
+    ICanRedirect,
+    ButtonCoreProps,
 } from '@epam/uui-core';
 
-export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {}
+export type ButtonBaseProps<T> = ButtonCoreProps<T> & ICanRedirect & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement>;
 
 export const uuiInputElements = [
     uuiElement.checkbox, uuiElement.inputLabel, uuiElement.radioInput, uuiElement.switchBody,
 ];
 
-export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps> {
+export abstract class ButtonBase<T> extends React.Component<ButtonBaseProps<T>> {
     static contextType = UuiContext;
     context: UuiContexts;
     clickHandler = (e: any) => {
@@ -62,7 +63,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
 
     getProps?(): React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-    hasLink(link: ButtonProps['link']): link is NonNullable<ButtonProps['link']> {
+    hasLink(link: ButtonBaseProps<T>['link']): link is NonNullable<ButtonBaseProps<T>['link']> {
         return !!link;
     }
 

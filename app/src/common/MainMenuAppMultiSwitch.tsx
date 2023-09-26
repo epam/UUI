@@ -7,16 +7,16 @@ import {
 } from '@epam/promo';
 import { svc } from '../services';
 
-interface MainMenuAppMultiSwitchPropsItem<TValue> extends ButtonProps, ButtonMods {
+type MainMenuAppMultiSwitchPropsItem<TValue, T> = ButtonProps<T> & ButtonMods & {
     id: TValue;
-}
+};
 
-export interface MainMenuAppMultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IAnalyticableOnChange<TValue> {
-    items: MainMenuAppMultiSwitchPropsItem<TValue>[];
+export interface MainMenuAppMultiSwitchProps<TValue, T> extends IEditable<TValue>, SizeMod, IAnalyticableOnChange<TValue> {
+    items: MainMenuAppMultiSwitchPropsItem<TValue, T>[];
     color?: ButtonColor;
 }
 
-export class MainMenuAppMultiSwitch<TValue> extends React.Component<MainMenuAppMultiSwitchProps<TValue>> {
+export class MainMenuAppMultiSwitch<TValue, T> extends React.Component<MainMenuAppMultiSwitchProps<TValue, T>> {
     handleClick = (id: TValue) => {
         this.props.onValueChange(id);
         if (this.props.getValueChangeAnalyticsEvent) {
