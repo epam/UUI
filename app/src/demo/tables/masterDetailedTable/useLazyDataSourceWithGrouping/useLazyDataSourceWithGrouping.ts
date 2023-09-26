@@ -27,7 +27,7 @@ export function useLazyDataSourceWithGrouping<
     const api: LazyDataSourceApi<
     ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>,
     ToUnion<ComplexId<TGroups, TId, TFilter>>[],
-    TFilter
+    TFilter[keyof TGroups]
     > = async (request, ctx) => {
         const groupBy = config.getGroupBy();
 
@@ -49,7 +49,7 @@ export function useLazyDataSourceWithGrouping<
     return useLazyDataSource<
     ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>,
     ToUnion<ComplexId<TGroups, TId, TFilter>>[],
-    TFilter
+    TFilter[keyof TGroups]
     >(
         {
             ...config.getDefaultConfigProps(),

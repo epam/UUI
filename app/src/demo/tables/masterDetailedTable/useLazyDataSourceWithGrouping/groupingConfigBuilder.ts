@@ -2,8 +2,8 @@ import { DataRowOptions, LazyDataSourceApiRequest, LazyDataSourceApiRequestConte
 import {
     BaseGroups,
     BaseGroupsIds,
-    ComplexId, ConfigDefault, EntitiesConfig, EntityConfig, GroupByKeys,
-    GroupingConfig, GroupingsConfig, TGroupsWithMeta, ToUnion, GroupByTokens, GroupBy,
+    ComplexId, ConfigDefault, EntitiesConfig, EntityConfig,
+    GroupingConfig, GroupingsConfig, TGroupsWithMeta, ToUnion, GroupByTokens, GroupBy, BaseFilter, FilterFromParentId,
 } from './types';
 import { ID, PATH } from './constants';
 import isEqual from 'lodash.isequal';
@@ -13,7 +13,7 @@ const DEFAULT_CONFIG = Symbol('DEFAULT_CONFIG');
 export class GroupingConfigBuilder<
     TGroups extends BaseGroups,
     TId extends BaseGroupsIds<TGroups>,
-    TFilter extends { groupBy?: GroupByKeys<TGroups> }
+    TFilter extends BaseFilter<TGroups>,
 > {
     private entitiesConfig: EntitiesConfig<TGroups, TId, TFilter> = {};
     private groupingsConfig: GroupingsConfig<TGroups, TId, TFilter> = {};
@@ -36,7 +36,11 @@ export class GroupingConfigBuilder<
         config: GroupingConfig<TGroups, TType, TId, TFilter>,
     ) {
         this.setGroupByToEntity(config.type, groupBy);
-        this.groupingsConfig[config.type] = config;
+        this.groupingsConfig[config.type] = {
+            ...config,
+            getFilter: config.getFilter ?? (() => ({} as TFilter[TType])),
+        };
+
         return this;
     }
 
@@ -76,7 +80,7 @@ export class GroupingConfigBuilder<
 
     private async api<TType extends keyof TGroups>(
         type: TType,
-        ...apiArgs: Parameters<LazyDataSourceProps<TGroupsWithMeta<TGroups, TId, TFilter>[TType], TId[TType], TFilter>['api']>
+        ...apiArgs: Parameters<LazyDataSourceProps<TGroupsWithMeta<TGroups, TId, TFilter>[TType], TId[TType], TFilter[TType]>['api']>
     ) {
         return (this.entitiesConfig[type]?.api ?? this.groupingsConfig[type]?.api)(...apiArgs);
     }
@@ -100,7 +104,7 @@ export class GroupingConfigBuilder<
         const response: LazyDataSourceApiResponse<ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>> = { items: [] };
 
         const promises = typesToLoad.map(async (type) => {
-            const idsRequest: LazyDataSourceApiRequest<any, any, TFilter> = { ids: idsByType[type] };
+            const idsRequest: LazyDataSourceApiRequest<any, any, TFilter[keyof TGroups]> = { ids: idsByType[type] };
             const apiResponse = await this.api(type, idsRequest);
             response.items = [...response.items, ...apiResponse.items];
         });
@@ -112,7 +116,7 @@ export class GroupingConfigBuilder<
 
     async entityApi<TType extends keyof TGroups>(
         ...apiArgs: Parameters<
-        LazyDataSourceProps<TGroupsWithMeta<TGroups, TId, TFilter>[TType], TId[TType], TFilter>['api']
+        LazyDataSourceProps<TGroupsWithMeta<TGroups, TId, TFilter>[TType], TId[TType], TFilter[TType]>['api']
         >
     ) {
         return this.entitiesConfig[this.defaultEntity].api(...apiArgs);
@@ -147,11 +151,10 @@ export class GroupingConfigBuilder<
 
     async groupByApi(
         groupBy: GroupBy<TGroups, TFilter>,
-        ...apiArgs: Parameters<LazyDataSourceProps<ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>, TId[keyof TGroups], TFilter>['api']>
+        ...apiArgs: Parameters<LazyDataSourceProps<ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>, TId[keyof TGroups], TFilter[keyof TGroups]>['api']>
     ) {
         const [request, context] = apiArgs;
-        const filterFromGroupBy = context.parent ? this[DEFAULT_CONFIG].getFilterFromGroupByPath(context.parent[ID]) : undefined;
-
+        const filterFromGroupBy = context.parent ? this.getFilterFromParentId(context.parent[ID]) : {};
         const groupByPath = this.getGroupByPathForParent(groupBy, context.parent);
         const lastGroupBy = groupByPath[groupByPath.length - 1];
         if (Array.isArray(groupBy)) {
@@ -159,8 +162,10 @@ export class GroupingConfigBuilder<
                 this.checkApiForGroupBy(lastGroupBy);
 
                 const type = this.groupByToEntityType[lastGroupBy];
+                const filter = this.groupingsConfig[type].getFilter(filterFromGroupBy);
+
                 const response = await this.groupingsConfig[type].api(
-                    { ...request, filter: { ...request.filter, ...filterFromGroupBy, groupBy: lastGroupBy } },
+                    { ...request, filter: { ...request.filter, ...filter, groupBy: lastGroupBy } },
                     context,
                 );
                 return this.getResultsWithMeta(response, context.parent, groupByPath);
@@ -175,10 +180,11 @@ export class GroupingConfigBuilder<
             if (isLastNestingLevel(context.parent)) {
                 if (isEqual(grouping, groupBy)) {
                     this.checkApiForGroupBy(lastGroupBy);
+                    const filter = this.entitiesConfig[this.defaultEntity].getFilter(filterFromGroupBy);
 
                     const response = await this.entitiesConfig[this.defaultEntity].api({
                         ...request,
-                        filter: { ...request.filter, ...filterFromGroupBy, groupBy: lastGroupBy },
+                        filter: { ...request.filter, ...filter, groupBy: lastGroupBy },
                     }, context);
                     return this.getResultsWithMeta(response, context.parent, groupByPath);
                 }
@@ -186,8 +192,10 @@ export class GroupingConfigBuilder<
                 this.checkApiForGroupBy(lastGroupBy);
 
                 const type = this.groupByToEntityType[lastGroupBy];
+                const filter = this.groupingsConfig[type].getFilter(filterFromGroupBy);
+
                 const response = await this.groupingsConfig[type].api(
-                    { ...request, filter: { ...request.filter, ...filterFromGroupBy, groupBy: lastGroupBy } },
+                    { ...request, filter: { ...request.filter, ...filter, groupBy: lastGroupBy } },
                     context,
                 );
                 return this.getResultsWithMeta(response, context.parent, groupByPath);
@@ -196,8 +204,10 @@ export class GroupingConfigBuilder<
             this.checkApiForGroupBy(lastGroupBy);
 
             const type = this.groupByToEntityType[lastGroupBy];
+            const filter = this.groupingsConfig[type].getFilter(filterFromGroupBy);
+
             const response = await this.groupingsConfig[type].api(
-                { ...request, filter: { ...request.filter, ...filterFromGroupBy, groupBy: lastGroupBy } },
+                { ...request, filter: { ...request.filter, ...filter, groupBy: lastGroupBy } },
                 context,
             );
             return this.getResultsWithMeta(response, context.parent, groupByPath);
@@ -206,8 +216,10 @@ export class GroupingConfigBuilder<
         this.checkApiForGroupBy(lastGroupBy);
 
         const type = this.groupByToEntityType[lastGroupBy];
+        const filter = this.groupingsConfig[type].getFilter(filterFromGroupBy);
+
         const response = await this.groupingsConfig[type].api(
-            { ...request, filter: { ...request.filter, ...filterFromGroupBy } },
+            { ...request, filter: { ...request.filter, ...filter } },
             context,
         );
         return this.getResultsWithMeta(response, context.parent, groupByPath);
@@ -234,6 +246,14 @@ export class GroupingConfigBuilder<
                 return item;
             }),
         };
+    }
+
+    private getFilterFromParentId(parentId: ToUnion<ComplexId<TGroups, TId, TFilter>>[]): FilterFromParentId<TGroups, TId, TFilter> {
+        return parentId.reduce(
+            (filter, [, groupBy, id]) =>
+                groupBy ? { ...filter, [groupBy]: id } : filter,
+            {},
+        );
     }
 
     private extractParentIdFromMeta(item: ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>) {

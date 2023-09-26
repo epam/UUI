@@ -23,7 +23,7 @@ export function MasterDetailedTable() {
     const closeInfoPanel = useCallback(() => setIsInfoPanelOpened(false), []);
 
     const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([]);
-    const filters = useMemo(() => getFilters<PersonTableFilter>(), []);
+    const filters = useMemo(() => getFilters<PersonTableFilter['Person']>(), []);
     const groupings = useMemo(() => groupingsList, []);
 
     useEffect(
@@ -32,7 +32,7 @@ export function MasterDetailedTable() {
         [],
     );
 
-    const tableStateApi = useTableState<PersonTableFilter>({
+    const tableStateApi = useTableState<PersonTableFilter['Person']>({
         columns: personColumns,
         initialPresets: initialPresets,
         onPresetCreate: svc.api.presets.createPreset,
@@ -58,12 +58,6 @@ export function MasterDetailedTable() {
             .addDefault({
                 getType: ({ __typename }) => __typename,
                 getGroupBy: () => tableStateApi.tableState.filter?.groupBy,
-                getFilterFromGroupByPath: (parents) => parents.reduce(
-                    (filter, [, groupBy, parentId]) =>
-                        groupBy ? { ...filter, [`${groupBy}Id`]: parentId } : filter,
-                    {},
-                ),
-                    
                 backgroundReload: true,
                 fetchStrategy: tableStateApi.tableState.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
                 selectAll: tableStateApi.tableState.filter?.groupBy === 'location' ? false : true,
@@ -76,6 +70,11 @@ export function MasterDetailedTable() {
                 },
             })
             .addEntity('Person', {
+                getFilter: ({ location, department, jobTitle }) => ({
+                    ...(location ? { locationId: location } : {}),
+                    ...(department ? { departmentId: department as number } : {}),
+                    ...(jobTitle ? { jobTitleId: jobTitle as number } : {}),
+                }),
                 api: async ({ ids, ...request }) => {
                     const { groupBy, ...filter } = request.filter ?? {};
                     if (ids != null) {
@@ -90,7 +89,6 @@ export function MasterDetailedTable() {
                 isLastNestingLevel: (location) => location.type === 'city',
 
                 getRowOptions: () => ({ checkbox: { isVisible: false } }),
-                getParentId: (loc) => loc.parentId,
                 getChildCount: (location) => location.type === 'city' ? 1 : 10,
                 api: async ({ ids, ...request }, ctx) => {
                     if (ids != null) {
@@ -106,14 +104,17 @@ export function MasterDetailedTable() {
             })
             .addGrouping(['jobTitle', 'department'], {
                 type: 'PersonGroup',
-                getParentId: () => null,
                 getChildCount: (group) => group.count,
+                getFilter: ({ department, jobTitle }) => ({
+                    ...(department ? { departmentId: department as number } : {}),
+                    ...(jobTitle ? { jobTitleId: jobTitle as number } : {}),
+                }),
                 api: async ({ ids, ...request }) => {
                     const { groupBy, ...filter } = request.filter ?? {};
                     if (ids != null) {
                         return await svc.api.demo.personGroups({ ids });
                     }
-                    
+ 
                     // TODO: check case, when groupBy is not passed
                     if (groupBy) {
                         return await svc.api.demo.personGroups(
@@ -137,7 +138,7 @@ export function MasterDetailedTable() {
             <FilterPanelOpener isFilterPanelOpened={ isFilterPanelOpened } setIsFilterPanelOpened={ setIsFilterPanelOpened } />
 
             <SlidingPanel isVisible={ isFilterPanelOpened } width={ 288 } position="left">
-                <FilterPanel<PersonTableFilter>
+                <FilterPanel<PersonTableFilter['Person']>
                     { ...tableStateApi }
                     filters={ filters }
                     columns={ personColumns }
@@ -152,7 +153,7 @@ export function MasterDetailedTable() {
                 <DataTable
                     headerTextCase="upper"
                     getRows={ view.getVisibleRows }
-                    columns={ personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId[], PersonTableFilter>[] }
+                    columns={ personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId[], PersonTableFilter['Person']>[] }
                     filters={ filters }
                     value={ tableStateApi.tableState }
                     onValueChange={ tableStateApi.setTableState }

@@ -9,13 +9,15 @@ export type UnboxGroupsFromUnion<TypeField extends keyof Group, Group extends { 
 };
 
 export type ToUnion<TGroups> = TGroups[keyof TGroups];
-export type GroupByTokens<TGroups, TFilter extends BaseFilter<TGroups>> = UnboxArray<TFilter['groupBy']>;
+export type GroupByTokens<TGroups, TFilter extends BaseFilter<TGroups>> = UnboxArray<TFilter[keyof TGroups]['groupBy']>;
 export type GroupBy<TGroups, TFilter extends BaseFilter<TGroups>> = GroupByTokens<TGroups, TFilter> | GroupByTokens<TGroups, TFilter>[];
 
 export type UnboxArray<T extends Array<any> | any> = T extends Array<infer U> ? U : T;
 
 export type BaseFilter<TGroups> = {
-    groupBy?: GroupByKeys<TGroups>;
+    [K in keyof TGroups]: {
+        groupBy?: GroupByKeys<TGroups>;
+    }
 };
 
 export interface GetType<TGroups, TFilter extends BaseFilter<TGroups>> {
@@ -24,11 +26,10 @@ export interface GetType<TGroups, TFilter extends BaseFilter<TGroups>> {
 }
 
 type CommonConfigDefault<TGroups, TId extends BaseGroupsIds<TGroups>, TFilter extends BaseFilter<TGroups>> =
-    Partial<LazyDataSourceProps<ToUnion<TGroups>, ToUnion<ComplexId<TGroups, TId, TFilter>>[], TFilter>>
+    Partial<LazyDataSourceProps<ToUnion<TGroups>, ToUnion<ComplexId<TGroups, TId, TFilter>>[], TFilter[keyof TGroups]>>
     & GetType<TGroups, TFilter>
     & {
         isLastNestingLevel?: (item: TGroups[keyof TGroups]) => boolean;
-        getFilterFromGroupByPath?: (path: ToUnion<ComplexId<TGroups, TId, TFilter>>[]) => TFilter,
     };
 
 export type ConfigDefault<TGroups, TId extends BaseGroupsIds<TGroups>, TFilter extends BaseFilter<TGroups>> =
@@ -43,9 +44,9 @@ type ApiType<
     TId extends BaseGroupsIds<TGroups>,
     TFilter extends BaseFilter<TGroups>
 > = (
-    request: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['api']>[0],
-    context: Parameters<LazyDataSourceProps<TGroups[keyof TGroups], TId[TType], TFilter>['api']>[1],
-) => ReturnType<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter>['api']>;
+    request: Parameters<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter[TType]>['api']>[0],
+    context: Parameters<LazyDataSourceProps<TGroups[keyof TGroups], TId[TType], TFilter[TType]>['api']>[1],
+) => ReturnType<LazyDataSourceProps<TGroups[TType], TId[TType], TFilter[TType]>['api']>;
 
 type GetRowOptionsType<
     TGroups,
@@ -62,11 +63,12 @@ type EntityLazyDataSourceProps<
     TId extends BaseGroupsIds<TGroups>,
     TFilter extends BaseFilter<TGroups>
 > =
-    LazyDataSourceGetters<TGroups[TType], TId[TType], TFilter>
+    LazyDataSourceGetters<TGroupsWithMeta<TGroups, TId, TFilter>[TType], TId[TType], TFilter[TType]>
     & {
         api: ApiType<TGroups, TType, TId, TFilter>;
         getRowOptions: GetRowOptionsType<TGroups, TType, TId, TFilter>;
         isLastNestingLevel: (item: TGroups[TType]) => boolean;
+        getFilter: (filter: FilterFromParentId<TGroups, TId, TFilter>) => TFilter[TType];
     };
 
 export type EntityConfig<
@@ -75,7 +77,7 @@ export type EntityConfig<
     TId extends BaseGroupsIds<TGroups>,
     TFilter extends BaseFilter<TGroups>
 > =
-    Partial<EntityLazyDataSourceProps<TGroupsWithMeta<TGroups, TId, TFilter>, TType, TId, TFilter>>;
+    Partial<EntityLazyDataSourceProps<TGroups, TType, TId, TFilter>>;
 
 export type GroupingConfig<
     TGroups,
@@ -83,7 +85,7 @@ export type GroupingConfig<
     TId extends BaseGroupsIds<TGroups>,
     TFilter extends BaseFilter<TGroups>
 > =
-    Partial<EntityLazyDataSourceProps<TGroupsWithMeta<TGroups, TId, TFilter>, TType, TId, TFilter>> & { type: TType };
+    Partial<EntityLazyDataSourceProps<TGroups, TType, TId, TFilter>> & { type: TType };
 
 export type EntitiesConfig<
     TGroups,
@@ -137,3 +139,17 @@ export type TGroupsWithMeta<
 > = {
     [TType in keyof TGroups]: TGroupWithMeta<TGroups, TType, TId, TFilter>;
 };
+
+type TFilterGroupByTokens<TGroups, TFilter extends BaseFilter<TGroups>> = {
+    [K in keyof TFilter]: UnboxArray<TFilter[K]['groupBy']>;
+};
+
+export type FilterFromParentId<
+    TGroups,
+    TId extends BaseGroupsIds<TGroups>,
+    TFilter extends BaseFilter<TGroups>
+> = {
+    [K in keyof TGroups]: {
+        [G in TFilterGroupByTokens<TGroups, TFilter>[K]]?: TId[K];
+    };
+}[keyof TGroups];
