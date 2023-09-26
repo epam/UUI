@@ -644,28 +644,28 @@
 
     .uui-font-sans {
         --uui-text-font: var(--uui-font);
-        --uui-font-weight: 400;
+        --uui-text-font-weight: 400;
     }
 
     .uui-font-sans-semibold {
         --uui-text-font: var(--uui-font);
-        --uui-font-weight: 600;
+        --uui-text-font-weight: 600;
 
     }
 
     .uui-font-sans-italic {
         --uui-text-font: var(--uui-font);
-        --uui-font-weight: 400;
-        --uui-font-style: italic;
+        --uui-text-font-weight: 400;
+        --uui-text-font-style: italic;
     }
 
     .uui-font-museo-sans {
         --uui-text-font: var(--font-primary);
-        --uui-font-weight: normal;
+        --uui-text-font-weight: normal;
     }
 
     .uui-font-sans-light {
         --uui-text-font: var(--uui-font);
-        --uui-font-weight: 300;
+        --uui-text-font-weight: 300;
     }
 }
