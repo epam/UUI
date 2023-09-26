@@ -1,24 +1,24 @@
-import { Node } from 'ts-morph';
 import { Converter } from './converter';
-import { ConverterUtils } from './converterUtils';
-import { TTypeValue } from '../types';
+import { TConvertable, TTypeValue } from '../types';
+import { NodeUtils } from './converterUtils/nodeUtils';
+import { TypeUtils } from './converterUtils/typeUtils';
+import { ConvertableUtils } from './converterUtils/convertableUtils';
 
 export class Union extends Converter {
-    override isSupported(typeNode: Node) {
-        return ConverterUtils.getTypeFromNode(typeNode).isUnion();
+    override isSupported(nodeOrSymbol: TConvertable) {
+        return ConvertableUtils.getType(nodeOrSymbol, this.getTypeChecker()).isUnion();
     }
 
-    protected override isPropsSupported(typeNode: Node) {
-        return super.isPropsSupported(typeNode);
-    }
+    public override convertToTypeValue(nodeOrSymbol: TConvertable, print: boolean): TTypeValue {
+        const type = ConvertableUtils.getType(nodeOrSymbol, this.getTypeChecker());
+        const node = ConvertableUtils.getNode(nodeOrSymbol);
+        const types = type.getUnionTypes();
 
-    public override getTypeValue(typeNode: Node, print: boolean): TTypeValue {
-        const types = typeNode.getType().getUnionTypes();
         return {
             raw: types.map((t) => {
-                return ConverterUtils.getCompilerTypeText(t);
+                return TypeUtils.getCompilerTypeText(t);
             }).join(' | '),
-            print: print ? ConverterUtils.printNode(typeNode) : undefined,
+            print: print ? NodeUtils.printNode(node) : undefined,
         };
     }
 }

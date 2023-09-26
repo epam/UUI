@@ -694,4 +694,70 @@ describe('docsGen:complexTypes', () => {
         };
         expect(generateDocs(input)).toEqual(output);
     });
+
+    test('should convert interface when it extends another interface and passes specific generic parameter to it', () => {
+        const input = `
+            interface IBaseInterface<T> {
+                value: T;
+                onValueChange(newValue: T): void;
+            }            
+            export interface IInterface extends IBaseInterface<string> {};
+        `;
+        const output = {
+            '@epam/test-module': {
+                IInterface: {
+                    kind: 'InterfaceDeclaration',
+                    props: [
+                        {
+                            from: {
+                                source: '../../../../test/test.tsx',
+                                typeName: {
+                                    name: 'IBaseInterface',
+                                    nameFull: 'IBaseInterface<T>',
+                                },
+                            },
+                            kind: 'MethodSignature',
+                            name: 'onValueChange',
+                            required: true,
+                            typeValue: {
+                                raw: '(newValue: string) => void',
+                            },
+                            uniqueId: '2',
+                        },
+                        {
+                            from: {
+                                source: '../../../../test/test.tsx',
+                                typeName: {
+                                    name: 'IBaseInterface',
+                                    nameFull: 'IBaseInterface<T>',
+                                },
+                            },
+                            kind: 'PropertySignature',
+                            name: 'value',
+                            required: true,
+                            typeValue: {
+                                raw: 'string',
+                            },
+                            uniqueId: '1',
+                        },
+                    ],
+                    typeRef: {
+                        source: '../../../../test/test.tsx',
+                        typeName: {
+                            name: 'IInterface',
+                            nameFull: 'IInterface',
+                        },
+                    },
+                    typeValue: {
+                        print: [
+                            'interface IInterface extends IBaseInterface<string> {',
+                            '}',
+                        ],
+                        raw: 'IInterface',
+                    },
+                },
+            },
+        };
+        expect(generateDocs(input)).toEqual(output);
+    });
 });

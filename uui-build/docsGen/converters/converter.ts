@@ -1,31 +1,33 @@
-import { Node, SyntaxKind, Type } from 'ts-morph';
+import { Node, SyntaxKind, Type, Symbol, TypeChecker } from 'ts-morph';
 import { PropsSet, SimpleIdGen, sortProps } from '../utils';
-import { IConverter, IConverterContext, TType, TTypeProp, TTypeValue } from '../types';
-import { ConverterUtils } from './converterUtils';
+import { IConverter, IConverterContext, TConvertable, TType, TTypeProp, TTypeValue } from '../types';
+import { NodeUtils } from './converterUtils/nodeUtils';
+import { TypeUtils } from './converterUtils/typeUtils';
+import { SymbolUtils } from './converterUtils/symbolUtils';
+import { ConvertableUtils } from './converterUtils/convertableUtils';
 
 export class Converter implements IConverter {
     constructor(public readonly context: IConverterContext) {}
 
-    public getTypeValue(typeNode: Node, print: boolean): TTypeValue {
-        return ConverterUtils.getTypeValueFromNode(typeNode, print);
+    convertToTypeValue(nodeOrSymbol: TConvertable, print: boolean): TTypeValue {
+        if (Node.isNode(nodeOrSymbol)) {
+            const node = ConvertableUtils.getNode(nodeOrSymbol);
+            return NodeUtils.getTypeValueFromNode(node, print);
+        }
+        return SymbolUtils.getTypeValueFromNode(nodeOrSymbol, print);
     }
 
-    protected isPropsSupported(typeNode: Node) {
-        const type = typeNode.getType();
-        const isExternalType = ConverterUtils.isExternalNode(typeNode);
-        return ConverterUtils.isPropsSupportedByType({ type, isExternalType });
+    isSupported(nodeOrSymbol: TConvertable) {
+        return !!nodeOrSymbol;
     }
 
-    public isSupported(typeNode: Node) {
-        return !!typeNode;
-    }
-
-    public convert(typeNode: Node): TType {
-        const kind = ConverterUtils.getSyntaxKindNameFromNode(typeNode);
-        const typeRef = ConverterUtils.getTypeRef(typeNode);
-        const typeValue = this.getTypeValue(typeNode, true);
-        const comment = ConverterUtils.getCommentFromNode(typeNode);
-        const propsGen = this.isPropsSupported(typeNode) ? extractProps(typeNode, this.context) : undefined;
+    convert(nodeOrSymbol: TConvertable): TType {
+        const typeValue = this.convertToTypeValue(nodeOrSymbol, true);
+        const node = ConvertableUtils.getNode(nodeOrSymbol);
+        const kind = NodeUtils.getSyntaxKindNameFromNode(node);
+        const typeRef = NodeUtils.getTypeRef(node);
+        const comment = NodeUtils.getCommentFromNode(node);
+        const propsGen = this.isPropsSupported(node) ? extractProps(node, this.context) : undefined;
         const res: TType = {
             kind,
             typeRef,
@@ -36,15 +38,26 @@ export class Converter implements IConverter {
         if (propsGen?.fromUnion) {
             res.propsFromUnion = true;
         }
-        this.context.stats.checkConvertedExport(res, ConverterUtils.isDirectExportFromFile(typeNode));
+        this.context.stats.checkConvertedExport(res, NodeUtils.isDirectExportFromFile(node));
 
         return res;
     }
+
+    protected getTypeChecker(): TypeChecker {
+        return this.context.project.getTypeChecker();
+    }
+
+    protected isPropsSupported(node: Node) {
+        const type = node.getType();
+        const isExternalType = NodeUtils.isExternalNode(node);
+        return TypeUtils.isPropsSupportedByType({ type, isExternalType });
+    }
 }
 
-function mapSingleMember(params: { parentNode?: Node, propertyNode: Node, context: IConverterContext, idGen: SimpleIdGen }): TTypeProp | undefined {
-    const { parentNode, propertyNode, context, idGen } = params;
+function mapSingleMember(params: { parentNode?: Node, propertySymbol: Symbol, context: IConverterContext, idGen: SimpleIdGen }): TTypeProp | undefined {
+    const { parentNode, propertySymbol, context, idGen } = params;
     let prop: TTypeProp | undefined = undefined;
+    const propertyNode = SymbolUtils.getNodeFromSymbol(propertySymbol);
     const nKind = propertyNode.getKind();
     const isSupported = [
         SyntaxKind.PropertySignature,
@@ -56,14 +69,14 @@ function mapSingleMember(params: { parentNode?: Node, propertyNode: Node, contex
     ].indexOf(nKind) !== -1;
 
     if (isSupported) {
-        const comment = ConverterUtils.getCommentFromNode(propertyNode);
-        const from = ConverterUtils.getTypeParentRef(propertyNode, parentNode);
+        const comment = NodeUtils.getCommentFromNode(propertyNode);
+        const from = NodeUtils.getTypeParentRef(propertyNode, parentNode);
         let name = Node.isPropertyNamed(propertyNode) ? propertyNode.getName() : '';
         const typeNode = Node.isTypeAliasDeclaration(propertyNode) ? propertyNode.getTypeNode() : propertyNode;
         if (!typeNode) {
             return;
         }
-        const converted = context.convert({ typeNode, isTypeProp: true });
+        const converted = context.convert({ nodeOrSymbol: propertySymbol, isTypeProp: true });
         if (!converted) {
             return;
         }
@@ -79,9 +92,9 @@ function mapSingleMember(params: { parentNode?: Node, propertyNode: Node, contex
                 raw = `${name}(${structureParams.name}: ${structureParams.type})`;
             }
         }
-        const kind = ConverterUtils.getSyntaxKindNameFromNode(typeNode);
+        const kind = NodeUtils.getSyntaxKindNameFromNode(typeNode);
         const hasQuestionToken = Node.isQuestionTokenable(propertyNode) ? propertyNode.hasQuestionToken() : false;
-        const required = !(ConverterUtils.getTypeFromNode(typeNode).isNullable() || hasQuestionToken);
+        const required = !(NodeUtils.getTypeFromNode(typeNode).isNullable() || hasQuestionToken);
         const uniqueId = idGen.getNextId();
         prop = {
             uniqueId,
@@ -102,18 +115,18 @@ function extractProps(parentNode: Node, context: IConverterContext): {
     props: TTypeProp[],
     fromUnion: boolean
 } | undefined {
-    const type = ConverterUtils.getTypeFromNode(parentNode);
+    const type = NodeUtils.getTypeFromNode(parentNode);
     const idGen = new SimpleIdGen();
     if (type.isUnion()) {
         const unionTypes = type.getUnionTypes();
         const allSupportProps = unionTypes.every((singleUnionType) => {
-            const typeNode = ConverterUtils.getNodeFromType(singleUnionType);
+            const typeNode = TypeUtils.getNodeFromType(singleUnionType);
             /*
              * If node isn't available for this type, then we treat it as internal.
              * I hope it's OK - in the worst case, the end user will see a bunch of props from the external type.
              */
-            const isExternalType = typeNode ? ConverterUtils.isExternalNode(typeNode) : false;
-            return ConverterUtils.isPropsSupportedByType({ type: singleUnionType, isExternalType });
+            const isExternalType = typeNode ? NodeUtils.isExternalNode(typeNode) : false;
+            return TypeUtils.isPropsSupportedByType({ type: singleUnionType, isExternalType });
         });
         if (allSupportProps) {
             const allPropsSets = unionTypes.reduce<PropsSet[]>((acc, unionTypeItem) => {
@@ -140,10 +153,8 @@ function extractPropsFromNonUnionType(params: { parentNode: Node, type: Type, co
     const { parentNode, type, context, sort, idGen } = params;
     const props = type.getProperties();
     if (props.length > 0) {
-        const propsUnsorted = props.reduce<TTypeProp[]>((acc, symb) => {
-            const decls = symb.getDeclarations();
-            const propertyNode = decls[0];
-            const mapped = mapSingleMember({ parentNode, propertyNode, context, idGen });
+        const propsUnsorted = props.reduce<TTypeProp[]>((acc, propertySymbol) => {
+            const mapped = mapSingleMember({ parentNode, propertySymbol, context, idGen });
             if (mapped) {
                 acc.push(mapped);
             }

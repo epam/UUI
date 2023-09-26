@@ -1,4 +1,4 @@
-import { ExportedDeclarations, Project, Node, SyntaxKind } from 'ts-morph';
+import { ExportedDeclarations, Project, Node, Symbol, SyntaxKind } from 'ts-morph';
 
 export type TTypeName = {
     name: string;
@@ -40,15 +40,17 @@ export type TUuiModulesExports = Record<TModuleName, { project: Project, exporte
 export interface IConverterConstructor {
     new (context: IConverterContext): IConverter;
 }
+
+export type TConvertable = Node | Symbol;
 export interface IConverter {
-    isSupported(typeNode: Node): boolean;
-    getTypeValue(typeNode: Node, print: boolean): TTypeValue
-    convert(typeNode: Node): TType
+    isSupported(nodeOrSymbol: TConvertable): boolean;
+    convert(nodeOrSymbol: TConvertable): TType
+    convertToTypeValue(nodeOrSymbol: TConvertable, print: boolean): TTypeValue
 }
 export interface IConverterContext {
     project: Project
     stats: IDocGenStats
-    convert(params: { typeNode: Node, isTypeProp: boolean }): TType | undefined
+    convert(params: { nodeOrSymbol: TConvertable, isTypeProp: boolean }): TType | undefined
 }
 
 export type TDocGenStatsResult_Exports = {
