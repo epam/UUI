@@ -6,7 +6,16 @@ export type PersonTableRecord = Person | PersonGroup | Location;
 export type PersonTableRecordType = PersonTableRecord['__typename'];
 type GroupBy = 'jobTitle' | 'department' | 'location';
 export type PersonTableRecordId = [PersonTableRecordType, GroupBy, string | number];
-export type PersonTableFilter = DataQueryFilter<Person> & { groupBy?: GroupBy | GroupBy[] };
+interface GroupByFilter {
+    groupBy?: GroupBy | GroupBy[];
+}
+
+export type PersonTableFilter = {
+    Person: DataQueryFilter<Person> & GroupByFilter,
+    Location: DataQueryFilter<Location> & GroupByFilter,
+    PersonGroup: DataQueryFilter<PersonGroup> & GroupByFilter,
+};
+
 export interface Grouping {
     id: string;
     name: string;
