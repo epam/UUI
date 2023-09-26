@@ -1,9 +1,15 @@
 import { ExportedDeclarations, Project, SyntaxKind } from 'ts-morph';
 import path from 'path';
 import { TExportedDeclarations, TUuiModulesExports } from './types';
-import { INCLUDED_EXPORT_KINDS, INCLUDED_UUI_PACKAGES, INDEX_PATH, TSCONFIG_PATH } from './constants';
+import {
+    getUuiModuleNameFromPath,
+    INCLUDED_EXPORT_KINDS,
+    INCLUDED_UUI_PACKAGES,
+    INDEX_PATH,
+    SYNTAX_KIND_NAMES,
+    TSCONFIG_PATH,
+} from './constants';
 import { stats } from './stats';
-import { ConverterUtils } from './converters/converterUtils';
 
 export function extractExports() {
     return Object.keys(INCLUDED_UUI_PACKAGES).reduce<TUuiModulesExports>((acc, packageName) => {
@@ -42,8 +48,8 @@ export function extractExportsFromTsProject(params: { project: Project, mainFile
     return ed.reduce<TExportedDeclarations>((accEd, [name, entry]) => {
         const kind = getExportKind(entry);
         const isAllowed = filterExportDeclaration(kind, name);
-        const module = ConverterUtils.getUuiModuleNameFromPath(mainFilePath);
-        const kindStr = ConverterUtils.kindToString(kind);
+        const module = getUuiModuleNameFromPath(mainFilePath);
+        const kindStr = kindToString(kind);
 
         if (isAllowed) {
             accEd[name] = {
@@ -64,4 +70,8 @@ function getExportKind(entry: ExportedDeclarations[]) {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function filterExportDeclaration(kind: SyntaxKind, name: string) {
     return INCLUDED_EXPORT_KINDS.indexOf(kind) !== -1;
+}
+
+function kindToString(kind: SyntaxKind): string {
+    return SYNTAX_KIND_NAMES[kind];
 }

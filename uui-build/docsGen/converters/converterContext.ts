@@ -1,10 +1,11 @@
-import { Node, Project } from 'ts-morph';
-import { IConverter, IConverterConstructor, IConverterContext, IDocGenStats } from '../types';
-import { ConverterUtils } from './converterUtils';
+import { Project } from 'ts-morph';
+import { IConverter, IConverterConstructor, IConverterContext, IDocGenStats, TConvertable } from '../types';
+import { NodeUtils } from './converterUtils/nodeUtils';
+import { ConvertableUtils } from './converterUtils/convertableUtils';
 
 export class ConverterContext implements IConverterContext {
     private allConverters: IConverter[] = [];
-    private seenNodes: Set<Node> = new Set();
+    private seenNodes: Set<TConvertable> = new Set();
 
     constructor(
         public readonly project: Project,
@@ -16,31 +17,32 @@ export class ConverterContext implements IConverterContext {
         this.allConverters.push(converter);
     }
 
-    public convert(params: { typeNode: Node, isTypeProp: boolean }): ReturnType<IConverterContext['convert']> {
-        const { typeNode, isTypeProp } = params;
-        const instance = this.allConverters.find((c) => c.isSupported(typeNode));
+    public convert(params: { nodeOrSymbol: TConvertable, isTypeProp: boolean }): ReturnType<IConverterContext['convert']> {
+        const { nodeOrSymbol, isTypeProp } = params;
+        const instance = this.allConverters.find((c) => c.isSupported(nodeOrSymbol));
         if (instance) {
-            const isSeen = this.seenNodes.has(typeNode);
-            const isExternal = ConverterUtils.isExternalNode(typeNode);
+            const isSeen = this.seenNodes.has(nodeOrSymbol);
+            const node = ConvertableUtils.getNode(nodeOrSymbol);
+            const isExternal = NodeUtils.isExternalNode(node);
             if (isSeen || isExternal) {
                 // avoid infinite loop for recursive types
                 return {
-                    typeValue: ConverterUtils.getTypeValueFromNode(typeNode, !isSeen),
-                    typeRef: ConverterUtils.getTypeRef(typeNode),
-                    kind: ConverterUtils.getSyntaxKindNameFromNode(typeNode),
+                    typeValue: NodeUtils.getTypeValueFromNode(node, !isSeen),
+                    typeRef: NodeUtils.getTypeRef(node),
+                    kind: NodeUtils.getSyntaxKindNameFromNode(node),
                 };
             } else if (isTypeProp) {
                 return {
-                    typeValue: instance.getTypeValue(typeNode, false),
-                    typeRef: ConverterUtils.getTypeRef(typeNode),
-                    kind: ConverterUtils.getSyntaxKindNameFromNode(typeNode),
+                    typeValue: instance.convertToTypeValue(nodeOrSymbol, false),
+                    typeRef: NodeUtils.getTypeRef(node),
+                    kind: NodeUtils.getSyntaxKindNameFromNode(node),
                 };
             }
-            this.seenNodes.add(typeNode);
-            const result = instance.convert(typeNode);
-            this.seenNodes.delete(typeNode);
+            this.seenNodes.add(nodeOrSymbol);
+            const result = instance.convert(nodeOrSymbol);
+            this.seenNodes.delete(nodeOrSymbol);
             return result;
         }
-        console.error(`Unable to find a converter for typeNode=${typeNode}`);
+        console.error(`Unable to find a converter for nodeOrSymbol=${nodeOrSymbol}`);
     }
 }
