@@ -1,10 +1,9 @@
 import { DataSourceState, DataRowProps, IEditable, IDataSourceView } from '@epam/uui-core';
-import { PickerInputEditMode, PickerInputSearchPosition } from './hooks/types';
+import { PickerInputSearchPosition } from './hooks/types';
 
 export interface DataSourceKeyboardParams extends IEditable<DataSourceState> {
     listView: IDataSourceView<any, any, any>;
     rows: DataRowProps<any, any>[];
-    editMode?: PickerInputEditMode;
     searchPosition?: PickerInputSearchPosition;
 }
 
