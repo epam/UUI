@@ -103,7 +103,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                                         onValueChange: handleDataSourceValueChange,
                                         listView: view,
                                         rows: dataRows,
-                                        editMode: 'modal',
+                                        searchPosition: 'body',
                                     },
                                     e,
                                 ) }
