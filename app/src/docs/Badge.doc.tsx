@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI, TUuiTsDoc,
 } from '../common';
 
 export class BadgeDoc extends BaseDocsBlock {
     title = 'Badge';
+
+    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:BadgeProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/widgets/badge.props.tsx',
