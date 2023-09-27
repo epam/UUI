@@ -6,21 +6,28 @@ describe('docsGen:union', () => {
             export type TUnionTest = 'one' | 'two' | 'three' | 'four' | boolean;
         `;
         const output = {
-            '@epam/test-module': {
-                TUnionTest: {
-                    kind: 'TypeAliasDeclaration',
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'TUnionTest',
-                            nameFull: 'TUnionTest',
+            byModule: {
+                '@epam/test-module': {
+                    TUnionTest: {
+                        kind: 264,
+                        typeRef: 'test/test.tsx:TUnionTest',
+                        typeValue: {
+                            print: [
+                                "type TUnionTest = 'one' | 'two' | 'three' | 'four' | boolean;",
+                            ],
+                            raw: "false | true | 'one' | 'two' | 'three' | 'four'",
                         },
                     },
-                    typeValue: {
-                        print: [
-                            "type TUnionTest = 'one' | 'two' | 'three' | 'four' | boolean;",
-                        ],
-                        raw: "false | true | 'one' | 'two' | 'three' | 'four'",
+                },
+            },
+            references: {
+                'test/test.tsx:TUnionTest': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'TUnionTest',
+                        nameFull: 'TUnionTest',
                     },
                 },
             },
@@ -34,88 +41,85 @@ describe('docsGen:union', () => {
             export type TTest = N1 | N2;
         `;
         const output = {
-            '@epam/test-module': {
-                TTest: {
-                    kind: 'TypeAliasDeclaration',
-                    props: [
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'N1',
-                                    nameFull: 'N1',
+            byModule: {
+                '@epam/test-module': {
+                    TTest: {
+                        kind: 264,
+                        props: [
+                            {
+                                from: 'test/test.tsx:N1',
+                                name: 'sameProp',
+                                required: true,
+                                typeValue: {
+                                    raw: 'string',
                                 },
+                                uid: 1,
                             },
-                            kind: 'PropertySignature',
-                            name: 'n1Prop',
-                            required: true,
-                            typeValue: {
-                                raw: 'string',
-                            },
-                            uniqueId: '2',
-                        },
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'N2',
-                                    nameFull: 'N2',
+                            {
+                                from: 'test/test.tsx:N1',
+                                name: 'n1Prop',
+                                required: true,
+                                typeValue: {
+                                    raw: 'string',
                                 },
+                                uid: 2,
                             },
-                            kind: 'PropertySignature',
-                            name: 'n2Prop',
-                            required: true,
-                            typeValue: {
-                                raw: 'string',
-                            },
-                            uniqueId: '4',
-                        },
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'N1',
-                                    nameFull: 'N1',
+                            {
+                                from: 'test/test.tsx:N2',
+                                name: 'sameProp',
+                                required: true,
+                                typeValue: {
+                                    raw: 'string',
                                 },
+                                uid: 3,
                             },
-                            kind: 'PropertySignature',
-                            name: 'sameProp',
-                            required: true,
-                            typeValue: {
-                                raw: 'string',
-                            },
-                            uniqueId: '1',
-                        },
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'N2',
-                                    nameFull: 'N2',
+                            {
+                                from: 'test/test.tsx:N2',
+                                name: 'n2Prop',
+                                required: true,
+                                typeValue: {
+                                    raw: 'string',
                                 },
+                                uid: 4,
                             },
-                            kind: 'PropertySignature',
-                            name: 'sameProp',
-                            required: true,
-                            typeValue: {
-                                raw: 'string',
-                            },
-                            uniqueId: '3',
-                        },
-                    ],
-                    propsFromUnion: true,
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'TTest',
-                            nameFull: 'TTest',
+                        ],
+                        propsFromUnion: true,
+                        typeRef: 'test/test.tsx:TTest',
+                        typeValue: {
+                            print: [
+                                'type TTest = N1 | N2;',
+                            ],
+                            raw: 'N1 | N2',
                         },
                     },
-                    typeValue: {
-                        print: [
-                            'type TTest = N1 | N2;',
-                        ],
-                        raw: 'N1 | N2',
+                },
+            },
+            references: {
+                'test/test.tsx:N1': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'N1',
+                        nameFull: 'N1',
+                    },
+                },
+                'test/test.tsx:N2': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'N2',
+                        nameFull: 'N2',
+                    },
+                },
+                'test/test.tsx:TTest': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'TTest',
+                        nameFull: 'TTest',
                     },
                 },
             },
@@ -128,57 +132,61 @@ describe('docsGen:union', () => {
             export type TTest = ({ sameProp: string, n1Prop: string }) | ({ sameProp: string, n2Prop: string });
         `;
         const output = {
-            '@epam/test-module': {
-                TTest: {
-                    kind: 'TypeAliasDeclaration',
-                    props: [
-                        {
-                            kind: 'PropertySignature',
-                            name: 'n1Prop',
-                            required: true,
-                            typeValue: {
-                                raw: 'string',
+            byModule: {
+                '@epam/test-module': {
+                    TTest: {
+                        kind: 264,
+                        props: [
+                            {
+                                name: 'sameProp',
+                                required: true,
+                                typeValue: {
+                                    raw: 'string',
+                                },
+                                uid: 3,
                             },
-                            uniqueId: '2',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'n2Prop',
-                            required: true,
-                            typeValue: {
-                                raw: 'string',
+                            {
+                                name: 'n1Prop',
+                                required: true,
+                                typeValue: {
+                                    raw: 'string',
+                                },
+                                uid: 2,
                             },
-                            uniqueId: '4',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'sameProp',
-                            required: true,
-                            typeValue: {
-                                raw: 'string',
+                            {
+                                name: 'n2Prop',
+                                required: true,
+                                typeValue: {
+                                    raw: 'string',
+                                },
+                                uid: 4,
                             },
-                            uniqueId: '3',
-                        },
-                    ],
-                    propsFromUnion: true,
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'TTest',
-                            nameFull: 'TTest',
+                        ],
+                        propsFromUnion: true,
+                        typeRef: 'test/test.tsx:TTest',
+                        typeValue: {
+                            print: [
+                                'type TTest = ({',
+                                '    sameProp: string;',
+                                '    n1Prop: string;',
+                                '}) | ({',
+                                '    sameProp: string;',
+                                '    n2Prop: string;',
+                                '});',
+                            ],
+                            raw: '{ sameProp: string; n1Prop: string; } | { sameProp: string; n2Prop: string; }',
                         },
                     },
-                    typeValue: {
-                        print: [
-                            'type TTest = ({',
-                            '    sameProp: string;',
-                            '    n1Prop: string;',
-                            '}) | ({',
-                            '    sameProp: string;',
-                            '    n2Prop: string;',
-                            '});',
-                        ],
-                        raw: '{ sameProp: string; n1Prop: string; } | { sameProp: string; n2Prop: string; }',
+                },
+            },
+            references: {
+                'test/test.tsx:TTest': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'TTest',
+                        nameFull: 'TTest',
                     },
                 },
             },
@@ -191,24 +199,31 @@ describe('docsGen:union', () => {
             export type TTest = ({ a: string, b: string }) | HTMLElement;
         `;
         const output = {
-            '@epam/test-module': {
-                TTest: {
-                    kind: 'TypeAliasDeclaration',
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'TTest',
-                            nameFull: 'TTest',
+            byModule: {
+                '@epam/test-module': {
+                    TTest: {
+                        kind: 264,
+                        typeRef: 'test/test.tsx:TTest',
+                        typeValue: {
+                            print: [
+                                'type TTest = ({',
+                                '    a: string;',
+                                '    b: string;',
+                                '}) | HTMLElement;',
+                            ],
+                            raw: '{ a: string; b: string; } | HTMLElement',
                         },
                     },
-                    typeValue: {
-                        print: [
-                            'type TTest = ({',
-                            '    a: string;',
-                            '    b: string;',
-                            '}) | HTMLElement;',
-                        ],
-                        raw: '{ a: string; b: string; } | HTMLElement',
+                },
+            },
+            references: {
+                'test/test.tsx:TTest': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'TTest',
+                        nameFull: 'TTest',
                     },
                 },
             },

@@ -1,9 +1,9 @@
-import { Node, Symbol, Type, TypeChecker } from 'ts-morph';
-import { TTypeName, TTypeValue } from '../../types';
+import { Node, Symbol, Type } from 'ts-morph';
 // eslint-disable-next-line import/no-cycle
 import { TypeUtils } from './typeUtils';
 // eslint-disable-next-line import/no-cycle
 import { NodeUtils } from './nodeUtils';
+import { TTypeName, TTypeValue } from '../../types/docsGenSharedTypes';
 
 export class SymbolUtils {
     static getTypeName(typeSymbol?: Symbol): TTypeName {
@@ -43,20 +43,18 @@ export class SymbolUtils {
      * @param symbol
      */
     static getNodeFromSymbol(symbol: Symbol): Node {
-        if (symbol) {
-            const decls = symbol.getDeclarations();
-            return decls[0];
-        }
+        const decls = symbol.getDeclarations();
+        return decls[0];
     }
 
-    static getTypeFromSymbol(symbol: Symbol, typeChecker: TypeChecker): Type {
+    static getTypeFromSymbol(symbol: Symbol): Type {
         const node = SymbolUtils.getNodeFromSymbol(symbol);
-        return typeChecker.getTypeOfSymbolAtLocation(symbol, node);
+        return symbol.getTypeAtLocation(node);
     }
 
     static getTypeValueFromNode(symbol: Symbol, print?: boolean): TTypeValue {
         const node = SymbolUtils.getNodeFromSymbol(symbol);
-        const type = symbol.getTypeAtLocation(node);
+        const type = SymbolUtils.getTypeFromSymbol(symbol);
 
         const result: TTypeValue = {
             raw: TypeUtils.getCompilerTypeText(type),

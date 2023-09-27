@@ -1,19 +1,23 @@
-import { TTypeRef } from '../../types';
 import React from 'react';
 import { Anchor, Text, Tooltip } from '@epam/uui';
 import css from './Ref.module.scss';
 import { useTsDocs } from '../../dataHooks';
+import { TTypeRefShort } from '../../docsGenSharedTypes';
 
-export function Ref(props: { refData?: TTypeRef }) {
-    const { refData } = props;
+export function Ref(props: { typeRefShort?: TTypeRefShort }) {
+    const { typeRefShort } = props;
     const tsDocs = useTsDocs();
-    const isLinkable = !!tsDocs.get(refData?.module, refData?.typeName?.name);
+    if (!tsDocs || !typeRefShort) {
+        return null;
+    }
+    const typeRefLong = tsDocs.getTypeRef(typeRefShort);
+    const isLinkable = !!tsDocs.get(typeRefShort);
 
-    if (refData) {
-        const { module, typeName } = refData;
+    if (typeRefLong) {
+        const { module, typeName } = typeRefLong;
         let contentNode: React.ReactNode = typeName.nameFull;
         if (module && typeName) {
-            const link = { pathname: '/documents', query: { id: `${module}/${typeName.name}` } };
+            const link = { pathname: '/documents', query: { id: typeRefShort } };
             contentNode = (
                 <>
                     { isLinkable && <Anchor link={ link }>{typeName.nameFull}</Anchor> }

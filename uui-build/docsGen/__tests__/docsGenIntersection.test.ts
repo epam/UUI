@@ -14,87 +14,84 @@ describe('docsGen:intersection', () => {
             export type TIntersection = TIntersectionMemberA & IIntersectionMemberB;
         `;
         const output = {
-            '@epam/test-module': {
-                TIntersection: {
-                    kind: 'TypeAliasDeclaration',
-                    props: [
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'TIntersectionMemberA',
-                                    nameFull: 'TIntersectionMemberA',
+            byModule: {
+                '@epam/test-module': {
+                    TIntersection: {
+                        kind: 264,
+                        props: [
+                            {
+                                from: 'test/test.tsx:TIntersectionMemberA',
+                                name: 'a1',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
                                 },
+                                uid: 1,
                             },
-                            kind: 'PropertySignature',
-                            name: 'a1',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
-                            },
-                            uniqueId: '1',
-                        },
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'TIntersectionMemberA',
-                                    nameFull: 'TIntersectionMemberA',
+                            {
+                                from: 'test/test.tsx:TIntersectionMemberA',
+                                name: 'a2',
+                                required: true,
+                                typeValue: {
+                                    raw: 'string',
                                 },
+                                uid: 2,
                             },
-                            kind: 'PropertySignature',
-                            name: 'a2',
-                            required: true,
-                            typeValue: {
-                                raw: 'string',
-                            },
-                            uniqueId: '2',
-                        },
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'IIntersectionMemberB',
-                                    nameFull: 'IIntersectionMemberB',
+                            {
+                                from: 'test/test.tsx:IIntersectionMemberB',
+                                name: 'b1',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
                                 },
+                                uid: 3,
                             },
-                            kind: 'PropertySignature',
-                            name: 'b1',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
-                            },
-                            uniqueId: '3',
-                        },
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'IIntersectionMemberB',
-                                    nameFull: 'IIntersectionMemberB',
+                            {
+                                from: 'test/test.tsx:IIntersectionMemberB',
+                                name: 'b2',
+                                required: true,
+                                typeValue: {
+                                    raw: 'string',
                                 },
+                                uid: 4,
                             },
-                            kind: 'PropertySignature',
-                            name: 'b2',
-                            required: true,
-                            typeValue: {
-                                raw: 'string',
-                            },
-                            uniqueId: '4',
-                        },
-                    ],
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'TIntersection',
-                            nameFull: 'TIntersection',
+                        ],
+                        typeRef: 'test/test.tsx:TIntersection',
+                        typeValue: {
+                            print: [
+                                'type TIntersection = TIntersectionMemberA & IIntersectionMemberB;',
+                            ],
+                            raw: 'TIntersection',
                         },
                     },
-                    typeValue: {
-                        print: [
-                            'type TIntersection = TIntersectionMemberA & IIntersectionMemberB;',
-                        ],
-                        raw: 'TIntersection',
+                },
+            },
+            references: {
+                'test/test.tsx:IIntersectionMemberB': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'IIntersectionMemberB',
+                        nameFull: 'IIntersectionMemberB',
+                    },
+                },
+                'test/test.tsx:TIntersection': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'TIntersection',
+                        nameFull: 'TIntersection',
+                    },
+                },
+                'test/test.tsx:TIntersectionMemberA': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'TIntersectionMemberA',
+                        nameFull: 'TIntersectionMemberA',
                     },
                 },
             },
@@ -119,103 +116,102 @@ describe('docsGen:intersection', () => {
             export type TIntersection = Omit<TFirst, 'f2'> & TSecond;
         `;
         const output = {
-            '@epam/test-module': {
-                TIntersection: {
-                    kind: 'TypeAliasDeclaration',
-                    props: [
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'IFirstPart1',
-                                    nameFull: 'IFirstPart1',
+            byModule: {
+                '@epam/test-module': {
+                    TIntersection: {
+                        kind: 264,
+                        props: [
+                            {
+                                from: 'test/test.tsx:IFirstPart1',
+                                name: 'f1',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
                                 },
+                                uid: 1,
                             },
-                            kind: 'PropertySignature',
-                            name: 'f1',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
-                            },
-                            uniqueId: '1',
-                        },
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'IFirstPart2',
-                                    nameFull: 'IFirstPart2',
+                            {
+                                from: 'test/test.tsx:IFirstPart2',
+                                name: 'f3',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
                                 },
+                                uid: 2,
                             },
-                            kind: 'PropertySignature',
-                            name: 'f3',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
-                            },
-                            uniqueId: '2',
-                        },
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'IFirstPart2',
-                                    nameFull: 'IFirstPart2',
+                            {
+                                from: 'test/test.tsx:IFirstPart2',
+                                name: 'f4',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
                                 },
+                                uid: 3,
                             },
-                            kind: 'PropertySignature',
-                            name: 'f4',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
-                            },
-                            uniqueId: '3',
-                        },
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'TSecond',
-                                    nameFull: 'TSecond',
+                            {
+                                from: 'test/test.tsx:TSecond',
+                                name: 's1',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
                                 },
+                                uid: 4,
                             },
-                            kind: 'PropertySignature',
-                            name: 's1',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
-                            },
-                            uniqueId: '4',
-                        },
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'TSecond',
-                                    nameFull: 'TSecond',
+                            {
+                                from: 'test/test.tsx:TSecond',
+                                name: 's2',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
                                 },
+                                uid: 5,
                             },
-                            kind: 'PropertySignature',
-                            name: 's2',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
-                            },
-                            uniqueId: '5',
-                        },
-                    ],
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'TIntersection',
-                            nameFull: 'TIntersection',
+                        ],
+                        typeRef: 'test/test.tsx:TIntersection',
+                        typeValue: {
+                            print: [
+                                "type TIntersection = Omit<TFirst, 'f2'> & TSecond;",
+                            ],
+                            raw: 'TIntersection',
                         },
                     },
-                    typeValue: {
-                        print: [
-                            "type TIntersection = Omit<TFirst, 'f2'> & TSecond;",
-                        ],
-                        raw: 'TIntersection',
+                },
+            },
+            references: {
+                'test/test.tsx:IFirstPart1': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'IFirstPart1',
+                        nameFull: 'IFirstPart1',
+                    },
+                },
+                'test/test.tsx:IFirstPart2': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'IFirstPart2',
+                        nameFull: 'IFirstPart2',
+                    },
+                },
+                'test/test.tsx:TIntersection': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'TIntersection',
+                        nameFull: 'TIntersection',
+                    },
+                },
+                'test/test.tsx:TSecond': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'TSecond',
+                        nameFull: 'TSecond',
                     },
                 },
             },

@@ -23,199 +23,190 @@ describe('docsGen:complexTypes', () => {
             }
         `;
         const output = {
-            '@epam/test-module': {
-                TPrimitives: {
-                    kind: 'TypeAliasDeclaration',
-                    props: [
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pBool',
-                            required: true,
-                            typeValue: {
-                                raw: 'false | true',
+            byModule: {
+                '@epam/test-module': {
+                    TPrimitives: {
+                        kind: 264,
+                        props: [
+                            {
+                                name: 'pBool',
+                                required: true,
+                                typeValue: {
+                                    raw: 'false | true',
+                                },
+                                uid: 1,
                             },
-                            uniqueId: '1',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pNumber',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
+                            {
+                                name: 'pNumber',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
+                                },
+                                uid: 2,
                             },
-                            uniqueId: '2',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pString',
-                            required: true,
-                            typeValue: {
-                                raw: 'string',
+                            {
+                                name: 'pString',
+                                required: true,
+                                typeValue: {
+                                    raw: 'string',
+                                },
+                                uid: 3,
                             },
-                            uniqueId: '3',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pAny',
-                            required: true,
-                            typeValue: {
-                                raw: 'any',
+                            {
+                                name: 'pAny',
+                                required: true,
+                                typeValue: {
+                                    raw: 'any',
+                                },
+                                uid: 4,
                             },
-                            uniqueId: '4',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pUnknown',
-                            required: true,
-                            typeValue: {
-                                raw: 'unknown',
+                            {
+                                name: 'pUnknown',
+                                required: true,
+                                typeValue: {
+                                    raw: 'unknown',
+                                },
+                                uid: 5,
                             },
-                            uniqueId: '5',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pNever',
-                            required: true,
-                            typeValue: {
-                                raw: 'never',
+                            {
+                                name: 'pNever',
+                                required: true,
+                                typeValue: {
+                                    raw: 'never',
+                                },
+                                uid: 6,
                             },
-                            uniqueId: '6',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pVoid',
-                            required: true,
-                            typeValue: {
-                                raw: 'void',
+                            {
+                                name: 'pVoid',
+                                required: true,
+                                typeValue: {
+                                    raw: 'void',
+                                },
+                                uid: 7,
                             },
-                            uniqueId: '7',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pNull',
-                            required: true,
-                            typeValue: {
-                                raw: 'null',
+                            {
+                                name: 'pNull',
+                                required: true,
+                                typeValue: {
+                                    raw: 'null',
+                                },
+                                uid: 8,
                             },
-                            uniqueId: '8',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pUndefined',
-                            required: true,
-                            typeValue: {
-                                raw: 'undefined',
+                            {
+                                name: 'pUndefined',
+                                required: true,
+                                typeValue: {
+                                    raw: 'undefined',
+                                },
+                                uid: 9,
                             },
-                            uniqueId: '9',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pArray',
-                            required: true,
-                            typeValue: {
-                                raw: 'string[]',
+                            {
+                                name: 'pArray',
+                                required: true,
+                                typeValue: {
+                                    raw: 'string[]',
+                                },
+                                uid: 10,
                             },
-                            uniqueId: '10',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pObject',
-                            required: true,
-                            typeValue: {
-                                raw: 'object',
+                            {
+                                name: 'pObject',
+                                required: true,
+                                typeValue: {
+                                    raw: 'object',
+                                },
+                                uid: 11,
                             },
-                            uniqueId: '11',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pBigint',
-                            required: true,
-                            typeValue: {
-                                raw: 'bigint',
+                            {
+                                name: 'pBigint',
+                                required: true,
+                                typeValue: {
+                                    raw: 'bigint',
+                                },
+                                uid: 12,
                             },
-                            uniqueId: '12',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pSymbol',
-                            required: true,
-                            typeValue: {
-                                raw: 'symbol',
+                            {
+                                name: 'pSymbol',
+                                required: true,
+                                typeValue: {
+                                    raw: 'symbol',
+                                },
+                                uid: 13,
                             },
-                            uniqueId: '13',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pLiteral',
-                            required: true,
-                            typeValue: {
-                                raw: "'test'",
+                            {
+                                name: 'pLiteral',
+                                required: true,
+                                typeValue: {
+                                    raw: "'test'",
+                                },
+                                uid: 14,
                             },
-                            uniqueId: '14',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pTuple',
-                            required: true,
-                            typeValue: {
-                                raw: "[boolean, number, string, any, unknown, never, void, null, undefined, string[], object, bigint, symbol, 'test']",
+                            {
+                                name: 'pTuple',
+                                required: true,
+                                typeValue: {
+                                    raw: "[boolean, number, string, any, unknown, never, void, null, undefined, string[], object, bigint, symbol, 'test']",
+                                },
+                                uid: 15,
                             },
-                            uniqueId: '15',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'pUnion',
-                            required: false,
-                            typeValue: {
-                                raw: 'undefined | null | string | number | bigint | false | true | symbol | void | object | string[]',
+                            {
+                                name: 'pUnion',
+                                required: false,
+                                typeValue: {
+                                    raw: 'undefined | null | string | number | bigint | false | true | symbol | void | object | string[]',
+                                },
+                                uid: 16,
                             },
-                            uniqueId: '16',
-                        },
-                    ],
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'TPrimitives',
-                            nameFull: 'TPrimitives',
+                        ],
+                        typeRef: 'test/test.tsx:TPrimitives',
+                        typeValue: {
+                            print: [
+                                'type TPrimitives = {',
+                                '    pBool: boolean;',
+                                '    pNumber: number;',
+                                '    pString: string;',
+                                '    pAny: any;',
+                                '    pUnknown: unknown;',
+                                '    pNever: never;',
+                                '    pVoid: void;',
+                                '    pNull: null;',
+                                '    pUndefined: undefined;',
+                                '    pArray: string[];',
+                                '    pObject: object;',
+                                '    pBigint: bigint;',
+                                '    pSymbol: symbol;',
+                                "    pLiteral: 'test';",
+                                '    pTuple: [',
+                                '        boolean,',
+                                '        number,',
+                                '        string,',
+                                '        any,',
+                                '        unknown,',
+                                '        never,',
+                                '        void,',
+                                '        null,',
+                                '        undefined,',
+                                '        string[],',
+                                '        object,',
+                                '        bigint,',
+                                '        symbol,',
+                                "        'test'",
+                                '    ];',
+                                "    pUnion: boolean | number | string | never | void | null | undefined | string[] | object | bigint | symbol | 'test';",
+                                '};',
+                            ],
+                            raw: 'TPrimitives',
                         },
                     },
-                    typeValue: {
-                        print: [
-                            'type TPrimitives = {',
-                            '    pBool: boolean;',
-                            '    pNumber: number;',
-                            '    pString: string;',
-                            '    pAny: any;',
-                            '    pUnknown: unknown;',
-                            '    pNever: never;',
-                            '    pVoid: void;',
-                            '    pNull: null;',
-                            '    pUndefined: undefined;',
-                            '    pArray: string[];',
-                            '    pObject: object;',
-                            '    pBigint: bigint;',
-                            '    pSymbol: symbol;',
-                            "    pLiteral: 'test';",
-                            '    pTuple: [',
-                            '        boolean,',
-                            '        number,',
-                            '        string,',
-                            '        any,',
-                            '        unknown,',
-                            '        never,',
-                            '        void,',
-                            '        null,',
-                            '        undefined,',
-                            '        string[],',
-                            '        object,',
-                            '        bigint,',
-                            '        symbol,',
-                            "        'test'",
-                            '    ];',
-                            "    pUnion: boolean | number | string | never | void | null | undefined | string[] | object | bigint | symbol | 'test';",
-                            '};',
-                        ],
-                        raw: 'TPrimitives',
+                },
+            },
+            references: {
+                'test/test.tsx:TPrimitives': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'TPrimitives',
+                        nameFull: 'TPrimitives',
                     },
                 },
             },
@@ -255,194 +246,181 @@ describe('docsGen:complexTypes', () => {
             }
         `;
         const output = {
-            '@epam/test-module': {
-                ITestA: {
-                    kind: 'InterfaceDeclaration',
-                    props: [
-                        {
-                            kind: 'PropertySignature',
-                            name: 'aProp',
-                            required: true,
-                            typeValue: {
-                                raw: "'black' | 'white'",
-                            },
-                            uniqueId: '1',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'propExternalTypeTest',
-                            required: true,
-                            typeValue: {
-                                raw: 'HTMLElement',
-                            },
-                            uniqueId: '2',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'unionPropTest',
-                            required: true,
-                            typeValue: {
-                                raw: 'TUnionTest',
-                            },
-                            uniqueId: '3',
-                        },
-                        {
-                            comment: [
-                                'This is PropertySignature',
-                            ],
-                            kind: 'PropertySignature',
-                            name: 'propSignatureTest',
-                            required: true,
-                            typeValue: {
-                                raw: '{ name: string; value: any; }[]',
-                            },
-                            uniqueId: '4',
-                        },
-                        {
-                            comment: [
-                                'This is MethodSignature',
-                            ],
-                            kind: 'PropertySignature',
-                            name: 'methodSignatureTest',
-                            required: true,
-                            typeValue: {
-                                raw: '(a?: number | undefined, b?: number | undefined) => number | undefined',
-                            },
-                            uniqueId: '5',
-                        },
-                        {
-                            comment: [
-                                'This is MethodDeclaration',
-                            ],
-                            kind: 'PropertySignature',
-                            name: 'methodDeclarationTest',
-                            required: true,
-                            typeValue: {
-                                raw: '(p: number) => number',
-                            },
-                            uniqueId: '6',
-                        },
-                        {
-                            comment: [
-                                'This is GetAccessor',
-                            ],
-                            kind: 'GetAccessor',
-                            name: 'get someBool',
-                            required: true,
-                            typeValue: {
-                                raw: 'get someBool(): boolean',
-                            },
-                            uniqueId: '7',
-                        },
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'ITestB',
-                                    nameFull: 'ITestB',
+            byModule: {
+                '@epam/test-module': {
+                    ITestA: {
+                        kind: 263,
+                        props: [
+                            {
+                                name: 'aProp',
+                                required: true,
+                                typeValue: {
+                                    raw: "'black' | 'white'",
                                 },
+                                uid: 1,
                             },
-                            kind: 'PropertySignature',
-                            name: 'a',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
-                            },
-                            uniqueId: '8',
-                        },
-                        {
-                            comment: [
-                                'This is inherited property TSDoc',
-                            ],
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'ITestB',
-                                    nameFull: 'ITestB',
+                            {
+                                name: 'propExternalTypeTest',
+                                required: true,
+                                typeValue: {
+                                    raw: 'HTMLElement',
                                 },
+                                uid: 2,
                             },
-                            kind: 'PropertySignature',
-                            name: 'b',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
+                            {
+                                name: 'unionPropTest',
+                                required: true,
+                                typeValue: {
+                                    raw: 'TUnionTest',
+                                },
+                                uid: 3,
                             },
-                            uniqueId: '9',
-                        },
-                    ],
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'ITestA',
-                            nameFull: 'ITestA',
+                            {
+                                comment: [
+                                    'This is PropertySignature',
+                                ],
+                                name: 'propSignatureTest',
+                                required: true,
+                                typeValue: {
+                                    raw: '{ name: string; value: any; }[]',
+                                },
+                                uid: 4,
+                            },
+                            {
+                                comment: [
+                                    'This is MethodSignature',
+                                ],
+                                name: 'methodSignatureTest',
+                                required: true,
+                                typeValue: {
+                                    raw: '(a?: number | undefined, b?: number | undefined) => number | undefined',
+                                },
+                                uid: 5,
+                            },
+                            {
+                                comment: [
+                                    'This is MethodDeclaration',
+                                ],
+                                name: 'methodDeclarationTest',
+                                required: true,
+                                typeValue: {
+                                    raw: '(p: number) => number',
+                                },
+                                uid: 6,
+                            },
+                            {
+                                comment: [
+                                    'This is GetAccessor',
+                                ],
+                                name: 'get someBool',
+                                required: true,
+                                typeValue: {
+                                    raw: 'get someBool(): boolean',
+                                },
+                                uid: 7,
+                            },
+                            {
+                                from: 'test/test.tsx:ITestB',
+                                name: 'a',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
+                                },
+                                uid: 8,
+                            },
+                            {
+                                comment: [
+                                    'This is inherited property TSDoc',
+                                ],
+                                from: 'test/test.tsx:ITestB',
+                                name: 'b',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
+                                },
+                                uid: 9,
+                            },
+                        ],
+                        typeRef: 'test/test.tsx:ITestA',
+                        typeValue: {
+                            print: [
+                                'interface ITestA extends ITestB {',
+                                "    // This comment must be ignored, because it's not TSDoc",
+                                "    aProp: 'black' | 'white';",
+                                '    propExternalTypeTest: HTMLElement;',
+                                '    unionPropTest: TUnionTest;',
+                                '    /** This is PropertySignature */',
+                                '    propSignatureTest: {',
+                                '        name: string;',
+                                '        value: any;',
+                                '    }[];',
+                                '    /** This is MethodSignature */',
+                                '    methodSignatureTest: (a?: number, b?: number) => number | undefined;',
+                                '    /** This is MethodDeclaration */',
+                                '    methodDeclarationTest: (p: number) => number;',
+                                '    /** This is GetAccessor */',
+                                '    get someBool(): boolean;',
+                                '    /** This is SetAccessor */',
+                                '    set someBool(b: boolean);',
+                                '}',
+                            ],
+                            raw: 'ITestA',
                         },
                     },
-                    typeValue: {
-                        print: [
-                            'interface ITestA extends ITestB {',
-                            "    // This comment must be ignored, because it's not TSDoc",
-                            "    aProp: 'black' | 'white';",
-                            '    propExternalTypeTest: HTMLElement;',
-                            '    unionPropTest: TUnionTest;',
-                            '    /** This is PropertySignature */',
-                            '    propSignatureTest: {',
-                            '        name: string;',
-                            '        value: any;',
-                            '    }[];',
-                            '    /** This is MethodSignature */',
-                            '    methodSignatureTest: (a?: number, b?: number) => number | undefined;',
-                            '    /** This is MethodDeclaration */',
-                            '    methodDeclarationTest: (p: number) => number;',
-                            '    /** This is GetAccessor */',
-                            '    get someBool(): boolean;',
-                            '    /** This is SetAccessor */',
-                            '    set someBool(b: boolean);',
-                            '}',
+                    ITestB: {
+                        kind: 263,
+                        props: [
+                            {
+                                name: 'a',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
+                                },
+                                uid: 1,
+                            },
+                            {
+                                comment: [
+                                    'This is inherited property TSDoc',
+                                ],
+                                name: 'b',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
+                                },
+                                uid: 2,
+                            },
                         ],
-                        raw: 'ITestA',
+                        typeRef: 'test/test.tsx:ITestB',
+                        typeValue: {
+                            print: [
+                                'interface ITestB {',
+                                '    a: number;',
+                                '    /** This is inherited property TSDoc */',
+                                '    b: number;',
+                                '}',
+                            ],
+                            raw: 'ITestB',
+                        },
                     },
                 },
-                ITestB: {
-                    kind: 'InterfaceDeclaration',
-                    props: [
-                        {
-                            kind: 'PropertySignature',
-                            name: 'a',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
-                            },
-                            uniqueId: '1',
-                        },
-                        {
-                            comment: [
-                                'This is inherited property TSDoc',
-                            ],
-                            kind: 'PropertySignature',
-                            name: 'b',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
-                            },
-                            uniqueId: '2',
-                        },
-                    ],
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'ITestB',
-                            nameFull: 'ITestB',
-                        },
+            },
+            references: {
+                'test/test.tsx:ITestA': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'ITestA',
+                        nameFull: 'ITestA',
                     },
-                    typeValue: {
-                        print: [
-                            'interface ITestB {',
-                            '    a: number;',
-                            '    /** This is inherited property TSDoc */',
-                            '    b: number;',
-                            '}',
-                        ],
-                        raw: 'ITestB',
+                },
+                'test/test.tsx:ITestB': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'ITestB',
+                        nameFull: 'ITestB',
                     },
                 },
             },
@@ -453,21 +431,28 @@ describe('docsGen:complexTypes', () => {
     test('should not expand props from external type', () => {
         const input = 'export type TExternalTypeTest = HTMLElement;';
         const output = {
-            '@epam/test-module': {
-                TExternalTypeTest: {
-                    kind: 'TypeAliasDeclaration',
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'TExternalTypeTest',
-                            nameFull: 'TExternalTypeTest',
+            byModule: {
+                '@epam/test-module': {
+                    TExternalTypeTest: {
+                        kind: 264,
+                        typeRef: 'test/test.tsx:TExternalTypeTest',
+                        typeValue: {
+                            print: [
+                                'type TExternalTypeTest = HTMLElement;',
+                            ],
+                            raw: 'HTMLElement',
                         },
                     },
-                    typeValue: {
-                        print: [
-                            'type TExternalTypeTest = HTMLElement;',
-                        ],
-                        raw: 'HTMLElement',
+                },
+            },
+            references: {
+                'test/test.tsx:TExternalTypeTest': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'TExternalTypeTest',
+                        nameFull: 'TExternalTypeTest',
                     },
                 },
             },
@@ -484,39 +469,48 @@ describe('docsGen:complexTypes', () => {
             export type TTest = Omit<TLocal, 'p1'>;
         `;
         const output = {
-            '@epam/test-module': {
-                TTest: {
-                    kind: 'TypeAliasDeclaration',
-                    props: [
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'TLocal',
-                                    nameFull: 'TLocal',
+            byModule: {
+                '@epam/test-module': {
+                    TTest: {
+                        kind: 264,
+                        props: [
+                            {
+                                from: 'test/test.tsx:TLocal',
+                                name: 'p2',
+                                required: true,
+                                typeValue: {
+                                    raw: 'string',
                                 },
+                                uid: 1,
                             },
-                            kind: 'PropertySignature',
-                            name: 'p2',
-                            required: true,
-                            typeValue: {
-                                raw: 'string',
-                            },
-                            uniqueId: '1',
-                        },
-                    ],
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'TTest',
-                            nameFull: 'TTest',
+                        ],
+                        typeRef: 'test/test.tsx:TTest',
+                        typeValue: {
+                            print: [
+                                "type TTest = Omit<TLocal, 'p1'>;",
+                            ],
+                            raw: 'TTest',
                         },
                     },
-                    typeValue: {
-                        print: [
-                            "type TTest = Omit<TLocal, 'p1'>;",
-                        ],
-                        raw: 'TTest',
+                },
+            },
+            references: {
+                'test/test.tsx:TLocal': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'TLocal',
+                        nameFull: 'TLocal',
+                    },
+                },
+                'test/test.tsx:TTest': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'TTest',
+                        nameFull: 'TTest',
                     },
                 },
             },
@@ -534,63 +528,71 @@ describe('docsGen:complexTypes', () => {
             }
         `;
         const output = {
-            '@epam/test-module': {
-                IA: {
-                    kind: 'InterfaceDeclaration',
-                    props: [
-                        {
-                            kind: 'PropertySignature',
-                            name: 'p1',
-                            required: true,
-                            typeValue: {
-                                raw: 'Record<string, T>',
+            byModule: {
+                '@epam/test-module': {
+                    IA: {
+                        kind: 263,
+                        props: [
+                            {
+                                name: 'p1',
+                                required: true,
+                                typeValue: {
+                                    raw: 'Record<string, T>',
+                                },
+                                uid: 1,
                             },
-                            uniqueId: '1',
-                        },
-                    ],
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'IA',
-                            nameFull: 'IA<T>',
+                        ],
+                        typeRef: 'test/test.tsx:IA',
+                        typeValue: {
+                            print: [
+                                'interface IA<T> {',
+                                '    p1: Record<string, T>;',
+                                '}',
+                            ],
+                            raw: 'IA<T>',
                         },
                     },
-                    typeValue: {
-                        print: [
-                            'interface IA<T> {',
-                            '    p1: Record<string, T>;',
-                            '}',
+                    TA: {
+                        kind: 264,
+                        props: [
+                            {
+                                name: 'p1',
+                                required: true,
+                                typeValue: {
+                                    raw: 'Record<string, S>',
+                                },
+                                uid: 1,
+                            },
                         ],
-                        raw: 'IA<T>',
+                        typeRef: 'test/test.tsx:TA',
+                        typeValue: {
+                            print: [
+                                'type TA<S> = {',
+                                '    p1: Record<string, S>;',
+                                '};',
+                            ],
+                            raw: 'TA<S>',
+                        },
                     },
                 },
-                TA: {
-                    kind: 'TypeAliasDeclaration',
-                    props: [
-                        {
-                            kind: 'PropertySignature',
-                            name: 'p1',
-                            required: true,
-                            typeValue: {
-                                raw: 'Record<string, S>',
-                            },
-                            uniqueId: '1',
-                        },
-                    ],
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'TA',
-                            nameFull: 'TA<S>',
-                        },
+            },
+            references: {
+                'test/test.tsx:IA': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'IA',
+                        nameFull: 'IA<T>',
                     },
-                    typeValue: {
-                        print: [
-                            'type TA<S> = {',
-                            '    p1: Record<string, S>;',
-                            '};',
-                        ],
-                        raw: 'TA<S>',
+                },
+                'test/test.tsx:TA': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'TA',
+                        nameFull: 'TA<S>',
                     },
                 },
             },
@@ -610,84 +612,85 @@ describe('docsGen:complexTypes', () => {
         }
         `;
         const output = {
-            '@epam/test-module': {
-                AcceptDropParams: {
-                    kind: 'InterfaceDeclaration',
-                    props: [
-                        {
-                            kind: 'PropertySignature',
-                            name: 'srcData',
-                            required: true,
-                            typeValue: {
-                                raw: 'TSrcData',
+            byModule: {
+                '@epam/test-module': {
+                    AcceptDropParams: {
+                        kind: 263,
+                        props: [
+                            {
+                                name: 'srcData',
+                                required: true,
+                                typeValue: {
+                                    raw: 'TSrcData',
+                                },
+                                uid: 1,
                             },
-                            uniqueId: '1',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'dstData',
-                            required: false,
-                            typeValue: {
-                                raw: 'undefined | TDstData',
+                            {
+                                name: 'dstData',
+                                required: false,
+                                typeValue: {
+                                    raw: 'undefined | TDstData',
+                                },
+                                uid: 2,
                             },
-                            uniqueId: '2',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'offsetLeft',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
+                            {
+                                name: 'offsetLeft',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
+                                },
+                                uid: 3,
                             },
-                            uniqueId: '3',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'offsetTop',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
+                            {
+                                name: 'offsetTop',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
+                                },
+                                uid: 4,
                             },
-                            uniqueId: '4',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'targetWidth',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
+                            {
+                                name: 'targetWidth',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
+                                },
+                                uid: 5,
                             },
-                            uniqueId: '5',
-                        },
-                        {
-                            kind: 'PropertySignature',
-                            name: 'targetHeight',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
+                            {
+                                name: 'targetHeight',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
+                                },
+                                uid: 6,
                             },
-                            uniqueId: '6',
-                        },
-                    ],
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'AcceptDropParams',
-                            nameFull: 'AcceptDropParams<TSrcData, TDstData>',
+                        ],
+                        typeRef: 'test/test.tsx:AcceptDropParams',
+                        typeValue: {
+                            print: [
+                                'interface AcceptDropParams<TSrcData, TDstData> {',
+                                '    srcData: TSrcData;',
+                                '    dstData?: TDstData;',
+                                '    offsetLeft: number;',
+                                '    offsetTop: number;',
+                                '    targetWidth: number;',
+                                '    targetHeight: number;',
+                                '}',
+                            ],
+                            raw: 'AcceptDropParams<TSrcData, TDstData>',
                         },
                     },
-                    typeValue: {
-                        print: [
-                            'interface AcceptDropParams<TSrcData, TDstData> {',
-                            '    srcData: TSrcData;',
-                            '    dstData?: TDstData;',
-                            '    offsetLeft: number;',
-                            '    offsetTop: number;',
-                            '    targetWidth: number;',
-                            '    targetHeight: number;',
-                            '}',
-                        ],
-                        raw: 'AcceptDropParams<TSrcData, TDstData>',
+                },
+            },
+            references: {
+                'test/test.tsx:AcceptDropParams': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'AcceptDropParams',
+                        nameFull: 'AcceptDropParams<TSrcData, TDstData>',
                     },
                 },
             },
@@ -704,56 +707,58 @@ describe('docsGen:complexTypes', () => {
             export interface IInterface extends IBaseInterface<string> {};
         `;
         const output = {
-            '@epam/test-module': {
-                IInterface: {
-                    kind: 'InterfaceDeclaration',
-                    props: [
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'IBaseInterface',
-                                    nameFull: 'IBaseInterface<T>',
+            byModule: {
+                '@epam/test-module': {
+                    IInterface: {
+                        kind: 263,
+                        props: [
+                            {
+                                from: 'test/test.tsx:IBaseInterface',
+                                name: 'value',
+                                required: true,
+                                typeValue: {
+                                    raw: 'string',
                                 },
+                                uid: 1,
                             },
-                            kind: 'PropertySignature',
-                            name: 'value',
-                            required: true,
-                            typeValue: {
-                                raw: 'string',
-                            },
-                            uniqueId: '1',
-                        },
-                        {
-                            from: {
-                                source: '../../../../test/test.tsx',
-                                typeName: {
-                                    name: 'IBaseInterface',
-                                    nameFull: 'IBaseInterface<T>',
+                            {
+                                from: 'test/test.tsx:IBaseInterface',
+                                name: 'onValueChange',
+                                required: true,
+                                typeValue: {
+                                    raw: '(newValue: string) => void',
                                 },
+                                uid: 2,
                             },
-                            kind: 'MethodSignature',
-                            name: 'onValueChange',
-                            required: true,
-                            typeValue: {
-                                raw: '(newValue: string) => void',
-                            },
-                            uniqueId: '2',
-                        },
-                    ],
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'IInterface',
-                            nameFull: 'IInterface',
+                        ],
+                        typeRef: 'test/test.tsx:IInterface',
+                        typeValue: {
+                            print: [
+                                'interface IInterface extends IBaseInterface<string> {',
+                                '}',
+                            ],
+                            raw: 'IInterface',
                         },
                     },
-                    typeValue: {
-                        print: [
-                            'interface IInterface extends IBaseInterface<string> {',
-                            '}',
-                        ],
-                        raw: 'IInterface',
+                },
+            },
+            references: {
+                'test/test.tsx:IBaseInterface': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'IBaseInterface',
+                        nameFull: 'IBaseInterface<T>',
+                    },
+                },
+                'test/test.tsx:IInterface': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'IInterface',
+                        nameFull: 'IInterface',
                     },
                 },
             },

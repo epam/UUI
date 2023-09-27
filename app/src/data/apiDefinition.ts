@@ -48,7 +48,7 @@ export function getApi(params: { processRequest: IProcessRequest, origin?: strin
             return processRequest(origin.concat('/api/get-props/'), 'GET');
         },
         getTsDocs(): Promise<any> {
-            return processRequest(origin.concat('/api/ts-docs/all'), 'GET');
+            return processRequest(origin.concat('/api/ts-docs/full'), 'GET');
         },
         getTsDocsApiReference(): Promise<{ content: Record<string, string[]> }> {
             return processRequest(origin.concat('/api/ts-docs/structure'), 'GET');

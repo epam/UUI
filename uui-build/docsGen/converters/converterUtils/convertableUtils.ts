@@ -1,14 +1,14 @@
-import { TConvertable } from '../../types';
-import { Node, Type, TypeChecker } from 'ts-morph';
+import { TConvertable } from '../../types/types';
+import { Node, Type } from 'ts-morph';
 import { NodeUtils } from './nodeUtils';
 import { SymbolUtils } from './symbolUtils';
 
 export class ConvertableUtils {
-    static getType(nodeOrSymbol: TConvertable, typeChecker: TypeChecker): Type {
+    static getType(nodeOrSymbol: TConvertable): Type {
         if (Node.isNode(nodeOrSymbol)) {
             return NodeUtils.getTypeFromNode(nodeOrSymbol);
         } else {
-            return SymbolUtils.getTypeFromSymbol(nodeOrSymbol, typeChecker);
+            return SymbolUtils.getTypeFromSymbol(nodeOrSymbol);
         }
     }
 

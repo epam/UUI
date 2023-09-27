@@ -54,8 +54,8 @@ function readDocsGenResultsJson() {
     const filePath = path.join(__dirname, '../../public/docs/docsGenOutput/docsGenOutput.json');
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
-router.get('/ts-docs/all', (req, res) => {
-    const json = readDocsGenResultsJson();
+router.get('/ts-docs/full', (req, res) => {
+    const { byModule, references } = readDocsGenResultsJson();
     function prettyPrintTypeValue(typeValue) {
         if (typeValue) {
             const pp = {};
@@ -71,8 +71,8 @@ router.get('/ts-docs/all', (req, res) => {
             };
         }
     }
-    Object.keys(json).forEach((packageName) => {
-        const content = json[packageName];
+    Object.keys(byModule).forEach((packageName) => {
+        const content = byModule[packageName];
         Object.keys(content).forEach((exportName) => {
             const data = content[exportName];
             data.typeValue = prettyPrintTypeValue(data.typeValue);
@@ -85,14 +85,17 @@ router.get('/ts-docs/all', (req, res) => {
         });
     });
     res.send({
-        content: json,
+        content: {
+            byModule,
+            references,
+        },
     });
 });
 
 router.get('/ts-docs/structure', (req, res) => {
-    const json = readDocsGenResultsJson();
-    const content = Object.keys(json).reduce((acc, packageName) => {
-        acc[packageName] = Object.keys(json[packageName]);
+    const { byModule } = readDocsGenResultsJson();
+    const content = Object.keys(byModule).reduce((acc, packageName) => {
+        acc[packageName] = Object.keys(byModule[packageName]);
         return acc;
     }, {});
     res.send({

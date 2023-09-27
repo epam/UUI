@@ -1,44 +1,34 @@
 import { ExportedDeclarations, Project, SyntaxKind } from 'ts-morph';
 import path from 'path';
-import { TExportedDeclarations, TUuiModulesExports } from './types';
+import { IConverterContext, TExportedDeclarations, TNotFormattedExportsByModule } from './types/types';
 import {
-    getUuiModuleNameFromPath,
     INCLUDED_EXPORT_KINDS,
     INCLUDED_UUI_PACKAGES,
     INDEX_PATH,
     SYNTAX_KIND_NAMES,
     TSCONFIG_PATH,
+    uuiRoot,
 } from './constants';
-import { stats } from './stats';
+import { getUuiModuleNameFromPath } from './utils/fileUtils';
 
-export function extractExports() {
-    return Object.keys(INCLUDED_UUI_PACKAGES).reduce<TUuiModulesExports>((acc, packageName) => {
-        const moduleRootDir = INCLUDED_UUI_PACKAGES[packageName];
+export function extractExports(context: IConverterContext) {
+    return Object.keys(INCLUDED_UUI_PACKAGES).reduce<TNotFormattedExportsByModule>((acc, packageName) => {
+        const moduleDirRel = INCLUDED_UUI_PACKAGES[packageName];
+        const moduleDirAbs = path.resolve(uuiRoot, moduleDirRel);
         const {
             project,
-        } = initProject(moduleRootDir);
-        const mainFilePath = path.resolve(moduleRootDir, INDEX_PATH);
-        const exportedDeclarations = extractExportsFromTsProject({ project, mainFilePath });
-        acc[packageName] = {
-            project,
-            exportedDeclarations,
-        };
+        } = initProject(moduleDirAbs);
+        const mainFilePath = path.resolve(moduleDirAbs, INDEX_PATH);
+        acc[packageName] = extractExportsFromTsProject({ project, mainFilePath, context });
         return acc;
     }, {});
 }
 
-function initProject(tsProjectRootDir: string) {
-    const tsConfigFilePath = path.resolve(tsProjectRootDir, TSCONFIG_PATH);
-    const project = new Project({ tsConfigFilePath, compilerOptions: { strictNullChecks: true } });
-    return {
-        project,
-    };
-}
-
-export function extractExportsFromTsProject(params: { project: Project, mainFilePath: string }) {
+export function extractExportsFromTsProject(params: { project: Project, mainFilePath: string, context: IConverterContext }) {
     const {
         project,
         mainFilePath,
+        context,
     } = params;
     const mainFile = project.getSourceFileOrThrow(mainFilePath);
     const ed = [...mainFile.getExportedDeclarations().entries()].sort((ed1, ed2) => {
@@ -56,12 +46,20 @@ export function extractExportsFromTsProject(params: { project: Project, mainFile
                 entry,
                 kind: getExportKind(entry),
             };
-            stats.addIncludedExport({ module, kind: kindStr, name });
+            context.stats.addIncludedExport({ module, kind: kindStr, name });
         } else {
-            stats.addIgnoredExport({ module, kind: kindStr, name });
+            context.stats.addIgnoredExport({ module, kind: kindStr, name });
         }
         return accEd;
     }, {});
+}
+
+function initProject(tsProjectRootDir: string) {
+    const tsConfigFilePath = path.resolve(tsProjectRootDir, TSCONFIG_PATH);
+    const project = new Project({ tsConfigFilePath, compilerOptions: { strictNullChecks: true } });
+    return {
+        project,
+    };
 }
 
 function getExportKind(entry: ExportedDeclarations[]) {

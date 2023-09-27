@@ -1,10 +1,9 @@
 import { EmitHint, Node, SyntaxKind, ts } from 'ts-morph';
-import { isExternalFile, makeRelativeToUuiRoot } from '../../utils';
-import { getUuiModuleNameFromPath, SYNTAX_KIND_NAMES } from '../../constants';
-import { TTypeRef, TTypeValue } from '../../types';
+import { getUuiModuleNameFromPath, isExternalFile, makeRelativeToUuiRoot } from '../../utils/fileUtils';
 // eslint-disable-next-line import/no-cycle
 import { SymbolUtils } from './symbolUtils';
 import { TypeUtils } from './typeUtils';
+import { TTypeRef, TTypeValue } from '../../types/docsGenSharedTypes';
 
 export class NodeUtils {
     static getRelativeSource(typeNode: Node) {
@@ -21,11 +20,6 @@ export class NodeUtils {
             const t = typeRef?.getTypeArguments();
             return t?.[0];
         }
-    }
-
-    static getSyntaxKindNameFromNode(node: Node): string {
-        const kind = node.getKind();
-        return SYNTAX_KIND_NAMES[kind] || String(kind);
     }
 
     static printNode(node: Node): string[] {
@@ -80,12 +74,16 @@ export class NodeUtils {
     static getTypeRef(typeNode: Node): TTypeRef {
         const module = getUuiModuleNameFromPath(typeNode.getSourceFile().compilerNode.fileName);
         const typeName = SymbolUtils.getTypeName(typeNode.getSymbol());
-        const source = NodeUtils.getRelativeSource(typeNode);
-        return {
+        const src = NodeUtils.getRelativeSource(typeNode);
+        const res: TTypeRef = {
             module,
             typeName,
-            source,
+            src,
         };
+        if (module.indexOf('@epam/') !== 0) {
+            res.external = true;
+        }
+        return res;
     }
 
     static isInternalTypeNodeWrappedInUtility(typeNode: Node): boolean {

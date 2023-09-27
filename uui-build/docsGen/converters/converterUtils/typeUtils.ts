@@ -52,6 +52,8 @@ export class TypeUtils {
      */
     static getNodeFromType(type: Type): Node | undefined {
         const symbol = TypeUtils.getSymbolFromType(type);
-        return SymbolUtils.getNodeFromSymbol(symbol);
+        if (symbol) {
+            return SymbolUtils.getNodeFromSymbol(symbol);
+        }
     }
 }
