@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 943,
-   "amountTypes": 300
+   "amountProps": 945,
+   "amountTypes": 302
   },
   "value": [
    {
@@ -131,6 +131,12 @@
     "typeRef": "@epam/uui-core:ButtonSemanticProps",
     "value": [
      "type"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui-core:ColumnsConfig",
+    "value": [
+     "[key: string]"
     ]
    },
    {
@@ -898,6 +904,12 @@
     "value": [
      "getPlaceholder",
      "rawProps"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui-core:RangeDatePickerPresets",
+    "value": [
+     "[key: string]"
     ]
    },
    {

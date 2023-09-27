@@ -12,6 +12,16 @@ describe('docsGen:mappedType', () => {
                 '@epam/test-module': {
                     TLocal: {
                         kind: 264,
+                        props: [
+                            {
+                                name: '[key: number]',
+                                required: true,
+                                typeValue: {
+                                    raw: 'string',
+                                },
+                                uid: 1,
+                            },
+                        ],
                         typeRef: 'test/test.tsx:TLocal',
                         typeValue: {
                             print: [

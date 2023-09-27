@@ -1,9 +1,10 @@
-import { EmitHint, Node, SyntaxKind, ts } from 'ts-morph';
+import { EmitHint, Node, Symbol, SyntaxKind, ts } from 'ts-morph';
 import { getUuiModuleNameFromPath, isExternalFile, makeRelativeToUuiRoot } from '../../utils/fileUtils';
 // eslint-disable-next-line import/no-cycle
 import { SymbolUtils } from './symbolUtils';
 import { TypeUtils } from './typeUtils';
 import { TTypeRef, TTypeValue } from '../../types/docsGenSharedTypes';
+import { IConverterContext } from '../../types/types';
 
 export class NodeUtils {
     static getRelativeSource(typeNode: Node) {
@@ -132,5 +133,47 @@ export class NodeUtils {
             result.print = NodeUtils.printNode(typeNode);
         }
         return result;
+    }
+
+    static getPropertySymbolRawType(propertySymbol: Symbol, context: IConverterContext): string {
+        const node = SymbolUtils.getNodeFromSymbol(propertySymbol);
+        const name = NodeUtils.getPropertyNodeName(node);
+        if (Node.isGetAccessorDeclaration(node)) {
+            const returnType = node.getStructure().returnType;
+            return `${name}(): ${returnType}`;
+        } else if (Node.isSetAccessorDeclaration(node)) {
+            const structureParams = node.getStructure().parameters?.[0];
+            if (structureParams) {
+                return `${name}(${structureParams.name}: ${structureParams.type})`;
+            }
+        } else if (Node.isIndexSignatureDeclaration(node)) {
+            return TypeUtils.getCompilerTypeText(node.getReturnType());
+        }
+        const conv = context.convertProp(propertySymbol);
+        return conv.raw;
+    }
+
+    static getPropertyNodeName(propertyNode: Node): string {
+        if (Node.isPropertyNamed(propertyNode)) {
+            const name = propertyNode.getName();
+            if (Node.isGetAccessorDeclaration(propertyNode)) {
+                return `get ${name}`;
+            } else if (Node.isSetAccessorDeclaration(propertyNode)) {
+                return `set ${name}`;
+            }
+            return name;
+        } else if (Node.isIndexSignatureDeclaration(propertyNode)) {
+            const kName = propertyNode.getKeyName();
+            const kType = propertyNode.getKeyType();
+            const kTypeText = TypeUtils.getCompilerTypeText(kType);
+            return `[${kName}: ${kTypeText}]`;
+        }
+        return '';
+    }
+
+    static isPropertyNodeRequired(propertyNode: Node): boolean {
+        const hasQuestionToken = Node.isQuestionTokenable(propertyNode) ? propertyNode.hasQuestionToken() : false;
+        const typeNode = Node.isTypeAliasDeclaration(propertyNode) ? propertyNode.getTypeNode() : propertyNode;
+        return !(NodeUtils.getTypeFromNode(typeNode).isNullable() || hasQuestionToken);
     }
 }

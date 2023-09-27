@@ -29,19 +29,23 @@ export class Converter implements IConverter {
         const typeRef = NodeUtils.getTypeRef(node);
         const typeRefShort = this.context.references.set(typeRef);
         const comment = NodeUtils.getCommentFromNode(node);
-        const propsGen = this.isPropsSupported(node) ? extractProps(node, this.context) : undefined;
+
         const res: TType = {
             kind,
             typeRef: typeRefShort,
             typeValue,
             comment,
-            props: propsGen?.props,
         };
-        if (propsGen?.fromUnion) {
-            res.propsFromUnion = true;
+        if (this.isPropsSupported(node)) {
+            const propsGen = extractProps(node, this.context);
+            if (propsGen?.props?.length) {
+                res.props = propsGen.props;
+                if (propsGen.fromUnion) {
+                    res.propsFromUnion = true;
+                }
+            }
         }
         this.context.stats.checkConvertedExport(res, NodeUtils.isDirectExportFromFile(node));
-
         return res;
     }
 
