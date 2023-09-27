@@ -4,22 +4,7 @@
     "type": "note-warning",
     "children": [
       {
-        "text": "UUI has full integration with the Create-React-App build tool chain, so we strongly recommended using it in the project, which was created via "
-      },
-      {
-        "data": {
-          "url": "https://create-react-app.dev/"
-        },
-        "type": "link",
-        "url": "https://create-react-app.dev/",
-        "children": [
-          {
-            "text": "Create React App"
-          }
-        ]
-      },
-      {
-        "text": ". Otherwise, you can face issues with importing styles or icons."
+        "text": "UUI is tested with Create React App, Next.JS, and Vite. We can't guarantee compatibility with custom build configurations."
       }
     ]
   },
@@ -32,11 +17,7 @@
         "type": "paragraph",
         "children": [
           {
-            "text": "1",
-            "uui-richTextEditor-span-mark": true
-          },
-          {
-            "text": ". Install core UUI modules: ",
+            "text": "1. Install core UUI modules: ",
             "uui-richTextEditor-span-mark": true
           },
           {
@@ -53,7 +34,7 @@
         "type": "paragraph",
         "children": [
           {
-            "text": "And skin specific packages: "
+            "text": "If you need a specific EPAM brand skin, add the appropriate package: "
           },
           {
             "text": "yarn add @epam/loveship",
@@ -84,52 +65,6 @@
           {
             "text": "import '@epam/uui-components/styles.css';\nimport '@epam/uui/styles.css';\n\n// Import your skin styles:\nimport '@epam/loveship/styles.css';\n// or \nimport '@epam/promo/styles.css';",
             "uui-richTextEditor-span-mark": true
-          }
-        ]
-      },
-      {
-        "data": {},
-        "type": "paragraph",
-        "children": [
-          {
-            "text": "Also, you can import scss/less ",
-            "uui-richTextEditor-span-mark": true
-          },
-          {
-            "text": "variables",
-            "uui-richTextEditor-span-mark": true,
-            "uui-richTextEditor-italic": true
-          },
-          {
-            "text": " or ",
-            "uui-richTextEditor-span-mark": true
-          },
-          {
-            "text": "mixins",
-            "uui-richTextEditor-span-mark": true,
-            "uui-richTextEditor-italic": true
-          },
-          {
-            "text": " into your styles from the ",
-            "uui-richTextEditor-span-mark": true
-          },
-          {
-            "text": "assets",
-            "uui-richTextEditor-span-mark": true,
-            "uui-richTextEditor-code": true
-          },
-          {
-            "text": " folder in each package:",
-            "uui-richTextEditor-span-mark": true
-          }
-        ]
-      },
-      {
-        "data": {},
-        "type": "note-quote",
-        "children": [
-          {
-            "text": "@use '~@epam/promo/assets/styles/colors.scss' as *;"
           }
         ]
       },
