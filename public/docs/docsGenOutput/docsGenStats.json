@@ -2464,7 +2464,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 509
+   "amountTypes": 510
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -2738,6 +2738,7 @@
    "@epam/uui-components:VirtualListRenderRowsParams",
    "@epam/uui-components:YearSelectionProps",
    "@epam/uui:AccordionMods",
+   "@epam/uui:AccordionProps",
    "@epam/uui:AlertProps",
    "@epam/uui:BadgeColor",
    "@epam/uui:BadgeFill",
@@ -3797,11 +3798,11 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 540,
+   "allExports": 541,
    "byModule": {
     "@epam/uui-core": 208,
     "@epam/uui-components": 93,
-    "@epam/uui": 116,
+    "@epam/uui": 117,
     "@epam/promo": 49,
     "@epam/loveship": 57,
     "@epam/uui-editor": 9,
@@ -4204,6 +4205,7 @@
      "TooltipMods"
     ],
     "TypeAliasDeclaration": [
+     "AccordionProps",
      "BadgeColor",
      "BadgeFill",
      "BadgeProps",
@@ -7895,6 +7897,14 @@
    "typeName": {
     "name": "AccordionMods",
     "nameFull": "AccordionMods"
+   },
+   "src": "uui/components/layout/Accordion.tsx"
+  },
+  "@epam/uui:AccordionProps": {
+   "module": "@epam/uui",
+   "typeName": {
+    "name": "AccordionProps",
+    "nameFull": "AccordionProps"
    },
    "src": "uui/components/layout/Accordion.tsx"
   },
