@@ -15,7 +15,6 @@
     --uui-filters-toggler-font-weight: 400;
 
     &:global(.uui-input-box) {
-        width: 100%;
         box-sizing: border-box;
         min-width: 40px;
         position: relative;
@@ -70,7 +69,6 @@
             .text-wrapper {
                 display: flex;
                 overflow: hidden;
-                justify-content: space-between;
                 align-items: baseline;
                 width: 100%;
                 padding-left: 3px;
