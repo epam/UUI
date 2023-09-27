@@ -2,7 +2,6 @@
 
 .root {
     --uui-modals-border-radius: var(--uui-border-radius);
-    --uui-modals-overlay: rgba(29, 30, 38, 0.8);
     --uui-modals-shadow: var(--uui-shadow-level-3);
     --uui-modals-bg: var(--uui-surface);
 }
@@ -12,7 +11,7 @@
     animation-name: animateModalBlocker;
     opacity: 1;
     transition: all 0.3s ease-out;
-    background-color: var(--uui-modals-overlay);
+    background-color: var(--uui-overlay);
 
     @keyframes animateModalBlocker {
         from { opacity: 0; }
