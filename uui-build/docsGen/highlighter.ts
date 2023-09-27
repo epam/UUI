@@ -1,5 +1,7 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Prism from 'prismjs';
 // @ts-ignore
+// eslint-disable-next-line import/no-extraneous-dependencies
 import loadLanguages from 'prismjs/components/index';
 import { TResultJson, TTypeValue } from './types/docsGenSharedTypes';
 
