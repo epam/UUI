@@ -13,7 +13,7 @@ export class FormDoc extends BaseDocsBlock {
 
                 <DocExample title="Complex validation" path="./_examples/form/ComplexValidation.example.tsx" />
 
-                <DocExample title="Handle succsess or error save" path="./_examples/form/HandleSuccessSaveAndError.example.tsx" />
+                <DocExample title="Handle successful or failed saves" path="./_examples/form/HandleSuccessSaveAndError.example.tsx" />
 
                 <DocExample title="Modal with Form" path="./_examples/modals/ModalWithForm.example.tsx" />
 
