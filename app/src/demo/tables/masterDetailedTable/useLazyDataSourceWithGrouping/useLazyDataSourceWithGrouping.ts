@@ -1,22 +1,24 @@
 import { useMemo } from 'react';
 import { LazyDataSourceApi, useLazyDataSource } from '@epam/uui-core';
 import { GroupingConfigBuilder } from './groupingConfigBuilder';
-import { BaseGroups, BaseGroupsIds, ComplexId, BaseFilter, TGroupsWithMeta, ToUnion } from './types';
+import { BaseGroups, BaseGroupsIds, ComplexId, BaseFilter, TGroupsWithMeta, ToUnion, BaseGroupBy } from './types';
 
 type Setup<
     TGroups extends BaseGroups,
     TId extends BaseGroupsIds<TGroups>,
-    TFilter extends BaseFilter<TGroups>
+    TFilter extends BaseFilter<TGroups, TGroupBy>,
+    TGroupBy extends BaseGroupBy<TGroups>,
 > = (
-    configBuilder: GroupingConfigBuilder<TGroups, TId, TFilter>,
-) => GroupingConfigBuilder<TGroups, TId, TFilter>;
+    configBuilder: GroupingConfigBuilder<TGroups, TId, TFilter, TGroupBy>,
+) => GroupingConfigBuilder<TGroups, TId, TFilter, TGroupBy>;
 
 export function useLazyDataSourceWithGrouping<
     TGroups extends BaseGroups,
     TId extends BaseGroupsIds<TGroups>,
-    TFilter extends BaseFilter<TGroups>
+    TFilter extends BaseFilter<TGroups, TGroupBy>,
+    TGroupBy extends BaseGroupBy<TGroups>,
 >(
-    setup: Setup<TGroups, TId, TFilter>,
+    setup: Setup<TGroups, TId, TFilter, TGroupBy>,
     deps: unknown[] = [],
 ) {
     const config = useMemo(
@@ -25,8 +27,8 @@ export function useLazyDataSourceWithGrouping<
         deps,
     );
     const api: LazyDataSourceApi<
-    ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>,
-    ToUnion<ComplexId<TGroups, TId, TFilter>>[],
+    ToUnion<TGroupsWithMeta<TGroups, TId, TGroupBy>>,
+    ToUnion<ComplexId<TGroups, TId, TGroupBy>>[],
     TFilter[keyof TGroups]
     > = async (request, ctx) => {
         const groupBy = config.getGroupBy();
@@ -47,8 +49,8 @@ export function useLazyDataSourceWithGrouping<
     };
 
     return useLazyDataSource<
-    ToUnion<TGroupsWithMeta<TGroups, TId, TFilter>>,
-    ToUnion<ComplexId<TGroups, TId, TFilter>>[],
+    ToUnion<TGroupsWithMeta<TGroups, TId, TGroupBy>>,
+    ToUnion<ComplexId<TGroups, TId, TGroupBy>>[],
     TFilter[keyof TGroups]
     >(
         {
