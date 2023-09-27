@@ -2980,9 +2980,9 @@
  },
  "ignoredExports": {
   "totals": {
-   "allExports": 740,
+   "allExports": 739,
    "byModule": {
-    "@epam/uui-core": 133,
+    "@epam/uui-core": 132,
     "@epam/uui-components": 106,
     "@epam/uui": 148,
     "@epam/promo": 127,
@@ -3062,7 +3062,6 @@
      "Stateful",
      "UNKNOWN",
      "urlParser",
-     "useAppMobileHeight",
      "useColumnsConfig",
      "useForceUpdate",
      "useLayer",

@@ -23901,6 +23901,10 @@
       "     * If omitted, true value will be used. It's used if focusLock=true.",
       "     */",
       "    closeOnEsc?: boolean;",
+      "    /** Called on keyDown event in DropdownContainer.",
+      "     Can be used to provide your own handlers.",
+      "     */",
+      "    onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;",
       "}"
      ]
     },
@@ -24030,6 +24034,18 @@
      },
      {
       "uid": 13,
+      "name": "onKeyDown",
+      "comment": [
+       "Called on keyDown event in DropdownContainer.",
+       "     Can be used to provide your own handlers."
+      ],
+      "typeValue": {
+       "raw": "undefined | (e: React.KeyboardEvent<HTMLElement>) => void"
+      },
+      "required": false
+     },
+     {
+      "uid": 14,
       "name": "cx",
       "comment": [
        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
@@ -24041,7 +24057,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 15,
       "name": "children",
       "typeValue": {
        "raw": "undefined | null | string | number | false | true | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
@@ -24050,7 +24066,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 16,
       "name": "rawProps",
       "comment": [
        "Any HTML attributes (native or 'data-') to put on the underlying component"
@@ -24062,7 +24078,7 @@
       "required": false
      },
      {
-      "uid": 16,
+      "uid": 17,
       "name": "forwardedRef",
       "comment": [
        "this ref is passed to the underlying component"
@@ -24074,7 +24090,7 @@
       "required": false
      },
      {
-      "uid": 17,
+      "uid": 18,
       "name": "onClose",
       "typeValue": {
        "raw": "undefined | () => void"
@@ -24083,7 +24099,7 @@
       "required": false
      },
      {
-      "uid": 18,
+      "uid": 19,
       "name": "togglerWidth",
       "typeValue": {
        "raw": "undefined | number"
@@ -24092,7 +24108,7 @@
       "required": false
      },
      {
-      "uid": 19,
+      "uid": 20,
       "name": "togglerHeight",
       "typeValue": {
        "raw": "undefined | number"
@@ -24101,7 +24117,7 @@
       "required": false
      },
      {
-      "uid": 20,
+      "uid": 21,
       "name": "scheduleUpdate",
       "typeValue": {
        "raw": "undefined | () => void"
@@ -24110,7 +24126,7 @@
       "required": false
      },
      {
-      "uid": 21,
+      "uid": 22,
       "name": "isOpen",
       "typeValue": {
        "raw": "undefined | false | true"
@@ -24119,7 +24135,7 @@
       "required": false
      },
      {
-      "uid": 22,
+      "uid": 23,
       "name": "arrowProps",
       "typeValue": {
        "raw": "undefined | PopperArrowProps"
@@ -24128,7 +24144,7 @@
       "required": false
      },
      {
-      "uid": 23,
+      "uid": 24,
       "name": "placement",
       "comment": [
        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
@@ -45576,6 +45592,19 @@
      },
      {
       "uid": 13,
+      "name": "onKeyDown",
+      "comment": [
+       "Called on keyDown event in DropdownContainer.",
+       "     Can be used to provide your own handlers."
+      ],
+      "typeValue": {
+       "raw": "undefined | (e: React.KeyboardEvent<HTMLElement>) => void"
+      },
+      "from": "@epam/uui-components:DropdownContainerProps",
+      "required": false
+     },
+     {
+      "uid": 14,
       "name": "cx",
       "comment": [
        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
@@ -45587,7 +45616,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 15,
       "name": "children",
       "typeValue": {
        "raw": "undefined | null | string | number | false | true | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
@@ -45596,7 +45625,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 16,
       "name": "rawProps",
       "comment": [
        "Any HTML attributes (native or 'data-') to put on the underlying component"
@@ -45608,7 +45637,7 @@
       "required": false
      },
      {
-      "uid": 16,
+      "uid": 17,
       "name": "forwardedRef",
       "comment": [
        "this ref is passed to the underlying component"
@@ -45620,7 +45649,7 @@
       "required": false
      },
      {
-      "uid": 17,
+      "uid": 18,
       "name": "onClose",
       "typeValue": {
        "raw": "undefined | () => void"
@@ -45629,7 +45658,7 @@
       "required": false
      },
      {
-      "uid": 18,
+      "uid": 19,
       "name": "togglerWidth",
       "typeValue": {
        "raw": "undefined | number"
@@ -45638,7 +45667,7 @@
       "required": false
      },
      {
-      "uid": 19,
+      "uid": 20,
       "name": "togglerHeight",
       "typeValue": {
        "raw": "undefined | number"
@@ -45647,7 +45676,7 @@
       "required": false
      },
      {
-      "uid": 20,
+      "uid": 21,
       "name": "scheduleUpdate",
       "typeValue": {
        "raw": "undefined | () => void"
@@ -45656,7 +45685,7 @@
       "required": false
      },
      {
-      "uid": 21,
+      "uid": 22,
       "name": "isOpen",
       "typeValue": {
        "raw": "undefined | false | true"
@@ -45665,7 +45694,7 @@
       "required": false
      },
      {
-      "uid": 22,
+      "uid": 23,
       "name": "arrowProps",
       "typeValue": {
        "raw": "undefined | PopperArrowProps"
@@ -45674,7 +45703,7 @@
       "required": false
      },
      {
-      "uid": 23,
+      "uid": 24,
       "name": "placement",
       "comment": [
        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
@@ -45686,7 +45715,7 @@
       "required": false
      },
      {
-      "uid": 24,
+      "uid": 25,
       "name": "vPadding",
       "typeValue": {
        "raw": "undefined | '6' | '12' | '18' | '48' | '24' | '30'"
@@ -45695,7 +45724,7 @@
       "required": false
      },
      {
-      "uid": 25,
+      "uid": 26,
       "name": "padding",
       "typeValue": {
        "raw": "undefined | '6' | '12' | '18' | '24' | '30'"
