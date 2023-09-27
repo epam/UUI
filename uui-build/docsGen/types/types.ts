@@ -1,45 +1,16 @@
-import { ExportedDeclarations, Project, Node, Symbol, SyntaxKind } from 'ts-morph';
+import { ExportedDeclarations, Node, Symbol, SyntaxKind } from 'ts-morph';
+import type {
+    TType,
+    TTypeValue,
+    TTypeRef,
+    TTypeRefShort,
+    TTypeRefMap,
+} from './docsGenSharedTypes';
 
-export type TTypeName = {
-    name: string;
-    nameFull: string;
-};
-export type TTypeValue = {
-    raw: string;
-    print?: string[];
-};
-export type TTypeRef = {
-    typeName: TTypeName,
-    module?: string,
-    source?: string;
-};
-export type TType = {
-    kind: string;
-    typeRef: TTypeRef;
-    typeValue: TTypeValue;
-    comment?: string[];
-    propsFromUnion?: boolean;
-    props?: TTypeProp[];
-};
-export type TTypeProp = {
-    uniqueId: string;
-    kind: string;
-    name: string;
-    typeValue: TTypeValue;
-    comment?: string[];
-    required: boolean;
-    from?: TTypeRef;
-};
-
-export type TUuiModuleFormattedExport = Record<string, TType>;
 type TExportName = string;
 type TModuleName = string;
 export type TExportedDeclarations = Record<TExportName, { entry: ExportedDeclarations[]; kind: SyntaxKind }>;
-export type TUuiModulesExports = Record<TModuleName, { project: Project, exportedDeclarations: TExportedDeclarations }>;
-
-export interface IConverterConstructor {
-    new (context: IConverterContext): IConverter;
-}
+export type TNotFormattedExportsByModule = Record<TModuleName, TExportedDeclarations>;
 
 export type TConvertable = Node | Symbol;
 export interface IConverter {
@@ -48,9 +19,10 @@ export interface IConverter {
     convertToTypeValue(nodeOrSymbol: TConvertable, print: boolean): TTypeValue
 }
 export interface IConverterContext {
-    project: Project
     stats: IDocGenStats
-    convert(params: { nodeOrSymbol: TConvertable, isTypeProp: boolean }): TType | undefined
+    references: IDocGenReferences
+    convert(nodeOrSymbol: TConvertable): TType
+    convertProp(nodeOrSymbol: TConvertable): TTypeValue
 }
 
 export type TDocGenStatsResult_Exports = {
@@ -66,16 +38,17 @@ export type TDocGenStatsResult = {
             amountProps: number,
             amountTypes: number,
         },
-        value: { typeRef: TTypeRef, value: string[] }[],
+        value: { typeRef: TTypeRefShort, value: string[] }[],
     },
     missingTypeComment: {
         totals: {
             amountTypes: number,
         },
-        value: TTypeRef[],
+        value: TTypeRefShort[],
     },
     ignoredExports: TDocGenStatsResult_Exports,
     includedExports: TDocGenStatsResult_Exports,
+    references: TTypeRefMap,
 };
 
 export interface IDocGenStats {
@@ -85,9 +58,19 @@ export interface IDocGenStats {
     getResults(): TDocGenStatsResult;
 }
 
-export function typeRefToUniqueString(ref?: TTypeRef) {
-    if (ref) {
-        return `${ref.module}:${ref.typeName.name}`;
-    }
-    return '';
+export interface IDocGenReferences {
+    set(ref: TTypeRef): TTypeRefShort
+    get(): TTypeRefMap
+}
+
+export function typeRefToUniqueString(ref: TTypeRef): TTypeRefShort {
+    return `${ref.module || ''}:${ref.typeName.name}`;
+}
+
+export function parseTypeRefShort(ref: TTypeRefShort): { moduleName: string, typeName: string } {
+    const [moduleName, typeName] = ref.split(':');
+    return {
+        moduleName,
+        typeName,
+    };
 }

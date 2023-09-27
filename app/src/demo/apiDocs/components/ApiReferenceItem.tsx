@@ -6,22 +6,24 @@ import { Layout } from './components/Layout';
 import { ApiReferenceItemTable } from './ApiReferenceItemTable';
 import { useSearchParams } from 'react-router-dom';
 import { TTsDocExportedEntry } from '../types';
+import { TTypeRefShort } from '../docsGenSharedTypes';
+import { Text } from '@epam/uui';
 
 export function ApiReferenceItem() {
     const [params] = useSearchParams();
-    const [p1, p2, exportName] = params?.get('id')?.split('/') || [];
-    const packageName = `${p1}/${p2}`;
+    const typeRefShort = params?.get('id') as TTypeRefShort;
     const tsDocs = useTsDocs();
-    const exportInfo = tsDocs.get(packageName, exportName);
-    const {
-        typeRef,
-        typeValue,
-        comment,
-    } = exportInfo || {};
-
-    if (!exportInfo) {
+    if (!tsDocs) {
         return null;
     }
+    const exportInfo = tsDocs.get(typeRefShort);
+    if (!exportInfo) {
+        return <Text>{`Unable to find exported type: ${typeRefShort}`}</Text>;
+    }
+    const {
+        typeValue,
+        comment,
+    } = exportInfo;
 
     const items: { title?: string, node: React.ReactNode }[] = [];
     if (comment?.length) {
@@ -32,7 +34,7 @@ export function ApiReferenceItem() {
     }
     const hasProps = !!exportInfo?.props?.length;
     if (hasProps) {
-        const entry = `${packageName}:${exportName}` as TTsDocExportedEntry;
+        const entry = typeRefShort as TTsDocExportedEntry;
         items.push({
             node: <ApiReferenceItemTable key={ entry } entry={ entry } showCode={ true } />,
         });
@@ -42,9 +44,9 @@ export function ApiReferenceItem() {
             node: <Code codeAsHtml={ typeValue?.print?.join('\n') || '' } />,
         });
     }
-
+    const typeRefLong = tsDocs.getTypeRef(exportInfo.typeRef);
     return (
-        <Layout title={ typeRef?.typeName.nameFull }>
+        <Layout title={ typeRefLong?.typeName.nameFull }>
             {items}
         </Layout>
     );

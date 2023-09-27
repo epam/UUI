@@ -23,8 +23,8 @@ function useApiReferenceNav(): DocItem[] | undefined {
     const root = { id: 'ApiReference', name: 'Api Reference' };
     return Object.keys(apiRef).reduce<DocItem[]>((acc, moduleName) => {
         acc.push({ id: moduleName, name: moduleName, parentId: root.id });
-        apiRef[moduleName].forEach((eName) => {
-            acc.push({ id: `${moduleName}/${eName}`, name: eName, parentId: moduleName, component: ApiReferenceItem });
+        apiRef[moduleName].forEach((exportName) => {
+            acc.push({ id: `${moduleName}:${exportName}`, name: exportName, parentId: moduleName, component: ApiReferenceItem });
         });
         return acc;
     }, [root]);

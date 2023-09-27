@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import css from './CodeExpandable.module.scss';
-import { FlexRow, LinkButton, Switch } from '@epam/uui';
+import { FlexRow, LinkButton, Switch, Text } from '@epam/uui';
 import { FlexSpacer } from '@epam/uui-components';
 import { Code } from '../../../../common/docs/Code';
-import { TType } from '../../types';
+import { TTypeRefShort } from '../../docsGenSharedTypes';
+import { useTsDocs } from '../../dataHooks';
 
 function buildGitURL(relativePath?: string) {
     if (relativePath) {
@@ -11,13 +12,23 @@ function buildGitURL(relativePath?: string) {
     }
 }
 
-export function CodeExpandable(props: { showCode: boolean; exportInfo: TType }) {
-    const { showCode, exportInfo } = props;
+export function CodeExpandable(props: { showCode: boolean; typeRefShort: TTypeRefShort }) {
+    const { showCode, typeRefShort } = props;
     const [isCodeExpanded, setIsCodeExpanded] = useState<boolean>(false);
+    const tsDocs = useTsDocs();
+    if (!tsDocs) {
+        // not loaded yet
+        return null;
+    }
+    const exportInfo = tsDocs.get(typeRefShort);
+    const typeRefLong = tsDocs.getTypeRef(typeRefShort);
     if (!showCode) {
         return null;
     }
-    const relativeUrl = exportInfo.typeRef.source;
+    if (!exportInfo) {
+        return <Text>{`Unable to find exported type: ${typeRefShort}`}</Text>;
+    }
+    const relativeUrl = typeRefLong.src;
     const gitUrl = buildGitURL(relativeUrl);
     return (
         <div className={ css.root }>

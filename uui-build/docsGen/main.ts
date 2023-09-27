@@ -1,17 +1,23 @@
-import { extractExports } from './exportsExtractor';
-import { formatExports } from './exportsFormatter';
-import { saveContentToFile } from './utils';
+import { extractExports } from './extractor';
+import { formatExports } from './formatter';
+import { saveContentToFile } from './utils/fileUtils';
 import { OUTPUT_DTS_FILE_FULL_PATH, OUTPUT_FILE_FULL_PATH, OUTPUT_STATS_FILE_FULL_PATH } from './constants';
-import { generateDTS } from './dtsGenerator';
-import { stats } from './stats';
+import { generateDTS } from './dts';
+import { ConverterContext } from './converterContext/converterContext';
+import { TResultJson } from './types/docsGenSharedTypes';
 
 main();
 
 function main() {
-    const exports = extractExports();
-    const json = formatExports(exports);
-    const dts = generateDTS(json);
+    const context = new ConverterContext();
+    const exportsNotFormatted = extractExports(context);
+    const byModule = formatExports(exportsNotFormatted, context);
+    const json: TResultJson = {
+        byModule,
+        references: context.references.get(),
+    };
+    const dts = generateDTS(byModule);
     saveContentToFile(OUTPUT_FILE_FULL_PATH, json);
     saveContentToFile(OUTPUT_DTS_FILE_FULL_PATH, dts);
-    saveContentToFile(OUTPUT_STATS_FILE_FULL_PATH, stats.getResults());
+    saveContentToFile(OUTPUT_STATS_FILE_FULL_PATH, context.stats.getResults());
 }

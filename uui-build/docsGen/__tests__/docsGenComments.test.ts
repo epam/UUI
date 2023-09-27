@@ -14,55 +14,60 @@ describe('docsGen:comments', () => {
             }
         `;
         const output = {
-            '@epam/test-module': {
-                ITest: {
-                    comment: [
-                        'This is an export level multiline TSDoc.',
-                    ],
-                    kind: 'InterfaceDeclaration',
-                    props: [
-                        {
-                            kind: 'PropertySignature',
-                            name: 'a',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
+            byModule: {
+                '@epam/test-module': {
+                    ITest: {
+                        comment: [
+                            'This is an export level multiline TSDoc.',
+                        ],
+                        kind: 263,
+                        props: [
+                            {
+                                name: 'a',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
+                                },
+                                uid: 1,
                             },
-                            uniqueId: '1',
-                        },
-                        {
-                            comment: [
-                                'This is property-level TSDoc',
+                            {
+                                comment: [
+                                    'This is property-level TSDoc',
+                                ],
+                                name: 'b',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
+                                },
+                                uid: 2,
+                            },
+                        ],
+                        typeRef: 'test/test.tsx:ITest',
+                        typeValue: {
+                            print: [
+                                '/**',
+                                ' * This is an export level multiline TSDoc.',
+                                '*/',
+                                'interface ITest {',
+                                '    // Single line comment should be ignored',
+                                '    a: number;',
+                                '    /** This is property-level TSDoc */',
+                                '    b: number;',
+                                '}',
                             ],
-                            kind: 'PropertySignature',
-                            name: 'b',
-                            required: true,
-                            typeValue: {
-                                raw: 'number',
-                            },
-                            uniqueId: '2',
-                        },
-                    ],
-                    typeRef: {
-                        source: '../../../../test/test.tsx',
-                        typeName: {
-                            name: 'ITest',
-                            nameFull: 'ITest',
+                            raw: 'ITest',
                         },
                     },
-                    typeValue: {
-                        print: [
-                            '/**',
-                            ' * This is an export level multiline TSDoc.',
-                            '*/',
-                            'interface ITest {',
-                            '    // Single line comment should be ignored',
-                            '    a: number;',
-                            '    /** This is property-level TSDoc */',
-                            '    b: number;',
-                            '}',
-                        ],
-                        raw: 'ITest',
+                },
+            },
+            references: {
+                'test/test.tsx:ITest': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'ITest',
+                        nameFull: 'ITest',
                     },
                 },
             },

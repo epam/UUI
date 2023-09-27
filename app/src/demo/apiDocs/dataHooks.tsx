@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { svc } from '../../services';
-import { TtsDocsResponse, TType } from './types';
+import { TResultJson, TType, TTypeRef, TTypeRefShort } from './docsGenSharedTypes';
 
-type TAsyncResponse = Promise<{ content: TtsDocsResponse }>;
+type TAsyncResponse = Promise<{ content: TResultJson }>;
 
 const load = (() => {
     // simple in-memory cache to avoid duplicated requests.
@@ -15,22 +15,31 @@ const load = (() => {
     };
 })();
 
-type TUseGetTsDocsForPackageResult = {
-    get: (packageName: string, exportName: string) => TType | undefined;
-};
+export type TUseGetTsDocsForPackageResult = {
+    get: (typeRefShort: TTypeRefShort) => TType | undefined;
+    getTypeRef: (typeRefShort: TTypeRefShort) => TTypeRef | undefined;
+} | undefined;
 export function useTsDocs(): TUseGetTsDocsForPackageResult {
-    const [response, setResponse] = useState<TtsDocsResponse>();
+    const [response, setResponse] = useState<TResultJson>();
     useEffect(() => {
         load().then((res) => {
             setResponse(() => res.content);
         });
     }, []);
-    const get = useCallback((packageName: string, exportName: string) => {
+    const get = useCallback((typeRefShort: TTypeRefShort) => {
         if (response) {
-            return response[packageName]?.[exportName];
+            const [moduleName, exportName] = typeRefShort.split(':');
+            return response.byModule[moduleName]?.[exportName];
+        }
+    }, [response]);
+    const getTypeRef = useCallback((typeRefShort: TTypeRefShort) => {
+        if (response) {
+            return response.references[typeRefShort];
         }
     }, [response]);
     return useMemo(() => {
-        return { get };
-    }, [get]);
+        if (response) {
+            return { get, getTypeRef };
+        }
+    }, [get, getTypeRef, response]);
 }

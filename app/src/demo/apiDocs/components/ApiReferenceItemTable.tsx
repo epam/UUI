@@ -5,7 +5,7 @@ import {
     useArrayDataSource,
     useTableState,
 } from '@epam/uui-core';
-import { TTsDocExportedEntry, TType, TTypeProp } from '../types';
+import { TTsDocExportedEntry } from '../types';
 import { Code } from '../../../common/docs/Code';
 import { TsComment } from './components/TsComment';
 import { Ref } from './components/Ref';
@@ -21,10 +21,11 @@ import {
     Text,
     Tooltip,
 } from '@epam/uui';
-import { useTsDocs } from '../dataHooks';
+import { TUseGetTsDocsForPackageResult, useTsDocs } from '../dataHooks';
 import { CodeExpandable } from './components/CodeExpandable';
 import css from './ApiReferenceTable.module.scss';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/table-info-fill-18.svg';
+import { TType, TTypeProp } from '../docsGenSharedTypes';
 
 type TTypeGroup = { _group: true, from: TTypeProp['from'], comment: TTypeProp['comment'] };
 type TItem = TTypeProp | TTypeGroup;
@@ -50,7 +51,7 @@ function getColumns(params: { isGroupedByFrom?: boolean, hasFrom?: boolean, isGr
             caption: 'Name',
             render: (item) => {
                 if (isGroup(item)) {
-                    return <Ref refData={ item.from } />;
+                    return <Ref typeRefShort={ item.from } />;
                 }
                 return (
                     <span style={ { wordBreak: 'break-all' } }>
@@ -106,23 +107,13 @@ function getColumns(params: { isGroupedByFrom?: boolean, hasFrom?: boolean, isGr
                 key: 'from',
                 caption: 'From',
                 alignSelf: 'center',
-                render: (item) => <Ref refData={ item.from } />,
+                render: (item) => <Ref typeRefShort={ item.from } />,
                 width: WIDTH.from,
                 isSortable: true,
             },
         ]);
     }
     return propsTableColumns;
-}
-
-function fromToString(from?: TTypeProp['from']) {
-    if (from) {
-        if (from.module) {
-            return `${from.module}:${from.typeName.name}`;
-        }
-        return from.typeName.name;
-    }
-    return '';
 }
 
 function useIsGrouped(exportInfo?: TType): { canGroup: boolean, setIsGrouped: (isGrouped: boolean) => void, isGrouped: boolean } {
@@ -146,10 +137,17 @@ type ApiReferenceItemApiProps = {
     showCode?: boolean;
 };
 export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
-    const { entry, showCode = false } = props;
-    const [packageName, exportName] = entry.split(':');
     const tsDocs = useTsDocs();
-    const exportInfo = tsDocs.get(packageName, exportName);
+    if (!tsDocs) {
+        return null;
+    }
+    return (
+        <ApiReferenceItemTableInner { ...props } tsDocs={ tsDocs } />
+    );
+}
+function ApiReferenceItemTableInner(props: ApiReferenceItemApiProps & { tsDocs: TUseGetTsDocsForPackageResult }) {
+    const { entry, showCode = false, tsDocs } = props;
+    const exportInfo = tsDocs.get(entry);
     const { canGroup, isGrouped, setIsGrouped } = useIsGrouped(exportInfo);
     const columns = getColumns({ isGroupedByFrom: isGrouped, hasFrom: canGroup });
     const isNoData = !exportInfo?.props?.length;
@@ -161,8 +159,8 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
             if (isGrouped) {
                 exportInfo.props.forEach(({ from }) => {
                     if (from) {
-                        const comment = tsDocs.get(from.module, from.typeName.name)?.comment;
-                        parents.set(fromToString(from), { _group: true, from, comment });
+                        const comment = tsDocs.get(from)?.comment;
+                        parents.set(from, { _group: true, from, comment });
                     }
                 });
             }
@@ -176,23 +174,23 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
             items: exportPropsDsItems,
             getId: (item) => {
                 if (isGroup(item)) {
-                    return fromToString(item.from);
+                    return item.from;
                 }
-                return item.uniqueId;
+                return String(item.uid);
             },
             sortBy(item: TItem, sorting: SortingOption): any {
                 if (sorting.field === 'from') {
                     if (item.from) {
-                        const { module, typeName } = item.from;
-                        // name goes first here, so that it's sorted by name and then by module.
-                        return `${typeName.name}:${module}`;
+                        const [module, typeName] = item.from.split(':');
+                        // typeName goes first here, so that it's sorted by typeName and then by module.
+                        return `${typeName}:${module}`;
                     }
                 }
                 return item[sorting.field as keyof TItem];
             },
             getParentId(item: TItem): string | undefined {
                 if (isGrouped && !isGroup(item) && item.from) {
-                    return fromToString(item.from);
+                    return item.from;
                 }
             },
         },
@@ -275,7 +273,7 @@ export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
                 } }
                 { ...view.getListProps() }
             />
-            <CodeExpandable showCode={ showCode } exportInfo={ exportInfo } />
+            <CodeExpandable showCode={ showCode } typeRefShort={ exportInfo.typeRef } />
         </div>
     );
 }

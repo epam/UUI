@@ -3,10 +3,12 @@ import path from 'path';
 import { uuiRoot } from '../utils/constants';
 import { SyntaxKind } from 'ts-morph';
 
-const DIR_REL = 'public/docs/docsGenOutput';
-export const OUTPUT_FILE_FULL_PATH = path.resolve(uuiRoot, `${DIR_REL}/docsGenOutput.json`);
-export const OUTPUT_DTS_FILE_FULL_PATH = path.resolve(uuiRoot, `${DIR_REL}/docsGenOutput.d.ts`);
-export const OUTPUT_STATS_FILE_FULL_PATH = path.resolve(uuiRoot, `${DIR_REL}/docsGenStats.json`);
+export { uuiRoot };
+
+const OUT_DIR_REL = 'public/docs/docsGenOutput';
+export const OUTPUT_FILE_FULL_PATH = path.resolve(uuiRoot, `${OUT_DIR_REL}/docsGenOutput.json`);
+export const OUTPUT_DTS_FILE_FULL_PATH = path.resolve(uuiRoot, `${OUT_DIR_REL}/docsGenOutput.d.ts`);
+export const OUTPUT_STATS_FILE_FULL_PATH = path.resolve(uuiRoot, `${OUT_DIR_REL}/docsGenStats.json`);
 export const TSCONFIG_PATH = './tsconfig.json';
 export const INDEX_PATH = './index.tsx';
 
@@ -15,30 +17,14 @@ export const SYNTAX_KIND_NAMES = Object.keys(SyntaxKind).reduce<Record<number, s
     return acc;
 }, {});
 
-function fullPath(relative: string) {
-    return path.resolve(uuiRoot, relative);
-}
-
-export function getUuiModuleNameFromPath(absolutePath: string) {
-    const rel = path.relative(uuiRoot, absolutePath);
-    const moduleFolderName = rel.split(path.sep)[0];
-    const foundEntry = Object.entries(INCLUDED_UUI_PACKAGES).find((e) => {
-        const folderName = path.relative(uuiRoot, e[1]);
-        return folderName === moduleFolderName;
-    });
-    if (foundEntry) {
-        return foundEntry[0];
-    }
-}
-
 export const INCLUDED_UUI_PACKAGES: Record<string, string> = {
-    '@epam/uui-core': fullPath('./uui-core'),
-    '@epam/uui-components': fullPath('./uui-components'),
-    '@epam/uui': fullPath('./uui'),
-    '@epam/promo': fullPath('./epam-promo'),
-    '@epam/loveship': fullPath('./loveship'),
-    '@epam/uui-editor': fullPath('./uui-editor'),
-    '@epam/uui-timeline': fullPath('./uui-timeline'),
+    '@epam/uui-core': 'uui-core',
+    '@epam/uui-components': 'uui-components',
+    '@epam/uui': 'uui',
+    '@epam/promo': 'epam-promo',
+    '@epam/loveship': 'loveship',
+    '@epam/uui-editor': 'uui-editor',
+    '@epam/uui-timeline': 'uui-timeline',
 };
 
 export const INCLUDED_EXPORT_KINDS = [
