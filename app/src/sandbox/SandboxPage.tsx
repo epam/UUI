@@ -4,6 +4,7 @@ import { AppHeader, Page, Sidebar } from '../common';
 import { svc } from '../services';
 import { getQuery } from '../helpers';
 import { ComplexForm } from './forms/ComplexForm';
+import { TagInputDemo } from './forms/TagInput';
 import { DbDemo } from './db/DbDemo';
 import { PersonsTableDemo } from './tables/PersonsTableDemo';
 import { DemoTablePaged } from './tablePaged';
@@ -41,6 +42,7 @@ export function SandboxPage() {
             { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
             { id: 'RTEDemo', name: 'RTE Demo', component: RichTextEditorDemo },
             { id: 'TableColumnsConfigurationModal', name: 'Table ColumnsConfigModal', component: TableColumnConfigModalTest },
+            { id: 'tagInput', name: 'Tag Input', component: TagInputDemo },
         ],
         [],
     );
