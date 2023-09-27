@@ -78,6 +78,7 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
             <IEditableDebouncer
                 value={ targetProps.value }
                 onValueChange={ handleTogglerSearchChange }
+                debounceDelay={ props.searchDebounceDelay }
                 render={ (editableProps) => renderTargetFn({
                     ...getTogglerMods(),
                     ...targetProps,

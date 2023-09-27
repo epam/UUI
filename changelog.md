@@ -5,6 +5,7 @@
 
 **What's Fixed**
 * [PickerItem]: fixed 'cx' prop
+* [PickerInput]: improved keyboard navigation and focus/blur behavior
 
 
 # 5.1.3 - 31.08.2023
