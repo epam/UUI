@@ -25,7 +25,7 @@ const router = new Router6AdaptedRouter(router6);
 // __COMMIT_HASH__ will be replaced to a real string by Webpack
 (window as any).BUILD_INFO = { hash: __COMMIT_HASH__ };
 
-const GA_CODE = 'UA-132675234-1';
+const GA_CODE = 'G-Q5ZD7N55ML';
 const isProduction = /uui.epam.com/.test(window.location.hostname);
 const AMP_CODE = isProduction ? '94e0dbdbd106e5b208a33e72b58a1345' : 'b2260a6d42a038e9f9e3863f67042cc1';
 
