@@ -34,7 +34,7 @@ export function AppHeader() {
                 <BurgerButton caption="Home" link={ { pathname: '/' } } clickAnalyticsEvent={ () => sendEvent('Welcome') } />
                 <BurgerButton
                     caption="Documents"
-                    link={ { pathname: '/documents', query: { id: 'gettingStarted' } } }
+                    link={ { pathname: '/documents', query: { id: 'overview' } } }
                     isLinkActive={ pathName === 'documents' && !category }
                     clickAnalyticsEvent={ () => sendEvent('Documents') }
                 />
@@ -95,7 +95,7 @@ export function AppHeader() {
                 render: () => (
                     <MainMenuButton
                         caption="Documents"
-                        link={ { pathname: '/documents', query: { id: 'gettingStarted' } } }
+                        link={ { pathname: '/documents', query: { id: 'overview' } } }
                         isLinkActive={ pathName === '/documents' && category !== 'components' && category !== 'assets' }
                         showInBurgerMenu
                         clickAnalyticsEvent={ analyticsEvents.header.link('Documents') }
