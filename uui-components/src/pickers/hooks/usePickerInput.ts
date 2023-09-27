@@ -161,6 +161,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
                 onValueChange: handleDataSourceValueChange,
                 listView: view,
                 editMode: props.editMode,
+                searchPosition: getSearchPosition(),
                 rows,
             },
             e,
@@ -187,6 +188,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
                     })),
             onKeyDown: (e) => handlePickerInputKeyboard(rows, e),
             fixedBodyPosition: props.fixedBodyPosition,
+            searchDebounceDelay: props.searchDebounceDelay,
         };
     };
 
@@ -198,7 +200,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
         setDataSourceState((dsState) => ({
             ...dsState,
-            focusedIndex: -1,
+            focusedIndex: 0,
             search: value,
         }));
 
