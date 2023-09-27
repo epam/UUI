@@ -13,7 +13,7 @@ import { FilterPanel } from './FilterPanel';
 import { InfoSidebarPanel } from './InfoSidebarPanel';
 import { SlidingPanel } from './SlidingPanel';
 import { FilterPanelOpener } from './FilterPanelOpener';
-import { PersonTableFilter, PersonTableGroups, PersonTableIdGroups, PersonTableRecord, PersonTableRecordId } from './types';
+import { PersonGroupBy, PersonTableFilter, PersonTableGroups, PersonTableIdGroups, PersonTableRecord, PersonTableRecordId } from './types';
 import { useLazyDataSourceWithGrouping } from './useLazyDataSourceWithGrouping';
 
 export function MasterDetailedTable() {
@@ -53,7 +53,7 @@ export function MasterDetailedTable() {
         }
     }, []);
 
-    const dataSource = useLazyDataSourceWithGrouping<PersonTableGroups, PersonTableIdGroups, PersonTableFilter>(
+    const dataSource = useLazyDataSourceWithGrouping<PersonTableGroups, PersonTableIdGroups, PersonTableFilter, PersonGroupBy>(
         (config) => config
             .addDefault({
                 getType: ({ __typename }) => __typename,
@@ -72,8 +72,8 @@ export function MasterDetailedTable() {
             .addEntity('Person', {
                 getFilter: ({ location, department, jobTitle }) => ({
                     ...(location ? { locationId: location } : {}),
-                    ...(department ? { departmentId: department as number } : {}),
-                    ...(jobTitle ? { jobTitleId: jobTitle as number } : {}),
+                    ...(department ? { departmentId: department } : {}),
+                    ...(jobTitle ? { jobTitleId: jobTitle } : {}),
                 }),
                 api: async ({ ids, ...request }) => {
                     const { groupBy, ...filter } = request.filter ?? {};
@@ -102,12 +102,12 @@ export function MasterDetailedTable() {
                     return svc.api.demo.locations({ range: request.range, filter: { parentId: ctx.parent.id } });
                 },
             })
-            .addGrouping(['jobTitle', 'department'], {
+            .addGrouping(['department', 'jobTitle'], {
                 type: 'PersonGroup',
                 getChildCount: (group) => group.count,
                 getFilter: ({ department, jobTitle }) => ({
-                    ...(department ? { departmentId: department as number } : {}),
-                    ...(jobTitle ? { jobTitleId: jobTitle as number } : {}),
+                    ...(department ? { departmentId: department } : {}),
+                    ...(jobTitle ? { jobTitleId: jobTitle } : {}),
                 }),
                 api: async ({ ids, ...request }) => {
                     const { groupBy, ...filter } = request.filter ?? {};
