@@ -1,4 +1,4 @@
-import { Button as uuiButton, ButtonProps as uuiButtonProps } from '@epam/uui-components';
+import * as uuiComponents from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { ControlSize, ButtonMode } from '../../types';
 import { systemIcons } from '../../../icons/icons';
@@ -17,7 +17,7 @@ export interface ButtonMods {
     color?: ButtonColor;
 }
 
-export type ButtonProps = ButtonMods & uuiButtonProps;
+export type ButtonProps = ButtonMods & uuiComponents.ButtonProps;
 
 export function applyButtonMods(mods: ButtonProps) {
     return [
@@ -28,7 +28,7 @@ export function applyButtonMods(mods: ButtonProps) {
     ];
 }
 
-export const Button = withMods<uuiButtonProps, ButtonMods>(uuiButton, applyButtonMods, (props) => ({
+export const Button = withMods<uuiComponents.ButtonProps, ButtonMods>(uuiComponents.Button, applyButtonMods, (props) => ({
     dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
     clearIcon: systemIcons[props.size || defaultSize].clear,
 }));

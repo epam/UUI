@@ -41230,6 +41230,226 @@
      }
     ]
    },
+   "AccordionProps": {
+    "kind": 264,
+    "typeRef": "@epam/uui:AccordionProps",
+    "typeValue": {
+     "raw": "AccordionMods & GeneralAccordionProps | IEditable<boolean>",
+     "print": [
+      "type AccordionProps = AccordionMods & uuiComponents.AccordionProps;"
+     ]
+    },
+    "props": [
+     {
+      "uid": 12,
+      "name": "mode",
+      "typeValue": {
+       "raw": "undefined | 'block' | 'inline'"
+      },
+      "from": "@epam/uui:AccordionMods",
+      "required": false
+     },
+     {
+      "uid": 13,
+      "name": "padding",
+      "typeValue": {
+       "raw": "undefined | '0' | '6' | '12' | '18'"
+      },
+      "from": "@epam/uui:AccordionMods",
+      "required": false
+     },
+     {
+      "uid": 14,
+      "name": "title",
+      "comment": [
+       "Accordion title"
+      ],
+      "typeValue": {
+       "raw": "undefined | string | React.ReactElement<any, string | React.JSXElementConstructor<any>>"
+      },
+      "from": "@epam/uui-components:GeneralAccordionProps",
+      "required": false
+     },
+     {
+      "uid": 15,
+      "name": "renderTitle",
+      "comment": [
+       "Overrides default title rendering."
+      ],
+      "typeValue": {
+       "raw": "undefined | (isOpen: boolean) => React.ReactElement<any, string | React.JSXElementConstructor<any>>"
+      },
+      "from": "@epam/uui-components:GeneralAccordionProps",
+      "required": false
+     },
+     {
+      "uid": 16,
+      "name": "dropdownIcon",
+      "comment": [
+       "Overrides the default dropdown (folding) icon.Pass null to disable the folding icon completely"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | Icon"
+      },
+      "from": "@epam/uui-components:GeneralAccordionProps",
+      "required": false
+     },
+     {
+      "uid": 17,
+      "name": "renderAdditionalItems",
+      "comment": [
+       "Renders additional items to component's header (after the title, and before the folding icon)"
+      ],
+      "typeValue": {
+       "raw": "undefined | (isOpen: boolean) => React.ReactNode"
+      },
+      "from": "@epam/uui-components:GeneralAccordionProps",
+      "required": false
+     },
+     {
+      "uid": 18,
+      "name": "cx",
+      "comment": [
+       "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 19,
+      "name": "isDisabled",
+      "comment": [
+       "Disable editing, and visually de-emphasize value of the component"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": 20,
+      "name": "children",
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+      },
+      "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": 21,
+      "name": "rawProps",
+      "comment": [
+       "Any HTML attributes (native or 'data-') to put on the underlying component"
+      ],
+      "typeValue": {
+       "raw": "undefined | React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": 22,
+      "name": "forwardedRef",
+      "comment": [
+       "this ref is passed to the underlying component"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": 23,
+      "name": "value",
+      "comment": [
+       "The current value of component"
+      ],
+      "typeValue": {
+       "raw": "false | true"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 24,
+      "name": "onValueChange",
+      "comment": [
+       "Called when value needs to be changed (usually due to user interaction)"
+      ],
+      "typeValue": {
+       "raw": "(newValue: boolean) => void"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 25,
+      "name": "isInvalid",
+      "comment": [
+       "True if component contains invalid input"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 26,
+      "name": "validationMessage",
+      "comment": [
+       "Message describing why the value is invalid"
+      ],
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 27,
+      "name": "validationProps",
+      "comment": [
+       "If T is a complex value (object or array), this property contains validation states of inner items"
+      ],
+      "typeValue": {
+       "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 28,
+      "name": "isReadonly",
+      "comment": [
+       "Disable editing. Unlike isDisabled, keep component's value readable."
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": 29,
+      "name": "isRequired",
+      "comment": [
+       "Marks that component's value is required"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     }
+    ],
+    "propsFromUnion": true
+   },
    "AlertProps": {
     "kind": 263,
     "typeRef": "@epam/uui:AlertProps",
@@ -42534,7 +42754,7 @@
     "typeValue": {
      "raw": "ButtonProps",
      "print": [
-      "type ButtonProps = ButtonMods & uuiButtonProps;"
+      "type ButtonProps = ButtonMods & uuiComponents.ButtonProps;"
      ]
     },
     "props": [
@@ -67872,6 +68092,14 @@
    "typeName": {
     "name": "AccordionMods",
     "nameFull": "AccordionMods"
+   },
+   "src": "uui/components/layout/Accordion.tsx"
+  },
+  "@epam/uui:AccordionProps": {
+   "module": "@epam/uui",
+   "typeName": {
+    "name": "AccordionProps",
+    "nameFull": "AccordionProps"
    },
    "src": "uui/components/layout/Accordion.tsx"
   },
