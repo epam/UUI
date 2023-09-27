@@ -13,29 +13,11 @@ export function extractProps(parentNode: Node, context: IConverterContext): {
     const idGen = new SimpleIdGen();
     if (type.isUnion()) {
         const unionTypes = type.getUnionTypes();
-        const allSupportProps = unionTypes.every((singleUnionType) => {
-            const typeNode = TypeUtils.getNodeFromType(singleUnionType);
-            /*
-             * If node isn't available for this type, then we treat it as internal.
-             * I hope it's OK - in the worst case, the end user will see a bunch of props from the external type.
-             */
-            const isExternalType = typeNode ? NodeUtils.isExternalNode(typeNode) : false;
-            return TypeUtils.isPropsSupportedByType({ type: singleUnionType, isExternalType });
-        });
-        if (allSupportProps) {
-            const allPropsSets = unionTypes.reduce<PropsSet[]>((acc, unionTypeItem) => {
-                const utProps = extractPropsFromNonUnionType({ parentNode, type: unionTypeItem, context, idGen });
-                if (utProps) {
-                    acc.push(PropsSet.fromArray(utProps));
-                }
-                return acc;
-            }, []);
-            const props = PropsSet.concat(allPropsSets);
-            return {
-                props,
-                fromUnion: true,
-            };
-        }
+        const props = extractPropsFromNonUnionTypeArr(unionTypes, parentNode, context, idGen);
+        return {
+            props,
+            fromUnion: true,
+        };
     } else {
         const props = extractPropsFromNonUnionType({ parentNode, type, context, idGen });
         if (props) {
@@ -47,9 +29,37 @@ export function extractProps(parentNode: Node, context: IConverterContext): {
     }
 }
 
+function extractPropsFromNonUnionTypeArr(typeArr: Type[], parentNode: Node, context: IConverterContext, idGen: SimpleIdGen) {
+    const allSupportProps = typeArr.every((singleType) => {
+        const typeNode = TypeUtils.getNodeFromType(singleType);
+        /*
+         * If node isn't available for this type, then we treat it as internal.
+         * I hope it's OK - in the worst case, the end user will see a bunch of props from the external type.
+         */
+        const isExternalType = typeNode ? NodeUtils.isExternalNode(typeNode) : false;
+        return TypeUtils.isPropsSupportedByType({ type: singleType, isExternalType });
+    });
+    if (allSupportProps) {
+        const allPropsSets = typeArr.reduce<PropsSet[]>((acc, singleType) => {
+            const utProps = extractPropsFromNonUnionType({ parentNode, type: singleType, context, idGen });
+            if (utProps) {
+                acc.push(PropsSet.fromArray(utProps));
+            }
+            return acc;
+        }, []);
+        return PropsSet.concat(allPropsSets);
+    }
+}
+
 function extractPropsFromNonUnionType(params: { parentNode: Node, type: Type, context: IConverterContext, idGen: SimpleIdGen }): TTypeProp[] | undefined {
     const { parentNode, type, context, idGen } = params;
-    const props = type.getProperties();
+    /*    if (type.isIntersection()) {
+        const typeArr = type.getIntersectionTypes();
+        return extractPropsFromNonUnionTypeArr(typeArr, parentNode, context, idGen);
+    } */
+    const propsOnly = type.getProperties();
+    const indexSigns = TypeUtils.getIndexSignature(type);
+    const props = indexSigns.concat(propsOnly);
     if (props.length > 0) {
         return props.reduce<TTypeProp[]>((acc, propertySymbol) => {
             const mapped = mapSingleMember({ parentNode, propertySymbol, context, idGen });
@@ -73,34 +83,19 @@ function mapSingleMember(params: { parentNode?: Node, propertySymbol: Symbol, co
         SyntaxKind.SetAccessor,
         SyntaxKind.MethodDeclaration,
         SyntaxKind.PropertyDeclaration,
+        SyntaxKind.IndexSignature,
     ].indexOf(nKind) !== -1;
 
     if (isSupported) {
-        const comment = NodeUtils.getCommentFromNode(propertyNode);
-        const from = NodeUtils.getTypeParentRef(propertyNode, parentNode);
-        const fromShort = from ? context.references.set(from) : undefined;
-        let name = Node.isPropertyNamed(propertyNode) ? propertyNode.getName() : '';
-        const typeNode = Node.isTypeAliasDeclaration(propertyNode) ? propertyNode.getTypeNode() : propertyNode;
-        if (!typeNode) {
-            return;
-        }
-        let { raw } = context.convertProp(propertySymbol);
+        const raw = NodeUtils.getPropertySymbolRawType(propertySymbol, context);
         if (!raw) {
             return;
         }
-        if (Node.isGetAccessorDeclaration(propertyNode)) {
-            const returnType = propertyNode.getStructure().returnType;
-            name = `get ${name}`;
-            raw = `${name}(): ${returnType}`;
-        } else if (Node.isSetAccessorDeclaration(propertyNode)) {
-            const structureParams = propertyNode.getStructure().parameters?.[0];
-            if (structureParams) {
-                name = `set ${name}`;
-                raw = `${name}(${structureParams.name}: ${structureParams.type})`;
-            }
-        }
-        const hasQuestionToken = Node.isQuestionTokenable(propertyNode) ? propertyNode.hasQuestionToken() : false;
-        const required = !(NodeUtils.getTypeFromNode(typeNode).isNullable() || hasQuestionToken);
+        const comment = NodeUtils.getCommentFromNode(propertyNode);
+        const from = NodeUtils.getTypeParentRef(propertyNode, parentNode);
+        const fromShort = from ? context.references.set(from) : undefined;
+        const name = NodeUtils.getPropertyNodeName(propertyNode);
+        const required = NodeUtils.isPropertyNodeRequired(propertyNode);
         const uid = idGen.getNextId();
         prop = {
             uid,

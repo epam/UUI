@@ -98,6 +98,63 @@ describe('docsGen:intersection', () => {
         };
         expect(generateDocs(input)).toEqual(output);
     });
+    test('should convert top level type with Omit', () => {
+        const input = `
+            interface TFirst {
+                f1: number;
+                f2: number;
+            }
+            export type TIntersection = Omit<TFirst, 'f2'>;
+        `;
+        const output = {
+            byModule: {
+                '@epam/test-module': {
+                    TIntersection: {
+                        kind: 264,
+                        props: [
+                            {
+                                from: 'test/test.tsx:TFirst',
+                                name: 'f1',
+                                required: true,
+                                typeValue: {
+                                    raw: 'number',
+                                },
+                                uid: 1,
+                            },
+                        ],
+                        typeRef: 'test/test.tsx:TIntersection',
+                        typeValue: {
+                            print: [
+                                "type TIntersection = Omit<TFirst, 'f2'>;",
+                            ],
+                            raw: 'TIntersection',
+                        },
+                    },
+                },
+            },
+            references: {
+                'test/test.tsx:TFirst': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'TFirst',
+                        nameFull: 'TFirst',
+                    },
+                },
+                'test/test.tsx:TIntersection': {
+                    external: true,
+                    module: 'test/test.tsx',
+                    src: 'test/test.tsx',
+                    typeName: {
+                        name: 'TIntersection',
+                        nameFull: 'TIntersection',
+                    },
+                },
+            },
+        };
+        expect(generateDocs(input)).toEqual(output);
+    });
     test('should convert type intersection with Omit', () => {
         const input = `
             interface IFirstPart1 {

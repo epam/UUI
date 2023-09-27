@@ -3305,7 +3305,17 @@
       "    [key: string]: IColumnConfig;",
       "};"
      ]
-    }
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "[key: string]",
+      "typeValue": {
+       "raw": "IColumnConfig"
+      },
+      "required": true
+     }
+    ]
    },
    "CommonContexts": {
     "kind": 263,
@@ -17085,7 +17095,17 @@
       "    };",
       "};"
      ]
-    }
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "[key: string]",
+      "typeValue": {
+       "raw": "{ name: React.ReactNode; getRange: () => RangeDatePickerPresetValue; }"
+      },
+      "required": true
+     }
+    ]
    },
    "RangeDatePickerPresetValue": {
     "kind": 264,

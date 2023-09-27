@@ -1,4 +1,4 @@
-import { Node, Type } from 'ts-morph';
+import { Symbol, Node, Type } from 'ts-morph';
 // eslint-disable-next-line import/no-cycle
 import { SymbolUtils } from './symbolUtils';
 
@@ -55,5 +55,22 @@ export class TypeUtils {
         if (symbol) {
             return SymbolUtils.getNodeFromSymbol(symbol);
         }
+    }
+
+    static getIndexSignature(type: Type): Symbol[] {
+        const symbol = TypeUtils.getSymbolFromType(type);
+        if (symbol) {
+            const node = SymbolUtils.getNodeFromSymbol(symbol);
+            if (Node.isTypeElementMembered(node)) {
+                return node.getIndexSignatures().reduce<Symbol[]>((acc, element) => {
+                    const s = element.getSymbol();
+                    if (s) {
+                        acc.push(s);
+                    }
+                    return acc;
+                }, []);
+            }
+        }
+        return [];
     }
 }
