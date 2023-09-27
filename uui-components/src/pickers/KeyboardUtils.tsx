@@ -4,7 +4,7 @@ import { PickerInputSearchPosition } from './hooks/types';
 export interface DataSourceKeyboardParams extends IEditable<DataSourceState> {
     listView: IDataSourceView<any, any, any>;
     rows: DataRowProps<any, any>[];
-    searchPosition?: PickerInputSearchPosition;
+    searchPosition: PickerInputSearchPosition;
 }
 
 export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: React.KeyboardEvent<HTMLElement>) => {
