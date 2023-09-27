@@ -34,6 +34,7 @@
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-config-react-app": "7.0.1",
     "eslint-import-resolver-alias": "1.1.2",
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
     "fs-extra": "8.0.1",
     "jest": "27.5.1",
     "jest-html-reporter": "3.7.1",
