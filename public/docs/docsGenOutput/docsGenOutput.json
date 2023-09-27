@@ -43162,7 +43162,7 @@
     "typeValue": {
      "raw": "CheckboxProps",
      "print": [
-      "type CheckboxProps = CheckboxMods & UuiCheckboxProps;"
+      "type CheckboxProps = CheckboxMods & uuiComponents.CheckboxProps;"
      ]
     },
     "props": [

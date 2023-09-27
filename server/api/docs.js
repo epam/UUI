@@ -51,44 +51,13 @@ router.get('/get-props', (req, res) => {
 });
 
 function readDocsGenResultsJson() {
-    const filePath = path.join(__dirname, '../../public/docs/docsGenOutput/docsGenOutput.json');
+    const filePath = path.join(__dirname, '../../public/docs/docsGenOutput/docsGenOutputHighlighted.json');
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 router.get('/ts-docs/full', (req, res) => {
-    const { byModule, references } = readDocsGenResultsJson();
-    function prettyPrintTypeValue(typeValue) {
-        if (typeValue) {
-            const pp = {};
-            if (typeValue.print) {
-                pp.print = highlightTsCode(typeValue.print.join('\n')).split('\n');
-            }
-            if (typeValue.raw) {
-                pp.raw = highlightTsCode(typeValue.raw);
-            }
-            return {
-                ...typeValue,
-                ...pp,
-            };
-        }
-    }
-    Object.keys(byModule).forEach((packageName) => {
-        const content = byModule[packageName];
-        Object.keys(content).forEach((exportName) => {
-            const data = content[exportName];
-            data.typeValue = prettyPrintTypeValue(data.typeValue);
-            if (data.props) {
-                data.props = data.props.map((p) => {
-                    p.typeValue = prettyPrintTypeValue(p.typeValue);
-                    return p;
-                });
-            }
-        });
-    });
+    const content = readDocsGenResultsJson();
     res.send({
-        content: {
-            byModule,
-            references,
-        },
+        content,
     });
 });
 

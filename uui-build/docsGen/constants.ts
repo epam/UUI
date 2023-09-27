@@ -7,6 +7,7 @@ export { uuiRoot };
 
 const OUT_DIR_REL = 'public/docs/docsGenOutput';
 export const OUTPUT_FILE_FULL_PATH = path.resolve(uuiRoot, `${OUT_DIR_REL}/docsGenOutput.json`);
+export const OUTPUT_FILE_HIGHLIGHTED_FULL_PATH = path.resolve(uuiRoot, `${OUT_DIR_REL}/docsGenOutputHighlighted.json`);
 export const OUTPUT_DTS_FILE_FULL_PATH = path.resolve(uuiRoot, `${OUT_DIR_REL}/docsGenOutput.d.ts`);
 export const OUTPUT_STATS_FILE_FULL_PATH = path.resolve(uuiRoot, `${OUT_DIR_REL}/docsGenStats.json`);
 export const TSCONFIG_PATH = './tsconfig.json';
