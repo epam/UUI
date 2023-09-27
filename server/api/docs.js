@@ -4,7 +4,6 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 const { isDevServer } = require('../utils/envUtils');
-const { highlightTsCode } = require('./prism');
 
 router.post('/get-doc-content', (req, res) => {
     const docContentPath = path.join(__dirname, '../../', 'public/docs/content/', `${req.body.name}.json`);
