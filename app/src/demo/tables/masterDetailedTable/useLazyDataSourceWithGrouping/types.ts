@@ -27,7 +27,7 @@ export interface GetType<
     TGroupBy extends BaseGroupBy<TGroups>
 > {
     getType: (entity: TGroups[keyof TGroups]) => keyof TGroups;
-    getGroupBy: () => GroupByForType<TGroups, TGroupBy, keyof TGroups>,
+    getGroupBy: () => GroupByForType<TGroups, TGroupBy, keyof TGroups> | GroupByForType<TGroups, TGroupBy, keyof TGroups>[],
 }
 
 type CommonConfigDefault<

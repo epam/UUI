@@ -89,7 +89,7 @@ export class GroupingConfigBuilder<
 
     async idsApi(
         ids: ToUnion<ComplexId<TGroups, TId, TGroupBy>>[][],
-        groupBy: GroupByForType<TGroups, TGroupBy, keyof TGroups>,
+        groupBy: GroupByForType<TGroups, TGroupBy, keyof TGroups> | GroupByForType<TGroups, TGroupBy, keyof TGroups> [],
         context: LazyDataSourceApiRequestContext<
         ToUnion<TGroupsWithMeta<TGroups, TId, TGroupBy>>,
         ToUnion<ComplexId<TGroups, TId, TGroupBy>>[]
