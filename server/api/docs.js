@@ -49,26 +49,4 @@ router.get('/get-props', (req, res) => {
     });
 });
 
-function readDocsGenResultsJson() {
-    const filePath = path.join(__dirname, '../../public/docs/docsGenOutput/docsGenOutputHighlighted.json');
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-}
-router.get('/ts-docs/full', (req, res) => {
-    const content = readDocsGenResultsJson();
-    res.send({
-        content,
-    });
-});
-
-router.get('/ts-docs/structure', (req, res) => {
-    const { byModule } = readDocsGenResultsJson();
-    const content = Object.keys(byModule).reduce((acc, packageName) => {
-        acc[packageName] = Object.keys(byModule[packageName]);
-        return acc;
-    }, {});
-    res.send({
-        content,
-    });
-});
-
 module.exports = router;

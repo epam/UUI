@@ -1,45 +1,31 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { svc } from '../../services';
-import { TResultJson, TType, TTypeRef, TTypeRefShort } from './docsGenSharedTypes';
+import { TType, TTypeRefShort } from './docsGenSharedTypes';
+import { useUuiContext } from '@epam/uui-core';
+import { TApi, TAppContext } from '../../data';
 
-type TAsyncResponse = Promise<{ content: TResultJson }>;
+const cache: Map<TTypeRefShort, Promise<{ content: TType }>> = new Map();
+function load(ref: TTypeRefShort) {
+    const promise = cache.get(ref) || svc.api.getTsDocForType(ref);
+    cache.set(ref, promise);
+    return promise;
+}
 
-const load = (() => {
-    // simple in-memory cache to avoid duplicated requests.
-    let cachedPromise: TAsyncResponse = undefined;
-    return (): TAsyncResponse => {
-        // @ts-ignore
-        const cached = cachedPromise || svc.api.getTsDocs();
-        cachedPromise = cached;
-        return cached;
-    };
-})();
-
-export type TUseGetTsDocsForPackageResult = {
-    get: (typeRefShort: TTypeRefShort) => TType | undefined;
-    getTypeRef: (typeRefShort: TTypeRefShort) => TTypeRef | undefined;
-} | undefined;
-export function useTsDocs(): TUseGetTsDocsForPackageResult {
-    const [response, setResponse] = useState<TResultJson>();
+export function useTsDocForType(ref: TTypeRefShort): TType {
+    const [response, setResponse] = useState<TType>();
+    const tsDocRefs = useTsDocsRefs();
     useEffect(() => {
-        load().then((res) => {
-            setResponse(() => res.content);
-        });
-    }, []);
-    const get = useCallback((typeRefShort: TTypeRefShort) => {
-        if (response) {
-            const [moduleName, exportName] = typeRefShort.split(':');
-            return response.byModule[moduleName]?.[exportName];
+        setResponse(undefined);
+        if (tsDocRefs[ref].isPublic) {
+            load(ref).then((res) => {
+                setResponse(() => res.content);
+            });
         }
-    }, [response]);
-    const getTypeRef = useCallback((typeRefShort: TTypeRefShort) => {
-        if (response) {
-            return response.references[typeRefShort];
-        }
-    }, [response]);
-    return useMemo(() => {
-        if (response) {
-            return { get, getTypeRef };
-        }
-    }, [get, getTypeRef, response]);
+    }, [ref, tsDocRefs]);
+    return response;
+}
+
+export function useTsDocsRefs() {
+    const { uuiApp } = useUuiContext<TApi, TAppContext>();
+    return uuiApp.tsDocs.refs;
 }

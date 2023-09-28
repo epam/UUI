@@ -14,7 +14,7 @@ describe('docsGen:comments', () => {
             }
         `;
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     ITest: {
                         comment: [
@@ -60,9 +60,9 @@ describe('docsGen:comments', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:ITest': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {

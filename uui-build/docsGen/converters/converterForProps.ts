@@ -93,7 +93,7 @@ function mapSingleMember(params: { parentNode?: Node, propertySymbol: Symbol, co
         }
         const comment = NodeUtils.getCommentFromNode(propertyNode);
         const from = NodeUtils.getTypeParentRef(propertyNode, parentNode);
-        const fromShort = from ? context.references.set(from) : undefined;
+        const fromShort = from ? context.refs.set(from) : undefined;
         const name = NodeUtils.getPropertyNodeName(propertyNode);
         const required = NodeUtils.isPropertyNodeRequired(propertyNode);
         const uid = idGen.getNextId();

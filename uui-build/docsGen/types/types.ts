@@ -3,9 +3,9 @@ import type {
     TType,
     TTypeValue,
     TTypeRef,
-    TTypeRefShort,
-    TTypeRefMap,
+    TTypeRefShort, TTypeRefMap,
 } from './docsGenSharedTypes';
+import { TPublicTypesByModule } from './docsGenSharedTypes';
 
 type TExportName = string;
 type TModuleName = string;
@@ -20,7 +20,7 @@ export interface IConverter {
 }
 export interface IConverterContext {
     stats: IDocGenStats
-    references: IDocGenReferences
+    refs: IDocGenReferences
     convert(nodeOrSymbol: TConvertable): TType
     convertProp(nodeOrSymbol: TConvertable): TTypeValue
 }
@@ -48,7 +48,6 @@ export type TDocGenStatsResult = {
     },
     ignoredExports: TDocGenStatsResult_Exports,
     includedExports: TDocGenStatsResult_Exports,
-    references: TTypeRefMap,
 };
 
 export interface IDocGenStats {
@@ -60,7 +59,7 @@ export interface IDocGenStats {
 
 export interface IDocGenReferences {
     set(ref: TTypeRef): TTypeRefShort
-    get(): TTypeRefMap
+    get(publicTypes: TPublicTypesByModule): TTypeRefMap
 }
 
 export function typeRefToUniqueString(ref: TTypeRef): TTypeRefShort {

@@ -8,7 +8,7 @@ describe('docsGen:mappedType', () => {
             }
         `;
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     TLocal: {
                         kind: 264,
@@ -34,9 +34,9 @@ describe('docsGen:mappedType', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:TLocal': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {

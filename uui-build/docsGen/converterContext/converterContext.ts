@@ -10,16 +10,15 @@ import { TType, TTypeValue } from '../types/docsGenSharedTypes';
 export class ConverterContext implements IConverterContext {
     private allConverters: IConverter[] = [];
     private seenNodes: Set<TConvertable> = new Set();
-    public references: IDocGenReferences = new DocGenReferences();
+    public refs: IDocGenReferences = new DocGenReferences();
     public stats: DocGenStats;
 
     constructor() {
-        const all: IConverter[] = [
+        this.allConverters.push(...[
             new Union(this),
-            new Converter(this),
-        ];
-        this.allConverters.push(...all);
-        this.stats = new DocGenStats(this);
+            new Converter(this), // fallback - always goes last
+        ]);
+        this.stats = new DocGenStats();
     }
 
     private findSuitableConverter(nodeOrSymbol: TConvertable): IConverter {
@@ -38,7 +37,7 @@ export class ConverterContext implements IConverterContext {
         const isExternal = NodeUtils.isExternalNode(node);
         if (isSeen || isExternal) {
             const typeRef = NodeUtils.getTypeRef(node);
-            const typeRefShort = this.references.set(typeRef);
+            const typeRefShort = this.refs.set(typeRef);
             const kind = node.getKind();
             return {
                 typeValue: NodeUtils.getTypeValueFromNode(node, !isSeen),

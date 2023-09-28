@@ -1,4 +1,4 @@
-import { TFormattedExportsByModule } from './types/docsGenSharedTypes';
+import { TApiReferenceJson } from './types/docsGenSharedTypes';
 
 const commonDelimiter = ' |\n';
 const dtsTemplate = (content: string) => {
@@ -9,7 +9,7 @@ function getUnionItems(packageName: string, exportNameArr: string[]) {
     return exportNameArr.map((e) => `'${packageName}:${e}'`).join(commonDelimiter);
 }
 
-export function generateDTS(json: TFormattedExportsByModule) {
+export function generateDTS(json: TApiReferenceJson['publicTypes']) {
     const content = Object.keys(json).reduce((acc, packageName, index) => {
         const delimiter = index === 0 ? '' : commonDelimiter;
         const exportNameArr = Object.keys(json[packageName]);

@@ -27,7 +27,7 @@ export class Converter implements IConverter {
         const node = ConvertableUtils.getNode(nodeOrSymbol);
         const kind = node.getKind();
         const typeRef = NodeUtils.getTypeRef(node);
-        const typeRefShort = this.context.references.set(typeRef);
+        const typeRefShort = this.context.refs.set(typeRef);
         const comment = NodeUtils.getCommentFromNode(node);
 
         const res: TType = {

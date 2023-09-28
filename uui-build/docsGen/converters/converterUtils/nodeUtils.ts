@@ -76,15 +76,11 @@ export class NodeUtils {
         const module = getUuiModuleNameFromPath(typeNode.getSourceFile().compilerNode.fileName);
         const typeName = SymbolUtils.getTypeName(typeNode.getSymbol());
         const src = NodeUtils.getRelativeSource(typeNode);
-        const res: TTypeRef = {
+        return {
             module,
             typeName,
             src,
         };
-        if (module.indexOf('@epam/') !== 0) {
-            res.external = true;
-        }
-        return res;
     }
 
     static isInternalTypeNodeWrappedInUtility(typeNode: Node): boolean {

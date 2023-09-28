@@ -1,17 +1,18 @@
 import React from 'react';
 import { Anchor, Text, Tooltip } from '@epam/uui';
 import css from './Ref.module.scss';
-import { useTsDocs } from '../../dataHooks';
+import { useTsDocsRefs } from '../../dataHooks';
 import { TTypeRefShort } from '../../docsGenSharedTypes';
 
 export function Ref(props: { typeRefShort?: TTypeRefShort }) {
     const { typeRefShort } = props;
-    const tsDocs = useTsDocs();
-    if (!tsDocs || !typeRefShort) {
+    const tsDocsRefs = useTsDocsRefs();
+    if (!typeRefShort) {
         return null;
     }
-    const typeRefLong = tsDocs.getTypeRef(typeRefShort);
-    const isLinkable = !!tsDocs.get(typeRefShort);
+
+    const typeRefLong = tsDocsRefs[typeRefShort];
+    const isLinkable = typeRefLong.isPublic;
 
     if (typeRefLong) {
         const { module, typeName } = typeRefLong;

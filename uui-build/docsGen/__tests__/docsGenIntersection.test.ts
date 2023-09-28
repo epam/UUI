@@ -14,7 +14,7 @@ describe('docsGen:intersection', () => {
             export type TIntersection = TIntersectionMemberA & IIntersectionMemberB;
         `;
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     TIntersection: {
                         kind: 264,
@@ -66,9 +66,8 @@ describe('docsGen:intersection', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:IIntersectionMemberB': {
-                    external: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -77,7 +76,7 @@ describe('docsGen:intersection', () => {
                     },
                 },
                 'test/test.tsx:TIntersection': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -86,7 +85,6 @@ describe('docsGen:intersection', () => {
                     },
                 },
                 'test/test.tsx:TIntersectionMemberA': {
-                    external: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -107,7 +105,7 @@ describe('docsGen:intersection', () => {
             export type TIntersection = Omit<TFirst, 'f2'>;
         `;
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     TIntersection: {
                         kind: 264,
@@ -132,9 +130,8 @@ describe('docsGen:intersection', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:TFirst': {
-                    external: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -143,7 +140,7 @@ describe('docsGen:intersection', () => {
                     },
                 },
                 'test/test.tsx:TIntersection': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -173,7 +170,7 @@ describe('docsGen:intersection', () => {
             export type TIntersection = Omit<TFirst, 'f2'> & TSecond;
         `;
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     TIntersection: {
                         kind: 264,
@@ -234,9 +231,8 @@ describe('docsGen:intersection', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:IFirstPart1': {
-                    external: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -245,7 +241,6 @@ describe('docsGen:intersection', () => {
                     },
                 },
                 'test/test.tsx:IFirstPart2': {
-                    external: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -254,7 +249,7 @@ describe('docsGen:intersection', () => {
                     },
                 },
                 'test/test.tsx:TIntersection': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -263,7 +258,6 @@ describe('docsGen:intersection', () => {
                     },
                 },
                 'test/test.tsx:TSecond': {
-                    external: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {

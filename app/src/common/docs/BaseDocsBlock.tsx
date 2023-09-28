@@ -9,7 +9,7 @@ import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
 import css from './BaseDocsBlock.module.scss';
 import { TTsDocExportedEntry } from '../../demo/apiDocs/types';
-import { ApiReferenceItemTable } from '../../demo/apiDocs/components/ApiReferenceItemTable';
+import { ApiReferenceItemTableForTypeRef } from '../../demo/apiDocs/components/ApiReferenceItemTable';
 
 export enum TSkin {
     UUI3_loveship = 'UUI3_loveship',
@@ -121,7 +121,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         const tsDocProps = this.getUuiTsDoc();
         if (tsDocProps) {
             return (
-                <ApiReferenceItemTable entry={ tsDocProps } />
+                <ApiReferenceItemTableForTypeRef tsDocsRef={ tsDocProps } />
             );
         }
         return this.renderLegacyApiBlock();
