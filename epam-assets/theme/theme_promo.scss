@@ -322,17 +322,6 @@
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
-    .uui-color-white {
-        --uui-color-5: var(--white);
-        --uui-color-10: var(--white);
-        --uui-color-20: var(--white);
-        --uui-color-50: var(--white);
-        --uui-color-60: var(--gray10);
-        --uui-color-70: var(--gray20);
-        --uui-color-text: var(--white);
-        --uui-color-contrast-text: var(--uui-text-dark);
-    }
-
     .uui-color-gray5 {
         --uui-color-5: var(--white);
         --uui-color-10: var(--white);
@@ -515,22 +504,6 @@
 
     /* Badge */
 
-    .uui-badge.fill-outline {
-        .uui-count_indicator.fill-outline {
-            --uui-count_indicator-bg: var(--white);
-            --uui-count_indicator-border: var(--uui-neutral-40);
-            --uui-count_indicator-caption: var(--uui-neutral-70);
-        }
-    }
-
-    .uui-badge.fill-transparent {
-        .uui-count_indicator.fill-transparent {
-            --uui-count_indicator-bg: transparent;
-            --uui-count_indicator-border: transparent;
-            --uui-count_indicator-caption: var(--uui-text-primary);
-        }
-    }
-
     .uui-badge.uui-color-neutral,
     .uui-badge.uui-color-gray30 {
         --uui-color-5: var(--gray20);
@@ -541,25 +514,15 @@
         --uui-color-70: var(--gray50);
         --uui-color-text: var(--gray70);
         --uui-color-contrast-text: var(--uui-text-dark);
-
-        .uui-count_indicator {
-            --uui-count_indicator-bg: var(--white);
-            --uui-count_indicator-border: var(--white);
-        }
     }
 
     .uui-badge.uui-color-white {
         --uui-badge-bg-hover: var(--uui-neutral-10);
         --uui-badge-border-hover: var(--uui-neutral-10);
 
-        .uui-count_indicator {
-            --uui-count_indicator-bg: var(--uui-neutral-30);
-            --uui-count_indicator-border: var(--uui-neutral-30);
-        }
-
         &.fill-outline {
-            --uui-badge-border: var(--uui-neutral-30);
             --uui-color-text: var(--uui-text-dark);
+            --uui-badge-border: var(--uui-neutral-30);
             --uui-badge-border-hover: var(--uui-neutral-30);
         }
     }
@@ -570,111 +533,23 @@
         --uui-badge-bg-hover: var(--uui-neutral-20);
         --uui-badge-border-hover: var(--uui-neutral-20);
 
-        .uui-count_indicator {
-            --uui-count_indicator-bg: var(--uui-neutral-30);
-            --uui-count_indicator-border: var(--uui-neutral-30);
-        }
-
         &.fill-outline {
             --uui-badge-border: var(--uui-neutral-30);
             --uui-color-text: var(--uui-text-dark);
         }
     }
 
-    .uui-badge.uui-color-gray60 {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FFFFFF1A;
-            --uui-count_indicator-border: #FFFFFF80;
-        }
-
-        &.fill-outline {
-            --uui-badge-border: var(--uui-neutral-60);
-            --uui-color-text: var(--uui-text-dark);
-            --uui-badge-border-hover: var(--uui-neutral-60);
-        }
+    .uui-badge.uui-color-gray60.fill-outline {
+        --uui-badge-border: var(--uui-neutral-60);
+        --uui-color-text: var(--uui-text-dark);
+        --uui-badge-border-hover: var(--uui-neutral-60);
     }
 
-    .uui-badge.uui-color-info,
-    .uui-badge.uui-color-blue {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FFFFFF1A;
-            --uui-count_indicator-border: #FFFFFF80;
-            --uui-count_indicator-caption: var(--uui-text-white);
-        }
+    .uui-badge.uui-color-yellow.fill-outline {
+        --uui-badge-border: var(--yellow-20);
     }
 
-
-    .uui-badge.uui-color-success,
-    .uui-badge.uui-color-green {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FFFFFF1A;
-            --uui-count_indicator-border: #FFFFFF80;
-            --uui-count_indicator-caption: var(--uui-text-white);
-        }
-    }
-
-    .uui-badge.uui-color-critical,
-    .uui-badge.uui-color-red {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: transparent;
-            --uui-count_indicator-border: var(--white);
-            --uui-count_indicator-caption: var(--uui-text-white);
-        }
-    }
-
-    .uui-badge.uui-color-warning,
-    .uui-badge.uui-color-amber {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #1D1E260D;
-            --uui-count_indicator-border: #1D1E264D;
-        }
-    }
-
-    .uui-badge.uui-color-yellow {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #1D1E260D;
-            --uui-count_indicator-border: #1D1E264D;
-        }
-
-        &.fill-outline {
-            --uui-badge-border: var(--yellow-20);
-        }
-    }
-
-    .uui-badge.uui-color-orange {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #1D1E260D;
-            --uui-count_indicator-border: #1D1E264D;
-        }
-    }
-
-    .uui-badge.uui-color-fuchsia {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FFFFFF1A;
-            --uui-count_indicator-border: #FFFFFF80;
-        }
-    }
-
-    .uui-badge.uui-color-purple {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FFFFFF1A;
-            --uui-count_indicator-border: #FFFFFF80;
-        }
-    }
-
-    .uui-badge.uui-color-lavanda {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FFFFFF1A;
-            --uui-count_indicator-border: #FFFFFF80;
-        }
-    }
-
-    .uui-badge.uui-color-cobalt {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FFFFFF1A;
-            --uui-count_indicator-border: #FFFFFF80;
-        }
-    }
+    /* IconButton */
 
     .uui-icon_button.uui-color-neutral,
     .uui-icon_button.uui-color-gray60,
@@ -708,9 +583,16 @@
 
     /* count_indicator */
 
+    .uui-count_indicator.uui-color-white {
+        --uui-count_indicator-bg: var(--white);
+        --uui-count_indicator-border: var(--white);
+        --uui-count_indicator-caption: var(--uui-text-dark);
+    }
+
     .uui-count_indicator.uui-color-gray,
     .uui-count_indicator.uui-color-neutral {
-        --uui-color-50: var(--uui-neutral-30);
+        --uui-count_indicator-bg: var(--uui-neutral-30);
+        --uui-count_indicator-border: var(--uui-neutral-30);
         --uui-count_indicator-caption: var(--uui-text-dark);
     }
 

@@ -7,8 +7,8 @@
     --uui-badge-border-hover: var(--uui-color-60);
     --uui-badge-caption: var(--uui-color-contrast-text);
     --uui-badge-caption-hover: var(--uui-color-contrast-text);
-    --uui-badge-count: var(--uui-text-secondary); // Delete after count be deprecated
-    --uui-badge-count-bg: var(--white); // Delete after count be deprecated
+    --uui-badge-count: var(--uui-text-secondary);
+    --uui-badge-count-bg: var(--white);
 
     --uui-badge-font: var(--uui-font);
     --uui-badge-font-weight: 400;
@@ -20,6 +20,17 @@
     fill: var(--uui-badge-caption); // ??? separate variable
     border-color: var(--uui-badge-border);
     justify-content: center;
+
+    &:global(.uui-color-white) {
+        --uui-color-5: var(--white);
+        --uui-color-10: var(--white);
+        --uui-color-20: var(--white);
+        --uui-color-50: var(--white);
+        --uui-color-60: var(--uui-neutral-10);
+        --uui-color-70: var(--uui-neutral-20);
+        --uui-color-text: var(--white);
+        --uui-color-contrast-text: var(--uui-text-dark);
+    }
 
     :global(.uui-indicator) {
         background-color: var(--uui-badge-caption);
@@ -283,6 +294,14 @@
         --uui-badge-count-bg: var(--white); // It should be a separate component
     }
 
+    &:global(.fill-solid) {
+        :global(.uui-count_indicator) {
+            --uui-count_indicator-bg: color-mix(in srgb, var(--uui-badge-caption) 8%, transparent);
+            --uui-count_indicator-border: color-mix(in srgb, var(--uui-badge-caption) 40%, transparent);
+        }
+
+    }
+
     &:global(.fill-outline) {
         --uui-badge-font-weight: 600;
         --uui-badge-bg: var(--uui-color-5);
@@ -293,5 +312,11 @@
         --uui-badge-caption-hover: var(--uui-color-text);
         --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
         --uui-badge-count-bg: var(--white); // It should be a separate component
+
+        :global(.uui-count_indicator) {
+            --uui-count_indicator-bg: var(--white);
+            --uui-count_indicator-border: var(--uui-neutral-40);
+            --uui-count_indicator-caption: var(--uui-neutral-70);
+        }
     }
 }

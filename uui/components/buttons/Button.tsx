@@ -19,8 +19,7 @@ export interface ButtonMods {
     color?: ButtonColor;
 }
 
-export type ButtonProps<PropType = ButtonMods> =
-    (PropType extends ButtonMods ? ButtonMods : PropType) & Omit<uuiButtonProps, 'count' | 'indicator'>;
+export type ButtonProps = ButtonMods & Omit<uuiButtonProps, 'count' | 'indicator'>;
 
 export function applyButtonMods(mods: ButtonProps) {
     return [
