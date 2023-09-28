@@ -26,12 +26,6 @@ export function MasterDetailedTable() {
     const filters = useMemo(() => getFilters<PersonFilters['Person']>(), []);
     const groupings = useMemo(() => groupingsList, []);
 
-    useEffect(
-        () => { svc.api.presets.getPresets().then(setInitialPresets).catch(console.error); },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [],
-    );
-
     const tableStateApi = useTableState<PersonTableFilter>({
         columns: personColumns,
         initialPresets: initialPresets,
@@ -39,6 +33,14 @@ export function MasterDetailedTable() {
         onPresetUpdate: svc.api.presets.updatePreset,
         onPresetDelete: svc.api.presets.deletePreset,
     });
+
+    useEffect(
+        () => {
+            svc.api.presets.getPresets().then(setInitialPresets).catch(console.error);
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [],
+    );
 
     const pin = useCallback(
         ({ value: { __typename } }: DataRowProps<PersonTableRecord, PersonTableRecordId[]>) => 
@@ -86,7 +88,7 @@ export function MasterDetailedTable() {
                     api: svc.api.demo.personGroups,
                 });
         },
-        [JSON.stringify(tableStateApi.tableState.filter?.groupBy)],
+        [tableStateApi.tableState.filter?.groupBy],
     );
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {});
@@ -108,7 +110,6 @@ export function MasterDetailedTable() {
 
             <div className={ css.container }>
                 <FlexRow borderBottom cx={ cx(css.presets, { [css.presetsWithFilter]: isFilterPanelOpened }) }></FlexRow>
-
                 <DataTable
                     headerTextCase="upper"
                     getRows={ view.getVisibleRows }
