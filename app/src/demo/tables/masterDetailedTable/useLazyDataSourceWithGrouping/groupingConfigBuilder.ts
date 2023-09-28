@@ -27,6 +27,10 @@ export class GroupingConfigBuilder<
         entityType: TType,
         config: EntityConfig<TGroups, TType, TId, TFilter, TGroupBy>,
     ) {
+        if (this.defaultEntity) {
+            throw new Error(`Entity with type '${String(entityType)}' is already registered. Only one entity can be added.`);
+        }
+
         this.entitiesConfig[entityType] = config;
         this.defaultEntity = entityType;
         return this;
