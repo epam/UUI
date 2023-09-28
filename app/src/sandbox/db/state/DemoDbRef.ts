@@ -1,4 +1,6 @@
 import { DemoDb, blankDemoDb, DemoDbTables } from './DemoDb';
+import { PersonEmploymentGroup } from '@epam/uui-docs';
+import { LazyDataSourceApiResponse } from '@epam/uui-core';
 import { DbRef, DbSaveResponse, DbPatch } from '@epam/uui-db';
 import { svc } from '../../../services';
 
@@ -30,7 +32,7 @@ export class DemoDbRef extends DbRef<DemoDbTables, DemoDb> {
         clientToServerRequest: this.idMap.clientToServerRequest,
     });
 
-    public personGroupsLoader = this.makeListLoader({
+    public personGroupsLoader = this.makeListLoader<PersonEmploymentGroup, LazyDataSourceApiResponse<PersonEmploymentGroup>>({
         api: svc.api.demo.personGroups,
         convertToPatch: (r) => ({ personGroups: r.items }),
         clientToServerRequest: this.idMap.clientToServerRequest,

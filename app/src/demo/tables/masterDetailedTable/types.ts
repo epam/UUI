@@ -1,27 +1,32 @@
 import { DataQueryFilter } from '@epam/uui-core';
-import { Person, PersonGroup, Location } from '@epam/uui-docs';
+import { Person, PersonEmploymentGroup, PersonLocationGroup } from '@epam/uui-docs';
 import { UnboxGroupsFromUnion } from './useLazyDataSourceWithGrouping';
 
-export type PersonTableRecord = Person | PersonGroup | Location;
+export type PersonTableRecord = Person | PersonEmploymentGroup | PersonLocationGroup;
 export type PersonTableRecordType = PersonTableRecord['__typename'];
 
+type GroupByLocation = 'country' | 'city';
+type GroupByEmployment = 'jobTitle' | 'department';
+
 export type PersonTableRecordId =
-    ['Location', 'location', string]
-    | ['PersonGroup', 'jobTitle' | 'department', number]
+    ['PersonLocationGroup', GroupByLocation, string]
+    | ['PersonEmploymentGroup', GroupByEmployment, number]
     | ['Person', undefined, number];
 
 export type PersonGroupBy = {
-    location: 'Location';
-    department: 'PersonGroup';
-    jobTitle: 'PersonGroup';
+    country: 'PersonLocationGroup';
+    city: 'PersonLocationGroup';
+    department: 'PersonEmploymentGroup';
+    jobTitle: 'PersonEmploymentGroup';
 };
 
-export type PersonTableFilter = {
-    Person: DataQueryFilter<Person> & { groupBy?: 'location' | 'jobTitle' | 'department' };
-    Location: DataQueryFilter<Location>;
-    PersonGroup: DataQueryFilter<PersonGroup> & { groupBy?: 'jobTitle' | 'department' };
+export type PersonFilters = {
+    Person: DataQueryFilter<Person>;
+    PersonLocationGroup: DataQueryFilter<PersonLocationGroup>;
+    PersonEmploymentGroup: DataQueryFilter<PersonEmploymentGroup>;
 };
 
+export type PersonTableFilter = DataQueryFilter<Person> & { groupBy?: GroupByLocation | GroupByEmployment };
 export interface Grouping {
     id: string;
     name: string;
