@@ -17,9 +17,6 @@ describe('docsGen:comments', () => {
             publicTypes: {
                 '@epam/test-module': {
                     ITest: {
-                        comment: [
-                            'This is an export level multiline TSDoc.',
-                        ],
                         kind: 263,
                         props: [
                             {
@@ -62,6 +59,9 @@ describe('docsGen:comments', () => {
             },
             refs: {
                 'test/test.tsx:ITest': {
+                    comment: [
+                        'This is an export level multiline TSDoc.',
+                    ],
                     isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',

@@ -4026,10 +4026,6 @@
       "}"
      ]
     },
-    "comment": [
-     "A part of the DataRowProps, which can be configured for each data row via getRowOptions callback.",
-     " Other props in DataRowProps are computed when generating rows."
-    ],
     "props": [
      {
       "uid": 1,
@@ -4206,9 +4202,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Holds parent info for data rows"
-    ],
     "props": [
      {
       "uid": 1,
@@ -4321,19 +4314,6 @@
       "};"
      ]
     },
-    "comment": [
-     "DataRowProps is a base shape of props, passed to items in various lists or trees.",
-     "",
-     " Despite 'Row' in it's name, it doesn't directly connected to a table.",
-     " We use DataRowProps as a base for DataTableRowProps and DataPickerRowProps.",
-     " But it can also be used for any user-built list, tree, custom picker rows, or even a grid of cards.",
-     "",
-     " Array of DataRowProps describes a part of hierarchical list, while still being a flat array (not a tree of some kind).",
-     " We use depth, indent, path, and other props to show row's place in the hierarchy.",
-     " This is very handy to handle rendering, especially in virtual scrolling scenarios.",
-     "",
-     " DataSources primary job is to convert various data stores into arrays of DataRowProps."
-    ],
     "props": [
      {
       "uid": 1,
@@ -5016,9 +4996,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Holds state of a components displaying lists - like tables. Holds virtual list position, filter, search, selection, etc."
-    ],
     "props": [
      {
       "uid": 1,
@@ -9159,11 +9136,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Component can be used as Toggler control for pickers.",
-     " This interface is enough for basic pickers.",
-     " Picker togglers with search or advanced selection display should implement IPickerToggler interface"
-    ],
     "props": [
      {
       "uid": 1,
@@ -9316,9 +9288,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Component value can be invalid"
-    ],
     "props": [
      {
       "uid": 1,
@@ -9368,9 +9337,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Component can be not editable"
-    ],
     "props": [
      {
       "uid": 1,
@@ -9426,9 +9392,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Component can be focused"
-    ],
     "props": [
      {
       "uid": 1,
@@ -9473,9 +9436,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Component acts as a link, and can redirect"
-    ],
     "props": [
      {
       "uid": 1,
@@ -9658,9 +9618,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Component supports click action"
-    ],
     "props": [
      {
       "uid": 1,
@@ -10029,9 +9986,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Component can be disabled"
-    ],
     "props": [
      {
       "uid": 1,
@@ -10283,9 +10237,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Component can be used as Toggler control for dropdown menus"
-    ],
     "props": [
      {
       "uid": 1,
@@ -10394,9 +10345,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Components has an editable value. Text Input is a basic example."
-    ],
     "props": [
      {
       "uid": 1,
@@ -10511,9 +10459,6 @@
       "}"
      ]
     },
-    "comment": [
-     "IEditableDebouncer component options."
-    ],
     "props": [
      {
       "uid": 1,
@@ -10556,9 +10501,6 @@
       "}"
      ]
     },
-    "comment": [
-     "IEditableDebouncer component props."
-    ],
     "props": [
      {
       "uid": 1,
@@ -11591,9 +11533,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Component has a caption. E.g. Button"
-    ],
     "props": [
      {
       "uid": 1,
@@ -11649,13 +11588,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Component can accept cx variable, which is more convenient shortcut for 'classname' property",
-     " It accepts string, arrays, object, recursively. All falsy values are thrown away. Examples:",
-     " - 'red' => 'red'",
-     " - ['red', 0, false, 'blue' ] => 'red blue'",
-     " - { 'red': true, 'blue': false, ['green', 'white']} => 'red green white'"
-    ],
     "props": [
      {
       "uid": 1,
@@ -11682,9 +11614,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Component has direction of child components."
-    ],
     "props": [
      {
       "uid": 1,
@@ -11787,9 +11716,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Component has label. E.g. User Name"
-    ],
     "props": [
      {
       "uid": 1,
@@ -12506,11 +12432,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Component can be used as Toggler control for pickers.",
-     " Only IDropdownToggler implementation is necessary for the picker to function.",
-     " Other props can be implemented for full-featured picker togglers."
-    ],
     "props": [
      {
       "uid": 1,
@@ -12896,14 +12817,6 @@
       "};"
      ]
     },
-    "comment": [
-     "From: react-router version 6.14.0",
-     "",
-     " The type definition of the IRouter6 is not complete (It's OK as long as we only use a subset of its API)",
-     "",
-     " NOTE: Complete definitions of the router is located in @remix-run/router:",
-     " https://github.com/remix-run/react-router/blob/main/packages/router/router.ts#L57"
-    ],
     "props": [
      {
       "uid": 1,
@@ -13949,10 +13862,7 @@
       "/** Defines API to retrieve data for DataSources */",
       "type LazyDataSourceApi<TItem, TId, TFilter> = (request: LazyDataSourceApiRequest<TItem, TId, TFilter>, context?: LazyDataSourceApiRequestContext<TItem, TId>) => Promise<LazyDataSourceApiResponse<TItem>>;"
      ]
-    },
-    "comment": [
-     "Defines API to retrieve data for DataSources"
-    ]
+    }
    },
    "LazyDataSourceApiRequest": {
     "kind": 263,
@@ -13969,9 +13879,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Defines input arguments for Lazy Data Source APIs"
-    ],
     "props": [
      {
       "uid": 1,
@@ -14047,9 +13954,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Defines the context of API request. E.g. parent if we require to retrieve sub-list of the tree"
-    ],
     "props": [
      {
       "uid": 1,
@@ -14125,9 +14029,6 @@
       "}"
      ]
     },
-    "comment": [
-     "The range (from/count) of required rows for LazyDataSourceApiRequest"
-    ],
     "props": [
      {
       "uid": 1,
@@ -14167,9 +14068,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Defines Lazy Data Source APIs response shape"
-    ],
     "props": [
      {
       "uid": 1,
@@ -14770,10 +14668,7 @@
       "    TValue",
       "][]>;"
      ]
-    },
-    "comment": [
-     "An callback to pass to LazyLoadedMap constructor"
-    ]
+    }
    },
    "Link": {
     "kind": 263,
@@ -19775,9 +19670,6 @@
       "}"
      ]
     },
-    "comment": [
-     "Holds state of a Virtual List - top visible item index, and estimated count of visible items"
-    ],
     "props": [
      {
       "uid": 1,
@@ -64191,7 +64083,12 @@
     "name": "File",
     "nameFull": "File"
    },
-   "src": "../../../../node_modules/typescript/lib/lib.dom.d.ts"
+   "src": "../../../../node_modules/typescript/lib/lib.dom.d.ts",
+   "comment": [
+    "Provides information about files and allows JavaScript in a web page to access their content.",
+    "",
+    " [MDN Reference](https://developer.mozilla.org/docs/Web/API/File)"
+   ]
   },
   "@epam/loveship:AlertMods": {
    "module": "@epam/loveship",
@@ -66389,6 +66286,10 @@
     "nameFull": "DataRowOptions<TItem, TId>"
    },
    "src": "uui-core/src/types/dataRows.ts",
+   "comment": [
+    "A part of the DataRowProps, which can be configured for each data row via getRowOptions callback.",
+    " Other props in DataRowProps are computed when generating rows."
+   ],
    "isPublic": true
   },
   "@epam/uui-core:DataRowPathItem": {
@@ -66398,6 +66299,9 @@
     "nameFull": "DataRowPathItem<TId, TItem>"
    },
    "src": "uui-core/src/types/dataRows.ts",
+   "comment": [
+    "Holds parent info for data rows"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:DataRowProps": {
@@ -66407,6 +66311,19 @@
     "nameFull": "DataRowProps<TItem, TId>"
    },
    "src": "uui-core/src/types/dataRows.ts",
+   "comment": [
+    "DataRowProps is a base shape of props, passed to items in various lists or trees.",
+    "",
+    " Despite 'Row' in it's name, it doesn't directly connected to a table.",
+    " We use DataRowProps as a base for DataTableRowProps and DataPickerRowProps.",
+    " But it can also be used for any user-built list, tree, custom picker rows, or even a grid of cards.",
+    "",
+    " Array of DataRowProps describes a part of hierarchical list, while still being a flat array (not a tree of some kind).",
+    " We use depth, indent, path, and other props to show row's place in the hierarchy.",
+    " This is very handy to handle rendering, especially in virtual scrolling scenarios.",
+    "",
+    " DataSources primary job is to convert various data stores into arrays of DataRowProps."
+   ],
    "isPublic": true
   },
   "@epam/uui-core:DataSourceListCounts": {
@@ -66434,6 +66351,9 @@
     "nameFull": "DataSourceState<TFilter, TId>"
    },
    "src": "uui-core/src/types/dataSources.ts",
+   "comment": [
+    "Holds state of a components displaying lists - like tables. Holds virtual list position, filter, search, selection, etc."
+   ],
    "isPublic": true
   },
   "@epam/uui-core:DataTableCellOptions": {
@@ -66801,6 +66721,11 @@
     "nameFull": "IBasicPickerToggler"
    },
    "src": "uui-core/src/types/pickers.ts",
+   "comment": [
+    "Component can be used as Toggler control for pickers.",
+    " This interface is enough for basic pickers.",
+    " Picker togglers with search or advanced selection display should implement IPickerToggler interface"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:ICanBeFixed": {
@@ -66819,6 +66744,9 @@
     "nameFull": "ICanBeInvalid"
    },
    "src": "uui-core/src/types/props.ts",
+   "comment": [
+    "Component value can be invalid"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:ICanBeReadonly": {
@@ -66828,6 +66756,9 @@
     "nameFull": "ICanBeReadonly"
    },
    "src": "uui-core/src/types/props.ts",
+   "comment": [
+    "Component can be not editable"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:ICanBeRequired": {
@@ -66846,6 +66777,9 @@
     "nameFull": "ICanFocus<T>"
    },
    "src": "uui-core/src/types/props.ts",
+   "comment": [
+    "Component can be focused"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:ICanRedirect": {
@@ -66855,6 +66789,9 @@
     "nameFull": "ICanRedirect"
    },
    "src": "uui-core/src/types/props.ts",
+   "comment": [
+    "Component acts as a link, and can redirect"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:ICheckable": {
@@ -66873,6 +66810,9 @@
     "nameFull": "IClickable"
    },
    "src": "uui-core/src/types/props.ts",
+   "comment": [
+    "Component supports click action"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:IColumnConfig": {
@@ -66918,6 +66858,9 @@
     "nameFull": "IDisableable"
    },
    "src": "uui-core/src/types/props.ts",
+   "comment": [
+    "Component can be disabled"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:IDndActor": {
@@ -66954,6 +66897,9 @@
     "nameFull": "IDropdownToggler"
    },
    "src": "uui-core/src/types/pickers.ts",
+   "comment": [
+    "Component can be used as Toggler control for dropdown menus"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:IEditable": {
@@ -66963,6 +66909,9 @@
     "nameFull": "IEditable<T>"
    },
    "src": "uui-core/src/types/props.ts",
+   "comment": [
+    "Components has an editable value. Text Input is a basic example."
+   ],
    "isPublic": true
   },
   "@epam/uui-core:IEditableDebouncerOptions": {
@@ -66972,6 +66921,9 @@
     "nameFull": "IEditableDebouncerOptions"
    },
    "src": "uui-core/src/helpers/IEditableDebouncer.ts",
+   "comment": [
+    "IEditableDebouncer component options."
+   ],
    "isPublic": true
   },
   "@epam/uui-core:IEditableDebouncerProps": {
@@ -66981,6 +66933,9 @@
     "nameFull": "IEditableDebouncerProps<T>"
    },
    "src": "uui-core/src/helpers/IEditableDebouncer.ts",
+   "comment": [
+    "IEditableDebouncer component props."
+   ],
    "isPublic": true
   },
   "@epam/uui-core:IErrorContext": {
@@ -67035,6 +66990,13 @@
     "nameFull": "IHasCX"
    },
    "src": "uui-core/src/types/props.ts",
+   "comment": [
+    "Component can accept cx variable, which is more convenient shortcut for 'classname' property",
+    " It accepts string, arrays, object, recursively. All falsy values are thrown away. Examples:",
+    " - 'red' => 'red'",
+    " - ['red', 0, false, 'blue' ] => 'red blue'",
+    " - { 'red': true, 'blue': false, ['green', 'white']} => 'red green white'"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:IHasCaption": {
@@ -67044,6 +67006,9 @@
     "nameFull": "IHasCaption"
    },
    "src": "uui-core/src/types/props.ts",
+   "comment": [
+    "Component has a caption. E.g. Button"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:IHasChildren": {
@@ -67062,6 +67027,9 @@
     "nameFull": "IHasDirection"
    },
    "src": "uui-core/src/types/props.ts",
+   "comment": [
+    "Component has direction of child components."
+   ],
    "isPublic": true
   },
   "@epam/uui-core:IHasForwardedRef": {
@@ -67089,6 +67057,9 @@
     "nameFull": "IHasLabel"
    },
    "src": "uui-core/src/types/props.ts",
+   "comment": [
+    "Component has label. E.g. User Name"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:IHasPlaceholder": {
@@ -67206,6 +67177,11 @@
     "nameFull": "IPickerToggler<TItem, TId>"
    },
    "src": "uui-core/src/types/pickers.ts",
+   "comment": [
+    "Component can be used as Toggler control for pickers.",
+    " Only IDropdownToggler implementation is necessary for the picker to function.",
+    " Other props can be implemented for full-featured picker togglers."
+   ],
    "isPublic": true
   },
   "@epam/uui-core:IPresetsApi": {
@@ -67233,6 +67209,14 @@
     "nameFull": "IRouter6"
    },
    "src": "uui-core/src/services/routing/interfaces/IRouter6.ts",
+   "comment": [
+    "From: react-router version 6.14.0",
+    "",
+    " The type definition of the IRouter6 is not complete (It's OK as long as we only use a subset of its API)",
+    "",
+    " NOTE: Complete definitions of the router is located in @remix-run/router:",
+    " https://github.com/remix-run/react-router/blob/main/packages/router/router.ts#L57"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:IRouterContext": {
@@ -67341,6 +67325,9 @@
     "nameFull": "LazyDataSourceApi<TItem, TId, TFilter>"
    },
    "src": "uui-core/src/types/dataSources.ts",
+   "comment": [
+    "Defines API to retrieve data for DataSources"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:LazyDataSourceApiRequest": {
@@ -67350,6 +67337,9 @@
     "nameFull": "LazyDataSourceApiRequest<TItem, TId, TFilter>"
    },
    "src": "uui-core/src/types/dataSources.ts",
+   "comment": [
+    "Defines input arguments for Lazy Data Source APIs"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:LazyDataSourceApiRequestContext": {
@@ -67359,6 +67349,9 @@
     "nameFull": "LazyDataSourceApiRequestContext<TItem, TId>"
    },
    "src": "uui-core/src/types/dataSources.ts",
+   "comment": [
+    "Defines the context of API request. E.g. parent if we require to retrieve sub-list of the tree"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:LazyDataSourceApiRequestOptions": {
@@ -67377,6 +67370,9 @@
     "nameFull": "LazyDataSourceApiRequestRange"
    },
    "src": "uui-core/src/types/dataSources.ts",
+   "comment": [
+    "The range (from/count) of required rows for LazyDataSourceApiRequest"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:LazyDataSourceApiResponse": {
@@ -67386,6 +67382,9 @@
     "nameFull": "LazyDataSourceApiResponse<TItem>"
    },
    "src": "uui-core/src/types/dataSources.ts",
+   "comment": [
+    "Defines Lazy Data Source APIs response shape"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:LazyDataSourceProps": {
@@ -67413,6 +67412,9 @@
     "nameFull": "LazyLoadedMapLoadCallback<TKey, TValue>"
    },
    "src": "uui-core/src/helpers/LazyLoadedMap.ts",
+   "comment": [
+    "An callback to pass to LazyLoadedMap constructor"
+   ],
    "isPublic": true
   },
   "@epam/uui-core:Link": {
@@ -67941,6 +67943,9 @@
     "nameFull": "VirtualListState"
    },
    "src": "uui-core/src/types/dataSources.ts",
+   "comment": [
+    "Holds state of a Virtual List - top visible item index, and estimated count of visible items"
+   ],
    "isPublic": true
   },
   "@epam/uui-editor:EditorValue": {
@@ -69115,7 +69120,11 @@
     "name": "Attributes",
     "nameFull": "Attributes"
    },
-   "src": "node_modules/@types/react/index.d.ts"
+   "src": "node_modules/@types/react/index.d.ts",
+   "comment": [
+    "@internal You shouldn't need to use this type since you never see these attributes",
+    " inside your component or have to validate them."
+   ]
   },
   "node_modules/@types/react/index.d.ts:ClassAttributes": {
    "module": "node_modules/@types/react/index.d.ts",
@@ -69195,7 +69204,12 @@
     "name": "TElement",
     "nameFull": "TElement"
    },
-   "src": "node_modules/@udecode/slate/dist/interfaces/element/TElement.d.ts"
+   "src": "node_modules/@udecode/slate/dist/interfaces/element/TElement.d.ts",
+   "comment": [
+    "`Element` objects are a type of node in a Slate document that contain other",
+    " element nodes or text nodes. They can be either \"blocks\" or \"inlines\"",
+    " depending on the Slate editor's configuration."
+   ]
   },
   "node_modules/react-custom-scrollbars-2/index.d.ts:ScrollbarProps": {
    "module": "node_modules/react-custom-scrollbars-2/index.d.ts",

@@ -58,6 +58,7 @@ export interface IDocGenStats {
 }
 
 export interface IDocGenReferences {
+    getByShortRef(ref: TTypeRefShort): TTypeRef
     set(ref: TTypeRef): TTypeRefShort
     get(publicTypes: TPublicTypesByModule): TTypeRefMap
 }
