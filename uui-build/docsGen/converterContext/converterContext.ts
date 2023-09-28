@@ -18,7 +18,7 @@ export class ConverterContext implements IConverterContext {
             new Union(this),
             new Converter(this), // fallback - always goes last
         ]);
-        this.stats = new DocGenStats();
+        this.stats = new DocGenStats(this);
     }
 
     private findSuitableConverter(nodeOrSymbol: TConvertable): IConverter {

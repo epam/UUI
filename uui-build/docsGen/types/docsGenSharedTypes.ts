@@ -19,6 +19,7 @@ export type TTypeRef = {
     typeName: TTypeName,
     module?: string,
     src?: string;
+    comment?: string[];
 };
 
 /** Map moduleName to exportName */
@@ -32,7 +33,6 @@ export type TType = {
      * */
     typeRef: TTypeRefShort;
     typeValue: TTypeValue;
-    comment?: string[];
     propsFromUnion?: boolean;
     props?: TTypeProp[];
 };

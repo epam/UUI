@@ -10,6 +10,10 @@ export class DocGenReferences implements IDocGenReferences {
         return key;
     }
 
+    getByShortRef(ref: TTypeRefShort) {
+        return this.refs[ref];
+    }
+
     get(byModule: TPublicTypesByModule) {
         const set = Object.keys(byModule).reduce<Set<TTypeRefShort>>((acc, byExportKey) => {
             const byExport = byModule[byExportKey];

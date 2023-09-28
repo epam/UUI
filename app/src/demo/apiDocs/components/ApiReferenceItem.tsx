@@ -16,10 +16,10 @@ export function ApiReferenceItem() {
 
     const {
         typeValue,
-        comment,
     } = tsDocsType || {};
 
     const items: { title?: string, node: React.ReactNode }[] = [];
+    const comment = tsDocsRefs[typeRefShort]?.comment;
     if (comment?.length) {
         items.push({
             title: 'Description',

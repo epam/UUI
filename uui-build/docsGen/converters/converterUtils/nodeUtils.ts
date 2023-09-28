@@ -76,10 +76,12 @@ export class NodeUtils {
         const module = getUuiModuleNameFromPath(typeNode.getSourceFile().compilerNode.fileName);
         const typeName = SymbolUtils.getTypeName(typeNode.getSymbol());
         const src = NodeUtils.getRelativeSource(typeNode);
+        const comment = NodeUtils.getCommentFromNode(typeNode);
         return {
             module,
             typeName,
             src,
+            comment,
         };
     }
 

@@ -26,9 +26,8 @@ import { CodeExpandable } from './components/CodeExpandable';
 import css from './ApiReferenceTable.module.scss';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/table-info-fill-18.svg';
 import { TType, TTypeProp } from '../docsGenSharedTypes';
-import { TsCommentForTypeRef } from './components/TsCommentForTypeRef';
 
-type TTypeGroup = { _group: true, from: TTypeProp['from'] };
+type TTypeGroup = { _group: true, from: TTypeProp['from'], comment: TTypeProp['comment'] };
 type TItem = TTypeProp | TTypeGroup;
 
 function isGroup(item: TTypeProp | TTypeGroup): item is TTypeGroup {
@@ -83,13 +82,7 @@ function getColumns(params: { isGroupedByFrom?: boolean, hasFrom?: boolean, isGr
             caption: 'Comment',
             alignSelf: 'center',
             render: (item) => {
-                if (isGroup(item)) {
-                    return <TsCommentForTypeRef typeRef={ item.from } keepBreaks={ true } isCompact={ true } />;
-                } else {
-                    return (
-                        <TsComment text={ item.comment } keepBreaks={ true } isCompact={ true } />
-                    );
-                }
+                return <TsComment text={ item.comment } keepBreaks={ true } isCompact={ true } />;
             },
             width: WIDTH.comment,
             grow: 1,
@@ -157,9 +150,9 @@ export function ApiReferenceItemTable(props: { showCode?: boolean, tsDocsType: T
         if (tsDocsType?.props) {
             const parents = new Map<string, TTypeGroup>();
             if (isGrouped) {
-                tsDocsType.props.forEach(({ from }) => {
+                tsDocsType.props.forEach(({ from, comment }) => {
                     if (from) {
-                        parents.set(from, { _group: true, from });
+                        parents.set(from, { _group: true, from, comment });
                     }
                 });
             }

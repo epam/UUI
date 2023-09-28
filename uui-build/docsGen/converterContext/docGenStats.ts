@@ -1,7 +1,7 @@
 import {
     TDocGenStatsResult,
     IDocGenStats,
-    TDocGenStatsResult_Exports,
+    TDocGenStatsResult_Exports, IConverterContext,
 } from '../types/types';
 import { TType, TTypeRefShort } from '../types/docsGenSharedTypes';
 
@@ -11,8 +11,12 @@ export class DocGenStats implements IDocGenStats {
     private ignoredExports = new ExportStat();
     private includedExports = new ExportStat();
 
-    checkConvertedExport(converted: TType, isDirectExport: boolean) {
-        if (isDirectExport && !converted.comment?.length) {
+    constructor(private context: IConverterContext) {
+    }
+
+    checkConvertedExport(converted: TType, isPublic: boolean) {
+        const { comment } = this.context.refs.getByShortRef(converted.typeRef);
+        if (isPublic && !comment?.length) {
             this.missingTypeComment.push(converted.typeRef);
         }
 

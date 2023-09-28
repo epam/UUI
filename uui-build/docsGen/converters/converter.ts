@@ -28,13 +28,11 @@ export class Converter implements IConverter {
         const kind = node.getKind();
         const typeRef = NodeUtils.getTypeRef(node);
         const typeRefShort = this.context.refs.set(typeRef);
-        const comment = NodeUtils.getCommentFromNode(node);
 
         const res: TType = {
             kind,
             typeRef: typeRefShort,
             typeValue,
-            comment,
         };
         if (this.isPropsSupported(node)) {
             const propsGen = extractProps(node, this.context);
