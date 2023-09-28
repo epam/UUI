@@ -73,7 +73,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         inputContainer.current?.focus();
     };
 
-    const handleBlur = () => !props.isOpen && blur();
+    const handleBlur = (e: React.FocusEvent<HTMLElement>) => props.isOpen ? inputContainer.current?.focus() : blur(e);
 
     const handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
         if (props.onClear) {
@@ -197,7 +197,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                             rawProps={ { role: 'button', 'aria-label': 'Clear' } }
                         />
                     )}
-                    {props.isDropdown && <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" onClick={ closeOpenedPickerBody } />}
+                    {props.isDropdown && !props?.minCharsToSearch && <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" onClick={ closeOpenedPickerBody } />}
                 </div>
             )}
         </div>

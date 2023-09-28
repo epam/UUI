@@ -1,0 +1,50 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "If you need to respond to success or errors after the save action, you should provide "
+      },
+      {
+        "text": "onSuccess",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " or "
+      },
+      {
+        "text": "onError",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " callbacks to the "
+      },
+      {
+        "text": "useForm",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " hook. "
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Please note that it's not advisable to implement this behavior within the "
+      },
+      {
+        "text": "onSave",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " callback. "
+      },
+      {
+        "text": "This is because when the API promise resolves, it doesn't necessarily mean that the form has completed the save actions and transitioned to the 'saved' mode.",
+        "color": "rgb(55, 65, 81)"
+      }
+    ]
+  }
+]

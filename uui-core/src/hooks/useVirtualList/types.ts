@@ -1,4 +1,4 @@
-import type { IEditable, VirtualListState } from '../../types';
+import type { IEditable, ScrollToConfig, VirtualListState } from '../../types';
 
 export interface UuiScrollPositionValues {
     scrollTop: number;
@@ -12,7 +12,7 @@ export interface UseVirtualListApi<List, ScrollContainer> {
     handleScroll: React.DOMAttributes<ScrollContainer>['onScroll'];
     listContainerRef: React.MutableRefObject<List>;
     scrollContainerRef: React.MutableRefObject<ScrollContainer>;
-    scrollToIndex(index: number, behavior: ScrollBehavior): void;
+    scrollToIndex(config: ScrollToConfig): void;
 }
 
 export interface UseVirtualListProps extends IEditable<VirtualListState> {

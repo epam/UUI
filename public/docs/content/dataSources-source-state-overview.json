@@ -1,997 +1,870 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "data": {
+      "cellSizes": [
+        202.6737060546875,
+        585.325927734375,
+        142.9752197265625
+      ]
+    },
+    "type": "table",
+    "children": [
+      {
         "data": {},
-        "nodes": [
+        "type": "table_row",
+        "children": [
           {
-            "object": "text",
-            "text": "",
-            "marks": []
+            "data": {},
+            "type": "table_header_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Property",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 0,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_header_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Description"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 0,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_header_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Default"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 0,
+            "colSpan": 1,
+            "rowSpan": 1
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "table_row",
+        "children": [
           {
-            "object": "block",
-            "type": "table",
-            "data": {
-              "cellSizes": [
-                202.6737060546875,
-                585.325927734375,
-                142.9752197265625
-              ]
-            },
-            "nodes": [
+            "data": {},
+            "type": "table_cell",
+            "children": [
               {
-                "object": "block",
-                "type": "table_row",
                 "data": {},
-                "nodes": [
+                "type": "paragraph",
+                "children": [
                   {
-                    "object": "block",
-                    "type": "table_header_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "Property",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_header_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "Description",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_header_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "Default",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "search",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "Provides a string to search in the rows.",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "''",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "checked",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "Provides ids of checked rows.",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {
-                          "checked": false
-                        },
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "folded",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "Provides a record of folded rows.",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "filter",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "Provides a filter.",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "sorting",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "Provides sorting configuration.",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "selectedId",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "Provides selected row Id.",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "indexToScroll",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "Provides an index a list should be scrolled to.",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "focusedIndex",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "Provides an index of the focused element.",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              },
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "topIndex",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "The start index of the records' range should be shown.",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "0",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "visibleCount",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "A number of rows to be shown.",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "20",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "page",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "A number of the page to be requested/shown.",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "pageSize",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-bold",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "A number of records a page should contain.",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
+                    "text": "search",
+                    "uui-richTextEditor-bold": true
                   }
                 ]
               }
-            ]
+            ],
+            "colIndex": 0,
+            "rowIndex": 1,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Provides a string to search in the rows."
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 1,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "''"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 1,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "table_row",
+        "children": [
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "checked",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 2,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Provides ids of checked rows."
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 2,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {
+                  "checked": false
+                },
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 2,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "table_row",
+        "children": [
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "folded",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 3,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Provides a record of folded rows."
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 3,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "",
+                    "uui-richTextEditor-italic": true,
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 3,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "table_row",
+        "children": [
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "filter",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 4,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Provides a filter."
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 4,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 4,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "table_row",
+        "children": [
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "sorting",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 5,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Provides sorting configuration."
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 5,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 5,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "table_row",
+        "children": [
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "selectedId",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 6,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Provides selected row Id."
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 6,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "",
+                    "uui-richTextEditor-italic": true,
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 6,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "table_row",
+        "children": [
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "indexToScroll",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 7,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Provides an index a list should be scrolled to."
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 7,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "",
+                    "uui-richTextEditor-italic": true,
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 7,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "table_row",
+        "children": [
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "focusedIndex",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 8,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Provides an index of the focused element."
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 8,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "",
+                    "uui-richTextEditor-italic": true,
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 8,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "table_row",
+        "children": [
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "topIndex",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 9,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "The start index of the records' range should be shown."
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 9,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "0"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 9,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "table_row",
+        "children": [
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "visibleCount",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 10,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "A number of rows to be shown."
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 10,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "20"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 10,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "table_row",
+        "children": [
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "page",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 11,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "A number of the page to be requested/shown."
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 11,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 11,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "table_row",
+        "children": [
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "pageSize",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 12,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "A number of records a page should contain."
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 12,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "data": {},
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 12,
+            "colSpan": 1,
+            "rowSpan": 1
           }
         ]
       }
+    ],
+    "colSizes": [
+      202.6737060546875,
+      585.325927734375,
+      142.9752197265625
     ]
   }
-}
+]

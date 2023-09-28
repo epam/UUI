@@ -1,0 +1,112 @@
+[
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Out of the box the "
+      },
+      {
+        "text": "useForm",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " hook implements a confirmation modal for leaving the form with unsaved changes. This modal will appear in the following cases:"
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Component unmount"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Router change"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Starting to edit another form"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "When something tries to acquire a lock from LockContext"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You can customize this behavior using the "
+      },
+      {
+        "text": "beforeLeave",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop. It accepts a callback that should return a Promise<boolean>. If the promise resolves to true, the save procedure is performed. To disable handling of unsaved changes, you can pass "
+      },
+      {
+        "text": "beforeLeave={null}",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Additionally, you can store unsaved changes in local storage and restore them when the form is opened again. To enable this behavior, provide the "
+      },
+      {
+        "text": "settingsKey",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop, which defines the local storage key where the data will be stored."
+      }
+    ]
+  }
+]

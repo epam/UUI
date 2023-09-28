@@ -12,6 +12,7 @@ const SCSS_COMMON_RULES = {
     'selector-no-vendor-prefix': null,
     'property-no-vendor-prefix': null,
     'selector-no-qualifying-type': null,
+    'no-missing-end-of-source-newline': null,
     //
     'declaration-empty-line-before': 'never',
     'property-no-unknown': [true, { ignoreProperties: ['composes'] }],

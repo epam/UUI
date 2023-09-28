@@ -124,7 +124,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         ...(cascadeSelection ? { cascadeSelection } : {}),
         ...(props.getRowOptions ? { getRowOptions: props.getRowOptions } : {}),
         backgroundReload: true,
-    });
+    }, [dataSource]);
 
     const getSelectedRows = (visibleCount?: number) => {
         if (hasSelection()) {

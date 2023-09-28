@@ -11,7 +11,7 @@ export class ModalWindow extends React.Component<ModalWindowProps> {
                 forwardedRef={ this.props.forwardedRef }
                 rawProps={ {
                     'aria-modal': true,
-                    role: 'modal',
+                    role: 'dialog',
                     ...this.props.rawProps,
                 } }
             >

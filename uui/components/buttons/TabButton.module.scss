@@ -53,15 +53,18 @@ $text-size-count: 24px;
         @include tab-button-color(var(--uui-tab_button-text-disabled), var(--uui-tab_button-text-disabled), transparent);
     }
 
-    &.uui-notification {
-        &::after {
-            content: '';
-            margin-bottom: math.div($text-size-caption, 2);
-            height: 6px;
-            width: 6px;
-            background: var(--uui-critical-50);
-            box-shadow: 0 1px 8px 0 var(--uui-critical-50);
-            border-radius: 50%;
+    &.withNotify {
+        :global(.uui-caption) {
+            &::after {
+                content: '';
+                position: absolute;
+                margin-bottom: math.div($text-size-caption, 2);
+                height: 6px;
+                width: 6px;
+                background: var(--uui-critical-50);
+                box-shadow: 0 1px 8px 0 var(--uui-critical-50);
+                border-radius: 50%;
+            }
         }
     }
 

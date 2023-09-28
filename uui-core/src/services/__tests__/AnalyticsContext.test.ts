@@ -62,6 +62,7 @@ describe('AnalyticsContext', () => {
         const context = new AnalyticsContext({
             router,
         } as any);
+        context.init();
         const sendEventSpy = jest.spyOn(context, 'sendEvent');
 
         expect(router.listeners.length).toBe(1);

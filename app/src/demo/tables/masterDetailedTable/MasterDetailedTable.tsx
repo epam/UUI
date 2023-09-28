@@ -106,7 +106,7 @@ export function MasterDetailedTable() {
             } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
                 return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id } });
             } else {
-                return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id } });
+                return getPersons({ range: rq.range, filter: { ...filter, locationId: ctx.parent.id } });
             }
         } else if (groupBy && !ctx.parent) {
             return getPersons({
@@ -145,11 +145,10 @@ export function MasterDetailedTable() {
                         return undefined;
                     }
                 }
-    
                 throw new Error('PersonTableDemo: unknown typename/groupBy combination');
             },
         },
-        [],
+        [tableStateApi.tableState.filter?.groupBy],
     );
 
     const clickHandler = useCallback((rowProps: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
@@ -183,6 +182,7 @@ export function MasterDetailedTable() {
             pin,
         },
         cascadeSelection: true,
+        selectAll: tableStateApi.tableState.filter?.groupBy === 'location' ? false : true,
     });
 
     const panelInfo = tableStateApi.tableState.selectedId && (view.getById(tableStateApi.tableState.selectedId, 0).value);

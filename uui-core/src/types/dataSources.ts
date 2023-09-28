@@ -17,8 +17,12 @@ export interface VirtualListRange {
     visibleCount?: number;
 }
 
+export type ScrollAlign = 'top' | 'nearest';
+
 export interface ScrollToConfig {
     index?: number;
+    behavior?: ScrollBehavior;
+    align?: ScrollAlign;
 }
 
 /** Holds state of a Virtual List - top visible item index, and estimated count of visible items */

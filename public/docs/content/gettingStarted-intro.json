@@ -1,78 +1,24 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": "Pre-requisites: "
+      },
+      {
+        "type": "link",
+        "url": "https://nodejs.org/",
+        "target": "_blank",
+        "children": [
           {
-            "object": "text",
-            "text": "Before starting, it is recommended to learn ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://reactjs.org/"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "React",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "http://babeljs.io/docs/learn-es2015/"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "ES2015",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " first and correctly install and configure ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://nodejs.org/"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "Node.js",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " v8 or above.",
-            "marks": []
+            "text": "NodeJS 18"
           }
         ]
+      },
+      {
+        "text": " or higher."
       }
     ]
   }
-}
+]
