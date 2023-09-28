@@ -27,7 +27,10 @@ export class GroupingConfigBuilder<
         entityType: TType,
         config: EntityConfig<TGroups, TType, TId, TFilter, TGroupBy>,
     ) {
-        this.entitiesConfig[entityType] = config;
+        this.entitiesConfig[entityType] = {
+            ...config,
+            getFilter: config.getFilter ?? ((filter) => (filter as TFilter[TType])),
+        };
         this.defaultEntity = entityType;
         return this;
     }
@@ -39,7 +42,7 @@ export class GroupingConfigBuilder<
         this.setGroupByToEntity(config.type, groupBy);
         this.groupingsConfig[config.type] = {
             ...config,
-            getFilter: config.getFilter ?? (() => ({} as TFilter[TType])),
+            getFilter: config.getFilter ?? ((filter) => (filter as TFilter[TType])),
         };
 
         return this;
@@ -252,7 +255,7 @@ export class GroupingConfigBuilder<
     private getFilterFromParentId(parentId: ToUnion<ComplexId<TGroups, TId, TGroupBy>>[] = []): FilterFromParentId<TGroups, TId, TGroupBy> {
         return parentId.reduce(
             (filter, [, groupBy, id]) =>
-                groupBy ? { ...filter, [groupBy]: id } : filter,
+                groupBy ? { ...filter, [`${String(groupBy)}Id`]: id } : filter,
             {},
         );
     }

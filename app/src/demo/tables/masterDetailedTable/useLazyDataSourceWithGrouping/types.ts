@@ -158,7 +158,7 @@ export type FilterFromParentId<
     TId extends BaseGroupsIds<TGroups>,
     TGroupBy extends BaseGroupBy<TGroups>
 > = {
-    [K in keyof TGroupBy]?: TId[TGroupBy[K]];
+    [Property in keyof TGroupBy as `${string & Property}Id`]?: TId[TGroupBy[Property]];
 };
 
 type FindKeyByValue<TObject extends { [K in string]: unknown | TValue }, TValue> = {

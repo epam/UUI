@@ -70,34 +70,16 @@ export function MasterDetailedTable() {
                     },
                 })
                 .addEntity('Person', {
-                    getFilter: ({ city, country, department, jobTitle }) => ({
-                        ...(country ? { countryId: country } : {}),
-                        ...(city ? { cityId: city } : {}),
-                        ...(department ? { departmentId: department } : {}),
-                        ...(jobTitle ? { jobTitleId: jobTitle } : {}),
-                    }),
                     api: svc.api.demo.persons,
                 })
                 .addGrouping(['department', 'jobTitle'], {
                     type: 'PersonEmploymentGroup',
                     getChildCount: (group) => group.count,
-                    getFilter: ({ city, country, department, jobTitle }) => ({
-                        ...(country ? { countryId: country } : {}),
-                        ...(city ? { cityId: city } : {}),
-                        ...(department ? { departmentId: department } : {}),
-                        ...(jobTitle ? { jobTitleId: jobTitle } : {}),
-                    }),
                     api: svc.api.demo.personGroups,
                 })
                 .addGrouping(['country', 'city'], {
                     type: 'PersonLocationGroup',
                     getChildCount: (group) => group.count,
-                    getFilter: ({ city, country, department, jobTitle }) => ({
-                        ...(country ? { countryId: country } : {}),
-                        ...(city ? { cityId: city } : {}),
-                        ...(department ? { departmentId: department } : {}),
-                        ...(jobTitle ? { jobTitleId: jobTitle } : {}),
-                    }),
                     api: svc.api.demo.personGroups,
                 });
         },
