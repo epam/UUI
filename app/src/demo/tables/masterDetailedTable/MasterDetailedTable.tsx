@@ -70,16 +70,19 @@ export function MasterDetailedTable() {
                     },
                 })
                 .addEntity('Person', {
+                    getFilter: (filter) => filter,
                     api: svc.api.demo.persons,
                 })
                 .addGrouping(['department', 'jobTitle'], {
                     type: 'PersonEmploymentGroup',
                     getChildCount: (group) => group.count,
+                    getFilter: (filter) => filter,
                     api: svc.api.demo.personGroups,
                 })
                 .addGrouping(['country', 'city'], {
                     type: 'PersonLocationGroup',
                     getChildCount: (group) => group.count,
+                    getFilter: (filter) => filter,
                     api: svc.api.demo.personGroups,
                 });
         },

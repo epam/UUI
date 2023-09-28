@@ -27,10 +27,7 @@ export class GroupingConfigBuilder<
         entityType: TType,
         config: EntityConfig<TGroups, TType, TId, TFilter, TGroupBy>,
     ) {
-        this.entitiesConfig[entityType] = {
-            ...config,
-            getFilter: config.getFilter ?? ((filter) => (filter as TFilter[TType])),
-        };
+        this.entitiesConfig[entityType] = config;
         this.defaultEntity = entityType;
         return this;
     }
@@ -40,10 +37,7 @@ export class GroupingConfigBuilder<
         config: GroupingConfig<TGroups, TType, TId, TFilter, TGroupBy>,
     ) {
         this.setGroupByToEntity(config.type, groupBy);
-        this.groupingsConfig[config.type] = {
-            ...config,
-            getFilter: config.getFilter ?? ((filter) => (filter as TFilter[TType])),
-        };
+        this.groupingsConfig[config.type] = config;
 
         return this;
     }
@@ -166,7 +160,7 @@ export class GroupingConfigBuilder<
                 this.checkApiForGroupBy(lastGroupBy);
 
                 const type = this.groupByToEntityType[lastGroupBy];
-                const filter = this.groupingsConfig[type].getFilter(filterFromGroupBy);
+                const filter = this.groupingsConfig[type].getFilter?.(filterFromGroupBy);
 
                 const response = await this.groupingsConfig[type].api(
                     { ...request, filter: { ...request.filter, ...filter, groupBy: lastGroupBy } },
@@ -184,7 +178,7 @@ export class GroupingConfigBuilder<
             if (isLastNestingLevel(context.parent)) {
                 if (isEqual(grouping, groupBy)) {
                     this.checkApiForGroupBy(lastGroupBy);
-                    const filter = this.entitiesConfig[this.defaultEntity].getFilter(filterFromGroupBy);
+                    const filter = this.entitiesConfig[this.defaultEntity].getFilter?.(filterFromGroupBy);
 
                     const response = await this.entitiesConfig[this.defaultEntity].api({
                         ...request,
@@ -196,7 +190,7 @@ export class GroupingConfigBuilder<
                 this.checkApiForGroupBy(lastGroupBy);
 
                 const type = this.groupByToEntityType[lastGroupBy];
-                const filter = this.groupingsConfig[type].getFilter(filterFromGroupBy);
+                const filter = this.groupingsConfig[type].getFilter?.(filterFromGroupBy);
 
                 const response = await this.groupingsConfig[type].api(
                     { ...request, filter: { ...request.filter, ...filter, groupBy: lastGroupBy } },
@@ -208,7 +202,7 @@ export class GroupingConfigBuilder<
             this.checkApiForGroupBy(lastGroupBy);
 
             const type = this.groupByToEntityType[lastGroupBy];
-            const filter = this.groupingsConfig[type].getFilter(filterFromGroupBy);
+            const filter = this.groupingsConfig[type].getFilter?.(filterFromGroupBy);
 
             const response = await this.groupingsConfig[type].api(
                 { ...request, filter: { ...request.filter, ...filter, groupBy: lastGroupBy } },
@@ -220,7 +214,7 @@ export class GroupingConfigBuilder<
         this.checkApiForGroupBy(lastGroupBy);
 
         const type = this.groupByToEntityType[lastGroupBy];
-        const filter = this.groupingsConfig[type].getFilter(filterFromGroupBy);
+        const filter = this.groupingsConfig[type].getFilter?.(filterFromGroupBy);
 
         const response = await this.groupingsConfig[type].api(
             { ...request, filter: { ...request.filter, ...filter } },
