@@ -1,29 +1,23 @@
 import React from 'react';
-import { useTsDocs } from '../dataHooks';
+import { useTsDocForType, useTsDocsRefs } from '../dataHooks';
 import { Code } from '../../../common/docs/Code';
 import { TsComment } from './components/TsComment';
 import { Layout } from './components/Layout';
-import { ApiReferenceItemTable } from './ApiReferenceItemTable';
+import { ApiReferenceItemTableForTypeRef } from './ApiReferenceItemTable';
 import { useSearchParams } from 'react-router-dom';
 import { TTsDocExportedEntry } from '../types';
 import { TTypeRefShort } from '../docsGenSharedTypes';
-import { Text } from '@epam/uui';
 
 export function ApiReferenceItem() {
     const [params] = useSearchParams();
     const typeRefShort = params?.get('id') as TTypeRefShort;
-    const tsDocs = useTsDocs();
-    if (!tsDocs) {
-        return null;
-    }
-    const exportInfo = tsDocs.get(typeRefShort);
-    if (!exportInfo) {
-        return <Text>{`Unable to find exported type: ${typeRefShort}`}</Text>;
-    }
+    const tsDocsType = useTsDocForType(typeRefShort);
+    const tsDocsRefs = useTsDocsRefs();
+
     const {
         typeValue,
         comment,
-    } = exportInfo;
+    } = tsDocsType || {};
 
     const items: { title?: string, node: React.ReactNode }[] = [];
     if (comment?.length) {
@@ -32,11 +26,11 @@ export function ApiReferenceItem() {
             node: <TsComment text={ comment } keepBreaks={ true } />,
         });
     }
-    const hasProps = !!exportInfo?.props?.length;
+    const hasProps = !!tsDocsType?.props?.length;
     if (hasProps) {
         const entry = typeRefShort as TTsDocExportedEntry;
         items.push({
-            node: <ApiReferenceItemTable key={ entry } entry={ entry } showCode={ true } />,
+            node: <ApiReferenceItemTableForTypeRef key={ entry } tsDocsRef={ entry } showCode={ true } />,
         });
     }
     if (!hasProps) {
@@ -44,9 +38,9 @@ export function ApiReferenceItem() {
             node: <Code codeAsHtml={ typeValue?.print?.join('\n') || '' } />,
         });
     }
-    const typeRefLong = tsDocs.getTypeRef(exportInfo.typeRef);
+    const title = tsDocsRefs[typeRefShort]?.typeName.nameFull;
     return (
-        <Layout title={ typeRefLong?.typeName.nameFull }>
+        <Layout title={ title }>
             {items}
         </Layout>
     );

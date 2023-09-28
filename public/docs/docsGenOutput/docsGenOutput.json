@@ -1,5 +1,5 @@
 {
- "byModule": {
+ "publicTypes": {
   "@epam/uui-core": {
    "AcceptDropParams": {
     "kind": 263,
@@ -64174,429 +64174,16 @@
      }
     ]
    }
-  },
-  "@epam/uui-timeline": {
-   "BaseTimelineCanvasComponentProps": {
-    "kind": 263,
-    "typeRef": "@epam/uui-timeline:BaseTimelineCanvasComponentProps",
-    "typeValue": {
-     "raw": "BaseTimelineCanvasComponentProps",
-     "print": [
-      "interface BaseTimelineCanvasComponentProps {",
-      "    className?: string;",
-      "    timelineController: TimelineController;",
-      "    renderOnTop?(ctx: CanvasRenderingContext2D, t: TimelineTransform): void;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "className",
-      "typeValue": {
-       "raw": "undefined | string"
-      },
-      "required": false
-     },
-     {
-      "uid": 2,
-      "name": "timelineController",
-      "typeValue": {
-       "raw": "TimelineController"
-      },
-      "required": true
-     },
-     {
-      "uid": 3,
-      "name": "renderOnTop",
-      "typeValue": {
-       "raw": "undefined | (ctx: CanvasRenderingContext2D, t: TimelineTransform) => void"
-      },
-      "required": false
-     }
-    ]
-   },
-   "Item": {
-    "kind": 263,
-    "typeRef": "@epam/uui-timeline:Item",
-    "typeValue": {
-     "raw": "Item",
-     "print": [
-      "interface Item {",
-      "    from: Date;",
-      "    to: Date;",
-      "    color: string;",
-      "    fillType?: 'shaded' | 'solid';",
-      "    opacity?: number;",
-      "    height?: number;",
-      "    priority?: number;",
-      "    minPixPerDay?: number;",
-      "    maxPxPerDay?: number;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "from",
-      "typeValue": {
-       "raw": "Date"
-      },
-      "required": true
-     },
-     {
-      "uid": 2,
-      "name": "to",
-      "typeValue": {
-       "raw": "Date"
-      },
-      "required": true
-     },
-     {
-      "uid": 3,
-      "name": "color",
-      "typeValue": {
-       "raw": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": 4,
-      "name": "fillType",
-      "typeValue": {
-       "raw": "undefined | 'shaded' | 'solid'"
-      },
-      "required": false
-     },
-     {
-      "uid": 5,
-      "name": "opacity",
-      "typeValue": {
-       "raw": "undefined | number"
-      },
-      "required": false
-     },
-     {
-      "uid": 6,
-      "name": "height",
-      "typeValue": {
-       "raw": "undefined | number"
-      },
-      "required": false
-     },
-     {
-      "uid": 7,
-      "name": "priority",
-      "typeValue": {
-       "raw": "undefined | number"
-      },
-      "required": false
-     },
-     {
-      "uid": 8,
-      "name": "minPixPerDay",
-      "typeValue": {
-       "raw": "undefined | number"
-      },
-      "required": false
-     },
-     {
-      "uid": 9,
-      "name": "maxPxPerDay",
-      "typeValue": {
-       "raw": "undefined | number"
-      },
-      "required": false
-     }
-    ]
-   },
-   "Stage": {
-    "kind": 263,
-    "typeRef": "@epam/uui-timeline:Stage",
-    "typeValue": {
-     "raw": "Stage",
-     "print": [
-      "interface Stage {",
-      "    eventName: string;",
-      "    name: string;",
-      "    startDate: Date;",
-      "    endDate: Date;",
-      "    color: string;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "eventName",
-      "typeValue": {
-       "raw": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": 2,
-      "name": "name",
-      "typeValue": {
-       "raw": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": 3,
-      "name": "startDate",
-      "typeValue": {
-       "raw": "Date"
-      },
-      "required": true
-     },
-     {
-      "uid": 4,
-      "name": "endDate",
-      "typeValue": {
-       "raw": "Date"
-      },
-      "required": true
-     },
-     {
-      "uid": 5,
-      "name": "color",
-      "typeValue": {
-       "raw": "string"
-      },
-      "required": true
-     }
-    ]
-   },
-   "TimelineControllerOptions": {
-    "kind": 263,
-    "typeRef": "@epam/uui-timeline:TimelineControllerOptions",
-    "typeValue": {
-     "raw": "TimelineControllerOptions",
-     "print": [
-      "interface TimelineControllerOptions {",
-      "    isHoliday?: (date: Date) => boolean;",
-      "    minWidth?: number;",
-      "    minVisibleDate?: Date;",
-      "    minScale?: number;",
-      "    maxScale?: number;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "isHoliday",
-      "typeValue": {
-       "raw": "undefined | (date: Date) => boolean"
-      },
-      "required": false
-     },
-     {
-      "uid": 2,
-      "name": "minWidth",
-      "typeValue": {
-       "raw": "undefined | number"
-      },
-      "required": false
-     },
-     {
-      "uid": 3,
-      "name": "minVisibleDate",
-      "typeValue": {
-       "raw": "undefined | Date"
-      },
-      "required": false
-     },
-     {
-      "uid": 4,
-      "name": "minScale",
-      "typeValue": {
-       "raw": "undefined | number"
-      },
-      "required": false
-     },
-     {
-      "uid": 5,
-      "name": "maxScale",
-      "typeValue": {
-       "raw": "undefined | number"
-      },
-      "required": false
-     }
-    ]
-   },
-   "TimelineEventsBarProps": {
-    "kind": 263,
-    "typeRef": "@epam/uui-timeline:TimelineEventsBarProps",
-    "typeValue": {
-     "raw": "TimelineEventsBarProps",
-     "print": [
-      "interface TimelineEventsBarProps {",
-      "    timelineController: TimelineController;",
-      "    stages: Stage[];",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "timelineController",
-      "typeValue": {
-       "raw": "TimelineController"
-      },
-      "required": true
-     },
-     {
-      "uid": 2,
-      "name": "stages",
-      "typeValue": {
-       "raw": "Stage[]"
-      },
-      "required": true
-     }
-    ]
-   },
-   "TimelineGridProps": {
-    "kind": 263,
-    "typeRef": "@epam/uui-timeline:TimelineGridProps",
-    "typeValue": {
-     "raw": "TimelineGridProps",
-     "print": [
-      "interface TimelineGridProps extends BaseTimelineCanvasComponentProps {",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "className",
-      "typeValue": {
-       "raw": "undefined | string"
-      },
-      "from": "@epam/uui-timeline:BaseTimelineCanvasComponentProps",
-      "required": false
-     },
-     {
-      "uid": 2,
-      "name": "timelineController",
-      "typeValue": {
-       "raw": "TimelineController"
-      },
-      "from": "@epam/uui-timeline:BaseTimelineCanvasComponentProps",
-      "required": true
-     },
-     {
-      "uid": 3,
-      "name": "renderOnTop",
-      "typeValue": {
-       "raw": "undefined | (ctx: CanvasRenderingContext2D, t: TimelineTransform) => void"
-      },
-      "from": "@epam/uui-timeline:BaseTimelineCanvasComponentProps",
-      "required": false
-     }
-    ]
-   },
-   "TimelineNavProps": {
-    "kind": 263,
-    "typeRef": "@epam/uui-timeline:TimelineNavProps",
-    "typeValue": {
-     "raw": "TimelineNavProps",
-     "print": [
-      "interface TimelineNavProps {",
-      "    timelineController: TimelineController;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "timelineController",
-      "typeValue": {
-       "raw": "TimelineController"
-      },
-      "required": true
-     }
-    ]
-   },
-   "TimelineScaleProps": {
-    "kind": 263,
-    "typeRef": "@epam/uui-timeline:TimelineScaleProps",
-    "typeValue": {
-     "raw": "TimelineScaleProps",
-     "print": [
-      "interface TimelineScaleProps extends BaseTimelineCanvasComponentProps {",
-      "    isDraggable?: boolean;",
-      "    isScaleChangeOnWheel?: boolean;",
-      "    shiftPercent?: number;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "isDraggable",
-      "typeValue": {
-       "raw": "undefined | false | true"
-      },
-      "required": false
-     },
-     {
-      "uid": 2,
-      "name": "isScaleChangeOnWheel",
-      "typeValue": {
-       "raw": "undefined | false | true"
-      },
-      "required": false
-     },
-     {
-      "uid": 3,
-      "name": "shiftPercent",
-      "typeValue": {
-       "raw": "undefined | number"
-      },
-      "required": false
-     },
-     {
-      "uid": 4,
-      "name": "className",
-      "typeValue": {
-       "raw": "undefined | string"
-      },
-      "from": "@epam/uui-timeline:BaseTimelineCanvasComponentProps",
-      "required": false
-     },
-     {
-      "uid": 5,
-      "name": "timelineController",
-      "typeValue": {
-       "raw": "TimelineController"
-      },
-      "from": "@epam/uui-timeline:BaseTimelineCanvasComponentProps",
-      "required": true
-     },
-     {
-      "uid": 6,
-      "name": "renderOnTop",
-      "typeValue": {
-       "raw": "undefined | (ctx: CanvasRenderingContext2D, t: TimelineTransform) => void"
-      },
-      "from": "@epam/uui-timeline:BaseTimelineCanvasComponentProps",
-      "required": false
-     }
-    ]
-   }
   }
  },
- "references": {
+ "refs": {
   "../../../../node_modules/typescript/lib/lib.dom.d.ts:Blob": {
    "module": "../../../../node_modules/typescript/lib/lib.dom.d.ts",
    "typeName": {
     "name": "Blob",
     "nameFull": "Blob"
    },
-   "src": "../../../../node_modules/typescript/lib/lib.dom.d.ts",
-   "external": true
+   "src": "../../../../node_modules/typescript/lib/lib.dom.d.ts"
   },
   "../../../../node_modules/typescript/lib/lib.dom.d.ts:File": {
    "module": "../../../../node_modules/typescript/lib/lib.dom.d.ts",
@@ -64604,8 +64191,7 @@
     "name": "File",
     "nameFull": "File"
    },
-   "src": "../../../../node_modules/typescript/lib/lib.dom.d.ts",
-   "external": true
+   "src": "../../../../node_modules/typescript/lib/lib.dom.d.ts"
   },
   "@epam/loveship:AlertMods": {
    "module": "@epam/loveship",
@@ -64613,7 +64199,8 @@
     "name": "AlertMods",
     "nameFull": "AlertMods"
    },
-   "src": "loveship/components/overlays/Alert.tsx"
+   "src": "loveship/components/overlays/Alert.tsx",
+   "isPublic": true
   },
   "@epam/loveship:AlertProps": {
    "module": "@epam/loveship",
@@ -64621,7 +64208,8 @@
     "name": "AlertProps",
     "nameFull": "AlertProps"
    },
-   "src": "loveship/components/overlays/Alert.tsx"
+   "src": "loveship/components/overlays/Alert.tsx",
+   "isPublic": true
   },
   "@epam/loveship:BadgeMods": {
    "module": "@epam/loveship",
@@ -64629,7 +64217,8 @@
     "name": "BadgeMods",
     "nameFull": "BadgeMods"
    },
-   "src": "loveship/components/widgets/Badge.tsx"
+   "src": "loveship/components/widgets/Badge.tsx",
+   "isPublic": true
   },
   "@epam/loveship:BadgeProps": {
    "module": "@epam/loveship",
@@ -64637,7 +64226,8 @@
     "name": "BadgeProps",
     "nameFull": "BadgeProps"
    },
-   "src": "loveship/components/widgets/Badge.tsx"
+   "src": "loveship/components/widgets/Badge.tsx",
+   "isPublic": true
   },
   "@epam/loveship:ButtonColorType": {
    "module": "@epam/loveship",
@@ -64645,7 +64235,8 @@
     "name": "ButtonColorType",
     "nameFull": "ButtonColorType"
    },
-   "src": "loveship/components/buttons/Button.tsx"
+   "src": "loveship/components/buttons/Button.tsx",
+   "isPublic": true
   },
   "@epam/loveship:ButtonMods": {
    "module": "@epam/loveship",
@@ -64653,7 +64244,8 @@
     "name": "ButtonMods",
     "nameFull": "ButtonMods"
    },
-   "src": "loveship/components/buttons/Button.tsx"
+   "src": "loveship/components/buttons/Button.tsx",
+   "isPublic": true
   },
   "@epam/loveship:ButtonProps": {
    "module": "@epam/loveship",
@@ -64661,7 +64253,8 @@
     "name": "ButtonProps",
     "nameFull": "ButtonProps"
    },
-   "src": "loveship/components/buttons/Button.tsx"
+   "src": "loveship/components/buttons/Button.tsx",
+   "isPublic": true
   },
   "@epam/loveship:CheckboxMods": {
    "module": "@epam/loveship",
@@ -64669,7 +64262,8 @@
     "name": "CheckboxMods",
     "nameFull": "CheckboxMods"
    },
-   "src": "loveship/components/inputs/Checkbox.tsx"
+   "src": "loveship/components/inputs/Checkbox.tsx",
+   "isPublic": true
   },
   "@epam/loveship:ColorMod": {
    "module": "@epam/loveship",
@@ -64677,7 +64271,8 @@
     "name": "ColorMod",
     "nameFull": "ColorMod"
    },
-   "src": "loveship/components/types.ts"
+   "src": "loveship/components/types.ts",
+   "isPublic": true
   },
   "@epam/loveship:ControlShape": {
    "module": "@epam/loveship",
@@ -64685,7 +64280,8 @@
     "name": "ControlShape",
     "nameFull": "ControlShape"
    },
-   "src": "loveship/components/types.ts"
+   "src": "loveship/components/types.ts",
+   "isPublic": true
   },
   "@epam/loveship:ControlSize": {
    "module": "@epam/loveship",
@@ -64693,7 +64289,8 @@
     "name": "ControlSize",
     "nameFull": "ControlSize"
    },
-   "src": "loveship/components/types.ts"
+   "src": "loveship/components/types.ts",
+   "isPublic": true
   },
   "@epam/loveship:DropdownContainerMods": {
    "module": "@epam/loveship",
@@ -64701,7 +64298,8 @@
     "name": "DropdownContainerMods",
     "nameFull": "DropdownContainerMods"
    },
-   "src": "loveship/components/overlays/DropdownContainer.tsx"
+   "src": "loveship/components/overlays/DropdownContainer.tsx",
+   "isPublic": true
   },
   "@epam/loveship:EditMode": {
    "module": "@epam/loveship",
@@ -64709,7 +64307,8 @@
     "name": "EditMode",
     "nameFull": "EditMode"
    },
-   "src": "loveship/components/types.ts"
+   "src": "loveship/components/types.ts",
+   "isPublic": true
   },
   "@epam/loveship:EpamAdditionalColor": {
    "module": "@epam/loveship",
@@ -64717,7 +64316,8 @@
     "name": "EpamAdditionalColor",
     "nameFull": "EpamAdditionalColor"
    },
-   "src": "loveship/components/types.ts"
+   "src": "loveship/components/types.ts",
+   "isPublic": true
   },
   "@epam/loveship:EpamColor": {
    "module": "@epam/loveship",
@@ -64725,7 +64325,8 @@
     "name": "EpamColor",
     "nameFull": "EpamColor"
    },
-   "src": "loveship/components/types.ts"
+   "src": "loveship/components/types.ts",
+   "isPublic": true
   },
   "@epam/loveship:EpamGrayscaleColor": {
    "module": "@epam/loveship",
@@ -64733,7 +64334,8 @@
     "name": "EpamGrayscaleColor",
     "nameFull": "EpamGrayscaleColor"
    },
-   "src": "loveship/components/types.ts"
+   "src": "loveship/components/types.ts",
+   "isPublic": true
   },
   "@epam/loveship:EpamPrimaryColor": {
    "module": "@epam/loveship",
@@ -64741,7 +64343,8 @@
     "name": "EpamPrimaryColor",
     "nameFull": "EpamPrimaryColor"
    },
-   "src": "loveship/components/types.ts"
+   "src": "loveship/components/types.ts",
+   "isPublic": true
   },
   "@epam/loveship:ErrorConfig": {
    "module": "@epam/loveship",
@@ -64749,7 +64352,8 @@
     "name": "ErrorConfig",
     "nameFull": "ErrorConfig"
    },
-   "src": "loveship/components/app/ErrorHandler.tsx"
+   "src": "loveship/components/app/ErrorHandler.tsx",
+   "isPublic": true
   },
   "@epam/loveship:ErrorPageProps": {
    "module": "@epam/loveship",
@@ -64757,7 +64361,8 @@
     "name": "ErrorPageProps",
     "nameFull": "ErrorPageProps"
    },
-   "src": "loveship/components/app/ErrorHandler.tsx"
+   "src": "loveship/components/app/ErrorHandler.tsx",
+   "isPublic": true
   },
   "@epam/loveship:FillStyle": {
    "module": "@epam/loveship",
@@ -64765,7 +64370,8 @@
     "name": "FillStyle",
     "nameFull": "FillStyle"
    },
-   "src": "loveship/components/types.ts"
+   "src": "loveship/components/types.ts",
+   "isPublic": true
   },
   "@epam/loveship:FontMod": {
    "module": "@epam/loveship",
@@ -64773,7 +64379,8 @@
     "name": "FontMod",
     "nameFull": "FontMod"
    },
-   "src": "loveship/components/types.ts"
+   "src": "loveship/components/types.ts",
+   "isPublic": true
   },
   "@epam/loveship:FontStyle": {
    "module": "@epam/loveship",
@@ -64781,7 +64388,8 @@
     "name": "FontStyle",
     "nameFull": "FontStyle"
    },
-   "src": "loveship/components/types.ts"
+   "src": "loveship/components/types.ts",
+   "isPublic": true
   },
   "@epam/loveship:IconButtonMods": {
    "module": "@epam/loveship",
@@ -64789,7 +64397,8 @@
     "name": "IconButtonMods",
     "nameFull": "IconButtonMods"
    },
-   "src": "loveship/components/buttons/IconButton.tsx"
+   "src": "loveship/components/buttons/IconButton.tsx",
+   "isPublic": true
   },
   "@epam/loveship:IconButtonProps": {
    "module": "@epam/loveship",
@@ -64797,7 +64406,8 @@
     "name": "IconButtonProps",
     "nameFull": "IconButtonProps"
    },
-   "src": "loveship/components/buttons/IconButton.tsx"
+   "src": "loveship/components/buttons/IconButton.tsx",
+   "isPublic": true
   },
   "@epam/loveship:IconContainerMods": {
    "module": "@epam/loveship",
@@ -64805,7 +64415,8 @@
     "name": "IconContainerMods",
     "nameFull": "IconContainerMods"
    },
-   "src": "loveship/components/layout/IconContainer.tsx"
+   "src": "loveship/components/layout/IconContainer.tsx",
+   "isPublic": true
   },
   "@epam/loveship:LinkButtonMods": {
    "module": "@epam/loveship",
@@ -64813,7 +64424,8 @@
     "name": "LinkButtonMods",
     "nameFull": "LinkButtonMods"
    },
-   "src": "loveship/components/buttons/LinkButton.tsx"
+   "src": "loveship/components/buttons/LinkButton.tsx",
+   "isPublic": true
   },
   "@epam/loveship:LinkButtonProps": {
    "module": "@epam/loveship",
@@ -64821,7 +64433,8 @@
     "name": "LinkButtonProps",
     "nameFull": "LinkButtonProps"
    },
-   "src": "loveship/components/buttons/LinkButton.tsx"
+   "src": "loveship/components/buttons/LinkButton.tsx",
+   "isPublic": true
   },
   "@epam/loveship:MakeMeItemProps": {
    "module": "@epam/loveship",
@@ -64829,7 +64442,8 @@
     "name": "MakeMeItemProps",
     "nameFull": "MakeMeItemProps"
    },
-   "src": "loveship/components/dev/MakeMeItem.tsx"
+   "src": "loveship/components/dev/MakeMeItem.tsx",
+   "isPublic": true
   },
   "@epam/loveship:MakeMeUser": {
    "module": "@epam/loveship",
@@ -64837,7 +64451,8 @@
     "name": "MakeMeUser",
     "nameFull": "MakeMeUser"
    },
-   "src": "loveship/components/dev/MakeMeItem.tsx"
+   "src": "loveship/components/dev/MakeMeItem.tsx",
+   "isPublic": true
   },
   "@epam/loveship:ModalWindowMods": {
    "module": "@epam/loveship",
@@ -64845,7 +64460,8 @@
     "name": "ModalWindowMods",
     "nameFull": "ModalWindowMods"
    },
-   "src": "loveship/components/overlays/ModalWindow.tsx"
+   "src": "loveship/components/overlays/ModalWindow.tsx",
+   "isPublic": true
   },
   "@epam/loveship:MultiSwitchColor": {
    "module": "@epam/loveship",
@@ -64853,7 +64469,8 @@
     "name": "MultiSwitchColor",
     "nameFull": "MultiSwitchColor"
    },
-   "src": "loveship/components/inputs/MultiSwitch.tsx"
+   "src": "loveship/components/inputs/MultiSwitch.tsx",
+   "isPublic": true
   },
   "@epam/loveship:MultiSwitchMods": {
    "module": "@epam/loveship",
@@ -64861,7 +64478,8 @@
     "name": "MultiSwitchMods",
     "nameFull": "MultiSwitchMods"
    },
-   "src": "loveship/components/inputs/MultiSwitch.tsx"
+   "src": "loveship/components/inputs/MultiSwitch.tsx",
+   "isPublic": true
   },
   "@epam/loveship:MultiSwitchProps": {
    "module": "@epam/loveship",
@@ -64869,7 +64487,8 @@
     "name": "MultiSwitchProps",
     "nameFull": "MultiSwitchProps<TValue>"
    },
-   "src": "loveship/components/inputs/MultiSwitch.tsx"
+   "src": "loveship/components/inputs/MultiSwitch.tsx",
+   "isPublic": true
   },
   "@epam/loveship:NotificationCardMods": {
    "module": "@epam/loveship",
@@ -64877,7 +64496,8 @@
     "name": "NotificationCardMods",
     "nameFull": "NotificationCardMods"
    },
-   "src": "loveship/components/overlays/NotificationCard.tsx"
+   "src": "loveship/components/overlays/NotificationCard.tsx",
+   "isPublic": true
   },
   "@epam/loveship:NotificationCardProps": {
    "module": "@epam/loveship",
@@ -64885,7 +64505,8 @@
     "name": "NotificationCardProps",
     "nameFull": "NotificationCardProps"
    },
-   "src": "loveship/components/overlays/NotificationCard.tsx"
+   "src": "loveship/components/overlays/NotificationCard.tsx",
+   "isPublic": true
   },
   "@epam/loveship:PanelMods": {
    "module": "@epam/loveship",
@@ -64893,7 +64514,8 @@
     "name": "PanelMods",
     "nameFull": "PanelMods"
    },
-   "src": "loveship/components/layout/FlexItems/Panel.tsx"
+   "src": "loveship/components/layout/FlexItems/Panel.tsx",
+   "isPublic": true
   },
   "@epam/loveship:RadioInputMods": {
    "module": "@epam/loveship",
@@ -64901,7 +64523,8 @@
     "name": "RadioInputMods",
     "nameFull": "RadioInputMods"
    },
-   "src": "loveship/components/inputs/RadioInput.tsx"
+   "src": "loveship/components/inputs/RadioInput.tsx",
+   "isPublic": true
   },
   "@epam/loveship:RadioInputProps": {
    "module": "@epam/loveship",
@@ -64909,7 +64532,8 @@
     "name": "RadioInputProps",
     "nameFull": "RadioInputProps"
    },
-   "src": "loveship/components/inputs/RadioInput.tsx"
+   "src": "loveship/components/inputs/RadioInput.tsx",
+   "isPublic": true
   },
   "@epam/loveship:RangeSliderMods": {
    "module": "@epam/loveship",
@@ -64917,7 +64541,8 @@
     "name": "RangeSliderMods",
     "nameFull": "RangeSliderMods"
    },
-   "src": "loveship/components/inputs/Slider/RangeSlider.tsx"
+   "src": "loveship/components/inputs/Slider/RangeSlider.tsx",
+   "isPublic": true
   },
   "@epam/loveship:RatingMods": {
    "module": "@epam/loveship",
@@ -64925,7 +64550,8 @@
     "name": "RatingMods",
     "nameFull": "RatingMods"
    },
-   "src": "loveship/components/inputs/Rating.tsx"
+   "src": "loveship/components/inputs/Rating.tsx",
+   "isPublic": true
   },
   "@epam/loveship:RichTextViewMods": {
    "module": "@epam/loveship",
@@ -64933,7 +64559,8 @@
     "name": "RichTextViewMods",
     "nameFull": "RichTextViewMods"
    },
-   "src": "loveship/components/typography/RichTextView.tsx"
+   "src": "loveship/components/typography/RichTextView.tsx",
+   "isPublic": true
   },
   "@epam/loveship:RowMods": {
    "module": "@epam/loveship",
@@ -64941,7 +64568,8 @@
     "name": "RowMods",
     "nameFull": "RowMods"
    },
-   "src": "loveship/components/layout/FlexItems/FlexRow.tsx"
+   "src": "loveship/components/layout/FlexItems/FlexRow.tsx",
+   "isPublic": true
   },
   "@epam/loveship:RowSize": {
    "module": "@epam/loveship",
@@ -64949,7 +64577,8 @@
     "name": "RowSize",
     "nameFull": "RowSize"
    },
-   "src": "loveship/components/types.ts"
+   "src": "loveship/components/types.ts",
+   "isPublic": true
   },
   "@epam/loveship:RowSizeMod": {
    "module": "@epam/loveship",
@@ -64957,7 +64586,8 @@
     "name": "RowSizeMod",
     "nameFull": "RowSizeMod"
    },
-   "src": "loveship/components/types.ts"
+   "src": "loveship/components/types.ts",
+   "isPublic": true
   },
   "@epam/loveship:ScrollBarsMods": {
    "module": "@epam/loveship",
@@ -64965,7 +64595,8 @@
     "name": "ScrollBarsMods",
     "nameFull": "ScrollBarsMods"
    },
-   "src": "loveship/components/layout/ScrollBars.tsx"
+   "src": "loveship/components/layout/ScrollBars.tsx",
+   "isPublic": true
   },
   "@epam/loveship:SizeMod": {
    "module": "@epam/loveship",
@@ -64973,7 +64604,8 @@
     "name": "SizeMod",
     "nameFull": "SizeMod"
    },
-   "src": "loveship/components/types.ts"
+   "src": "loveship/components/types.ts",
+   "isPublic": true
   },
   "@epam/loveship:SliderRatingProps": {
    "module": "@epam/loveship",
@@ -64981,7 +64613,8 @@
     "name": "SliderRatingProps",
     "nameFull": "SliderRatingProps<TValue>"
    },
-   "src": "loveship/components/inputs/SliderRating.tsx"
+   "src": "loveship/components/inputs/SliderRating.tsx",
+   "isPublic": true
   },
   "@epam/loveship:SnackbarCardProps": {
    "module": "@epam/loveship",
@@ -64989,7 +64622,8 @@
     "name": "SnackbarCardProps",
     "nameFull": "SnackbarCardProps"
    },
-   "src": "loveship/components/overlays/SnackbarCard.tsx"
+   "src": "loveship/components/overlays/SnackbarCard.tsx",
+   "isPublic": true
   },
   "@epam/loveship:TabButtonMods": {
    "module": "@epam/loveship",
@@ -64997,7 +64631,8 @@
     "name": "TabButtonMods",
     "nameFull": "TabButtonMods"
    },
-   "src": "loveship/components/buttons/TabButton.tsx"
+   "src": "loveship/components/buttons/TabButton.tsx",
+   "isPublic": true
   },
   "@epam/loveship:TagMods": {
    "module": "@epam/loveship",
@@ -65005,7 +64640,8 @@
     "name": "TagMods",
     "nameFull": "TagMods"
    },
-   "src": "loveship/components/widgets/Tag.tsx"
+   "src": "loveship/components/widgets/Tag.tsx",
+   "isPublic": true
   },
   "@epam/loveship:TextInputMods": {
    "module": "@epam/loveship",
@@ -65013,7 +64649,8 @@
     "name": "TextInputMods",
     "nameFull": "TextInputMods"
    },
-   "src": "loveship/components/inputs/TextInput.tsx"
+   "src": "loveship/components/inputs/TextInput.tsx",
+   "isPublic": true
   },
   "@epam/loveship:TextMods": {
    "module": "@epam/loveship",
@@ -65021,7 +64658,8 @@
     "name": "TextMods",
     "nameFull": "TextMods"
    },
-   "src": "loveship/components/typography/Text.tsx"
+   "src": "loveship/components/typography/Text.tsx",
+   "isPublic": true
   },
   "@epam/loveship:TextProps": {
    "module": "@epam/loveship",
@@ -65029,7 +64667,8 @@
     "name": "TextProps",
     "nameFull": "TextProps"
    },
-   "src": "loveship/components/typography/Text.tsx"
+   "src": "loveship/components/typography/Text.tsx",
+   "isPublic": true
   },
   "@epam/loveship:TextSize": {
    "module": "@epam/loveship",
@@ -65037,7 +64676,8 @@
     "name": "TextSize",
     "nameFull": "TextSize"
    },
-   "src": "loveship/components/types.ts"
+   "src": "loveship/components/types.ts",
+   "isPublic": true
   },
   "@epam/loveship:TooltipMods": {
    "module": "@epam/loveship",
@@ -65045,7 +64685,8 @@
     "name": "TooltipMods",
     "nameFull": "TooltipMods"
    },
-   "src": "loveship/components/overlays/Tooltip.tsx"
+   "src": "loveship/components/overlays/Tooltip.tsx",
+   "isPublic": true
   },
   "@epam/loveship:TooltipProps": {
    "module": "@epam/loveship",
@@ -65053,7 +64694,8 @@
     "name": "TooltipProps",
     "nameFull": "TooltipProps"
    },
-   "src": "loveship/components/overlays/Tooltip.tsx"
+   "src": "loveship/components/overlays/Tooltip.tsx",
+   "isPublic": true
   },
   "@epam/loveship:VirtualListMods": {
    "module": "@epam/loveship",
@@ -65061,7 +64703,8 @@
     "name": "VirtualListMods",
     "nameFull": "VirtualListMods"
    },
-   "src": "loveship/components/layout/VirtualList.tsx"
+   "src": "loveship/components/layout/VirtualList.tsx",
+   "isPublic": true
   },
   "@epam/promo:AlertMods": {
    "module": "@epam/promo",
@@ -65069,7 +64712,8 @@
     "name": "AlertMods",
     "nameFull": "AlertMods"
    },
-   "src": "epam-promo/components/overlays/Alert.tsx"
+   "src": "epam-promo/components/overlays/Alert.tsx",
+   "isPublic": true
   },
   "@epam/promo:AlertProps": {
    "module": "@epam/promo",
@@ -65077,7 +64721,8 @@
     "name": "AlertProps",
     "nameFull": "AlertProps"
    },
-   "src": "epam-promo/components/overlays/Alert.tsx"
+   "src": "epam-promo/components/overlays/Alert.tsx",
+   "isPublic": true
   },
   "@epam/promo:BadgeMods": {
    "module": "@epam/promo",
@@ -65085,7 +64730,8 @@
     "name": "BadgeMods",
     "nameFull": "BadgeMods"
    },
-   "src": "epam-promo/components/widgets/Badge.tsx"
+   "src": "epam-promo/components/widgets/Badge.tsx",
+   "isPublic": true
   },
   "@epam/promo:BadgeProps": {
    "module": "@epam/promo",
@@ -65093,7 +64739,8 @@
     "name": "BadgeProps",
     "nameFull": "BadgeProps"
    },
-   "src": "epam-promo/components/widgets/Badge.tsx"
+   "src": "epam-promo/components/widgets/Badge.tsx",
+   "isPublic": true
   },
   "@epam/promo:ButtonColor": {
    "module": "@epam/promo",
@@ -65101,7 +64748,8 @@
     "name": "ButtonColor",
     "nameFull": "ButtonColor"
    },
-   "src": "epam-promo/components/buttons/Button.tsx"
+   "src": "epam-promo/components/buttons/Button.tsx",
+   "isPublic": true
   },
   "@epam/promo:ButtonMods": {
    "module": "@epam/promo",
@@ -65109,7 +64757,8 @@
     "name": "ButtonMods",
     "nameFull": "ButtonMods"
    },
-   "src": "epam-promo/components/buttons/Button.tsx"
+   "src": "epam-promo/components/buttons/Button.tsx",
+   "isPublic": true
   },
   "@epam/promo:ButtonProps": {
    "module": "@epam/promo",
@@ -65117,7 +64766,8 @@
     "name": "ButtonProps",
     "nameFull": "ButtonProps"
    },
-   "src": "epam-promo/components/buttons/Button.tsx"
+   "src": "epam-promo/components/buttons/Button.tsx",
+   "isPublic": true
   },
   "@epam/promo:ColorMod": {
    "module": "@epam/promo",
@@ -65125,7 +64775,8 @@
     "name": "ColorMod",
     "nameFull": "ColorMod"
    },
-   "src": "epam-promo/components/types.ts"
+   "src": "epam-promo/components/types.ts",
+   "isPublic": true
   },
   "@epam/promo:ControlShape": {
    "module": "@epam/promo",
@@ -65133,7 +64784,8 @@
     "name": "ControlShape",
     "nameFull": "ControlShape"
    },
-   "src": "epam-promo/components/types.ts"
+   "src": "epam-promo/components/types.ts",
+   "isPublic": true
   },
   "@epam/promo:ControlSize": {
    "module": "@epam/promo",
@@ -65141,7 +64793,8 @@
     "name": "ControlSize",
     "nameFull": "ControlSize"
    },
-   "src": "epam-promo/components/types.ts"
+   "src": "epam-promo/components/types.ts",
+   "isPublic": true
   },
   "@epam/promo:DropdownContainerMods": {
    "module": "@epam/promo",
@@ -65149,7 +64802,8 @@
     "name": "DropdownContainerMods",
     "nameFull": "DropdownContainerMods"
    },
-   "src": "epam-promo/components/overlays/DropdownContainer.tsx"
+   "src": "epam-promo/components/overlays/DropdownContainer.tsx",
+   "isPublic": true
   },
   "@epam/promo:EpamAdditionalColor": {
    "module": "@epam/promo",
@@ -65157,7 +64811,8 @@
     "name": "EpamAdditionalColor",
     "nameFull": "EpamAdditionalColor"
    },
-   "src": "epam-promo/components/types.ts"
+   "src": "epam-promo/components/types.ts",
+   "isPublic": true
   },
   "@epam/promo:EpamColor": {
    "module": "@epam/promo",
@@ -65165,7 +64820,8 @@
     "name": "EpamColor",
     "nameFull": "EpamColor"
    },
-   "src": "epam-promo/components/types.ts"
+   "src": "epam-promo/components/types.ts",
+   "isPublic": true
   },
   "@epam/promo:EpamGrayscaleColor": {
    "module": "@epam/promo",
@@ -65173,7 +64829,8 @@
     "name": "EpamGrayscaleColor",
     "nameFull": "EpamGrayscaleColor"
    },
-   "src": "epam-promo/components/types.ts"
+   "src": "epam-promo/components/types.ts",
+   "isPublic": true
   },
   "@epam/promo:EpamPrimaryColor": {
    "module": "@epam/promo",
@@ -65181,7 +64838,8 @@
     "name": "EpamPrimaryColor",
     "nameFull": "EpamPrimaryColor"
    },
-   "src": "epam-promo/components/types.ts"
+   "src": "epam-promo/components/types.ts",
+   "isPublic": true
   },
   "@epam/promo:ErrorHandlerProps": {
    "module": "@epam/promo",
@@ -65189,7 +64847,8 @@
     "name": "ErrorHandlerProps",
     "nameFull": "ErrorHandlerProps"
    },
-   "src": "epam-promo/components/errors/ErrorHandler.tsx"
+   "src": "epam-promo/components/errors/ErrorHandler.tsx",
+   "isPublic": true
   },
   "@epam/promo:FillStyle": {
    "module": "@epam/promo",
@@ -65197,7 +64856,8 @@
     "name": "FillStyle",
     "nameFull": "FillStyle"
    },
-   "src": "epam-promo/components/types.ts"
+   "src": "epam-promo/components/types.ts",
+   "isPublic": true
   },
   "@epam/promo:FontMod": {
    "module": "@epam/promo",
@@ -65205,7 +64865,8 @@
     "name": "FontMod",
     "nameFull": "FontMod"
    },
-   "src": "epam-promo/components/types.ts"
+   "src": "epam-promo/components/types.ts",
+   "isPublic": true
   },
   "@epam/promo:FontStyle": {
    "module": "@epam/promo",
@@ -65213,7 +64874,8 @@
     "name": "FontStyle",
     "nameFull": "FontStyle"
    },
-   "src": "epam-promo/components/types.ts"
+   "src": "epam-promo/components/types.ts",
+   "isPublic": true
   },
   "@epam/promo:IHasEditMode": {
    "module": "@epam/promo",
@@ -65221,7 +64883,8 @@
     "name": "IHasEditMode",
     "nameFull": "IHasEditMode"
    },
-   "src": "epam-promo/components/types.ts"
+   "src": "epam-promo/components/types.ts",
+   "isPublic": true
   },
   "@epam/promo:IconButtonMods": {
    "module": "@epam/promo",
@@ -65229,7 +64892,8 @@
     "name": "IconButtonMods",
     "nameFull": "IconButtonMods"
    },
-   "src": "epam-promo/components/buttons/IconButton.tsx"
+   "src": "epam-promo/components/buttons/IconButton.tsx",
+   "isPublic": true
   },
   "@epam/promo:IconButtonProps": {
    "module": "@epam/promo",
@@ -65237,7 +64901,8 @@
     "name": "IconButtonProps",
     "nameFull": "IconButtonProps"
    },
-   "src": "epam-promo/components/buttons/IconButton.tsx"
+   "src": "epam-promo/components/buttons/IconButton.tsx",
+   "isPublic": true
   },
   "@epam/promo:IconColor": {
    "module": "@epam/promo",
@@ -65245,7 +64910,8 @@
     "name": "IconColor",
     "nameFull": "IconColor"
    },
-   "src": "epam-promo/components/buttons/IconButton.tsx"
+   "src": "epam-promo/components/buttons/IconButton.tsx",
+   "isPublic": true
   },
   "@epam/promo:IconContainerColors": {
    "module": "@epam/promo",
@@ -65253,7 +64919,8 @@
     "name": "IconContainerColors",
     "nameFull": "IconContainerColors"
    },
-   "src": "epam-promo/components/layout/IconContainer.tsx"
+   "src": "epam-promo/components/layout/IconContainer.tsx",
+   "isPublic": true
   },
   "@epam/promo:IconContainerMods": {
    "module": "@epam/promo",
@@ -65261,7 +64928,8 @@
     "name": "IconContainerMods",
     "nameFull": "IconContainerMods"
    },
-   "src": "epam-promo/components/layout/IconContainer.tsx"
+   "src": "epam-promo/components/layout/IconContainer.tsx",
+   "isPublic": true
   },
   "@epam/promo:LinkButtonMods": {
    "module": "@epam/promo",
@@ -65269,7 +64937,8 @@
     "name": "LinkButtonMods",
     "nameFull": "LinkButtonMods"
    },
-   "src": "epam-promo/components/buttons/LinkButton.tsx"
+   "src": "epam-promo/components/buttons/LinkButton.tsx",
+   "isPublic": true
   },
   "@epam/promo:LinkButtonProps": {
    "module": "@epam/promo",
@@ -65277,7 +64946,8 @@
     "name": "LinkButtonProps",
     "nameFull": "LinkButtonProps"
    },
-   "src": "epam-promo/components/buttons/LinkButton.tsx"
+   "src": "epam-promo/components/buttons/LinkButton.tsx",
+   "isPublic": true
   },
   "@epam/promo:ModalWindowMods": {
    "module": "@epam/promo",
@@ -65285,7 +64955,8 @@
     "name": "ModalWindowMods",
     "nameFull": "ModalWindowMods"
    },
-   "src": "epam-promo/components/overlays/ModalWindow.tsx"
+   "src": "epam-promo/components/overlays/ModalWindow.tsx",
+   "isPublic": true
   },
   "@epam/promo:MultiSwitchColor": {
    "module": "@epam/promo",
@@ -65293,7 +64964,8 @@
     "name": "MultiSwitchColor",
     "nameFull": "MultiSwitchColor"
    },
-   "src": "epam-promo/components/inputs/MultiSwitch.tsx"
+   "src": "epam-promo/components/inputs/MultiSwitch.tsx",
+   "isPublic": true
   },
   "@epam/promo:MultiSwitchMods": {
    "module": "@epam/promo",
@@ -65301,7 +64973,8 @@
     "name": "MultiSwitchMods",
     "nameFull": "MultiSwitchMods"
    },
-   "src": "epam-promo/components/inputs/MultiSwitch.tsx"
+   "src": "epam-promo/components/inputs/MultiSwitch.tsx",
+   "isPublic": true
   },
   "@epam/promo:MultiSwitchProps": {
    "module": "@epam/promo",
@@ -65309,7 +64982,8 @@
     "name": "MultiSwitchProps",
     "nameFull": "MultiSwitchProps<TValue>"
    },
-   "src": "epam-promo/components/inputs/MultiSwitch.tsx"
+   "src": "epam-promo/components/inputs/MultiSwitch.tsx",
+   "isPublic": true
   },
   "@epam/promo:NotificationCardMods": {
    "module": "@epam/promo",
@@ -65317,7 +64991,8 @@
     "name": "NotificationCardMods",
     "nameFull": "NotificationCardMods"
    },
-   "src": "epam-promo/components/overlays/NotificationCard.tsx"
+   "src": "epam-promo/components/overlays/NotificationCard.tsx",
+   "isPublic": true
   },
   "@epam/promo:NotificationCardProps": {
    "module": "@epam/promo",
@@ -65325,7 +65000,8 @@
     "name": "NotificationCardProps",
     "nameFull": "NotificationCardProps"
    },
-   "src": "epam-promo/components/overlays/NotificationCard.tsx"
+   "src": "epam-promo/components/overlays/NotificationCard.tsx",
+   "isPublic": true
   },
   "@epam/promo:PanelMods": {
    "module": "@epam/promo",
@@ -65333,7 +65009,8 @@
     "name": "PanelMods",
     "nameFull": "PanelMods"
    },
-   "src": "epam-promo/components/layout/FlexItems/Panel.tsx"
+   "src": "epam-promo/components/layout/FlexItems/Panel.tsx",
+   "isPublic": true
   },
   "@epam/promo:RatingMods": {
    "module": "@epam/promo",
@@ -65341,7 +65018,8 @@
     "name": "RatingMods",
     "nameFull": "RatingMods"
    },
-   "src": "epam-promo/components/inputs/Rating.tsx"
+   "src": "epam-promo/components/inputs/Rating.tsx",
+   "isPublic": true
   },
   "@epam/promo:RichTextViewMods": {
    "module": "@epam/promo",
@@ -65349,7 +65027,8 @@
     "name": "RichTextViewMods",
     "nameFull": "RichTextViewMods"
    },
-   "src": "epam-promo/components/typography/RichTextView.tsx"
+   "src": "epam-promo/components/typography/RichTextView.tsx",
+   "isPublic": true
   },
   "@epam/promo:RowMods": {
    "module": "@epam/promo",
@@ -65357,7 +65036,8 @@
     "name": "RowMods",
     "nameFull": "RowMods"
    },
-   "src": "epam-promo/components/layout/FlexItems/FlexRow.tsx"
+   "src": "epam-promo/components/layout/FlexItems/FlexRow.tsx",
+   "isPublic": true
   },
   "@epam/promo:RowSize": {
    "module": "@epam/promo",
@@ -65365,7 +65045,8 @@
     "name": "RowSize",
     "nameFull": "RowSize"
    },
-   "src": "epam-promo/components/types.ts"
+   "src": "epam-promo/components/types.ts",
+   "isPublic": true
   },
   "@epam/promo:RowSizeMod": {
    "module": "@epam/promo",
@@ -65373,7 +65054,8 @@
     "name": "RowSizeMod",
     "nameFull": "RowSizeMod"
    },
-   "src": "epam-promo/components/types.ts"
+   "src": "epam-promo/components/types.ts",
+   "isPublic": true
   },
   "@epam/promo:ScrollBarsMods": {
    "module": "@epam/promo",
@@ -65381,7 +65063,8 @@
     "name": "ScrollBarsMods",
     "nameFull": "ScrollBarsMods"
    },
-   "src": "epam-promo/components/layout/ScrollBars.tsx"
+   "src": "epam-promo/components/layout/ScrollBars.tsx",
+   "isPublic": true
   },
   "@epam/promo:SizeMod": {
    "module": "@epam/promo",
@@ -65389,7 +65072,8 @@
     "name": "SizeMod",
     "nameFull": "SizeMod"
    },
-   "src": "epam-promo/components/types.ts"
+   "src": "epam-promo/components/types.ts",
+   "isPublic": true
   },
   "@epam/promo:SliderMods": {
    "module": "@epam/promo",
@@ -65397,7 +65081,8 @@
     "name": "SliderMods",
     "nameFull": "SliderMods"
    },
-   "src": "epam-promo/components/inputs/Slider/Slider.tsx"
+   "src": "epam-promo/components/inputs/Slider/Slider.tsx",
+   "isPublic": true
   },
   "@epam/promo:TextMods": {
    "module": "@epam/promo",
@@ -65405,7 +65090,8 @@
     "name": "TextMods",
     "nameFull": "TextMods"
    },
-   "src": "epam-promo/components/typography/Text.tsx"
+   "src": "epam-promo/components/typography/Text.tsx",
+   "isPublic": true
   },
   "@epam/promo:TextProps": {
    "module": "@epam/promo",
@@ -65413,7 +65099,8 @@
     "name": "TextProps",
     "nameFull": "TextProps"
    },
-   "src": "epam-promo/components/typography/Text.tsx"
+   "src": "epam-promo/components/typography/Text.tsx",
+   "isPublic": true
   },
   "@epam/promo:TextSize": {
    "module": "@epam/promo",
@@ -65421,7 +65108,8 @@
     "name": "TextSize",
     "nameFull": "TextSize"
    },
-   "src": "epam-promo/components/types.ts"
+   "src": "epam-promo/components/types.ts",
+   "isPublic": true
   },
   "@epam/promo:TooltipMods": {
    "module": "@epam/promo",
@@ -65429,7 +65117,8 @@
     "name": "TooltipMods",
     "nameFull": "TooltipMods"
    },
-   "src": "epam-promo/components/overlays/Tooltip.tsx"
+   "src": "epam-promo/components/overlays/Tooltip.tsx",
+   "isPublic": true
   },
   "@epam/promo:TooltipProps": {
    "module": "@epam/promo",
@@ -65437,7 +65126,8 @@
     "name": "TooltipProps",
     "nameFull": "TooltipProps"
    },
-   "src": "epam-promo/components/overlays/Tooltip.tsx"
+   "src": "epam-promo/components/overlays/Tooltip.tsx",
+   "isPublic": true
   },
   "@epam/promo:VirtualListMods": {
    "module": "@epam/promo",
@@ -65445,7 +65135,8 @@
     "name": "VirtualListMods",
     "nameFull": "VirtualListMods"
    },
-   "src": "epam-promo/components/layout/VirtualList.tsx"
+   "src": "epam-promo/components/layout/VirtualList.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:AccordionProps": {
    "module": "@epam/uui-components",
@@ -65453,7 +65144,8 @@
     "name": "AccordionProps",
     "nameFull": "AccordionProps"
    },
-   "src": "uui-components/src/layout/Accordion.tsx"
+   "src": "uui-components/src/layout/Accordion.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:AccordionState": {
    "module": "@epam/uui-components",
@@ -65461,7 +65153,8 @@
     "name": "AccordionState",
     "nameFull": "AccordionState"
    },
-   "src": "uui-components/src/layout/Accordion.tsx"
+   "src": "uui-components/src/layout/Accordion.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:AdaptiveItemProps": {
    "module": "@epam/uui-components",
@@ -65469,7 +65162,8 @@
     "name": "AdaptiveItemProps",
     "nameFull": "AdaptiveItemProps<T>"
    },
-   "src": "uui-components/src/adaptivePanel/types.ts"
+   "src": "uui-components/src/adaptivePanel/types.ts",
+   "isPublic": true
   },
   "@epam/uui-components:AdaptivePanelProps": {
    "module": "@epam/uui-components",
@@ -65477,7 +65171,8 @@
     "name": "AdaptivePanelProps",
     "nameFull": "AdaptivePanelProps"
    },
-   "src": "uui-components/src/adaptivePanel/types.ts"
+   "src": "uui-components/src/adaptivePanel/types.ts",
+   "isPublic": true
   },
   "@epam/uui-components:AnchorProps": {
    "module": "@epam/uui-components",
@@ -65485,7 +65180,8 @@
     "name": "AnchorProps",
     "nameFull": "AnchorProps"
    },
-   "src": "uui-components/src/navigation/Anchor.tsx"
+   "src": "uui-components/src/navigation/Anchor.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:ArrayPickerProps": {
    "module": "@epam/uui-components",
@@ -65493,7 +65189,8 @@
     "name": "ArrayPickerProps",
     "nameFull": "ArrayPickerProps<TId, TItem>"
    },
-   "src": "uui-components/src/pickers/bindingHelpers.ts"
+   "src": "uui-components/src/pickers/bindingHelpers.ts",
+   "isPublic": true
   },
   "@epam/uui-components:AvatarProps": {
    "module": "@epam/uui-components",
@@ -65501,7 +65198,8 @@
     "name": "AvatarProps",
     "nameFull": "AvatarProps"
    },
-   "src": "uui-components/src/widgets/Avatar.tsx"
+   "src": "uui-components/src/widgets/Avatar.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:AvatarStackProps": {
    "module": "@epam/uui-components",
@@ -65509,7 +65207,8 @@
     "name": "AvatarStackProps",
     "nameFull": "AvatarStackProps"
    },
-   "src": "uui-components/src/widgets/AvatarStack.tsx"
+   "src": "uui-components/src/widgets/AvatarStack.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:BaseRatingProps": {
    "module": "@epam/uui-components",
@@ -65517,7 +65216,8 @@
     "name": "BaseRatingProps",
     "nameFull": "BaseRatingProps<TValue>"
    },
-   "src": "uui-components/src/inputs/Rating/BaseRating.tsx"
+   "src": "uui-components/src/inputs/Rating/BaseRating.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:BaseTimePickerProps": {
    "module": "@epam/uui-components",
@@ -65525,7 +65225,8 @@
     "name": "BaseTimePickerProps",
     "nameFull": "BaseTimePickerProps"
    },
-   "src": "uui-components/src/inputs/BaseTimePicker.tsx"
+   "src": "uui-components/src/inputs/BaseTimePicker.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:BaseVirtualListProps": {
    "module": "@epam/uui-components",
@@ -65541,7 +65242,8 @@
     "name": "BlockerProps",
     "nameFull": "BlockerProps"
    },
-   "src": "uui-components/src/layout/Blocker.tsx"
+   "src": "uui-components/src/layout/Blocker.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:BurgerProps": {
    "module": "@epam/uui-components",
@@ -65549,7 +65251,8 @@
     "name": "BurgerProps",
     "nameFull": "BurgerProps"
    },
-   "src": "uui-components/src/navigation/MainMenu/Burger/Burger.tsx"
+   "src": "uui-components/src/navigation/MainMenu/Burger/Burger.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:ButtonBaseProps": {
    "module": "@epam/uui-components",
@@ -65557,7 +65260,8 @@
     "name": "ButtonBaseProps",
     "nameFull": "ButtonBaseProps"
    },
-   "src": "uui-components/src/buttons/ButtonBase.tsx"
+   "src": "uui-components/src/buttons/ButtonBase.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:ButtonProps": {
    "module": "@epam/uui-components",
@@ -65565,7 +65269,8 @@
     "name": "ButtonProps",
     "nameFull": "ButtonProps"
    },
-   "src": "uui-components/src/buttons/Button.tsx"
+   "src": "uui-components/src/buttons/Button.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:CalendarPresetsProps": {
    "module": "@epam/uui-components",
@@ -65573,7 +65278,8 @@
     "name": "CalendarPresetsProps",
     "nameFull": "CalendarPresetsProps"
    },
-   "src": "uui-components/src/inputs/DatePicker/CalendarPresets.tsx"
+   "src": "uui-components/src/inputs/DatePicker/CalendarPresets.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:CalendarProps": {
    "module": "@epam/uui-components",
@@ -65581,7 +65287,8 @@
     "name": "CalendarProps",
     "nameFull": "CalendarProps<TSelection>"
    },
-   "src": "uui-components/src/inputs/DatePicker/Calendar.tsx"
+   "src": "uui-components/src/inputs/DatePicker/Calendar.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:CarouselProps": {
    "module": "@epam/uui-components",
@@ -65589,7 +65296,8 @@
     "name": "CarouselProps",
     "nameFull": "CarouselProps"
    },
-   "src": "uui-components/src/widgets/Carousel.tsx"
+   "src": "uui-components/src/widgets/Carousel.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:CarouselState": {
    "module": "@epam/uui-components",
@@ -65597,7 +65305,8 @@
     "name": "CarouselState",
     "nameFull": "CarouselState"
    },
-   "src": "uui-components/src/widgets/Carousel.tsx"
+   "src": "uui-components/src/widgets/Carousel.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:CheckboxGroupProps": {
    "module": "@epam/uui-components",
@@ -65605,7 +65314,8 @@
     "name": "CheckboxGroupProps",
     "nameFull": "CheckboxGroupProps<TValue>"
    },
-   "src": "uui-components/src/layout/CheckboxGroup.tsx"
+   "src": "uui-components/src/layout/CheckboxGroup.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:CheckboxProps": {
    "module": "@epam/uui-components",
@@ -65613,7 +65323,8 @@
     "name": "CheckboxProps",
     "nameFull": "CheckboxProps"
    },
-   "src": "uui-components/src/inputs/Checkbox.tsx"
+   "src": "uui-components/src/inputs/Checkbox.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:ColumnsConfigurationRowProps": {
    "module": "@epam/uui-components",
@@ -65621,7 +65332,8 @@
     "name": "ColumnsConfigurationRowProps",
     "nameFull": "ColumnsConfigurationRowProps"
    },
-   "src": "uui-components/src/table/columnsConfigurationModal/types.ts"
+   "src": "uui-components/src/table/columnsConfigurationModal/types.ts",
+   "isPublic": true
   },
   "@epam/uui-components:ControlGroupProps": {
    "module": "@epam/uui-components",
@@ -65629,7 +65341,8 @@
     "name": "ControlGroupProps",
     "nameFull": "ControlGroupProps"
    },
-   "src": "uui-components/src/layout/ControlGroup.tsx"
+   "src": "uui-components/src/layout/ControlGroup.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:ControlIconProps": {
    "module": "@epam/uui-components",
@@ -65637,7 +65350,8 @@
     "name": "ControlIconProps",
     "nameFull": "ControlIconProps"
    },
-   "src": "uui-components/src/layout/IconContainer.tsx"
+   "src": "uui-components/src/layout/IconContainer.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:DataSourceKeyboardParams": {
    "module": "@epam/uui-components",
@@ -65645,7 +65359,8 @@
     "name": "DataSourceKeyboardParams",
     "nameFull": "DataSourceKeyboardParams"
    },
-   "src": "uui-components/src/pickers/KeyboardUtils.tsx"
+   "src": "uui-components/src/pickers/KeyboardUtils.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:DataTableSelectionProviderProps": {
    "module": "@epam/uui-components",
@@ -65653,7 +65368,8 @@
     "name": "DataTableSelectionProviderProps",
     "nameFull": "DataTableSelectionProviderProps<TItem, TId, TFilter>"
    },
-   "src": "uui-components/src/table/tableCellsSelection/DataTableSelectionProvider.tsx"
+   "src": "uui-components/src/table/tableCellsSelection/DataTableSelectionProvider.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:DatePickerBodyBaseOptions": {
    "module": "@epam/uui-components",
@@ -65661,7 +65377,8 @@
     "name": "DatePickerBodyBaseOptions",
     "nameFull": "DatePickerBodyBaseOptions"
    },
-   "src": "uui-components/src/inputs/DatePicker/DatePickerBodyBase.tsx"
+   "src": "uui-components/src/inputs/DatePicker/DatePickerBodyBase.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:DatePickerBodyBaseProps": {
    "module": "@epam/uui-components",
@@ -65669,7 +65386,8 @@
     "name": "DatePickerBodyBaseProps",
     "nameFull": "DatePickerBodyBaseProps<TSelection>"
    },
-   "src": "uui-components/src/inputs/DatePicker/DatePickerBodyBase.tsx"
+   "src": "uui-components/src/inputs/DatePicker/DatePickerBodyBase.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:DatePickerState": {
    "module": "@epam/uui-components",
@@ -65677,7 +65395,8 @@
     "name": "DatePickerState",
     "nameFull": "DatePickerState"
    },
-   "src": "uui-components/src/inputs/DatePicker/BaseDatePicker.tsx"
+   "src": "uui-components/src/inputs/DatePicker/BaseDatePicker.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:DayProps": {
    "module": "@epam/uui-components",
@@ -65685,7 +65404,8 @@
     "name": "DayProps",
     "nameFull": "DayProps"
    },
-   "src": "uui-components/src/inputs/DatePicker/Day.tsx"
+   "src": "uui-components/src/inputs/DatePicker/Day.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:DragHandleProps": {
    "module": "@epam/uui-components",
@@ -65693,7 +65413,8 @@
     "name": "DragHandleProps",
     "nameFull": "DragHandleProps"
    },
-   "src": "uui-components/src/dnd/DragHandle.tsx"
+   "src": "uui-components/src/dnd/DragHandle.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:DropSpotRenderParams": {
    "module": "@epam/uui-components",
@@ -65701,7 +65422,8 @@
     "name": "DropSpotRenderParams",
     "nameFull": "DropSpotRenderParams"
    },
-   "src": "uui-components/src/widgets/DropSpot.tsx"
+   "src": "uui-components/src/widgets/DropSpot.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:DropSpotState": {
    "module": "@epam/uui-components",
@@ -65717,7 +65439,8 @@
     "name": "DropdownContainerProps",
     "nameFull": "DropdownContainerProps"
    },
-   "src": "uui-components/src/overlays/DropdownContainer.tsx"
+   "src": "uui-components/src/overlays/DropdownContainer.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:FlexSpacerProps": {
    "module": "@epam/uui-components",
@@ -65725,7 +65448,8 @@
     "name": "FlexSpacerProps",
     "nameFull": "FlexSpacerProps"
    },
-   "src": "uui-components/src/layout/flexItems/FlexSpacer.tsx"
+   "src": "uui-components/src/layout/flexItems/FlexSpacer.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:GeneralAccordionProps": {
    "module": "@epam/uui-components",
@@ -65749,7 +65473,8 @@
     "name": "HeaderCellContentProps",
     "nameFull": "HeaderCellContentProps"
    },
-   "src": "uui-components/src/table/DataTableHeaderCell.tsx"
+   "src": "uui-components/src/table/DataTableHeaderCell.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:IProgressBarProps": {
    "module": "@epam/uui-components",
@@ -65757,7 +65482,8 @@
     "name": "IProgressBarProps",
     "nameFull": "IProgressBarProps"
    },
-   "src": "uui-components/src/widgets/Loaders/ProgressBar.tsx"
+   "src": "uui-components/src/widgets/Loaders/ProgressBar.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:IRenderInputProps": {
    "module": "@epam/uui-components",
@@ -65765,7 +65491,8 @@
     "name": "IRenderInputProps",
     "nameFull": "IRenderInputProps"
    },
-   "src": "uui-components/src/inputs/TextInput.tsx"
+   "src": "uui-components/src/inputs/TextInput.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:IScrollSpyApi": {
    "module": "@epam/uui-components",
@@ -65773,7 +65500,8 @@
     "name": "IScrollSpyApi",
     "nameFull": "IScrollSpyApi"
    },
-   "src": "uui-components/src/navigation/ScrollSpy.tsx"
+   "src": "uui-components/src/navigation/ScrollSpy.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:IScrollSpyProps": {
    "module": "@epam/uui-components",
@@ -65781,7 +65509,8 @@
     "name": "IScrollSpyProps",
     "nameFull": "IScrollSpyProps"
    },
-   "src": "uui-components/src/navigation/ScrollSpy.tsx"
+   "src": "uui-components/src/navigation/ScrollSpy.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:IconButtonBaseProps": {
    "module": "@epam/uui-components",
@@ -65789,7 +65518,8 @@
     "name": "IconButtonBaseProps",
     "nameFull": "IconButtonBaseProps"
    },
-   "src": "uui-components/src/buttons/IconButton.tsx"
+   "src": "uui-components/src/buttons/IconButton.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:InputAddonProps": {
    "module": "@epam/uui-components",
@@ -65797,7 +65527,8 @@
     "name": "InputAddonProps",
     "nameFull": "InputAddonProps"
    },
-   "src": "uui-components/src/inputs/InputAddon.tsx"
+   "src": "uui-components/src/inputs/InputAddon.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:LabeledInputProps": {
    "module": "@epam/uui-components",
@@ -65805,7 +65536,8 @@
     "name": "LabeledInputProps",
     "nameFull": "LabeledInputProps"
    },
-   "src": "uui-components/src/layout/LabeledInput.tsx"
+   "src": "uui-components/src/layout/LabeledInput.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:MainMenuCustomElementProps": {
    "module": "@epam/uui-components",
@@ -65813,7 +65545,8 @@
     "name": "MainMenuCustomElementProps",
     "nameFull": "MainMenuCustomElementProps"
    },
-   "src": "uui-components/src/navigation/MainMenu/MainMenuCustomElement.tsx"
+   "src": "uui-components/src/navigation/MainMenu/MainMenuCustomElement.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:MainMenuDropdownProps": {
    "module": "@epam/uui-components",
@@ -65821,7 +65554,8 @@
     "name": "MainMenuDropdownProps",
     "nameFull": "MainMenuDropdownProps"
    },
-   "src": "uui-components/src/navigation/MainMenu/MainMenu.tsx"
+   "src": "uui-components/src/navigation/MainMenu/MainMenu.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:MainMenuLogoProps": {
    "module": "@epam/uui-components",
@@ -65829,7 +65563,8 @@
     "name": "MainMenuLogoProps",
     "nameFull": "MainMenuLogoProps"
    },
-   "src": "uui-components/src/navigation/MainMenu/MainMenuLogo.tsx"
+   "src": "uui-components/src/navigation/MainMenu/MainMenuLogo.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:MainMenuProps": {
    "module": "@epam/uui-components",
@@ -65837,7 +65572,8 @@
     "name": "MainMenuProps",
     "nameFull": "MainMenuProps"
    },
-   "src": "uui-components/src/navigation/MainMenu/MainMenu.tsx"
+   "src": "uui-components/src/navigation/MainMenu/MainMenu.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:MonthSelectionProps": {
    "module": "@epam/uui-components",
@@ -65845,7 +65581,8 @@
     "name": "MonthSelectionProps",
     "nameFull": "MonthSelectionProps"
    },
-   "src": "uui-components/src/inputs/DatePicker/MonthSelection.tsx"
+   "src": "uui-components/src/inputs/DatePicker/MonthSelection.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:NumericInputProps": {
    "module": "@epam/uui-components",
@@ -65853,7 +65590,8 @@
     "name": "NumericInputProps",
     "nameFull": "NumericInputProps"
    },
-   "src": "uui-components/src/inputs/NumericInput.tsx"
+   "src": "uui-components/src/inputs/NumericInput.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:PaginatorParams": {
    "module": "@epam/uui-components",
@@ -65861,7 +65599,8 @@
     "name": "PaginatorParams",
     "nameFull": "PaginatorParams"
    },
-   "src": "uui-components/src/widgets/Paginator.tsx"
+   "src": "uui-components/src/widgets/Paginator.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:PaginatorProps": {
    "module": "@epam/uui-components",
@@ -65869,7 +65608,8 @@
     "name": "PaginatorProps",
     "nameFull": "PaginatorProps"
    },
-   "src": "uui-components/src/widgets/Paginator.tsx"
+   "src": "uui-components/src/widgets/Paginator.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:PickerBindingHelper": {
    "module": "@epam/uui-components",
@@ -65877,7 +65617,8 @@
     "name": "PickerBindingHelper",
     "nameFull": "PickerBindingHelper<TItem, TId>"
    },
-   "src": "uui-components/src/pickers/bindingHelpers.ts"
+   "src": "uui-components/src/pickers/bindingHelpers.ts",
+   "isPublic": true
   },
   "@epam/uui-components:PickerBindingProps": {
    "module": "@epam/uui-components",
@@ -65885,7 +65626,8 @@
     "name": "PickerBindingProps",
     "nameFull": "PickerBindingProps<TItem, TId>"
    },
-   "src": "uui-components/src/pickers/bindingHelpers.ts"
+   "src": "uui-components/src/pickers/bindingHelpers.ts",
+   "isPublic": true
   },
   "@epam/uui-components:PickerBindingValueType": {
    "module": "@epam/uui-components",
@@ -65893,7 +65635,8 @@
     "name": "PickerBindingValueType",
     "nameFull": "PickerBindingValueType"
    },
-   "src": "uui-components/src/pickers/bindingHelpers.ts"
+   "src": "uui-components/src/pickers/bindingHelpers.ts",
+   "isPublic": true
   },
   "@epam/uui-components:PickerBodyBaseProps": {
    "module": "@epam/uui-components",
@@ -65901,7 +65644,8 @@
     "name": "PickerBodyBaseProps",
     "nameFull": "PickerBodyBaseProps"
    },
-   "src": "uui-components/src/pickers/PickerBodyBase.tsx"
+   "src": "uui-components/src/pickers/PickerBodyBase.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:PickerBodyValue": {
    "module": "@epam/uui-components",
@@ -65909,7 +65653,8 @@
     "name": "PickerBodyValue",
     "nameFull": "PickerBodyValue<TSelection>"
    },
-   "src": "uui-components/src/inputs/DatePicker/DatePickerBodyBase.tsx"
+   "src": "uui-components/src/inputs/DatePicker/DatePickerBodyBase.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:PickerInputBaseProps": {
    "module": "@epam/uui-components",
@@ -65917,7 +65662,8 @@
     "name": "PickerInputBaseProps",
     "nameFull": "PickerInputBaseProps<TItem, TId>"
    },
-   "src": "uui-components/src/pickers/hooks/types.ts"
+   "src": "uui-components/src/pickers/hooks/types.ts",
+   "isPublic": true
   },
   "@epam/uui-components:PickerListBaseProps": {
    "module": "@epam/uui-components",
@@ -65925,7 +65671,8 @@
     "name": "PickerListBaseProps",
     "nameFull": "PickerListBaseProps<TItem, TId>"
    },
-   "src": "uui-components/src/pickers/hooks/types.ts"
+   "src": "uui-components/src/pickers/hooks/types.ts",
+   "isPublic": true
   },
   "@epam/uui-components:PickerModalArrayProps": {
    "module": "@epam/uui-components",
@@ -65933,7 +65680,8 @@
     "name": "PickerModalArrayProps",
     "nameFull": "PickerModalArrayProps<TId, TItem>"
    },
-   "src": "uui-components/src/pickers/hooks/types.ts"
+   "src": "uui-components/src/pickers/hooks/types.ts",
+   "isPublic": true
   },
   "@epam/uui-components:PickerModalOptions": {
    "module": "@epam/uui-components",
@@ -65941,7 +65689,8 @@
     "name": "PickerModalOptions",
     "nameFull": "PickerModalOptions<TItem, TId>"
    },
-   "src": "uui-components/src/pickers/hooks/types.ts"
+   "src": "uui-components/src/pickers/hooks/types.ts",
+   "isPublic": true
   },
   "@epam/uui-components:PickerModalScalarProps": {
    "module": "@epam/uui-components",
@@ -65949,7 +65698,8 @@
     "name": "PickerModalScalarProps",
     "nameFull": "PickerModalScalarProps<TId, TItem>"
    },
-   "src": "uui-components/src/pickers/hooks/types.ts"
+   "src": "uui-components/src/pickers/hooks/types.ts",
+   "isPublic": true
   },
   "@epam/uui-components:PickerTogglerProps": {
    "module": "@epam/uui-components",
@@ -65957,7 +65707,8 @@
     "name": "PickerTogglerProps",
     "nameFull": "PickerTogglerProps<TItem, TId>"
    },
-   "src": "uui-components/src/pickers/PickerToggler.tsx"
+   "src": "uui-components/src/pickers/PickerToggler.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:PortalProps": {
    "module": "@epam/uui-components",
@@ -65965,7 +65716,8 @@
     "name": "PortalProps",
     "nameFull": "PortalProps"
    },
-   "src": "uui-components/src/overlays/Portal.tsx"
+   "src": "uui-components/src/overlays/Portal.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:PositionValues": {
    "module": "@epam/uui-components",
@@ -65973,7 +65725,8 @@
     "name": "PositionValues",
     "nameFull": "PositionValues"
    },
-   "src": "uui-components/src/layout/ScrollBars.tsx"
+   "src": "uui-components/src/layout/ScrollBars.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:RadioGroupItem": {
    "module": "@epam/uui-components",
@@ -65981,7 +65734,8 @@
     "name": "RadioGroupItem",
     "nameFull": "RadioGroupItem<TValue>"
    },
-   "src": "uui-components/src/layout/RadioGroup.tsx"
+   "src": "uui-components/src/layout/RadioGroup.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:RadioGroupProps": {
    "module": "@epam/uui-components",
@@ -65989,7 +65743,8 @@
     "name": "RadioGroupProps",
     "nameFull": "RadioGroupProps<TValue>"
    },
-   "src": "uui-components/src/layout/RadioGroup.tsx"
+   "src": "uui-components/src/layout/RadioGroup.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:RadioInputProps": {
    "module": "@epam/uui-components",
@@ -65997,7 +65752,8 @@
     "name": "RadioInputProps",
     "nameFull": "RadioInputProps"
    },
-   "src": "uui-components/src/inputs/RadioInput.tsx"
+   "src": "uui-components/src/inputs/RadioInput.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:RangeSliderState": {
    "module": "@epam/uui-components",
@@ -66005,7 +65761,8 @@
     "name": "RangeSliderState",
     "nameFull": "RangeSliderState"
    },
-   "src": "uui-components/src/inputs/Slider/RangeSlider.tsx"
+   "src": "uui-components/src/inputs/Slider/RangeSlider.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:RangeSliderValue": {
    "module": "@epam/uui-components",
@@ -66013,7 +65770,8 @@
     "name": "RangeSliderValue",
     "nameFull": "RangeSliderValue"
    },
-   "src": "uui-components/src/inputs/Slider/RangeSlider.tsx"
+   "src": "uui-components/src/inputs/Slider/RangeSlider.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:RatingProps": {
    "module": "@epam/uui-components",
@@ -66021,7 +65779,8 @@
     "name": "RatingProps",
     "nameFull": "RatingProps"
    },
-   "src": "uui-components/src/inputs/Rating/Rating.tsx"
+   "src": "uui-components/src/inputs/Rating/Rating.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:RichTextViewProps": {
    "module": "@epam/uui-components",
@@ -66029,7 +65788,8 @@
     "name": "RichTextViewProps",
     "nameFull": "RichTextViewProps"
    },
-   "src": "uui-components/src/RichTextView.tsx"
+   "src": "uui-components/src/RichTextView.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:ScrollbarProps": {
    "module": "@epam/uui-components",
@@ -66037,7 +65797,8 @@
     "name": "ScrollbarProps",
     "nameFull": "ScrollbarProps"
    },
-   "src": "uui-components/src/layout/ScrollBars.tsx"
+   "src": "uui-components/src/layout/ScrollBars.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:ScrollbarsApi": {
    "module": "@epam/uui-components",
@@ -66045,7 +65806,8 @@
     "name": "ScrollbarsApi",
     "nameFull": "ScrollbarsApi"
    },
-   "src": "uui-components/src/layout/ScrollBars.tsx"
+   "src": "uui-components/src/layout/ScrollBars.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:SelectionContextState": {
    "module": "@epam/uui-components",
@@ -66053,7 +65815,8 @@
     "name": "SelectionContextState",
     "nameFull": "SelectionContextState<TItem, TId, TFilter>"
    },
-   "src": "uui-components/src/table/tableCellsSelection/DataTableSelectionContext.ts"
+   "src": "uui-components/src/table/tableCellsSelection/DataTableSelectionContext.ts",
+   "isPublic": true
   },
   "@epam/uui-components:SelectionManager": {
    "module": "@epam/uui-components",
@@ -66069,7 +65832,8 @@
     "name": "SinglePickerProps",
     "nameFull": "SinglePickerProps<TId, TItem>"
    },
-   "src": "uui-components/src/pickers/bindingHelpers.ts"
+   "src": "uui-components/src/pickers/bindingHelpers.ts",
+   "isPublic": true
   },
   "@epam/uui-components:SliderBaseProps": {
    "module": "@epam/uui-components",
@@ -66077,7 +65841,8 @@
     "name": "SliderBaseProps",
     "nameFull": "SliderBaseProps<TSelection>"
    },
-   "src": "uui-components/src/inputs/Slider/SliderBase.tsx"
+   "src": "uui-components/src/inputs/Slider/SliderBase.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:SliderBaseState": {
    "module": "@epam/uui-components",
@@ -66085,7 +65850,8 @@
     "name": "SliderBaseState",
     "nameFull": "SliderBaseState"
    },
-   "src": "uui-components/src/inputs/Slider/SliderBase.tsx"
+   "src": "uui-components/src/inputs/Slider/SliderBase.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:SnackbarProps": {
    "module": "@epam/uui-components",
@@ -66093,7 +65859,8 @@
     "name": "SnackbarProps",
     "nameFull": "SnackbarProps"
    },
-   "src": "uui-components/src/overlays/Snackbar.tsx"
+   "src": "uui-components/src/overlays/Snackbar.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:SpinnerProps": {
    "module": "@epam/uui-components",
@@ -66101,7 +65868,8 @@
     "name": "SpinnerProps",
     "nameFull": "SpinnerProps"
    },
-   "src": "uui-components/src/widgets/Spinner.tsx"
+   "src": "uui-components/src/widgets/Spinner.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:SwitchProps": {
    "module": "@epam/uui-components",
@@ -66109,7 +65877,8 @@
     "name": "SwitchProps",
     "nameFull": "SwitchProps"
    },
-   "src": "uui-components/src/inputs/Switch.tsx"
+   "src": "uui-components/src/inputs/Switch.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:TextAreaProps": {
    "module": "@epam/uui-components",
@@ -66117,7 +65886,8 @@
     "name": "TextAreaProps",
     "nameFull": "TextAreaProps"
    },
-   "src": "uui-components/src/inputs/TextArea.tsx"
+   "src": "uui-components/src/inputs/TextArea.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:TextInputProps": {
    "module": "@epam/uui-components",
@@ -66125,7 +65895,8 @@
     "name": "TextInputProps",
     "nameFull": "TextInputProps"
    },
-   "src": "uui-components/src/inputs/TextInput.tsx"
+   "src": "uui-components/src/inputs/TextInput.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:TextProps": {
    "module": "@epam/uui-components",
@@ -66133,7 +65904,8 @@
     "name": "TextProps",
     "nameFull": "TextProps"
    },
-   "src": "uui-components/src/Text.tsx"
+   "src": "uui-components/src/Text.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:TimePickerBodyProps": {
    "module": "@epam/uui-components",
@@ -66141,7 +65913,8 @@
     "name": "TimePickerBodyProps",
     "nameFull": "TimePickerBodyProps"
    },
-   "src": "uui-components/src/inputs/TimePickerBody.tsx"
+   "src": "uui-components/src/inputs/TimePickerBody.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:TooltipProps": {
    "module": "@epam/uui-components",
@@ -66149,7 +65922,8 @@
     "name": "TooltipProps",
     "nameFull": "TooltipProps"
    },
-   "src": "uui-components/src/overlays/Tooltip.tsx"
+   "src": "uui-components/src/overlays/Tooltip.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:TooltipState": {
    "module": "@epam/uui-components",
@@ -66157,7 +65931,8 @@
     "name": "TooltipState",
     "nameFull": "TooltipState"
    },
-   "src": "uui-components/src/overlays/Tooltip.tsx"
+   "src": "uui-components/src/overlays/Tooltip.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:TreeListItem": {
    "module": "@epam/uui-components",
@@ -66165,7 +65940,8 @@
     "name": "TreeListItem",
     "nameFull": "TreeListItem"
    },
-   "src": "uui-components/src/layout/Tree.tsx"
+   "src": "uui-components/src/layout/Tree.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:TreeProps": {
    "module": "@epam/uui-components",
@@ -66173,7 +65949,8 @@
     "name": "TreeProps",
     "nameFull": "TreeProps<TItem>"
    },
-   "src": "uui-components/src/layout/Tree.tsx"
+   "src": "uui-components/src/layout/Tree.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:UsePickerInputProps": {
    "module": "@epam/uui-components",
@@ -66181,7 +65958,8 @@
     "name": "UsePickerInputProps",
     "nameFull": "UsePickerInputProps<TItem, TId, TProps>"
    },
-   "src": "uui-components/src/pickers/hooks/types.ts"
+   "src": "uui-components/src/pickers/hooks/types.ts",
+   "isPublic": true
   },
   "@epam/uui-components:UsePickerListProps": {
    "module": "@epam/uui-components",
@@ -66189,7 +65967,8 @@
     "name": "UsePickerListProps",
     "nameFull": "UsePickerListProps<TItem, TId, TProps>"
    },
-   "src": "uui-components/src/pickers/hooks/types.ts"
+   "src": "uui-components/src/pickers/hooks/types.ts",
+   "isPublic": true
   },
   "@epam/uui-components:UsePickerModalProps": {
    "module": "@epam/uui-components",
@@ -66197,7 +65976,8 @@
     "name": "UsePickerModalProps",
     "nameFull": "UsePickerModalProps<TItem, TId>"
    },
-   "src": "uui-components/src/pickers/hooks/types.ts"
+   "src": "uui-components/src/pickers/hooks/types.ts",
+   "isPublic": true
   },
   "@epam/uui-components:ViewType": {
    "module": "@epam/uui-components",
@@ -66205,7 +65985,8 @@
     "name": "ViewType",
     "nameFull": "ViewType"
    },
-   "src": "uui-components/src/inputs/DatePicker/DatePickerBodyBase.tsx"
+   "src": "uui-components/src/inputs/DatePicker/DatePickerBodyBase.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:VirtualListProps": {
    "module": "@epam/uui-components",
@@ -66213,7 +65994,8 @@
     "name": "VirtualListProps",
     "nameFull": "VirtualListProps<List, ScrollContainer>"
    },
-   "src": "uui-components/src/layout/VirtualList.tsx"
+   "src": "uui-components/src/layout/VirtualList.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:VirtualListRenderRows": {
    "module": "@epam/uui-components",
@@ -66229,7 +66011,8 @@
     "name": "VirtualListRenderRowsParams",
     "nameFull": "VirtualListRenderRowsParams<List>"
    },
-   "src": "uui-components/src/layout/VirtualList.tsx"
+   "src": "uui-components/src/layout/VirtualList.tsx",
+   "isPublic": true
   },
   "@epam/uui-components:YearSelectionProps": {
    "module": "@epam/uui-components",
@@ -66237,7 +66020,8 @@
     "name": "YearSelectionProps",
     "nameFull": "YearSelectionProps"
    },
-   "src": "uui-components/src/inputs/DatePicker/YearSelection.tsx"
+   "src": "uui-components/src/inputs/DatePicker/YearSelection.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:AcceptDropParams": {
    "module": "@epam/uui-core",
@@ -66245,7 +66029,8 @@
     "name": "AcceptDropParams",
     "nameFull": "AcceptDropParams<TSrcData, TDstData>"
    },
-   "src": "uui-core/src/types/dnd.ts"
+   "src": "uui-core/src/types/dnd.ts",
+   "isPublic": true
   },
   "@epam/uui-core:AnalyticsEvent": {
    "module": "@epam/uui-core",
@@ -66253,7 +66038,8 @@
     "name": "AnalyticsEvent",
     "nameFull": "AnalyticsEvent"
    },
-   "src": "uui-core/src/types/objects.ts"
+   "src": "uui-core/src/types/objects.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ApiCallErrorType": {
    "module": "@epam/uui-core",
@@ -66261,7 +66047,8 @@
     "name": "ApiCallErrorType",
     "nameFull": "ApiCallErrorType"
    },
-   "src": "uui-core/src/hooks/useUuiError.ts"
+   "src": "uui-core/src/hooks/useUuiError.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ApiCallInfo": {
    "module": "@epam/uui-core",
@@ -66269,7 +66056,8 @@
     "name": "ApiCallInfo",
     "nameFull": "ApiCallInfo"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ApiCallOptions": {
    "module": "@epam/uui-core",
@@ -66277,7 +66065,8 @@
     "name": "ApiCallOptions",
     "nameFull": "ApiCallOptions"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ApiContextProps": {
    "module": "@epam/uui-core",
@@ -66285,7 +66074,8 @@
     "name": "ApiContextProps",
     "nameFull": "ApiContextProps"
    },
-   "src": "uui-core/src/services/ApiContext.ts"
+   "src": "uui-core/src/services/ApiContext.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ApiExtensions": {
    "module": "@epam/uui-core",
@@ -66293,7 +66083,8 @@
     "name": "ApiExtensions",
     "nameFull": "ApiExtensions<TApi>"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ApiRecoveryReason": {
    "module": "@epam/uui-core",
@@ -66301,7 +66092,8 @@
     "name": "ApiRecoveryReason",
     "nameFull": "ApiRecoveryReason"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ApiStatus": {
    "module": "@epam/uui-core",
@@ -66309,7 +66101,8 @@
     "name": "ApiStatus",
     "nameFull": "ApiStatus"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ApplyFilterOptions": {
    "module": "@epam/uui-core",
@@ -66317,7 +66110,8 @@
     "name": "ApplyFilterOptions",
     "nameFull": "ApplyFilterOptions<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/data/processing/views/tree/ITree.ts"
+   "src": "uui-core/src/data/processing/views/tree/ITree.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ApplySearchOptions": {
    "module": "@epam/uui-core",
@@ -66325,7 +66119,8 @@
     "name": "ApplySearchOptions",
     "nameFull": "ApplySearchOptions<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/data/processing/views/tree/ITree.ts"
+   "src": "uui-core/src/data/processing/views/tree/ITree.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ApplySortOptions": {
    "module": "@epam/uui-core",
@@ -66333,7 +66128,8 @@
     "name": "ApplySortOptions",
     "nameFull": "ApplySortOptions<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/data/processing/views/tree/ITree.ts"
+   "src": "uui-core/src/data/processing/views/tree/ITree.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ArrayDataSourceProps": {
    "module": "@epam/uui-core",
@@ -66341,7 +66137,8 @@
     "name": "ArrayDataSourceProps",
     "nameFull": "ArrayDataSourceProps<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/data/processing/ArrayDataSource.tsx"
+   "src": "uui-core/src/data/processing/ArrayDataSource.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:ArrayElement": {
    "module": "@epam/uui-core",
@@ -66349,7 +66146,8 @@
     "name": "ArrayElement",
     "nameFull": "ArrayElement<ArrayType>"
    },
-   "src": "uui-core/src/data/lenses/types.ts"
+   "src": "uui-core/src/data/lenses/types.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ArrayListViewProps": {
    "module": "@epam/uui-core",
@@ -66357,7 +66155,8 @@
     "name": "ArrayListViewProps",
     "nameFull": "ArrayListViewProps<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/data/processing/views/ArrayListView.ts"
+   "src": "uui-core/src/data/processing/views/ArrayListView.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ArrayPickerProps": {
    "module": "@epam/uui-core",
@@ -66365,7 +66164,8 @@
     "name": "ArrayPickerProps",
     "nameFull": "ArrayPickerProps<TId, TItem>"
    },
-   "src": "uui-core/src/types/pickers.ts"
+   "src": "uui-core/src/types/pickers.ts",
+   "isPublic": true
   },
   "@epam/uui-core:AsyncDataSourceProps": {
    "module": "@epam/uui-core",
@@ -66373,7 +66173,8 @@
     "name": "AsyncDataSourceProps",
     "nameFull": "AsyncDataSourceProps<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/data/processing/AsyncDataSource.tsx"
+   "src": "uui-core/src/data/processing/AsyncDataSource.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:AsyncListViewProps": {
    "module": "@epam/uui-core",
@@ -66381,7 +66182,8 @@
     "name": "AsyncListViewProps",
     "nameFull": "AsyncListViewProps<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/data/processing/views/AsyncListView.ts"
+   "src": "uui-core/src/data/processing/views/AsyncListView.ts",
+   "isPublic": true
   },
   "@epam/uui-core:BaseArrayListViewProps": {
    "module": "@epam/uui-core",
@@ -66389,7 +66191,8 @@
     "name": "BaseArrayListViewProps",
     "nameFull": "BaseArrayListViewProps<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/data/processing/views/ArrayListView.ts"
+   "src": "uui-core/src/data/processing/views/ArrayListView.ts",
+   "isPublic": true
   },
   "@epam/uui-core:BaseDatePickerProps": {
    "module": "@epam/uui-core",
@@ -66397,7 +66200,8 @@
     "name": "BaseDatePickerProps",
     "nameFull": "BaseDatePickerProps"
    },
-   "src": "uui-core/src/types/components/datePicker/BaseDatePicker.ts"
+   "src": "uui-core/src/types/components/datePicker/BaseDatePicker.ts",
+   "isPublic": true
   },
   "@epam/uui-core:BaseListViewProps": {
    "module": "@epam/uui-core",
@@ -66405,7 +66209,8 @@
     "name": "BaseListViewProps",
     "nameFull": "BaseListViewProps<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:BaseRangeDatePickerProps": {
    "module": "@epam/uui-core",
@@ -66413,7 +66218,8 @@
     "name": "BaseRangeDatePickerProps",
     "nameFull": "BaseRangeDatePickerProps"
    },
-   "src": "uui-core/src/types/components/datePicker/BaseRangeDatePicker.ts"
+   "src": "uui-core/src/types/components/datePicker/BaseRangeDatePicker.ts",
+   "isPublic": true
   },
   "@epam/uui-core:BatchPromiseOptions": {
    "module": "@epam/uui-core",
@@ -66421,7 +66227,8 @@
     "name": "BatchPromiseOptions",
     "nameFull": "BatchPromiseOptions"
    },
-   "src": "uui-core/src/helpers/batch.ts"
+   "src": "uui-core/src/helpers/batch.ts",
+   "isPublic": true
   },
   "@epam/uui-core:BlockTypes": {
    "module": "@epam/uui-core",
@@ -66429,7 +66236,8 @@
     "name": "BlockTypes",
     "nameFull": "BlockTypes"
    },
-   "src": "uui-core/src/services/ApiContext.ts"
+   "src": "uui-core/src/services/ApiContext.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ButtonBaseCoreProps": {
    "module": "@epam/uui-core",
@@ -66437,7 +66245,8 @@
     "name": "ButtonBaseCoreProps",
     "nameFull": "ButtonBaseCoreProps"
    },
-   "src": "uui-core/src/types/components/Button.ts"
+   "src": "uui-core/src/types/components/Button.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ButtonCoreProps": {
    "module": "@epam/uui-core",
@@ -66445,7 +66254,8 @@
     "name": "ButtonCoreProps",
     "nameFull": "ButtonCoreProps"
    },
-   "src": "uui-core/src/types/components/Button.ts"
+   "src": "uui-core/src/types/components/Button.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ButtonSemanticProps": {
    "module": "@epam/uui-core",
@@ -66453,7 +66263,8 @@
     "name": "ButtonSemanticProps",
     "nameFull": "ButtonSemanticProps"
    },
-   "src": "uui-core/src/types/components/Button.ts"
+   "src": "uui-core/src/types/components/Button.ts",
+   "isPublic": true
   },
   "@epam/uui-core:CX": {
    "module": "@epam/uui-core",
@@ -66461,7 +66272,8 @@
     "name": "CX",
     "nameFull": "CX"
    },
-   "src": "uui-core/src/types/objects.ts"
+   "src": "uui-core/src/types/objects.ts",
+   "isPublic": true
   },
   "@epam/uui-core:CascadeSelection": {
    "module": "@epam/uui-core",
@@ -66469,7 +66281,8 @@
     "name": "CascadeSelection",
     "nameFull": "CascadeSelection"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:CheckboxCoreProps": {
    "module": "@epam/uui-core",
@@ -66477,7 +66290,8 @@
     "name": "CheckboxCoreProps",
     "nameFull": "CheckboxCoreProps"
    },
-   "src": "uui-core/src/types/components/Checkbox.ts"
+   "src": "uui-core/src/types/components/Checkbox.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ClassValue": {
    "module": "@epam/uui-core",
@@ -66485,7 +66299,8 @@
     "name": "ClassValue",
     "nameFull": "ClassValue"
    },
-   "src": "uui-core/src/helpers/cx.ts"
+   "src": "uui-core/src/helpers/cx.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ColumnsConfig": {
    "module": "@epam/uui-core",
@@ -66493,7 +66308,8 @@
     "name": "ColumnsConfig",
     "nameFull": "ColumnsConfig"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:CommonContexts": {
    "module": "@epam/uui-core",
@@ -66501,7 +66317,8 @@
     "name": "CommonContexts",
     "nameFull": "CommonContexts<TApi, TAppContext>"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ContextProviderProps": {
    "module": "@epam/uui-core",
@@ -66509,7 +66326,8 @@
     "name": "ContextProviderProps",
     "nameFull": "ContextProviderProps<TApi, TAppContext>"
    },
-   "src": "uui-core/src/services/ContextProvider.tsx"
+   "src": "uui-core/src/services/ContextProvider.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:CustomFilterConfig": {
    "module": "@epam/uui-core",
@@ -66525,7 +66343,8 @@
     "name": "DataColumnProps",
     "nameFull": "DataColumnProps<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataQuery": {
    "module": "@epam/uui-core",
@@ -66533,7 +66352,8 @@
     "name": "DataQuery",
     "nameFull": "DataQuery<T>"
    },
-   "src": "uui-core/src/types/dataQuery.ts"
+   "src": "uui-core/src/types/dataQuery.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataQueryFilter": {
    "module": "@epam/uui-core",
@@ -66541,7 +66361,8 @@
     "name": "DataQueryFilter",
     "nameFull": "DataQueryFilter<T>"
    },
-   "src": "uui-core/src/types/dataQuery.ts"
+   "src": "uui-core/src/types/dataQuery.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataQueryFilterCondition": {
    "module": "@epam/uui-core",
@@ -66549,7 +66370,8 @@
     "name": "DataQueryFilterCondition",
     "nameFull": "DataQueryFilterCondition<TField>"
    },
-   "src": "uui-core/src/types/dataQuery.ts"
+   "src": "uui-core/src/types/dataQuery.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataQueryRange": {
    "module": "@epam/uui-core",
@@ -66557,7 +66379,8 @@
     "name": "DataQueryRange",
     "nameFull": "DataQueryRange"
    },
-   "src": "uui-core/src/types/dataQuery.ts"
+   "src": "uui-core/src/types/dataQuery.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataRowOptions": {
    "module": "@epam/uui-core",
@@ -66565,7 +66388,8 @@
     "name": "DataRowOptions",
     "nameFull": "DataRowOptions<TItem, TId>"
    },
-   "src": "uui-core/src/types/dataRows.ts"
+   "src": "uui-core/src/types/dataRows.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataRowPathItem": {
    "module": "@epam/uui-core",
@@ -66573,7 +66397,8 @@
     "name": "DataRowPathItem",
     "nameFull": "DataRowPathItem<TId, TItem>"
    },
-   "src": "uui-core/src/types/dataRows.ts"
+   "src": "uui-core/src/types/dataRows.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataRowProps": {
    "module": "@epam/uui-core",
@@ -66581,7 +66406,8 @@
     "name": "DataRowProps",
     "nameFull": "DataRowProps<TItem, TId>"
    },
-   "src": "uui-core/src/types/dataRows.ts"
+   "src": "uui-core/src/types/dataRows.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataSourceListCounts": {
    "module": "@epam/uui-core",
@@ -66589,7 +66415,8 @@
     "name": "DataSourceListCounts",
     "nameFull": "DataSourceListCounts"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataSourceListProps": {
    "module": "@epam/uui-core",
@@ -66597,7 +66424,8 @@
     "name": "DataSourceListProps",
     "nameFull": "DataSourceListProps"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataSourceState": {
    "module": "@epam/uui-core",
@@ -66605,7 +66433,8 @@
     "name": "DataSourceState",
     "nameFull": "DataSourceState<TFilter, TId>"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataTableCellOptions": {
    "module": "@epam/uui-core",
@@ -66613,7 +66442,8 @@
     "name": "DataTableCellOptions",
     "nameFull": "DataTableCellOptions<TItem, TId>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataTableCellProps": {
    "module": "@epam/uui-core",
@@ -66621,7 +66451,8 @@
     "name": "DataTableCellProps",
     "nameFull": "DataTableCellProps<TItem, TId, TCellValue>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataTableColumnsConfigOptions": {
    "module": "@epam/uui-core",
@@ -66629,7 +66460,8 @@
     "name": "DataTableColumnsConfigOptions",
     "nameFull": "DataTableColumnsConfigOptions"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataTableConfigModalParams": {
    "module": "@epam/uui-core",
@@ -66637,7 +66469,8 @@
     "name": "DataTableConfigModalParams",
     "nameFull": "DataTableConfigModalParams"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataTableHeaderCellProps": {
    "module": "@epam/uui-core",
@@ -66645,7 +66478,8 @@
     "name": "DataTableHeaderCellProps",
     "nameFull": "DataTableHeaderCellProps<TItem, TId>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataTableHeaderRowProps": {
    "module": "@epam/uui-core",
@@ -66653,7 +66487,8 @@
     "name": "DataTableHeaderRowProps",
     "nameFull": "DataTableHeaderRowProps<TItem, TId>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataTableRowProps": {
    "module": "@epam/uui-core",
@@ -66661,7 +66496,8 @@
     "name": "DataTableRowProps",
     "nameFull": "DataTableRowProps<TItem, TId>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataTableSelectedCellData": {
    "module": "@epam/uui-core",
@@ -66669,7 +66505,8 @@
     "name": "DataTableSelectedCellData",
     "nameFull": "DataTableSelectedCellData<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DataTableState": {
    "module": "@epam/uui-core",
@@ -66677,7 +66514,8 @@
     "name": "DataTableState",
     "nameFull": "DataTableState<TFilter, TViewState>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DatePickerCoreProps": {
    "module": "@epam/uui-core",
@@ -66685,7 +66523,8 @@
     "name": "DatePickerCoreProps",
     "nameFull": "DatePickerCoreProps"
    },
-   "src": "uui-core/src/types/components/datePicker/DatePicker.ts"
+   "src": "uui-core/src/types/components/datePicker/DatePicker.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DatePickerFilterConfig": {
    "module": "@epam/uui-core",
@@ -66701,7 +66540,8 @@
     "name": "DndActorProps",
     "nameFull": "DndActorProps<TSrcData, TDstData>"
    },
-   "src": "uui-core/src/services/dnd/DndActor.tsx"
+   "src": "uui-core/src/services/dnd/DndActor.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:DndActorRenderParams": {
    "module": "@epam/uui-core",
@@ -66709,7 +66549,8 @@
     "name": "DndActorRenderParams",
     "nameFull": "DndActorRenderParams"
    },
-   "src": "uui-core/src/types/dnd.ts"
+   "src": "uui-core/src/types/dnd.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DndContextState": {
    "module": "@epam/uui-core",
@@ -66717,7 +66558,8 @@
     "name": "DndContextState",
     "nameFull": "DndContextState"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DragGhostProps": {
    "module": "@epam/uui-core",
@@ -66725,7 +66567,8 @@
     "name": "DragGhostProps",
     "nameFull": "DragGhostProps"
    },
-   "src": "uui-core/src/services/dnd/DragGhost.tsx"
+   "src": "uui-core/src/services/dnd/DragGhost.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:DropParams": {
    "module": "@epam/uui-core",
@@ -66733,7 +66576,8 @@
     "name": "DropParams",
     "nameFull": "DropParams<TSrcData, TDstData>"
    },
-   "src": "uui-core/src/types/dnd.ts"
+   "src": "uui-core/src/types/dnd.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DropPosition": {
    "module": "@epam/uui-core",
@@ -66741,7 +66585,8 @@
     "name": "DropPosition",
     "nameFull": "DropPosition"
    },
-   "src": "uui-core/src/types/dnd.ts"
+   "src": "uui-core/src/types/dnd.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DropPositionOptions": {
    "module": "@epam/uui-core",
@@ -66749,7 +66594,8 @@
     "name": "DropPositionOptions",
     "nameFull": "DropPositionOptions<__type>"
    },
-   "src": "uui-core/src/types/dnd.ts"
+   "src": "uui-core/src/types/dnd.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DropdownBodyProps": {
    "module": "@epam/uui-core",
@@ -66757,7 +66603,8 @@
     "name": "DropdownBodyProps",
     "nameFull": "DropdownBodyProps"
    },
-   "src": "uui-core/src/types/components/Dropdown.ts"
+   "src": "uui-core/src/types/components/Dropdown.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DropdownPlacement": {
    "module": "@epam/uui-core",
@@ -66765,7 +66612,8 @@
     "name": "DropdownPlacement",
     "nameFull": "DropdownPlacement"
    },
-   "src": "uui-core/src/types/components/Dropdown.ts"
+   "src": "uui-core/src/types/components/Dropdown.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DropdownProps": {
    "module": "@epam/uui-core",
@@ -66773,7 +66621,8 @@
     "name": "DropdownProps",
     "nameFull": "DropdownProps"
    },
-   "src": "uui-core/src/types/components/Dropdown.ts"
+   "src": "uui-core/src/types/components/Dropdown.ts",
+   "isPublic": true
   },
   "@epam/uui-core:DropdownState": {
    "module": "@epam/uui-core",
@@ -66781,7 +66630,8 @@
     "name": "DropdownState",
     "nameFull": "DropdownState"
    },
-   "src": "uui-core/src/types/components/Dropdown.ts"
+   "src": "uui-core/src/types/components/Dropdown.ts",
+   "isPublic": true
   },
   "@epam/uui-core:FileUploadOptions": {
    "module": "@epam/uui-core",
@@ -66789,7 +66639,8 @@
     "name": "FileUploadOptions",
     "nameFull": "FileUploadOptions"
    },
-   "src": "uui-core/src/services/ApiContext.ts"
+   "src": "uui-core/src/services/ApiContext.ts",
+   "isPublic": true
   },
   "@epam/uui-core:FileUploadResponse": {
    "module": "@epam/uui-core",
@@ -66797,7 +66648,8 @@
     "name": "FileUploadResponse",
     "nameFull": "FileUploadResponse"
    },
-   "src": "uui-core/src/services/ApiContext.ts"
+   "src": "uui-core/src/services/ApiContext.ts",
+   "isPublic": true
   },
   "@epam/uui-core:FilterConfigBase": {
    "module": "@epam/uui-core",
@@ -66813,7 +66665,8 @@
     "name": "FilterPredicate",
     "nameFull": "FilterPredicate<TField>"
    },
-   "src": "uui-core/src/types/dataQuery.ts"
+   "src": "uui-core/src/types/dataQuery.ts",
+   "isPublic": true
   },
   "@epam/uui-core:FilterPredicateName": {
    "module": "@epam/uui-core",
@@ -66821,7 +66674,8 @@
     "name": "FilterPredicateName",
     "nameFull": "FilterPredicateName"
    },
-   "src": "uui-core/src/types/dataQuery.ts"
+   "src": "uui-core/src/types/dataQuery.ts",
+   "isPublic": true
   },
   "@epam/uui-core:FiltersConfig": {
    "module": "@epam/uui-core",
@@ -66829,7 +66683,8 @@
     "name": "FiltersConfig",
     "nameFull": "FiltersConfig<TFilter>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:FlexCellProps": {
    "module": "@epam/uui-core",
@@ -66837,7 +66692,8 @@
     "name": "FlexCellProps",
     "nameFull": "FlexCellProps"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:FlexRowProps": {
    "module": "@epam/uui-core",
@@ -66845,7 +66701,8 @@
     "name": "FlexRowProps",
     "nameFull": "FlexRowProps"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:FormProps": {
    "module": "@epam/uui-core",
@@ -66853,7 +66710,8 @@
     "name": "FormProps",
     "nameFull": "FormProps<T>"
    },
-   "src": "uui-core/src/data/forms/Form.tsx"
+   "src": "uui-core/src/data/forms/Form.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:FormSaveResponse": {
    "module": "@epam/uui-core",
@@ -66861,7 +66719,8 @@
     "name": "FormSaveResponse",
     "nameFull": "FormSaveResponse<T>"
    },
-   "src": "uui-core/src/data/forms/Form.tsx"
+   "src": "uui-core/src/data/forms/Form.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:FormState": {
    "module": "@epam/uui-core",
@@ -66869,7 +66728,8 @@
     "name": "FormState",
     "nameFull": "FormState<T>"
    },
-   "src": "uui-core/src/data/forms/useForm.ts"
+   "src": "uui-core/src/data/forms/useForm.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IAdaptiveItem": {
    "module": "@epam/uui-core",
@@ -66877,7 +66737,8 @@
     "name": "IAdaptiveItem",
     "nameFull": "IAdaptiveItem"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IAnalyticableClick": {
    "module": "@epam/uui-core",
@@ -66885,7 +66746,8 @@
     "name": "IAnalyticableClick",
     "nameFull": "IAnalyticableClick"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IAnalyticableOnChange": {
    "module": "@epam/uui-core",
@@ -66893,7 +66755,8 @@
     "name": "IAnalyticableOnChange",
     "nameFull": "IAnalyticableOnChange<T>"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IAnalyticsContext": {
    "module": "@epam/uui-core",
@@ -66901,7 +66764,8 @@
     "name": "IAnalyticsContext",
     "nameFull": "IAnalyticsContext"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IAnalyticsListener": {
    "module": "@epam/uui-core",
@@ -66909,7 +66773,8 @@
     "name": "IAnalyticsListener",
     "nameFull": "IAnalyticsListener"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IApiContext": {
    "module": "@epam/uui-core",
@@ -66917,7 +66782,8 @@
     "name": "IApiContext",
     "nameFull": "IApiContext"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IBaseContext": {
    "module": "@epam/uui-core",
@@ -66925,7 +66791,8 @@
     "name": "IBaseContext",
     "nameFull": "IBaseContext<TState>"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IBasicPickerToggler": {
    "module": "@epam/uui-core",
@@ -66933,7 +66800,8 @@
     "name": "IBasicPickerToggler",
     "nameFull": "IBasicPickerToggler"
    },
-   "src": "uui-core/src/types/pickers.ts"
+   "src": "uui-core/src/types/pickers.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ICanBeFixed": {
    "module": "@epam/uui-core",
@@ -66941,7 +66809,8 @@
     "name": "ICanBeFixed",
     "nameFull": "ICanBeFixed"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ICanBeInvalid": {
    "module": "@epam/uui-core",
@@ -66949,7 +66818,8 @@
     "name": "ICanBeInvalid",
     "nameFull": "ICanBeInvalid"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ICanBeReadonly": {
    "module": "@epam/uui-core",
@@ -66957,7 +66827,8 @@
     "name": "ICanBeReadonly",
     "nameFull": "ICanBeReadonly"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ICanBeRequired": {
    "module": "@epam/uui-core",
@@ -66965,7 +66836,8 @@
     "name": "ICanBeRequired",
     "nameFull": "ICanBeRequired"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ICanFocus": {
    "module": "@epam/uui-core",
@@ -66973,7 +66845,8 @@
     "name": "ICanFocus",
     "nameFull": "ICanFocus<T>"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ICanRedirect": {
    "module": "@epam/uui-core",
@@ -66981,7 +66854,8 @@
     "name": "ICanRedirect",
     "nameFull": "ICanRedirect"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ICheckable": {
    "module": "@epam/uui-core",
@@ -66989,7 +66863,8 @@
     "name": "ICheckable",
     "nameFull": "ICheckable"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IClickable": {
    "module": "@epam/uui-core",
@@ -66997,7 +66872,8 @@
     "name": "IClickable",
     "nameFull": "IClickable"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IColumnConfig": {
    "module": "@epam/uui-core",
@@ -67005,7 +66881,8 @@
     "name": "IColumnConfig",
     "nameFull": "IColumnConfig"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IContextProviderSsrProps": {
    "module": "@epam/uui-core",
@@ -67013,7 +66890,8 @@
     "name": "IContextProviderSsrProps",
     "nameFull": "IContextProviderSsrProps<TApi, TAppContext>"
    },
-   "src": "uui-core/src/ssr/useUuiServicesSsr.tsx"
+   "src": "uui-core/src/ssr/useUuiServicesSsr.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:IDataSource": {
    "module": "@epam/uui-core",
@@ -67021,7 +66899,8 @@
     "name": "IDataSource",
     "nameFull": "IDataSource<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IDataSourceView": {
    "module": "@epam/uui-core",
@@ -67029,7 +66908,8 @@
     "name": "IDataSourceView",
     "nameFull": "IDataSourceView<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IDisableable": {
    "module": "@epam/uui-core",
@@ -67037,7 +66917,8 @@
     "name": "IDisableable",
     "nameFull": "IDisableable"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IDndActor": {
    "module": "@epam/uui-core",
@@ -67045,7 +66926,8 @@
     "name": "IDndActor",
     "nameFull": "IDndActor<TSrcData, TDstData>"
    },
-   "src": "uui-core/src/types/dnd.ts"
+   "src": "uui-core/src/types/dnd.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IDndContext": {
    "module": "@epam/uui-core",
@@ -67053,7 +66935,8 @@
     "name": "IDndContext",
     "nameFull": "IDndContext"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IDropdownBodyProps": {
    "module": "@epam/uui-core",
@@ -67061,7 +66944,8 @@
     "name": "IDropdownBodyProps",
     "nameFull": "IDropdownBodyProps"
    },
-   "src": "uui-core/src/types/pickers.ts"
+   "src": "uui-core/src/types/pickers.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IDropdownToggler": {
    "module": "@epam/uui-core",
@@ -67069,7 +66953,8 @@
     "name": "IDropdownToggler",
     "nameFull": "IDropdownToggler"
    },
-   "src": "uui-core/src/types/pickers.ts"
+   "src": "uui-core/src/types/pickers.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IEditable": {
    "module": "@epam/uui-core",
@@ -67077,7 +66962,8 @@
     "name": "IEditable",
     "nameFull": "IEditable<T>"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IEditableDebouncerOptions": {
    "module": "@epam/uui-core",
@@ -67085,7 +66971,8 @@
     "name": "IEditableDebouncerOptions",
     "nameFull": "IEditableDebouncerOptions"
    },
-   "src": "uui-core/src/helpers/IEditableDebouncer.ts"
+   "src": "uui-core/src/helpers/IEditableDebouncer.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IEditableDebouncerProps": {
    "module": "@epam/uui-core",
@@ -67093,7 +66980,8 @@
     "name": "IEditableDebouncerProps",
     "nameFull": "IEditableDebouncerProps<T>"
    },
-   "src": "uui-core/src/helpers/IEditableDebouncer.ts"
+   "src": "uui-core/src/helpers/IEditableDebouncer.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IErrorContext": {
    "module": "@epam/uui-core",
@@ -67101,7 +66989,8 @@
     "name": "IErrorContext",
     "nameFull": "IErrorContext"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IFilterConfig": {
    "module": "@epam/uui-core",
@@ -67109,7 +66998,8 @@
     "name": "IFilterConfig",
     "nameFull": "IFilterConfig"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IFilterItemBodyProps": {
    "module": "@epam/uui-core",
@@ -67117,7 +67007,8 @@
     "name": "IFilterItemBodyProps",
     "nameFull": "IFilterItemBodyProps<TFilter>"
    },
-   "src": "uui-core/src/types/components/filterItemBody.ts"
+   "src": "uui-core/src/types/components/filterItemBody.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IFilterPredicate": {
    "module": "@epam/uui-core",
@@ -67125,7 +67016,8 @@
     "name": "IFilterPredicate",
     "nameFull": "IFilterPredicate"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IFormApi": {
    "module": "@epam/uui-core",
@@ -67133,7 +67025,8 @@
     "name": "IFormApi",
     "nameFull": "IFormApi<T>"
    },
-   "src": "uui-core/src/data/forms/Form.tsx"
+   "src": "uui-core/src/data/forms/Form.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:IHasCX": {
    "module": "@epam/uui-core",
@@ -67141,7 +67034,8 @@
     "name": "IHasCX",
     "nameFull": "IHasCX"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IHasCaption": {
    "module": "@epam/uui-core",
@@ -67149,7 +67043,8 @@
     "name": "IHasCaption",
     "nameFull": "IHasCaption"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IHasChildren": {
    "module": "@epam/uui-core",
@@ -67157,7 +67052,8 @@
     "name": "IHasChildren",
     "nameFull": "IHasChildren"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IHasDirection": {
    "module": "@epam/uui-core",
@@ -67165,7 +67061,8 @@
     "name": "IHasDirection",
     "nameFull": "IHasDirection"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IHasForwardedRef": {
    "module": "@epam/uui-core",
@@ -67173,7 +67070,8 @@
     "name": "IHasForwardedRef",
     "nameFull": "IHasForwardedRef<T>"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IHasIcon": {
    "module": "@epam/uui-core",
@@ -67181,7 +67079,8 @@
     "name": "IHasIcon",
     "nameFull": "IHasIcon"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IHasLabel": {
    "module": "@epam/uui-core",
@@ -67189,7 +67088,8 @@
     "name": "IHasLabel",
     "nameFull": "IHasLabel"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IHasPlaceholder": {
    "module": "@epam/uui-core",
@@ -67197,7 +67097,8 @@
     "name": "IHasPlaceholder",
     "nameFull": "IHasPlaceholder"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IHasRawProps": {
    "module": "@epam/uui-core",
@@ -67205,7 +67106,8 @@
     "name": "IHasRawProps",
     "nameFull": "IHasRawProps<T>"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IHasTabIndex": {
    "module": "@epam/uui-core",
@@ -67213,7 +67115,8 @@
     "name": "IHasTabIndex",
     "nameFull": "IHasTabIndex"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IHistory4": {
    "module": "@epam/uui-core",
@@ -67221,7 +67124,8 @@
     "name": "IHistory4",
     "nameFull": "IHistory4"
    },
-   "src": "uui-core/src/services/routing/HistoryAdaptedRouter.tsx"
+   "src": "uui-core/src/services/routing/HistoryAdaptedRouter.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:ILayoutContext": {
    "module": "@epam/uui-core",
@@ -67229,7 +67133,8 @@
     "name": "ILayoutContext",
     "nameFull": "ILayoutContext"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ILens": {
    "module": "@epam/uui-core",
@@ -67237,7 +67142,8 @@
     "name": "ILens",
     "nameFull": "ILens<TFocused>"
    },
-   "src": "uui-core/src/data/lenses/types.ts"
+   "src": "uui-core/src/data/lenses/types.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ILockContext": {
    "module": "@epam/uui-core",
@@ -67245,7 +67151,8 @@
     "name": "ILockContext",
     "nameFull": "ILockContext"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IMap": {
    "module": "@epam/uui-core",
@@ -67253,7 +67160,8 @@
     "name": "IMap",
     "nameFull": "IMap<TKey, TValue>"
    },
-   "src": "uui-core/src/types/objects.ts"
+   "src": "uui-core/src/types/objects.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IModal": {
    "module": "@epam/uui-core",
@@ -67261,7 +67169,8 @@
     "name": "IModal",
     "nameFull": "IModal<TResult>"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IModalContext": {
    "module": "@epam/uui-core",
@@ -67269,7 +67178,8 @@
     "name": "IModalContext",
     "nameFull": "IModalContext"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:INotification": {
    "module": "@epam/uui-core",
@@ -67277,7 +67187,8 @@
     "name": "INotification",
     "nameFull": "INotification"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:INotificationContext": {
    "module": "@epam/uui-core",
@@ -67285,7 +67196,8 @@
     "name": "INotificationContext",
     "nameFull": "INotificationContext"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IPickerToggler": {
    "module": "@epam/uui-core",
@@ -67293,7 +67205,8 @@
     "name": "IPickerToggler",
     "nameFull": "IPickerToggler<TItem, TId>"
    },
-   "src": "uui-core/src/types/pickers.ts"
+   "src": "uui-core/src/types/pickers.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IPresetsApi": {
    "module": "@epam/uui-core",
@@ -67301,7 +67214,8 @@
     "name": "IPresetsApi",
     "nameFull": "IPresetsApi<TFilter, TViewState>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IProcessRequest": {
    "module": "@epam/uui-core",
@@ -67309,7 +67223,8 @@
     "name": "IProcessRequest",
     "nameFull": "IProcessRequest"
    },
-   "src": "uui-core/src/services/ApiContext.ts"
+   "src": "uui-core/src/services/ApiContext.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IRouter6": {
    "module": "@epam/uui-core",
@@ -67317,7 +67232,8 @@
     "name": "IRouter6",
     "nameFull": "IRouter6"
    },
-   "src": "uui-core/src/services/routing/interfaces/IRouter6.ts"
+   "src": "uui-core/src/services/routing/interfaces/IRouter6.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IRouterContext": {
    "module": "@epam/uui-core",
@@ -67325,7 +67241,8 @@
     "name": "IRouterContext",
     "nameFull": "IRouterContext"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ISkin": {
    "module": "@epam/uui-core",
@@ -67333,7 +67250,8 @@
     "name": "ISkin",
     "nameFull": "ISkin"
    },
-   "src": "uui-core/src/services/SkinContext.ts"
+   "src": "uui-core/src/services/SkinContext.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ITablePreset": {
    "module": "@epam/uui-core",
@@ -67341,7 +67259,8 @@
     "name": "ITablePreset",
     "nameFull": "ITablePreset<TFilter, TViewState>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ITableState": {
    "module": "@epam/uui-core",
@@ -67349,7 +67268,8 @@
     "name": "ITableState",
     "nameFull": "ITableState<TFilter, TViewState>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ITree": {
    "module": "@epam/uui-core",
@@ -67357,7 +67277,8 @@
     "name": "ITree",
     "nameFull": "ITree<TItem, TId>"
    },
-   "src": "uui-core/src/data/processing/views/tree/ITree.ts"
+   "src": "uui-core/src/data/processing/views/tree/ITree.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IUserSettingsContext": {
    "module": "@epam/uui-core",
@@ -67365,7 +67286,8 @@
     "name": "IUserSettingsContext",
     "nameFull": "IUserSettingsContext"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:Icon": {
    "module": "@epam/uui-core",
@@ -67373,7 +67295,8 @@
     "name": "Icon",
     "nameFull": "Icon<any>"
    },
-   "src": "uui-core/src/types/objects.ts"
+   "src": "uui-core/src/types/objects.ts",
+   "isPublic": true
   },
   "@epam/uui-core:IdAndName": {
    "module": "@epam/uui-core",
@@ -67381,7 +67304,8 @@
     "name": "IdAndName",
     "nameFull": "IdAndName"
    },
-   "src": "uui-core/src/types/objects.ts"
+   "src": "uui-core/src/types/objects.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ItemsComparator": {
    "module": "@epam/uui-core",
@@ -67389,7 +67313,8 @@
     "name": "ItemsComparator",
     "nameFull": "ItemsComparator<TItem>"
    },
-   "src": "uui-core/src/data/processing/views/tree/ITree.ts"
+   "src": "uui-core/src/data/processing/views/tree/ITree.ts",
+   "isPublic": true
   },
   "@epam/uui-core:LabeledInputCoreProps": {
    "module": "@epam/uui-core",
@@ -67397,7 +67322,8 @@
     "name": "LabeledInputCoreProps",
     "nameFull": "LabeledInputCoreProps"
    },
-   "src": "uui-core/src/types/components/LabeledInput.tsx"
+   "src": "uui-core/src/types/components/LabeledInput.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:LayoutLayer": {
    "module": "@epam/uui-core",
@@ -67405,7 +67331,8 @@
     "name": "LayoutLayer",
     "nameFull": "LayoutLayer"
    },
-   "src": "uui-core/src/types/objects.ts"
+   "src": "uui-core/src/types/objects.ts",
+   "isPublic": true
   },
   "@epam/uui-core:LazyDataSourceApi": {
    "module": "@epam/uui-core",
@@ -67413,7 +67340,8 @@
     "name": "LazyDataSourceApi",
     "nameFull": "LazyDataSourceApi<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:LazyDataSourceApiRequest": {
    "module": "@epam/uui-core",
@@ -67421,7 +67349,8 @@
     "name": "LazyDataSourceApiRequest",
     "nameFull": "LazyDataSourceApiRequest<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:LazyDataSourceApiRequestContext": {
    "module": "@epam/uui-core",
@@ -67429,7 +67358,8 @@
     "name": "LazyDataSourceApiRequestContext",
     "nameFull": "LazyDataSourceApiRequestContext<TItem, TId>"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:LazyDataSourceApiRequestOptions": {
    "module": "@epam/uui-core",
@@ -67437,7 +67367,8 @@
     "name": "LazyDataSourceApiRequestOptions",
     "nameFull": "LazyDataSourceApiRequestOptions<TItem, TFilter>"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:LazyDataSourceApiRequestRange": {
    "module": "@epam/uui-core",
@@ -67445,7 +67376,8 @@
     "name": "LazyDataSourceApiRequestRange",
     "nameFull": "LazyDataSourceApiRequestRange"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:LazyDataSourceApiResponse": {
    "module": "@epam/uui-core",
@@ -67453,7 +67385,8 @@
     "name": "LazyDataSourceApiResponse",
     "nameFull": "LazyDataSourceApiResponse<TItem>"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:LazyDataSourceProps": {
    "module": "@epam/uui-core",
@@ -67461,7 +67394,8 @@
     "name": "LazyDataSourceProps",
     "nameFull": "LazyDataSourceProps<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/data/processing/LazyDataSource.tsx"
+   "src": "uui-core/src/data/processing/LazyDataSource.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:LazyListViewProps": {
    "module": "@epam/uui-core",
@@ -67469,7 +67403,8 @@
     "name": "LazyListViewProps",
     "nameFull": "LazyListViewProps<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/data/processing/views/LazyListView.ts"
+   "src": "uui-core/src/data/processing/views/LazyListView.ts",
+   "isPublic": true
   },
   "@epam/uui-core:LazyLoadedMapLoadCallback": {
    "module": "@epam/uui-core",
@@ -67477,7 +67412,8 @@
     "name": "LazyLoadedMapLoadCallback",
     "nameFull": "LazyLoadedMapLoadCallback<TKey, TValue>"
    },
-   "src": "uui-core/src/helpers/LazyLoadedMap.ts"
+   "src": "uui-core/src/helpers/LazyLoadedMap.ts",
+   "isPublic": true
   },
   "@epam/uui-core:Link": {
    "module": "@epam/uui-core",
@@ -67485,7 +67421,8 @@
     "name": "Link",
     "nameFull": "Link"
    },
-   "src": "uui-core/src/types/objects.ts"
+   "src": "uui-core/src/types/objects.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ListApiResponse": {
    "module": "@epam/uui-core",
@@ -67493,7 +67430,8 @@
     "name": "ListApiResponse",
     "nameFull": "ListApiResponse<TItem>"
    },
-   "src": "uui-core/src/data/processing/ListApiCache.tsx"
+   "src": "uui-core/src/data/processing/ListApiCache.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:ListApiSettings": {
    "module": "@epam/uui-core",
@@ -67501,7 +67439,8 @@
     "name": "ListApiSettings",
     "nameFull": "ListApiSettings<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/data/processing/ListApiCache.tsx"
+   "src": "uui-core/src/data/processing/ListApiCache.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:LoadTreeOptions": {
    "module": "@epam/uui-core",
@@ -67509,7 +67448,8 @@
     "name": "LoadTreeOptions",
     "nameFull": "LoadTreeOptions<TItem, TId, TFilter>"
    },
-   "src": "uui-core/src/data/processing/views/tree/ITree.ts"
+   "src": "uui-core/src/data/processing/views/tree/ITree.ts",
+   "isPublic": true
   },
   "@epam/uui-core:LoadingStatus": {
    "module": "@epam/uui-core",
@@ -67517,7 +67457,8 @@
     "name": "LoadingStatus",
     "nameFull": "LoadingStatus"
    },
-   "src": "uui-core/src/helpers/LazyLoadedMap.ts"
+   "src": "uui-core/src/helpers/LazyLoadedMap.ts",
+   "isPublic": true
   },
   "@epam/uui-core:Metadata": {
    "module": "@epam/uui-core",
@@ -67525,7 +67466,8 @@
     "name": "Metadata",
     "nameFull": "Metadata<T>"
    },
-   "src": "uui-core/src/types/validation.ts"
+   "src": "uui-core/src/types/validation.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ModalBlockerProps": {
    "module": "@epam/uui-core",
@@ -67533,7 +67475,8 @@
     "name": "ModalBlockerProps",
     "nameFull": "ModalBlockerProps"
    },
-   "src": "uui-core/src/types/components/Modals.ts"
+   "src": "uui-core/src/types/components/Modals.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ModalComponentProps": {
    "module": "@epam/uui-core",
@@ -67541,7 +67484,8 @@
     "name": "ModalComponentProps",
     "nameFull": "ModalComponentProps<TParameters, TResult>"
    },
-   "src": "uui-core/src/services/ModalContext.ts"
+   "src": "uui-core/src/services/ModalContext.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ModalFooterCoreProps": {
    "module": "@epam/uui-core",
@@ -67549,7 +67493,8 @@
     "name": "ModalFooterCoreProps",
     "nameFull": "ModalFooterCoreProps"
    },
-   "src": "uui-core/src/types/components/Modals.ts"
+   "src": "uui-core/src/types/components/Modals.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ModalHeaderCoreProps": {
    "module": "@epam/uui-core",
@@ -67557,7 +67502,8 @@
     "name": "ModalHeaderCoreProps",
     "nameFull": "ModalHeaderCoreProps"
    },
-   "src": "uui-core/src/types/components/Modals.ts"
+   "src": "uui-core/src/types/components/Modals.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ModalOperation": {
    "module": "@epam/uui-core",
@@ -67565,7 +67511,8 @@
     "name": "ModalOperation",
     "nameFull": "ModalOperation"
    },
-   "src": "uui-core/src/services/ModalContext.ts"
+   "src": "uui-core/src/services/ModalContext.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ModalWindowProps": {
    "module": "@epam/uui-core",
@@ -67573,7 +67520,8 @@
     "name": "ModalWindowProps",
     "nameFull": "ModalWindowProps"
    },
-   "src": "uui-core/src/types/components/Modals.ts"
+   "src": "uui-core/src/types/components/Modals.ts",
+   "isPublic": true
   },
   "@epam/uui-core:NotificationOperation": {
    "module": "@epam/uui-core",
@@ -67581,7 +67529,8 @@
     "name": "NotificationOperation",
     "nameFull": "NotificationOperation"
    },
-   "src": "uui-core/src/services/NotificationContext.tsx"
+   "src": "uui-core/src/services/NotificationContext.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:NotificationParams": {
    "module": "@epam/uui-core",
@@ -67589,7 +67538,8 @@
     "name": "NotificationParams",
     "nameFull": "NotificationParams"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:NumericFilterConfig": {
    "module": "@epam/uui-core",
@@ -67605,7 +67555,8 @@
     "name": "PickerBaseOptions",
     "nameFull": "PickerBaseOptions<TItem, TId>"
    },
-   "src": "uui-core/src/types/pickers.ts"
+   "src": "uui-core/src/types/pickers.ts",
+   "isPublic": true
   },
   "@epam/uui-core:PickerBaseProps": {
    "module": "@epam/uui-core",
@@ -67613,7 +67564,8 @@
     "name": "PickerBaseProps",
     "nameFull": "PickerBaseProps<TItem, TId>"
    },
-   "src": "uui-core/src/types/pickers.ts"
+   "src": "uui-core/src/types/pickers.ts",
+   "isPublic": true
   },
   "@epam/uui-core:PickerBindingProps": {
    "module": "@epam/uui-core",
@@ -67621,7 +67573,8 @@
     "name": "PickerBindingProps",
     "nameFull": "PickerBindingProps<TItem, TId>"
    },
-   "src": "uui-core/src/types/pickers.ts"
+   "src": "uui-core/src/types/pickers.ts",
+   "isPublic": true
   },
   "@epam/uui-core:PickerBindingValueType": {
    "module": "@epam/uui-core",
@@ -67629,7 +67582,8 @@
     "name": "PickerBindingValueType",
     "nameFull": "PickerBindingValueType"
    },
-   "src": "uui-core/src/types/pickers.ts"
+   "src": "uui-core/src/types/pickers.ts",
+   "isPublic": true
   },
   "@epam/uui-core:PickerFilterConfig": {
    "module": "@epam/uui-core",
@@ -67637,7 +67591,8 @@
     "name": "PickerFilterConfig",
     "nameFull": "PickerFilterConfig<TFilter>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:PickerFooterProps": {
    "module": "@epam/uui-core",
@@ -67645,7 +67600,8 @@
     "name": "PickerFooterProps",
     "nameFull": "PickerFooterProps<TItem, TId>"
    },
-   "src": "uui-core/src/types/pickers.ts"
+   "src": "uui-core/src/types/pickers.ts",
+   "isPublic": true
   },
   "@epam/uui-core:RangeDatePickerCoreProps": {
    "module": "@epam/uui-core",
@@ -67653,7 +67609,8 @@
     "name": "RangeDatePickerCoreProps",
     "nameFull": "RangeDatePickerCoreProps"
    },
-   "src": "uui-core/src/types/components/datePicker/RangeDatePicker.ts"
+   "src": "uui-core/src/types/components/datePicker/RangeDatePicker.ts",
+   "isPublic": true
   },
   "@epam/uui-core:RangeDatePickerFilterConfig": {
    "module": "@epam/uui-core",
@@ -67669,7 +67626,8 @@
     "name": "RangeDatePickerInputType",
     "nameFull": "RangeDatePickerInputType"
    },
-   "src": "uui-core/src/types/components/datePicker/RangeDatePicker.ts"
+   "src": "uui-core/src/types/components/datePicker/RangeDatePicker.ts",
+   "isPublic": true
   },
   "@epam/uui-core:RangeDatePickerPresetValue": {
    "module": "@epam/uui-core",
@@ -67677,7 +67635,8 @@
     "name": "RangeDatePickerPresetValue",
     "nameFull": "RangeDatePickerPresetValue"
    },
-   "src": "uui-core/src/types/components/datePicker/BaseRangeDatePicker.ts"
+   "src": "uui-core/src/types/components/datePicker/BaseRangeDatePicker.ts",
+   "isPublic": true
   },
   "@epam/uui-core:RangeDatePickerPresets": {
    "module": "@epam/uui-core",
@@ -67685,7 +67644,8 @@
     "name": "RangeDatePickerPresets",
     "nameFull": "RangeDatePickerPresets"
    },
-   "src": "uui-core/src/types/components/datePicker/BaseRangeDatePicker.ts"
+   "src": "uui-core/src/types/components/datePicker/BaseRangeDatePicker.ts",
+   "isPublic": true
   },
   "@epam/uui-core:RangeDatePickerValue": {
    "module": "@epam/uui-core",
@@ -67693,7 +67653,8 @@
     "name": "RangeDatePickerValue",
     "nameFull": "RangeDatePickerValue"
    },
-   "src": "uui-core/src/types/components/datePicker/BaseRangeDatePicker.ts"
+   "src": "uui-core/src/types/components/datePicker/BaseRangeDatePicker.ts",
+   "isPublic": true
   },
   "@epam/uui-core:RenderCellProps": {
    "module": "@epam/uui-core",
@@ -67701,7 +67662,8 @@
     "name": "RenderCellProps",
     "nameFull": "RenderCellProps<TItem, TId>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:RenderEditorProps": {
    "module": "@epam/uui-core",
@@ -67709,7 +67671,8 @@
     "name": "RenderEditorProps",
     "nameFull": "RenderEditorProps<TItem, TId, TCellValue>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ScrollAlign": {
    "module": "@epam/uui-core",
@@ -67717,7 +67680,8 @@
     "name": "ScrollAlign",
     "nameFull": "ScrollAlign"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ScrollToConfig": {
    "module": "@epam/uui-core",
@@ -67725,7 +67689,8 @@
     "name": "ScrollToConfig",
     "nameFull": "ScrollToConfig"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:SearchResultItem": {
    "module": "@epam/uui-core",
@@ -67733,7 +67698,8 @@
     "name": "SearchResultItem",
     "nameFull": "SearchResultItem<TItem>"
    },
-   "src": "uui-core/src/data/processing/views/LazyListView.ts"
+   "src": "uui-core/src/data/processing/views/LazyListView.ts",
+   "isPublic": true
   },
   "@epam/uui-core:SinglePickerProps": {
    "module": "@epam/uui-core",
@@ -67741,7 +67707,8 @@
     "name": "SinglePickerProps",
     "nameFull": "SinglePickerProps<TId, TItem>"
    },
-   "src": "uui-core/src/types/pickers.ts"
+   "src": "uui-core/src/types/pickers.ts",
+   "isPublic": true
   },
   "@epam/uui-core:SkinContextComponentProps": {
    "module": "@epam/uui-core",
@@ -67749,7 +67716,8 @@
     "name": "SkinContextComponentProps",
     "nameFull": "SkinContextComponentProps<TProps, TSemanticProps>"
    },
-   "src": "uui-core/src/services/SkinContext.ts"
+   "src": "uui-core/src/services/SkinContext.ts",
+   "isPublic": true
   },
   "@epam/uui-core:SortDirection": {
    "module": "@epam/uui-core",
@@ -67757,7 +67725,8 @@
     "name": "SortDirection",
     "nameFull": "SortDirection"
    },
-   "src": "uui-core/src/types/dataQuery.ts"
+   "src": "uui-core/src/types/dataQuery.ts",
+   "isPublic": true
   },
   "@epam/uui-core:SortingOption": {
    "module": "@epam/uui-core",
@@ -67765,7 +67734,8 @@
     "name": "SortingOption",
     "nameFull": "SortingOption<T>"
    },
-   "src": "uui-core/src/types/dataQuery.ts"
+   "src": "uui-core/src/types/dataQuery.ts",
+   "isPublic": true
   },
   "@epam/uui-core:SpinnerCoreProps": {
    "module": "@epam/uui-core",
@@ -67773,7 +67743,8 @@
     "name": "SpinnerCoreProps",
     "nameFull": "SpinnerCoreProps"
    },
-   "src": "uui-core/src/types/components/Spinner.ts"
+   "src": "uui-core/src/types/components/Spinner.ts",
+   "isPublic": true
   },
   "@epam/uui-core:StatefulProps": {
    "module": "@epam/uui-core",
@@ -67781,7 +67752,8 @@
     "name": "StatefulProps",
     "nameFull": "StatefulProps<T>"
    },
-   "src": "uui-core/src/data/Stateful.tsx"
+   "src": "uui-core/src/data/Stateful.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:TMouseCoords": {
    "module": "@epam/uui-core",
@@ -67789,7 +67761,8 @@
     "name": "TMouseCoords",
     "nameFull": "TMouseCoords"
    },
-   "src": "uui-core/src/services/dnd/DndContext.tsx"
+   "src": "uui-core/src/services/dnd/DndContext.tsx",
+   "isPublic": true
   },
   "@epam/uui-core:TableFiltersConfig": {
    "module": "@epam/uui-core",
@@ -67797,7 +67770,8 @@
     "name": "TableFiltersConfig",
     "nameFull": "TableFiltersConfig<TFilter>"
    },
-   "src": "uui-core/src/types/tables.ts"
+   "src": "uui-core/src/types/tables.ts",
+   "isPublic": true
   },
   "@epam/uui-core:TextInputCoreProps": {
    "module": "@epam/uui-core",
@@ -67805,7 +67779,8 @@
     "name": "TextInputCoreProps",
     "nameFull": "TextInputCoreProps"
    },
-   "src": "uui-core/src/types/components/TextInput.ts"
+   "src": "uui-core/src/types/components/TextInput.ts",
+   "isPublic": true
   },
   "@epam/uui-core:TimePickerValue": {
    "module": "@epam/uui-core",
@@ -67813,7 +67788,8 @@
     "name": "TimePickerValue",
     "nameFull": "TimePickerValue"
    },
-   "src": "uui-core/src/types/objects.ts"
+   "src": "uui-core/src/types/objects.ts",
+   "isPublic": true
   },
   "@epam/uui-core:TooltipCoreProps": {
    "module": "@epam/uui-core",
@@ -67821,7 +67797,8 @@
     "name": "TooltipCoreProps",
     "nameFull": "TooltipCoreProps"
    },
-   "src": "uui-core/src/types/components/Tooltip.ts"
+   "src": "uui-core/src/types/components/Tooltip.ts",
+   "isPublic": true
   },
   "@epam/uui-core:TreeNodeInfo": {
    "module": "@epam/uui-core",
@@ -67829,7 +67806,8 @@
     "name": "TreeNodeInfo",
     "nameFull": "TreeNodeInfo"
    },
-   "src": "uui-core/src/data/processing/views/tree/ITree.ts"
+   "src": "uui-core/src/data/processing/views/tree/ITree.ts",
+   "isPublic": true
   },
   "@epam/uui-core:TreeParams": {
    "module": "@epam/uui-core",
@@ -67837,7 +67815,8 @@
     "name": "TreeParams",
     "nameFull": "TreeParams<TItem, TId>"
    },
-   "src": "uui-core/src/data/processing/views/tree/ITree.ts"
+   "src": "uui-core/src/data/processing/views/tree/ITree.ts",
+   "isPublic": true
   },
   "@epam/uui-core:UseFormProps": {
    "module": "@epam/uui-core",
@@ -67845,7 +67824,8 @@
     "name": "UseFormProps",
     "nameFull": "UseFormProps<T>"
    },
-   "src": "uui-core/src/data/forms/useForm.ts"
+   "src": "uui-core/src/data/forms/useForm.ts",
+   "isPublic": true
   },
   "@epam/uui-core:UseTableStateHookBaseParams": {
    "module": "@epam/uui-core",
@@ -67861,7 +67841,8 @@
     "name": "UseTableStateHookParams",
     "nameFull": "UseTableStateHookParams<TFilter, TViewState>"
    },
-   "src": "uui-core/src/hooks/useTableState/useTableState.ts"
+   "src": "uui-core/src/hooks/useTableState/useTableState.ts",
+   "isPublic": true
   },
   "@epam/uui-core:UseUuiErrorOptions": {
    "module": "@epam/uui-core",
@@ -67869,7 +67850,8 @@
     "name": "UseUuiErrorOptions",
     "nameFull": "UseUuiErrorOptions"
    },
-   "src": "uui-core/src/hooks/useUuiError.ts"
+   "src": "uui-core/src/hooks/useUuiError.ts",
+   "isPublic": true
   },
   "@epam/uui-core:UseUuiErrorProps": {
    "module": "@epam/uui-core",
@@ -67877,7 +67859,8 @@
     "name": "UseUuiErrorProps",
     "nameFull": "UseUuiErrorProps"
    },
-   "src": "uui-core/src/hooks/useUuiError.ts"
+   "src": "uui-core/src/hooks/useUuiError.ts",
+   "isPublic": true
   },
   "@epam/uui-core:UseUuiServicesProps": {
    "module": "@epam/uui-core",
@@ -67885,7 +67868,8 @@
     "name": "UseUuiServicesProps",
     "nameFull": "UseUuiServicesProps<TApi, TAppContext>"
    },
-   "src": "uui-core/src/hooks/useUuiServices.ts"
+   "src": "uui-core/src/hooks/useUuiServices.ts",
+   "isPublic": true
   },
   "@epam/uui-core:UuiContexts": {
    "module": "@epam/uui-core",
@@ -67893,7 +67877,8 @@
     "name": "UuiContexts",
     "nameFull": "UuiContexts"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:UuiErrorInfo": {
    "module": "@epam/uui-core",
@@ -67901,7 +67886,8 @@
     "name": "UuiErrorInfo",
     "nameFull": "UuiErrorInfo"
    },
-   "src": "uui-core/src/types/contexts.ts"
+   "src": "uui-core/src/types/contexts.ts",
+   "isPublic": true
   },
   "@epam/uui-core:UuiRecoveryErrorInfo": {
    "module": "@epam/uui-core",
@@ -67909,7 +67895,8 @@
     "name": "UuiRecoveryErrorInfo",
     "nameFull": "UuiRecoveryErrorInfo"
    },
-   "src": "uui-core/src/hooks/useUuiError.ts"
+   "src": "uui-core/src/hooks/useUuiError.ts",
+   "isPublic": true
   },
   "@epam/uui-core:UuiServicesProps": {
    "module": "@epam/uui-core",
@@ -67917,7 +67904,8 @@
     "name": "UuiServicesProps",
     "nameFull": "UuiServicesProps<TApi>"
    },
-   "src": "uui-core/src/hooks/useUuiServices.ts"
+   "src": "uui-core/src/hooks/useUuiServices.ts",
+   "isPublic": true
   },
   "@epam/uui-core:VPanelProps": {
    "module": "@epam/uui-core",
@@ -67925,7 +67913,8 @@
     "name": "VPanelProps",
     "nameFull": "VPanelProps"
    },
-   "src": "uui-core/src/types/props.ts"
+   "src": "uui-core/src/types/props.ts",
+   "isPublic": true
   },
   "@epam/uui-core:ValidationMode": {
    "module": "@epam/uui-core",
@@ -67933,7 +67922,8 @@
     "name": "ValidationMode",
     "nameFull": "ValidationMode"
    },
-   "src": "uui-core/src/data/validation/validate.ts"
+   "src": "uui-core/src/data/validation/validate.ts",
+   "isPublic": true
   },
   "@epam/uui-core:VirtualListRange": {
    "module": "@epam/uui-core",
@@ -67941,7 +67931,8 @@
     "name": "VirtualListRange",
     "nameFull": "VirtualListRange"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-core:VirtualListState": {
    "module": "@epam/uui-core",
@@ -67949,7 +67940,8 @@
     "name": "VirtualListState",
     "nameFull": "VirtualListState"
    },
-   "src": "uui-core/src/types/dataSources.ts"
+   "src": "uui-core/src/types/dataSources.ts",
+   "isPublic": true
   },
   "@epam/uui-editor:EditorValue": {
    "module": "@epam/uui-editor",
@@ -67957,7 +67949,8 @@
     "name": "EditorValue",
     "nameFull": "EditorValue"
    },
-   "src": "uui-editor/src/types.ts"
+   "src": "uui-editor/src/types.ts",
+   "isPublic": true
   },
   "@epam/uui-editor:IImageElement": {
    "module": "@epam/uui-editor",
@@ -67965,7 +67958,8 @@
     "name": "IImageElement",
     "nameFull": "IImageElement"
    },
-   "src": "uui-editor/src/types.ts"
+   "src": "uui-editor/src/types.ts",
+   "isPublic": true
   },
   "@epam/uui-editor:LinkElement": {
    "module": "@epam/uui-editor",
@@ -67973,7 +67967,8 @@
     "name": "LinkElement",
     "nameFull": "LinkElement"
    },
-   "src": "uui-editor/src/plugins/linkPlugin/linkPlugin.tsx"
+   "src": "uui-editor/src/plugins/linkPlugin/linkPlugin.tsx",
+   "isPublic": true
   },
   "@epam/uui-editor:PlaceholderPluginParams": {
    "module": "@epam/uui-editor",
@@ -67981,7 +67976,8 @@
     "name": "PlaceholderPluginParams",
     "nameFull": "PlaceholderPluginParams"
    },
-   "src": "uui-editor/src/plugins/placeholderPlugin/placeholderPlugin.tsx"
+   "src": "uui-editor/src/plugins/placeholderPlugin/placeholderPlugin.tsx",
+   "isPublic": true
   },
   "@epam/uui-editor:PlateImgAlign": {
    "module": "@epam/uui-editor",
@@ -67989,7 +67985,8 @@
     "name": "PlateImgAlign",
     "nameFull": "PlateImgAlign"
    },
-   "src": "uui-editor/src/types.ts"
+   "src": "uui-editor/src/types.ts",
+   "isPublic": true
   },
   "@epam/uui-editor:PlateProps": {
    "module": "@epam/uui-editor",
@@ -67997,7 +67994,8 @@
     "name": "PlateProps",
     "nameFull": "PlateProps"
    },
-   "src": "uui-editor/src/types.ts"
+   "src": "uui-editor/src/types.ts",
+   "isPublic": true
   },
   "@epam/uui-editor:SlateImageSize": {
    "module": "@epam/uui-editor",
@@ -68005,7 +68003,8 @@
     "name": "SlateImageSize",
     "nameFull": "SlateImageSize"
    },
-   "src": "uui-editor/src/types.ts"
+   "src": "uui-editor/src/types.ts",
+   "isPublic": true
   },
   "@epam/uui-editor:SlateImgAlign": {
    "module": "@epam/uui-editor",
@@ -68013,7 +68012,8 @@
     "name": "SlateImgAlign",
     "nameFull": "SlateImgAlign"
    },
-   "src": "uui-editor/src/types.ts"
+   "src": "uui-editor/src/types.ts",
+   "isPublic": true
   },
   "@epam/uui-editor:SlateProps": {
    "module": "@epam/uui-editor",
@@ -68021,71 +68021,8 @@
     "name": "SlateProps",
     "nameFull": "SlateProps"
    },
-   "src": "uui-editor/src/types.ts"
-  },
-  "@epam/uui-timeline:BaseTimelineCanvasComponentProps": {
-   "module": "@epam/uui-timeline",
-   "typeName": {
-    "name": "BaseTimelineCanvasComponentProps",
-    "nameFull": "BaseTimelineCanvasComponentProps"
-   },
-   "src": "uui-timeline/src/BaseTimelineCanvasComponent.tsx"
-  },
-  "@epam/uui-timeline:Item": {
-   "module": "@epam/uui-timeline",
-   "typeName": {
-    "name": "Item",
-    "nameFull": "Item"
-   },
-   "src": "uui-timeline/src/renderBars.ts"
-  },
-  "@epam/uui-timeline:Stage": {
-   "module": "@epam/uui-timeline",
-   "typeName": {
-    "name": "Stage",
-    "nameFull": "Stage"
-   },
-   "src": "uui-timeline/src/TimelineEventsBar.tsx"
-  },
-  "@epam/uui-timeline:TimelineControllerOptions": {
-   "module": "@epam/uui-timeline",
-   "typeName": {
-    "name": "TimelineControllerOptions",
-    "nameFull": "TimelineControllerOptions"
-   },
-   "src": "uui-timeline/src/TimelineController.ts"
-  },
-  "@epam/uui-timeline:TimelineEventsBarProps": {
-   "module": "@epam/uui-timeline",
-   "typeName": {
-    "name": "TimelineEventsBarProps",
-    "nameFull": "TimelineEventsBarProps"
-   },
-   "src": "uui-timeline/src/TimelineEventsBar.tsx"
-  },
-  "@epam/uui-timeline:TimelineGridProps": {
-   "module": "@epam/uui-timeline",
-   "typeName": {
-    "name": "TimelineGridProps",
-    "nameFull": "TimelineGridProps"
-   },
-   "src": "uui-timeline/src/TimelineGrid.tsx"
-  },
-  "@epam/uui-timeline:TimelineNavProps": {
-   "module": "@epam/uui-timeline",
-   "typeName": {
-    "name": "TimelineNavProps",
-    "nameFull": "TimelineNavProps"
-   },
-   "src": "uui-timeline/src/TimelineNav.tsx"
-  },
-  "@epam/uui-timeline:TimelineScaleProps": {
-   "module": "@epam/uui-timeline",
-   "typeName": {
-    "name": "TimelineScaleProps",
-    "nameFull": "TimelineScaleProps"
-   },
-   "src": "uui-timeline/src/TimelineScale.tsx"
+   "src": "uui-editor/src/types.ts",
+   "isPublic": true
   },
   "@epam/uui:AccordionMods": {
    "module": "@epam/uui",
@@ -68093,7 +68030,8 @@
     "name": "AccordionMods",
     "nameFull": "AccordionMods"
    },
-   "src": "uui/components/layout/Accordion.tsx"
+   "src": "uui/components/layout/Accordion.tsx",
+   "isPublic": true
   },
   "@epam/uui:AccordionProps": {
    "module": "@epam/uui",
@@ -68101,7 +68039,8 @@
     "name": "AccordionProps",
     "nameFull": "AccordionProps"
    },
-   "src": "uui/components/layout/Accordion.tsx"
+   "src": "uui/components/layout/Accordion.tsx",
+   "isPublic": true
   },
   "@epam/uui:AlertProps": {
    "module": "@epam/uui",
@@ -68109,7 +68048,8 @@
     "name": "AlertProps",
     "nameFull": "AlertProps"
    },
-   "src": "uui/components/overlays/Alert.tsx"
+   "src": "uui/components/overlays/Alert.tsx",
+   "isPublic": true
   },
   "@epam/uui:BadgeColor": {
    "module": "@epam/uui",
@@ -68117,7 +68057,8 @@
     "name": "BadgeColor",
     "nameFull": "BadgeColor"
    },
-   "src": "uui/components/widgets/Badge.tsx"
+   "src": "uui/components/widgets/Badge.tsx",
+   "isPublic": true
   },
   "@epam/uui:BadgeFill": {
    "module": "@epam/uui",
@@ -68125,7 +68066,8 @@
     "name": "BadgeFill",
     "nameFull": "BadgeFill"
    },
-   "src": "uui/components/widgets/Badge.tsx"
+   "src": "uui/components/widgets/Badge.tsx",
+   "isPublic": true
   },
   "@epam/uui:BadgeMods": {
    "module": "@epam/uui",
@@ -68133,7 +68075,8 @@
     "name": "BadgeMods",
     "nameFull": "BadgeMods"
    },
-   "src": "uui/components/widgets/Badge.tsx"
+   "src": "uui/components/widgets/Badge.tsx",
+   "isPublic": true
   },
   "@epam/uui:BadgeProps": {
    "module": "@epam/uui",
@@ -68141,7 +68084,8 @@
     "name": "BadgeProps",
     "nameFull": "BadgeProps"
    },
-   "src": "uui/components/widgets/Badge.tsx"
+   "src": "uui/components/widgets/Badge.tsx",
+   "isPublic": true
   },
   "@epam/uui:BadgeSize": {
    "module": "@epam/uui",
@@ -68149,7 +68093,8 @@
     "name": "BadgeSize",
     "nameFull": "BadgeSize"
    },
-   "src": "uui/components/widgets/Badge.tsx"
+   "src": "uui/components/widgets/Badge.tsx",
+   "isPublic": true
   },
   "@epam/uui:BaseRowMods": {
    "module": "@epam/uui",
@@ -68165,7 +68110,8 @@
     "name": "BurgerButtonMods",
     "nameFull": "BurgerButtonMods"
    },
-   "src": "uui/components/navigation/MainMenu/Burger/BurgerButton.tsx"
+   "src": "uui/components/navigation/MainMenu/Burger/BurgerButton.tsx",
+   "isPublic": true
   },
   "@epam/uui:BurgerGroupHeaderProps": {
    "module": "@epam/uui",
@@ -68173,7 +68119,8 @@
     "name": "BurgerGroupHeaderProps",
     "nameFull": "BurgerGroupHeaderProps"
    },
-   "src": "uui/components/navigation/MainMenu/Burger/BurgerGroupHeader.tsx"
+   "src": "uui/components/navigation/MainMenu/Burger/BurgerGroupHeader.tsx",
+   "isPublic": true
   },
   "@epam/uui:BurgerMods": {
    "module": "@epam/uui",
@@ -68181,7 +68128,8 @@
     "name": "BurgerMods",
     "nameFull": "BurgerMods"
    },
-   "src": "uui/components/navigation/MainMenu/Burger/Burger.tsx"
+   "src": "uui/components/navigation/MainMenu/Burger/Burger.tsx",
+   "isPublic": true
   },
   "@epam/uui:BurgerSearchProps": {
    "module": "@epam/uui",
@@ -68189,7 +68137,8 @@
     "name": "BurgerSearchProps",
     "nameFull": "BurgerSearchProps"
    },
-   "src": "uui/components/navigation/MainMenu/Burger/BurgerSearch.tsx"
+   "src": "uui/components/navigation/MainMenu/Burger/BurgerSearch.tsx",
+   "isPublic": true
   },
   "@epam/uui:ButtonColor": {
    "module": "@epam/uui",
@@ -68197,7 +68146,8 @@
     "name": "ButtonColor",
     "nameFull": "ButtonColor"
    },
-   "src": "uui/components/buttons/Button/Button.tsx"
+   "src": "uui/components/buttons/Button/Button.tsx",
+   "isPublic": true
   },
   "@epam/uui:ButtonMode": {
    "module": "@epam/uui",
@@ -68205,7 +68155,8 @@
     "name": "ButtonMode",
     "nameFull": "ButtonMode"
    },
-   "src": "uui/components/types.ts"
+   "src": "uui/components/types.ts",
+   "isPublic": true
   },
   "@epam/uui:ButtonMods": {
    "module": "@epam/uui",
@@ -68213,7 +68164,8 @@
     "name": "ButtonMods",
     "nameFull": "ButtonMods"
    },
-   "src": "uui/components/buttons/Button/Button.tsx"
+   "src": "uui/components/buttons/Button/Button.tsx",
+   "isPublic": true
   },
   "@epam/uui:ButtonProps": {
    "module": "@epam/uui",
@@ -68221,7 +68173,8 @@
     "name": "ButtonProps",
     "nameFull": "ButtonProps"
    },
-   "src": "uui/components/buttons/Button/Button.tsx"
+   "src": "uui/components/buttons/Button/Button.tsx",
+   "isPublic": true
   },
   "@epam/uui:ButtonSemanticColor": {
    "module": "@epam/uui",
@@ -68229,7 +68182,8 @@
     "name": "ButtonSemanticColor",
     "nameFull": "ButtonSemanticColor"
    },
-   "src": "uui/components/types.ts"
+   "src": "uui/components/types.ts",
+   "isPublic": true
   },
   "@epam/uui:CheckboxMods": {
    "module": "@epam/uui",
@@ -68237,7 +68191,8 @@
     "name": "CheckboxMods",
     "nameFull": "CheckboxMods"
    },
-   "src": "uui/components/inputs/Checkbox.tsx"
+   "src": "uui/components/inputs/Checkbox.tsx",
+   "isPublic": true
   },
   "@epam/uui:CheckboxProps": {
    "module": "@epam/uui",
@@ -68245,7 +68200,8 @@
     "name": "CheckboxProps",
     "nameFull": "CheckboxProps"
    },
-   "src": "uui/components/inputs/Checkbox.tsx"
+   "src": "uui/components/inputs/Checkbox.tsx",
+   "isPublic": true
   },
   "@epam/uui:ColorMod": {
    "module": "@epam/uui",
@@ -68253,7 +68209,8 @@
     "name": "ColorMod",
     "nameFull": "ColorMod"
    },
-   "src": "uui/components/types.ts"
+   "src": "uui/components/types.ts",
+   "isPublic": true
   },
   "@epam/uui:ColumnsConfigurationModalProps": {
    "module": "@epam/uui",
@@ -68261,7 +68218,8 @@
     "name": "ColumnsConfigurationModalProps",
     "nameFull": "ColumnsConfigurationModalProps<TItem, TId, TFilter>"
    },
-   "src": "uui/components/tables/columnsConfigurationModal/ColumnsConfigurationModal.tsx"
+   "src": "uui/components/tables/columnsConfigurationModal/ColumnsConfigurationModal.tsx",
+   "isPublic": true
   },
   "@epam/uui:ConfirmationModalWindowProps": {
    "module": "@epam/uui",
@@ -68269,7 +68227,8 @@
     "name": "ConfirmationModalWindowProps",
     "nameFull": "ConfirmationModalWindowProps"
    },
-   "src": "uui/components/overlays/ConfirmationModal.tsx"
+   "src": "uui/components/overlays/ConfirmationModal.tsx",
+   "isPublic": true
   },
   "@epam/uui:ControlSize": {
    "module": "@epam/uui",
@@ -68277,7 +68236,8 @@
     "name": "ControlSize",
     "nameFull": "ControlSize"
    },
-   "src": "uui/components/types.ts"
+   "src": "uui/components/types.ts",
+   "isPublic": true
   },
   "@epam/uui:DataPickerBodyProps": {
    "module": "@epam/uui",
@@ -68285,7 +68245,8 @@
     "name": "DataPickerBodyProps",
     "nameFull": "DataPickerBodyProps"
    },
-   "src": "uui/components/pickers/DataPickerBody.tsx"
+   "src": "uui/components/pickers/DataPickerBody.tsx",
+   "isPublic": true
   },
   "@epam/uui:DataPickerRowProps": {
    "module": "@epam/uui",
@@ -68293,7 +68254,8 @@
     "name": "DataPickerRowProps",
     "nameFull": "DataPickerRowProps<TItem, TId>"
    },
-   "src": "uui/components/pickers/DataPickerRow.tsx"
+   "src": "uui/components/pickers/DataPickerRow.tsx",
+   "isPublic": true
   },
   "@epam/uui:DataRowsContainerProps": {
    "module": "@epam/uui",
@@ -68301,7 +68263,8 @@
     "name": "DataRowsContainerProps",
     "nameFull": "DataRowsContainerProps<TItem, TId, List>"
    },
-   "src": "uui/components/tables/DataRowsContainer/DataRowsContainer.tsx"
+   "src": "uui/components/tables/DataRowsContainer/DataRowsContainer.tsx",
+   "isPublic": true
   },
   "@epam/uui:DataTableCellMods": {
    "module": "@epam/uui",
@@ -68309,7 +68272,8 @@
     "name": "DataTableCellMods",
     "nameFull": "DataTableCellMods"
    },
-   "src": "uui/components/tables/types.ts"
+   "src": "uui/components/tables/types.ts",
+   "isPublic": true
   },
   "@epam/uui:DataTableHeaderCellMods": {
    "module": "@epam/uui",
@@ -68317,7 +68281,8 @@
     "name": "DataTableHeaderCellMods",
     "nameFull": "DataTableHeaderCellMods"
    },
-   "src": "uui/components/tables/types.ts"
+   "src": "uui/components/tables/types.ts",
+   "isPublic": true
   },
   "@epam/uui:DataTableHeaderRowMods": {
    "module": "@epam/uui",
@@ -68325,7 +68290,8 @@
     "name": "DataTableHeaderRowMods",
     "nameFull": "DataTableHeaderRowMods"
    },
-   "src": "uui/components/tables/types.ts"
+   "src": "uui/components/tables/types.ts",
+   "isPublic": true
   },
   "@epam/uui:DataTableMods": {
    "module": "@epam/uui",
@@ -68333,7 +68299,8 @@
     "name": "DataTableMods",
     "nameFull": "DataTableMods"
    },
-   "src": "uui/components/tables/types.ts"
+   "src": "uui/components/tables/types.ts",
+   "isPublic": true
   },
   "@epam/uui:DataTableProps": {
    "module": "@epam/uui",
@@ -68341,7 +68308,8 @@
     "name": "DataTableProps",
     "nameFull": "DataTableProps<TItem, TId, TFilter>"
    },
-   "src": "uui/components/tables/DataTable.tsx"
+   "src": "uui/components/tables/DataTable.tsx",
+   "isPublic": true
   },
   "@epam/uui:DataTableRowMods": {
    "module": "@epam/uui",
@@ -68349,7 +68317,8 @@
     "name": "DataTableRowMods",
     "nameFull": "DataTableRowMods"
    },
-   "src": "uui/components/tables/types.ts"
+   "src": "uui/components/tables/types.ts",
+   "isPublic": true
   },
   "@epam/uui:DatePickerBodyProps": {
    "module": "@epam/uui",
@@ -68357,7 +68326,8 @@
     "name": "DatePickerBodyProps",
     "nameFull": "DatePickerBodyProps"
    },
-   "src": "uui/components/datePickers/DatePickerBody.tsx"
+   "src": "uui/components/datePickers/DatePickerBody.tsx",
+   "isPublic": true
   },
   "@epam/uui:DatePickerProps": {
    "module": "@epam/uui",
@@ -68365,7 +68335,8 @@
     "name": "DatePickerProps",
     "nameFull": "DatePickerProps"
    },
-   "src": "uui/components/datePickers/DatePicker.tsx"
+   "src": "uui/components/datePickers/DatePicker.tsx",
+   "isPublic": true
   },
   "@epam/uui:DefaultNotificationProps": {
    "module": "@epam/uui",
@@ -68373,7 +68344,8 @@
     "name": "DefaultNotificationProps",
     "nameFull": "DefaultNotificationProps"
    },
-   "src": "uui/components/overlays/NotificationCard.tsx"
+   "src": "uui/components/overlays/NotificationCard.tsx",
+   "isPublic": true
   },
   "@epam/uui:DropMarkerProps": {
    "module": "@epam/uui",
@@ -68381,7 +68353,8 @@
     "name": "DropMarkerProps",
     "nameFull": "DropMarkerProps"
    },
-   "src": "uui/components/dnd/DropMarker.tsx"
+   "src": "uui/components/dnd/DropMarker.tsx",
+   "isPublic": true
   },
   "@epam/uui:DropSpotProps": {
    "module": "@epam/uui",
@@ -68389,7 +68362,8 @@
     "name": "DropSpotProps",
     "nameFull": "DropSpotProps"
    },
-   "src": "uui/components/fileUpload/DropSpot.tsx"
+   "src": "uui/components/fileUpload/DropSpot.tsx",
+   "isPublic": true
   },
   "@epam/uui:DropdownContainerMods": {
    "module": "@epam/uui",
@@ -68397,7 +68371,8 @@
     "name": "DropdownContainerMods",
     "nameFull": "DropdownContainerMods"
    },
-   "src": "uui/components/overlays/DropdownContainer.tsx"
+   "src": "uui/components/overlays/DropdownContainer.tsx",
+   "isPublic": true
   },
   "@epam/uui:DropdownContainerProps": {
    "module": "@epam/uui",
@@ -68405,7 +68380,8 @@
     "name": "DropdownContainerProps",
     "nameFull": "DropdownContainerProps"
    },
-   "src": "uui/components/overlays/DropdownContainer.tsx"
+   "src": "uui/components/overlays/DropdownContainer.tsx",
+   "isPublic": true
   },
   "@epam/uui:EpamBadgeSemanticColor": {
    "module": "@epam/uui",
@@ -68413,7 +68389,8 @@
     "name": "EpamBadgeSemanticColor",
     "nameFull": "EpamBadgeSemanticColor"
    },
-   "src": "uui/components/types.ts"
+   "src": "uui/components/types.ts",
+   "isPublic": true
   },
   "@epam/uui:FileCardItem": {
    "module": "@epam/uui",
@@ -68421,7 +68398,8 @@
     "name": "FileCardItem",
     "nameFull": "FileCardItem"
    },
-   "src": "uui/components/fileUpload/FileCard.tsx"
+   "src": "uui/components/fileUpload/FileCard.tsx",
+   "isPublic": true
   },
   "@epam/uui:FileCardProps": {
    "module": "@epam/uui",
@@ -68429,7 +68407,8 @@
     "name": "FileCardProps",
     "nameFull": "FileCardProps"
    },
-   "src": "uui/components/fileUpload/FileCard.tsx"
+   "src": "uui/components/fileUpload/FileCard.tsx",
+   "isPublic": true
   },
   "@epam/uui:FillStyle": {
    "module": "@epam/uui",
@@ -68437,7 +68416,8 @@
     "name": "FillStyle",
     "nameFull": "FillStyle"
    },
-   "src": "uui/components/types.ts"
+   "src": "uui/components/types.ts",
+   "isPublic": true
   },
   "@epam/uui:FiltersPanelProps": {
    "module": "@epam/uui",
@@ -68445,7 +68425,8 @@
     "name": "FiltersPanelProps",
     "nameFull": "FiltersPanelProps<TFilter>"
    },
-   "src": "uui/components/filters/FiltersPanel.tsx"
+   "src": "uui/components/filters/FiltersPanel.tsx",
+   "isPublic": true
   },
   "@epam/uui:FlexCellMods": {
    "module": "@epam/uui",
@@ -68453,7 +68434,8 @@
     "name": "FlexCellMods",
     "nameFull": "FlexCellMods"
    },
-   "src": "uui/components/layout/FlexItems/FlexCell.tsx"
+   "src": "uui/components/layout/FlexItems/FlexCell.tsx",
+   "isPublic": true
   },
   "@epam/uui:FlexRowProps": {
    "module": "@epam/uui",
@@ -68461,7 +68443,8 @@
     "name": "FlexRowProps",
     "nameFull": "FlexRowProps"
    },
-   "src": "uui/components/layout/FlexItems/FlexRow.tsx"
+   "src": "uui/components/layout/FlexItems/FlexRow.tsx",
+   "isPublic": true
   },
   "@epam/uui:FontStyle": {
    "module": "@epam/uui",
@@ -68469,7 +68452,8 @@
     "name": "FontStyle",
     "nameFull": "FontStyle"
    },
-   "src": "uui/components/types.ts"
+   "src": "uui/components/types.ts",
+   "isPublic": true
   },
   "@epam/uui:GlobalMenuProps": {
    "module": "@epam/uui",
@@ -68477,7 +68461,8 @@
     "name": "GlobalMenuProps",
     "nameFull": "GlobalMenuProps"
    },
-   "src": "uui/components/navigation/MainMenu/GlobalMenu.tsx"
+   "src": "uui/components/navigation/MainMenu/GlobalMenu.tsx",
+   "isPublic": true
   },
   "@epam/uui:HighlightRange": {
    "module": "@epam/uui",
@@ -68485,7 +68470,8 @@
     "name": "HighlightRange",
     "nameFull": "HighlightRange"
    },
-   "src": "uui/components/pickers/highlight.tsx"
+   "src": "uui/components/pickers/highlight.tsx",
+   "isPublic": true
   },
   "@epam/uui:IDropdownMenuContainer": {
    "module": "@epam/uui",
@@ -68493,7 +68479,8 @@
     "name": "IDropdownMenuContainer",
     "nameFull": "IDropdownMenuContainer"
    },
-   "src": "uui/components/overlays/DropdownMenu.tsx"
+   "src": "uui/components/overlays/DropdownMenu.tsx",
+   "isPublic": true
   },
   "@epam/uui:IDropdownMenuItemProps": {
    "module": "@epam/uui",
@@ -68501,7 +68488,8 @@
     "name": "IDropdownMenuItemProps",
     "nameFull": "IDropdownMenuItemProps"
    },
-   "src": "uui/components/overlays/DropdownMenu.tsx"
+   "src": "uui/components/overlays/DropdownMenu.tsx",
+   "isPublic": true
   },
   "@epam/uui:IHasEditMode": {
    "module": "@epam/uui",
@@ -68509,7 +68497,8 @@
     "name": "IHasEditMode",
     "nameFull": "IHasEditMode"
    },
-   "src": "uui/components/types.ts"
+   "src": "uui/components/types.ts",
+   "isPublic": true
   },
   "@epam/uui:ITextPlaceholderProps": {
    "module": "@epam/uui",
@@ -68517,7 +68506,8 @@
     "name": "ITextPlaceholderProps",
     "nameFull": "ITextPlaceholderProps"
    },
-   "src": "uui/components/typography/TextPlaceholder.tsx"
+   "src": "uui/components/typography/TextPlaceholder.tsx",
+   "isPublic": true
   },
   "@epam/uui:IconButtonMods": {
    "module": "@epam/uui",
@@ -68525,7 +68515,8 @@
     "name": "IconButtonMods",
     "nameFull": "IconButtonMods"
    },
-   "src": "uui/components/buttons/IconButton.tsx"
+   "src": "uui/components/buttons/IconButton.tsx",
+   "isPublic": true
   },
   "@epam/uui:IconButtonProps": {
    "module": "@epam/uui",
@@ -68533,7 +68524,8 @@
     "name": "IconButtonProps",
     "nameFull": "IconButtonProps"
    },
-   "src": "uui/components/buttons/IconButton.tsx"
+   "src": "uui/components/buttons/IconButton.tsx",
+   "isPublic": true
   },
   "@epam/uui:IconColor": {
    "module": "@epam/uui",
@@ -68541,7 +68533,8 @@
     "name": "IconColor",
     "nameFull": "IconColor"
    },
-   "src": "uui/components/buttons/IconButton.tsx"
+   "src": "uui/components/buttons/IconButton.tsx",
+   "isPublic": true
   },
   "@epam/uui:IndeterminateBarMods": {
    "module": "@epam/uui",
@@ -68549,7 +68542,8 @@
     "name": "IndeterminateBarMods",
     "nameFull": "IndeterminateBarMods"
    },
-   "src": "uui/components/widgets/IndeterminateBar.tsx"
+   "src": "uui/components/widgets/IndeterminateBar.tsx",
+   "isPublic": true
   },
   "@epam/uui:InputType": {
    "module": "@epam/uui",
@@ -68557,7 +68551,8 @@
     "name": "InputType",
     "nameFull": "InputType"
    },
-   "src": "uui/components/datePickers/RangeDatePicker.tsx"
+   "src": "uui/components/datePickers/RangeDatePicker.tsx",
+   "isPublic": true
   },
   "@epam/uui:LabeledInputMods": {
    "module": "@epam/uui",
@@ -68565,7 +68560,8 @@
     "name": "LabeledInputMods",
     "nameFull": "LabeledInputMods"
    },
-   "src": "uui/components/layout/LabeledInput.tsx"
+   "src": "uui/components/layout/LabeledInput.tsx",
+   "isPublic": true
   },
   "@epam/uui:LinkButtonColorType": {
    "module": "@epam/uui",
@@ -68573,7 +68569,8 @@
     "name": "LinkButtonColorType",
     "nameFull": "LinkButtonColorType"
    },
-   "src": "uui/components/buttons/LinkButton.tsx"
+   "src": "uui/components/buttons/LinkButton.tsx",
+   "isPublic": true
   },
   "@epam/uui:LinkButtonMods": {
    "module": "@epam/uui",
@@ -68581,7 +68578,8 @@
     "name": "LinkButtonMods",
     "nameFull": "LinkButtonMods"
    },
-   "src": "uui/components/buttons/LinkButton.tsx"
+   "src": "uui/components/buttons/LinkButton.tsx",
+   "isPublic": true
   },
   "@epam/uui:LinkButtonProps": {
    "module": "@epam/uui",
@@ -68589,7 +68587,8 @@
     "name": "LinkButtonProps",
     "nameFull": "LinkButtonProps"
    },
-   "src": "uui/components/buttons/LinkButton.tsx"
+   "src": "uui/components/buttons/LinkButton.tsx",
+   "isPublic": true
   },
   "@epam/uui:MainMenuAvatarProps": {
    "module": "@epam/uui",
@@ -68597,7 +68596,8 @@
     "name": "MainMenuAvatarProps",
     "nameFull": "MainMenuAvatarProps"
    },
-   "src": "uui/components/navigation/MainMenu/MainMenuAvatar.tsx"
+   "src": "uui/components/navigation/MainMenu/MainMenuAvatar.tsx",
+   "isPublic": true
   },
   "@epam/uui:MainMenuButtonMods": {
    "module": "@epam/uui",
@@ -68605,7 +68605,8 @@
     "name": "MainMenuButtonMods",
     "nameFull": "MainMenuButtonMods"
    },
-   "src": "uui/components/navigation/MainMenu/MainMenuButton.tsx"
+   "src": "uui/components/navigation/MainMenu/MainMenuButton.tsx",
+   "isPublic": true
   },
   "@epam/uui:MainMenuIconProps": {
    "module": "@epam/uui",
@@ -68613,7 +68614,8 @@
     "name": "MainMenuIconProps",
     "nameFull": "MainMenuIconProps"
    },
-   "src": "uui/components/navigation/MainMenu/MainMenuIcon.tsx"
+   "src": "uui/components/navigation/MainMenu/MainMenuIcon.tsx",
+   "isPublic": true
   },
   "@epam/uui:MainMenuMods": {
    "module": "@epam/uui",
@@ -68621,7 +68623,8 @@
     "name": "MainMenuMods",
     "nameFull": "MainMenuMods"
    },
-   "src": "uui/components/navigation/MainMenu/MainMenu.tsx"
+   "src": "uui/components/navigation/MainMenu/MainMenu.tsx",
+   "isPublic": true
   },
   "@epam/uui:MainMenuSearchProps": {
    "module": "@epam/uui",
@@ -68629,7 +68632,8 @@
     "name": "MainMenuSearchProps",
     "nameFull": "MainMenuSearchProps"
    },
-   "src": "uui/components/navigation/MainMenu/MainMenuSearch.tsx"
+   "src": "uui/components/navigation/MainMenu/MainMenuSearch.tsx",
+   "isPublic": true
   },
   "@epam/uui:ModalFooterProps": {
    "module": "@epam/uui",
@@ -68637,7 +68641,8 @@
     "name": "ModalFooterProps",
     "nameFull": "ModalFooterProps"
    },
-   "src": "uui/components/overlays/Modals.tsx"
+   "src": "uui/components/overlays/Modals.tsx",
+   "isPublic": true
   },
   "@epam/uui:ModalHeaderProps": {
    "module": "@epam/uui",
@@ -68645,7 +68650,8 @@
     "name": "ModalHeaderProps",
     "nameFull": "ModalHeaderProps"
    },
-   "src": "uui/components/overlays/Modals.tsx"
+   "src": "uui/components/overlays/Modals.tsx",
+   "isPublic": true
   },
   "@epam/uui:ModalWindowMods": {
    "module": "@epam/uui",
@@ -68653,7 +68659,8 @@
     "name": "ModalWindowMods",
     "nameFull": "ModalWindowMods"
    },
-   "src": "uui/components/overlays/Modals.tsx"
+   "src": "uui/components/overlays/Modals.tsx",
+   "isPublic": true
   },
   "@epam/uui:ModalWindowProps": {
    "module": "@epam/uui",
@@ -68661,7 +68668,8 @@
     "name": "ModalWindowProps",
     "nameFull": "ModalWindowProps"
    },
-   "src": "uui/components/overlays/Modals.tsx"
+   "src": "uui/components/overlays/Modals.tsx",
+   "isPublic": true
   },
   "@epam/uui:MultiSwitchProps": {
    "module": "@epam/uui",
@@ -68669,7 +68677,8 @@
     "name": "MultiSwitchProps",
     "nameFull": "MultiSwitchProps<TValue>"
    },
-   "src": "uui/components/inputs/MultiSwitch.tsx"
+   "src": "uui/components/inputs/MultiSwitch.tsx",
+   "isPublic": true
   },
   "@epam/uui:NotificationCardProps": {
    "module": "@epam/uui",
@@ -68677,7 +68686,8 @@
     "name": "NotificationCardProps",
     "nameFull": "NotificationCardProps"
    },
-   "src": "uui/components/overlays/NotificationCard.tsx"
+   "src": "uui/components/overlays/NotificationCard.tsx",
+   "isPublic": true
   },
   "@epam/uui:NumericInputMods": {
    "module": "@epam/uui",
@@ -68685,7 +68695,8 @@
     "name": "NumericInputMods",
     "nameFull": "NumericInputMods"
    },
-   "src": "uui/components/inputs/NumericInput.tsx"
+   "src": "uui/components/inputs/NumericInput.tsx",
+   "isPublic": true
   },
   "@epam/uui:NumericInputProps": {
    "module": "@epam/uui",
@@ -68693,7 +68704,8 @@
     "name": "NumericInputProps",
     "nameFull": "NumericInputProps"
    },
-   "src": "uui/components/inputs/NumericInput.tsx"
+   "src": "uui/components/inputs/NumericInput.tsx",
+   "isPublic": true
   },
   "@epam/uui:PanelMods": {
    "module": "@epam/uui",
@@ -68701,7 +68713,8 @@
     "name": "PanelMods",
     "nameFull": "PanelMods"
    },
-   "src": "uui/components/layout/FlexItems/Panel.tsx"
+   "src": "uui/components/layout/FlexItems/Panel.tsx",
+   "isPublic": true
   },
   "@epam/uui:PickerInputProps": {
    "module": "@epam/uui",
@@ -68709,7 +68722,8 @@
     "name": "PickerInputProps",
     "nameFull": "PickerInputProps"
    },
-   "src": "uui/components/pickers/PickerInput.tsx"
+   "src": "uui/components/pickers/PickerInput.tsx",
+   "isPublic": true
   },
   "@epam/uui:PickerItemProps": {
    "module": "@epam/uui",
@@ -68717,7 +68731,8 @@
     "name": "PickerItemProps",
     "nameFull": "PickerItemProps<TItem, TId>"
    },
-   "src": "uui/components/pickers/PickerItem.tsx"
+   "src": "uui/components/pickers/PickerItem.tsx",
+   "isPublic": true
   },
   "@epam/uui:PickerListItemProps": {
    "module": "@epam/uui",
@@ -68725,7 +68740,8 @@
     "name": "PickerListItemProps",
     "nameFull": "PickerListItemProps<TItem, TId>"
    },
-   "src": "uui/components/pickers/PickerListItem.tsx"
+   "src": "uui/components/pickers/PickerListItem.tsx",
+   "isPublic": true
   },
   "@epam/uui:PickerListProps": {
    "module": "@epam/uui",
@@ -68733,7 +68749,8 @@
     "name": "PickerListProps",
     "nameFull": "PickerListProps<TItem, TId>"
    },
-   "src": "uui/components/pickers/PickerList.tsx"
+   "src": "uui/components/pickers/PickerList.tsx",
+   "isPublic": true
   },
   "@epam/uui:PickerModalProps": {
    "module": "@epam/uui",
@@ -68741,7 +68758,8 @@
     "name": "PickerModalProps",
     "nameFull": "PickerModalProps<TItem, TId>"
    },
-   "src": "uui/components/pickers/PickerModal.tsx"
+   "src": "uui/components/pickers/PickerModal.tsx",
+   "isPublic": true
   },
   "@epam/uui:PickerTogglerMods": {
    "module": "@epam/uui",
@@ -68749,7 +68767,8 @@
     "name": "PickerTogglerMods",
     "nameFull": "PickerTogglerMods"
    },
-   "src": "uui/components/pickers/PickerToggler.tsx"
+   "src": "uui/components/pickers/PickerToggler.tsx",
+   "isPublic": true
   },
   "@epam/uui:PresetsPanelProps": {
    "module": "@epam/uui",
@@ -68757,7 +68776,8 @@
     "name": "PresetsPanelProps",
     "nameFull": "PresetsPanelProps"
    },
-   "src": "uui/components/filters/PresetPanel/PresetsPanel.tsx"
+   "src": "uui/components/filters/PresetPanel/PresetsPanel.tsx",
+   "isPublic": true
   },
   "@epam/uui:ProgressBarMods": {
    "module": "@epam/uui",
@@ -68765,7 +68785,8 @@
     "name": "ProgressBarMods",
     "nameFull": "ProgressBarMods"
    },
-   "src": "uui/components/widgets/ProgressBar.tsx"
+   "src": "uui/components/widgets/ProgressBar.tsx",
+   "isPublic": true
   },
   "@epam/uui:RadioInputMods": {
    "module": "@epam/uui",
@@ -68773,7 +68794,8 @@
     "name": "RadioInputMods",
     "nameFull": "RadioInputMods"
    },
-   "src": "uui/components/inputs/RadioInput.tsx"
+   "src": "uui/components/inputs/RadioInput.tsx",
+   "isPublic": true
   },
   "@epam/uui:RadioInputProps": {
    "module": "@epam/uui",
@@ -68781,7 +68803,8 @@
     "name": "RadioInputProps",
     "nameFull": "RadioInputProps"
    },
-   "src": "uui/components/inputs/RadioInput.tsx"
+   "src": "uui/components/inputs/RadioInput.tsx",
+   "isPublic": true
   },
   "@epam/uui:RangeDatePickerBodyProps": {
    "module": "@epam/uui",
@@ -68789,7 +68812,8 @@
     "name": "RangeDatePickerBodyProps",
     "nameFull": "RangeDatePickerBodyProps<T>"
    },
-   "src": "uui/components/datePickers/RangeDatePickerBody.tsx"
+   "src": "uui/components/datePickers/RangeDatePickerBody.tsx",
+   "isPublic": true
   },
   "@epam/uui:RangeDatePickerProps": {
    "module": "@epam/uui",
@@ -68797,7 +68821,8 @@
     "name": "RangeDatePickerProps",
     "nameFull": "RangeDatePickerProps"
    },
-   "src": "uui/components/datePickers/RangeDatePicker.tsx"
+   "src": "uui/components/datePickers/RangeDatePicker.tsx",
+   "isPublic": true
   },
   "@epam/uui:RangeDatePickerValue": {
    "module": "@epam/uui",
@@ -68805,7 +68830,8 @@
     "name": "RangeDatePickerValue",
     "nameFull": "RangeDatePickerValue"
    },
-   "src": "uui/components/datePickers/RangeDatePickerBody.tsx"
+   "src": "uui/components/datePickers/RangeDatePickerBody.tsx",
+   "isPublic": true
   },
   "@epam/uui:RichTextViewMods": {
    "module": "@epam/uui",
@@ -68813,7 +68839,8 @@
     "name": "RichTextViewMods",
     "nameFull": "RichTextViewMods"
    },
-   "src": "uui/components/typography/RichTextView.tsx"
+   "src": "uui/components/typography/RichTextView.tsx",
+   "isPublic": true
   },
   "@epam/uui:RowMods": {
    "module": "@epam/uui",
@@ -68821,7 +68848,8 @@
     "name": "RowMods",
     "nameFull": "RowMods"
    },
-   "src": "uui/components/layout/FlexItems/FlexRow.tsx"
+   "src": "uui/components/layout/FlexItems/FlexRow.tsx",
+   "isPublic": true
   },
   "@epam/uui:RowSize": {
    "module": "@epam/uui",
@@ -68829,7 +68857,8 @@
     "name": "RowSize",
     "nameFull": "RowSize"
    },
-   "src": "uui/components/types.ts"
+   "src": "uui/components/types.ts",
+   "isPublic": true
   },
   "@epam/uui:RowSizeMod": {
    "module": "@epam/uui",
@@ -68837,7 +68866,8 @@
     "name": "RowSizeMod",
     "nameFull": "RowSizeMod"
    },
-   "src": "uui/components/types.ts"
+   "src": "uui/components/types.ts",
+   "isPublic": true
   },
   "@epam/uui:SemanticColor": {
    "module": "@epam/uui",
@@ -68845,7 +68875,8 @@
     "name": "SemanticColor",
     "nameFull": "SemanticColor"
    },
-   "src": "uui/components/types.ts"
+   "src": "uui/components/types.ts",
+   "isPublic": true
   },
   "@epam/uui:SizeMod": {
    "module": "@epam/uui",
@@ -68853,7 +68884,8 @@
     "name": "SizeMod",
     "nameFull": "SizeMod"
    },
-   "src": "uui/components/types.ts"
+   "src": "uui/components/types.ts",
+   "isPublic": true
   },
   "@epam/uui:SpinnerProps": {
    "module": "@epam/uui",
@@ -68861,7 +68893,8 @@
     "name": "SpinnerProps",
     "nameFull": "SpinnerProps"
    },
-   "src": "uui/components/widgets/Spinner.tsx"
+   "src": "uui/components/widgets/Spinner.tsx",
+   "isPublic": true
   },
   "@epam/uui:SwitchMods": {
    "module": "@epam/uui",
@@ -68869,7 +68902,8 @@
     "name": "SwitchMods",
     "nameFull": "SwitchMods"
    },
-   "src": "uui/components/inputs/Switch.tsx"
+   "src": "uui/components/inputs/Switch.tsx",
+   "isPublic": true
   },
   "@epam/uui:TabButtonMods": {
    "module": "@epam/uui",
@@ -68877,7 +68911,8 @@
     "name": "TabButtonMods",
     "nameFull": "TabButtonMods"
    },
-   "src": "uui/components/buttons/TabButton.tsx"
+   "src": "uui/components/buttons/TabButton.tsx",
+   "isPublic": true
   },
   "@epam/uui:TabButtonProps": {
    "module": "@epam/uui",
@@ -68885,7 +68920,8 @@
     "name": "TabButtonProps",
     "nameFull": "TabButtonProps"
    },
-   "src": "uui/components/buttons/TabButton.tsx"
+   "src": "uui/components/buttons/TabButton.tsx",
+   "isPublic": true
   },
   "@epam/uui:TableSizesAndPositionMods": {
    "module": "@epam/uui",
@@ -68901,7 +68937,8 @@
     "name": "TagMods",
     "nameFull": "TagMods"
    },
-   "src": "uui/components/widgets/Tag.tsx"
+   "src": "uui/components/widgets/Tag.tsx",
+   "isPublic": true
   },
   "@epam/uui:TagProps": {
    "module": "@epam/uui",
@@ -68909,7 +68946,8 @@
     "name": "TagProps",
     "nameFull": "TagProps"
    },
-   "src": "uui/components/widgets/Tag.tsx"
+   "src": "uui/components/widgets/Tag.tsx",
+   "isPublic": true
   },
   "@epam/uui:TagSize": {
    "module": "@epam/uui",
@@ -68917,7 +68955,8 @@
     "name": "TagSize",
     "nameFull": "TagSize"
    },
-   "src": "uui/components/widgets/Tag.tsx"
+   "src": "uui/components/widgets/Tag.tsx",
+   "isPublic": true
   },
   "@epam/uui:TextAreaMods": {
    "module": "@epam/uui",
@@ -68925,7 +68964,8 @@
     "name": "TextAreaMods",
     "nameFull": "TextAreaMods"
    },
-   "src": "uui/components/inputs/TextArea.tsx"
+   "src": "uui/components/inputs/TextArea.tsx",
+   "isPublic": true
   },
   "@epam/uui:TextAreaProps": {
    "module": "@epam/uui",
@@ -68933,7 +68973,8 @@
     "name": "TextAreaProps",
     "nameFull": "TextAreaProps"
    },
-   "src": "uui/components/inputs/TextArea.tsx"
+   "src": "uui/components/inputs/TextArea.tsx",
+   "isPublic": true
   },
   "@epam/uui:TextInputMods": {
    "module": "@epam/uui",
@@ -68941,7 +68982,8 @@
     "name": "TextInputMods",
     "nameFull": "TextInputMods"
    },
-   "src": "uui/components/inputs/TextInput.tsx"
+   "src": "uui/components/inputs/TextInput.tsx",
+   "isPublic": true
   },
   "@epam/uui:TextInputProps": {
    "module": "@epam/uui",
@@ -68949,7 +68991,8 @@
     "name": "TextInputProps",
     "nameFull": "TextInputProps"
    },
-   "src": "uui/components/inputs/TextInput.tsx"
+   "src": "uui/components/inputs/TextInput.tsx",
+   "isPublic": true
   },
   "@epam/uui:TextMods": {
    "module": "@epam/uui",
@@ -68957,7 +69000,8 @@
     "name": "TextMods",
     "nameFull": "TextMods"
    },
-   "src": "uui/components/typography/Text.tsx"
+   "src": "uui/components/typography/Text.tsx",
+   "isPublic": true
   },
   "@epam/uui:TextPlaceholderProps": {
    "module": "@epam/uui",
@@ -68965,7 +69009,8 @@
     "name": "TextPlaceholderProps",
     "nameFull": "TextPlaceholderProps"
    },
-   "src": "uui/components/typography/TextPlaceholder.tsx"
+   "src": "uui/components/typography/TextPlaceholder.tsx",
+   "isPublic": true
   },
   "@epam/uui:TextProps": {
    "module": "@epam/uui",
@@ -68973,7 +69018,8 @@
     "name": "TextProps",
     "nameFull": "TextProps"
    },
-   "src": "uui/components/typography/Text.tsx"
+   "src": "uui/components/typography/Text.tsx",
+   "isPublic": true
   },
   "@epam/uui:TextSettings": {
    "module": "@epam/uui",
@@ -68981,7 +69027,8 @@
     "name": "TextSettings",
     "nameFull": "TextSettings"
    },
-   "src": "uui/helpers/textLayout.tsx"
+   "src": "uui/helpers/textLayout.tsx",
+   "isPublic": true
   },
   "@epam/uui:TextSize": {
    "module": "@epam/uui",
@@ -68989,7 +69036,8 @@
     "name": "TextSize",
     "nameFull": "TextSize"
    },
-   "src": "uui/components/types.ts"
+   "src": "uui/components/types.ts",
+   "isPublic": true
   },
   "@epam/uui:TimePickerProps": {
    "module": "@epam/uui",
@@ -68997,7 +69045,8 @@
     "name": "TimePickerProps",
     "nameFull": "TimePickerProps"
    },
-   "src": "uui/components/inputs/TimePicker.tsx"
+   "src": "uui/components/inputs/TimePicker.tsx",
+   "isPublic": true
   },
   "@epam/uui:TooltipMods": {
    "module": "@epam/uui",
@@ -69005,7 +69054,8 @@
     "name": "TooltipMods",
     "nameFull": "TooltipMods"
    },
-   "src": "uui/components/overlays/Tooltip.tsx"
+   "src": "uui/components/overlays/Tooltip.tsx",
+   "isPublic": true
   },
   "@epam/uui:TooltipProps": {
    "module": "@epam/uui",
@@ -69013,7 +69063,8 @@
     "name": "TooltipProps",
     "nameFull": "TooltipProps"
    },
-   "src": "uui/components/overlays/Tooltip.tsx"
+   "src": "uui/components/overlays/Tooltip.tsx",
+   "isPublic": true
   },
   "@epam/uui:UuiMultiSwitchColor": {
    "module": "@epam/uui",
@@ -69021,7 +69072,8 @@
     "name": "UuiMultiSwitchColor",
     "nameFull": "UuiMultiSwitchColor"
    },
-   "src": "uui/components/inputs/MultiSwitch.tsx"
+   "src": "uui/components/inputs/MultiSwitch.tsx",
+   "isPublic": true
   },
   "@epam/uui:VerticalTabButtonProps": {
    "module": "@epam/uui",
@@ -69029,7 +69081,8 @@
     "name": "VerticalTabButtonProps",
     "nameFull": "VerticalTabButtonProps"
    },
-   "src": "uui/components/buttons/VerticalTabButton.tsx"
+   "src": "uui/components/buttons/VerticalTabButton.tsx",
+   "isPublic": true
   },
   "@epam/uui:pickerPart": {
    "module": "@epam/uui",
@@ -69037,7 +69090,8 @@
     "name": "pickerPart",
     "nameFull": "pickerPart"
    },
-   "src": "uui/components/datePickers/RangeDatePickerBody.tsx"
+   "src": "uui/components/datePickers/RangeDatePickerBody.tsx",
+   "isPublic": true
   },
   "node_modules/@types/react/index.d.ts:AllHTMLAttributes": {
    "module": "node_modules/@types/react/index.d.ts",
@@ -69045,8 +69099,7 @@
     "name": "AllHTMLAttributes",
     "nameFull": "AllHTMLAttributes<T>"
    },
-   "src": "node_modules/@types/react/index.d.ts",
-   "external": true
+   "src": "node_modules/@types/react/index.d.ts"
   },
   "node_modules/@types/react/index.d.ts:AriaAttributes": {
    "module": "node_modules/@types/react/index.d.ts",
@@ -69054,8 +69107,7 @@
     "name": "AriaAttributes",
     "nameFull": "AriaAttributes"
    },
-   "src": "node_modules/@types/react/index.d.ts",
-   "external": true
+   "src": "node_modules/@types/react/index.d.ts"
   },
   "node_modules/@types/react/index.d.ts:Attributes": {
    "module": "node_modules/@types/react/index.d.ts",
@@ -69063,8 +69115,7 @@
     "name": "Attributes",
     "nameFull": "Attributes"
    },
-   "src": "node_modules/@types/react/index.d.ts",
-   "external": true
+   "src": "node_modules/@types/react/index.d.ts"
   },
   "node_modules/@types/react/index.d.ts:ClassAttributes": {
    "module": "node_modules/@types/react/index.d.ts",
@@ -69072,8 +69123,7 @@
     "name": "ClassAttributes",
     "nameFull": "ClassAttributes<T>"
    },
-   "src": "node_modules/@types/react/index.d.ts",
-   "external": true
+   "src": "node_modules/@types/react/index.d.ts"
   },
   "node_modules/@types/react/index.d.ts:Component": {
    "module": "node_modules/@types/react/index.d.ts",
@@ -69081,8 +69131,7 @@
     "name": "Component",
     "nameFull": "Component<P, S, SS>"
    },
-   "src": "node_modules/@types/react/index.d.ts",
-   "external": true
+   "src": "node_modules/@types/react/index.d.ts"
   },
   "node_modules/@types/react/index.d.ts:ComponentLifecycle": {
    "module": "node_modules/@types/react/index.d.ts",
@@ -69090,8 +69139,7 @@
     "name": "ComponentLifecycle",
     "nameFull": "ComponentLifecycle<P, S, SS>"
    },
-   "src": "node_modules/@types/react/index.d.ts",
-   "external": true
+   "src": "node_modules/@types/react/index.d.ts"
   },
   "node_modules/@types/react/index.d.ts:DOMAttributes": {
    "module": "node_modules/@types/react/index.d.ts",
@@ -69099,8 +69147,7 @@
     "name": "DOMAttributes",
     "nameFull": "DOMAttributes<T>"
    },
-   "src": "node_modules/@types/react/index.d.ts",
-   "external": true
+   "src": "node_modules/@types/react/index.d.ts"
   },
   "node_modules/@types/react/index.d.ts:DeprecatedLifecycle": {
    "module": "node_modules/@types/react/index.d.ts",
@@ -69108,8 +69155,7 @@
     "name": "DeprecatedLifecycle",
     "nameFull": "DeprecatedLifecycle<P, S>"
    },
-   "src": "node_modules/@types/react/index.d.ts",
-   "external": true
+   "src": "node_modules/@types/react/index.d.ts"
   },
   "node_modules/@types/react/index.d.ts:HTMLAttributes": {
    "module": "node_modules/@types/react/index.d.ts",
@@ -69117,8 +69163,7 @@
     "name": "HTMLAttributes",
     "nameFull": "HTMLAttributes<T>"
    },
-   "src": "node_modules/@types/react/index.d.ts",
-   "external": true
+   "src": "node_modules/@types/react/index.d.ts"
   },
   "node_modules/@types/react/index.d.ts:InputHTMLAttributes": {
    "module": "node_modules/@types/react/index.d.ts",
@@ -69126,8 +69171,7 @@
     "name": "InputHTMLAttributes",
     "nameFull": "InputHTMLAttributes<T>"
    },
-   "src": "node_modules/@types/react/index.d.ts",
-   "external": true
+   "src": "node_modules/@types/react/index.d.ts"
   },
   "node_modules/@types/react/index.d.ts:NewLifecycle": {
    "module": "node_modules/@types/react/index.d.ts",
@@ -69135,8 +69179,7 @@
     "name": "NewLifecycle",
     "nameFull": "NewLifecycle<P, S, SS>"
    },
-   "src": "node_modules/@types/react/index.d.ts",
-   "external": true
+   "src": "node_modules/@types/react/index.d.ts"
   },
   "node_modules/@types/react/index.d.ts:PropsWithChildren": {
    "module": "node_modules/@types/react/index.d.ts",
@@ -69144,8 +69187,7 @@
     "name": "PropsWithChildren",
     "nameFull": "PropsWithChildren<P>"
    },
-   "src": "node_modules/@types/react/index.d.ts",
-   "external": true
+   "src": "node_modules/@types/react/index.d.ts"
   },
   "node_modules/@udecode/slate/dist/interfaces/element/TElement.d.ts:TElement": {
    "module": "node_modules/@udecode/slate/dist/interfaces/element/TElement.d.ts",
@@ -69153,8 +69195,7 @@
     "name": "TElement",
     "nameFull": "TElement"
    },
-   "src": "node_modules/@udecode/slate/dist/interfaces/element/TElement.d.ts",
-   "external": true
+   "src": "node_modules/@udecode/slate/dist/interfaces/element/TElement.d.ts"
   },
   "node_modules/react-custom-scrollbars-2/index.d.ts:ScrollbarProps": {
    "module": "node_modules/react-custom-scrollbars-2/index.d.ts",
@@ -69162,8 +69203,7 @@
     "name": "ScrollbarProps",
     "nameFull": "ScrollbarProps"
    },
-   "src": "node_modules/react-custom-scrollbars-2/index.d.ts",
-   "external": true
+   "src": "node_modules/react-custom-scrollbars-2/index.d.ts"
   },
   "node_modules/react-custom-scrollbars-2/index.d.ts:Scrollbars": {
    "module": "node_modules/react-custom-scrollbars-2/index.d.ts",
@@ -69171,8 +69211,7 @@
     "name": "Scrollbars",
     "nameFull": "Scrollbars"
    },
-   "src": "node_modules/react-custom-scrollbars-2/index.d.ts",
-   "external": true
+   "src": "node_modules/react-custom-scrollbars-2/index.d.ts"
   },
   "node_modules/react-custom-scrollbars-2/index.d.ts:positionValues": {
    "module": "node_modules/react-custom-scrollbars-2/index.d.ts",
@@ -69180,8 +69219,7 @@
     "name": "positionValues",
     "nameFull": "positionValues"
    },
-   "src": "node_modules/react-custom-scrollbars-2/index.d.ts",
-   "external": true
+   "src": "node_modules/react-custom-scrollbars-2/index.d.ts"
   }
  }
 }

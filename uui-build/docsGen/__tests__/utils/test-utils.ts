@@ -5,7 +5,7 @@ import { extractExportsFromTsProject } from '../../extractor';
 import { formatExports } from '../../formatter';
 import { ConverterContext } from '../../converterContext/converterContext';
 import { TNotFormattedExportsByModule } from '../../types/types';
-import { TResultJson } from '../../types/docsGenSharedTypes';
+import { TApiReferenceJson } from '../../types/docsGenSharedTypes';
 import { uuiRoot } from '../../constants';
 
 const TEST_MAIN_FILE_PATH = path.join(uuiRoot, 'test/test.tsx');
@@ -30,7 +30,7 @@ function initTestProject() {
     });
 }
 
-export function generateDocs(fileContent: string): TResultJson {
+export function generateDocs(fileContent: string): TApiReferenceJson {
     const project = initTestProject();
     const mainFilePath = TEST_MAIN_FILE_PATH;
     project.createSourceFile(mainFilePath, fileContent, { overwrite: true });
@@ -38,9 +38,9 @@ export function generateDocs(fileContent: string): TResultJson {
     const exportsNotFormatted: TNotFormattedExportsByModule = {
         [TEST_DEFAULT_MODULE_NAME]: extractExportsFromTsProject({ project, mainFilePath, context }),
     };
-    const byModule = formatExports(exportsNotFormatted, context);
+    const publicTypes = formatExports(exportsNotFormatted, context);
     return {
-        byModule,
-        references: context.references.get(),
+        publicTypes,
+        refs: context.refs.get(publicTypes),
     };
 }

@@ -23,7 +23,7 @@ describe('docsGen:complexTypes', () => {
             }
         `;
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     TPrimitives: {
                         kind: 264,
@@ -199,9 +199,9 @@ describe('docsGen:complexTypes', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:TPrimitives': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -246,7 +246,7 @@ describe('docsGen:complexTypes', () => {
             }
         `;
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     ITestA: {
                         kind: 263,
@@ -404,9 +404,9 @@ describe('docsGen:complexTypes', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:ITestA': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -415,7 +415,7 @@ describe('docsGen:complexTypes', () => {
                     },
                 },
                 'test/test.tsx:ITestB': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -431,7 +431,7 @@ describe('docsGen:complexTypes', () => {
     test('should not expand props from external type', () => {
         const input = 'export type TExternalTypeTest = HTMLElement;';
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     TExternalTypeTest: {
                         kind: 264,
@@ -445,9 +445,9 @@ describe('docsGen:complexTypes', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:TExternalTypeTest': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -469,7 +469,7 @@ describe('docsGen:complexTypes', () => {
             export type TTest = Omit<TLocal, 'p1'>;
         `;
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     TTest: {
                         kind: 264,
@@ -494,9 +494,8 @@ describe('docsGen:complexTypes', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:TLocal': {
-                    external: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -505,7 +504,7 @@ describe('docsGen:complexTypes', () => {
                     },
                 },
                 'test/test.tsx:TTest': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -528,7 +527,7 @@ describe('docsGen:complexTypes', () => {
             }
         `;
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     IA: {
                         kind: 263,
@@ -576,9 +575,9 @@ describe('docsGen:complexTypes', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:IA': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -587,7 +586,7 @@ describe('docsGen:complexTypes', () => {
                     },
                 },
                 'test/test.tsx:TA': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -612,7 +611,7 @@ describe('docsGen:complexTypes', () => {
         }
         `;
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     AcceptDropParams: {
                         kind: 263,
@@ -683,9 +682,9 @@ describe('docsGen:complexTypes', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:AcceptDropParams': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -707,7 +706,7 @@ describe('docsGen:complexTypes', () => {
             export interface IInterface extends IBaseInterface<string> {};
         `;
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     IInterface: {
                         kind: 263,
@@ -742,9 +741,8 @@ describe('docsGen:complexTypes', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:IBaseInterface': {
-                    external: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -753,7 +751,7 @@ describe('docsGen:complexTypes', () => {
                     },
                 },
                 'test/test.tsx:IInterface': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {

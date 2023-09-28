@@ -19,11 +19,11 @@ type DocsQuery = {
 
 function useApiReferenceNav(): DocItem[] | undefined {
     const { uuiApp } = useUuiContext<TApi, TAppContext>();
-    const apiRef = uuiApp.docsApiReference;
+    const tsDocsNav = uuiApp.tsDocs.navigation;
     const root = { id: 'ApiReference', name: 'Api Reference' };
-    return Object.keys(apiRef).reduce<DocItem[]>((acc, moduleName) => {
+    return Object.keys(tsDocsNav).reduce<DocItem[]>((acc, moduleName) => {
         acc.push({ id: moduleName, name: moduleName, parentId: root.id });
-        apiRef[moduleName].forEach((exportName) => {
+        tsDocsNav[moduleName].forEach((exportName) => {
             acc.push({ id: `${moduleName}:${exportName}`, name: exportName, parentId: moduleName, component: ApiReferenceItem });
         });
         return acc;

@@ -7,7 +7,6 @@ export { uuiRoot };
 
 const OUT_DIR_REL = 'public/docs/docsGenOutput';
 export const OUTPUT_FILE_FULL_PATH = path.resolve(uuiRoot, `${OUT_DIR_REL}/docsGenOutput.json`);
-export const OUTPUT_FILE_HIGHLIGHTED_FULL_PATH = path.resolve(uuiRoot, `${OUT_DIR_REL}/docsGenOutputHighlighted.json`);
 export const OUTPUT_DTS_FILE_FULL_PATH = path.resolve(uuiRoot, `${OUT_DIR_REL}/docsGenOutput.d.ts`);
 export const OUTPUT_STATS_FILE_FULL_PATH = path.resolve(uuiRoot, `${OUT_DIR_REL}/docsGenStats.json`);
 export const TSCONFIG_PATH = './tsconfig.json';
@@ -25,7 +24,6 @@ export const INCLUDED_UUI_PACKAGES: Record<string, string> = {
     '@epam/promo': 'epam-promo',
     '@epam/loveship': 'loveship',
     '@epam/uui-editor': 'uui-editor',
-    '@epam/uui-timeline': 'uui-timeline',
 };
 
 export const INCLUDED_EXPORT_KINDS = [

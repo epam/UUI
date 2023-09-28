@@ -1,7 +1,7 @@
 import {
     TDocGenStatsResult,
     IDocGenStats,
-    TDocGenStatsResult_Exports, IConverterContext,
+    TDocGenStatsResult_Exports,
 } from '../types/types';
 import { TType, TTypeRefShort } from '../types/docsGenSharedTypes';
 
@@ -10,9 +10,6 @@ export class DocGenStats implements IDocGenStats {
     private missingTypeComment: TDocGenStatsResult['missingTypeComment']['value'] = [];
     private ignoredExports = new ExportStat();
     private includedExports = new ExportStat();
-
-    constructor(private context: IConverterContext) {
-    }
 
     checkConvertedExport(converted: TType, isDirectExport: boolean) {
         if (isDirectExport && !converted.comment?.length) {
@@ -63,7 +60,6 @@ export class DocGenStats implements IDocGenStats {
             },
             ignoredExports: this.ignoredExports.toJSON(),
             includedExports: this.includedExports.toJSON(),
-            references: this.context.references.get(),
         };
     }
 }

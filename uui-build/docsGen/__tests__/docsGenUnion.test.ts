@@ -6,7 +6,7 @@ describe('docsGen:union', () => {
             export type TUnionTest = 'one' | 'two' | 'three' | 'four' | boolean;
         `;
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     TUnionTest: {
                         kind: 264,
@@ -20,9 +20,9 @@ describe('docsGen:union', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:TUnionTest': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -41,7 +41,7 @@ describe('docsGen:union', () => {
             export type TTest = N1 | N2;
         `;
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     TTest: {
                         kind: 264,
@@ -94,9 +94,8 @@ describe('docsGen:union', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:N1': {
-                    external: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -105,7 +104,6 @@ describe('docsGen:union', () => {
                     },
                 },
                 'test/test.tsx:N2': {
-                    external: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -114,7 +112,7 @@ describe('docsGen:union', () => {
                     },
                 },
                 'test/test.tsx:TTest': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -132,7 +130,7 @@ describe('docsGen:union', () => {
             export type TTest = ({ sameProp: string, n1Prop: string }) | ({ sameProp: string, n2Prop: string });
         `;
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     TTest: {
                         kind: 264,
@@ -179,9 +177,9 @@ describe('docsGen:union', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:TTest': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {
@@ -199,7 +197,7 @@ describe('docsGen:union', () => {
             export type TTest = ({ a: string, b: string }) | HTMLElement;
         `;
         const output = {
-            byModule: {
+            publicTypes: {
                 '@epam/test-module': {
                     TTest: {
                         kind: 264,
@@ -216,9 +214,9 @@ describe('docsGen:union', () => {
                     },
                 },
             },
-            references: {
+            refs: {
                 'test/test.tsx:TTest': {
-                    external: true,
+                    isPublic: true,
                     module: 'test/test.tsx',
                     src: 'test/test.tsx',
                     typeName: {

@@ -3,9 +3,9 @@ import {
     TNotFormattedExportsByModule,
 } from './types/types';
 import { SymbolUtils } from './converters/converterUtils/symbolUtils';
-import { TFormattedExportsByModule, TType } from './types/docsGenSharedTypes';
+import { TApiReferenceJson, TPublicTypesByModule, TType } from './types/docsGenSharedTypes';
 
-export function formatExports(exports: TNotFormattedExportsByModule, context: IConverterContext): TFormattedExportsByModule {
+export function formatExports(exports: TNotFormattedExportsByModule, context: IConverterContext): TPublicTypesByModule {
     const exportsByModule = new DocGenExportsByModule();
     Object.keys(exports).forEach((moduleName) => {
         const singleDecl = exports[moduleName];
@@ -28,7 +28,7 @@ export function formatExports(exports: TNotFormattedExportsByModule, context: IC
 }
 
 class DocGenExportsByModule {
-    private data: TFormattedExportsByModule = {};
+    private data: TPublicTypesByModule = {};
 
     add(moduleName: string, type: TType) {
         const bucket = this.data[moduleName] || {};
@@ -37,7 +37,7 @@ class DocGenExportsByModule {
         bucket[typeName] = type;
     }
 
-    get(): TFormattedExportsByModule {
+    get(): TApiReferenceJson['publicTypes'] {
         return this.data;
     }
 }

@@ -3,8 +3,17 @@ import { svc } from '../services';
 export * from './apiDefinition';
 export type TAppContext = Awaited<ReturnType<typeof loadAppContext>>;
 export async function loadAppContext() {
-    const { content } = await svc.api.getTsDocsApiReference();
+    const [
+        { content: navigation },
+        { content: refs },
+    ] = await Promise.all([
+        svc.api.getTsDocsNavigation(),
+        svc.api.getTsDocsRefs(),
+    ]);
     return {
-        docsApiReference: content,
+        tsDocs: {
+            navigation,
+            refs,
+        },
     };
 }

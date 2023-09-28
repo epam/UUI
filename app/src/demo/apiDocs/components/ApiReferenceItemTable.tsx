@@ -21,13 +21,14 @@ import {
     Text,
     Tooltip,
 } from '@epam/uui';
-import { TUseGetTsDocsForPackageResult, useTsDocs } from '../dataHooks';
+import { useTsDocForType } from '../dataHooks';
 import { CodeExpandable } from './components/CodeExpandable';
 import css from './ApiReferenceTable.module.scss';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/table-info-fill-18.svg';
 import { TType, TTypeProp } from '../docsGenSharedTypes';
+import { TsCommentForTypeRef } from './components/TsCommentForTypeRef';
 
-type TTypeGroup = { _group: true, from: TTypeProp['from'], comment: TTypeProp['comment'] };
+type TTypeGroup = { _group: true, from: TTypeProp['from'] };
 type TItem = TTypeProp | TTypeGroup;
 
 function isGroup(item: TTypeProp | TTypeGroup): item is TTypeGroup {
@@ -82,9 +83,13 @@ function getColumns(params: { isGroupedByFrom?: boolean, hasFrom?: boolean, isGr
             caption: 'Comment',
             alignSelf: 'center',
             render: (item) => {
-                return (
-                    <TsComment text={ item.comment } keepBreaks={ true } isCompact={ true } />
-                );
+                if (isGroup(item)) {
+                    return <TsCommentForTypeRef typeRef={ item.from } keepBreaks={ true } isCompact={ true } />;
+                } else {
+                    return (
+                        <TsComment text={ item.comment } keepBreaks={ true } isCompact={ true } />
+                    );
+                }
             },
             width: WIDTH.comment,
             grow: 1,
@@ -116,14 +121,14 @@ function getColumns(params: { isGroupedByFrom?: boolean, hasFrom?: boolean, isGr
     return propsTableColumns;
 }
 
-function useIsGrouped(exportInfo?: TType): { canGroup: boolean, setIsGrouped: (isGrouped: boolean) => void, isGrouped: boolean } {
+function useIsGrouped(tsDocsType?: TType): { canGroup: boolean, setIsGrouped: (isGrouped: boolean) => void, isGrouped: boolean } {
     const [isGrouped, setIsGrouped] = useState(false);
     const canGroup = useMemo(() => {
-        if (exportInfo) {
-            return Boolean(exportInfo.props?.some(({ from }) => !!from));
+        if (tsDocsType) {
+            return Boolean(tsDocsType.props?.some(({ from }) => !!from));
         }
         return false;
-    }, [exportInfo]);
+    }, [tsDocsType]);
 
     return {
         canGroup,
@@ -132,43 +137,37 @@ function useIsGrouped(exportInfo?: TType): { canGroup: boolean, setIsGrouped: (i
     };
 }
 
-type ApiReferenceItemApiProps = {
-    entry: TTsDocExportedEntry;
-    showCode?: boolean;
-};
-export function ApiReferenceItemTable(props: ApiReferenceItemApiProps) {
-    const tsDocs = useTsDocs();
-    if (!tsDocs) {
+export function ApiReferenceItemTableForTypeRef(props: { showCode?: boolean; tsDocsRef: TTsDocExportedEntry; }) {
+    const tsDocsType = useTsDocForType(props.tsDocsRef);
+    if (!tsDocsType) {
         return null;
     }
     return (
-        <ApiReferenceItemTableInner { ...props } tsDocs={ tsDocs } />
+        <ApiReferenceItemTable { ...props } tsDocsType={ tsDocsType } />
     );
 }
-function ApiReferenceItemTableInner(props: ApiReferenceItemApiProps & { tsDocs: TUseGetTsDocsForPackageResult }) {
-    const { entry, showCode = false, tsDocs } = props;
-    const exportInfo = tsDocs.get(entry);
-    const { canGroup, isGrouped, setIsGrouped } = useIsGrouped(exportInfo);
+export function ApiReferenceItemTable(props: { showCode?: boolean, tsDocsType: TType }) {
+    const { showCode = false, tsDocsType } = props;
+    const { canGroup, isGrouped, setIsGrouped } = useIsGrouped(tsDocsType);
     const columns = getColumns({ isGroupedByFrom: isGrouped, hasFrom: canGroup });
-    const isNoData = !exportInfo?.props?.length;
-    const propsFromUnion = exportInfo?.propsFromUnion;
+    const isNoData = !tsDocsType?.props?.length;
+    const propsFromUnion = tsDocsType?.propsFromUnion;
     const [tState, setTState] = useState<DataTableState>({});
     const exportPropsDsItems: TItem[] = useMemo(() => {
-        if (exportInfo?.props) {
+        if (tsDocsType?.props) {
             const parents = new Map<string, TTypeGroup>();
             if (isGrouped) {
-                exportInfo.props.forEach(({ from }) => {
+                tsDocsType.props.forEach(({ from }) => {
                     if (from) {
-                        const comment = tsDocs.get(from)?.comment;
-                        parents.set(from, { _group: true, from, comment });
+                        parents.set(from, { _group: true, from });
                     }
                 });
             }
             const parentsArr = Array.from(parents.values());
-            return (exportInfo.props as TItem[]).concat(parentsArr);
+            return (tsDocsType.props as TItem[]).concat(parentsArr);
         }
         return [];
-    }, [exportInfo, isGrouped, tsDocs]);
+    }, [tsDocsType, isGrouped]);
     const exportPropsDs = useArrayDataSource<TItem, string, unknown>(
         {
             items: exportPropsDsItems,
@@ -273,7 +272,7 @@ function ApiReferenceItemTableInner(props: ApiReferenceItemApiProps & { tsDocs: 
                 } }
                 { ...view.getListProps() }
             />
-            <CodeExpandable showCode={ showCode } typeRefShort={ exportInfo.typeRef } />
+            <CodeExpandable showCode={ showCode } tsDocsType={ tsDocsType } />
         </div>
     );
 }
