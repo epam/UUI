@@ -185,7 +185,7 @@ export class GroupingConfigBuilder<
 
                     const response = await this.entitiesConfig[this.defaultEntity].api({
                         ...request,
-                        filter: { ...request.filter, ...filter, groupBy: lastGroupBy },
+                        filter: { ...request.filter, ...filter, groupBy: undefined },
                     }, context);
                     return this.getResultsWithMeta(response, context.parent, groupByPath);
                 }
