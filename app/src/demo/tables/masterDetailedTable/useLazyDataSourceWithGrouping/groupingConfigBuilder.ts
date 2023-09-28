@@ -42,7 +42,7 @@ export class GroupingConfigBuilder<
         return this;
     }
 
-    addDefault(config: ConfigDefault<TGroups, TId, TFilter, TGroupBy>) {
+    addDefaults(config: ConfigDefault<TGroups, TId, TFilter, TGroupBy>) {
         this[DEFAULT_CONFIG] = {
             isLastNestingLevel: () => true,
             ...config,
@@ -83,7 +83,7 @@ export class GroupingConfigBuilder<
         return (this.entitiesConfig[type]?.api ?? this.groupingsConfig[type]?.api)(...apiArgs);
     }
 
-    async getByIdsApi(
+    async idsApi(
         ids: ToUnion<ComplexId<TGroups, TId, TGroupBy>>[][],
         groupBy: GroupByForType<TGroups, TGroupBy, keyof TGroups>,
         context: LazyDataSourceApiRequestContext<
@@ -149,7 +149,12 @@ export class GroupingConfigBuilder<
 
     async groupByApi<GroupBy extends GroupByForType<TGroups, TGroupBy, keyof TGroups>>(
         groupBy: GroupBy | GroupBy[],
-        ...apiArgs: Parameters<LazyDataSourceProps<TGroupsWithMeta<TGroups, TId, TGroupBy>[keyof TGroups], TId[keyof TGroups], TFilter[keyof TGroups]>['api']>
+        ...apiArgs: Parameters<
+        LazyDataSourceProps<
+        TGroupsWithMeta<TGroups, TId, TGroupBy>[keyof TGroups],
+        TId[keyof TGroups],
+        TFilter[keyof TGroups]
+        >['api']>
     ) {
         const [request, context] = apiArgs;
         const filterFromGroupBy = context.parent ? this.getFilterFromParentId(context.parent[ID]) : {};
@@ -246,7 +251,9 @@ export class GroupingConfigBuilder<
         };
     }
 
-    private getFilterFromParentId(parentId: ToUnion<ComplexId<TGroups, TId, TGroupBy>>[] = []): FilterFromParentId<TGroups, TId, TGroupBy> {
+    private getFilterFromParentId(
+        parentId: ToUnion<ComplexId<TGroups, TId, TGroupBy>>[] = [],
+    ): FilterFromParentId<TGroups, TId, TGroupBy> {
         return parentId.reduce(
             (filter, [, groupBy, id]) =>
                 groupBy ? { ...filter, [`${String(groupBy)}Id`]: id } : filter,

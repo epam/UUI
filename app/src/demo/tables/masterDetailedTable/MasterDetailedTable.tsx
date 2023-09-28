@@ -56,7 +56,7 @@ export function MasterDetailedTable() {
     const dataSource = useLazyDataSourceWithGrouping<PersonTableGroups, PersonTableIdGroups, PersonFilters, PersonGroupBy>(
         (config) => {
             return config
-                .addDefault({
+                .addDefaults({
                     getType: ({ __typename }) => __typename,
                     getGroupBy: () => tableStateApi.tableState.filter?.groupBy,
                     backgroundReload: true,
