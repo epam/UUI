@@ -1,9 +1,10 @@
 import { devLogger, withMods } from '@epam/uui-core';
 import { BadgeProps as UuiBadgeProps, Badge as UuiBadge, BadgeMods as UuiBadgeMods } from '@epam/uui';
+import { EpamPrimaryColor } from '../types';
 import css from './Badge.module.scss';
 
 export interface BadgeMods extends Omit<UuiBadgeProps, 'color' | 'fill'> {
-    color?: 'blue' | 'green' | 'amber' | 'red' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'lavanda' | 'cobalt' | 'white' | 'gray10'| 'gray30'| 'gray60';
+    color?: EpamPrimaryColor | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'lavanda' | 'cobalt' | 'white' | 'gray10'| 'gray30'| 'gray60';
     fill?: UuiBadgeMods['fill'] | 'semitransparent' | 'transparent';
 }
 

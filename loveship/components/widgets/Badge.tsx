@@ -2,11 +2,12 @@ import { devLogger, withMods } from '@epam/uui-core';
 import * as types from '../../components/types';
 import { Badge as UuiBadge, BadgeMods as UuiBadgeMods, BadgeProps as UuiBadgeProps } from '@epam/uui';
 import css from './Badge.module.scss';
+import { EpamAdditionalColor, EpamPrimaryColor } from '../types';
 
 const defaultSize = '18';
 
 export interface BadgeMods extends Omit<UuiBadgeProps, 'color' | 'fill' | 'size'> {
-    color?: 'sky' | 'grass' | 'sun' | 'fire' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'lavanda' | 'cobalt' | 'white' | 'night100' | 'night300' | 'night600';
+    color?: EpamPrimaryColor | EpamAdditionalColor | 'yellow'| 'orange' | 'purple' | 'white' | 'night100' | 'night300' | 'night600';
     shape?: types.ControlShape;
     fill?: UuiBadgeMods['fill'] | 'semitransparent' | 'transparent';
     size?: UuiBadgeMods['size'] | '12';

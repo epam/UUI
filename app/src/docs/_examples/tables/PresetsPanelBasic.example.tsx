@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Badge, EpamAdditionalColor } from '@epam/promo';
+import { Badge } from '@epam/promo';
 import { DataTable, Panel, FlexRow, Text, PresetsPanel } from '@epam/uui';
 import { DataColumnProps, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
@@ -19,7 +19,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as EpamAdditionalColor } caption={ p.profileStatus } />
+                    <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as any } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         width: 160,

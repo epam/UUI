@@ -78,6 +78,12 @@
             border-radius: 50%;
             background-color: var(--uui-color-50);
         }
+
+        &:global(.uui-count_indicator) {
+            --uui-count_indicator-bg: transparent;
+            --uui-count_indicator-border: transparent;
+            --uui-count_indicator-caption: var(--uui-text-primary);
+        }
     }
 }
 

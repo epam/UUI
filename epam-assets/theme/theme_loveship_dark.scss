@@ -331,17 +331,6 @@
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
-    .uui-color-white {
-        --uui-color-5: var(--night700);
-        --uui-color-10: var(--night800);
-        --uui-color-20: var(--night900);
-        --uui-color-50: var(--white);
-        --uui-color-60: var(--night200);
-        --uui-color-70: var(--night300);
-        --uui-color-text: var(--uui-secondary-60);
-        --uui-color-contrast-text: var(--uui-text-dark);
-    }
-
     .uui-color-basic,
     .uui-color-night600,
     .uui-color-gray,
@@ -495,7 +484,7 @@
     /* Badge */
 
     .uui-badge.fill-outline {
-        .uui-count_indicator.fill-outline {
+        .fill-outline.uui-count_indicator {
             --uui-count_indicator-bg: var(--uui-neutral-20);
             --uui-count_indicator-border: var(--uui-neutral-50);
             --uui-count_indicator-caption: var(--uui-neutral-80);
@@ -520,12 +509,6 @@
             --uui-badge-bg-hover: var(--uui-neutral-40);
             --uui-badge-border-hover: var(--uui-neutral-60);
         }
-
-        .uui-count_indicator {
-            --uui-count_indicator-bg: var(--uui-neutral-100);
-            --uui-count_indicator-border: var(--uui-neutral-100);
-            --uui-count_indicator-caption: var(--uui-text-dark);
-        }
     }
 
     .uui-badge.uui-color-white {
@@ -534,17 +517,11 @@
         --uui-badge-bg-hover: var(--uui-neutral-90);
         --uui-badge-border-hover: var(--uui-neutral-90);
 
-        .uui-count_indicator {
-            --uui-count_indicator-bg: var(--uui-neutral-20);
-            --uui-count_indicator-border: var(--uui-neutral-80);
-            --uui-count_indicator-caption: var(--uui-text-white);
-        }
-
         &.fill-outline {
-            --uui-badge-bg: #FFFFFF14;
+            --uui-badge-bg: color-mix(in srgb, var(--white) 8%, transparent);
+            --uui-badge-bg-hover: color-mix(in srgb, var(--white) 8%, transparent);
             --uui-badge-border: var(--uui-neutral-100);
             --uui-color-text: var(--uui-text-white);
-            --uui-badge-bg-hover: #FFFFFF14;
         }
     }
 
@@ -556,17 +533,11 @@
         --uui-badge-border-hover: var(--uui-neutral-60);
         --uui-badge-caption-hover: var(--uui-text-white);
 
-        .uui-count_indicator {
-            --uui-count_indicator-bg: var(--uui-neutral-50);
-            --uui-count_indicator-border: var(--uui-neutral-50);
-            --uui-count_indicator-caption: var(--uui-neutral-80);
-        }
-
         &.fill-outline {
-            --uui-badge-bg: #FFFFFF33;
+            --uui-badge-bg: color-mix(in srgb, var(--white) 20%, transparent);
+            --uui-badge-bg-hover: color-mix(in srgb, var(--white) 25%, transparent);
             --uui-badge-border: var(--uui-neutral-70);
             --uui-color-text: var(--uui-neutral-90);
-            --uui-badge-bg-hover: #FFFFFF40;
             --uui-badge-border-hover: var(--uui-neutral-70);
         }
     }
@@ -579,106 +550,18 @@
         --uui-badge-border-hover: var(--uui-neutral-20);
         --uui-badge-caption-hover: var(--uui-text-white);
 
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FFFFFF1A;
-            --uui-count_indicator-border: #FFFFFF80;
-            --uui-count_indicator-caption: var(--uui-text-white);
-        }
-
         &.fill-outline {
             --uui-badge-border: var(--uui-neutral-60);
             --uui-badge-border-hover: var(--uui-neutral-60);
         }
     }
 
-    .uui-badge.uui-color-info,
-    .uui-badge.uui-color-sky {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FFFFFF1A;
-            --uui-count_indicator-border: #FFFFFF80;
-            --uui-count_indicator-caption: var(--uui-text-white);
-        }
-
-        &.fill-outline {
-            --uui-badge-bg: var(--blue-5);
-            --uui-badge-border: var(--blue-20);
-            --uui-color-text: var(--blue-50);
-
-            &:hover {
-                --uui-badge-bg-hover: #FFFFFF14;
-            }
-        }
-    }
-
-    .uui-badge.uui-color-success,
-    .uui-badge.uui-color-grass {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FFFFFF1A;
-            --uui-count_indicator-border: #FFFFFF80;
-            --uui-count_indicator-caption: var(--uui-text-white);
-        }
-    }
-
-    .uui-badge.uui-color-critical,
-    .uui-badge.uui-color-fire {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FFFFFF1A;
-            --uui-count_indicator-border: #FFFFFF80;
-            --uui-count_indicator-caption: var(--uui-text-white);
-        }
-    }
-
-    .uui-badge.uui-color-warning,
-    .uui-badge.uui-color-sun {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FAFAFC0D;
-            --uui-count_indicator-border: #3032404D;
-            --uui-count_indicator-caption: var(--uui-neutral-20);
-        }
-    }
-
-    .uui-badge.uui-color-yellow {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FAFAFC0D;
-            --uui-count_indicator-border: #3032404D;
-            --uui-count_indicator-caption: var(--uui-neutral-20);
-        }
-    }
-
-    .uui-badge.uui-color-orange {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FAFAFC0D;
-            --uui-count_indicator-border: #3032404D;
-            --uui-count_indicator-caption: var(--uui-neutral-20);
-        }
-    }
-
-    .uui-badge.uui-color-fuchsia {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FFFFFF1A;
-            --uui-count_indicator-border: #FFFFFF80;
-        }
-    }
-
-    .uui-badge.uui-color-purple {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FFFFFF1A;
-            --uui-count_indicator-border: #FFFFFF80;
-        }
-    }
-
-    .uui-badge.uui-color-lavanda {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FFFFFF1A;
-            --uui-count_indicator-border: #FFFFFF80;
-        }
-    }
-
-    .uui-badge.uui-color-cobalt {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: #FFFFFF1A;
-            --uui-count_indicator-border: #FFFFFF80;
-        }
+    .uui-badge.uui-color-info.fill-outline,
+    .uui-badge.uui-color-sky.fill-outline {
+        --uui-badge-bg: var(--blue-5);
+        --uui-badge-bg-hover: var(--blue-10);
+        --uui-badge-border: var(--blue-20);
+        --uui-color-text: var(--blue-50);
     }
 
     /* IconButton */
@@ -773,29 +656,43 @@
 
     /* count_indicator */
 
+    .uui-count_indicator.uui-color-white {
+        --uui-count_indicator-bg: var(--white);
+        --uui-count_indicator-border: var(--white);
+        --uui-count_indicator-caption: var(--uui-text-dark);
+    }
+
     .uui-count_indicator.uui-color-neutral {
-        --uui-color-50: var(--uui-neutral-60);
+        --uui-count_indicator-bg: var(--uui-neutral-60);
+        --uui-count_indicator-border: var(--uui-neutral-60);
         --uui-count_indicator-caption: var(--uui-text-white);
     }
 
-    .uui-count_indicator.uui-color-info {
-        --uui-color-50: var(--blue-40);
+    .uui-count_indicator.uui-color-info,
+    .uui-count_indicator.uui-color-blue, {
+        --uui-count_indicator-bg: var(--blue-40);
+        --uui-count_indicator-border: var(--blue-40);
         --uui-count_indicator-caption: var(--uui-text-white);
     }
 
     .uui-count_indicator.uui-color-grass,
     .uui-count_indicator.uui-color-success {
-        --uui-color-50: var(--green-40);
+        --uui-count_indicator-bg: var(--green-40);
+        --uui-count_indicator-border: var(--green-40);
         --uui-count_indicator-caption: var(--uui-text-white);
     }
 
-    .uui-count_indicator.uui-color-critical {
-        --uui-color-50: var(--red-40);
+    .uui-count_indicator.uui-color-critical,
+    .uui-count_indicator.uui-color-red {
+        --uui-count_indicator-bg: var(--red-40);
+        --uui-count_indicator-border: var(--red-40);
         --uui-count_indicator-caption: var(--uui-text-white);
     }
 
-    .uui-count_indicator.uui-color-warning {
-        --uui-color-50: var(--amber-40);
+    .uui-count_indicator.uui-color-warning,
+    .uui-count_indicator.uui-color-amber {
+        --uui-count_indicator-bg: var(--amber-40);
+        --uui-count_indicator-border: var(--amber-40);
         --uui-count_indicator-caption: var(--uui-text-contrast);
     }
 
