@@ -37,7 +37,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     <div
       aria-modal={true}
       className="uui-modal-window root modal container"
-      role="modal"
+      role="dialog"
       style={
         Object {
           "height": "auto",
@@ -254,7 +254,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
     <div
       aria-modal={true}
       className="uui-modal-window root modal container"
-      role="modal"
+      role="dialog"
       style={
         Object {
           "height": "auto",

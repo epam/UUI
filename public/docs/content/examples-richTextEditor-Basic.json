@@ -75,14 +75,5 @@
         "uui-richTextEditor-code": true
       }
     ]
-  },
-  {
-    "data": {},
-    "type": "note-warning",
-    "children": [
-      {
-        "text": "Slate works with its own JSON-based content format. That allows it to be robust and flexible, but apps need to carefully consider that before using it."
-      }
-    ]
   }
 ]

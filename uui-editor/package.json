@@ -37,9 +37,9 @@
     "lodash.debounce": "4.0.8",
     "lodash.invert": "4.3.0",
     "react-popper": "2.3.0",
-    "slate": "0.82.0",
-    "slate-history": "0.66.0",
-    "slate-react": "0.82.2"
+    "slate": "0.94.1",
+    "slate-history": "0.93.0",
+    "slate-react": "0.98.1"
   },
   "devDependencies": {
     "@types/lodash.debounce": "4.0.7",

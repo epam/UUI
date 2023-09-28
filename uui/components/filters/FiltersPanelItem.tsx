@@ -5,7 +5,6 @@ import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isM
 import { Dropdown } from '@epam/uui-components';
 import { i18n } from '../../i18n';
 import { FilterPanelItemToggler } from './FilterPanelItemToggler';
-import { Panel } from '../layout';
 import { LinkButton } from '../buttons';
 import { MultiSwitch } from '../inputs';
 import { Text, TextPlaceholder } from '../typography';
@@ -123,33 +122,27 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
 
     const renderBody = (dropdownProps: DropdownBodyProps) => {
         const hideHeaderTitle = isPickersType && isMobileScreen;
-        return (
+        return isPickersType ? (
+            <MobileDropdownWrapper { ...dropdownProps } cx={ css.root } title={ props.title } width={ 360 } onClose={ () => isOpenChange(false) }>
+                { renderHeader(hideHeaderTitle) }
+                <FilterItemBody
+                    { ...props }
+                    { ...dropdownProps }
+                    selectedPredicate={ predicate }
+                    value={ getValue() }
+                    onValueChange={ onValueChange }
+                />
+            </MobileDropdownWrapper>
+        ) : (
             <DropdownContainer { ...dropdownProps }>
-                <Panel background="surface" cx={ [css.root, css.panel] }>
-                    { isPickersType ? (
-                        <MobileDropdownWrapper title={ props.title } close={ () => isOpenChange(false) }>
-                            { renderHeader(hideHeaderTitle) }
-                            <FilterItemBody
-                                { ...props }
-                                { ...dropdownProps }
-                                selectedPredicate={ predicate }
-                                value={ getValue() }
-                                onValueChange={ onValueChange }
-                            />
-                        </MobileDropdownWrapper>
-                    ) : (
-                        <>
-                            { renderHeader(hideHeaderTitle) }
-                            <FilterItemBody
-                                { ...props }
-                                { ...dropdownProps }
-                                selectedPredicate={ predicate }
-                                value={ getValue() }
-                                onValueChange={ onValueChange }
-                            />
-                        </>
-                    ) }
-                </Panel>
+                { renderHeader(hideHeaderTitle) }
+                <FilterItemBody
+                    { ...props }
+                    { ...dropdownProps }
+                    selectedPredicate={ predicate }
+                    value={ getValue() }
+                    onValueChange={ onValueChange }
+                />
             </DropdownContainer>
         );
     };

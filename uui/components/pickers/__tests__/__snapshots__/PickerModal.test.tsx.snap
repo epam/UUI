@@ -37,7 +37,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
     <div
       aria-modal={true}
       className="uui-modal-window root modal container"
-      role="modal"
+      role="dialog"
       style={
         Object {
           "height": "700px",
@@ -442,7 +442,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
     <div
       aria-modal={true}
       className="uui-modal-window root modal container"
-      role="modal"
+      role="dialog"
       style={
         Object {
           "height": "700px",
@@ -1520,7 +1520,7 @@ exports[`PickerModal should open body 1`] = `
         <div
           aria-modal="true"
           class="uui-modal-window root modal container"
-          role="modal"
+          role="dialog"
           style="width: 600px; height: 700px;"
         >
           <div
