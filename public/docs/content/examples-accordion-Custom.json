@@ -1,81 +1,41 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "In case you need to use your custom header content, you can provide the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "renderTitle",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " callback with your components.",
-            "marks": []
-          }
-        ]
+        "text": "In case you need to use your custom header content, you can provide the "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Also, you can pass ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "ReactElement",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " to the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "title",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop to redefine only the title block.",
-            "marks": []
-          }
-        ]
+        "text": "renderTitle",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " callback with your components."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Also, you can pass "
+      },
+      {
+        "text": "ReactElement",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " to the "
+      },
+      {
+        "text": "title",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop to redefine only the title block."
       }
     ]
   }
-}
+]

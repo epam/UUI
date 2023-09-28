@@ -135,7 +135,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderTabsNav() {
         return (
-            <FlexRow rawProps={ { role: 'tablist' } } padding="12" cx={ ['uui-theme-promo', css.secondaryNavigation] } borderBottom>
+            <FlexRow background="white" rawProps={ { role: 'tablist' } } padding="12" cx={ ['uui-theme-promo', css.secondaryNavigation] } borderBottom>
                 <TabButton size="60" caption="Documentation" isLinkActive={ getQuery('mode') === 'doc' } onClick={ () => this.handleChangeMode('doc') } />
                 <TabButton size="60" caption="Property Explorer" isLinkActive={ getQuery('mode') === 'propsEditor' } onClick={ () => this.handleChangeMode('propsEditor') } />
                 <FlexSpacer />

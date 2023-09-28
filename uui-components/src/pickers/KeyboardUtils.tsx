@@ -1,11 +1,10 @@
-import {
-    DataSourceState, DataRowProps, IEditable, IDataSourceView,
-} from '@epam/uui-core';
+import { DataSourceState, DataRowProps, IEditable, IDataSourceView } from '@epam/uui-core';
+import { PickerInputSearchPosition } from './hooks/types';
 
 export interface DataSourceKeyboardParams extends IEditable<DataSourceState> {
     listView: IDataSourceView<any, any, any>;
     rows: DataRowProps<any, any>[];
-    editMode?: 'dropdown' | 'modal';
+    searchPosition: PickerInputSearchPosition;
 }
 
 export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: React.KeyboardEvent<HTMLElement>) => {
@@ -17,9 +16,8 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
 
     switch (e.key) {
         case 'Backspace': {
-            const selectedRowsCount = params.listView.getSelectedRowsCount();
-            const selectedRows = params.listView.getSelectedRows({ topIndex: selectedRowsCount - 2, visibleCount: 1 });
-            if (params.editMode !== 'modal' && !value.search && value.checked && selectedRows.length > 0) {
+            const selectedRows = params.listView.getSelectedRows();
+            if (params.searchPosition === 'input' && !value.search && value.checked && selectedRows.length > 0) {
                 const lastSelection = selectedRows[selectedRows.length - 1];
                 lastSelection.onCheck(lastSelection);
             }
