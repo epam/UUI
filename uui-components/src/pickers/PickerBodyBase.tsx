@@ -12,6 +12,7 @@ export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<Data
     search: IEditable<string>;
     showSearch?: boolean | 'auto';
     fixedBodyPosition?: boolean;
+    searchDebounceDelay?: number;
 }
 
 export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends React.Component<TProps> {

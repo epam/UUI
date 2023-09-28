@@ -59,6 +59,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                                 { ...this.searchLens.toProps() }
                                 onKeyDown={ this.searchKeyDown }
                                 size={ searchSize }
+                                debounceDelay={ this.props.searchDebounceDelay }
                             />
                         </FlexCell>
                     </div>

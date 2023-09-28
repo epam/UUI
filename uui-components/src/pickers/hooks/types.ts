@@ -6,6 +6,9 @@ import { Placement } from '@popperjs/core';
 import { PickerTogglerProps } from '../PickerToggler';
 import { Dispatch, SetStateAction } from 'react';
 
+export type PickerInputSearchPosition = 'input' | 'body' | 'none';
+export type PickerInputEditMode = 'dropdown' | 'modal';
+
 export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId>
 & ICanFocus<HTMLElement> &
 IHasPlaceholder &
@@ -13,7 +16,7 @@ IDisableable &
 ICanBeReadonly &
 IHasIcon & {
     /** dropdown (default) - show selection in dropdown; modal - opens modal window to select items */
-    editMode?: 'dropdown' | 'modal';
+    editMode?: PickerInputEditMode;
 
     /** Maximum number of tags to display in input, before collapsing to "N items selected" mode */
     maxItems?: number;
@@ -38,7 +41,7 @@ IHasIcon & {
       *
       * Note: 'searchPosition' cannot be 'input' if 'editMode' is 'modal'
       */
-    searchPosition?: 'input' | 'body' | 'none';
+    searchPosition?: PickerInputSearchPosition;
 
     /** Disallow to clear Picker value (cross icon) */
     disableClear?: boolean;
@@ -80,6 +83,9 @@ IHasIcon & {
      * Enables highlighting of the items' text with search-matching results.
      * */
     highlightSearchMatches?: boolean;
+
+    /** Search input debounce delay in ms. Default value is 500ms */
+    searchDebounceDelay?: number;
 };
 
 export interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
