@@ -249,7 +249,7 @@ export class GroupingConfigBuilder<
         };
     }
 
-    private getFilterFromParentId(parentId: ToUnion<ComplexId<TGroups, TId, TGroupBy>>[]): FilterFromParentId<TGroups, TId, TGroupBy> {
+    private getFilterFromParentId(parentId: ToUnion<ComplexId<TGroups, TId, TGroupBy>>[] = []): FilterFromParentId<TGroups, TId, TGroupBy> {
         return parentId.reduce(
             (filter, [, groupBy, id]) =>
                 groupBy ? { ...filter, [groupBy]: id } : filter,
