@@ -573,10 +573,13 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         } = actualStats;
 
         if (row.checkbox) {
-            isSomeCheckable = true;
             if (row.isChecked || row.isChildrenChecked) {
                 isSomeChecked = true;
             }
+            if (row.isCheckable) {
+                isSomeCheckable = true;
+            }
+
             const isImplicitCascadeSelection = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
             if (
                 (!row.isChecked && !row.checkbox.isDisabled && !isImplicitCascadeSelection)

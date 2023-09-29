@@ -50,10 +50,10 @@ export function DisabledCheckboxesTable() {
     );
   
     const view = dataSource.useView(value, onValueChange, {
-        getRowOptions: () => ({
+        getRowOptions: (item) => ({
             checkbox: {
                 isVisible: true,
-                isDisabled: true,
+                isDisabled: item.ProductID % 2 === 0 ? true : false,
             },
             isSelectable: true,
         }), // Provide metadata options about row. Go to the "DataRowOptions" interface, to see the full list of possible options.
