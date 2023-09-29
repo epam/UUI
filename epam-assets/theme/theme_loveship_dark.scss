@@ -287,6 +287,11 @@
         --uui-switch-bg: var(--uui-neutral-50);
     }
 
+    .uui-blocker-container {
+        --uui-blocker-bg: var(--uui-surface-main);
+        --uui-blocker-bg-with-opacity: #303240CC;
+    }
+
     .uui-count {
         --uui-badge-count: var(--uui-text-dark);
     }
