@@ -1,5 +1,5 @@
 .root {
-    --uui-panel-bg: var(--uui-surface);
+    --uui-panel-bg: var(--uui-surface-main);
     --uui-panel-shadow: var(--uui-shadow-level-1);
 
     --uui-panel-border-radius: var(--uui-border-radius);
@@ -29,6 +29,6 @@
     }
 
     &:global(.uui-panel.uui-color-surface) {
-        --uui-panel-bg: var(--uui-surface);
+        --uui-panel-bg: var(--uui-surface-main);
     }
 }

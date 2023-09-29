@@ -90,7 +90,7 @@
             color: var(--uui-link-visited);
 
             &:hover {
-                color: #3F0F9E; // TODO: need variables
+                color: var(--uui-link-visited-hover);
             }
         }
 
