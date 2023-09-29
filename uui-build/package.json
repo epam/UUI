@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "5.2.0-rc.3",
+  "version": "5.2.0-rc.2",
   "bin": {
     "epam-uui-build": "./bin/cli.js"
   },
@@ -13,7 +13,6 @@
     "transform-tokens": "npx ts-node -O {\\\"noImplicitAny\\\":false} ./tokens-converter/index.ts"
   },
   "dependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
     "@csstools/postcss-sass": "^5.0.1",
     "@lerna/package-graph": "6.4.0",
     "@lerna/project": "6.4.0",
@@ -35,6 +34,7 @@
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-config-react-app": "7.0.1",
     "eslint-import-resolver-alias": "1.1.2",
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
     "fs-extra": "8.0.1",
     "jest": "27.5.1",
     "jest-html-reporter": "3.7.1",
