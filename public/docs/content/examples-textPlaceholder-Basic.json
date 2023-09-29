@@ -1,65 +1,34 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "You can set ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "wordCount",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " to prevent content jumping by the approximate estimation of how many words the block is going to contain after loading.",
-            "marks": []
-          }
-        ]
+        "text": "You can set "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "You can disable animation via ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "isNotAnimated",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop.",
-            "marks": []
-          }
-        ]
+        "text": "wordCount",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " to prevent content jumping by the approximate estimation of how many words the block is going to contain after loading."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You can disable animation via "
+      },
+      {
+        "text": "isNotAnimated",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop."
       }
     ]
   }
-}
+]

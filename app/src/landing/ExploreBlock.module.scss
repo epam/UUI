@@ -27,6 +27,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        gap: 24px;
 
         .caption {
             position: absolute;
@@ -39,8 +40,6 @@
             width: 384px;
             height: 180px;
             position: relative;
-            margin-top: 24px;
-            transition: 1s;
         }
 
         .color-palette, .typography, .download, .demo, .components {
@@ -98,8 +97,6 @@
             width: 588px;
             height: 240px;
             position: relative;
-            margin-top: 24px;
-            transition: 1s;
 
             &:hover, &:focus-visible {
                 background-size: 150%;
@@ -131,6 +128,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+            gap: 18px;
 
             .caption {
                 line-height: 24px;
@@ -146,7 +144,6 @@
                 height: 120px;
                 position: relative;
                 margin-top: 0;
-                transition: none;
             }
 
             .color-palette {
@@ -200,8 +197,6 @@
                 width: 357px;
                 height: 180px;
                 position: relative;
-                margin-top: 18px;
-                transition: none;
 
                 &:hover, &:focus-visible {
                     background-size: 100% 100%;
@@ -251,7 +246,6 @@
                 position: relative;
                 margin-top: 0;
                 margin-right: 12px;
-                transition: none;
             }
 
             .color-palette {
@@ -306,7 +300,6 @@
                 height: 160px;
                 position: relative;
                 margin-top: 0;
-                transition: none;
 
                 &:hover {
                     background-size: 100% 100%;

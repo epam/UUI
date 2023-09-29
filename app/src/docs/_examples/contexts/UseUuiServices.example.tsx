@@ -5,7 +5,6 @@ import { UuiContext, HistoryAdaptedRouter, useUuiServices, DragGhost } from '@ep
 import { Modals, Snackbar } from '@epam/uui-components';
 import { skinContext, ErrorHandler } from '@epam/promo';
 import { createBrowserHistory } from 'history';
-import { svc } from '../../../services';
 import { Router } from 'react-router';
 
 const history = createBrowserHistory();
@@ -15,10 +14,7 @@ function UuiEnhancedApp() {
     const { services } = useUuiServices({
         router,
         skinContext,
-        // apiServerUrl: 'url',
-        // appContext: {}
     });
-    Object.assign(svc, services);
 
     return (
         <UuiContext.Provider value={ services }>

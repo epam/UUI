@@ -144,25 +144,6 @@
                 ]
               }
             ]
-          },
-          {
-            "data": {},
-            "type": "list-item",
-            "children": [
-              {
-                "data": {},
-                "type": "list-item-child",
-                "children": [
-                  {
-                    "text": "scrollToIndex",
-                    "uui-richTextEditor-code": true
-                  },
-                  {
-                    "text": " - to scroll to a particular item."
-                  }
-                ]
-              }
-            ]
           }
         ]
       },

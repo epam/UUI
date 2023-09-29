@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "5.2.0-rc.2",
+  "version": "5.2.0-rc.3",
   "bin": {
     "epam-uui-build": "./bin/cli.js"
   },
@@ -13,6 +13,7 @@
     "transform-tokens": "npx ts-node -O {\\\"noImplicitAny\\\":false} ./tokens-converter/index.ts"
   },
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
     "@csstools/postcss-sass": "^5.0.1",
     "@lerna/package-graph": "6.4.0",
     "@lerna/project": "6.4.0",

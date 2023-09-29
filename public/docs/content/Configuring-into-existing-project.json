@@ -1,1156 +1,194 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "note-warning",
+    "children": [
       {
-        "object": "block",
-        "type": "note-warning",
+        "text": "UUI is tested with Create React App, Next.JS, and Vite. We can't guarantee compatibility with custom build configurations."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
         "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "UUI has full integration with the Create-React-App build tool chain, so we strongly recommended using it in the project, which was created via ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://create-react-app.dev/"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "Create React App",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ". Otherwise, you can face issues with importing styles or icons.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
         "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "children": [
           {
-            "object": "block",
-            "type": "paragraph",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "1",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": ". Install core UUI modules: ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "yarn add @epam/uui @epam/uui-components",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-code",
-                    "data": {}
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "  ",
-                "marks": []
-              }
-            ]
+            "text": "1. Install core UUI modules: ",
+            "uui-richTextEditor-span-mark": true
           },
           {
-            "object": "block",
-            "type": "paragraph",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "And skin specific packages: ",
-                "marks": []
-              },
-              {
-                "object": "text",
-                "text": "yarn add @epam/loveship",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-code",
-                    "data": {}
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": " or ",
-                "marks": []
-              },
-              {
-                "object": "text",
-                "text": "yarn add @epam/promo",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-code",
-                    "data": {}
-                  }
-                ]
-              }
-            ]
+            "text": "yarn add @epam/uui @epam/uui-components",
+            "uui-richTextEditor-code": true
           },
           {
-            "object": "block",
-            "type": "paragraph",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "2. Import styles from UUI packages in the root of your app(e.g., index.tsx):",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "note-quote",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "import",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": " ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "'",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "@epam/uui-components/styles.css",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "'",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": ";\n\n",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "import",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": " ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "'",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "@epam/loveship/styles.css",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "'",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": ";\n// or if you use promo skin:\n",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "import",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": " ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "'",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "@epam/promo/styles.css",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "'",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": ";",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "paragraph",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "Also, you can import scss/less ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "variables",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-italic",
-                    "data": {}
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": " or ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "mixins",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-italic",
-                    "data": {}
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": " into your styles from the ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "assets",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-code",
-                    "data": {}
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": " folder in each package:",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "note-quote",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "@use '~@epam/promo/assets/styles/colors.scss' as *;",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "paragraph",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "3. Add theme class",
-                "marks": []
-              },
-              {
-                "object": "text",
-                "text": " ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "uui-theme-promo",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-code",
-                    "data": {}
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": " ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "or",
-                "marks": []
-              },
-              {
-                "object": "text",
-                "text": " ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "uui-theme-loveship",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-code",
-                    "data": {}
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": " ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "to",
-                "marks": []
-              },
-              {
-                "object": "text",
-                "text": " ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "body",
-                "marks": []
-              },
-              {
-                "object": "text",
-                "text": " ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "tag according to the skin you are using.",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "paragraph",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "4.  if you want to use ",
-                "marks": []
-              },
-              {
-                "object": "inline",
-                "type": "link",
-                "data": {
-                  "url": "/documents?category=contexts&id=notificationContextDoc&mode=doc&skin=UUI4_promo"
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "notification",
-                    "marks": []
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": ", ",
-                "marks": []
-              },
-              {
-                "object": "inline",
-                "type": "link",
-                "data": {
-                  "url": "/documents?category=contexts&id=modalContext&mode=doc&skin=UUI4_promo"
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "modal ",
-                    "marks": []
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "and ",
-                "marks": []
-              },
-              {
-                "object": "inline",
-                "type": "link",
-                "data": {
-                  "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "other contexts",
-                    "marks": []
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": ", you need to:",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "unordered-list",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "list-item-child",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "create file services.ts with the next code:",
-                        "marks": []
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "note-quote",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "import { CommonContexts } from '@epam/uui-core';",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "\n\n",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "export const svc: ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "CommonContexts<any, any>",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": " = {} ;",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "unordered-list",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "list-item-child",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "in main index.tsx file wrap your ",
-                        "marks": []
-                      },
-                      {
-                        "object": "text",
-                        "text": "<App/>",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " component into ",
-                        "marks": []
-                      },
-                      {
-                        "object": "inline",
-                        "type": "link",
-                        "data": {
-                          "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
-                        },
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "<ContextProvider>",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-code",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": ", and add ",
-                        "marks": []
-                      },
-                      {
-                        "object": "text",
-                        "text": "<Snackbar />",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " and ",
-                        "marks": []
-                      },
-                      {
-                        "object": "text",
-                        "text": "<Modals/>",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " after ",
-                        "marks": []
-                      },
-                      {
-                        "object": "text",
-                        "text": "<App />",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " ",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-span-mark",
-                            "data": {
-                              "style": {}
-                            }
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+            "text": "  "
           }
         ]
       },
       {
-        "object": "block",
+        "data": {},
+        "type": "paragraph",
+        "children": [
+          {
+            "text": "If you need a specific EPAM brand skin, add the appropriate package: "
+          },
+          {
+            "text": "yarn add @epam/loveship",
+            "uui-richTextEditor-code": true
+          },
+          {
+            "text": " or "
+          },
+          {
+            "text": "yarn add @epam/promo",
+            "uui-richTextEditor-code": true
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "paragraph",
+        "children": [
+          {
+            "text": "2. Import styles from UUI packages in the root of your app(e.g., index.tsx):"
+          }
+        ]
+      },
+      {
+        "data": {},
         "type": "note-quote",
-        "data": {},
-        "nodes": [
+        "children": [
           {
-            "object": "text",
-            "text": "import { svc } from './services'\nimport { createBrowserHistory } from 'history';",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "\n",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#cc7832"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "\nconst history = createBrowserHistory();\n\nexport class UuiEnhancedApp extends React.Component {\n    render() {\n        return (\n            <ContextProvider\n                onInitCompleted={ (context) => { Object.assign(svc, context); } }\n                history={ history }\n            >\n                    <App />\n                    <Snackbar />\n                    <Modals />\n            </ContextProvider>\n        );\n    }\n}\n\nReactDOM.render(<Router history={ history } ><UuiEnhancedApp /></Router>, document.getElementById('root'));",
-            "marks": []
+            "text": "import '@epam/uui-components/styles.css';\nimport '@epam/uui/styles.css';\n\n// Import your skin styles:\nimport '@epam/loveship/styles.css';\n// or \nimport '@epam/promo/styles.css';",
+            "uui-richTextEditor-span-mark": true
           }
         ]
       },
       {
-        "object": "block",
+        "data": {},
+        "type": "paragraph",
+        "children": [
+          {
+            "text": "3. Add theme class"
+          },
+          {
+            "text": " ",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "uui-theme-promo",
+            "uui-richTextEditor-code": true
+          },
+          {
+            "text": " ",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "or"
+          },
+          {
+            "text": " ",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "uui-theme-loveship",
+            "uui-richTextEditor-code": true
+          },
+          {
+            "text": " ",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "to"
+          },
+          {
+            "text": " ",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "body"
+          },
+          {
+            "text": " ",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "tag according to the skin you are using."
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "paragraph",
+        "children": [
+          {
+            "text": "4.  if you want to use "
+          },
+          {
+            "data": {
+              "url": "/documents?category=contexts&id=notificationContextDoc&mode=doc&skin=UUI4_promo"
+            },
+            "type": "link",
+            "url": "/documents?category=contexts&id=notificationContextDoc&mode=doc&skin=UUI4_promo",
+            "children": [
+              {
+                "text": "notification"
+              }
+            ]
+          },
+          {
+            "text": ", "
+          },
+          {
+            "data": {
+              "url": "/documents?category=contexts&id=modalContext&mode=doc&skin=UUI4_promo"
+            },
+            "type": "link",
+            "url": "/documents?category=contexts&id=modalContext&mode=doc&skin=UUI4_promo",
+            "children": [
+              {
+                "text": "modal "
+              }
+            ]
+          },
+          {
+            "text": "and "
+          },
+          {
+            "data": {
+              "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
+            },
+            "type": "link",
+            "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo",
+            "children": [
+              {
+                "text": "other contexts"
+              }
+            ]
+          },
+          {
+            "text": ", you need to:"
+          }
+        ]
+      },
+      {
+        "data": {},
         "type": "unordered-list",
-        "data": {},
-        "nodes": [
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
                 "data": {},
-                "nodes": [
+                "type": "list-item-child",
+                "children": [
                   {
-                    "object": "text",
-                    "text": "then, when you import ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "svc",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " from 'services' you get access to contexts:",
-                    "marks": []
+                    "text": "create file services.ts with the next code:"
                   }
                 ]
               }
@@ -1159,17 +197,151 @@
         ]
       },
       {
-        "object": "block",
-        "type": "note-quote",
         "data": {},
-        "nodes": [
+        "type": "note-quote",
+        "children": [
           {
-            "object": "text",
-            "text": "svc.uuiNotifications.show((props) => ...)\nsvc.uuiModals.show ((props) => ...)",
-            "marks": []
+            "text": "import { CommonContexts } from '@epam/uui-core';",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "\n\n",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "export const svc: ",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "CommonContexts<any, any>",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": " = {} ;",
+            "uui-richTextEditor-span-mark": true
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "unordered-list",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item",
+            "children": [
+              {
+                "data": {},
+                "type": "list-item-child",
+                "children": [
+                  {
+                    "text": "in main index.tsx file wrap your "
+                  },
+                  {
+                    "text": "<App/>",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": " component into "
+                  },
+                  {
+                    "data": {
+                      "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
+                    },
+                    "type": "link",
+                    "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo",
+                    "children": [
+                      {
+                        "text": "<ContextProvider>",
+                        "uui-richTextEditor-code": true
+                      }
+                    ]
+                  },
+                  {
+                    "text": ", and add "
+                  },
+                  {
+                    "text": "<Snackbar />",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": " and "
+                  },
+                  {
+                    "text": "<Modals/>",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": " after "
+                  },
+                  {
+                    "text": "<App />",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": " ",
+                    "uui-richTextEditor-span-mark": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
     ]
+  },
+  {
+    "data": {},
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "import { svc } from './services'\nimport { createBrowserHistory } from 'history';"
+      },
+      {
+        "text": "\n",
+        "color": "#cc7832",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "\nconst history = createBrowserHistory();\n\nexport class UuiEnhancedApp extends React.Component {\n    render() {\n        return (\n            <ContextProvider\n                onInitCompleted={ (context) => { Object.assign(svc, context); } }\n                history={ history }\n            >\n                    <App />\n                    <Snackbar />\n                    <Modals />\n            </ContextProvider>\n        );\n    }\n}\n\nReactDOM.render(<Router history={ history } ><UuiEnhancedApp /></Router>, document.getElementById('root'));"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "then, when you import "
+              },
+              {
+                "text": "svc",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " from 'services' you get access to contexts:"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "svc.uuiNotifications.show((props) => ...)\nsvc.uuiModals.show ((props) => ...)"
+      }
+    ]
   }
-}
+]

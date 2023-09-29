@@ -1,303 +1,180 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Lock context provides functionality to solve problems when you need to take control(lock) and perform some action when something is trying to get control (lock) for itself. ",
-            "marks": []
-          }
-        ]
-      },
+        "text": "Lock context provides functionality to solve problems when you need to take control(lock) and perform some action when something is trying to get control (lock) for itself. "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "In UUI, the Lock context is widely used with forms for cases when a user tries to leave the form with unsaved changes or triggers some action that depends on saved form results and is required to save the form before this action is invoked(in lock context terminology - tried to acquire the lock).",
-            "marks": []
-          }
-        ]
-      },
+        "text": "In UUI, the Lock context is widely used with forms for cases when a user tries to leave the form with unsaved changes or triggers some action that depends on saved form results and is required to save the form before this action is invoked(in lock context terminology - tried to acquire the lock)."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Also, Lock Context subscribes to any router change and tries to release the current lock before this change.\n",
-            "marks": []
-          }
-        ]
-      },
+        "text": "Also, Lock Context subscribes to any router change and tries to release the current lock before this change.\n"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-2",
+    "children": [
       {
-        "object": "block",
-        "type": "uui-richTextEditor-header-2",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "API",
-            "marks": []
-          }
-        ]
-      },
+        "text": "API"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
       {
-        "object": "block",
-        "type": "unordered-list",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
+                "text": "acquire(tryRelease?: () => Promise<any>): Promise<Lock>",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " — try to take a lock, and set "
+              },
+              {
+                "text": "tryRelease",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " callback, which will be invoked when something tries to take control over. If a lock already exists, it tries to release the current lock and then set a new one;\n"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
                 "data": {},
-                "nodes": [
+                "type": "list-item-child",
+                "children": [
                   {
-                    "object": "text",
-                    "text": "acquire(tryRelease?: () => Promise<any>): Promise<Lock>",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
+                    "text": "getCurrentLock(): Lock",
+                    "uui-richTextEditor-code": true
                   },
                   {
-                    "object": "text",
-                    "text": " — try to take a lock, and set ",
-                    "marks": []
+                    "text": " — return current lock;\n"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "data": {},
+                "type": "list-item-child",
+                "children": [
+                  {
+                    "text": "tryRelease()",
+                    "uui-richTextEditor-code": true
                   },
                   {
-                    "object": "text",
+                    "text": " — try to release the current lock, by calling the "
+                  },
+                  {
                     "text": "tryRelease",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
+                    "uui-richTextEditor-code": true
                   },
                   {
-                    "object": "text",
-                    "text": " callback, which will be invoked when something tries to take control over. If a lock already exists, it tries to release the current lock and then set a new one;\n",
-                    "marks": []
+                    "text": " callback which was passed to the "
+                  },
+                  {
+                    "text": "acquire",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": " function;\n"
                   }
                 ]
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "list-item-child",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "getCurrentLock(): Lock",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " — return current lock;\n",
-                        "marks": []
-                      }
-                    ]
-                  }
-                ]
+                "text": "release(lock: Lock)",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " — release lock without calling "
+              },
+              {
+                "text": "tryRelease",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " callback;\n"
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "list-item-child",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "tryRelease()",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " — try to release the current lock, by calling the ",
-                        "marks": []
-                      },
-                      {
-                        "object": "text",
-                        "text": "tryRelease",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " callback which was passed to the ",
-                        "marks": []
-                      },
-                      {
-                        "object": "text",
-                        "text": "acquire",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": " function;\n",
-                        "marks": []
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+                "text": "withLock<T>(action: () => Promise<T>): Promise<T>",
+                "uui-richTextEditor-code": true
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "release(lock: Lock)",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " — release lock without calling ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "tryRelease",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " callback;\n",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+                "text": " — try to acquire a lock for the time "
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "withLock<T>(action: () => Promise<T>): Promise<T>",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " — try to acquire a lock for the time ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "while the action is being executed.",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {
-                            "outline": "0px",
-                            "": null
-                          }
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "text": "while the action is being executed.",
+                "outline": "0px",
+                "": null,
+                "uui-richTextEditor-span-mark": true
               }
             ]
           }
@@ -305,4 +182,4 @@
       }
     ]
   }
-}
+]

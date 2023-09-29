@@ -62,9 +62,9 @@ interface IIframeButton {
 }
 
 export function IframeButton({ editor }: IIframeButton) {
-    if (!isPluginActive(IFRAME_PLUGIN_KEY)) return null;
-
     const onFilesAdded = useFilesUploader(editor);
+
+    if (!isPluginActive(IFRAME_PLUGIN_KEY)) return null;
 
     return (
         <UploadFileToggler

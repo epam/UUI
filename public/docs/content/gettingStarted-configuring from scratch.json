@@ -1,196 +1,74 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": "We provide "
+      },
+      {
+        "data": {
+          "url": "https://www.npmjs.com/package/@epam/cra-template-uui"
+        },
+        "type": "link",
+        "url": "https://www.npmjs.com/package/@epam/cra-template-uui",
+        "children": [
           {
-            "object": "text",
-            "text": "The best way to configure your application is to start with our custom ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://www.npmjs.com/package/@epam/cra-template-uui"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "UUI template",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " for ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://github.com/facebook/create-react-app"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "Create-React-App",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ".",
-            "marks": []
+            "text": "UUI template"
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": " for "
+      },
+      {
+        "data": {
+          "url": "https://github.com/facebook/create-react-app"
+        },
+        "type": "link",
+        "url": "https://github.com/facebook/create-react-app",
+        "children": [
           {
-            "object": "text",
-            "text": "To use this template, add",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "--template @epam/uui",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "when creating a new app.",
-            "marks": []
+            "text": "Create-React-App"
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "For example:",
-            "marks": []
-          }
-        ]
+        "text": ". You can create a new project with the following command:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "npx create-react-app my-app --template @epam/uui\n\n"
       },
       {
-        "object": "block",
-        "type": "note-quote",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "npx create-react-app my-app --template @epam/uui\n\n",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "#",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "color": "rgb(106, 115, 125)"
-                  }
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "color": "rgb(106, 115, 125)"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " or",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "color": "rgb(106, 115, 125)"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "\n\nyarn create react-app my-app --template @epam/uui",
-            "marks": []
-          }
-        ]
+        "text": "#",
+        "box-sizing": "border-box",
+        "color": "rgb(106, 115, 125)",
+        "uui-richTextEditor-span-mark": true
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "It will create and initialize the environment and dependencies automatically. Also, it will set up a minimal UUI configuration with a simple layout.",
-            "marks": []
-          }
-        ]
+        "text": " or",
+        "box-sizing": "border-box",
+        "color": "rgb(106, 115, 125)",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "\n\nyarn create react-app my-app --template @epam/uui"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Besides default CRA features, you'll get a minimal UUI configuration, UUI services and context initialization, and a small demo app to start with."
       }
     ]
   }
-}
+]

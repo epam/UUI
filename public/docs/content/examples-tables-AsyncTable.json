@@ -1,37 +1,18 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Table example where data is loaded with ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "AsyncDataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " — all list items are loaded from the server by one API call.",
-            "marks": []
-          }
-        ]
+        "text": "Table example where data is loaded with "
+      },
+      {
+        "text": "AsyncDataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " — all list items are loaded from the server by one API call."
       }
     ]
   }
-}
+]

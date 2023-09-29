@@ -4,11 +4,21 @@
 * [InputAddon]: added InputAddon component that can be used for Prefix/Suffix with ControlGroup.
 * [Badge]: deprecated mode fill="transparent", and deprecated mode fill="semitransparent", they will be removed in future release.
 * [Badge]: removed mode fill="white", and "none", use fill="outline" + color instead them.
+* [useVirtualList]: `scrollTo` and `scrollToIndex` API was changed. `scrollTo` is an object, with index, behavior and align configuration.
+* [DataTable]: added pinned rows functionality.
 
 **What's Fixed**
 * [PickerItem]: fixed 'cx' prop
 * [PickerInput]: improved keyboard navigation and focus/blur behavior
-
+* [Contexts]: fixed context initialization for react 18 with strict mode
+* [ModalWindow]: changed role attribute value from 'modal' to 'dialog'
+* [PickerItem]: Remove the dropdown icon if minCharsToSearch is passed and fix the top and bottom spacing in the dropdown list.
+* [useUuiServices]: fixed apiPingPath, apiReloginPath, apiServerUrl props
+* [AdaptivePanel]: fixed items width calculation in case of decimal values
+* [useForm]: recover from `isInProgress=true` state if `onSave` is rejected
+* [TabButton]: fixed notify dot, that it will not change button width
+* [FiltersPanel]: fixed height of filter body in mobile view
+* [DatePickerHeader]: fixed 'navIconLeft', 'navIconRight' props
 
 # 5.1.3 - 31.08.2023
 
@@ -92,8 +102,8 @@
 
 **Rich Text Editor component update and improvements**
 
-UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework. 
-During the update the previous code based of RTE almost completely rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users. Therefore, update to the new version of `uui-editor` package should be seamless and easy. 
+UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework.
+During the update the previous code based of RTE almost completely rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users. Therefore, update to the new version of `uui-editor` package should be seamless and easy.
 
 List of changes:
 * [Breaking change]: Changed RTE value format, now it's works with array instead of immutable.js object. Also, there are some additional changes inside slate value structure.
