@@ -8256,6 +8256,15 @@
     },
     "src": "uui-core/src/types/components/Dropdown.ts",
     "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "Placement",
+     "print": [
+      "type DropdownPlacement = Placement;"
+     ]
+    }
    }
   },
   "@epam/uui-core:DropdownProps": {
@@ -8698,6 +8707,15 @@
     },
     "src": "uui-core/src/types/dnd.ts",
     "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "Partial<Record<DropPosition, boolean>>",
+     "print": [
+      "type DropPositionOptions = Partial<Record<DropPosition, boolean>>;"
+     ]
+    }
    }
   },
   "@epam/uui-core:FileUploadOptions": {
@@ -10722,6 +10740,15 @@
     },
     "src": "uui-core/src/types/objects.ts",
     "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "Icon",
+     "print": [
+      "type Icon = React.FC<any>;"
+     ]
+    }
    }
   },
   "@epam/uui-core:IContextProviderSsrProps": {
