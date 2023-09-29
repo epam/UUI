@@ -16,7 +16,7 @@
 * [useForm]: recover from `isInProgress=true` state if `onSave` is rejected
 * [TabButton]: fixed notify dot, that it will not change button width
 * [FiltersPanel]: fixed height of filter body in mobile view
-
+* [DatePickerHeader]: fixed 'navIconLeft', 'navIconRight' props
 
 # 5.1.3 - 31.08.2023
 
