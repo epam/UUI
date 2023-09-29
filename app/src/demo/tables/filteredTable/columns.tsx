@@ -5,7 +5,7 @@ import { Person } from '@epam/uui-docs';
 import css from './FilteredTable.module.scss';
 
 const statusMap: Record<string, EpamBadgeSemanticColor> = {
-    Red: 'critical',
+    Red: 'error',
     Amber: 'warning',
     Green: 'success',
 };

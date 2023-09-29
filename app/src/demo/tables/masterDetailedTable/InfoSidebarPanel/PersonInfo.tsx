@@ -9,7 +9,7 @@ interface PersonInfoProps {
 }
 
 const statusMap: Record<string, EpamBadgeSemanticColor> = {
-    Red: 'critical',
+    Red: 'error',
     Amber: 'warning',
     Green: 'success',
 };

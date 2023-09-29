@@ -7,7 +7,7 @@ import { ReactComponent as ViewIcon } from '@epam/assets/icons/common/action-eye
 import { PersonTableRecordId } from './types';
 
 const statusMap: Record<string, EpamBadgeSemanticColor> = {
-    Red: 'critical',
+    Red: 'error',
     Amber: 'warning',
     Green: 'success',
 };

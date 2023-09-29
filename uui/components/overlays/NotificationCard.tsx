@@ -81,7 +81,7 @@ export const HintNotification = React.forwardRef<HTMLDivElement, DefaultNotifica
 ));
 
 export const ErrorNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ ErrorIcon } color="critical" { ...props } ref={ ref } cx={ props.cx } />
+    <NotificationCard icon={ ErrorIcon } color="error" { ...props } ref={ ref } cx={ props.cx } />
 ));
 
 export class ClearNotification extends React.Component<{}> {
