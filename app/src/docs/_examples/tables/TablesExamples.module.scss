@@ -9,7 +9,7 @@
 
 :global(.uui-table-row) {
     &.task-is-done {
-        --uui-dt-row-bg: var(--uui-surface-lower);
+        --uui-dt-row-bg: var(--uui-surface-higher);
     }
 
     .configItem {
@@ -28,5 +28,5 @@
 }
 
 .weekend-day {
-    background-color: var(--uui-surface-lowest);
+    background-color: var(--uui-surface-highest);
 }
