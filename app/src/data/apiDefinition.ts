@@ -2,7 +2,8 @@ import { getDemoApi } from '@epam/uui-docs';
 import type {
     IProcessRequest, CommonContexts, UuiContexts, ITablePreset,
 } from '@epam/uui-core';
-import { TType, TTypeRefMap, TTypeRefShort } from '../demo/apiDocs/docsGenSharedTypes';
+import { TType, TTypeRef } from '../demo/apiDocs/sharedTypes';
+import { TTsDocSummaries } from '../demo/apiDocs/types';
 
 export const delay = (ms: number = 1): Promise<void> =>
     new Promise((resolve) => {
@@ -48,15 +49,15 @@ export function getApi(params: { processRequest: IProcessRequest, origin?: strin
         getProps(): Promise<any> {
             return processRequest(origin.concat('/api/get-props/'), 'GET');
         },
-        getTsDocForType(shortRef: TTypeRefShort): Promise<{ content: TType }> {
+        getTsDocForType(shortRef: TTypeRef): Promise<{ content: TType }> {
             const refEncoded = encodeURIComponent(shortRef);
-            return processRequest(origin.concat(`/api/ts-docs/types/details/${refEncoded}`), 'GET');
+            return processRequest(origin.concat(`/api/ts-docs/details/${refEncoded}`), 'GET');
         },
-        getTsDocsRefs(): Promise<{ content: TTypeRefMap }> {
-            return processRequest(origin.concat('/api/ts-docs/types/refs'), 'GET');
+        getTsDocSummaries(): Promise<{ content: TTsDocSummaries }> {
+            return processRequest(origin.concat('/api/ts-docs/summaries'), 'GET');
         },
-        getTsDocsNavigation(): Promise<{ content: Record<string, string[]> }> {
-            return processRequest(origin.concat('/api/ts-docs/types/navigation'), 'GET');
+        getTsDocsExports(): Promise<{ content: Record<string, string[]> }> {
+            return processRequest(origin.concat('/api/ts-docs/exports'), 'GET');
         },
         presets: {
             async getPresets(): Promise<ITablePreset[]> {

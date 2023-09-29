@@ -1,22 +1,25 @@
 import { useEffect, useState } from 'react';
 import { svc } from '../../services';
-import { TType, TTypeRefShort } from './docsGenSharedTypes';
+import { TType, TTypeRef } from './sharedTypes';
 import { useUuiContext } from '@epam/uui-core';
 import { TApi, TAppContext } from '../../data';
 
-const cache: Map<TTypeRefShort, Promise<{ content: TType }>> = new Map();
-function load(ref: TTypeRefShort) {
+const cache: Map<TTypeRef, Promise<{ content: TType }>> = new Map();
+function load(ref: TTypeRef) {
+    if (!svc.api) {
+        throw new Error('svc.api not available');
+    }
     const promise = cache.get(ref) || svc.api.getTsDocForType(ref);
     cache.set(ref, promise);
     return promise;
 }
 
-export function useTsDocForType(ref: TTypeRefShort): TType {
+export function useTsDocForType(ref: TTypeRef): TType | undefined {
     const [response, setResponse] = useState<TType>();
-    const tsDocRefs = useTsDocsRefs();
+    const tsDocRefs = useTsDocSummaries();
     useEffect(() => {
         setResponse(undefined);
-        if (tsDocRefs[ref].isPublic) {
+        if (tsDocRefs[ref].exported) {
             load(ref).then((res) => {
                 setResponse(() => res.content);
             });
@@ -25,7 +28,7 @@ export function useTsDocForType(ref: TTypeRefShort): TType {
     return response;
 }
 
-export function useTsDocsRefs() {
+export function useTsDocSummaries() {
     const { uuiApp } = useUuiContext<TApi, TAppContext>();
-    return uuiApp.tsDocs.refs;
+    return uuiApp.tsDocs.summaries;
 }

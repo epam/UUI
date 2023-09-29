@@ -1,11 +1,9 @@
 import { ExportedDeclarations, Node, Symbol, SyntaxKind } from 'ts-morph';
 import type {
-    TType,
+    TTypeDetails, TTypeProp, TTypeRefMap, TTypeSummary,
     TTypeValue,
     TTypeRef,
-    TTypeRefShort, TTypeRefMap,
-} from './docsGenSharedTypes';
-import { TPublicTypesByModule } from './docsGenSharedTypes';
+} from './sharedTypes';
 
 type TExportName = string;
 type TModuleName = string;
@@ -15,14 +13,33 @@ export type TNotFormattedExportsByModule = Record<TModuleName, TExportedDeclarat
 export type TConvertable = Node | Symbol;
 export interface IConverter {
     isSupported(nodeOrSymbol: TConvertable): boolean;
-    convert(nodeOrSymbol: TConvertable): TType
+    convert(nodeOrSymbol: TConvertable): TTypeConverted
     convertToTypeValue(nodeOrSymbol: TConvertable, print: boolean): TTypeValue
 }
 export interface IConverterContext {
     stats: IDocGenStats
-    refs: IDocGenReferences
-    convert(nodeOrSymbol: TConvertable): TType
-    convertProp(nodeOrSymbol: TConvertable): TTypeValue
+
+    /**
+     * Convert type node
+     * @param nodeOrSymbol
+     * @param exported
+     */
+    convert(nodeOrSymbol: TConvertable, exported?: boolean): TTypeConverted
+    convertToTypeValue(nodeOrSymbol: TConvertable): TTypeValue
+
+    /**
+     * Convert props of type node (if props supported)
+     * @param nodeOrSymbol
+     */
+    convertTypeProps(nodeOrSymbol: TConvertable): TTypePropsConverted | undefined
+
+    /**
+     * Convert summary of type node
+     * @param nodeOrSymbol
+     */
+    convertTypeSummary(nodeOrSymbol: TConvertable): TTypeSummary
+
+    getResults(): TApiReferenceJson
 }
 
 export type TDocGenStatsResult_Exports = {
@@ -38,13 +55,13 @@ export type TDocGenStatsResult = {
             amountProps: number,
             amountTypes: number,
         },
-        value: { typeRef: TTypeRefShort, value: string[] }[],
+        value: { typeRef: TTypeRef, value: string[] }[],
     },
     missingTypeComment: {
         totals: {
             amountTypes: number,
         },
-        value: TTypeRefShort[],
+        value: TTypeRef[],
     },
     ignoredExports: TDocGenStatsResult_Exports,
     includedExports: TDocGenStatsResult_Exports,
@@ -53,24 +70,22 @@ export type TDocGenStatsResult = {
 export interface IDocGenStats {
     addIgnoredExport(e: { module?: string, kind: string, name: string }): void;
     addIncludedExport(e: { module?: string, kind: string, name: string }): void;
-    checkConvertedExport(converted: TType, isDirectExport: boolean): void;
+    checkConvertedExport(converted: TTypeConverted): void;
     getResults(): TDocGenStatsResult;
 }
 
-export interface IDocGenReferences {
-    getByShortRef(ref: TTypeRefShort): TTypeRef
-    set(ref: TTypeRef): TTypeRefShort
-    get(publicTypes: TPublicTypesByModule): TTypeRefMap
-}
-
-export function typeRefToUniqueString(ref: TTypeRef): TTypeRefShort {
-    return `${ref.module || ''}:${ref.typeName.name}`;
-}
-
-export function parseTypeRefShort(ref: TTypeRefShort): { moduleName: string, typeName: string } {
-    const [moduleName, typeName] = ref.split(':');
-    return {
-        moduleName,
-        typeName,
-    };
-}
+export type TTypePropsConverted = {
+    props: TTypeProp[],
+    propsFromUnion: boolean
+};
+export type TApiReferenceJson = {
+    /**
+     * Map which contains references to both "exported" and "private" types.
+     * */
+    allTypes: TTypeRefMap,
+};
+export type TTypeConverted = {
+    typeRef: TTypeRef;
+    summary: TTypeSummary,
+    details?: TTypeDetails;
+};

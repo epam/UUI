@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import { uuiRoot } from '../constants';
-import { INCLUDED_UUI_PACKAGES } from '../constants';
 
 export function makeRelativeToUuiRoot(fullPath: string) {
     return path.relative(uuiRoot, fullPath).replace(/\\/g, '/');
@@ -19,15 +18,12 @@ export function isExternalFile(filePath: string) {
     return filePath.indexOf('node_modules') !== -1 && filePath.indexOf('@epam/') === -1;
 }
 
-export function getUuiModuleNameFromPath(absolutePath: string) {
-    const rel = path.relative(uuiRoot, absolutePath);
-    const moduleFolderName = rel.split(path.sep)[0];
-    const foundEntry = Object.entries(INCLUDED_UUI_PACKAGES).find((e) => {
-        const folderName = e[1];
-        return folderName === moduleFolderName;
-    });
-    if (foundEntry) {
-        return foundEntry[0];
+export function resolveModuleName(absolutePath: string) {
+    const rel = makeRelativeToUuiRoot(path.resolve(absolutePath));
+    const firstDir = rel.split('/')[0];
+    const pkg = path.resolve(uuiRoot, `${firstDir}/package.json`);
+    if (fs.existsSync(pkg)) {
+        return JSON.parse(fs.readFileSync(pkg).toString()).name;
     }
-    return rel.replace(/\\/g, '/');
+    return rel;
 }

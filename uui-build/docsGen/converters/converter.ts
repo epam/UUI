@@ -1,11 +1,10 @@
 import { Node } from 'ts-morph';
-import { IConverter, IConverterContext, TConvertable } from '../types/types';
+import { IConverter, IConverterContext, TConvertable, TTypeConverted } from '../types/types';
 import { NodeUtils } from './converterUtils/nodeUtils';
-import { TypeUtils } from './converterUtils/typeUtils';
 import { SymbolUtils } from './converterUtils/symbolUtils';
 import { ConvertableUtils } from './converterUtils/convertableUtils';
-import { extractProps } from './converterForProps';
-import { TType, TTypeValue } from '../types/docsGenSharedTypes';
+import { TTypeDetails, TTypeValue } from '../types/sharedTypes';
+import { getTypeRefFromTypeSummary } from './converterUtils/converterUtils';
 
 export class Converter implements IConverter {
     constructor(public readonly context: IConverterContext) {}
@@ -22,34 +21,22 @@ export class Converter implements IConverter {
         return !!nodeOrSymbol;
     }
 
-    convert(nodeOrSymbol: TConvertable): TType {
+    convert(nodeOrSymbol: TConvertable): TTypeConverted {
+        const summary = this.context.convertTypeSummary(nodeOrSymbol);
         const typeValue = this.convertToTypeValue(nodeOrSymbol, true);
         const node = ConvertableUtils.getNode(nodeOrSymbol);
         const kind = node.getKind();
-        const typeRef = NodeUtils.getTypeRef(node);
-        const typeRefShort = this.context.refs.set(typeRef);
-
-        const res: TType = {
+        const typeRef = getTypeRefFromTypeSummary(summary);
+        const propsConverted = this.context.convertTypeProps(nodeOrSymbol);
+        const details: TTypeDetails = {
             kind,
-            typeRef: typeRefShort,
             typeValue,
+            ...propsConverted,
         };
-        if (this.isPropsSupported(node)) {
-            const propsGen = extractProps(node, this.context);
-            if (propsGen?.props?.length) {
-                res.props = propsGen.props;
-                if (propsGen.fromUnion) {
-                    res.propsFromUnion = true;
-                }
-            }
-        }
-        this.context.stats.checkConvertedExport(res, NodeUtils.isDirectExportFromFile(node));
-        return res;
-    }
-
-    protected isPropsSupported(node: Node) {
-        const type = node.getType();
-        const isExternalType = NodeUtils.isExternalNode(node);
-        return TypeUtils.isPropsSupportedByType({ type, isExternalType });
+        return {
+            typeRef,
+            summary,
+            details,
+        };
     }
 }

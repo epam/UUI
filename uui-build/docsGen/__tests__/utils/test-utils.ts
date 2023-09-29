@@ -4,8 +4,7 @@ import fs from 'fs';
 import { extractExportsFromTsProject } from '../../extractor';
 import { formatExports } from '../../formatter';
 import { ConverterContext } from '../../converterContext/converterContext';
-import { TNotFormattedExportsByModule } from '../../types/types';
-import { TApiReferenceJson } from '../../types/docsGenSharedTypes';
+import { TApiReferenceJson, TNotFormattedExportsByModule } from '../../types/types';
 import { uuiRoot } from '../../constants';
 
 const TEST_MAIN_FILE_PATH = path.join(uuiRoot, 'test/test.tsx');
@@ -38,9 +37,16 @@ export function generateDocs(fileContent: string): TApiReferenceJson {
     const exportsNotFormatted: TNotFormattedExportsByModule = {
         [TEST_DEFAULT_MODULE_NAME]: extractExportsFromTsProject({ project, mainFilePath, context }),
     };
-    const publicTypes = formatExports(exportsNotFormatted, context);
-    return {
-        publicTypes,
-        refs: context.refs.get(publicTypes),
-    };
+    return formatExports(exportsNotFormatted, context);
 }
+
+expect.addSnapshotSerializer({
+    test: (val: any) => {
+        if (typeof val === 'object') {
+            const keys = Object.keys(val);
+            return keys.length === 1 && keys[0] === 'allTypes';
+        }
+        return false;
+    },
+    print: (val: any) => JSON.stringify(val, undefined, 1),
+});

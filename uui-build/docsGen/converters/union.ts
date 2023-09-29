@@ -3,7 +3,7 @@ import { TConvertable } from '../types/types';
 import { NodeUtils } from './converterUtils/nodeUtils';
 import { TypeUtils } from './converterUtils/typeUtils';
 import { ConvertableUtils } from './converterUtils/convertableUtils';
-import { TTypeValue } from '../types/docsGenSharedTypes';
+import { TTypeValue } from '../types/sharedTypes';
 
 export class Union extends Converter {
     override isSupported(nodeOrSymbol: TConvertable) {

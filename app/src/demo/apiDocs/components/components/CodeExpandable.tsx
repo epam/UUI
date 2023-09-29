@@ -3,8 +3,7 @@ import css from './CodeExpandable.module.scss';
 import { FlexRow, LinkButton, Switch } from '@epam/uui';
 import { FlexSpacer } from '@epam/uui-components';
 import { Code } from '../../../../common/docs/Code';
-import { TType } from '../../docsGenSharedTypes';
-import { useTsDocsRefs } from '../../dataHooks';
+import { TType } from '../../sharedTypes';
 
 function buildGitURL(relativePath?: string) {
     if (relativePath) {
@@ -15,7 +14,6 @@ function buildGitURL(relativePath?: string) {
 export function CodeExpandable(props: { showCode: boolean; tsDocsType: TType }) {
     const { showCode, tsDocsType } = props;
     const [isCodeExpanded, setIsCodeExpanded] = useState<boolean>(false);
-    const tsDocsRefs = useTsDocsRefs();
     if (!tsDocsType) {
         // not loaded yet
         return null;
@@ -23,7 +21,7 @@ export function CodeExpandable(props: { showCode: boolean; tsDocsType: TType }) 
     if (!showCode) {
         return null;
     }
-    const relativeUrl = tsDocsRefs[tsDocsType.typeRef].src;
+    const relativeUrl = tsDocsType.summary.src;
     const gitUrl = buildGitURL(relativeUrl);
     return (
         <div className={ css.root }>
@@ -34,7 +32,7 @@ export function CodeExpandable(props: { showCode: boolean; tsDocsType: TType }) 
             </FlexRow>
             {isCodeExpanded && (
                 <FlexRow key="code" size="36" padding="12">
-                    <Code codeAsHtml={ tsDocsType?.typeValue.print?.join('\n') || '' } />
+                    <Code codeAsHtml={ tsDocsType?.details?.typeValue.print?.join('\n') || '' } />
                 </FlexRow>
             )}
         </div>

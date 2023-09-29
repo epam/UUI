@@ -7,7 +7,7 @@ const router = express.Router();
 
 /**
  *
- * @returns {import('../../uui-build/docsGen/types/docsGenSharedTypes.ts').TApiReferenceJson}
+ * @returns {import('@epam/uui-build/docsGen/types/sharedTypes.ts').TApiReferenceJson}
  */
 function readDocsGenResultsJson() {
     const filePath = path.join(__dirname, '../../public/docs/docsGenOutput/docsGenOutput.json');
@@ -16,8 +16,8 @@ function readDocsGenResultsJson() {
 
 /**
  *
- * @param typeValue {import('../../uui-build/docsGen/types/docsGenSharedTypes.ts').TTypeValue}
- * @returns {import('../../uui-build/docsGen/types/docsGenSharedTypes.ts').TTypeValue}
+ * @param typeValue {import('@epam/uui-build/docsGen/types/sharedTypes.ts').TTypeValue}
+ * @returns {import('@epam/uui-build/docsGen/types/sharedTypes.ts').TTypeValue}
  */
 function prettyPrintTypeValue(typeValue) {
     if (typeValue) {
@@ -36,22 +36,24 @@ function prettyPrintTypeValue(typeValue) {
     return typeValue;
 }
 
-router.get('/ts-docs/types/details/:shortRef', (req, res) => {
+router.get('/ts-docs/details/:shortRef', (req, res) => {
     const shortRef = req.params.shortRef;
     if (!shortRef) {
         res.sendStatus(400);
     }
-    const { publicTypes } = readDocsGenResultsJson();
-    const [moduleName, exportName] = shortRef.split(':');
+    const { allTypes } = readDocsGenResultsJson();
 
-    const exportedType = publicTypes[moduleName]?.[exportName];
+    const exportedType = allTypes[shortRef];
+    const details = exportedType.details;
 
-    exportedType.typeValue = prettyPrintTypeValue(exportedType.typeValue);
-    if (exportedType.props) {
-        exportedType.props = exportedType.props.map((p) => {
-            p.typeValue = prettyPrintTypeValue(p.typeValue);
-            return p;
-        });
+    if (details) {
+        details.typeValue = prettyPrintTypeValue(details.typeValue);
+        if (details.props) {
+            details.props = details.props.map((p) => {
+                p.typeValue = prettyPrintTypeValue(p.typeValue);
+                return p;
+            });
+        }
     }
 
     res.send({
@@ -59,21 +61,39 @@ router.get('/ts-docs/types/details/:shortRef', (req, res) => {
     });
 });
 
-router.get('/ts-docs/types/navigation', (req, res) => {
-    const { publicTypes } = readDocsGenResultsJson();
-    const content = Object.keys(publicTypes).reduce((acc, packageName) => {
-        acc[packageName] = Object.keys(publicTypes[packageName]);
+router.get('/ts-docs/exports', (req, res) => {
+    const { allTypes } = readDocsGenResultsJson();
+    const exportedTypes = Object.keys(allTypes).filter((ref) => {
+        return allTypes[ref].summary.exported;
+    });
+    const exports = exportedTypes.reduce((acc, ref) => {
+        const sum = allTypes[ref].summary;
+        const exportName = sum.typeName.name;
+        const moduleName = sum.module;
+        if (!acc[moduleName]) {
+            acc[moduleName] = [];
+        }
+        acc[moduleName].push(exportName);
         return acc;
     }, {});
+
     res.send({
-        content,
+        content: exports,
     });
 });
 
-router.get('/ts-docs/types/refs', (req, res) => {
-    const { refs } = readDocsGenResultsJson();
+/**
+ * We only return "summary" part of each type for performance reasons.
+ */
+router.get('/ts-docs/summaries', (req, res) => {
+    const { allTypes } = readDocsGenResultsJson();
+    const content = Object.keys(allTypes).reduce((acc, typeRef) => {
+        acc[typeRef] = allTypes[typeRef].summary;
+        return acc;
+    }, {});
+
     res.send({
-        content: refs,
+        content,
     });
 });
 
