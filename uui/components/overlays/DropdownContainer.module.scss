@@ -1,7 +1,7 @@
 .root {
     --uui-dropdown-container-border-radius: 6px;
     --uui-dropdown-container-shadow: var(--uui-shadow-level-2);
-    --uui-dropdown-container-bg: var(--uui-color-50, var(--uui-surface));
+    --uui-dropdown-container-bg: var(--uui-color-50, var(--uui-surface-main));
 
     &:global(.uui-dropdown-body) {
         display: flex;

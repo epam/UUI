@@ -32,7 +32,7 @@
 
     .grab-area:hover {
         @include visibility;
-        background-color: var(--uui-surface);
+        background-color: var(--uui-surface-main);
     }
 
     &:global(.uui-dragged-out) {

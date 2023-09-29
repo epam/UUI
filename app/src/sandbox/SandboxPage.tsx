@@ -12,6 +12,7 @@ import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
 import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 import { Responsive } from './responsive/Responsive';
 import { ThemeDemo } from './theme/ThemeDemo';
+import { ThemeDemo as ThemeElectricDemo } from './theme-electric-test/ThemeDemo';
 import { ProductsTableDemo } from './productsTable/ProductsTableDemo';
 import { ProjectDemo } from './project/ProjectDemo';
 import { AdaptivePanelDemo } from './adaptivePanel/AdaptivePanelDemo';
@@ -36,6 +37,7 @@ export function SandboxPage() {
             { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
             { id: 'responsive', name: 'Responsive', component: Responsive },
             { id: 'uui_theming', name: 'UUI Theming', component: ThemeDemo },
+            { id: 'theme_electric', name: 'Theme Electric', component: ThemeElectricDemo },
             { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged },
             { id: 'SkillsBatteryPopover', name: 'Skills', component: Skills },
             { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },
