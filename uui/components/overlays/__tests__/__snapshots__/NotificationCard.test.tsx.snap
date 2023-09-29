@@ -21,7 +21,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
 
 exports[`ErrorNotification should be rendered correctly 1`] = `
 <div
-  className="uui-notification_card uui-color-critical root"
+  className="uui-notification_card uui-color-error root"
   role="alert"
 >
   <div
