@@ -32,11 +32,6 @@
         --uui-color-contrast-text: var(--uui-text-dark);
     }
 
-    :global(.uui-indicator) {
-        background-color: var(--uui-badge-caption);
-        border-radius: 50%;
-    }
-
     &:global(.-clickable) {
         &:hover {
             background-color: var(--uui-badge-bg-hover);
@@ -73,10 +68,21 @@
             margin-right: 3px;
         }
 
-        :global(.uui-indicator) {
-            min-width: 4px;
-            min-height: 4px;
-            margin: auto 0 auto 3px;
+        &:global(.uui-indicator) {
+            :global(.uui-caption) {
+                margin-left: 9px;
+            }
+
+            &::before {
+                position: absolute;
+                content: '';
+                border-radius: 50%;
+                background-color: var(--uui-badge-caption);
+                width: 4px;
+                height: 4px;
+                top: 6px;
+                left: 8px;
+            }
         }
 
         :global(.uui-caption) {
@@ -108,10 +114,21 @@
             margin-right: 6px;
         }
 
-        :global(.uui-indicator) {
-            min-width: 8px;
-            min-height: 8px;
-            margin: auto 0 auto 6px;
+        &:global(.uui-indicator) {
+            :global(.uui-caption) {
+                margin-left: 14px;
+            }
+
+            &::before {
+                position: absolute;
+                content: '';
+                border-radius: 50%;
+                background-color: var(--uui-badge-caption);
+                width: 8px;
+                height: 8px;
+                top: 7px;
+                left: 11px;
+            }
         }
 
         :global(.uui-caption) {
@@ -144,10 +161,21 @@
             margin-right: 6px;
         }
 
-        :global(.uui-indicator) {
-            min-width: 8px;
-            min-height: 8px;
-            margin: auto 0 auto 6px;
+        &:global(.uui-indicator) {
+            :global(.uui-caption) {
+                margin-left: 14px;
+            }
+
+            &::before {
+                position: absolute;
+                content: '';
+                border-radius: 50%;
+                background-color: var(--uui-badge-caption);
+                width: 8px;
+                height: 8px;
+                top: 10px;
+                left: 11px;
+            }
         }
 
         :global(.uui-caption) {
@@ -180,10 +208,21 @@
             margin-right: 6px;
         }
 
-        :global(.uui-indicator) {
-            min-width: 8px;
-            min-height: 8px;
-            margin: auto 0 auto 6px;
+        &:global(.uui-indicator) {
+            :global(.uui-caption) {
+                margin-left: 18px;
+            }
+
+            &::before {
+                position: absolute;
+                content: '';
+                border-radius: 50%;
+                background-color: var(--uui-badge-caption);
+                width: 8px;
+                height: 8px;
+                top: 13px;
+                left: 15px;
+            }
         }
 
         :global(.uui-caption) {
@@ -216,17 +255,28 @@
             margin-right: 6px;
         }
 
-        :global(.uui-indicator) {
-            min-width: 12px;
-            min-height: 12px;
-            margin: auto 0 auto 6px;
-        }
-
         :global(.uui-caption) {
             padding-top: 8px;
             padding-bottom: 8px;
             line-height: 24px;
             font-size: 16px;
+        }
+
+        &:global(.uui-indicator) {
+            :global(.uui-caption) {
+                margin-left: 18px;
+            }
+
+            &::before {
+                position: absolute;
+                content: '';
+                border-radius: 50%;
+                background-color: var(--uui-badge-caption);
+                width: 12px;
+                height: 12px;
+                top: 14px;
+                left: 17px;
+            }
         }
 
         &:global(.fill-transparent) {
@@ -252,10 +302,21 @@
             margin-right: 6px;
         }
 
-        :global(.uui-indicator) {
-            min-width: 12px;
-            min-height: 12px;
-            margin: auto 0 auto 6px;
+        &:global(.uui-indicator) {
+            :global(.uui-caption) {
+                margin-left: 18px;
+            }
+
+            &::before {
+                position: absolute;
+                content: '';
+                border-radius: 50%;
+                background-color: var(--uui-badge-caption);
+                width: 12px;
+                height: 12px;
+                top: 17px;
+                left: 17px;
+            }
         }
 
         :global(.uui-caption) {

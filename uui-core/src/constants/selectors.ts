@@ -4,7 +4,6 @@ export const uuiElement = {
     anchor: 'uui-anchor',
     inputBox: 'uui-input-box',
     input: 'uui-input',
-    indicator: 'uui-indicator',
     placeholder: 'uui-placeholder',
     valueInPlaceholder: 'uui-value-in-placeholder',
     checkbox: 'uui-checkbox',

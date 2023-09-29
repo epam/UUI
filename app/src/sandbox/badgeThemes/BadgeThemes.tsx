@@ -8,15 +8,23 @@ import { Badge as PromoBadge, BadgeProps as PromoBadgeProps } from '@epam/promo'
 
 const uuiBadges: Array<UuiBadgeProps & { key: string }> = [
     { key: '1', indicator: true, size: '48', color: 'neutral' },
-    { key: '3', indicator: true, size: '30', color: 'info' },
-    { key: '4', indicator: true, size: '24', color: 'success' },
-    { key: '5', indicator: true, size: '18', color: 'warning' },
-    { key: '6', indicator: true, size: '48', color: 'error' },
-    { key: '7', fill: 'outline', indicator: true, size: '48', color: 'neutral' },
-    { key: '9', fill: 'outline', indicator: true, size: '30', color: 'info' },
-    { key: '10', fill: 'outline', indicator: true, size: '24', color: 'success' },
-    { key: '11', fill: 'outline', indicator: true, size: '18', color: 'warning' },
-    { key: '12', fill: 'outline', indicator: true, size: '48', color: 'error' },
+    { key: '2', indicator: true, size: '42', color: 'info' },
+    { key: '3', indicator: true, size: '36', color: 'success' },
+    { key: '4', indicator: true, size: '30', color: 'warning' },
+    { key: '5', indicator: true, size: '24', color: 'error' },
+    { key: '6', indicator: true, size: '18', color: 'error' },
+    { key: '8', fill: 'outline', indicator: true, size: '48', color: 'neutral' },
+    { key: '9', fill: 'outline', indicator: true, size: '42', color: 'info' },
+    { key: '10', fill: 'outline', indicator: true, size: '36', color: 'success' },
+    { key: '11', fill: 'outline', indicator: true, size: '30', color: 'warning' },
+    { key: '12', fill: 'outline', indicator: true, size: '24', color: 'error' },
+    { key: '13', fill: 'outline', indicator: true, size: '18', color: 'error' },
+    { key: '1', size: '48', color: 'neutral' },
+    { key: '2', size: '42', color: 'info' },
+    { key: '3', size: '36', color: 'success' },
+    { key: '4', size: '30', color: 'warning' },
+    { key: '5', size: '24', color: 'error' },
+    { key: '6', size: '18', color: 'error' },
 ];
 
 const loveshipBadges: Array<LoveshipBadgeProps & { key: string }> = [
@@ -48,6 +56,13 @@ const loveshipBadges: Array<LoveshipBadgeProps & { key: string }> = [
     { key: '25', fill: 'outline', indicator: true, shape: 'round', size: '42', color: 'night100' },
     { key: '26', fill: 'outline', indicator: true, shape: 'round', size: '42', color: 'night300' },
     { key: '27', fill: 'outline', indicator: true, shape: 'round', size: '42', color: 'night600' },
+    { key: '1', shape: 'round', size: '42', color: 'white' },
+    { key: '2', shape: 'round', size: '42', color: 'sky' },
+    { key: '1', shape: 'round', size: '42', color: 'grass' },
+    { key: '3', shape: 'round', size: '42', color: 'sun' },
+    { key: '4', shape: 'round', size: '42', color: 'fire' },
+    { key: '5', shape: 'round', size: '42', color: 'yellow' },
+    { key: '6', shape: 'round', size: '42', color: 'orange' },
 ];
 
 const promoBadges: Array<PromoBadgeProps & { key: string }> = [
@@ -79,6 +94,13 @@ const promoBadges: Array<PromoBadgeProps & { key: string }> = [
     { key: '26', fill: 'outline', indicator: true, size: '42', color: 'gray10' },
     { key: '27', fill: 'outline', indicator: true, size: '42', color: 'gray30' },
     { key: '28', fill: 'outline', indicator: true, size: '42', color: 'gray60' },
+    { key: '1', size: '42', color: 'white' },
+    { key: '2', size: '42', color: 'blue' },
+    { key: '3', size: '42', color: 'green' },
+    { key: '4', size: '42', color: 'amber' },
+    { key: '5', size: '42', color: 'red' },
+    { key: '6', size: '42', color: 'yellow' },
+    { key: '7', size: '42', color: 'orange' },
 ];
 
 const electricBadges: Array<PromoBadgeProps & { key: string }> = [
@@ -96,6 +118,13 @@ const electricBadges: Array<PromoBadgeProps & { key: string }> = [
     { key: '12', fill: 'outline', indicator: true, size: '42', color: 'purple' },
     { key: '13', fill: 'outline', indicator: true, size: '42', color: 'violet' },
     { key: '14', fill: 'outline', indicator: true, size: '42', color: 'cobalt' },
+    { key: '1', color: 'white' },
+    { key: '2', color: 'yellow' },
+    { key: '3', color: 'orange' },
+    { key: '4', color: 'fuchsia' },
+    { key: '5', color: 'purple' },
+    { key: '6', color: 'violet' },
+    { key: '7', color: 'cobalt' },
 ];
 
 export function BadgeThemes() {
@@ -120,7 +149,7 @@ export function BadgeThemes() {
                 <div style={ {
                     padding: '24px',
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(5, max-content)',
+                    gridTemplateColumns: 'repeat(6, max-content)',
                     gap: '12px 9px',
                     justifyItems: 'center',
                     alignItems: 'center',
