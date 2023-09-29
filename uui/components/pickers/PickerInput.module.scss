@@ -1,7 +1,7 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
-    --uui-picker_input_body-bg: var(--uui-surface);
+    --uui-picker_input_body-bg: var(--uui-surface-main);
     --uui-picker_input_body-shadow: var(--uui-shadow-level-2);
 }
 

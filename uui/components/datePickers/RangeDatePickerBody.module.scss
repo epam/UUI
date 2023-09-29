@@ -1,7 +1,7 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
-    --uui-rdtp_date-bg-selected: var(--uui-surface-active);
+    --uui-rdtp_date-bg-selected: var(--uui-surface-info);
 
     :global(.uui-calendar-days) > div:last-child {
         :global(.uui-calendar-day-cell):last-child > :global(.uui-range-datepicker-in-range) {
@@ -14,7 +14,7 @@
                     }
 
                     &::after {
-                        background: linear-gradient(320deg, var(--uui-surface) 3px, transparent 0), linear-gradient(-135deg, var(--uui-surface) 3px, transparent 0);
+                        background: linear-gradient(320deg, var(--uui-surface-main) 3px, transparent 0), linear-gradient(-135deg, var(--uui-surface-main) 3px, transparent 0);
                         background-position: left-bottom;
                         background-repeat: repeat-y;
                         background-size: 6px 6px;
@@ -43,7 +43,7 @@
                     }
 
                     &::after {
-                        background: linear-gradient(45deg, var(--uui-surface) 3px, transparent 0), linear-gradient(135deg, var(--uui-surface) 3px, transparent 0);
+                        background: linear-gradient(45deg, var(--uui-surface-main) 3px, transparent 0), linear-gradient(135deg, var(--uui-surface-main) 3px, transparent 0);
                         background-position: left-bottom;
                         background-repeat: repeat-y;
                         background-size: 6px 6px;
