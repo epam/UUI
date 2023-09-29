@@ -151,8 +151,8 @@ export function ThemeDemo() {
                     <FlexRow vPadding="12">
                         <LabeledInput label="Status">
                             <FlexRow spacing="12">
-                                <Badge color="success" fill="semitransparent" caption="Approved" size="24" />
-                                <Badge color="info" fill="semitransparent" caption="Active" size="24" />
+                                <Badge color="success" fill="outline" caption="Approved" size="24" />
+                                <Badge color="info" fill="outline" caption="Active" size="24" />
                             </FlexRow>
                         </LabeledInput>
                     </FlexRow>
