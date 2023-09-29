@@ -2401,7 +2401,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 463
+   "amountTypes": 464
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -2688,6 +2688,7 @@
    "@epam/uui:FillStyle",
    "@epam/uui:FiltersPanelProps",
    "@epam/uui:FlexCellMods",
+   "@epam/uui:FlexCellProps",
    "@epam/uui:FlexRowProps",
    "@epam/uui:FontStyle",
    "@epam/uui:GlobalMenuProps",
@@ -3652,11 +3653,11 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 533,
+   "allExports": 534,
    "byModule": {
     "@epam/uui-core": 208,
     "@epam/uui-components": 93,
-    "@epam/uui": 117,
+    "@epam/uui": 118,
     "@epam/promo": 49,
     "@epam/loveship": 57,
     "@epam/uui-editor": 9
@@ -4072,6 +4073,7 @@
      "EpamBadgeSemanticColor",
      "FillStyle",
      "FlexCellMods",
+     "FlexCellProps",
      "FontStyle",
      "IconColor",
      "InputType",
