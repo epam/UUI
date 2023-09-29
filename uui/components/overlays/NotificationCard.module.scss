@@ -1,7 +1,7 @@
 @use '../../assets/styles/index' as *;
 
 .root {
-    --uui-notification-card-bg: var(--uui-surface);
+    --uui-notification-card-bg: var(--uui-surface-main);
     --uui-notification-card-border: var(--uui-color-50);
     --uui-notification-card-fill: var(--uui-color-50);
     --uui-notification-card-text: var(--uui-text-primary);
@@ -17,7 +17,7 @@
     border-top-width: var(--uui-notification-card-border-top-width);
     padding: 6px 18px;
     width: 360px;
-    background: var(--uui-notification-card-bg, var(--uui-surface));
+    background: var(--uui-notification-card-bg, var(--uui-surface-main));
     display: flex;
     overflow: hidden;
     border-radius: var(--uui-notification-card-border-radius);

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
+import { init as initApm } from '@elastic/apm-rum';
 import {
     Router6AdaptedRouter, useUuiServices, DragGhost,
     UuiContext, GAListener, IProcessRequest,
@@ -16,9 +17,7 @@ import { useTheme } from './helpers/useTheme';
 import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
 import '@epam/assets/theme/theme_loveship_dark.scss';
-import '@epam/assets/theme/theme_electric.scss';
 import './index.module.scss';
-import { init as initApm } from '@elastic/apm-rum';
 
 const router6 = createBrowserRouter([
     { path: '*', element: <App /> },
