@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TUuiTsDoc,
 } from '../common';
 
 export class TextPlaceholderDoc extends BaseDocsBlock {
     title = 'TextPlaceholder';
+
+    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:TextPlaceholderProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/typography/textPlaceholder.props.tsx',

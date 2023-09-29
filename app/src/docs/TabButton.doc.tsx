@@ -1,10 +1,13 @@
 import React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TUuiTsDoc,
 } from '../common';
 
 export class TabButtonDoc extends BaseDocsBlock {
     title = 'Tab Button';
+
+    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:TabButtonProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/buttons/tabButton.props.ts',

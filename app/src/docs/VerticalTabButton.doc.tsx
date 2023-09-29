@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TUuiTsDoc,
 } from '../common';
 
 export class VerticalTabButtonDoc extends BaseDocsBlock {
     title = 'Vertical Tab Button';
+
+    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:VerticalTabButtonProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/buttons/verticalTabButton.props.ts',

@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TUuiTsDoc,
 } from '../common';
 
 export class MainMenuDoc extends BaseDocsBlock {
     title = 'Main Menu';
+
+    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:MainMenuProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/navigation/mainMenu.props.tsx',

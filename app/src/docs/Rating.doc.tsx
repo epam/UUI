@@ -1,10 +1,14 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4,
+    BaseDocsBlock, DocExample, EditableDocContent, TUuiTsDoc, UUI3, UUI4,
 } from '../common';
 
 export class RatingDoc extends BaseDocsBlock {
     title = 'Rating';
+
+    // TODO: no such component in "@epam/uui"
+    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui-components:RatingProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/rating.props.ts',
