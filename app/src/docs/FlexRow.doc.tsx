@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, TUuiTsDoc,
 } from '../common';
 
 export class FlexRowDoc extends BaseDocsBlock {
     title = 'FlexRow';
+
+    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:FlexRowProps');
+
     getPropsDocPath() {
         return {
             [UUI4]: './app/src/docs/_props/epam-promo/components/layout/FlexItems/flexRow.props.tsx',

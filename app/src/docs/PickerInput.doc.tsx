@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { BaseDocsBlock, EditableDocContent, DocExample, UUI4, UUI3, UUI } from '../common/docs';
+import { BaseDocsBlock, EditableDocContent, DocExample, UUI4, UUI3, UUI, TUuiTsDoc } from '../common/docs';
 
 export class PickerInputDoc extends BaseDocsBlock {
     title = 'Picker Input';
+
+    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:CompletePickerInputProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/pickers/pickerInput.props.tsx',

@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI,
+    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI, TUuiTsDoc,
 } from '../common';
 
 export class SwitchDoc extends BaseDocsBlock {
     title = 'Switch';
+
+    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:SwitchProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/switch.props.ts',

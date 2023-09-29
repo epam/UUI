@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4,
+    BaseDocsBlock, DocExample, EditableDocContent, TUuiTsDoc, UUI3, UUI4,
 } from '../common';
 
 export class MultiSwitchDoc extends BaseDocsBlock {
     title = 'MultiSwitch';
+
+    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:MultiSwitchProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/multiSwitch.props.tsx',

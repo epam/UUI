@@ -47176,6 +47176,754 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:CompletePickerInputProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "CompletePickerInputProps",
+     "nameFull": "CompletePickerInputProps<TItem, TId>"
+    },
+    "src": "uui/components/pickers/PickerInput.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ClassValue; highlightSearchMatches?: boolean | undefined; } | ClassValue; highlightSearchMatches?: boolean | undefined; } | ClassValue; highlightSearchMatches?: boolean | undefined; } | ClassValue; highlightSearchMatches?: boolean | undefined; }",
+     "print": [
+      "type CompletePickerInputProps<TItem, TId> = PickerInputProps & PickerInputBaseProps<TItem, TId>;"
+     ]
+    },
+    "props": [
+     {
+      "uid": 154,
+      "name": "size",
+      "typeValue": {
+       "raw": "undefined | '36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "from": "@epam/uui:SizeMod",
+      "required": false
+     },
+     {
+      "uid": 155,
+      "name": "mode",
+      "typeValue": {
+       "raw": "undefined | 'inline' | 'form' | 'cell'"
+      },
+      "from": "@epam/uui:IHasEditMode",
+      "required": false
+     },
+     {
+      "uid": 156,
+      "name": "entityName",
+      "comment": [
+       "Name of the entity being selected. Affects wording like \"Please select [entity]\""
+      ],
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 157,
+      "name": "entityPluralName",
+      "comment": [
+       "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
+      ],
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 158,
+      "name": "dataSource",
+      "comment": [
+       "Provides items to the Picker"
+      ],
+      "typeValue": {
+       "raw": "IDataSource<TItem, TId, any>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": true
+     },
+     {
+      "uid": 159,
+      "name": "getName",
+      "comment": [
+       "Gets entity display name. Default it item.name."
+      ],
+      "typeValue": {
+       "raw": "undefined | (item: TItem) => string"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 160,
+      "name": "renderRow",
+      "comment": [
+       "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
+      ],
+      "typeValue": {
+       "raw": "undefined | (props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 161,
+      "name": "getRowOptions",
+      "comment": [
+       "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
+      ],
+      "typeValue": {
+       "raw": "undefined | (item: TItem, index: number) => DataRowOptions<TItem, TId>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 162,
+      "name": "renderNotFound",
+      "comment": [
+       "Overrides the default 'no records found' banner.",
+       " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
+      ],
+      "typeValue": {
+       "raw": "undefined | (props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 163,
+      "name": "emptyValue",
+      "comment": [
+       "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | []"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 164,
+      "name": "sortBy",
+      "comment": [
+       "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
+      ],
+      "typeValue": {
+       "raw": "undefined | (item: TItem, sorting: SortingOption<any>) => any"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 165,
+      "name": "filter",
+      "comment": [
+       "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+      ],
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 166,
+      "name": "sorting",
+      "comment": [
+       "Defines sorting to pass to the DataSource"
+      ],
+      "typeValue": {
+       "raw": "undefined | SortingOption<any>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 167,
+      "name": "cascadeSelection",
+      "comment": [
+       "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
+       " - false: All nodes are selected independently (default).",
+       " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
+       " - 'implicit': Selecting a parent node means that all children are considered checked.",
+       "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
+       "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
+       "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
+       "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true | 'implicit' | 'explicit'"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 168,
+      "name": "isFoldedByDefault",
+      "comment": [
+       "You can return true for all, or some items to fold them."
+      ],
+      "typeValue": {
+       "raw": "undefined | (item: TItem) => boolean"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 169,
+      "name": "getSearchFields",
+      "comment": [
+       "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
+      ],
+      "typeValue": {
+       "raw": "undefined | (item: TItem) => string[]"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 68,
+      "name": "selectionMode",
+      "typeValue": {
+       "raw": "'single'"
+      },
+      "from": "@epam/uui-core:SinglePickerProps",
+      "required": true
+     },
+     {
+      "uid": 18,
+      "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
+      "typeValue": {
+       "raw": "undefined | 'id'"
+      },
+      "from": "@epam/uui-core:SinglePickerProps",
+      "required": false
+     },
+     {
+      "uid": 19,
+      "name": "value",
+      "comment": [
+       "The current value of component"
+      ],
+      "typeValue": {
+       "raw": "TId"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 20,
+      "name": "onValueChange",
+      "comment": [
+       "Called when value needs to be changed (usually due to user interaction)"
+      ],
+      "typeValue": {
+       "raw": "(newValue: TId) => void"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 174,
+      "name": "isInvalid",
+      "comment": [
+       "True if component contains invalid input"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 175,
+      "name": "validationMessage",
+      "comment": [
+       "Message describing why the value is invalid"
+      ],
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 176,
+      "name": "validationProps",
+      "comment": [
+       "If T is a complex value (object or array), this property contains validation states of inner items"
+      ],
+      "typeValue": {
+       "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 177,
+      "name": "isDisabled",
+      "comment": [
+       "Disable editing, and visually de-emphasize value of the component"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": 178,
+      "name": "isReadonly",
+      "comment": [
+       "Disable editing. Unlike isDisabled, keep component's value readable."
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": 179,
+      "name": "isRequired",
+      "comment": [
+       "Marks that component's value is required"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": 180,
+      "name": "getValueChangeAnalyticsEvent",
+      "comment": [
+       "Given a value, returns an analytics event to send when component is edited.",
+       " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+      ],
+      "typeValue": {
+       "raw": "undefined | (newValue: any, oldValue: any) => AnalyticsEvent"
+      },
+      "from": "@epam/uui-core:IAnalyticableOnChange",
+      "required": false
+     },
+     {
+      "uid": 181,
+      "name": "onFocus",
+      "comment": [
+       "Called when component gets input focus"
+      ],
+      "typeValue": {
+       "raw": "undefined | (e: React.FocusEvent<HTMLElement, Element>) => void"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": 182,
+      "name": "onBlur",
+      "comment": [
+       "Called when component looses input focus"
+      ],
+      "typeValue": {
+       "raw": "undefined | (e: React.FocusEvent<HTMLElement, Element>) => void"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": 183,
+      "name": "placeholder",
+      "comment": [
+       "Placeholder to display when empty"
+      ],
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IHasPlaceholder",
+      "required": false
+     },
+     {
+      "uid": 184,
+      "name": "icon",
+      "comment": [
+       "Icon can be an React element (usually an SVG element)"
+      ],
+      "typeValue": {
+       "raw": "undefined | Icon"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": 185,
+      "name": "iconPosition",
+      "comment": [
+       "Position of the icon (left of right)"
+      ],
+      "typeValue": {
+       "raw": "undefined | 'left' | 'right'"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": 186,
+      "name": "onIconClick",
+      "comment": [
+       "Click handler for the icon"
+      ],
+      "typeValue": {
+       "raw": "undefined | () => void"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": 187,
+      "name": "editMode",
+      "comment": [
+       "dropdown (default) - show selection in dropdown; modal - opens modal window to select items"
+      ],
+      "typeValue": {
+       "raw": "undefined | 'dropdown' | 'modal'"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 188,
+      "name": "maxItems",
+      "comment": [
+       "Maximum number of tags to display in input, before collapsing to \"N items selected\" mode"
+      ],
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 189,
+      "name": "minBodyWidth",
+      "comment": [
+       "Minimum width of dropdown body"
+      ],
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 190,
+      "name": "isSingleLine",
+      "comment": [
+       "Prevents selected items tags to occupy multiple lines"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 191,
+      "name": "dropdownPlacement",
+      "comment": [
+       "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
+      ],
+      "typeValue": {
+       "raw": "undefined | 'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 192,
+      "name": "renderToggler",
+      "comment": [
+       "Replaces default 'toggler' - an input to which Picker attaches dropdown"
+      ],
+      "typeValue": {
+       "raw": "undefined | (props: PickerTogglerProps<TItem, TId>) => React.ReactNode"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 193,
+      "name": "searchPosition",
+      "comment": [
+       "Defines where search field is:",
+       " 'input' - try to place search inside the toggler (default for single-select),",
+       " 'body' - put search inside the dropdown (default for multi-select)",
+       " 'none' - disables search completely",
+       "",
+       " Note: 'searchPosition' cannot be 'input' if 'editMode' is 'modal'"
+      ],
+      "typeValue": {
+       "raw": "undefined | 'none' | 'input' | 'body'"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 194,
+      "name": "disableClear",
+      "comment": [
+       "Disallow to clear Picker value (cross icon)"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 195,
+      "name": "minCharsToSearch",
+      "comment": [
+       "Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.",
+       " By default search triggers after input value is changed.",
+       "",
+       " Note: defined minCharsToSearch isn't compatible with searchPosition=body."
+      ],
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 196,
+      "name": "dropdownHeight",
+      "comment": [
+       "Overrides default height of the dropdown body"
+      ],
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 197,
+      "name": "autoFocus",
+      "comment": [
+       "Sets focus to component when it's mounted"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 198,
+      "name": "rawProps",
+      "comment": [
+       "HTML attributes to put directly to the input and body elements"
+      ],
+      "typeValue": {
+       "raw": "undefined | { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 199,
+      "name": "renderFooter",
+      "comment": [
+       "Adds custom footer to the dropdown body"
+      ],
+      "typeValue": {
+       "raw": "undefined | (props: PickerInputFooterProps<TItem, TId>) => React.ReactNode"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 200,
+      "name": "fixedBodyPosition",
+      "comment": [
+       "Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter."
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 201,
+      "name": "portalTarget",
+      "typeValue": {
+       "raw": "undefined | HTMLElement"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 202,
+      "name": "inputCx",
+      "comment": [
+       "CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 203,
+      "name": "bodyCx",
+      "comment": [
+       "CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 204,
+      "name": "highlightSearchMatches",
+      "comment": [
+       "Enables highlighting of the items' text with search-matching results."
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": 69,
+      "name": "valueType",
+      "typeValue": {
+       "raw": "'entity'"
+      },
+      "from": "@epam/uui-core:SinglePickerProps",
+      "required": true
+     },
+     {
+      "uid": 70,
+      "name": "value",
+      "comment": [
+       "The current value of component"
+      ],
+      "typeValue": {
+       "raw": "TItem"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 71,
+      "name": "onValueChange",
+      "comment": [
+       "Called when value needs to be changed (usually due to user interaction)"
+      ],
+      "typeValue": {
+       "raw": "(newValue: TItem) => void"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 170,
+      "name": "selectionMode",
+      "typeValue": {
+       "raw": "'multi'"
+      },
+      "from": "@epam/uui-core:ArrayPickerProps",
+      "required": true
+     },
+     {
+      "uid": 120,
+      "name": "valueType",
+      "typeValue": {
+       "raw": "undefined | 'id'"
+      },
+      "from": "@epam/uui-core:ArrayPickerProps",
+      "required": false
+     },
+     {
+      "uid": 121,
+      "name": "value",
+      "comment": [
+       "The current value of component"
+      ],
+      "typeValue": {
+       "raw": "TId[]"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 122,
+      "name": "onValueChange",
+      "comment": [
+       "Called when value needs to be changed (usually due to user interaction)"
+      ],
+      "typeValue": {
+       "raw": "(newValue: TId[]) => void"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 171,
+      "name": "valueType",
+      "typeValue": {
+       "raw": "'entity'"
+      },
+      "from": "@epam/uui-core:ArrayPickerProps",
+      "required": true
+     },
+     {
+      "uid": 172,
+      "name": "value",
+      "comment": [
+       "The current value of component"
+      ],
+      "typeValue": {
+       "raw": "TItem[]"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 173,
+      "name": "onValueChange",
+      "comment": [
+       "Called when value needs to be changed (usually due to user interaction)"
+      ],
+      "typeValue": {
+       "raw": "(newValue: TItem[]) => void"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     }
+    ],
+    "propsFromUnion": true
+   }
+  },
   "@epam/uui:ConfirmationModalWindowProps": {
    "summary": {
     "module": "@epam/uui",
@@ -47721,7 +48469,7 @@
        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
       ],
       "typeValue": {
-       "raw": "undefined | 'top' | 'center' | 'bottom' | 'stretch'"
+       "raw": "undefined | 'top' | 'bottom' | 'center' | 'stretch'"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -49086,7 +49834,7 @@
        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
       ],
       "typeValue": {
-       "raw": "undefined | 'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "undefined | 'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "from": "@epam/uui-core:BaseDatePickerProps",
       "required": false
@@ -49715,7 +50463,7 @@
        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
       ],
       "typeValue": {
-       "raw": "undefined | 'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "undefined | 'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "from": "@epam/uui-core:IDropdownBodyProps",
       "required": false
@@ -50598,7 +51346,7 @@
        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
       ],
       "typeValue": {
-       "raw": "undefined | 'top' | 'center' | 'bottom' | 'stretch'"
+       "raw": "undefined | 'top' | 'bottom' | 'center' | 'stretch'"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -51195,7 +51943,7 @@
        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
       ],
       "typeValue": {
-       "raw": "undefined | 'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "undefined | 'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "from": "@epam/uui-core:IDropdownBodyProps",
       "required": false
@@ -51646,6 +52394,216 @@
     "props": [
      {
       "uid": 1,
+      "name": "size",
+      "typeValue": {
+       "raw": "undefined | '36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "from": "@epam/uui:SizeMod",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:LabeledInputProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "LabeledInputProps",
+     "nameFull": "LabeledInputProps"
+    },
+    "src": "uui/components/layout/LabeledInput.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "LabeledInputProps",
+     "print": [
+      "type LabeledInputProps = uuiComponents.LabeledInputProps & LabeledInputMods;"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "Tooltip",
+      "comment": [
+       "Overrides the default Tooltip component to use for info tooltip"
+      ],
+      "typeValue": {
+       "raw": "undefined | React.ComponentClass<TooltipProps, any> | React.FunctionComponent<TooltipProps>"
+      },
+      "from": "@epam/uui-components:LabeledInputProps",
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "infoIcon",
+      "comment": [
+       "Overrides the default info icon"
+      ],
+      "typeValue": {
+       "raw": "undefined | Icon"
+      },
+      "from": "@epam/uui-components:LabeledInputProps",
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "labelPosition",
+      "comment": [
+       "Position of the label, relative to the wrapped component (top of left)"
+      ],
+      "typeValue": {
+       "raw": "undefined | 'left' | 'top'"
+      },
+      "from": "@epam/uui-core:LabeledInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "info",
+      "comment": [
+       "Info hint text to show in tooltip"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+      },
+      "from": "@epam/uui-core:LabeledInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": 5,
+      "name": "isOptional",
+      "comment": [
+       "Marks related field as optional"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:LabeledInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": 6,
+      "name": "htmlFor",
+      "comment": [
+       "HTML 'for' tag to bind the label to a component.",
+       " Can be used when component can't be wrapped by the LabeledInput, e.g. when form is layed out as table with labels and inputs placed into different columns"
+      ],
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-core:LabeledInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": 7,
+      "name": "isInvalid",
+      "comment": [
+       "True if component contains invalid input"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 8,
+      "name": "validationMessage",
+      "comment": [
+       "Message describing why the value is invalid"
+      ],
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 9,
+      "name": "validationProps",
+      "comment": [
+       "If T is a complex value (object or array), this property contains validation states of inner items"
+      ],
+      "typeValue": {
+       "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 10,
+      "name": "cx",
+      "comment": [
+       "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 11,
+      "name": "label",
+      "comment": [
+       "Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+      ],
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IHasLabel",
+      "required": false
+     },
+     {
+      "uid": 12,
+      "name": "children",
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+      },
+      "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": 13,
+      "name": "isRequired",
+      "comment": [
+       "Marks that component's value is required"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": 14,
+      "name": "rawProps",
+      "comment": [
+       "Any HTML attributes (native or 'data-') to put on the underlying component"
+      ],
+      "typeValue": {
+       "raw": "undefined | React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": 15,
+      "name": "forwardedRef",
+      "comment": [
+       "this ref is passed to the underlying component"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": 16,
       "name": "size",
       "typeValue": {
        "raw": "undefined | '36' | '48' | '24' | '30' | '42' | 'none'"
@@ -52729,6 +53687,254 @@
       "}"
      ]
     }
+   }
+  },
+  "@epam/uui:MainMenuProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "MainMenuProps",
+     "nameFull": "MainMenuProps"
+    },
+    "src": "uui/components/navigation/MainMenu/MainMenu.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "MainMenuProps",
+     "print": [
+      "type MainMenuProps = uuiComponents.MainMenuProps & MainMenuMods;"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "items",
+      "typeValue": {
+       "raw": "undefined | { render: (item: any, hiddenItems?: any[] | undefined, displayedItems?: any[] | undefined) => any; priority: number; collapsedContainer?: boolean | undefined; id: string; }[]"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "children",
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "externalGap",
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "appLogoUrl",
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 5,
+      "name": "appLogoBgColor",
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 6,
+      "name": "customerLogoUrl",
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 7,
+      "name": "customerLogoBgColor",
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 8,
+      "name": "customerLogoWidth",
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 9,
+      "name": "isTransparent",
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 10,
+      "name": "renderBurger",
+      "typeValue": {
+       "raw": "undefined | (props: { onClose: () => void; }) => React.ReactNode"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 11,
+      "name": "alwaysShowBurger",
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 12,
+      "name": "serverBadge",
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 13,
+      "name": "tooltipTechInfo",
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 14,
+      "name": "logoLink",
+      "typeValue": {
+       "raw": "undefined | Link"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 15,
+      "name": "logoHref",
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 16,
+      "name": "logoWidth",
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 17,
+      "name": "onLogoClick",
+      "typeValue": {
+       "raw": "undefined | (e: React.MouseEvent<Element, MouseEvent>) => any"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 18,
+      "name": "customerLogoLink",
+      "typeValue": {
+       "raw": "undefined | Link"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 19,
+      "name": "customerLogoHref",
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 20,
+      "name": "MainMenuDropdown",
+      "typeValue": {
+       "raw": "undefined | React.ComponentClass<MainMenuDropdownProps, any> | React.FunctionComponent<MainMenuDropdownProps>"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 21,
+      "name": "Burger",
+      "typeValue": {
+       "raw": "undefined | React.ComponentClass<BurgerProps, any> | React.FunctionComponent<BurgerProps>"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 22,
+      "name": "cx",
+      "comment": [
+       "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 23,
+      "name": "rawProps",
+      "comment": [
+       "Any HTML attributes (native or 'data-') to put on the underlying component"
+      ],
+      "typeValue": {
+       "raw": "undefined | React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": 24,
+      "name": "forwardedRef",
+      "comment": [
+       "this ref is passed to the underlying component"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
    }
   },
   "@epam/uui:MainMenuSearchProps": {
@@ -54508,6 +55714,126 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:PanelProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "PanelProps",
+     "nameFull": "PanelProps"
+    },
+    "src": "uui/components/layout/FlexItems/Panel.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "PanelProps",
+     "print": [
+      "type PanelProps = VPanelProps & PanelMods;"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "cx",
+      "comment": [
+       "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "children",
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+      },
+      "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "onClick",
+      "comment": [
+       "Called when component is clicked"
+      ],
+      "typeValue": {
+       "raw": "undefined | (e?: any) => void"
+      },
+      "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "rawProps",
+      "comment": [
+       "Any HTML attributes (native or 'data-') to put on the underlying component"
+      ],
+      "typeValue": {
+       "raw": "undefined | React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": 5,
+      "name": "forwardedRef",
+      "comment": [
+       "this ref is passed to the underlying component"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": 6,
+      "name": "clickAnalyticsEvent",
+      "comment": [
+       "An analytics event to send (via AnalyticsContext) when component is clicked.",
+       " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+      ],
+      "typeValue": {
+       "raw": "undefined | null | { [key: string]: any; name: string; }"
+      },
+      "from": "@epam/uui-core:IAnalyticableClick",
+      "required": false
+     },
+     {
+      "uid": 7,
+      "name": "style",
+      "typeValue": {
+       "raw": "undefined | React.CSSProperties"
+      },
+      "from": "@epam/uui-core:VPanelProps",
+      "required": false
+     },
+     {
+      "uid": 8,
+      "name": "shadow",
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui:PanelMods",
+      "required": false
+     },
+     {
+      "uid": 9,
+      "name": "margin",
+      "typeValue": {
+       "raw": "undefined | '24'"
+      },
+      "from": "@epam/uui:PanelMods",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui:PickerInputProps": {
    "summary": {
     "module": "@epam/uui",
@@ -54692,7 +56018,7 @@
        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
       ],
       "typeValue": {
-       "raw": "undefined | 'top' | 'center' | 'bottom' | 'stretch'"
+       "raw": "undefined | 'top' | 'bottom' | 'center' | 'stretch'"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -55253,7 +56579,7 @@
        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
       ],
       "typeValue": {
-       "raw": "undefined | 'top' | 'center' | 'bottom' | 'stretch'"
+       "raw": "undefined | 'top' | 'bottom' | 'center' | 'stretch'"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -57566,7 +58892,7 @@
        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
       ],
       "typeValue": {
-       "raw": "undefined | 'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "undefined | 'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "from": "@epam/uui-core:BaseRangeDatePickerProps",
       "required": false
@@ -57849,6 +59175,80 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:RichTextViewProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "RichTextViewProps",
+     "nameFull": "RichTextViewProps"
+    },
+    "src": "uui/components/typography/RichTextView.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "RichTextViewProps",
+     "print": [
+      "type RichTextViewProps = uuiComponents.RichTextViewProps & RichTextViewMods;"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "htmlContent",
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-components:RichTextViewProps",
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "cx",
+      "comment": [
+       "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "children",
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+      },
+      "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "rawProps",
+      "comment": [
+       "Any HTML attributes (native or 'data-') to put on the underlying component"
+      ],
+      "typeValue": {
+       "raw": "undefined | React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": 5,
+      "name": "size",
+      "typeValue": {
+       "raw": "undefined | '12' | '14' | '16'"
+      },
+      "from": "@epam/uui:RichTextViewMods",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui:RowMods": {
    "summary": {
     "module": "@epam/uui",
@@ -58007,6 +59407,553 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:SearchInputProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "SearchInputProps",
+     "nameFull": "SearchInputProps"
+    },
+    "src": "uui/components/inputs/TextInput.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "SearchInputProps",
+     "print": [
+      "interface SearchInputProps extends TextInputProps, IEditableDebouncerOptions {",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "acceptIcon",
+      "comment": [
+       "Overrides accept (check) icon"
+      ],
+      "typeValue": {
+       "raw": "undefined | Icon"
+      },
+      "from": "@epam/uui-components:TextInputProps",
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "cancelIcon",
+      "comment": [
+       "Overrides cancel (cross) icon"
+      ],
+      "typeValue": {
+       "raw": "undefined | Icon"
+      },
+      "from": "@epam/uui-components:TextInputProps",
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "dropdownIcon",
+      "comment": [
+       "Overrides dropdown (chevron) icon"
+      ],
+      "typeValue": {
+       "raw": "undefined | Icon"
+      },
+      "from": "@epam/uui-components:TextInputProps",
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "inputCx",
+      "comment": [
+       "CSS class(es) to put to the HTML Input element"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-components:TextInputProps",
+      "required": false
+     },
+     {
+      "uid": 5,
+      "name": "renderInput",
+      "comment": [
+       "overrides rendering of HTML Input element"
+      ],
+      "typeValue": {
+       "raw": "undefined | (props: IRenderInputProps) => JSX.Element"
+      },
+      "from": "@epam/uui-components:TextInputProps",
+      "required": false
+     },
+     {
+      "uid": 6,
+      "name": "onCancel",
+      "comment": [
+       "Enables cancel (cross) icon, and fires when the icon is clicked"
+      ],
+      "typeValue": {
+       "raw": "undefined | () => void"
+      },
+      "from": "@epam/uui-core:TextInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": 7,
+      "name": "onAccept",
+      "comment": [
+       "Enables accept (check) icon, and fires when the icon is clicked"
+      ],
+      "typeValue": {
+       "raw": "undefined | () => void"
+      },
+      "from": "@epam/uui-core:TextInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": 8,
+      "name": "onKeyDown",
+      "comment": [
+       "keydown event handler to put on the HTML input element"
+      ],
+      "typeValue": {
+       "raw": "undefined | (e?: any) => void"
+      },
+      "from": "@epam/uui-core:TextInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": 9,
+      "name": "autoFocus",
+      "comment": [
+       "Put focus on the element, when component is mounted"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:TextInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": 10,
+      "name": "type",
+      "comment": [
+       "Standard 'type' attribute to put on the HTML input element (e.g. 'password')"
+      ],
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-core:TextInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": 11,
+      "name": "autoComplete",
+      "comment": [
+       "Standard [autocomplete attribute]{@link https://www.w3schools.com/tags/att_input_autocomplete.asp}"
+      ],
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-core:TextInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": 12,
+      "name": "name",
+      "comment": [
+       "Standard [name attribute]{@link https://www.w3schools.com/tags/att_input_name.asp}"
+      ],
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-core:TextInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": 13,
+      "name": "maxLength",
+      "comment": [
+       "Maximum input length in characters"
+      ],
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-core:TextInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": 14,
+      "name": "inputMode",
+      "comment": [
+       "Standard [inputMode attribute]{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode}"
+      ],
+      "typeValue": {
+       "raw": "undefined | 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search'"
+      },
+      "from": "@epam/uui-core:TextInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": 15,
+      "name": "id",
+      "comment": [
+       "HTML ID attribute for input"
+      ],
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-core:TextInputCoreProps",
+      "required": false
+     },
+     {
+      "uid": 16,
+      "name": "cx",
+      "comment": [
+       "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 17,
+      "name": "onClick",
+      "comment": [
+       "Called when component is clicked"
+      ],
+      "typeValue": {
+       "raw": "undefined | (e?: any) => void"
+      },
+      "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": 18,
+      "name": "isDisabled",
+      "comment": [
+       "Disable editing, and visually de-emphasize value of the component"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": 19,
+      "name": "value",
+      "comment": [
+       "The current value of component"
+      ],
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 20,
+      "name": "onValueChange",
+      "comment": [
+       "Called when value needs to be changed (usually due to user interaction)"
+      ],
+      "typeValue": {
+       "raw": "(newValue: string | undefined) => void"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 21,
+      "name": "isInvalid",
+      "comment": [
+       "True if component contains invalid input"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 22,
+      "name": "validationMessage",
+      "comment": [
+       "Message describing why the value is invalid"
+      ],
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 23,
+      "name": "validationProps",
+      "comment": [
+       "If T is a complex value (object or array), this property contains validation states of inner items"
+      ],
+      "typeValue": {
+       "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 24,
+      "name": "isReadonly",
+      "comment": [
+       "Disable editing. Unlike isDisabled, keep component's value readable."
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": 25,
+      "name": "isRequired",
+      "comment": [
+       "Marks that component's value is required"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": 26,
+      "name": "placeholder",
+      "comment": [
+       "Placeholder to display when empty"
+      ],
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IHasPlaceholder",
+      "required": false
+     },
+     {
+      "uid": 27,
+      "name": "icon",
+      "comment": [
+       "Icon can be an React element (usually an SVG element)"
+      ],
+      "typeValue": {
+       "raw": "undefined | Icon"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": 28,
+      "name": "iconPosition",
+      "comment": [
+       "Position of the icon (left of right)"
+      ],
+      "typeValue": {
+       "raw": "undefined | 'left' | 'right'"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": 29,
+      "name": "onIconClick",
+      "comment": [
+       "Click handler for the icon"
+      ],
+      "typeValue": {
+       "raw": "undefined | () => void"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": 30,
+      "name": "isOpen",
+      "comment": [
+       "When component acts as dropdown, indicate that dropdown is open"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": 31,
+      "name": "isDropdown",
+      "comment": [
+       "Enabled dropdown mode - component can toggle dropdown"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": 32,
+      "name": "toggleDropdownOpening",
+      "comment": [
+       "Called when associated dropdown should open or close"
+      ],
+      "typeValue": {
+       "raw": "undefined | (value: boolean) => void"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": 33,
+      "name": "isInteractedOutside",
+      "comment": [
+       "Called when component is interacted outside, to close the dropdown"
+      ],
+      "typeValue": {
+       "raw": "undefined | (event: Event) => boolean"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": 34,
+      "name": "ref",
+      "comment": [
+       "Component's ref"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | (instance: any) => void | React.RefObject<any>"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": 35,
+      "name": "caption",
+      "comment": [
+       "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+      ],
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": 36,
+      "name": "getValueChangeAnalyticsEvent",
+      "comment": [
+       "Given a value, returns an analytics event to send when component is edited.",
+       " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+      ],
+      "typeValue": {
+       "raw": "undefined | (newValue: string | null, oldValue: string | null) => AnalyticsEvent"
+      },
+      "from": "@epam/uui-core:IAnalyticableOnChange",
+      "required": false
+     },
+     {
+      "uid": 37,
+      "name": "rawProps",
+      "comment": [
+       "Any HTML attributes (native or 'data-') to put on the underlying component"
+      ],
+      "typeValue": {
+       "raw": "undefined | React.HTMLAttributes<HTMLInputElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": 38,
+      "name": "onFocus",
+      "comment": [
+       "Called when component gets input focus"
+      ],
+      "typeValue": {
+       "raw": "undefined | (e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": 39,
+      "name": "onBlur",
+      "comment": [
+       "Called when component looses input focus"
+      ],
+      "typeValue": {
+       "raw": "undefined | (e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": 40,
+      "name": "tabIndex",
+      "comment": [
+       "Controls the order of keyboard navigation between components"
+      ],
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-core:IHasTabIndex",
+      "required": false
+     },
+     {
+      "uid": 41,
+      "name": "size",
+      "typeValue": {
+       "raw": "undefined | '36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "from": "@epam/uui:TextInputMods",
+      "required": false
+     },
+     {
+      "uid": 42,
+      "name": "mode",
+      "typeValue": {
+       "raw": "undefined | 'inline' | 'form' | 'cell'"
+      },
+      "from": "@epam/uui:IHasEditMode",
+      "required": false
+     },
+     {
+      "uid": 43,
+      "name": "disableDebounce",
+      "comment": [
+       "Pass true to disable debouncing"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:IEditableDebouncerOptions",
+      "required": false
+     },
+     {
+      "uid": 44,
+      "name": "debounceDelay",
+      "comment": [
+       "Debounce delay in ms"
+      ],
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-core:IEditableDebouncerOptions",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui:SemanticColor": {
    "summary": {
     "module": "@epam/uui",
@@ -58146,6 +60093,216 @@
       "typeValue": {
        "raw": "undefined | '12' | '18' | '24'"
       },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:SwitchProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "SwitchProps",
+     "nameFull": "SwitchProps"
+    },
+    "src": "uui/components/inputs/Switch.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "SwitchProps",
+     "print": [
+      "type SwitchProps = uuiComponents.SwitchProps & SwitchMods;"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "id",
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-components:SwitchProps",
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "cx",
+      "comment": [
+       "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "isDisabled",
+      "comment": [
+       "Disable editing, and visually de-emphasize value of the component"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "value",
+      "comment": [
+       "The current value of component"
+      ],
+      "typeValue": {
+       "raw": "false | true"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 5,
+      "name": "onValueChange",
+      "comment": [
+       "Called when value needs to be changed (usually due to user interaction)"
+      ],
+      "typeValue": {
+       "raw": "(newValue: boolean) => void"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 6,
+      "name": "isInvalid",
+      "comment": [
+       "True if component contains invalid input"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 7,
+      "name": "validationMessage",
+      "comment": [
+       "Message describing why the value is invalid"
+      ],
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 8,
+      "name": "validationProps",
+      "comment": [
+       "If T is a complex value (object or array), this property contains validation states of inner items"
+      ],
+      "typeValue": {
+       "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 9,
+      "name": "isReadonly",
+      "comment": [
+       "Disable editing. Unlike isDisabled, keep component's value readable."
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": 10,
+      "name": "isRequired",
+      "comment": [
+       "Marks that component's value is required"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": 11,
+      "name": "label",
+      "comment": [
+       "Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+      ],
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IHasLabel",
+      "required": false
+     },
+     {
+      "uid": 12,
+      "name": "getValueChangeAnalyticsEvent",
+      "comment": [
+       "Given a value, returns an analytics event to send when component is edited.",
+       " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+      ],
+      "typeValue": {
+       "raw": "undefined | (newValue: boolean | null, oldValue: boolean | null) => AnalyticsEvent"
+      },
+      "from": "@epam/uui-core:IAnalyticableOnChange",
+      "required": false
+     },
+     {
+      "uid": 13,
+      "name": "rawProps",
+      "comment": [
+       "Any HTML attributes (native or 'data-') to put on the underlying component"
+      ],
+      "typeValue": {
+       "raw": "undefined | React.LabelHTMLAttributes<HTMLLabelElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": 14,
+      "name": "forwardedRef",
+      "comment": [
+       "this ref is passed to the underlying component"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | (instance: HTMLLabelElement | null) => void | React.MutableRefObject<HTMLLabelElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": 15,
+      "name": "tabIndex",
+      "comment": [
+       "Controls the order of keyboard navigation between components"
+      ],
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-core:IHasTabIndex",
+      "required": false
+     },
+     {
+      "uid": 16,
+      "name": "size",
+      "typeValue": {
+       "raw": "undefined | '12' | '18' | '24'"
+      },
+      "from": "@epam/uui:SwitchMods",
       "required": false
      }
     ],
@@ -60688,7 +62845,7 @@
       "uid": 17,
       "name": "placement",
       "typeValue": {
-       "raw": "undefined | 'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "undefined | 'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
