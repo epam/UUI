@@ -451,6 +451,17 @@
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
+    .uui-color-night800 {
+        --uui-color-5: var(--night500);
+        --uui-color-10: var(--night600);
+        --uui-color-20: var(--night700);
+        --uui-color-50: var(--night800);
+        --uui-color-60: var(--uui-color-night800-800);
+        --uui-color-70: var(--uui-color-night800-900);
+        --uui-color-text: var(--night800);
+        --uui-color-contrast-text: var(--uui-text-white);
+    }
+
     .uui-color-sun,
     .uui-color-warning {
         --uui-color-5: var(--sun-soft);
