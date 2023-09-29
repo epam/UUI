@@ -1,9 +1,8 @@
 import { useMemo } from 'react';
 import { NextRouterAdapter } from '../services';
-import type { IUseUuiServicesProps } from '../hooks';
-import { useUuiServices } from '../hooks';
+import { useUuiServices, UseUuiServicesProps } from '../hooks/useUuiServices';
 
-export interface IContextProviderSsrProps<TApi, TAppContext> extends IUseUuiServicesProps<TApi, TAppContext> {
+export interface IContextProviderSsrProps<TApi, TAppContext> extends UseUuiServicesProps<TApi, TAppContext> {
     router: any;
 }
 

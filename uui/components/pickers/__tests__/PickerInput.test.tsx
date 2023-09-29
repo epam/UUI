@@ -3,7 +3,7 @@ import { ArrayDataSource, CascadeSelection } from '@epam/uui-core';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, waitFor, userEvent, PickerInputTestObject,
 } from '@epam/uui-test-utils';
-import { Modals, PickerInputBaseProps } from '@epam/uui-components';
+import { Modals, PickerInputBaseProps, PickerToggler } from '@epam/uui-components';
 import { Button, DataPickerRow, FlexCell, PickerItem, Text } from '@epam/promo';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { IHasEditMode } from '../../types';
@@ -137,7 +137,7 @@ describe('PickerInput', () => {
             fireEvent.click(clear);
             expect(screen.queryByText('C2')).not.toBeInTheDocument();
         });
-        
+
         it('[valueType entity] should select & clear option', async () => {
             const { dom, mocks } = await setupPickerInputForTest({
                 value: undefined,
@@ -208,7 +208,7 @@ describe('PickerInput', () => {
                 dataSource: mockTreeLikeDataSourceAsync,
             });
             fireEvent.click(dom.input);
- 
+
             await PickerInputTestObject.waitForOptionsToBeReady();
 
             // Check parent
@@ -509,7 +509,7 @@ describe('PickerInput', () => {
             await PickerInputTestObject.clickClearAllOptions();
             expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
         });
- 
+
         it('should show only selected', async () => {
             const { dom } = await setupPickerInputForTest<TestItemType, number>({
                 value: [4, 2, 6, 8],
@@ -520,12 +520,12 @@ describe('PickerInput', () => {
 
             const dialog = await screen.findByRole('dialog');
             expect(dialog).toBeInTheDocument();
-            
+
             await PickerInputTestObject.waitForOptionsToBeReady();
 
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'A2', 'B1', 'B2']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['A1+', 'A2+', 'B1+', 'B2+', 'C1', 'C1+', 'C2']);
-            
+
             await PickerInputTestObject.clickShowOnlySelected();
 
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
@@ -628,7 +628,8 @@ describe('PickerInput', () => {
             editMode: 'modal',
         });
         fireEvent.click(dom.input);
-        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        expect(screen.getByAria('modal', 'true')).toBeInTheDocument();
+
         expect(
             await PickerInputTestObject.findOptionsText({ busy: false, editMode: 'modal' }),
         ).toEqual(
@@ -686,8 +687,8 @@ describe('PickerInput', () => {
         const dialog = await screen.findByRole('dialog');
         expect(dialog).toBeInTheDocument();
 
-        const dialogBody = dialog.firstElementChild;
-        expect(dialogBody).toHaveStyle('width: 300px');
+        const dialogBody = dialog.getElementsByClassName('uui-dropdown-body')[0];
+        expect(dialogBody).toHaveStyle('min-width: 300px');
     });
 
     it('should define dropdownHeight', async () => {
@@ -739,18 +740,43 @@ describe('PickerInput', () => {
         expect(screen.getByTestId('test-toggler').textContent?.trim()).toEqual('Elementary, Elementary+');
     });
 
+    it('Should render toggler without arrow icon', async () => {
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'single',
+            entityName: 'Language Level',
+            searchPosition: 'input',
+            renderToggler: () => <PickerToggler dropdownIcon={ () => <div data-testid = "arrow-icon" /> } pickerMode="single" searchPosition="none" closePickerBody={ () => {} } />,
+            minCharsToSearch: 3,
+        });
+
+        expect(within(dom.container).queryByTestId('arrow-icon')).not.toBeInTheDocument();
+    });
+
+    it('Should render toggler with arrow icon', async () => {
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'single',
+            entityName: 'Language Level',
+            renderToggler: () => <PickerToggler isDropdown dropdownIcon={ () => <div data-testid = "arrow-icon" /> } pickerMode="single" searchPosition="none" closePickerBody={ () => {} } />,
+            minCharsToSearch: undefined,
+        });
+
+        expect(within(dom.container).getByTestId('arrow-icon')).toBeInTheDocument();
+    });
+
     it('should render search in input', async () => {
         const { dom } = await setupPickerInputForTest({
             value: undefined,
             selectionMode: 'multi',
             searchPosition: 'input',
         });
-        
+
         expect(dom.input.getAttribute('readonly')).toBeNull();
         fireEvent.click(dom.input);
         const dialog = await screen.findByRole('dialog');
         expect(dialog).toBeInTheDocument();
-        
+
         const bodyInput = within(dialog).queryByPlaceholderText('Search');
         expect(bodyInput).not.toBeInTheDocument();
     });
@@ -844,7 +870,7 @@ describe('PickerInput', () => {
             'Proficiency',
         ]);
     });
-    
+
     it('should search items', async () => {
         const { dom } = await setupPickerInputForTest<TestItemType, number>({
             value: undefined,
@@ -858,7 +884,7 @@ describe('PickerInput', () => {
 
         const dialog = await screen.findByRole('dialog');
         expect(dialog).toBeInTheDocument();
-        
+
         await PickerInputTestObject.waitForOptionsToBeReady();
 
         expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual([

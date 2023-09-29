@@ -50,7 +50,8 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
             return rows;
         }
 
-        return this.rows.slice(this.value.topIndex, this.getLastRecordIndex());
+        const visibleRows = this.rows.slice(this.value.topIndex, this.getLastRecordIndex());
+        return this.getRowsWithPinned(visibleRows);
     };
 
     public getListProps = () => {

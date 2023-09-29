@@ -21,7 +21,7 @@ export function AdaptivePanel(props: AdaptivePanelProps) {
         if (!children.length) return;
         const calculatedItemsWidth: Record<string, number> = {};
         children.forEach((child, index) => {
-            calculatedItemsWidth[props.items[index].id] = child.getBoundingClientRect().width;
+            calculatedItemsWidth[props.items[index].id] = Math.floor(child.getBoundingClientRect().width);
         });
 
         return calculatedItemsWidth;
@@ -53,7 +53,7 @@ export function AdaptivePanel(props: AdaptivePanelProps) {
         if (isChanged || !itemsWidth) {
             return props.items.map((i) => i.render(i, [], props.items));
         }
-        const wrapperWidth = wrapperRef?.current ? wrapperRef.current.getBoundingClientRect().width : 0;
+        const wrapperWidth = wrapperRef?.current ? Math.floor(wrapperRef.current.getBoundingClientRect().width) : 0;
 
         const measuredItems = measureAdaptiveItems(props.items, wrapperWidth, itemsWidth);
         return measuredItems.displayed.map((i) => i.render(i, measuredItems.hidden, measuredItems.displayed));

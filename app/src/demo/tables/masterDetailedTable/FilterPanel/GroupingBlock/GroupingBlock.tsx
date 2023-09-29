@@ -1,20 +1,32 @@
 import React from 'react';
 import { Accordion } from '@epam/uui';
+import { DataTableState } from '@epam/uui-core';
 import { LinkButton, RadioGroup } from '@epam/uui';
 import { Grouping } from '../../types';
 import css from './GroupingBlock.module.scss';
 
-interface GroupingBlockProps { 
+interface GroupingBlockProps<TFilter> {
     groupings: Grouping[];
-    value: string;
-    onValueChange: (value: string) => void;
+    tableState: DataTableState<TFilter>;
+    setTableState(newState: DataTableState<TFilter>): void;
 }
 
-function GroupingBlock({ groupings, value, onValueChange }: GroupingBlockProps) {
+function GroupingBlock<TFilter extends { groupBy?: string }>({ groupings, tableState, setTableState }: GroupingBlockProps<TFilter>) {
+    const groupBy = tableState.filter?.groupBy;
+    const onGroupingChange = (newGroupBy: string) => {
+        if (newGroupBy !== groupBy) {
+            setTableState({
+                ...tableState,
+                filter: { ...tableState.filter, groupBy: newGroupBy },
+                checked: [],
+            });
+        }
+    };
+
     return (
         <Accordion title="Grouping" mode="inline" padding="18">
-            <RadioGroup value={ value } onValueChange={ onValueChange } items={ groupings } cx={ css.radioGroupContainer } />
-            <LinkButton caption="CLEAR" onClick={ () => onValueChange(undefined) } isDisabled={ value === undefined } />
+            <RadioGroup value={ groupBy } onValueChange={ onGroupingChange } items={ groupings } cx={ css.radioGroupContainer } />
+            <LinkButton caption="CLEAR" onClick={ () => onGroupingChange(undefined) } isDisabled={ groupBy === undefined } />
         </Accordion>
     );
 }

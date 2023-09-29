@@ -1,29 +1,20 @@
 import React, { useState } from 'react';
 import {
-    IconButton, FlexRow, Panel, Text, TextPlaceholder, VirtualList, NumericInput, Button,
+    FlexRow, Panel, Text, VirtualList, NumericInput, Button,
 } from '@epam/promo';
 import { VirtualListState } from '@epam/uui-core';
-import { ReactComponent as UnfoldedIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
-import { ReactComponent as FoldedIcon } from '@epam/assets/icons/common/navigation-chevron-up-18.svg';
 import css from './BasicExample.module.scss';
 
 function MyListItem(props: { index: number }) {
-    const [isFolded, setIsFolded] = useState<boolean>(true);
     return (
         <div className={ css.itemContainer } role="row">
             <Panel cx={ css.item } shadow background="white">
-                <FlexRow cx={ css.header } onClick={ () => setIsFolded(!isFolded) }>
-                    <IconButton icon={ isFolded ? FoldedIcon : UnfoldedIcon } />
+                <FlexRow cx={ css.header }>
                     <Text>
                         Row #
                         {props.index}
                     </Text>
                 </FlexRow>
-                {!isFolded && (
-                    <FlexRow cx={ css.body }>
-                        <TextPlaceholder wordsCount={ (props.index % 20) * 10 } isNotAnimated={ true } />
-                    </FlexRow>
-                )}
             </Panel>
         </div>
     );
@@ -32,7 +23,7 @@ function MyListItem(props: { index: number }) {
 // Generate some data. In the real app data items are retrieved from the server.
 const someData: number[] = [];
 for (let n = 0; n < 1000; n++) {
-    someData.push(n + 1);
+    someData.push(n);
 }
 
 export default function VirtualListExample() {
@@ -57,12 +48,9 @@ export default function VirtualListExample() {
                         setTempScrollTo(index);
                     } }
                 /> 
-                <Button
-                    onClick={ () => {
-                        setState((current) => ({ ...current, scrollTo: { index: tempScrollTo } })); 
-                    } }
-                    caption="Scroll"
-                />
+                <Button onClick={ () => setState({ ...state, scrollTo: { index: tempScrollTo } }) } caption="Scroll align='top'" />
+                <Button onClick={ () => setState({ ...state, scrollTo: { index: tempScrollTo, align: 'nearest' } }) } caption="Scroll align='nearest'" />
+ 
             </FlexRow>
             <VirtualList
                 cx={ css.list } // User needs to define height for container, otherwise it would extend to fit the whole content

@@ -19,6 +19,13 @@ const { readPackageJsonContentSync } = require('../utils/packageJsonUtils.js');
 const EXTRACTED_CSS_FILE_NAME = 'styles.css';
 const BUILD_OUTPUT_DIR = 'build';
 
+function genUniqueId() {
+    return [new Date().getTime(), Math.random()].reduce((acc, n) => (acc + n.toString(36).substring(2)), '');
+}
+const svgPrefix = {
+    toString: () => `${genUniqueId()}_`,
+};
+
 module.exports = { createRollupConfigForModule };
 
 /**
@@ -93,7 +100,23 @@ async function createRollupConfigForModule(options) {
                 exportType: 'named',
                 jsxRuntime: 'classic',
                 // list of plugins in "preset-default": https://github.com/svg/svgo/blob/cb1569b2215dda19b0d4b046842344218fd31f06/plugins/preset-default.js
-                svgoConfig: { plugins: [{ name: 'preset-default', params: { overrides: { removeViewBox: false } } }] },
+                svgoConfig: {
+                    plugins: [
+                        {
+                            name: 'preset-default',
+                            params: {
+                                overrides: {
+                                    removeViewBox: false,
+                                    cleanupIDs: {
+                                        remove: true,
+                                        minify: true,
+                                        prefix: svgPrefix,
+                                    },
+                                },
+                            },
+                        },
+                    ],
+                },
             }),
             postcss({
                 sourceMap: true,

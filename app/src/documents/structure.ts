@@ -4,7 +4,7 @@ import {
     RatingDoc, SearchInputDoc, TextAreaDoc, AccordionDoc, ContextProviderDoc, ApiContextDoc, ModalContextDoc,
     NotificationContextDoc, DropdownDoc, MainMenuDoc, ModalsDoc, BadgeDoc, FiltersPanelDoc, TagDoc,
     PaginatorDoc, SpinnerDoc, RichTextViewDoc, TextDoc, TextPlaceholderDoc, DatePickerDoc, RangeDatePickerDoc,
-    TimePickerDoc, ControlGroupDoc, InstallationDoc, NotificationCardDoc, TooltipDoc, LabeledInputDoc,
+    TimePickerDoc, ControlGroupDoc, NotificationCardDoc, TooltipDoc, LabeledInputDoc,
     AlertDoc, IconContainerDoc, BlockerDoc, IconsDoc, ColorsPageDoc, DownloadsDoc, ProjectsDoc, ReleaseNotesDoc,
     FlexRowDoc, FlexCellDoc, FlexSpacerDoc, PanelDoc, GettingStartedForDesignersDoc, RichTextEditorDoc, FormDoc,
     LockContextDoc, AvatarDoc, InternationalizationDoc, FileUploadDoc, SliderDoc, SliderRatingDoc,
@@ -14,7 +14,7 @@ import {
     TablesOverviewDoc, AdvancedTablesDoc, PresetsPanelDoc, GettingStartedDoc, UtGuideBasicsDoc, UtGuideToolsDoc,
     UtGuideCookbookDoc, DataSourcesGettingStartedDoc, DataSourcesRowOptionsDoc, DataSourcesBaseDataSourcePropsDoc,
     DataSourcesDataSourceStateDoc, DataSourcesArrayDataSourceDoc, DataSourcesAsyncDataSourceDoc,
-    DataSourcesLazyDataSourceDoc, DataSourcesUsageDoc, useTableStateDoc, CountIndicatorDoc,
+    DataSourcesLazyDataSourceDoc, DataSourcesUsageDoc, useTableStateDoc, CountIndicatorDoc, OverviewDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
@@ -103,8 +103,8 @@ const componentsStructure = sortBy(
 );
 
 export const items: DocItem[] = [
+    { id: 'overview', name: 'Overview', component: OverviewDoc },
     { id: 'gettingStarted', name: 'Getting Started', component: GettingStartedDoc },
-    { id: 'installation', name: 'Installation', component: InstallationDoc },
     { id: 'coreConcepts', name: 'Core Concepts', component: CoreConceptsDoc },
     { id: 'forDesigners', name: 'For Designers' },
     { id: 'gettingStartedForDesigners', name: 'Getting Started', component: GettingStartedForDesignersDoc, parentId: 'forDesigners' },

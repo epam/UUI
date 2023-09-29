@@ -7,6 +7,9 @@ import { PickerBodyValue, ViewType } from '@epam/uui-components';
 import { ReactComponent as LeftArrowIcon } from '@epam/assets/icons/common/navigation-chevron-left-18.svg';
 import { ReactComponent as RightArrowIcon } from '@epam/assets/icons/common/navigation-chevron-right-18.svg';
 import { Button } from '../buttons';
+import localeData from 'dayjs/plugin/localeData';
+
+dayjs.extend(localeData);
 
 export const uuiHeader = {
     container: 'uui-datepickerheader-container',
@@ -101,9 +104,9 @@ export function DatePickerHeader(props: DatePickerHeaderProps) {
     return (
         <div className={ cx(css.container, uuiHeader.container, props.cx) }>
             <header className={ uuiHeader.header }>
-                <Button icon={ LeftArrowIcon } color="secondary" fill="ghost" cx={ uuiHeader.navIconLeft } onClick={ () => onLeftNavigationArrow() } />
+                <Button icon={ props.navIconLeft || LeftArrowIcon } color="secondary" fill="ghost" cx={ uuiHeader.navIconLeft } onClick={ () => onLeftNavigationArrow() } />
                 <Button caption={ title } fill="ghost" cx={ uuiHeader.navTitle } onClick={ () => onCaptionClick(props.value.view) } />
-                <Button icon={ RightArrowIcon } color="secondary" fill="ghost" cx={ uuiHeader.navIconRight } onClick={ () => onRightNavigationArrow() } />
+                <Button icon={ props.navIconRight || RightArrowIcon } color="secondary" fill="ghost" cx={ uuiHeader.navIconRight } onClick={ () => onRightNavigationArrow() } />
             </header>
         </div>
     );
