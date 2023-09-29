@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { ArrayDataSource, DataColumnProps, DataSourceState } from '@epam/uui-core';
 import {
-    DataTable, Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars,
+    Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars,
 } from '@epam/promo';
 import { ComponentEditor } from './ComponentEditor';
 import { svc } from '../../services';
@@ -31,49 +30,14 @@ type DocPath = {
     [key in TSkin]?: string;
 };
 
-interface BaseDocsBlockState {
-    props?: any;
-    tableState: DataSourceState;
-}
+interface BaseDocsBlockState {}
 
 export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockState> {
-    propsDS: ArrayDataSource;
-
     constructor(props: any) {
         super(props);
 
         const { category, id } = svc.uuiRouter.getCurrentLink().query;
         svc.uuiAnalytics.sendEvent(analyticsEvents.document.pv(id, category));
-
-        this.state = {
-            tableState: {},
-        };
-    }
-
-    componentDidMount() {
-        if (this.getPropsDocPath() !== null) {
-            const propsPromise = svc.api.getProps();
-            propsPromise
-            && propsPromise.then((res) => {
-                const skin = this.getPropsDocPath()[UUI4] === undefined ? UUI3 : UUI4;
-                const resProps = res.content.props;
-                const docPath = this.getPropsDocPath()[skin];
-                const docPathNorm = docPath.indexOf('.') === 0 ? docPath.substring(1) : docPath;
-                const props = resProps[docPathNorm];
-                /**
-                 * Keys in "public/docs/componentsPropsSet.json":
-                 * - always start from "/"
-                 * - are relative to the monorepo root.
-                 */
-                if (props) {
-                    this.propsDS = new ArrayDataSource({
-                        items: props,
-                        getId: (i) => i.name,
-                    });
-                    this.setState({ props: props });
-                }
-            });
-        }
     }
 
     private getSkin(): TSkin {
@@ -82,7 +46,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     abstract title: string;
     abstract renderContent(): React.ReactNode;
-    getPropsDocPath(): DocPath {
+    protected getPropsDocPath(): DocPath {
         return null;
     }
 
@@ -90,60 +54,28 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         return undefined;
     }
 
-    onTableStateChange = (newState: DataSourceState) => this.setState({ tableState: newState });
-    apiColumns: DataColumnProps<{ name: string; value: string; comment: string }>[] = [
-        {
-            key: 'name',
-            caption: 'NAME',
-            render: (prop) => <Text color="gray80">{prop.name}</Text>,
-            width: 200,
-            isSortable: true,
-        }, {
-            key: 'value',
-            caption: 'Type',
-            render: (prop) => (
-                <Text color="gray80">
-                    <span style={ { whiteSpace: 'pre-wrap' } }>{prop.value}</span>
-                </Text>
-            ),
-            width: 200,
-            isSortable: true,
-        }, {
-            key: 'comment',
-            caption: 'Description',
-            render: (prop) => <RichTextView htmlContent={ prop.comment } />,
-            width: 200,
-            grow: 1,
-        },
-    ];
-
     renderApiBlock() {
         const tsDocProps = this.getUuiTsDoc();
+        let content = null;
         if (tsDocProps) {
+            content = (
+                <ApiReferenceItemTableForTypeRef showCode={ true } tsDocsRef={ tsDocProps } />
+            );
+        } else if (this.getPropsDocPath()) {
+            // we need this error message until the "getPropsDocPath" is fully deprecated.
+            const err = 'The "getPropsDocPath" method is no longer used to render props table. Please implement "getUuiTsDoc" method in the "*.doc.tsx" file for this purpose.';
+            content = <Text color="red">{err}</Text>;
+        }
+        if (content) {
             return (
-                <ApiReferenceItemTableForTypeRef tsDocsRef={ tsDocProps } />
+                <>
+                    <RichTextView>
+                        <h2>Api</h2>
+                    </RichTextView>
+                    {content}
+                </>
             );
         }
-        return this.renderLegacyApiBlock();
-    }
-
-    private renderLegacyApiBlock() {
-        const view = this.propsDS.getView(this.state.tableState, this.onTableStateChange);
-
-        return (
-            <>
-                <RichTextView>
-                    <h2>Api</h2>
-                </RichTextView>
-                <DataTable
-                    value={ this.state.tableState }
-                    onValueChange={ this.onTableStateChange }
-                    columns={ this.apiColumns }
-                    getRows={ view.getVisibleRows }
-                    { ...view.getListProps() }
-                />
-            </>
-        );
     }
 
     renderMultiSwitch() {
@@ -214,7 +146,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                 <div className={ css.widthWrapper }>
                     {this.renderDocTitle()}
                     {this.renderContent()}
-                    {this.state.props && this.renderApiBlock()}
+                    {this.renderApiBlock()}
                 </div>
             </ScrollBars>
         );
