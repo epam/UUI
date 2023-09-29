@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4,
+    BaseDocsBlock, DocExample, EditableDocContent, TUuiTsDoc, UUI3, UUI4,
 } from '../common';
 
 export class DatePickerDoc extends BaseDocsBlock {
     title = 'DatePicker';
+
+    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:DatePickerProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/datePickers/datePicker.props.tsx',

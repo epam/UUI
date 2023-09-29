@@ -49456,7 +49456,7 @@
     "typeValue": {
      "raw": "DropdownContainerProps",
      "print": [
-      "interface DropdownContainerProps extends uuiDropdownContainerProps, DropdownContainerMods {",
+      "interface DropdownContainerProps extends uuiComponents.DropdownContainerProps, DropdownContainerMods {",
       "}"
      ]
     },
@@ -50354,6 +50354,167 @@
       "type FlexCellMods = {};"
      ]
     }
+   }
+  },
+  "@epam/uui:FlexCellProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "FlexCellProps",
+     "nameFull": "FlexCellProps"
+    },
+    "src": "uui/components/layout/FlexItems/FlexCell.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "FlexCellProps",
+     "print": [
+      "type FlexCellProps = uuiCore.FlexCellProps & FlexCellMods;"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "cx",
+      "comment": [
+       "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "onClick",
+      "comment": [
+       "Called when component is clicked"
+      ],
+      "typeValue": {
+       "raw": "undefined | (e?: any) => void"
+      },
+      "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "rawProps",
+      "comment": [
+       "Any HTML attributes (native or 'data-') to put on the underlying component"
+      ],
+      "typeValue": {
+       "raw": "undefined | React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "key",
+      "typeValue": {
+       "raw": "undefined | null | string | number"
+      },
+      "from": "node_modules/@types/react/index.d.ts:Attributes",
+      "required": false
+     },
+     {
+      "uid": 5,
+      "name": "children",
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+      },
+      "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": 6,
+      "name": "width",
+      "comment": [
+       "CSS width. Set to 'auto' to make FlexCell resize to it's content"
+      ],
+      "typeValue": {
+       "raw": "undefined | number | 'auto' | '100%'"
+      },
+      "from": "@epam/uui-core:FlexCellProps",
+      "required": false
+     },
+     {
+      "uid": 7,
+      "name": "minWidth",
+      "comment": [
+       "CSS min-width"
+      ],
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-core:FlexCellProps",
+      "required": false
+     },
+     {
+      "uid": 8,
+      "name": "grow",
+      "comment": [
+       "Flexbox flex-grow property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-grow)"
+      ],
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-core:FlexCellProps",
+      "required": false
+     },
+     {
+      "uid": 9,
+      "name": "shrink",
+      "comment": [
+       "Flexbox shrink property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-shrink)"
+      ],
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-core:FlexCellProps",
+      "required": false
+     },
+     {
+      "uid": 10,
+      "name": "textAlign",
+      "comment": [
+       "CSS text-align property"
+      ],
+      "typeValue": {
+       "raw": "undefined | 'left' | 'right' | 'center'"
+      },
+      "from": "@epam/uui-core:FlexCellProps",
+      "required": false
+     },
+     {
+      "uid": 11,
+      "name": "alignSelf",
+      "comment": [
+       "Flexbox align-self property. Aligns items vertically for horizontal flexbox. [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-align-self)"
+      ],
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-core:FlexCellProps",
+      "required": false
+     },
+     {
+      "uid": 12,
+      "name": "style",
+      "comment": [
+       "Standard style attribute. Styles are added to element style, overriding supplied flex styles"
+      ],
+      "typeValue": {
+       "raw": "undefined | React.CSSProperties"
+      },
+      "from": "@epam/uui-core:FlexCellProps",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
    }
   },
   "@epam/uui:FlexRowProps": {
