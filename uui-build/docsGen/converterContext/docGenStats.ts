@@ -1,9 +1,10 @@
 import {
     TDocGenStatsResult,
     IDocGenStats,
-    TDocGenStatsResult_Exports, IConverterContext,
+    TDocGenStatsResult_Exports,
+    TTypeConverted,
 } from '../types/types';
-import { TType, TTypeRefShort } from '../types/docsGenSharedTypes';
+import { TTypeRef } from '../types/sharedTypes';
 
 export class DocGenStats implements IDocGenStats {
     private missingPropComment = new MapByTypeRef();
@@ -11,17 +12,14 @@ export class DocGenStats implements IDocGenStats {
     private ignoredExports = new ExportStat();
     private includedExports = new ExportStat();
 
-    constructor(private context: IConverterContext) {
-    }
-
-    checkConvertedExport(converted: TType, isPublic: boolean) {
-        const { comment } = this.context.refs.getByShortRef(converted.typeRef);
-        if (isPublic && !comment?.length) {
+    checkConvertedExport(converted: TTypeConverted) {
+        const { summary, details } = converted;
+        if (summary.exported && !summary.comment?.length) {
             this.missingTypeComment.push(converted.typeRef);
         }
 
-        if (converted.props?.length) {
-            converted.props.forEach((prop) => {
+        if (details?.props?.length) {
+            details.props.forEach((prop) => {
                 // check only props which aren't inherited to avoid duplicates.
                 if (!prop.comment?.length && !prop.from) {
                     let bucket = this.missingPropComment.get(converted.typeRef);
@@ -105,18 +103,18 @@ class ExportStat {
 }
 
 class MapByTypeRef {
-    private _map = new Map<TTypeRefShort, string[]>();
+    private _map = new Map<TTypeRef, string[]>();
 
-    set(key: TTypeRefShort, value: string[]) {
+    set(key: TTypeRef, value: string[]) {
         this._map.set(key, value);
     }
 
-    get(key: TTypeRefShort): string[] | undefined {
+    get(key: TTypeRef): string[] | undefined {
         return this._map.get(key);
     }
 
-    toJSON(): { typeRef: TTypeRefShort, value: string[] }[] {
-        const result: { typeRef: TTypeRefShort, value: string[] }[] = [];
+    toJSON(): { typeRef: TTypeRef, value: string[] }[] {
+        const result: { typeRef: TTypeRef, value: string[] }[] = [];
         [...this._map.entries()].forEach(([typeRefShort, value]) => {
             result.push({
                 typeRef: typeRefShort,

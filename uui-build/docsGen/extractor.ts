@@ -9,7 +9,7 @@ import {
     TSCONFIG_PATH,
     uuiRoot,
 } from './constants';
-import { getUuiModuleNameFromPath } from './utils/fileUtils';
+import { resolveModuleName } from './utils/fileUtils';
 
 export function extractExports(context: IConverterContext) {
     return Object.keys(INCLUDED_UUI_PACKAGES).reduce<TNotFormattedExportsByModule>((acc, packageName) => {
@@ -38,7 +38,7 @@ export function extractExportsFromTsProject(params: { project: Project, mainFile
     return ed.reduce<TExportedDeclarations>((accEd, [name, entry]) => {
         const kind = getExportKind(entry);
         const isAllowed = filterExportDeclaration(kind, name);
-        const module = getUuiModuleNameFromPath(mainFilePath);
+        const module = resolveModuleName(mainFilePath);
         const kindStr = kindToString(kind);
 
         if (isAllowed) {

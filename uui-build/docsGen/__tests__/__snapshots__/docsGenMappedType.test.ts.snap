@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`docsGen:mappedType should convert mapped type 1`] = `
+{
+ "allTypes": {
+  "test/test.tsx:TLocal": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TLocal",
+     "nameFull": "TLocal"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "TLocal",
+     "print": [
+      "type TLocal = {",
+      "    [key: number]: string;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "[key: number]",
+      "typeValue": {
+       "raw": "string"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  }
+ }
+}
+`;

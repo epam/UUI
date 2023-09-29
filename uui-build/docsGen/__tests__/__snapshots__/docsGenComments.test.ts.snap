@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`docsGen:comments should convert comments 1`] = `
+{
+ "allTypes": {
+  "test/test.tsx:ITest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "ITest",
+     "nameFull": "ITest"
+    },
+    "src": "test/test.tsx",
+    "comment": [
+     "This is an export level multiline TSDoc."
+    ],
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "ITest",
+     "print": [
+      "/**",
+      " * This is an export level multiline TSDoc.",
+      "*/",
+      "interface ITest {",
+      "    // Single line comment should be ignored",
+      "    a: number;",
+      "    /** This is property-level TSDoc */",
+      "    b: number;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "a",
+      "typeValue": {
+       "raw": "number"
+      },
+      "required": true
+     },
+     {
+      "uid": 2,
+      "name": "b",
+      "comment": [
+       "This is property-level TSDoc"
+      ],
+      "typeValue": {
+       "raw": "number"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  }
+ }
+}
+`;

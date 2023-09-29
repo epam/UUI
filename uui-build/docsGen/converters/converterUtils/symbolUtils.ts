@@ -3,7 +3,7 @@ import { Node, Symbol, Type } from 'ts-morph';
 import { TypeUtils } from './typeUtils';
 // eslint-disable-next-line import/no-cycle
 import { NodeUtils } from './nodeUtils';
-import { TTypeName, TTypeValue } from '../../types/docsGenSharedTypes';
+import { TTypeName, TTypeValue } from '../../types/sharedTypes';
 
 export class SymbolUtils {
     static getTypeName(typeSymbol?: Symbol): TTypeName {

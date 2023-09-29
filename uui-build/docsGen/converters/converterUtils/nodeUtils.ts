@@ -1,9 +1,9 @@
 import { EmitHint, Node, Symbol, SyntaxKind, ts } from 'ts-morph';
-import { getUuiModuleNameFromPath, isExternalFile, makeRelativeToUuiRoot } from '../../utils/fileUtils';
+import { resolveModuleName, isExternalFile, makeRelativeToUuiRoot } from '../../utils/fileUtils';
 // eslint-disable-next-line import/no-cycle
 import { SymbolUtils } from './symbolUtils';
 import { TypeUtils } from './typeUtils';
-import { TTypeRef, TTypeValue } from '../../types/docsGenSharedTypes';
+import { TTypeSummary, TTypeValue } from '../../types/sharedTypes';
 import { IConverterContext } from '../../types/types';
 
 export class NodeUtils {
@@ -52,28 +52,21 @@ export class NodeUtils {
         }
     }
 
-    static getTypeParentRef(typeNode: Node, parentNode?: Node): TTypeRef | undefined {
-        const anc = typeNode.getAncestors().filter((a) => {
-            return a !== parentNode;
+    static getPropertyNodeParent(propertyNode: Node, containerNode?: Node): Node | undefined {
+        const anc = propertyNode.getAncestors().filter((a) => {
+            return a !== containerNode;
         });
-        const mapped = NodeUtils.mapAncestorsToRefs(anc);
-        return mapped?.[0];
-    }
-
-    private static mapAncestorsToRefs(ancParam: Node[]): TTypeRef[] | undefined {
-        const anc = ancParam.filter((a) => {
+        const ancFiltered = anc.filter((a) => {
             return (Node.isTypeAliasDeclaration(a) || Node.isInterfaceDeclaration(a) || Node.isClassDeclaration(a));
         });
-        if (anc.length === 0) {
-            return undefined;
+        if (ancFiltered.length > 0) {
+            return ancFiltered[0];
         }
-        return anc.map((ta) => {
-            return NodeUtils.getTypeRef(ta);
-        });
     }
 
-    static getTypeRef(typeNode: Node): TTypeRef {
-        const module = getUuiModuleNameFromPath(typeNode.getSourceFile().compilerNode.fileName);
+    static getTypeSummary(typeNode: Node): TTypeSummary {
+        const fileName = typeNode.getSourceFile().compilerNode.fileName;
+        const module = resolveModuleName(fileName);
         const typeName = SymbolUtils.getTypeName(typeNode.getSymbol());
         const src = NodeUtils.getRelativeSource(typeNode);
         const comment = NodeUtils.getCommentFromNode(typeNode);
@@ -82,6 +75,7 @@ export class NodeUtils {
             typeName,
             src,
             comment,
+            exported: false, // on this level, we don't know whether it's exported or not, so this value may be changed later.
         };
     }
 
@@ -147,7 +141,7 @@ export class NodeUtils {
         } else if (Node.isIndexSignatureDeclaration(node)) {
             return TypeUtils.getCompilerTypeText(node.getReturnType());
         }
-        const conv = context.convertProp(propertySymbol);
+        const conv = context.convertToTypeValue(propertySymbol);
         return conv.raw;
     }
 
@@ -172,6 +166,6 @@ export class NodeUtils {
     static isPropertyNodeRequired(propertyNode: Node): boolean {
         const hasQuestionToken = Node.isQuestionTokenable(propertyNode) ? propertyNode.hasQuestionToken() : false;
         const typeNode = Node.isTypeAliasDeclaration(propertyNode) ? propertyNode.getTypeNode() : propertyNode;
-        return !(NodeUtils.getTypeFromNode(typeNode).isNullable() || hasQuestionToken);
+        return !(NodeUtils.getTypeFromNode(typeNode as Node).isNullable() || hasQuestionToken);
     }
 }

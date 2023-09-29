@@ -30,12 +30,13 @@ function useApiReferenceNav(): DocItem[] | undefined {
     }, [root]);
 }
 
-function useItems(selectedId: string): { items: DocItem[], PageComponent: any } | undefined {
+function useItems(selectedId: string): { items: DocItem[], PageComponent: any } {
     const apiRef = useApiReferenceNav();
     const items = useMemo(() => {
         if (apiRef) {
             return itemsStructure.concat(apiRef);
         }
+        return [];
     }, [apiRef]);
     const PageComponent = useMemo(() => {
         if (items) {

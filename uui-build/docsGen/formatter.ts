@@ -1,12 +1,10 @@
 import {
-    IConverterContext, parseTypeRefShort,
+    IConverterContext, TApiReferenceJson,
     TNotFormattedExportsByModule,
 } from './types/types';
 import { SymbolUtils } from './converters/converterUtils/symbolUtils';
-import { TApiReferenceJson, TPublicTypesByModule, TType } from './types/docsGenSharedTypes';
 
-export function formatExports(exports: TNotFormattedExportsByModule, context: IConverterContext): TPublicTypesByModule {
-    const exportsByModule = new DocGenExportsByModule();
+export function formatExports(exports: TNotFormattedExportsByModule, context: IConverterContext): TApiReferenceJson {
     Object.keys(exports).forEach((moduleName) => {
         const singleDecl = exports[moduleName];
         Object.keys(singleDecl).forEach((declName) => {
@@ -16,28 +14,12 @@ export function formatExports(exports: TNotFormattedExportsByModule, context: IC
                 if (symbol) {
                     const typeNode = SymbolUtils.getNodeFromSymbol(symbol);
                     if (typeNode) {
-                        const res = context.convert(typeNode);
-                        exportsByModule.add(moduleName, res);
+                        context.convert(typeNode, true);
                     }
                 }
             });
         });
     });
 
-    return exportsByModule.get();
-}
-
-class DocGenExportsByModule {
-    private data: TPublicTypesByModule = {};
-
-    add(moduleName: string, type: TType) {
-        const bucket = this.data[moduleName] || {};
-        this.data[moduleName] = bucket;
-        const { typeName } = parseTypeRefShort(type.typeRef);
-        bucket[typeName] = type;
-    }
-
-    get(): TApiReferenceJson['publicTypes'] {
-        return this.data;
-    }
+    return context.getResults();
 }

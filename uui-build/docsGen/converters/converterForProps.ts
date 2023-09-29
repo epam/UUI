@@ -1,29 +1,40 @@
 import { Node, Symbol, SyntaxKind, Type } from 'ts-morph';
-import { IConverterContext } from '../types/types';
+import { IConverterContext, TConvertable, TTypePropsConverted } from '../types/types';
 import { SymbolUtils } from './converterUtils/symbolUtils';
 import { NodeUtils } from './converterUtils/nodeUtils';
 import { TypeUtils } from './converterUtils/typeUtils';
-import { TTypeProp } from '../types/docsGenSharedTypes';
+import { TTypeProp } from '../types/sharedTypes';
+import { getTypeRefFromTypeSummary } from './converterUtils/converterUtils';
+import { ConvertableUtils } from './converterUtils/convertableUtils';
 
-export function extractProps(parentNode: Node, context: IConverterContext): {
-    props: TTypeProp[],
-    fromUnion: boolean
-} | undefined {
-    const type = NodeUtils.getTypeFromNode(parentNode);
+function isPropsSupported(node: Node) {
+    const type = node.getType();
+    const isExternalType = NodeUtils.isExternalNode(node);
+    return TypeUtils.isPropsSupportedByType({ type, isExternalType });
+}
+
+export function convertTypeProps(nodeOrSymbol: TConvertable, context: IConverterContext): TTypePropsConverted | undefined {
+    const typeNode = ConvertableUtils.getNode(nodeOrSymbol);
+    if (!isPropsSupported(typeNode)) {
+        return;
+    }
+    const type = NodeUtils.getTypeFromNode(typeNode);
     const idGen = new SimpleIdGen();
     if (type.isUnion()) {
         const unionTypes = type.getUnionTypes();
-        const props = extractPropsFromNonUnionTypeArr(unionTypes, parentNode, context, idGen);
-        return {
-            props,
-            fromUnion: true,
-        };
-    } else {
-        const props = extractPropsFromNonUnionType({ parentNode, type, context, idGen });
+        const props = extractPropsFromNonUnionTypeArr(unionTypes, typeNode, context, idGen);
         if (props) {
             return {
                 props,
-                fromUnion: false,
+                propsFromUnion: true,
+            };
+        }
+    } else {
+        const props = extractPropsFromNonUnionType({ parentNode: typeNode, type, context, idGen });
+        if (props) {
+            return {
+                props,
+                propsFromUnion: false,
             };
         }
     }
@@ -53,10 +64,6 @@ function extractPropsFromNonUnionTypeArr(typeArr: Type[], parentNode: Node, cont
 
 function extractPropsFromNonUnionType(params: { parentNode: Node, type: Type, context: IConverterContext, idGen: SimpleIdGen }): TTypeProp[] | undefined {
     const { parentNode, type, context, idGen } = params;
-    /*    if (type.isIntersection()) {
-        const typeArr = type.getIntersectionTypes();
-        return extractPropsFromNonUnionTypeArr(typeArr, parentNode, context, idGen);
-    } */
     const propsOnly = type.getProperties();
     const indexSigns = TypeUtils.getIndexSignature(type);
     const props = indexSigns.concat(propsOnly);
@@ -92,8 +99,12 @@ function mapSingleMember(params: { parentNode?: Node, propertySymbol: Symbol, co
             return;
         }
         const comment = NodeUtils.getCommentFromNode(propertyNode);
-        const from = NodeUtils.getTypeParentRef(propertyNode, parentNode);
-        const fromShort = from ? context.refs.set(from) : undefined;
+        let fromRef;
+        const propParent = NodeUtils.getPropertyNodeParent(propertyNode, parentNode);
+        if (propParent) {
+            const fromSummary = context.convertTypeSummary(propParent);
+            fromRef = getTypeRefFromTypeSummary(fromSummary);
+        }
         const name = NodeUtils.getPropertyNodeName(propertyNode);
         const required = NodeUtils.isPropertyNodeRequired(propertyNode);
         const uid = idGen.getNextId();
@@ -102,7 +113,7 @@ function mapSingleMember(params: { parentNode?: Node, propertySymbol: Symbol, co
             name,
             comment,
             typeValue: { raw },
-            from: fromShort,
+            from: fromRef,
             required,
         };
     } else {

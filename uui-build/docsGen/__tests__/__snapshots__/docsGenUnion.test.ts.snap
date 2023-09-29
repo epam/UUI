@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`docsGen:union should convert union of simple types 1`] = `
+{
+ "allTypes": {
+  "test/test.tsx:TUnionTest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TUnionTest",
+     "nameFull": "TUnionTest"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "false | true | 'one' | 'two' | 'three' | 'four'",
+     "print": [
+      "type TUnionTest = 'one' | 'two' | 'three' | 'four' | boolean;"
+     ]
+    }
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:union should convert union of two anonymous object types 1`] = `
+{
+ "allTypes": {
+  "test/test.tsx:TTest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTest",
+     "nameFull": "TTest"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "{ sameProp: string; n1Prop: string; } | { sameProp: string; n2Prop: string; }",
+     "print": [
+      "type TTest = ({",
+      "    sameProp: string;",
+      "    n1Prop: string;",
+      "}) | ({",
+      "    sameProp: string;",
+      "    n2Prop: string;",
+      "});"
+     ]
+    },
+    "props": [
+     {
+      "uid": 3,
+      "name": "sameProp",
+      "typeValue": {
+       "raw": "string"
+      },
+      "required": true
+     },
+     {
+      "uid": 2,
+      "name": "n1Prop",
+      "typeValue": {
+       "raw": "string"
+      },
+      "required": true
+     },
+     {
+      "uid": 4,
+      "name": "n2Prop",
+      "typeValue": {
+       "raw": "string"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": true
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:union should convert union of two object types 1`] = `
+{
+ "allTypes": {
+  "test/test.tsx:TTest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTest",
+     "nameFull": "TTest"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "N1 | N2",
+     "print": [
+      "type TTest = N1 | N2;"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "sameProp",
+      "typeValue": {
+       "raw": "string"
+      },
+      "from": "test/test.tsx:N1",
+      "required": true
+     },
+     {
+      "uid": 2,
+      "name": "n1Prop",
+      "typeValue": {
+       "raw": "string"
+      },
+      "from": "test/test.tsx:N1",
+      "required": true
+     },
+     {
+      "uid": 3,
+      "name": "sameProp",
+      "typeValue": {
+       "raw": "string"
+      },
+      "from": "test/test.tsx:N2",
+      "required": true
+     },
+     {
+      "uid": 4,
+      "name": "n2Prop",
+      "typeValue": {
+       "raw": "string"
+      },
+      "from": "test/test.tsx:N2",
+      "required": true
+     }
+    ],
+    "propsFromUnion": true
+   }
+  },
+  "test/test.tsx:N1": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "N1",
+     "nameFull": "N1"
+    },
+    "src": "test/test.tsx",
+    "exported": false
+   }
+  },
+  "test/test.tsx:N2": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "N2",
+     "nameFull": "N2"
+    },
+    "src": "test/test.tsx",
+    "exported": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:union should not try to expand props if union contains an external type 1`] = `
+{
+ "allTypes": {
+  "test/test.tsx:TTest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTest",
+     "nameFull": "TTest"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "{ a: string; b: string; } | HTMLElement",
+     "print": [
+      "type TTest = ({",
+      "    a: string;",
+      "    b: string;",
+      "}) | HTMLElement;"
+     ]
+    }
+   }
+  }
+ }
+}
+`;

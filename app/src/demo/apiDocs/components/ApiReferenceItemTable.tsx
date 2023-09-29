@@ -25,7 +25,7 @@ import { useTsDocForType } from '../dataHooks';
 import { CodeExpandable } from './components/CodeExpandable';
 import css from './ApiReferenceTable.module.scss';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/table-info-fill-18.svg';
-import { TType, TTypeProp } from '../docsGenSharedTypes';
+import { TType, TTypeProp } from '../sharedTypes';
 
 type TTypeGroup = { _group: true, from: TTypeProp['from'], comment: TTypeProp['comment'] };
 type TItem = TTypeProp | TTypeGroup;
@@ -118,7 +118,7 @@ function useIsGrouped(tsDocsType?: TType): { canGroup: boolean, setIsGrouped: (i
     const [isGrouped, setIsGrouped] = useState(false);
     const canGroup = useMemo(() => {
         if (tsDocsType) {
-            return Boolean(tsDocsType.props?.some(({ from }) => !!from));
+            return Boolean(tsDocsType.details?.props?.some(({ from }) => !!from));
         }
         return false;
     }, [tsDocsType]);
@@ -143,21 +143,21 @@ export function ApiReferenceItemTable(props: { showCode?: boolean, tsDocsType: T
     const { showCode = false, tsDocsType } = props;
     const { canGroup, isGrouped, setIsGrouped } = useIsGrouped(tsDocsType);
     const columns = getColumns({ isGroupedByFrom: isGrouped, hasFrom: canGroup });
-    const isNoData = !tsDocsType?.props?.length;
-    const propsFromUnion = tsDocsType?.propsFromUnion;
+    const isNoData = !tsDocsType?.details?.props?.length;
+    const propsFromUnion = tsDocsType?.details?.propsFromUnion;
     const [tState, setTState] = useState<DataTableState>({});
     const exportPropsDsItems: TItem[] = useMemo(() => {
-        if (tsDocsType?.props) {
+        if (tsDocsType?.details?.props) {
             const parents = new Map<string, TTypeGroup>();
             if (isGrouped) {
-                tsDocsType.props.forEach(({ from, comment }) => {
+                tsDocsType.details.props.forEach(({ from, comment }) => {
                     if (from) {
                         parents.set(from, { _group: true, from, comment });
                     }
                 });
             }
             const parentsArr = Array.from(parents.values());
-            return (tsDocsType.props as TItem[]).concat(parentsArr);
+            return (tsDocsType.details.props as TItem[]).concat(parentsArr);
         }
         return [];
     }, [tsDocsType, isGrouped]);
@@ -166,7 +166,7 @@ export function ApiReferenceItemTable(props: { showCode?: boolean, tsDocsType: T
             items: exportPropsDsItems,
             getId: (item) => {
                 if (isGroup(item)) {
-                    return item.from;
+                    return item.from as string;
                 }
                 return String(item.uid);
             },
@@ -258,7 +258,7 @@ export function ApiReferenceItemTable(props: { showCode?: boolean, tsDocsType: T
                 columns={ columns }
                 getRows={ view.getVisibleRows }
                 renderRow={ (props: DataTableRowProps<TItem, string>) => {
-                    if (isGroup(props.value)) {
+                    if (props.value && isGroup(props.value)) {
                         return <DataTableRow key={ props.id } { ...props } columns={ getColumns({ isGroupColumns: true }) } />;
                     }
                     return <DataTableRow key={ props.id } { ...props } indent={ 0 } columns={ columns } />;
