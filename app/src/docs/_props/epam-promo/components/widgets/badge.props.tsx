@@ -11,7 +11,7 @@ import { BadgeProps } from '@epam/promo';
 const badgeDoc = new DocBuilder<BadgeProps & BadgeMods>({ name: 'Badge', component: Badge })
     .prop('color', {
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
-        examples: ['blue', 'green', 'amber', 'red', 'yellow', 'orange', 'fuchsia', 'purple', 'lavanda', 'cobalt', 'white', 'gray10', 'gray30', 'gray60'],
+        examples: ['blue', 'green', 'amber', 'red', 'yellow', 'orange', 'fuchsia', 'purple', 'violet', 'cobalt', 'white', 'gray10', 'gray30', 'gray60'],
     })
     .implements([
         iconDoc, iconOptionsDoc, dropdownTogglerDoc, onClickDoc, basicPickerTogglerDoc,

@@ -78,12 +78,12 @@
     --purple-40: #860F9E;
     --purple-50: #5E0B6F;
 
-    --lavanda-5: #F8F6FE;
-    --lavanda-10: #DBCCFA;
-    --lavanda-20: #BB9DF5;
-    --lavanda-30: #773CEC;
-    --lavanda-40: #5514D6;
-    --lavanda-50: #40109E;
+    --violet-5: #F8F6FE;
+    --violet-10: #DBCCFA;
+    --violet-20: #BB9DF5;
+    --violet-30: #773CEC;
+    --violet-40: #5514D6;
+    --violet-50: #40109E;
 
     --cobalt-5: #F8FAFF;
     --cobalt-10: #D9E2FC;
@@ -251,7 +251,7 @@
 
     --uui-text-info: var(--uui-info-50);
     --uui-text-warning: var(--uui-warning-50);
-    --uui-text-critical: var(--uui-critical-50);
+    --uui-text-error: var(--uui-error-50);
     --uui-text-success: var(--uui-success-50);
 
     /* not accepted part */
@@ -349,7 +349,8 @@
     }
 
     .uui-color-fire,
-    .uui-color-critical {
+    .uui-color-critical,
+    .uui-color-error {
         --uui-color-5: var(--uui-critical-5);
         --uui-color-10: var(--uui-critical-10);
         --uui-color-20: var(--uui-critical-20);
@@ -506,14 +507,14 @@
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
-    .uui-color-lavanda {
-        --uui-color-5: var(--lavanda-5);
-        --uui-color-10: var(--lavanda-10);
-        --uui-color-20: var(--lavanda-20);
-        --uui-color-50: var(--lavanda-30);
-        --uui-color-60: var(--lavanda-40);
-        --uui-color-70: var(--lavanda-50);
-        --uui-color-text: var(--lavanda-50);
+    .uui-color-violet {
+        --uui-color-5: var(--violet-5);
+        --uui-color-10: var(--violet-10);
+        --uui-color-20: var(--violet-20);
+        --uui-color-50: var(--violet-30);
+        --uui-color-60: var(--violet-40);
+        --uui-color-70: var(--violet-50);
+        --uui-color-text: var(--violet-50);
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
@@ -554,24 +555,17 @@
 
     .uui-badge.uui-color-neutral,
     .uui-badge.uui-color-night300 {
-        --uui-color-5: var(--night200);
-        --uui-color-10: var(--night300);
-        --uui-color-20: var(--night400);
-        --uui-color-50: var(--night300);
-        --uui-color-60: var(--night400);
-        --uui-color-70: var(--night500);
-        --uui-color-text: var(--uui-text-primary);
-        --uui-color-contrast-text: var(--uui-text-primary);
-    }
-
-    .uui-badge.uui-color-white {
-        --uui-badge-bg-hover: var(--uui-neutral-10);
-        --uui-badge-border-hover: var(--uui-neutral-10);
+        --uui-badge-bg: var(--uui-neutral-30);
+        --uui-badge-border: var(--uui-neutral-30);
+        --uui-badge-bg-hover: var(--uui-neutral-40);
+        --uui-badge-border-hover: var(--uui-neutral-40);
+        --uui-color-contrast-text: var(--uui-text-dark);
 
         &.fill-outline {
-            --uui-badge-border: var(--uui-neutral-30);
+            --uui-badge-bg: var(--uui-neutral-20);
+            --uui-badge-border: var(--uui-neutral-40);
+            --uui-badge-bg-hover: var(--uui-neutral-30);
             --uui-color-text: var(--uui-text-dark);
-            --uui-badge-border-hover: var(--uui-neutral-30);
         }
     }
 
@@ -611,28 +605,22 @@
 
     .uui-tooltip-container.uui-color-white,
     .uui-tooltip-container.uui-color-neutral {
-        --uui-color-50: var(--white);
+        --uui-tooltip-bg: var(--white);
         --uui-color-contrast-text: var(--uui-text-dark);
     }
 
     .uui-tooltip-container.uui-color-red,
     .uui-tooltip-container.uui-color-critical {
-        --uui-color-50: var(--uui-critical-60);
+        --uui-tooltip-bg: var(--uui-error-60);
     }
 
     .uui-tooltip-container.uui-color-gray,
     .uui-tooltip-container.uui-color-contrast {
-        --uui-color-50: var(--night800);
+        --uui-tooltip-bg: var(--night800);
         --uui-color-contrast-text: var(--uui-text-white);
     }
 
-    /* count_indicator */
-
-    .uui-count_indicator.uui-color-white {
-        --uui-count_indicator-bg: var(--white);
-        --uui-count_indicator-border: var(--white);
-        --uui-count_indicator-caption: var(--uui-text-dark);
-    }
+    /* CountIndicator */
 
     .uui-count_indicator.uui-color-gray,
     .uui-count_indicator.uui-color-neutral {
@@ -640,6 +628,8 @@
         --uui-count_indicator-border: var(--uui-neutral-30);
         --uui-count_indicator-caption: var(--uui-text-dark);
     }
+
+    /* FlexRow */
 
     .uui-flex-row.uui-color-none {
         --uui-flex-row-bg: transparent;

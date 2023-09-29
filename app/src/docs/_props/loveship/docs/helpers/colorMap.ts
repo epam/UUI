@@ -6,7 +6,7 @@ export const colors = {
     carbon: '#3D404D',
     night: '#474A59',
     cobalt: '#0E74E2',
-    lavanda: '#2E3A9D',
+    violet: '#2E3A9D',
     fuchsia: '#CD0053',
     yellow: '#FDD63B',
     orange: '#FF8B3E',

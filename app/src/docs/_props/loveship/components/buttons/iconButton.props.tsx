@@ -10,7 +10,7 @@ const IconButtonDoc = new DocBuilder<IconButtonProps>({ name: 'IconButton', comp
     ])
     .prop('color', {
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
-        examples: ['sky', 'grass', 'sun', 'fire', 'cobalt', 'lavanda', 'fuchsia', 'white', 'night500', 'night600'],
+        examples: ['sky', 'grass', 'sun', 'fire', 'cobalt', 'violet', 'fuchsia', 'white', 'night500', 'night600'],
     })
     .withContexts(DefaultContext, FormContext);
 
