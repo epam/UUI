@@ -24,6 +24,7 @@ export interface BadgeMods {
     color?: BadgeColor;
     fill?: BadgeFill;
     size?: BadgeSize;
+    indicator?: boolean;
 }
 
 export type BadgeProps = ButtonProps & BadgeMods;
@@ -35,6 +36,7 @@ export function applyBadgeMods(mods: BadgeMods) {
         css['size-' + (mods.size || defaultSize)],
         `fill-${mods.fill || 'solid'}`,
         mods.color && `uui-color-${mods.color}`,
+        mods.indicator && 'uui-indicator',
     ];
 }
 
@@ -69,5 +71,6 @@ export const Badge = withMods<ButtonProps, BadgeMods>(Button, applyBadgeMods, (p
                 size={ mapCountIndicatorSizes[props.size || defaultSize] }
             />
         ),
+        indicator: props.indicator || false,
     };
 });

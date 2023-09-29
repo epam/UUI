@@ -16,13 +16,9 @@ export interface ButtonProps
 
     /** CountIndicator component */
     countIndicator?: React.ComponentType<IHasCaption> ;
-
-    /** Indicator property, default = false */
-    indicator?: boolean;
 }
 
 export class Button extends ButtonBase<ButtonProps> {
-    indicator = false;
     constructor(props: ButtonProps) {
         super(props);
     }
@@ -40,7 +36,6 @@ export class Button extends ButtonBase<ButtonProps> {
             this.props.icon && this.props.iconPosition !== 'right' && (
                 <IconContainer key="icon-left" icon={ this.props.icon } onClick={ !this.props.isDisabled ? this.props.onIconClick : undefined } />
             ),
-            this.props.indicator && <div key="indicator" className={ uuiElement.indicator }></div>,
             this.props.caption && (
                 <div key="caption" className={ cx(uuiElement.caption, this.props.captionCX) }>
                     {this.props.caption}
