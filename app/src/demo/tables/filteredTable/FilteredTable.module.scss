@@ -11,7 +11,7 @@
     padding: 0 24px;
     display: flex;
     flex-shrink: 0;
-    background-color: var(--uui-surface);
+    background-color: var(--uui-surface-main);
     border-bottom: 1px solid var(--uui-divider);
     overflow-x: auto;
     overflow-y: hidden;
@@ -59,7 +59,7 @@
 .presets {
     padding-left: 50px;
     transition: 0.5s padding-left;
-    background-color: var(--uui-surface);
+    background-color: var(--uui-surface-main);
 
     &-with-filter {
         padding-left: 0;
@@ -68,7 +68,7 @@
 
 .filter-panel-wrapper {
     padding: 12px 24px 6px 24px;
-    background-color: var(--uui-surface-low);
+    background-color: var(--uui-surface-sunken);
     border-bottom: 1px solid var(--uui-divider);
 
     .filter-panel {

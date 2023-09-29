@@ -17,6 +17,7 @@
     "@elastic/apm-rum": "^5.14.0",
     "@epam/assets": "5.2.0-rc.3",
     "@epam/draft-rte": "5.2.0-rc.3",
+    "@epam/electric": "5.2.0-rc.3",
     "@epam/internal": "0.0.1",
     "@epam/loveship": "5.2.0-rc.3",
     "@epam/promo": "5.2.0-rc.3",

@@ -7,13 +7,13 @@
     --uui-dt-cell-border-hover: var(--uui-control-border-hover);
     --uui-dt-cell-border-focus: var(--uui-control-border-checked);
 
-    --uui-dt-row-bg: var(--uui-surface);
-    --uui-dt-row-bg-hover: var(--uui-surface-lower);
+    --uui-dt-row-bg: var(--uui-surface-main);
+    --uui-dt-row-bg-hover: var(--uui-surface-higher);
     --uui-dt-row-bg-invalid: var(--uui-error-5);
     --uui-dt-row-bg-selected: var(--uui-info-5);
 
-    --uui-dt-header-row-bg: var(--uui-surface-low);
-    --uui-dt-header-row-bg-hover: var(--uui-surface-lowest);
+    --uui-dt-header-row-bg: var(--uui-surface-sunken);
+    --uui-dt-header-row-bg-hover: var(--uui-surface-highest);
 
     --uui-dt-top-shadow: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
     --uui-dt-left-shadow: linear-gradient(to left, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
