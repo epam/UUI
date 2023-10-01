@@ -107,6 +107,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
                 icon={ icon }
                 color={ isActive ? 'info' : 'default' }
                 onClick={ onIconClick }
+                isDisabled = { isDisabled }
                 cx={ cx(css.icon, iconPosition === 'right' ? css.iconAfter : css.iconBefore) }
             />
         );
