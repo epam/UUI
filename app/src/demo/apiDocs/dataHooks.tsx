@@ -9,26 +9,26 @@ function load(ref: TTypeRef) {
     if (!svc.api) {
         throw new Error('svc.api not available');
     }
-    const promise = cache.get(ref) || svc.api.getTsDocForType(ref);
+    const promise = cache.get(ref) || svc.api.getDocsGenType(ref);
     cache.set(ref, promise);
     return promise;
 }
 
-export function useTsDocForType(ref: TTypeRef): TType | undefined {
+export function useDocsGenForType(ref: TTypeRef): TType | undefined {
     const [response, setResponse] = useState<TType>();
-    const tsDocRefs = useTsDocSummaries();
+    const docsGenSum = useDocsGenSummaries();
     useEffect(() => {
         setResponse(undefined);
-        if (tsDocRefs[ref].exported) {
+        if (docsGenSum[ref].exported) {
             load(ref).then((res) => {
                 setResponse(() => res.content);
             });
         }
-    }, [ref, tsDocRefs]);
+    }, [ref, docsGenSum]);
     return response;
 }
 
-export function useTsDocSummaries() {
+export function useDocsGenSummaries() {
     const { uuiApp } = useUuiContext<TApi, TAppContext>();
-    return uuiApp.tsDocs.summaries;
+    return uuiApp.docsGen.summaries;
 }

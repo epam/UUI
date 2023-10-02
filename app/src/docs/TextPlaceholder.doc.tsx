@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TUuiTsDoc,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
 } from '../common';
 
 export class TextPlaceholderDoc extends BaseDocsBlock {
     title = 'TextPlaceholder';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:TextPlaceholderProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:TextPlaceholderProps');
 
     getPropsDocPath() {
         return {

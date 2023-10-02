@@ -17,7 +17,7 @@ export const SYNTAX_KIND_NAMES = Object.keys(SyntaxKind).reduce<Record<number, s
     return acc;
 }, {});
 
-export const INCLUDED_UUI_PACKAGES: Record<string, string> = {
+export const INCLUDED_PACKAGES: Record<string, string> = {
     '@epam/uui-core': 'uui-core',
     '@epam/uui-components': 'uui-components',
     '@epam/uui': 'uui',

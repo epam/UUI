@@ -2,7 +2,7 @@
 
 exports[`docsGen:comments should convert comments 1`] = `
 {
- "allTypes": {
+ "docsGenTypes": {
   "test/test.tsx:ITest": {
    "summary": {
     "module": "test/test.tsx",

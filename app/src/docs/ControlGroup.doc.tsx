@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, TUuiTsDoc, UUI3, UUI4,
+    BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI3, UUI4,
 } from '../common';
 
 export class ControlGroupDoc extends BaseDocsBlock {
     title = 'Control Group';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui-components:ControlGroupProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui-components:ControlGroupProps');
 
     getPropsDocPath() {
         return {

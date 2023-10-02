@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI, TUuiTsDoc,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI, TDocsGenType,
 } from '../common';
 
 export class PaginatorDoc extends BaseDocsBlock {
     title = 'Paginator';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui-components:PaginatorProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui-components:PaginatorProps');
 
     getPropsDocPath() {
         return {

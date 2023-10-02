@@ -7,7 +7,7 @@ import { svc } from '../../services';
 import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
 import css from './BaseDocsBlock.module.scss';
-import { TTsDocExportedEntry } from '../../demo/apiDocs/types';
+import { TDocsGenExportedType } from '../../demo/apiDocs/types';
 import { ApiReferenceItemTableForTypeRef } from '../../demo/apiDocs/components/ApiReferenceItemTable';
 
 export enum TSkin {
@@ -25,7 +25,7 @@ const items: { id: TSkin; caption: string }[] = [
     { caption: 'UUI3 [Loveship]', id: TSkin.UUI3_loveship }, { caption: 'UUI4 [Promo]', id: TSkin.UUI4_promo }, { caption: 'UUI [Themebale]', id: TSkin.UUI },
 ];
 
-export type TUuiTsDoc = TTsDocExportedEntry;
+export type TDocsGenType = TDocsGenExportedType;
 type DocPath = {
     [key in TSkin]?: string;
 };
@@ -50,20 +50,20 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         return null;
     }
 
-    protected getUuiTsDoc(): TUuiTsDoc | undefined {
+    protected getDocsGenType(): TDocsGenType | undefined {
         return undefined;
     }
 
     renderApiBlock() {
-        const tsDocProps = this.getUuiTsDoc();
+        const docsGenType = this.getDocsGenType();
         let content = null;
-        if (tsDocProps) {
+        if (docsGenType) {
             content = (
-                <ApiReferenceItemTableForTypeRef showCode={ true } tsDocsRef={ tsDocProps } />
+                <ApiReferenceItemTableForTypeRef showCode={ true } typeRef={ docsGenType } />
             );
         } else if (this.getPropsDocPath()) {
             // we need this error message until the "getPropsDocPath" is fully deprecated.
-            const err = 'The "getPropsDocPath" method is no longer used to render props table. Please implement "getUuiTsDoc" method in the "*.doc.tsx" file for this purpose.';
+            const err = 'The "getPropsDocPath" method is no longer used to render props table. Please implement "getDocsGenType" method in the "*.doc.tsx" file for this purpose.';
             content = <Text color="red">{err}</Text>;
         }
         if (content) {

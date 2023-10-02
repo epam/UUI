@@ -4,7 +4,7 @@ import {
     TTypeRefMap,
     TTypeSummary,
 } from '../types/sharedTypes';
-import { INCLUDED_UUI_PACKAGES } from '../constants';
+import { INCLUDED_PACKAGES } from '../constants';
 import { TApiReferenceJson, TTypeConverted } from '../types/types';
 
 export class ResultObjectModel {
@@ -32,18 +32,23 @@ export class ResultObjectModel {
     }
 
     getResults(): TApiReferenceJson {
-        const uuiIncl = Object.keys(INCLUDED_UUI_PACKAGES);
+        const uuiIncl = Object.keys(INCLUDED_PACKAGES);
         const isUuiPackage = (module: string) => (module.indexOf('@epam/') === 0);
-        const inclIndex = (module: string) => uuiIncl.indexOf(module);
+        const getIndexOfInclusion = (module: string) => uuiIncl.indexOf(module);
 
-        const allTypes: TTypeRefMap = {};
+        const docsGenTypes: TTypeRefMap = {};
         const comparator = (a: TTypeRef, b: TTypeRef) => {
             const { exported: aExported, module: aModule } = this.typeSummaryMap[a];
             const { exported: bExported, module: bModule } = this.typeSummaryMap[b];
-            // Priority: UUI packages, Included packages, Included first, Exported entries, Alphabetical
+            /**
+             * Priority:
+             * 1. Types from @epam/* packages
+             * 2. Types from a package specified in INCLUDED_PACKAGES (order matters here)
+             * 3. Types which are exported from a packages (public ones)
+             * 4. Types (types refs) in alphabetical order (ignore case)
+             */
             return (Number(isUuiPackage(bModule)) - Number(isUuiPackage(aModule)))
-                || (Number(inclIndex(bModule) !== -1) - Number(inclIndex(aModule) !== -1))
-                || (inclIndex(aModule) - inclIndex(bModule))
+                || (getIndexOfInclusion(aModule) - getIndexOfInclusion(bModule))
                 || (Number(bExported) - Number(aExported))
                 || (a.toLowerCase().localeCompare(b.toLowerCase()));
         };
@@ -59,10 +64,13 @@ export class ResultObjectModel {
             if (details) {
                 result.details = details;
             }
-            allTypes[typeRef] = result;
+            docsGenTypes[typeRef] = result;
         });
-        return JSON.parse(JSON.stringify({ // remove any undefined props
-            allTypes,
-        }));
+        const timestamp = new Date().toISOString().split('T')[0];
+        const out: TApiReferenceJson = {
+            timestamp,
+            docsGenTypes,
+        };
+        return JSON.parse(JSON.stringify(out)) as TApiReferenceJson; // remove any undefined props
     }
 }

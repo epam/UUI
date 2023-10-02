@@ -29,7 +29,7 @@ function initTestProject() {
     });
 }
 
-export function generateDocs(fileContent: string): TApiReferenceJson {
+export function generateDocs(fileContent: string): Pick<TApiReferenceJson, 'docsGenTypes'> {
     const project = initTestProject();
     const mainFilePath = TEST_MAIN_FILE_PATH;
     project.createSourceFile(mainFilePath, fileContent, { overwrite: true });
@@ -37,14 +37,15 @@ export function generateDocs(fileContent: string): TApiReferenceJson {
     const exportsNotFormatted: TNotFormattedExportsByModule = {
         [TEST_DEFAULT_MODULE_NAME]: extractExportsFromTsProject({ project, mainFilePath, context }),
     };
-    return formatExports(exportsNotFormatted, context);
+    const { docsGenTypes } = formatExports(exportsNotFormatted, context);
+    return { docsGenTypes };
 }
 
 expect.addSnapshotSerializer({
     test: (val: any) => {
         if (typeof val === 'object') {
             const keys = Object.keys(val);
-            return keys.length === 1 && keys[0] === 'allTypes';
+            return keys.length === 1 && keys[0] === 'docsGenTypes';
         }
         return false;
     },

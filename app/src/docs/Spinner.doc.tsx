@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TUuiTsDoc,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
 } from '../common';
 
 export class SpinnerDoc extends BaseDocsBlock {
     title = 'Spinner';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:SpinnerProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:SpinnerProps');
 
     getPropsDocPath() {
         return {

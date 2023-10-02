@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI4, UUI3, TUuiTsDoc,
+    BaseDocsBlock, DocExample, EditableDocContent, UUI4, UUI3, TDocsGenType,
 } from '../common';
 
 export class PanelDoc extends BaseDocsBlock {
     title = 'Panel';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:PanelProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:PanelProps');
 
     getPropsDocPath() {
         return {

@@ -3,7 +3,7 @@ import type {
     IProcessRequest, CommonContexts, UuiContexts, ITablePreset,
 } from '@epam/uui-core';
 import { TType, TTypeRef } from '../demo/apiDocs/sharedTypes';
-import { TTsDocSummaries } from '../demo/apiDocs/types';
+import { TDocsGenTypeSummary } from '../demo/apiDocs/types';
 
 export const delay = (ms: number = 1): Promise<void> =>
     new Promise((resolve) => {
@@ -49,15 +49,15 @@ export function getApi(params: { processRequest: IProcessRequest, origin?: strin
         getProps(): Promise<any> {
             return processRequest(origin.concat('/api/get-props/'), 'GET');
         },
-        getTsDocForType(shortRef: TTypeRef): Promise<{ content: TType }> {
+        getDocsGenType(shortRef: TTypeRef): Promise<{ content: TType }> {
             const refEncoded = encodeURIComponent(shortRef);
-            return processRequest(origin.concat(`/api/ts-docs/details/${refEncoded}`), 'GET');
+            return processRequest(origin.concat(`/api/docs-gen/details/${refEncoded}`), 'GET');
         },
-        getTsDocSummaries(): Promise<{ content: TTsDocSummaries }> {
-            return processRequest(origin.concat('/api/ts-docs/summaries'), 'GET');
+        getDocsGenSummaries(): Promise<{ content: TDocsGenTypeSummary }> {
+            return processRequest(origin.concat('/api/docs-gen/summaries'), 'GET');
         },
-        getTsDocsExports(): Promise<{ content: Record<string, string[]> }> {
-            return processRequest(origin.concat('/api/ts-docs/exports'), 'GET');
+        getDocsGenExports(): Promise<{ content: Record<string, string[]> }> {
+            return processRequest(origin.concat('/api/docs-gen/exports'), 'GET');
         },
         presets: {
             async getPresets(): Promise<ITablePreset[]> {

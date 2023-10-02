@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI, TUuiTsDoc,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI, TDocsGenType,
 } from '../common';
 
 export class BadgeDoc extends BaseDocsBlock {
     title = 'Badge';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:BadgeProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:BadgeProps');
 
     getPropsDocPath() {
         return {

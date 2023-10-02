@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TUuiTsDoc,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TDocsGenType,
 } from '../common';
 
 export class LabeledInputDoc extends BaseDocsBlock {
     title = 'Labeled Input';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:LabeledInputProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:LabeledInputProps');
 
     getPropsDocPath() {
         return {

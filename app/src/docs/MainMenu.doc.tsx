@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TUuiTsDoc,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TDocsGenType,
 } from '../common';
 
 export class MainMenuDoc extends BaseDocsBlock {
     title = 'Main Menu';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:MainMenuProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:MainMenuProps');
 
     getPropsDocPath() {
         return {

@@ -1,5 +1,6 @@
 {
- "allTypes": {
+ "timestamp": "2023-10-02",
+ "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
     "module": "@epam/uui-core",

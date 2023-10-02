@@ -3,7 +3,7 @@ import path from 'path';
 import { IConverterContext, TExportedDeclarations, TNotFormattedExportsByModule } from './types/types';
 import {
     INCLUDED_EXPORT_KINDS,
-    INCLUDED_UUI_PACKAGES,
+    INCLUDED_PACKAGES,
     INDEX_PATH,
     SYNTAX_KIND_NAMES,
     TSCONFIG_PATH,
@@ -12,8 +12,8 @@ import {
 import { resolveModuleName } from './utils/fileUtils';
 
 export function extractExports(context: IConverterContext) {
-    return Object.keys(INCLUDED_UUI_PACKAGES).reduce<TNotFormattedExportsByModule>((acc, packageName) => {
-        const moduleDirRel = INCLUDED_UUI_PACKAGES[packageName];
+    return Object.keys(INCLUDED_PACKAGES).reduce<TNotFormattedExportsByModule>((acc, packageName) => {
+        const moduleDirRel = INCLUDED_PACKAGES[packageName];
         const moduleDirAbs = path.resolve(uuiRoot, moduleDirRel);
         const {
             project,

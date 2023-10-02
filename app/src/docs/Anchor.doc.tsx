@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, TUuiTsDoc,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, TDocsGenType,
 } from '../common';
 
 export class AnchorDoc extends BaseDocsBlock {
     title = 'Anchor';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui-components:AnchorProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui-components:AnchorProps');
 
     getPropsDocPath() {
         return {

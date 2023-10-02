@@ -1,17 +1,17 @@
 import React from 'react';
 import { Anchor, Text, Tooltip } from '@epam/uui';
 import css from './Ref.module.scss';
-import { useTsDocSummaries } from '../../dataHooks';
+import { useDocsGenSummaries } from '../../dataHooks';
 import { TTypeRef } from '../../sharedTypes';
 
 export function Ref(props: { typeRefShort?: TTypeRef }) {
     const { typeRefShort } = props;
-    const tsDocsRefs = useTsDocSummaries();
+    const docsGenSum = useDocsGenSummaries();
     if (!typeRefShort) {
         return null;
     }
 
-    const { exported: isLinkable, module, typeName } = tsDocsRefs[typeRefShort];
+    const { exported: isLinkable, module, typeName } = docsGenSum[typeRefShort];
 
     let contentNode: React.ReactNode = typeName.nameFull;
     if (module && typeName) {

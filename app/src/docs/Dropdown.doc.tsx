@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TUuiTsDoc,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TDocsGenType,
 } from '../common';
 
 export class DropdownDoc extends BaseDocsBlock {
     title = 'Dropdown';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui-core:DropdownProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui-core:DropdownProps');
 
     getPropsDocPath() {
         return {

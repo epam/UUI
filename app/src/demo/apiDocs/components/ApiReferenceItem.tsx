@@ -1,21 +1,21 @@
 import React from 'react';
-import { useTsDocForType, useTsDocSummaries } from '../dataHooks';
+import { useDocsGenForType, useDocsGenSummaries } from '../dataHooks';
 import { Code } from '../../../common/docs/Code';
 import { TsComment } from './components/TsComment';
 import { Layout } from './components/Layout';
 import { ApiReferenceItemTableForTypeRef } from './ApiReferenceItemTable';
 import { useSearchParams } from 'react-router-dom';
-import { TTsDocExportedEntry } from '../types';
+import { TDocsGenExportedType } from '../types';
 import { TTypeRef } from '../sharedTypes';
 
 export function ApiReferenceItem() {
     const [params] = useSearchParams();
     const typeRefShort = params?.get('id') as TTypeRef;
-    const tsDocsType = useTsDocForType(typeRefShort);
-    const tsDocsRefs = useTsDocSummaries();
+    const docsGenType = useDocsGenForType(typeRefShort);
+    const docsGenSum = useDocsGenSummaries();
 
     const items: { title?: string, node: React.ReactNode }[] = [];
-    const comment = tsDocsRefs[typeRefShort]?.comment;
+    const comment = docsGenSum[typeRefShort]?.comment;
     if (comment?.length) {
         items.push({
             title: 'Description',
@@ -23,22 +23,22 @@ export function ApiReferenceItem() {
         });
     }
 
-    if (tsDocsType?.details) {
-        const hasProps = tsDocsType.details.props?.length;
+    if (docsGenType?.details) {
+        const hasProps = docsGenType.details.props?.length;
         if (hasProps) {
-            const entry = typeRefShort as TTsDocExportedEntry;
+            const entry = typeRefShort as TDocsGenExportedType;
             items.push({
-                node: <ApiReferenceItemTableForTypeRef key={ entry } tsDocsRef={ entry } showCode={ true } />,
+                node: <ApiReferenceItemTableForTypeRef key={ entry } typeRef={ entry } showCode={ true } />,
             });
         }
         if (!hasProps) {
             items.push({
-                node: <Code codeAsHtml={ tsDocsType.details.typeValue?.print?.join('\n') || '' } />,
+                node: <Code codeAsHtml={ docsGenType.details.typeValue?.print?.join('\n') || '' } />,
             });
         }
     }
 
-    const title = tsDocsRefs[typeRefShort]?.typeName.nameFull;
+    const title = docsGenSum[typeRefShort]?.typeName.nameFull;
     return (
         <Layout title={ title }>
             {items}

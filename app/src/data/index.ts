@@ -10,11 +10,11 @@ export async function loadAppContext() {
         { content: navigation },
         { content: summaries },
     ] = await Promise.all([
-        svc.api.getTsDocsExports(),
-        svc.api.getTsDocSummaries(),
+        svc.api.getDocsGenExports(),
+        svc.api.getDocsGenSummaries(),
     ]);
     return {
-        tsDocs: {
+        docsGen: {
             navigation,
             summaries,
         },

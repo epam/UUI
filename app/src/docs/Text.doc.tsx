@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TUuiTsDoc,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TDocsGenType,
 } from '../common';
 
 export class TextDoc extends BaseDocsBlock {
     title = 'Text';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:TextProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:TextProps');
 
     getPropsDocPath() {
         return {

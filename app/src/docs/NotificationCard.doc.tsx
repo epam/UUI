@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TUuiTsDoc,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
 } from '../common';
 
 export class NotificationCardDoc extends BaseDocsBlock {
     title = 'Notification Card';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:NotificationCardProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:NotificationCardProps');
 
     getPropsDocPath() {
         return {
