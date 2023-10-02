@@ -1,20 +1,19 @@
 import React from 'react';
 import { Anchor, Text, Tooltip } from '@epam/uui';
 import css from './Ref.module.scss';
-import { useDocsGenSummaries } from '../../dataHooks';
-import { TTypeRef } from '../../sharedTypes';
+import { TTypeSummary } from '../../sharedTypes';
 
-export function Ref(props: { typeRefShort?: TTypeRef }) {
-    const { typeRefShort } = props;
-    const docsGenSum = useDocsGenSummaries();
-    if (!typeRefShort) {
+export function Ref(props: { typeSummary?: TTypeSummary }) {
+    const { typeSummary } = props;
+    if (!typeSummary) {
         return null;
     }
 
-    const { exported: isLinkable, module, typeName } = docsGenSum[typeRefShort];
+    const { exported: isLinkable, module, typeName } = typeSummary;
 
     let contentNode: React.ReactNode = typeName.nameFull;
     if (module && typeName) {
+        const typeRefShort = `${module}:${typeName.name}`;
         const link = { pathname: '/documents', query: { id: typeRefShort } };
         contentNode = (
             <>

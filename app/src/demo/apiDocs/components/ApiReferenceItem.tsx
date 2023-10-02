@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDocsGenForType, useDocsGenSummaries } from '../dataHooks';
+import { useDocsGenForType } from '../dataHooks';
 import { Code } from '../../../common/docs/Code';
 import { TsComment } from './components/TsComment';
 import { Layout } from './components/Layout';
@@ -12,10 +12,9 @@ export function ApiReferenceItem() {
     const [params] = useSearchParams();
     const typeRefShort = params?.get('id') as TTypeRef;
     const docsGenType = useDocsGenForType(typeRefShort);
-    const docsGenSum = useDocsGenSummaries();
 
     const items: { title?: string, node: React.ReactNode }[] = [];
-    const comment = docsGenSum[typeRefShort]?.comment;
+    const comment = docsGenType?.summary?.comment;
     if (comment?.length) {
         items.push({
             title: 'Description',
@@ -38,7 +37,7 @@ export function ApiReferenceItem() {
         }
     }
 
-    const title = docsGenSum[typeRefShort]?.typeName.nameFull;
+    const title = docsGenType?.summary?.typeName.nameFull;
     return (
         <Layout title={ title }>
             {items}
