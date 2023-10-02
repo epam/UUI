@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TUuiTsDoc,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
 } from '../common';
 
 export class TooltipDoc extends BaseDocsBlock {
     title = 'Tooltip';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:TooltipProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:TooltipProps');
 
     getPropsDocPath() {
         return {

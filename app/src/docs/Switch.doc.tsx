@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI, TUuiTsDoc,
+    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI, TDocsGenType,
 } from '../common';
 
 export class SwitchDoc extends BaseDocsBlock {
     title = 'Switch';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:SwitchProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:SwitchProps');
 
     getPropsDocPath() {
         return {

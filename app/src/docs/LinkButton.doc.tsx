@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI, TUuiTsDoc,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI, TDocsGenType,
 } from '../common';
 
 export class LinkButtonDoc extends BaseDocsBlock {
     title = 'Link Button';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:LinkButtonProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:LinkButtonProps');
 
     getPropsDocPath() {
         return {

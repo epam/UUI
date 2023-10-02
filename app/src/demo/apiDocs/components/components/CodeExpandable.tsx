@@ -11,17 +11,17 @@ function buildGitURL(relativePath?: string) {
     }
 }
 
-export function CodeExpandable(props: { showCode: boolean; tsDocsType: TType }) {
-    const { showCode, tsDocsType } = props;
+export function CodeExpandable(props: { showCode: boolean; docsGenType: TType }) {
+    const { showCode, docsGenType } = props;
     const [isCodeExpanded, setIsCodeExpanded] = useState<boolean>(false);
-    if (!tsDocsType) {
+    if (!docsGenType) {
         // not loaded yet
         return null;
     }
     if (!showCode) {
         return null;
     }
-    const relativeUrl = tsDocsType.summary.src;
+    const relativeUrl = docsGenType.summary.src;
     const gitUrl = buildGitURL(relativeUrl);
     return (
         <div className={ css.root }>
@@ -32,7 +32,7 @@ export function CodeExpandable(props: { showCode: boolean; tsDocsType: TType }) 
             </FlexRow>
             {isCodeExpanded && (
                 <FlexRow key="code" size="36" padding="12">
-                    <Code codeAsHtml={ tsDocsType?.details?.typeValue.print?.join('\n') || '' } />
+                    <Code codeAsHtml={ docsGenType?.details?.typeValue.print?.join('\n') || '' } />
                 </FlexRow>
             )}
         </div>

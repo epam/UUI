@@ -2,7 +2,7 @@
 
 exports[`docsGen:complexTypes should convert interface when it extends another interface and passes specific generic parameter to it 1`] = `
 {
- "allTypes": {
+ "docsGenTypes": {
   "test/test.tsx:IInterface": {
    "summary": {
     "module": "test/test.tsx",
@@ -62,7 +62,7 @@ exports[`docsGen:complexTypes should convert interface when it extends another i
 
 exports[`docsGen:complexTypes should convert interface which extends other interface 1`] = `
 {
- "allTypes": {
+ "docsGenTypes": {
   "test/test.tsx:ITestA": {
    "summary": {
     "module": "test/test.tsx",
@@ -245,7 +245,7 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
 
 exports[`docsGen:complexTypes should convert interface with generics 1`] = `
 {
- "allTypes": {
+ "docsGenTypes": {
   "test/test.tsx:AcceptDropParams": {
    "summary": {
     "module": "test/test.tsx",
@@ -330,7 +330,7 @@ exports[`docsGen:complexTypes should convert interface with generics 1`] = `
 
 exports[`docsGen:complexTypes should convert object type with different types of props 1`] = `
 {
- "allTypes": {
+ "docsGenTypes": {
   "test/test.tsx:TPrimitives": {
    "summary": {
     "module": "test/test.tsx",
@@ -520,7 +520,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
 
 exports[`docsGen:complexTypes should expand props if internal type is wrapped in Typescript utility type 1`] = `
 {
- "allTypes": {
+ "docsGenTypes": {
   "test/test.tsx:TTest": {
    "summary": {
     "module": "test/test.tsx",
@@ -570,7 +570,7 @@ exports[`docsGen:complexTypes should expand props if internal type is wrapped in
 
 exports[`docsGen:complexTypes should include generic type argument names in fullName of type 1`] = `
 {
- "allTypes": {
+ "docsGenTypes": {
   "test/test.tsx:IA": {
    "summary": {
     "module": "test/test.tsx",
@@ -643,7 +643,7 @@ exports[`docsGen:complexTypes should include generic type argument names in full
 
 exports[`docsGen:complexTypes should not expand props from external type 1`] = `
 {
- "allTypes": {
+ "docsGenTypes": {
   "test/test.tsx:TExternalTypeTest": {
    "summary": {
     "module": "test/test.tsx",

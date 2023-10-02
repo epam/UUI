@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, TUuiTsDoc,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, TDocsGenType,
 } from '../common';
 
 export class AccordionDoc extends BaseDocsBlock {
     title = 'Accordion';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:AccordionProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:AccordionProps');
 
     getPropsDocPath() {
         return {

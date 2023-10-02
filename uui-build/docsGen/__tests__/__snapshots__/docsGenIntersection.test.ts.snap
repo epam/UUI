@@ -2,7 +2,7 @@
 
 exports[`docsGen:intersection should convert intersection 1`] = `
 {
- "allTypes": {
+ "docsGenTypes": {
   "test/test.tsx:TIntersection": {
    "summary": {
     "module": "test/test.tsx",
@@ -90,7 +90,7 @@ exports[`docsGen:intersection should convert intersection 1`] = `
 
 exports[`docsGen:intersection should convert top level type with Omit 1`] = `
 {
- "allTypes": {
+ "docsGenTypes": {
   "test/test.tsx:TIntersection": {
    "summary": {
     "module": "test/test.tsx",
@@ -140,7 +140,7 @@ exports[`docsGen:intersection should convert top level type with Omit 1`] = `
 
 exports[`docsGen:intersection should convert type intersection with Omit 1`] = `
 {
- "allTypes": {
+ "docsGenTypes": {
   "test/test.tsx:TIntersection": {
    "summary": {
     "module": "test/test.tsx",

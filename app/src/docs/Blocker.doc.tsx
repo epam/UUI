@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TUuiTsDoc,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
 } from '../common';
 
 export class BlockerDoc extends BaseDocsBlock {
     title = 'Blocker';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui-components:BlockerProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui-components:BlockerProps');
 
     getPropsDocPath() {
         return {

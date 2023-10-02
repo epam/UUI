@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, TUuiTsDoc, UUI3,
+    BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI3,
 } from '../common';
 
 export class SliderRatingDoc extends BaseDocsBlock {
     title = 'SliderRating';
 
     // TODO: no such component in "@epam/uui"
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/loveship:SliderRatingProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/loveship:SliderRatingProps');
 
     getPropsDocPath() {
         return {

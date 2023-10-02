@@ -5,7 +5,7 @@ import {
     useArrayDataSource,
     useTableState,
 } from '@epam/uui-core';
-import { TTsDocExportedEntry } from '../types';
+import { TDocsGenExportedType } from '../types';
 import { Code } from '../../../common/docs/Code';
 import { TsComment } from './components/TsComment';
 import { Ref } from './components/Ref';
@@ -21,7 +21,7 @@ import {
     Text,
     Tooltip,
 } from '@epam/uui';
-import { useTsDocForType } from '../dataHooks';
+import { useDocsGenForType } from '../dataHooks';
 import { CodeExpandable } from './components/CodeExpandable';
 import css from './ApiReferenceTable.module.scss';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/table-info-fill-18.svg';
@@ -114,14 +114,14 @@ function getColumns(params: { isGroupedByFrom?: boolean, hasFrom?: boolean, isGr
     return propsTableColumns;
 }
 
-function useIsGrouped(tsDocsType?: TType): { canGroup: boolean, setIsGrouped: (isGrouped: boolean) => void, isGrouped: boolean } {
+function useIsGrouped(docsGenType?: TType): { canGroup: boolean, setIsGrouped: (isGrouped: boolean) => void, isGrouped: boolean } {
     const [isGrouped, setIsGrouped] = useState(false);
     const canGroup = useMemo(() => {
-        if (tsDocsType) {
-            return Boolean(tsDocsType.details?.props?.some(({ from }) => !!from));
+        if (docsGenType) {
+            return Boolean(docsGenType.details?.props?.some(({ from }) => !!from));
         }
         return false;
-    }, [tsDocsType]);
+    }, [docsGenType]);
 
     return {
         canGroup,
@@ -130,37 +130,37 @@ function useIsGrouped(tsDocsType?: TType): { canGroup: boolean, setIsGrouped: (i
     };
 }
 
-export function ApiReferenceItemTableForTypeRef(props: { showCode?: boolean; tsDocsRef: TTsDocExportedEntry; }) {
-    const tsDocsType = useTsDocForType(props.tsDocsRef);
-    if (!tsDocsType) {
+export function ApiReferenceItemTableForTypeRef(props: { showCode?: boolean; typeRef: TDocsGenExportedType; }) {
+    const docsGenType = useDocsGenForType(props.typeRef);
+    if (!docsGenType) {
         return null;
     }
     return (
-        <ApiReferenceItemTable { ...props } tsDocsType={ tsDocsType } />
+        <ApiReferenceItemTable { ...props } docsGenType={ docsGenType } />
     );
 }
-export function ApiReferenceItemTable(props: { showCode?: boolean, tsDocsType: TType }) {
-    const { showCode = false, tsDocsType } = props;
-    const { canGroup, isGrouped, setIsGrouped } = useIsGrouped(tsDocsType);
+export function ApiReferenceItemTable(props: { showCode?: boolean, docsGenType: TType }) {
+    const { showCode = false, docsGenType } = props;
+    const { canGroup, isGrouped, setIsGrouped } = useIsGrouped(docsGenType);
     const columns = getColumns({ isGroupedByFrom: isGrouped, hasFrom: canGroup });
-    const isNoData = !tsDocsType?.details?.props?.length;
-    const propsFromUnion = tsDocsType?.details?.propsFromUnion;
+    const isNoData = !docsGenType?.details?.props?.length;
+    const propsFromUnion = docsGenType?.details?.propsFromUnion;
     const [tState, setTState] = useState<DataTableState>({});
     const exportPropsDsItems: TItem[] = useMemo(() => {
-        if (tsDocsType?.details?.props) {
+        if (docsGenType?.details?.props) {
             const parents = new Map<string, TTypeGroup>();
             if (isGrouped) {
-                tsDocsType.details.props.forEach(({ from, comment }) => {
+                docsGenType.details.props.forEach(({ from, comment }) => {
                     if (from) {
                         parents.set(from, { _group: true, from, comment });
                     }
                 });
             }
             const parentsArr = Array.from(parents.values());
-            return (tsDocsType.details.props as TItem[]).concat(parentsArr);
+            return (docsGenType.details.props as TItem[]).concat(parentsArr);
         }
         return [];
-    }, [tsDocsType, isGrouped]);
+    }, [docsGenType, isGrouped]);
     const exportPropsDs = useArrayDataSource<TItem, string, unknown>(
         {
             items: exportPropsDsItems,
@@ -265,7 +265,7 @@ export function ApiReferenceItemTable(props: { showCode?: boolean, tsDocsType: T
                 } }
                 { ...view.getListProps() }
             />
-            <CodeExpandable showCode={ showCode } tsDocsType={ tsDocsType } />
+            <CodeExpandable showCode={ showCode } docsGenType={ docsGenType } />
         </div>
     );
 }

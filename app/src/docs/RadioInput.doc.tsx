@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI, TUuiTsDoc,
+    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI, TDocsGenType,
 } from '../common';
 
 export class RadioInputDoc extends BaseDocsBlock {
     title = 'RadioInput';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:RadioInputProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:RadioInputProps');
 
     getPropsDocPath() {
         return {

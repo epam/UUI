@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TUuiTsDoc } from '../common';
+import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TDocsGenType } from '../common';
 
 export class AlertDoc extends BaseDocsBlock {
     title = 'Alert';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:AlertProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:AlertProps');
 
     getPropsDocPath() {
         return {

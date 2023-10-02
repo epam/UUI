@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, TUuiTsDoc, UUI, UUI3, UUI4,
+    BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI, UUI3, UUI4,
 } from '../common';
 
 export class PickerListDoc extends BaseDocsBlock {
     title = 'PickerList';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:PickerListProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:PickerListProps');
 
     getPropsDocPath() {
         return {

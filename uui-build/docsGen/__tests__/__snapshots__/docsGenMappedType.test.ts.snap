@@ -2,7 +2,7 @@
 
 exports[`docsGen:mappedType should convert mapped type 1`] = `
 {
- "allTypes": {
+ "docsGenTypes": {
   "test/test.tsx:TLocal": {
    "summary": {
     "module": "test/test.tsx",

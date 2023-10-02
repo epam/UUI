@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { BaseDocsBlock, EditableDocContent, DocExample, UUI4, UUI3, UUI, TUuiTsDoc } from '../common/docs';
+import { BaseDocsBlock, EditableDocContent, DocExample, UUI4, UUI3, UUI, TDocsGenType } from '../common/docs';
 
 export class PickerInputDoc extends BaseDocsBlock {
     title = 'Picker Input';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui:CompletePickerInputProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:CompletePickerInputProps');
 
     getPropsDocPath() {
         return {

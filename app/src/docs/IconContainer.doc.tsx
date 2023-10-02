@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, TUuiTsDoc,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, TDocsGenType,
 } from '../common';
 
 export class IconContainerDoc extends BaseDocsBlock {
     title = 'Icon Container';
 
-    override getUuiTsDoc = (): TUuiTsDoc => ('@epam/uui-components:ControlIconProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui-components:ControlIconProps');
 
     getPropsDocPath() {
         return {

@@ -36,14 +36,14 @@ function prettyPrintTypeValue(typeValue) {
     return typeValue;
 }
 
-router.get('/ts-docs/details/:shortRef', (req, res) => {
+router.get('/docs-gen/details/:shortRef', (req, res) => {
     const shortRef = req.params.shortRef;
     if (!shortRef) {
         res.sendStatus(400);
     }
-    const { allTypes } = readDocsGenResultsJson();
+    const { docsGenTypes } = readDocsGenResultsJson();
 
-    const exportedType = allTypes[shortRef];
+    const exportedType = docsGenTypes[shortRef];
     const details = exportedType.details;
 
     if (details) {
@@ -61,13 +61,13 @@ router.get('/ts-docs/details/:shortRef', (req, res) => {
     });
 });
 
-router.get('/ts-docs/exports', (req, res) => {
-    const { allTypes } = readDocsGenResultsJson();
-    const exportedTypes = Object.keys(allTypes).filter((ref) => {
-        return allTypes[ref].summary.exported;
+router.get('/docs-gen/exports', (req, res) => {
+    const { docsGenTypes } = readDocsGenResultsJson();
+    const exportedTypes = Object.keys(docsGenTypes).filter((ref) => {
+        return docsGenTypes[ref].summary.exported;
     });
     const exports = exportedTypes.reduce((acc, ref) => {
-        const sum = allTypes[ref].summary;
+        const sum = docsGenTypes[ref].summary;
         const exportName = sum.typeName.name;
         const moduleName = sum.module;
         if (!acc[moduleName]) {
@@ -85,10 +85,10 @@ router.get('/ts-docs/exports', (req, res) => {
 /**
  * We only return "summary" part of each type for performance reasons.
  */
-router.get('/ts-docs/summaries', (req, res) => {
-    const { allTypes } = readDocsGenResultsJson();
-    const content = Object.keys(allTypes).reduce((acc, typeRef) => {
-        acc[typeRef] = allTypes[typeRef].summary;
+router.get('/docs-gen/summaries', (req, res) => {
+    const { docsGenTypes } = readDocsGenResultsJson();
+    const content = Object.keys(docsGenTypes).reduce((acc, typeRef) => {
+        acc[typeRef] = docsGenTypes[typeRef].summary;
         return acc;
     }, {});
 
