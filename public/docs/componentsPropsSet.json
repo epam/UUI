@@ -3284,6 +3284,11 @@
         "comment": null
       },
       {
+        "name": "onKeyDown",
+        "value": "(e: React.KeyboardEvent<HTMLElement>) => void",
+        "comment": "<p>Called on keyDown event in DropdownContainer.\nCan be used to provide your own handlers.</p>"
+      },
+      {
         "name": "padding",
         "value": "24 | 30 | 18 | 6 | 12",
         "comment": null
@@ -8324,6 +8329,11 @@
         "name": "onClose",
         "value": "() => void",
         "comment": null
+      },
+      {
+        "name": "onKeyDown",
+        "value": "(e: React.KeyboardEvent<HTMLElement>) => void",
+        "comment": "<p>Called on keyDown event in DropdownContainer.\nCan be used to provide your own handlers.</p>"
       },
       {
         "name": "padding",
