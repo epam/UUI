@@ -6,17 +6,10 @@ export async function loadAppContext() {
     if (!svc.api) {
         throw new Error('svc.api not available');
     }
-    const [
-        { content: navigation },
-        { content: summaries },
-    ] = await Promise.all([
-        svc.api.getDocsGenExports(),
-        svc.api.getDocsGenSummaries(),
-    ]);
+    const { content: navigation } = await svc.api.getDocsGenExports();
     return {
         docsGen: {
             navigation,
-            summaries,
         },
     };
 }

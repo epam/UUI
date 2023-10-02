@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { svc } from '../../services';
 import { TType, TTypeRef } from './sharedTypes';
-import { useUuiContext } from '@epam/uui-core';
-import { TApi, TAppContext } from '../../data';
+import { TDocsGenTypeSummary } from './types';
 
 const cache: Map<TTypeRef, Promise<{ content: TType }>> = new Map();
 function load(ref: TTypeRef) {
@@ -16,19 +15,32 @@ function load(ref: TTypeRef) {
 
 export function useDocsGenForType(ref: TTypeRef): TType | undefined {
     const [response, setResponse] = useState<TType>();
-    const docsGenSum = useDocsGenSummaries();
     useEffect(() => {
         setResponse(undefined);
-        if (docsGenSum[ref].exported) {
-            load(ref).then((res) => {
-                setResponse(() => res.content);
-            });
-        }
-    }, [ref, docsGenSum]);
+        load(ref).then((res) => {
+            setResponse(() => res.content);
+        });
+    }, [ref]);
     return response;
 }
 
+let summariesCache: Promise<{ content: TDocsGenTypeSummary }> = undefined;
+function loadSummaries() {
+    if (!svc.api) {
+        throw new Error('svc.api not available');
+    }
+    const promise = summariesCache || svc.api.getDocsGenSummaries();
+    summariesCache = promise;
+    return promise;
+}
+
 export function useDocsGenSummaries() {
-    const { uuiApp } = useUuiContext<TApi, TAppContext>();
-    return uuiApp.docsGen.summaries;
+    const [response, setResponse] = useState<TDocsGenTypeSummary>();
+    useEffect(() => {
+        setResponse(undefined);
+        loadSummaries().then((res) => {
+            setResponse(() => res.content);
+        });
+    }, []);
+    return response;
 }

@@ -5,7 +5,7 @@ import {
     useArrayDataSource,
     useTableState,
 } from '@epam/uui-core';
-import { TDocsGenExportedType } from '../types';
+import { TDocsGenExportedType, TDocsGenTypeSummary } from '../types';
 import { Code } from '../../../common/docs/Code';
 import { TsComment } from './components/TsComment';
 import { Ref } from './components/Ref';
@@ -21,7 +21,7 @@ import {
     Text,
     Tooltip,
 } from '@epam/uui';
-import { useDocsGenForType } from '../dataHooks';
+import { useDocsGenForType, useDocsGenSummaries } from '../dataHooks';
 import { CodeExpandable } from './components/CodeExpandable';
 import css from './ApiReferenceTable.module.scss';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/table-info-fill-18.svg';
@@ -34,8 +34,14 @@ function isGroup(item: TTypeProp | TTypeGroup): item is TTypeGroup {
     return (item as TTypeGroup)._group;
 }
 
-function getColumns(params: { isGroupedByFrom?: boolean, hasFrom?: boolean, isGroupColumns?: boolean }): DataColumnProps<TItem>[] {
-    const { hasFrom = false, isGroupedByFrom = false, isGroupColumns = false } = params;
+type TGetColumnsParams = {
+    isGroupedByFrom?: boolean,
+    hasFrom?: boolean,
+    isGroupColumns?: boolean,
+    docsGenSummaries: TDocsGenTypeSummary
+};
+function getColumns(params: TGetColumnsParams): DataColumnProps<TItem>[] {
+    const { hasFrom = false, isGroupedByFrom = false, isGroupColumns = false, docsGenSummaries } = params;
     const isFromVisible = hasFrom && !isGroupedByFrom;
     const WIDTH = {
         name: 200,
@@ -51,7 +57,7 @@ function getColumns(params: { isGroupedByFrom?: boolean, hasFrom?: boolean, isGr
             caption: 'Name',
             render: (item) => {
                 if (isGroup(item)) {
-                    return <Ref typeRefShort={ item.from } />;
+                    return <Ref typeSummary={ docsGenSummaries[item.from] } />;
                 }
                 return (
                     <span style={ { wordBreak: 'break-all' } }>
@@ -105,7 +111,7 @@ function getColumns(params: { isGroupedByFrom?: boolean, hasFrom?: boolean, isGr
                 key: 'from',
                 caption: 'From',
                 alignSelf: 'center',
-                render: (item) => <Ref typeRefShort={ item.from } />,
+                render: (item) => <Ref typeSummary={ docsGenSummaries[item.from] } />,
                 width: WIDTH.from,
                 isSortable: true,
             },
@@ -132,17 +138,18 @@ function useIsGrouped(docsGenType?: TType): { canGroup: boolean, setIsGrouped: (
 
 export function ApiReferenceItemTableForTypeRef(props: { showCode?: boolean; typeRef: TDocsGenExportedType; }) {
     const docsGenType = useDocsGenForType(props.typeRef);
-    if (!docsGenType) {
+    const docsGenSummaries = useDocsGenSummaries();
+    if (!docsGenType || !docsGenSummaries) {
         return null;
     }
     return (
-        <ApiReferenceItemTable { ...props } docsGenType={ docsGenType } />
+        <ApiReferenceItemTable { ...props } docsGenType={ docsGenType } docsGenSummaries={ docsGenSummaries } />
     );
 }
-export function ApiReferenceItemTable(props: { showCode?: boolean, docsGenType: TType }) {
-    const { showCode = false, docsGenType } = props;
+export function ApiReferenceItemTable(props: { showCode?: boolean, docsGenType: TType, docsGenSummaries: TDocsGenTypeSummary }) {
+    const { showCode = false, docsGenType, docsGenSummaries } = props;
     const { canGroup, isGrouped, setIsGrouped } = useIsGrouped(docsGenType);
-    const columns = getColumns({ isGroupedByFrom: isGrouped, hasFrom: canGroup });
+    const columns = getColumns({ isGroupedByFrom: isGrouped, hasFrom: canGroup, docsGenSummaries });
     const isNoData = !docsGenType?.details?.props?.length;
     const propsFromUnion = docsGenType?.details?.propsFromUnion;
     const [tState, setTState] = useState<DataTableState>({});
@@ -150,8 +157,9 @@ export function ApiReferenceItemTable(props: { showCode?: boolean, docsGenType: 
         if (docsGenType?.details?.props) {
             const parents = new Map<string, TTypeGroup>();
             if (isGrouped) {
-                docsGenType.details.props.forEach(({ from, comment }) => {
+                docsGenType.details.props.forEach(({ from }) => {
                     if (from) {
+                        const comment = docsGenSummaries[from]?.comment;
                         parents.set(from, { _group: true, from, comment });
                     }
                 });
@@ -160,7 +168,7 @@ export function ApiReferenceItemTable(props: { showCode?: boolean, docsGenType: 
             return (docsGenType.details.props as TItem[]).concat(parentsArr);
         }
         return [];
-    }, [docsGenType, isGrouped]);
+    }, [docsGenType, isGrouped, docsGenSummaries]);
     const exportPropsDs = useArrayDataSource<TItem, string, unknown>(
         {
             items: exportPropsDsItems,
@@ -259,7 +267,7 @@ export function ApiReferenceItemTable(props: { showCode?: boolean, docsGenType: 
                 getRows={ view.getVisibleRows }
                 renderRow={ (props: DataTableRowProps<TItem, string>) => {
                     if (props.value && isGroup(props.value)) {
-                        return <DataTableRow key={ props.id } { ...props } columns={ getColumns({ isGroupColumns: true }) } />;
+                        return <DataTableRow key={ props.id } { ...props } columns={ getColumns({ isGroupColumns: true, docsGenSummaries }) } />;
                     }
                     return <DataTableRow key={ props.id } { ...props } indent={ 0 } columns={ columns } />;
                 } }
