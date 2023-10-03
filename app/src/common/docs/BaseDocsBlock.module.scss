@@ -1,8 +1,15 @@
+@use '~@epam/assets/theme/theme_promo' as *;
 @use '~@epam/promo/assets/styles/index.scss' as *;
 
 .secondary-navigation {
     box-sizing: border-box;
     min-height: 60px;
+
+    &.uui-theme-promo {
+        :global {
+            @include theme-promo();
+        }
+    }
 }
 
 .container {
@@ -47,4 +54,12 @@
 
 .spinner {
     margin: auto;
+}
+
+.api-block {
+    &.uui-theme-promo {
+        :global {
+            @include theme-promo();
+        }
+    }
 }

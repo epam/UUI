@@ -1,7 +1,6 @@
 @use '~@epam/assets/theme/theme_promo' as *;
 
-.panel {
-    display: flex;
+.wrapper {
     width: 100%;
 
     &.uui-theme-promo {

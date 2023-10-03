@@ -30,7 +30,7 @@ export function SkillsBatteryPopover(props: ISkillsBatteryProps) {
 
     const renderDropdownBody = (bodyProps: DropdownBodyProps) => {
         return (
-            <DropdownContainer cx={ cx(css.dropContainer) } { ...bodyProps }>
+            <DropdownContainer cx={ cx(css.dropContainer, css.uuiThemePromo) } { ...bodyProps }>
                 <FlexRow cx={ cx(css.headerRow) }>
                     <Text fontSize="14" lineHeight="24" font="sans" cx={ cx(css.headerRowText) }>
                         <b>{props.data?.caption}</b>
@@ -112,7 +112,7 @@ export function SkillsBatteryPopover(props: ISkillsBatteryProps) {
     };
 
     return (
-        <div style={ { padding: '3rem 1rem 0' } }>
+        <div className={ cx(css.wrapper, css.uuiThemePromo) }>
             <Dropdown
                 renderBody={ (bodyProps) => renderDropdownBody(bodyProps) }
                 renderTarget={ (targetProps: IDropdownToggler) => renderTarget(targetProps) }

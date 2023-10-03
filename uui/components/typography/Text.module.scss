@@ -10,27 +10,27 @@
     color: var(--uui-text);
 
     &:global(.uui-text.uui-color-brand) {
-        --uui-color-50: var(--uui-text-brand);
+        --uui-text: var(--uui-text-brand);
     }
 
     &:global(.uui-text.uui-color-primary) {
-        --uui-color-50: var(--uui-text-primary);
+        --uui-text: var(--uui-text-primary);
     }
 
     &:global(.uui-text.uui-color-secondary) {
-        --uui-color-50: var(--uui-text-secondary);
+        --uui-text: var(--uui-text-secondary);
     }
 
     &:global(.uui-text.uui-color-disabled) {
-        --uui-color-50: var(--uui-text-disabled);
+        --uui-text: var(--uui-text-disabled);
     }
 
     &:global(.uui-text.uui-color-contrast) {
-        --uui-color-50: var(--uui-text-contrast);
+        --uui-text: var(--uui-text-contrast);
     }
 
     &:global(.uui-text.uui-color-white) {
-        --uui-color-50: var(--uui-text-white);
+        --uui-text: var(--uui-text-white);
     }
 
     &:global(.uui-font-regular) {

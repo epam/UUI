@@ -82,11 +82,9 @@
         --uui-btn-bg: var(--uui-color-50);
         --uui-btn-bg-hover: var(--uui-color-60);
         --uui-btn-bg-active: var(--uui-color-70);
-        --uui-btn-bg-disabled: var(--uui-disabled);
         --uui-btn-border: var(--uui-color-50);
         --uui-btn-border-hover: var(--uui-color-60);
         --uui-btn-border-active: var(--uui-color-70);
-        --uui-btn-border-disabled: var(--uui-disabled);
         --uui-btn-caption: var(--uui-color-contrast-text);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
     }
@@ -95,11 +93,10 @@
         --uui-btn-bg: var(--uui-surface-main);
         --uui-btn-bg-hover: var(--uui-color-10);
         --uui-btn-bg-active: var(--uui-color-20);
-        --uui-btn-bg-disabled: var(--uui-disabled);
+        --uui-btn-bg-disabled: transparent;
         --uui-btn-border: var(--uui-color-50);
         --uui-btn-border-hover: var(--uui-color-50);
         --uui-btn-border-active: var(--uui-color-50);
-        --uui-btn-border-disabled: var(--uui-disabled);
         --uui-btn-caption: var(--uui-color-text);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
     }
@@ -108,11 +105,10 @@
         --uui-btn-bg: transparent;
         --uui-btn-bg-hover: var(--uui-color-10);
         --uui-btn-bg-active: var(--uui-color-20);
-        --uui-btn-bg-disabled: var(--uui-disabled);
+        --uui-btn-bg-disabled: transparent;
         --uui-btn-border: var(--uui-color-50);
         --uui-btn-border-hover: var(--uui-color-50);
         --uui-btn-border-active: var(--uui-color-50);
-        --uui-btn-border-disabled: var(--uui-disabled);
         --uui-btn-caption: var(--uui-color-text);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
     }
@@ -121,11 +117,11 @@
         --uui-btn-bg: transparent;
         --uui-btn-bg-hover: var(--uui-color-10);
         --uui-btn-bg-active: var(--uui-color-20);
-        --uui-btn-bg-disabled: var(--uui-disabled);
+        --uui-btn-bg-disabled: transparent;
         --uui-btn-border: transparent;
         --uui-btn-border-hover: var(--uui-color-10);
         --uui-btn-border-active: var(--uui-color-20);
-        --uui-btn-border-disabled: var(--uui-disabled);
+        --uui-btn-border-disabled: transparent;
         --uui-btn-caption: var(--uui-color-text);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
     }

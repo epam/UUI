@@ -3,9 +3,7 @@
 
 @import '../scss/electric/font-faces';
 
-.uui-theme-electric,
-[class^='uui-theme-'] .uui-theme-electric,
-[class^='uui-theme-'] [class^='uui-theme-'] .uui-theme-electric {
+@mixin theme-electric {
     --uui-font: 'Source Sans Pro', sans-serif;
     --font-primary: 'Museo Sans', 'Source Sans Pro', Arial, sans-serif;
     --font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
@@ -200,7 +198,7 @@
     --uui-surface-higher: var(--uui-neutral-10);
     --uui-surface-highest: var(--uui-neutral-20);
     --uui-surface-contrast: var(--uui-neutral-70);
-    --uui-surface-contrast-low: var(--uui-neutral-80);
+    --uui-surface-contrast-low: var(--uui-neutral-80); // TODO: update contrasts
     --uui-surface-contrast-lower: var(--uui-neutral-90);
 
     --uui-surface-info: var(--sky-lightest);
@@ -216,6 +214,7 @@
     --uui-text-tertiary: var(--uui-neutral-60);
     --uui-text-disabled: var(--uui-neutral-50);
     --uui-text-contrast: var(--uui-neutral-5);
+
     --uui-text-white: var(--white);
     --uui-text-black: var(--night800);
 
@@ -329,7 +328,7 @@
     }
 
     .uui-color-gray,
-    .uui-color-secondary { // +
+    .uui-color-secondary {
         --uui-color-5: var(--uui-secondary-5);
         --uui-color-10: var(--uui-secondary-10);
         --uui-color-20: var(--uui-secondary-20);
@@ -482,4 +481,8 @@
         --uui-color-50: var(--uui-neutral-30);
         --uui-informer-caption: var(--uui-text-black);
     }
+}
+
+.uui-theme-electric {
+    @include theme-electric();
 }

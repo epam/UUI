@@ -26,6 +26,8 @@ import { svc } from '../../services';
 import { FlexCell, FlexRow, Switch, PickerInput } from '@epam/promo';
 import { useAsyncDataSource } from '@epam/uui-core';
 import { useEffect } from 'react';
+import cx from 'classnames';
+import css from './rteDemo.module.scss';
 
 const getPlugins = () => {
     const uploadFile = (file: File, onProgress: (progress: number) => any): any => {
@@ -92,7 +94,7 @@ export function RichTextEditorDemo() {
     }, []);
 
     return (
-        <div style={ { flexGrow: 1, margin: '24px' } }>
+        <div className={ cx(css.wrapper, css.uuiThemePromo) }>
             <FlexRow spacing="12">
                 <FlexCell width={ 300 }>
                     <PickerInput<string, string>

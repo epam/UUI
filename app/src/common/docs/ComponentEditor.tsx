@@ -395,10 +395,10 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
         return (
             <>
                 {isLoading ? (
-                    <Spinner cx={ [css.spinner, 'uui-theme-promo'] } />
+                    <Spinner cx={ [css.spinner, css.uuiThemePromo] } />
                 ) : (
                     <div className={ cx(css.root, this.props.cx) }>
-                        <div className={ cx(css.container, 'uui-theme-promo') }>
+                        <div className={ cx(css.container, css.uuiThemePromo) }>
                             <FlexRow key="head" size="36" padding="12" borderBottom spacing="6" cx={ css.boxSizing }>
                                 <Text fontSize="16" lineHeight="24" cx={ css.vPadding } font="sans-semibold">
                                     {title}
@@ -459,7 +459,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                                 spacing="6"
                                 borderBottom
                                 background="white"
-                                cx={ [css.contextSettingRow, 'uui-theme-promo'] }
+                                cx={ [css.contextSettingRow, css.uuiThemePromo] }
                             >
                                 {this.renderSettings(docs.contexts)}
                             </FlexRow>
