@@ -1,3 +1,4 @@
+@use '~@epam/assets/theme/theme_promo' as *;
 @use '~@epam/promo/assets/styles/index' as *;
 
 
@@ -16,6 +17,12 @@
     flex-grow: 1;
     flex-shrink: 0;
     flex-basis: 0;
+
+    &.uui-theme-promo {
+        :global {
+            @include theme-promo();
+        }
+    }
 
     .box-sizing {
         box-sizing: border-box;
@@ -56,6 +63,12 @@
         justify-content: center;
         box-sizing: border-box;
         width: 100%;
+
+        &.uui-theme-promo {
+            :global {
+                @include theme-promo();
+            }
+        }
     }
 }
 

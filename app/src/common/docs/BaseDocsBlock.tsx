@@ -6,6 +6,7 @@ import { svc } from '../../services';
 import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
 import css from './BaseDocsBlock.module.scss';
+import cx from 'classnames';
 
 export type UUI3Type = 'UUI3_loveship';
 export type UUI4Type = 'UUI4_promo';
@@ -107,7 +108,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         const view = this.propsDS.getView(this.state.tableState, this.onTableStateChange);
 
         return (
-            <div className="uui-theme-promo">
+            <div className={ cx(css.apiBlock, css.uuiThemePromo) }>
                 <RichTextView>
                     <h2>Api</h2>
                 </RichTextView>
@@ -135,7 +136,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderTabsNav() {
         return (
-            <FlexRow background="white" rawProps={ { role: 'tablist' } } padding="12" cx={ ['uui-theme-promo', css.secondaryNavigation] } borderBottom>
+            <FlexRow background="white" rawProps={ { role: 'tablist' } } padding="12" cx={ [css.uuiThemePromo, css.secondaryNavigation] } borderBottom>
                 <TabButton size="60" caption="Documentation" isLinkActive={ getQuery('mode') === 'doc' } onClick={ () => this.handleChangeMode('doc') } />
                 <TabButton size="60" caption="Property Explorer" isLinkActive={ getQuery('mode') === 'propsEditor' } onClick={ () => this.handleChangeMode('propsEditor') } />
                 <FlexSpacer />

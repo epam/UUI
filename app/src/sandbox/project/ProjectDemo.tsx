@@ -9,6 +9,7 @@ import { Task } from './types';
 import { getDemoTasks } from './demoData';
 import { getColumns } from './columns';
 import { getInsertionOrder } from './helpers';
+import css from './ProjectDemo.module.scss';
 
 interface FormState {
     items: Record<number, Task>;
@@ -104,7 +105,7 @@ export function ProjectDemo() {
     const columns = useMemo(() => getColumns({ insertTask: () => {}, deleteTask: () => {} }), []);
 
     return (
-        <Panel style={ { width: '100%' } }>
+        <Panel cx={ [css.wrapper, css.uuiThemePromo] }>
             <FlexRow spacing="12" margin="12">
                 <FlexCell width="auto">
                     <IconButton icon={ insertAfter } onClick={ () => insertTask('top') } />
