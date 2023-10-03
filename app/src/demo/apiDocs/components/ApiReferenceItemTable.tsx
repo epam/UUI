@@ -35,21 +35,16 @@ function isGroup(item: TTypeProp | TTypeGroup): item is TTypeGroup {
 }
 
 type TGetColumnsParams = {
-    isGroupedByFrom?: boolean,
-    hasFrom?: boolean,
     isGroupColumns?: boolean,
     docsGenSummaries: TDocsGenTypeSummary
 };
 function getColumns(params: TGetColumnsParams): DataColumnProps<TItem>[] {
-    const { hasFrom = false, isGroupedByFrom = false, isGroupColumns = false, docsGenSummaries } = params;
-    const isFromVisible = hasFrom && !isGroupedByFrom;
+    const { isGroupColumns = false, docsGenSummaries } = params;
     const WIDTH = {
         name: 200,
-        typeValue: isFromVisible ? 300 : 300 + 160,
+        typeValue: 460,
         comment: 200,
-        from: isFromVisible ? 160 : 0,
     };
-
     const propsTableColumns: DataColumnProps<TItem>[] = [
         {
             key: 'name',
@@ -104,19 +99,6 @@ function getColumns(params: TGetColumnsParams): DataColumnProps<TItem>[] {
             propsTableColumns[2],
         ];
     }
-
-    if (isFromVisible) {
-        return propsTableColumns.concat([
-            {
-                key: 'from',
-                caption: 'From',
-                alignSelf: 'center',
-                render: (item) => <Ref typeSummary={ docsGenSummaries[item.from] } />,
-                width: WIDTH.from,
-                isSortable: true,
-            },
-        ]);
-    }
     return propsTableColumns;
 }
 
@@ -149,7 +131,7 @@ export function ApiReferenceItemTableForTypeRef(props: { showCode?: boolean; typ
 export function ApiReferenceItemTable(props: { showCode?: boolean, docsGenType: TType, docsGenSummaries: TDocsGenTypeSummary }) {
     const { showCode = false, docsGenType, docsGenSummaries } = props;
     const { canGroup, isGrouped, setIsGrouped } = useIsGrouped(docsGenType);
-    const columns = getColumns({ isGroupedByFrom: isGrouped, hasFrom: canGroup, docsGenSummaries });
+    const columns = getColumns({ docsGenSummaries });
     const isNoData = !docsGenType?.details?.props?.length;
     const propsFromUnion = docsGenType?.details?.propsFromUnion;
     const [tState, setTState] = useState<DataTableState>({});
