@@ -16,7 +16,7 @@ export interface UseVirtualListApi<List, ScrollContainer> {
 }
 
 export interface UseVirtualListProps extends IEditable<VirtualListState> {
-    rowsCount: number;
+    rowsCount: number | undefined;
 
     /**
      * Virtual list will align topIndex and visibleCount to the block size.
@@ -53,7 +53,7 @@ export interface VirtualListInfo {
     scrollContainer: HTMLElement | undefined;
     listContainer: HTMLElement | undefined;
     value: VirtualListState | undefined;
-    rowsCount: number;
+    rowsCount: number | undefined;
     blockSize: number;
     overdrawRows: number;
     rowHeights: number[];
