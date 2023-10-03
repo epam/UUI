@@ -1,3 +1,5 @@
+const vitest = require('eslint-plugin-vitest');
+
 module.exports = {
     root: true,
     extends: [
@@ -42,9 +44,12 @@ module.exports = {
         {
             files: ['./src/**/*.test.ts?(x)'],
             extends: [
-                'plugin:jest/recommended',
                 'plugin:testing-library/react',
+                'plugin:vitest/recommended',
             ],
+            globals: {
+                ...vitest.environments.env.globals,
+            },
         },
     ],
 };

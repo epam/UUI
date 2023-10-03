@@ -6,4 +6,16 @@ import svgr from 'vite-plugin-svgr';
 export default defineConfig({
     plugins: [svgr(), react()],
     optimizeDeps: {},
+    test: {
+        include: ['**/*.test.tsx'],
+        globals: true,
+        environment: 'jsdom',
+        setupFiles: 'vitest-setup.js',
+        deps: {
+            web: {
+                transformCss: false,
+                transformAssets: false,
+            },
+        },
+    },
 });
