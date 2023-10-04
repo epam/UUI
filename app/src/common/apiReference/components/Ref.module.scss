@@ -1,0 +1,21 @@
+.root {
+    word-break: break-all;
+
+    a {
+        color: var(--uui-link);
+
+        &:visited {
+            color: var(--uui-link);
+        }
+
+        &:hover {
+            color: var(--uui-link-hover);
+            background-color: var(--uui-surface-active);
+        }
+    }
+
+    .module-name {
+        font-style: italic;
+        display: block;
+    }
+}
