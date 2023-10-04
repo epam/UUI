@@ -64,7 +64,6 @@ function getColumns(summaries: TDocsGenTypeSummary): DataColumnProps<TApiRefProp
     return [
         {
             key: 'name',
-            alignSelf: 'center',
             caption: 'Name',
             render: (item) => {
                 if (isApiRefPropGroup(item)) {
@@ -82,7 +81,6 @@ function getColumns(summaries: TDocsGenTypeSummary): DataColumnProps<TApiRefProp
         {
             key: 'typeValue',
             caption: 'Type',
-            alignSelf: 'center',
             render: (item) => {
                 if (isApiRefPropGroup(item)) {
                     return null;
@@ -97,7 +95,6 @@ function getColumns(summaries: TDocsGenTypeSummary): DataColumnProps<TApiRefProp
         {
             key: 'comment',
             caption: 'Comment',
-            alignSelf: 'center',
             render: (item) => {
                 return <TsComment text={ item.comment } keepBreaks={ true } isCompact={ true } />;
             },
