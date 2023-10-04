@@ -2401,7 +2401,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 470
+   "amountTypes": 471
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -2850,6 +2850,7 @@
    "@epam/loveship:RadioInputProps",
    "@epam/loveship:RangeSliderMods",
    "@epam/loveship:RatingMods",
+   "@epam/loveship:RatingProps",
    "@epam/loveship:RichTextViewMods",
    "@epam/loveship:RowMods",
    "@epam/loveship:RowSize",
@@ -3659,13 +3660,13 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 541,
+   "allExports": 542,
    "byModule": {
     "@epam/uui-core": 208,
     "@epam/uui-components": 93,
     "@epam/uui": 125,
     "@epam/promo": 49,
-    "@epam/loveship": 57,
+    "@epam/loveship": 58,
     "@epam/uui-editor": 9
    }
   },
@@ -4195,6 +4196,7 @@
      "RadioInputProps",
      "RangeSliderMods",
      "RatingMods",
+     "RatingProps",
      "RichTextViewMods",
      "RowMods",
      "RowSizeMod",

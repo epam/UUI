@@ -1,12 +1,12 @@
 import React from 'react';
-import { useDocsGenForType } from '../dataHooks';
-import { Code } from '../../../common/docs/Code';
+import { useDocsGenForType } from './dataHooks';
+import { Code } from '../docs/Code';
 import { TsComment } from './components/TsComment';
 import { Layout } from './components/Layout';
 import { ApiReferenceItemTableForTypeRef } from './ApiReferenceItemTable';
 import { useSearchParams } from 'react-router-dom';
-import { TDocsGenExportedType } from '../types';
-import { TTypeRef } from '../sharedTypes';
+import { TDocsGenExportedType } from './types';
+import { TTypeRef } from './sharedTypes';
 
 export function ApiReferenceItem() {
     const [params] = useSearchParams();

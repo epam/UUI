@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { FlexRow } from '@epam/promo';
 import { AppHeader, Page, Sidebar, TSkin } from '../common';
 import { svc } from '../services';
@@ -6,9 +6,8 @@ import { DocItem, items as itemsStructure } from './structure';
 import { useQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
 import { TreeListItem } from '@epam/uui-components';
-import { DataRowProps, useUuiContext } from '@epam/uui-core';
-import { ApiReferenceItem } from '../demo/apiDocs/components/ApiReferenceItem';
-import { TApi, TAppContext } from '../data';
+import { DataRowProps } from '@epam/uui-core';
+import { ApiReferenceItem } from '../common/apiReference/ApiReferenceItem';
 
 type DocsQuery = {
     id: string;
@@ -17,13 +16,15 @@ type DocsQuery = {
     category?: string;
 };
 
-function useApiReferenceNav(): DocItem[] | undefined {
-    const { uuiApp } = useUuiContext<TApi, TAppContext>();
-    const tsDocsNav = uuiApp.docsGen.navigation;
+async function loadApiReferenceStructure(): Promise<DocItem[]> {
+    if (!svc.api) {
+        throw new Error('svc.api not available');
+    }
+    const { content: navigation } = await svc.api.getDocsGenExports();
     const root = { id: 'ApiReference', name: 'Api Reference' };
-    return Object.keys(tsDocsNav).reduce<DocItem[]>((acc, moduleName) => {
+    return Object.keys(navigation).reduce<DocItem[]>((acc, moduleName) => {
         acc.push({ id: moduleName, name: moduleName, parentId: root.id });
-        tsDocsNav[moduleName].forEach((exportName) => {
+        navigation[moduleName].forEach((exportName) => {
             acc.push({ id: `${moduleName}:${exportName}`, name: exportName, parentId: moduleName, component: ApiReferenceItem });
         });
         return acc;
@@ -31,23 +32,22 @@ function useApiReferenceNav(): DocItem[] | undefined {
 }
 
 function useItems(selectedId: string): { items: DocItem[], PageComponent: any } {
-    const apiRef = useApiReferenceNav();
-    const items = useMemo(() => {
-        if (apiRef) {
-            return itemsStructure.concat(apiRef);
+    const [apiRefItems, setApiRefItems] = useState<DocItem[]>();
+    useEffect(() => {
+        loadApiReferenceStructure().then((res) => {
+            setApiRefItems(res);
+        });
+    }, []);
+    return useMemo(() => {
+        if (apiRefItems) {
+            const items = itemsStructure.concat(apiRefItems);
+            const PageComponent = items.find((item) => item.id === selectedId)?.component;
+            return {
+                items,
+                PageComponent,
+            };
         }
-        return [];
-    }, [apiRef]);
-    const PageComponent = useMemo(() => {
-        if (items) {
-            const found = items.find((item) => item.id === selectedId);
-            return found?.component;
-        }
-    }, [items, selectedId]);
-    return {
-        items,
-        PageComponent,
-    };
+    }, [apiRefItems, selectedId]);
 }
 
 const redirectTo = (query: DocsQuery) =>
@@ -60,22 +60,23 @@ export function DocumentsPage() {
     const queryParamId: string = useQuery('id');
     const mode = useQuery('mode') || 'doc';
     const skin = useQuery<DocsQuery['skin']>('skin') || TSkin.UUI4_promo;
-    const { items, PageComponent } = useItems(queryParamId);
+    const itemsInfo = useItems(queryParamId);
 
     useEffect(() => {
-        if (items && !PageComponent) {
-            redirectTo({ id: items[0].id, mode: 'doc', skin: TSkin.UUI4_promo });
+        if (itemsInfo && !itemsInfo.PageComponent) {
+            redirectTo({ id: itemsInfo.items[0].id, mode: 'doc', skin: TSkin.UUI4_promo });
         }
-    }, [items, PageComponent]);
+    }, [itemsInfo]);
 
     useEffect(() => {
         codesandboxService.getFiles();
         return () => codesandboxService.clearFiles();
     }, []);
 
-    if (!PageComponent) {
+    if (!itemsInfo?.PageComponent) {
         return null;
     }
+    const { items, PageComponent } = itemsInfo;
 
     const onChange = (row: DataRowProps<TreeListItem, string>) => {
         if (row.parentId === 'components') {
@@ -89,7 +90,6 @@ export function DocumentsPage() {
             redirectTo({ id: row.id, category: row.parentId });
         }
     };
-
     return (
         <Page renderHeader={ () => <AppHeader /> }>
             <FlexRow alignItems="stretch">

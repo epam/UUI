@@ -6,7 +6,6 @@ import {
 export class SliderRatingDoc extends BaseDocsBlock {
     title = 'SliderRating';
 
-    // TODO: no such component in "@epam/uui"
     override getDocsGenType = (): TDocsGenType => ('@epam/loveship:SliderRatingProps');
 
     getPropsDocPath() {
