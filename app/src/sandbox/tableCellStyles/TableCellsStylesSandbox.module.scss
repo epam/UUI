@@ -1,0 +1,16 @@
+@use '~@epam/assets/theme/theme_promo' as *;
+@use '~@epam/assets/theme/theme_loveship' as *;
+
+.wrapper {
+    &.uui-theme-promo {
+        :global {
+            @include theme-promo();
+        }
+    }
+
+    &.uui-theme-loveship {
+        :global {
+            @include theme-loveship();
+        }
+    }
+}

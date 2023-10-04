@@ -1,3 +1,4 @@
+@use '~@epam/assets/theme/theme_promo' as *;
 @use '~@epam/promo/assets/styles/colors.scss' as *;
 @use '~@epam/promo/assets/styles/fonts' as *;
 
@@ -6,6 +7,12 @@
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
+
+    &.uui-theme-promo {
+        :global {
+            @include theme-promo();
+        }
+    }
 
     .tree {
         overflow: auto;

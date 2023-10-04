@@ -34,7 +34,7 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
     }, []);
 
     return (
-        <aside className={ cx(css.root, 'uui-theme-promo') }>
+        <aside className={ cx(css.root, css.uuiThemePromo) }>
             <SearchInput
                 cx={ css.search }
                 value={ value.search }

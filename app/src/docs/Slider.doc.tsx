@@ -2,6 +2,8 @@ import * as React from 'react';
 import {
     BaseDocsBlock, DocExample, EditableDocContent, UUI3,
 } from '../common';
+import cx from 'classnames';
+import css from './styles.module.scss';
 
 export class SliderDoc extends BaseDocsBlock {
     title = 'Slider';
@@ -13,7 +15,7 @@ export class SliderDoc extends BaseDocsBlock {
 
     renderContent() {
         return (
-            <span className="uui-theme-loveship">
+            <span className={ cx(css.wrapper, css.uuiThemePromo) }>
                 <EditableDocContent fileName="slider-descriptions" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/slider/Basic.example.tsx" />

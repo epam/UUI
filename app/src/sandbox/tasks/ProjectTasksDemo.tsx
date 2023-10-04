@@ -1,7 +1,6 @@
 import {
-    DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton,
+    DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm,
 } from '@epam/uui';
-import { useForm } from '@epam/promo';
 import React, { useMemo } from 'react';
 import {
     DataQueryFilter, DropPosition, Metadata, useArrayDataSource, useTableState,

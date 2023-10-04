@@ -59,7 +59,7 @@ export function ProductsTableDemo() {
     );
 
     return (
-        <Panel cx={ [css.container, 'uui-theme-loveship'] }>
+        <Panel cx={ [css.container, css.uuiThemeLoveship] }>
             <DataTable
                 headerTextCase="upper"
                 getRows={ () => rows }

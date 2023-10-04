@@ -1,9 +1,7 @@
 /*  Name convention  */
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 
-.uui-theme-loveship_dark,
-[class^='uui-theme-'] .uui-theme-loveship_dark,
-[class^='uui-theme-'] [class^='uui-theme-'] .uui-theme-loveship_dark {
+@mixin theme-loveship_dark {
     --uui-font: 'Source Sans Pro', sans-serif;
     --font-primary: 'Sans Semibold', Arial, sans-serif;
     --font-promo: 'Sans Semibold', Arial, sans-serif;
@@ -295,13 +293,12 @@
         --uui-blocker-bg-with-opacity: #303240CC;
     }
 
-    .uui-blocker-container {
-        --uui-blocker-bg: var(--uui-surface-main);
-        --uui-blocker-bg-with-opacity: #303240CC;
-    }
-
     .uui-count {
         --uui-badge-count: var(--uui-text-black);
+    }
+
+    .uui-main_menu-burger-button {
+        --uui-burger_btn-border: var(--uui-neutral-40);
     }
 
     /* begin color classes */
@@ -742,4 +739,8 @@
         --uui-text-font: var(--uui-font);
         --uui-text-font-weight: 300;
     }
+}
+
+.uui-theme-loveship_dark {
+    @include theme-loveship_dark();
 }
