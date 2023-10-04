@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI4, UUI3,
+    BaseDocsBlock, DocExample, EditableDocContent, UUI4, UUI3, TDocsGenType,
 } from '../common/docs';
 
 export class FlexCellDoc extends BaseDocsBlock {
     title = 'FlexCell';
+
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:FlexCellProps');
+
     getPropsDocPath() {
         return {
             [UUI4]: './app/src/docs/_props/epam-promo/components/layout/FlexItems/flexCell.props.tsx',

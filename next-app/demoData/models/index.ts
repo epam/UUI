@@ -36,8 +36,8 @@ export interface Person {
     relatedNPR?: boolean;
 }
 
-export interface PersonGroup {
-    __typename: "PersonGroup";
+export interface PersonEmploymentGroup {
+    __typename: "PersonEmploymentGroup";
     id: number;
     name: string;
     count: number;

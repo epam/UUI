@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI,
+    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI, TDocsGenType,
 } from '../common';
 
 export class RadioInputDoc extends BaseDocsBlock {
     title = 'RadioInput';
+
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:RadioInputProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/radioInput.props.tsx',

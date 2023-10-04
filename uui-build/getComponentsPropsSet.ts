@@ -1,7 +1,6 @@
-import { Project, SourceFile, Symbol } from 'ts-morph';
+import { Project, SourceFile, Symbol, ts } from 'ts-morph';
 import path from 'path';
 import * as fs from 'fs';
-import * as ts from 'typescript';
 
 const PATH_PREFIX = './app/src/docs/_props';
 const DOCS_GLOB = [`../${PATH_PREFIX}/**/*.props{.ts,.tsx}`];

@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI,
+    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI, TDocsGenType,
 } from '../common';
 
 export class CheckboxDoc extends BaseDocsBlock {
     title = 'Checkbox';
+
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:CheckboxProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/checkbox.props.tsx',

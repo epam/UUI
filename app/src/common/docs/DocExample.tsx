@@ -8,6 +8,7 @@ import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
 import css from './DocExample.module.scss';
 import { ReactComponent as AnchorIcon } from '@epam/assets/icons/common/action-external_link-18.svg';
 import { CodesandboxLink } from './CodesandboxLink';
+import { Code } from './Code';
 
 interface DocExampleProps {
     path: string;
@@ -73,7 +74,9 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
     };
 
     private renderCode(): React.ReactNode {
-        return <pre className={ css.code } dangerouslySetInnerHTML={ { __html: this.state.code } } />;
+        return (
+            <Code codeAsHtml={ this.state.code } />
+        );
     }
 
     private renderPreview() {
@@ -105,7 +108,6 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                     </FlexRow>
                 )}
                 <EditableDocContent fileName={ this.getDescriptionFileName() } />
-
                 <div className={ css.previewContainer } style={ { width: this.props.width } }>
                     {this.props.onlyCode ? this.renderCode() : this.renderPreview()}
                 </div>
