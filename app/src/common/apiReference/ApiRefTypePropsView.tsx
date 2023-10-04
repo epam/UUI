@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
-    Checkbox,
-    DataTable,
+    Checkbox, DataRowsContainer,
+    DataTableHeaderRow,
     DataTableRow,
     FlexRow,
     FlexSpacer,
@@ -13,7 +13,7 @@ import {
 import {
     DataColumnProps, DataTableRowProps,
     DataTableState, SortingOption,
-    useTableState, useArrayDataSource,
+    useTableState, useArrayDataSource, useColumnsConfig,
 } from '@epam/uui-core';
 import { isApiRefPropGroup, TApiRefPropsItem } from './types';
 import { TType } from './sharedTypes';
@@ -26,17 +26,22 @@ type TApiRefTypePropsView = {
     canGroup: boolean,
     columns: DataColumnProps<TApiRefPropsItem>[],
     docsGenType: TType,
-    groupColumns: DataColumnProps<TApiRefPropsItem>[],
     isGrouped: boolean,
     items: TApiRefPropsItem[],
     onSetIsGrouped: (isGrouped: boolean) => void,
     showCode: boolean,
 };
 
+const scrollShadows = {
+    verticalTop: false,
+    verticalBottom: false,
+    horizontalLeft: false,
+    horizontalRight: false,
+};
+
 export function ApiRefTypePropsView(props: TApiRefTypePropsView) {
     const {
-        columns,
-        groupColumns,
+        columns: columnsDefault,
         docsGenType,
         isGrouped,
         onSetIsGrouped,
@@ -44,13 +49,16 @@ export function ApiRefTypePropsView(props: TApiRefTypePropsView) {
         showCode,
         canGroup,
     } = props;
-    const [tState, setTState] = useState<DataTableState>({});
+    const headerRef = React.useRef<HTMLDivElement>();
+    const listContainerRef = React.useRef<HTMLDivElement>();
+    const [tState, setTState] = useState<DataTableState>({ topIndex: 0, visibleCount: Number.MAX_SAFE_INTEGER });
     const tableStateApi = useTableState({
         value: tState,
         onValueChange: (v) => setTState(v),
-        columns,
+        columns: columnsDefault,
     });
     const { tableState, setTableState } = tableStateApi;
+    const { columns, config: columnsConfig } = useColumnsConfig(columnsDefault, tableState.columnsConfig);
     const exportPropsDs = useArrayDataSource<TApiRefPropsItem, string, unknown>(
         {
             items: items,
@@ -133,28 +141,47 @@ export function ApiRefTypePropsView(props: TApiRefTypePropsView) {
         }
     };
 
+    const renderRow = (props: DataTableRowProps<TApiRefPropsItem, string>) => {
+        if (props.value && isApiRefPropGroup(props.value)) {
+            const [col1, col2, col3] = columns;
+            const groupColumns = [
+                {
+                    ...col1,
+                    width: col1.width + col2.width,
+                },
+                col3,
+            ];
+            return (
+                <DataTableRow
+                    key={ props.id }
+                    { ...props }
+                    columns={ groupColumns }
+                />
+            );
+        }
+        return <DataTableRow key={ props.id } { ...props } indent={ 0 } columns={ columns } />;
+    };
+
+    const rows = view.getVisibleRows();
     return (
         <div className={ css.root }>
             { renderToolbar() }
-            <DataTable
-                allowColumnsResizing={ false }
-                value={ tableState }
-                onValueChange={ setTableState }
-                columns={ columns }
-                getRows={ view.getVisibleRows }
-                renderRow={ (props: DataTableRowProps<TApiRefPropsItem, string>) => {
-                    if (props.value && isApiRefPropGroup(props.value)) {
-                        return (
-                            <DataTableRow
-                                key={ props.id }
-                                { ...props }
-                                columns={ groupColumns }
-                            />
-                        );
-                    }
-                    return <DataTableRow key={ props.id } { ...props } indent={ 0 } columns={ columns } />;
-                } }
-                { ...view.getListProps() }
+            <div className={ css.stickyHeader } ref={ headerRef }>
+                <DataTableHeaderRow
+                    columns={ columns }
+                    allowColumnsResizing={ true }
+                    value={ { ...tableState, columnsConfig } }
+                    onValueChange={ setTableState }
+                />
+            </div>
+            <DataRowsContainer
+                headerRef={ headerRef }
+                renderRow={ renderRow }
+                rows={ rows }
+                estimatedHeight={ 0 }
+                listContainerRef={ listContainerRef }
+                offsetY={ 0 }
+                scrollShadows={ scrollShadows }
             />
             <CodeExpandable showCode={ showCode } docsGenType={ docsGenType } />
         </div>

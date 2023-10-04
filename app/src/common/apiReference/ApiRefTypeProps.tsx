@@ -23,8 +23,7 @@ export function ApiRefTypeProps(props: { showCode?: boolean; typeRef: TDocsGenEx
 function ApiRefTypePropsContainer(props: { showCode?: boolean, docsGenType: TType, docsGenSummaries: TDocsGenTypeSummary }) {
     const { showCode = false, docsGenType, docsGenSummaries } = props;
     const { canGroup, isGrouped, setIsGrouped } = useIsGrouped(docsGenType);
-    const columns = getColumns({ docsGenSummaries });
-    const groupColumns = getColumns({ isGroupColumns: true, docsGenSummaries });
+    const columns = getColumns(docsGenSummaries);
 
     const items: TApiRefPropsItem[] = useMemo(() => {
         if (docsGenType?.details?.props) {
@@ -48,7 +47,6 @@ function ApiRefTypePropsContainer(props: { showCode?: boolean, docsGenType: TTyp
             canGroup={ canGroup }
             columns={ columns }
             docsGenType={ docsGenType }
-            groupColumns={ groupColumns }
             isGrouped={ isGrouped }
             items={ items }
             onSetIsGrouped={ setIsGrouped }
@@ -57,24 +55,20 @@ function ApiRefTypePropsContainer(props: { showCode?: boolean, docsGenType: TTyp
     );
 }
 
-function getColumns(params: {
-    isGroupColumns?: boolean,
-    docsGenSummaries: TDocsGenTypeSummary
-}): DataColumnProps<TApiRefPropsItem>[] {
-    const { isGroupColumns = false, docsGenSummaries } = params;
+function getColumns(summaries: TDocsGenTypeSummary): DataColumnProps<TApiRefPropsItem>[] {
     const WIDTH = {
         name: 200,
         typeValue: 460,
         comment: 200,
     };
-    const propsTableColumns: DataColumnProps<TApiRefPropsItem>[] = [
+    return [
         {
             key: 'name',
             alignSelf: 'center',
             caption: 'Name',
             render: (item) => {
                 if (isApiRefPropGroup(item)) {
-                    return <Ref typeSummary={ docsGenSummaries[item.from] } />;
+                    return <Ref typeSummary={ summaries[item.from] } />;
                 }
                 return (
                     <span style={ { wordBreak: 'break-all' } }>
@@ -111,17 +105,6 @@ function getColumns(params: {
             grow: 1,
         },
     ];
-
-    if (isGroupColumns) {
-        return [
-            {
-                ...propsTableColumns[0],
-                width: propsTableColumns[0].width + propsTableColumns[1].width,
-            },
-            propsTableColumns[2],
-        ];
-    }
-    return propsTableColumns;
 }
 
 function useIsGrouped(docsGenType?: TType): { canGroup: boolean, setIsGrouped: (isGrouped: boolean) => void, isGrouped: boolean } {
