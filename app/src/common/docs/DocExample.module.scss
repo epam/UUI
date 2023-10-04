@@ -1,3 +1,4 @@
+@use '~@epam/assets/theme/theme_promo' as *;
 @use '~@epam/promo/assets/styles/index' as *;
 @import '../../themes/themeVariables.module';
 
@@ -34,6 +35,12 @@
 .container-footer {
     justify-content: space-between;
     background-color: $white;
+
+    &.uui-theme-promo {
+        :global {
+            @include theme-promo();
+        }
+    }
 }
 
 .preview-container {

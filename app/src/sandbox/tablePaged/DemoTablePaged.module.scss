@@ -1,3 +1,5 @@
+@use '~@epam/assets/theme/theme_promo' as *;
+
 .container {
     display: flex;
     flex-direction: column;
@@ -6,6 +8,12 @@
     flex-basis: auto;
     min-width: 0;
     flex-grow: 1;
+
+    &.uui-theme-promo {
+        :global {
+            @include theme-promo();
+        }
+    }
 
     :global(.uui-table-row) {
         .detailed-icon {

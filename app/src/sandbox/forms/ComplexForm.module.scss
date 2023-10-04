@@ -1,3 +1,4 @@
+@use '~@epam/assets/theme/theme_loveship' as *;
 @import '~@epam/assets/scss/index';
 
 .form-panel {
@@ -9,6 +10,12 @@
 
         button {
             flex-grow: 1;
+        }
+    }
+
+    &.uui-theme-loveship {
+        :global {
+            @include theme-loveship();
         }
     }
 }

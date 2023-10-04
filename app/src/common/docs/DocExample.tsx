@@ -82,7 +82,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                 <FlexRow size={ null } vPadding="48" padding="24" borderBottom alignItems="top" spacing="12">
                     {this.state.component && React.createElement(this.state.component)}
                 </FlexRow>
-                <FlexRow padding="12" vPadding="12" cx={ [css.containerFooter, 'uui-theme-promo'] }>
+                <FlexRow padding="12" vPadding="12" cx={ [css.containerFooter, css.uuiThemePromo] }>
                     <Switch value={ this.state.showCode } onValueChange={ this.onSwitchValueChange } label="View code" />
                     <CodesandboxLink raw={ raw } dirPath={ dirPath } />
                 </FlexRow>

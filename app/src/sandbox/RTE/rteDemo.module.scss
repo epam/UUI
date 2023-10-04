@@ -1,8 +1,8 @@
 @use '~@epam/assets/theme/theme_promo' as *;
 
-.panel {
-    display: flex;
-    width: 100%;
+.wrapper {
+    flex-grow: 1;
+    margin: 24px;
 
     &.uui-theme-promo {
         :global {

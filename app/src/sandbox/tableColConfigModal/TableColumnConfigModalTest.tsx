@@ -3,7 +3,7 @@ import { Badge, ColumnsConfigurationModal, DataTable, EpamAdditionalColor, FlexR
 import { DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './TableColumnConfigModalStyles.module.scss';
-import { TApi } from '../../data/apiDefinition';
+import { TApi } from '../../data';
 import { ColumnsConfigurationModalProps } from '@epam/uui';
 
 export function TableColumnConfigModalTest() {
@@ -93,7 +93,7 @@ export function TableColumnConfigModalTest() {
     };
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel shadow cx={ [css.container, css.uuiThemePromo] }>
             <RichTextView>
                 <h3>Table example with ColumnConfigModal</h3>
             </RichTextView>

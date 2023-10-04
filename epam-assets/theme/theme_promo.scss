@@ -1,9 +1,7 @@
 /*  Name convention  */
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 
-.uui-theme-promo,
-[class^='uui-theme-'] .uui-theme-promo,
-[class^='uui-theme-'] [class^='uui-theme-'] .uui-theme-promo {
+@mixin theme-promo {
     --uui-font: 'Source Sans Pro', sans-serif;
     --font-primary: 'Museo Sans', 'Source Sans Pro', Arial, sans-serif;
     --font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
@@ -50,56 +48,56 @@
 
     --white: #FFFFFF;
 
-    --yellow-0: #FFFFF0;
+    --yellow-5: #FFFFF0;
     --yellow-10: #FFFECC;
     --yellow-20: #FFFCA4;
     --yellow-30: #FDD63B;
     --yellow-40: #F9B71D;
     --yellow-50: #D3910C;
 
-    --orange-0: #FEF8F4;
+    --orange-5: #FEF8F4;
     --orange-10: #FFE8D7;
     --orange-20: #FFCCA7;
     --orange-30: #FF8B3E;
     --orange-40: #F76B0D;
     --orange-50: #BD4B00;
 
-    --fuchia-0: #FFF7FB;
+    --fuchia-5: #FFF7FB;
     --fuchia-10: #F9D8E7;
     --fuchia-20: #EDADC8;
     --fuchia-30: #EA4386;
     --fuchia-40: #D61E68;
     --fuchia-50: #AE1955;
 
-    --purple-0: #FDF6FE;
+    --purple-5: #FDF6FE;
     --purple-10: #F2CCFA;
     --purple-20: #E79DF5;
     --purple-30: #B114D1;
     --purple-40: #860F9E;
     --purple-50: #5E0B6F;
 
-    --violet-0: #F8F6FE;
+    --violet-5: #F8F6FE;
     --violet-10: #DBCCFA;
     --violet-20: #BB9DF5;
     --violet-30: #773CEC;
     --violet-40: #5514D6;
     --violet-50: #40109E;
 
-    --cobalt-0: #F8FAFF;
+    --cobalt-5: #F8FAFF;
     --cobalt-10: #D9E2FC;
     --cobalt-20: #AEC0F5;
     --cobalt-30: #0F98FF;
     --cobalt-40: #006FE5;
     --cobalt-50: #0954A5;
 
-    --cyan-0: #F5FBFF;
+    --cyan-5: #F5FBFF;
     --cyan-10: #D1FAFA;
     --cyan-20: #AAEEEE;
     --cyan-30: #14CCCC;
     --cyan-40: #0F9E9E;
     --cyan-50: #0B6F6F;
 
-    --mint-0: #F2FCF5;
+    --mint-5: #F2FCF5;
     --mint-10: #DDF3E4;
     --mint-20: #B4DFC4;
     --mint-30: #4FC48C;
@@ -521,6 +519,7 @@
     }
 
     .uui-color-cobalt {
+        --uui-color-5: var(--cobalt-5);
         --uui-color-10: var(--cobalt-10);
         --uui-color-20: var(--cobalt-20);
         --uui-color-50: var(--cobalt-30);
@@ -531,6 +530,7 @@
     }
 
     .uui-color-cyan {
+        --uui-color-5: var(--cyan-5);
         --uui-color-10: var(--cyan-10);
         --uui-color-20: var(--cyan-20);
         --uui-color-50: var(--cyan-30);
@@ -541,6 +541,7 @@
     }
 
     .uui-color-mint {
+        --uui-color-5: var(--mint-5);
         --uui-color-10: var(--mint-10);
         --uui-color-20: var(--mint-20);
         --uui-color-50: var(--mint-30);
@@ -650,5 +651,9 @@
             font-family: var(--font-primary);
         }
     }
+}
+
+.uui-theme-promo {
+    @include theme-promo();
 }
 
