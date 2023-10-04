@@ -7,7 +7,7 @@ export class RatingDoc extends BaseDocsBlock {
     title = 'Rating';
 
     // TODO: no such component in "@epam/uui"
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui-components:RatingProps');
+    override getDocsGenType = (): TDocsGenType => ('@epam/loveship:RatingProps');
 
     getPropsDocPath() {
         return {

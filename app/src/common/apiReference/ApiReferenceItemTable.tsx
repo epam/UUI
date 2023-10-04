@@ -5,8 +5,8 @@ import {
     useArrayDataSource,
     useTableState,
 } from '@epam/uui-core';
-import { TDocsGenExportedType, TDocsGenTypeSummary } from '../types';
-import { Code } from '../../../common/docs/Code';
+import { TDocsGenExportedType, TDocsGenTypeSummary } from './types';
+import { Code } from '../docs/Code';
 import { TsComment } from './components/TsComment';
 import { Ref } from './components/Ref';
 import React, { useMemo, useState } from 'react';
@@ -21,11 +21,11 @@ import {
     Text,
     Tooltip,
 } from '@epam/uui';
-import { useDocsGenForType, useDocsGenSummaries } from '../dataHooks';
+import { useDocsGenForType, useDocsGenSummaries } from './dataHooks';
 import { CodeExpandable } from './components/CodeExpandable';
 import css from './ApiReferenceTable.module.scss';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/table-info-fill-18.svg';
-import { TType, TTypeProp } from '../sharedTypes';
+import { TType, TTypeProp } from './sharedTypes';
 
 type TTypeGroup = { _group: true, from: TTypeProp['from'], comment: TTypeProp['comment'] };
 type TItem = TTypeProp | TTypeGroup;

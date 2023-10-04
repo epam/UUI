@@ -6,7 +6,6 @@ import {
 export class SliderDoc extends BaseDocsBlock {
     title = 'Slider';
 
-    // TODO: no such component in "@epam/uui"
     override getDocsGenType = (): TDocsGenType => ('@epam/uui-components:SliderBaseProps');
 
     getPropsDocPath() {

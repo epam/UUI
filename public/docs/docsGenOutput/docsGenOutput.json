@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-10-03",
+ "timestamp": "2023-10-04",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -69911,6 +69911,252 @@
       "typeValue": {
        "raw": "undefined | 18 | 24 | 30"
       },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/loveship:RatingProps": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "RatingProps",
+     "nameFull": "RatingProps"
+    },
+    "src": "loveship/components/inputs/Rating.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "RatingProps",
+     "print": [
+      "interface RatingProps extends uuiComponents.RatingProps, RatingMods {",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "filledStarIcon",
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-components:RatingProps",
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "emptyStarIcon",
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-components:RatingProps",
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "hideTooltip",
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-components:RatingProps",
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "hint",
+      "typeValue": {
+       "raw": "undefined | (value: number) => string"
+      },
+      "from": "@epam/uui-components:RatingProps",
+      "required": false
+     },
+     {
+      "uid": 5,
+      "name": "Tooltip",
+      "typeValue": {
+       "raw": "undefined | React.ComponentClass<TooltipProps, any> | React.FunctionComponent<TooltipProps>"
+      },
+      "from": "@epam/uui-components:RatingProps",
+      "required": false
+     },
+     {
+      "uid": 6,
+      "name": "from",
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-components:BaseRatingProps",
+      "required": false
+     },
+     {
+      "uid": 7,
+      "name": "to",
+      "typeValue": {
+       "raw": "undefined | number"
+      },
+      "from": "@epam/uui-components:BaseRatingProps",
+      "required": false
+     },
+     {
+      "uid": 8,
+      "name": "step",
+      "typeValue": {
+       "raw": "undefined | 0.5 | 1"
+      },
+      "from": "@epam/uui-components:BaseRatingProps",
+      "required": false
+     },
+     {
+      "uid": 9,
+      "name": "renderRating",
+      "typeValue": {
+       "raw": "undefined | (rating: number, markWidth: number, numberOfMarks: number) => React.ReactNode"
+      },
+      "from": "@epam/uui-components:BaseRatingProps",
+      "required": false
+     },
+     {
+      "uid": 10,
+      "name": "cx",
+      "comment": [
+       "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | string | number | false | true | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 11,
+      "name": "isDisabled",
+      "comment": [
+       "Disable editing, and visually de-emphasize value of the component"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": 12,
+      "name": "value",
+      "comment": [
+       "The current value of component"
+      ],
+      "typeValue": {
+       "raw": "number"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 13,
+      "name": "onValueChange",
+      "comment": [
+       "Called when value needs to be changed (usually due to user interaction)"
+      ],
+      "typeValue": {
+       "raw": "(newValue: number) => void"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 14,
+      "name": "isInvalid",
+      "comment": [
+       "True if component contains invalid input"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 15,
+      "name": "validationMessage",
+      "comment": [
+       "Message describing why the value is invalid"
+      ],
+      "typeValue": {
+       "raw": "undefined | string"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 16,
+      "name": "validationProps",
+      "comment": [
+       "If T is a complex value (object or array), this property contains validation states of inner items"
+      ],
+      "typeValue": {
+       "raw": "undefined | { [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 17,
+      "name": "isReadonly",
+      "comment": [
+       "Disable editing. Unlike isDisabled, keep component's value readable."
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": 18,
+      "name": "isRequired",
+      "comment": [
+       "Marks that component's value is required"
+      ],
+      "typeValue": {
+       "raw": "undefined | false | true"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": 19,
+      "name": "rawProps",
+      "comment": [
+       "Any HTML attributes (native or 'data-') to put on the underlying component"
+      ],
+      "typeValue": {
+       "raw": "undefined | React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": 20,
+      "name": "forwardedRef",
+      "comment": [
+       "this ref is passed to the underlying component"
+      ],
+      "typeValue": {
+       "raw": "undefined | null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": 21,
+      "name": "size",
+      "typeValue": {
+       "raw": "undefined | 18 | 24 | 30"
+      },
+      "from": "@epam/loveship:RatingMods",
       "required": false
      }
     ],

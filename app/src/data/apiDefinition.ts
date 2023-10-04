@@ -2,8 +2,8 @@ import { getDemoApi } from '@epam/uui-docs';
 import type {
     IProcessRequest, CommonContexts, UuiContexts, ITablePreset,
 } from '@epam/uui-core';
-import { TType, TTypeRef } from '../demo/apiDocs/sharedTypes';
-import { TDocsGenTypeSummary } from '../demo/apiDocs/types';
+import { TType, TTypeRef } from '../common/apiReference/sharedTypes';
+import { TDocsGenTypeSummary } from '../common/apiReference/types';
 
 export const delay = (ms: number = 1): Promise<void> =>
     new Promise((resolve) => {

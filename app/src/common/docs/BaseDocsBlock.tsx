@@ -7,8 +7,8 @@ import { svc } from '../../services';
 import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
 import css from './BaseDocsBlock.module.scss';
-import { TDocsGenExportedType } from '../../demo/apiDocs/types';
-import { ApiReferenceItemTableForTypeRef } from '../../demo/apiDocs/components/ApiReferenceItemTable';
+import { TDocsGenExportedType } from '../apiReference/types';
+import { ApiReferenceItemTableForTypeRef } from '../apiReference/ApiReferenceItemTable';
 
 export enum TSkin {
     UUI3_loveship = 'UUI3_loveship',
@@ -56,23 +56,13 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderApiBlock() {
         const docsGenType = this.getDocsGenType();
-        let content = null;
         if (docsGenType) {
-            content = (
-                <ApiReferenceItemTableForTypeRef showCode={ true } typeRef={ docsGenType } />
-            );
-        } else if (this.getPropsDocPath()) {
-            // we need this error message until the "getPropsDocPath" is fully deprecated.
-            const err = 'The "getPropsDocPath" method is no longer used to render props table. Please implement "getDocsGenType" method in the "*.doc.tsx" file for this purpose.';
-            content = <Text color="red">{err}</Text>;
-        }
-        if (content) {
             return (
                 <>
                     <RichTextView>
                         <h2>Api</h2>
                     </RichTextView>
-                    {content}
+                    <ApiReferenceItemTableForTypeRef showCode={ true } typeRef={ docsGenType } />
                 </>
             );
         }

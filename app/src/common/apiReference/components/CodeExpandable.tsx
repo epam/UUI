@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import css from './CodeExpandable.module.scss';
 import { FlexRow, LinkButton, Switch } from '@epam/uui';
 import { FlexSpacer } from '@epam/uui-components';
-import { Code } from '../../../../common/docs/Code';
-import { TType } from '../../sharedTypes';
+import { Code } from '../../docs/Code';
+import { TType } from '../sharedTypes';
 
 function buildGitURL(relativePath?: string) {
     if (relativePath) {
