@@ -8,7 +8,7 @@ import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
 import css from './BaseDocsBlock.module.scss';
 import { TDocsGenExportedType } from '../apiReference/types';
-import { ApiReferenceItemTableForTypeRef } from '../apiReference/ApiReferenceItemTable';
+import { ApiRefTypeProps } from '../apiReference/ApiRefTypeProps';
 
 export enum TSkin {
     UUI3_loveship = 'UUI3_loveship',
@@ -62,7 +62,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                     <RichTextView>
                         <h2>Api</h2>
                     </RichTextView>
-                    <ApiReferenceItemTableForTypeRef showCode={ true } typeRef={ docsGenType } />
+                    <ApiRefTypeProps showCode={ true } typeRef={ docsGenType } />
                 </>
             );
         }
