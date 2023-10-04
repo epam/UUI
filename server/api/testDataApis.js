@@ -59,18 +59,18 @@ function filterAndSort(request, allItems, typeName) {
     };
 }
 
-function group(request, allItems, typeName) {
+function group(request, allItems, typeName, getGroupId = (groupId) => groupId) {
     request = request || {};
-    const filter = request.filter || {};
+
+    const { search, filter: { groupBy, ...filter } = {}, ...groupingRequest } = request;
 
     let groups = [];
-    const items = filterAndSort(request.itemsRequest, allItems).items;
-    const groupBy = filter.groupBy;
+    const items = filterAndSort({ search, filter }, allItems).items;
     const groupIdFieldName = `${groupBy}Id`;
     const grouped = _.groupBy(items, groupIdFieldName);
 
     Object.keys(grouped).forEach((groupIdStr) => {
-        const groupId = groupIdStr === 'undefined' ? 0 : +groupIdStr; // null-values are grouped under groupId = 0
+        const groupId = getGroupId(groupIdStr === 'undefined' ? 0 : groupIdStr); // null-values are grouped under groupId = 0
         const groupedItem = grouped[groupIdStr];
         const name = groupedItem[0][groupBy] || groupedItem[0][`${groupBy}Name`];
         groups.push({
@@ -84,7 +84,7 @@ function group(request, allItems, typeName) {
 
     groups = _.orderBy(groups, (g) => g.id && g.groupName);
 
-    return filterAndSort(request, groups, typeName);
+    return filterAndSort(groupingRequest, groups, typeName);
 }
 
 [
@@ -149,7 +149,17 @@ router.post('/persons-paged', async (req, res) => {
 
 router.post('/personGroups', async (req, res) => {
     const data = await helpers.getPersons();
-    const result = group(req.body, data.persons, 'PersonGroup');
+    const filter = req.body?.filter ?? {};
+    let type, getGroupId;
+    if (['jobTitle', 'department'].includes(filter.groupBy)) {
+        type = 'PersonEmploymentGroup';
+        getGroupId = (groupId) => +groupId;
+    }
+    if (['city', 'country'].includes(filter.groupBy)) {
+        type = 'PersonLocationGroup';
+    }
+
+    const result = group(req.body, data.persons, type, getGroupId);
     res.json(calculateTotal(data.persons, result));
 });
 
