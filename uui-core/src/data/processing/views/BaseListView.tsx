@@ -21,6 +21,7 @@ interface NodeStats {
     isAllChecked: boolean;
     isSomeSelected: boolean;
     hasMoreRows: boolean;
+    isSomeCheckboxEnabled: boolean;
 }
 
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
@@ -423,7 +424,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
         if (rootStats.isSomeCheckable && this.isSelectAllEnabled()) {
             this.selectAll = {
-                value: rootStats.isAllChecked,
+                value: rootStats.isSomeCheckboxEnabled ? rootStats.isAllChecked : false,
                 onValueChange: this.handleSelectAll,
                 indeterminate: this.value.checked && this.value.checked.length > 0 && !rootStats.isAllChecked,
             };
@@ -565,11 +566,12 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         isAllChecked: true,
         isSomeSelected: false,
         hasMoreRows: false,
+        isSomeCheckboxEnabled: false,
     });
 
     private getRowStats = (row: DataRowProps<TItem, TId>, actualStats: NodeStats): NodeStats => {
         let {
-            isSomeCheckable, isSomeChecked, isAllChecked, isSomeSelected,
+            isSomeCheckable, isSomeChecked, isAllChecked, isSomeSelected, isSomeCheckboxEnabled,
         } = actualStats;
 
         if (row.checkbox) {
@@ -577,6 +579,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             if (row.isChecked || row.isChildrenChecked) {
                 isSomeChecked = true;
             }
+            if (!row.checkbox.isDisabled || isSomeCheckboxEnabled) {
+                isSomeCheckboxEnabled = true;
+            }
+        
             const isImplicitCascadeSelection = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
             if (
                 (!row.isChecked && !row.checkbox.isDisabled && !isImplicitCascadeSelection)
@@ -591,7 +597,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         }
 
         return {
-            ...actualStats, isSomeCheckable, isSomeChecked, isAllChecked, isSomeSelected,
+            ...actualStats, isSomeCheckable, isSomeChecked, isAllChecked, isSomeSelected, isSomeCheckboxEnabled,
         };
     };
 
@@ -609,6 +615,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         isSomeCheckable: parentStats.isSomeCheckable || childStats.isSomeCheckable,
         isSomeChecked: parentStats.isSomeChecked || childStats.isSomeChecked,
         isAllChecked: parentStats.isAllChecked && childStats.isAllChecked,
+        isSomeCheckboxEnabled: parentStats.isSomeCheckboxEnabled || childStats.isSomeCheckboxEnabled,
         hasMoreRows: parentStats.hasMoreRows || childStats.hasMoreRows,
     });
 

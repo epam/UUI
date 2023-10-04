@@ -33,17 +33,15 @@ function apiDefinition(processRequest: IProcessRequest) {
     return getApi({ processRequest, fetchOptions: { credentials: undefined } });
 }
 
-if (!isProduction) {
-    const apm = initApm({
-        serviceName: 'uui-ui',
-        serverUrl: isProduction ? 'https://apm.app.epam.com' : 'https://apm-sandbox.cloudapp.epam.com/',
-        serviceVersion: __COMMIT_HASH__,
-        environment: isProduction ? 'prod' : 'qa',
-        breakdownMetrics: true,
-        transactionSampleRate: 0.2,
-    });
-    apm.addLabels({ project: 'epm-uui', service_type: 'UI' });
-}
+const apm = initApm({
+    serviceName: 'uui-ui',
+    serverUrl: isProduction ? 'https://apm.app.epam.com' : 'https://apm-sandbox.cloudapp.epam.com/',
+    serviceVersion: __COMMIT_HASH__,
+    environment: isProduction ? 'prod' : 'qa',
+    breakdownMetrics: true,
+    transactionSampleRate: 0.2,
+});
+apm.addLabels({ project: 'epm-uui', service_type: 'ui' });
 
 function UuiEnhancedApp() {
     const [isLoaded, setIsLoaded] = React.useState(false);

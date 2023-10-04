@@ -11,3 +11,10 @@
         border-width: 1px !important;
     }
 }
+
+.container {
+    @media screen and (max-width: 720px) {
+        height: 100dvh;
+        width: 100dvw;
+    }
+}

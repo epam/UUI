@@ -9,12 +9,10 @@ import { PresetsBlock } from './PresetsBlock';
 import { FiltersBlock } from './FiltersBlock';
 import { ColumnsBlock } from './ColumnsBlock';
 import { GroupingBlock } from './GroupingBlock';
-import { Grouping } from '../types';
 
 export interface IFilterPanelProps<TFilter extends Record<string, any>> extends ITableState<TFilter> {
     columns: DataColumnProps[];
     filters: TableFiltersConfig<TFilter>[];
-    groupings: Grouping[];
     closePanel(): void;
 }
 
@@ -36,7 +34,7 @@ function FilterPanel<TFilter = any>(props: IFilterPanelProps<TFilter>) {
 
             <ScrollBars>
                 <PresetsBlock { ...props } />
-                <FiltersBlock value={ props.tableState.filter } onValueChange={ props.setFilter } filters={ props.filters } />
+                <FiltersBlock filters={ props.filters } tableState={ props.tableState } setTableState={ props.setTableState } />
                 <ColumnsBlock columnsConfig={ props.tableState.columnsConfig } onColumnsConfigChange={ props.setColumnsConfig } columns={ props.columns } />
                 <GroupingBlock { ...lens.prop('groupBy').toProps() } />
             </ScrollBars>

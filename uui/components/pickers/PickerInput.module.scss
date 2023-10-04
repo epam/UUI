@@ -2,11 +2,6 @@
 
 .panel {
     background: var(--uui-picker_input-bg);
-    box-shadow: var(--uui-dropdown-container-shadow);
-
-    @media screen and (max-width: 720px) {
-        height: var(--app-mobile-height);
-    }
 }
 
 .footer-wrapper {
