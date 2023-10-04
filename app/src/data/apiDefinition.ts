@@ -2,6 +2,8 @@ import { getDemoApi } from '@epam/uui-docs';
 import type {
     IProcessRequest, CommonContexts, UuiContexts, ITablePreset,
 } from '@epam/uui-core';
+import { TType, TTypeRef } from '../common/apiReference/sharedTypes';
+import { TDocsGenTypeSummary } from '../common/apiReference/types';
 
 export const delay = (ms: number = 1): Promise<void> =>
     new Promise((resolve) => {
@@ -46,6 +48,16 @@ export function getApi(params: { processRequest: IProcessRequest, origin?: strin
         },
         getProps(): Promise<any> {
             return processRequest(origin.concat('/api/get-props/'), 'GET');
+        },
+        getDocsGenType(shortRef: TTypeRef): Promise<{ content: TType }> {
+            const refEncoded = encodeURIComponent(shortRef);
+            return processRequest(origin.concat(`/api/docs-gen/details/${refEncoded}`), 'GET');
+        },
+        getDocsGenSummaries(): Promise<{ content: TDocsGenTypeSummary }> {
+            return processRequest(origin.concat('/api/docs-gen/summaries'), 'GET');
+        },
+        getDocsGenExports(): Promise<{ content: Record<string, string[]> }> {
+            return processRequest(origin.concat('/api/docs-gen/exports'), 'GET');
         },
         presets: {
             async getPresets(): Promise<ITablePreset[]> {
