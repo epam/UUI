@@ -6,6 +6,7 @@ import {
     useLazyDataSource,
     runDataQuery,
 } from '@epam/uui-core';
+import css from './TagInput.module.scss';
 
 export interface TagPickerProps extends IEditable<string[]> {
     tags?: string[];
@@ -32,10 +33,7 @@ export function TagPicker(props: TagPickerProps) {
 
             allTags.sort();
 
-            console.log(allTags);
-
             let found = runDataQuery(allTags as any, request, (tag) => [tag]);
-            console.log(found);
 
             if (request.search) {
                 const newTag = request.search.trim();
@@ -81,7 +79,7 @@ export function TagInputDemo() {
     const [value, onValueChange] = useState<string[]>(['red', 'green', 'blue']);
 
     return (
-        <FlexCell width={ 500 }>
+        <FlexCell cx={ [css.wrapper, css.uuiThemePromo] } width={ 500 }>
             <FlexRow padding="12" vPadding="12">
                 <TagPicker
                     value={ value }

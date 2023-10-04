@@ -157,7 +157,7 @@
     }
 
     &:global(.uui-disabled) {
-        @include fillColor(var(--uui-disabled));
+        @include fillColor(var(--uui-neutral-30)); // TODO: need possibility to override - in dark theme neutral 40
 
         &:hover,
         &:focus {

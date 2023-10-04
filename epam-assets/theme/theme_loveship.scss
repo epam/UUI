@@ -1,9 +1,7 @@
 /*  Name convention  */
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 
-.uui-theme-loveship,
-[class^='uui-theme-'] .uui-theme-loveship,
-[class^='uui-theme-'] [class^='uui-theme-'] .uui-theme-loveship {
+@mixin theme-loveship {
     --uui-font: 'Source Sans Pro', sans-serif;
     --font-primary: 'Sans Semibold', Arial, sans-serif;
     --font-promo: 'Sans Semibold', Arial, sans-serif;
@@ -653,4 +651,8 @@
         --uui-text-font: var(--uui-font);
         --uui-text-font-weight: 300;
     }
+}
+
+.uui-theme-loveship {
+    @include theme-loveship();
 }
