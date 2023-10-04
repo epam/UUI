@@ -98,7 +98,7 @@ export function ApiRefTypePropsView(props: TApiRefTypePropsView) {
     const renderGroupBy = () => {
         if (canGroup) {
             return (
-                <Checkbox value={ isGrouped } onValueChange={ onSetIsGrouped } label="Group By: From" />
+                <Checkbox value={ isGrouped } onValueChange={ onSetIsGrouped } label="Show interfaces" />
             );
         }
     };
@@ -108,7 +108,7 @@ export function ApiRefTypePropsView(props: TApiRefTypePropsView) {
                 const html = `
                         <h5>This type uses unions</h5>
                         <p>
-                            The table may contain same props with same or different types. 
+                            The table may contain same props with same or different types.
                             Please see the source code to better understand exact typing.
                         </p>
                 `;
@@ -159,7 +159,7 @@ export function ApiRefTypePropsView(props: TApiRefTypePropsView) {
                 />
             );
         }
-        return <DataTableRow key={ props.id } { ...props } indent={ 0 } columns={ columns } />;
+        return <DataTableRow key={ props.id } { ...props } indent={ Math.min(props.indent, 1) } columns={ columns } />;
     };
 
     const rows = view.getVisibleRows();
