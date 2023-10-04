@@ -1,265 +1,119 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": "To start a new "
+      },
+      {
+        "data": {
+          "url": "https://nextjs.org/"
+        },
+        "type": "link",
+        "url": "https://nextjs.org/",
+        "children": [
           {
-            "object": "text",
-            "text": "If you are going to use ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://nextjs.org/"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "Next.JS",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " for your application, it is best to configure it with our custom UUI Template for ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://nextjs.org/docs/getting-started"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "Create Next App",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ".",
-            "marks": []
+            "text": "Next.JS"
           }
         ]
       },
       {
-        "object": "block",
-        "type": "note-quote",
-        "data": {},
-        "nodes": [
+        "text": " application, use "
+      },
+      {
+        "data": {
+          "url": "https://nextjs.org/docs/getting-started"
+        },
+        "type": "link",
+        "url": "https://nextjs.org/docs/getting-started",
+        "children": [
           {
-            "object": "text",
-            "text": "npx ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "create-next-app --example ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "\"https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template/template\" ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "my-app\n\n",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "# or\n\n",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "color": "rgb(128, 128, 128)",
-                    "": null
-                  }
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "yarn create next-app --example ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "\"https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template/template\"",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": " my-app\n\n",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "## where my-app is the name of ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "color": "rgb(128, 128, 128)",
-                    "": null
-                  }
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "your project.",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "color": "rgb(128, 128, 128)",
-                    "": null
-                  }
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "": null
-                  }
-                }
-              }
-            ]
+            "text": "Create Next App"
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "It will create and initialize the environment and dependencies automatically. Also, it will set up a minimal UUI configuration with a simple layout.",
-            "marks": []
-          }
-        ]
+        "text": " with our template:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "npx ",
+        "box-sizing": "border-box",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "create-next-app --example ",
+        "box-sizing": "border-box",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "\"https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template/template\" "
+      },
+      {
+        "text": "my-app\n\n",
+        "box-sizing": "border-box",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "# or\n\n",
+        "box-sizing": "border-box",
+        "color": "rgb(128, 128, 128)",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "yarn create next-app --example ",
+        "box-sizing": "border-box",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "\"https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template/template\""
+      },
+      {
+        "text": " my-app\n\n",
+        "box-sizing": "border-box",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "## where my-app is the name of ",
+        "box-sizing": "border-box",
+        "color": "rgb(128, 128, 128)",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "your project.",
+        "box-sizing": "border-box",
+        "color": "rgb(128, 128, 128)",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " ",
+        "box-sizing": "border-box",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "It will create and initialize the environment and dependencies automatically. Also, it will set up a minimal UUI configuration with a simple layout."
       }
     ]
   }
-}
+]

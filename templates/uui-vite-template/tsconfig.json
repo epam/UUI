@@ -9,6 +9,12 @@
         "resolveJsonModule": true,
         "strict": true,
         "strictNullChecks": false,
-        "target": "ES6"
+        "skipLibCheck": true,
+        "target": "ES6",
+        "rootDir": ".",
+        "types": [
+            "vitest/globals",
+            "vitest-dom/extend-expect"
+        ]
     }
 }

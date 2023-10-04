@@ -4,16 +4,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "UUI stands for \"Unified User Interface.\""
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "UUI is a set of React-based NPM package that provides:"
+        "text": "UUI is EPAM front-end development accelerator. UUI provides:"
       }
     ]
   },
@@ -22,7 +13,32 @@
     "type": "unordered-list",
     "children": [
       {
-        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Complete set of React components"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Figma-based design library, including components, design guidelines, and token-based themes support"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "type": "list-item",
         "children": [
           {
@@ -30,7 +46,20 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "Rich components, from buttons to tables and rich text editors."
+                "text": "Integrated 3rd party components, like Plate.js based Rich Text Editor."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Solutions for UI organisms, like forms, tables, and filter panels"
               }
             ]
           }
@@ -45,7 +74,33 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "Common services: modals, notifications, error recovery, forms, data binding, monitoring, and more."
+                "text": "Common sub-systems: modal windows, notifications, API integration with error recovery, data binding, monitoring, web analytics."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Examples, blueprints, demos"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Wide range of support, up to turn-key starting new projects, staffing, solution architecture, design"
               }
             ]
           }
@@ -58,145 +113,55 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Unified UI is also:"
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "unordered-list",
-    "children": [
-      {
-        "data": {},
-        "type": "list-item",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item-child",
-            "children": [
-              {
-                "text": "Open for contribution, actively evolving, supported, and used by dozens of production projects."
-              }
-            ]
-          }
-        ]
+        "text": "UUI is free, under MIT license, including Figma libraries, and community support via our GitHub. EPAM and UUI team can provide services on top of UUI ("
       },
       {
-        "data": {},
-        "type": "list-item",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item-child",
-            "children": [
-              {
-                "text": "Non-opinionated, compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux."
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "Ready to jump in? Visit the "
-      },
-      {
-        "data": {
-          "url": "https://uui.epam.com/documents?id=installation"
-        },
         "type": "link",
-        "url": "https://uui.epam.com/documents?id=installation",
+        "url": "https://www.epam.com/about/who-we-are/contact",
+        "target": "_blank",
         "children": [
           {
-            "text": "installation"
+            "text": "contact sales"
           }
         ]
       },
       {
-        "text": " section and the "
+        "text": ")."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI is used by 50+ EPAM projects, for example: "
       },
       {
-        "data": {
-          "url": "https://uui.epam.com/demo"
-        },
         "type": "link",
-        "url": "https://uui.epam.com/demo",
+        "url": "https://learn.epam.com/start",
+        "target": "_blank",
         "children": [
           {
-            "text": "demo"
+            "text": "Learn"
           }
         ]
       },
       {
-        "text": " page to get an overview of UUI's capabilities."
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "uui-richTextEditor-header-3",
-    "children": [
+        "text": ", "
+      },
       {
-        "text": "Why we built UUI?"
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
+        "type": "link",
+        "url": "https://training.epam.com/en",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "Training Portal"
+          }
+        ]
+      },
       {
-        "text": "UUI started somewhere in 2013. We were building an app for EPAM and fell in love with the newly born React and TypeScript. We were among the first production users. Back in those days, there were no UI libraries, so we built our own components."
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "The component sets from those early days were growing, traveling via tons of projects. We tried different approaches, picking the best fit. Finally, at some point in 2016, we extracted them into a separate Git repo. Later, we wholly revisited almost all our shortcomings and mistakes. Twice. We changed the look and feel several times."
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "The current code base results from years of evolution - each piece rewritten from scratch 3–4 times. The team behind UUI built three comprehensive UI/UX Design Systems and tens applications."
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "At the beginning of 2020, the library was used by almost 20 EPAM production projects. So we praised backward compatibility and focused more on the solution completeness and existing projects’ maintenance. At the end of 2020, we open-sourced UUI."
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "note-link",
-    "children": [
-      {
-        "text": "UUI's value is not in lines of code. It is in years of experience that led to them."
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "We watched other evolving UI frameworks (Material UI, Ant Design, and similar) progress to become more stable and mature. Whereas, we were always ahead in many aspects, and UUI matches our needs better."
+        "text": ". It is also used in projects for EPAM customers. The library is run by a dedicated team of 10."
       }
     ]
   },
@@ -214,7 +179,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Our focus is modern business applications. In our applications, users discover data, get context-aware information, and make decisions. Therefore, we put a lot of effort into UX design and custom solutions."
+        "text": "Our focus is modern interactive web-applications, ranging from standard data-entry and data-discovery tools, to a complex WYSIWYG experiences."
       }
     ]
   },
@@ -223,7 +188,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Most apps also have many admin/back-office screens, which we build on top of usual UI/UX approaches – like Tables and Forms. UUI puts a lot of effort into accelerating the creation of such screens."
+        "text": "Most apps have many admin/back-office screens, which we build on top of usual UI/UX approaches – like Tables and Forms. UUI puts a lot of effort into accelerating the creation of such screens. We strive to save app's designers and dev's time on back-office pages, to let them focus on more important, end-user-facing UI."
       }
     ]
   },
@@ -232,7 +197,16 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Besides similar solutions, UUI doesn't limit itself to a components-only library. We can make API calls (with error handling and retries), attach Google Analytics easily, and handle forms and validation. For sure, all this can be obtained from 3rd-party libraries. However, the 3rd-party solution needs efforts to choose and integrate and would never work seamlessly."
+        "text": "UUI also helps to build complex non-standard experiences, with features like built-in Rich text editor, drag-n-drop, inline-mode for components, and high customizability."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Besides similar solutions, UUI doesn't limit itself to a components-only library. We help to make API calls with error handling and retries, attach Google Analytics easily, handle forms and validation. UUI doesn't force using built-in facilities, and works with 3rd party state-management libraries. However, for screens like tables and forms, UUI have all you need, built-in and well-integrated."
       }
     ]
   },
@@ -258,7 +232,7 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "CRUD-heavy applications. UUI has complete components to build data input (Forms) and Data-Discovery (Filtering, Lists, Tables) screens. This also includes state-management primitives"
+                "text": "CRUD applications. UUI has complete components and state-management tools to build data input (Forms) and Data-Discovery (Filtering, Lists, Tables) screens."
               }
             ]
           }
@@ -273,7 +247,7 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "WYSIWYG editing experiences – we have a full-featured rich-text editor, built-in drag-n-drop support, an inline mode for input components"
+                "text": "WYSIWYG editing experiences – we have a full-featured rich-text editor, built-in drag-n-drop support, inline mode for data-input components"
               }
             ]
           }
@@ -303,22 +277,7 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "UUI components can be perfectly fit into a completely custom layout"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "data": {},
-        "type": "list-item",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item-child",
-            "children": [
-              {
-                "text": "\"Skins.\" UUI is designed to support building-derived libraries with brand-styled components on top of it. This allows deep customization, including component layout changes, custom palettes, and size sets. Two existing 'skins' UUI has built this way."
+                "text": "Rich customization facilities. UUI styles are fully customizable via CSS variables (design tokens), allowing to build themes to match your brand, or tweak a particular component. We also help with a deeper customization via render props, provide facilities to build custom components on top of pre-defined behaviors."
               }
             ]
           }
@@ -355,7 +314,7 @@
     "type": "uui-richTextEditor-header-3",
     "children": [
       {
-        "text": "Is it a Framework or a library?"
+        "text": "Why we built UUI?"
       }
     ]
   },
@@ -364,7 +323,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Some component libraries build around not being a \"Framework\" but a \"Library.\" React itself is an example. \"Just a library\" means being non-opinionated at all costs, i.e., not dictating how you build your app, structure your code, or handle your state management. It's up to the developers or architects to decide how to develop their apps."
+        "text": "UUI traces back to 2013. We started an app for EPAM and opt to try the newly born React and TypeScript. We were among the first production users of both. Back in those days, there were no React component libraries, so we built our own components."
       }
     ]
   },
@@ -373,7 +332,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "On the other hand, there is a \"frameworks\" camp, gathering supporters of frameworks like Angular. They see that it's beneficial to have something that guides your team to success - guidelines on how to structure your code, manage state, and even which folder to put each type of file into. They often push this idea to the limits."
+        "text": "Components set and our experience evolved across our projects. The current code base is a result from years of evolution. The team behind UUI implemented four generations of EPAM design guidelines, and many applications on top of UUI."
       }
     ]
   },
@@ -382,7 +341,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "UUI is somewhere in between these two approaches. We support common application-wide tasks, like state management, API calls, and error handling, but we don't force you to use any of them."
+        "text": "At the beginning of 2020, the library was used by ~20 EPAM production projects. UUI become a mature project, with heavy focus on quality, completeness, and projects’ support. In 2020, we open-sourced UUI."
       }
     ]
   },
@@ -391,124 +350,7 @@
     "type": "note-link",
     "children": [
       {
-        "text": "We never dictate; we give a hand."
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "Furthermore, we have tons of helpers for:"
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "unordered-list",
-    "children": [
-      {
-        "data": {},
-        "type": "list-item",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item-child",
-            "children": [
-              {
-                "text": "Form state management - including validation"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "data": {},
-        "type": "list-item",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item-child",
-            "children": [
-              {
-                "text": "List/Table/Tree state management - including lazy-loading, virtualization, filtering and paging"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "data": {},
-        "type": "list-item",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item-child",
-            "children": [
-              {
-                "text": "Services - API calls with error-handing, convenient web-analytics events, managing modal windows and notifications"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "data": {},
-        "type": "list-item",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item-child",
-            "children": [
-              {
-                "text": "Stand-alone utilities to filter/sort data sets"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "data": {},
-        "type": "list-item",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item-child",
-            "children": [
-              {
-                "text": "Examples and guidelines illustrating how to combine these to build your app"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "However, if you want to take your own approach, then UUI works just fine as a visual components library. The only thing required is to provide some context via our ContextProvider - as some components need to know how, for example, to use your Routing approach."
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "But with our helpers, you'll find that 80% of your screens can be built in a breeze without complicated solutions like Redux."
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "\n"
+        "text": "Currently, UUI run by a team of 10 dedicated engineers, based on 10 years of experience, runs 50 EPAM internal projects, and several projects for EPAM customers. It's free and open-source."
       }
     ]
   }

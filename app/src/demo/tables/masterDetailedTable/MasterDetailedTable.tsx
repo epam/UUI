@@ -6,7 +6,6 @@ import { FlexRow } from '@epam/uui';
 import { DataTable } from '@epam/promo';
 import css from './DemoTable.module.scss';
 import type { TApi } from '../../../data';
-import { groupings as groupingsList } from './groupings'; 
 import { getFilters } from './filters';
 import { personColumns } from './columns';
 import { FilterPanel } from './FilterPanel';
@@ -24,7 +23,6 @@ export function MasterDetailedTable() {
 
     const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([]);
     const filters = useMemo(() => getFilters<PersonFilters['Person']>(), []);
-    const groupings = useMemo(() => groupingsList, []);
 
     const tableStateApi = useTableState<PersonTableFilter>({
         columns: personColumns,
@@ -103,7 +101,6 @@ export function MasterDetailedTable() {
                     { ...tableStateApi }
                     filters={ filters }
                     columns={ personColumns }
-                    groupings={ groupings }
                     closePanel={ () => setIsFilterPanelOpened(false) }
                 />
             </SlidingPanel>

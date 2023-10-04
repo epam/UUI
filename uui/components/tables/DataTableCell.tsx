@@ -61,7 +61,8 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
 
     props.renderPlaceholder = props.renderPlaceholder
         || (() => (
-            <Text key="t" size={ props.size !== '60' ? props.size : '48' }>
+            // remove `css.loadingCell` after` removing `margin: 0 3px 3px 0` from `TextPlaceholder` `loadingWord` class styles.
+            <Text key="t" size={ props.size !== '60' ? props.size : '48' } cx={ css.loadingCell }>
                 <TextPlaceholder />
             </Text>
         ));
