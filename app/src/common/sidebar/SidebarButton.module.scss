@@ -1,14 +1,11 @@
 .root {
-    $caption-width: 213;
-    $index-1x: 12;
-    $index-2x: 24;
-
     &:global(.uui-button-box) {
         height: 36px;
         align-items: center;
         padding-left: 11px;
         font-size: 16px;
         width: 100%;
+        min-width: auto;
         padding-right: 12px;
     }
 
@@ -19,24 +16,19 @@
         font-family: var(--font-regular);
         user-select: none;
         font-size: 16px;
-        max-width: #{$caption-width}px;
         overflow-x: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;
     }
 
     &.indent-12 {
         :global(.uui-caption) {
-            margin-left: #{$index-1x}px;
-            max-width: #{$caption-width - $index-1x}px;
+            margin-left: 12px;
         }
-
     }
 
     &.indent-24 {
         :global(.uui-caption) {
-            margin-left: #{$index-2x}px;
-            max-width: #{$caption-width - $index-2x}px;
+            margin-left: 24px;
         }
     }
 }
