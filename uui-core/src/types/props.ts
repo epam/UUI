@@ -15,7 +15,7 @@ export interface ICanBeInvalid {
     validationProps?: { [key: string]: ICanBeInvalid };
 }
 
-/** Components has an editable value. Text Input is a basic example. */
+/** Component displays an editable value. Text Input is a basic example. */
 export interface IEditable<T> extends ICanBeInvalid, IDisableable, ICanBeReadonly, ICanBeRequired {
     /** The current value of component */
     value: T;
@@ -51,7 +51,7 @@ export interface IDisableable {
     isDisabled?: boolean;
 }
 
-/** Component can be not editable */
+/** Component can be made read-only */
 export interface ICanBeReadonly {
     /** Disable editing. Unlike isDisabled, keep component's value readable. */
     isReadonly?: boolean;
@@ -62,7 +62,7 @@ export interface ICanBeRequired {
     isRequired?: boolean;
 }
 
-/** Component can be focused */
+/** Component can get input focus */
 export interface ICanFocus<T> {
     /** Called when component gets input focus */
     onFocus?: (e: React.FocusEvent<T>) => void;
@@ -88,8 +88,9 @@ export interface IHasDirection {
 }
 
 /**
- * Component can accept cx variable, which is more convenient shortcut for 'classname' property
- * It accepts string, arrays, object, recursively. All falsy values are thrown away. Examples:
+ * Component can accept cx property, allowing to pass classes to put on component.
+ * CX is a shortcut for 'classnames'.
+ * The props accepts string, arrays, object, recursively. All falsy values are thrown away. Examples:
  * - 'red' => 'red'
  * - ['red', 0, false, 'blue' ] => 'red blue'
  * - { 'red': true, 'blue': false, ['green', 'white']} => 'red green white'
@@ -99,6 +100,7 @@ export interface IHasCX {
     cx?: CX;
 }
 
+/** An icon can be added to component */
 export interface IHasIcon {
     /** Icon can be an React element (usually an SVG element) */
     icon?: Icon;
@@ -110,6 +112,7 @@ export interface IHasIcon {
     onIconClick?(): void;
 }
 
+/** Component can have child components */
 export interface IHasChildren {
     children?: ReactNode;
 }
@@ -150,6 +153,7 @@ export interface INotification {
     key: string;
 }
 
+// Component allows to pass raw HTML props to put on the DOM element
 export type IHasRawProps<T> = {
     /** Any HTML attributes (native or 'data-') to put on the underlying component */
     rawProps?: T & Record<`data-${string}`, string>;

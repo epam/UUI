@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 917,
-   "amountTypes": 295
+   "amountProps": 915,
+   "amountTypes": 293
   },
   "value": [
    {
@@ -1825,12 +1825,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui:IHasEditMode",
-    "value": [
-     "mode"
-    ]
-   },
-   {
     "typeRef": "@epam/uui:IndeterminateBarMods",
     "value": [
      "size"
@@ -2196,12 +2190,6 @@
     ]
    },
    {
-    "typeRef": "@epam/loveship:EditMode",
-    "value": [
-     "mode"
-    ]
-   },
-   {
     "typeRef": "@epam/loveship:ErrorConfig",
     "value": [
      "getInfo"
@@ -2401,7 +2389,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 471
+   "amountTypes": 469
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -2786,7 +2774,6 @@
    "@epam/promo:IconColor",
    "@epam/promo:IconContainerColors",
    "@epam/promo:IconContainerMods",
-   "@epam/promo:IHasEditMode",
    "@epam/promo:LinkButtonMods",
    "@epam/promo:LinkButtonProps",
    "@epam/promo:ModalWindowMods",
@@ -2822,7 +2809,6 @@
    "@epam/loveship:ControlShape",
    "@epam/loveship:ControlSize",
    "@epam/loveship:DropdownContainerMods",
-   "@epam/loveship:EditMode",
    "@epam/loveship:EpamAdditionalColor",
    "@epam/loveship:EpamColor",
    "@epam/loveship:EpamGrayscaleColor",
@@ -3660,13 +3646,13 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 542,
+   "allExports": 540,
    "byModule": {
     "@epam/uui-core": 208,
     "@epam/uui-components": 93,
     "@epam/uui": 125,
-    "@epam/promo": 49,
-    "@epam/loveship": 58,
+    "@epam/promo": 48,
+    "@epam/loveship": 57,
     "@epam/uui-editor": 9
    }
   },
@@ -4127,7 +4113,6 @@
      "FontMod",
      "IconButtonMods",
      "IconContainerMods",
-     "IHasEditMode",
      "LinkButtonMods",
      "ModalWindowMods",
      "MultiSwitchMods",
@@ -4179,7 +4164,6 @@
      "CheckboxMods",
      "ColorMod",
      "DropdownContainerMods",
-     "EditMode",
      "ErrorConfig",
      "ErrorPageProps",
      "FontMod",
