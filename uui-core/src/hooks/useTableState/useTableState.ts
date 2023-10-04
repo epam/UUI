@@ -210,10 +210,14 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>
         }
 
         const valueFromUrl = getValueFromUrl(context.uuiRouter.getCurrentLink().query);
-        return {
-            ...tableStateValue,
-            ...valueFromUrl,
-        };
+        const urlKeys = Object.keys(valueFromUrl) as Array<keyof typeof valueFromUrl>;
+        urlKeys.forEach((urlKey) => {
+            if (!isEqual(valueFromUrl[urlKey], tableStateValue[urlKey]) || !(urlKey in tableStateValue)) {
+                tableStateValue[urlKey] = valueFromUrl[urlKey];
+            }
+        });
+
+        return tableStateValue;
     };
 
     const setValueToUrl = (value: DataTableState<TFilter, TViewState>) => {
