@@ -463,7 +463,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                             >
                                 {this.renderSettings(docs.contexts)}
                             </FlexRow>
-                            <div className={ cx(css.demoContainer, currentTheme) }>
+                            <div className={ cx(css.demoContainer, css[currentTheme]) }>
                                 <ScrollBars>{this.renderDemo()}</ScrollBars>
                             </div>
                         </div>

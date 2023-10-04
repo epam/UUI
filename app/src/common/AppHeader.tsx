@@ -1,4 +1,4 @@
-import React, { MutableRefObject } from 'react';
+import React from 'react';
 import {
     BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger, DropdownMenuSplitter, MainMenuDropdown,
 } from '@epam/promo';
@@ -8,7 +8,7 @@ import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
 import css from './AppHeader.module.scss';
 import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
-import { useUuiContext } from '@epam/uui-core';
+import { useTheme } from '../helpers/useTheme';
 
 export type Theme = 'uui-theme-promo' | 'uui-theme-loveship' | 'uui-theme-loveship_dark' | 'uui-theme-electric' | 'uui-theme-vanilla_thunder';
 const themeName: Record<Theme, 'Promo' | 'Loveship' | 'Loveship Dark' | 'Electric' | 'Vanilla Thunder'> = {
@@ -22,7 +22,7 @@ const themeName: Record<Theme, 'Promo' | 'Loveship' | 'Loveship Dark' | 'Electri
 const GIT_LINK = 'https://github.com/epam/UUI';
 
 export function AppHeader() {
-    const { uuiApp: { appTheme, toggleTheme } } = useUuiContext<any, { appTheme: MutableRefObject<Theme>, toggleTheme: (theme: Theme) => void }>();
+    const { theme, toggleTheme } = useTheme();
 
     const sendEvent = (link: string) => {
         svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.trusted(link));
@@ -64,16 +64,16 @@ export function AppHeader() {
 
     const renderThemeSwitcher = () => {
         const bodyItems = [
-            <MainMenuButton caption="Promo" isLinkActive={ appTheme.current === 'uui-theme-promo' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-promo') } />,
-            <MainMenuButton caption="Loveship" isLinkActive={ appTheme.current === 'uui-theme-loveship' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-loveship') } />,
-            <MainMenuButton caption="Loveship Dark" isLinkActive={ appTheme.current === 'uui-theme-loveship_dark' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-loveship_dark') } />,
-            <MainMenuButton caption="Electric" isLinkActive={ appTheme.current === 'uui-theme-electric' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-electric') } />,
+            <MainMenuButton caption="Promo" isLinkActive={ theme === 'uui-theme-promo' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-promo') } />,
+            <MainMenuButton caption="Loveship" isLinkActive={ theme === 'uui-theme-loveship' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-loveship') } />,
+            <MainMenuButton caption="Loveship Dark" isLinkActive={ theme === 'uui-theme-loveship_dark' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-loveship_dark') } />,
+            <MainMenuButton caption="Electric" isLinkActive={ theme === 'uui-theme-electric' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-electric') } />,
             <DropdownMenuSplitter />,
-            <MainMenuButton caption="RD Portal" isLinkActive={ appTheme.current === 'uui-theme-vanilla_thunder' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-vanilla_thunder') } />,
+            <MainMenuButton caption="RD Portal" isLinkActive={ theme === 'uui-theme-vanilla_thunder' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-vanilla_thunder') } />,
         ];
 
         return (
-            <MainMenuDropdown key="theme-switcher" caption={ `Theme: ${themeName[appTheme.current]}` }>
+            <MainMenuDropdown key="theme-switcher" caption={ `Theme: ${themeName[theme as Theme]}` }>
                 { bodyItems }
             </MainMenuDropdown>
         );

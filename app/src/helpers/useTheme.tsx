@@ -1,11 +1,11 @@
-import { useState, useEffect, MutableRefObject } from 'react';
+import { useState, useEffect } from 'react';
 
-export const useTheme = (initialTheme: MutableRefObject<string>) => {
-    const [theme, setTheme] = useState<string>(initialTheme.current);
+export const useTheme = () => {
+    const [theme, setTheme] = useState<string>(localStorage.getItem('app-theme') || 'uui-theme-promo');
 
     const toggleTheme = (newTheme: string) => {
         setTheme(newTheme);
-        initialTheme.current = newTheme;
+        localStorage.setItem('app-theme', newTheme);
     };
 
     // Apply the current theme to the body element
