@@ -146,7 +146,6 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     }
 
     renderPropEditor() {
-        this.handleChangeBodyTheme(getQuery('skin'));
         if (!this.getPropsDocPath()) {
             svc.uuiRouter.redirect({
                 pathname: '/documents',
@@ -230,24 +229,11 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                 skin: skin,
             },
         });
-
-        if (skin !== UUI) {
-            this.handleChangeBodyTheme(skin as Skin);
-        }
-    }
-
-    handleChangeBodyTheme(skin: Skin) {
-        if (skin === UUI3) {
-            svc.uuiApp.toggleTheme('uui-theme-loveship');
-        } else if (skin === UUI4) {
-            svc.uuiApp.toggleTheme('uui-theme-promo');
-        }
     }
 
     handleChangeMode(mode: 'doc' | 'propsEditor') {
         const skin = getQuery('skin');
         if (mode === 'propsEditor' && skin !== UUI) {
-            this.handleChangeBodyTheme(skin as Skin);
         }
 
         svc.uuiRouter.redirect({
