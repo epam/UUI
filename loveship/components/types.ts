@@ -63,8 +63,3 @@ export interface FontMod {
 export interface RowSizeMod {
     size?: RowSize;
 }
-
-export interface EditMode {
-    // mode?: 'form' | 'inline' | 'cell' | 'none';
-    mode?: 'form' | 'cell';
-}

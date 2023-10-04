@@ -49,7 +49,7 @@ export interface NumericInputProps
     /** Overrides the down/decrease icon */
     downIcon?: Icon;
 
-    /** Increase/decrease step (for icons and ) */
+    /** Increase/decrease step on up/down icons clicks and up/down arrow keys */
     step?: number;
 
     /** CSS classes to put directly on the Input element */
@@ -74,7 +74,7 @@ export interface NumericInputProps
      * A function to convert current input value to displayed text.
      * Overrides standard Intl-based formatting.
      * If passed, only maximumFractionDigits considered from formatOptions when both properties provided.
-     * Note, that formatting is used when input is out of focus.
+     * Formatting is applied only when input is not focused.
      */
     formatValue?(value: number): string;
 }
