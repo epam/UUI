@@ -20,9 +20,9 @@ const demoDbTables = {
         },
         indexes: ['departmentId', 'jobTitleId'],
     }),
-    personGroups: new DbTable<docs.PersonGroup, number, any>({
+    personGroups: new DbTable<docs.PersonEmploymentGroup, number, any>({
         tableName: 'personGroups',
-        typeName: 'PersonGroup',
+        typeName: 'PersonEmploymentGroup',
         searchBy: ['name'],
         primaryKey: 'id',
         fields: {

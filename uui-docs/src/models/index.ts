@@ -21,7 +21,7 @@ export interface Person {
     notes?: string;
     countryId?: string;
     countryName?: string;
-    cityId?: number;
+    cityId?: string;
     cityName?: string;
     locationId: number | string;
     locationName: string;
@@ -38,12 +38,26 @@ export interface Person {
     workload?: string;
 }
 
-export interface PersonGroup {
-    __typename: 'PersonGroup';
+export interface PersonEmploymentGroup {
+    __typename: 'PersonEmploymentGroup';
     id: number;
     name: string;
     count: number;
-    groupBy: string;
+    groupBy: 'jobTitle' | 'department';
+    cityId?: string;
+    countryId?: string;
+    jobTitleId?: number;
+    departmentId?: number;
+}
+
+export interface PersonLocationGroup {
+    __typename: 'PersonLocationGroup';
+    id: string;
+    name: string;
+    count: number;
+    groupBy: 'city' | 'country';
+    cityId?: string;
+    countryId?: string;
     jobTitleId?: number;
     departmentId?: number;
 }

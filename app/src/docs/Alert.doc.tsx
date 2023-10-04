@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4 } from '../common';
+import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TDocsGenType } from '../common';
 
 export class AlertDoc extends BaseDocsBlock {
     title = 'Alert';
+
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:AlertProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/overlays/alert.props.tsx',

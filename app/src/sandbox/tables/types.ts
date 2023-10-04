@@ -1,8 +1,8 @@
 import { DataQueryFilter } from '@epam/uui-core';
-import { Person, PersonGroup, Location } from '@epam/uui-docs';
+import { Person, PersonEmploymentGroup, Location } from '@epam/uui-docs';
 import { DataSourceState, LazyDataSourceApiResponse } from '@epam/uui-core';
 
-export type PersonTableRecord = Person | PersonGroup | Location;
+export type PersonTableRecord = Person | PersonEmploymentGroup | Location;
 
 export type PersonTableRecordType = PersonTableRecord['__typename'];
 
@@ -16,7 +16,7 @@ export interface PersonsTableState extends DataSourceState {
     isFolded?: boolean;
 }
 
-export interface PersonsApiResponse extends LazyDataSourceApiResponse<Person | PersonGroup> {
+export interface PersonsApiResponse extends LazyDataSourceApiResponse<Person | PersonEmploymentGroup> {
     summary: PersonsSummary;
     totalCount: number;
 }
