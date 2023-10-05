@@ -67,8 +67,10 @@ export function ProjectDemo() {
     }, [value, onValueChange]);
 
     const deleteTask = useCallback((task: Task) => {
-        delete value.items[task.id];
-        onValueChange(value);
+        const items = { ...value.items };
+        
+        delete items[task.id];
+        onValueChange({ ...value, items });
     }, [value, onValueChange]);
 
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
