@@ -20,8 +20,7 @@ export interface Resource {
 }
 
 export type InsertTaskCallback = (position: DropPosition, relativeTask?: Task | null, existingTask?: Task | null) => void;
-
-export type DeleteTaskCallback = (id: number) => void;
+export type DeleteTaskCallback = (task: Task) => void;
 
 export interface ColumnsProps {
     insertTask: InsertTaskCallback;

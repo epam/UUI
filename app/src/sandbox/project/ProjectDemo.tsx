@@ -66,6 +66,11 @@ export function ProjectDemo() {
         onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
     }, [value, onValueChange]);
 
+    const deleteTask = useCallback((task: Task) => {
+        delete value.items[task.id];
+        onValueChange(value);
+    }, [value, onValueChange]);
+
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
         if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
             return null;
@@ -76,7 +81,7 @@ export function ProjectDemo() {
 
     const handleDrop = useCallback(
         (params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData),
-        [],
+        [insertTask],
     );
 
     const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }] });
@@ -105,8 +110,8 @@ export function ProjectDemo() {
     );
 
     const columns = useMemo(
-        () => getColumns({ insertTask, deleteTask: () => {} }),
-        [insertTask],
+        () => getColumns({ insertTask, deleteTask }),
+        [insertTask, deleteTask],
     );
 
     return (
