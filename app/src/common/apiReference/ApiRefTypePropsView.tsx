@@ -6,7 +6,7 @@ import {
     FlexRow,
     FlexSpacer,
     IconContainer,
-    RichTextView,
+    RichTextView, ScrollBars,
     Text,
     Tooltip,
 } from '@epam/uui';
@@ -166,23 +166,25 @@ export function ApiRefTypePropsView(props: TApiRefTypePropsView) {
     return (
         <div className={ css.root }>
             { renderToolbar() }
-            <div className={ css.stickyHeader } ref={ headerRef }>
-                <DataTableHeaderRow
-                    columns={ columns }
-                    allowColumnsResizing={ true }
-                    value={ { ...tableState, columnsConfig } }
-                    onValueChange={ setTableState }
+            <ScrollBars>
+                <div className={ css.stickyHeader } ref={ headerRef }>
+                    <DataTableHeaderRow
+                        columns={ columns }
+                        allowColumnsResizing={ true }
+                        value={ { ...tableState, columnsConfig } }
+                        onValueChange={ setTableState }
+                    />
+                </div>
+                <DataRowsContainer
+                    headerRef={ headerRef }
+                    renderRow={ renderRow }
+                    rows={ rows }
+                    estimatedHeight={ 0 }
+                    listContainerRef={ listContainerRef }
+                    offsetY={ 0 }
+                    scrollShadows={ scrollShadows }
                 />
-            </div>
-            <DataRowsContainer
-                headerRef={ headerRef }
-                renderRow={ renderRow }
-                rows={ rows }
-                estimatedHeight={ 0 }
-                listContainerRef={ listContainerRef }
-                offsetY={ 0 }
-                scrollShadows={ scrollShadows }
-            />
+            </ScrollBars>
             <CodeExpandable showCode={ showCode } docsGenType={ docsGenType } />
         </div>
     );
