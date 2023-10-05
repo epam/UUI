@@ -90,7 +90,7 @@ export class GroupingConfigBuilder<
     async idsApi(
         ids: ToUnion<ComplexId<TGroups, TId, TGroupBy>>[][],
         groupBy: GroupByForType<TGroups, TGroupBy, keyof TGroups> | GroupByForType<TGroups, TGroupBy, keyof TGroups> [],
-        context: LazyDataSourceApiRequestContext<
+        context?: LazyDataSourceApiRequestContext<
         ToUnion<TGroupsWithMeta<TGroups, TId, TGroupBy>>,
         ToUnion<ComplexId<TGroups, TId, TGroupBy>>[]
         >,
@@ -112,8 +112,8 @@ export class GroupingConfigBuilder<
         });
 
         await Promise.all(promises);
-        const currentGroupBy = this.getGroupByPathForParent(groupBy, context.parent);
-        return this.getResultsWithMeta(response, context.parent, currentGroupBy);
+        const currentGroupBy = this.getGroupByPathForParent(groupBy, context?.parent);
+        return this.getResultsWithMeta(response, context?.parent, currentGroupBy);
     }
 
     async entityApi<TType extends keyof TGroups>(
@@ -161,11 +161,11 @@ export class GroupingConfigBuilder<
         >['api']>
     ) {
         const [request, context] = apiArgs;
-        const filterFromGroupBy = context.parent ? this.getFilterFromParentId(context.parent[ID]) : {};
-        const groupByPath = this.getGroupByPathForParent(groupBy, context.parent);
+        const filterFromGroupBy = context?.parent ? this.getFilterFromParentId(context?.parent[ID]) : {};
+        const groupByPath = this.getGroupByPathForParent(groupBy, context?.parent);
         const lastGroupBy = groupByPath[groupByPath.length - 1];
         if (Array.isArray(groupBy)) {
-            if (!context.parent) {
+            if (!context?.parent) {
                 this.checkApiForGroupBy(lastGroupBy);
 
                 const type = this.groupByToEntityType[lastGroupBy];
@@ -175,16 +175,16 @@ export class GroupingConfigBuilder<
                     { ...request, filter: { ...request.filter, ...filter, groupBy: lastGroupBy } },
                     context,
                 );
-                return this.getResultsWithMeta(response, context.parent, groupByPath);
+                return this.getResultsWithMeta(response, context?.parent, groupByPath);
             }
 
-            const parentType = this.getType(context.parent);
+            const parentType = this.getType(context?.parent);
             const isLastNestingLevel = this.entitiesConfig[parentType]?.isLastNestingLevel
                 ?? this.groupingsConfig[parentType]?.isLastNestingLevel
                 ?? this[DEFAULT_CONFIG].isLastNestingLevel;
 
-            const grouping = context.parent[PATH];
-            if (isLastNestingLevel(context.parent)) {
+            const grouping = context?.parent[PATH];
+            if (isLastNestingLevel(context?.parent)) {
                 if (isEqual(grouping, groupBy)) {
                     this.checkApiForGroupBy(lastGroupBy);
                     const filter = this.entitiesConfig[this.defaultEntity].getFilter?.(filterFromGroupBy);
@@ -193,7 +193,7 @@ export class GroupingConfigBuilder<
                         ...request,
                         filter: { ...request.filter, ...filter, groupBy: undefined },
                     }, context);
-                    return this.getResultsWithMeta(response, context.parent, groupByPath);
+                    return this.getResultsWithMeta(response, context?.parent, groupByPath);
                 }
 
                 this.checkApiForGroupBy(lastGroupBy);
@@ -205,7 +205,7 @@ export class GroupingConfigBuilder<
                     { ...request, filter: { ...request.filter, ...filter, groupBy: lastGroupBy } },
                     context,
                 );
-                return this.getResultsWithMeta(response, context.parent, groupByPath);
+                return this.getResultsWithMeta(response, context?.parent, groupByPath);
             }
 
             this.checkApiForGroupBy(lastGroupBy);
@@ -217,7 +217,7 @@ export class GroupingConfigBuilder<
                 { ...request, filter: { ...request.filter, ...filter, groupBy: lastGroupBy } },
                 context,
             );
-            return this.getResultsWithMeta(response, context.parent, groupByPath);
+            return this.getResultsWithMeta(response, context?.parent, groupByPath);
         }
 
         this.checkApiForGroupBy(lastGroupBy);
@@ -229,7 +229,7 @@ export class GroupingConfigBuilder<
             { ...request, filter: { ...request.filter, ...filter } },
             context,
         );
-        return this.getResultsWithMeta(response, context.parent, groupByPath);
+        return this.getResultsWithMeta(response, context?.parent, groupByPath);
     }
 
     private checkApiForGroupBy(groupBy: keyof TGroupBy) {
