@@ -14,11 +14,22 @@ export class Union extends Converter {
         const type = ConvertableUtils.getType(nodeOrSymbol);
         const node = ConvertableUtils.getNode(nodeOrSymbol);
         const types = type.getUnionTypes();
+        const rawTypesArr = types.reduce((acc, t) => {
+            const text = TypeUtils.getCompilerTypeText(t);
+            const lastInAcc = acc[acc.length - 1];
+            const isSubsequentBool = (text === 'true' && lastInAcc === 'false') || (text === 'false' && lastInAcc === 'true');
+            if (isSubsequentBool) {
+                acc[acc.length - 1] = 'boolean';
+                return acc;
+            } else if (text === 'undefined') {
+                return acc;
+            }
+            acc.push(text);
+            return acc;
+        }, []);
 
         return {
-            raw: types.map((t) => {
-                return TypeUtils.getCompilerTypeText(t);
-            }).join(' | '),
+            raw: rawTypesArr.join(' | '),
             print: print ? NodeUtils.printNode(node) : undefined,
         };
     }
