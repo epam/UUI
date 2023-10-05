@@ -71,7 +71,10 @@ function getColumns(summaries: TDocsGenTypeSummary): DataColumnProps<TApiRefProp
                 }
                 return (
                     <span style={ { wordBreak: 'break-all' } }>
-                        <Text color="primary">{item.name}</Text>
+                        <Text color="primary">
+                            {item.name}
+                            {item.required && <span className="asterisk">*</span>}
+                        </Text>
                     </span>
                 );
             },
