@@ -43,9 +43,8 @@ export function ProjectDemo() {
     });
 
     // Insert new/exiting top/bottom or above/below relative to other task
-    const insertTask = (position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
+    const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
         const task: Task = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
-
         if (position === 'inside') {
             task.parentId = relativeTask.id;
             relativeTask = null; // just insert as the first child
@@ -62,9 +61,9 @@ export function ProjectDemo() {
             position === 'bottom' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
             relativeTask?.order,
         );
-
+            
         onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
-    };
+    }, [value, onValueChange]);
 
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
         if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
@@ -101,7 +100,10 @@ export function ProjectDemo() {
         [],
     );
 
-    const columns = useMemo(() => getColumns({ insertTask: () => {}, deleteTask: () => {} }), []);
+    const columns = useMemo(
+        () => getColumns({ insertTask, deleteTask: () => {} }),
+        [insertTask],
+    );
 
     return (
         <Panel style={ { width: '100%' } }>
