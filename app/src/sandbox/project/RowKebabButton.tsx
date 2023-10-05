@@ -41,13 +41,13 @@ export function RowKebabButton({ row, insertTask, deleteTask }: RowKebabProps) {
                 <DropdownMenuButton
                     caption="Delete"
                     onClick={ () => {
-                        deleteTask(row.id);
+                        deleteTask(row.value);
                         props.onClose();
                     } }
                 />
             </DropdownMenuBody>
         );
-    }, [insertTask, row.value, row.id, deleteTask]);
+    }, [insertTask, row, deleteTask]);
 
     return (
         <Dropdown renderBody={ renderBody } renderTarget={ (props) => <IconButton icon={ MoreIcon } { ...props } /> } />
