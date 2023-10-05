@@ -1,3 +1,5 @@
+import { DropPosition } from '@epam/uui-core';
+
 export interface Task {
     id: number;
     parentId?: number;
@@ -17,7 +19,7 @@ export interface Resource {
     fullName: string;
 }
 
-export type InsertTaskCallback = (task: Partial<Task>) => void;
+export type InsertTaskCallback = (position: DropPosition, relativeTask?: Task | null, existingTask?: Task | null) => void;
 
 export type DeleteTaskCallback = (id: number) => void;
 
