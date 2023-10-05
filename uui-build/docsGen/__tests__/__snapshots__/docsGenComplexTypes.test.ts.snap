@@ -284,7 +284,7 @@ exports[`docsGen:complexTypes should convert interface with generics 1`] = `
       "uid": 2,
       "name": "dstData",
       "typeValue": {
-       "raw": "undefined | TDstData"
+       "raw": "TDstData"
       },
       "required": false
      },
@@ -386,7 +386,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "uid": 1,
       "name": "pBool",
       "typeValue": {
-       "raw": "false | true"
+       "raw": "boolean"
       },
       "required": true
      },
@@ -506,7 +506,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "uid": 16,
       "name": "pUnion",
       "typeValue": {
-       "raw": "undefined | null | string | number | bigint | false | true | symbol | void | object | string[]"
+       "raw": "null | string | number | bigint | boolean | symbol | void | object | string[]"
       },
       "required": false
      }
