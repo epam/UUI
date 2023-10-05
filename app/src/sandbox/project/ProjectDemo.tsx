@@ -44,22 +44,23 @@ export function ProjectDemo() {
 
     // Insert new/exiting top/bottom or above/below relative to other task
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
+        let tempRelativeTask = relativeTask;
         const task: Task = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
         if (position === 'inside') {
             task.parentId = relativeTask.id;
-            relativeTask = null; // just insert as the first child
+            tempRelativeTask = null; // just insert as the first child
         }
 
-        if (relativeTask) {
-            task.parentId = relativeTask.parentId;
+        if (tempRelativeTask) {
+            task.parentId = tempRelativeTask.parentId;
         }
 
         task.order = getInsertionOrder(
             Object.values(value.items)
                 .filter((i) => i.parentId === task.parentId)
                 .map((i) => i.order),
-            position === 'bottom' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
-            relativeTask?.order,
+            position === 'bottom' || position === 'inside' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
+            tempRelativeTask?.order,
         );
             
         onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
@@ -73,7 +74,10 @@ export function ProjectDemo() {
         }
     }, []);
 
-    const handleDrop = useCallback((params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData), []);
+    const handleDrop = useCallback(
+        (params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData),
+        [],
+    );
 
     const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }] });
 
