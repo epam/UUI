@@ -16,7 +16,7 @@ exports[`docsGen:union should convert union of simple types 1`] = `
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "false | true | 'one' | 'two' | 'three' | 'four'",
+     "raw": "boolean | 'one' | 'two' | 'three' | 'four'",
      "print": [
       "type TUnionTest = 'one' | 'two' | 'three' | 'four' | boolean;"
      ]

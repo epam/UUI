@@ -3,12 +3,12 @@ import { useDocsGenForType } from './dataHooks';
 import { Code } from '../docs/Code';
 import { TsComment } from './components/TsComment';
 import { Layout } from './components/Layout';
-import { ApiReferenceItemTableForTypeRef } from './ApiReferenceItemTable';
+import { ApiRefTypeProps } from './ApiRefTypeProps';
 import { useSearchParams } from 'react-router-dom';
 import { TDocsGenExportedType } from './types';
 import { TTypeRef } from './sharedTypes';
 
-export function ApiReferenceItem() {
+export function ApiRefType() {
     const [params] = useSearchParams();
     const typeRefShort = params?.get('id') as TTypeRef;
     const docsGenType = useDocsGenForType(typeRefShort);
@@ -27,7 +27,7 @@ export function ApiReferenceItem() {
         if (hasProps) {
             const entry = typeRefShort as TDocsGenExportedType;
             items.push({
-                node: <ApiReferenceItemTableForTypeRef key={ entry } typeRef={ entry } showCode={ true } />,
+                node: <ApiRefTypeProps key={ entry } typeRef={ entry } showCode={ true } />,
             });
         }
         if (!hasProps) {
