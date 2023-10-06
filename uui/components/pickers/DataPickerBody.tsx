@@ -2,9 +2,9 @@ import React from 'react';
 import {
     Lens, DataSourceState, isMobile, cx,
 } from '@epam/uui-core';
-import { FlexCell, PickerBodyBase, PickerBodyBaseProps, VirtualListRenderRowsParams } from '@epam/uui-components';
+import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
 import { SearchInput } from '../inputs';
-import { FlexRow, VirtualList, Blocker } from '../layout';
+import { FlexRow, VirtualList, Blocker, VirtualListRenderRowsParams } from '../layout';
 import { Text } from '../typography';
 import { i18n } from '../../i18n';
 import { ControlSize } from '../types';
