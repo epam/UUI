@@ -32,9 +32,6 @@ export function RowKebabButton({ row, insertTask, deleteTask }: RowKebabProps) {
                     caption="Add Sub-Task"
                     onClick={ () => {
                         insertTask('inside', row.value);
-                        if (row.isFolded) {
-                            row.onFold?.(row);
-                        }
                         props.onClose();
                     } }
                 />
