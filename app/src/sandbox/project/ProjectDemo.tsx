@@ -42,6 +42,8 @@ export function ProjectDemo() {
         getMetadata: () => metadata,
     });
 
+    const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }] });
+
     // Insert new/exiting top/bottom or above/below relative to other task
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
         let tempRelativeTask = relativeTask;
@@ -62,9 +64,12 @@ export function ProjectDemo() {
             position === 'bottom' || position === 'inside' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
             tempRelativeTask?.order,
         );
-            
+
         onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
-    }, [value, onValueChange]);
+        if (position === 'inside') {
+            setTableState({ ...tableState, folded: { ...tableState.folded, [`${task.parentId}`]: false } });
+        }
+    }, [value, onValueChange, tableState, setTableState]);
 
     const deleteTask = useCallback((task: Task) => {
         const items = { ...value.items };
@@ -85,8 +90,6 @@ export function ProjectDemo() {
         (params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData),
         [insertTask],
     );
-
-    const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }] });
 
     const { rows, listProps } = useList(
         {
