@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-10-05",
+ "timestamp": "2023-10-09",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -3601,7 +3601,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
+     "raw": "undefined | null | string | number | boolean | ClassDictionary | ClassArray",
      "print": [
       "/* The ClassValue type is a union type that represents the valid values that can be passed as arguments to the classnames function. It can be one of the following types:",
       "- string: A string representing a class name.",
@@ -3926,7 +3926,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
+     "raw": "undefined | null | string | number | boolean | ClassDictionary | ClassArray",
      "print": [
       "// CX type is a union type that represents the valid values to pass CSS classes",
       "type CX = ClassValue;"

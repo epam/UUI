@@ -12,32 +12,28 @@ export type TNotFormattedExportsByModule = Record<TModuleName, TExportedDeclarat
 
 export type TConvertable = Node | Symbol;
 export interface IConverter {
-    isSupported(nodeOrSymbol: TConvertable): boolean;
-    convert(nodeOrSymbol: TConvertable): TTypeConverted
-    convertToTypeValue(nodeOrSymbol: TConvertable, print: boolean): TTypeValue
+    isSupported(convertable: TConvertable): boolean;
+    convert(params: { convertable: TConvertable }): TTypeConverted
+    convertToTypeValue(params: { convertable: TConvertable, isProperty: boolean }): TTypeValue
 }
 export interface IConverterContext {
     stats: IDocGenStats
 
     /**
      * Convert type node
-     * @param nodeOrSymbol
-     * @param exported
      */
-    convert(nodeOrSymbol: TConvertable, exported?: boolean): TTypeConverted
-    convertToTypeValue(nodeOrSymbol: TConvertable): TTypeValue
+    convert(params: { convertable: TConvertable, exported?: boolean }): TTypeConverted
+    convertToTypeValue(params: { convertable: TConvertable, isProperty: boolean }): TTypeValue
 
     /**
      * Convert props of type node (if props supported)
-     * @param nodeOrSymbol
      */
-    convertTypeProps(nodeOrSymbol: TConvertable): TTypePropsConverted | undefined
+    convertTypeProps(params: { convertable: TConvertable }): TTypePropsConverted | undefined
 
     /**
      * Convert summary of type node
-     * @param nodeOrSymbol
      */
-    convertTypeSummary(nodeOrSymbol: TConvertable): TTypeSummary
+    convertTypeSummary(params: { convertable: TConvertable }): TTypeSummary
 
     getResults(): TApiReferenceJson
 }

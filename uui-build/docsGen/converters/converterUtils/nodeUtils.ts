@@ -1,4 +1,4 @@
-import { EmitHint, Node, Symbol, SyntaxKind, ts } from 'ts-morph';
+import { EmitHint, Node, Symbol, ts } from 'ts-morph';
 import { resolveModuleName, isExternalFile, makeRelativeToUuiRoot } from '../../utils/fileUtils';
 // eslint-disable-next-line import/no-cycle
 import { SymbolUtils } from './symbolUtils';
@@ -111,11 +111,6 @@ export class NodeUtils {
         });
     }
 
-    static isDirectExportFromFile(typeNode: Node) {
-        const ancs = typeNode.getAncestors();
-        return ancs?.length === 1 && ancs[0].isKind(SyntaxKind.SourceFile);
-    }
-
     static getTypeValueFromNode(typeNode: Node, print?: boolean): TTypeValue {
         const type = typeNode.getType();
         const result: TTypeValue = {
@@ -141,7 +136,7 @@ export class NodeUtils {
         } else if (Node.isIndexSignatureDeclaration(node)) {
             return TypeUtils.getCompilerTypeText(node.getReturnType());
         }
-        const conv = context.convertToTypeValue(propertySymbol);
+        const conv = context.convertToTypeValue({ convertable: propertySymbol, isProperty: true });
         return conv.raw;
     }
 
