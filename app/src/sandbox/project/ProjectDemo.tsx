@@ -5,10 +5,11 @@ import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-ed
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
 import { ReactComponent as insertBefore } from '@epam/assets/icons/common/table-row_plus_before-24.svg';
+import { ReactComponent as deleteLast } from '@epam/assets/icons/common/table-row_remove-24.svg';
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
 import { getColumns } from './columns';
-import { getInsertionOrder } from './helpers';
+import { deleteTaskWithChildren, getInsertionOrder } from './helpers';
 
 interface FormState {
     items: Record<number, Task>;
@@ -78,11 +79,15 @@ export function ProjectDemo() {
     }, [setValue, setTableState]);
 
     const deleteTask = useCallback((task: Task) => {
-        setValue((currentValue) => {
-            const items = { ...currentValue.items };
-            delete items[task.id];
-            return { ...currentValue, items };
-        });
+        setValue((currentValue) => ({
+            ...currentValue, items: deleteTaskWithChildren(currentValue.items, task),
+        }));
+    }, [setValue]);
+    
+    const deleteLastTask = useCallback(() => {
+        setValue((currentValue) => ({
+            ...currentValue, items: deleteTaskWithChildren(currentValue.items, null),
+        }));
     }, [setValue]);
 
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
@@ -134,6 +139,9 @@ export function ProjectDemo() {
                 </FlexCell>
                 <FlexCell width="auto">
                     <IconButton icon={ insertBefore } onClick={ () => insertTask('top') } />
+                </FlexCell>
+                <FlexCell width="auto">
+                    <IconButton icon={ deleteLast } onClick={ () => deleteLastTask() } />
                 </FlexCell>
                 <FlexSpacer />
                 <FlexCell width="auto">
