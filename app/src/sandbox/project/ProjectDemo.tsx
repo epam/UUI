@@ -6,6 +6,8 @@ import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-ed
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
 import { ReactComponent as insertBefore } from '@epam/assets/icons/common/table-row_plus_before-24.svg';
 import { ReactComponent as deleteLast } from '@epam/assets/icons/common/table-row_remove-24.svg';
+import { ReactComponent as add } from '@epam/assets/icons/common/action-add-12.svg';
+
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
 import { getColumns } from './columns';
@@ -134,6 +136,9 @@ export function ProjectDemo() {
     return (
         <Panel style={ { width: '100%' } }>
             <FlexRow spacing="12" margin="12">
+                <FlexCell width="auto">
+                    <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />
+                </FlexCell>
                 <FlexCell width="auto">
                     <IconButton icon={ insertAfter } onClick={ () => insertTask('bottom') } />
                 </FlexCell>
