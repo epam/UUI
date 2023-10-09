@@ -1,14 +1,15 @@
 import { Task, ColumnsProps } from './types';
-import { resources } from './demoData';
+import { resources, statuses } from './demoData';
 import React from 'react';
-import {
-    DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, Checkbox, DataPickerRow, PickerItem,
-} from '@epam/uui';
-import { TextArea } from '@epam/promo';
+import { TextArea, PickerToggler, TextInput, DataTableCell, NumericInput, PickerInput,
+    DatePicker, DataPickerRow, PickerItem, IconContainer } from '@epam/promo';
 import { ArrayDataSource, DataColumnProps, DataQueryFilter } from '@epam/uui-core';
+import { ReactComponent as statusIcon } from '@epam/assets/icons/common/radio-point-10.svg';
+
 import { RowKebabButton } from './RowKebabButton';
 
 const resourceDataSource = new ArrayDataSource({ items: resources });
+const statusDataSource = new ArrayDataSource({ items: statuses });
 
 export function getColumns(columnsProps: ColumnsProps) {
     const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
@@ -25,7 +26,8 @@ export function getColumns(columnsProps: ColumnsProps) {
                     { ...props }
                 />
             ),
-        }, {
+        },
+        {
             key: 'estimate',
             textAlign: 'right',
             caption: 'Estimate',
@@ -39,7 +41,54 @@ export function getColumns(columnsProps: ColumnsProps) {
                     { ...props }
                 />
             ),
-        }, {
+        },
+        {
+            key: 'status',
+            caption: 'Status',
+            width: 150,
+            renderCell: (props) => (
+                <DataTableCell
+                    { ...props.rowLens.prop('status').toProps() }
+                    renderEditor={ (props) => (
+                        <PickerInput
+                            valueType="id"
+                            selectionMode="single"
+                            dataSource={ statusDataSource }
+                            renderRow={ (props) => (
+                                <DataPickerRow
+                                    { ...props }
+                                    renderItem={ (item) => (
+                                        <PickerItem
+                                            title={ item.name }
+                                            icon={ () => <IconContainer icon={ statusIcon } style={ { fill: item.color } } /> }
+                                            { ...props }
+                                        />
+                                    ) }
+                                />
+                            ) }
+                            renderToggler={ (togglerProps) => {
+                                const row = togglerProps.selection[0];
+                                return (
+                                    <PickerToggler
+                                        { ...props }
+                                        { ...togglerProps }
+                                        icon={
+                                            row?.value 
+                                                ? () => <IconContainer icon={ statusIcon } style={ { fill: row?.value?.color } } /> 
+                                                : undefined
+                                        }
+                                        iconPosition="left"
+                                    />
+                                );
+                            } }
+                            { ...props }
+                        />
+                    ) }
+                    { ...props }
+                />
+            ),
+        },
+        {
             key: 'resource',
             caption: 'Resources',
             width: 300,
@@ -62,7 +111,8 @@ export function getColumns(columnsProps: ColumnsProps) {
                     { ...props }
                 />
             ),
-        }, {
+        },
+        {
             key: 'startDate',
             caption: 'Start date',
             width: 150,
@@ -74,25 +124,8 @@ export function getColumns(columnsProps: ColumnsProps) {
                     { ...props }
                 />
             ),
-        }, {
-            key: 'isDone',
-            caption: 'Done',
-            width: 100,
-            isSortable: true,
-            justifyContent: 'center',
-            renderCell: (props) => <DataTableCell { ...props.rowLens.prop('isDone').toProps() } renderEditor={ (props) => <Checkbox { ...props } /> } { ...props } />,
-        }, {
-            key: 'complete',
-            caption: '% Complete',
-            width: 130,
-            renderCell: (props) => (
-                <DataTableCell
-                    { ...props.rowLens.prop('complete').toProps() }
-                    renderEditor={ (props) => <NumericInput max={ 100 } { ...props } formatOptions={ { maximumFractionDigits: 0 } } /> }
-                    { ...props }
-                />
-            ),
-        }, {
+        },
+        {
             key: 'description',
             caption: 'Description',
             width: 200,
@@ -100,7 +133,8 @@ export function getColumns(columnsProps: ColumnsProps) {
             renderCell: (props) => (
                 <DataTableCell { ...props.rowLens.prop('description').toProps() } renderEditor={ (props) => <TextArea { ...props } autoSize={ true } /> } { ...props } />
             ),
-        }, {
+        },
+        {
             key: 'actions',
             render: (item, row) => <RowKebabButton row={ row } { ...columnsProps } />,
             width: 54,
