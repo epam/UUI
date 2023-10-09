@@ -18,9 +18,9 @@ function FilterImpl<TFilter extends Record<string, any>>(props: IFilterProps<TFi
 
     const handleChange = useCallback(
         (filterValue: TFilter[keyof TFilter]) => {
-            onValueChange({ [filterConfig.field]: filterValue } as TFilter);
+            onValueChange({ ...value, [filterConfig.field]: filterValue } as TFilter);
         },
-        [filterConfig.field, onValueChange],
+        [filterConfig.field, value, onValueChange],
     );
 
     const renderPicker = () => {
