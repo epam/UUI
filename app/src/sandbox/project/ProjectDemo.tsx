@@ -32,7 +32,7 @@ let savedValue: FormState = { items: getDemoTasks() };
 
 export function ProjectDemo() {
     const {
-        lens, value, onValueChange, save, isChanged, revert, undo, canUndo, redo, canRedo,
+        lens, value, save, isChanged, revert, undo, canUndo, redo, canRedo, setValue,
     } = useForm<FormState>({
         value: savedValue,
         onSave: async (data) => {
@@ -57,26 +57,33 @@ export function ProjectDemo() {
             task.parentId = tempRelativeTask.parentId;
         }
 
-        task.order = getInsertionOrder(
-            Object.values(value.items)
-                .filter((i) => i.parentId === task.parentId)
-                .map((i) => i.order),
-            position === 'bottom' || position === 'inside' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
-            tempRelativeTask?.order,
-        );
+        setValue((currentValue) => {
+            task.order = getInsertionOrder(
+                Object.values(currentValue.items)
+                    .filter((i) => i.parentId === task.parentId)
+                    .map((i) => i.order),
+                position === 'bottom' || position === 'inside' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
+                tempRelativeTask?.order,
+            );
+    
+            return { ...currentValue, items: { ...currentValue.items, [task.id]: task } };
+        });
 
-        onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
         if (position === 'inside') {
-            setTableState({ ...tableState, folded: { ...tableState.folded, [`${task.parentId}`]: false } });
+            setTableState((currentTableState) => ({
+                ...currentTableState,
+                folded: { ...currentTableState.folded, [`${task.parentId}`]: false },
+            }));
         }
-    }, [value, onValueChange, tableState, setTableState]);
+    }, [setValue, setTableState]);
 
     const deleteTask = useCallback((task: Task) => {
-        const items = { ...value.items };
-        
-        delete items[task.id];
-        onValueChange({ ...value, items });
-    }, [value, onValueChange]);
+        setValue((currentValue) => {
+            const items = { ...currentValue.items };
+            delete items[task.id];
+            return { ...currentValue, items };
+        });
+    }, [setValue]);
 
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
         if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
