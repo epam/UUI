@@ -102,7 +102,7 @@ function mapSingleMember(params: { parentNode?: Node, propertySymbol: Symbol, co
         let fromRef;
         const propParent = NodeUtils.getPropertyNodeParent(propertyNode, parentNode);
         if (propParent) {
-            const fromSummary = context.convertTypeSummary(propParent);
+            const fromSummary = context.convertTypeSummary({ convertable: propParent });
             fromRef = getTypeRefFromTypeSummary(fromSummary);
         }
         const name = NodeUtils.getPropertyNodeName(propertyNode);
