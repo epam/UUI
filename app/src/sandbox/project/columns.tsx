@@ -16,7 +16,7 @@ export function getColumns(columnsProps: ColumnsProps) {
         {
             key: 'name',
             caption: 'Name',
-            width: 400,
+            width: 300,
             fix: 'left',
             isSortable: true,
             renderCell: (props) => (
@@ -45,15 +45,17 @@ export function getColumns(columnsProps: ColumnsProps) {
         {
             key: 'status',
             caption: 'Status',
-            width: 150,
+            width: 160,
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('status').toProps() }
+                    size="24"
                     renderEditor={ (props) => (
                         <PickerInput
                             valueType="id"
-                            selectionMode="single"
+                            placeholder="Add Status"
                             dataSource={ statusDataSource }
+                            selectionMode="single"
                             renderRow={ (props) => (
                                 <DataPickerRow
                                     { ...props }
@@ -72,39 +74,11 @@ export function getColumns(columnsProps: ColumnsProps) {
                                     <PickerToggler
                                         { ...props }
                                         { ...togglerProps }
-                                        icon={
-                                            row?.value
-                                                ? () => <IconContainer icon={ statusIcon } style={ { fill: row?.value?.color } } /> 
-                                                : undefined
-                                        }
+                                        icon={ () => <IconContainer icon={ statusIcon } style={ { fill: row?.value?.color ?? '#E1E3EB', paddingLeft: '17px' } } /> }
                                         iconPosition="left"
                                     />
                                 );
                             } }
-                            { ...props }
-                        />
-                    ) }
-                    { ...props }
-                />
-            ),
-        },
-        {
-            key: 'resource',
-            caption: 'Resources',
-            width: 300,
-            isSortable: true,
-            renderCell: (props) => (
-                <DataTableCell
-                    { ...props.rowLens.prop('resources').toProps() }
-                    renderEditor={ (props) => (
-                        <PickerInput
-                            valueType="id"
-                            selectionMode="multi"
-                            dataSource={ resourceDataSource }
-                            renderRow={ (props) => (
-                                <DataPickerRow { ...props } renderItem={ (item) => <PickerItem title={ item.name } subtitle={ item.fullName } { ...props } /> } />
-                            ) }
-                            placeholder=""
                             { ...props }
                         />
                     ) }
@@ -121,6 +95,52 @@ export function getColumns(columnsProps: ColumnsProps) {
                 <DataTableCell
                     { ...props.rowLens.prop('startDate').toProps() }
                     renderEditor={ (props) => <DatePicker format="MMM D, YYYY" placeholder="" { ...props } /> }
+                    { ...props }
+                />
+            ),
+        },
+        {
+            key: 'dueDate',
+            caption: 'Due date',
+            width: 150,
+            isSortable: true,
+            renderCell: (props) => (
+                <DataTableCell
+                    { ...props.rowLens.prop('dueDate').toProps() }
+                    renderEditor={ (props) => <DatePicker format="MMM D, YYYY" placeholder="" { ...props } /> }
+                    { ...props }
+                />
+            ),
+        },
+        {
+            key: 'teams',
+            caption: 'Teams',
+            width: 220,
+            isSortable: true,
+            renderCell: (props) => (
+                <DataTableCell
+                    { ...props.rowLens.prop('resources').toProps() }
+                    renderEditor={ (props) => (
+                        <PickerInput
+                            valueType="id"
+                            selectionMode="multi"
+                            dataSource={ resourceDataSource }
+                            renderRow={ (props) => (
+                                <DataPickerRow
+                                    { ...props }
+                                    renderItem={ (item) => (
+                                        <PickerItem
+                                            title={ item.name }
+                                            subtitle={ item.fullName }
+                                            { ...props }
+                                        />
+                                    ) }
+                                />
+                            ) }
+                            placeholder=""
+                            { ...props }
+                        />
+                    ) }
                     { ...props }
                 />
             ),
