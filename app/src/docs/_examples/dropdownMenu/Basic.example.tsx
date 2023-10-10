@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IDropdownMenuItemProps, DropdownMenuBody, DropdownMenuButton, DropdownMenuSwitchButton, DropdownMenuSplitter, DropdownMenuHeader, DropdownSubMenu,
-    Dropdown, ControlGroup, Button, LinkButton } from '@epam/uui';
+    Dropdown, ControlGroup, Button, LinkButton, Tooltip } from '@epam/uui';
 import { DropdownBodyProps } from '@epam/uui-core';
 import { ReactComponent as LogoutIcon } from '@epam/assets/icons/common/navigation-logout-18.svg';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
@@ -76,7 +76,9 @@ export default function BasicDropdownMenuExample() {
             <DropdownMenuBody { ...props }>
                 <DropdownMenuButton caption="Cancel Data Loads" indent={ true } onClick={ () => {} } />
                 <DropdownMenuButton caption="Deactivate" indent={ true } onClick={ () => {} } />
-                <DropdownMenuButton caption="Delete" icon={ DeleteIcon } onClick={ () => {} } />
+                <Tooltip content="You don't have permissions to performe this action">
+                    <DropdownMenuButton isDisabled={ true } caption="Delete" icon={ DeleteIcon } onClick={ () => {} } />
+                </Tooltip>
             </DropdownMenuBody>
         );
     };
