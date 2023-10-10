@@ -160,9 +160,9 @@ export function ProjectDemo() {
 
     const keydownHandler = useCallback((event: KeyboardEvent) => {
         if ((event.metaKey || event.ctrlKey) && event.code === 'Enter') {
-            insertTask('bottom');
+            insertTask('bottom', selectedItem);
         }
-    }, [insertTask]);
+    }, [insertTask, selectedItem]);
 
     useEffect(() => {
         document.addEventListener('keydown', keydownHandler);
