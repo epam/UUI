@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput } from '@epam/promo';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
@@ -157,6 +157,19 @@ export function ProjectDemo() {
             setTableState((state) => ({ ...state, selectedId: prevRows[newSelectedIndex].id })); 
         }
     };
+
+    const keydownHandler = useCallback((event: KeyboardEvent) => {
+        if ((event.metaKey || event.ctrlKey) && event.code === 'Enter') {
+            insertTask('bottom');
+        }
+    }, [insertTask]);
+
+    useEffect(() => {
+        document.addEventListener('keydown', keydownHandler);
+        return () => {
+            document.removeEventListener('keydown', keydownHandler);
+        };
+    }, [keydownHandler]);
 
     return (
         <Panel style={ { width: '100%' } }>
