@@ -2006,7 +2006,7 @@
        "Overrides rendering of the single day. For example, to highlight certain days"
       ],
       "typeValue": {
-       "raw": "(day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+       "raw": "(day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
       },
       "required": false
      },
@@ -2537,7 +2537,7 @@
        "Overrides rendering of the single day. For example, to highlight certain days"
       ],
       "typeValue": {
-       "raw": "(day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+       "raw": "(day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
       },
       "required": false
      },
@@ -2753,7 +2753,7 @@
        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
       ],
       "typeValue": {
-       "raw": "(newValue: AnalyticsEvent"
+       "raw": "(newValue: RangeDatePickerValue | null, oldValue: RangeDatePickerValue | null) => AnalyticsEvent"
       },
       "from": "@epam/uui-core:IAnalyticableOnChange",
       "required": false
@@ -4169,7 +4169,7 @@
       "uid": 15,
       "name": "canAcceptCopy",
       "typeValue": {
-       "raw": "(from: DataTableSelectedCellData<TItem, TId, TFilter>) => boolean"
+       "raw": "(from: DataTableSelectedCellData<TItem, TId, TFilter>, to: DataTableSelectedCellData<TItem, TId, TFilter>) => boolean"
       },
       "required": false
      },
@@ -4217,7 +4217,7 @@
        " You can use this prop to render a custom filter component."
       ],
       "typeValue": {
-       "raw": "(lens: IDropdownBodyProps) => React.ReactNode"
+       "raw": "(lens: ILens<TFilter>, dropdownProps: IDropdownBodyProps) => React.ReactNode"
       },
       "required": false
      },
@@ -4464,7 +4464,7 @@
        "If row needs a checkbox, this field should be specified and it props can be configured here"
       ],
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & ICanBeInvalid"
+       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid"
       },
       "required": false
      },
@@ -4802,7 +4802,7 @@
        "Called when component is clicked"
       ],
       "typeValue": {
-       "raw": "((e?: any) => void) & ((rowProps: DataRowProps<TItem, TId>) => void)"
+       "raw": "((e?: any) => void) & ((rowProps: DataRowProps<TItem, TId>) => void) & ((rowProps: DataRowProps<TItem, TId>) => void)"
       },
       "from": "@epam/uui-core:IClickable",
       "required": false
@@ -4880,7 +4880,7 @@
        "If row needs a checkbox, this field should be specified and it props can be configured here"
       ],
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & ICanBeInvalid"
+       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -5824,7 +5824,7 @@
        "Overrides default tooltip, used to show validation message if the cell is invalid"
       ],
       "typeValue": {
-       "raw": "(props: TooltipCoreProps) => React.ReactElement<any, string | React.JSXElementConstructor<any>>"
+       "raw": "(props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement<any, string | React.JSXElementConstructor<any>>"
       },
       "required": false
      },
@@ -6293,7 +6293,7 @@
       "uid": 9,
       "name": "onDrop",
       "typeValue": {
-       "raw": "(params: DataColumnProps<TItem, TId, any>>) => void"
+       "raw": "(params: DropParams<DataColumnProps<TItem, TId, any>, DataColumnProps<TItem, TId, any>>) => void"
       },
       "required": false
      },
@@ -6780,7 +6780,7 @@
        "Called when component is clicked"
       ],
       "typeValue": {
-       "raw": "((e?: any) => void) & ((rowProps: DataRowProps<TItem, TId>) => void)"
+       "raw": "((e?: any) => void) & ((rowProps: DataRowProps<TItem, TId>) => void) & ((rowProps: DataRowProps<TItem, TId>) => void)"
       },
       "from": "@epam/uui-core:IClickable",
       "required": false
@@ -6858,7 +6858,7 @@
        "If row needs a checkbox, this field should be specified and it props can be configured here"
       ],
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & ICanBeInvalid"
+       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -7607,7 +7607,7 @@
        "Overrides rendering of the single day. For example, to highlight certain days"
       ],
       "typeValue": {
-       "raw": "(day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+       "raw": "(day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
       },
       "from": "@epam/uui-core:BaseDatePickerProps",
       "required": false
@@ -7866,7 +7866,7 @@
       "uid": 4,
       "name": "canAcceptDrop",
       "typeValue": {
-       "raw": "(params: DropPosition, boolean>> | null"
+       "raw": "(params: AcceptDropParams<TSrcData, TDstData>) => Partial<Record<DropPosition, boolean>> | null"
       },
       "from": "@epam/uui-core:IDndActor",
       "required": false
@@ -8358,7 +8358,7 @@
       "uid": 7,
       "name": "modifiers",
       "typeValue": {
-       "raw": "(Modifier<any, object>>)[]"
+       "raw": "(StrictModifier<any> | Partial<Modifier<any, object>>)[]"
       },
       "required": false
      },
@@ -9874,7 +9874,7 @@
       "uid": 1,
       "name": "sendEvent",
       "typeValue": {
-       "raw": "(event: AnalyticsEvent, 'name'>, eventType?: 'event' | 'pageView' | 'apiTiming' | undefined) => void"
+       "raw": "(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, 'name'>, eventType?: 'event' | 'pageView' | 'apiTiming' | undefined) => void"
       },
       "required": true
      }
@@ -9952,7 +9952,7 @@
       "uid": 6,
       "name": "uploadFile",
       "typeValue": {
-       "raw": "(url: string, file: File, options: FileUploadResponse>"
+       "raw": "(url: string, file: File, options: FileUploadOptions) => Promise<FileUploadResponse>"
       },
       "required": true
      },
@@ -10936,7 +10936,7 @@
       "uid": 4,
       "name": "getView",
       "typeValue": {
-       "raw": "(value: IDataSourceView<TItem, TId, TFilter>"
+       "raw": "(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any) => IDataSourceView<TItem, TId, TFilter>"
       },
       "required": true
      },
@@ -10944,7 +10944,7 @@
       "uid": 5,
       "name": "useView",
       "typeValue": {
-       "raw": "(value: IDataSourceView<TItem, TId, TFilter>"
+       "raw": "(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any, deps?: any[] | undefined) => IDataSourceView<TItem, TId, TFilter>"
       },
       "required": true
      },
@@ -11019,7 +11019,7 @@
       "uid": 4,
       "name": "getSelectedRows",
       "typeValue": {
-       "raw": "(range?: DataRowProps<TItem, TId>[]"
+       "raw": "(range?: VirtualListRange | undefined) => DataRowProps<TItem, TId>[]"
       },
       "required": true
      },
@@ -11160,7 +11160,7 @@
       "uid": 3,
       "name": "canAcceptDrop",
       "typeValue": {
-       "raw": "(params: DropPosition, boolean>> | null"
+       "raw": "(params: AcceptDropParams<TSrcData, TDstData>) => Partial<Record<DropPosition, boolean>> | null"
       },
       "required": false
      },
@@ -12004,7 +12004,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "FilterConfigBase<TFilter> & { type: 'singlePicker' | 'multiPicker'; dataSource: IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'datePicker'; filter?(day: IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'rangeDatePicker'; format?: string | undefined; filter?(day: IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
+     "raw": "FilterConfigBase<TFilter> & { type: 'singlePicker' | 'multiPicker'; dataSource: IDataSource<any, any, any>; getName?: ((item: any) => string) | undefined; renderRow?: ((props: DataRowProps<any, any>) => React.ReactNode) | undefined; valueType?: 'id' | undefined; showSearch?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'datePicker'; filter?(day: Dayjs): boolean; format?: string | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'rangeDatePicker'; format?: string | undefined; filter?(day: Dayjs): boolean; presets?: RangeDatePickerPresets | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
       "type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> & IEditable<any> & IDropdownBodyProps & {",
       "    selectedPredicate?: string;",
@@ -13407,7 +13407,7 @@
       "uid": 5,
       "name": "index",
       "typeValue": {
-       "raw": "(index: number) => ArrayElement<TFocused>>"
+       "raw": "(index: number) => ILens<ArrayElement<TFocused>>"
       },
       "required": true
      },
@@ -13851,7 +13851,7 @@
       "uid": 1,
       "name": "show",
       "typeValue": {
-       "raw": "(render: (props: NotificationParams | undefined) => Promise<void>"
+       "raw": "(render: (props: INotification) => React.ReactNode, notificationParams?: NotificationParams | undefined) => Promise<void>"
       },
       "required": true
      },
@@ -14544,7 +14544,7 @@
       "uid": 1,
       "name": "Button",
       "typeValue": {
-       "raw": "ISkinComponent<ButtonSemanticProps>"
+       "raw": "ISkinComponent<ButtonCoreProps, ButtonSemanticProps>"
       },
       "required": true
      },
@@ -15137,7 +15137,7 @@
       "uid": 14,
       "name": "patch",
       "typeValue": {
-       "raw": "(items: TItem[], isDeletedProp?: keyof TItem | undefined, comparator?: ITree<TItem, TId>"
+       "raw": "(items: TItem[], isDeletedProp?: keyof TItem | undefined, comparator?: ItemsComparator<TItem> | undefined) => ITree<TItem, TId>"
       },
       "required": true
      },
@@ -15153,7 +15153,7 @@
       "uid": 16,
       "name": "load",
       "typeValue": {
-       "raw": "<TFilter>(options: ITree<TItem, TId>>"
+       "raw": "<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState<Record<string, any>, any>>, withNestedChildren?: boolean | undefined) => Promise<ITree<TItem, TId>>"
       },
       "required": true
      },
@@ -15161,7 +15161,7 @@
       "uid": 17,
       "name": "loadMissing",
       "typeValue": {
-       "raw": "<TFilter>(options: ITree<TItem, TId>>"
+       "raw": "<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState<Record<string, any>, any>>) => Promise<ITree<TItem, TId>>"
       },
       "required": true
      },
@@ -15169,7 +15169,7 @@
       "uid": 18,
       "name": "loadMissingIdsAndParents",
       "typeValue": {
-       "raw": "<TFilter>(options: ITree<TItem, TId>>"
+       "raw": "<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, idsToLoad: TId[]) => Promise<ITree<TItem, TId>>"
       },
       "required": true
      },
@@ -15201,7 +15201,7 @@
       "uid": 22,
       "name": "filter",
       "typeValue": {
-       "raw": "<TFilter>(options: ITree<TItem, TId>"
+       "raw": "<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>) => ITree<TItem, TId>"
       },
       "required": true
      },
@@ -15209,7 +15209,7 @@
       "uid": 23,
       "name": "search",
       "typeValue": {
-       "raw": "<TFilter>(options: ITree<TItem, TId>"
+       "raw": "<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>) => ITree<TItem, TId>"
       },
       "required": true
      },
@@ -15217,7 +15217,7 @@
       "uid": 24,
       "name": "sort",
       "typeValue": {
-       "raw": "<TFilter>(options: ITree<TItem, TId>"
+       "raw": "<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) => ITree<TItem, TId>"
       },
       "required": true
      }
@@ -17596,7 +17596,7 @@
        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
       ],
       "typeValue": {
-       "raw": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
       },
       "required": false
      },
@@ -17724,7 +17724,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "IAnalyticableOnChange<any> | IAnalyticableOnChange<any> | IAnalyticableOnChange<any> | IAnalyticableOnChange<any>",
+     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any>",
      "print": [
       "type PickerBaseProps<TItem, TId> = PickerBaseOptions<TItem, TId> & PickerBindingProps<TItem, TId> & IAnalyticableOnChange<any>;"
      ]
@@ -17785,7 +17785,7 @@
        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
       ],
       "typeValue": {
-       "raw": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -18734,7 +18734,7 @@
        "Overrides rendering of the single day. For example, to highlight certain days"
       ],
       "typeValue": {
-       "raw": "(day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+       "raw": "(day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
       },
       "from": "@epam/uui-core:BaseRangeDatePickerProps",
       "required": false
@@ -18949,7 +18949,7 @@
        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
       ],
       "typeValue": {
-       "raw": "(newValue: AnalyticsEvent"
+       "raw": "(newValue: RangeDatePickerValue | null, oldValue: RangeDatePickerValue | null) => AnalyticsEvent"
       },
       "from": "@epam/uui-core:IAnalyticableOnChange",
       "required": false
@@ -20952,7 +20952,7 @@
       "uid": 18,
       "name": "modifiers",
       "typeValue": {
-       "raw": "(Modifier<any, object>>)[]"
+       "raw": "(StrictModifier<any> | Partial<Modifier<any, object>>)[]"
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
@@ -21465,7 +21465,7 @@
       "uid": 1,
       "name": "errorConfig",
       "typeValue": {
-       "raw": "Record<UuiErrorInfo>"
+       "raw": "Record<ApiCallErrorType, UuiErrorInfo>"
       },
       "required": false
      },
@@ -21473,7 +21473,7 @@
       "uid": 2,
       "name": "recoveryConfig",
       "typeValue": {
-       "raw": "Record<UuiRecoveryErrorInfo>"
+       "raw": "Record<ApiRecoveryReason, UuiRecoveryErrorInfo>"
       },
       "required": false
      }
@@ -21507,7 +21507,7 @@
       "uid": 1,
       "name": "getErrorInfo",
       "typeValue": {
-       "raw": "(error: any, defaultErrorInfo: UuiErrorInfo"
+       "raw": "(error: any, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo"
       },
       "required": true
      },
@@ -22531,7 +22531,7 @@
       "uid": 1,
       "name": "render",
       "typeValue": {
-       "raw": "(item: AdaptiveItemProps<T>[] | undefined) => any"
+       "raw": "(item: AdaptiveItemProps<T>, hiddenItems?: AdaptiveItemProps<T>[] | undefined, displayedItems?: AdaptiveItemProps<T>[] | undefined) => any"
       },
       "required": true
      },
@@ -24498,7 +24498,7 @@
       "uid": 4,
       "name": "renderDay",
       "typeValue": {
-       "raw": "(day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+       "raw": "(day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
       },
       "required": false
      },
@@ -25215,7 +25215,7 @@
       "uid": 3,
       "name": "onCanAcceptDrop",
       "typeValue": {
-       "raw": "(props: DropPosition, boolean>> | null"
+       "raw": "(props: AcceptDropParams<DndDataType, DndDataType>) => Partial<Record<DropPosition, boolean>> | null"
       },
       "required": true
      },
@@ -25223,7 +25223,7 @@
       "uid": 4,
       "name": "onDrop",
       "typeValue": {
-       "raw": "(params: DndDataType>) => void"
+       "raw": "(params: DropParams<DndDataType, DndDataType>) => void"
       },
       "required": true
      },
@@ -25440,7 +25440,7 @@
       "uid": 24,
       "name": "canAcceptCopy",
       "typeValue": {
-       "raw": "(from: DataTableSelectedCellData<any, any, any>) => boolean"
+       "raw": "(from: DataTableSelectedCellData<any, any, any>, to: DataTableSelectedCellData<any, any, any>) => boolean"
       },
       "from": "@epam/uui-core:DataColumnProps",
       "required": false
@@ -25492,7 +25492,7 @@
        " You can use this prop to render a custom filter component."
       ],
       "typeValue": {
-       "raw": "(lens: IDropdownBodyProps) => React.ReactNode"
+       "raw": "(lens: ILens<any>, dropdownProps: IDropdownBodyProps) => React.ReactNode"
       },
       "from": "@epam/uui-core:DataColumnProps",
       "required": false
@@ -25958,7 +25958,7 @@
       "uid": 3,
       "name": "onCopy",
       "typeValue": {
-       "raw": "(copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void"
+       "raw": "(copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>, selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void"
       },
       "required": false
      },
@@ -26027,7 +26027,7 @@
       "uid": 4,
       "name": "renderDay",
       "typeValue": {
-       "raw": "(day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+       "raw": "(day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
       },
       "required": false
      },
@@ -26114,7 +26114,7 @@
       "uid": 3,
       "name": "setDisplayedDateAndView",
       "typeValue": {
-       "raw": "(displayedDate: ViewType) => void"
+       "raw": "(displayedDate: Dayjs, view: ViewType) => void"
       },
       "required": true
      },
@@ -26149,7 +26149,7 @@
       "uid": 7,
       "name": "renderDay",
       "typeValue": {
-       "raw": "(day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+       "raw": "(day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
       },
       "from": "@epam/uui-components:DatePickerBodyBaseOptions",
       "required": false
@@ -26300,7 +26300,7 @@
       "uid": 2,
       "name": "getDayCX",
       "typeValue": {
-       "raw": "(day: ClassValue"
+       "raw": "(day: Dayjs) => ClassValue"
       },
       "required": false
      },
@@ -32117,7 +32117,7 @@
       "uid": 1,
       "name": "dataSourceStateToValue",
       "typeValue": {
-       "raw": "(dsState: IDataSource<TItem, TId, any>) => any"
+       "raw": "(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>) => any"
       },
       "required": true
      },
@@ -32125,7 +32125,7 @@
       "uid": 2,
       "name": "applyValueToDataSourceState",
       "typeValue": {
-       "raw": "(dsState: DataSourceState<any, TId>"
+       "raw": "(dsState: DataSourceState<any, TId>, value: any, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>) => DataSourceState<any, TId>"
       },
       "required": true
      }
@@ -32738,7 +32738,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ClassValue; highlightSearchMatches?: boolean | undefined; } | ClassValue; highlightSearchMatches?: boolean | undefined; } | ClassValue; highlightSearchMatches?: boolean | undefined; } | ClassValue; highlightSearchMatches?: boolean | undefined; }",
+     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: 'dropdown' | 'modal' | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: 'none' | 'input' | 'body' | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: 'dropdown' | 'modal' | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: 'none' | 'input' | 'body' | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: 'dropdown' | 'modal' | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: 'none' | 'input' | 'body' | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: 'dropdown' | 'modal' | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: 'none' | 'input' | 'body' | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; }",
      "print": [
       "type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {",
       "    /** dropdown (default) - show selection in dropdown; modal - opens modal window to select items */",
@@ -32852,7 +32852,7 @@
        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
       ],
       "typeValue": {
-       "raw": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -33503,7 +33503,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "SortingOption<any>): string; } | SortingOption<any>): string; } | SortingOption<any>): string; } | SortingOption<any>): string; }",
+     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; }",
      "print": [
       "type PickerListBaseProps<TItem, TId> = Exclude<PickerBaseProps<TItem, TId>, 'cascadeSelection'> & {",
       "    /**",
@@ -33580,7 +33580,7 @@
        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
       ],
       "typeValue": {
-       "raw": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -33629,7 +33629,7 @@
        "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
       ],
       "typeValue": {
-       "raw": "((item: TItem, sorting: SortingOption<any>) => string)"
+       "raw": "((item: TItem, sorting: SortingOption<any>) => any) & ((item: TItem, sorting: SortingOption<any>) => string)"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -34149,7 +34149,7 @@
       "uid": 2,
       "name": "renderFooter",
       "typeValue": {
-       "raw": "(props: IModal<any>>) => React.ReactNode"
+       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any>>) => React.ReactNode"
       },
       "required": false
      },
@@ -42077,7 +42077,7 @@
       "uid": 18,
       "name": "modifiers",
       "typeValue": {
-       "raw": "(Modifier<any, object>>)[]"
+       "raw": "(StrictModifier<any> | Partial<Modifier<any, object>>)[]"
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
@@ -42426,7 +42426,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ClassValue; highlightSearchMatches?: boolean | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; } | ClassValue; highlightSearchMatches?: boolean | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; } | ClassValue; highlightSearchMatches?: boolean | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; } | ClassValue; highlightSearchMatches?: boolean | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; }",
+     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: 'dropdown' | 'modal' | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: 'none' | 'input' | 'body' | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: 'dropdown' | 'modal' | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: 'none' | 'input' | 'body' | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: 'dropdown' | 'modal' | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: 'none' | 'input' | 'body' | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: 'dropdown' | 'modal' | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: 'none' | 'input' | 'body' | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; }",
      "print": [
       "type UsePickerInputProps<TItem, TId, TProps> = PickerInputBaseProps<TItem, TId> & TProps & {",
       "    toggleModalOpening?(opened: boolean): void;",
@@ -42490,7 +42490,7 @@
        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
       ],
       "typeValue": {
-       "raw": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -43175,7 +43175,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "SortingOption<any>): string; } & TProps | SortingOption<any>): string; } & TProps | SortingOption<any>): string; } & TProps | SortingOption<any>): string; } & TProps",
+     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps",
      "print": [
       "type UsePickerListProps<TItem, TId, TProps> = PickerListBaseProps<TItem, TId> & TProps & {};"
      ]
@@ -43236,7 +43236,7 @@
        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
       ],
       "typeValue": {
-       "raw": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -43285,7 +43285,7 @@
        "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
       ],
       "typeValue": {
-       "raw": "((item: TItem, sorting: SortingOption<any>) => string)"
+       "raw": "((item: TItem, sorting: SortingOption<any>) => any) & ((item: TItem, sorting: SortingOption<any>) => string)"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -43662,7 +43662,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "PickerModalOptions<TItem, TId> | PickerModalOptions<TItem, TId> | PickerModalOptions<TItem, TId> | PickerModalOptions<TItem, TId>",
+     "raw": "PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'id'; initialValue: TId; } & IModal<TId> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'entity'; initialValue: TItem; } & IModal<TItem> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'id'; initialValue: TId[]; } & IModal<TId[]> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[]; } & IModal<TItem[]> & PickerModalOptions<TItem, TId>",
      "print": [
       "type UsePickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> & IHasCaption & (PickerModalScalarProps<TId, TItem> | PickerModalArrayProps<TId, TItem>) & PickerModalOptions<TItem, TId>;"
      ]
@@ -43723,7 +43723,7 @@
        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
       ],
       "typeValue": {
-       "raw": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -43941,7 +43941,7 @@
       "uid": 106,
       "name": "renderFooter",
       "typeValue": {
-       "raw": "(props: IModal<any>>) => React.ReactNode"
+       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any>>) => React.ReactNode"
       },
       "from": "@epam/uui-components:PickerModalOptions",
       "required": false
@@ -44638,7 +44638,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "AccordionMods & GeneralAccordionProps | IEditable<boolean>",
+     "raw": "AccordionMods & GeneralAccordionProps | AccordionMods & GeneralAccordionProps & IEditable<boolean>",
      "print": [
       "type AccordionProps = AccordionMods & uuiComponents.AccordionProps;"
      ]
@@ -47183,7 +47183,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ClassValue; highlightSearchMatches?: boolean | undefined; } | ClassValue; highlightSearchMatches?: boolean | undefined; } | ClassValue; highlightSearchMatches?: boolean | undefined; } | ClassValue; highlightSearchMatches?: boolean | undefined; }",
+     "raw": "SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: 'dropdown' | 'modal' | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: 'none' | 'input' | 'body' | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: 'dropdown' | 'modal' | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: 'none' | 'input' | 'body' | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: 'dropdown' | 'modal' | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: 'none' | 'input' | 'body' | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: 'dropdown' | 'modal' | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: 'none' | 'input' | 'body' | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; }",
      "print": [
       "type CompletePickerInputProps<TItem, TId> = PickerInputProps & PickerInputBaseProps<TItem, TId>;"
      ]
@@ -47268,7 +47268,7 @@
        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
       ],
       "typeValue": {
-       "raw": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -48427,7 +48427,7 @@
        "Called when component is clicked"
       ],
       "typeValue": {
-       "raw": "((e?: any) => void) & ((rowProps: DataRowProps<TItem, TId>) => void)"
+       "raw": "((e?: any) => void) & ((rowProps: DataRowProps<TItem, TId>) => void) & ((rowProps: DataRowProps<TItem, TId>) => void)"
       },
       "from": "@epam/uui-core:IClickable",
       "required": false
@@ -48505,7 +48505,7 @@
        "If row needs a checkbox, this field should be specified and it props can be configured here"
       ],
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & ICanBeInvalid"
+       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -49302,7 +49302,7 @@
       "uid": 8,
       "name": "onCopy",
       "typeValue": {
-       "raw": "(copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void"
+       "raw": "(copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>, selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void"
       },
       "required": false
      },
@@ -49624,7 +49624,7 @@
       "uid": 5,
       "name": "setDisplayedDateAndView",
       "typeValue": {
-       "raw": "(displayedDate: ViewType) => void"
+       "raw": "(displayedDate: Dayjs, view: ViewType) => void"
       },
       "from": "@epam/uui-components:DatePickerBodyBaseProps",
       "required": true
@@ -49660,7 +49660,7 @@
       "uid": 9,
       "name": "renderDay",
       "typeValue": {
-       "raw": "(day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+       "raw": "(day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
       },
       "from": "@epam/uui-components:DatePickerBodyBaseOptions",
       "required": false
@@ -49801,7 +49801,7 @@
        "Overrides rendering of the single day. For example, to highlight certain days"
       ],
       "typeValue": {
-       "raw": "(day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+       "raw": "(day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
       },
       "from": "@epam/uui-core:BaseDatePickerProps",
       "required": false
@@ -56016,7 +56016,7 @@
        "Called when component is clicked"
       ],
       "typeValue": {
-       "raw": "((e?: any) => void) & ((rowProps: DataRowProps<TItem, TId>) => void)"
+       "raw": "((e?: any) => void) & ((rowProps: DataRowProps<TItem, TId>) => void) & ((rowProps: DataRowProps<TItem, TId>) => void)"
       },
       "from": "@epam/uui-core:IClickable",
       "required": false
@@ -56094,7 +56094,7 @@
        "If row needs a checkbox, this field should be specified and it props can be configured here"
       ],
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & ICanBeInvalid"
+       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -56577,7 +56577,7 @@
        "Called when component is clicked"
       ],
       "typeValue": {
-       "raw": "((e?: any) => void) & ((rowProps: DataRowProps<TItem, TId>) => void)"
+       "raw": "((e?: any) => void) & ((rowProps: DataRowProps<TItem, TId>) => void) & ((rowProps: DataRowProps<TItem, TId>) => void)"
       },
       "from": "@epam/uui-core:IClickable",
       "required": false
@@ -56655,7 +56655,7 @@
        "If row needs a checkbox, this field should be specified and it props can be configured here"
       ],
       "typeValue": {
-       "raw": "{ isVisible: boolean; } & ICanBeInvalid"
+       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid"
       },
       "from": "@epam/uui-core:DataRowOptions",
       "required": false
@@ -57094,7 +57094,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "IHasEditMode | IHasEditMode | IHasEditMode | IHasEditMode",
+     "raw": "SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & IHasEditMode | SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & IHasEditMode | SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & IHasEditMode | SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & IHasEditMode",
      "print": [
       "type PickerListProps<TItem, TId> = SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & {",
       "    renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode;",
@@ -57137,7 +57137,7 @@
       "uid": 118,
       "name": "renderFooter",
       "typeValue": {
-       "raw": "(props: IModal<any>>) => React.ReactNode"
+       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any>>) => React.ReactNode"
       },
       "from": "@epam/uui-components:PickerModalOptions",
       "required": false
@@ -57167,7 +57167,7 @@
       "uid": 121,
       "name": "renderModalToggler",
       "typeValue": {
-       "raw": "(props: DataRowProps<TItem, TId>[]) => React.ReactNode"
+       "raw": "(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]) => React.ReactNode"
       },
       "required": false
      },
@@ -57234,7 +57234,7 @@
        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
       ],
       "typeValue": {
-       "raw": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -57283,7 +57283,7 @@
        "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
       ],
       "typeValue": {
-       "raw": "((item: TItem, sorting: SortingOption<any>) => string)"
+       "raw": "((item: TItem, sorting: SortingOption<any>) => any) & ((item: TItem, sorting: SortingOption<any>) => string)"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -57675,7 +57675,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "PickerModalOptions<TItem, TId> | PickerModalOptions<TItem, TId> | PickerModalOptions<TItem, TId> | PickerModalOptions<TItem, TId>",
+     "raw": "PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'id'; initialValue: TId; } & IModal<TId> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'entity'; initialValue: TItem; } & IModal<TItem> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'id'; initialValue: TId[]; } & IModal<TId[]> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[]; } & IModal<TItem[]> & PickerModalOptions<TItem, TId>",
      "print": [
       "type PickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> & IHasCaption & (PickerModalScalarProps<TId, TItem> | PickerModalArrayProps<TId, TItem>) & PickerModalOptions<TItem, TId>;"
      ]
@@ -57736,7 +57736,7 @@
        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
       ],
       "typeValue": {
-       "raw": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -57954,7 +57954,7 @@
       "uid": 106,
       "name": "renderFooter",
       "typeValue": {
-       "raw": "(props: IModal<any>>) => React.ReactNode"
+       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any>>) => React.ReactNode"
       },
       "from": "@epam/uui-components:PickerModalOptions",
       "required": false
@@ -58647,7 +58647,7 @@
       "uid": 4,
       "name": "renderHeader",
       "typeValue": {
-       "raw": "(props: PickerBodyValue<string>>) => React.ReactNode"
+       "raw": "(props: IEditable<PickerBodyValue<string>>) => React.ReactNode"
       },
       "required": false
      },
@@ -58682,7 +58682,7 @@
       "uid": 8,
       "name": "renderDay",
       "typeValue": {
-       "raw": "(day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+       "raw": "(day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
       },
       "from": "@epam/uui-components:DatePickerBodyBaseOptions",
       "required": false
@@ -58907,7 +58907,7 @@
        "Overrides rendering of the single day. For example, to highlight certain days"
       ],
       "typeValue": {
-       "raw": "(day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+       "raw": "(day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
       },
       "from": "@epam/uui-core:BaseRangeDatePickerProps",
       "required": false
@@ -59134,7 +59134,7 @@
        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
       ],
       "typeValue": {
-       "raw": "(newValue: AnalyticsEvent"
+       "raw": "(newValue: RangeDatePickerValue | null, oldValue: RangeDatePickerValue | null) => AnalyticsEvent"
       },
       "from": "@epam/uui-core:IAnalyticableOnChange",
       "required": false
@@ -62942,7 +62942,7 @@
       "uid": 18,
       "name": "modifiers",
       "typeValue": {
-       "raw": "(Modifier<any, object>>)[]"
+       "raw": "(StrictModifier<any> | Partial<Modifier<any, object>>)[]"
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
@@ -64655,7 +64655,7 @@
       "uid": 1,
       "name": "getErrorInfo",
       "typeValue": {
-       "raw": "(uuiError: UuiErrorInfo"
+       "raw": "(uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo"
       },
       "required": false
      },
@@ -66696,7 +66696,7 @@
       "uid": 14,
       "name": "modifiers",
       "typeValue": {
-       "raw": "(Modifier<any, object>>)[]"
+       "raw": "(StrictModifier<any> | Partial<Modifier<any, object>>)[]"
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
@@ -68182,7 +68182,7 @@
       "uid": 1,
       "name": "getInfo",
       "typeValue": {
-       "raw": "(error: any, defaultErrorInfo: UuiErrorInfo"
+       "raw": "(error: any, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo"
       },
       "required": false
      }
@@ -69036,7 +69036,7 @@
       "uid": 1,
       "name": "api",
       "typeValue": {
-       "raw": "MakeMeUser, string | number, any>"
+       "raw": "LazyDataSourceApi<MakeMeUser, string | number, any>"
       },
       "required": true
      }
@@ -71639,7 +71639,7 @@
       "uid": 14,
       "name": "modifiers",
       "typeValue": {
-       "raw": "(Modifier<any, object>>)[]"
+       "raw": "(StrictModifier<any> | Partial<Modifier<any, object>>)[]"
       },
       "from": "@epam/uui-core:DropdownProps",
       "required": false
@@ -71877,7 +71877,7 @@
       "uid": 6,
       "name": "data",
       "typeValue": {
-       "raw": "{ imageSize: SlateImgAlign; } & Partial<File> | { imageSize: FileUploadResponse>"
+       "raw": "{ imageSize: SlateImageSize; align: SlateImgAlign; } & Partial<File> | { imageSize: SlateImageSize; align: SlateImgAlign; } & Partial<FileUploadResponse>"
       },
       "from": "@epam/uui-editor:SlateProps",
       "required": true
@@ -72131,7 +72131,7 @@
       "uid": 1,
       "name": "data",
       "typeValue": {
-       "raw": "{ imageSize: SlateImgAlign; } & Partial<File> | { imageSize: FileUploadResponse>"
+       "raw": "{ imageSize: SlateImageSize; align: SlateImgAlign; } & Partial<File> | { imageSize: SlateImageSize; align: SlateImgAlign; } & Partial<FileUploadResponse>"
       },
       "required": true
      }
