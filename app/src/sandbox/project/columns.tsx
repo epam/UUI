@@ -67,13 +67,13 @@ export function getColumns(columnsProps: ColumnsProps) {
                                 />
                             ) }
                             renderToggler={ (togglerProps) => {
-                                const row = togglerProps.selection[0];
+                                const row = togglerProps.selection?.[0];
                                 return (
                                     <PickerToggler
                                         { ...props }
                                         { ...togglerProps }
                                         icon={
-                                            row?.value 
+                                            row?.value
                                                 ? () => <IconContainer icon={ statusIcon } style={ { fill: row?.value?.color } } /> 
                                                 : undefined
                                         }
