@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm } from '@epam/promo';
+import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput } from '@epam/promo';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
@@ -12,6 +12,8 @@ import { Task } from './types';
 import { getDemoTasks } from './demoData';
 import { getColumns } from './columns';
 import { deleteTaskWithChildren, getInsertionOrder } from './helpers';
+
+import css from './ProjectDemo.module.scss';
 
 interface FormState {
     items: Record<number, Task>;
@@ -105,12 +107,21 @@ export function ProjectDemo() {
         [insertTask],
     );
 
+    const searchHandler = useCallback(
+        (val: string | undefined) => setTableState((currentTableState) => ({
+            ...currentTableState,
+            search: val,
+        })),
+        [],
+    );
+
     const { rows, listProps } = useList(
         {
             type: 'array',
             listState: tableState,
             setListState: setTableState,
             items: Object.values(value.items),
+            getSearchFields: (item) => [item.name],
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getRowOptions: (task) => ({
@@ -135,7 +146,7 @@ export function ProjectDemo() {
 
     return (
         <Panel style={ { width: '100%' } }>
-            <FlexRow spacing="12" margin="12">
+            <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true }>
                 <FlexCell width="auto">
                     <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />
                 </FlexCell>
@@ -149,17 +160,21 @@ export function ProjectDemo() {
                     <IconButton icon={ deleteLast } onClick={ () => deleteLastTask() } />
                 </FlexCell>
                 <FlexSpacer />
+                <FlexCell cx={ css.search } width={ 295 }>
+                    <SearchInput value={ tableState.search } onValueChange={ searchHandler } placeholder="Search" debounceDelay={ 1000 } />
+                </FlexCell>
+                <div className={ css.divider } />
                 <FlexCell width="auto">
-                    <Button size="30" icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
+                    <IconButton icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Button size="30" icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } />
+                    <IconButton icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Button size="30" caption="Save" onClick={ save } isDisabled={ !isChanged } />
+                    <Button size="30" caption="Cancel" onClick={ revert } isDisabled={ !isChanged } />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Button size="30" caption="Revert" onClick={ revert } isDisabled={ !isChanged } />
+                    <Button size="30" color="green" caption="Save" onClick={ save } isDisabled={ !isChanged } />
                 </FlexCell>
             </FlexRow>
             <DataTable
