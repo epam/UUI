@@ -87,12 +87,6 @@ export function ProjectDemo() {
             ...currentValue, items: deleteTaskWithChildren(currentValue.items, task),
         }));
     }, [setValue]);
-    
-    const deleteLastTask = useCallback(() => {
-        setValue((currentValue) => ({
-            ...currentValue, items: deleteTaskWithChildren(currentValue.items, null),
-        }));
-    }, [setValue]);
 
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
         if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
@@ -144,6 +138,26 @@ export function ProjectDemo() {
         [insertTask, deleteTask],
     );
 
+    const selectedItem = useMemo(() => {
+        if (tableState.selectedId !== undefined) {
+            return value.items[tableState.selectedId];
+        }
+        return null;
+    }, [tableState.selectedId, value.items]);
+
+    const deleteItemOnClick = () => {
+        const prevRows = [...rows]; 
+        deleteTask(selectedItem);
+        if (selectedItem !== null) {
+            const index = prevRows.findIndex((task) => task.id === selectedItem.id);
+            const newSelectedIndex = index === prevRows.length - 1 
+                ? (prevRows.length - 2)
+                : (index + 1);
+
+            setTableState((state) => ({ ...state, selectedId: prevRows[newSelectedIndex].id })); 
+        }
+    };
+
     return (
         <Panel style={ { width: '100%' } }>
             <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="gray5">
@@ -151,13 +165,13 @@ export function ProjectDemo() {
                     <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <IconButton icon={ insertAfter } onClick={ () => insertTask('bottom') } />
+                    <IconButton icon={ insertAfter } onClick={ () => insertTask('bottom', selectedItem) } />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <IconButton icon={ insertBefore } onClick={ () => insertTask('top') } />
+                    <IconButton icon={ insertBefore } onClick={ () => insertTask('top', selectedItem) } />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <IconButton icon={ deleteLast } onClick={ () => deleteLastTask() } />
+                    <IconButton icon={ deleteLast } onClick={ () => deleteItemOnClick() } />
                 </FlexCell>
                 <FlexSpacer />
                 <FlexCell cx={ css.search } width={ 295 }>
