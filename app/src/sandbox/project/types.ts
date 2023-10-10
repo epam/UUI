@@ -7,6 +7,7 @@ export interface Task {
     estimate?: number;
     resources?: number[];
     startDate?: string;
+    dueDate?: string;
     status?: string;
     description?: string;
     order?: string;
