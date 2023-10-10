@@ -41,10 +41,12 @@ export type PickerBaseOptions<TItem, TId> = {
     /** Plural name of the entity being selected. Affects wording like "X [entities] selected" */
     entityPluralName?: string;
 
-    /** Provides items to the Picker */
+    /** Datasource to get data for the picker */
     dataSource: IDataSource<TItem, TId, any>;
 
-    /** Gets entity display name. Default it item.name. */
+    /** A pure function that gets entity name from entity object.
+     Default: (item) => item.name.
+     */
     getName?: (item: TItem) => string;
 
     /** Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc. */

@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 915,
-   "amountTypes": 293
+   "amountProps": 901,
+   "amountTypes": 291
   },
   "value": [
    {
@@ -707,20 +707,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:ITablePreset",
-    "value": [
-     "columnsConfig",
-     "filter",
-     "filtersConfig",
-     "id",
-     "isReadonly",
-     "name",
-     "order",
-     "sorting",
-     "viewState"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:ITree",
     "value": [
      "cascadeSelection",
@@ -877,16 +863,6 @@
     "value": [
      "duration",
      "position"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:PickerFilterConfig",
-    "value": [
-     "dataSource",
-     "getName",
-     "renderRow",
-     "type",
-     "valueType"
     ]
    },
    {
@@ -2389,7 +2365,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 469
+   "amountTypes": 468
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -2507,7 +2483,6 @@
    "@epam/uui-core:ModalWindowProps",
    "@epam/uui-core:NotificationOperation",
    "@epam/uui-core:NotificationParams",
-   "@epam/uui-core:PickerBaseOptions",
    "@epam/uui-core:PickerBaseProps",
    "@epam/uui-core:PickerBindingProps",
    "@epam/uui-core:PickerBindingValueType",
