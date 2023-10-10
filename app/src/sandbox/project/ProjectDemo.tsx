@@ -146,7 +146,7 @@ export function ProjectDemo() {
 
     return (
         <Panel style={ { width: '100%' } }>
-            <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true }>
+            <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="gray5">
                 <FlexCell width="auto">
                     <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />
                 </FlexCell>
