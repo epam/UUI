@@ -41,7 +41,7 @@ export class Button extends ButtonBase<ButtonProps> {
                     {this.props.caption}
                 </div>
             ),
-            this.props.count !== undefined && this.props.count !== null && <CountIndicator caption={ this.props.count } />,
+            this.props.count !== undefined && this.props.count !== null && <CountIndicator key="count-indicator" caption={ this.props.count } />,
             this.props.icon && this.props.iconPosition === 'right' && (
                 <IconContainer key="icon-right" icon={ this.props.icon } onClick={ !this.props.isDisabled ? this.props.onIconClick : undefined } />
             ),
