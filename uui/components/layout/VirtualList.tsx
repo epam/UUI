@@ -1,13 +1,14 @@
 import * as React from 'react';
 import {
-    IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, useScrollShadows, cx, uuiMarkers,
+    IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, useScrollShadows, cx, uuiMarkers, IHasChildren,
 } from '@epam/uui-core';
 import { PositionValues, ScrollBars, ScrollbarsApi } from '@epam/uui-components';
 import css from './VirtualList.module.scss';
 import { Blocker } from './Blocker';
+import { HTMLAttributes } from 'react';
 
-export interface VirtualListRenderRowsParams<List extends HTMLElement = any> {
-    listContainerRef: React.MutableRefObject<List>;
+export interface VirtualListRenderRowsParams<ListContainer extends HTMLElement = any> {
+    listContainerRef: React.MutableRefObject<ListContainer>;
     estimatedHeight: number;
     offsetY: number;
     scrollShadows: {
@@ -25,21 +26,18 @@ type VirtualListRenderRows<List extends HTMLElement = any> = {
     renderRows?: (config: VirtualListRenderRowsParams<List>) => React.ReactNode;
 };
 
-interface BaseVirtualListProps<ScrollContainer extends HTMLElement = any>
+interface BaseVirtualListProps
     extends IHasCX,
     IEditable<VirtualListState>,
-    IHasRawProps<ScrollContainer> {
+    IHasRawProps<HTMLAttributes<HTMLDivElement>> {
     rowsCount?: number;
     role?: React.HTMLAttributes<HTMLDivElement>['role'];
     onScroll?(value: PositionValues): void;
     rowsSelector?: string;
-    disableScroll?: boolean;
+    isLoading?: boolean;
 }
 
-export type VirtualListProps<
-    List extends HTMLElement = any,
-    ScrollContainer extends HTMLElement = any
-> = BaseVirtualListProps<ScrollContainer> & VirtualListRenderRows<List>;
+export type VirtualListProps<List extends HTMLElement = any> = BaseVirtualListProps & VirtualListRenderRows<List>;
 
 export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((props, ref) => {
     const {
@@ -73,48 +71,53 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
     }, []);
 
     return (
-        <div style={ {
-            display: 'flex',
-            position: 'relative',
-            height: '100%',
-            width: '100%',
-            overflow: 'hidden',
-        } }
+        <ScrollBars
+            cx={ cx(css.scrollContainer, props.cx, {
+                [uuiMarkers.scrolledLeft]: scrollShadows.horizontalLeft,
+                [uuiMarkers.scrolledRight]: scrollShadows.horizontalRight,
+                [uuiMarkers.scrolledTop]: scrollShadows.verticalTop,
+                [uuiMarkers.scrolledBottom]: scrollShadows.verticalBottom,
+            }) }
+            onScroll={ handleScroll }
+            disableScroll={ props.isLoading }
+            renderView={ ({ style }: any) => <VirtualListView isLoading={ props.isLoading } style={ style } /> }
+            ref={ scrollBarsRef }
+            style={ {
+                position: 'relative',
+                flex: '1 1 auto',
+                display: 'flex',
+                height: 'auto',
+            } }
         >
-            <ScrollBars
-                cx={ cx(css.scrollContainer, props.cx, {
-                    [uuiMarkers.scrolledLeft]: scrollShadows.horizontalLeft,
-                    [uuiMarkers.scrolledRight]: scrollShadows.horizontalRight,
-                    [uuiMarkers.scrolledTop]: scrollShadows.verticalTop,
-                    [uuiMarkers.scrolledBottom]: scrollShadows.verticalBottom,
-                }) }
-                onScroll={ handleScroll }
-                disableScroll={ props.disableScroll }
-                renderView={ ({ style, ...rest }: any) => (
-                    <div
-                        style={ {
-                            ...style, 
-                            position: 'relative', 
-                            flex: '1 1 auto',
-                            display: 'flex',
-                            flexDirection: 'column',
-                        } }
-                        { ...rest }
-                        { ...props.rawProps }
-                    />
-                ) }
-                ref={ scrollBarsRef }
-                style={ { 
-                    position: 'relative', 
+            {renderRows()}
+        </ScrollBars>
+    );
+});
+
+interface VirtualListViewProps extends IHasRawProps<HTMLAttributes<HTMLDivElement>>, IHasChildren {
+    style?: React.CSSProperties;
+    isLoading: boolean;
+}
+
+const VirtualListView = React.forwardRef<HTMLDivElement, VirtualListViewProps>((props, ref) => {
+    return (
+        <>
+            <div
+                { ...props.rawProps }
+                style={ {
+                    ...props.style,
+                    position: 'relative',
                     flex: '1 1 auto',
                     display: 'flex',
-                    height: 'auto',
+                    flexDirection: 'column',
+                    overflow: props.isLoading ? 'hidden' : 'auto',
                 } }
+                ref={ ref }
             >
-                {renderRows()}
-            </ScrollBars>
-            <Blocker isEnabled={ props.disableScroll } />
-        </div>
+                { props.children }
+            </div>
+            <Blocker isEnabled={ props.isLoading } />
+        </>
     );
 });
 
