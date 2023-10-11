@@ -47,7 +47,7 @@ export function ProjectDemo() {
         getMetadata: () => metadata,
     });
 
-    const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }] });
+    const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }], visibleCount: 1000 });
 
     // Insert new/exiting top/bottom or above/below relative to other task
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
@@ -74,12 +74,15 @@ export function ProjectDemo() {
             return { ...currentValue, items: { ...currentValue.items, [task.id]: task } };
         });
 
-        if (position === 'inside') {
-            setTableState((currentTableState) => ({
+        setTableState((currentTableState) => {
+            return {
                 ...currentTableState,
-                folded: { ...currentTableState.folded, [`${task.parentId}`]: false },
-            }));
-        }
+                folded: position === 'inside'
+                    ? { ...currentTableState.folded, [`${task.parentId}`]: false }
+                    : currentTableState.folded,
+                selectedId: task.id,
+            };
+        });
     }, [setValue, setTableState]);
 
     const deleteTask = useCallback((task: Task) => {
@@ -142,19 +145,22 @@ export function ProjectDemo() {
         if (tableState.selectedId !== undefined) {
             return value.items[tableState.selectedId];
         }
-        return null;
+        return undefined;
     }, [tableState.selectedId, value.items]);
 
     const deleteItemOnClick = () => {
         const prevRows = [...rows]; 
         deleteTask(selectedItem);
-        if (selectedItem !== null) {
+        if (selectedItem !== undefined) {
             const index = prevRows.findIndex((task) => task.id === selectedItem.id);
             const newSelectedIndex = index === prevRows.length - 1 
                 ? (prevRows.length - 2)
                 : (index + 1);
-
-            setTableState((state) => ({ ...state, selectedId: prevRows[newSelectedIndex].id })); 
+            
+            setTableState((state) => ({
+                ...state,
+                selectedId: newSelectedIndex >= 0 ? prevRows[newSelectedIndex].id : undefined,
+            })); 
         }
     };
 
