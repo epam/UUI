@@ -11,7 +11,7 @@ export default function AttributesExample() {
         <Panel shadow cx={ css.container }>
             <div className={ css.wrapper }>
                 <FlexRow>
-                    <Avatar size="60" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" />
+                    <Avatar size="60" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
                     <FlexRow padding="12">
                         <FlexCell width="auto">
                             <Text cx={ css.text } lineHeight="24" fontSize="18" color="gray80" font="sans-semibold">
