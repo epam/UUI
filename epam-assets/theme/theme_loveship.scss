@@ -18,91 +18,91 @@
     --night800: #303240;
     --night900: #1D1E26;
 
-    --sky-soft: #F5FDFF;
-    --sky-lightest: #E1F4FA;
-    --sky-light: #A0DDEE;
-    --sky: #009ECC;
-    --sky-dark: #0086AD;
-    --sky-darkest: #006B8A;
+    --sky-5: #F5FDFF;
+    --sky-10: #E1F4FA;
+    --sky-20: #A0DDEE;
+    --sky-50: #009ECC;
+    --sky-60: #0086AD;
+    --sky-70: #006B8A;
 
-    --grass-soft: #FCFFF5;
-    --grass-lightest: #EBF3D8;
-    --grass-light: #C1E288;
-    --grass: #67A300;
-    --grass-dark: #528500;
-    --grass-darkest: #396F1F;
+    --grass-5: #FCFFF5;
+    --grass-10: #EBF3D8;
+    --grass-20: #C1E288;
+    --grass-50: #67A300;
+    --grass-60: #528500;
+    --grass-70: #396F1F;
 
-    --sun-soft: #FFFCF5;
-    --sun-lightest: #FFEDC9;
-    --sun-light: #FFD785;
-    --sun: #FCAA00;
-    --sun-dark: #FF9000;
-    --sun-darkest: #BD5800;
+    --sun-5: #FFFCF5;
+    --sun-10: #FFEDC9;
+    --sun-20: #FFD785;
+    --sun-50: #FCAA00;
+    --sun-60: #FF9000;
+    --sun-70: #BD5800;
 
-    --fire-soft: #FEF6F6;
-    --fire-lightest: #FDE1E1;
-    --fire-light: #FBB6B6;
-    --fire: #FF4242;
-    --fire-dark: #E22A2A;
-    --fire-darkest: #AD0000;
+    --fire-5: #FEF6F6;
+    --fire-10: #FDE1E1;
+    --fire-20: #FBB6B6;
+    --fire-50: #FF4242;
+    --fire-60: #E22A2A;
+    --fire-70: #AD0000;
 
     --white: #FFFFFF;
 
     --yellow-5: #FFFFF0;
     --yellow-10: #FFFECC;
     --yellow-20: #FFFCA4;
-    --yellow-30: #FDD63B;
-    --yellow-40: #F9B71D;
-    --yellow-50: #D3910C;
+    --yellow-50: #FDD63B;
+    --yellow-60: #F9B71D;
+    --yellow-70: #D3910C;
 
     --orange-5: #FEF8F4;
     --orange-10: #FFE8D7;
     --orange-20: #FFCCA7;
-    --orange-30: #FF8B3E;
-    --orange-40: #F76B0D;
-    --orange-50: #BD4B00;
+    --orange-50: #FF8B3E;
+    --orange-60: #F76B0D;
+    --orange-70: #BD4B00;
 
     --fuchsia-5: #FFF7FB;
     --fuchsia-10: #F9D8E7;
     --fuchsia-20: #EDADC8;
-    --fuchsia-30: #EA4386;
-    --fuchsia-40: #D61E68;
-    --fuchsia-50: #AE1955;
+    --fuchsia-50: #EA4386;
+    --fuchsia-60: #D61E68;
+    --fuchsia-70: #AE1955;
 
     --purple-5: #FDF6FE;
     --purple-10: #F2CCFA;
     --purple-20: #E79DF5;
-    --purple-30: #B114D1;
-    --purple-40: #860F9E;
-    --purple-50: #5E0B6F;
+    --purple-50: #B114D1;
+    --purple-60: #860F9E;
+    --purple-70: #5E0B6F;
 
     --violet-5: #F8F6FE;
     --violet-10: #DBCCFA;
     --violet-20: #BB9DF5;
-    --violet-30: #773CEC;
-    --violet-40: #5514D6;
-    --violet-50: #40109E;
+    --violet-50: #773CEC;
+    --violet-60: #5514D6;
+    --violet-70: #40109E;
 
     --cobalt-5: #F8FAFF;
     --cobalt-10: #D9E2FC;
     --cobalt-20: #AEC0F5;
-    --cobalt-30: #0F98FF;
-    --cobalt-40: #006FE5;
-    --cobalt-50: #0954A5;
+    --cobalt-50: #0F98FF;
+    --cobalt-60: #006FE5;
+    --cobalt-70: #0954A5;
 
     --cyan-5: #F5FBFF;
     --cyan-10: #D1FAFA;
     --cyan-20: #AAEEEE;
-    --cyan-30: #14CCCC;
-    --cyan-40: #0F9E9E;
-    --cyan-50: #0B6F6F;
+    --cyan-50: #14CCCC;
+    --cyan-60: #0F9E9E;
+    --cyan-70: #0B6F6F;
 
     --mint-5: #F2FCF5;
     --mint-10: #DDF3E4;
     --mint-20: #B4DFC4;
-    --mint-30: #4FC48C;
-    --mint-40: #2E9E68;
-    --mint-50: #236E4A;
+    --mint-50: #4FC48C;
+    --mint-60: #2E9E68;
+    --mint-70: #236E4A;
 
     /* Loveship old colors */
     --uui-color-white-800: #E6E6E6;
@@ -147,19 +147,21 @@
 
     /* brand colors */
 
-    --uui-accent-5: var(--grass-soft);
-    --uui-accent-10: var(--grass-lightest);
-    --uui-accent-20: var(--grass-light);
-    --uui-accent-50: var(--grass);
-    --uui-accent-60: var(--grass-dark);
-    --uui-accent-70: var(--grass-darkest);
+    --uui-accent-5: var(--grass-5);
+    --uui-accent-10: var(--grass-10);
+    --uui-accent-20: var(--grass-20);
+    --uui-accent-50: var(--grass-50);
+    --uui-accent-60: var(--grass-60);
+    --uui-accent-70: var(--grass-70);
+    --uui-accent-contrast: var(--white);
 
-    --uui-primary-5: var(--sky-soft);
-    --uui-primary-10: var(--sky-lightest);
-    --uui-primary-20: var(--sky-light);
-    --uui-primary-50: var(--sky);
-    --uui-primary-60: var(--sky-dark);
-    --uui-primary-70: var(--sky-darkest);
+    --uui-primary-5: var(--sky-5);
+    --uui-primary-10: var(--sky-10);
+    --uui-primary-20: var(--sky-20);
+    --uui-primary-50: var(--sky-50);
+    --uui-primary-60: var(--sky-60);
+    --uui-primary-70: var(--sky-70);
+    --uui-primary-contrast: var(--white);
 
     --uui-secondary-5: var(--night200);
     --uui-secondary-10: var(--night300);
@@ -167,36 +169,41 @@
     --uui-secondary-50: var(--night600);
     --uui-secondary-60: var(--night700);
     --uui-secondary-70: var(--night800);
+    --uui-secondary-contrast: var(--white);
 
-    --uui-critical-5: var(--fire-soft);
-    --uui-critical-10: var(--fire-lightest);
-    --uui-critical-20: var(--fire-light);
-    --uui-critical-50: var(--fire);
-    --uui-critical-60: var(--fire-dark);
-    --uui-critical-70: var(--fire-darkest);
+    --uui-critical-5: var(--fire-5);
+    --uui-critical-10: var(--fire-10);
+    --uui-critical-20: var(--fire-20);
+    --uui-critical-50: var(--fire-50);
+    --uui-critical-60: var(--fire-60);
+    --uui-critical-70: var(--fire-70);
+    --uui-critical-contrast: var(--white);
 
     /* semantic colors */
 
-    --uui-info-5: var(--sky-soft);
-    --uui-info-10: var(--sky-lightest);
-    --uui-info-20: var(--sky-light);
-    --uui-info-50: var(--sky);
-    --uui-info-60: var(--sky-dark);
-    --uui-info-70: var(--sky-darkest);
+    --uui-info-5: var(--sky-5);
+    --uui-info-10: var(--sky-10);
+    --uui-info-20: var(--sky-20);
+    --uui-info-50: var(--sky-50);
+    --uui-info-60: var(--sky-60);
+    --uui-info-70: var(--sky-70);
+    --uui-info-contrast: var(--white);
 
-    --uui-success-5: var(--grass-soft);
-    --uui-success-10: var(--grass-lightest);
-    --uui-success-20: var(--grass-light);
-    --uui-success-50: var(--grass);
-    --uui-success-60: var(--grass-dark);
-    --uui-success-70: var(--grass-darkest);
+    --uui-success-5: var(--grass-5);
+    --uui-success-10: var(--grass-10);
+    --uui-success-20: var(--grass-20);
+    --uui-success-50: var(--grass-50);
+    --uui-success-60: var(--grass-60);
+    --uui-success-70: var(--grass-70);
+    --uui-success-contrast: var(--white);
 
-    --uui-warning-5: var(--sun-soft);
-    --uui-warning-10: var(--sun-lightest);
-    --uui-warning-20: var(--sun-light);
-    --uui-warning-50: var(--sun);
-    --uui-warning-60: var(--sun-dark);
-    --uui-warning-70: var(--sun-darkest);
+    --uui-warning-5: var(--sun-5);
+    --uui-warning-10: var(--sun-10);
+    --uui-warning-20: var(--sun-20);
+    --uui-warning-50: var(--sun-50);
+    --uui-warning-60: var(--sun-60);
+    --uui-warning-70: var(--sun-70);
+    --uui-warning-contrast: var(--night800);
 
     --uui-error-5: var(--fire-5);
     --uui-error-10: var(--fire-10);
@@ -204,6 +211,7 @@
     --uui-error-50: var(--fire-50);
     --uui-error-60: var(--fire-60);
     --uui-error-70: var(--fire-70);
+    --uui-error-contrast: var(--white);
 
     --uui-neutral-0: #FFFFFF;
     --uui-neutral-5: var(--night50);
@@ -227,13 +235,12 @@
     --uui-surface-main: var(--uui-neutral-0);
     --uui-surface-higher: var(--uui-neutral-10);
     --uui-surface-highest: var(--uui-neutral-20);
-    --uui-surface-contrast: var(--uui-neutral-70);
-    --uui-surface-contrast-low: var(--uui-neutral-80);
-    --uui-surface-contrast-lower: var(--uui-neutral-90);
+    --uui-surface-contrast: var(--uui-neutral-80);
+    --uui-surface-contrast-higher: var(--uui-neutral-90);
 
-    --uui-surface-info: var(--sky-lightest);
-    --uui-surface-critical: var(--fire-lightest);
-    --uui-surface-warning: var(--sun-lightest);
+    --uui-surface-info: var(--sky-10);
+    --uui-surface-critical: var(--fire-10);
+    --uui-surface-warning: var(--sun-10);
 
     --uui-divider: var(--uui-neutral-40);
     --uui-divider-light: var(--uui-neutral-30);
@@ -247,17 +254,17 @@
     --uui-text-white: var(--white);
     --uui-text-black: var(--night800);
 
-    --uui-text-info: var(--uui-info-50);
-    --uui-text-warning: var(--uui-warning-50);
-    --uui-text-critical: var(--uui-critical-50);
-    --uui-text-success: var(--uui-success-50);
+    --uui-text-info: var(--uui-info-70);
+    --uui-text-warning: var(--uui-warning-70);
+    --uui-text-critical: var(--uui-critical-70);
+    --uui-text-success: var(--uui-success-70);
 
     /* not accepted part */
 
     /* control specific */
 
-    --uui-link: var(--sky);
-    --uui-link-hover: var(--sky-dark);
+    --uui-link: var(--sky-50);
+    --uui-link-hover: var(--sky-60);
     --uui-link-visited: #8018A0;
     --uui-link-visited-hover: #601278;
     --uui-link-disabled: var(--uui-neutral-50);
@@ -313,10 +320,6 @@
 
     /* ------------------------------------ */
 
-    /* override variables */
-
-    --uui-accordion-border-radius: 6px;
-
     /* begin color classes */
 
     .uui-color-accent,
@@ -328,8 +331,7 @@
         --uui-color-50: var(--uui-accent-50);
         --uui-color-60: var(--uui-accent-60);
         --uui-color-70: var(--uui-accent-70);
-        --uui-color-text: var(--uui-accent-50);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-color-contrast: var(--uui-accent-contrast);
     }
 
     .uui-color-primary,
@@ -341,8 +343,7 @@
         --uui-color-50: var(--uui-primary-50);
         --uui-color-60: var(--uui-primary-60);
         --uui-color-70: var(--uui-primary-70);
-        --uui-color-text: var(--uui-primary-50);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-color-contrast: var(--uui-primary-contrast);
     }
 
     .uui-color-fire,
@@ -354,8 +355,17 @@
         --uui-color-50: var(--uui-critical-50);
         --uui-color-60: var(--uui-critical-60);
         --uui-color-70: var(--uui-critical-70);
-        --uui-color-text: var(--uui-critical-50);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-color-contrast: var(--uui-critical-contrast);
+    }
+
+    .uui-color-white {
+        --uui-color-5: var(--white);
+        --uui-color-10: var(--white);
+        --uui-color-20: var(--white);
+        --uui-color-50: var(--white);
+        --uui-color-60: var(--night100);
+        --uui-color-70: var(--night200);
+        --uui-color-contrast: var(--uui-neutral-80);
     }
 
     .uui-color-night50 {
@@ -365,8 +375,7 @@
         --uui-color-50: var(--night50);
         --uui-color-60: var(--uui-color-night50-800);
         --uui-color-70: var(--uui-color-night50-900);
-        --uui-color-text: var(--uui-secondary-60);
-        --uui-color-contrast-text: var(--uui-text-black);
+        --uui-color-contrast: var(--uui-neutral-80);
     }
 
     .uui-color-night100 {
@@ -376,8 +385,7 @@
         --uui-color-50: var(--night100);
         --uui-color-60: var(--uui-color-night100-800);
         --uui-color-70: var(--uui-color-night100-900);
-        --uui-color-text: var(--uui-secondary-60);
-        --uui-color-contrast-text: var(--uui-text-black);
+        --uui-color-contrast: var(--uui-neutral-80);
     }
 
     .uui-color-night200 {
@@ -387,8 +395,7 @@
         --uui-color-50: var(--night200);
         --uui-color-60: var(--uui-color-night200-800);
         --uui-color-70: var(--uui-color-night200-900);
-        --uui-color-text: var(--uui-secondary-60);
-        --uui-color-contrast-text: var(--uui-text-black);
+        --uui-color-contrast: var(--uui-neutral-80);
     }
 
     .uui-color-night300 {
@@ -398,8 +405,7 @@
         --uui-color-50: var(--night300);
         --uui-color-60: var(--uui-color-night300-800);
         --uui-color-70: var(--uui-color-night300-900);
-        --uui-color-text: var(--uui-secondary-60);
-        --uui-color-contrast-text: var(--uui-text-black);
+        --uui-color-contrast: var(--uui-neutral-80);
     }
 
     .uui-color-night400 {
@@ -409,8 +415,7 @@
         --uui-color-50: var(--night400);
         --uui-color-60: var(--uui-color-night400-800);
         --uui-color-70: var(--uui-color-night400-900);
-        --uui-color-text: var(--uui-secondary-60);
-        --uui-color-contrast-text: var(--uui-text-black);
+        --uui-color-contrast: var(--uui-neutral-80);
     }
 
     .uui-color-night500 {
@@ -420,8 +425,7 @@
         --uui-color-50: var(--night500);
         --uui-color-60: var(--uui-color-night500-800);
         --uui-color-70: var(--uui-color-night500-900);
-        --uui-color-text: var(--uui-secondary-60);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-color-contrast: var(--white);
     }
 
     .uui-color-night600,
@@ -433,8 +437,7 @@
         --uui-color-50: var(--uui-secondary-50);
         --uui-color-60: var(--uui-secondary-60);
         --uui-color-70: var(--uui-secondary-70);
-        --uui-color-text: var(--uui-secondary-60);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-color-contrast: var(--uui-secondary-contrast);
     }
 
     .uui-color-night700 {
@@ -444,8 +447,7 @@
         --uui-color-50: var(--night700);
         --uui-color-60: var(--uui-color-night700-800);
         --uui-color-70: var(--uui-color-night700-900);
-        --uui-color-text: var(--night700);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-color-contrast: var(--white);
     }
 
     .uui-color-night800 {
@@ -455,125 +457,131 @@
         --uui-color-50: var(--night800);
         --uui-color-60: var(--uui-color-night800-800);
         --uui-color-70: var(--uui-color-night800-900);
-        --uui-color-text: var(--night800);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-color-contrast: var(--white);
     }
 
-    .uui-color-sun,
-    .uui-color-warning {
-        --uui-color-5: var(--sun-soft);
-        --uui-color-10: var(--sun-lightest);
-        --uui-color-20: var(--sun-light);
-        --uui-color-50: var(--sun);
-        --uui-color-60: var(--sun-dark);
-        --uui-color-70: var(--sun-darkest);
-        --uui-color-text: var(--sun-darkest);
-        --uui-color-contrast-text: var(--uui-text-black);
+
+    .uui-color-warning,
+    .uui-color-sun {
+        --uui-color-5: var(--uui-warning-5);
+        --uui-color-10: var(--uui-warning-10);
+        --uui-color-20: var(--uui-warning-20);
+        --uui-color-50: var(--uui-warning-50);
+        --uui-color-60: var(--uui-warning-60);
+        --uui-color-70: var(--uui-warning-70);
+        --uui-color-contrast: var(--uui-warning-contrast);
     }
 
     .uui-color-yellow {
         --uui-color-5: var(--yellow-5);
         --uui-color-10: var(--yellow-10);
         --uui-color-20: var(--yellow-20);
-        --uui-color-50: var(--yellow-30);
-        --uui-color-60: var(--yellow-40);
-        --uui-color-70: var(--yellow-50);
-        --uui-color-text: var(--yellow-50);
-        --uui-color-contrast-text: var(--uui-text-black);
+        --uui-color-50: var(--yellow-50);
+        --uui-color-60: var(--yellow-60);
+        --uui-color-70: var(--yellow-70);
+        --uui-color-contrast: var(--uui-neutral-80);
     }
 
     .uui-color-orange {
         --uui-color-5: var(--orange-5);
         --uui-color-10: var(--orange-10);
         --uui-color-20: var(--orange-20);
-        --uui-color-50: var(--orange-30);
-        --uui-color-60: var(--orange-40);
-        --uui-color-70: var(--orange-50);
-        --uui-color-text: var(--orange-50);
-        --uui-color-contrast-text: var(--uui-text-black);
+        --uui-color-50: var(--orange-50);
+        --uui-color-60: var(--orange-60);
+        --uui-color-70: var(--orange-70);
+        --uui-color-contrast: var(--uui-neutral-80);
     }
 
     .uui-color-fuchsia {
         --uui-color-5: var(--fuchsia-5);
         --uui-color-10: var(--fuchsia-10);
         --uui-color-20: var(--fuchsia-20);
-        --uui-color-50: var(--fuchsia-30);
-        --uui-color-60: var(--fuchsia-40);
-        --uui-color-70: var(--fuchsia-50);
-        --uui-color-text: var(--fuchsia-50);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-color-50: var(--fuchsia-50);
+        --uui-color-60: var(--fuchsia-60);
+        --uui-color-70: var(--fuchsia-70);
+        --uui-color-contrast: var(--white);
     }
 
     .uui-color-purple {
         --uui-color-5: var(--purple-5);
         --uui-color-10: var(--purple-10);
         --uui-color-20: var(--purple-20);
-        --uui-color-50: var(--purple-30);
-        --uui-color-60: var(--purple-40);
-        --uui-color-70: var(--purple-50);
-        --uui-color-text: var(--purple-50);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-color-50: var(--purple-50);
+        --uui-color-60: var(--purple-60);
+        --uui-color-70: var(--purple-70);
+        --uui-color-contrast: var(--white);
     }
 
     .uui-color-violet {
         --uui-color-5: var(--violet-5);
         --uui-color-10: var(--violet-10);
         --uui-color-20: var(--violet-20);
-        --uui-color-50: var(--violet-30);
-        --uui-color-60: var(--violet-40);
-        --uui-color-70: var(--violet-50);
-        --uui-color-text: var(--violet-50);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-color-50: var(--violet-50);
+        --uui-color-60: var(--violet-60);
+        --uui-color-70: var(--violet-70);
+        --uui-color-contrast: var(--white);
     }
 
     .uui-color-cobalt {
         --uui-color-5: var(--cobalt-5);
         --uui-color-10: var(--cobalt-10);
         --uui-color-20: var(--cobalt-20);
-        --uui-color-50: var(--cobalt-30);
-        --uui-color-60: var(--cobalt-40);
-        --uui-color-70: var(--cobalt-50);
-        --uui-color-text: var(--cobalt-50);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-color-50: var(--cobalt-50);
+        --uui-color-60: var(--cobalt-60);
+        --uui-color-70: var(--cobalt-70);
+        --uui-color-contrast: var(--white);
     }
 
     .uui-color-cyan {
         --uui-color-5: var(--cyan-5);
         --uui-color-10: var(--cyan-10);
         --uui-color-20: var(--cyan-20);
-        --uui-color-50: var(--cyan-30);
-        --uui-color-60: var(--cyan-40);
-        --uui-color-70: var(--cyan-50);
-        --uui-color-text: var(--cyan-50);
-        --uui-color-contrast-text: var(--uui-text-black);
+        --uui-color-50: var(--cyan-50);
+        --uui-color-60: var(--cyan-60);
+        --uui-color-70: var(--cyan-70);
+        --uui-color-contrast: var(--uui-neutral-80);
     }
 
     .uui-color-mint {
         --uui-color-5: var(--mint-5);
         --uui-color-10: var(--mint-10);
         --uui-color-20: var(--mint-20);
-        --uui-color-50: var(--mint-30);
-        --uui-color-60: var(--mint-40);
-        --uui-color-70: var(--mint-50);
-        --uui-color-text: var(--mint-50);
-        --uui-color-contrast-text: var(--uui-text-black);
+        --uui-color-50: var(--mint-50);
+        --uui-color-60: var(--mint-60);
+        --uui-color-70: var(--mint-70);
+        --uui-color-contrast: var(--uui-neutral-80);
+    }
+
+    /* Accordion */
+
+    .uui-accordion-container {
+        --uui-accordion-border-radius: 6px;
     }
 
     /* Badge */
 
+    .uui-badge.uui-color-white.fill-outline {
+        --uui-badge-bg-hover: var(--uui-neutral-10);
+        --uui-badge-border: var(--uui-neutral-30);
+        --uui-badge-border-hover: var(--uui-neutral-30);
+        --uui-badge-caption: var(--uui-neutral-80);
+        --uui-badge-caption-hover: var(--uui-neutral-80);
+    }
+
     .uui-badge.uui-color-neutral,
     .uui-badge.uui-color-night300 {
         --uui-badge-bg: var(--uui-neutral-30);
-        --uui-badge-border: var(--uui-neutral-30);
         --uui-badge-bg-hover: var(--uui-neutral-40);
+        --uui-badge-border: var(--uui-neutral-30);
         --uui-badge-border-hover: var(--uui-neutral-40);
-        --uui-color-contrast-text: var(--uui-text-dark);
+        --uui-color-contrast: var(--uui-neutral-80);
 
         &.fill-outline {
             --uui-badge-bg: var(--uui-neutral-20);
             --uui-badge-border: var(--uui-neutral-40);
             --uui-badge-bg-hover: var(--uui-neutral-30);
-            --uui-color-text: var(--uui-text-dark);
+            --uui-badge-caption: var(--uui-neutral-80);
+            --uui-badge-caption-hover: var(--uui-neutral-80);
         }
     }
 
@@ -583,15 +591,17 @@
 
         &.fill-outline {
             --uui-badge-border: var(--uui-neutral-30);
-            --uui-color-text: var(--uui-text-dark);
             --uui-badge-border-hover: var(--uui-neutral-30);
+            --uui-badge-caption: var(--uui-neutral-80);
+            --uui-badge-caption-hover: var(--uui-neutral-80);
         }
     }
 
     .uui-badge.uui-color-night600.fill-outline {
-        --uui-badge-border: var(--uui-neutral-60);
-        --uui-color-text: var(--uui-text-dark);
-        --uui-badge-border-hover: var(--uui-neutral-60);
+        --uui-badge-border: var(--night600);
+        --uui-badge-border-hover: var(--night600);
+        --uui-badge-caption: var(--night800);
+        --uui-badge-caption-hover: var(--night800);
     }
 
     .uui-badge.uui-color-yellow.fill-outline {
@@ -601,20 +611,15 @@
     /* IconButton */
 
     .uui-icon_button.uui-color-neutral {
-        --uui-color-5: var(--uui-secondary-5);
-        --uui-color-10: var(--uui-secondary-10);
-        --uui-color-20: var(--uui-secondary-20);
-        --uui-color-50: var(--uui-secondary-50);
-        --uui-color-60: var(--uui-secondary-60);
-        --uui-color-70: var(--uui-secondary-70);
-        --uui-color-text: var(--uui-secondary-60);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-icon-btn: var(--uui-neutral-60);
+        --uui-icon-btn-hover: var(--uui-neutral-70);
+        --uui-icon-btn-active: var(--uui-neutral-80);
     }
 
     .uui-tooltip-container.uui-color-white,
     .uui-tooltip-container.uui-color-neutral {
         --uui-tooltip-bg: var(--white);
-        --uui-color-contrast-text: var(--uui-text-black);
+        --uui-tooltip-text: var(--uui-neutral-80);
     }
 
     .uui-tooltip-container.uui-color-red,
@@ -624,8 +629,8 @@
 
     .uui-tooltip-container.uui-color-gray,
     .uui-tooltip-container.uui-color-contrast {
-        --uui-tooltip-bg: var(--night800);
-        --uui-color-contrast-text: var(--uui-text-white);
+        --uui-tooltip-bg: var(--uui-neutral-80);
+        --uui-tooltip-text: var(--white);
     }
 
     /* CountIndicator */
@@ -634,7 +639,7 @@
     .uui-count_indicator.uui-color-neutral {
         --uui-count_indicator-bg: var(--uui-neutral-30);
         --uui-count_indicator-border: var(--uui-neutral-30);
-        --uui-count_indicator-caption: var(--uui-text-black);
+        --uui-count_indicator-caption: var(--uui-neutral-80);
     }
 
     /* FlexRow */

@@ -42,12 +42,12 @@
 
     /* start Loveship colors for controllers */
 
-    --fire-soft: #FEF6F6;
-    --fire-lightest: #FDE1E1;
-    --fire-light: #FCC8C8;
-    --fire: #FA4B4B;
-    --fire-dark: #CC2929;
-    --fire-darkest: #B32424;
+    --fire-5: #FEF6F6;
+    --fire-10: #FDE1E1;
+    --fire-20: #FCC8C8;
+    --fire-50: #FA4B4B;
+    --fire-60: #CC2929;
+    --fire-70: #B32424;
 
     --white: #FFF;
 
@@ -113,12 +113,12 @@
     --uui-warning-60: var(--sun-250);
     --uui-warning-70: var(--sun-300);
 
-    --uui-error-5: var(--fire-soft);
-    --uui-error-10: var(--fire-lightest);
-    --uui-error-20: var(--fire-light);
-    --uui-error-50: var(--fire);
-    --uui-error-60: var(--fire-dark);
-    --uui-error-70: var(--fire-darkest);
+    --uui-error-5: var(--fire-5);
+    --uui-error-10: var(--fire-10);
+    --uui-error-20: var(--fire-20);
+    --uui-error-50: var(--fire-50);
+    --uui-error-60: var(--fire-60);
+    --uui-error-70: var(--fire-70);
 
     /* Surfaces Figma - https://www.figma.com/file/M5Njgc6SQJ3TPUccp5XHQx/Loveship-aka-UUI3-(Components)?type=design&node-id=20044%3A300925&mode=design&t=R433dqGrpXDGoFli-1 */
 
@@ -134,7 +134,7 @@
     --uui-surface-contrast-lower: var(--night900);
 
     --uui-surface-info: var(--blue-0);
-    --uui-surface-critical: var(--fire-lightest);
+    --uui-surface-critical: var(--fire-10);
     --uui-surface-warning: var(--sun-50);
 
     --uui-divider: var(--chromatic-200);
