@@ -8,6 +8,7 @@
 * [DataTable]: added pinned rows functionality.
 
 **What's Fixed**
+* [DropdownMenuButton]: Fix bug in `DropdownMenuButton` where `isDisabled` prop was not being passed to it's child `IconButton`.
 * [PickerItem]: fixed 'cx' prop
 * [PickerInput]: improved keyboard navigation and focus/blur behavior
 * [Contexts]: fixed context initialization for react 18 with strict mode

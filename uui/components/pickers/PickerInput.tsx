@@ -17,7 +17,7 @@ const pickerHeight = 300;
 const pickerWidth = 360;
 
 export type PickerInputProps = SizeMod & IHasEditMode & {};
-type CompletePickerInputProps<TItem, TId> = PickerInputProps & PickerInputBaseProps<TItem, TId>;
+export type CompletePickerInputProps<TItem, TId> = PickerInputProps & PickerInputBaseProps<TItem, TId>;
 
 export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...props }: CompletePickerInputProps<TItem, TId>) {
     const toggleModalOpening = () => {

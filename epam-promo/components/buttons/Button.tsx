@@ -1,4 +1,4 @@
-import { Button as uuiButton, ButtonProps as UuiButtonProps, ButtonFill } from '@epam/uui';
+import * as uui from '@epam/uui';
 import { devLogger, withMods } from '@epam/uui-core';
 import { FillStyle } from '../types';
 import css from './Button.module.scss';
@@ -10,17 +10,17 @@ export interface ButtonMods {
     color?: ButtonColor;
 }
 
-const mapFill: Record<FillStyle, ButtonFill> = {
+const mapFill: Record<FillStyle, uui.ButtonFill> = {
     solid: 'solid',
     white: 'outline',
     light: 'ghost',
     none: 'none',
 };
 
-export type ButtonProps = Omit<UuiButtonProps, 'color' | 'fill'> & ButtonMods;
+export type ButtonProps = Omit<uui.ButtonProps, 'color' | 'fill'> & ButtonMods;
 
-export const Button = withMods<Omit<UuiButtonProps, 'color' | 'fill'>, ButtonMods>(
-    uuiButton,
+export const Button = withMods<Omit<uui.ButtonProps, 'color' | 'fill'>, ButtonMods>(
+    uui.Button,
     (props) => [
         ['42', '48'].includes(props.size) && css.uppercase,
     ],

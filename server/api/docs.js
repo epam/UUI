@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
-const { isDevServer } = require('../utils/envUtils.js');
+const { isDevServer } = require('../utils/envUtils');
 
 router.post('/get-doc-content', (req, res) => {
     const docContentPath = path.join(__dirname, '../../', 'public/docs/content/', `${req.body.name}.json`);

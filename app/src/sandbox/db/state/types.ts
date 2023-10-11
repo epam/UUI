@@ -1,3 +1,3 @@
-import { Person, PersonGroup } from '@epam/uui-docs';
+import { Person, PersonEmploymentGroup } from '@epam/uui-docs';
 
-export type PersonTableRecord = Person | PersonGroup;
+export type PersonTableRecord = Person | PersonEmploymentGroup;

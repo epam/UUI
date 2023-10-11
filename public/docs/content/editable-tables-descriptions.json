@@ -1,365 +1,238 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "UUI supports Editable tables, which are based on top of other UUI features: ",
-            "marks": []
-          }
-        ]
-      },
+        "text": "UUI supports Editable tables, which are based on top of other UUI features: "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
       {
-        "object": "block",
-        "type": "unordered-list",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "You can utilize ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "useForm",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " to store table rows as a plain array, validate form data, and handle load/save workflows. You can mix and match tables with other form data and have several tables in a form.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "DataSources can be used to manage the list of displayed, including folding/sorting/filtering/etc.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Lenses and IEditables are used to pass editable values from Forms to DataTableCells via DataTableRows. You can hook into this process at any step.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "UUI input components can be used in a 'cell' mode, keeping most of their features and props. The following components can be used in cells: TextInput, NumericInput, DateInput, Checkbox, TextArea, and PickerInput.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "To make the table editable, you'd need to: ",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "unordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Store an editable state somewhere. You can plan ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "useState",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " or ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "useForm",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " for validation and other form features.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Pass ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "IEditable",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " interface to the table rows via ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "getRowOptions",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " callback. Usually, this is done via a lens obtained from ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "useForm",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ". However, this is unnecessary, and you can pass your own value/onValueChange.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Define the ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "renderCell",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " callback in each editable column to:",
-                    "marks": []
-                  }
-                ]
+                "text": "You can utilize "
               },
               {
-                "object": "block",
-                "type": "unordered-list",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "list-item",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "list-item-child",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "Extract ",
-                            "marks": []
-                          },
-                          {
-                            "object": "text",
-                            "text": "IEditable",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-code",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " for a particular cell.",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "list-item",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "list-item-child",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "Render the required input component.",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
+                "text": "useForm",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " to store table rows as a plain array, validate form data, and handle load/save workflows. You can mix and match tables with other form data and have several tables in a form."
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "All these steps are covered in the demo below.",
-            "marks": []
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "DataSources can be used to manage the list of displayed, including folding/sorting/filtering/etc."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Lenses and IEditables are used to pass editable values from Forms to DataTableCells via DataTableRows. You can hook into this process at any step."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "UUI input components can be used in a 'cell' mode, keeping most of their features and props. The following components can be used in cells: TextInput, NumericInput, DateInput, Checkbox, TextArea, and PickerInput."
+              }
+            ]
           }
         ]
       }
     ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To make the table editable, you'd need to: "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Store an editable state somewhere. You can plan "
+              },
+              {
+                "text": "useState",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " or "
+              },
+              {
+                "text": "useForm",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " for validation and other form features."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Pass "
+              },
+              {
+                "text": "IEditable",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " interface to the table rows via "
+              },
+              {
+                "text": "getRowOptions",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " callback. Usually, this is done via a lens obtained from "
+              },
+              {
+                "text": "useForm",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": ". However, this is unnecessary, and you can pass your own value/onValueChange."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Define the "
+              },
+              {
+                "text": "renderCell",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " callback in each editable column to:"
+              }
+            ]
+          },
+          {
+            "data": {},
+            "type": "unordered-list",
+            "children": [
+              {
+                "data": {},
+                "type": "list-item",
+                "children": [
+                  {
+                    "data": {},
+                    "type": "list-item-child",
+                    "children": [
+                      {
+                        "text": "Extract "
+                      },
+                      {
+                        "text": "IEditable",
+                        "uui-richTextEditor-code": true
+                      },
+                      {
+                        "text": " for a particular cell."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "data": {},
+                "type": "list-item",
+                "children": [
+                  {
+                    "data": {},
+                    "type": "list-item-child",
+                    "children": [
+                      {
+                        "text": "Render the required input component."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "All these steps are covered in the demo below."
+      }
+    ]
   }
-}
+]

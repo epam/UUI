@@ -8,6 +8,8 @@ export interface PanelMods {
     background?: 'surface';
 }
 
+export type PanelProps = VPanelProps & PanelMods;
+
 export const Panel = withMods<VPanelProps, PanelMods>(VPanel, (props) => [
     'uui-panel',
     css.root,

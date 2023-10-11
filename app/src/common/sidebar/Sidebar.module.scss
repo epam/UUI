@@ -3,7 +3,7 @@
 @use '~@epam/promo/assets/styles/fonts' as *;
 
 .root {
-    min-width: 240px;
+    width: 240px;
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;

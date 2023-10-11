@@ -8,7 +8,7 @@
         "uui-richTextEditor-code": true
       },
       {
-        "text": " can help you create a prefix for input. To do this, you need yo wrap components in a "
+        "text": " can help you create a prefix for input. To do this, you need to wrap components in a "
       },
       {
         "text": "ControlGroup",

@@ -1,135 +1,80 @@
 import * as React from 'react';
-import { ArrayDataSource, DataColumnProps, DataSourceState } from '@epam/uui-core';
-import { DataTable, Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars } from '@epam/promo';
+import {
+    Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars,
+} from '@epam/promo';
 import { ComponentEditor } from './ComponentEditor';
 import { svc } from '../../services';
 import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
 import css from './BaseDocsBlock.module.scss';
-import cx from 'classnames';
+import { TDocsGenExportedType } from '../apiReference/types';
+import { ApiRefTypeProps } from '../apiReference/ApiRefTypeProps';
 
-export type UUI3Type = 'UUI3_loveship';
-export type UUI4Type = 'UUI4_promo';
-export type UUIType = 'UUI';
-export type Skin = UUI3Type | UUI4Type | UUIType;
+export enum TSkin {
+    UUI3_loveship = 'UUI3_loveship',
+    UUI4_promo = 'UUI4_promo',
+    UUI = 'UUI'
+}
+const DEFAULT_SKIN = TSkin.UUI4_promo;
 
-export const UUI3: UUI3Type = 'UUI3_loveship';
-export const UUI4: UUI4Type = 'UUI4_promo';
-export const UUI: UUIType = 'UUI';
+export const UUI3 = TSkin.UUI3_loveship;
+export const UUI4 = TSkin.UUI4_promo;
+export const UUI = TSkin.UUI;
 
-const items: { id: Skin; caption: string }[] = [
-    { caption: 'UUI3 [Loveship]', id: UUI3 }, { caption: 'UUI4 [Promo]', id: UUI4 }, { caption: 'UUI [Themebale]', id: UUI },
+const items: { id: TSkin; caption: string }[] = [
+    { caption: 'UUI3 [Loveship]', id: TSkin.UUI3_loveship }, { caption: 'UUI4 [Promo]', id: TSkin.UUI4_promo }, { caption: 'UUI [Themebale]', id: TSkin.UUI },
 ];
 
-interface DocPath {
-    [UUI3]?: string;
-    [UUI4]?: string;
-    [UUI]?: string;
-}
+export type TDocsGenType = TDocsGenExportedType;
+type DocPath = {
+    [key in TSkin]?: string;
+};
 
-interface BaseDocsBlockState {
-    props?: any;
-    tableState: DataSourceState;
-}
+interface BaseDocsBlockState {}
 
 export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockState> {
-    propsDS: ArrayDataSource;
     constructor(props: any) {
         super(props);
 
         const { category, id } = svc.uuiRouter.getCurrentLink().query;
         svc.uuiAnalytics.sendEvent(analyticsEvents.document.pv(id, category));
-
-        this.state = {
-            tableState: {},
-        };
     }
 
-    componentDidMount() {
-        if (this.getPropsDocPath() !== null) {
-            const propsPromise = svc.api.getProps();
-            propsPromise
-            && propsPromise.then((res) => {
-                const skin = this.getPropsDocPath()[UUI4] === undefined ? UUI3 : UUI4;
-                const resProps = res.content.props;
-                const docPath = this.getPropsDocPath()[skin];
-                const docPathNorm = docPath.indexOf('.') === 0 ? docPath.substring(1) : docPath;
-                const props = resProps[docPathNorm];
-                /**
-                 * Keys in "public/docs/componentsPropsSet.json":
-                 * - always start from "/"
-                 * - are relative to the monorepo root.
-                 */
-                if (props) {
-                    this.propsDS = new ArrayDataSource({
-                        items: props,
-                        getId: (i) => i.name,
-                    });
-                    this.setState({ props: props });
-                }
-            });
-        }
+    private getSkin(): TSkin {
+        return getQuery('skin') || DEFAULT_SKIN;
     }
 
     abstract title: string;
     abstract renderContent(): React.ReactNode;
-    getPropsDocPath(): DocPath {
+    protected getPropsDocPath(): DocPath {
         return null;
     }
 
-    onTableStateChange = (newState: DataSourceState) => this.setState({ tableState: newState });
-    apiColumns: DataColumnProps<{ name: string; value: string; comment: string }>[] = [
-        {
-            key: 'name',
-            caption: 'NAME',
-            render: (prop) => <Text color="gray80">{prop.name}</Text>,
-            width: 200,
-            isSortable: true,
-        }, {
-            key: 'value',
-            caption: 'Type',
-            render: (prop) => (
-                <Text color="gray80">
-                    <span style={ { whiteSpace: 'pre-wrap' } }>{prop.value}</span>
-                </Text>
-            ),
-            width: 200,
-            isSortable: true,
-        }, {
-            key: 'comment',
-            caption: 'Description',
-            render: (prop) => <RichTextView htmlContent={ prop.comment } />,
-            width: 200,
-            grow: 1,
-        },
-    ];
+    protected getDocsGenType(): TDocsGenType | undefined {
+        return undefined;
+    }
 
     renderApiBlock() {
-        const view = this.propsDS.getView(this.state.tableState, this.onTableStateChange);
-
-        return (
-            <div className={ cx(css.apiBlock, css.uuiThemePromo) }>
-                <RichTextView>
-                    <h2>Api</h2>
-                </RichTextView>
-                <DataTable
-                    value={ this.state.tableState }
-                    onValueChange={ this.onTableStateChange }
-                    columns={ this.apiColumns }
-                    getRows={ view.getVisibleRows }
-                    { ...view.getListProps() }
-                />
-            </div>
-        );
+        const docsGenType = this.getDocsGenType();
+        if (docsGenType) {
+            return (
+                <>
+                    <RichTextView>
+                        <h2>Api</h2>
+                    </RichTextView>
+                    <ApiRefTypeProps showCode={ true } typeRef={ docsGenType } />
+                </>
+            );
+        }
     }
 
     renderMultiSwitch() {
         return (
-            <MultiSwitch
+            <MultiSwitch<TSkin>
                 size="36"
-                items={ items }
-                value={ getQuery('skin') || UUI4 }
-                onValueChange={ (newValue: Skin) => this.handleChangeSkin(newValue) }
+                items={ items.filter((i) => (!window.location.host.includes('localhost') ? i.id !== TSkin.UUI : true)) }
+                value={ this.getSkin() }
+                onValueChange={ (newValue: TSkin) => this.handleChangeSkin(newValue) }
             />
         );
     }
@@ -158,11 +103,13 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
             });
             return null;
         }
-        if (!this.getPropsDocPath()[getQuery('skin') as Skin]) {
+        const skin = getQuery('skin') as TSkin;
+        const propsDoc = this.getPropsDocPath()[skin];
+        if (!propsDoc) {
             return this.renderNotSupportPropExplorer();
         }
         return (
-            <ComponentEditor key={ this.getPropsDocPath()[getQuery('skin') as Skin] } propsDocPath={ this.getPropsDocPath()[getQuery('skin') as Skin] } title={ this.title } />
+            <ComponentEditor key={ propsDoc } propsDocPath={ propsDoc } title={ this.title } />
         );
     }
 
@@ -188,7 +135,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                 <div className={ css.widthWrapper }>
                     {this.renderDocTitle()}
                     {this.renderContent()}
-                    {this.state.props && this.renderApiBlock()}
+                    {this.renderApiBlock()}
                 </div>
             </ScrollBars>
         );
@@ -219,7 +166,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         );
     }
 
-    handleChangeSkin(skin: Skin) {
+    handleChangeSkin(skin: TSkin) {
         svc.uuiRouter.redirect({
             pathname: '/documents',
             query: {

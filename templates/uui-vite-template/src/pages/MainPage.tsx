@@ -25,14 +25,12 @@ export const MainPage = () => {
             <Panel cx={css.mainPanel}>
                 <RichTextView size="14">
                     <h3>Welcome to UUI template app</h3>
-                    {
-                        links.map((value) => (
-                            <p key={value.label}>
-                                {value.label}
-                                <a href={value.link}>{value.linkLabel}</a>
-                            </p>
-                        ))
-                    }
+                    {links.map((value) => (
+                        <p key={value.label}>
+                            {value.label}
+                            <a href={value.link}>{value.linkLabel}</a>
+                        </p>
+                    ))}
                 </RichTextView>
             </Panel>
         </main>

@@ -6,7 +6,8 @@
   },
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
-    "generate-components-api": "ts-node ./getComponentsPropsSet.ts",
+    "generate-components-api-deprecated": "ts-node ./getComponentsPropsSet.ts",
+    "generate-components-api": "ts-node docsGen/main.ts",
     "prepublish": "yarn build",
     "track-bundle-size": "node scripts/trackBundleSize.js",
     "lint": "node ../uui-build/scripts/lint",
@@ -56,7 +57,7 @@
     "stylelint-config-standard": "33.0.0",
     "stylelint-scss": "5.0.0",
     "svgo": "1.3.2",
-    "ts-morph": "17.0.1",
+    "ts-morph": "19.0.0",
     "ts-node": "10.9.1"
   },
   "devDependencies": {
