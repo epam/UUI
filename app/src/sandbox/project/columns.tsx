@@ -22,7 +22,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('name').toProps() }
-                    renderEditor={ (props) => <TextInput { ...props } /> }
+                    renderEditor={ (props) => <TextInput { ...props } autoFocus /> }
                     { ...props }
                 />
             ),

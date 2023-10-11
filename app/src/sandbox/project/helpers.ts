@@ -53,7 +53,7 @@ const findAllChildren = (tasks: Task[], parentTask: Task) => {
 export const deleteTaskWithChildren = (tasks: Record<number, Task>, taskToDelete: Task | null): Record<number, Task> => {
     const currentTasks = { ...tasks };
     let taskToBeDeleted = taskToDelete;
-    if (taskToBeDeleted === null) {
+    if (taskToBeDeleted === undefined) {
         const rootItems = Object.values(currentTasks).filter((task) => task.parentId === undefined);
         taskToBeDeleted = rootItems[rootItems.length - 1];
     }
