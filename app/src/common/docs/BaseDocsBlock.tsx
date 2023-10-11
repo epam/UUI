@@ -7,7 +7,6 @@ import { svc } from '../../services';
 import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
 import css from './BaseDocsBlock.module.scss';
-import cx from 'classnames';
 import { TDocsGenExportedType } from '../apiReference/types';
 import { ApiRefTypeProps } from '../apiReference/ApiRefTypeProps';
 
