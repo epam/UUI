@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TDocsGenType,
 } from '../common';
 
 export class SearchInputDoc extends BaseDocsBlock {
     title = 'Search Input';
+
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:SearchInputProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/searchInput.props.ts',

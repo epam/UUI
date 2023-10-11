@@ -1,1902 +1,1110 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "uui-richTextEditor-header-3",
+    "children": [
       {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
+        "text": "Packages"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI is split into separate packages to support the pay-for-what-you-use approach."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "Packages",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "UUI is split into separate packages to support the pay-for-what-you-use approach.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "unordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {
-                  "checked": false
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "@epam/uui-core",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " — core business logic,  services, helpers, basic types",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {
-                  "checked": false
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "@epam/uui-components",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "— core of UUI components. They represent a set of essential non-styled components with business logic and global CSS classes. Generally, you don't need to use components from this package if the same component exists in a skin-specific package",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {
-                  "checked": false
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "@epam/loveship",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " — styled set of components in UUI3 (Loveship) style",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {
-                  "checked": false
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "@epam/promo",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " — styled set of components in UUI4 (Promo) style",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {
-                  "checked": false
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "@epam/assets",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " — icons set, fonts, scss/less global variables, and common mixins",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {
-                  "checked": false
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "@epam/uui-editor",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " — Rich Text Editor based on SlateJS",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {
-                  "checked": false
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "@epam/draft-rte",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " —  Rich Text Editor based on DraftJS (deprecated)",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {
-                  "checked": false
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "@epam/uui-timeline",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " — set of components to build interactive timelines",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {
-          "checked": false
-        },
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Note:",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#FF4E33"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " Please use all UUI packages with ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "the same version",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-underlined",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " to prevent the installation of unused packages.",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "\n",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "For example, if you use @epam/loveship: 4.0.0 version, all other UUI packages should be also 4.0.0 version.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Interfaces",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "We use TypeScript interfaces a lot.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "For example, every component that can be clicked would get the same ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "IClickable",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " interface. This is done to:",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "unordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Let developers learn less. Similarly, behaving components have similar APIs.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Enforce API consistency.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Composability. If a component needs another component to plug into, it can request it with something like \"I need something IClickable.\" ",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "The most notable props-related interfaces are:",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "paragraph",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "IHasCX",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#267f99"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": " { ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "cx",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#001080"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "?: ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "CX",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#267f99"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": " ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "} ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "— ",
-                "marks": []
-              },
-              {
-                "object": "text",
-                "text": "\"",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "CX\" means \"Classes\" here. It's a short-cut to the ",
-                "marks": []
-              },
-              {
-                "object": "inline",
-                "type": "link",
-                "data": {
-                  "url": "https://github.com/JedWatson/classnames"
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "classnames ",
-                    "marks": []
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "library. Most components implement this interface. This allows to put CSS classes to a component. CX can be an object or array, and all its non-falsy values would be put classes on the root of the component. Example: <Button cx={[ 'red', isActive && 'big ]} />",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "paragraph",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "IEditable",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#267f99"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "<",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "T",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#267f99"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "> ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "{ ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "value",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#001080"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": ": ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "T",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#267f99"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "; ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "onValueChange",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#795e26"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "(",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "newValue",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#001080"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": ": ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "T",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#267f99"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "): ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "void",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#267f99"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "; ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "} ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "—",
-                "marks": []
-              },
-              {
-                "object": "text",
-                "text": " ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {
-                        "color": "#000000"
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "used for components, which allows user to change some value inside it. TextInput is a basic example. In other words, that's how we make all components ",
-                "marks": []
-              },
-              {
-                "object": "inline",
-                "type": "link",
-                "data": {
-                  "url": "https://reactjs.org/docs/forms.html#controlled-components"
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "controlled",
-                    "marks": []
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": ".",
-                "marks": []
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "ICanRedirect",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#267f99"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " { ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#000000"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "link",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#001080"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "?: ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#000000"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "Link",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#267f99"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "; ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#000000"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "href",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#001080"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "?: ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#000000"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "string",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#267f99"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "; ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#000000"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "isLinkActive",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#001080"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "?: ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#000000"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "boolean",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#267f99"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "; ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#000000"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "target",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#001080"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "?: ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#000000"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "'_blank'",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#a31515"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "; ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#000000"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "} ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#000000"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "— used for controls, which can perform a redirect. SPA links are tricky - you can click them and get a virtual redirect, or you can click them with the right mouse button and pick 'Open in a new window.' Links can be 'visited' or not. Components with this interface handle such cases.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "This is just a few examples of our core interfaces, which will help you to understand our approach which helps us to build consistent APIs. We use much more interfaces for different cases, just jump into any component typo to see them.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Services",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "UUI has various services which help your app handle routine tasks. They are implemented as singleton classes accessible via React Contexts.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "We usually make them available as a global module in our apps (see our application ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
             "data": {
-              "url": "https://github.com/epam/UUI/blob/main/templates/uui-cra-template/template/src/index.tsx#L19"
+              "checked": false
             },
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "text",
-                "text": "template",
-                "marks": []
+                "text": "@epam/uui-core",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " — core business logic,  services, helpers, basic types"
               }
             ]
-          },
-          {
-            "object": "text",
-            "text": "). So you can access a service in your app with the following:",
-            "marks": []
           }
         ]
       },
       {
-        "object": "block",
-        "type": "note-quote",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "import { svc } from '../../services';\n...\nsvc.uuiModals.showModal(...)",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "We require apps to ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
             "data": {
-              "url": "https://uui.epam.com/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
+              "checked": false
             },
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "text",
-                "text": "initialize",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " all services and bring them to React Context with the ContextProvider component. It's necessary to be one of the app’s root components - usually initialised in the index.ts file.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "list-item-child",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "The following contexts/services exist in UUI:",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "unordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+                "text": "@epam/uui-components",
+                "uui-richTextEditor-code": true
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "AnalyticsContext",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " / svc.uuiAnalytics — Web Analytics abstraction. ",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://uui.epam.com/documents?id=apiContext&mode=doc&skin=UUI4_promo&category=contexts"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "ApiContext",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " / svc.uuiApi — makes API calls gently, handling common HTTP errors, can re-login user if session is lost w/o loosing his work.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "DndContext / svc.uuiDnd — handles Drag-n-drop operations. See ",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "/demo?id=dnd"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "demo",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ".",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://uui.epam.com/documents?id=apiContext&mode=doc&skin=UUI4_promo&category=contexts"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "ErrorContext",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " / svc.uuiError — handles JS crashes with splash screen errors. ApiContext uses it to show HTTP errors.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "LayoutContext / svc.uuiLayout — tracks z-indexes for overlays, like modals and dropdowns.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://uui.epam.com/documents?id=lockContextDoc&mode=doc&skin=UUI4_promo&category=contexts"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "LockContext",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " / svc.uuiLocks — allows you to 'lock' a user into a specific state, usually used to keep the user from losing unsaved data.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://uui.epam.com/documents?id=modalContext&mode=doc&skin=UUI4_promo&category=contexts"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "ModalContext",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " / svc.uuiModals —  handles showing modal dialogs out of the primary rendering tree and stacking them correctly.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://uui.epam.com/documents?id=notificationContextDoc&mode=doc&skin=UUI4_promo&category=contexts"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "NotificationContext",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " / svc.uuiNotifications — allows showing temporary floating messages.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "UserSettingsContext / svc.uuiUserSettings — an abstraction layer to save temporary user settings, like visible columns in a table. Defaults to Local Storage, but the application can change this.",
-                    "marks": []
-                  }
-                ]
+                "text": "— core of UUI components. They represent a set of essential non-styled components with business logic and global CSS classes. Generally, you don't need to use components from this package if the same component exists in a skin-specific package"
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "State management",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "UUI contains several tools to cover common state management and data manipulation patterns. They include: ",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "unordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+            "data": {
+              "checked": false
+            },
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "DataSources subsystem - an abstraction to stream data into list/tree components, like Pickers and DataTable. ",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+                "text": "@epam/loveship",
+                "uui-richTextEditor-code": true
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Forms and Lenses - a set of helpers to streamline the development of Forms and other interfaces with the load-edit-save flow.",
-                    "marks": []
-                  }
-                ]
+                "text": " — styled set of components in UUI3 (Loveship) style"
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "Skins",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Usually, UI libraries use a common approach to parameterized CSS pre-processor: you can tweak colors and some sizes, and that's it. The result of such skinization usually looks like just a recolored Material UI or Bootstrap.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "At EPAM, we can't afford to limit our UI to the mere existing library’s recoloring. We want to create a first-class visual look, communicating our brand and voice without compromises. To allow that, we can't limit our designers to someone else's choice - we need them to be able to tweak everything. Conversely, as engineers, we know that the brand is changing, and we want to reuse libraries as much as possible.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "That's why, in UUI, we picked a very different approach to customization. First, we have the @epam/uui-components package containing components with no styling, just behavior, and minor CSS, which is a must. Then, we create a 'skin' package containing derived components. It wraps components from @epam/uui-components to add your Design System. Everything - from the grid step via typography, icon set, and colors - is baked into the skin, not the core. Nothing in UUI components dictates visuals. They are as tweakable as possible.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "This allows us to build first-class branded component libraries without common limitations. For example:",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "unordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+            "data": {
+              "checked": false
+            },
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Skin can define its own set of colors. Instead of just pre-defined success/warning/error semantic colors, we can use a brand-named set of colors and add custom component variations.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+                "text": "@epam/promo",
+                "uui-richTextEditor-code": true
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Skin, being a component library, can define custom, brand-specific components which don't exist in the base library.",
-                    "marks": []
-                  }
-                ]
+                "text": " — styled set of components in UUI4 (Promo) style"
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "This approach may serve everyone. One can build a first-class UI library on top of almost any UI Guidelines, not limiting design teams with some technical restrictions. And you can still reuse years of work.",
-            "marks": []
+            "data": {
+              "checked": false
+            },
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "@epam/assets",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " — icons set, fonts, scss/less global variables, and common mixins"
+              }
+            ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "",
-            "marks": []
+            "data": {
+              "checked": false
+            },
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "@epam/uui-editor",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " — Rich Text Editor based on SlateJS"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {
+              "checked": false
+            },
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "@epam/draft-rte",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " —  Rich Text Editor based on DraftJS (deprecated)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {
+              "checked": false
+            },
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "@epam/uui-timeline",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " — set of components to build interactive timelines"
+              }
+            ]
           }
         ]
       }
     ]
+  },
+  {
+    "data": {
+      "checked": false
+    },
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Note:",
+        "uui-richTextEditor-bold": true,
+        "color": "#FF4E33",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " Please use all UUI packages with "
+      },
+      {
+        "text": "the same version",
+        "uui-richTextEditor-underlined": true
+      },
+      {
+        "text": " to prevent the installation of unused packages."
+      },
+      {
+        "text": "\n",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": "For example, if you use @epam/loveship: 4.0.0 version, all other UUI packages should be also 4.0.0 version."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Interfaces"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "We use TypeScript interfaces a lot."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "For example, every component that can be clicked would get the same "
+      },
+      {
+        "text": "IClickable",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " interface. This is done to:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Let developers learn less. Similarly, behaving components have similar APIs."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Enforce API consistency."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Composability. If a component needs another component to plug into, it can request it with something like \"I need something IClickable.\" "
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "The most notable props-related interfaces are:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "data": {},
+        "type": "paragraph",
+        "children": [
+          {
+            "text": "IHasCX",
+            "color": "#267f99",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": " { ",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "cx",
+            "color": "#001080",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "?: ",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "CX",
+            "color": "#267f99",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": " ",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "} ",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "— "
+          },
+          {
+            "text": "\"",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "CX\" means \"Classes\" here. It's a short-cut to the "
+          },
+          {
+            "data": {
+              "url": "https://github.com/JedWatson/classnames"
+            },
+            "type": "link",
+            "url": "https://github.com/JedWatson/classnames",
+            "children": [
+              {
+                "text": "classnames "
+              }
+            ]
+          },
+          {
+            "text": "library. Most components implement this interface. This allows to put CSS classes to a component. CX can be an object or array, and all its non-falsy values would be put classes on the root of the component. Example: <Button cx={[ 'red', isActive && 'big ]} />"
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "paragraph",
+        "children": [
+          {
+            "text": "IEditable",
+            "color": "#267f99",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "<",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "T",
+            "color": "#267f99",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "> ",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "{ ",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "value",
+            "color": "#001080",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": ": ",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "T",
+            "color": "#267f99",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "; ",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "onValueChange",
+            "color": "#795e26",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "(",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "newValue",
+            "color": "#001080",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": ": ",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "T",
+            "color": "#267f99",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "): ",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "void",
+            "color": "#267f99",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "; ",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "} ",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "—"
+          },
+          {
+            "text": " ",
+            "color": "#000000",
+            "uui-richTextEditor-span-mark": true
+          },
+          {
+            "text": "used for components, which allows user to change some value inside it. TextInput is a basic example. In other words, that's how we make all components "
+          },
+          {
+            "data": {
+              "url": "https://reactjs.org/docs/forms.html#controlled-components"
+            },
+            "type": "link",
+            "url": "https://reactjs.org/docs/forms.html#controlled-components",
+            "children": [
+              {
+                "text": "controlled"
+              }
+            ]
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "ICanRedirect",
+        "color": "#267f99",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " { ",
+        "color": "#000000",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "link",
+        "color": "#001080",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "?: ",
+        "color": "#000000",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "Link",
+        "color": "#267f99",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "; ",
+        "color": "#000000",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "href",
+        "color": "#001080",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "?: ",
+        "color": "#000000",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "string",
+        "color": "#267f99",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "; ",
+        "color": "#000000",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "isLinkActive",
+        "color": "#001080",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "?: ",
+        "color": "#000000",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "boolean",
+        "color": "#267f99",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "; ",
+        "color": "#000000",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "target",
+        "color": "#001080",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "?: ",
+        "color": "#000000",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "'_blank'",
+        "color": "#a31515",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "; ",
+        "color": "#000000",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "} ",
+        "color": "#000000",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "— used for controls, which can perform a redirect. SPA links are tricky - you can click them and get a virtual redirect, or you can click them with the right mouse button and pick 'Open in a new window.' Links can be 'visited' or not. Components with this interface handle such cases."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This is just a few examples of our core interfaces, which will help you to understand our approach which helps us to build consistent APIs. We use much more interfaces for different cases, just jump into any component typo to see them."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Services"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI has various services which help your app handle routine tasks. They are implemented as singleton classes accessible via React Contexts."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "We usually make them available as a global module in our apps (see our application "
+      },
+      {
+        "data": {
+          "url": "https://github.com/epam/UUI/blob/main/templates/uui-cra-template/template/src/index.tsx#L19"
+        },
+        "type": "link",
+        "url": "https://github.com/epam/UUI/blob/main/templates/uui-cra-template/template/src/index.tsx#L19",
+        "children": [
+          {
+            "text": "template"
+          }
+        ]
+      },
+      {
+        "text": "). So you can access a service in your app with the following:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "import { svc } from '../../services';\n...\nsvc.uuiModals.showModal(...)"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "We require apps to "
+      },
+      {
+        "data": {
+          "url": "https://uui.epam.com/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
+        },
+        "type": "link",
+        "url": "https://uui.epam.com/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo",
+        "children": [
+          {
+            "text": "initialize"
+          }
+        ]
+      },
+      {
+        "text": " all services and bring them to React Context with the ContextProvider component. It's necessary to be one of the app’s root components - usually initialised in the index.ts file."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "list-item-child",
+    "children": [
+      {
+        "text": "The following contexts/services exist in UUI:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": ""
+              },
+              {
+                "data": {
+                  "url": "https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts"
+                },
+                "type": "link",
+                "url": "https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts",
+                "children": [
+                  {
+                    "text": "AnalyticsContext"
+                  }
+                ]
+              },
+              {
+                "text": " / svc.uuiAnalytics — Web Analytics abstraction. "
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": ""
+              },
+              {
+                "data": {
+                  "url": "https://uui.epam.com/documents?id=apiContext&mode=doc&skin=UUI4_promo&category=contexts"
+                },
+                "type": "link",
+                "url": "https://uui.epam.com/documents?id=apiContext&mode=doc&skin=UUI4_promo&category=contexts",
+                "children": [
+                  {
+                    "text": "ApiContext"
+                  }
+                ]
+              },
+              {
+                "text": " / svc.uuiApi — makes API calls gently, handling common HTTP errors, can re-login user if session is lost w/o loosing his work."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "DndContext / svc.uuiDnd — handles Drag-n-drop operations. See "
+              },
+              {
+                "data": {
+                  "url": "/demo?id=dnd"
+                },
+                "type": "link",
+                "url": "/demo?id=dnd",
+                "children": [
+                  {
+                    "text": "demo"
+                  }
+                ]
+              },
+              {
+                "text": "."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": ""
+              },
+              {
+                "data": {
+                  "url": "https://uui.epam.com/documents?id=apiContext&mode=doc&skin=UUI4_promo&category=contexts"
+                },
+                "type": "link",
+                "url": "https://uui.epam.com/documents?id=apiContext&mode=doc&skin=UUI4_promo&category=contexts",
+                "children": [
+                  {
+                    "text": "ErrorContext"
+                  }
+                ]
+              },
+              {
+                "text": " / svc.uuiError — handles JS crashes with splash screen errors. ApiContext uses it to show HTTP errors."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "LayoutContext / svc.uuiLayout — tracks z-indexes for overlays, like modals and dropdowns."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": ""
+              },
+              {
+                "data": {
+                  "url": "https://uui.epam.com/documents?id=lockContextDoc&mode=doc&skin=UUI4_promo&category=contexts"
+                },
+                "type": "link",
+                "url": "https://uui.epam.com/documents?id=lockContextDoc&mode=doc&skin=UUI4_promo&category=contexts",
+                "children": [
+                  {
+                    "text": "LockContext"
+                  }
+                ]
+              },
+              {
+                "text": " / svc.uuiLocks — allows you to 'lock' a user into a specific state, usually used to keep the user from losing unsaved data."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": ""
+              },
+              {
+                "data": {
+                  "url": "https://uui.epam.com/documents?id=modalContext&mode=doc&skin=UUI4_promo&category=contexts"
+                },
+                "type": "link",
+                "url": "https://uui.epam.com/documents?id=modalContext&mode=doc&skin=UUI4_promo&category=contexts",
+                "children": [
+                  {
+                    "text": "ModalContext"
+                  }
+                ]
+              },
+              {
+                "text": " / svc.uuiModals —  handles showing modal dialogs out of the primary rendering tree and stacking them correctly."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": ""
+              },
+              {
+                "data": {
+                  "url": "https://uui.epam.com/documents?id=notificationContextDoc&mode=doc&skin=UUI4_promo&category=contexts"
+                },
+                "type": "link",
+                "url": "https://uui.epam.com/documents?id=notificationContextDoc&mode=doc&skin=UUI4_promo&category=contexts",
+                "children": [
+                  {
+                    "text": "NotificationContext"
+                  }
+                ]
+              },
+              {
+                "text": " / svc.uuiNotifications — allows showing temporary floating messages."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "UserSettingsContext / svc.uuiUserSettings — an abstraction layer to save temporary user settings, like visible columns in a table. Defaults to Local Storage, but the application can change this."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "State management"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI contains several tools to cover common state management and data manipulation patterns. They include: "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "DataSources subsystem - an abstraction to stream data into list/tree components, like Pickers and DataTable. "
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Forms and Lenses - a set of helpers to streamline the development of Forms and other interfaces with the load-edit-save flow."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Skins"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Usually, UI libraries use a common approach to parameterized CSS pre-processor: you can tweak colors and some sizes, and that's it. The result of such skinization usually looks like just a recolored Material UI or Bootstrap."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "At EPAM, we can't afford to limit our UI to the mere existing library’s recoloring. We want to create a first-class visual look, communicating our brand and voice without compromises. To allow that, we can't limit our designers to someone else's choice - we need them to be able to tweak everything. Conversely, as engineers, we know that the brand is changing, and we want to reuse libraries as much as possible."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "That's why, in UUI, we picked a very different approach to customization. First, we have the @epam/uui-components package containing components with no styling, just behavior, and minor CSS, which is a must. Then, we create a 'skin' package containing derived components. It wraps components from @epam/uui-components to add your Design System. Everything - from the grid step via typography, icon set, and colors - is baked into the skin, not the core. Nothing in UUI components dictates visuals. They are as tweakable as possible."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This allows us to build first-class branded component libraries without common limitations. For example:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Skin can define its own set of colors. Instead of just pre-defined success/warning/error semantic colors, we can use a brand-named set of colors and add custom component variations."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Skin, being a component library, can define custom, brand-specific components which don't exist in the base library."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This approach may serve everyone. One can build a first-class UI library on top of almost any UI Guidelines, not limiting design teams with some technical restrictions. And you can still reuse years of work."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      }
+    ]
   }
-}
+]

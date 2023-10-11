@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, TDocsGenType,
 } from '../common';
 
 export class IconContainerDoc extends BaseDocsBlock {
     title = 'Icon Container';
+
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui-components:ControlIconProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/layout/iconContainer.props.tsx',

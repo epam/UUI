@@ -66,11 +66,6 @@ export interface RowSizeMod {
     size?: RowSize;
 }
 
-export interface IHasEditMode {
-    /** Defines input mode: 'form' is default and usual look, 'cell' is for using components as table cells  */
-    mode?: 'form' | 'cell';
-}
-
 export enum EditMode {
     FORM = 'form',
     CELL = 'cell'

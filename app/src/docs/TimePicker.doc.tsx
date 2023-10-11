@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI,
+    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI, TDocsGenType,
 } from '../common';
 
 export class TimePickerDoc extends BaseDocsBlock {
     title = 'TimePicker';
+
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:TimePickerProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/timePicker.props.ts',

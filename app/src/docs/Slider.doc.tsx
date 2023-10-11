@@ -1,12 +1,15 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3,
+    BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI3,
 } from '../common';
 import cx from 'classnames';
 import css from './styles.module.scss';
 
 export class SliderDoc extends BaseDocsBlock {
     title = 'Slider';
+
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui-components:SliderBaseProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/Slider/slider.props.ts',

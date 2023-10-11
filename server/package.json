@@ -14,7 +14,7 @@
     "http-proxy-middleware": "1.0.6",
     "lodash": "4.17.21",
     "morgan": "1.10.0",
-    "prismjs": "1.27.0",
+    "prismjs": "1.29.0",
     "dayjs": "1.10.7",
     "express-actuator": "1.8.4"
   },

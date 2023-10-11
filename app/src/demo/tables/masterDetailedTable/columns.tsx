@@ -14,7 +14,7 @@ const statusMap: Record<string, EpamBadgeSemanticColor> = {
     Green: 'success',
 };
 
-export const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
+export const personColumns: DataColumnProps<Person, PersonTableRecordId[], DataQueryFilter<Person>>[] = [
     {
         key: 'name',
         caption: 'Name',
