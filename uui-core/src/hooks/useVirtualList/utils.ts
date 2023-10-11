@@ -96,7 +96,7 @@ const getNewBottomIndex = (info: VirtualListInfo) => {
     let bottomIndex = getRealBottomIndex(info);
     bottomIndex = bottomIndex + overdrawRows; // draw more rows at the bottom to remove visible blank areas while scrolling down
     bottomIndex = Math.floor(bottomIndex / blockSize) * blockSize; // Align to block size
-    return Math.min(bottomIndex, rowsCount); // clamp to rowsCount
+    return Math.min(bottomIndex, rowsCount ?? 0); // clamp to rowsCount
 };
 
 export const getRealTopIndex = ({ rowsCount, scrollContainer, rowOffsets }: VirtualListInfo) => {

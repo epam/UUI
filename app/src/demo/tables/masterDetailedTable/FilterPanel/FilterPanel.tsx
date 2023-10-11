@@ -5,16 +5,14 @@ import {
 } from '@epam/uui';
 import { ReactComponent as CloseIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 
-import { PresetsBlock } from './PresetsBlock';
+// import { PresetsBlock } from './PresetsBlock';
 import { FiltersBlock } from './FiltersBlock';
-import { ColumnsBlock } from './ColumnsBlock';
+// import { ColumnsBlock } from './ColumnsBlock';
 import { GroupingBlock } from './GroupingBlock';
-import { Grouping } from '../types';
 
 export interface IFilterPanelProps<TFilter extends Record<string, any>> extends ITableState<TFilter> {
     columns: DataColumnProps[];
     filters: TableFiltersConfig<TFilter>[];
-    groupings: Grouping[];
     closePanel(): void;
 }
 
@@ -30,10 +28,10 @@ function FilterPanel<TFilter = any>(props: IFilterPanelProps<TFilter>) {
             </FlexRow>
 
             <ScrollBars>
-                <PresetsBlock { ...props } />
+                {/* <PresetsBlock { ...props } /> */}
                 <FiltersBlock filters={ props.filters } tableState={ props.tableState } setTableState={ props.setTableState } />
-                <ColumnsBlock columnsConfig={ props.tableState.columnsConfig } onColumnsConfigChange={ props.setColumnsConfig } columns={ props.columns } />
-                <GroupingBlock groupings={ props.groupings } tableState={ props.tableState } setTableState={ props.setTableState } />
+                {/* <ColumnsBlock columnsConfig={ props.tableState.columnsConfig } onColumnsConfigChange={ props.setColumnsConfig } columns={ props.columns } /> */}
+                <GroupingBlock tableState={ props.tableState } setTableState={ props.setTableState } />
             </ScrollBars>
         </>
     );

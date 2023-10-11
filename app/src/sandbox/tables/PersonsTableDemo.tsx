@@ -63,7 +63,7 @@ export function PersonsTableDemo() {
 
             const promises = typesToLoad.map(async (type) => {
                 const idsRequest: LazyDataSourceApiRequest<any, any> = { ids: idsByType[type] };
-                const apiRequest = type === 'Person' ? svc.api.demo.persons : type === 'PersonGroup' ? svc.api.demo.personGroups : type === 'Location' ? svc.api.demo.locations : null;
+                const apiRequest = type === 'Person' ? svc.api.demo.persons : type === 'PersonEmploymentGroup' ? svc.api.demo.personGroups : type === 'Location' ? svc.api.demo.locations : null;
 
                 const apiResponse = await apiRequest(idsRequest);
                 response.items = [...response.items, ...apiResponse.items];
@@ -133,7 +133,7 @@ export function PersonsTableDemo() {
             complexIds: true,
             getParentId: (i) => {
                 const groupBy = value.filter?.groupBy;
-                if (i.__typename === 'PersonGroup') {
+                if (i.__typename === 'PersonEmploymentGroup') {
                     return null;
                 } else if (i.__typename === 'Location') {
                     return i.parentId ? ['Location', i.parentId] : undefined;
@@ -141,9 +141,9 @@ export function PersonsTableDemo() {
                     if (groupBy === 'location') {
                         return ['Location', i.locationId];
                     } else if (groupBy === 'jobTitle') {
-                        return ['PersonGroup', i.jobTitleId];
+                        return ['PersonEmploymentGroup', i.jobTitleId];
                     } else if (groupBy === 'department') {
-                        return ['PersonGroup', i.departmentId];
+                        return ['PersonEmploymentGroup', i.departmentId];
                     } else {
                         return undefined;
                     }
@@ -151,7 +151,7 @@ export function PersonsTableDemo() {
 
                 throw new Error('PersonTableDemo: unknown typename/groupBy combination');
             },
-            getChildCount: (item) => (item.__typename === 'PersonGroup' ? item.count : item.__typename === 'Location' ? (item.type === 'city' ? 1 : 10) : null),
+            getChildCount: (item) => (item.__typename === 'PersonEmploymentGroup' ? item.count : item.__typename === 'Location' ? (item.type === 'city' ? 1 : 10) : null),
             fetchStrategy: value.filter?.groupBy === 'location' ? 'sequential' : 'parallel',
             rowOptions: { checkbox: { isVisible: true } },
             isFoldedByDefault: () => value.isFolded,
