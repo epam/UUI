@@ -64,7 +64,7 @@ export const getUpdatedRowsInfo = (
         virtualListInfo.rowsCount,
         virtualListInfo.listOffset,
     );
-    console.log(virtualListInfo.rowsCount);
+
     return {
         estimatedHeight,
         rowHeights,

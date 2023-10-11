@@ -112,7 +112,6 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         const { topIndex } = value;
         const { topIndex: newTopIndex, visibleCount } = getNewRowsOnScroll();
 
-        console.log(estimatedHeight, rowsInfo.estimatedHeight);
         if (estimatedHeight !== rowsInfo.estimatedHeight) {
             setEstimatedHeight(rowsInfo.estimatedHeight);
         }
