@@ -1,14 +1,58 @@
 @use '../../assets/styles/index' as *;
+@use 'sass:math';
+
+@mixin badge-layout($size, $borderWidth) {
+    min-height: $size;
+    min-width: $size;
+    border-radius: math.div($size, 2);
+
+    @if ($size == 18px) {
+        @include partial-calc(6px, 3px, 4px, $borderWidth);
+    } @else if ($size == 24px) {
+        @include partial-calc(6px, 6px, 8px, $borderWidth);
+    } @else if ($size == 30px) {
+        @include partial-calc(6px, 6px, 8px, $borderWidth);
+    } @else if ($size == 36px) {
+        @include partial-calc(9px, 6px, 8px, $borderWidth);
+    } @else if ($size == 42px) {
+        @include partial-calc(12px, 6px, 12px, $borderWidth);
+    } @else if ($size == 48px) {
+        @include partial-calc(12px, 6px, 12px, $borderWidth);
+    }
+}
+
+@mixin partial-calc($controlPadding, $captionPadding, $dotSize, $borderWidth) {
+    padding-left: $controlPadding - $borderWidth;
+    padding-right: $controlPadding - $borderWidth;
+
+    :global(.uui-icon):first-child {
+        padding-left: $captionPadding;
+    }
+
+    :global(.uui-caption) {
+        padding-left: $captionPadding;
+        padding-right: $captionPadding;
+    }
+
+    &:global(.uui-indicator) {
+        :global(.uui-caption) {
+            margin-left: $dotSize + $captionPadding;
+        }
+
+        &::before {
+            width: $dotSize;
+            height: $dotSize;
+        }
+    }
+}
 
 .root {
     --uui-badge-bg: var(--uui-color-50);
     --uui-badge-bg-hover: var(--uui-color-60);
     --uui-badge-border: var(--uui-color-50);
     --uui-badge-border-hover: var(--uui-color-60);
-    --uui-badge-caption: var(--uui-color-contrast-text);
-    --uui-badge-caption-hover: var(--uui-color-contrast-text);
-    --uui-badge-count: var(--uui-text-secondary);
-    --uui-badge-count-bg: var(--white);
+    --uui-badge-caption: var(--uui-color-contrast);
+    --uui-badge-caption-hover: var(--uui-color-contrast);
 
     --uui-badge-font: var(--uui-font);
     --uui-badge-font-weight: 400;
@@ -20,17 +64,6 @@
     fill: var(--uui-badge-caption); // ??? separate variable
     border-color: var(--uui-badge-border);
     justify-content: center;
-
-    &:global(.uui-color-white) {
-        --uui-color-5: var(--white);
-        --uui-color-10: var(--white);
-        --uui-color-20: var(--white);
-        --uui-color-50: var(--white);
-        --uui-color-60: var(--uui-neutral-10);
-        --uui-color-70: var(--uui-neutral-20);
-        --uui-color-text: var(--white);
-        --uui-color-contrast-text: var(--uui-text-dark);
-    }
 
     &:global(.-clickable) {
         &:hover {
@@ -57,40 +90,165 @@
         @include focus-visible-effect(2px, null);
     }
 
-    &.size-18 {
-        min-width: 18px;
-        min-height: 18px;
-        padding-left: 3px;
-        padding-right: 3px;
-        border-radius: 9px;
+    :global(.uui-count_indicator) {
+        margin-right: 3px;
+    }
 
-        :global(.uui-count_indicator) {
-            margin-right: 3px;
+    &:global(.uui-indicator) {
+        &::before {
+            position: absolute;
+            content: '';
+            border-radius: 50%;
+            background-color: var(--uui-badge-caption);
         }
+    }
+
+    &.size-18 {
+        @include badge-layout(18px, 1px);
 
         &:global(.uui-indicator) {
-            :global(.uui-caption) {
-                margin-left: 9px;
-            }
-
             &::before {
-                position: absolute;
-                content: '';
-                border-radius: 50%;
-                background-color: var(--uui-badge-caption);
-                width: 4px;
-                height: 4px;
                 top: 6px;
                 left: 8px;
             }
         }
 
         :global(.uui-caption) {
-            padding: 2px 3px;
+            padding-top: 2px;
+            padding-bottom: 2px;
             line-height: 12px;
             font-size: 12px;
         }
+    }
 
+    &.size-24 {
+        @include badge-layout(24px, 1px);
+
+        &:global(.uui-indicator) {
+            &::before {
+                top: 7px;
+                left: 11px;
+            }
+        }
+
+        :global(.uui-caption) {
+            padding-top: 2px;
+            padding-bottom: 2px;
+            line-height: 18px;
+            font-size: 12px;
+        }
+    }
+
+    &.size-30 {
+        @include badge-layout(30px, 1px);
+
+        &:global(.uui-indicator) {
+            &::before {
+                top: 10px;
+                left: 11px;
+            }
+        }
+
+        :global(.uui-caption) {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            line-height: 18px;
+            font-size: 14px;
+        }
+    }
+
+    &.size-36 {
+        @include badge-layout(36px, 1px);
+
+        &:global(.uui-indicator) {
+            &::before {
+                top: 13px;
+                left: 15px;
+            }
+        }
+
+        :global(.uui-caption) {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            line-height: 24px;
+            font-size: 14px;
+        }
+    }
+
+    &.size-42 {
+        @include badge-layout(42px, 1px);
+
+        :global(.uui-caption) {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            line-height: 24px;
+            font-size: 16px;
+        }
+
+        &:global(.uui-indicator) {
+            &::before {
+                top: 14px;
+                left: 17px;
+            }
+        }
+    }
+
+    &.size-48 {
+        @include badge-layout(48px, 1px);
+
+        &:global(.uui-indicator) {
+            &::before {
+                top: 17px;
+                left: 17px;
+            }
+        }
+
+        :global(.uui-caption) {
+            padding-top: 11px;
+            padding-bottom: 11px;
+            line-height: 24px;
+            font-size: 16px;
+        }
+    }
+
+    :global(.uui-count_indicator):last-child {
+        margin-right: 0;
+    }
+
+    &:global(.fill-solid) {
+        --uui-badge-bg: var(--uui-color-50);
+        --uui-badge-bg-hover: var(--uui-color-60);
+        --uui-badge-border: var(--uui-color-50);
+        --uui-badge-border-hover: var(--uui-color-60);
+        --uui-badge-caption: var(--uui-color-contrast);
+        --uui-badge-caption-hover: var(--uui-color-contrast);
+
+        :global(.uui-count_indicator) {
+            --uui-count_indicator-bg: color-mix(in srgb, var(--uui-badge-caption) 8%, transparent);
+            --uui-count_indicator-border: color-mix(in srgb, var(--uui-badge-caption) 40%, transparent);
+        }
+    }
+
+    &:global(.fill-outline) {
+        --uui-badge-bg: var(--uui-color-5);
+        --uui-badge-bg-hover: var(--uui-color-10);
+        --uui-badge-border: var(--uui-color-20);
+        --uui-badge-border-hover: var(--uui-color-20);
+        --uui-badge-caption: var(--uui-color-70);
+        --uui-badge-caption-hover: var(--uui-color-70);
+
+        --uui-badge-font-weight: 600;
+
+        :global(.uui-count_indicator) {
+            --uui-count_indicator-bg: var(--uui-neutral-0);
+            --uui-count_indicator-border: var(--uui-neutral-40);
+            --uui-count_indicator-caption: var(--uui-neutral-70);
+        }
+    }
+
+    // code below deprecated & will be removed
+
+    &.size-18 {
         &:global(.fill-transparent) {
             :global(.uui-caption) {
                 margin-left: 8px;
@@ -106,38 +264,6 @@
     }
 
     &.size-24 {
-        @include button-horizontal-layout(24px, 1px);
-        border-radius: 12px;
-        min-height: 24px;
-
-        :global(.uui-count_indicator) {
-            margin-right: 6px;
-        }
-
-        &:global(.uui-indicator) {
-            :global(.uui-caption) {
-                margin-left: 14px;
-            }
-
-            &::before {
-                position: absolute;
-                content: '';
-                border-radius: 50%;
-                background-color: var(--uui-badge-caption);
-                width: 8px;
-                height: 8px;
-                top: 7px;
-                left: 11px;
-            }
-        }
-
-        :global(.uui-caption) {
-            padding-top: 2px;
-            padding-bottom: 2px;
-            line-height: 18px;
-            font-size: 12px;
-        }
-
         &:global(.fill-transparent) {
             :global(.uui-caption) {
                 margin-left: 12px;
@@ -153,38 +279,6 @@
     }
 
     &.size-30 {
-        @include button-horizontal-layout(30px, 1px);
-        border-radius: 15px;
-        min-height: 30px;
-
-        :global(.uui-count_indicator) {
-            margin-right: 6px;
-        }
-
-        &:global(.uui-indicator) {
-            :global(.uui-caption) {
-                margin-left: 14px;
-            }
-
-            &::before {
-                position: absolute;
-                content: '';
-                border-radius: 50%;
-                background-color: var(--uui-badge-caption);
-                width: 8px;
-                height: 8px;
-                top: 10px;
-                left: 11px;
-            }
-        }
-
-        :global(.uui-caption) {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            line-height: 18px;
-            font-size: 14px;
-        }
-
         &:global(.fill-transparent) {
             :global(.uui-caption) {
                 margin-left: 12px;
@@ -200,38 +294,6 @@
     }
 
     &.size-36 {
-        @include button-horizontal-layout(36px, 1px);
-        border-radius: 18px;
-        min-height: 36px;
-
-        :global(.uui-count_indicator) {
-            margin-right: 6px;
-        }
-
-        &:global(.uui-indicator) {
-            :global(.uui-caption) {
-                margin-left: 18px;
-            }
-
-            &::before {
-                position: absolute;
-                content: '';
-                border-radius: 50%;
-                background-color: var(--uui-badge-caption);
-                width: 8px;
-                height: 8px;
-                top: 13px;
-                left: 15px;
-            }
-        }
-
-        :global(.uui-caption) {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            line-height: 24px;
-            font-size: 14px;
-        }
-
         &:global(.fill-transparent) {
             :global(.uui-caption) {
                 margin-left: 12px;
@@ -247,38 +309,6 @@
     }
 
     &.size-42 {
-        @include button-horizontal-layout(42px, 1px);
-        border-radius: 21px;
-        min-height: 42px;
-
-        :global(.uui-count_indicator) {
-            margin-right: 6px;
-        }
-
-        :global(.uui-caption) {
-            padding-top: 8px;
-            padding-bottom: 8px;
-            line-height: 24px;
-            font-size: 16px;
-        }
-
-        &:global(.uui-indicator) {
-            :global(.uui-caption) {
-                margin-left: 18px;
-            }
-
-            &::before {
-                position: absolute;
-                content: '';
-                border-radius: 50%;
-                background-color: var(--uui-badge-caption);
-                width: 12px;
-                height: 12px;
-                top: 14px;
-                left: 17px;
-            }
-        }
-
         &:global(.fill-transparent) {
             :global(.uui-caption) {
                 margin-left: 12px;
@@ -294,38 +324,6 @@
     }
 
     &.size-48 {
-        @include button-horizontal-layout(48px, 1px);
-        border-radius: 24px;
-        min-height: 48px;
-
-        :global(.uui-count_indicator) {
-            margin-right: 6px;
-        }
-
-        &:global(.uui-indicator) {
-            :global(.uui-caption) {
-                margin-left: 18px;
-            }
-
-            &::before {
-                position: absolute;
-                content: '';
-                border-radius: 50%;
-                background-color: var(--uui-badge-caption);
-                width: 12px;
-                height: 12px;
-                top: 17px;
-                left: 17px;
-            }
-        }
-
-        :global(.uui-caption) {
-            padding-top: 11px;
-            padding-bottom: 11px;
-            line-height: 24px;
-            font-size: 16px;
-        }
-
         &:global(.fill-transparent) {
             :global(.uui-caption) {
                 margin-left: 12px;
@@ -337,51 +335,6 @@
                 top: 15px;
                 left: 3px;
             }
-        }
-    }
-
-    :global(.uui-count_indicator):last-child {
-        margin-right: 0;
-    }
-
-    &:global(.fill-solid) {
-        --uui-badge-bg: var(--uui-color-50);
-        --uui-badge-bg-hover: var(--uui-color-60);
-        --uui-badge-border: var(--uui-color-50);
-        --uui-badge-border-hover: var(--uui-color-60);
-        --uui-badge-caption: var(--uui-color-contrast-text);
-        --uui-badge-caption-hover: var(--uui-color-contrast-text);
-        --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
-        --uui-badge-count-bg: var(--white); // It should be a separate component
-
-        :global(.uui-count_indicator) {
-            --uui-count_indicator-bg: color-mix(in srgb, var(--uui-badge-caption) 8%, transparent);
-            --uui-count_indicator-border: color-mix(in srgb, var(--uui-badge-caption) 40%, transparent);
-        }
-    }
-
-    &:global(.fill-outline) {
-        --uui-badge-font-weight: 600;
-        --uui-badge-bg: var(--uui-color-5);
-        --uui-badge-bg-hover: var(--uui-color-10);
-        --uui-badge-border: var(--uui-color-20);
-        --uui-badge-border-hover: var(--uui-color-20);
-        --uui-badge-caption: var(--uui-color-text);
-        --uui-badge-caption-hover: var(--uui-color-text);
-        --uui-badge-count: var(--uui-text-secondary); // It should be a separate component
-        --uui-badge-count-bg: var(--white); // It should be a separate component
-
-        &:global(.uui-color-white) {
-            --uui-badge-border: var(--uui-neutral-30);
-            --uui-color-text: var(--uui-text-dark);
-            --uui-badge-border-hover: var(--uui-neutral-30);
-            --uui-badge-bg-hover: var(--uui-neutral-10);
-        }
-
-        :global(.uui-count_indicator) {
-            --uui-count_indicator-bg: var(--uui-neutral-0);
-            --uui-count_indicator-border: var(--uui-neutral-40);
-            --uui-count_indicator-caption: var(--uui-neutral-70);
         }
     }
 }

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button as uuiButton, ButtonProps as uuiButtonProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { ControlSize, ButtonFill } from '../types';

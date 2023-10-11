@@ -23,7 +23,6 @@ import TableCellsStylesSandbox from './tableCellStyles/TableCellsStylesSandbox';
 import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
 import { RichTextEditorDemo } from './RTE/rteDemo';
 import { TableColumnConfigModalTest } from './tableColConfigModal/TableColumnConfigModalTest';
-import { BadgeThemes } from './badgeThemes/BadgeThemes';
 
 export function SandboxPage() {
     const items = useMemo(
@@ -43,7 +42,6 @@ export function SandboxPage() {
             { id: 'SkillsBatteryPopover', name: 'Skills', component: Skills },
             { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },
             { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
-            { id: 'BadgeThemes', name: 'Badge themes', component: BadgeThemes },
             { id: 'RTEDemo', name: 'RTE Demo', component: RichTextEditorDemo },
             { id: 'TableColumnsConfigurationModal', name: 'Table ColumnsConfigModal', component: TableColumnConfigModalTest },
             { id: 'tagInput', name: 'Tag Input', component: TagInputDemo },

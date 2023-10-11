@@ -1,16 +1,10 @@
 import * as React from 'react';
-import { Text, Badge, EpamBadgeSemanticColor, FlexRow, IconButton, LinkButton } from '@epam/uui';
+import { Text, Badge, FlexRow, IconButton, LinkButton, BadgeColor } from '@epam/uui';
 import { DataColumnProps, DataQueryFilter } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './DemoTable.module.scss';
 import { ReactComponent as ViewIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 import { PersonTableRecordId } from './types';
-
-const statusMap: Record<string, EpamBadgeSemanticColor> = {
-    Red: 'error',
-    Amber: 'warning',
-    Green: 'success',
-};
 
 export const personColumns: DataColumnProps<Person, PersonTableRecordId[], DataQueryFilter<Person>>[] = [
     {
@@ -28,7 +22,7 @@ export const personColumns: DataColumnProps<Person, PersonTableRecordId[], DataQ
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge color={ statusMap[p.profileStatus] } caption={ p.profileStatus } />
+                    <Badge size="24" indicator fill="outline" color={ p.profileStatus.toLowerCase() as BadgeColor } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         width: 140,

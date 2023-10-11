@@ -16,7 +16,7 @@
     --uui-btn-border-hover: var(--uui-color-60);
     --uui-btn-border-active: var(--uui-color-70);
     --uui-btn-border-disabled: var(--uui-neutral-30);
-    --uui-btn-caption: var(--uui-color-contrast-text);
+    --uui-btn-caption: var(--uui-color-contrast);
     --uui-btn-caption-disabled: var(--uui-text-disabled);
 
     --uui-btn-border-radius: var(--uui-border-radius);
@@ -85,7 +85,7 @@
         --uui-btn-border: var(--uui-color-50);
         --uui-btn-border-hover: var(--uui-color-60);
         --uui-btn-border-active: var(--uui-color-70);
-        --uui-btn-caption: var(--uui-color-contrast-text);
+        --uui-btn-caption: var(--uui-color-contrast);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
     }
 
@@ -97,7 +97,7 @@
         --uui-btn-border: var(--uui-color-50);
         --uui-btn-border-hover: var(--uui-color-50);
         --uui-btn-border-active: var(--uui-color-50);
-        --uui-btn-caption: var(--uui-color-text);
+        --uui-btn-caption: var(--uui-color-50);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
     }
 
@@ -109,7 +109,7 @@
         --uui-btn-border: var(--uui-color-50);
         --uui-btn-border-hover: var(--uui-color-50);
         --uui-btn-border-active: var(--uui-color-50);
-        --uui-btn-caption: var(--uui-color-text);
+        --uui-btn-caption: var(--uui-color-50);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
     }
 
@@ -122,7 +122,7 @@
         --uui-btn-border-hover: var(--uui-color-10);
         --uui-btn-border-active: var(--uui-color-20);
         --uui-btn-border-disabled: transparent;
-        --uui-btn-caption: var(--uui-color-text);
+        --uui-btn-caption: var(--uui-color-50);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
     }
 }

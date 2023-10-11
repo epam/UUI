@@ -23,7 +23,7 @@ export default function TypesExample() {
             </Panel>
             <Panel background="surface" style={ { rowGap: '18px', padding: '12px', flex: '1 1 auto' } }>
                 <FlexRow spacing="18">
-                    <Badge count={ 25 } color="error" fill="solid" caption="Rejected" onClick={ () => {} } />
+                    <Badge count={ 25 } color="critical" fill="solid" caption="Rejected" onClick={ () => {} } />
                     <Text fontSize="14">Quick filters selection with informer</Text>
                 </FlexRow>
                 <FlexRow spacing="18">

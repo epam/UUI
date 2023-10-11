@@ -65,7 +65,6 @@ export const Badge = withMods<ButtonProps, BadgeMods>(Button, applyBadgeMods, (p
         countPosition: 'left',
         countIndicator: (countIndicatorProps) => (
             <CountIndicator
-                cx={ `fill-${props.fill || 'solid'}` }
                 { ...countIndicatorProps }
                 color={ null }
                 size={ mapCountIndicatorSizes[props.size || defaultSize] }

@@ -1,24 +1,17 @@
 import React from 'react';
-import { Badge, EpamBadgeSemanticColor, ScrollBars } from '@epam/uui';
+import { Badge, BadgeColor, ScrollBars } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import { InfoRow } from './InfoRow';
-import css from './InfoSidebarPanel.module.scss';
 
 interface PersonInfoProps {
     data: Person;
 }
 
-const statusMap: Record<string, EpamBadgeSemanticColor> = {
-    Red: 'error',
-    Amber: 'warning',
-    Green: 'success',
-};
-
 export function PersonInfo({ data }: PersonInfoProps) {
     return (
         <ScrollBars>
             <InfoRow title="Name" value={ data.name } />
-            <InfoRow title="Status" value={ <Badge cx={ css.status } caption={ data.profileStatus } color={ statusMap[data.profileStatus] } /> } />
+            <InfoRow title="Status" value={ <Badge size="24" fill="outline" indicator caption={ data.profileStatus } color={ data.profileStatus.toLowerCase() as BadgeColor } /> } />
             <InfoRow title="Job Title" value={ data.jobTitle } />
             <InfoRow title="Title Level" value={ data.titleLevel } />
             <InfoRow title="Office" value={ data.officeAddress } />
