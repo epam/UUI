@@ -18,7 +18,6 @@ export function getColumns(columnsProps: ColumnsProps) {
             caption: 'Name',
             width: 300,
             fix: 'left',
-            isSortable: true,
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('name').toProps() }
@@ -33,7 +32,6 @@ export function getColumns(columnsProps: ColumnsProps) {
             caption: 'Estimate',
             info: 'Estimate in man/days',
             width: 120,
-            isSortable: true,
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('estimate').toProps() }
@@ -90,7 +88,6 @@ export function getColumns(columnsProps: ColumnsProps) {
             key: 'startDate',
             caption: 'Start date',
             width: 150,
-            isSortable: true,
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('startDate').toProps() }
@@ -103,7 +100,6 @@ export function getColumns(columnsProps: ColumnsProps) {
             key: 'dueDate',
             caption: 'Due date',
             width: 150,
-            isSortable: true,
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('dueDate').toProps() }
@@ -116,7 +112,6 @@ export function getColumns(columnsProps: ColumnsProps) {
             key: 'teams',
             caption: 'Teams',
             width: 220,
-            isSortable: true,
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('resources').toProps() }
@@ -156,7 +151,7 @@ export function getColumns(columnsProps: ColumnsProps) {
         },
         {
             key: 'actions',
-            render: (item, row) => <RowKebabButton row={ row } { ...columnsProps } />,
+            render: (_, row) => <RowKebabButton row={ row } { ...columnsProps } />,
             width: 54,
             fix: 'right',
             alignSelf: 'center',
