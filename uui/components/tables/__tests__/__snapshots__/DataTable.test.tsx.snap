@@ -15,8 +15,6 @@ exports[`DataTable should be rendered correctly 1`] = `
   }
 >
   <div
-    aria-colcount={0}
-    role="table"
     style={
       Object {
         "WebkitOverflowScrolling": "touch",
@@ -27,7 +25,7 @@ exports[`DataTable should be rendered correctly 1`] = `
         "left": 0,
         "marginBottom": 0,
         "marginRight": 0,
-        "overflow": "scroll",
+        "overflow": "auto",
         "position": "relative",
         "right": 0,
         "top": 0,
@@ -80,16 +78,16 @@ exports[`DataTable should be rendered correctly 1`] = `
         }
       />
     </div>
-    <div
-      className="container uui-blocker-container root"
-      style={
-        Object {
-          "minHeight": undefined,
-        }
+  </div>
+  <div
+    className="container uui-blocker-container root"
+    style={
+      Object {
+        "minHeight": undefined,
       }
-    >
-      <div />
-    </div>
+    }
+  >
+    <div />
   </div>
   <div
     className="uui-track-horizontal"

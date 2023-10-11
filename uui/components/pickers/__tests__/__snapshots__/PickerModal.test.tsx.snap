@@ -178,7 +178,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 "left": 0,
                 "marginBottom": 0,
                 "marginRight": 0,
-                "overflow": "scroll",
+                "overflow": "auto",
                 "position": "relative",
                 "right": 0,
                 "top": 0,
@@ -194,7 +194,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
               }
             >
               <div
-                role="listbox"
                 style={
                   Object {
                     "marginTop": 0,
@@ -307,16 +306,16 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              className="container uui-blocker-container root"
-              style={
-                Object {
-                  "minHeight": undefined,
-                }
+          </div>
+          <div
+            className="container uui-blocker-container root"
+            style={
+              Object {
+                "minHeight": undefined,
               }
-            >
-              <div />
-            </div>
+            }
+          >
+            <div />
           </div>
           <div
             className="uui-track-horizontal"
@@ -608,7 +607,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 "left": 0,
                 "marginBottom": 0,
                 "marginRight": 0,
-                "overflow": "scroll",
+                "overflow": "auto",
                 "position": "relative",
                 "right": 0,
                 "top": 0,
@@ -624,7 +623,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
               }
             >
               <div
-                role="listbox"
                 style={
                   Object {
                     "marginTop": 0,
@@ -1381,16 +1379,16 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              className="container uui-blocker-container root"
-              style={
-                Object {
-                  "minHeight": undefined,
-                }
+          </div>
+          <div
+            className="container uui-blocker-container root"
+            style={
+              Object {
+                "minHeight": undefined,
               }
-            >
-              <div />
-            </div>
+            }
+          >
+            <div />
           </div>
           <div
             className="uui-track-horizontal"
@@ -1593,14 +1591,13 @@ exports[`PickerModal should open body 1`] = `
               style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
             >
               <div
-                style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+                style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: auto; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
               >
                 <div
                   class="listContainer"
                   style="min-height: 2px;"
                 >
                   <div
-                    role="listbox"
                     style="margin-top: 0px;"
                   >
                     <div
@@ -1663,11 +1660,11 @@ exports[`PickerModal should open body 1`] = `
                     </div>
                   </div>
                 </div>
-                <div
-                  class="container uui-blocker-container root"
-                >
-                  <div />
-                </div>
+              </div>
+              <div
+                class="container uui-blocker-container root"
+              >
+                <div />
               </div>
               <div
                 class="uui-track-horizontal"

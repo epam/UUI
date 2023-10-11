@@ -80,7 +80,7 @@ Array [
             "left": 0,
             "marginBottom": 0,
             "marginRight": 0,
-            "overflow": "scroll",
+            "overflow": "auto",
             "position": "relative",
             "right": 0,
             "top": 0,
@@ -96,7 +96,6 @@ Array [
           }
         >
           <div
-            role="listbox"
             style={
               Object {
                 "marginTop": 0,
@@ -104,16 +103,16 @@ Array [
             }
           />
         </div>
-        <div
-          className="container uui-blocker-container root"
-          style={
-            Object {
-              "minHeight": undefined,
-            }
+      </div>
+      <div
+        className="container uui-blocker-container root"
+        style={
+          Object {
+            "minHeight": undefined,
           }
-        >
-          <div />
-        </div>
+        }
+      >
+        <div />
       </div>
       <div
         className="uui-track-horizontal"
