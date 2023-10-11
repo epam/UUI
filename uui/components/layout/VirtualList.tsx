@@ -82,12 +82,6 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
             disableScroll={ props.isLoading }
             renderView={ ({ style }: any) => <VirtualListView isLoading={ props.isLoading } style={ style } /> }
             ref={ scrollBarsRef }
-            style={ {
-                position: 'relative',
-                flex: '1 1 auto',
-                display: 'flex',
-                height: 'auto',
-            } }
         >
             {renderRows()}
         </ScrollBars>
