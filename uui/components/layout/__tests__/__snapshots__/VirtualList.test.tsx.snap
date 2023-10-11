@@ -25,7 +25,7 @@ exports[`VirtualList should be rendered correctly 1`] = `
         "left": 0,
         "marginBottom": 0,
         "marginRight": 0,
-        "overflow": "scroll",
+        "overflow": "auto",
         "position": "relative",
         "right": 0,
         "top": 0,
@@ -48,6 +48,16 @@ exports[`VirtualList should be rendered correctly 1`] = `
         }
       />
     </div>
+  </div>
+  <div
+    className="container uui-blocker-container root"
+    style={
+      Object {
+        "minHeight": undefined,
+      }
+    }
+  >
+    <div />
   </div>
   <div
     className="uui-track-horizontal"
