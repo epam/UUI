@@ -211,10 +211,6 @@
         }
     }
 
-    :global(.uui-count_indicator):last-child {
-        margin-right: 0;
-    }
-
     &:global(.fill-solid) {
         --uui-badge-bg: var(--uui-color-50);
         --uui-badge-bg-hover: var(--uui-color-60);
