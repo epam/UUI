@@ -1,19 +1,16 @@
 import React from 'react';
-import { Accordion } from '@epam/uui';
+import { Accordion, PickerList } from '@epam/uui';
 import { DataTableState } from '@epam/uui-core';
-import { LinkButton, RadioGroup } from '@epam/uui';
-import { Grouping } from '../../types';
-import css from './GroupingBlock.module.scss';
+import { groupingsDataSource } from '../../groupings';
 
 interface GroupingBlockProps<TFilter> {
-    groupings: Grouping[];
     tableState: DataTableState<TFilter>;
     setTableState(newState: DataTableState<TFilter>): void;
 }
 
-function GroupingBlock<TFilter extends { groupBy?: string }>({ groupings, tableState, setTableState }: GroupingBlockProps<TFilter>) {
+function GroupingBlock<TFilter extends { groupBy?: string[] }>({ tableState, setTableState }: GroupingBlockProps<TFilter>) {
     const groupBy = tableState.filter?.groupBy;
-    const onGroupingChange = (newGroupBy: string) => {
+    const onGroupingChange = (newGroupBy: string[]) => {
         if (newGroupBy !== groupBy) {
             setTableState({
                 ...tableState,
@@ -25,8 +22,13 @@ function GroupingBlock<TFilter extends { groupBy?: string }>({ groupings, tableS
 
     return (
         <Accordion title="Grouping" mode="inline" padding="18">
-            <RadioGroup value={ groupBy } onValueChange={ onGroupingChange } items={ groupings } cx={ css.radioGroupContainer } />
-            <LinkButton caption="CLEAR" onClick={ () => onGroupingChange(undefined) } isDisabled={ groupBy === undefined } />
+            <PickerList
+                dataSource={ groupingsDataSource }
+                selectionMode="multi"
+                value={ groupBy }
+                onValueChange={ onGroupingChange }
+                valueType="id"
+            />
         </Accordion>
     );
 }

@@ -1,15 +1,18 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI,
+    EditableDocContent, DocExample, BaseDocsBlock, TDocsGenType, TSkin,
 } from '../common';
 
 export class ButtonDoc extends BaseDocsBlock {
     title = 'Button';
+
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:ButtonProps');
+
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docs/_props/loveship/components/buttons/button.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/buttons/button.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/buttons/button.props.tsx',
+            [TSkin.UUI3_loveship]: './app/src/docs/_props/loveship/components/buttons/button.props.tsx',
+            [TSkin.UUI4_promo]: './app/src/docs/_props/epam-promo/components/buttons/button.props.tsx',
+            [TSkin.UUI]: './app/src/docs/_props/uui/components/buttons/button.props.tsx',
         };
     }
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, TextInput, TextArea } from '@epam/loveship';
 import { DemoDbRef } from './state';
 import { IEditable, DataQueryFilter, DataColumnProps } from '@epam/uui-core';
-import { Person, PersonGroup } from '@epam/uui-docs';
+import { Person, PersonEmploymentGroup } from '@epam/uui-docs';
 
 export function getColumns(dbRef: DemoDbRef) {
     function fieldLens<TField extends keyof Person>(fieldName: TField, person: Person): IEditable<Person[TField]> {
@@ -61,7 +61,7 @@ export function getColumns(dbRef: DemoDbRef) {
         },
     ];
 
-    const groupColumns: DataColumnProps<PersonGroup, number, DataQueryFilter<Person>>[] = [
+    const groupColumns: DataColumnProps<PersonEmploymentGroup, number, DataQueryFilter<Person>>[] = [
         {
             key: 'name',
             caption: 'Name',

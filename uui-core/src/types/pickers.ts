@@ -124,9 +124,9 @@ export interface IBasicPickerToggler extends IDropdownToggler {
 
 /** Component can be used as Toggler control for dropdown menus */
 export interface IDropdownToggler extends IHasCaption, IClickable {
-    /** When component acts as dropdown, indicate that dropdown is open */
+    /** When isDropdown=true, indicate that dropdown is open with chevron icon */
     isOpen?: boolean;
-    /** Enabled dropdown mode - component can toggle dropdown */
+    /** Shows chevron icon, enabling component to act as dropdown toggler */
     isDropdown?: boolean;
     /** Called when associated dropdown should open or close  */
     toggleDropdownOpening?: (value: boolean) => void;
