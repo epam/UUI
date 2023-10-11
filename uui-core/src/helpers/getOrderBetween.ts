@@ -35,7 +35,8 @@ export const maxOrderStr = 'zzzz';
 export function getOrderBetween(inputA: string | null, inputB: string | null): string {
     // => uui utils
     const radix = 36;
-    const a = trimEnd(inputA || '0', '0');
+    const aValue = inputA == null ? '0' : inputA;
+    const a = trimEnd(aValue, '0');
     const b = trimEnd(inputB || 'z', '0');
 
     const throwError = () => {
@@ -52,7 +53,11 @@ export function getOrderBetween(inputA: string | null, inputB: string | null): s
     while (true) {
         const aChar = a[n];
         const bChar = b[n];
-        const aDigit = parseInt(aChar || '0', radix);
+        let aFallback = 'a';
+        if (inputA == null || bChar < 'a' || bChar == null) {
+            aFallback = '0';
+        }
+        const aDigit = parseInt(aChar || aFallback, radix);
         const bDigit = parseInt(bChar || 'z', radix);
 
         const midDigit = Math.floor((aDigit + bDigit) / 2);
