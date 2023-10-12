@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
-import { InformerProps, Informer } from '@epam/uui';
+import { CountIndicatorProps, CountIndicator } from '@epam/uui';
 import { DefaultContext } from '../../docs';
 
-const informerDoc = new DocBuilder<InformerProps>({ name: 'Informer', component: Informer })
+const countIndicatorDoc = new DocBuilder<CountIndicatorProps>({ name: 'CountIndicator', component: CountIndicator })
     .prop('color', {
         renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i })) } { ...editable } />,
-        examples: [{ value: 'neutral', isDefault: true }, 'white', 'info', 'success', 'warning', 'negative'],
+        examples: [{ value: 'neutral', isDefault: true }, 'white', 'info', 'success', 'warning', 'critical'],
     })
     .prop('caption', {
         examples: [
@@ -22,4 +22,4 @@ const informerDoc = new DocBuilder<InformerProps>({ name: 'Informer', component:
     })
     .withContexts(DefaultContext);
 
-export default informerDoc;
+export default countIndicatorDoc;

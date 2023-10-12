@@ -15,10 +15,10 @@ export default function AdvancedBadgeExample() {
                 <Badge color="info" fill="solid" caption="Status" icon={ MyIcon } onIconClick={ () => null } />
             </FlexRow>
             <FlexRow spacing="12">
-                <Badge color="info" fill="semitransparent" caption="Status" onClick={ () => null } />
-                <Badge color="info" fill="semitransparent" caption="Status" onClear={ () => null } />
-                <Badge color="info" fill="semitransparent" caption="Status" count={ value } countPosition="right" />
-                <Badge color="info" fill="semitransparent" caption="Status" icon={ MyIcon } iconPosition="right" onIconClick={ () => null } />
+                <Badge color="info" fill="outline" caption="Status" onClick={ () => null } />
+                <Badge color="info" fill="outline" caption="Status" onClear={ () => null } />
+                <Badge color="info" fill="outline" caption="Status" count={ value } />
+                <Badge color="info" fill="outline" caption="Status" icon={ MyIcon } iconPosition="right" onIconClick={ () => null } />
             </FlexRow>
         </FlexCell>
     );

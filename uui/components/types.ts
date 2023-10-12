@@ -21,9 +21,9 @@ export const allSemanticColors: SemanticColor[] = [
     'info', 'success', 'warning', 'error',
 ];
 
-export type EpamBadgeSemanticColor = 'info' | 'success' | 'warning' | 'error' | 'neutral';
+export type EpamBadgeSemanticColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
 export const allEpamBadgeSemanticColors: EpamBadgeSemanticColor[] = [
-    'info', 'success', 'warning', 'error', 'neutral',
+    'info', 'success', 'warning', 'critical', 'neutral',
 ];
 
 export type TextSize = 'none' | '18' | '24' | '30' | '36' | '48';

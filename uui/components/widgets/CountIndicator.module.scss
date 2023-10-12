@@ -1,21 +1,23 @@
 .root {
-    --uui-informer-font: var(--uui-font);
-    --uui-informer-font-weight: 600;
-    --uui-informer-bg: var(--uui-color-50);
-    --uui-informer-border: var(--uui-color-50);
-    --uui-informer-caption: var(--uui-color-contrast-text);
+    --uui-count_indicator-bg: var(--uui-color-50);
+    --uui-count_indicator-border: var(--uui-color-50);
+    --uui-count_indicator-caption: var(--uui-color-contrast);
 
-    &:global(.uui-informer) {
+    --uui-count_indicator-font: var(--uui-font);
+    --uui-count_indicator-font-weight: 600;
+
+    &:global(.uui-count_indicator) {
         box-sizing: border-box;
-        font-family: var(--uui-informer-font);
-        font-weight: var(--uui-informer-font-weight);
+        font-family: var(--uui-count_indicator-font);
+        font-weight: var(--uui-count_indicator-font-weight);
         margin: auto;
         text-align: center;
         flex-shrink: 0;
         //
-        background-color: var(--uui-informer-bg);
-        border: 1px solid var(--uui-informer-border);
-        color: var(--uui-informer-caption);
+        background-color: var(--uui-count_indicator-bg);
+        border: 1px solid var(--uui-count_indicator-border);
+        color: var(--uui-count_indicator-caption);
+
 
         &:global(.size-24) {
             height: 24px;

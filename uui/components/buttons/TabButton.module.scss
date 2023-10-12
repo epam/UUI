@@ -28,9 +28,6 @@ $text-size-count: 24px;
     --uui-tab_button-text-disabled: var(--uui-text-disabled);
     --uui-tab_button-font: var(--uui-font);
     --uui-tab_button-font-weight: 600;
-    // TODO: need to move informer to separate component
-    --uui-informer-bg: var(--uui-neutral-30);
-    --uui-informer-caption: var(--uui-text-secondary);
 
     @include link-button-horizontal-layout(36px);
     @include tab-button-color(var(--uui-tab_button-text), var(--uui-tab_button-text-active), transparent);
@@ -72,16 +69,10 @@ $text-size-count: 24px;
         min-width: min-content;
     }
 
-    :global(.uui-count) {
-        @include text-size($text-size-count, 0);
-        letter-spacing: 0;
-        color: var(--uui-informer-caption);
-        background-color: var(--uui-informer-bg);
+    :global(.uui-count_indicator) {
         padding: 0 6px;
-        margin-left: 6px;
+        margin-left: 3px;
         margin-right: 3px;
-        border-radius: 9px;
-        flex-shrink: 0;
     }
 
     :global(.uui-caption) {

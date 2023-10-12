@@ -7,4 +7,4 @@ export * from './Paginator';
 export * from './IndeterminateBar';
 export * from './IndicatorBar';
 export * from './ProgressBar';
-export * from './Informer';
+export * from './CountIndicator';

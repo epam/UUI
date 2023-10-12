@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    ButtonCoreProps, Icon, uuiElement, uuiMarkers, CX, IHasRawProps, cx, IHasForwardedRef,
-} from '@epam/uui-core';
+import { ButtonCoreProps, Icon, uuiElement, uuiMarkers, CX, IHasRawProps, cx, IHasForwardedRef, IHasCaption } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import { ButtonBase } from './ButtonBase';
 import css from './Button.module.scss';
@@ -15,6 +13,9 @@ export interface ButtonProps
 
     /** CSS classes to put on the caption */
     captionCX?: CX;
+
+    /** CountIndicator component */
+    countIndicator?: React.ComponentType<IHasCaption> ;
 }
 
 export class Button extends ButtonBase<ButtonProps> {
@@ -27,6 +28,7 @@ export class Button extends ButtonBase<ButtonProps> {
     }
 
     getChildren() {
+        const CountIndicator = this.props.countIndicator;
         return [
             this.props.isDropdown && this.props.dropdownIconPosition === 'left' && (
                 <IconContainer key="dropdown-icon-left" icon={ this.props.dropdownIcon } flipY={ this.props.isOpen } />
@@ -34,26 +36,12 @@ export class Button extends ButtonBase<ButtonProps> {
             this.props.icon && this.props.iconPosition !== 'right' && (
                 <IconContainer key="icon-left" icon={ this.props.icon } onClick={ !this.props.isDisabled ? this.props.onIconClick : undefined } />
             ),
-            this.props.count !== undefined && this.props.count !== null && this.props.countPosition !== 'right' && (
-                <div key="count" className={ cx(uuiElement.count) }>
-                    {this.props.count}
-                </div>
-            ),
             this.props.caption && (
                 <div key="caption" className={ cx(uuiElement.caption, this.props.captionCX) }>
                     {this.props.caption}
                 </div>
             ),
-            this.props.count !== undefined && this.props.count !== null && this.props.countPosition === 'right' && (
-                <div key="count" className={ cx(uuiElement.count) }>
-                    {this.props.count}
-                </div>
-            ),
-            !this.props.caption && this.props.placeholder && (
-                <div key="placeholder" className={ cx(uuiElement.caption, uuiElement.placeholder, this.props.captionCX) }>
-                    {this.props.placeholder}
-                </div>
-            ),
+            this.props.count !== undefined && this.props.count !== null && <CountIndicator key="count-indicator" caption={ this.props.count } />,
             this.props.icon && this.props.iconPosition === 'right' && (
                 <IconContainer key="icon-right" icon={ this.props.icon } onClick={ !this.props.isDisabled ? this.props.onIconClick : undefined } />
             ),

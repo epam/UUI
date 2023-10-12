@@ -1,18 +1,38 @@
-import { withMods } from '@epam/uui-core';
-import { BadgeProps as UuiBadgeProps, Badge as UuiBadge } from '@epam/uui';
-import { EpamAdditionalColor } from '../types';
+import { devLogger, withMods } from '@epam/uui-core';
+import { BadgeProps as UuiBadgeProps, Badge as UuiBadge, BadgeMods as UuiBadgeMods } from '@epam/uui';
+import { EpamPrimaryColor } from '../types';
+import css from './Badge.module.scss';
 
-export interface BadgeMods {
-    color?: EpamAdditionalColor | 'gray30';
+export interface BadgeMods extends Omit<UuiBadgeProps, 'color' | 'fill'> {
+    color?: EpamPrimaryColor | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'white' | 'gray10'| 'gray30'| 'gray60';
+    fill?: UuiBadgeMods['fill'] | 'semitransparent' | 'transparent';
 }
 
-export type BadgeProps = Omit<UuiBadgeProps, 'color'> & BadgeMods;
+export function applyBadgeMods(mods: BadgeMods) {
+    return [
+        css[`fill-${mods.fill === 'semitransparent' ? 'outline' : (mods.fill || 'solid')}`],
+        css.root,
+    ];
+}
 
-export const Badge = withMods<Omit<UuiBadgeProps, 'color'>, BadgeMods>(
+export type BadgeProps = Omit<UuiBadgeProps, 'color' | 'fill'> & BadgeMods;
+
+export const Badge = withMods<Omit<UuiBadgeProps, 'color' | 'fill'>, BadgeMods>(
     UuiBadge,
-    () => [],
-    (props) =>
-        ({
+    applyBadgeMods,
+    (props) => {
+        if (__DEV__) {
+            devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'fill'>({
+                component: 'Badge',
+                propName: 'fill',
+                propValue: props.fill,
+                condition: () => ['semitransparent', 'transparent'].indexOf(props.fill) !== -1,
+            });
+        }
+        return {
             color: props.color || 'blue',
-        } as BadgeProps),
+            fill: props.fill === 'semitransparent' ? 'outline' : (props.fill || 'solid'),
+            indicator: props.fill === 'transparent' ? false : props.indicator,
+        } as BadgeProps;
+    },
 );
