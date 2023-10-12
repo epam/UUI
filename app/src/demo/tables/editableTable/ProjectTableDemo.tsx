@@ -207,22 +207,22 @@ export function ProjectTableDemo() {
         <Panel cx={ css.container }>
             <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="gray5">
                 <FlexCell width="auto">
-                    <Tooltip content={ getKeybindingWithControl('Add new task', 'Enter') } placement="bottom">
+                    <Tooltip content={ getKeybindingWithControl('Add New Task', 'Enter') } placement="bottom">
                         <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />
                     </Tooltip>
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Tooltip content={ getKeybindingWithControl('Add new task below', 'Enter') } placement="bottom">
+                    <Tooltip content={ getKeybindingWithControl('Add New Task Below', 'Enter') } placement="bottom">
                         <IconButton icon={ insertAfter } onClick={ () => insertTask('bottom', selectedItem) } />
                     </Tooltip>
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Tooltip content={ getKeybindingWithControl('Add new task above', 'Shift + Enter') } placement="bottom">
+                    <Tooltip content={ getKeybindingWithControl('Add New Task Above', 'Shift + Enter') } placement="bottom">
                         <IconButton icon={ insertBefore } onClick={ () => insertTask('top', selectedItem) } />
                     </Tooltip>
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Tooltip content={ getKeybindingWithControl('Delete task', 'Backspace') } placement="bottom">
+                    <Tooltip content={ getKeybindingWithControl('Delete Task', 'Backspace') } placement="bottom">
                         <IconButton icon={ deleteLast } onClick={ () => deleteSelectedItem() } />
                     </Tooltip>
                 </FlexCell>
