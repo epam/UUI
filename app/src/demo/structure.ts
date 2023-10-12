@@ -55,11 +55,14 @@ export const demoItems: DemoItem[] = [
     },
     {
         id: 'editableTable',
-        name: 'Editable Table',
+        name: 'Project Planning',
         component: ProjectTableDemo,
         source: 'https://github.com/epam/UUI/tree/main/app/src/demo/tables/editableTable',
         previewImage: '/static/images/DemoEditableTable.png',
-        shortDescription: 'Shows support for editable tables.',
+        shortDescription:
+            `Project planning UX, built on top of tables editing capabilities.
+            Demo highlights in-cell inputs, drag-n-drop, tree-structured data, and more.
+            `,
     },
     {
         id: 'RTE',
