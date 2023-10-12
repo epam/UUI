@@ -95,16 +95,6 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       </div>
       <div
         className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
-        cx={
-          Array [
-            Array [
-              "uui-scroll-bars",
-              "uui-shadow-top",
-              "uui-shadow-bottom",
-            ],
-            undefined,
-          ]
-        }
         style={
           Object {
             "display": "flex",
@@ -312,16 +302,6 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
       </div>
       <div
         className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
-        cx={
-          Array [
-            Array [
-              "uui-scroll-bars",
-              "uui-shadow-top",
-              "uui-shadow-bottom",
-            ],
-            undefined,
-          ]
-        }
         style={
           Object {
             "display": "flex",

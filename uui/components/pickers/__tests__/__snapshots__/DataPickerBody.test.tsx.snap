@@ -57,8 +57,7 @@ Array [
     }
   >
     <div
-      className="root scrollContainer"
-      cx="scrollContainer"
+      className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
       style={
         Object {
           "display": "flex",
@@ -80,7 +79,7 @@ Array [
             "left": 0,
             "marginBottom": 0,
             "marginRight": 0,
-            "overflow": "auto",
+            "overflow": "scroll",
             "position": "relative",
             "right": 0,
             "top": 0,

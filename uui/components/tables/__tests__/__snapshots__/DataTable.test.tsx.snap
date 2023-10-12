@@ -2,8 +2,7 @@
 
 exports[`DataTable should be rendered correctly 1`] = `
 <div
-  className="root scrollContainer table"
-  cx="scrollContainer table"
+  className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer table"
   style={
     Object {
       "display": "flex",
@@ -25,7 +24,7 @@ exports[`DataTable should be rendered correctly 1`] = `
         "left": 0,
         "marginBottom": 0,
         "marginRight": 0,
-        "overflow": "auto",
+        "overflow": "scroll",
         "position": "relative",
         "right": 0,
         "top": 0,
