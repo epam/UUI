@@ -21,7 +21,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('name').toProps() }
-                    renderEditor={ (props) => <TextInput { ...props } autoFocus /> }
+                    renderEditor={ (props) => <TextInput { ...props } /> }
                     { ...props }
                 />
             ),

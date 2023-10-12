@@ -13,7 +13,7 @@ import { getDemoTasks } from './demoData';
 import { getColumns } from './columns';
 import { deleteTaskWithChildren, getInsertionOrder } from './helpers';
 
-import css from './ProjectDemo.module.scss';
+import css from './ProjectTableDemo.module.scss';
 
 interface FormState {
     items: Record<number, Task>;
@@ -35,7 +35,7 @@ let lastId = -1;
 
 let savedValue: FormState = { items: getDemoTasks() };
 
-export function ProjectDemo() {
+export function ProjectTableDemo() {
     const {
         lens, value, save, isChanged, revert, undo, canUndo, redo, canRedo, setValue,
     } = useForm<FormState>({
