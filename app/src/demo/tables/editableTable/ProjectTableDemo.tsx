@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput } from '@epam/promo';
+import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/promo';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
@@ -148,7 +148,7 @@ export function ProjectTableDemo() {
         return undefined;
     }, [tableState.selectedId, value.items]);
 
-    const deleteItemOnClick = () => {
+    const deleteSelectedItem = useCallback(() => {
         const prevRows = [...rows]; 
         deleteTask(selectedItem);
         if (selectedItem !== undefined) {
@@ -162,13 +162,27 @@ export function ProjectTableDemo() {
                 selectedId: newSelectedIndex >= 0 ? prevRows[newSelectedIndex].id : undefined,
             })); 
         }
-    };
+    }, [deleteTask, rows, selectedItem, setTableState]);
 
     const keydownHandler = useCallback((event: KeyboardEvent) => {
-        if ((event.metaKey || event.ctrlKey) && event.code === 'Enter') {
-            insertTask('bottom', selectedItem);
+        if ((event.metaKey || event.ctrlKey) && event.shiftKey && event.code === 'Enter') {
+            event.preventDefault();
+            insertTask('top', selectedItem);
+            return;
         }
-    }, [insertTask, selectedItem]);
+
+        if ((event.metaKey || event.ctrlKey) && event.code === 'Enter') {
+            event.preventDefault();
+            insertTask('bottom', selectedItem);
+            return;
+        }
+
+        if ((event.metaKey || event.ctrlKey) && event.code === 'Backspace') {
+            event.preventDefault();
+            deleteSelectedItem();
+            return;
+        }
+    }, [insertTask, selectedItem, deleteSelectedItem]);
 
     useEffect(() => {
         document.addEventListener('keydown', keydownHandler);
@@ -181,16 +195,24 @@ export function ProjectTableDemo() {
         <Panel cx={ css.container }>
             <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="gray5">
                 <FlexCell width="auto">
-                    <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />
+                    <Tooltip content="Ctrl + Enter / ⌘ + Enter" placement="bottom">
+                        <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />
+                    </Tooltip>
                 </FlexCell>
                 <FlexCell width="auto">
-                    <IconButton icon={ insertAfter } onClick={ () => insertTask('bottom', selectedItem) } />
+                    <Tooltip content="Ctrl + Enter / ⌘ + Enter" placement="bottom">
+                        <IconButton icon={ insertAfter } onClick={ () => insertTask('bottom', selectedItem) } />
+                    </Tooltip>
                 </FlexCell>
                 <FlexCell width="auto">
-                    <IconButton icon={ insertBefore } onClick={ () => insertTask('top', selectedItem) } />
+                    <Tooltip content="Ctrl + Shift + Enter / ⌘ + Shift + Enter" placement="bottom">
+                        <IconButton icon={ insertBefore } onClick={ () => insertTask('top', selectedItem) } />
+                    </Tooltip>
                 </FlexCell>
                 <FlexCell width="auto">
-                    <IconButton icon={ deleteLast } onClick={ () => deleteItemOnClick() } />
+                    <Tooltip content="Ctrl + Backspace / ⌘ + Backspace" placement="bottom">
+                        <IconButton icon={ deleteLast } onClick={ () => deleteSelectedItem() } />
+                    </Tooltip>
                 </FlexCell>
                 <FlexSpacer />
                 <FlexCell cx={ css.search } width={ 295 }>
