@@ -155,8 +155,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="root scrollContainer"
-          cx="scrollContainer"
+          className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
           style={
             Object {
               "display": "flex",
@@ -178,7 +177,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 "left": 0,
                 "marginBottom": 0,
                 "marginRight": 0,
-                "overflow": "auto",
+                "overflow": "scroll",
                 "position": "relative",
                 "right": 0,
                 "top": 0,
@@ -584,8 +583,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         }
       >
         <div
-          className="root scrollContainer"
-          cx="scrollContainer"
+          className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
           style={
             Object {
               "display": "flex",
@@ -607,7 +605,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 "left": 0,
                 "marginBottom": 0,
                 "marginRight": 0,
-                "overflow": "auto",
+                "overflow": "scroll",
                 "position": "relative",
                 "right": 0,
                 "top": 0,
@@ -1586,12 +1584,11 @@ exports[`PickerModal should open body 1`] = `
             class="root size-36 body modal undefined container align-items-center"
           >
             <div
-              class="root scrollContainer"
-              cx="scrollContainer"
+              class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
               style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
             >
               <div
-                style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: auto; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+                style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
               >
                 <div
                   class="listContainer"

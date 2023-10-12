@@ -2,7 +2,8 @@ import * as React from 'react';
 import {
     IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, useScrollShadows, cx, uuiMarkers, IHasChildren,
 } from '@epam/uui-core';
-import { PositionValues, ScrollBars, ScrollbarsApi } from '@epam/uui-components';
+import { PositionValues, ScrollbarsApi } from '@epam/uui-components';
+import { ScrollBars } from './ScrollBars';
 import css from './VirtualList.module.scss';
 import { Blocker } from './Blocker';
 import { HTMLAttributes } from 'react';
@@ -69,7 +70,6 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
         if (!scrollbars?.container?.firstChild) return;
         scrollContainerRef.current = scrollbars.container.firstChild as HTMLDivElement;
     }, []);
-
     return (
         <ScrollBars
             cx={ cx(css.scrollContainer, props.cx, {
@@ -79,7 +79,6 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
                 [uuiMarkers.scrolledBottom]: scrollShadows.verticalBottom,
             }) }
             onScroll={ handleScroll }
-            disableScroll={ props.isLoading }
             renderView={ ({ style }: any) => <VirtualListView isLoading={ props.isLoading } style={ style } /> }
             ref={ scrollBarsRef }
         >
@@ -104,7 +103,9 @@ const VirtualListView = React.forwardRef<HTMLDivElement, VirtualListViewProps>((
                     flex: '1 1 auto',
                     display: 'flex',
                     flexDirection: 'column',
-                    overflow: props.isLoading ? 'hidden' : 'auto',
+                    overflow: props.isLoading ? 'hidden' : 'scroll',
+                    marginRight: props.isLoading ? 0 : props.style.marginRight,
+                    marginBottom: props.isLoading ? 0 : props.style.marginBottom,
                 } }
                 ref={ ref }
             >
