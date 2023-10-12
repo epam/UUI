@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
-import { DataTable, Panel, FlexRow, Text, PresetsPanel } from '@epam/uui';
-import { Badge } from '@epam/promo';
+import { DataTable, Panel, FlexRow, Text, PresetsPanel, Badge, BadgeColor } from '@epam/uui';
 import { DataColumnProps, getSeparatedValue, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import dayjs from 'dayjs';
@@ -19,7 +18,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as any } caption={ p.profileStatus } />
+                    <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as BadgeColor } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         width: 140,
