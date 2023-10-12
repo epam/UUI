@@ -41,14 +41,12 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                     .show(
                         () => (
                             <Panel background="surface" shadow={ true }>
-                                <FlexRow padding="24" vPadding="12">
-                                    <Text font="regular">
-                                        {name}
-                                        (
-                                        {args.length}
-                                        {' '}
-                                        args)
-                                    </Text>
+                                <FlexRow padding="24" vPadding="12" cx={ css.code }>
+                                    {name}
+                                    (
+                                    {args.length}
+                                    {' '}
+                                    args)
                                 </FlexRow>
                             </Panel>
                         ),

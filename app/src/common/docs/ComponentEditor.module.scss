@@ -41,16 +41,16 @@
         flex-shrink: 0;
         flex-basis: 0;
     }
+}
 
-    .code {
-        font-family: monospace;
-        font-size: 14px;
-        line-height: 24px;
-        color: $gray70;
-        padding: 12px 24px;
-        white-space: pre-wrap;
-        overflow: hidden;
-    }
+.code {
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 24px;
+    color: var(--uui-text-primary);
+    padding: 12px 24px;
+    white-space: pre-wrap;
+    overflow: hidden;
 }
 
 .demo-context {
