@@ -3,14 +3,19 @@
 .dropdown-body {
     --uui-main_menu-text: var(--uui-text-contrast);
     --uui-main_menu-text-active: var(--uui-text-contrast);
-    --uui-main_menu-active: var(--uui-surface-contrast-lower);
+    --uui-main_menu-active: var(--uui-neutral-90);
     --uui-main_menu-border-active: var(--uui-primary-50);
 
-    --uui-main_menu-dropdown-bg: var(--uui-surface-contrast-lower);
-    --uui-main_menu-dropdown-bg-hover: var(--uui-surface-contrast-low);
+    --uui-main_menu-dropdown-bg: var(--uui-neutral-90);
+    --uui-main_menu-dropdown-bg-hover: var(--uui-neutral-80);
     --uui-main_menu-dropdown-hover: var(--uui-primary-50);
     --uui-main_menu-dropdown-shadow: none;
     --uui-main_menu-dropdown-border-radius: none;
+
+    --uui-main_menu-icon: var(--uui-text-contrast);
+    --uui-main_menu-icon-hover: var(--uui-text-contrast);
+    --uui-main_menu-icon-active: var(--uui-text-contrast);
+
     //
     display: flex;
     flex-direction: column;

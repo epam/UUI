@@ -23,9 +23,9 @@ export default function AttributesExample() {
             <FlexRow>
                 <Panel>
                     <FlexRow alignItems="center" spacing="6">
-                        <Badge color="success" size="24" fill="semitransparent" icon={ notificationIcon } caption="Available" />
-                        <Badge color="info" size="24" fill="semitransparent" caption="Bench" />
-                        <Badge color="warning" size="24" fill="semitransparent" caption="Remote" />
+                        <Badge color="success" size="24" fill="outline" icon={ notificationIcon } caption="Available" />
+                        <Badge color="info" size="24" fill="outline" caption="Bench" />
+                        <Badge color="warning" size="24" fill="outline" caption="Remote" />
                     </FlexRow>
                 </Panel>
             </FlexRow>

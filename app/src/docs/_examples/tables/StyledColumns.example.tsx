@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { DataTable, FlexRow, Panel, Text } from '@epam/uui';
-import { Badge, EpamAdditionalColor } from '@epam/promo';
+import { BadgeColor, Badge, DataTable, FlexRow, Panel, Text } from '@epam/uui';
 import { DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
@@ -39,7 +38,7 @@ export default function StyledColumnsExample() {
                 render: (p) =>
                     p.profileStatus && (
                         <FlexRow>
-                            <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as EpamAdditionalColor } caption={ p.profileStatus } />
+                            <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as BadgeColor } caption={ p.profileStatus } />
                         </FlexRow>
                     ),
                 width: 140,

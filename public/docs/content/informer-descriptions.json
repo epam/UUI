@@ -3,7 +3,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Use Informer as a compound component to display additional data."
+        "text": "Use CountIndicator as a compound component to display additional data."
       }
     ]
   }

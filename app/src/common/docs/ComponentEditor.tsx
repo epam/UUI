@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ArrayDataSource, cx, IHasCX, INotification } from '@epam/uui-core';
 import { PropDoc, PropSamplesCreationContext, IComponentDocs, PropExample, DemoContext } from '@epam/uui-docs';
-import { FlexCell, FlexRow, FlexSpacer, RadioInput, Switch, Text, Tooltip, TextInput, MultiSwitch, Panel, ScrollBars, PickerInput, Spinner, NotificationCard } from '@epam/promo';
-import { IconButton } from '@epam/uui';
+import { FlexCell, FlexSpacer, RadioInput, Switch, Tooltip, TextInput, MultiSwitch, ScrollBars, PickerInput, Spinner } from '@epam/promo';
+import { IconButton, NotificationCard, Panel, FlexRow, Text } from '@epam/uui';
 import { svc } from '../../services';
 import { copyTextToClipboard } from '../../helpers';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
@@ -40,15 +40,13 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                 svc.uuiNotifications
                     .show(
                         () => (
-                            <Panel background="white" shadow={ true }>
-                                <FlexRow padding="12" borderBottom={ true }>
-                                    <pre>
-                                        {name}
-                                        (
-                                        {args.length}
-                                        {' '}
-                                        args)
-                                    </pre>
+                            <Panel background="surface" shadow={ true }>
+                                <FlexRow padding="24" vPadding="12" cx={ css.code }>
+                                    {name}
+                                    (
+                                    {args.length}
+                                    {' '}
+                                    args)
                                 </FlexRow>
                             </Panel>
                         ),
@@ -361,13 +359,13 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
     showNotification() {
         svc.uuiNotifications.show(
             (props: INotification) => (
-                <NotificationCard { ...props } icon={ NotificationIcon } color="gray60" onClose={ null }>
-                    <Text size="36" font="sans">
+                <NotificationCard { ...props } icon={ NotificationIcon } color="info" onClose={ null }>
+                    <Text size="36" font="regular">
                         Code was copied to the clipboard
                     </Text>
                 </NotificationCard>
             ),
-            { duration: 3 },
+            { duration: 3, position: 'top-right' },
         ).catch(() => {});
     }
 
@@ -400,7 +398,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                     <div className={ cx(css.root, this.props.cx) }>
                         <div className={ cx(css.container, css.uuiThemePromo) }>
                             <FlexRow key="head" size="36" padding="12" borderBottom spacing="6" cx={ css.boxSizing }>
-                                <Text fontSize="16" lineHeight="24" cx={ css.vPadding } font="sans-semibold">
+                                <Text fontSize="16" lineHeight="24" cx={ css.vPadding } font="semibold">
                                     {title}
                                 </Text>
                                 <FlexSpacer />
@@ -418,19 +416,19 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                                     />
                                 </Tooltip>
                             </FlexRow>
-                            <FlexRow key="table-head" size="36" background="gray5" padding="12" spacing="6" borderBottom cx={ css.boxSizing }>
+                            <FlexRow key="table-head" size="36" background="surface" padding="12" spacing="6" borderBottom cx={ css.boxSizing }>
                                 <FlexCell key="name" width={ 130 }>
-                                    <Text size="24" font="sans-semibold">
+                                    <Text size="24" font="semibold">
                                         NAME
                                     </Text>
                                 </FlexCell>
                                 <FlexCell key="default" width={ 100 }>
-                                    <Text size="24" font="sans-semibold">
+                                    <Text size="24" font="semibold">
                                         DEFAULT
                                     </Text>
                                 </FlexCell>
                                 <FlexCell key="examples" grow={ 1 }>
-                                    <Text size="24" font="sans-semibold">
+                                    <Text size="24" font="semibold">
                                         PRESET
                                     </Text>
                                 </FlexCell>
@@ -458,7 +456,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                                 padding="12"
                                 spacing="6"
                                 borderBottom
-                                background="white"
+                                background="surface"
                                 cx={ [css.contextSettingRow, css.uuiThemePromo] }
                             >
                                 {this.renderSettings(docs.contexts)}

@@ -47,9 +47,9 @@ export default function BasicDropdownExample() {
                         <FlexRow padding="6">
                             <Panel background="surface">
                                 <FlexRow alignItems="center" spacing="6">
-                                    <Badge cx={ css.badge } color="success" size="18" fill="semitransparent" icon={ notificationIcon } caption="Available" />
-                                    <Badge cx={ css.badge } color="warning" size="18" fill="semitransparent" caption="Bench" />
-                                    <Badge cx={ css.badge } color="info" size="18" fill="semitransparent" caption="Remote" />
+                                    <Badge cx={ css.badge } color="success" size="18" icon={ notificationIcon } caption="Available" />
+                                    <Badge cx={ css.badge } color="warning" size="18" caption="Bench" />
+                                    <Badge cx={ css.badge } color="info" size="18" caption="Remote" />
                                 </FlexRow>
                                 <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
                                     On vacation till 19 Aug till 26 Aug

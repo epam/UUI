@@ -11,14 +11,14 @@ exports[`Button should render with maximum props 1`] = `
   type="button"
 >
   <div
-    className="uui-count"
-  >
-    10
-  </div>
-  <div
     className="uui-caption"
   >
     Click me
+  </div>
+  <div
+    className="root uui-count_indicator size-24 uui-color-white"
+  >
+    10
   </div>
   <div
     className="container uui-icon uui-enabled"
