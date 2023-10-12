@@ -32,8 +32,9 @@ export const resources: Resource[] = [
 ];
 
 export const statuses: Status[] = [
-    { id: 1, name: 'In Progress', color: '#009ECC' },
-    { id: 2, name: 'Blocked', color: '#FCAA00' },
-    { id: 3, name: 'At Risk', color: '#FA4B4B' },
-    { id: 4, name: 'Complete', color: '#67A300' },
+    { id: 1, name: 'Planned', color: '#848484' },
+    { id: 2, name: 'In Progress', color: '#009ECC' },
+    { id: 3, name: 'Blocked', color: '#FCAA00' },
+    { id: 4, name: 'At Risk', color: '#FA4B4B' },
+    { id: 5, name: 'Complete', color: '#67A300' },
 ];
