@@ -53,11 +53,11 @@ export function getOrderBetween(inputA: string | null, inputB: string | null): s
     while (true) {
         const aChar = a[n];
         const bChar = b[n];
-        let aFallback = 'a';
-        if (inputA == null || bChar < 'a' || bChar == null) {
-            aFallback = '0';
+        let defaultAChar = 'a';
+        if (inputA == null || bChar == null || bChar < 'a') {
+            defaultAChar = '0';
         }
-        const aDigit = parseInt(aChar || aFallback, radix);
+        const aDigit = parseInt(aChar || defaultAChar, radix);
         const bDigit = parseInt(bChar || 'z', radix);
 
         const midDigit = Math.floor((aDigit + bDigit) / 2);
