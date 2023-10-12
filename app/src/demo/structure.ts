@@ -58,7 +58,7 @@ export const demoItems: DemoItem[] = [
         name: 'Editable Table',
         component: ProjectTableDemo,
         source: 'https://github.com/epam/UUI/tree/main/app/src/demo/tables/editableTable',
-        previewImage: '/static/images/DemoTable.png',
+        previewImage: '/static/images/DemoEditableTable.png',
         shortDescription: 'Shows support for editable tables.',
     },
     {
