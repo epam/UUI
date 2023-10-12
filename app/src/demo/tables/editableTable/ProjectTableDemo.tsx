@@ -191,26 +191,31 @@ export function ProjectTableDemo() {
         };
     }, [keydownHandler]);
 
+    const getKeybindingWithControl = (keybindingWithoutControl: string) => {
+        const controlKey = navigator.platform.indexOf('Mac') === 0 ? '⌘' : 'Ctrl';
+        return `${controlKey} + ${keybindingWithoutControl}`;
+    };
+
     return (
         <Panel cx={ css.container }>
             <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="gray5">
                 <FlexCell width="auto">
-                    <Tooltip content="Ctrl + Enter / ⌘ + Enter" placement="bottom">
+                    <Tooltip content={ getKeybindingWithControl('Enter') } placement="bottom">
                         <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />
                     </Tooltip>
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Tooltip content="Ctrl + Enter / ⌘ + Enter" placement="bottom">
+                    <Tooltip content={ getKeybindingWithControl('Enter') } placement="bottom">
                         <IconButton icon={ insertAfter } onClick={ () => insertTask('bottom', selectedItem) } />
                     </Tooltip>
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Tooltip content="Ctrl + Shift + Enter / ⌘ + Shift + Enter" placement="bottom">
+                    <Tooltip content={ getKeybindingWithControl('Shift + Enter') } placement="bottom">
                         <IconButton icon={ insertBefore } onClick={ () => insertTask('top', selectedItem) } />
                     </Tooltip>
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Tooltip content="Ctrl + Backspace / ⌘ + Backspace" placement="bottom">
+                    <Tooltip content={ getKeybindingWithControl('Backspace') } placement="bottom">
                         <IconButton icon={ deleteLast } onClick={ () => deleteSelectedItem() } />
                     </Tooltip>
                 </FlexCell>
