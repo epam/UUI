@@ -70,7 +70,7 @@ export function ProjectTableDemo() {
                 position === 'bottom' || position === 'inside' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
                 tempRelativeTask?.order,
             );
-    
+
             return { ...currentValue, items: { ...currentValue.items, [task.id]: task } };
         });
 
@@ -149,18 +149,18 @@ export function ProjectTableDemo() {
     }, [tableState.selectedId, value.items]);
 
     const deleteSelectedItem = useCallback(() => {
-        const prevRows = [...rows]; 
+        const prevRows = [...rows];
         deleteTask(selectedItem);
         if (selectedItem !== undefined) {
             const index = prevRows.findIndex((task) => task.id === selectedItem.id);
-            const newSelectedIndex = index === prevRows.length - 1 
+            const newSelectedIndex = index === prevRows.length - 1
                 ? (prevRows.length - 2)
                 : (index + 1);
-            
+
             setTableState((state) => ({
                 ...state,
                 selectedId: newSelectedIndex >= 0 ? prevRows[newSelectedIndex].id : undefined,
-            })); 
+            }));
         }
     }, [deleteTask, rows, selectedItem, setTableState]);
 
@@ -191,31 +191,38 @@ export function ProjectTableDemo() {
         };
     }, [keydownHandler]);
 
-    const getKeybindingWithControl = (keybindingWithoutControl: string) => {
+    const getKeybindingWithControl = (tooltip: string, keybindingWithoutControl: string) => {
         const controlKey = navigator.platform.indexOf('Mac') === 0 ? '⌘' : 'Ctrl';
-        return `${controlKey} + ${keybindingWithoutControl}`;
+        return (
+            <>
+                { tooltip } 
+                {' '}
+                <br />
+                { `(${controlKey} + ${keybindingWithoutControl})` }
+            </>
+        );
     };
 
     return (
         <Panel cx={ css.container }>
             <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="gray5">
                 <FlexCell width="auto">
-                    <Tooltip content={ getKeybindingWithControl('Enter') } placement="bottom">
+                    <Tooltip content={ getKeybindingWithControl('Add new task', 'Enter') } placement="bottom">
                         <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />
                     </Tooltip>
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Tooltip content={ getKeybindingWithControl('Enter') } placement="bottom">
+                    <Tooltip content={ getKeybindingWithControl('Add new task below', 'Enter') } placement="bottom">
                         <IconButton icon={ insertAfter } onClick={ () => insertTask('bottom', selectedItem) } />
                     </Tooltip>
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Tooltip content={ getKeybindingWithControl('Shift + Enter') } placement="bottom">
+                    <Tooltip content={ getKeybindingWithControl('Add new task above', 'Shift + Enter') } placement="bottom">
                         <IconButton icon={ insertBefore } onClick={ () => insertTask('top', selectedItem) } />
                     </Tooltip>
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Tooltip content={ getKeybindingWithControl('Backspace') } placement="bottom">
+                    <Tooltip content={ getKeybindingWithControl('Delete task', 'Backspace') } placement="bottom">
                         <IconButton icon={ deleteLast } onClick={ () => deleteSelectedItem() } />
                     </Tooltip>
                 </FlexCell>
