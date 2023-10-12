@@ -58,6 +58,10 @@ export const deleteTaskWithChildren = (tasks: Record<number, Task>, taskToDelete
         taskToBeDeleted = rootItems[rootItems.length - 1];
     }
 
+    if (!taskToBeDeleted) {
+        return currentTasks;
+    }
+
     const childrenIds = findAllChildren(Object.values(currentTasks), taskToBeDeleted);
     [taskToBeDeleted.id, ...childrenIds].forEach((id) => {
         delete currentTasks[id];
