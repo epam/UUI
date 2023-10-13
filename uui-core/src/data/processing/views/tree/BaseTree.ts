@@ -261,6 +261,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     }
 
     abstract patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: (newItem: TItem, existingItem: TItem) => number): ITree<TItem, TId>;
+    abstract merge(tree: ITree<TItem, TId>): ITree<TItem, TId>;
     abstract cascadeSelection(
         currentSelection: TId[],
         selectedId: TId,

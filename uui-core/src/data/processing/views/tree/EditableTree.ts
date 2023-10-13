@@ -5,8 +5,37 @@ import {
 } from './ITree';
 import { CascadeSelection, CascadeSelectionTypes } from '../../../../types';
 import { CompositeKeysMap } from './CompositeKeysMap';
+import isEqual from 'lodash.isequal';
 
 export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
+    public merge(tree: ITree<TItem, TId>) {
+        const newById = this.cloneMap(this.byId);
+        const newByParentId = this.cloneMap(this.byParentId); // shallow clone, still need to copy arrays inside!
+
+        tree.forEach((item, id, parentId) => {
+            if (!newById.has(id) || newById.get(id) !== item) {
+                newById.set(id, item);
+            }
+
+            if (!newByParentId.has(parentId)) {
+                newByParentId.set(parentId, []);
+            }
+            const children = newByParentId.get(parentId);
+            if (!children.some((itemId) => isEqual(itemId, id))) {
+                children.push(id);
+                newByParentId.set(parentId, children);
+            }
+        });
+
+        const newNodeInfoById = this.newMap<TId, TreeNodeInfo>();
+
+        for (const [parentId, ids] of newByParentId) {
+            newNodeInfoById.set(parentId, { count: ids.length });
+        }
+
+        return this.newInstance(this.params, newById, newByParentId, newNodeInfoById);
+    }
+
     public patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: ItemsComparator<TItem>): ITree<TItem, TId> {
         if (!items || items.length === 0) {
             return this;
