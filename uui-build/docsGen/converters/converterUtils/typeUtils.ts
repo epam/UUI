@@ -4,7 +4,7 @@ import { SymbolUtils } from './symbolUtils';
 
 export class TypeUtils {
     static getCompilerTypeText(type: Type): string {
-        return type.getText().replace(/import.*"\)\.*/g, '').replace(/"/g, "'");
+        return type.getText().replace(/import\("[^()"]+"\)\./g, '').replace(/"/g, "'");
     }
 
     // TODO: review kinds, add tests

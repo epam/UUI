@@ -2,8 +2,7 @@
 
 exports[`VirtualList should be rendered correctly 1`] = `
 <div
-  className="root scrollContainer"
-  cx="scrollContainer"
+  className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
   style={
     Object {
       "display": "flex",
@@ -48,6 +47,16 @@ exports[`VirtualList should be rendered correctly 1`] = `
         }
       />
     </div>
+  </div>
+  <div
+    className="container uui-blocker-container root"
+    style={
+      Object {
+        "minHeight": undefined,
+      }
+    }
+  >
+    <div />
   </div>
   <div
     className="uui-track-horizontal"

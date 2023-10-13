@@ -30,10 +30,6 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
                 const focusedRow: DataRowProps<any, any> = params.rows[value.focusedIndex - value.topIndex];
                 const clickHandler = focusedRow.onFold || focusedRow.onSelect || focusedRow.onCheck;
                 clickHandler && clickHandler(focusedRow);
-                if (!focusedRow.onFold && search) {
-                    search = '';
-                    focusedIndex = 0;
-                }
             }
             break;
         }
