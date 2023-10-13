@@ -89,6 +89,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     private isUpdatePending = false;
     private loadedValue: DataSourceState<TFilter, TId> = null;
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
+    private treeWithoutSearch: ITree<TItem, TId> = null;
+
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
         { legacyLoadDataBehavior = true, ...props }: LazyListViewProps<TItem, TId, TFilter>,
@@ -166,8 +168,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             completeReset = true;
             this.isForceReloading = false;
         }
-        const isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
 
+        const isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
         const moreRowsNeeded = this.areMoreRowsNeeded(prevValue, this.value);
         if (completeReset || this.shouldRebuildRows(this.value, prevValue)) {
             this.updateCheckedLookup(this.value.checked);
@@ -193,8 +195,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         if (completeReset || isFoldingChanged || moreRowsNeeded) {
             this.loadMissing(completeReset)
-                .then(({ isUpdated, isOutdated }) => {
+                .then(({ isUpdated, isOutdated, tree }) => {
                     if (isUpdated && !isOutdated) {
+                        this.tree = tree;
+                        if (prevValue?.search && !this.value.search) {
+                            this.tree = this.tree.merge(this.treeWithoutSearch);
+                        }
+                        if (!this.value.search) {
+                            this.treeWithoutSearch = tree;
+                        }
                         this.updateCheckedLookup(this.value.checked);
                         this.rebuildRows();
                     }
@@ -284,31 +293,41 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         abortInProgress: boolean,
         options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>,
         withNestedChildren?: boolean,
+        value?: DataSourceState<TFilter, TId>,
+        tree?: ITree<TItem, TId>,
     ): Promise<LoadResult<TItem, TId>> {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
 
         if (this.inProgressPromise === null || abortInProgress) {
-            this.inProgressPromise = Promise.resolve({ isUpdated: false, isOutdated: false, tree: this.tree });
+            this.inProgressPromise = Promise.resolve({ isUpdated: false, isOutdated: false, tree: tree ?? this.tree });
         }
 
-        this.inProgressPromise = this.inProgressPromise.then(() => this.loadMissingImpl(options, withNestedChildren));
+        this.inProgressPromise = this.inProgressPromise.then(() =>
+            this.loadMissingImpl(options, withNestedChildren, value, tree));
 
         return this.inProgressPromise;
     }
 
-    private async loadMissingImpl(options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>, withNestedChildren?: boolean): Promise<LoadResult<TItem, TId>> {
-        const loadingTree = this.tree;
+    private async loadMissingImpl(
+        options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>,
+        withNestedChildren?: boolean,
+        value?: DataSourceState<TFilter, TId>,
+        tree?: ITree<TItem, TId>,
+    ): Promise<LoadResult<TItem, TId>> {
+        const localValue = { ...this.value, ...value };
+        const localTree = tree ?? this.tree;
+        const loadingTree = localTree;
 
         try {
-            const newTreePromise = this.tree.load(
+            const newTreePromise = localTree.load(
                 {
                     ...this.props,
                     ...options,
                     isFolded: (node) => this.isFolded(node),
                     api: this.api,
-                    filter: { ...{}, ...this.props.filter, ...this.value.filter },
+                    filter: { ...{}, ...this.props.filter, ...localValue.filter },
                 },
-                this.value,
+                localValue,
                 withNestedChildren,
             );
 
@@ -316,12 +335,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
             // If this.tree is changed during this load, than there was reset occurred (new value arrived)
             // We need to tell caller to reject this result
-            const isOutdated = this.tree !== loadingTree;
-            const isUpdated = this.tree !== newTree;
-
-            if (!isOutdated) {
-                this.tree = newTree;
-            }
+            const isOutdated = localTree !== loadingTree;
+            const isUpdated = localTree !== newTree;
 
             return { isUpdated, isOutdated, tree: newTree };
         } catch (e) {
@@ -348,7 +363,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         let tree = this.tree;
 
         const isImplicitMode = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
-
         if (this.props.cascadeSelection || isRoot) {
             if (!isImplicitMode || !isChecked || (isImplicitMode && isChecked && checkedId === ROOT_ID)) {
                 const loadNestedLayersChildren = !isImplicitMode;
@@ -363,13 +377,22 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                             if (isImplicitMode) {
                                 return id === ROOT_ID || parents.some((parent) => isEqual(parent, id));
                             }
+
                             // `isEqual` is used, because complex ids can be recreated after fetching of parents.
                             // So, they should be compared not by reference, but by value.
-                            return isRoot || isEqual(id, checkedId);
+                            return isRoot || isEqual(id, checkedId) || (this.value.search && parents.some((parent) => isEqual(parent, id)));
                         },
                     },
                     loadNestedLayersChildren,
+                    { search: null },
+                    this.treeWithoutSearch,
                 );
+                if (!result.isOutdated) {
+                    if (!this.value.search) {
+                        this.tree = result.tree;
+                    }
+                    this.treeWithoutSearch = result.tree;
+                }
                 tree = result.tree;
             }
         }
