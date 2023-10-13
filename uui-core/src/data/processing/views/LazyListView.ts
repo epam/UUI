@@ -198,7 +198,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 .then(({ isUpdated, isOutdated, tree }) => {
                     if (isUpdated && !isOutdated) {
                         this.tree = tree;
-                        if (prevValue?.search && !this.value.search) {
+                        if (prevValue?.search && !this.value.search && this.tree !== this.treeWithoutSearch) {
                             this.tree = this.tree.merge(this.treeWithoutSearch);
                         }
                         if (!this.value.search) {
