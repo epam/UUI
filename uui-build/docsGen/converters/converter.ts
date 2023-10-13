@@ -9,25 +9,28 @@ import { getTypeRefFromTypeSummary } from './converterUtils/converterUtils';
 export class Converter implements IConverter {
     constructor(public readonly context: IConverterContext) {}
 
-    convertToTypeValue(nodeOrSymbol: TConvertable, print: boolean): TTypeValue {
-        if (Node.isNode(nodeOrSymbol)) {
-            const node = ConvertableUtils.getNode(nodeOrSymbol);
+    convertToTypeValue(params: { convertable: TConvertable, isProperty: boolean }): TTypeValue {
+        const { convertable, isProperty } = params;
+        const print = !isProperty;
+        if (Node.isNode(convertable)) {
+            const node = ConvertableUtils.getNode(convertable);
             return NodeUtils.getTypeValueFromNode(node, print);
         }
-        return SymbolUtils.getTypeValueFromNode(nodeOrSymbol, print);
+        return SymbolUtils.getTypeValueFromNode(convertable, print);
     }
 
     isSupported(nodeOrSymbol: TConvertable) {
         return !!nodeOrSymbol;
     }
 
-    convert(nodeOrSymbol: TConvertable): TTypeConverted {
-        const summary = this.context.convertTypeSummary(nodeOrSymbol);
-        const typeValue = this.convertToTypeValue(nodeOrSymbol, true);
-        const node = ConvertableUtils.getNode(nodeOrSymbol);
+    convert(params: { convertable: TConvertable, isProperty: boolean }): TTypeConverted {
+        const { convertable, isProperty } = params;
+        const summary = this.context.convertTypeSummary({ convertable });
+        const typeValue = this.convertToTypeValue({ convertable, isProperty });
+        const node = ConvertableUtils.getNode(convertable);
         const kind = node.getKind();
         const typeRef = getTypeRefFromTypeSummary(summary);
-        const propsConverted = this.context.convertTypeProps(nodeOrSymbol);
+        const propsConverted = this.context.convertTypeProps({ convertable });
         const details: TTypeDetails = {
             kind,
             typeValue,

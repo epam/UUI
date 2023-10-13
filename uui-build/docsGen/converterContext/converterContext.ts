@@ -26,30 +26,32 @@ export class ConverterContext implements IConverterContext {
         ]);
     }
 
-    private findSuitableConverter(nodeOrSymbol: TConvertable): IConverter {
-        return this.allConverters.find((c) => c.isSupported(nodeOrSymbol)) as IConverter;
+    private findSuitableConverter(convertable: TConvertable): IConverter {
+        return this.allConverters.find((c) => c.isSupported(convertable)) as IConverter;
     }
 
-    convertToTypeValue(nodeOrSymbol: TConvertable): TTypeValue {
-        const instance = this.findSuitableConverter(nodeOrSymbol);
-        return instance.convertToTypeValue(nodeOrSymbol, false);
+    convertToTypeValue(params: { convertable: TConvertable, isProperty: boolean }): TTypeValue {
+        const { convertable, isProperty } = params;
+        const instance = this.findSuitableConverter(convertable);
+        return instance.convertToTypeValue({ convertable, isProperty });
     }
 
-    convertTypeProps(nodeOrSymbol: TConvertable): TTypePropsConverted | undefined {
-        return convertTypeProps(nodeOrSymbol, this);
+    convertTypeProps(params: { convertable: TConvertable }): TTypePropsConverted | undefined {
+        return convertTypeProps(params.convertable, this);
     }
 
-    convertTypeSummary(nodeOrSymbol: TConvertable): TTypeSummary {
-        const summary = convertTypeSummary(nodeOrSymbol);
+    convertTypeSummary(params: { convertable: TConvertable }): TTypeSummary {
+        const summary = convertTypeSummary(params.convertable);
         const ref = getTypeRefFromTypeSummary(summary);
         this.result.addTypeSummary(ref, summary);
         return summary;
     }
 
-    convert(nodeOrSymbol: TConvertable, exported?: boolean): TTypeConverted {
-        const instance = this.findSuitableConverter(nodeOrSymbol);
-        const isSeen = this.seenNodes.has(nodeOrSymbol); // avoid infinite loop for recursive types
-        const node = ConvertableUtils.getNode(nodeOrSymbol);
+    convert(params: { convertable: TConvertable, exported?: boolean }): TTypeConverted {
+        const { convertable, exported } = params;
+        const instance = this.findSuitableConverter(convertable);
+        const isSeen = this.seenNodes.has(convertable); // avoid infinite loop for recursive types
+        const node = ConvertableUtils.getNode(convertable);
         const isExternal = NodeUtils.isExternalNode(node);
         if (isSeen || isExternal) {
             const summary = NodeUtils.getTypeSummary(node);
@@ -72,14 +74,14 @@ export class ConverterContext implements IConverterContext {
             }
             return res;
         }
-        this.seenNodes.add(nodeOrSymbol);
-        const result = instance.convert(nodeOrSymbol);
+        this.seenNodes.add(convertable);
+        const result = instance.convert({ convertable });
         this.result.addType(result);
         if (exported) {
             this.result.markAsExported(result.typeRef);
         }
         this.stats.checkConvertedExport(result);
-        this.seenNodes.delete(nodeOrSymbol);
+        this.seenNodes.delete(convertable);
         return result;
     }
 

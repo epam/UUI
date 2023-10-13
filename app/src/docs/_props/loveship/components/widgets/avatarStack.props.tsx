@@ -23,7 +23,7 @@ const AvatarStackDoc = new DocBuilder<AvatarStackProps>({ name: 'AvatarStack', c
             {
                 name: 'Olivia',
                 value: [
-                    'https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50', 'https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50', 'https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50',
+                    'https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4', 'https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4', 'https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4',
                 ],
                 isDefault: true,
             },
