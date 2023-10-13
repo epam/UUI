@@ -1,6 +1,6 @@
 import React from 'react';
-import { VirtualListRenderRowsParams } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
+import { VirtualListRenderRowsParams } from '../../layout';
 import { DataRowsGroups } from './DataRowsGroups';
 import css from './DataRowsContainer.module.scss';
 

@@ -1,6 +1,5 @@
 export * from './flexItems';
 export * from './Accordion';
-export * from './VirtualList';
 export * from './LabeledInput';
 export * from './IconContainer';
 export * from './RadioGroup';
