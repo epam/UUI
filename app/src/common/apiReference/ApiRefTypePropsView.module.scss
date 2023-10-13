@@ -1,4 +1,7 @@
+@use '~@epam/assets/theme/theme_promo' as *;
+
 .root {
+    @include theme-promo();
     max-width: 100%;
     width: 960px;
 
