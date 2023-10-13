@@ -81,11 +81,14 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
         if (isFocusReceiverInsideFocusLock(e)) return;
         this.onToggle(false);
         if (this.getIsValidDate(this.state.inputValue)) {
-            const inputValue = toCustomDateFormat(this.state.inputValue, this.getFormat());
-            this.setState({ inputValue });
+            this.setState(
+                (state) => ({ inputValue: toCustomDateFormat(state.inputValue, this.getFormat()) }),
+            );
         } else {
-            this.handleValueChange(null);
-            this.setState({ inputValue: null, selectedDate: null });
+            if (this.state.inputValue !== '' && this.state.inputValue != null) {
+                this.handleValueChange(null);
+                this.setState({ inputValue: null, selectedDate: null });
+            }
         }
     };
 
