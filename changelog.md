@@ -4,8 +4,8 @@
 * [useVirtualList]:  
   * Breaking change: `scrollToIndex` prop was removed, use `scrollTo` instead.
   * Improved scrollTo functionality. Added configuration of scroll behavior and how to align item after scroll.
-  * See the example here - https://uui.epam.com/documents?id=virtualList#scroll_to_index
-* [DataTable]: added possibility to pin rows inside table. It allows you to make some rows sticky inside their parent group. Use `pin` callback in `getRowOptions` function for this. See the example, for more details - https://uui.epam.com/documents?id=advancedTables&category=tables#table_with_pinned_rows.
+  * See the example [here](https://uui.epam.com/documents?id=virtualList#scroll_to_index)
+* [DataTable]: added possibility to pin rows inside table. It allows you to make some rows sticky inside their parent group. Use `pin` callback in `getRowOptions` function for this. See the example [here](https://uui.epam.com/documents?id=advancedTables&category=tables#table_with_pinned_rows).
 * [BaseListView]: 
   * added `backgroundReload` property. If it is set to `true`, placeholders appear only on the first load and on fetching additional rows.
     Any filter/search/sorting change doesn't trigger placeholders' rendering. Old data is shown until new data is received. When reloading is started,
