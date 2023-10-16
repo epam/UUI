@@ -21,6 +21,7 @@ export function applyTextInputMods(mods: TextInputMods) {
 }
 
 export interface TextInputProps extends CoreTextInputProps, TextInputMods {}
+export interface SearchInputProps extends TextInputProps, IEditableDebouncerOptions {}
 
 export const TextInput = withMods<CoreTextInputProps, TextInputMods>(uuiTextInput, applyTextInputMods, (props) => ({
     acceptIcon: systemIcons[props.size || defaultSize].accept,
@@ -28,7 +29,7 @@ export const TextInput = withMods<CoreTextInputProps, TextInputMods>(uuiTextInpu
     dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
 }));
 
-export const SearchInput = React.forwardRef<HTMLInputElement, TextInputProps & TextInputMods & IEditableDebouncerOptions>((props, ref) => {
+export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>((props, ref) => {
     // analytics events are sending in IEditableDebouncer, so we need to avoid sending events in TextInput
     const { ...textInputProps } = props;
     delete textInputProps.getValueChangeAnalyticsEvent;

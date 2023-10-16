@@ -1,5 +1,5 @@
 import { ArrayListViewProps, AsyncListViewProps, LazyListViewProps } from '../views';
-import { DataSourceState, IDataSourceView } from '../../../types';
+import { DataSourceState, IDataSourceView, IEditable } from '../../../types';
 
 export type PropsWithType<Props, Type extends string> = Props & { type: Type };
 
@@ -18,7 +18,7 @@ export type UnboxListProps<T extends ListViewProps<any, any, any>> = T extends L
             : never;
 
 export interface IView<TItem, TId, TFilter, Props extends ListViewProps<TItem, TId, TFilter>> extends IDataSourceView<TItem, TId, TFilter> {
-    update(newValue: DataSourceState<TFilter, TId>, props: Props): void;
+    update(newValue: IEditable<DataSourceState<TFilter, TId>>, props: Props): void;
 }
 
 interface ListState<TId, TFilter> {
@@ -38,4 +38,10 @@ ListState<TId, TFilter> & {
          * @default true
          */
     loadData?: boolean;
+};
+
+export type UseListOptionsProps<TItem, TId, TFilter, TProps extends ListViewProps<TItem, TId, TFilter>> = {
+    view: IView<TItem, TId, TFilter, TProps>;
+    listState: DataSourceState<TFilter, TId>;
+    props: TProps;
 };

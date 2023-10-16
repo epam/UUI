@@ -28,7 +28,7 @@ enum uuiScrollbars {
 }
 
 export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
-    style: outerStyle, hasBottomShadow, hasTopShadow, rawProps, ...props
+    style: outerStyle, hasBottomShadow, hasTopShadow, rawProps, cx: outerCx, ...props
 }, ref) => {
     const bars = useRef<ScrollbarsApi>();
 
@@ -37,7 +37,6 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
     const handleUpdateScroll = (event?: React.UIEvent<ScrollbarsApi>) => {
         if (!bars.current) return;
         event && props.onScroll?.(event);
-
         const scrollBars = bars.current?.container;
         if (!scrollBars) return;
         const { scrollTop, scrollHeight, clientHeight } = bars.current.getValues();
@@ -61,8 +60,8 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
 
     return (
         <ReactCustomScrollBars
-            className={ cx(css.root, props.cx, props.className, hasTopShadow && uuiScrollbars.uuiShadowTop, hasBottomShadow && uuiScrollbars.uuiShadowBottom) }
-            renderView={ renderView }
+            className={ cx(css.root, outerCx, props.className, hasTopShadow && uuiScrollbars.uuiShadowTop, hasBottomShadow && uuiScrollbars.uuiShadowBottom) }
+            renderView={ (params) => renderView(params) }
             renderTrackHorizontal={ (props: any) => <div { ...props } className={ uuiScrollbars.uuiTrackHorizontal } /> }
             renderTrackVertical={ (props: any) => <div { ...props } className={ uuiScrollbars.uuiTrackVertical } /> }
             renderThumbHorizontal={ () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> }

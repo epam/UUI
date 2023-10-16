@@ -61,7 +61,7 @@ export default function TreeTableExample() {
         [],
     );
 
-    const locationsDS = useAsyncDataSource<Location, string, unknown>(
+    const locationsDS = useAsyncDataSource<Location, string, Location>(
         {
             api: () => svc.api.demo.locations({}).then((r: LazyDataSourceApiResponse<Location>) => r.items),
         },

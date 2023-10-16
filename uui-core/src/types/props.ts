@@ -1,12 +1,8 @@
 import {
     Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode,
 } from 'react';
-import { Link, CX, Icon } from './objects';
+import { Link, CX, Icon, AnalyticsEvent } from './objects';
 import * as CSS from 'csstype';
-import { DataRowProps } from './dataSources';
-import { AnalyticsEvent } from './contexts';
-import { PopperArrowProps } from 'react-popper';
-import { Placement } from '@popperjs/core';
 
 /** Component value can be invalid */
 export interface ICanBeInvalid {
@@ -19,7 +15,7 @@ export interface ICanBeInvalid {
     validationProps?: { [key: string]: ICanBeInvalid };
 }
 
-/** Components has an editable value. Text Input is a basic example. */
+/** Component displays an editable value. Text Input is a basic example. */
 export interface IEditable<T> extends ICanBeInvalid, IDisableable, ICanBeReadonly, ICanBeRequired {
     /** The current value of component */
     value: T;
@@ -55,7 +51,7 @@ export interface IDisableable {
     isDisabled?: boolean;
 }
 
-/** Component can be not editable */
+/** Component can be made read-only */
 export interface ICanBeReadonly {
     /** Disable editing. Unlike isDisabled, keep component's value readable. */
     isReadonly?: boolean;
@@ -66,7 +62,7 @@ export interface ICanBeRequired {
     isRequired?: boolean;
 }
 
-/** Component can be focused */
+/** Component can get input focus */
 export interface ICanFocus<T> {
     /** Called when component gets input focus */
     onFocus?: (e: React.FocusEvent<T>) => void;
@@ -91,61 +87,10 @@ export interface IHasDirection {
     direction?: 'vertical' | 'horizontal';
 }
 
-/** Component can be used as Toggler control for dropdown menus */
-export interface IDropdownToggler extends IHasCaption, IClickable {
-    /** When component acts as dropdown, indicate that dropdown is open */
-    isOpen?: boolean;
-    /** Enabled dropdown mode - component can toggle dropdown */
-    isDropdown?: boolean;
-    /** Called when associated dropdown should open or close  */
-    toggleDropdownOpening?: (value: boolean) => void;
-    /** Called when component is interacted outside, to close the dropdown */
-    isInteractedOutside?: (event: Event) => boolean;
-    /** Component's ref */
-    ref?: React.Ref<any>;
-    /** Disables component */
-    isDisabled?: boolean;
-}
-
-export interface IDropdownBodyProps {
-    onClose?: () => void;
-    togglerWidth?: number;
-    togglerHeight?: number;
-    scheduleUpdate?: () => void;
-    isOpen?: boolean;
-    arrowProps?: PopperArrowProps;
-
-    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
-    placement?: Placement;
-}
-
 /**
- * Component can be used as Toggler control for pickers.
- * This interface is enough for basic pickers.
- * Picker togglers with search or advanced selection display should implement IPickerToggler interface
- */
-export interface IBasicPickerToggler extends IDropdownToggler {
-    onClear?(e?: any): void;
-}
-
-/**
- * Component can be used as Toggler control for pickers.
- * Only IDropdownToggler implementation is necessary for the picker to function.
- * Other props can be implemented for full-featured picker togglers.
- */
-export interface IPickerToggler<TItem = any, TId = any>
-    extends IBasicPickerToggler,
-    Partial<IEditable<string>>,
-    Partial<IHasPlaceholder>,
-    Partial<IDisableable>,
-    Partial<ICanBeInvalid> {
-    selection?: DataRowProps<TItem, TId>[];
-    selectedRowsCount?: number;
-}
-
-/**
- * Component can accept cx variable, which is more convenient shortcut for 'classname' property
- * It accepts string, arrays, object, recursively. All falsy values are thrown away. Examples:
+ * Component can accept cx property, allowing to pass classes to put on component.
+ * CX is a shortcut for 'classnames'.
+ * The props accepts string, arrays, object, recursively. All falsy values are thrown away. Examples:
  * - 'red' => 'red'
  * - ['red', 0, false, 'blue' ] => 'red blue'
  * - { 'red': true, 'blue': false, ['green', 'white']} => 'red green white'
@@ -155,6 +100,7 @@ export interface IHasCX {
     cx?: CX;
 }
 
+/** An icon can be added to component */
 export interface IHasIcon {
     /** Icon can be an React element (usually an SVG element) */
     icon?: Icon;
@@ -166,6 +112,7 @@ export interface IHasIcon {
     onIconClick?(): void;
 }
 
+/** Component can have child components */
 export interface IHasChildren {
     children?: ReactNode;
 }
@@ -206,6 +153,7 @@ export interface INotification {
     key: string;
 }
 
+// Component allows to pass raw HTML props to put on the DOM element
 export type IHasRawProps<T> = {
     /** Any HTML attributes (native or 'data-') to put on the underlying component */
     rawProps?: T & Record<`data-${string}`, string>;

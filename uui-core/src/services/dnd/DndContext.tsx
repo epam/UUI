@@ -17,8 +17,10 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     private renderGhostCallback: () => React.ReactNode = null;
     private lastScrollTime = new Date().getTime();
     private mouseCoordsService = new MouseCoordsService();
-    constructor() {
-        super();
+
+    init() {
+        super.init();
+
         if (isClientSide) {
             this.mouseCoordsService.init();
             window.addEventListener('pointermove', this.windowPointerMoveHandler);
@@ -70,6 +72,10 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     }
 
     public endDrag() {
+        if (!this.isDragging) {
+            return;
+        }
+
         new Promise<void>((res) => {
             this.update({ isDragging: false });
             res();
@@ -90,7 +96,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     };
 
     private windowPointerUpHandler = () => {
-        this.isDragging && this.endDrag();
+        this.endDrag();
     };
 
     private getScrollStep(nodeSize: number, nodeOffset: number, nodeScroll: number, mousePageCoord: number, mouseDelta: number) {

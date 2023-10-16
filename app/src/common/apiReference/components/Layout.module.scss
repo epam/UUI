@@ -1,0 +1,16 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1;
+    min-width: 0;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+
+    .main {
+        padding: 0 60px 60px;
+    }
+
+    .inner-block {
+        margin-bottom: 20px;
+    }
+}

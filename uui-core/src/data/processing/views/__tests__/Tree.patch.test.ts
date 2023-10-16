@@ -51,7 +51,7 @@ describe('Tree - patch', () => {
     const testApi = jest.fn(testApiFn);
     const loadParams: LoadTreeOptions<TestItem, number, DataQueryFilter<TestItem>> = {
         api: testApi,
-        getChildCount: (i) => i.childrenCount,
+        getChildCount: (i) => i.childrenCount ?? 0,
         isFolded: () => true,
     };
 

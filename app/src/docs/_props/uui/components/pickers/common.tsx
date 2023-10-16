@@ -139,9 +139,4 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
                 },
             },
         ],
-    })
-    .prop('cascadeSelection', {
-        examples: [
-            true, 'explicit', 'implicit',
-        ],
     });

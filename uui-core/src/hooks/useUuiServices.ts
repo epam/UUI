@@ -1,32 +1,28 @@
-import {
-    AnalyticsContext,
-    ApiContext,
-    DndContext,
-    ErrorContext,
-    IUuiServicesProps,
-    LayoutContext,
-    LockContext,
-    ModalContext,
-    NotificationContext,
-    uuiSkin,
-} from '../services';
+import { AnalyticsContext } from '../services/AnalyticsContext';
+import { ApiContext, IProcessRequest, ApiContextProps } from '../services/ApiContext';
+import { ErrorContext } from '../services/ErrorContext';
+import { DndContext } from '../services/dnd/DndContext';
+import { ISkin, uuiSkin } from '../services/SkinContext';
+import { LayoutContext } from '../services/LayoutContext';
+import { LockContext } from '../services/LockContext';
+import { ModalContext } from '../services/ModalContext';
+import { NotificationContext } from '../services/NotificationContext';
 import { ApiCallOptions, CommonContexts, IRouterContext } from '../types';
 import { UserSettingsContext } from '../services/UserSettingsContext';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 
-export interface IUseUuiServicesProps<TApi, TAppContext> extends IUuiServicesProps<TApi> {
+export interface UuiServicesProps<TApi> extends ApiContextProps {
+    apiDefinition?: (processRequest: IProcessRequest) => TApi;
+    skinContext?: ISkin;
+}
+export interface UseUuiServicesProps<TApi, TAppContext> extends UuiServicesProps<TApi> {
     appContext?: TAppContext;
     router: IRouterContext;
 }
 
-type TCreateServicesReturnValue<TApi, TAppContext> = {
-    services: CommonContexts<TApi, TAppContext>,
-    destroyServices: () => void
-};
-
-function createServices<TApi, TAppContext>(props: IUseUuiServicesProps<TApi, TAppContext>): TCreateServicesReturnValue<TApi, TAppContext> {
+function createServices<TApi, TAppContext>(props: UseUuiServicesProps<TApi, TAppContext>) {
     const {
-        router, appContext, apiDefinition,
+        router, appContext, apiDefinition, apiReloginPath, apiServerUrl, apiPingPath,
     } = props;
 
     const uuiLayout = new LayoutContext();
@@ -35,7 +31,7 @@ function createServices<TApi, TAppContext>(props: IUseUuiServicesProps<TApi, TAp
     const uuiAnalytics = new AnalyticsContext({ router });
     const uuiLocks = new LockContext(router);
     const uuiErrors = new ErrorContext(uuiAnalytics, uuiModals);
-    const uuiApi = new ApiContext(props, uuiAnalytics);
+    const uuiApi = new ApiContext({ apiPingPath, apiReloginPath, apiServerUrl }, uuiAnalytics);
 
     const rawApi = apiDefinition ? apiDefinition(uuiApi.processRequest.bind(uuiApi)) : ({} as TApi);
     const withOptions = (options: ApiCallOptions) => apiDefinition((url, method, data) => uuiApi.processRequest(url, method, data, options));
@@ -43,7 +39,7 @@ function createServices<TApi, TAppContext>(props: IUseUuiServicesProps<TApi, TAp
 
     const uuiUserSettings = new UserSettingsContext();
     const uuiDnD = new DndContext();
-    const services = {
+    const services: CommonContexts<TApi, TAppContext> = {
         uuiAnalytics,
         uuiErrors,
         uuiApi,
@@ -70,26 +66,35 @@ function createServices<TApi, TAppContext>(props: IUseUuiServicesProps<TApi, TAp
             uuiDnD.destroyContext();
             uuiLocks.destroyContext();
         },
+        init: () => {
+            uuiAnalytics.init();
+            uuiErrors.init();
+            uuiApi.init();
+            uuiLayout.init();
+            uuiNotifications.init();
+            uuiModals.init();
+            uuiDnD.init();
+            uuiLocks.init();
+        },
     };
 }
+export const useUuiServices = <TApi, TAppContext>(props: UseUuiServicesProps<TApi, TAppContext>) => {
+    const [result] = useState(() => createServices<TApi, TAppContext>(props));
 
-export const useUuiServices = <TApi, TAppContext>(props: IUseUuiServicesProps<TApi, TAppContext>) => {
-    const {
-        router, appContext, skinContext, apiDefinition,
-    } = props;
-
-    uuiSkin.setSkin(skinContext);
-    const { services, destroyServices } = useMemo(() => createServices({ router, appContext, apiDefinition }), []);
     // Workaround to discard all errors on navigation. Need to find a better way. YakovZh
-    services.uuiErrors.discardError();
-    services.uuiApi.reset();
+    result.services.uuiErrors.discardError();
+    result.services.uuiApi.reset();
 
     useEffect(() => {
+        result.init();
+        uuiSkin.setSkin(props.skinContext);
+
         (window as any).UUI_VERSION = __PACKAGE_VERSION__; // it replaced with current uui version during build time
+
         return () => {
-            destroyServices();
+            result.destroyServices();
         };
     }, []);
 
-    return { services };
+    return { services: result.services };
 };

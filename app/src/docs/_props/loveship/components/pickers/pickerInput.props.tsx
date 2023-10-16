@@ -19,6 +19,11 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
     .implements([
         sizeDoc, isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, modeDoc, iconDoc, iconOptionsDoc,
     ])
+    .prop('cascadeSelection', {
+        examples: [
+            true, 'explicit', 'implicit',
+        ],
+    })
     .prop('value', {
         examples: [
             { name: '1', value: 1 }, { name: '[1, 2]', value: [1, 2] }, { name: '{ id: 1, name: "Test"}', value: { id: 1, name: 'Test' } }, { name: '[{ id: 1, name: "Test"}]', value: [{ id: 1, name: 'Test' }] },
@@ -104,13 +109,21 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
         examples: (ctx) => [
             {
                 name: 'UserPickerRow',
-                value: (props) => (
+                value: (props, dataSourceState) => (
                     <DataPickerRow
                         { ...props }
                         key={ props.rowKey }
                         alignActions="center"
                         padding={ (ctx.getSelectedProps() as any).editMode === 'modal' ? '24' : '12' }
-                        renderItem={ (item, rowProps) => <PickerItem { ...rowProps } avatarUrl={ item.avatarUrl } title={ item.name } subtitle={ item.jobTitle } /> }
+                        renderItem={ (item, rowProps) => (
+                            <PickerItem
+                                { ...rowProps } 
+                                avatarUrl={ item.avatarUrl } 
+                                title={ item.name } 
+                                subtitle={ item.jobTitle }
+                                dataSourceState={ dataSourceState }
+                            />
+                        ) }
                     />
                 ),
             },

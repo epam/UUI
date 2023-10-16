@@ -81,9 +81,10 @@ export function DbDemoImpl() {
             setListState: onValueChange,
             api,
             getId: ({ id }) => id,
-            getChildCount: (item: PersonTableRecord) => (item.__typename === 'PersonGroup' ? item.count : null),
+            getChildCount: (item: PersonTableRecord) => (item.__typename === 'PersonEmploymentGroup' ? item.count : null),
             getRowOptions: () => ({ checkbox: { isVisible: true } }),
             isFoldedByDefault: () => false,
+            backgroundReload: true,
         },
         [],
     );

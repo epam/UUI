@@ -8,7 +8,7 @@ describe('AvatarStack', () => {
             .create(
                 <AvatarStack
                     avatarsCount={ 3 }
-                    urlArray={ Array(5).fill('https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50') }
+                    urlArray={ Array(5).fill('https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4') }
                     avatarSize="36"
                     direction="right"
                 />,

@@ -12,7 +12,6 @@ import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 import { Responsive } from './responsive/Responsive';
 import { ThemeDemo } from './theme/ThemeDemo';
 import { ProductsTableDemo } from './productsTable/ProductsTableDemo';
-import { ProjectDemo } from './project/ProjectDemo';
 import { AdaptivePanelDemo } from './adaptivePanel/AdaptivePanelDemo';
 import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
@@ -21,7 +20,6 @@ import TableCellsStylesSandbox from './tableCellStyles/TableCellsStylesSandbox';
 import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
 import { RichTextEditorDemo } from './RTE/rteDemo';
 import { TableColumnConfigModalTest } from './tableColConfigModal/TableColumnConfigModalTest';
-import PrefixDemoComponent from './prefixes/PrefixesDemoComponent';
 
 export function SandboxPage() {
     const items = useMemo(
@@ -30,7 +28,6 @@ export function SandboxPage() {
             { id: 'dbDemo', name: 'DB demo', component: DbDemo },
             { id: 'tableDemo', name: 'Persons Table', component: PersonsTableDemo },
             { id: 'productsTableDemo', name: 'Products Table', component: ProductsTableDemo },
-            { id: 'projectDemo', name: 'Project Table', component: ProjectDemo },
             { id: 'projectTasksDemo', name: 'Project Tasks Demo', component: ProjectTasksDemo },
             { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
             { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
@@ -42,7 +39,6 @@ export function SandboxPage() {
             { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
             { id: 'RTEDemo', name: 'RTE Demo', component: RichTextEditorDemo },
             { id: 'TableColumnsConfigurationModal', name: 'Table ColumnsConfigModal', component: TableColumnConfigModalTest },
-            { id: 'PrefixSuffixDemo', name: 'Prefix Demo', component: PrefixDemoComponent },
         ],
         [],
     );

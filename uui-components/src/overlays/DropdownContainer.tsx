@@ -51,6 +51,10 @@ export interface DropdownContainerProps
      * If omitted, true value will be used. It's used if focusLock=true.
      */
     closeOnEsc?: boolean;
+    /** Called on keyDown event in DropdownContainer.
+     Can be used to provide your own handlers.
+     */
+    onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
 }
 
 export const DropdownContainer = React.forwardRef((props: DropdownContainerProps, ref: React.ForwardedRef<HTMLElement>) => {
@@ -80,7 +84,8 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
     }
 
     const handleEscape = (e: React.KeyboardEvent<HTMLElement>) => {
-        if (e.key === 'Escape' && props.isOpen) {
+        props.onKeyDown?.(e);
+        if (e.key === 'Escape' && closeOnEsc && props.isOpen) {
             e.preventDefault();
             props.onClose?.();
         }
@@ -92,7 +97,7 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
                 ref={ ref }
                 returnFocus={ returnFocus }
                 persistentFocus={ persistentFocus }
-                lockProps={ { ...(closeOnEsc && { onKeyDown: handleEscape }), ...props.lockProps } }
+                lockProps={ { ...({ onKeyDown: handleEscape }), ...props.lockProps } }
                 shards={ props.shards }
                 as={ props.as }
             >

@@ -89,7 +89,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     private isUpdatePending = false;
     private loadedValue: DataSourceState<TFilter, TId> = null;
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
-    private reloading: boolean = false;
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
         { legacyLoadDataBehavior = true, ...props }: LazyListViewProps<TItem, TId, TFilter>,
@@ -107,7 +106,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 onUpdate: () => this._forceUpdate(),
             });
         }
-        this.update(editable.value, this.props);
+        this.update(editable, this.props);
     }
 
     private defaultGetId = (i: any) => i.id;
@@ -122,16 +121,20 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         };
     }
 
-    public update(newValue: DataSourceState<TFilter, TId>, props: LazyListViewProps<TItem, TId, TFilter>): void {
+    public update(
+        { value, onValueChange }: IEditable<DataSourceState<TFilter, TId>>,
+        props: LazyListViewProps<TItem, TId, TFilter>,
+    ): void {
         this.isUpdatePending = true;
-
-        if (!isEqual(newValue?.checked, this.value?.checked)) {
-            this.updateCheckedLookup(newValue.checked);
-        }
-
+        const { checked: prevChecked } = this.value ?? {};
         // We assume value to be immutable. However, we can't guarantee this.
         // Let's shallow-copy value to survive at least simple cases when it's mutated outside
-        this.value = { topIndex: 0, visibleCount: 20, ...newValue };
+        this.value = { topIndex: 0, visibleCount: 20, ...value };
+        this.onValueChange = onValueChange;
+
+        if (!isEqual(value?.checked, prevChecked)) {
+            this.updateCheckedLookup(value.checked);
+        }
 
         this.props = {
             ...props,
@@ -153,12 +156,16 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.isUpdatePending = false;
 
         let completeReset = false;
-        if (prevValue == null || prevProps == null || this.reloading || this.shouldRebuildTree(this.value, prevValue) || !isEqual(this.props.filter, prevProps.filter)) {
+        const shouldReloadData = this.isForceReloading
+            || !isEqual(this.props?.filter, prevProps?.filter)
+            || this.shouldRebuildTree(this.value, prevValue);
+
+        if (prevValue == null || prevProps == null || shouldReloadData) {
+            this.isReloading = true;
             this.tree = this.tree.clearStructure();
             completeReset = true;
-            this.reloading = false;
+            this.isForceReloading = false;
         }
-
         const isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
 
         const moreRowsNeeded = this.areMoreRowsNeeded(prevValue, this.value);
@@ -166,12 +173,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             this.updateCheckedLookup(this.value.checked);
         }
 
+        const shouldShowPlacehodlers = !shouldReloadData || (shouldReloadData && !this.props.backgroundReload);
+
         if (
-            completeReset
+            // on filters change skeleton should not appear
+            (completeReset && shouldShowPlacehodlers)
             || this.shouldRebuildRows(this.value, prevValue)
-            || !isEqual(this.props.rowOptions, prevProps.rowOptions)
+            || !isEqual(this.props.rowOptions, prevProps?.rowOptions)
             || isFoldingChanged
-            || this.props.getRowOptions !== prevProps.getRowOptions
+            || this.props.getRowOptions !== prevProps?.getRowOptions
             || moreRowsNeeded
         ) {
             this.rebuildRows();
@@ -182,13 +192,16 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         }
 
         if (completeReset || isFoldingChanged || moreRowsNeeded) {
-            this.loadMissing(completeReset).then(({ isUpdated, isOutdated }) => {
-                if (isUpdated && !isOutdated) {
-                    this.updateCheckedLookup(this.value.checked);
-                    this.rebuildRows();
+            this.loadMissing(completeReset)
+                .then(({ isUpdated, isOutdated }) => {
+                    if (isUpdated && !isOutdated) {
+                        this.updateCheckedLookup(this.value.checked);
+                        this.rebuildRows();
+                    }
+                }).finally(() => {
+                    this.isReloading = false;
                     this._forceUpdate();
-                }
-            });
+                });
         }
     }
 
@@ -209,9 +222,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     public reload = () => {
         this.tree = Tree.blank(this.props);
-        this.reloading = true;
+        this.isForceReloading = true;
         this.initCache();
-        this.update(this.value, this.props);
+        this.update({ value: this.value, onValueChange: this.onValueChange }, this.props);
         this._forceUpdate();
     };
 
@@ -346,7 +359,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                         // If cascadeSelection is implicit and the element is unchecked, it is necessary to load all children
                         // of all parents of the unchecked element to be checked explicitly. Only one layer of each parent should be loaded.
                         // Otherwise, should be loaded only checked element and all its nested children.
-                        loadAllChildren: (id) => (isImplicitMode ? id === ROOT_ID || parents.includes(id) : isRoot || id === checkedId),
+                        loadAllChildren: (id) => {
+                            if (isImplicitMode) {
+                                return id === ROOT_ID || parents.some((parent) => isEqual(parent, id));
+                            }
+                            // `isEqual` is used, because complex ids can be recreated after fetching of parents.
+                            // So, they should be compared not by reference, but by value.
+                            return isRoot || isEqual(id, checkedId);
+                        },
                     },
                     loadNestedLayersChildren,
                 );
@@ -374,7 +394,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const count = this.value.visibleCount;
 
         const rows = this.rows.slice(from, from + count);
-
+        const visibleRows = this.getRowsWithPinned(rows);
         const listProps = this.getListProps();
 
         if (this.hasMoreRows) {
@@ -384,17 +404,17 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
             const lastRow = this.rows[this.rows.length - 1];
 
-            while (rows.length < count && from + rows.length < listProps.rowsCount) {
-                const index = from + rows.length;
+            while (visibleRows.length < count && from + visibleRows.length < listProps.rowsCount) {
+                const index = from + visibleRows.length;
                 const row = this.getLoadingRow('_loading_' + index, index);
                 row.indent = lastRow.indent;
                 row.path = lastRow.path;
                 row.depth = lastRow.depth;
-                rows.push(row);
+                visibleRows.push(row);
             }
         }
 
-        return rows;
+        return visibleRows;
     };
 
     public getListProps = (): DataSourceListProps => {
@@ -435,6 +455,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             exactRowsCount: this.rows.length,
             totalCount,
             selectAll: this.selectAll,
+            isReloading: this.isReloading,
         };
     };
 

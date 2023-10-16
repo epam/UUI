@@ -1,0 +1,10 @@
+.scroll-container {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+}
+
+.list-container {
+    display: grid;
+    grid-template-rows: 1fr;
+}

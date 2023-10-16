@@ -17,6 +17,7 @@ export function IframeBlock(props: any) {
     const style = element.data.style;
 
     return (
+        // style attr needed for serialization
         <div { ...attributes }>
             <iframe
                 title={ element.src }

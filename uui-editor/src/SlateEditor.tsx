@@ -1,9 +1,10 @@
 import { ScrollBars } from '@epam/uui-components';
 import { IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod } from '@epam/uui-core';
-import React, { Fragment, useMemo, useRef } from 'react';
+import React, { Fragment, useMemo, useRef, useState } from 'react';
 
 import {
     Plate,
+    PlateEditor,
     PlateProvider,
     Value,
     createPlugins,
@@ -39,8 +40,6 @@ interface SlateEditorProps extends IEditable<EditorValue>, IHasCX, IHasRawProps<
 }
 
 interface PlateEditorProps extends SlateEditorProps {
-    initialValue: Value,
-    onChange: (newValue: Value) => void,
     id: string,
 }
 
@@ -49,22 +48,16 @@ function Editor(props: PlateEditorProps) {
 
     const focusedEditorId = useEventEditorSelectors.focus();
     const isFocused = editor.id === focusedEditorId;
-    const forceUpdate = useForceUpdate();
-
-    if (props.initialValue && editor.children !== props.initialValue) {
-        editor.children = props.initialValue;
-        forceUpdate();
-    }
 
     const renderEditor = () => (
         <Fragment>
             <Plate
-                { ...props }
                 id={ props.id }
                 editableProps={ {
                     autoFocus: props.autoFocus,
                     readOnly: props.isReadonly,
                     placeholder: props.placeholder,
+                    className: css.editor,
                     renderPlaceholder: ({ attributes }) => {
                         return isEditorValueEmpty(editor.children) && (
                             <div
@@ -115,6 +108,7 @@ function Editor(props: PlateEditorProps) {
 
 function SlateEditor(props: SlateEditorProps) {
     const currentId = useRef(String(Date.now()));
+    const [editor, setEditor] = useState<PlateEditor>();
 
     const plugins = useMemo(
         () => {
@@ -128,20 +122,26 @@ function SlateEditor(props: SlateEditorProps) {
         props?.onValueChange(value);
     };
 
-    const initialValue = useMemo(() => migrateSchema(props.value), [props.value]);
+    const value = useMemo(() => {
+        return migrateSchema(props.value);
+    }, [props.value]);
+
+    const forceUpdate = useForceUpdate();
+    if (value && editor?.children && editor.children !== value) {
+        editor.children = value;
+        forceUpdate();
+    }
 
     return (
         <PlateProvider
-            onChange={ onChange }
-            plugins={ plugins }
-            initialValue={ initialValue }
             id={ currentId.current }
+            initialValue={ value }
+            plugins={ plugins }
+            onChange={ onChange }
+            editorRef={ setEditor }
         >
             <Editor
-                onChange={ onChange }
                 id={ currentId.current }
-                initialValue={ initialValue }
-                plugins={ plugins }
                 { ...props }
             />
         </PlateProvider>

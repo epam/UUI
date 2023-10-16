@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, TDocsGenType,
 } from '../common';
 
 export class IconButtonDoc extends BaseDocsBlock {
     title = 'Icon Button';
+
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:IconButtonProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/buttons/iconButton.props.tsx',
