@@ -10,6 +10,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
   }
 >
   <div
+    aria-label="Click to close a modal"
     className="uui-modal-blocker"
     onClick={[Function]}
   />
@@ -36,7 +37,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     <div
       aria-modal={true}
       className="uui-modal-window modal container"
-      role="modal"
+      role="dialog"
       style={
         Object {
           "height": "auto",
@@ -75,6 +76,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           }
         >
           <button
+            aria-label="Close modal"
             className="container uui-button-box uui-enabled -clickable icon-button-default root"
             onClick={[Function]}
             tabIndex={0}
@@ -93,16 +95,6 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       </div>
       <div
         className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
-        cx={
-          Array [
-            Array [
-              "uui-scroll-bars",
-              "uui-shadow-top",
-              "uui-shadow-bottom",
-            ],
-            undefined,
-          ]
-        }
         style={
           Object {
             "display": "flex",
@@ -225,6 +217,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
   }
 >
   <div
+    aria-label="Click to close a modal"
     className="uui-modal-blocker"
     onClick={[Function]}
   />
@@ -251,7 +244,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
     <div
       aria-modal={true}
       className="uui-modal-window modal container"
-      role="modal"
+      role="dialog"
       style={
         Object {
           "height": "auto",
@@ -290,6 +283,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           }
         >
           <button
+            aria-label="Close modal"
             className="container uui-button-box uui-enabled -clickable icon-button-default root"
             onClick={[Function]}
             tabIndex={0}
@@ -308,16 +302,6 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
       </div>
       <div
         className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
-        cx={
-          Array [
-            Array [
-              "uui-scroll-bars",
-              "uui-shadow-top",
-              "uui-shadow-bottom",
-            ],
-            undefined,
-          ]
-        }
         style={
           Object {
             "display": "flex",

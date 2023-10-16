@@ -119,6 +119,7 @@ export default function PresetsPanelExample() {
     const dataSource = useLazyDataSource<Person, number, Person>(
         {
             api: svc.api.demo.persons,
+            backgroundReload: true,
         },
         [],
     );

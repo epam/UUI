@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { IDropdownMenuItemProps, DropdownMenuBody, DropdownMenuButton, DropdownMenuSwitchButton, DropdownMenuSplitter, DropdownMenuHeader, DropdownSubMenu,
-    Dropdown, ControlGroup, Button, LinkButton } from '@epam/uui';
+    Dropdown, ControlGroup, Button, LinkButton, Tooltip } from '@epam/uui';
 import { DropdownBodyProps } from '@epam/uui-core';
-import { ReactComponent as LogoutIcon } from '@epam/assets/icons/common/navigation-logout-24.svg';
-import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-12.svg';
-import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-delete-12.svg';
-import { ReactComponent as ExportIcon } from '@epam/assets/icons/common/file-export-12.svg';
-import { ReactComponent as PersonIcon } from '@epam/assets/icons/common/social-person-12.svg';
+import { ReactComponent as LogoutIcon } from '@epam/assets/icons/common/navigation-logout-18.svg';
+import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
+import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-delete-18.svg';
+import { ReactComponent as ExportIcon } from '@epam/assets/icons/common/file-export-18.svg';
+import { ReactComponent as PersonIcon } from '@epam/assets/icons/common/social-person-18.svg';
 
 function DropdownMenuSwitchButtonElement(props: IDropdownMenuItemProps) {
     const [selected, setSelected] = useState(false);
@@ -74,9 +74,11 @@ export default function BasicDropdownMenuExample() {
     const renderSecondDropdownBody = (props: DropdownBodyProps) => {
         return (
             <DropdownMenuBody { ...props }>
-                <DropdownMenuButton caption="Cancel Data Loads" onClick={ () => {} } />
-                <DropdownMenuButton caption="Deactivate" onClick={ () => {} } />
-                <DropdownMenuButton caption="Delete" onClick={ () => {} } />
+                <DropdownMenuButton caption="Cancel Data Loads" indent={ true } onClick={ () => {} } />
+                <DropdownMenuButton caption="Deactivate" indent={ true } onClick={ () => {} } />
+                <Tooltip content="You don't have permissions to performe this action">
+                    <DropdownMenuButton isDisabled={ true } caption="Delete" icon={ DeleteIcon } onClick={ () => {} } />
+                </Tooltip>
             </DropdownMenuBody>
         );
     };
@@ -93,8 +95,6 @@ export default function BasicDropdownMenuExample() {
     return (
         <>
             <Dropdown
-                closeOnMouseLeave="boundary"
-                closeDelay={ 400 }
                 renderBody={ (props) => renderDropdownBody(props) }
                 renderTarget={ (props) => (
                     <LinkButton

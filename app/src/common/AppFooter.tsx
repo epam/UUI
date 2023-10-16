@@ -16,7 +16,7 @@ export class AppFooter extends React.Component {
                         <IconContainer icon={ EPAMIcon } />
                     </Anchor>
                     <Text color="gray60" font="sans" fontSize="14" lineHeight="24" cx={ css.copyright }>
-                        © 2020 EPAM Systems. All Rights reserved
+                        {`© ${new Date().getFullYear()} EPAM Systems. All Rights reserved`}
                     </Text>
                 </FlexRow>
             </div>

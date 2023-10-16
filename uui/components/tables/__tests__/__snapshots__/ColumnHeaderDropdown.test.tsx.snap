@@ -42,99 +42,139 @@ Array [
       }
     >
       <div
-        className="uui-panel root shadow panel container"
+        data-focus-guard={true}
         style={
           Object {
-            "width": undefined,
+            "height": "0px",
+            "left": "1px",
+            "overflow": "hidden",
+            "padding": 0,
+            "position": "fixed",
+            "top": "1px",
+            "width": "1px",
           }
         }
+        tabIndex={0}
+      />
+      <div
+        data-focus-lock-disabled={false}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
       >
         <div
-          className="flexCell sortingPanelContainer"
+          className="uui-dropdown-body -lock-focus root container container"
           style={
             Object {
-              "alignSelf": undefined,
-              "flexBasis": "0",
-              "flexGrow": undefined,
-              "flexShrink": undefined,
-              "minWidth": 0,
-              "textAlign": undefined,
+              "maxWidth": undefined,
+              "minHeight": undefined,
+              "minWidth": 360,
             }
           }
+          tabIndex={-1}
         >
           <div
-            className="itemRoot uui-active container -clickable align-items-center"
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            role="menuitem"
+            className="flexCell sortingPanelContainer"
             style={
               Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
+                "alignSelf": undefined,
+                "flexBasis": "0",
+                "flexGrow": undefined,
+                "flexShrink": undefined,
+                "minWidth": 0,
+                "textAlign": undefined,
               }
             }
-            tabIndex={0}
           >
-            <button
-              className="container uui-button-box uui-enabled icon-button-info root icon iconBefore"
-              onClick={[Function]}
-              tabIndex={-1}
-              type="button"
-            >
-              <div
-                className="container uui-icon uui-enabled"
-                style={Object {}}
-              >
-                <svg
-                  className=""
-                />
-              </div>
-            </button>
             <div
-              className="caption container"
-            >
-              Sort Ascending
-            </div>
-          </div>
-          <div
-            className="itemRoot container -clickable align-items-center"
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            role="menuitem"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
+              className="itemRoot uui-active container -clickable align-items-center"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              role="menuitem"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
               }
-            }
-            tabIndex={0}
-          >
-            <button
-              className="container uui-button-box uui-enabled icon-button-default root icon iconBefore"
-              onClick={[Function]}
-              tabIndex={-1}
-              type="button"
+              tabIndex={0}
             >
-              <div
-                className="container uui-icon uui-enabled"
-                style={Object {}}
+              <button
+                className="container uui-button-box uui-enabled icon-button-info root icon iconBefore"
+                onClick={[Function]}
+                tabIndex={-1}
+                type="button"
               >
-                <svg
-                  className=""
-                />
+                <div
+                  className="container uui-icon uui-enabled"
+                  style={Object {}}
+                >
+                  <svg
+                    className=""
+                  />
+                </div>
+              </button>
+              <div
+                className="container"
+              >
+                Sort Ascending
               </div>
-            </button>
+            </div>
             <div
-              className="caption container"
+              className="itemRoot container -clickable align-items-center"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              role="menuitem"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
+              tabIndex={0}
             >
-              Sort Descending
+              <button
+                className="container uui-button-box uui-enabled icon-button-default root icon iconBefore"
+                onClick={[Function]}
+                tabIndex={-1}
+                type="button"
+              >
+                <div
+                  className="container uui-icon uui-enabled"
+                  style={Object {}}
+                >
+                  <svg
+                    className=""
+                  />
+                </div>
+              </button>
+              <div
+                className="container"
+              >
+                Sort Descending
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          Picker
+          <div>
+            Picker
+          </div>
         </div>
       </div>
+      <div
+        data-focus-guard={true}
+        style={
+          Object {
+            "height": "0px",
+            "left": "1px",
+            "overflow": "hidden",
+            "padding": 0,
+            "position": "fixed",
+            "top": "1px",
+            "width": "1px",
+          }
+        }
+        tabIndex={0}
+      />
     </div>
   </div>,
 ]

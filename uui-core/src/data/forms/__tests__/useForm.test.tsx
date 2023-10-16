@@ -586,6 +586,19 @@ describe('useForm', () => {
             expect(onErrorSpy).toHaveBeenCalled();
         });
 
+        it('Should reset isInProgress if onSave promise is rejected', async () => {
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+                useForm({
+                    value: { ...testData, dummy: 'hi' },
+                    onSave: () => Promise.reject(),
+                    beforeLeave: () => Promise.resolve(false),
+                    getMetadata: () => testMetadata,
+                }));
+
+            await handleSave(result.current.save);
+            expect(result.current.isInProgress).toBeFalsy();
+        });
+
         it('Should restore data from local storage after leaving form without saving changes', async () => {
             const loadUnsavedChangesMock = jest.fn().mockResolvedValue(true);
             const props: UseFormProps<IFoo> = {

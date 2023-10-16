@@ -5,13 +5,13 @@ import { NotificationParams, INotificationContext } from '../types/contexts';
 import { LayoutContext } from './LayoutContext';
 import { INotification } from '../types/props';
 
+let idCounter = 0;
+
 export interface NotificationOperation {
     component: React.ComponentType<any>;
     props: INotification;
     config: NotificationParams;
 }
-
-let idCounter = 0;
 
 export class NotificationContext extends BaseContext implements INotificationContext {
     private notifications: NotificationOperation[] = [];

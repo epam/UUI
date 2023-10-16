@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
 } from '../common';
 
 export class TextInputDoc extends BaseDocsBlock {
     title = 'Text Input';
+
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:TextInputProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/textInput.props.ts',

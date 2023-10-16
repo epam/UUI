@@ -1,5 +1,5 @@
 import { withMods } from '@epam/uui-core';
-import { DropdownContainer as uuiDropdownListContainer, DropdownContainerProps as uuiDropdownContainerProps } from '@epam/uui-components';
+import * as uuiComponents from '@epam/uui-components';
 import css from './DropdownContainer.module.scss';
 
 export interface DropdownContainerMods {
@@ -7,7 +7,7 @@ export interface DropdownContainerMods {
     padding?: '6' | '12' | '18' | '24' | '30';
 }
 
-export interface DropdownContainerProps extends uuiDropdownContainerProps, DropdownContainerMods {}
+export interface DropdownContainerProps extends uuiComponents.DropdownContainerProps, DropdownContainerMods {}
 
 function applyDropdownContainerMods(mods: DropdownContainerMods) {
     return [
@@ -15,4 +15,4 @@ function applyDropdownContainerMods(mods: DropdownContainerMods) {
     ];
 }
 
-export const DropdownContainer = withMods<uuiDropdownContainerProps, DropdownContainerMods>(uuiDropdownListContainer, applyDropdownContainerMods);
+export const DropdownContainer = withMods<uuiComponents.DropdownContainerProps, DropdownContainerMods>(uuiComponents.DropdownContainer, applyDropdownContainerMods);

@@ -73,7 +73,16 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         inputContainer.current?.focus();
     };
 
-    const handleBlur = () => !props.isOpen && blur();
+    const handleBlur = (e: React.FocusEvent<HTMLElement>) => {
+        if (props.isOpen) {
+            // If picker opened and search inside input, we lock focus on toggler.
+            // In case, when search inside body, we need to highlight toggler like in focus state, even when focus was moved to the body. So we do nothing in this case.
+            return props.searchPosition === 'input' && inputContainer.current?.focus();
+        } else {
+            // If picker closed, we perform blur event as usual.
+            blur(e);
+        }
+    };
 
     const handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
         if (props.onClear) {
@@ -97,7 +106,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const renderInput = () => {
         const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
-
         let placeholder: string;
         if (!isSinglePickerSelected) {
             placeholder = props.placeholder;
@@ -153,7 +161,12 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         [props.isOpen, props.closePickerBody],
     );
 
-    const icon = props.icon && <IconContainer icon={ props.icon } onClick={ props.onIconClick } />;
+    const icon = props.icon && (
+        <IconContainer
+            icon={ props.icon }
+            onClick={ props.onIconClick }
+        />
+    );
 
     return (
         <div
@@ -175,7 +188,9 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             onKeyDown={ props.onKeyDown }
             { ...props.rawProps }
         >
-            <div className={ cx(css.body, !props.isSingleLine && props.pickerMode !== 'single' && css.multiline) }>
+            <div
+                className={ cx(css.body, !props.isSingleLine && props.pickerMode !== 'single' && css.multiline) }
+            >
                 {props.iconPosition !== 'right' && icon}
                 {props.pickerMode !== 'single' && renderItems()}
                 {renderInput()}
@@ -190,10 +205,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                             icon={ props.cancelIcon }
                             tabIndex={ -1 }
                             onClick={ handleCrossIconClick }
-                            rawProps={ { role: 'button' } }
+                            rawProps={ { role: 'button', 'aria-label': 'Clear' } }
                         />
                     )}
-                    {props.isDropdown && <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" onClick={ closeOpenedPickerBody } />}
+                    {props.isDropdown && !props?.minCharsToSearch && <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" onClick={ closeOpenedPickerBody } />}
                 </div>
             )}
         </div>

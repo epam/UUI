@@ -1,3 +1,28 @@
+# 5.x.x - xx.xx.2023
+
+**What's New**
+* [InputAddon]: added InputAddon component that can be used for Prefix/Suffix with ControlGroup.
+* [useVirtualList]: `scrollTo` and `scrollToIndex` API was changed. `scrollTo` is an object, with index, behavior and align configuration.
+* [DataTable]: added pinned rows functionality.
+* [BaseListView]: added `backgroundReload` property. If it is set to `true`, placeholders appear only on the first load and on fetching additional rows.
+* Any filter/search/sorting change doesn't trigger placeholders' rendering. Old data is shown until new data is received. When reloading is started,
+* `view.getListProps` returns `isReloading` flag, set to `true`.
+* [DataTable] [PickerInput] [PickerList] [PickerModal]: `Blocker` was added to the body of components. It appears on initial rendering, force rerendering, filter, search, sort, page number, and size change.
+
+**What's Fixed**
+* [DropdownMenuButton]: Fix bug in `DropdownMenuButton` where `isDisabled` prop was not being passed to it's child `IconButton`.
+* [PickerItem]: fixed 'cx' prop
+* [Contexts]: fixed context initialization for react 18 with strict mode
+* [ModalWindow]: changed role attribute value from 'modal' to 'dialog'
+* [PickerItem]: Remove the dropdown icon if minCharsToSearch is passed and fix the top and bottom spacing in the dropdown list.
+* [useUuiServices]: fixed apiPingPath, apiReloginPath, apiServerUrl props
+* [AdaptivePanel]: fixed items width calculation in case of decimal values
+* [useForm]: recover from `isInProgress=true` state if `onSave` is rejected
+* [TabButton]: fixed notify dot, that it will not change button width
+* [FiltersPanel]: fixed height of filter body in mobile view
+* [PickerInput]: don't clear search on item check via keyboard
+
+
 # 5.1.3 - 31.08.2023
 
 **What's New**
@@ -80,8 +105,8 @@
 
 **Rich Text Editor component update and improvements**
 
-UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework. 
-During the update the previous code based of RTE almost completely rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users. Therefore, update to the new version of `uui-editor` package should be seamless and easy. 
+UUI `SlateEditor` was reworked and updated to the actual version of Slate.js framework.
+During the update the previous code based of RTE almost completely rewritten due to a lot of breaking changes from Slate.js side. However, we put significant efforts to minimize breaking changes for our users. Therefore, update to the new version of `uui-editor` package should be seamless and easy.
 
 List of changes:
 * [Breaking change]: Changed RTE value format, now it's works with array instead of immutable.js object. Also, there are some additional changes inside slate value structure.
@@ -126,6 +151,13 @@ We make an automatic migration from old state format to the new one, so it's not
 **What's Fixed**
 * [PickerInput]: fixed `unknown` in a `single` selection mode while data is loading in `AsyncDataSource` and `LazyDataSource`, and removed error of missing ids if data is still loading
 * [FiltersPanel]: fixed styles for body & toggler according to design
+* [Pickers]:
+  - rewritten `Pickers` to functional components;
+  - moved from `getView`to `useView` hook;
+
+* [DataSources][useView]:
+  - [BreakingChange]: `useView` is not recreating view on `onValueChange` update anymore;
+  - [BreakingChange]: added `deps` to `useView` as a last argument; changing the `deps` causes recreating of a `view`.
 
 # 5.0.0 - 06.06.2023
 

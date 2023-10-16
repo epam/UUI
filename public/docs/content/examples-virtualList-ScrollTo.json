@@ -1,0 +1,59 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "VirtualList",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " supports "
+      },
+      {
+        "text": "scrollTo",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " as a part of the "
+      },
+      {
+        "uui-richTextEditor-code": true,
+        "text": "state"
+      },
+      {
+        "text": ". It accepts an object with an index of an element that you want to scroll to and updates the scroll position if a reference to an object is updated."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Note, that scroll will occur only once, after this setState. On further renderings, scrollTo will point to the same object, so no scrolling will occur. To trigger scroll again - assign a new object to this prop. It would trigger a scroll again, even if an index value is the same."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "For example, to scroll to the element with index 100, call "
+      },
+      {
+        "text": "setState({ ...state, scrollTo: { index: 100 } })",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "."
+      }
+    ]
+  },
+  {
+    "type": "note-warning",
+    "children": [
+      {
+        "text": "For accurate scrolling to the position of the expected row and for correct scrolling behavior after scrolling to a specific row, it is required to provide rows of the same height."
+      }
+    ]
+  }
+]

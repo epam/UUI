@@ -51,7 +51,7 @@ const mainMenuDoc = new DocBuilder<MainMenuMods & MainMenuProps>({ name: 'MainMe
                     <MainMenuAvatar
                         isDropdown
                         key="avatar"
-                        avatarUrl="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
+                        avatarUrl="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
                         priority={ 100 }
                         estimatedWidth={ 84 }
                     />,

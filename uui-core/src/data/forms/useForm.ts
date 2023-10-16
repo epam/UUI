@@ -211,7 +211,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
                 savePromise = propsRef.current
                     .onSave(formState.current.form)
                     .then((response) => handleSaveResponse(response, isSavedBeforeLeave))
-                    .catch((err) => propsRef.current.onError?.(err));
+                    .catch((err) => handleError(err));
             } else {
                 savePromise = Promise.reject();
             }
@@ -219,6 +219,15 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
         });
         return savePromise;
     }, []);
+
+    const handleError = (err?: any) => {
+        updateFormState((currentValue) => ({
+            ...currentValue,
+            isInProgress: false,
+        }));
+
+        propsRef.current.onError?.(err);
+    };
 
     const handleSaveResponse = (response: FormSaveResponse<T> | void, isSavedBeforeLeave?: boolean) => {
         const newFormValue = (response && response.form) || formState.current.form;
