@@ -4,6 +4,10 @@
 * [InputAddon]: added InputAddon component that can be used for Prefix/Suffix with ControlGroup.
 * [useVirtualList]: `scrollTo` and `scrollToIndex` API was changed. `scrollTo` is an object, with index, behavior and align configuration.
 * [DataTable]: added pinned rows functionality.
+* [BaseListView]: added `backgroundReload` property. If it is set to `true`, placeholders appear only on the first load and on fetching additional rows.
+* Any filter/search/sorting change doesn't trigger placeholders' rendering. Old data is shown until new data is received. When reloading is started,
+* `view.getListProps` returns `isReloading` flag, set to `true`.
+* [DataTable] [PickerInput] [PickerList] [PickerModal]: `Blocker` was added to the body of components. It appears on initial rendering, force rerendering, filter, search, sort, page number, and size change.
 
 **What's Fixed**
 * [DropdownMenuButton]: Fix bug in `DropdownMenuButton` where `isDisabled` prop was not being passed to it's child `IconButton`.
