@@ -70,7 +70,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
             rowsCount: this.rows.length,
             knownRowsCount: this.rows.length,
             exactRowsCount: this.rows.length,
-            totalCount: this.originalTree?.getTotalRecursiveCount(),
+            totalCount: this.fullTree?.getTotalRecursiveCount(),
             selectAll: this.selectAll,
             isReloading: this.isReloading,
         };
@@ -82,7 +82,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
         }
 
         // if originalTree is not created, but blank tree is defined, get item from it
-        const item = (this.originalTree ?? this.tree).getById(id);
+        const item = (this.fullTree ?? this.visibleTree).getById(id);
 
         if (item === NOT_FOUND_RECORD) {
             return this.getUnknownRow(id, index, []);

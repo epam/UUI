@@ -89,7 +89,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     private isUpdatePending = false;
     private loadedValue: DataSourceState<TFilter, TId> = null;
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
-    private treeWithoutSearch: ITree<TItem, TId> = null;
+    private fullTree: ITree<TItem, TId> = null;
 
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
@@ -99,7 +99,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const newProps = { legacyLoadDataBehavior, ...props };
         super(editable, newProps);
         this.props = this.applyDefaultsToProps(newProps);
-        this.tree = Tree.blank<TItem, TId>(newProps);
+        this.visibleTree = Tree.blank<TItem, TId>(newProps);
         this.cache = cache;
         if (!this.cache) {
             this.cache = new ListApiCache({
@@ -164,7 +164,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         if (prevValue == null || prevProps == null || shouldReloadData) {
             this.isReloading = true;
-            this.tree = this.tree.clearStructure();
+            this.visibleTree = this.visibleTree.clearStructure();
             completeReset = true;
             this.isForceReloading = false;
         }
@@ -195,15 +195,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         if (completeReset || isFoldingChanged || moreRowsNeeded) {
             this.loadMissing(completeReset)
-                .then(({ isUpdated, isOutdated, tree }) => {
+                .then(({ isUpdated, isOutdated }) => {
                     if (isUpdated && !isOutdated) {
-                        this.tree = tree;
-                        if (prevValue?.search && !this.value.search && this.tree !== this.treeWithoutSearch) {
-                            this.tree = this.tree.merge(this.treeWithoutSearch);
-                        }
-                        if (!this.value.search) {
-                            this.treeWithoutSearch = tree;
-                        }
                         this.updateCheckedLookup(this.value.checked);
                         this.rebuildRows();
                     }
@@ -230,7 +223,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     public reload = () => {
-        this.tree = Tree.blank(this.props);
+        this.visibleTree = Tree.blank(this.props);
         this.isForceReloading = true;
         this.initCache();
         this.update({ value: this.value, onValueChange: this.onValueChange }, this.props);
@@ -294,16 +287,17 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>,
         withNestedChildren?: boolean,
         value?: DataSourceState<TFilter, TId>,
-        tree?: ITree<TItem, TId>,
+        byFullTree: boolean = false,
     ): Promise<LoadResult<TItem, TId>> {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
 
         if (this.inProgressPromise === null || abortInProgress) {
-            this.inProgressPromise = Promise.resolve({ isUpdated: false, isOutdated: false, tree: tree ?? this.tree });
+            const tree = byFullTree ? this.fullTree : this.visibleTree;
+            this.inProgressPromise = Promise.resolve({ isUpdated: false, isOutdated: false, tree });
         }
 
         this.inProgressPromise = this.inProgressPromise.then(() =>
-            this.loadMissingImpl(options, withNestedChildren, value, tree));
+            this.loadMissingImpl(options, withNestedChildren, value, byFullTree));
 
         return this.inProgressPromise;
     }
@@ -312,14 +306,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>,
         withNestedChildren?: boolean,
         value?: DataSourceState<TFilter, TId>,
-        tree?: ITree<TItem, TId>,
+        byFullTree: boolean = false,
     ): Promise<LoadResult<TItem, TId>> {
         const localValue = { ...this.value, ...value };
-        const localTree = tree ?? this.tree;
-        const loadingTree = localTree;
+        const tree = byFullTree ? this.fullTree : this.visibleTree;
+        const loadingTree = tree;
 
         try {
-            const newTreePromise = localTree.load(
+            const newTreePromise = tree.load(
                 {
                     ...this.props,
                     ...options,
@@ -333,11 +327,20 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
             const newTree = await newTreePromise;
 
-            // If this.tree is changed during this load, than there was reset occurred (new value arrived)
+            // If tree is changed during this load, than there was reset occurred (new value arrived)
             // We need to tell caller to reject this result
-            const isOutdated = localTree !== loadingTree;
-            const isUpdated = localTree !== newTree;
-
+            const isOutdated = tree !== loadingTree;
+            const isUpdated = tree !== newTree;
+            if (!isOutdated) {
+                if (byFullTree) {
+                    this.fullTree = newTree;
+                } else {
+                    this.visibleTree = newTree;
+                    if (this.fullTree === null || !this.value.search) {
+                        this.fullTree = newTree;
+                    }
+                }
+            }
             return { isUpdated, isOutdated, tree: newTree };
         } catch (e) {
             // TBD - correct error handling
@@ -360,13 +363,13 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     private async checkItems(isChecked: boolean, isRoot: boolean, checkedId?: TId) {
         let checked = (this.value && this.value.checked) || [];
 
-        let tree = this.tree;
+        let tree = this.visibleTree;
 
         const isImplicitMode = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
         if (this.props.cascadeSelection || isRoot) {
             if (!isImplicitMode || !isChecked || (isImplicitMode && isChecked && checkedId === ROOT_ID)) {
                 const loadNestedLayersChildren = !isImplicitMode;
-                const parents = this.tree.getParentIdsRecursive(checkedId);
+                const parents = this.visibleTree.getParentIdsRecursive(checkedId);
                 const result = await this.loadMissing(
                     false,
                     {
@@ -385,14 +388,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                     },
                     loadNestedLayersChildren,
                     { search: null },
-                    this.treeWithoutSearch,
+                    true,
                 );
-                if (!result.isOutdated) {
-                    if (!this.value.search) {
-                        this.tree = result.tree;
-                    }
-                    this.treeWithoutSearch = result.tree;
-                }
+
                 tree = result.tree;
             }
         }
@@ -448,7 +446,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         let rowsCount: number;
         let totalCount: number;
         const lastVisibleIndex = this.getLastRecordIndex();
-        const rootInfo = this.tree.getNodeInfo(undefined);
+        const rootInfo = this.visibleTree.getNodeInfo(undefined);
         const rootCount = rootInfo.count;
 
         if (!this.props.getChildCount && rootCount) {
@@ -458,7 +456,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         } else if (!this.hasMoreRows) {
             // We are at the bottom of the list. Some children might still be loading, but that's ok - we'll re-count everything after we load them.
             rowsCount = this.rows.length;
-            totalCount = this.tree.getTotalRecursiveCount();
+            totalCount = this.visibleTree.getTotalRecursiveCount();
         } else {
             // We definitely have more rows to show below the last visible row.
             // We need to add at least 1 row below, so VirtualList or other component would not detect the end of the list, and query loading more rows later.
