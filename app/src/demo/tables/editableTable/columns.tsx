@@ -44,6 +44,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             key: 'status',
             caption: 'Status',
             width: 160,
+            minWidth: 150,
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('status').toProps() }
@@ -54,7 +55,7 @@ export function getColumns(columnsProps: ColumnsProps) {
                             placeholder="Add Status"
                             dataSource={ statusDataSource }
                             selectionMode="single"
-                            minBodyWidth={ 100 }
+                            minBodyWidth={ 150 }
                             renderRow={ (props) => (
                                 <DataPickerRow
                                     { ...props }
