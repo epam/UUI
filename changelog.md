@@ -1,27 +1,34 @@
 # 5.x.x - xx.xx.2023
 
 **What's New**
-* [InputAddon]: added InputAddon component that can be used for Prefix/Suffix with ControlGroup.
-* [useVirtualList]: `scrollTo` and `scrollToIndex` API was changed. `scrollTo` is an object, with index, behavior and align configuration.
-* [DataTable]: added pinned rows functionality.
-* [BaseListView]: added `backgroundReload` property. If it is set to `true`, placeholders appear only on the first load and on fetching additional rows.
-* Any filter/search/sorting change doesn't trigger placeholders' rendering. Old data is shown until new data is received. When reloading is started,
-* `view.getListProps` returns `isReloading` flag, set to `true`.
-* [DataTable] [PickerInput] [PickerList] [PickerModal]: `Blocker` was added to the body of components. It appears on initial rendering, force rerendering, filter, search, sort, page number, and size change.
+* [useVirtualList]:  
+  * Breaking change: `scrollToIndex` prop was removed, use `scrollTo` instead.
+  * Improved scrollTo functionality. Added configuration of scroll behavior and how to align item after scroll.
+  * See the example here - https://uui.epam.com/documents?id=virtualList#scroll_to_index
+* [DataTable]: added possibility to pin rows inside table. It allows you to make some rows sticky inside their parent group. Use `pin` callback in `getRowOptions` function for this. See the example, for more details - https://uui.epam.com/documents?id=advancedTables&category=tables#table_with_pinned_rows.
+* [BaseListView]: 
+  * added `backgroundReload` property. If it is set to `true`, placeholders appear only on the first load and on fetching additional rows.
+    Any filter/search/sorting change doesn't trigger placeholders' rendering. Old data is shown until new data is received. When reloading is started,
+  * `getListProps` now returns `isReloading` flag, which signals that data is reloading.
+* [DataTable][Pickers]: Added Blocker overlay while loading. It appears on initial render and filter, search, sort, page number, and size change.
+* [InputAddon]: added InputAddon component that can be used in cases when you need to add prefix or suffix to the your component with ControlGroup.
+* Use Vitest instead of Jest in Vite UUI template app
 
 **What's Fixed**
-* [DropdownMenuButton]: Fix bug in `DropdownMenuButton` where `isDisabled` prop was not being passed to it's child `IconButton`.
+* [UUI Contexts]: fixed context initialization for react 18 with strict mode
 * [PickerItem]: fixed 'cx' prop
-* [Contexts]: fixed context initialization for react 18 with strict mode
-* [ModalWindow]: changed role attribute value from 'modal' to 'dialog'
-* [PickerItem]: Remove the dropdown icon if minCharsToSearch is passed and fix the top and bottom spacing in the dropdown list.
-* [useUuiServices]: fixed apiPingPath, apiReloginPath, apiServerUrl props
+* [PickerInput]: remove the dropdown icon if `minCharsToSearch` prop is passed
+* [PickerInput]: fixed paddings with multiline item text
+* [PickerInput]: don't clear search on item check via keyboard
+* [useUuiServices]: fixed `apiPingPath`, `apiReloginPath`, `apiServerUrl` props
 * [AdaptivePanel]: fixed items width calculation in case of decimal values
 * [useForm]: recover from `isInProgress=true` state if `onSave` is rejected
 * [TabButton]: fixed notify dot, that it will not change button width
 * [FiltersPanel]: fixed height of filter body in mobile view
-* [PickerInput]: don't clear search on item check via keyboard
-
+* [ErrorHandler]: fixed image for 503 error code in loveship
+* [DatePicker]: fixed crashes with different versions of dayjs
+* [ModalWindow]: changed role attribute value from 'modal' to 'dialog'
+* [DropdownMenuButton]: fixed icon color in  `isDisabled` state
 
 # 5.1.3 - 31.08.2023
 
