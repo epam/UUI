@@ -1,4 +1,5 @@
 import { getOrderBetween, maxOrderStr, minOrderStr } from '@epam/uui-core';
+import { Task } from './types';
 
 /**
  * Finds a string, which is placed alphabetically in desired position of the list.
@@ -37,3 +38,34 @@ export function getInsertionOrder(existingOrders: string[], position: 'before' |
         return getOrderBetween(relativeTo, minOrder);
     }
 }
+
+const findAllChildren = (tasks: Task[], parentTask: Task) => {
+    const children = tasks.filter((task) => task.parentId === parentTask.id);
+    let ids: number[] = [];
+    children.forEach((task) => {
+        ids.push(task.id);
+        const innerChildren = findAllChildren(tasks, task);
+        ids = ids.concat(innerChildren);
+    });
+    return ids;
+};
+
+export const deleteTaskWithChildren = (tasks: Record<number, Task>, taskToDelete: Task | null): Record<number, Task> => {
+    const currentTasks = { ...tasks };
+    let taskToBeDeleted = taskToDelete;
+    if (taskToBeDeleted === undefined) {
+        const rootItems = Object.values(currentTasks).filter((task) => task.parentId === undefined);
+        taskToBeDeleted = rootItems[rootItems.length - 1];
+    }
+
+    if (!taskToBeDeleted) {
+        return currentTasks;
+    }
+
+    const childrenIds = findAllChildren(Object.values(currentTasks), taskToBeDeleted);
+    [taskToBeDeleted.id, ...childrenIds].forEach((id) => {
+        delete currentTasks[id];
+    });
+
+    return currentTasks;
+};
