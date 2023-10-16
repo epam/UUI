@@ -1,4 +1,4 @@
-# 5.x.x - xx.xx.2023
+# 5.2.0 - 16.10.2023
 
 **What's New**
 * [useVirtualList]:  
