@@ -16,6 +16,8 @@ export class AdvancedTablesDoc extends BaseDocsBlock {
                 <DocExample title="Table with paging" path="./_examples/tables/PagedTable.example.tsx" />
 
                 <DocExample title="Table with column filters" path="./_examples/tables/ColumnFiltersTable.example.tsx" />
+                
+                <DocExample title="Table with pinned rows" path="./_examples/tables/TableWithPinnedRows.example.tsx" />
             </>
         );
     }

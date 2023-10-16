@@ -1,0 +1,38 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This example illustrates how to make rows of a table to be pinned. To enable this functionality it is required to pass a "
+      },
+      {
+        "text": "pin",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " function to "
+      },
+      {
+        "text": "rowOptions",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " or return it as a part of "
+      },
+      {
+        "text": "getRowOptions",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " return value while configuring a "
+      },
+      {
+        "text": "view",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "."
+      }
+    ]
+  }
+]
