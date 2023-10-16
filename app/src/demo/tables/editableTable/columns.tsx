@@ -44,6 +44,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             key: 'status',
             caption: 'Status',
             width: 160,
+            minWidth: 150,
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('status').toProps() }
@@ -54,9 +55,11 @@ export function getColumns(columnsProps: ColumnsProps) {
                             placeholder="Add Status"
                             dataSource={ statusDataSource }
                             selectionMode="single"
+                            minBodyWidth={ 150 }
                             renderRow={ (props) => (
                                 <DataPickerRow
                                     { ...props }
+                                    padding="12"
                                     renderItem={ (item) => (
                                         <PickerItem
                                             title={ item.name }
@@ -68,11 +71,15 @@ export function getColumns(columnsProps: ColumnsProps) {
                             ) }
                             renderToggler={ (togglerProps) => {
                                 const row = togglerProps.selection?.[0];
+                                const fill = row?.value?.color && togglerProps.value && row?.value?.name?.includes(togglerProps.value)
+                                    ? row?.value?.color
+                                    : '#E1E3EB';
+                        
                                 return (
                                     <PickerToggler
                                         { ...props }
                                         { ...togglerProps }
-                                        icon={ () => <IconContainer icon={ statusIcon } style={ { fill: row?.value?.color ?? '#E1E3EB', paddingLeft: '17px' } } /> }
+                                        icon={ () => <IconContainer icon={ statusIcon } style={ { fill, paddingLeft: '6px' } } /> }
                                         iconPosition="left"
                                     />
                                 );
