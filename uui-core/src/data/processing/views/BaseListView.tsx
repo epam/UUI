@@ -90,7 +90,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 }
             }
         }
-        console.log('this.someChildCheckedByKey', this.someChildCheckedByKey);
     }
 
     protected handleCheckedChange(checked: TId[]) {
