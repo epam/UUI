@@ -1,20 +1,32 @@
 import React from 'react';
 import { Accordion, PickerList } from '@epam/uui';
+import { DataTableState } from '@epam/uui-core';
 import { groupingsDataSource } from '../../groupings';
 
-interface GroupingBlockProps { 
-    value: string[];
-    onValueChange: (value: string[]) => void;
+interface GroupingBlockProps<TFilter> { 
+    tableState: DataTableState<TFilter>;
+    setTableState(newState: DataTableState<TFilter>): void;
 }
 
-function GroupingBlock({ value, onValueChange }: GroupingBlockProps) {
+function GroupingBlock<TFilter extends { groupBy?: string[] }>({ tableState, setTableState }: GroupingBlockProps<TFilter>) {
+    const groupBy = tableState.filter?.groupBy;
+    const onGroupingChange = (newGroupBy: string[]) => {
+        if (newGroupBy !== groupBy) {
+            setTableState({ 
+                ...tableState,
+                filter: { ...tableState.filter, groupBy: newGroupBy },
+                checked: [],
+            });
+        }
+    };
+
     return (
         <Accordion title="Grouping" mode="inline" padding="18">
             <PickerList
                 dataSource={ groupingsDataSource }
                 selectionMode="multi"
-                value={ value }
-                onValueChange={ onValueChange }
+                value={ groupBy }
+                onValueChange={ onGroupingChange }
                 valueType="id"
             />
         </Accordion>

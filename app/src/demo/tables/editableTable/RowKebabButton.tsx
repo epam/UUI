@@ -15,36 +15,36 @@ export function RowKebabButton({ row, insertTask, deleteTask }: RowKebabProps) {
         return (
             <DropdownMenuBody { ...props } rawProps={ { style: { maxWidth: '250px' } } }>
                 <DropdownMenuButton
-                    caption="Add Task below"
+                    caption="Add Task above"
                     onClick={ () => {
-                        // insertTask({ parentId: row.pathid });
+                        insertTask('top', row.value);
                         props.onClose();
                     } }
                 />
                 <DropdownMenuButton
-                    caption="Add Task above"
+                    caption="Add Task below"
                     onClick={ () => {
-                        // insertTask({ parentId: row.id });
+                        insertTask('bottom', row.value);
                         props.onClose();
                     } }
                 />
                 <DropdownMenuButton
                     caption="Add Sub-Task"
                     onClick={ () => {
-                        insertTask({ parentId: row.id });
+                        insertTask('inside', row.value);
                         props.onClose();
                     } }
                 />
                 <DropdownMenuButton
                     caption="Delete"
                     onClick={ () => {
-                        deleteTask(row.id);
+                        deleteTask(row.value);
                         props.onClose();
                     } }
                 />
             </DropdownMenuBody>
         );
-    }, []);
+    }, [insertTask, row, deleteTask]);
 
     return (
         <Dropdown renderBody={ renderBody } renderTarget={ (props) => <IconButton icon={ MoreIcon } { ...props } /> } />

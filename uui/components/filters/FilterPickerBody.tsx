@@ -60,6 +60,7 @@ export function FilterPickerBody<TItem, TId>(props: FilterPickerBodyProps<TItem,
                     searchSize="36"
                     editMode="dropdown"
                     showSearch={ true }
+
                 />
                 {renderFooter()}
             </>

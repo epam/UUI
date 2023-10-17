@@ -12,9 +12,9 @@ export function formatExports(exports: TNotFormattedExportsByModule, context: IC
             entry.forEach((decl) => {
                 const symbol = decl.getSymbol();
                 if (symbol) {
-                    const typeNode = SymbolUtils.getNodeFromSymbol(symbol);
-                    if (typeNode) {
-                        context.convert(typeNode, true);
+                    const convertable = SymbolUtils.getNodeFromSymbol(symbol);
+                    if (convertable) {
+                        context.convert({ convertable, exported: true });
                     }
                 }
             });
