@@ -628,11 +628,20 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         || newValue?.page !== prevValue?.page
         || newValue?.pageSize !== prevValue?.pageSize;
 
+    protected onlySearchWasUnset = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) =>
+        this.searchWasChanged(prevValue, newValue) && !newValue.search
+        && !(
+            this.sortingWasChanged(prevValue, newValue)
+            || this.filterWasChanged(prevValue, newValue)
+            || newValue?.page !== prevValue?.page
+            || newValue?.pageSize !== prevValue?.pageSize);
+        
     protected shouldRebuildRows = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) =>
         !prevValue
         || this.checkedWasChanged(prevValue, newValue)
         || newValue?.selectedId !== prevValue?.selectedId
-        || newValue?.folded !== prevValue?.folded;
+        || newValue?.folded !== prevValue?.folded
+        || this.onlySearchWasUnset(prevValue, newValue);
 
     protected checkedWasChanged = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => 
         (prevValue?.checked?.length ?? 0) !== (newValue?.checked?.length ?? 0)

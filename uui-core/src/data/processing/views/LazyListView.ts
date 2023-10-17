@@ -160,18 +160,21 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         let completeReset = false;
         const shouldReloadData = this.isForceReloading
             || !isEqual(this.props?.filter, prevProps?.filter)
-            || this.shouldRebuildTree(this.value, prevValue);
+            || this.shouldRebuildTree(prevValue, this.value);
 
         if (prevValue == null || prevProps == null || shouldReloadData) {
             this.isReloading = true;
             this.visibleTree = this.visibleTree.clearStructure();
+            if (this.fullTree && this.onlySearchWasUnset(prevValue, this.value)) {
+                this.visibleTree = this.fullTree;
+            }
             completeReset = true;
             this.isForceReloading = false;
         }
 
         const isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
         const moreRowsNeeded = this.areMoreRowsNeeded(prevValue, this.value);
-        if (completeReset || this.shouldRebuildRows(this.value, prevValue)) {
+        if (completeReset || this.shouldRebuildRows(prevValue, this.value)) {
             this.updateCheckedLookup(this.value.checked);
         }
 
@@ -180,7 +183,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (
             // on filters change skeleton should not appear
             (completeReset && shouldShowPlacehodlers)
-            || this.shouldRebuildRows(this.value, prevValue)
+            || this.shouldRebuildRows(prevValue, this.value)
             || !isEqual(this.props.rowOptions, prevProps?.rowOptions)
             || isFoldingChanged
             || this.props.getRowOptions !== prevProps?.getRowOptions
