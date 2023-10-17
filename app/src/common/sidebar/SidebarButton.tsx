@@ -4,10 +4,10 @@ import { ReactComponent as DropdownIcon } from '@epam/assets/icons/common/naviga
 import css from './SidebarButton.module.scss';
 import { cx } from '@epam/uui-core';
 
-export interface SidebarButtonProps extends VerticalTabButtonProps {
+export type SidebarButtonProps = VerticalTabButtonProps & {
     isActive: boolean;
     indent?: number;
-}
+};
 
 export class SidebarButton extends React.Component<SidebarButtonProps, any> {
     render() {

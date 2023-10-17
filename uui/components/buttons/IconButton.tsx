@@ -11,7 +11,9 @@ export interface IconButtonMods {
     color?: IconColor;
 }
 
-export interface IconButtonProps extends IconButtonBaseProps, IconButtonMods {}
+export type IconButtonProps = IconButtonBaseProps & IconButtonMods;
+
+export type IconButtonType= IconButtonBaseProps & {};
 
 function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
     return [`icon-button-${mods.color || 'default'}`, css.root];

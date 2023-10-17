@@ -19,6 +19,11 @@ export interface ButtonMods {
 
 export type ButtonProps = ButtonMods & uuiComponents.ButtonProps;
 
+export type ButtonPropsType = uuiComponents.ButtonProps & {
+    size?: ControlSize | '18';
+    mode?: ButtonMode;
+};
+
 export function applyButtonMods(mods: ButtonProps) {
     return [
         `button-${mods.color || 'primary'}`,
