@@ -57,6 +57,7 @@ export interface ITree<TItem, TId> {
     isFlatList(): boolean;
 
     patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: ItemsComparator<TItem>): ITree<TItem, TId>;
+    mergeItems(tree: ITree<TItem, TId>): ITree<TItem, TId>;
 
     cascadeSelection(
         currentSelection: TId[],
