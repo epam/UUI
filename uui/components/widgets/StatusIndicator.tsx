@@ -3,9 +3,11 @@ import cx from 'classnames';
 import { IHasCX } from '@epam/uui-core';
 import css from './StatusIndicator.module.scss';
 
+export type StatusIndicatorColors = 'neutral' | 'info' | 'success' | 'warning' | 'critical';
+
 export interface StatusIndicatorProps extends IHasCX {
     size?: '24' | '18' | '12';
-    color?: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical';
+    color?: StatusIndicatorColors;
     fill?: 'contrast' | 'bright' | 'outline';
 }
 
