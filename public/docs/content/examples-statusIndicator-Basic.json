@@ -1,0 +1,10 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "StatusIndicator includes different colors. Color 'neutral' is used by default.\nAlso, it has three fill mods. Fill 'contrast' used by default. "
+      }
+    ]
+  }
+]

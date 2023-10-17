@@ -11,6 +11,7 @@ export const colors = {
     cobalt: '#0F98FF',
     violet: '#5214CC',
     cyan: '#14CCCC',
+    mint: '#4FC48C',
     white: '#FFFFFF',
     gray5: '#FAFAFC',
     gray10: '#F5F6FA',

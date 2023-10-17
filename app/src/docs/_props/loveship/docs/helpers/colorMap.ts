@@ -11,6 +11,8 @@ export const colors = {
     yellow: '#FDD63B',
     orange: '#FF8B3E',
     purple: '#B114D1',
+    cyan: '#14CCCC',
+    mint: '#4FC48C',
     white: '#FFFFFF',
     carbon50: '#F5F6FA',
     carbon100: '#D7D9E0',
