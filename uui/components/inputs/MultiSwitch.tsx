@@ -5,9 +5,9 @@ import { ControlGroup } from '../layout/ControlGroup';
 import { Button, ButtonMods } from '../buttons';
 import { SizeMod } from '../types';
 
-interface MultiSwitchItem<TValue> extends ButtonProps, ButtonMods {
+type MultiSwitchItem<TValue> = ButtonProps & ButtonMods & {
     id: TValue;
-}
+};
 
 export type UuiMultiSwitchColor = 'primary' | 'secondary';
 

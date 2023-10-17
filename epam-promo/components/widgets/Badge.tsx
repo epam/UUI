@@ -1,18 +1,19 @@
-import { withMods } from '@epam/uui-core';
-import { BadgeProps as UuiBadgeProps, Badge as UuiBadge } from '@epam/uui';
+import { createSkinComponent } from '@epam/uui-core';
+import { Badge as UuiBadge, BadgeProps as UuiBadgeProps, BadgePropsType, BadgeFill } from '@epam/uui';
 import { EpamAdditionalColor } from '../types';
 
-export interface BadgeMods {
+export type BadgeMods = {
     color?: EpamAdditionalColor | 'gray30';
-}
+    fill?: BadgeFill;
+};
 
-export type BadgeProps = Omit<UuiBadgeProps, 'color'> & BadgeMods;
+export type BadgeProps = BadgePropsType & BadgeMods;
 
-export const Badge = withMods<Omit<UuiBadgeProps, 'color'>, BadgeMods>(
+export const Badge = createSkinComponent<UuiBadgeProps, BadgeProps>(
     UuiBadge,
     () => [],
     (props) =>
         ({
             color: props.color || 'blue',
-        } as BadgeProps),
+        }),
 );

@@ -26,6 +26,9 @@ export interface BadgeMods {
 }
 
 export type BadgeProps = ButtonProps & BadgeMods;
+export type BadgePropsType = ButtonProps & {
+    size?: BadgeSize;
+};
 
 export function applyBadgeMods(mods: BadgeMods) {
     return [

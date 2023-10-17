@@ -1,5 +1,5 @@
 import * as uui from '@epam/uui';
-import { devLogger, withMods } from '@epam/uui-core';
+import { createSkinComponent, devLogger } from '@epam/uui-core';
 import { FillStyle } from '../types';
 import css from './Button.module.scss';
 
@@ -17,9 +17,9 @@ const mapFillToMod: Record<FillStyle, uui.ButtonMode> = {
     none: 'none',
 };
 
-export type ButtonProps = Omit<uui.ButtonProps, 'color'> & ButtonMods;
+export type ButtonProps = uui.ButtonPropsType & ButtonMods;
 
-export const Button = withMods<Omit<uui.ButtonProps, 'color'>, ButtonMods>(
+export const Button = createSkinComponent<uui.ButtonPropsType, ButtonProps>(
     uui.Button,
     (props) => [
         ['42', '48'].includes(props.size) && css.uppercase,

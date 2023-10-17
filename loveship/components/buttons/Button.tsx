@@ -1,5 +1,5 @@
 import { FillStyle, ControlShape, EpamPrimaryColor } from '../types';
-import { Button as uuiButton, ButtonMode, ButtonProps as UuiButtonProps, ControlSize } from '@epam/uui';
+import { Button as uuiButton, ButtonMode, ControlSize, ButtonPropsType } from '@epam/uui';
 import { devLogger, withMods } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';
 import css from './Button.module.scss';
@@ -22,7 +22,7 @@ const mapFillToMod: Record<FillStyle, ButtonMode> = {
     none: 'none',
 };
 
-export type ButtonProps = Omit<UuiButtonProps, 'color'> & ButtonMods;
+export type ButtonProps = ButtonPropsType & ButtonMods;
 
 export function applyButtonMods(mods: ButtonProps) {
     return [
@@ -31,7 +31,7 @@ export function applyButtonMods(mods: ButtonProps) {
     ];
 }
 
-export const Button = withMods<Omit<UuiButtonProps, 'color'>, ButtonMods>(uuiButton, applyButtonMods, (props) => {
+export const Button = withMods<ButtonPropsType, ButtonProps>(uuiButton, applyButtonMods, (props) => {
     if (__DEV__) {
         devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
             component: 'Button',

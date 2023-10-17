@@ -15,6 +15,7 @@ export interface LinkButtonMods {
 }
 
 export type LinkButtonProps = LinkButtonMods & ButtonProps;
+export type LinkButtonPropsType = ButtonProps & LinkButtonMods;
 
 function applyLinkButtonMods(mods: LinkButtonProps) {
     return [
