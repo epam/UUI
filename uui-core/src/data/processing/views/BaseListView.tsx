@@ -640,8 +640,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         !prevValue
         || this.checkedWasChanged(prevValue, newValue)
         || newValue?.selectedId !== prevValue?.selectedId
-        || newValue?.folded !== prevValue?.folded
-        || this.onlySearchWasUnset(prevValue, newValue);
+        || newValue?.folded !== prevValue?.folded;
 
     protected checkedWasChanged = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => 
         (prevValue?.checked?.length ?? 0) !== (newValue?.checked?.length ?? 0)
