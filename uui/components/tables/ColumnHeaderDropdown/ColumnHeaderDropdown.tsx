@@ -1,11 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
-import css from './ColumnHeaderDropdown.module.scss';
 import { Modifier } from 'react-popper';
-import {
-    IDropdownToggler, DropdownBodyProps, isMobile, mobilePopperModifier,
-} from '@epam/uui-core';
+import { IDropdownToggler, DropdownBodyProps, mobilePopperModifier } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
-import { Panel } from '../../layout';
 import { MobileDropdownWrapper } from '../../pickers';
 import { SortingPanel, SortingPanelProps } from './SortingPanel';
 
@@ -29,25 +25,16 @@ const ColumnHeaderDropdownImpl: React.FC<ColumnHeaderDropdownProps> = (props) =>
         [],
     );
 
-    const style = useMemo(
-        () => ({
-            width: isMobile() ? document.documentElement.clientWidth : undefined,
-        }),
-        [],
-    );
-
     const closeDropdown = useCallback(() => props.onOpenChange(false), [props.onOpenChange]);
 
     return (
         <Dropdown
             renderTarget={ props.renderTarget }
             renderBody={ (dropdownProps) => (
-                <Panel style={ style } shadow cx={ css.panel }>
-                    <MobileDropdownWrapper title={ props.title } onClose={ closeDropdown }>
-                        {props.isSortable && <SortingPanel sortDirection={ props.sortDirection } onSort={ props.onSort } />}
-                        {props.renderFilter(dropdownProps)}
-                    </MobileDropdownWrapper>
-                </Panel>
+                <MobileDropdownWrapper width={ 360 } title={ props.title } onClose={ closeDropdown }>
+                    {props.isSortable && <SortingPanel sortDirection={ props.sortDirection } onSort={ props.onSort } />}
+                    {props.renderFilter(dropdownProps)}
+                </MobileDropdownWrapper>
             ) }
             modifiers={ popperModifiers }
             value={ props.isOpen }

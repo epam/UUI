@@ -150,16 +150,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       >
         <div
           className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
-          cx={
-            Array [
-              Array [
-                "uui-scroll-bars",
-                "uui-shadow-top",
-                "uui-shadow-bottom",
-              ],
-              undefined,
-            ]
-          }
           style={
             Object {
               "display": "flex",
@@ -644,16 +634,6 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
       >
         <div
           className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
-          cx={
-            Array [
-              Array [
-                "uui-scroll-bars",
-                "uui-shadow-top",
-                "uui-shadow-bottom",
-              ],
-              undefined,
-            ]
-          }
           style={
             Object {
               "display": "flex",

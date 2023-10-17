@@ -8,4 +8,9 @@
         isolation: isolate;
         z-index: 5;
     }
+
+    :global(.asterisk) {
+        color: var(--uui-labeled-input-asterisk);
+        font-family: var(--font-semibold);
+    }
 }

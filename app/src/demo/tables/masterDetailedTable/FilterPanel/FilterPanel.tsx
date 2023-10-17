@@ -1,13 +1,13 @@
 import React from 'react';
-import { DataColumnProps, TableFiltersConfig, ITableState, DataSourceState, Lens } from '@epam/uui-core';
+import { DataColumnProps, TableFiltersConfig, ITableState } from '@epam/uui-core';
 import {
     FlexRow, IconButton, ScrollBars, Text, FlexSpacer,
 } from '@epam/uui';
 import { ReactComponent as CloseIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 
-import { PresetsBlock } from './PresetsBlock';
+// import { PresetsBlock } from './PresetsBlock';
 import { FiltersBlock } from './FiltersBlock';
-import { ColumnsBlock } from './ColumnsBlock';
+// import { ColumnsBlock } from './ColumnsBlock';
 import { GroupingBlock } from './GroupingBlock';
 
 export interface IFilterPanelProps<TFilter extends Record<string, any>> extends ITableState<TFilter> {
@@ -17,11 +17,6 @@ export interface IFilterPanelProps<TFilter extends Record<string, any>> extends 
 }
 
 function FilterPanel<TFilter = any>(props: IFilterPanelProps<TFilter>) {
-    const lens = Lens.onEditable<DataSourceState['filter']>({
-        value: props.tableState.filter,
-        onValueChange: props.setFilter,
-    });
-
     return (
         <>
             <FlexRow borderBottom size="48" padding="18">
@@ -33,10 +28,10 @@ function FilterPanel<TFilter = any>(props: IFilterPanelProps<TFilter>) {
             </FlexRow>
 
             <ScrollBars>
-                <PresetsBlock { ...props } />
+                {/* <PresetsBlock { ...props } /> */}
                 <FiltersBlock filters={ props.filters } tableState={ props.tableState } setTableState={ props.setTableState } />
-                <ColumnsBlock columnsConfig={ props.tableState.columnsConfig } onColumnsConfigChange={ props.setColumnsConfig } columns={ props.columns } />
-                <GroupingBlock { ...lens.prop('groupBy').toProps() } />
+                {/* <ColumnsBlock columnsConfig={ props.tableState.columnsConfig } onColumnsConfigChange={ props.setColumnsConfig } columns={ props.columns } /> */}
+                <GroupingBlock tableState={ props.tableState } setTableState={ props.setTableState } />
             </ScrollBars>
         </>
     );
