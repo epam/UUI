@@ -100,6 +100,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         super(editable, newProps);
         this.props = this.applyDefaultsToProps(newProps);
         this.visibleTree = Tree.blank<TItem, TId>(newProps);
+        this.fullTree = Tree.blank<TItem, TId>(newProps);
         this.cache = cache;
         if (!this.cache) {
             this.cache = new ListApiCache({
@@ -165,7 +166,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (prevValue == null || prevProps == null || shouldReloadData) {
             this.isReloading = true;
             this.visibleTree = this.visibleTree.clearStructure();
-            if (this.fullTree && this.onlySearchWasUnset(prevValue, this.value)) {
+            if (this.onlySearchWasUnset(prevValue, this.value)) {
                 this.visibleTree = this.fullTree;
             }
             completeReset = true;
@@ -330,18 +331,30 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
             const newTree = await newTreePromise;
 
+            const linkToTree = byFullTree ? this.fullTree : this.visibleTree;
             // If tree is changed during this load, than there was reset occurred (new value arrived)
             // We need to tell caller to reject this result
-            const isOutdated = tree !== loadingTree;
-            const isUpdated = tree !== newTree;
+            const isOutdated = linkToTree !== loadingTree;
+            const isUpdated = linkToTree !== newTree;
+
             if (!isOutdated) {
-                if (byFullTree) {
+                if (!this.value.search) {
                     this.fullTree = newTree;
-                } else {
                     this.visibleTree = newTree;
-                    if (this.fullTree === null || !this.value.search) {
-                        this.fullTree = newTree;
-                    }
+                } else {
+                    // If search is provided and loading on check in cascade selection mode happened,
+                    // tree with missing items should be fully assinged.
+                    // Otherwise, loaded missing items should be merged into the full tree.
+                    this.fullTree = this.fullTree === newTree || byFullTree
+                        ? newTree
+                        : this.fullTree.mergeItems(newTree);
+
+                    // If search is provided and loading on check in cascade selection mode happened,
+                    // missing items should be merged into visible tree, but original tree should not be overridden.
+                    // Otherwise, visible tree should be rewritten.
+                    this.visibleTree = byFullTree
+                        ? this.visibleTree.mergeItems(newTree)
+                        : newTree;
                 }
             }
             return { isUpdated, isOutdated, tree: newTree };
