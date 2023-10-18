@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusIndicatorProps, StatusIndicator, Text } from '@epam/uui';
+import { StatusIndicatorProps, StatusIndicator, Text, FlexRow, FlexCell } from '@epam/uui';
 
 const uuiIndicators: StatusIndicatorProps[] = [
     { color: 'neutral', caption: 'Neutral' },
@@ -11,23 +11,23 @@ const uuiIndicators: StatusIndicatorProps[] = [
 
 export default function BasicStatusIndicatorExample() {
     return (
-        <div style={ {
-            display: 'grid',
-            gridTemplateColumns: '80px repeat(5, min-content)',
-            gap: '12px',
-            justifyItems: 'left',
-            alignItems: 'center',
-        } }
-        >
-            <Text rawProps={ { style: { padding: '0' } } }>Fill solid:</Text>
-            { uuiIndicators.map((item) => (
-                <StatusIndicator caption={ item.caption } key={ item.color } color={ item.color } />
-            )) }
-            <Text rawProps={ { style: { padding: '0' } } }>Fill outline:</Text>
-            { uuiIndicators.map((item) => (
-                <StatusIndicator caption={ item.caption } key={ item.color } color={ item.color } fill="outline" />
-            )) }
-        </div>
-
+        <>
+            <FlexCell width={ 80 }>
+                <FlexRow>
+                    <Text rawProps={ { style: { padding: '0' } } }>Fill solid:</Text>
+                </FlexRow>
+                <FlexRow>
+                    <Text rawProps={ { style: { padding: '0' } } }>Fill outline:</Text>
+                </FlexRow>
+            </FlexCell>
+            <FlexCell width="auto">
+                <FlexRow columnGap="12">
+                    { uuiIndicators.map((item) => <StatusIndicator caption={ item.caption } key={ item.color } color={ item.color } />) }
+                </FlexRow>
+                <FlexRow columnGap="12">
+                    { uuiIndicators.map((item) => <StatusIndicator caption={ item.caption } key={ item.color } color={ item.color } fill="outline" />) }
+                </FlexRow>
+            </FlexCell>
+        </>
     );
 }
