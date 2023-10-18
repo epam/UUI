@@ -3,7 +3,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Status indicators help users identify the status of a task or action. The indicator can also signify that there has been a change or update to a particular item. Status indicators play an important role in conveying the severity level of information to users. Different colors enable users to assess their status and respond accordingly quickly. "
+        "text": "Status indicators are used to identify the status of some entity."
       }
     ]
   }

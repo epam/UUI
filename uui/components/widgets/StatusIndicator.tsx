@@ -25,8 +25,8 @@ export const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>(
                 props.cx,
             ]) }
         >
-            <div className={ cx(css.dot, 'uui-status_indicator_dot') }></div>
-            <p className={ css.caption }>{props.caption}</p>
+            <div className="uui-status_indicator_dot"></div>
+            <p className="uui-status_indicator_caption">{props.caption}</p>
         </div>
     );
 });

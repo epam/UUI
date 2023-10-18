@@ -7,33 +7,33 @@
     font-weight: normal;
     color: var(--uui-text-primary);
 
-    .dot {
+    :global(.uui-status_indicator_dot) {
         box-sizing: border-box;
         border-radius: 50%;
         background-color: var(--uui-color-50);
         margin-right: 6px;
     }
 
-    .caption {
+    :global(.uui-status_indicator_caption) {
         padding: 0;
         margin: 0;
         font-style: normal;
     }
 
     &:global(.uui-color-neutral) {
-        .dot {
+        :global(.uui-status_indicator_dot) {
             background-color: var(--uui-neutral-60);
         }
     }
 
     &:global(.fill-outline) {
-        .dot {
+        :global(.uui-status_indicator_dot) {
             background-color: color-mix(in srgb, var(--uui-color-50) 20%, transparent);
             border: 1px solid var(--uui-color-50);
         }
 
         &:global(.uui-color-neutral) {
-            .dot {
+            :global(.uui-status_indicator_dot) {
                 background-color: color-mix(in srgb, var(--uui-neutral-60) 20%, transparent);
                 border: 1px solid var(--uui-neutral-60);
             }
@@ -41,13 +41,13 @@
     }
 
     &.size-12 {
-        .dot {
+        :global(.uui-status_indicator_dot) {
             margin-right: 4px;
             width: 4px;
             height: 4px;
         }
 
-        .caption {
+        :global(.uui-status_indicator_caption) {
             font-size: 12px;
             font-weight: 400;
             line-height: 12px;
@@ -55,12 +55,12 @@
     }
 
     &.size-18 {
-        .dot {
+        :global(.uui-status_indicator_dot) {
             width: 8px;
             height: 8px;
         }
 
-        .caption {
+        :global(.uui-status_indicator_caption) {
             font-size: 14px;
             font-weight: 400;
             line-height: 18px;
@@ -68,12 +68,12 @@
     }
 
     &.size-24 {
-        .dot {
+        :global(.uui-status_indicator_dot) {
             width: 12px;
             height: 12px;
         }
 
-        .caption {
+        :global(.uui-status_indicator_caption) {
             font-size: 14px;
             font-weight: 600;
             line-height: 18px;

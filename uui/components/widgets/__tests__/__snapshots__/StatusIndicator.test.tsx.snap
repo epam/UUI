@@ -5,10 +5,10 @@ exports[`StatusIndicator should be rendered correctly 1`] = `
   className="root size-24 uui-status_indicator uui-color-neutral fill-solid"
 >
   <div
-    className="dot uui-status_indicator_dot"
+    className="uui-status_indicator_dot"
   />
   <p
-    className="caption"
+    className="uui-status_indicator_caption"
   >
     Indicator
   </p>
@@ -20,10 +20,10 @@ exports[`StatusIndicator should be rendered correctly with props 1`] = `
   className="root size-12 uui-status_indicator uui-color-info fill-outline"
 >
   <div
-    className="dot uui-status_indicator_dot"
+    className="uui-status_indicator_dot"
   />
   <p
-    className="caption"
+    className="uui-status_indicator_caption"
   >
     Indicator
   </p>
