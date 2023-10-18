@@ -9,7 +9,6 @@ import {
     uuiMarkers,
     ICanBeReadonly,
     IHasRawProps,
-    IHasForwardedRef,
     CX,
     cx,
     ICanFocus,
@@ -23,7 +22,6 @@ export interface TextAreaProps
     IDisableable,
     ICanBeReadonly,
     IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>,
-    IHasForwardedRef<HTMLDivElement>,
     ICanFocus<HTMLTextAreaElement> {
     /** Adjust height to fit specified number or text rows. HTML TextArea attribute. */
     rows?: number;
@@ -39,6 +37,8 @@ export interface TextAreaProps
     maxLength?: number;
     /** HTML id attribute to put on the HTML Input element */
     id?: string;
+
+    forwardedRef?: React.ForwardedRef<HTMLInputElement>;
 }
 
 interface TextAreaState {
@@ -50,10 +50,10 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
     state = {
         inFocus: false,
     };
-
+    
     getParentOverflows(el: Element) {
         const arr = [];
-
+    
         while (el && el.parentNode && el.parentNode instanceof Element) {
             if (el.parentNode.scrollTop) {
                 arr.push({
@@ -63,10 +63,10 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
             }
             el = el.parentNode;
         }
-
+    
         return arr;
     }
-
+    
     updateHeight() {
         /* https://stackoverflow.com/questions/454202/creating-a-textarea-with-auto-resize */
         if (this.props.autoSize) {
@@ -82,36 +82,47 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
             }
         }
     }
-
+    
     componentDidMount() {
         // Delay auto-size hack to the next tick.
         // Helps with performance if there are many TextAreas on the page
         setTimeout(() => this.updateHeight(), 0);
     }
-
+    
     componentDidUpdate(prevProps: TextAreaProps) {
         if (prevProps.value !== this.props.value) {
             this.updateHeight();
         }
     }
-
+    
     handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         this.props.onValueChange(e.target.value);
     };
-
+    
     handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
         this.props.onFocus && this.props.onFocus(e);
         this.setState({ inFocus: true });
     };
-
+    
     handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
         this.props.onBlur && this.props.onBlur(e);
         this.setState({ inFocus: false });
     };
-
+    
     render() {
         return (
-            <div className={ cx(css.container, uuiElement.inputBox, this.props.cx) } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
+            <div
+                className={ cx(css.container, uuiElement.inputBox, this.props.cx) }
+                { ...this.props.rawProps }
+                tabIndex={ -1 }
+                onFocus={ () => {
+                    this.textAreaRef.current?.focus();
+                } }
+                onBlur={ () => {
+                    this.textAreaRef.current?.blur();
+                } }
+                ref={ this.props.forwardedRef }
+            >
                 <textarea
                     autoFocus={ this.props.autoFocus }
                     placeholder={ this.props.placeholder }
