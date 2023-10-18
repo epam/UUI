@@ -158,6 +158,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
                 onValueChange: handleDataSourceValueChange,
                 listView: view,
                 editMode: props.editMode,
+                searchPosition: props.searchPosition,
                 rows,
             },
             e,
