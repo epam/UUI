@@ -57,6 +57,7 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
         getListProps,
         shouldShowBody,
         getSearchPosition,
+        handlePickerInputKeyboard,
     } = usePickerInput<TItem, TId, CompletePickerInputProps<TItem, TId>>({ ...props, toggleModalOpening });
 
     const getTogglerMods = (): PickerTogglerMods => {
@@ -77,6 +78,7 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
                     ...getTogglerMods(),
                     ...targetProps,
                     ...editableProps,
+                    onKeyDown: (e) => handlePickerInputKeyboard(rows, e, editableProps.value),
                 }) }
             />
         );
@@ -164,7 +166,7 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
     return (
         <Dropdown
             renderTarget={ (dropdownProps) => {
-                const targetProps = getTogglerProps(rows);
+                const targetProps = getTogglerProps();
                 return renderTarget({ ...dropdownProps, ...targetProps });
             } }
             renderBody={ (bodyProps) => renderBody({ ...bodyProps, ...getPickerBodyProps(rows), ...getListProps() }, rows) }
