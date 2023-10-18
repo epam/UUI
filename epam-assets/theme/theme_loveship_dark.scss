@@ -721,10 +721,8 @@
 
     /* Status Indicator */
 
-    .uui-status_indicator.uui-color-white {
-        background-color: var(--white);
-
-        &.fill-outline {
+    .uui-status_indicator.uui-color-white.fill-outline {
+        .uui-status_indicator_dot {
             background-color: color-mix(in srgb, var(--white) 20%, transparent);
             border: 1px solid var(--white);
         }
@@ -732,11 +730,15 @@
 
     .uui-status_indicator.uui-color-night600,
     .uui-status_indicator.uui-color-neutral {
-        background-color: var(--uui-neutral-40);
+        .uui-status_indicator_dot {
+            background-color: var(--uui-neutral-40);
+        }
 
         &.fill-outline {
-            background-color: color-mix(in srgb, var(--uui-neutral-40) 20%, transparent);
-            border: 1px solid var(--uui-neutral-40);
+            .uui-status_indicator_dot {
+                background-color: color-mix(in srgb, var(--uui-neutral-40) 20%, transparent);
+                border: 1px solid var(--uui-neutral-40);
+            }
         }
     }
 

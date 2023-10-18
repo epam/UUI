@@ -18,8 +18,7 @@ export default function TypesExample() {
                 {dropdownMenuItems.map((item) => (
                     <DropdownMenuButton
                         key={ item.id }
-                        caption={ item.caption }
-                        icon={ () => <StatusIndicator color={ item.color as StatusIndicatorColors } /> }
+                        caption={ <StatusIndicator caption={ item.caption } color={ item.color as StatusIndicatorColors } /> }
                         onClick={ () => {
                             handleDropdown(item.id);
                             props.onClose();
@@ -36,9 +35,7 @@ export default function TypesExample() {
                 renderBody={ renderDropdownBody }
                 renderTarget={ (props) => (
                     <LinkButton
-                        icon={ () =>
-                            <StatusIndicator color={ selectedItem.color as StatusIndicatorColors } /> }
-                        caption={ selectedItem.caption }
+                        caption={ <StatusIndicator caption={ selectedItem.caption } color={ selectedItem.color as StatusIndicatorColors } /> }
                         size="36"
                         { ...props }
                     />
