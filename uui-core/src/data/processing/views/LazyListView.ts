@@ -166,6 +166,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (prevValue == null || prevProps == null || shouldReloadData) {
             this.isReloading = true;
             this.visibleTree = this.visibleTree.clearStructure();
+            if (this.onlySearchWasUnset(prevValue, this.value)) {
+                this.visibleTree = this.fullTree;
+            }
             completeReset = true;
             this.isForceReloading = false;
         }
@@ -335,19 +338,22 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             const isUpdated = linkToTree !== newTree;
 
             if (!isOutdated) {
-                // If search is provided and loading on check in cascade selection mode happened,
-                // tree with missing items should be fully assinged.
-                // Otherwise, loaded missing items should be merged into the full tree.
-                this.fullTree = this.fullTree === newTree || byFullTree
-                    ? newTree
-                    : this.fullTree.mergeItems(newTree);
-
-                // If search is provided and loading on check in cascade selection mode happened,
-                // missing items should be merged into visible tree, but original tree should not be overridden.
-                // Otherwise, visible tree should be rewritten.
-                this.visibleTree = byFullTree
-                    ? this.visibleTree.mergeItems(newTree)
-                    : newTree;
+                if (!this.value.search) {
+                    this.visibleTree = newTree;
+                    this.fullTree = newTree;
+                } else {
+                    if (byFullTree) {
+                        this.visibleTree = this.visibleTree === newTree
+                            ? newTree
+                            : this.visibleTree.mergeItems(newTree);
+                        this.fullTree = newTree;
+                    } else {
+                        this.visibleTree = newTree;
+                        this.fullTree = newTree === this.fullTree
+                            ? newTree
+                            : this.fullTree.mergeItems(newTree);
+                    }
+                }
             }
             return { isUpdated, isOutdated, tree: newTree };
         } catch (e) {
