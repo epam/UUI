@@ -1,7 +1,6 @@
-import React, { Attributes, ReactNode } from 'react';
+import React, { Attributes, ForwardedRef, ReactNode } from 'react';
 import {
-    IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus,
-} from './props';
+    IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus } from './props';
 import { IDropdownToggler, IDropdownBodyProps } from './pickers';
 import { DataRowProps } from './dataRows';
 import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
@@ -137,6 +136,7 @@ export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<
 export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCellValue>, ICanFocus<any> {
     rowProps: DataRowProps<TItem, TId>;
     mode: 'cell'; // This can signal the editor component to adapt it's visuals to cell editor
+    ref?: ForwardedRef<any>;
 }
 
 export interface DataTableCellOptions<TItem = any, TId = any> {

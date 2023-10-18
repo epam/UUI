@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    DataTableCellProps, RenderEditorProps, uuiElement, uuiMod,
+    DataTableCellProps, RenderEditorProps, uuiMod,
 } from '@epam/uui-core';
 import css from './DataTableCell.module.scss';
 import { FlexCell } from '../layout';
@@ -18,15 +18,14 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     const [state, setState] = React.useState<DataTableCellState>({ inFocus: false });
     const row = props.rowProps;
     const ref = React.useRef<HTMLDivElement>();
+    const editorRef = React.useRef<HTMLElement>();
 
     let content: React.ReactNode;
     const isEditable = !!props.onValueChange;
 
-    const handleEditorClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback((e) => {
+    const handleEditorClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback(() => {
         props.rowProps.onSelect?.(props.rowProps);
-
-        const input: HTMLInputElement = (e.target as HTMLElement).querySelector('.' + uuiElement.input);
-        input?.focus();
+        editorRef.current?.focus();
     }, []);
 
     if (props.rowProps.isLoading) {
@@ -49,6 +48,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
             onBlur: () => setState({ ...state, inFocus: false }),
             rowProps: props.rowProps,
             mode: 'cell',
+            ref: editorRef,
         };
 
         content = (
