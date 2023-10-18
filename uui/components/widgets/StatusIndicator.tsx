@@ -9,6 +9,7 @@ export interface StatusIndicatorProps extends IHasCX {
     size?: '24' | '18' | '12';
     color?: StatusIndicatorColors;
     fill?: 'solid' | 'outline';
+    caption: string;
 }
 
 export const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>((props, ref) => {
@@ -24,6 +25,8 @@ export const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>(
                 props.cx,
             ]) }
         >
+            <div className={ cx(css.dot, 'uui-status_indicator_dot') }></div>
+            <p className={ css.caption }>{props.caption}</p>
         </div>
     );
 });

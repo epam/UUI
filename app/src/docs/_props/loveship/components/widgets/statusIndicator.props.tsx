@@ -17,6 +17,12 @@ const statusIndicatorDoc = new DocBuilder<StatusIndicatorProps & StatusIndicator
         examples: ['12', '18', '24'],
         defaultValue: '24',
     })
+    .prop('caption', {
+        examples: [
+            { value: 'Indicator', isDefault: true }, { value: 'Status' },
+        ],
+        type: 'string',
+    })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
 export default statusIndicatorDoc;

@@ -1,21 +1,12 @@
 import React from 'react';
-import { FlexRow, StatusIndicator, Text } from '@epam/uui';
+import { FlexRow, StatusIndicator } from '@epam/uui';
 
 export default function SizesStatusIndicatorExample() {
     return (
         <FlexRow spacing="18">
-            <FlexRow spacing="6">
-                <StatusIndicator color="info" />
-                <Text>size 24</Text>
-            </FlexRow>
-            <FlexRow spacing="6">
-                <StatusIndicator color="info" size="18" />
-                <Text>size 18</Text>
-            </FlexRow>
-            <FlexRow spacing="6">
-                <StatusIndicator color="info" size="12" />
-                <Text>size 12</Text>
-            </FlexRow>
+            <StatusIndicator color="info" caption="Size 24" />
+            <StatusIndicator color="info" size="18" caption="Size 18" />
+            <StatusIndicator color="info" size="12" caption="Size 12" />
         </FlexRow>
     );
 }
