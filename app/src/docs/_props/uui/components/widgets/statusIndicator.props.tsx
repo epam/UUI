@@ -9,8 +9,8 @@ const statusIndicatorDoc = new DocBuilder<StatusIndicatorProps>({ name: 'statusI
         examples: ['info', 'success', 'warning', 'critical', 'neutral'],
     })
     .prop('fill', {
-        examples: ['contrast', 'bright', 'outline'],
-        defaultValue: 'contrast',
+        examples: ['solid', 'outline'],
+        defaultValue: 'solid',
     })
     .prop('size', {
         examples: ['12', '18', '24'],

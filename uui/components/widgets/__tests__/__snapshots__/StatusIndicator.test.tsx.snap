@@ -2,7 +2,7 @@
 
 exports[`StatusIndicator should be rendered correctly 1`] = `
 <div
-  className="root size-24 uui-status_indicator uui-color-neutral fill-contrast"
+  className="root size-24 uui-status_indicator uui-color-neutral fill-solid"
 />
 `;
 
