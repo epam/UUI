@@ -658,12 +658,7 @@
 
     .uui-status_indicator.uui-color-night600,
     .uui-status_indicator.uui-color-neutral {
-        background-color: var(--uui-neutral-80);
-
-        &.fill-bright {
-            background-color: var(--uui-neutral-60);
-            filter: drop-shadow(0 0 6px var(--uui-neutral-60));
-        }
+        background-color: var(--uui-neutral-60);
 
         &.fill-outline {
             background-color: color-mix(in srgb, var(--uui-neutral-60) 20%, transparent);

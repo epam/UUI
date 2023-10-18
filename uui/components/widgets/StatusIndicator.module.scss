@@ -1,12 +1,7 @@
 .root {
     box-sizing: border-box;
     border-radius: 50%;
-    background-color: var(--uui-color-70);
-
-    &:global(.fill-bright) {
-        background-color: var(--uui-color-50);
-        filter: drop-shadow(0 0 6px var(--uui-color-50));
-    }
+    background-color: var(--uui-color-50);
 
     &:global(.fill-outline) {
         background-color: color-mix(in srgb, var(--uui-color-50) 20%, transparent);

@@ -10,8 +10,8 @@ const statusIndicatorDoc = new DocBuilder<StatusIndicatorProps & StatusIndicator
         examples: ['blue', 'green', 'amber', 'red', 'yellow', 'orange', 'fuchsia', 'purple', 'violet', 'cobalt', 'cyan', 'mint', 'white', 'gray60'],
     })
     .prop('fill', {
-        examples: ['contrast', 'bright', 'outline'],
-        defaultValue: 'contrast',
+        examples: ['solid', 'outline'],
+        defaultValue: 'solid',
     })
     .prop('size', {
         examples: ['12', '18', '24'],

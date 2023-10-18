@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusIndicatorProps, StatusIndicator, Text } from '@epam/uui';
+import { StatusIndicatorProps, StatusIndicator, Text, FlexRow, TextColor } from '@epam/uui';
 
 const uuiIndicators: StatusIndicatorProps[] = [
     { color: 'neutral' },
@@ -13,20 +13,30 @@ export default function BasicStatusIndicatorExample() {
     return (
         <div style={ {
             display: 'grid',
-            gridTemplateColumns: '80px repeat(5, minmax(50px, max-content))',
+            gridTemplateColumns: '80px repeat(5, min-content)',
             gap: '12px',
-            justifyItems: 'center',
+            justifyItems: 'left',
             alignItems: 'center',
         } }
         >
-            <Text>Fill / Color</Text>
-            {uuiIndicators.map((item) => <Text key={ item.color }>{ item.color.split('')[0].toUpperCase() + item.color.slice(1) }</Text>)}
-            <Text rawProps={ { style: { padding: '0' } } }>Contrast</Text>
-            { uuiIndicators.map((item) => <StatusIndicator key={ item.color } color={ item.color } />) }
-            <Text rawProps={ { style: { padding: '0' } } }>Bright</Text>
-            { uuiIndicators.map((item) => <StatusIndicator key={ item.color } color={ item.color } fill="bright" />) }
-            <Text rawProps={ { style: { padding: '0' } } }>Outline</Text>
-            { uuiIndicators.map((item) => <StatusIndicator key={ item.color } color={ item.color } fill="outline" />) }
+            <Text rawProps={ { style: { padding: '0' } } }>Fill solid:</Text>
+            { uuiIndicators.map((item) => (
+                <FlexRow spacing="6">
+                    <StatusIndicator key={ item.color } color={ item.color } />
+                    <Text key={ item.color } color={ item.color === 'neutral' ? 'brand' : item.color as TextColor }>
+                        { item.color.split('')[0].toUpperCase() + item.color.slice(1) }
+                    </Text>
+                </FlexRow>
+            )) }
+            <Text rawProps={ { style: { padding: '0' } } }>Fill outline:</Text>
+            { uuiIndicators.map((item) => (
+                <FlexRow spacing="6">
+                    <StatusIndicator key={ item.color } color={ item.color } fill="outline" />
+                    <Text key={ item.color } color={ item.color === 'neutral' ? 'brand' : item.color as TextColor }>
+                        { item.color.split('')[0].toUpperCase() + item.color.slice(1) }
+                    </Text>
+                </FlexRow>
+            )) }
         </div>
 
     );

@@ -19,7 +19,7 @@ export default function TypesExample() {
                     <DropdownMenuButton
                         key={ item.id }
                         caption={ item.caption }
-                        icon={ () => <StatusIndicator fill="outline" color={ item.color as StatusIndicatorColors } /> }
+                        icon={ () => <StatusIndicator color={ item.color as StatusIndicatorColors } /> }
                         onClick={ () => {
                             handleDropdown(item.id);
                             props.onClose();
@@ -37,7 +37,7 @@ export default function TypesExample() {
                 renderTarget={ (props) => (
                     <LinkButton
                         icon={ () =>
-                            <StatusIndicator fill="outline" color={ selectedItem.color as StatusIndicatorColors } /> }
+                            <StatusIndicator color={ selectedItem.color as StatusIndicatorColors } /> }
                         caption={ selectedItem.caption }
                         size="36"
                         { ...props }

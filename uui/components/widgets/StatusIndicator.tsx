@@ -8,7 +8,7 @@ export type StatusIndicatorColors = 'neutral' | 'info' | 'success' | 'warning' |
 export interface StatusIndicatorProps extends IHasCX {
     size?: '24' | '18' | '12';
     color?: StatusIndicatorColors;
-    fill?: 'contrast' | 'bright' | 'outline';
+    fill?: 'solid' | 'outline';
 }
 
 export const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>((props, ref) => {
@@ -20,7 +20,7 @@ export const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>(
                 css[`size-${props.size || 24}`],
                 'uui-status_indicator',
                 `uui-color-${props.color || 'neutral'}`,
-                `fill-${props.fill || 'contrast'}`,
+                `fill-${props.fill || 'solid'}`,
                 props.cx,
             ]) }
         >
