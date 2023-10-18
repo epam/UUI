@@ -140,7 +140,11 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const shouldShowBody = () => (props.shouldShowBody ?? defaultShouldShowBody)();
 
-    const handlePickerInputKeyboard = (rows: DataSourceKeyboardParams['rows'], e: React.KeyboardEvent<HTMLElement>) => {
+    const handlePickerInputKeyboard = (
+        rows: DataSourceKeyboardParams['rows'],
+        e: React.KeyboardEvent<HTMLElement>,
+        actualSearch?: string,
+    ) => {
         if (props.isDisabled || props.isReadonly) return;
 
         if (e.key === 'Enter' && !opened) {
@@ -152,12 +156,14 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             toggleDropdownOpening(false);
         }
 
+        const value = getDataSourceState();
         handleDataSourceKeyboard(
             {
-                value: getDataSourceState(),
+                value: actualSearch !== undefined ? { ...value, search: actualSearch } : value,
                 onValueChange: handleDataSourceValueChange,
                 listView: view,
                 editMode: props.editMode,
+                searchPosition: props.searchPosition,
                 rows,
             },
             e,
@@ -261,7 +267,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         return dataSourceState.search;
     };
 
-    const getTogglerProps = (rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> => {
+    const getTogglerProps = (): PickerTogglerProps<TItem, TId> => {
         const selectedRowsCount = view.getSelectedRowsCount();
         const allowedMaxItems = getMaxItems(props.maxItems);
         const itemsToTake = selectedRowsCount > allowedMaxItems ? allowedMaxItems : selectedRowsCount;
@@ -313,7 +319,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             entityName: getEntityName(selectedRowsCount),
             pickerMode: isSingleSelect() ? 'single' : 'multi',
             searchPosition,
-            onKeyDown: (e) => handlePickerInputKeyboard(rows, e),
             disableSearch: searchPosition !== 'input',
             disableClear: disableClear,
             toggleDropdownOpening,
@@ -342,5 +347,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         handleDataSourceValueChange,
         handleSelectionValueChange,
         getSearchPosition,
+        handlePickerInputKeyboard,
     };
 }
