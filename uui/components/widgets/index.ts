@@ -8,3 +8,4 @@ export * from './IndeterminateBar';
 export * from './IndicatorBar';
 export * from './ProgressBar';
 export * from './CountIndicator';
+export * from './StatusIndicator';

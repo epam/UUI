@@ -398,6 +398,7 @@
         --uui-color-contrast: var(--uui-neutral-80);
     }
 
+    .uui-color-neutral,
     .uui-color-night300 {
         --uui-color-5: var(--night50);
         --uui-color-10: var(--night100);
@@ -616,6 +617,8 @@
         --uui-icon-btn-active: var(--uui-neutral-80);
     }
 
+    /* TooltipContainer */
+
     .uui-tooltip-container.uui-color-white,
     .uui-tooltip-container.uui-color-neutral {
         --uui-tooltip-bg: var(--white);
@@ -640,6 +643,15 @@
         --uui-count_indicator-bg: var(--uui-neutral-30);
         --uui-count_indicator-border: var(--uui-neutral-30);
         --uui-count_indicator-caption: var(--uui-neutral-80);
+    }
+
+    /* Status Indicator */
+
+    .uui-status_indicator.uui-color-white.fill-outline {
+        .uui-status_indicator_dot {
+            background-color: color-mix(in srgb, var(--white) 20%, transparent);
+            border: 1px solid var(--uui-neutral-40);
+        }
     }
 
     /* FlexRow */
@@ -672,7 +684,7 @@
         --uui-panel-bg: var(--night50);
     }
 
-    // fonts
+    /* fonts */
 
     .uui-font-sans {
         --uui-text-font: var(--uui-font);

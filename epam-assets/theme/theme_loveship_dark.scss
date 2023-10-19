@@ -635,6 +635,7 @@
     }
 
     /* BurgerMenu */
+
     .uui-burger {
         --uui-burger_menu-bg: var(--uui-app-bg);
         --uui-burger_menu-bg-hover: var(--uui-app-bg);
@@ -643,13 +644,15 @@
         --uui-burger_item: var(--uui-app-bg);
     }
 
-    /*  tab-button-vars     */
+    /*  TubButton */
+
     .uui-tab-button {
         --uui-tab_button-text-hover: var(--uui-primary-60);
         --uui-tab_button-text-active: var(--uui-primary-60);
     }
 
     /* MainMenu */
+
     .uui-main_menu {
         --uui-main_menu-text: var(--uui-text-brand);
         --uui-main_menu-text-active: var(--uui-text-brand);
@@ -716,7 +719,30 @@
         --uui-count_indicator-border: var(--uui-color-60);
     }
 
-    // Alert
+    /* Status Indicator */
+
+    .uui-status_indicator.uui-color-white.fill-outline {
+        .uui-status_indicator_dot {
+            background-color: color-mix(in srgb, var(--white) 20%, transparent);
+            border: 1px solid var(--white);
+        }
+    }
+
+    .uui-status_indicator.uui-color-night600,
+    .uui-status_indicator.uui-color-neutral {
+        .uui-status_indicator_dot {
+            background-color: var(--uui-neutral-40);
+        }
+
+        &.fill-outline {
+            .uui-status_indicator_dot {
+                background-color: color-mix(in srgb, var(--uui-neutral-40) 20%, transparent);
+                border: 1px solid var(--uui-neutral-40);
+            }
+        }
+    }
+
+    /* Alert */
 
     .uui-alert.uui-color-info {
         --uui-alert-icon: var(--uui-color-60);
@@ -738,7 +764,7 @@
         --uui-alert-border: var(--uui-color-60);
     }
 
-    // fonts
+    /* fonts */
 
     .uui-font-sans {
         --uui-text-font: var(--uui-font);

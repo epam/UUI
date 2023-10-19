@@ -602,6 +602,8 @@
         --uui-color-contrast: var(--white);
     }
 
+    /* TooltipContainer */
+
     .uui-tooltip-container.uui-color-white,
     .uui-tooltip-container.uui-color-neutral {
         --uui-tooltip-bg: var(--white);
@@ -627,6 +629,17 @@
         --uui-count_indicator-border: var(--uui-neutral-30);
         --uui-count_indicator-caption: var(--uui-neutral-80);
     }
+
+    /* Status Indicator */
+
+    .uui-status_indicator.uui-color-white.fill-outline {
+        .uui-status_indicator_dot {
+            background-color: color-mix(in srgb, var(--white) 20%, transparent);
+            border: 1px solid var(--uui-neutral-40);
+        }
+    }
+
+    /* FlexRow */
 
     .uui-flex-row.uui-color-none {
         --uui-flex-row-bg: transparent;
@@ -656,7 +669,7 @@
         --uui-tag-border-radius: 0;
     }
 
-    // fonts
+    /* fonts */
 
     .uui-font-sans {
         --uui-text-font: var(--uui-font);
