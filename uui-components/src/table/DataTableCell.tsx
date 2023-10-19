@@ -23,7 +23,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     let content: React.ReactNode;
     const isEditable = !!props.onValueChange;
 
-    const handleEditorClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback(() => {
+    const handleEditableCellClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback(() => {
         props.rowProps.onSelect?.(props.rowProps);
         editorRef.current?.focus();
     }, []);
@@ -52,7 +52,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         };
 
         content = (
-            <div className={ css.editorWrapper } onClick={ handleEditorClick }>
+            <div className={ css.editorWrapper } onClick={ handleEditableCellClick }>
                 {props.renderEditor(editorProps)}
                 <DataTableCellOverlay
                     { ...editorProps }

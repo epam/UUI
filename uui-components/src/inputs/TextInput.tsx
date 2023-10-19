@@ -66,11 +66,11 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     };
 
     const handleWrapperFocus = () => {
-        inputElement.current.focus();
+        inputElement.current?.focus();
     };
     
     const handleWrapperBlur = () => {
-        inputElement.current.blur();
+        inputElement.current?.blur();
     };
     
     const getInputProps = () => ({
