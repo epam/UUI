@@ -45,13 +45,11 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
 
     const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
         setInFocus(true);
-        inputElement.current?.focus();
         props.onFocus?.(event);
     };
 
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         setInFocus(false);
-        inputElement.current?.blur();
         props.onBlur?.(event);
     };
 
@@ -67,6 +65,14 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         inputElement.current?.focus();
     };
 
+    const handleWrapperFocus = () => {
+        inputElement.current.focus();
+    };
+    
+    const handleWrapperBlur = () => {
+        inputElement.current.blur();
+    };
+    
     const getInputProps = () => ({
         type: props.type || 'text',
         className: cx(uuiElement.input, props.inputCx),
@@ -76,6 +82,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         readOnly: props.isReadonly,
         onKeyDown: handleKeyDown,
         onChange: handleChange,
+        onFocus: handleFocus,
+        onBlur: handleBlur,
         autoFocus: props.autoFocus,
         ref: inputElement,
         autoComplete: props.autoComplete,
@@ -109,8 +117,9 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
                 props.cx,
             ) }
             tabIndex={ -1 }
-            onFocus={ handleFocus }
-            onBlur={ handleBlur }
+            onFocus={ handleWrapperFocus }
+            onBlur={ handleWrapperBlur }
+            role="textbox"
             { ...props.rawProps }
         >
             {props.iconPosition !== 'right' && icon}
