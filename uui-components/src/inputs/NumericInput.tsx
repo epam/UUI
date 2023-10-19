@@ -14,7 +14,6 @@ import {
     CX,
     ICanBeReadonly,
     IAnalyticableOnChange,
-    IHasForwardedRef,
     ICanFocus,
     uuiMarkers,
     getMinMaxValidatedValue,
@@ -35,8 +34,7 @@ export interface NumericInputProps
     IHasPlaceholder,
     ICanBeReadonly,
     IAnalyticableOnChange<number>,
-    IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
-    IHasForwardedRef<HTMLDivElement> {
+    IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /** Maximum value (default is Number.MAX_SAFE_INTEGER) */
     max?: number;
 
@@ -77,6 +75,8 @@ export interface NumericInputProps
      * Formatting is applied only when input is not focused.
      */
     formatValue?(value: number): string;
+    
+    ref?: React.Ref<HTMLDivElement>;
 }
 
 export const uuiNumericInput = {
@@ -91,10 +91,12 @@ const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
     return maximumFractionDigits;
 };
 
-export function NumericInput(props: NumericInputProps) {
+export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>((props, ref) => {
     let {
-        value = null, min, max, step, formatValue, formatOptions,
+        value = null, min, max, formatOptions,
     } = props;
+
+    const { step, formatValue } = props;
 
     if (value != null) {
         value = +value;
@@ -190,6 +192,14 @@ export function NumericInput(props: NumericInputProps) {
     ]);
 
     const showArrows = !props.disableArrows && !props.isReadonly && !props.isDisabled;
+    
+    const handleWrapperFocus = () => {
+        inputRef.current?.focus();
+    };
+    
+    const handleWrapperBlur = () => {
+        inputRef.current?.blur();
+    };
 
     return (
         <div
@@ -205,11 +215,12 @@ export function NumericInput(props: NumericInputProps) {
                 props.cx,
             ) }
             onClick={ props.onClick }
-            onBlur={ handleBlur }
-            onFocus={ handleFocus }
+            onFocus={ handleWrapperFocus }
+            onBlur={ handleWrapperBlur }
             onKeyDown={ handleArrowKeyDown }
             tabIndex={ -1 }
-            ref={ props.forwardedRef }
+            ref={ ref }
+            role="spinbutton"
             { ...props.rawProps }
         >
             <input
@@ -223,6 +234,8 @@ export function NumericInput(props: NumericInputProps) {
                 inputMode="numeric"
                 placeholder={ placeholderValue }
                 onChange={ handleChange }
+                onFocus={ handleFocus }
+                onBlur={ handleBlur }
                 min={ min }
                 max={ max }
                 step={ step }
@@ -250,4 +263,4 @@ export function NumericInput(props: NumericInputProps) {
             )}
         </div>
     );
-}
+});

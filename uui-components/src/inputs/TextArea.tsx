@@ -108,6 +108,14 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
         this.props.onBlur && this.props.onBlur(e);
         this.setState({ inFocus: false });
     };
+
+    handleWrapperFocus = () => {
+        this.textAreaRef.current?.focus();
+    };
+
+    handleWrapperBlur = () => {
+        this.textAreaRef.current?.blur();
+    };
     
     render() {
         return (
@@ -115,12 +123,8 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                 className={ cx(css.container, uuiElement.inputBox, this.props.cx) }
                 { ...this.props.rawProps }
                 tabIndex={ -1 }
-                onFocus={ () => {
-                    this.textAreaRef.current?.focus();
-                } }
-                onBlur={ () => {
-                    this.textAreaRef.current?.blur();
-                } }
+                onFocus={ this.handleWrapperFocus }
+                onBlur={ this.handleWrapperBlur }
                 ref={ this.props.forwardedRef }
             >
                 <textarea
