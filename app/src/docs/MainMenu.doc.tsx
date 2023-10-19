@@ -3,6 +3,8 @@ import {
     EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TDocsGenType,
 } from '../common';
 
+import css from './styles.module.scss';
+
 export class MainMenuDoc extends BaseDocsBlock {
     title = 'Main Menu';
 
@@ -20,9 +22,9 @@ export class MainMenuDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName="mainMenu-descriptions" />
                 {this.renderSectionTitle('Examples')}
-                <DocExample title="Basic" path="./_examples/mainMenu/Basic.example.tsx" width="auto" />
+                <DocExample cx={ css.appBg } title="Basic" path="./_examples/mainMenu/Basic.example.tsx" width="auto" />
 
-                <DocExample title="Responsive" path="./_examples/mainMenu/Responsive.example.tsx" width="auto" />
+                <DocExample cx={ css.appBg } title="Responsive" path="./_examples/mainMenu/Responsive.example.tsx" width="auto" />
             </>
         );
     }
