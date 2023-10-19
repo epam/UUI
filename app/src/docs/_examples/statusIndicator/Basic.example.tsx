@@ -14,17 +14,17 @@ export default function BasicStatusIndicatorExample() {
         <>
             <FlexCell width={ 80 }>
                 <FlexRow>
-                    <Text rawProps={ { style: { padding: '0' } } }>Fill solid:</Text>
+                    <Text>Fill solid:</Text>
                 </FlexRow>
                 <FlexRow>
-                    <Text rawProps={ { style: { padding: '0' } } }>Fill outline:</Text>
+                    <Text>Fill outline:</Text>
                 </FlexRow>
             </FlexCell>
             <FlexCell width="auto">
-                <FlexRow columnGap="12">
+                <FlexRow columnGap="12" alignItems="center">
                     { uuiIndicators.map((item) => <StatusIndicator caption={ item.caption } key={ item.color } color={ item.color } />) }
                 </FlexRow>
-                <FlexRow columnGap="12">
+                <FlexRow columnGap="12" alignItems="center">
                     { uuiIndicators.map((item) => <StatusIndicator caption={ item.caption } key={ item.color } color={ item.color } fill="outline" />) }
                 </FlexRow>
             </FlexCell>

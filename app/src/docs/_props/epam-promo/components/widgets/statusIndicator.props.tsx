@@ -7,7 +7,7 @@ import { DefaultContext, FormContext, ResizableContext } from '../../docs';
 const statusIndicatorDoc = new DocBuilder<StatusIndicatorProps & StatusIndicatorMods>({ name: 'statusIndicator', component: StatusIndicator })
     .prop('color', {
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
-        examples: ['blue', 'green', 'amber', 'red', 'yellow', 'orange', 'fuchsia', 'purple', 'violet', 'cobalt', 'cyan', 'mint', 'white', 'gray60'],
+        examples: ['blue', 'green', 'amber', 'red', 'yellow', 'orange', 'fuchsia', 'purple', 'violet', 'cobalt', 'cyan', 'mint', 'white', 'gray'],
     })
     .prop('fill', {
         examples: ['solid', 'outline'],
