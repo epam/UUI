@@ -33,7 +33,7 @@ export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseArrayListVi
 
 export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     protected props: ArrayListViewProps<TItem, TId, TFilter>;
-    originalTree: ITree<TItem, TId>;
+    fullTree: ITree<TItem, TId>;
     searchTree: ITree<TItem, TId>;
     filteredTree: ITree<TItem, TId>;
     sortedTree: ITree<TItem, TId>;
@@ -42,7 +42,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         const newProps = { ...props, sortSearchByRelevance: props.sortSearchByRelevance ?? true };
         super(editable, newProps);
         this.props = newProps;
-        this.tree = Tree.blank(newProps);
+        this.visibleTree = Tree.blank(newProps);
         this.update(editable, props);
     }
 
@@ -54,17 +54,17 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         const newItems = newProps.items || this.props.items;
         this.props = { ...newProps, items: newItems, sortSearchByRelevance: newProps.sortSearchByRelevance ?? true };
 
-        const prevTree = this.tree;
+        const prevTree = this.visibleTree;
         if (this.props.items) {
             // Legacy behavior support: there was no items prop, and the view is expected to keep items passes in constructor on updates
-            if (prevItems !== newItems || !this.originalTree) {
-                this.originalTree = Tree.create(this.props, this.props.items);
-                this.tree = this.originalTree;
+            if (prevItems !== newItems || !this.fullTree) {
+                this.fullTree = Tree.create(this.props, this.props.items);
+                this.visibleTree = this.fullTree;
                 this.refreshCache = true;
             }
         }
 
-        if (this.originalTree && (prevTree !== this.tree || this.isCacheIsOutdated(value, currentValue))) {
+        if (this.fullTree && (prevTree !== this.visibleTree || this.isCacheIsOutdated(value, currentValue))) {
             this.updateTree(currentValue, value);
             this.updateCheckedLookup(this.value.checked);
             this.rebuildRows();
@@ -88,7 +88,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
     public getById = (id: TId, index: number) => {
         // if originalTree is not created, but blank tree is defined, get item from it
-        const item = (this.originalTree ?? this.tree).getById(id);
+        const item = (this.fullTree ?? this.visibleTree).getById(id);
         if (item === NOT_FOUND_RECORD) {
             return this.getUnknownRow(id, index, []);
         }
@@ -108,7 +108,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         const { getSearchFields, getFilter, sortBy, sortSearchByRelevance } = this.props;
         let filterTreeIsUpdated = false;
         if (this.filterWasChanged(prevValue, newValue) || !this.filteredTree || this.refreshCache) {
-            this.filteredTree = this.originalTree.filter({ filter, getFilter });
+            this.filteredTree = this.fullTree.filter({ filter, getFilter });
             filterTreeIsUpdated = true;
             this.refreshCache = false;
         }
@@ -123,7 +123,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             this.sortedTree = this.searchTree.sort({ sorting, sortBy });
         }
 
-        this.tree = this.sortedTree;
+        this.visibleTree = this.sortedTree;
     }
 
     public getVisibleRows = () => {
@@ -136,7 +136,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             rowsCount: this.rows.length,
             knownRowsCount: this.rows.length,
             exactRowsCount: this.rows.length,
-            totalCount: this.originalTree?.getTotalRecursiveCount() ?? 0,
+            totalCount: this.fullTree?.getTotalRecursiveCount() ?? 0,
             selectAll: this.selectAll,
         };
     };
@@ -151,7 +151,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
     private checkItems(isChecked: boolean, checkedId?: TId) {
         const checked = (this.value && this.value.checked) ?? [];
-        const updatedChecked = this.tree.cascadeSelection(checked, checkedId, isChecked, {
+        const updatedChecked = this.visibleTree.cascadeSelection(checked, checkedId, isChecked, {
             cascade: this.props.cascadeSelection,
             isSelectable: (item: TItem) => {
                 const { isCheckable } = this.getRowProps(item, null);
@@ -163,12 +163,12 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     }
 
     protected getChildCount = (item: TItem): number | undefined => {
-        return this.tree.getChildrenByParentId(this.props.getId(item)).length;
+        return this.visibleTree.getChildrenByParentId(this.props.getId(item)).length;
     };
 
     protected getLastRecordIndex = () => {
         const lastIndex = this.value.topIndex + this.value.visibleCount;
-        const actualCount = this.tree.getTotalRecursiveCount() ?? 0;
+        const actualCount = this.visibleTree.getTotalRecursiveCount() ?? 0;
 
         if (actualCount < lastIndex) return actualCount;
         return lastIndex;

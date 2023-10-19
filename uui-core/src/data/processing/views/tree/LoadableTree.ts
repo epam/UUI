@@ -139,7 +139,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
 
                     remainingRowsCount--;
 
-                    if (hasChildren && ((!isFolded && remainingRowsCount > 0) || loadAll)) {
+                    if (hasChildren && ((!options.isLoadStrict && (!isFolded && remainingRowsCount > 0)) || loadAll)) {
                         const childPromise = loadRecursive(id, item, loadAll, remainingRowsCount);
 
                         childrenPromises.push(childPromise);

@@ -30,6 +30,7 @@ export interface TreeNodeInfo {
 export interface LoadTreeOptions<TItem, TId, TFilter>
     extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'getChildCount' | 'filter' | 'fetchStrategy' | 'flattenSearchResults'> {
     loadAllChildren?(id: TId): boolean;
+    isLoadStrict?: boolean;
     isFolded?: (item: TItem) => boolean;
 }
 
@@ -57,6 +58,8 @@ export interface ITree<TItem, TId> {
     isFlatList(): boolean;
 
     patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: ItemsComparator<TItem>): ITree<TItem, TId>;
+    mergeItems(tree: ITree<TItem, TId>): ITree<TItem, TId>;
+
     cascadeSelection(
         currentSelection: TId[],
         selectedId: TId | undefined,
