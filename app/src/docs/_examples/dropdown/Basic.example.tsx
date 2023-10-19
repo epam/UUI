@@ -25,7 +25,7 @@ export default function BasicDropdownExample() {
                 <FlexRow alignItems="top" padding="12" vPadding="24">
                     <Panel background="surface" style={ { width: '100%' } }>
                         <FlexRow cx={ css.containerItem } padding="6">
-                            <Avatar size="48" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" />
+                            <Avatar size="48" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
 
                             <FlexRow padding="12">
                                 <FlexCell width="auto">
@@ -136,7 +136,7 @@ export default function BasicDropdownExample() {
                             Reporting to
                         </Text>
                         <FlexRow spacing="12" vPadding="12">
-                            <Avatar size="42" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar125.svg?background=%23EBEDF5&radius=50" />
+                            <Avatar size="42" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
 
                             <div>
                                 <Text cx={ css.textTitle } lineHeight="24" fontSize="14" color="primary" font="semibold">

@@ -26,7 +26,7 @@ exports[`AvatarStack should be rendered correctly 1`] = `
       className="avatar"
       height="36"
       onError={[Function]}
-      src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
+      src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
       width="36"
     />
     <img
@@ -34,7 +34,7 @@ exports[`AvatarStack should be rendered correctly 1`] = `
       className="avatar"
       height="36"
       onError={[Function]}
-      src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
+      src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
       width="36"
     />
     <img
@@ -42,7 +42,7 @@ exports[`AvatarStack should be rendered correctly 1`] = `
       className="avatar"
       height="36"
       onError={[Function]}
-      src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
+      src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
       width="36"
     />
   </div>

@@ -49,7 +49,7 @@ export default function MainMenuBasicExample() {
             <Dropdown
                 key="avatar"
                 renderTarget={ (props) => (
-                    <MainMenuAvatar avatarUrl="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" isDropdown { ...props } />
+                    <MainMenuAvatar avatarUrl="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" isDropdown { ...props } />
                 ) }
                 renderBody={ (props) => (
                     <DropdownMenuBody { ...props }>

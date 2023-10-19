@@ -116,7 +116,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                         inputValues[prop.name] = defaultExample?.value;
                     }
                 });
-                this.initialProps = this.state.selectedPropsIds;
+                this.initialProps = selectedPropsIds;
                 this.setState({ docs: module, selectedPropsIds: selectedPropsIds, inputValues: inputValues, isLoading: false });
             });
         }

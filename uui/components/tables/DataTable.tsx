@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PositionValues, VirtualListRenderRowsParams, IconContainer, DataTableSelectionProvider } from '@epam/uui-components';
+import { PositionValues, IconContainer, DataTableSelectionProvider } from '@epam/uui-components';
 import { useColumnsWithFilters } from '../../helpers';
 import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions,
@@ -9,7 +9,7 @@ import { DataTableHeaderRow } from './DataTableHeaderRow';
 import { DataTableRow } from './DataTableRow';
 import { DataTableMods, DataTableRowMods } from './types';
 import { ColumnsConfigurationModal, ColumnsConfigurationModalProps } from './columnsConfigurationModal';
-import { VirtualList, Blocker } from '../layout';
+import { VirtualList, VirtualListRenderRowsParams } from '../layout';
 import { DataRowsContainer } from './DataRowsContainer';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from '../typography';
@@ -120,7 +120,6 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 ) : (
                     renderNoResultsBlock?.()
                 )}
-                <Blocker isEnabled={ props.isReloading } />
             </>
         ),
         [
@@ -137,7 +136,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 rowsCount={ props.rowsCount }
                 renderRows={ renderRowsContainer }
                 cx={ cx(css.table, 'uui-dt-vars') }
-                disableScroll={ props.isReloading }
+                isLoading={ props.isReloading }
                 rowsSelector="[role=row]"
                 rawProps={ {
                     role: 'table',
