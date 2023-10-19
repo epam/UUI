@@ -3,7 +3,7 @@ import { StatusIndicator as UuiStatusIndicator, StatusIndicatorProps as UuiStatu
 import { EpamPrimaryColor } from '../types';
 
 export interface StatusIndicatorMods extends Omit<UuiStatusIndicatorProps, 'color'> {
-    color?: EpamPrimaryColor | 'white' | 'gray60' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';
+    color?: EpamPrimaryColor | 'white' | 'gray' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';
 }
 
 export type StatusIndicatorProps = Omit<UuiStatusIndicatorProps, 'color'> & StatusIndicatorMods;
@@ -12,6 +12,6 @@ export const StatusIndicator = withMods<Omit<UuiStatusIndicatorProps, 'color'>, 
     UuiStatusIndicator,
     () => [],
     (props) => ({
-        color: props.color || 'gray60',
+        color: props.color || 'gray',
     } as StatusIndicatorProps),
 );
