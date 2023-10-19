@@ -9,7 +9,7 @@ export default function DelayForOpenAndCloseExample() {
         return (
             <DropdownContainer vPadding="24" padding="18" focusLock={ false } { ...props }>
                 <FlexRow alignItems="center" spacing="12">
-                    <Avatar size="48" alt="avatar" img={ `https://avatars.dicebear.com/api/human/${name}.svg?background=%23EBEDF5&radius=50` } />
+                    <Avatar size="48" alt="avatar" img={ `https://api.dicebear.com/7.x/pixel-art/svg?seed=${name}&radius=50&backgroundColor=b6e3f4` } />
 
                     <FlexCell width="100%">
                         <Text cx={ css.text } lineHeight="24" fontSize="16" color="primary" font="semibold">
@@ -27,7 +27,7 @@ export default function DelayForOpenAndCloseExample() {
     const renderTarget = (props: IDropdownToggler, name: string) => {
         return (
             <FlexRow columnGap="6" size="24" { ...props }>
-                <Avatar size="18" alt="avatar" img={ `https://avatars.dicebear.com/api/human/${name}.svg?background=%23EBEDF5&radius=50` } />
+                <Avatar size="18" alt="avatar" img={ `https://api.dicebear.com/7.x/pixel-art/svg?seed=${name}&radius=50&backgroundColor=b6e3f4` } />
                 <LinkButton size="30" caption={ name } />
             </FlexRow>
         );

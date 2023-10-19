@@ -14,7 +14,6 @@ import { Responsive } from './responsive/Responsive';
 import { ThemeDemo } from './theme/ThemeDemo';
 import { ThemeDemo as ThemeElectricDemo } from './theme-electric-test/ThemeDemo';
 import { ProductsTableDemo } from './productsTable/ProductsTableDemo';
-import { ProjectDemo } from './project/ProjectDemo';
 import { AdaptivePanelDemo } from './adaptivePanel/AdaptivePanelDemo';
 import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
@@ -31,7 +30,6 @@ export function SandboxPage() {
             { id: 'dbDemo', name: 'DB demo', component: DbDemo },
             { id: 'tableDemo', name: 'Persons Table', component: PersonsTableDemo },
             { id: 'productsTableDemo', name: 'Products Table', component: ProductsTableDemo },
-            { id: 'projectDemo', name: 'Project Table', component: ProjectDemo },
             { id: 'projectTasksDemo', name: 'Project Tasks Demo', component: ProjectTasksDemo },
             { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
             { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },

@@ -9,7 +9,7 @@ export default function CloseOpenModifiersExample() {
         return (
             <DropdownContainer vPadding="24" padding="18" { ...props }>
                 <FlexRow alignItems="center" spacing="12">
-                    <Avatar size="48" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" />
+                    <Avatar size="48" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
 
                     <FlexCell width="100%">
                         <Text cx={ css.text } lineHeight="24" fontSize="16" color="primary" font="semibold">

@@ -135,7 +135,9 @@ export function NumericInput(props: NumericInputProps) {
             inputRef.current.value = '';
         } else {
             const validatedValue = getMinMaxValidatedValue({ value, min, max });
-            if (validatedValue !== props.value) props.onValueChange(validatedValue);
+            if (validatedValue !== props.value && (validatedValue != null || props.value != null)) {
+                props.onValueChange(validatedValue);
+            }
         }
 
         props.onBlur?.(event);

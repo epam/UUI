@@ -155,8 +155,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="root scrollContainer"
-          cx="scrollContainer"
+          className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
           style={
             Object {
               "display": "flex",
@@ -194,7 +193,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
               }
             >
               <div
-                role="listbox"
                 style={
                   Object {
                     "marginTop": 0,
@@ -307,16 +305,16 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              className="container uui-blocker-container root"
-              style={
-                Object {
-                  "minHeight": undefined,
-                }
+          </div>
+          <div
+            className="container uui-blocker-container root"
+            style={
+              Object {
+                "minHeight": undefined,
               }
-            >
-              <div />
-            </div>
+            }
+          >
+            <div />
           </div>
           <div
             className="uui-track-horizontal"
@@ -585,8 +583,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         }
       >
         <div
-          className="root scrollContainer"
-          cx="scrollContainer"
+          className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
           style={
             Object {
               "display": "flex",
@@ -624,7 +621,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
               }
             >
               <div
-                role="listbox"
                 style={
                   Object {
                     "marginTop": 0,
@@ -1381,16 +1377,16 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              className="container uui-blocker-container root"
-              style={
-                Object {
-                  "minHeight": undefined,
-                }
+          </div>
+          <div
+            className="container uui-blocker-container root"
+            style={
+              Object {
+                "minHeight": undefined,
               }
-            >
-              <div />
-            </div>
+            }
+          >
+            <div />
           </div>
           <div
             className="uui-track-horizontal"
@@ -1588,8 +1584,7 @@ exports[`PickerModal should open body 1`] = `
             class="uui-flex-row root size-36 body modal undefined container align-items-center"
           >
             <div
-              class="root scrollContainer"
-              cx="scrollContainer"
+              class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
               style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
             >
               <div
@@ -1600,7 +1595,6 @@ exports[`PickerModal should open body 1`] = `
                   style="min-height: 2px;"
                 >
                   <div
-                    role="listbox"
                     style="margin-top: 0px;"
                   >
                     <div
@@ -1663,11 +1657,11 @@ exports[`PickerModal should open body 1`] = `
                     </div>
                   </div>
                 </div>
-                <div
-                  class="container uui-blocker-container root"
-                >
-                  <div />
-                </div>
+              </div>
+              <div
+                class="container uui-blocker-container root"
+              >
+                <div />
               </div>
               <div
                 class="uui-track-horizontal"

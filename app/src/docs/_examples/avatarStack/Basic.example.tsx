@@ -4,7 +4,7 @@ import css from './BasicExample.module.scss';
 
 const avatarsArray = Array(10)
     .fill('')
-    .map((_, index) => `https://avatars.dicebear.com/api/human/avatar12${index}.svg?background=%23EBEDF5&radius=50`);
+    .map((_, index) => `https://api.dicebear.com/7.x/pixel-art/svg?seed=${index}&radius=50&backgroundColor=b6e3f4`);
 
 export default function BasicExample() {
     return (
