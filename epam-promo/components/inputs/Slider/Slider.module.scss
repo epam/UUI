@@ -1,5 +1,3 @@
-@use '../../../assets/styles/index' as *;
-
 // Not used in projects
 
 .root {
@@ -81,18 +79,18 @@
         }
 
         :global(.uui-slider-scale-filled-dot) {
-            background-color: $blue;
-            border-color: $blue;
+            background-color: var(--uui-info-50);
+            border-color: var(--uui-info-50);
         }
 
         &:global(.uui-active) {
             :global(.uui-slider) {
-                background-color: $blue;
+                background-color: var(--uui-info-50);
             }
 
             :global(.uui-slider-scale-dot):not(:global(.uui-slider-scale-filled-dot)) {
-                border-color: $blue;
-                background-color: $blue;
+                border-color: var(--uui-info-50);
+                background-color: var(--uui-info-50);
             }
         }
 
@@ -100,20 +98,20 @@
             pointer-events: none;
 
             :global(.uui-slider-filled) {
-                background-color: $gray20;
+                background-color: var(--uui-control-bg-disabled);
             }
 
             :global(.uui-slider-handle) {
-                background-color: $gray20;
+                background-color: var(--uui-control-bg-disabled);
             }
 
             :global(.uui-slider) {
-                background-color: $gray20;
+                background-color: var(--uui-control-bg-disabled);
             }
 
             :global(.uui-slider-scale-filled-dot) {
-                background-color: $gray20;
-                border-color: $gray20;
+                background-color: var(--uui-control-bg-disabled);
+                border-color: var(--uui-control-bg-disabled);
             }
         }
     }

@@ -484,6 +484,14 @@
         --uui-color-contrast: var(--uui-text-white);
     }
 
+    /* Alert */
+
+    .uui-alert {
+        .uui-icon_button.uui-color-neutral {
+            --uui-icon-btn: var(--night950);
+        }
+    }
+
     /* TooltipContainer */
 
     .uui-tooltip-container.uui-color-neutral {
