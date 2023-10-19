@@ -2,7 +2,7 @@ import React from 'react';
 import { Modifier } from 'react-popper';
 import { Placement, Boundary } from '@popperjs/core';
 import { IDropdownBodyProps, IDropdownToggler } from '../pickers';
-import { IEditable } from '../../../src/types/props';
+import { IEditable, IHasForwardedRef } from '../../../src/types/props';
 
 export interface DropdownState {
     opened: boolean;
@@ -13,7 +13,7 @@ export interface DropdownBodyProps extends IDropdownBodyProps {}
 
 export type DropdownPlacement = Placement;
 
-export interface DropdownProps extends Partial<IEditable<boolean>> {
+export interface DropdownProps extends Partial<IEditable<boolean>>, IHasForwardedRef<HTMLElement> {
     renderTarget: (props: IDropdownToggler) => React.ReactNode;
     renderBody: (props: DropdownBodyProps) => React.ReactNode;
     onClose?: () => void;

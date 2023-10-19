@@ -203,6 +203,16 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         );
     };
 
+    private setForwardedRef = (node: HTMLElement | null) => {
+        if (!this.props.forwardedRef) return;
+
+        if (typeof this.props.forwardedRef === 'function') {
+            this.props.forwardedRef(node);
+        } else {
+            this.props.forwardedRef.current = node;
+        }
+    };
+
     private renderTarget(targetProps: ReferenceChildrenProps) {
         const innerRef = (node: HTMLElement | null) => {
             if (!node) {
@@ -211,6 +221,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
             this.targetNode = node;
             (targetProps.ref as React.RefCallback<HTMLElement>)(this.targetNode);
+            this.setForwardedRef(this.targetNode);
         };
 
         return this.props.renderTarget({
