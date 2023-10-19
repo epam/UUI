@@ -342,17 +342,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                     this.visibleTree = newTree;
                     this.fullTree = newTree;
                 } else {
-                    if (byFullTree) {
-                        this.visibleTree = this.visibleTree === newTree
-                            ? newTree
-                            : this.visibleTree.mergeItems(newTree);
-                        this.fullTree = newTree;
-                    } else {
-                        this.visibleTree = newTree;
-                        this.fullTree = newTree === this.fullTree
-                            ? newTree
-                            : this.fullTree.mergeItems(newTree);
-                    }
+                    this.visibleTree = byFullTree ? this.visibleTree.mergeItems(newTree) : newTree;
+                    this.fullTree = byFullTree ? newTree : this.fullTree.mergeItems(newTree);
                 }
             }
             return { isUpdated, isOutdated, tree: newTree };

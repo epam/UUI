@@ -60,9 +60,12 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         return this.newInstance(this.params, newById, newByParentId, newNodeInfoById);
     }
 
-    public mergeItems(tree: ITree<TItem, TId>) {
-        const newById = this.cloneMap(this.byId);
+    public mergeItems(tree: ITree<TItem, TId>): ITree<TItem, TId> {
+        if (this === tree) {
+            return this;
+        }
 
+        const newById = this.cloneMap(this.byId);
         tree.forEach((item, id) => {
             if (!newById.has(id) || newById.get(id) !== item) {
                 newById.set(id, item);
