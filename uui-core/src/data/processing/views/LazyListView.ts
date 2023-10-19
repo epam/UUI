@@ -372,32 +372,31 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         const isImplicitMode = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
         if (this.props.cascadeSelection || isRoot) {
-            if (!isImplicitMode || !isChecked || (isImplicitMode && isChecked && checkedId === ROOT_ID)) {
-                const loadNestedLayersChildren = !isImplicitMode;
-                const parents = this.visibleTree.getParentIdsRecursive(checkedId);
-                const result = await this.loadMissing(
-                    false,
-                    {
-                        // If cascadeSelection is implicit and the element is unchecked, it is necessary to load all children
-                        // of all parents of the unchecked element to be checked explicitly. Only one layer of each parent should be loaded.
-                        // Otherwise, should be loaded only checked element and all its nested children.
-                        loadAllChildren: (id) => {
-                            if (isImplicitMode) {
-                                return id === ROOT_ID || parents.some((parent) => isEqual(parent, id));
-                            }
+            const loadNestedLayersChildren = !isImplicitMode;
+            const parents = this.fullTree.getParentIdsRecursive(checkedId);
+            const result = await this.loadMissing(
+                false,
+                {
+                    // If cascadeSelection is implicit and the element is unchecked, it is necessary to load all children
+                    // of all parents of the unchecked element to be checked explicitly. Only one layer of each parent should be loaded.
+                    // Otherwise, should be loaded only checked element and all its nested children.
+                    loadAllChildren: (id) => {
+                        if (isImplicitMode) {
+                            return id === ROOT_ID || parents.some((parent) => isEqual(parent, id));
+                        }
 
-                            // `isEqual` is used, because complex ids can be recreated after fetching of parents.
-                            // So, they should be compared not by reference, but by value.
-                            return isRoot || isEqual(id, checkedId) || (this.value.search && parents.some((parent) => isEqual(parent, id)));
-                        },
+                        // `isEqual` is used, because complex ids can be recreated after fetching of parents.
+                        // So, they should be compared not by reference, but by value.
+                        return isRoot || isEqual(id, checkedId) || (this.value.search && parents.some((parent) => isEqual(parent, id)));
                     },
-                    loadNestedLayersChildren,
-                    { search: null },
-                    true,
-                );
+                    isLoadStrict: true,
+                },
+                loadNestedLayersChildren,
+                { search: null },
+                true,
+            );
 
-                tree = result.tree;
-            }
+            tree = result.tree;
         }
 
         checked = tree.cascadeSelection(checked, checkedId, isChecked, {
