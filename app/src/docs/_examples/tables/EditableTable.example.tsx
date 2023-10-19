@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui-core';
-import { Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput, TextArea, TextInput, useForm, IconButton } from '@epam/uui';
-import { FlexSpacer } from '@epam/uui-components';
+import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput, TextArea, TextInput, useForm, IconButton } from '@epam/uui';
 import { ReactComponent as deleteIcon } from '@epam/assets/icons/common/content-clear-18.svg';
 import css from './TablesExamples.module.scss';
 
@@ -181,7 +180,7 @@ export default function EditableTableExample() {
 
     // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
     return (
-        <Panel background="surface" shadow={ true }>
+        <Panel background="surface" shadow>
             {/* Render a panel with Save/Revert buttons to control the form */}
             <FlexRow spacing="12" padding="12" vPadding="12" borderBottom>
                 <FlexCell width="auto">

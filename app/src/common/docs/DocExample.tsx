@@ -7,12 +7,14 @@ import css from './DocExample.module.scss';
 import { ReactComponent as AnchorIcon } from '@epam/assets/icons/common/action-external_link-18.svg';
 import { CodesandboxLink } from './CodesandboxLink';
 import { Code } from './Code';
+import cx from 'classnames';
 
 interface DocExampleProps {
     path: string;
     title?: string;
     onlyCode?: boolean;
     width?: number | 'auto';
+    cx?: string;
 }
 
 interface DocExampleState {
@@ -96,7 +98,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
 
     render() {
         return (
-            <div className={ css.container }>
+            <div className={ cx(css.container, this.props.cx) }>
                 {this.props.title && (
                     <FlexRow cx={ css.titleRow }>
                         <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title } ref={ this.titleRef }>
