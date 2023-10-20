@@ -1,4 +1,4 @@
-export type LazyDataSourceApi<TItem, TId, TFilter> = (
+export type LazyDataSourceApiExample<TItem, TId, TFilter> = (
     request: {
         filter?: TFilter;
         sorting?: Array<{

@@ -13,9 +13,13 @@ import { BaseDatePickerProps, TooltipCoreProps } from './components';
 import { IFilterItemBodyProps } from './components/filterItemBody';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
+    /** Configuration of columns at the DataTable. Used to define column visibility, width and order */
     columnsConfig?: ColumnsConfig;
+    /** Configuration of filter at the FilterPanel. Used to define filter visibility and order */
     filtersConfig?: FiltersConfig;
+    /** ID of currently selected preset */
     presetId?: number | null;
+    /** State which will not trigger data reloading, but will be stored in presets or URL */
     viewState?: TViewState;
 }
 
@@ -77,7 +81,10 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
      */
     isFilterActive?: (filter: TFilter, column: DataColumnProps<TItem, TId, TFilter>) => boolean;
 
+    /** A pure function that defines that column value can be copied to the other column. */
     canCopy?: (cell: DataTableSelectedCellData<TItem, TId, TFilter>) => boolean;
+
+    /** A pure function that defines that column accepts copying other column value into it */
     canAcceptCopy?: (from: DataTableSelectedCellData<TItem, TId, TFilter>, to: DataTableSelectedCellData<TItem, TId, TFilter>) => boolean;
 
     /** Render the cell content. The item props is the value of the whole row (TItem). */
@@ -127,7 +134,13 @@ export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditab
 }
 
 export interface DataTableColumnsConfigOptions {
+    /** If true, allows user to change columns order
+     * @default false
+     * */
     allowColumnsReordering?: boolean;
+    /** If true, allows user to change columns width
+     * @default false
+     * */
     allowColumnsResizing?: boolean;
 }
 
@@ -368,6 +381,8 @@ export interface ITableState<TFilter = Record<string, any>, TViewState = any> ex
 }
 
 export interface DataTableSelectedCellData<TItem = any, TId = any, TFilter = any> {
+    /** Column props of the selected cell */
     column: DataColumnProps<TItem, TId, TFilter>;
+    /** Row props of the selected cell */
     row: DataRowProps<TItem, TId>;
 }
