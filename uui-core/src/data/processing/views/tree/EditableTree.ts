@@ -66,7 +66,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         }
 
         const newById = this.cloneMap(this.byId);
-        tree.forEach((item, id) => {
+        tree.forEachItem((item, id) => {
             if (!newById.has(id) || newById.get(id) !== item) {
                 newById.set(id, item);
             }

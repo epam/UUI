@@ -375,7 +375,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             const loadNestedLayersChildren = !isImplicitMode;
             // this.fullTree may not contain all the required parents.
             // So, this.visibleTree is used for the reason of fetching parents into a partial tree (search results, for example).
-            const parents = this.visibleTree.getParentIdsRecursive(checkedId);
+            const parents = this.fullTree.getParentIdsRecursive(checkedId);
             const result = await this.loadMissing(
                 false,
                 {
@@ -389,7 +389,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
                         // `isEqual` is used, because complex ids can be recreated after fetching of parents.
                         // So, they should be compared not by reference, but by value.
-                        return isRoot || isEqual(id, checkedId) || parents.some((parent) => isEqual(parent, id));
+                        return isRoot || isEqual(id, checkedId) || (this.value.search && parents.some((parent) => isEqual(parent, id)));
                     },
                     isLoadStrict: true,
                 },
