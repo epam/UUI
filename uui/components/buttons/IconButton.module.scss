@@ -8,6 +8,12 @@
     //
     fill: var(--uui-icon-btn);
 
+    &:global(.uui-icon_button.uui-color-neutral) {
+        --uui-icon-btn: var(--uui-icon);
+        --uui-icon-btn-hover: var(--uui-icon-hover);
+        --uui-icon-btn-active: var(--uui-icon-active);
+    }
+
     &:global(.-clickable) {
         &:hover {
             fill: var(--uui-icon-btn-hover);

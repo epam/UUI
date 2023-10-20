@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DemoComponentProps } from '@epam/uui-docs';
-import { Slider } from '@epam/promo';
+import { Slider } from '@epam/uui';
 import css from './ResizableContext.module.scss';
 
 interface DemoComponentState {

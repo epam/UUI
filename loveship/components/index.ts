@@ -14,6 +14,6 @@ export { FiltersPanel, PresetsPanel, defaultPredicates, Calendar, NumericInput, 
     RadioGroup, Anchor, Avatar, AvatarStack, Paginator, DataTable, DataTableCell, DataTableRow, DataTableHeaderRow, ColumnsConfigurationModal, WarningNotification,
     SuccessNotification, HintNotification, ErrorNotification, ClearNotification, FlexSpacer, FlexCell, Spinner, DataPickerBody, PickerModal, DataPickerFooter,
     ModalBlocker, ModalHeader, ModalFooter, LabeledInput, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, DropdownMenuHeader,
-    DropdownSubMenu, DropdownMenuSwitchButton, TimePicker, FileCard, SvgCircleProgress, DropSpot, DropMarker, IndeterminateBar, ProgressBar, IndicatorBar,
+    DropdownSubMenu, DropdownMenuSwitchButton, TimePicker, FileCard, SvgCircleProgress, DropSpot, DropMarker, IndeterminateBar, ProgressBar, IndicatorBar, Slider,
 } from '@epam/uui';
 export { MainMenuLogo, MainMenuCustomElement } from '@epam/uui-components';
