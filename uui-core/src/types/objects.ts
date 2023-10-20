@@ -1,12 +1,6 @@
 import { ClassValue } from '../helpers/cx';
 
-/* Common interface for data items */
-export interface IdAndName {
-    id: string;
-    name: string;
-}
-
-// Defines location within SPA application
+/** Defines location within SPA application */
 export interface Link {
     pathname: string;
     query?: any;
@@ -14,17 +8,6 @@ export interface Link {
     key?: string;
     hash?: string;
     state?: any;
-}
-
-export interface LayoutLayer {
-    id: number;
-    depth: number;
-    zIndex: number;
-}
-
-export interface TimePickerValue {
-    hours: number;
-    minutes: number;
 }
 
 // CX type is a union type that represents the valid values to pass CSS classes

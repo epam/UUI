@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { UuiContexts, DndContextState } from '../../types/contexts';
-import { LayoutLayer } from '../../types/objects';
+import { LayoutLayer } from '../';
 import { UuiContext } from '../ContextProvider';
 
 export interface DragGhostProps {}
