@@ -207,8 +207,7 @@ IAnalyticableClick & {
     style?: CSSProperties;
 };
 
-export type ICheckable = IEditable<boolean> &
-IDisableable & {
+export type ICheckable = IEditable<boolean> & IDisableable & {
     /** Sets checkbox in indeterminate state (neither checked or unchecked), which usually means that children elements has both values */
     indeterminate?: boolean;
 };

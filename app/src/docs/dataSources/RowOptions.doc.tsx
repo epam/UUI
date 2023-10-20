@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../../../common';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 
 export class DataSourcesRowOptionsDoc extends BaseDocsBlock {
     title = 'Row Options';
