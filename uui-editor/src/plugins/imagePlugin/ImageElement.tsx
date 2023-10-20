@@ -54,6 +54,8 @@ export function ImageElement({
         let captionEnabled = false;
         if (currentWidth && typeof currentWidth === 'number') {
             captionEnabled = currentWidth >= MIN_CAPTION_WIDTH;
+        } else if (currentWidth && (typeof currentWidth === 'string')) {
+            captionEnabled = true;
         }
 
         return captionEnabled;
