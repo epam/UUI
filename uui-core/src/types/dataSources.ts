@@ -19,9 +19,25 @@ export interface VirtualListRange {
 
 export type ScrollAlign = 'top' | 'nearest';
 
+/**
+ * Holds configuration of the force scrolling behavior.
+ */
 export interface ScrollToConfig {
+    /** Index of the row to be scrolled to. */
     index?: number;
+
+    /** Scrolling movement behavior. */
     behavior?: ScrollBehavior;
+
+    /** Alignment behavior. This property specifies, to which position a row with an index should be scrolled to.
+     * @default 'top'
+     *
+     * If `nearest` is specified, a list will be scrolled to a row in the nearest position only if row is not visible.
+     * If a row is closer to the bottom, the list will be scrolled to the row in the bottom position of a scroll container.
+     * If closer to the top, will be scrolled to the row in the top position.
+     *
+     * If `top` is specified, scrolling a list to a row to the top part of the container will happen in any case.
+    */
     align?: ScrollAlign;
 }
 

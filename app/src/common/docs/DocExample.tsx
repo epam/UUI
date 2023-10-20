@@ -41,15 +41,19 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
             });
         }
 
-        if (this.titleRef?.current && window.location?.hash?.includes(this.titleRef.current.id)) {
-            this.titleRef.current.scrollIntoView(true);
-        }
-
         svc.api
             .getCode({ path })
             .then((r) => {
                 this.setState({ code: r.highlighted, raw: r.raw });
+
+                this.scrollToView();
             });
+    }
+
+    private scrollToView() {
+        if (this.titleRef?.current && window.location?.hash?.includes(this.titleRef.current.id)) {
+            this.titleRef.current.scrollIntoView(true);
+        }
     }
 
     state: DocExampleState = {

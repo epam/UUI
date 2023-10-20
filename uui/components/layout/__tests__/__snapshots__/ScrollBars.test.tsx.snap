@@ -3,16 +3,6 @@
 exports[`ScrollBars should be rendered correctly 1`] = `
 <div
   className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
-  cx={
-    Array [
-      Array [
-        "uui-scroll-bars",
-        "uui-shadow-top",
-        "uui-shadow-bottom",
-      ],
-      undefined,
-    ]
-  }
   style={
     Object {
       "display": "flex",

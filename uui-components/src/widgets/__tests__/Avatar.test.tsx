@@ -26,13 +26,13 @@ describe('Avatar', () => {
     });
 
     it('should be rendered correctly', () => {
-        const tree = renderer.create(<Avatar img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" size="36" />).toJSON();
+        const tree = renderer.create(<Avatar img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" size="36" />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly with props', () => {
         const tree = renderer
-            .create(<Avatar img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" size="36" alt="Test avatar" isLoading={ true } />)
+            .create(<Avatar img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" size="36" alt="Test avatar" isLoading={ true } />)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });

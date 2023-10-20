@@ -39,3 +39,9 @@ ListState<TId, TFilter> & {
          */
     loadData?: boolean;
 };
+
+export type UseListOptionsProps<TItem, TId, TFilter, TProps extends ListViewProps<TItem, TId, TFilter>> = {
+    view: IView<TItem, TId, TFilter, TProps>;
+    listState: DataSourceState<TFilter, TId>;
+    props: TProps;
+};
