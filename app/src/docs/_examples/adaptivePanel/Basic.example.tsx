@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
-import { Slider } from '@epam/promo';
-import { Button, Dropdown, DropdownContainer, FlexCell, VerticalTabButton } from '@epam/uui';
+import { Button, Dropdown, DropdownContainer, FlexCell, VerticalTabButton, Slider } from '@epam/uui';
 import css from './Basic.example.module.scss';
 
 export default function BasicAdaptivePanelExample() {
