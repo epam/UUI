@@ -193,6 +193,7 @@
     --uui-neutral-70: var(--night700);
     --uui-neutral-80: var(--night800);
     --uui-neutral-90: var(--night900);
+    --uui-neutral-95: var(--night950);
     --uui-neutral-100: #000000;
 
     /* Surfaces Figma - https://www.figma.com/file/M5Njgc6SQJ3TPUccp5XHQx/Loveship-aka-UUI3-(Components)?type=design&node-id=20044%3A300925&mode=design&t=R433dqGrpXDGoFli-1 */
@@ -239,10 +240,10 @@
     --uui-link-visited-hover: #601278;
     --uui-link-disabled: var(--uui-neutral-50);
 
-    --uui-icon: var(--uui-neutral-60);
-    --uui-icon-hover: var(--uui-neutral-70);
-    --uui-icon-active: var(--uui-neutral-80);
-    --uui-icon-disabled: var(--uui-neutral-50);
+    --uui-icon: var(--uui-neutral-95);
+    --uui-icon-hover: var(--uui-neutral-100);
+    --uui-icon-active: var(--uui-neutral-100);
+    --uui-icon-disabled: var(--uui-neutral-40);
 
     --uui-scroll_bars-bg: var(--uui-neutral-40);
     --uui-scroll_bars-bg-active: var(--uui-neutral-60);
@@ -482,14 +483,6 @@
         --uui-color-60: var(--uui-secondary-60);
         --uui-color-70: var(--uui-secondary-70);
         --uui-color-contrast: var(--uui-text-white);
-    }
-
-    /* Alert */
-
-    .uui-alert {
-        .uui-icon_button.uui-color-neutral {
-            --uui-icon-btn: var(--night950);
-        }
     }
 
     /* TooltipContainer */
