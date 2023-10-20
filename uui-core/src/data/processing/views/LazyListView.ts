@@ -387,7 +387,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
                         // `isEqual` is used, because complex ids can be recreated after fetching of parents.
                         // So, they should be compared not by reference, but by value.
-                        return isRoot || isEqual(id, checkedId) || (this.value.search && parents.some((parent) => isEqual(parent, id)));
+                        return isRoot || isEqual(id, checkedId) || parents.some((parent) => isEqual(parent, id));
                     },
                     isLoadStrict: true,
                 },
