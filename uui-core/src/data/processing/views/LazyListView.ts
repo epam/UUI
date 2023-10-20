@@ -373,8 +373,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const isImplicitMode = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
         if (this.props.cascadeSelection || isRoot) {
             const loadNestedLayersChildren = !isImplicitMode;
-            // this.fullTree may not contain all the required parents.
-            // So, this.visibleTree is used for the reason of fetching parents into a partial tree (search results, for example).
             const parents = this.fullTree.getParentIdsRecursive(checkedId);
             const result = await this.loadMissing(
                 false,
