@@ -49,7 +49,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background-color: var(--uui-info-50);
+            background-color: var(--uui-primary-50);
             cursor: pointer;
         }
 
@@ -57,7 +57,7 @@
             margin: 0 6px;
             height: 3px;
             border-radius: 10px;
-            background-color: var(--uui-info-50);
+            background-color: var(--uui-primary-50);
         }
 
         :global(.uui-slider-scale-dot) {
@@ -67,28 +67,28 @@
 
         &:hover {
             :global(.uui-slider) {
-                background-color: var(--uui-info-50);
+                background-color: var(--uui-primary-50);
             }
 
             :global(.uui-slider-scale-dot):not(:global(.uui-slider-scale-filled-dot)) {
-                border-color: var(--uui-info-50);
-                background-color: var(--uui-info-50);
+                border-color: var(--uui-primary-50);
+                background-color: var(--uui-primary-50);
             }
         }
 
         :global(.uui-slider-scale-filled-dot) {
-            background-color: var(--uui-info-50);
-            border-color: var(--uui-info-50);
+            background-color: var(--uui-primary-50);
+            border-color: var(--uui-primary-50);
         }
 
         &:global(.uui-active) {
             :global(.uui-slider) {
-                background-color: var(--uui-info-50);
+                background-color: var(--uui-primary-50);
             }
 
             :global(.uui-slider-scale-dot):not(:global(.uui-slider-scale-filled-dot)) {
-                border-color: var(--uui-info-50);
-                background-color: var(--uui-info-50);
+                border-color: var(--uui-primary-50);
+                background-color: var(--uui-primary-50);
             }
         }
 
