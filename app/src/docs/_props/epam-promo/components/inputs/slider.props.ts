@@ -1,7 +1,7 @@
 import { DocBuilder } from '@epam/uui-docs';
 import { SliderBaseProps } from '@epam/uui-components';
-import { Slider } from '@epam/loveship';
-import { DefaultContext, FormContext, ResizableContext, iEditable, isDisabledDoc } from '../../../docs';
+import { Slider } from '@epam/promo';
+import { DefaultContext, FormContext, ResizableContext, iEditable, isDisabledDoc } from '../../docs';
 
 const sliderDoc = new DocBuilder<SliderBaseProps<number>>({ name: 'Slider', component: Slider })
     .implements([
