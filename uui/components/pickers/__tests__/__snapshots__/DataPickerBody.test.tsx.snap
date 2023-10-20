@@ -57,8 +57,7 @@ Array [
     }
   >
     <div
-      className="root scrollContainer"
-      cx="scrollContainer"
+      className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
       style={
         Object {
           "display": "flex",
@@ -96,7 +95,6 @@ Array [
           }
         >
           <div
-            role="listbox"
             style={
               Object {
                 "marginTop": 0,
@@ -104,16 +102,16 @@ Array [
             }
           />
         </div>
-        <div
-          className="container uui-blocker-container root"
-          style={
-            Object {
-              "minHeight": undefined,
-            }
+      </div>
+      <div
+        className="container uui-blocker-container root"
+        style={
+          Object {
+            "minHeight": undefined,
           }
-        >
-          <div />
-        </div>
+        }
+      >
+        <div />
       </div>
       <div
         className="uui-track-horizontal"

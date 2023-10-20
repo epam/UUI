@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { Descendant } from 'slate';
 import { IEditableDebouncer } from '@epam/uui-core';
 import { Blocker } from '@epam/uui';
 import { SlateEditor, basePlugins, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin, linkPlugin, iframePlugin,
     notePlugin, separatorPlugin, headerPlugin, colorPlugin, superscriptPlugin, listPlugin, quotePlugin, tablePlugin,
-    codeBlockPlugin,
+    codeBlockPlugin, EditorValue,
 } from '@epam/uui-editor';
 import { svc } from '../../services';
 import css from './EditableDocContent.module.scss';
@@ -14,7 +13,7 @@ export interface EditableDocContentProps {
 }
 
 interface EditableDocContentState {
-    content: Descendant;
+    content: EditorValue;
     isLoading: boolean;
 }
 

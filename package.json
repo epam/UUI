@@ -53,7 +53,8 @@
       "uui-db",
       "uui-docs",
       "uui-editor",
-      "uui-timeline"
+      "uui-timeline",
+      "templates/uui-cra-template"
     ]
   },
   "author": "",

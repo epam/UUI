@@ -9,14 +9,15 @@ export interface DataSourceKeyboardParams extends IEditable<DataSourceState> {
 
 export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: React.KeyboardEvent<HTMLElement>) => {
     const value = params.value;
-    let search = value.search;
+    const search = value.search;
 
     let focusedIndex = value.focusedIndex || 0;
     const maxVisibleIndex = value.topIndex + params.rows.length - 1;
 
     switch (e.key) {
         case 'Backspace': {
-            const selectedRows = params.listView.getSelectedRows();
+            const selectedRowsCount = params.listView.getSelectedRowsCount();
+            const selectedRows = params.listView.getSelectedRows({ topIndex: selectedRowsCount - 1, visibleCount: 1 });
             if (params.searchPosition === 'input' && !value.search && value.checked && selectedRows.length > 0) {
                 const lastSelection = selectedRows[selectedRows.length - 1];
                 lastSelection.onCheck(lastSelection);
@@ -28,10 +29,6 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
                 const focusedRow: DataRowProps<any, any> = params.rows[value.focusedIndex - value.topIndex];
                 const clickHandler = focusedRow.onFold || focusedRow.onSelect || focusedRow.onCheck;
                 clickHandler && clickHandler(focusedRow);
-                if (!focusedRow.onFold && search) {
-                    search = '';
-                    focusedIndex = 0;
-                }
             }
             break;
         }

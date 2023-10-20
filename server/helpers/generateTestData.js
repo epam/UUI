@@ -96,7 +96,7 @@ const getPersons = cached('persons', async () => {
             : c.weighted(jobTitles, jobTitlesFreq);
 
         persons.push({
-            avatarUrl: `https://avatars.dicebear.com/api/human/${c.guid()}.svg?background=%23EBEDF5&radius=50`,
+            avatarUrl: `https://api.dicebear.com/7.x/pixel-art/svg?seed=${c.guid()}&radius=50&randomizeIds=true&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf`,
             birthDate: c.birthday().toDateString(),
             cityId: city.id,
             cityName: city.name,

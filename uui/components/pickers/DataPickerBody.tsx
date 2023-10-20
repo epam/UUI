@@ -2,9 +2,9 @@ import React from 'react';
 import {
     Lens, DataSourceState, isMobile, cx,
 } from '@epam/uui-core';
-import { FlexCell, PickerBodyBase, PickerBodyBaseProps, VirtualListRenderRowsParams } from '@epam/uui-components';
+import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
 import { SearchInput } from '../inputs';
-import { FlexRow, VirtualList, Blocker } from '../layout';
+import { FlexRow, VirtualList } from '../layout';
 import { Text } from '../typography';
 import { i18n } from '../../i18n';
 import { ControlSize } from '../types';
@@ -32,19 +32,6 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
         );
     }
 
-    renderRowsContainer = ({ listContainerRef, estimatedHeight, offsetY }: VirtualListRenderRowsParams) => {
-        return (
-            <>
-                <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
-                    <div ref={ listContainerRef } role="listbox" style={ { marginTop: offsetY } }>
-                        {this.props.rows}
-                    </div>
-                </div>
-                <Blocker isEnabled={ this.props.isReloading } />
-            </>
-        );
-    };
-
     render() {
         const searchSize = isMobile() ? '48' : this.props.searchSize || '36';
 
@@ -68,10 +55,10 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                     { this.props.rowsCount > 0 ? (
                         <VirtualList 
                             { ...this.lens.toProps() }
-                            renderRows={ this.renderRowsContainer }
+                            rows={ this.props.rows }
                             rawProps={ this.props.rawProps }
                             rowsCount={ this.props.rowsCount }
-                            disableScroll={ this.props.isReloading }
+                            isLoading={ this.props.isReloading }
                         />
                     ) : (this.renderNotFound())}
                 </FlexRow>

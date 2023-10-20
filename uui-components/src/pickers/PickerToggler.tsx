@@ -73,7 +73,16 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         inputContainer.current?.focus();
     };
 
-    const handleBlur = (e: React.FocusEvent<HTMLElement>) => props.isOpen ? inputContainer.current?.focus() : blur(e);
+    const handleBlur = (e: React.FocusEvent<HTMLElement>) => {
+        if (props.isOpen) {
+            // If picker opened and search inside input, we lock focus on toggler.
+            // In case, when search inside body, we need to highlight toggler like in focus state, even when focus was moved to the body. So we do nothing in this case.
+            return props.searchPosition === 'input' && inputContainer.current?.focus();
+        } else {
+            // If picker closed, we perform blur event as usual.
+            blur(e);
+        }
+    };
 
     const handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
         if (props.onClear) {

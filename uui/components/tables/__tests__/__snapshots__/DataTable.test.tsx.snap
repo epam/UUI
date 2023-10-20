@@ -2,8 +2,7 @@
 
 exports[`DataTable should be rendered correctly 1`] = `
 <div
-  className="root scrollContainer table uui-dt-vars"
-  cx="scrollContainer table uui-dt-vars"
+  className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer table uui-dt-vars"
   style={
     Object {
       "display": "flex",
@@ -15,8 +14,6 @@ exports[`DataTable should be rendered correctly 1`] = `
   }
 >
   <div
-    aria-colcount={0}
-    role="table"
     style={
       Object {
         "WebkitOverflowScrolling": "touch",
@@ -80,16 +77,16 @@ exports[`DataTable should be rendered correctly 1`] = `
         }
       />
     </div>
-    <div
-      className="container uui-blocker-container root"
-      style={
-        Object {
-          "minHeight": undefined,
-        }
+  </div>
+  <div
+    className="container uui-blocker-container root"
+    style={
+      Object {
+        "minHeight": undefined,
       }
-    >
-      <div />
-    </div>
+    }
+  >
+    <div />
   </div>
   <div
     className="uui-track-horizontal"
