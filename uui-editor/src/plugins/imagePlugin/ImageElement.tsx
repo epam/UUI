@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import {
     Box,
     PlateElement,
@@ -47,6 +47,8 @@ export function ImageElement({
         focused && selected && css.resizeHandleVisible, // for mobile
     ];
 
+    const imageParentRef = useRef(null);
+
     useMediaState();
 
     const [currentWidth] = useResizableStore().use.width();
@@ -55,15 +57,17 @@ export function ImageElement({
         if (currentWidth && typeof currentWidth === 'number') {
             captionEnabled = currentWidth >= MIN_CAPTION_WIDTH;
         } else if (currentWidth && (typeof currentWidth === 'string')) {
-            captionEnabled = true;
+            if (imageParentRef.current) {
+                const width = imageParentRef.current.getBoundingClientRect().width;
+                captionEnabled = width >= MIN_CAPTION_WIDTH;
+            }
         }
-
         return captionEnabled;
     }, [currentWidth]);
 
     return (
         <PlateElement className={ cx(className) } { ...props }>
-            <figure className={ cx(css.group) } contentEditable={ false }>
+            <figure className={ cx(css.group) } contentEditable={ false } ref={imageParentRef}>
                 <Resizable
                     className={ cx(...aligns) }
                     options={ {
