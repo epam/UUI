@@ -1,6 +1,6 @@
 import { createSkinComponent, devLogger } from '@epam/uui-core';
 import * as types from '../../components/types';
-import { BadgeProps as UuiBadgeProps, Badge as UuiBadge, BadgeMods as UuiBadgeMods } from '@epam/uui';
+import { BadgeProps as UuiBadgeProps, Badge as UuiBadge, BadgeMods as UuiBadgeMods, BadgeCoreProps } from '@epam/uui';
 import { EpamAdditionalColor, EpamPrimaryColor } from '../types';
 import css from './Badge.module.scss';
 
@@ -10,7 +10,7 @@ export interface BadgeMods {
     color?: EpamPrimaryColor | EpamAdditionalColor | 'white' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600';
     shape?: types.ControlShape;
     fill?: UuiBadgeMods['fill'] | 'white' | 'light' | 'none';
-    size?: UuiBadgeMods['size'] | '12';
+    size?: BadgeCoreProps['size'] | '12';
 }
 
 export function applyBadgeMods(mods: BadgeMods) {
@@ -19,7 +19,7 @@ export function applyBadgeMods(mods: BadgeMods) {
     ];
 }
 
-export type BadgeProps = UuiBadgeProps & BadgeMods;
+export type BadgeProps = Omit <BadgeCoreProps, 'size'> & BadgeMods;
 
 export const Badge = createSkinComponent<UuiBadgeProps, BadgeProps>(
     UuiBadge,

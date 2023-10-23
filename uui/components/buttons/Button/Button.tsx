@@ -19,7 +19,7 @@ export interface ButtonMods {
 
 export type ButtonProps = ButtonMods & uuiComponents.ButtonProps;
 
-export type ButtonPropsType = uuiComponents.ButtonProps & {
+export type ButtonCoreProps = uuiComponents.ButtonProps & {
     size?: ControlSize | '18';
     mode?: ButtonMode;
 };

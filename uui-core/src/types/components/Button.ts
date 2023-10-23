@@ -33,36 +33,31 @@ export interface ButtonCoreProps extends ButtonBaseCoreProps, IHasCaption, IBasi
     count?: number | null;
 }
 
-type HrefButtonProps = ButtonCoreProps & {
-    href: string | never;
+type HrefButtonRawProps = ButtonCoreProps & {
     rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement>;
+    href: string | never;
     link?: never;
 };
 
-type LinkObjectButtonProps = ButtonCoreProps & {
-    link: Link;
+type LinkButtonRawProps = ButtonCoreProps & {
     rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement>;
+    link: Link;
     href?: never;
 };
 
-type TrueButtonProps = ButtonCoreProps & {
+type ButtonRawProps = ButtonCoreProps & {
     rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
     href?: never;
     link?: never;
 };
 
-type TrueAnchorProps = ButtonCoreProps & {
+type AnchorRawProps = ButtonCoreProps & {
     rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement>;
-    href?: string;
-    link?: Link;
+    href: string;
+    link: Link;
 };
 
-// Discuss this
-// type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
-
-// export type OmitFromUnion<T, K extends string | number | symbol> = T extends {} ? Omit<T, K> : never;
-
-export type ButtonComponentProps = ICanRedirect & (HrefButtonProps | LinkObjectButtonProps | TrueButtonProps | TrueAnchorProps);
+export type ButtonComponentProps = ICanRedirect & (HrefButtonRawProps | LinkButtonRawProps | ButtonRawProps | AnchorRawProps);
 
 export interface ButtonSemanticProps {
     type?: 'success' | 'cancel' | 'action';
