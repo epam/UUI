@@ -2,7 +2,7 @@ import { Task, ColumnsProps } from './types';
 import { resources, statuses } from './demoData';
 import React from 'react';
 import { TextArea, PickerToggler, TextInput, DataTableCell, NumericInput, PickerInput,
-    DatePicker, DataPickerRow, PickerItem, IconContainer } from '@epam/promo';
+    DatePicker, DataPickerRow, PickerItem, IconContainer } from '@epam/uui';
 import { ArrayDataSource, DataColumnProps, DataQueryFilter } from '@epam/uui-core';
 import { ReactComponent as statusIcon } from '@epam/assets/icons/common/radio-point-10.svg';
 

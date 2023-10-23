@@ -1,4 +1,5 @@
-import { DropdownBodyProps, uuiSkin } from '@epam/uui-core';
+import { DropdownBodyProps } from '@epam/uui-core';
+import { FlexRow } from '@epam/uui';
 import { PlateEditor, getBlockAbove, setElements } from '@udecode/plate-common';
 import * as React from 'react';
 
@@ -8,8 +9,6 @@ import { ReactComponent as H3Icon } from '../icons/heading-H3.svg';
 import { ReactComponent as ClearIcon } from '../icons/text-color-default.svg';
 import { PARAGRAPH_TYPE } from '../plugins/paragraphPlugin/paragraphPlugin';
 import { ToolbarButton } from './ToolbarButton';
-
-const { FlexRow } = uuiSkin;
 
 interface HeaderBarProps extends DropdownBodyProps {
     editor: PlateEditor;
@@ -44,10 +43,9 @@ export class HeaderBar extends React.Component<HeaderBarProps> {
         const block = getBlockAbove(this.props.editor);
 
         return (
-            <FlexRow rawProps={ { style: { height: 42, background: '#303240' } } }>
+            <FlexRow rawProps={ { style: { border: '1px solid var(--uui-divider-light)' } } }>
                 <ToolbarButton
                     onClick={ (event) => this.clearHeaderStyle(event) }
-                    isActive={ block?.length && block[0].type === 'uui-richTextEditor-header-1' }
                     icon={ ClearIcon }
                 />
                 <ToolbarButton

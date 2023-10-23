@@ -1,9 +1,9 @@
-@use '~@epam/assets/scss/promo/typography.scss' as epamPromoMixins;
+@use '~@epam/uui/assets/styles/typography' as *;
 
 .typography-16 {
-    @include epamPromoMixins.typography-16();
+    @include typography-16();
 }
 
 .typography-12 {
-    @include epamPromoMixins.typography-12();
+    @include typography-12();
 }

@@ -58,5 +58,5 @@
     left: 0;
     right: 0;
     border: var(--uui-drop-marker-width) solid var(--uui-drop-marker);
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: color-mix(in srgb, var(--uui-surface-highest) 50%, transparent);;
 }

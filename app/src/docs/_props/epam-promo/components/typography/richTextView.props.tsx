@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { RichTextView, RichTextViewMods } from '@epam/promo';
+import { RichTextViewMods } from '@epam/uui';
 import { DefaultContext } from '../../docs';
-import { FlexRow, LabeledInput, ControlWrapper } from '@epam/promo';
+import { FlexRow, LabeledInput, ControlWrapper, RichTextView } from '@epam/promo';
 import { LinkButton } from '@epam/promo';
 import { DocBuilder } from '@epam/uui-docs';
 import { RichTextViewProps } from '@epam/uui-components';

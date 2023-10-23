@@ -1,7 +1,6 @@
-@use '~@epam/assets/scss/promo/colors' as *;
-
 .container {
     position: absolute;
-    background-color: $gray80;
+    background-color: var(--uui-neutral-80);
+    border: 1px solid var(--uui-divider-light);
     display: flex;
 }

@@ -5,7 +5,6 @@ import { TMouseCoords } from '../services/dnd/DndContext';
 import { Lock } from '../services/LockContext';
 import { IHistory4 } from '../services/routing/HistoryAdaptedRouter';
 import { NotificationOperation } from '../services/NotificationContext';
-import { SkinContext } from '../services/SkinContext';
 import { ModalOperation } from '../services/ModalContext';
 
 import { FileUploadOptions, FileUploadResponse } from '../services/ApiContext';
@@ -163,7 +162,6 @@ export interface UuiContexts {
     uuiNotifications: INotificationContext;
     uuiLayout: ILayoutContext;
     uuiLocks: ILockContext;
-    uuiSkin: SkinContext;
 }
 
 export interface ApiExtensions<TApi> {

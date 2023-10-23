@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { RichTextView, RichTextViewMods } from '@epam/loveship';
+import { RichTextView } from '@epam/loveship';
+import { RichTextViewMods } from '@epam/uui';
 import { DefaultContext } from '../../docs';
 import { FlexRow, LabeledInput, ControlWrapper } from '@epam/loveship';
 import { LinkButton } from '@epam/loveship';

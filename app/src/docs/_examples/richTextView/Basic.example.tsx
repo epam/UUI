@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-    Anchor, ControlWrapper, FlexRow, LabeledInput, LinkButton, RichTextView, TextInput,
-} from '@epam/promo';
-import { Svg } from '@epam/uui-components';
+import { Anchor, FlexRow, IconContainer, LabeledInput, LinkButton, RichTextView, TextInput } from '@epam/uui';
 import { cx } from '@epam/uui-core';
 import { ReactComponent as Calendar } from '@epam/assets/icons/common/action-calendar-18.svg';
 import basicExampleCss from './BasicExample.module.scss';
@@ -54,7 +51,7 @@ export default function BasicExample() {
                 <Anchor href="/">
                     Click me
                     {' '}
-                    <Svg svg={ Calendar }></Svg>
+                    <IconContainer style={ { fill: 'var(--uui-icon)' } } icon={ Calendar }></IconContainer>
                 </Anchor>
                 {' '}
                 It is those feelings that drive our love of astronomy and our desire to learn more and more about it.
@@ -148,7 +145,7 @@ export default function BasicExample() {
                         <>
                             Demo Component
                             <Anchor href="/">
-                                <Svg svg={ Calendar }></Svg>
+                                <IconContainer style={ { fill: 'var(--uui-icon)' } } icon={ Calendar }></IconContainer>
                             </Anchor>
                             {' '}
                             :
@@ -156,9 +153,7 @@ export default function BasicExample() {
                         </>
                     }
                 >
-                    <ControlWrapper size="36">
-                        <TextInput value="" onValueChange={ () => {} }></TextInput>
-                    </ControlWrapper>
+                    <TextInput value="" onValueChange={ () => {} }></TextInput>
                     If you have no goals to choose, add them on
                     {' '}
                     <Anchor href="/">Home</Anchor>
@@ -185,7 +180,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 <Anchor href="/">
                     click me
                     {' '}
-                    <Svg svg={ Calendar }></Svg>
+                    <IconContainer style={ { fill: 'var(--uui-icon)' } } icon={ Calendar }></IconContainer>
                 </Anchor>
                 {' '}
                 consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -201,7 +196,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 <Anchor href="/">
                     click me
                     {' '}
-                    <Svg svg={ Calendar }></Svg>
+                    <IconContainer style={ { fill: 'var(--uui-icon)' } } icon={ Calendar }></IconContainer>
                 </Anchor>
                 {' '}
                 consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -218,7 +213,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 <Anchor href="/">
                     click me
                     {' '}
-                    <Svg svg={ Calendar }></Svg>
+                    <IconContainer style={ { fill: 'var(--uui-icon)' } } icon={ Calendar }></IconContainer>
                 </Anchor>
                 {' '}
                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure reprehenderit in voluptate velit esse cillum dolor
@@ -233,7 +228,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 <Anchor href="/">
                     click me
                     {' '}
-                    <Svg svg={ Calendar }></Svg>
+                    <IconContainer style={ { fill: 'var(--uui-icon)' } } icon={ Calendar }></IconContainer>
                 </Anchor>
                 {' '}
                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure reprehenderit in voluptate velit esse cillum dolor
