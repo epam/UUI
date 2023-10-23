@@ -43,7 +43,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
           type="file"
         />
         <div
-          className="typographyUui typography-14"
+          className="uui-typography typography-14"
         >
           <a
             className="container uui-anchor uui-enabled -clickable root link"
@@ -104,7 +104,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
           type="file"
         />
         <div
-          className="typographyUui typography-14"
+          className="uui-typography typography-14"
         >
           <a
             className="container uui-anchor uui-enabled -clickable root link"
