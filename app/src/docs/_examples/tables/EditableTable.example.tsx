@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui-core';
-import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput, TextArea, TextInput, useForm, IconButton } from '@epam/uui';
+import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput,
+    TextArea, TextInput, useForm, IconButton } from '@epam/uui';
 import { ReactComponent as deleteIcon } from '@epam/assets/icons/common/content-clear-18.svg';
 import css from './TablesExamples.module.scss';
 

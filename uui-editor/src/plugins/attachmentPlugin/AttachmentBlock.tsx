@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
-import { uuiMod, uuiSkin } from '@epam/uui-core';
-import { IconContainer } from '@epam/uui-components';
+import { formatBytes, uuiMod } from '@epam/uui-core';
+import { IconContainer, FlexRow, TextInput, FlexCell } from '@epam/uui';
 
 import { ReactComponent as DownloadIcon } from '../../icons/download-icon.svg';
 import { ReactComponent as FileIcon } from '../../icons/file-file-24.svg';
@@ -17,8 +17,6 @@ import { ReactComponent as MailIcon } from '../../icons/file-file_eml-24.svg';
 import css from './AttachmentBlock.module.scss';
 import { setElements } from '@udecode/plate-common';
 import { useFocused, useReadOnly, useSelected } from 'slate-react';
-
-const { FlexRow, FlexCell, TextInput } = uuiSkin;
 
 function getReadableFileSizeString(fileSizeInBytes: number) {
     let i = -1;
@@ -140,7 +138,7 @@ export function AttachmentBlock(props: any) {
                     }
                     <div className={ css.sizeLabel }>
                         {' '}
-                        { getReadableFileSizeString(element.data.size) }
+                        { formatBytes(element.data.size) }
                         {' '}
                     </div>
                 </FlexCell>

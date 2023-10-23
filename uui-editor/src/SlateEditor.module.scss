@@ -1,6 +1,4 @@
-@use '~@epam/assets/scss/promo/colors' as *;
-@use '~@epam/assets/scss/promo/fonts' as *;
-@use '~@epam/assets/scss/promo/typography' as *;
+@use '~@epam/uui/assets/styles/typography' as *;
 
 :local(.typography-16) {
     @include typography-16();
@@ -10,20 +8,20 @@
     @include typography-14();
 }
 
-:local(.typography-promo) {
-    @include typography-promo();
+:local(.uui-typography) {
+    @include uui-typography();
 
     //We need to highlight visited links only in readonly mode
     &:not(:global(.uui-readonly)) {
         a:visited {
-            color: $blue;
+            color: var(--uui-link-visited);
+
+            &:hover {
+                color: var(--uui-link-visited-hover);
+            }
         }
     }
 }
-
-// .editor {
-//     outline: none;
-// }
 
 .container {
     position: relative;
@@ -60,20 +58,20 @@
 }
 
 .mode-form {
-    background-color: $white;
-    border-color: $gray40;
+    background-color: var(--uui-surface-main);
+    border-color: var(--uui-control-border);
     border-style: solid;
 
     &:hover {
-        border-color: $gray60;
+        border-color: var(--uui-control-border-hover);
     }
 
     &:global(.uui-focus) {
-        border-color: $blue;
+        border-color: var(--uui-primary-50);
     }
 
     &:global(.uui-readonly) {
-        border-color: $gray40;
+        border-color: var(--uui-control-border);
     }
 }
 
@@ -83,11 +81,11 @@
     border-style: solid;
 
     &:hover {
-        border-color: $gray60;
+        border-color: var(--uui-control-border-hover);
     }
 
     &:global(.uui-focus) {
-        border-color: $blue;
+        border-color: var(--uui-primary-50);
     }
 
     &:global(.uui-readonly) {
@@ -104,8 +102,8 @@
     display: block;
     user-select: none;
     text-decoration: none;
-    color: $gray60;
-    font-family: $font-sans;
+    color: var(--uui-text-tertiary);
+    font-family: var(--uui-font);
     line-height: 1.5;
     padding: 0 12px;
 }
@@ -125,7 +123,7 @@
 .scrollbars {
     :global(.uui-thumb-vertical),
     :global(.uui-thumb-horizontal) {
-        background: $gray40;
+        background: var(--uui-scroll_bars-bg);
         border-radius: 1.5px;
 
         &:hover {
@@ -134,7 +132,7 @@
 
         &:active {
             border-radius: 3px;
-            background: $gray60;
+            background: var(--uui-scroll_bars-bg-active);
         }
     }
 

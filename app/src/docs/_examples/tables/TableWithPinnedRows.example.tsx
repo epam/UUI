@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource } from '@epam/uui-core';
-import { Text, DataTable, Panel } from '@epam/promo';
+import { Text, DataTable, Panel } from '@epam/uui';
 import { Location } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
 
@@ -13,7 +13,7 @@ export default function TableWithPinnedRows() {
                 key: 'name',
                 caption: 'Name',
                 render: (location) => (
-                    <Text color="gray80" fontSize="14">
+                    <Text color="primary" fontSize="14">
                         {location.name}
                     </Text>
                 ),
@@ -26,7 +26,7 @@ export default function TableWithPinnedRows() {
                 key: 'countryName',
                 caption: 'Country',
                 render: (location) => (
-                    <Text color="gray80" fontSize="14">
+                    <Text color="primary" fontSize="14">
                         {location.countryName ?? ''}
                     </Text>
                 ),
@@ -39,7 +39,7 @@ export default function TableWithPinnedRows() {
                 caption: 'Population',
                 info: 'Number of this population in the country at the time of the last census.',
                 render: (location) => (
-                    <Text color="gray80" fontSize="14">
+                    <Text color="primary" fontSize="14">
                         {location.population}
                     </Text>
                 ),

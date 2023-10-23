@@ -12,6 +12,6 @@
     @include typography-12();
 }
 
-.typography-uui {
-    @include typography-uui();
+:global(.uui-typography) {
+    @include uui-typography();
 }

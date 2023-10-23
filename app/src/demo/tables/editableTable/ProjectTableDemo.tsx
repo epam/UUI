@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/promo';
+import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
@@ -205,7 +205,7 @@ export function ProjectTableDemo() {
 
     return (
         <Panel cx={ css.container }>
-            <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="gray5">
+            <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="surface">
                 <FlexCell width="auto">
                     <Tooltip content={ getKeybindingWithControl('Add new task', 'Enter') } placement="bottom">
                         <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />
@@ -241,7 +241,7 @@ export function ProjectTableDemo() {
                     <Button size="30" caption="Cancel" onClick={ revert } isDisabled={ !isChanged } />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Button size="30" color="green" caption="Save" onClick={ save } isDisabled={ !isChanged } />
+                    <Button size="30" color="accent" caption="Save" onClick={ save } isDisabled={ !isChanged } />
                 </FlexCell>
             </FlexRow>
             <DataTable

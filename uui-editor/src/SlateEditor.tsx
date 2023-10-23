@@ -1,6 +1,6 @@
-import { ScrollBars } from '@epam/uui-components';
-import { IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod } from '@epam/uui-core';
 import React, { Fragment, useMemo, useRef, useState } from 'react';
+import { IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod } from '@epam/uui-core';
+import { ScrollBars } from '@epam/uui-components';
 
 import {
     Plate,
@@ -12,7 +12,6 @@ import {
     usePlateEditorState,
 } from '@udecode/plate-common';
 
-import css from './SlateEditor.module.scss';
 import { createPlateUI } from './components';
 import { migrateSchema } from './migration';
 import { baseMarksPlugin } from './plugins';
@@ -20,6 +19,8 @@ import { MainToolbar, MarksToolbar } from './plugins/Toolbars';
 import { EditorValue } from './types';
 import { defaultPlugins } from './defaultPlugins';
 import { isEditorValueEmpty } from './helpers';
+
+import css from './SlateEditor.module.scss';
 
 const basePlugins: any = [
     baseMarksPlugin(),
@@ -83,13 +84,13 @@ function Editor(props: PlateEditorProps) {
     return (
         <div
             className={ cx(
+                'uui-typography',
                 props.cx,
                 css.container,
                 css['mode-' + (props.mode || 'form')],
                 (!props.isReadonly && isFocused) && uuiMod.focus,
                 props.isReadonly && uuiMod.readonly,
                 props.scrollbars && css.withScrollbars,
-                css.typographyPromo,
                 props.fontSize === '16' ? css.typography16 : css.typography14,
             ) }
             style={ { minHeight: props.minHeight || 350 } }

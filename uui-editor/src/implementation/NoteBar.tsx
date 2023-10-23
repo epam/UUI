@@ -1,17 +1,14 @@
 import * as React from 'react';
-
-import { DropdownBodyProps, uuiSkin } from '@epam/uui-core';
 import { PlateEditor, setElements } from '@udecode/plate-common';
+import { DropdownBodyProps } from '@epam/uui-core';
+import { FlexRow } from '@epam/uui';
+import { ToolbarButton } from './ToolbarButton';
 
 import { ReactComponent as NoteIconLink } from '../icons/info-block-link.svg';
 import { ReactComponent as NoteIconQuote } from '../icons/info-block-quote.svg';
 import { ReactComponent as NoteIconError } from '../icons/info-block-warning.svg';
 import { ReactComponent as NoteIconWarning } from '../icons/info-block.svg';
 import { ReactComponent as ClearIcon } from '../icons/text-color-default.svg';
-
-import { ToolbarButton } from './ToolbarButton';
-
-const { FlexRow } = uuiSkin;
 
 interface NoteBarProps extends DropdownBodyProps {
     editor: PlateEditor;
@@ -39,7 +36,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
     };
 
     return (
-        <FlexRow rawProps={ { style: { background: '#303240' } } }>
+        <FlexRow rawProps={ { style: { border: '1px solid var(--uui-divider-light)' } } }>
             <ToolbarButton
                 onClick={ clearBlock }
                 icon={ ClearIcon }

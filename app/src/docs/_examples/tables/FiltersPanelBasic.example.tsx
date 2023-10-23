@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import dayjs from 'dayjs';
 import {
     defaultPredicates,
     rangeDatePickerPresets,
@@ -13,7 +14,6 @@ import {
 } from '@epam/uui';
 import { DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
-import dayjs from 'dayjs';
 
 const personColumns: DataColumnProps<Person, number>[] = [
     {
