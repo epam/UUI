@@ -1,4 +1,4 @@
-import { IconButtonProps as uuiIconButtonProps, IconButton as uuiIconButton, IconButtonType } from '@epam/uui';
+import { IconButtonProps as uuiIconButtonProps, IconButton as uuiIconButton, IconButtonCoreProps } from '@epam/uui';
 import { devLogger, createSkinComponent } from '@epam/uui-core';
 import { EpamAdditionalColor, EpamPrimaryColor } from '../types';
 
@@ -6,7 +6,7 @@ export interface IconButtonMods {
     color?: EpamPrimaryColor | EpamAdditionalColor | 'white' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600';
 }
 
-export type IconButtonProps = IconButtonType & IconButtonMods;
+export type IconButtonProps = IconButtonCoreProps & IconButtonMods;
 
 export const IconButton = createSkinComponent<uuiIconButtonProps, IconButtonProps>(
     uuiIconButton,

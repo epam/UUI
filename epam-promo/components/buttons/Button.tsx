@@ -17,9 +17,9 @@ const mapFillToMod: Record<FillStyle, uui.ButtonMode> = {
     none: 'none',
 };
 
-export type ButtonProps = uui.ButtonPropsType & ButtonMods;
+export type ButtonProps = uui.ButtonCoreProps & ButtonMods;
 
-export const Button = createSkinComponent<uui.ButtonPropsType, ButtonProps>(
+export const Button = createSkinComponent<uui.ButtonCoreProps, ButtonProps>(
     uui.Button,
     (props) => [
         ['42', '48'].includes(props.size) && css.uppercase,

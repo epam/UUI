@@ -13,7 +13,7 @@ export interface IconButtonMods {
 
 export type IconButtonProps = IconButtonBaseProps & IconButtonMods;
 
-export type IconButtonType= IconButtonBaseProps & {};
+export type IconButtonCoreProps= IconButtonBaseProps & {};
 
 function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
     return [`icon-button-${mods.color || 'default'}`, css.root];

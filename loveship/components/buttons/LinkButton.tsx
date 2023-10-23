@@ -1,14 +1,14 @@
 import { createSkinComponent, devLogger } from '@epam/uui-core';
-import { LinkButtonPropsType, LinkButton as UuiLinkButton } from '@epam/uui';
+import * as uui from '@epam/uui';
 
 export interface LinkButtonMods {
     color?: 'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'lavanda' | 'fuchsia' | 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';
 }
 
-export type LinkButtonProps = LinkButtonPropsType & LinkButtonMods;
+export type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;
 
-export const LinkButton = createSkinComponent<LinkButtonProps, LinkButtonProps>(
-    UuiLinkButton,
+export const LinkButton = createSkinComponent<uui.LinkButtonCoreProps, LinkButtonProps>(
+    uui.LinkButton,
     () => [],
     (props) => {
         if (__DEV__) {

@@ -22,21 +22,21 @@ export type BadgeSize = '18' | '24' | '30' | '36' | '42' | '48';
 export interface BadgeMods {
     color?: BadgeColor;
     fill?: BadgeFill;
-    size?: BadgeSize;
 }
 
-export type BadgeProps = ButtonProps & BadgeMods;
-export type BadgePropsType = ButtonProps & {
+export type BadgeCoreProps = ButtonProps & {
     size?: BadgeSize;
 };
 
-export function applyBadgeMods(mods: BadgeMods) {
+export type BadgeProps = BadgeCoreProps & BadgeMods;
+
+export function applyBadgeMods(mods: BadgeProps) {
     return [
         css.root, buttonCss.root, css['size-' + (mods.size || defaultSize)], css['fill-' + (mods.fill || 'solid')], mods.color && `badge-${mods.color}`,
     ];
 }
 
-export const Badge = withMods<ButtonProps, BadgeMods>(Button, applyBadgeMods, (props) => ({
+export const Badge = withMods<BadgeProps, BadgeMods>(Button, applyBadgeMods, (props) => ({
     dropdownIcon: systemIcons[(props.size && mapSize[props.size]) || defaultSize].foldingArrow,
     clearIcon: systemIcons[(props.size && mapSize[props.size]) || defaultSize].clear,
     countPosition: 'left',
