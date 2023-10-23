@@ -15,6 +15,11 @@
 * [DataTable][Pickers]: Added Blocker overlay while loading. It appears on initial render and filter, search, sort, page number, and size change.
 * [InputAddon]: added InputAddon component that can be used in cases when you need to add prefix or suffix to the your component with ControlGroup.
 * Use Vitest instead of Jest in Vite UUI template app
+* [RichTextEditor]: added css variables for theming instead `SkinContext`
+* [skinContext]: removed from `UuiContexts`
+* [Button]: added `neutral` value to `color` prop
+* [ScrollBars]: removed 'theme' prop for "Promo" & "Loveship" skins
+* [Checkbox]: removed 'theme' prop for "Loveship" skin
 
 **What's Fixed**
 * [UUI Contexts]: fixed context initialization for react 18 with strict mode
