@@ -25,15 +25,6 @@ IClickable&
 IAnalyticableClick&
 IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> & {};
 
-// export interface AnchorProps
-//     extends IHasCX,
-//     ICanRedirect,
-//     IHasChildren,
-//     IDisableable,
-//     IClickable,
-//     IAnalyticableClick,
-//     IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> {}
-
 export class AnchorImpl extends ButtonBase<AnchorProps> {
     static contextType = UuiContext;
     context: UuiContexts;

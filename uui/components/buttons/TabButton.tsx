@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui-core';
+import { MergedRawProps, withMods } from '@epam/uui-core';
 import { systemIcons } from '../../icons/icons';
 import { getIconClass } from './helper';
 import css from './TabButton.module.scss';
@@ -26,5 +26,5 @@ export const TabButton = withMods<ButtonProps, TabButtonMods>(Button, applyTabBu
     clearIcon: systemIcons['36'].clear,
     countPosition: 'right',
     ...props,
-    // rawProps: { role: 'tab', ...props.rawProps },
+    rawProps: { role: 'tab', ...props.rawProps as MergedRawProps },
 }));

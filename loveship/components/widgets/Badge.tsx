@@ -23,7 +23,6 @@ export type BadgeProps = Omit <BadgeCoreProps, 'size'> & BadgeMods;
 
 export const Badge = createSkinComponent<UuiBadgeProps, BadgeProps>(
     UuiBadge,
-    applyBadgeMods,
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'color'>({
@@ -38,4 +37,5 @@ export const Badge = createSkinComponent<UuiBadgeProps, BadgeProps>(
             size: props.size || defaultSize,
         };
     },
+    applyBadgeMods,
 );

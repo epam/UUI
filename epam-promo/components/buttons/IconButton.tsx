@@ -15,9 +15,9 @@ export type IconButtonProps = IconButtonCoreProps & IconButtonMods;
 
 export const IconButton = createSkinComponent<IconButtonCoreProps, IconButtonProps>(
     uuiIconButton,
-    () => [],
     (props) =>
         ({
             color: props.color ?? 'gray60',
         }),
+    () => [],
 );

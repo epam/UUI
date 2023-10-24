@@ -9,7 +9,6 @@ export type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;
 
 export const LinkButton = createSkinComponent<uui.LinkButtonProps, LinkButtonProps>(
     uui.LinkButton,
-    () => [],
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<LinkButtonProps, 'color'>({
@@ -23,4 +22,5 @@ export const LinkButton = createSkinComponent<uui.LinkButtonProps, LinkButtonPro
             color: props.color ?? 'blue',
         };
     },
+    () => [],
 );
