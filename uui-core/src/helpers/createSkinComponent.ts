@@ -3,8 +3,8 @@ import { CX } from '../types';
 
 export function createSkinComponent<TProps, TResult = {}>(
     Component: React.ComponentType<TProps>,
-    getCx?: (props: Readonly<TResult>) => CX,
     getProps?: (props: Readonly<TResult>) => TResult,
+    getCx?: (props: Readonly<TResult>) => CX,
 ) : (props: TResult & React.RefAttributes<TResult>) => React.ReactElement | null {
     function SkinComponent(props: TResult): React.ReactElement<any> | null {
         const allProps: any = { ...props };

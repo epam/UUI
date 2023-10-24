@@ -13,6 +13,6 @@ export function applyTagMods(mods: TagMods) {
     return [css.root, css['fill-' + (mods.fill || 'solid')]];
 }
 
-export const Tag = createSkinComponent<TagProps, TagMods>(Button, applyTagMods, (props) => ({
+export const Tag = createSkinComponent<TagProps, TagMods>(Button, (props) => ({
     size: props.size || defaultSize,
-}));
+}), applyTagMods);

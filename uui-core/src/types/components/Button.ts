@@ -57,6 +57,8 @@ type AnchorRawProps = ButtonCoreProps & {
     link: Link;
 };
 
+export type MergedRawProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
 export type ButtonComponentProps = ICanRedirect & (HrefButtonRawProps | LinkButtonRawProps | ButtonRawProps | AnchorRawProps);
 
 export interface ButtonSemanticProps {

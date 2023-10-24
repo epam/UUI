@@ -21,9 +21,6 @@ export type ButtonProps = uui.ButtonCoreProps & ButtonMods;
 
 export const Button = createSkinComponent<uui.ButtonCoreProps, ButtonProps>(
     uui.Button,
-    (props) => [
-        ['42', '48'].includes(props.size) && css.uppercase,
-    ],
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
@@ -38,4 +35,7 @@ export const Button = createSkinComponent<uui.ButtonCoreProps, ButtonProps>(
             mode: mapFillToMod[props.fill] || mapFillToMod.solid,
         };
     },
+    (props) => [
+        ['42', '48'].includes(props.size) && css.uppercase,
+    ],
 );

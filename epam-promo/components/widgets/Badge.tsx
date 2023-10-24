@@ -11,9 +11,9 @@ export type BadgeProps = ButtonCoreProps & BadgeMods;
 
 export const Badge = createSkinComponent<UuiBadgeProps, BadgeProps>(
     UuiBadge,
-    () => [],
     (props) =>
         ({
             color: props.color || 'blue',
         }),
+    () => [],
 );

@@ -10,7 +10,6 @@ export type IconButtonProps = IconButtonCoreProps & IconButtonMods;
 
 export const IconButton = createSkinComponent<uuiIconButtonProps, IconButtonProps>(
     uuiIconButton,
-    () => [],
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<IconButtonProps, 'color'>({
@@ -24,4 +23,5 @@ export const IconButton = createSkinComponent<uuiIconButtonProps, IconButtonProp
             color: props.color ?? 'night600',
         } as IconButtonProps;
     },
+    () => [],
 );
