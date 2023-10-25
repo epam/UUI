@@ -139,10 +139,14 @@ export const useTableStateImpl = <TFilter = Record<string, any>, TViewState = an
                     prevValue.filter((p) => p.id !== preset.id));
             };
 
-            try {
-                await params?.onPresetDelete(preset);
-            } catch (e) {}
-            removePreset();
+            if (params.onPresetDelete) {
+                try {
+                    await params.onPresetDelete(preset);
+                    removePreset();
+                } catch (e) {}
+            } else {
+                removePreset();
+            }
         },
         [params?.onPresetDelete],
     );
