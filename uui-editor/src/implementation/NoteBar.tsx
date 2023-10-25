@@ -10,6 +10,8 @@ import { ReactComponent as NoteIconError } from '../icons/info-block-warning.svg
 import { ReactComponent as NoteIconWarning } from '../icons/info-block.svg';
 import { ReactComponent as ClearIcon } from '../icons/text-color-default.svg';
 
+import css from './NoteBar.module.scss';
+
 interface NoteBarProps extends DropdownBodyProps {
     editor: PlateEditor;
     type?: string;
@@ -36,7 +38,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
     };
 
     return (
-        <FlexRow rawProps={ { style: { border: '1px solid var(--uui-divider-light)' } } }>
+        <FlexRow cx={ css.wrapper }>
             <ToolbarButton
                 onClick={ clearBlock }
                 icon={ ClearIcon }
