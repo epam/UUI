@@ -74,31 +74,6 @@ const initialPresets: ITablePreset[] = [
     },
 ];
 
-function RemovePresetConfirmationModal({ presetName, ...modalProps }: IModal<string> & { presetName: string }) {
-    const content = `${presetName} will be deleted and can't be restored.`;
-    return (
-        <ModalBlocker { ...modalProps }>
-            <ModalWindow>
-                <Panel>
-                    <ModalHeader title="Delete preset" onClose={ () => modalProps.abort() } />
-                    <ScrollBars hasTopShadow hasBottomShadow>
-                        <FlexRow padding="24">
-                            <Text size="36">
-                                { content }
-                            </Text>
-                        </FlexRow>
-                    </ScrollBars>
-                    <ModalFooter>
-                        <FlexSpacer />
-                        <Button color="gray" fill="white" caption="Cancel" onClick={ () => modalProps.abort() } />
-                        <Button color="blue" caption="Ok" onClick={ () => modalProps.success('Success action') } />
-                    </ModalFooter>
-                </Panel>
-            </ModalWindow>
-        </ModalBlocker>
-    );
-}
-
 export default function PresetsPanelExample() {
     const svc = useUuiContext();
     const { uuiModals } = useUuiContext();
@@ -172,5 +147,30 @@ export default function PresetsPanelExample() {
                 { ...view.getListProps() }
             />
         </Panel>
+    );
+}
+
+function RemovePresetConfirmationModal({ presetName, ...modalProps }: IModal<string> & { presetName: string }) {
+    const content = `${presetName} will be deleted and can't be restored.`;
+    return (
+        <ModalBlocker { ...modalProps }>
+            <ModalWindow>
+                <Panel>
+                    <ModalHeader title="Delete preset" onClose={ () => modalProps.abort() } />
+                    <ScrollBars hasTopShadow hasBottomShadow>
+                        <FlexRow padding="24">
+                            <Text size="36">
+                                { content }
+                            </Text>
+                        </FlexRow>
+                    </ScrollBars>
+                    <ModalFooter>
+                        <FlexSpacer />
+                        <Button color="gray" fill="white" caption="Cancel" onClick={ () => modalProps.abort() } />
+                        <Button color="blue" caption="Ok" onClick={ () => modalProps.success('Success action') } />
+                    </ModalFooter>
+                </Panel>
+            </ModalWindow>
+        </ModalBlocker>
     );
 }
