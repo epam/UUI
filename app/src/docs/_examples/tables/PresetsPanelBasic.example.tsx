@@ -197,7 +197,10 @@ export default function PresetsPanelExample() {
                             .then(resolve)
                             .then(showSuccessToast)
                             .catch(showErrorToast))
-                    .catch(() => showCancelToast().then(reject));
+                    .catch(() => {
+                        reject();
+                        showCancelToast();
+                    });
             },
         );
     }, [svc.api.presets, uuiModals, uuiNotifications]);

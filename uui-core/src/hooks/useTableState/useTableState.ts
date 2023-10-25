@@ -128,14 +128,28 @@ export const useTableStateImpl = <TFilter = Record<string, any>, TViewState = an
         return createPreset(newPreset);
     }, [createPreset, getNewPresetOrder]);
 
-    const deletePreset = useCallback(async (preset: ITablePreset<TFilter, TViewState>) => {
-        await params?.onPresetDelete(preset);
-        params.onValueChange((val) => ({
-            ...val,
-            presetId: undefined,
-        }));
-        setPresets((prevValue) => prevValue.filter((p) => p.id !== preset.id));
-    }, [params?.onPresetDelete]);
+    const deletePreset = useCallback(
+        async (preset: ITablePreset<TFilter, TViewState>) => {
+            const removePreset = () => {
+                params.onValueChange((val) => ({
+                    ...val,
+                    presetId: undefined,
+                }));
+                setPresets((prevValue) =>
+                    prevValue.filter((p) => p.id !== preset.id));
+            };
+
+            if (params.onPresetDelete) {
+                try {
+                    await params.onPresetDelete(preset);
+                    removePreset();
+                } catch (e) {}
+            } else {
+                removePreset();
+            }
+        },
+        [params?.onPresetDelete],
+    );
 
     const updatePreset = useCallback(async (preset: ITablePreset<TFilter, TViewState>) => {
         setPresets((prevValue) => {
