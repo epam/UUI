@@ -1,22 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import {
-    DataTable,
-    Panel,
-    FlexRow,
-    Text,
-    Badge,
-    EpamAdditionalColor,
-    PresetsPanel,
-    ModalBlocker,
-    ModalWindow,
-    ModalHeader,
-    Button,
-    FlexSpacer,
-    ModalFooter,
-    ScrollBars,
-    SuccessNotification,
-    WarningNotification,
-    ErrorNotification,
+    DataTable, Panel, FlexRow, Text, Badge, EpamAdditionalColor, PresetsPanel, ModalBlocker, ModalWindow, ModalHeader, Button, FlexSpacer, ModalFooter, ScrollBars,
 } from '@epam/promo';
 import {
     DataColumnProps, IModal, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext,
@@ -90,7 +74,7 @@ const initialPresets: ITablePreset[] = [
     },
 ];
 
-function BasicModalExample({ presetName, ...modalProps }: IModal<string> & { presetName: string }) {
+function RemovePresetConfirmationModal({ presetName, ...modalProps }: IModal<string> & { presetName: string }) {
     const content = `${presetName} will be deleted and can't be restored.`;
     return (
         <ModalBlocker { ...modalProps }>
@@ -117,7 +101,7 @@ function BasicModalExample({ presetName, ...modalProps }: IModal<string> & { pre
 
 export default function PresetsPanelExample() {
     const svc = useUuiContext();
-    const { uuiModals, uuiNotifications } = useUuiContext();
+    const { uuiModals } = useUuiContext();
 
     const filtersConfig: TableFiltersConfig<Person>[] = useMemo(
         () => [
@@ -157,53 +141,11 @@ export default function PresetsPanelExample() {
         [],
     );
 
-    const handlePresetDelete = useCallback((preset: ITablePreset<any, any>): Promise<void> => {
-        const showSuccessToast = () => uuiNotifications
-            .show((props) => (
-                <SuccessNotification { ...props }>
-                    <FlexRow alignItems="center">
-                        <Text>Preset remove success</Text>
-                    </FlexRow>
-                </SuccessNotification>
-            ))
-            .catch(() => null);
-
-        const showCancelToast = () => uuiNotifications
-            .show((props) => (
-                <WarningNotification { ...props }>
-                    <FlexRow alignItems="center">
-                        <Text>Cancel removal</Text>
-                    </FlexRow>
-                </WarningNotification>
-            ))
-            .catch(() => null);
-
-        const showErrorToast = () => uuiNotifications
-            .show((props) => (
-                <ErrorNotification { ...props }>
-                    <FlexRow alignItems="center">
-                        <Text>Preset remove failure</Text>
-                    </FlexRow>
-                </ErrorNotification>
-            ))
-            .catch(() => null);
-
-        return new Promise(
-            (resolve, reject) => {
-                uuiModals
-                    .show<string>((props) => <BasicModalExample presetName={ preset.name } { ...props } />)
-                    .then(() =>
-                        svc.api.presets.deletePreset(preset)
-                            .then(resolve)
-                            .then(showSuccessToast)
-                            .catch(showErrorToast))
-                    .catch(() => {
-                        reject();
-                        showCancelToast();
-                    });
-            },
-        );
-    }, [svc.api.presets, uuiModals, uuiNotifications]);
+    const handlePresetDelete = useCallback(async (preset: ITablePreset<any, any>): Promise<void> => {
+        await uuiModals
+            .show((props) => <RemovePresetConfirmationModal presetName={ preset.name } { ...props } />);
+        await svc.api.presets.deletePreset(preset);
+    }, [svc.api.presets, uuiModals]);
 
     const tableStateApi = useTableState({
         columns: personColumns,
