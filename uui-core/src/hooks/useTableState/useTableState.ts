@@ -129,7 +129,7 @@ export const useTableStateImpl = <TFilter = Record<string, any>, TViewState = an
     }, [createPreset, getNewPresetOrder]);
 
     const deletePreset = useCallback(
-        async (preset: ITablePreset<TFilter, TViewState>) => {
+        (preset: ITablePreset<TFilter, TViewState>) => {
             const removePreset = () => {
                 params.onValueChange((val) => ({
                     ...val,
@@ -139,12 +139,9 @@ export const useTableStateImpl = <TFilter = Record<string, any>, TViewState = an
                     prevValue.filter((p) => p.id !== preset.id));
             };
 
-            try {
-                await params?.onPresetDelete(preset);
-            } catch (e) {
-                return;
-            }
-            removePreset();
+            return (params?.onPresetDelete || Promise.resolve)(preset)
+                .then(removePreset)
+                .catch(() => null);
         },
         [params?.onPresetDelete],
     );
