@@ -1,21 +1,7 @@
 import React, { ReactNode, useState } from 'react';
 import {
-    Slider,
-    BurgerButton,
-    GlobalMenu,
-    MainMenu,
-    MainMenuAvatar,
-    MainMenuButton,
-    MainMenuIcon,
-    FlexSpacer,
-    FlexCell,
-    MainMenuDropdown,
-    BurgerSearch,
-    DropdownMenuBody,
-    DropdownMenuButton,
-    DropdownMenuSplitter,
-    Burger,
-    BurgerGroupHeader,
+    Slider, BurgerButton, GlobalMenu, MainMenu, MainMenuAvatar, MainMenuButton, MainMenuIcon, FlexSpacer, FlexCell, MainMenuDropdown,
+    BurgerSearch, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, Burger, BurgerGroupHeader,
 } from '@epam/uui';
 import { Dropdown, MainMenuLogo, AdaptiveItemProps } from '@epam/uui-components';
 import { ReactComponent as HelpIcon } from '@epam/assets/icons/common/notification-help-outline-24.svg';
