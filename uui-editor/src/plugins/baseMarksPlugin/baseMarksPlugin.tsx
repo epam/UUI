@@ -4,6 +4,7 @@ import React from 'react';
 import { isPluginActive } from '../../helpers';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
+import { IHasToolbarButton } from '../../implementation/Toolbars';
 
 import { MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE, createBoldPlugin, createItalicPlugin, createUnderlinePlugin } from '@udecode/plate-basic-marks';
 import { ReactComponent as BoldIcon } from '../../icons/bold.svg';
@@ -39,19 +40,28 @@ const Underline: PlatePluginComponent = (props) => {
     );
 };
 
-const boldPlugin = createBoldPlugin({
+const boldPlugin = createBoldPlugin<IHasToolbarButton>({
     type: BOLD_KEY,
     component: Bold,
+    options: {
+        floatingBarButton: BoldButton,
+    },
 });
 
-const italicPlugin = createItalicPlugin({
+const italicPlugin = createItalicPlugin<IHasToolbarButton>({
     type: ITALIC_KEY,
     component: Italic,
+    options: {
+        floatingBarButton: ItalicButton,
+    },
 });
 
-const underlinePlugin = createUnderlinePlugin({
+const underlinePlugin = createUnderlinePlugin<IHasToolbarButton>({
     type: UNDERLINE_KEY,
     component: Underline,
+    options: {
+        floatingBarButton: UnderlineButton,
+    },
 });
 
 interface IToolbarButton {

@@ -7,6 +7,7 @@ import { PlaceholderBlock } from './PlaceholderBlock';
 
 import { PlateEditor, createPluginFactory, getPluginOptions, insertElements } from '@udecode/plate-common';
 import css from './PlaceholderPlugin.module.scss';
+import { IHasToolbarButton } from "../../implementation/Toolbars";
 
 const KEY = 'placeholder';
 
@@ -18,15 +19,16 @@ export interface PlaceholderPluginParams {
 }
 
 export const placeholderPlugin = (params: PlaceholderPluginParams) => {
-    const createPlaceholderPlugin = createPluginFactory({
+    const createPlaceholderPlugin = createPluginFactory<IHasToolbarButton & { params: PlaceholderPluginParams }>({
         key: KEY,
         isElement: true,
         isInline: true,
         isVoid: true,
+        component: PlaceholderBlock,
         options: {
+            bottomBarButton: PlaceholderButton,
             params,
         },
-        component: PlaceholderBlock,
     });
 
     return createPlaceholderPlugin();
