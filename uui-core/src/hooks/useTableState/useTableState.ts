@@ -139,7 +139,8 @@ export const useTableStateImpl = <TFilter = Record<string, any>, TViewState = an
                     prevValue.filter((p) => p.id !== preset.id));
             };
 
-            return (params?.onPresetDelete || Promise.resolve)(preset)
+            const promiseFulfilled = params?.onPresetDelete ? params.onPresetDelete(preset) : Promise.resolve();
+            return promiseFulfilled
                 .then(removePreset)
                 .catch(() => null);
         },
