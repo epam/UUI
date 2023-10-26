@@ -159,7 +159,7 @@ routerStab.createHref = createHrefMock;
 
 const createNewPresetMock = jest.fn().mockResolvedValue(123);
 const updatePresetMock = jest.fn();
-const deletePresetMock = jest.fn();
+const deletePresetMock = jest.fn(() => Promise.resolve());
 
 const initHook = async (props?: UseTableStateHookParams) => {
     const testUuiCtx = {} as UuiContexts;
