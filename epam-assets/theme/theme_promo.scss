@@ -196,12 +196,6 @@
     --uui-surface-main: var(--uui-neutral-0);
     --uui-surface-higher: var(--uui-neutral-10);
     --uui-surface-highest: var(--uui-neutral-20);
-    --uui-surface-contrast: var(--uui-neutral-80);
-    --uui-surface-contrast-higher: var(--uui-neutral-90);
-
-    --uui-surface-info: var(--blue-10);
-    --uui-surface-critical: var(--red-10);
-    --uui-surface-warning: var(--amber-10);
 
     --uui-divider: var(--uui-neutral-40);
     --uui-divider-light: var(--uui-neutral-30);
@@ -212,8 +206,6 @@
     --uui-text-tertiary: var(--uui-neutral-60);
     --uui-text-disabled: var(--uui-neutral-50);
     --uui-text-contrast: var(--uui-neutral-5);
-    --uui-text-white: var(--white);
-    --uui-text-black: var(--uui-neutral-80);
 
     --uui-text-info: var(--uui-info-70); // TODO: update colors
     --uui-text-warning: var(--uui-warning-70);
@@ -591,15 +583,16 @@
     /* IconButton */
 
     .uui-icon_button.uui-color-neutral,
-    .uui-icon_button.uui-color-gray60,
+    .uui-icon_button.uui-color-gray60 {
+        --uui-icon-btn: var(--uui-neutral-60);
+        --uui-icon-btn-hover: var(--uui-neutral-70);
+        --uui-icon-btn-active: var(--uui-neutral-80);
+    }
+
     .uui-icon_button.uui-color-secondary {
-        --uui-color-5: var(--uui-secondary-5);
-        --uui-color-10: var(--uui-secondary-10);
-        --uui-color-20: var(--uui-secondary-20);
-        --uui-color-50: var(--uui-secondary-50);
-        --uui-color-60: var(--uui-secondary-60);
-        --uui-color-70: var(--uui-secondary-70);
-        --uui-color-contrast: var(--white);
+        --uui-icon-btn: var(--uui-neutral-50);
+        --uui-icon-btn-hover: var(--uui-neutral-60);
+        --uui-icon-btn-active: var(--uui-neutral-70);
     }
 
     /* TooltipContainer */

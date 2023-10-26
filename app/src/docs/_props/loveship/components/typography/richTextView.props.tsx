@@ -1,15 +1,19 @@
 import * as React from 'react';
-import { RichTextView } from '@epam/loveship';
-import { RichTextViewMods } from '@epam/uui';
-import { DefaultContext } from '../../docs';
-import { FlexRow, LabeledInput, ControlWrapper } from '@epam/loveship';
-import { LinkButton } from '@epam/loveship';
 import { DocBuilder } from '@epam/uui-docs';
-import { RichTextViewProps } from '@epam/uui-components';
-import { Anchor, TextInput } from '@epam/loveship';
-import { Svg } from '@epam/uui-components';
+import { RichTextViewProps, Svg } from '@epam/uui-components';
+import { RichTextViewMods } from '@epam/uui';
+import {
+    RichTextView,
+    Anchor,
+    TextInput,
+    FlexRow,
+    LabeledInput,
+    ControlWrapper,
+    LinkButton,
+    Panel,
+} from '@epam/loveship';
+import { DefaultContext } from '../../docs';
 import { ReactComponent as Calendar } from '@epam/assets/icons/common/action-calendar-18.svg';
-import cx from 'classnames';
 import style from './richTextViewDoc.module.scss';
 
 const richTextViewDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'RichTextView', component: RichTextView })
@@ -191,14 +195,16 @@ const richTextViewDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ n
                             <LinkButton caption="ADD"></LinkButton>
                         </FlexRow>
                         <h4>{'<Pre>'}</h4>
-                        <pre>
-                            {`import * as React from 'react';
+                        <Panel style={ { background: 'var(--uui-neutral-40)' } }>
+                            <pre>
+                                {`import * as React from 'react';
 import css from './MyComponent.module.scss';
 
 export const MyComponent = <div className={ css.myHeader }>`}
-                        </pre>
+                            </pre>
+                        </Panel>
                         <h4>Text with size 16</h4>
-                        <p className={ cx(style.typography16) }>
+                        <p className="uui-typography-16">
                             Lorem ipsum dolor sit amet,
                             {' '}
                             <Anchor href="/">
@@ -215,7 +221,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
                         <h4>Text with size 12</h4>
-                        <p className={ cx(style.typography12) }>
+                        <p className="uui-typography-12">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
                             veniam,
                             {' '}

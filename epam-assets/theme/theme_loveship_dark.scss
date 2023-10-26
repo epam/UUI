@@ -196,12 +196,6 @@
     --uui-surface-main: var(--uui-neutral-70);
     --uui-surface-higher: var(--uui-neutral-60);
     --uui-surface-highest: var(--uui-neutral-50);
-    --uui-surface-contrast: var(--uui-neutral-10);
-    --uui-surface-contrast-higher: var(--uui-neutral-0);
-
-    --uui-surface-info: var(--uui-info-10);
-    --uui-surface-critical: var(--uui-critical-10);
-    --uui-surface-warning: var(--uui-warning-10);
 
     --uui-divider: var(--uui-neutral-40);
     --uui-divider-light: var(--uui-neutral-50);
@@ -212,8 +206,6 @@
     --uui-text-tertiary: var(--uui-neutral-20);
     --uui-text-disabled: var(--uui-neutral-30);
     --uui-text-contrast: var(--uui-neutral-70);
-    --uui-text-white: var(--uui-neutral-0);
-    --uui-text-black: var(--uui-neutral-70);
 
     --uui-text-info: var(--uui-info-70);
     --uui-text-warning: var(--uui-warning-70);
@@ -235,8 +227,8 @@
     --uui-icon-active: var(--uui-neutral-5);
     --uui-icon-disabled: var(--uui-neutral-50);
 
-    --uui-scroll_bars-bg: var(--uui-neutral-60);
-    --uui-scroll_bars-bg-active: var(--uui-neutral-40);
+    --uui-scroll_bars-bg: var(--uui-neutral-40);
+    --uui-scroll_bars-bg-active: var(--uui-neutral-30);
 
     --uui-control-bg: var(--uui-surface-main);
     --uui-control-bg-hover: var(--uui-neutral-60);
@@ -798,13 +790,6 @@
     .uui-font-sans-light {
         --uui-text-font: var(--uui-font);
         --uui-text-font-weight: 300;
-    }
-
-    .uui-typography {
-        pre {
-            color: var(--uui-text-contrast);
-            background-color: var(--uui-surface-contrast);
-        }
     }
 }
 

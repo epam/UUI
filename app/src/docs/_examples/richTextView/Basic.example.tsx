@@ -1,8 +1,6 @@
 import React from 'react';
-import { Anchor, FlexRow, IconContainer, LabeledInput, LinkButton, RichTextView, TextInput } from '@epam/uui';
-import { cx } from '@epam/uui-core';
+import { Anchor, FlexRow, IconContainer, LabeledInput, LinkButton, Panel, RichTextView, TextInput } from '@epam/uui';
 import { ReactComponent as Calendar } from '@epam/assets/icons/common/action-calendar-18.svg';
-import basicExampleCss from './BasicExample.module.scss';
 
 export default function BasicExample() {
     return (
@@ -167,14 +165,16 @@ export default function BasicExample() {
                 <LinkButton caption="ADD"></LinkButton>
             </FlexRow>
             <h4>{'<Pre>'}</h4>
-            <pre>
-                {`import React from 'react';
-import css from './MyComponent.module.scss';
+            <Panel style={ { background: 'var(--uui-neutral-40)' } }>
+                <pre>
+                    {`import React from 'react';
+import css from './MyComponent.module.css';
 
 export const MyComponent = <div className={ css.myHeader }>`}
-            </pre>
+                </pre>
+            </Panel>
             <h4>Text with size 16</h4>
-            <p className={ cx(basicExampleCss.typography16) }>
+            <p className="uui-typography-16">
                 Lorem ipsum dolor sit amet,
                 {' '}
                 <Anchor href="/">
@@ -190,7 +190,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 <code>{'import { Button } from \'@epam/loveship\''}</code>
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <p className={ cx(basicExampleCss.typography16) }>
+            <p className="uui-typography-16">
                 Lorem ipsum dolor sit amet,
                 {' '}
                 <Anchor href="/">
@@ -207,7 +207,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
             <h4>Text with size 12</h4>
-            <p className={ cx(basicExampleCss.typography12) }>
+            <p className="uui-typography-12">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                 {' '}
                 <Anchor href="/">
@@ -222,7 +222,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 <code>{'import { Button } from \'@epam/loveship\''}</code>
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <p className={ cx(basicExampleCss.typography12) }>
+            <p className="uui-typography-12">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                 {' '}
                 <Anchor href="/">
