@@ -1,6 +1,4 @@
-import {
-    ICanBeInvalid, ICanBeRequired, IHasChildren, IHasCX, IHasLabel, IHasRawProps, IHasForwardedRef,
-} from '../props';
+import { ICanBeInvalid, ICanBeRequired, IHasChildren, IHasCX, IHasLabel, IHasRawProps, IHasForwardedRef } from '../props';
 import { ReactNode } from 'react';
 
 export interface LabeledInputCoreProps
@@ -21,4 +19,14 @@ export interface LabeledInputCoreProps
      * Can be used when component can't be wrapped by the LabeledInput, e.g. when form is layed out as table with labels and inputs placed into different columns
      */
     htmlFor?: string;
+    /** A value from LabeledInput children */
+    value?: any;
+    /** Maximum text length, in characters */
+    maxLength?: number;
+    /** Showing current text length, in characters and maxLength */
+    charCounter?: boolean
+    /** Additional text in the bottom of LabeledInput */
+    footNote?: ReactNode;
+    /** Additional text in the top of LabeledInput */
+    sideNote?: ReactNode;
 }
