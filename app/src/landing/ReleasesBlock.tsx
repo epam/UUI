@@ -26,7 +26,7 @@ export class ReleasesBlock extends React.Component<{}, LandingReleasesState> {
             .then((data) => {
                 this.setState({
                     markdown: data.markdown
-                        .split('#')
+                        .split('# ')
                         .filter((el: any) => el !== '')
                         .map((el: any) => '#'.concat(el)),
                     isLoaded: true,
