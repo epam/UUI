@@ -55,7 +55,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="root uui-text uui-font-semibold uui-color-primary line-height-24 font-size-18 v-padding-12 container"
+          className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
         >
           Test
         </div>
@@ -262,7 +262,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         }
       >
         <div
-          className="root uui-text uui-font-semibold uui-color-primary line-height-24 font-size-18 v-padding-12 container"
+          className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
         >
           Test
         </div>
