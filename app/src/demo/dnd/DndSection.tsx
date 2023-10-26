@@ -2,7 +2,7 @@ import * as React from 'react';
 import sortBy from 'lodash.sortby';
 import { DragHandle } from '@epam/uui-components';
 import {
-    DndActor, IEditable, cx, uuiDndState, DropParams, getOrderBetween,
+    DndActor, IEditable, cx, uuiDndState, DropParams, getOrderBetween, DndActorRenderParams,
 } from '@epam/uui-core';
 import {
     FlexRow, IconContainer, DropMarker, Text, RichTextView, FlexSpacer, Panel, Badge,
@@ -56,6 +56,14 @@ export class DndSection extends React.Component<DndSectionProps> {
         this.props.onValueChange({ ...srcData, order: newOrder });
     };
 
+    onItemChange = (value: Partial<SectionItem>) => {
+        this.props.onValueChange({ ...this.props.value, ...value });
+    };
+
+    onFoldToggle = () => {
+        this.props.onValueChange({ ...this.props.value, isFolded: !this.props.value.isFolded });
+    };
+
     render() {
         const item = this.props.value;
         const sortedCriteria = sortBy(item.criteria, ['order']);
@@ -69,75 +77,121 @@ export class DndSection extends React.Component<DndSectionProps> {
                 canAcceptDrop={ this.handleCanAcceptDrop }
                 onDrop={ this.handleOnDrop }
                 render={ (props) => (
-                    <div ref={ props.ref } { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
-                        <Panel background="white" cx={ cx(css.dndItem, props.isDragGhost && uuiDndState.dragGhost) } shadow>
-                            <FlexRow
-                                padding="24"
-                                vPadding="12"
-                                spacing="18"
-                                cx={ css.grabArea }
-                                onClick={ () => this.props.onValueChange({ ...item, isFolded: !item.isFolded }) }
-                            >
-                                <DragHandle cx={ [css.dragHandle] } />
-                                <RichTextView>
-                                    <h3 style={ { margin: '20px 0' } }>{item.title}</h3>
-                                </RichTextView>
-                                <FlexSpacer />
-                                <FlexRow>
-                                    <Text font="sans-semibold">Deadline:</Text>
-                                    <Text color="gray60">{item.deadline}</Text>
-                                </FlexRow>
-                                <Badge fill="semitransparent" size="24" color={ item.status === 'Green' ? 'green' : 'amber' } caption={ `${item.status} Status` } />
-                                <IconContainer icon={ DownIcon } rotate={ item.isFolded ? '180' : '0' } cx={ css.iconGray60 } />
-                            </FlexRow>
-                            {item.isFolded && (
-                                <>
-                                    <div className={ css.descriptionSection }>
-                                        <Text size="24" lineHeight="24" fontSize="18" font="sans-semibold">
-                                            Description
-                                        </Text>
-                                        <RichTextView>
-                                            <p>{demoText}</p>
-                                        </RichTextView>
-                                    </div>
-                                    <div className={ css.criteriaSection }>
-                                        <Text size="24" lineHeight="24" fontSize="18" font="sans-semibold" cx={ css.title }>
-                                            Success Criteria
-                                        </Text>
-                                        {sortedCriteria.map((criterion, index) => (
-                                            <DndCriterion
-                                                key={ criterion.id }
-                                                value={ criterion }
-                                                prevCriterion={ sortedCriteria[index - 1] }
-                                                nextCriterion={ sortedCriteria[index + 1] }
-                                                onValueChange={ (newValue) =>
-                                                    this.props.onValueChange({ ...item, criteria: item.criteria.map((i) => (i.id === newValue.id ? newValue : i)) }) }
-                                            />
-                                        ))}
-                                    </div>
-                                    <div className={ css.materialsSection }>
-                                        <Text size="24" lineHeight="24" fontSize="18" font="sans-semibold" cx={ css.title }>
-                                            Materials
-                                        </Text>
-                                        {sortedMaterials.map((material, index) => (
-                                            <DndMaterial
-                                                key={ material.id }
-                                                value={ material }
-                                                prevMaterial={ sortedMaterials[index - 1] }
-                                                nextMaterial={ sortedMaterials[index + 1] }
-                                                onDropFromSection={ this.props.onMaterialDropFromSection }
-                                                onValueChange={ (newValue) =>
-                                                    this.props.onValueChange({ ...item, materials: item.materials.map((i) => (i.id === newValue.id ? newValue : i)) }) }
-                                            />
-                                        ))}
-                                    </div>
-                                </>
-                            )}
-                        </Panel>
-                        <DropMarker { ...props } />
-                    </div>
+                    <Section
+                        item={ item }
+                        sortedCriteria={ sortedCriteria }
+                        sortedMaterials={ sortedMaterials }
+                        onItemChange={ this.onItemChange }
+                        onMaterialDropFromSection={ this.props.onMaterialDropFromSection }
+                        onFoldToggle={ this.onFoldToggle }
+                        { ...item }
+                        { ...props }
+                    />
                 ) }
             />
         );
     }
 }
+
+const Section = React.forwardRef(({
+    onItemChange,
+    item,
+    sortedCriteria,
+    sortedMaterials,
+    onMaterialDropFromSection,
+    onFoldToggle,
+    ...props
+}: DndActorRenderParams & {
+    item: SectionItem;
+    sortedCriteria: CriterionItem[];
+    sortedMaterials: MaterialItem[];
+    onMaterialDropFromSection: (data: DropParams<MaterialItem, MaterialItem>) => void;
+    onItemChange: (value: Partial<SectionItem>) => void;
+    onFoldToggle: () => void;
+}, ref) => {
+    const rowRef = React.useRef<HTMLElement>();
+
+    React.useEffect(() => {
+        const onMouseUpRow = () => {
+            if (!props.dragData) {
+                onFoldToggle();
+            }
+        };
+
+        const elem = rowRef.current;
+        elem?.addEventListener('pointerup', onMouseUpRow);
+        return () => {
+            elem?.removeEventListener('pointerup', onMouseUpRow);
+        };
+    }, [onFoldToggle, props.dragData]);
+
+    return (
+        <div ref={ ref as React.ForwardedRef<any> } { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
+            <Panel background="white" cx={ cx(css.dndItem, props.isDragGhost && uuiDndState.dragGhost) } shadow>
+                <FlexRow
+                    ref={ rowRef }
+                    padding="24"
+                    vPadding="12"
+                    spacing="18"
+                    cx={ css.grabArea }
+                >
+                    <DragHandle cx={ [css.dragHandle] } />
+                    <RichTextView>
+                        <h3 style={ { margin: '20px 0' } }>{ item.title }</h3>
+                    </RichTextView>
+                    <FlexSpacer />
+                    <FlexRow>
+                        <Text font="sans-semibold">Deadline:</Text>
+                        <Text color="gray60">{ item.deadline }</Text>
+                    </FlexRow>
+                    <Badge fill="semitransparent" size="24" color={ item.status === 'Green' ? 'green' : 'amber' } caption={ `${item.status} Status` } />
+                    <IconContainer icon={ DownIcon } rotate={ item.isFolded ? '180' : '0' } cx={ css.iconGray60 } />
+                </FlexRow>
+                { item.isFolded && (
+                    <>
+                        <div className={ css.descriptionSection }>
+                            <Text size="24" lineHeight="24" fontSize="18" font="sans-semibold">
+                                Description
+                            </Text>
+                            <RichTextView>
+                                <p>{ demoText }</p>
+                            </RichTextView>
+                        </div>
+                        <div className={ css.criteriaSection }>
+                            <Text size="24" lineHeight="24" fontSize="18" font="sans-semibold" cx={ css.title }>
+                                Success Criteria
+                            </Text>
+                            { sortedCriteria.map((criterion, index) => (
+                                <DndCriterion
+                                    key={ criterion.id }
+                                    value={ criterion }
+                                    prevCriterion={ sortedCriteria[index - 1] }
+                                    nextCriterion={ sortedCriteria[index + 1] }
+                                    onValueChange={ (newValue) =>
+                                        onItemChange({ ...item, criteria: item.criteria.map((i) => (i.id === newValue.id ? newValue : i)) }) }
+                                />
+                            )) }
+                        </div>
+                        <div className={ css.materialsSection }>
+                            <Text size="24" lineHeight="24" fontSize="18" font="sans-semibold" cx={ css.title }>
+                                Materials
+                            </Text>
+                            { sortedMaterials.map((material, index) => (
+                                <DndMaterial
+                                    key={ material.id }
+                                    value={ material }
+                                    prevMaterial={ sortedMaterials[index - 1] }
+                                    nextMaterial={ sortedMaterials[index + 1] }
+                                    onDropFromSection={ onMaterialDropFromSection }
+                                    onValueChange={ (newValue) =>
+                                        onItemChange({ ...item, materials: item.materials.map((i) => (i.id === newValue.id ? newValue : i)) }) }
+                                />
+                            )) }
+                        </div>
+                    </>
+                ) }
+            </Panel>
+            <DropMarker { ...props } />
+        </div>
+    );
+});
