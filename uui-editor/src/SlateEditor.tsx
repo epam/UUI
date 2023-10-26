@@ -1,6 +1,6 @@
 import React, { Fragment, useMemo, useRef, useState } from 'react';
 import { IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod } from '@epam/uui-core';
-import { ScrollBars } from '@epam/uui-components';
+import { ScrollBars } from '@epam/uui';
 
 import {
     Plate,
@@ -98,7 +98,7 @@ function Editor(props: PlateEditorProps) {
         >
             { props.scrollbars
                 ? (
-                    <ScrollBars cx={ css.scrollbars } style={ { width: '100%' } }>
+                    <ScrollBars style={ { width: '100%' } }>
                         { renderEditor() }
                     </ScrollBars>
                 )

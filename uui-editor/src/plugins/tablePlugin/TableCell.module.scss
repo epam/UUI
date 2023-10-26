@@ -17,19 +17,19 @@
 }
 
 .border-bottom::before {
-    border-bottom: 1px solid var(--uui-control-border);
+    border-bottom: 1px solid var(--uui-divider-light);
 }
 
 .border-right::before {
-    border-right: 1px solid var(--uui-control-border);
+    border-right: 1px solid var(--uui-divider-light);
 }
 
 .border-left::before {
-    border-left: 1px solid var(--uui-control-border);
+    border-left: 1px solid var(--uui-divider-light);
 }
 
 .border-top::before {
-    border-top: 1px solid var(--uui-control-border);
+    border-top: 1px solid var(--uui-divider-light);
 }
 
 .selected::before {
