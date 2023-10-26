@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
     Box,
     PlateElement,
@@ -47,27 +47,26 @@ export function ImageElement({
         focused && selected && css.resizeHandleVisible, // for mobile
     ];
 
-    const imageParentRef = useRef(null);
+    const imageRef = useRef(null);
+    const [imageWidth, setImageWidth] = useState(0);
 
     useMediaState();
 
     const [currentWidth] = useResizableStore().use.width();
+
     const isCaptionEnabled = useMemo(() => {
-        let captionEnabled = false;
-        if (currentWidth && typeof currentWidth === 'number') {
-            captionEnabled = currentWidth >= MIN_CAPTION_WIDTH;
-        } else if (currentWidth && (typeof currentWidth === 'string')) {
-            if (imageParentRef.current) {
-                const width = imageParentRef.current.getBoundingClientRect().width;
-                captionEnabled = width >= MIN_CAPTION_WIDTH;
-            }
-        }
+        let width = typeof currentWidth == 'string' ? imageRef?.current.width : currentWidth;
+        let captionEnabled = width >= MIN_CAPTION_WIDTH;
         return captionEnabled;
-    }, [currentWidth]);
+    }, [currentWidth, imageWidth]);
+
+    const imageUpdated = () => {
+        setImageWidth(imageRef.current.width);
+    }
 
     return (
         <PlateElement className={ cx(className) } { ...props }>
-            <figure className={ cx(css.group) } contentEditable={ false } ref={imageParentRef}>
+            <figure className={ cx(css.group) } contentEditable={ false }>
                 <Resizable
                     className={ cx(...aligns) }
                     options={ {
@@ -98,6 +97,8 @@ export function ImageElement({
                                 nodeProps?.className,
                             )
                         }
+                        ref={imageRef}
+                        onLoad={imageUpdated}
                     />
                 </Resizable>
 
