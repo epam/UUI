@@ -60,6 +60,7 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
                 renderCell={ renderCell }
                 onClick={ clickHandler && (() => clickHandler(props)) }
                 rawProps={ {
+                    ...props.rawProps,
                     ...params.eventHandlers,
                     role: 'row',
                     'aria-expanded': (props.isFolded === undefined || props.isFolded === null) ? undefined : !props.isFolded,
