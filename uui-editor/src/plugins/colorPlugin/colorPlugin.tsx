@@ -9,7 +9,11 @@ import { PlateEditor, getMark, getPluginType, removeMark, setMarks } from '@udec
 import { MARK_COLOR, createFontColorPlugin } from '@udecode/plate-font';
 import { ReactComponent as ColorIcon } from '../../icons/text-color-normal.svg';
 
-export const colorPlugin = () => createFontColorPlugin();
+export const colorPlugin = () => createFontColorPlugin({
+    options: {
+        floatingBarButton: ColorButton,
+    },
+});
 
 interface IToolbarButton {
     editor: PlateEditor;

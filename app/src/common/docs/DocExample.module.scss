@@ -5,31 +5,6 @@
     max-width: 100%;
 }
 
-.title-row {
-    width: fit-content;
-
-    .title {
-        font-family: $font-museo-sans;
-        color: $gray80;
-        font-size: 24px;
-        margin-bottom: 6px;
-    }
-
-    .anchor {
-        fill: transparent;
-
-        &:focus {
-            fill: var(--uui-icon-btn);
-        }
-    }
-
-    &:hover {
-        .anchor {
-            fill: $blue;
-        }
-    }
-}
-
 .container-footer {
     justify-content: space-between;
 }
