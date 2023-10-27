@@ -1,7 +1,7 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
-    --uui-rdtp_date-bg-selected: var(--uui-surface-info);
+    --uui-rdtp_date-bg-selected: var(--uui-info-10);
 
     :global(.uui-calendar-days) > div:last-child {
         :global(.uui-calendar-day-cell):last-child > :global(.uui-range-datepicker-in-range) {

@@ -30,6 +30,7 @@ function applyTextMods(mods: TextMods) {
         'uui-text',
         `uui-font-${mods.font || 'regular'}`,
         `uui-color-${mods.color || 'primary'}`,
+        'uui-typography',
     ].concat(textClasses);
 }
 

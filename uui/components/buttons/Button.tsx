@@ -6,9 +6,9 @@ import { systemIcons } from '../../icons/icons';
 import { CountIndicator } from '../widgets';
 import css from './Button.module.scss';
 
-export type ButtonColor = 'accent' | 'primary' | 'secondary' | 'critical';
+export type ButtonColor = 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral';
 export const allButtonColors: ButtonColor[] = [
-    'accent', 'primary', 'secondary', 'critical',
+    'accent', 'primary', 'critical', 'secondary', 'neutral',
 ];
 
 const defaultSize = '36';

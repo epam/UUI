@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from 'react';
-import { BadgeColor, Badge, DataTable, FlexRow, Panel, Text } from '@epam/uui';
 import { DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
+import { BadgeColor, Badge, DataTable, FlexRow, Panel, Text } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
-import css from './TablesExamples.module.scss';
 import { TApi } from '../../../data';
+import css from './TablesExamples.module.scss';
 
 export default function StyledColumnsExample() {
     const svc = useUuiContext<TApi, UuiContexts>();

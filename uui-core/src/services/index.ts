@@ -7,6 +7,5 @@ export * from './ErrorContext';
 export * from './LockContext';
 export * from './NotificationContext';
 export * from './ModalContext';
-export * from './SkinContext';
 export * from './routing';
 export * from './analytics';
