@@ -28,6 +28,7 @@
     "@epam/uui-editor": "5.2.0",
     "@epam/uui-timeline": "5.2.0",
     "@udecode/plate-common": "24.5.2",
+    "slate-hyperscript": "0.81.3",
     "amplitude-js": "8.9.1",
     "classnames": "2.2.6",
     "codesandbox": "2.2.3",
