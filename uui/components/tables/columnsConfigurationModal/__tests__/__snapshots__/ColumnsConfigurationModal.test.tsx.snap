@@ -191,7 +191,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 Displayed in table
               </div>
               <button
-                className="container uui-button-box uui-enabled uui-badge root size-18 fill-solid uui-color-neutral groupTitleBadge"
+                className="container uui-button-box uui-enabled uui-badge root size-18 uui-fill-solid uui-color-neutral groupTitleBadge"
                 onClick={[Function]}
                 tabIndex={-1}
                 type="button"
@@ -675,7 +675,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                 Hidden in table
               </div>
               <button
-                className="container uui-button-box uui-enabled uui-badge root size-18 fill-solid uui-color-neutral groupTitleBadge"
+                className="container uui-button-box uui-enabled uui-badge root size-18 uui-fill-solid uui-color-neutral groupTitleBadge"
                 onClick={[Function]}
                 tabIndex={-1}
                 type="button"

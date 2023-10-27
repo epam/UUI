@@ -2,7 +2,7 @@
 
 exports[`StatusIndicator should be rendered correctly 1`] = `
 <div
-  className="root size-24 uui-status_indicator uui-color-neutral fill-solid"
+  className="root size-24 uui-status_indicator uui-color-neutral uui-fill-solid"
 >
   <div
     className="uui-status_indicator_dot"
@@ -17,7 +17,7 @@ exports[`StatusIndicator should be rendered correctly 1`] = `
 
 exports[`StatusIndicator should be rendered correctly with props 1`] = `
 <div
-  className="root size-12 uui-status_indicator uui-color-info fill-outline"
+  className="root size-12 uui-status_indicator uui-color-info uui-fill-outline"
 >
   <div
     className="uui-status_indicator_dot"
