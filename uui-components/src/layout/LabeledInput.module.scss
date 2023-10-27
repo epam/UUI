@@ -1,4 +1,10 @@
 .container {
+    .labelWrapper {
+        display: flex;
+        align-items: center;
+        column-gap: 3px;
+    }
+
     :global(.uui-label) {
         display: flex;
         align-items: center;
@@ -9,8 +15,6 @@
     }
 
     .optional-field-wrapper {
-        flex-grow: 1;
-        text-align: right;
         text-overflow: ellipsis;
     }
 

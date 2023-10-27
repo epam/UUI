@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 915,
-   "amountTypes": 293
+   "amountProps": 920,
+   "amountTypes": 296
   },
   "value": [
    {
@@ -123,8 +123,7 @@
    {
     "typeRef": "@epam/uui-core:ButtonCoreProps",
     "value": [
-     "count",
-     "countPosition"
+     "count"
     ]
    },
    {
@@ -935,14 +934,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:ScrollToConfig",
-    "value": [
-     "align",
-     "behavior",
-     "index"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:SearchResultItem",
     "value": [
      "parents"
@@ -1207,9 +1198,9 @@
    {
     "typeRef": "@epam/uui-components:DataSourceKeyboardParams",
     "value": [
-     "editMode",
      "listView",
-     "rows"
+     "rows",
+     "searchPosition"
     ]
    },
    {
@@ -1385,6 +1376,7 @@
      "rows",
      "scheduleUpdate",
      "search",
+     "searchDebounceDelay",
      "showSearch"
     ]
    },
@@ -1514,7 +1506,6 @@
    {
     "typeRef": "@epam/uui-components:ScrollbarProps",
     "value": [
-     "disableScroll",
      "hasBottomShadow",
      "hasTopShadow",
      "renderView"
@@ -1558,12 +1549,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-components:TooltipState",
-    "value": [
-     "isOpen"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-components:TreeListItem",
     "value": [
      "data",
@@ -1589,15 +1574,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-components:VirtualListRenderRowsParams",
-    "value": [
-     "estimatedHeight",
-     "listContainerRef",
-     "offsetY",
-     "scrollShadows"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-components:YearSelectionProps",
     "value": [
      "selectedDate"
@@ -1615,6 +1591,7 @@
     "value": [
      "color",
      "fill",
+     "indicator",
      "size"
     ]
    },
@@ -1635,7 +1612,7 @@
     "typeRef": "@epam/uui:ButtonMods",
     "value": [
      "color",
-     "mode",
+     "fill",
      "size"
     ]
    },
@@ -1662,6 +1639,13 @@
      "bodyContent",
      "caption",
      "hideCancelButton"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui:CountIndicatorProps",
+    "value": [
+     "color",
+     "size"
     ]
    },
    {
@@ -1887,6 +1871,7 @@
    {
     "typeRef": "@epam/uui:PanelMods",
     "value": [
+     "background",
      "margin",
      "shadow"
     ]
@@ -1970,6 +1955,7 @@
    {
     "typeRef": "@epam/uui:RowMods",
     "value": [
+     "background",
      "borderBottom",
      "columnGap",
      "margin",
@@ -2046,6 +2032,15 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:VirtualListRenderRowsParams",
+    "value": [
+     "estimatedHeight",
+     "listContainerRef",
+     "offsetY",
+     "scrollShadows"
+    ]
+   },
+   {
     "typeRef": "@epam/promo:AlertMods",
     "value": [
      "color"
@@ -2054,7 +2049,8 @@
    {
     "typeRef": "@epam/promo:BadgeMods",
     "value": [
-     "color"
+     "color",
+     "fill"
     ]
    },
    {
@@ -2062,6 +2058,12 @@
     "value": [
      "color",
      "fill"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:CountIndicatorMods",
+    "value": [
+     "color"
     ]
    },
    {
@@ -2147,6 +2149,12 @@
     ]
    },
    {
+    "typeRef": "@epam/promo:StatusIndicatorMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
     "typeRef": "@epam/promo:TextMods",
     "value": [
      "color",
@@ -2181,6 +2189,12 @@
     "typeRef": "@epam/loveship:CheckboxMods",
     "value": [
      "theme"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:CountIndicatorMods",
+    "value": [
+     "color"
     ]
    },
    {
@@ -2327,6 +2341,12 @@
     ]
    },
    {
+    "typeRef": "@epam/loveship:StatusIndicatorMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
     "typeRef": "@epam/loveship:TabButtonMods",
     "value": [
      "theme"
@@ -2389,7 +2409,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 469
+   "amountTypes": 477
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -2520,7 +2540,6 @@
    "@epam/uui-core:RenderCellProps",
    "@epam/uui-core:RenderEditorProps",
    "@epam/uui-core:ScrollAlign",
-   "@epam/uui-core:ScrollToConfig",
    "@epam/uui-core:SearchResultItem",
    "@epam/uui-core:SkinContextComponentProps",
    "@epam/uui-core:SortDirection",
@@ -2621,15 +2640,12 @@
    "@epam/uui-components:TextProps",
    "@epam/uui-components:TimePickerBodyProps",
    "@epam/uui-components:TooltipProps",
-   "@epam/uui-components:TooltipState",
    "@epam/uui-components:TreeListItem",
    "@epam/uui-components:TreeProps",
    "@epam/uui-components:UsePickerInputProps",
    "@epam/uui-components:UsePickerListProps",
    "@epam/uui-components:UsePickerModalProps",
    "@epam/uui-components:ViewType",
-   "@epam/uui-components:VirtualListProps",
-   "@epam/uui-components:VirtualListRenderRowsParams",
    "@epam/uui-components:YearSelectionProps",
    "@epam/uui:AccordionMods",
    "@epam/uui:AccordionProps",
@@ -2644,10 +2660,9 @@
    "@epam/uui:BurgerMods",
    "@epam/uui:BurgerSearchProps",
    "@epam/uui:ButtonColor",
-   "@epam/uui:ButtonMode",
+   "@epam/uui:ButtonFill",
    "@epam/uui:ButtonMods",
    "@epam/uui:ButtonProps",
-   "@epam/uui:ButtonSemanticColor",
    "@epam/uui:CheckboxMods",
    "@epam/uui:CheckboxProps",
    "@epam/uui:ColorMod",
@@ -2655,6 +2670,7 @@
    "@epam/uui:CompletePickerInputProps",
    "@epam/uui:ConfirmationModalWindowProps",
    "@epam/uui:ControlSize",
+   "@epam/uui:CountIndicatorProps",
    "@epam/uui:DataPickerBodyProps",
    "@epam/uui:DataPickerRowProps",
    "@epam/uui:DataRowsContainerProps",
@@ -2730,7 +2746,10 @@
    "@epam/uui:RowSize",
    "@epam/uui:SearchInputProps",
    "@epam/uui:SemanticColor",
+   "@epam/uui:SliderMods",
    "@epam/uui:SpinnerProps",
+   "@epam/uui:StatusIndicatorColors",
+   "@epam/uui:StatusIndicatorProps",
    "@epam/uui:SwitchMods",
    "@epam/uui:SwitchProps",
    "@epam/uui:TabButtonMods",
@@ -2740,6 +2759,7 @@
    "@epam/uui:TagSize",
    "@epam/uui:TextAreaMods",
    "@epam/uui:TextAreaProps",
+   "@epam/uui:TextColor",
    "@epam/uui:TextInputProps",
    "@epam/uui:TextMods",
    "@epam/uui:TextPlaceholderProps",
@@ -2750,6 +2770,7 @@
    "@epam/uui:TooltipProps",
    "@epam/uui:UuiMultiSwitchColor",
    "@epam/uui:VerticalTabButtonProps",
+   "@epam/uui:VirtualListProps",
    "@epam/promo:AlertMods",
    "@epam/promo:AlertProps",
    "@epam/promo:BadgeMods",
@@ -2760,6 +2781,8 @@
    "@epam/promo:ColorMod",
    "@epam/promo:ControlShape",
    "@epam/promo:ControlSize",
+   "@epam/promo:CountIndicatorMods",
+   "@epam/promo:CountIndicatorProps",
    "@epam/promo:DropdownContainerMods",
    "@epam/promo:EpamAdditionalColor",
    "@epam/promo:EpamColor",
@@ -2790,7 +2813,8 @@
    "@epam/promo:RowSizeMod",
    "@epam/promo:ScrollBarsMods",
    "@epam/promo:SizeMod",
-   "@epam/promo:SliderMods",
+   "@epam/promo:StatusIndicatorMods",
+   "@epam/promo:StatusIndicatorProps",
    "@epam/promo:TextMods",
    "@epam/promo:TextProps",
    "@epam/promo:TextSize",
@@ -2808,6 +2832,8 @@
    "@epam/loveship:ColorMod",
    "@epam/loveship:ControlShape",
    "@epam/loveship:ControlSize",
+   "@epam/loveship:CountIndicatorMods",
+   "@epam/loveship:CountIndicatorProps",
    "@epam/loveship:DropdownContainerMods",
    "@epam/loveship:EpamAdditionalColor",
    "@epam/loveship:EpamColor",
@@ -2845,6 +2871,8 @@
    "@epam/loveship:SizeMod",
    "@epam/loveship:SliderRatingProps",
    "@epam/loveship:SnackbarCardProps",
+   "@epam/loveship:StatusIndicatorMods",
+   "@epam/loveship:StatusIndicatorProps",
    "@epam/loveship:TabButtonMods",
    "@epam/loveship:TagMods",
    "@epam/loveship:TextInputMods",
@@ -2865,13 +2893,13 @@
  },
  "ignoredExports": {
   "totals": {
-   "allExports": 714,
+   "allExports": 720,
    "byModule": {
     "@epam/uui-core": 132,
-    "@epam/uui-components": 106,
-    "@epam/uui": 148,
-    "@epam/promo": 127,
-    "@epam/loveship": 139,
+    "@epam/uui-components": 105,
+    "@epam/uui": 152,
+    "@epam/promo": 129,
+    "@epam/loveship": 140,
     "@epam/uui-editor": 62
    }
   },
@@ -3128,8 +3156,7 @@
      "uuiSlider",
      "uuiTimePicker",
      "uuiYearSelection",
-     "valueFormat",
-     "VirtualList"
+     "valueFormat"
     ]
    },
    "@epam/uui": {
@@ -3137,8 +3164,7 @@
      "Accordion",
      "Alert",
      "allButtonColors",
-     "allButtonModes",
-     "allButtonSemanticColors",
+     "allButtonFills",
      "allEpamBadgeSemanticColors",
      "allFillStyles",
      "allFontStyles",
@@ -3147,6 +3173,7 @@
      "allRowSizes",
      "allSemanticColors",
      "allSizes",
+     "allTextColors",
      "allTextSizes",
      "Anchor",
      "Avatar",
@@ -3161,6 +3188,7 @@
      "CheckboxGroup",
      "ColumnHeaderDropdown",
      "ControlGroup",
+     "CountIndicator",
      "DataPickerFooter",
      "DataPickerHeader",
      "DataTableHeaderRow",
@@ -3211,7 +3239,9 @@
      "RichTextView",
      "ScrollBars",
      "SearchInput",
+     "Slider",
      "Spinner",
+     "StatusIndicator",
      "SuccessAlert",
      "SuccessNotification",
      "SvgCircleProgress",
@@ -3238,6 +3268,7 @@
      "applyInputAddonMods",
      "applyNumericInputMods",
      "applyProgressBarMods",
+     "applySliderMods",
      "applySpinnerMods",
      "applySwitchMods",
      "applyTagMods",
@@ -3319,6 +3350,7 @@
      "commonControlColors",
      "ControlGroup",
      "ControlWrapper",
+     "CountIndicator",
      "DataPickerFooter",
      "DataTableHeaderRow",
      "DataTableRow",
@@ -3367,6 +3399,7 @@
      "skinContext",
      "Slider",
      "Spinner",
+     "StatusIndicator",
      "SuccessAlert",
      "SuccessNotification",
      "SvgCircleProgress",
@@ -3384,9 +3417,9 @@
      "WarningNotification"
     ],
     "FunctionDeclaration": [
+     "applyBadgeMods",
      "applyDropdownContainerMods",
      "applyIconContainerMods",
-     "applySliderMods",
      "BurgerSearch",
      "ColumnsConfigurationModal",
      "DataTable",
@@ -3454,6 +3487,7 @@
      "commonControlColors",
      "ControlGroup",
      "ControlWrapper",
+     "CountIndicator",
      "DataPickerFooter",
      "DataTableHeaderRow",
      "DataTableRow",
@@ -3504,6 +3538,7 @@
      "Slider",
      "SnackbarCard",
      "Spinner",
+     "StatusIndicator",
      "SuccessAlert",
      "SuccessNotification",
      "SvgCircleProgress",
@@ -3526,7 +3561,6 @@
      "applyCheckboxMods",
      "applyIconContainerMods",
      "applyRangeSliderMods",
-     "applySliderMods",
      "applyTagMods",
      "applyTextInputMods",
      "ColumnsConfigurationModal",
@@ -3646,13 +3680,13 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 540,
+   "allExports": 550,
    "byModule": {
     "@epam/uui-core": 208,
-    "@epam/uui-components": 93,
-    "@epam/uui": 125,
-    "@epam/promo": 48,
-    "@epam/loveship": 57,
+    "@epam/uui-components": 90,
+    "@epam/uui": 131,
+    "@epam/promo": 51,
+    "@epam/loveship": 61,
     "@epam/uui-editor": 9
    }
   },
@@ -3888,8 +3922,7 @@
      "UsePickerInputProps",
      "UsePickerListProps",
      "UsePickerModalProps",
-     "ViewType",
-     "VirtualListProps"
+     "ViewType"
     ],
     "InterfaceDeclaration": [
      "AccordionState",
@@ -3963,10 +3996,8 @@
      "TextInputProps",
      "TimePickerBodyProps",
      "TooltipProps",
-     "TooltipState",
      "TreeListItem",
      "TreeProps",
-     "VirtualListRenderRowsParams",
      "YearSelectionProps"
     ]
    },
@@ -3984,6 +4015,7 @@
      "ColorMod",
      "ColumnsConfigurationModalProps",
      "ConfirmationModalWindowProps",
+     "CountIndicatorProps",
      "DataPickerBodyProps",
      "DataPickerRowProps",
      "DataRowsContainerProps",
@@ -4041,6 +4073,8 @@
      "RowSizeMod",
      "SearchInputProps",
      "SizeMod",
+     "SliderMods",
+     "StatusIndicatorProps",
      "SwitchMods",
      "TabButtonMods",
      "TagMods",
@@ -4050,7 +4084,8 @@
      "TextMods",
      "TextSettings",
      "TimePickerProps",
-     "TooltipMods"
+     "TooltipMods",
+     "VirtualListRenderRowsParams"
     ],
     "TypeAliasDeclaration": [
      "AccordionProps",
@@ -4059,9 +4094,8 @@
      "BadgeProps",
      "BadgeSize",
      "ButtonColor",
-     "ButtonMode",
+     "ButtonFill",
      "ButtonProps",
-     "ButtonSemanticColor",
      "CheckboxProps",
      "CompletePickerInputProps",
      "ControlSize",
@@ -4088,17 +4122,20 @@
      "RowSize",
      "SemanticColor",
      "SpinnerProps",
+     "StatusIndicatorColors",
      "SwitchProps",
      "TabButtonProps",
      "TagProps",
      "TagSize",
      "TextAreaProps",
+     "TextColor",
      "TextPlaceholderProps",
      "TextProps",
      "TextSize",
      "TooltipProps",
      "UuiMultiSwitchColor",
-     "VerticalTabButtonProps"
+     "VerticalTabButtonProps",
+     "VirtualListProps"
     ]
    },
    "@epam/promo": {
@@ -4108,6 +4145,7 @@
      "BadgeMods",
      "ButtonMods",
      "ColorMod",
+     "CountIndicatorMods",
      "DropdownContainerMods",
      "ErrorHandlerProps",
      "FontMod",
@@ -4124,7 +4162,7 @@
      "RowSizeMod",
      "ScrollBarsMods",
      "SizeMod",
-     "SliderMods",
+     "StatusIndicatorMods",
      "TextInputProps",
      "TextMods",
      "TooltipMods",
@@ -4136,6 +4174,7 @@
      "ButtonProps",
      "ControlShape",
      "ControlSize",
+     "CountIndicatorProps",
      "EpamAdditionalColor",
      "EpamColor",
      "EpamGrayscaleColor",
@@ -4150,6 +4189,7 @@
      "MultiSwitchProps",
      "NotificationCardProps",
      "RowSize",
+     "StatusIndicatorProps",
      "TextProps",
      "TextSize",
      "TooltipProps"
@@ -4163,6 +4203,7 @@
      "ButtonMods",
      "CheckboxMods",
      "ColorMod",
+     "CountIndicatorMods",
      "DropdownContainerMods",
      "ErrorConfig",
      "ErrorPageProps",
@@ -4188,6 +4229,7 @@
      "SizeMod",
      "SliderRatingProps",
      "SnackbarCardProps",
+     "StatusIndicatorMods",
      "TabButtonMods",
      "TagMods",
      "TextInputMods",
@@ -4201,6 +4243,7 @@
      "ButtonProps",
      "ControlShape",
      "ControlSize",
+     "CountIndicatorProps",
      "EpamAdditionalColor",
      "EpamColor",
      "EpamGrayscaleColor",
@@ -4213,6 +4256,7 @@
      "MultiSwitchProps",
      "NotificationCardProps",
      "RowSize",
+     "StatusIndicatorProps",
      "TextProps",
      "TextSize",
      "TooltipProps"
