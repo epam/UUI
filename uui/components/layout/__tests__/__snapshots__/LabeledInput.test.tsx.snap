@@ -35,14 +35,18 @@ exports[`LabeledInput should be rendered correctly with props 1`] = `
   <div
     className="uui-label-left"
   >
-    <label
-      className="uui-label"
+    <div
+      className="labelWrapper"
     >
-      Test label
-      <svg
-        className="uui-labeled-input-info-icon"
-      />
-    </label>
+      <label
+        className="uui-label"
+      >
+        Test label
+        <svg
+          className="uui-labeled-input-info-icon"
+        />
+      </label>
+    </div>
     <div
       className="rightChildrenPosition"
     >
@@ -64,10 +68,20 @@ exports[`LabeledInput should be rendered correctly with props 1`] = `
     </div>
   </div>
   <div
-    className="uui-invalid-message"
-    role="alert"
+    className="uui-flex-row container align-items-top"
+    style={
+      Object {
+        "columnGap": "12px",
+        "rowGap": undefined,
+      }
+    }
   >
-    Test invalid message
+    <div
+      className="uui-invalid-message"
+      role="alert"
+    >
+      Test invalid message
+    </div>
   </div>
 </div>
 `;
