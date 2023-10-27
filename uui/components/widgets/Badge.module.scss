@@ -211,7 +211,7 @@
         }
     }
 
-    &:global(.fill-solid) {
+    &:global(.uui-fill-solid) {
         --uui-badge-bg: var(--uui-color-50);
         --uui-badge-bg-hover: var(--uui-color-60);
         --uui-badge-border: var(--uui-color-50);
@@ -225,7 +225,7 @@
         }
     }
 
-    &:global(.fill-outline) {
+    &:global(.uui-fill-outline) {
         --uui-badge-bg: var(--uui-color-5);
         --uui-badge-bg-hover: var(--uui-color-10);
         --uui-badge-border: var(--uui-color-20);
@@ -245,7 +245,7 @@
     // code below deprecated & will be removed
 
     &.size-18 {
-        &:global(.fill-transparent) {
+        &:global(.uui-fill-transparent) {
             :global(.uui-caption) {
                 margin-left: 8px;
             }
@@ -260,7 +260,7 @@
     }
 
     &.size-24 {
-        &:global(.fill-transparent) {
+        &:global(.uui-fill-transparent) {
             :global(.uui-caption) {
                 margin-left: 12px;
             }
@@ -275,7 +275,7 @@
     }
 
     &.size-30 {
-        &:global(.fill-transparent) {
+        &:global(.uui-fill-transparent) {
             :global(.uui-caption) {
                 margin-left: 12px;
             }
@@ -290,7 +290,7 @@
     }
 
     &.size-36 {
-        &:global(.fill-transparent) {
+        &:global(.uui-fill-transparent) {
             :global(.uui-caption) {
                 margin-left: 12px;
             }
@@ -305,7 +305,7 @@
     }
 
     &.size-42 {
-        &:global(.fill-transparent) {
+        &:global(.uui-fill-transparent) {
             :global(.uui-caption) {
                 margin-left: 12px;
             }
@@ -320,7 +320,7 @@
     }
 
     &.size-48 {
-        &:global(.fill-transparent) {
+        &:global(.uui-fill-transparent) {
             :global(.uui-caption) {
                 margin-left: 12px;
             }
