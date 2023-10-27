@@ -1,88 +1,47 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": "This article contains examples of common "
+      },
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " props usage. "
+      },
+      {
+        "text": "rowOptions",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "getRowOptions",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " are overviewed in detail "
+      },
+      {
+        "data": {
+          "url": "/documents?id=dataSources-row-options&mode=doc&skin=UUI4_promo&category=dataSources"
+        },
+        "type": "link",
+        "url": "/documents?id=dataSources-row-options&mode=doc&skin=UUI4_promo&category=dataSources",
+        "children": [
           {
-            "object": "text",
-            "text": "This article contains examples of common ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " props usage. ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "rowOptions",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "getRowOptions",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " are overviewed in detail ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "/documents?id=dataSources-row-options&mode=doc&skin=UUI4_promo&category=dataSources"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "in the following article",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ".",
-            "marks": []
+            "text": "in the following article"
           }
         ]
+      },
+      {
+        "text": "."
       }
     ]
   }
-}
+]

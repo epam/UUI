@@ -17,7 +17,7 @@ export const typeRefRTEPlugin = () => {
         isVoid: true,
         component: TypeRefPluginComponent,
         options: {
-            toolbarButton: AddTypeRefTableButton,
+            bottomBarButton: AddTypeRefTableButton,
         },
         handlers: {
             onKeyDown: (editor) => (event) => {
