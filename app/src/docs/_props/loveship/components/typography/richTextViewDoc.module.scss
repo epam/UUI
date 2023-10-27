@@ -1,15 +1,5 @@
-@use '~@epam/loveship/assets/styles/scss/typography' as epamLoveshipMixins;
-
 .container {
     a svg {
         margin-left: 4px;
     }
-}
-
-.typography-16 {
-    @include epamLoveshipMixins.typography-16();
-}
-
-.typography-12 {
-    @include epamLoveshipMixins.typography-12();
 }

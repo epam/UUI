@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from 'react';
+import sortBy from 'lodash.sortby';
 import { DataColumnProps, DataTableState, getOrderBetween, useArrayDataSource } from '@epam/uui-core';
 import { DataTable, Panel, Text } from '@epam/uui';
 import { demoData, FeatureClass } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
-import sortBy from 'lodash.sortby';
 
 export default function TableWithDnDExample() {
     const [value, onValueChange] = useState<DataTableState>({});

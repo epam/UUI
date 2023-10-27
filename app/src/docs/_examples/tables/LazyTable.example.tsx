@@ -1,12 +1,11 @@
 import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource, DropdownBodyProps } from '@epam/uui-core';
-import { Text, DataTable, Panel, IconButton } from '@epam/uui';
-import { DropdownMenuButton, DropdownMenuSplitter, DropdownMenuBody } from '@epam/uui';
+import { Dropdown, DropdownMenuButton, DropdownMenuSplitter, DropdownMenuBody, Text, DataTable, Panel, IconButton } from '@epam/uui';
 import { City } from '@epam/uui-docs';
-import { Dropdown } from '@epam/uui-components';
-import css from './TablesExamples.module.scss';
 import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as PencilIcon } from '@epam/assets/icons/common/content-edit-18.svg';
+
+import css from './TablesExamples.module.scss';
 
 export default function CitiesTable() {
     const svc = useUuiContext();

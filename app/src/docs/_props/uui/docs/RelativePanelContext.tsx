@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DemoComponentProps } from '@epam/uui-docs';
 import {
     Panel, FlexRow, Text, MultiSwitch, FlexSpacer, Button, TextInput, LabeledInput, NumericInput, DatePicker,
-} from '@epam/promo';
+} from '@epam/uui';
 import css from './RelativePanelContext.module.scss';
 
 interface DemoComponentState {
@@ -36,8 +36,8 @@ export class RelativePanelContext extends React.Component<DemoComponentProps, De
                 </FlexRow>
                 <FlexRow spacing="12" padding="24" vPadding="24">
                     <FlexSpacer />
-                    <Button color="green" caption="Submit" />
-                    <Button color="blue" fill="none" caption="Cancel" />
+                    <Button color="accent" caption="Submit" />
+                    <Button color="primary" fill="none" caption="Cancel" />
                 </FlexRow>
             </React.Fragment>
         );
@@ -58,16 +58,16 @@ export class RelativePanelContext extends React.Component<DemoComponentProps, De
                 <FlexRow padding="12">
                     <Text>Relative Panel</Text>
                     <FlexSpacer />
-                    <MultiSwitch<DemoComponentState['activeContent']>
+                    <MultiSwitch
                         size="24"
                         items={ [{ id: 'form', caption: 'form' }, { id: 'text', caption: 'text' }] }
                         value={ this.state.activeContent }
-                        onValueChange={ (newValue) => {
+                        onValueChange={ (newValue: DemoComponentState['activeContent']) => {
                             this.setState({ activeContent: newValue });
                         } }
                     />
                 </FlexRow>
-                <Panel background="white" cx={ css.demo }>
+                <Panel background="surface" cx={ css.demo }>
                     {this.state.activeContent === 'form' ? this.renderForm() : this.renderText()}
                     <DemoComponent { ...props } />
                 </Panel>

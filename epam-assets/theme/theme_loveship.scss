@@ -235,12 +235,6 @@
     --uui-surface-main: var(--uui-neutral-0);
     --uui-surface-higher: var(--uui-neutral-10);
     --uui-surface-highest: var(--uui-neutral-20);
-    --uui-surface-contrast: var(--uui-neutral-80);
-    --uui-surface-contrast-higher: var(--uui-neutral-90);
-
-    --uui-surface-info: var(--sky-10);
-    --uui-surface-critical: var(--fire-10);
-    --uui-surface-warning: var(--sun-10);
 
     --uui-divider: var(--uui-neutral-40);
     --uui-divider-light: var(--uui-neutral-30);
@@ -251,8 +245,6 @@
     --uui-text-tertiary: var(--uui-neutral-60);
     --uui-text-disabled: var(--uui-neutral-50);
     --uui-text-contrast: var(--uui-neutral-5);
-    --uui-text-white: var(--white);
-    --uui-text-black: var(--night800);
 
     --uui-text-info: var(--uui-info-70);
     --uui-text-warning: var(--uui-warning-70);
@@ -611,10 +603,17 @@
 
     /* IconButton */
 
-    .uui-icon_button.uui-color-neutral {
+    .uui-icon_button.uui-color-neutral,
+    .uui-icon_button.uui-color-night600 {
         --uui-icon-btn: var(--uui-neutral-60);
         --uui-icon-btn-hover: var(--uui-neutral-70);
         --uui-icon-btn-active: var(--uui-neutral-80);
+    }
+
+    .uui-icon_button.uui-color-secondary {
+        --uui-icon-btn: var(--uui-neutral-50);
+        --uui-icon-btn-hover: var(--uui-neutral-60);
+        --uui-icon-btn-active: var(--uui-neutral-70);
     }
 
     /* TooltipContainer */

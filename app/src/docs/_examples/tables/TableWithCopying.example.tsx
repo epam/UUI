@@ -1,6 +1,6 @@
-import { DataTable, useForm, Panel, DataTableCell, NumericInput, TextInput } from '@epam/uui';
 import React, { useMemo } from 'react';
 import { DataQueryFilter, DataTableState, DataTableSelectedCellData, useArrayDataSource, DataColumnProps } from '@epam/uui-core';
+import { DataTable, useForm, Panel, DataTableCell, NumericInput, TextInput } from '@epam/uui';
 
 import css from './TablesExamples.module.scss';
 
