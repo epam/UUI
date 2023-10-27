@@ -133,10 +133,6 @@
     --uui-surface-contrast-low: var(--night800);
     --uui-surface-contrast-lower: var(--night900);
 
-    --uui-surface-info: var(--blue-0);
-    --uui-surface-critical: var(--fire-10);
-    --uui-surface-warning: var(--sun-50);
-
     --uui-divider: var(--chromatic-200);
     --uui-divider-light: var(--chromatic-150);
 
@@ -146,8 +142,6 @@
     --uui-text-tertiary: var(--chromatic-300);
     --uui-text-disabled: var(--chromatic-200);
     --uui-text-contrast: var(--chromatic-0);
-    --uui-text-white: var(--chromatic-0);
-    --uui-text-black: var(--chromatic-500);
 
     --uui-text-info: var(--uui-info-50);
     --uui-text-warning: var(--uui-warning-50);
@@ -719,7 +713,7 @@
         --uui-btn-border-hover: var(--uui-primary-60);
         --uui-btn-border-active: var(--uui-primary-70);
         --uui-btn-border-disabled: var(--uui-disabled);
-        --uui-btn-caption: var(--uui-text-white);
+        --uui-btn-caption: var(--white);
         --uui-btn-caption-halftone: var(--uui-text-primary);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
     }
@@ -736,7 +730,7 @@
         --uui-btn-border-active: var(--uui-accent-70);
         --uui-btn-bg-disabled: var(--uui-disabled);
         --uui-btn-border-disabled: var(--uui-disabled);
-        --uui-btn-caption: var(--uui-text-white);
+        --uui-btn-caption: var(--white);
         --uui-btn-caption-halftone: var(--uui-text-primary);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
     }
@@ -753,7 +747,7 @@
         --uui-btn-border-active: var(--uui-negative-70);
         --uui-btn-bg-disabled: var(--uui-disabled);
         --uui-btn-border-disabled: var(--uui-disabled);
-        --uui-btn-caption: var(--uui-text-white);
+        --uui-btn-caption: var(--white);
         --uui-btn-caption-halftone: var(--uui-text-primary);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
     }
@@ -770,7 +764,7 @@
         --uui-btn-border-active: var(--uui-secondary-70);
         --uui-btn-bg-disabled: var(--uui-disabled);
         --uui-btn-border-disabled: var(--uui-disabled);
-        --uui-btn-caption: var(--uui-text-white);
+        --uui-btn-caption: var(--white);
         --uui-btn-caption-halftone: var(--night600);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
     }

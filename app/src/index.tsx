@@ -8,7 +8,6 @@ import {
     UuiContext, GAListener, IProcessRequest,
 } from '@epam/uui-core';
 import { Snackbar, Modals, PortalRoot } from '@epam/uui-components';
-import { skinContext } from '@epam/promo';
 import { AmplitudeListener } from './analyticsEvents';
 import { svc } from './services';
 import App from './App';
@@ -46,7 +45,7 @@ apm.addLabels({ project: 'epm-uui', service_type: 'ui' });
 
 function UuiEnhancedApp() {
     const [isLoaded, setIsLoaded] = React.useState(false);
-    const { services } = useUuiServices<TApi, TAppContext>({ apiDefinition, router, skinContext });
+    const { services } = useUuiServices<TApi, TAppContext>({ apiDefinition, router });
 
     React.useEffect(() => {
         Object.assign(svc, services);

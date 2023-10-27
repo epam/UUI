@@ -1,13 +1,10 @@
-import * as React from 'react';
-
-import { IModal, uuiSkin } from '@epam/uui-core';
-import { FlexSpacer } from '@epam/uui-components';
-import css from './link.module.scss';
-import { useEffect, useState } from 'react';
-import { PlateEditor, getPluginType, getAboveNode, getSelectionText } from '@udecode/plate-common';
+import React, { useEffect, useState } from 'react';
 import { ELEMENT_LINK, insertLink, unwrapLink } from '@udecode/plate-link';
+import { PlateEditor, getPluginType, getAboveNode, getSelectionText } from '@udecode/plate-common';
+import { IModal } from '@epam/uui-core';
+import { FlexRow, FlexSpacer, ModalWindow, ModalBlocker, ModalFooter, ModalHeader, Button, LabeledInput, TextInput } from '@epam/uui';
 
-const { LabeledInput, ModalBlocker, ModalWindow, ModalHeader, FlexRow, TextInput, ModalFooter, Button } = uuiSkin;
+import css from './link.module.scss';
 
 interface AddLinkModalProps extends IModal<any> {
     editor: PlateEditor;
@@ -45,7 +42,7 @@ export function AddLinkModal(props: AddLinkModalProps) {
                 <ModalFooter borderTop>
                     <FlexSpacer />
                     <Button
-                        type="cancel"
+                        color="secondary"
                         caption="Delete"
                         onClick={ () => {
                             setLink('');
@@ -54,7 +51,7 @@ export function AddLinkModal(props: AddLinkModalProps) {
                         } }
                     />
                     <Button
-                        type="success"
+                        color="accent"
                         caption="Save"
                         onClick={ () => {
                             link && insertLink(props.editor, { url: link, text: getSelectionText(props.editor), target: '_blank' });

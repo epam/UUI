@@ -1,21 +1,11 @@
-import { FlexSpacer, UploadFileToggler } from '@epam/uui-components';
-import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
 import React, { useState } from 'react';
-
 import { PlateEditor } from '@udecode/plate-common';
+import { IModal, prependHttp } from '@epam/uui-core';
+import { UploadFileToggler } from '@epam/uui-components';
+import { Button, FlexRow, FlexSpacer, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, LabeledInput, TextInput } from '@epam/uui';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
-import css from './AddImageModal.module.scss';
 
-const {
-    LabeledInput,
-    ModalBlocker,
-    ModalWindow,
-    ModalHeader,
-    FlexRow,
-    TextInput,
-    ModalFooter,
-    Button,
-} = uuiSkin;
+import css from './AddImageModal.module.scss';
 
 interface AddImageModalProps extends IModal<any> {
     insertImage: (imageURL: string) => void;
@@ -50,9 +40,9 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
                         accept="image/*"
                     />
                     <FlexSpacer />
-                    <Button type="cancel" caption="Cancel" onClick={ abort } />
+                    <Button color="secondary" caption="Cancel" onClick={ abort } />
                     <Button
-                        type="success"
+                        color="accent"
                         caption="Ok"
                         isDisabled={ !imageURL }
                         onClick={ async () => {

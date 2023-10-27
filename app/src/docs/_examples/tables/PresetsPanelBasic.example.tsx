@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
-import { DataTable, Panel, FlexRow, Text, PresetsPanel, BadgeColor, Badge } from '@epam/uui';
-import { DataColumnProps, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
-import { Person } from '@epam/uui-docs';
 import dayjs from 'dayjs';
+import { DataColumnProps, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
+import { DataTable, Panel, FlexRow, Text, PresetsPanel, BadgeColor, Badge } from '@epam/uui';
+import { Person } from '@epam/uui-docs';
 
 const personColumns: DataColumnProps<Person, number>[] = [
     {

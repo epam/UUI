@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, DropdownContainer, FlexCell, FlexRow, LinkButton, Text } from '@epam/promo';
+import { Button, DropdownContainer, FlexCell, FlexRow, LinkButton, Text } from '@epam/uui';
 import { Dropdown } from '@epam/uui-components';
 import { DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
 
@@ -19,8 +19,8 @@ export default function FocusLockAndKeyboardNavigationExample() {
                 </Text>
                 <FlexCell>
                     <FlexRow spacing="12">
-                        <Button color="green" size="30" caption="Some Action" onClick={ () => null } />
-                        <Button fill="white" size="30" color="gray" caption="Cancel" onClick={ () => null } />
+                        <Button color="accent" size="30" caption="Some Action" onClick={ () => null } />
+                        <Button fill="outline" size="30" color="neutral" caption="Cancel" onClick={ () => null } />
                     </FlexRow>
                 </FlexCell>
             </DropdownContainer>
@@ -28,6 +28,7 @@ export default function FocusLockAndKeyboardNavigationExample() {
     };
 
     return (
+
         <Dropdown
             renderBody={ (props) => renderFirstDropdownBody(props) }
             renderTarget={ (props: IDropdownToggler) => <LinkButton caption="Toggler" size="36" { ...props } /> }
