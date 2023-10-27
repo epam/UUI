@@ -38,9 +38,34 @@ export class LabeledInput extends React.Component<LabeledInputProps> {
         </div>
     );
 
+    getInvalidSection = () => {
+        const isCharCounterAllow = this.props.charCounter && this.props.maxLength;
+        return (
+            <FlexRow alignItems="top" columnGap={ 12 }>
+                <div role="alert" className={ uuiElement.invalidMessage }>
+                    {this.props.validationMessage}
+                </div>
+                { isCharCounterAllow && this.getCharCounter()}
+            </FlexRow>
+        );
+    };
+
+    getFootnoteSection = () => {
+        const isCharCounterAllow = this.props.charCounter && this.props.maxLength && !this.props.isInvalid;
+        return (
+            <FlexRow alignItems="top" columnGap={ 12 }>
+                <div className={ uuiLabeledInput.footNote }>
+                    { this.props.footnote }
+                </div>
+                { isCharCounterAllow && this.getCharCounter() }
+            </FlexRow>
+        );
+    };
+
     render() {
         const Tooltip = this.props.Tooltip;
         const isCanBeOptional = !this.props.isRequired && this.props.labelPosition !== 'left' && this.props.isOptional;
+        const isOnlyCharCounter = !this.props.footnote && (this.props.charCounter && this.props.maxLength && !this.props.isInvalid);
 
         return (
             <div className={ cx(css.container, this.props.cx) } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
@@ -71,23 +96,9 @@ export class LabeledInput extends React.Component<LabeledInputProps> {
                     )}
                     <div className={ this.props.labelPosition === 'left' ? css.rightChildrenPosition : undefined }>{this.props.children}</div>
                 </div>
-                {this.props.isInvalid && (
-                    <FlexRow alignItems="top" columnGap={ 12 }>
-                        <div role="alert" className={ uuiElement.invalidMessage }>
-                            {this.props.validationMessage}
-                        </div>
-                        { this.props.charCounter && this.props.maxLength && this.getCharCounter()}
-                    </FlexRow>
-                )}
-                {this.props.footnote && (
-                    <FlexRow alignItems="top" columnGap={ 12 }>
-                        <div className={ uuiLabeledInput.footNote }>
-                            { this.props.footnote }
-                        </div>
-                        { this.props.charCounter && this.props.maxLength && !this.props.isInvalid && this.getCharCounter() }
-                    </FlexRow>
-                )}
-                {!this.props.footnote && (this.props.charCounter && this.props.maxLength && !this.props.isInvalid) && this.getCharCounter()}
+                {this.props.isInvalid && this.getInvalidSection()}
+                {this.props.footnote && this.getFootnoteSection()}
+                { isOnlyCharCounter && this.getCharCounter()}
             </div>
         );
     }
