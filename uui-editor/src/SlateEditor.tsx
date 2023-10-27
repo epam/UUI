@@ -98,7 +98,7 @@ function Editor(props: PlateEditorProps) {
         >
             { props.scrollbars
                 ? (
-                    <ScrollBars style={ { width: '100%' } }>
+                    <ScrollBars cx={ css.scrollbars }>
                         { renderEditor() }
                     </ScrollBars>
                 )
