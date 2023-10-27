@@ -91,7 +91,7 @@ function Editor(props: PlateEditorProps) {
                 (!props.isReadonly && isFocused) && uuiMod.focus,
                 props.isReadonly && uuiMod.readonly,
                 props.scrollbars && css.withScrollbars,
-                props.fontSize === '16' ? css.typography16 : css.typography14,
+                props.fontSize === '16' ? 'uui-typography-size-16' : 'uui-typography-size-14',
             ) }
             style={ { minHeight: props.minHeight || 350 } }
             { ...props.rawProps }
