@@ -12,7 +12,7 @@ export interface StatusIndicatorProps extends IHasCX {
     color?: StatusIndicatorColors;
     /** Fill mode, solid is used by default */
     fill?: 'solid' | 'outline';
-    /** Component caption. It's required. */
+    /** Component caption. */
     caption: string;
 }
 
