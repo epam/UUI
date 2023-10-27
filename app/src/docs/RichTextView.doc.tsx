@@ -18,7 +18,7 @@ export class RichTextViewDoc extends BaseDocsBlock {
 
     renderContent() {
         return (
-            <span className={ cx(css.wrapper, css.uuiThemePromo) }>
+            <span className={ cx(css.wrapper) }>
                 <EditableDocContent fileName="richTextView-descriptions" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/richTextView/Basic.example.tsx" />

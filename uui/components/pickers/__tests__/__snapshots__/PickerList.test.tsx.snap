@@ -164,7 +164,7 @@ exports[`PickerList should open body 1`] = `
             class="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
           >
             <div
-              class="root uui-text uui-font-semibold uui-color-primary line-height-24 font-size-18 v-padding-12 container"
+              class="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
             >
               Please select 
             </div>
@@ -256,7 +256,7 @@ exports[`PickerList should open body 1`] = `
                             class="renderItem"
                           >
                             <div
-                              class="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
+                              class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                             >
                               Elementary
                             </div>
@@ -285,7 +285,7 @@ exports[`PickerList should open body 1`] = `
                             class="renderItem"
                           >
                             <div
-                              class="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
+                              class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                             >
                               Elementary+
                             </div>
@@ -314,7 +314,7 @@ exports[`PickerList should open body 1`] = `
                             class="renderItem"
                           >
                             <div
-                              class="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
+                              class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                             >
                               Pre-Intermediate
                             </div>
@@ -343,7 +343,7 @@ exports[`PickerList should open body 1`] = `
                             class="renderItem"
                           >
                             <div
-                              class="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
+                              class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                             >
                               Pre-Intermediate+
                             </div>
@@ -372,7 +372,7 @@ exports[`PickerList should open body 1`] = `
                             class="renderItem"
                           >
                             <div
-                              class="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
+                              class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                             >
                               Intermediate
                             </div>
@@ -401,7 +401,7 @@ exports[`PickerList should open body 1`] = `
                             class="renderItem"
                           >
                             <div
-                              class="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
+                              class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                             >
                               Intermediate+
                             </div>
@@ -430,7 +430,7 @@ exports[`PickerList should open body 1`] = `
                             class="renderItem"
                           >
                             <div
-                              class="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
+                              class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                             >
                               Upper-Intermediate
                             </div>
@@ -459,7 +459,7 @@ exports[`PickerList should open body 1`] = `
                             class="renderItem"
                           >
                             <div
-                              class="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
+                              class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                             >
                               Upper-Intermediate+
                             </div>
@@ -488,7 +488,7 @@ exports[`PickerList should open body 1`] = `
                             class="renderItem"
                           >
                             <div
-                              class="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
+                              class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                             >
                               Advanced
                             </div>
@@ -517,7 +517,7 @@ exports[`PickerList should open body 1`] = `
                             class="renderItem"
                           >
                             <div
-                              class="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
+                              class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                             >
                               Advanced+
                             </div>
@@ -546,7 +546,7 @@ exports[`PickerList should open body 1`] = `
                             class="renderItem"
                           >
                             <div
-                              class="root uui-text uui-font-regular uui-color-primary line-height-18 font-size-14 v-padding-9 container"
+                              class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                             >
                               Proficiency
                             </div>

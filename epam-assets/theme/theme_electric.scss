@@ -123,7 +123,7 @@
     --uui-accent-50: var(--emerald-50);
     --uui-accent-60: var(--emerald-60);
     --uui-accent-70: var(--emerald-70);
-    --uui-accent-contrast: var(--uui-text-white);
+    --uui-accent-contrast: var(--white);
 
     --uui-primary-5: var(--electric-5);
     --uui-primary-10: var(--electric-10);
@@ -131,7 +131,7 @@
     --uui-primary-50: var(--electric-50);
     --uui-primary-60: var(--electric-60);
     --uui-primary-70: var(--electric-70);
-    --uui-primary-contrast: var(--uui-text-white);
+    --uui-primary-contrast: var(--white);
 
     --uui-secondary-5: var(--night200);
     --uui-secondary-10: var(--night300);
@@ -139,7 +139,7 @@
     --uui-secondary-50: var(--night600);
     --uui-secondary-60: var(--night700);
     --uui-secondary-70: var(--night800);
-    --uui-secondary-contrast: var(--uui-text-white);
+    --uui-secondary-contrast: var(--white);
 
     --uui-critical-5: var(--fire-5);
     --uui-critical-10: var(--fire-10);
@@ -147,7 +147,7 @@
     --uui-critical-50: var(--fire-50);
     --uui-critical-60: var(--fire-60);
     --uui-critical-70: var(--fire-70);
-    --uui-critical-contrast: var(--uui-text-white);
+    --uui-critical-contrast: var(--white);
 
     /* semantic colors */
 
@@ -157,7 +157,7 @@
     --uui-info-50: var(--electric-50);
     --uui-info-60: var(--electric-60);
     --uui-info-70: var(--electric-70);
-    --uui-info-contrast: var(--uui-text-white);
+    --uui-info-contrast: var(--white);
 
     --uui-success-5: var(--emerald-5);
     --uui-success-10: var(--emerald-10);
@@ -165,14 +165,14 @@
     --uui-success-50: var(--emerald-50);
     --uui-success-60: var(--emerald-60);
     --uui-success-70: var(--emerald-70);
-    --uui-success-contrast: var(--uui-text-white);
+    --uui-success-contrast: var(--white);
 
     --uui-warning-5: var(--sun-5);
     --uui-warning-10: var(--sun-10);
     --uui-warning-20: var(--sun-20);
     --uui-warning-50: var(--sun-50);
     --uui-warning-60: var(--sun-60);
-    --uui-warning-contrast: var(--uui-text-black);
+    --uui-warning-contrast: var(--uui-neutral-80);
 
     --uui-error-5: var(--fire-5);
     --uui-error-10: var(--fire-10);
@@ -180,7 +180,7 @@
     --uui-error-50: var(--fire-50);
     --uui-error-60: var(--fire-60);
     --uui-error-70: var(--fire-70);
-    --uui-error-contrast: var(--uui-text-white);
+    --uui-error-contrast: var(--white);
 
     --uui-neutral-0: #FFFFFF;
     --uui-neutral-5: var(--night50);
@@ -205,12 +205,6 @@
     --uui-surface-main: var(--uui-neutral-0);
     --uui-surface-higher: var(--uui-neutral-10);
     --uui-surface-highest: var(--uui-neutral-20);
-    --uui-surface-contrast: var(--uui-neutral-80);
-    --uui-surface-contrast-higher: var(--uui-neutral-90);
-
-    --uui-surface-info: var(--electric-10);
-    --uui-surface-critical: var(--fire-10);
-    --uui-surface-warning: var(--sun-10);
 
     --uui-divider: var(--uui-neutral-40);
     --uui-divider-light: var(--uui-neutral-30);
@@ -221,9 +215,6 @@
     --uui-text-tertiary: var(--uui-neutral-60);
     --uui-text-disabled: var(--uui-neutral-50);
     --uui-text-contrast: var(--uui-neutral-5);
-
-    --uui-text-white: var(--white);
-    --uui-text-black: var(--night800);
 
     --uui-text-info: var(--uui-info-70);
     --uui-text-warning: var(--uui-warning-70);
@@ -482,14 +473,14 @@
         --uui-color-50: var(--uui-secondary-50);
         --uui-color-60: var(--uui-secondary-60);
         --uui-color-70: var(--uui-secondary-70);
-        --uui-color-contrast: var(--uui-text-white);
+        --uui-color-contrast: var(--white);
     }
 
     /* TooltipContainer */
 
     .uui-tooltip-container.uui-color-neutral {
         --uui-tooltip-bg: var(--white);
-        --uui-color-contrast: var(--uui-text-black);
+        --uui-color-contrast: var(--uui-neutral-80);
     }
 
     .uui-tooltip-container.uui-color-critical {
@@ -498,7 +489,7 @@
 
     .uui-tooltip-container.uui-color-contrast {
         --uui-tooltip-bg: var(--night800);
-        --uui-color-contrast: var(--uui-text-white);
+        --uui-color-contrast: var(--white);
     }
 
     /* CuntIndicator */
@@ -506,7 +497,7 @@
     .uui-count_indicator.uui-color-neutral {
         --uui-count_indicator-bg: var(--uui-neutral-30);
         --uui-count_indicator-border: var(--uui-neutral-30);
-        --uui-color-contrast: var(--uui-text-black);
+        --uui-color-contrast: var(--uui-neutral-80);
     }
 
     /* Status Indicator */

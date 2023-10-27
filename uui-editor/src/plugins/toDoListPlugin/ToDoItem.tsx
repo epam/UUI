@@ -1,12 +1,10 @@
 import React from 'react';
-import { uuiSkin } from '@epam/uui-core';
+import { FlexRow, Checkbox } from '@epam/uui';
 
 import css from './ToDoItem.module.scss';
 import { useReadOnly } from 'slate-react';
 import { TTodoListItemElement } from '@udecode/plate-list';
 import { setNodes, findNodePath } from '@udecode/plate-common';
-
-const { Checkbox, FlexRow } = uuiSkin;
 
 export function ToDoItem(props: any): any {
     const isReadonly = useReadOnly();
