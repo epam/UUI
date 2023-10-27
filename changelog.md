@@ -1,12 +1,21 @@
+# ***
+
+**What's New**
+[Presets]: added the ability to add a modal confirmation window when deleting a preset
+[LabeledInput]: added possibility to customize validationMessage with react node
+
+**What's Fixed**
+[DataTableRow]: table row now consider rawProps property data
+
 # 5.2.0 - 16.10.2023
 
 **What's New**
-* [useVirtualList]:  
+* [useVirtualList]:
   * Breaking change: `scrollToIndex` prop was removed, use `scrollTo` instead.
   * Improved scrollTo functionality. Added configuration of scroll behavior and how to align item after scroll.
   * See the example [here](https://uui.epam.com/documents?id=virtualList#scroll_to_index)
 * [DataTable]: added possibility to pin rows inside table. It allows you to make some rows sticky inside their parent group. Use `pin` callback in `getRowOptions` function for this. See the example [here](https://uui.epam.com/documents?id=advancedTables&category=tables#table_with_pinned_rows).
-* [BaseListView]: 
+* [BaseListView]:
   * added `backgroundReload` property. If it is set to `true`, placeholders appear only on the first load and on fetching additional rows.
     Any filter/search/sorting change doesn't trigger placeholders' rendering. Old data is shown until new data is received. When reloading is started,
   * `getListProps` now returns `isReloading` flag, which signals that data is reloading.
