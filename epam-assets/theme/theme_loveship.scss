@@ -561,7 +561,7 @@
 
     /* Badge */
 
-    .uui-badge.uui-color-white.fill-outline {
+    .uui-badge.uui-color-white.uui-fill-outline {
         --uui-badge-bg-hover: var(--uui-neutral-10);
         --uui-badge-border: var(--uui-neutral-30);
         --uui-badge-border-hover: var(--uui-neutral-30);
@@ -577,7 +577,7 @@
         --uui-badge-border-hover: var(--uui-neutral-40);
         --uui-color-contrast: var(--uui-neutral-80);
 
-        &.fill-outline {
+        &.uui-fill-outline {
             --uui-badge-bg: var(--uui-neutral-20);
             --uui-badge-border: var(--uui-neutral-40);
             --uui-badge-bg-hover: var(--uui-neutral-30);
@@ -590,7 +590,7 @@
         --uui-badge-bg-hover: var(--uui-neutral-20);
         --uui-badge-border-hover: var(--uui-neutral-20);
 
-        &.fill-outline {
+        &.uui-fill-outline {
             --uui-badge-border: var(--uui-neutral-30);
             --uui-badge-border-hover: var(--uui-neutral-30);
             --uui-badge-caption: var(--uui-neutral-80);
@@ -598,14 +598,14 @@
         }
     }
 
-    .uui-badge.uui-color-night600.fill-outline {
+    .uui-badge.uui-color-night600.uui-fill-outline {
         --uui-badge-border: var(--night600);
         --uui-badge-border-hover: var(--night600);
         --uui-badge-caption: var(--night800);
         --uui-badge-caption-hover: var(--night800);
     }
 
-    .uui-badge.uui-color-yellow.fill-outline {
+    .uui-badge.uui-color-yellow.uui-fill-outline {
         --uui-badge-border: var(--yellow-20);
     }
 
@@ -647,7 +647,7 @@
 
     /* Status Indicator */
 
-    .uui-status_indicator.uui-color-white.fill-outline {
+    .uui-status_indicator.uui-color-white.uui-fill-outline {
         .uui-status_indicator_dot {
             background-color: color-mix(in srgb, var(--white) 20%, transparent);
             border: 1px solid var(--uui-neutral-40);
