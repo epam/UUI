@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { BaseDocsBlock, EditableDocContent, DocExample, UUI3, UUI4, UUI } from '../common';
+import { BaseDocsBlock, EditableDocContent, DocExample, UUI3, UUI4, UUI, TDocsGenType } from '../common';
 
 export class StatusIndicatorDoc extends BaseDocsBlock {
     title = 'StatusIndicator';
+
+    override getDocsGenType = (): TDocsGenType => ('@epam/uui:StatusIndicatorProps');
+
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/widgets/statusIndicator.props.tsx',

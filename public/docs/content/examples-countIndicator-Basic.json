@@ -1,0 +1,24 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "CountIndicator has different sizes and colors. It has "
+      },
+      {
+        "text": "24 size",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " by default. The "
+      },
+      {
+        "text": "color",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " property is required."
+      }
+    ]
+  }
+]
