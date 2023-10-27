@@ -25,8 +25,8 @@ export interface LabeledInputCoreProps
     maxLength?: number;
     /** Showing current text length, in characters and maxLength */
     charCounter?: boolean
-    /** Additional text in the bottom of LabeledInput */
-    footNote?: ReactNode;
-    /** Additional text in the top of LabeledInput */
-    sideNote?: ReactNode;
+    /** Additional info positioned at the bottom of LabeledInput */
+    footnote?: ReactNode;
+    /** Additional info positioned to the right side of label */
+    sidenote?: ReactNode;
 }

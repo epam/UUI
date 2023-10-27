@@ -61,10 +61,10 @@ export class LabeledInput extends React.Component<LabeledInputProps> {
                                     </div>
                                 )}
                             </label>
-                            {this.props.sideNote && (
+                            {this.props.sidenote && (
                                 <>
                                     <FlexSpacer />
-                                    {this.getSideNote(this.props.sideNote)}
+                                    {this.getSideNote(this.props.sidenote)}
                                 </>
                             )}
                         </div>
@@ -79,15 +79,15 @@ export class LabeledInput extends React.Component<LabeledInputProps> {
                         { this.props.charCounter && this.props.maxLength && this.getCharCounter()}
                     </FlexRow>
                 )}
-                {this.props.footNote && (
+                {this.props.footnote && (
                     <FlexRow alignItems="top" columnGap={ 12 }>
                         <div className={ uuiLabeledInput.footNote }>
-                            { this.props.footNote }
+                            { this.props.footnote }
                         </div>
                         { this.props.charCounter && this.props.maxLength && !this.props.isInvalid && this.getCharCounter() }
                     </FlexRow>
                 )}
-                {!this.props.footNote && (this.props.charCounter && this.props.maxLength && !this.props.isInvalid) && this.getCharCounter()}
+                {!this.props.footnote && (this.props.charCounter && this.props.maxLength && !this.props.isInvalid) && this.getCharCounter()}
             </div>
         );
     }

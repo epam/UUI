@@ -25,8 +25,8 @@ const labeledInputDoc = new DocBuilder<LabeledInputProps & LabeledInputMods>({ n
     .prop('value', { examples: ['Some simple text'] })
     .prop('maxLength', { examples: [5, 10, 20] })
     .prop('charCounter', { examples: [true, false] })
-    .prop('sideNote', { examples: ['This is a text in sideNote.'] })
-    .prop('footNote', { examples: ['This is a text in footNote.'] })
+    .prop('sidenote', { examples: ['This is a text in sideNote.'] })
+    .prop('footnote', { examples: ['This is a text in footNote.'] })
     .withContexts(DefaultContext, ResizableContext, FormContext);
 
 export default labeledInputDoc;

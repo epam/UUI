@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-10-26",
+ "timestamp": "2023-10-27",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -15278,10 +15278,10 @@
       "    maxLength?: number;",
       "    /** Showing current text length, in characters and maxLength */",
       "    charCounter?: boolean;",
-      "    /** Additional text in the bottom of LabeledInput */",
-      "    footNote?: ReactNode;",
-      "    /** Additional text in the top of LabeledInput */",
-      "    sideNote?: ReactNode;",
+      "    /** Additional info positioned at the bottom of LabeledInput */",
+      "    footnote?: ReactNode;",
+      "    /** Additional info positioned to the right side of label */",
+      "    sidenote?: ReactNode;",
       "}"
      ]
     },
@@ -15366,9 +15366,9 @@
      },
      {
       "uid": 8,
-      "name": "footNote",
+      "name": "footnote",
       "comment": [
-       "Additional text in the bottom of LabeledInput"
+       "Additional info positioned at the bottom of LabeledInput"
       ],
       "typeValue": {
        "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
@@ -15377,9 +15377,9 @@
      },
      {
       "uid": 9,
-      "name": "sideNote",
+      "name": "sidenote",
       "comment": [
-       "Additional text in the top of LabeledInput"
+       "Additional info positioned to the right side of label"
       ],
       "typeValue": {
        "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
@@ -30586,9 +30586,9 @@
      },
      {
       "uid": 10,
-      "name": "footNote",
+      "name": "footnote",
       "comment": [
-       "Additional text in the bottom of LabeledInput"
+       "Additional info positioned at the bottom of LabeledInput"
       ],
       "typeValue": {
        "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
@@ -30598,9 +30598,9 @@
      },
      {
       "uid": 11,
-      "name": "sideNote",
+      "name": "sidenote",
       "comment": [
-       "Additional text in the top of LabeledInput"
+       "Additional info positioned to the right side of label"
       ],
       "typeValue": {
        "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
@@ -52443,9 +52443,9 @@
      },
      {
       "uid": 10,
-      "name": "footNote",
+      "name": "footnote",
       "comment": [
-       "Additional text in the bottom of LabeledInput"
+       "Additional info positioned at the bottom of LabeledInput"
       ],
       "typeValue": {
        "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
@@ -52455,9 +52455,9 @@
      },
      {
       "uid": 11,
-      "name": "sideNote",
+      "name": "sidenote",
       "comment": [
-       "Additional text in the top of LabeledInput"
+       "Additional info positioned to the right side of label"
       ],
       "typeValue": {
        "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
@@ -60160,7 +60160,7 @@
       "    color?: StatusIndicatorColors;",
       "    /** Fill mode, solid is used by default */",
       "    fill?: 'solid' | 'outline';",
-      "    /** Component caption. It's required. */",
+      "    /** Component caption. */",
       "    caption: string;",
       "}"
      ]
@@ -60203,7 +60203,7 @@
       "uid": 4,
       "name": "caption",
       "comment": [
-       "Component caption. It's required."
+       "Component caption."
       ],
       "typeValue": {
        "raw": "string"
@@ -67127,7 +67127,7 @@
       "uid": 5,
       "name": "caption",
       "comment": [
-       "Component caption. It's required."
+       "Component caption."
       ],
       "typeValue": {
        "raw": "string"
@@ -67198,7 +67198,7 @@
       "uid": 4,
       "name": "caption",
       "comment": [
-       "Component caption. It's required."
+       "Component caption."
       ],
       "typeValue": {
        "raw": "string"
@@ -72152,7 +72152,7 @@
       "uid": 5,
       "name": "caption",
       "comment": [
-       "Component caption. It's required."
+       "Component caption."
       ],
       "typeValue": {
        "raw": "string"
@@ -72223,7 +72223,7 @@
       "uid": 4,
       "name": "caption",
       "comment": [
-       "Component caption. It's required."
+       "Component caption."
       ],
       "typeValue": {
        "raw": "string"
