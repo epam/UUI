@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 901,
-   "amountTypes": 291
+   "amountProps": 864,
+   "amountTypes": 277
   },
   "value": [
    {
@@ -134,12 +134,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:ColumnsConfig",
-    "value": [
-     "[key: string]"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:CommonContexts",
     "value": [
      "api",
@@ -159,8 +153,6 @@
    {
     "typeRef": "@epam/uui-core:DataColumnProps",
     "value": [
-     "canAcceptCopy",
-     "canCopy",
      "justifyContent"
     ]
    },
@@ -202,36 +194,9 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:DataSourceListProps",
-    "value": [
-     "selectAll"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataSourceState",
-    "value": [
-     "checked",
-     "filter",
-     "focusedIndex",
-     "folded",
-     "page",
-     "pageSize",
-     "search",
-     "selectedId",
-     "sorting"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:DataTableCellProps",
     "value": [
      "renderUnknown"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataTableColumnsConfigOptions",
-    "value": [
-     "allowColumnsReordering",
-     "allowColumnsResizing"
     ]
    },
    {
@@ -263,30 +228,6 @@
      "renderCell",
      "renderConfigButton",
      "selectAll"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataTableRowProps",
-    "value": [
-     "columns",
-     "renderCell",
-     "renderDropMarkers"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataTableSelectedCellData",
-    "value": [
-     "column",
-     "row"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataTableState",
-    "value": [
-     "columnsConfig",
-     "filtersConfig",
-     "presetId",
-     "viewState"
     ]
    },
    {
@@ -445,24 +386,9 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:IColumnConfig",
-    "value": [
-     "isVisible",
-     "order",
-     "width"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:IContextProviderSsrProps",
     "value": [
      "router"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IdAndName",
-    "value": [
-     "id",
-     "name"
     ]
    },
    {
@@ -532,24 +458,9 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:IFilterConfig",
-    "value": [
-     "isVisible",
-     "order"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:IFilterItemBodyProps",
     "value": [
      "selectedPredicate"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IFilterPredicate",
-    "value": [
-     "isDefault",
-     "name",
-     "predicate"
     ]
    },
    {
@@ -730,6 +641,7 @@
      "load",
      "loadMissing",
      "loadMissingIdsAndParents",
+     "mergeItems",
      "patch",
      "search",
      "sort"
@@ -753,10 +665,13 @@
    {
     "typeRef": "@epam/uui-core:LazyDataSourceApiRequest",
     "value": [
+     "filter",
      "ids",
      "page",
      "pageSize",
-     "range"
+     "range",
+     "search",
+     "sorting"
     ]
    },
    {
@@ -764,14 +679,6 @@
     "value": [
      "parent",
      "parentId"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:LazyDataSourceApiRequestOptions",
-    "value": [
-     "filter",
-     "search",
-     "sorting"
     ]
    },
    {
@@ -796,6 +703,7 @@
     "typeRef": "@epam/uui-core:LoadTreeOptions",
     "value": [
      "isFolded",
+     "isLoadStrict",
      "loadAllChildren"
     ]
    },
@@ -904,21 +812,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:RenderEditorProps",
-    "value": [
-     "mode",
-     "rowProps"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ScrollToConfig",
-    "value": [
-     "align",
-     "behavior",
-     "index"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:SearchResultItem",
     "value": [
      "parents"
@@ -950,13 +843,6 @@
      "initialState",
      "render",
      "storage"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:TimePickerValue",
-    "value": [
-     "hours",
-     "minutes"
     ]
    },
    {
@@ -1185,7 +1071,8 @@
     "value": [
      "editMode",
      "listView",
-     "rows"
+     "rows",
+     "searchPosition"
     ]
    },
    {
@@ -1490,7 +1377,6 @@
    {
     "typeRef": "@epam/uui-components:ScrollbarProps",
     "value": [
-     "disableScroll",
      "hasBottomShadow",
      "hasTopShadow",
      "renderView"
@@ -1534,6 +1420,13 @@
     ]
    },
    {
+    "typeRef": "@epam/uui-components:TimePickerValue",
+    "value": [
+     "hours",
+     "minutes"
+    ]
+   },
+   {
     "typeRef": "@epam/uui-components:TooltipState",
     "value": [
      "isOpen"
@@ -1562,15 +1455,6 @@
     "value": [
      "shouldShowBody",
      "toggleModalOpening"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:VirtualListRenderRowsParams",
-    "value": [
-     "estimatedHeight",
-     "listContainerRef",
-     "offsetY",
-     "scrollShadows"
     ]
    },
    {
@@ -2022,6 +1906,15 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:VirtualListRenderRowsParams",
+    "value": [
+     "estimatedHeight",
+     "listContainerRef",
+     "offsetY",
+     "scrollShadows"
+    ]
+   },
+   {
     "typeRef": "@epam/promo:AlertMods",
     "value": [
      "color"
@@ -2365,7 +2258,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 468
+   "amountTypes": 465
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -2439,7 +2332,6 @@
    "@epam/uui-core:IApiContext",
    "@epam/uui-core:IColumnConfig",
    "@epam/uui-core:IContextProviderSsrProps",
-   "@epam/uui-core:IdAndName",
    "@epam/uui-core:IDataSource",
    "@epam/uui-core:IDataSourceView",
    "@epam/uui-core:IDndContext",
@@ -2468,8 +2360,8 @@
    "@epam/uui-core:IUserSettingsContext",
    "@epam/uui-core:LabeledInputCoreProps",
    "@epam/uui-core:LayoutLayer",
+   "@epam/uui-core:LazyDataSourceApiRequest",
    "@epam/uui-core:LazyDataSourceProps",
-   "@epam/uui-core:Link",
    "@epam/uui-core:ListApiResponse",
    "@epam/uui-core:ListApiSettings",
    "@epam/uui-core:LoadingStatus",
@@ -2495,7 +2387,6 @@
    "@epam/uui-core:RenderCellProps",
    "@epam/uui-core:RenderEditorProps",
    "@epam/uui-core:ScrollAlign",
-   "@epam/uui-core:ScrollToConfig",
    "@epam/uui-core:SearchResultItem",
    "@epam/uui-core:SkinContextComponentProps",
    "@epam/uui-core:SortDirection",
@@ -2504,7 +2395,6 @@
    "@epam/uui-core:StatefulProps",
    "@epam/uui-core:TableFiltersConfig",
    "@epam/uui-core:TextInputCoreProps",
-   "@epam/uui-core:TimePickerValue",
    "@epam/uui-core:TMouseCoords",
    "@epam/uui-core:TooltipCoreProps",
    "@epam/uui-core:TreeNodeInfo",
@@ -2595,6 +2485,7 @@
    "@epam/uui-components:TextInputProps",
    "@epam/uui-components:TextProps",
    "@epam/uui-components:TimePickerBodyProps",
+   "@epam/uui-components:TimePickerValue",
    "@epam/uui-components:TooltipProps",
    "@epam/uui-components:TooltipState",
    "@epam/uui-components:TreeListItem",
@@ -2603,8 +2494,6 @@
    "@epam/uui-components:UsePickerListProps",
    "@epam/uui-components:UsePickerModalProps",
    "@epam/uui-components:ViewType",
-   "@epam/uui-components:VirtualListProps",
-   "@epam/uui-components:VirtualListRenderRowsParams",
    "@epam/uui-components:YearSelectionProps",
    "@epam/uui:AccordionMods",
    "@epam/uui:AccordionProps",
@@ -2725,6 +2614,7 @@
    "@epam/uui:TooltipProps",
    "@epam/uui:UuiMultiSwitchColor",
    "@epam/uui:VerticalTabButtonProps",
+   "@epam/uui:VirtualListProps",
    "@epam/promo:AlertMods",
    "@epam/promo:AlertProps",
    "@epam/promo:BadgeMods",
@@ -2840,10 +2730,10 @@
  },
  "ignoredExports": {
   "totals": {
-   "allExports": 714,
+   "allExports": 713,
    "byModule": {
     "@epam/uui-core": 132,
-    "@epam/uui-components": 106,
+    "@epam/uui-components": 105,
     "@epam/uui": 148,
     "@epam/promo": 127,
     "@epam/loveship": 139,
@@ -3103,8 +2993,7 @@
      "uuiSlider",
      "uuiTimePicker",
      "uuiYearSelection",
-     "valueFormat",
-     "VirtualList"
+     "valueFormat"
     ]
    },
    "@epam/uui": {
@@ -3621,11 +3510,11 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 540,
+   "allExports": 538,
    "byModule": {
-    "@epam/uui-core": 208,
-    "@epam/uui-components": 93,
-    "@epam/uui": 125,
+    "@epam/uui-core": 205,
+    "@epam/uui-components": 92,
+    "@epam/uui": 127,
     "@epam/promo": 48,
     "@epam/loveship": 57,
     "@epam/uui-editor": 9
@@ -3701,7 +3590,6 @@
      "ICanRedirect",
      "IClickable",
      "IContextProviderSsrProps",
-     "IdAndName",
      "IDataSource",
      "IDisableable",
      "IDndActor",
@@ -3743,7 +3631,6 @@
      "LayoutLayer",
      "LazyDataSourceApiRequest",
      "LazyDataSourceApiRequestContext",
-     "LazyDataSourceApiRequestOptions",
      "LazyDataSourceApiRequestRange",
      "LazyDataSourceApiResponse",
      "LazyDataSourceProps",
@@ -3770,7 +3657,6 @@
      "SpinnerCoreProps",
      "StatefulProps",
      "TextInputCoreProps",
-     "TimePickerValue",
      "TooltipCoreProps",
      "TreeNodeInfo",
      "TreeParams",
@@ -3863,8 +3749,7 @@
      "UsePickerInputProps",
      "UsePickerListProps",
      "UsePickerModalProps",
-     "ViewType",
-     "VirtualListProps"
+     "ViewType"
     ],
     "InterfaceDeclaration": [
      "AccordionState",
@@ -3937,11 +3822,11 @@
      "TextAreaProps",
      "TextInputProps",
      "TimePickerBodyProps",
+     "TimePickerValue",
      "TooltipProps",
      "TooltipState",
      "TreeListItem",
      "TreeProps",
-     "VirtualListRenderRowsParams",
      "YearSelectionProps"
     ]
    },
@@ -4025,7 +3910,8 @@
      "TextMods",
      "TextSettings",
      "TimePickerProps",
-     "TooltipMods"
+     "TooltipMods",
+     "VirtualListRenderRowsParams"
     ],
     "TypeAliasDeclaration": [
      "AccordionProps",
@@ -4073,7 +3959,8 @@
      "TextSize",
      "TooltipProps",
      "UuiMultiSwitchColor",
-     "VerticalTabButtonProps"
+     "VerticalTabButtonProps",
+     "VirtualListProps"
     ]
    },
    "@epam/promo": {

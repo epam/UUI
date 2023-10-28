@@ -1,0 +1,38 @@
+[
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "One of the DataSource input is a "
+      },
+      {
+        "text": "DataSourceState",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". It provides control over a search string, filter, sorting options, etc."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Below you can find the table with list of its properties:"
+      }
+    ]
+  },
+  {
+    "type": "type-ref-table",
+    "children": [
+      {
+        "text": ""
+      }
+    ],
+    "data": {
+      "typePath": "@epam/uui-core:DataSourceState"
+    }
+  }
+]

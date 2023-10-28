@@ -5,3 +5,4 @@ export * from './types';
 export * from './helpers';
 export * from './migration';
 export * from './serialization';
+export * from './implementation/ToolbarButton';
