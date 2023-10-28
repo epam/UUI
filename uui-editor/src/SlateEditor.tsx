@@ -2,21 +2,13 @@ import { ScrollBars } from '@epam/uui-components';
 import { IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod } from '@epam/uui-core';
 import React, { Fragment, useMemo, useRef, useState } from 'react';
 
-import {
-    Plate,
-    PlateEditor,
-    PlateProvider,
-    Value,
-    createPlugins,
-    useEventEditorSelectors,
-    usePlateEditorState,
-} from '@udecode/plate-common';
+import { Plate, PlateEditor, PlateProvider, Value, createPlugins, useEventEditorSelectors, usePlateEditorState } from '@udecode/plate-common';
 
 import css from './SlateEditor.module.scss';
 import { createPlateUI } from './components';
 import { migrateSchema } from './migration';
 import { baseMarksPlugin } from './plugins';
-import { MainToolbar, MarksToolbar } from './plugins/Toolbars';
+import { MainToolbar, MarksToolbar } from './implementation/Toolbars';
 import { EditorValue } from './types';
 import { defaultPlugins } from './defaultPlugins';
 import { isEditorValueEmpty } from './helpers';
