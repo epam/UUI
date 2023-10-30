@@ -35,13 +35,6 @@
             border-color: var(--uui-btn-border-hover);
         }
 
-        &:focus {
-            background-color: var(--uui-btn-bg-hover);
-            border-color: var(--uui-btn-border-hover);
-            box-shadow: var(--uui-btn-focus-shadow);
-            outline: var(--uui-btn-focus-outline);
-        }
-
         &:active {
             background-color: var(--uui-btn-bg-active);
             border-color: var(--uui-btn-border-active);
@@ -68,13 +61,22 @@
         user-select: none;
     }
 
+    &:is(:global(.-clickable), :hover, :active, :focus):global(.uui-disabled),
     &:global(.uui-disabled) {
-        @include button-disables-styles(var(--uui-btn-bg-disabled), var(--uui-btn-border-disabled));
-    }
-
-    &:global(.-clickable), &:hover, &:active, &:focus {
-        &:global(.uui-disabled) {
+        &:global(.uui-fill-solid) {
             @include button-disables-styles(var(--uui-btn-bg-disabled), var(--uui-btn-border-disabled));
+        }
+
+        &:global(.uui-fill-outline) {
+            @include button-disables-styles(var(--uui-surface-main), var(--uui-btn-border-disabled));
+        }
+
+        &:global(.uui-fill-none) {
+            @include button-disables-styles(transparent, var(--uui-btn-border-disabled));
+        }
+
+        &:global(.uui-fill-ghost) {
+            @include button-disables-styles(transparent, transparent);
         }
     }
 

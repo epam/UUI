@@ -88,7 +88,7 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
                     </>
                 )}
                 <FlexCell cx={ css.moduleContent } minWidth={ isDesktop && 894 } width={ !isDesktop ? '100%' : undefined }>
-                    <Text font="promo" cx={ css.moduleHeader }>
+                    <Text font="primary" cx={ css.moduleHeader }>
                         Module 3: Module Name
                     </Text>
                     {sortedSections.map((section, index) => (
