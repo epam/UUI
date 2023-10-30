@@ -40,7 +40,6 @@ export class Blocker extends React.Component<BlockerProps> {
             >
                 <TransitionGroup>
                     {this.props.isEnabled && (
-                        /* TODO: fix class */
                         <CSSTransition nodeRef={ this.transitionRef } classNames={ uuiBlocker } timeout={ { enter: 2000, exit: 1000 } }>
                             <div ref={ this.transitionRef } className={ uuiBlocker.blocker }>
                                 {!this.props.hideSpinner && this.props.renderSpinner && this.props.renderSpinner(this.props)}
