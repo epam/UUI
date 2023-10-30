@@ -26,7 +26,7 @@
         }
     }
 
-    &:global(.fill-outline) {
+    &:global(.uui-fill-outline) {
         :global(.uui-status_indicator_dot) {
             background-color: color-mix(in srgb, var(--uui-color-50) 20%, transparent);
             border: 1px solid var(--uui-color-50);

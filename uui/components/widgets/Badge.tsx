@@ -34,7 +34,7 @@ export function applyBadgeMods(mods: BadgeMods) {
         'uui-badge',
         css.root,
         css['size-' + (mods.size || defaultSize)],
-        `fill-${mods.fill || 'solid'}`,
+        `uui-fill-${mods.fill || 'solid'}`,
         mods.color && `uui-color-${mods.color}`,
         mods.indicator && 'uui-indicator',
     ];

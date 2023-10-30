@@ -13,14 +13,14 @@ export interface LabeledInputProps extends LabeledInputCoreProps {
     infoIcon?: Icon;
 }
 
-const uuiLabeledInput: Record<string, string> = {
+const uuiLabeledInput = {
     infoIcon: 'uui-labeled-input-info-icon',
     asterisk: 'uui-labeled-input-asterisk',
     optional: 'uui-labeled-input-optional',
     charCounter: 'uui-labeled-input-char-counter',
     footNote: 'uui-labeled-input-footnote',
     sideNote: 'uui-labeled-input-sidenote',
-};
+} as const;
 
 export class LabeledInput extends React.Component<LabeledInputProps> {
     getSideNote = (sideNote: React.ReactNode): React.ReactNode => {

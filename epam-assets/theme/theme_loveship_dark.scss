@@ -539,8 +539,8 @@
 
     /* Badge */
 
-    .uui-badge.fill-outline {
-        .fill-outline.uui-count_indicator {
+    .uui-badge.uui-fill-outline {
+        .uui-count_indicator {
             --uui-count_indicator-bg: var(--uui-neutral-20);
             --uui-count_indicator-border: var(--uui-neutral-50);
             --uui-count_indicator-caption: var(--uui-neutral-80);
@@ -555,7 +555,7 @@
         --uui-badge-border-hover: var(--uui-neutral-30);
         --uui-color-contrast: var(--uui-neutral-5);
 
-        &.fill-outline {
+        &.uui-fill-outline {
             --uui-badge-bg: var(--uui-neutral-60);
             --uui-badge-bg-hover: var(--uui-neutral-50);
             --uui-badge-border: var(--uui-neutral-30);
@@ -566,7 +566,7 @@
     }
 
     .uui-badge.uui-color-white {
-        &.fill-outline {
+        &.uui-fill-outline {
             --uui-badge-bg: color-mix(in srgb, var(--white) 8%, transparent);
             --uui-badge-bg-hover: color-mix(in srgb, var(--white) 16%, transparent);
             --uui-badge-caption: var(--white);
@@ -582,7 +582,7 @@
         --uui-badge-caption: var(--white);
         --uui-badge-caption-hover: var(--white);
 
-        &.fill-outline {
+        &.uui-fill-outline {
             --uui-badge-bg: color-mix(in srgb, var(--white) 20%, transparent);
             --uui-badge-bg-hover: color-mix(in srgb, var(--white) 25%, transparent);
             --uui-badge-border: var(--uui-neutral-20);
@@ -600,7 +600,7 @@
         --uui-badge-caption: var(--white);
         --uui-badge-caption-hover: var(--white);
 
-        &.fill-outline {
+        &.uui-fill-outline {
             --uui-badge-border: var(--uui-neutral-30);
             --uui-badge-border-hover: var(--uui-neutral-30);
             --uui-badge-caption: var(--uui-neutral-5);
@@ -608,7 +608,7 @@
         }
     }
 
-    .uui-badge.uui-color-info.fill-outline {
+    .uui-badge.uui-color-info.uui-fill-outline {
         --uui-badge-bg: var(--blue-5);
         --uui-badge-bg-hover: var(--blue-10);
         --uui-badge-border: var(--blue-20);
@@ -720,7 +720,7 @@
 
     /* Status Indicator */
 
-    .uui-status_indicator.uui-color-white.fill-outline {
+    .uui-status_indicator.uui-color-white.uui-fill-outline {
         .uui-status_indicator_dot {
             background-color: color-mix(in srgb, var(--white) 20%, transparent);
             border: 1px solid var(--white);
@@ -733,7 +733,7 @@
             background-color: var(--uui-neutral-30);
         }
 
-        &.fill-outline {
+        &.uui-fill-outline {
             .uui-status_indicator_dot {
                 background-color: color-mix(in srgb, var(--uui-neutral-30) 20%, transparent);
                 border: 1px solid var(--uui-neutral-30);
