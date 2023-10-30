@@ -301,6 +301,7 @@
     }
 
     .uui-color-secondary,
+    .uui-color-neutral,
     .uui-color-gray {
         --uui-color-5: var(--uui-secondary-5);
         --uui-color-10: var(--uui-secondary-10);
@@ -394,7 +395,6 @@
         --uui-color-contrast: var(--gray80);
     }
 
-    .uui-color-neutral,
     .uui-color-gray30 {
         --uui-color-5: var(--gray20);
         --uui-color-10: var(--gray30);
@@ -578,6 +578,12 @@
 
     .uui-badge.uui-color-yellow.fill-outline {
         --uui-badge-border: var(--yellow-20);
+    }
+
+    /* Button */
+
+    .uui-button:is(.uui-color-secondary, .uui-color-neutral, .uui-color-gray, .uui-color-gray50, .uui-color-gray60):is(.uui-fill-outline, .uui-fill-none, .uui-fill-ghost) {
+        --uui-btn-caption: var(--uui-neutral-70);
     }
 
     /* IconButton */

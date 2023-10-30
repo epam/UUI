@@ -298,6 +298,7 @@
         --uui-color-contrast: var(--white);
     }
 
+    .uui-button.uui-color-accent,
     .uui-color-primary,
     .uui-color-electric,
     .uui-color-info {
@@ -332,7 +333,7 @@
         --uui-color-contrast: var(--night800);
     }
 
-    .uui-color-gray,
+    .uui-color-neutral,
     .uui-color-secondary {
         --uui-color-5: var(--uui-secondary-5);
         --uui-color-10: var(--uui-secondary-10);
@@ -462,6 +463,12 @@
 
     .uui-badge.uui-color-yellow.fill-outline {
         --uui-badge-border: var(--yellow-20);
+    }
+
+    /* Button */
+
+    .uui-button:is(.uui-color-secondary, .uui-color-neutral):is(.uui-fill-outline, .uui-fill-none, .uui-fill-ghost) {
+        --uui-btn-caption: var(--uui-neutral-70);
     }
 
     /* IconButton */
