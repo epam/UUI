@@ -25,7 +25,7 @@ export const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>(
                 css[`size-${props.size || 24}`],
                 'uui-status_indicator',
                 `uui-color-${props.color || 'neutral'}`,
-                `fill-${props.fill || 'solid'}`,
+                `uui-fill-${props.fill || 'solid'}`,
                 props.cx,
             ]) }
         >

@@ -30,7 +30,7 @@ const uuiAccordion = {
     toggler: 'uui-accordion-toggler',
     toggleContainer: 'uui-accordion-toggle-container',
     body: 'uui-accordion-body',
-};
+} as const;
 
 const isEditableAccordionProps = (props: AccordionProps): props is EditableAccordionProps => (props as EditableAccordionProps).onValueChange !== undefined;
 

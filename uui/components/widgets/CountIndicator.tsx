@@ -15,7 +15,7 @@ export const CountIndicator = forwardRef<HTMLDivElement, CountIndicatorProps>((p
             className={ cx([
                 css.root,
                 'uui-count_indicator',
-                `size-${props.size || 24}`,
+                css[`size-${props.size || 24}`],
                 props.color && `uui-color-${props.color}`,
                 props.cx,
             ]) }
