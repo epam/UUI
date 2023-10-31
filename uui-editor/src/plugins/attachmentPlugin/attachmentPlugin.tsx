@@ -2,12 +2,14 @@ import { AttachmentBlock } from './AttachmentBlock';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { createPluginFactory, insertEmptyElement } from '@udecode/plate-common';
+import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { AttachFileButton } from "./AttachFileButton";
 
 export const ATTACHMENT_PLUGIN_KEY = 'attachment';
 export const ATTACHMENT_PLUGIN_TYPE = 'attachment';
 
 export const attachmentPlugin = () => {
-    const createAttachmentPlugin = createPluginFactory({
+    const createAttachmentPlugin = createPluginFactory<IHasToolbarButton>({
         key: ATTACHMENT_PLUGIN_KEY,
         type: ATTACHMENT_PLUGIN_TYPE,
         isElement: true,
@@ -22,6 +24,9 @@ export const attachmentPlugin = () => {
             },
         },
         component: AttachmentBlock,
+        options: {
+            bottomBarButton: AttachFileButton,
+        },
     });
 
     return createAttachmentPlugin();

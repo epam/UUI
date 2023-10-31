@@ -2,20 +2,12 @@ import React, { Fragment, useMemo, useRef, useState } from 'react';
 import { IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod } from '@epam/uui-core';
 import { ScrollBars } from '@epam/uui';
 
-import {
-    Plate,
-    PlateEditor,
-    PlateProvider,
-    Value,
-    createPlugins,
-    useEventEditorSelectors,
-    usePlateEditorState,
-} from '@udecode/plate-common';
+import { Plate, PlateEditor, PlateProvider, Value, createPlugins, useEventEditorSelectors, usePlateEditorState } from '@udecode/plate-common';
 
 import { createPlateUI } from './components';
 import { migrateSchema } from './migration';
 import { baseMarksPlugin } from './plugins';
-import { MainToolbar, MarksToolbar } from './plugins/Toolbars';
+import { MainToolbar, MarksToolbar } from './implementation/Toolbars';
 import { EditorValue } from './types';
 import { defaultPlugins } from './defaultPlugins';
 import { isEditorValueEmpty } from './helpers';

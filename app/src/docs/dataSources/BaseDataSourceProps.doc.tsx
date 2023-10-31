@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../../../common';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 
 export class DataSourcesBaseDataSourcePropsDoc extends BaseDocsBlock {
     title = 'DataSource Props';
@@ -9,8 +9,7 @@ export class DataSourcesBaseDataSourcePropsDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName="dataSources-base-props" />
 
-                <DocExample title="Common DataSource Props" path="./_examples/dataSources/BaseDataSourceProps.code.example.ts" onlyCode={ true } />
-                <EditableDocContent fileName="dataSources-base-props-overview" />
+                <EditableDocContent title="Common DataSource Props" fileName="dataSources-base-props-overview" />
                 
                 <DocExample title="getId and getParentId" path="./_examples/dataSources/DataSourcePropsIds.example.tsx" />
                 <DocExample title="complexIds" path="./_examples/dataSources/DataSourcePropsComplexIds.example.tsx" />

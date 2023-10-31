@@ -1,4 +1,4 @@
-import { Link, LayoutLayer, AnalyticsEvent } from './objects';
+import { Link, AnalyticsEvent } from './objects';
 import * as PropTypes from 'prop-types';
 import { IModal, INotification } from './props';
 import { TMouseCoords } from '../services/dnd/DndContext';
@@ -6,6 +6,7 @@ import { Lock } from '../services/LockContext';
 import { IHistory4 } from '../services/routing/HistoryAdaptedRouter';
 import { NotificationOperation } from '../services/NotificationContext';
 import { ModalOperation } from '../services/ModalContext';
+import { LayoutLayer } from '../services/LayoutContext';
 
 import { FileUploadOptions, FileUploadResponse } from '../services/ApiContext';
 

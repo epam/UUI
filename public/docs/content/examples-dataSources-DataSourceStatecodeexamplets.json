@@ -1,53 +1,36 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "The last piece of a ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " input is a ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " state. It provides control over a search string, filter, sorting options, etc.",
-            "marks": []
-          }
-        ]
+        "text": "The last piece of a "
+      },
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " input is a "
+      },
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " state. It provides control over a search string, filter, sorting options, etc."
+      }
+    ]
+  },
+  {
+    "data": {
+      "typePath": "@epam/uui-core:DataTableState"
+    },
+    "type": "type-ref-table",
+    "children": [
+      {
+        "text": ""
       }
     ]
   }
-}
+]

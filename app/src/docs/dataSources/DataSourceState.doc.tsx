@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../../../common';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 
 export class DataSourcesDataSourceStateDoc extends BaseDocsBlock {
     title = 'DataSource State';
@@ -8,9 +8,8 @@ export class DataSourcesDataSourceStateDoc extends BaseDocsBlock {
         return (
             <>
                 <EditableDocContent fileName="dataSources-dataSource-state" />
-                
-                <DocExample title="DataSourceState" path="./_examples/dataSources/DataSourceState.code.example.ts" onlyCode={ true } />
-                <EditableDocContent fileName="dataSources-source-state-overview" />
+
+                <EditableDocContent title="DataSourceState" fileName="dataSources-dataSource-description" />
 
                 <DocExample title="Search" path="./_examples/dataSources/DataSourceStateSearch.example.tsx" />
                 <DocExample title="Filter" path="./_examples/dataSources/DataSourceStateFilter.example.tsx" />

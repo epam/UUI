@@ -3,24 +3,34 @@
 **What's New**
 * [Badge]: deprecated mode fill="transparent", and deprecated mode fill="semitransparent", they will be removed in future release.
 * [Badge]: removed mode fill="white", and "none", use fill="outline" + color instead them.
-* [useVirtualList]:  
-  * Breaking change: `scrollToIndex` prop was removed, use `scrollTo` instead.
-  * Improved scrollTo functionality. Added configuration of scroll behavior and how to align item after scroll.
-  * See the example [here](https://uui.epam.com/documents?id=virtualList#scroll_to_index)
-* [DataTable]: added possibility to pin rows inside table. It allows you to make some rows sticky inside their parent group. Use `pin` callback in `getRowOptions` function for this. See the example [here](https://uui.epam.com/documents?id=advancedTables&category=tables#table_with_pinned_rows).
-* [BaseListView]: 
-  * added `backgroundReload` property. If it is set to `true`, placeholders appear only on the first load and on fetching additional rows.
-    Any filter/search/sorting change doesn't trigger placeholders' rendering. Old data is shown until new data is received. When reloading is started,
-  * `getListProps` now returns `isReloading` flag, which signals that data is reloading.
-* [DataTable][Pickers]: Added Blocker overlay while loading. It appears on initial render and filter, search, sort, page number, and size change.
-* [InputAddon]: added InputAddon component that can be used in cases when you need to add prefix or suffix to the component with ControlGroup.
-* Use Vitest instead of Jest in Vite UUI template app
+* [Presets]: added the ability to add a modal confirmation window when deleting a preset
+* [LabeledInput]: added possibility to customize validationMessage with react node
 * [RichTextEditor]: added css variables for theming instead `SkinContext`
 * [skinContext]: removed from `UuiContexts`
 * [Button]: added `neutral` value to `color` prop
 * [ScrollBars]: removed 'theme' prop for "Promo" & "Loveship" skins
 * [Checkbox]: removed 'theme' prop for "Loveship" skin
 * typography files removed from skins and imported by default via import into the `@epam/uui` package, if you used mixins before, add the `uui-typography` class where you need it now
+
+**What's Fixed**
+* [DataTableRow]: table row now consider rawProps property data
+* [DatePickerHeader]: fixed 'navIconLeft', 'navIconRight' props
+
+# 5.2.0 - 16.10.2023
+
+**What's New**
+* [useVirtualList]:
+  * Breaking change: `scrollToIndex` prop was removed, use `scrollTo` instead.
+  * Improved scrollTo functionality. Added configuration of scroll behavior and how to align item after scroll.
+  * See the example [here](https://uui.epam.com/documents?id=virtualList#scroll_to_index)
+* [DataTable]: added possibility to pin rows inside table. It allows you to make some rows sticky inside their parent group. Use `pin` callback in `getRowOptions` function for this. See the example [here](https://uui.epam.com/documents?id=advancedTables&category=tables#table_with_pinned_rows).
+* [BaseListView]:
+  * added `backgroundReload` property. If it is set to `true`, placeholders appear only on the first load and on fetching additional rows.
+    Any filter/search/sorting change doesn't trigger placeholders' rendering. Old data is shown until new data is received. When reloading is started,
+  * `getListProps` now returns `isReloading` flag, which signals that data is reloading.
+* [DataTable][Pickers]: Added Blocker overlay while loading. It appears on initial render and filter, search, sort, page number, and size change.
+* [InputAddon]: added InputAddon component that can be used in cases when you need to add prefix or suffix to the your component with ControlGroup.
+* Use Vitest instead of Jest in Vite UUI template app
 
 **What's Fixed**
 * [UUI Contexts]: fixed context initialization for react 18 with strict mode
@@ -33,10 +43,8 @@
 * [useForm]: recover from `isInProgress=true` state if `onSave` is rejected
 * [TabButton]: fixed notify dot, that it will not change button width
 * [FiltersPanel]: fixed height of filter body in mobile view
-* [DatePickerHeader]: fixed 'navIconLeft', 'navIconRight' props
 * [ErrorHandler]: fixed image for 503 error code in loveship
 * [DatePicker]: fixed crashes with different versions of dayjs
-* [DatePickerHeader]: fixed 'navIconLeft', 'navIconRight' props
 * [ModalWindow]: changed role attribute value from 'modal' to 'dialog'
 * [DropdownMenuButton]: fixed icon color in  `isDisabled` state
 

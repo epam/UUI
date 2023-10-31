@@ -7,11 +7,12 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { Separator } from './Separator';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
+import { IHasToolbarButton } from "../../implementation/Toolbars";
 
 export const SEPARATOR_KEY = 'separatorBLock';
 
 export const separatorPlugin = () => {
-    const createSeparatorPlugin = createPluginFactory({
+    const createSeparatorPlugin = createPluginFactory<IHasToolbarButton>({
         key: SEPARATOR_KEY,
         type: SEPARATOR_KEY,
         isElement: true,
@@ -32,6 +33,9 @@ export const separatorPlugin = () => {
                     validNodeName: 'HR',
                 },
             ],
+        },
+        options: {
+            bottomBarButton: SeparatorButton,
         },
     });
 

@@ -1,53 +1,22 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Multi-select: checked elements are controlled by the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "checked",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " property at the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " state.",
-            "marks": []
-          }
-        ]
+        "text": "Multi-select: checked elements are controlled by the "
+      },
+      {
+        "text": "checked",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " property at the "
+      },
+      {
+        "text": "DataSourceState",
+        "uui-richTextEditor-code": true
       }
     ]
   }
-}
+]

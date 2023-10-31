@@ -24,6 +24,9 @@ export const colorPlugin = () => createFontColorPlugin({
 
         },
     },
+    options: {
+        floatingBarButton: ColorButton,
+    },
 });
 
 interface IToolbarButton {
