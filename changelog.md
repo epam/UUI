@@ -6,6 +6,8 @@
 
 **What's Fixed**
 [DataTableRow]: table row now consider rawProps property data
+[DndSection]: dnd demo fixed. Accordion unfold prevented when dragging element to the same position
+[PickerInput]: set `overflow: hidden;` on open for mobile
 
 # 5.2.0 - 16.10.2023
 
