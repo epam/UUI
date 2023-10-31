@@ -87,7 +87,7 @@ function linkToRouter6Dest(link: Link): { to: To, state?: any } {
     return {
         to: {
             hash: withFallback(link.hash),
-            search: queryToSearch(link.query),
+            search: queryToSearch(link.query) || link.search,
             pathname: withFallback(link.pathname),
         },
         state: link.state,

@@ -78,7 +78,7 @@ export const DataTableRowContainer = React.forwardRef(
                     {renderCells(columns)}
                     {hasScrollingSection && direction === 'right' && <div className={ uuiDataTableRowCssMarkers.uuiScrollShadowLeft } />}
                     {hasScrollingSection && direction === 'left' && <div className={ uuiDataTableRowCssMarkers.uuiScrollShadowRight } />}
-                    {direction === 'right' && props.renderConfigButton?.()}
+                    {direction === 'right' && props.renderConfigButton && props.renderConfigButton()}
                 </div>
             );
         }

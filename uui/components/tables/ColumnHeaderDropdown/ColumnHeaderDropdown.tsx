@@ -31,7 +31,7 @@ const ColumnHeaderDropdownImpl: React.FC<ColumnHeaderDropdownProps> = (props) =>
         <Dropdown
             renderTarget={ props.renderTarget }
             renderBody={ (dropdownProps) => (
-                <MobileDropdownWrapper width={ 360 } title={ props.title } onClose={ closeDropdown }>
+                <MobileDropdownWrapper width={ 280 } title={ props.title } onClose={ closeDropdown }>
                     {props.isSortable && <SortingPanel sortDirection={ props.sortDirection } onSort={ props.onSort } />}
                     {props.renderFilter(dropdownProps)}
                 </MobileDropdownWrapper>

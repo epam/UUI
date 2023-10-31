@@ -68,7 +68,6 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
                 throw new Error('LazyTree: More than 1000 iterations are made to load required items and their parents by ID. Check your api implementation');
             }
         }
-
         if (byId === this.byId) {
             return this;
         } else {
@@ -136,7 +135,6 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
 
                     const loadAllChildren = hasChildren && options.loadAllChildren && options.loadAllChildren(id);
                     const loadAll = withNestedChildren ? parentLoadAll || loadAllChildren : loadAllChildren;
-
                     remainingRowsCount--;
 
                     if (hasChildren && ((!isFolded && remainingRowsCount > 0) || loadAll)) {
@@ -195,11 +193,13 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
 
         const range: LazyDataSourceApiRequestRange = { from: ids.length };
 
+        let skipRequest = false;
         if (!loadAll) {
             range.count = missingCount;
+            skipRequest = options.isLoadStrict ? true : skipRequest;
         }
 
-        if (missingCount > 0 && availableCount > 0) {
+        if (missingCount > 0 && availableCount > 0 && !skipRequest) {
             // Need to load additional items in the current layer
             const requestContext: LazyDataSourceApiRequestContext<TItem, TId> = {};
 

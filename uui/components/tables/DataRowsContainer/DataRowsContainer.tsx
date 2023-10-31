@@ -19,7 +19,7 @@ export function DataRowsContainer<TItem, TId, List extends HTMLDivElement = any>
                 <DataRowsGroups
                     rows={ rows }
                     renderRow={ renderRow }
-                    top= { headerRef?.current?.clientHeight }
+                    top={ headerRef?.current?.clientHeight }
                 />
             </div>
         </div>

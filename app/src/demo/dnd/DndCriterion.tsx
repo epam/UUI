@@ -47,10 +47,23 @@ export class DndCriterion extends React.Component<DndCriterionProps> {
                 onDrop={ this.handleOnDrop }
                 render={ (props) => {
                     return (
-                        <div ref={ props.ref } { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
+                        <div
+                            ref={ props.ref }
+                            onPointerEnter={ props.eventHandlers.onPointerEnter }
+                            onPointerMove={ props.eventHandlers.onPointerMove }
+                            onPointerLeave={ props.eventHandlers.onPointerLeave }
+                            onPointerUp={ props.eventHandlers.onPointerUp }
+                            className={ cx(css.dragElement, props.classNames) }
+                        >
                             <div className={ css.dndItem }>
-                                <DragHandle cx={ [css.dragHandle] } />
-                                <FlexRow vPadding="12" padding="18" cx={ css.row }>
+                                <DragHandle
+                                    cx={ [css.dragHandle] }
+                                    rawProps={ {
+                                        onTouchStart: props.eventHandlers.onTouchStart,
+                                        onPointerDown: props.eventHandlers.onPointerDown,
+                                    } }
+                                />
+                                <FlexRow background="surface" vPadding="12" padding="18" cx={ css.row }>
                                     <Checkbox
                                         value={ item.isChecked }
                                         onValueChange={ (newValue) => this.props.onValueChange({ ...item, isChecked: newValue }) }

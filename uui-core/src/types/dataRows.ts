@@ -132,5 +132,10 @@ export interface DataRowOptions<TItem, TId> extends IDisableable, Partial<IEdita
 
     /** Can be specified to make row act as a link (plain or SPA) */
     link?: Link;
+
+    /**
+     * A pure function that gets pinned state for each row.
+     * If row pinned, it means that it will be sticky inside their parent section.
+     * */
     pin?(rowProps: DataRowProps<TItem, TId>): boolean;
 }

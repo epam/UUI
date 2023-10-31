@@ -8,8 +8,9 @@ import { ReactComponent as NumberedList } from '../../icons/numbered-list.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { ListElement } from './ListElement';
 import { ELEMENT_OL_CUSTOM, ELEMENT_UL_CUSTOM, ELEMENT_LI_CUSTOM, ELEMENT_LI_TEXT_CUSTOM } from './constants';
+import { IHasToolbarButton } from "../../implementation/Toolbars";
 
-export const listPlugin = () => createListPlugin({
+export const listPlugin = () => createListPlugin<IHasToolbarButton>({
     overrideByKey: {
         [ELEMENT_OL]: {
             type: ELEMENT_OL_CUSTOM,
@@ -33,6 +34,9 @@ export const listPlugin = () => createListPlugin({
             type: ELEMENT_LI_TEXT_CUSTOM,
             isElement: true,
         },
+    },
+    options: {
+        bottomBarButton: ListButton,
     },
 });
 
