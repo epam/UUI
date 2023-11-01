@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, TDocsGenType,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI, TDocsGenType,
 } from '../common';
 
 export class AnchorDoc extends BaseDocsBlock {
@@ -12,6 +12,7 @@ export class AnchorDoc extends BaseDocsBlock {
         return {
             [UUI4]: './app/src/docs/_props/epam-promo/components/navigation/anchor.props.tsx',
             [UUI3]: './app/src/docs/_props/loveship/components/navigation/anchor.props.tsx',
+            [UUI]: './app/src/docs/_props/uui/components/navigation/anchor.props.tsx',
         };
     }
 
