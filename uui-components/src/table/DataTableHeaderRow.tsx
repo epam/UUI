@@ -30,7 +30,13 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
             columnsConfig[params.srcData.key] = { ...srcColumnConfig, order: newOrder };
         }
 
-        this.props.onValueChange({ ...this.props.value, columnsConfig });
+        this.props.onValueChange({
+            ...this.props.value,
+            columnsConfig: {
+                ...this.props.value.columnsConfig,
+                ...columnsConfig,
+            },
+        });
     };
 
     renderCell = (column: DataColumnProps<TItem, TId>, idx: number) => {
