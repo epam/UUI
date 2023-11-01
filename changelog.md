@@ -6,6 +6,7 @@
 
 **What's Fixed**
 [DataTableRow]: table row now consider rawProps property data
+[DropdownMenuButton]: make `isActive` usable
 
 # 5.2.0 - 16.10.2023
 
