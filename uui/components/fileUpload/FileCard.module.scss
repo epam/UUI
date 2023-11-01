@@ -1,5 +1,6 @@
 .root {
     --uui-filecard-border: var(--uui-control-border);
+    --uui-filecard-border-radius: var(--uui-filecard-border-radius);
     --uui-filecard-border-error: var(--uui-error-50);
     --uui-filecard-text-error: var(--uui-error-70);
     --uui-filecard-icon-default: var(--uui-icon);
@@ -11,11 +12,12 @@
     --uui-filecard-icon-img: #E67E17;
 }
 
-.file-card-wrapper {
+:global(.uui-file-card-wrapper) {
     box-sizing: border-box;
     min-height: 48px;
     padding: 5px;
     border: 1px solid var(--uui-filecard-border);
+    border-radius: var(--uui-filecard-border-radius);
 
     .file-name {
         white-space: nowrap;

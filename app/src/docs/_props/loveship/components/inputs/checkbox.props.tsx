@@ -13,6 +13,7 @@ const CheckboxDoc = new DocBuilder<CheckboxProps & CheckboxMods>({ name: 'Checkb
     .prop('value', { examples: [true, false] })
     .prop('size', { examples: ['12', '18'], defaultValue: '18' })
     .prop('indeterminate', { examples: [true, false], defaultValue: false })
+    .prop('isReadonly', { examples: [true, false], defaultValue: false })
     .withContexts(DefaultContext, FormContext, TableContext);
 
 export default CheckboxDoc;

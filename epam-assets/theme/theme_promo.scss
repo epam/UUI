@@ -272,10 +272,6 @@
 
     /* ------------------------------------ */
 
-    .uui-accordion-container {
-        --uui-accordion-border-radius: 0;
-    }
-
     /* begin color classes */
 
     .uui-color-accent,
@@ -526,6 +522,17 @@
         --uui-color-contrast: var(--gray80);
     }
 
+    /* Accordion */
+
+    .uui-accordion-container {
+        --uui-accordion-border-radius: 0;
+    }
+
+    /* FileCard */
+
+    .file-card-wrapper {
+        --uui-filecard-border-radius: 0;
+    }
 
     /* Badge */
 
