@@ -37,15 +37,7 @@ export class AnchorImpl extends ButtonBase<AnchorProps> {
     };
 
     render() {
-        let isActive = false;
-        let href: string;
-
-        if (this.props.link) {
-            isActive = this.context.uuiRouter?.isActive(this.props.link);
-            href = this.context.uuiRouter?.createHref(this.props.link);
-        } else if (this.props.href) {
-            href = this.props.href;
-        }
+        const { isLinkActive, href } = this.getRenderParams();
 
         const { target } = this.props;
         const relProp = target === '_blank' ? { rel: 'noopener noreferrer' } : {};
@@ -57,7 +49,7 @@ export class AnchorImpl extends ButtonBase<AnchorProps> {
                     css.container,
                     uuiElement.anchor,
                     this.props.isDisabled ? uuiMod.disabled : uuiMod.enabled,
-                    (this.props.isLinkActive ?? isActive) && uuiMod.active,
+                    (this.props.isLinkActive ?? isLinkActive) && uuiMod.active,
                     uuiMarkers.clickable,
                     this.props.cx,
                 ),

@@ -66,7 +66,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
         return !!link;
     }
 
-    render(): any {
+    getRenderParams() {
         let isAnchor = false;
         let isLinkActive = null;
         let href: string | null = null;
@@ -79,6 +79,12 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             isAnchor = true;
             href = this.props.href;
         }
+
+        return { isAnchor, isLinkActive, href };
+    }
+
+    render(): any {
+        const { isAnchor, isLinkActive, href } = this.getRenderParams();
 
         const className = cx(
             this.getClassName(),
