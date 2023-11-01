@@ -57,7 +57,7 @@ export class AnchorImpl extends ButtonBase<AnchorProps> {
                     css.container,
                     uuiElement.anchor,
                     this.props.isDisabled ? uuiMod.disabled : uuiMod.enabled,
-                    (this.props.isLinkActive || isActive) && uuiMod.active,
+                    (this.props.isLinkActive ?? isActive) && uuiMod.active,
                     uuiMarkers.clickable,
                     this.props.cx,
                 ),
