@@ -74,7 +74,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const toggleDropdownOpening = (newOpened: boolean) => {
         if (isMobile()) {
-            document.body.style.overflow = opened ? 'hidden' : '';
+            document.body.style.overflow = newOpened ? 'hidden' : '';
         }
 
         setDataSourceState({

@@ -7,6 +7,7 @@
 **What's Fixed**
 [DataTableRow]: table row now consider rawProps property data
 [DropdownMenuButton]: make `isActive` usable
+[PickerInput]: set `overflow: hidden;` on open for mobile
 
 # 5.2.0 - 16.10.2023
 
