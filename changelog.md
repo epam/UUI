@@ -7,6 +7,7 @@
 **What's Fixed**
 [DataTableRow]: table row now consider rawProps property data
 [PickerInput]: set `overflow: hidden;` on open for mobile
+[DataTable]: fix columns reorder when there are hidden columns
 
 # 5.2.0 - 16.10.2023
 
