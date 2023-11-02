@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, TDocsGenType,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI, TDocsGenType,
 } from '../common';
 
 export class AccordionDoc extends BaseDocsBlock {
@@ -12,6 +12,7 @@ export class AccordionDoc extends BaseDocsBlock {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/layout/accordion.props.tsx',
             [UUI4]: './app/src/docs/_props/epam-promo/components/layout/accordion.props.tsx',
+            [UUI]: './app/src/docs/_props/uui/components/layout/accordion.props.tsx',
         };
     }
 
