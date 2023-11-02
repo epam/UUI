@@ -10,7 +10,7 @@
     --uui-file_card-icon-pdf: #FA0F01;
     --uui-file_card-icon-mov: #5214CC;
     --uui-file_card-icon-img: #E67E17;
-    --uui-file_card-font: var(--uui-font);
+    --uui-file_card-font-error: var(--uui-font);
 
     &:global(.uui-file_card) {
         box-sizing: border-box;
@@ -64,7 +64,7 @@
     }
 
     .error-block {
-        font-family: var(--uui-file_card-font);
+        font-family: var(--uui-file_card-font-error);
         font-weight: 400;
         font-size: 12px;
         color: var(--uui-file_card-text-error);
