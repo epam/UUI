@@ -8,6 +8,7 @@
 [DataTableRow]: table row now consider rawProps property data
 [PickerInput]: set `overflow: hidden;` on open for mobile
 [TextArea and TextInput]: fix maxLength for Android
+[DataTable]: show checkboxes only for the first column
 
 # 5.2.0 - 16.10.2023
 
@@ -1312,6 +1313,7 @@ fix UUI context multiple creation
 
 * [Breaking Change]: Updated colors palette to matсh design specification.
    - Color names stayed the same, only hex changed;
+
    - New colors variables moved to @epam/loveship from @epam/assets. Old variables stayed in @epam/assets.
      So, if you use our variables in your project, and now don't ready to do this migration, just leave import from @epam/aseets in your styles.
      If you want to use new colors, please import styles from '@epam/loveship/assets/styles';
