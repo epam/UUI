@@ -2,7 +2,7 @@
 
 exports[`FileCard should be rendered correctly 1`] = `
 <div
-  className="flexCell root uui-file_card-wrapper uui-loading"
+  className="flexCell root uui-file_card uui-loading"
   style={
     Object {
       "alignSelf": undefined,
@@ -15,7 +15,7 @@ exports[`FileCard should be rendered correctly 1`] = `
   }
 >
   <div
-    className="uui-flex-row root size-36 spacing-6 fileCardRow container align-items-top"
+    className="uui-flex-row root size-36 spacing-6 container align-items-top"
     style={
       Object {
         "columnGap": undefined,
@@ -93,7 +93,7 @@ exports[`FileCard should be rendered correctly 1`] = `
 
 exports[`FileCard should be rendered correctly 2`] = `
 <div
-  className="flexCell root uui-file_card-wrapper uui-loading"
+  className="flexCell root uui-file_card uui-loading"
   style={
     Object {
       "alignSelf": undefined,
@@ -106,7 +106,7 @@ exports[`FileCard should be rendered correctly 2`] = `
   }
 >
   <div
-    className="uui-flex-row root size-36 spacing-6 fileCardRow container align-items-top"
+    className="uui-flex-row root size-36 spacing-6 container align-items-top"
     style={
       Object {
         "columnGap": undefined,
@@ -184,7 +184,7 @@ exports[`FileCard should be rendered correctly 2`] = `
 
 exports[`FileCard should be rendered correctly 3`] = `
 <div
-  className="flexCell root uui-file_card-wrapper"
+  className="flexCell root uui-file_card"
   style={
     Object {
       "alignSelf": undefined,
@@ -197,7 +197,7 @@ exports[`FileCard should be rendered correctly 3`] = `
   }
 >
   <div
-    className="uui-flex-row root size-36 spacing-6 fileCardRow container align-items-top"
+    className="uui-flex-row root size-36 spacing-6 container align-items-top"
     style={
       Object {
         "columnGap": undefined,
