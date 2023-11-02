@@ -59,7 +59,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         if (docsGenType) {
             return (
                 <>
-                    <RichTextView>
+                    <RichTextView cx={ css.themePromo }>
                         <h2>Api</h2>
                     </RichTextView>
                     <TypeRefSection showCode={ true } typeRef={ docsGenType } />
@@ -115,7 +115,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderSectionTitle(title: string) {
         return (
-            <RichTextView>
+            <RichTextView cx={ css.themePromo }>
                 <h2>{title}</h2>
             </RichTextView>
         );
@@ -123,7 +123,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderDocTitle() {
         return (
-            <RichTextView>
+            <RichTextView cx={ css.themePromo }>
                 <h1>{this.title}</h1>
             </RichTextView>
         );
