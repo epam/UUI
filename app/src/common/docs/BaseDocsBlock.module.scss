@@ -63,3 +63,7 @@
         }
     }
 }
+
+.theme-promo {
+    @include theme-promo();
+}
