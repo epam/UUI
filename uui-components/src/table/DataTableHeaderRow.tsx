@@ -33,7 +33,7 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
         this.props.onValueChange({ ...this.props.value, columnsConfig });
     };
 
-    renderCell = (column: DataColumnProps<TItem, TId>, idx: number) => {
+    renderCell = (column: DataColumnProps<TItem, TId>, idx: number, isFirstColumn: boolean, isLastColumn: boolean) => {
         const { field, direction } = this.sortLens.index(0).default({ field: null, direction: 'asc' }).get();
 
         return this.props.renderCell({
@@ -42,8 +42,8 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
             value: this.props.value,
             onValueChange: this.props.onValueChange,
             selectAll: this.props.selectAll,
-            isFirstColumn: idx === 0,
-            isLastColumn: idx === this.props.columns.length - 1,
+            isFirstColumn,
+            isLastColumn,
             isFilterActive: column.isFilterActive?.(this.filterLens.default({}).get(), column),
             sortDirection: field === column.key ? direction : null,
             allowColumnsReordering: this.props.allowColumnsReordering,

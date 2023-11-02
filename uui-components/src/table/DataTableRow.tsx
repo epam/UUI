@@ -37,10 +37,8 @@ function compareProps(props: any, nextProps: any) {
 const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(props: DataTableRowProps<TItem, TId>, ref: React.ForwardedRef<HTMLDivElement>) {
     const rowLens = Lens.onEditable(props as IEditable<TItem>);
 
-    const renderCell = (column: DataColumnProps<TItem, TId>, idx: number) => {
+    const renderCell = (column: DataColumnProps<TItem, TId>, idx: number, isFirstColumn: boolean, isLastColumn: boolean) => {
         const renderCellCallback = column.renderCell || props.renderCell;
-        const isFirstColumn = idx === 0;
-        const isLastColumn = !props.columns || idx === props.columns.length - 1;
         return renderCellCallback?.({
             key: column.key,
             column,

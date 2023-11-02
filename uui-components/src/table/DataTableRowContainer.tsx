@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, useCallback, useMemo } from 'react';
 import {
     DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link, cx,
 } from '@epam/uui-core';
@@ -11,7 +11,7 @@ export interface DataTableRowContainerProps<TItem, TId, TFilter>
     IHasCX,
     IHasRawProps<React.HTMLAttributes<HTMLAnchorElement | HTMLDivElement | HTMLButtonElement>> {
     columns?: DataColumnProps<TItem, TId, TFilter>[];
-    renderCell?(column: DataColumnProps<TItem, TId, TFilter>, idx: number): React.ReactNode;
+    renderCell?(column: DataColumnProps<TItem, TId, TFilter>, idx: number, isFirstColumn: boolean, isLastColumn: boolean): React.ReactNode;
     renderConfigButton?(): React.ReactNode;
     overlays?: React.ReactNode;
     link?: Link;
@@ -52,65 +52,123 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
     };
 }
 
+function FixedSection<TItem, TId, TFilter>({
+    columns,
+    direction,
+    hasScrollingSection,
+    renderConfigButton,
+    renderCells,
+}: {
+    columns: DataColumnProps<TItem, TId, TFilter>[];
+    direction: 'left' | 'right';
+    hasScrollingSection: boolean;
+    renderCells: (columns: DataColumnProps<TItem, TId, TFilter>[]) => React.ReactNode[];
+    renderConfigButton?(): React.ReactNode;
+}) {
+    return (
+        <div
+            style={ getSectionStyle(columns) }
+            className={ cx({
+                [css.section]: true,
+                [uuiDataTableRowCssMarkers.uuiTableFixedSection]: true,
+                [css.fixedColumnsSectionLeft]: direction === 'left',
+                [uuiDataTableRowCssMarkers.uuiTableFixedSectionLeft]: direction === 'left',
+                [css.fixedColumnsSectionRight]: direction === 'right',
+                [uuiDataTableRowCssMarkers.uuiTableFixedSectionRight]: direction === 'right',
+            }) }
+        >
+            {renderCells(columns)}
+            {hasScrollingSection && direction === 'right' && <div className={ uuiDataTableRowCssMarkers.uuiScrollShadowLeft } />}
+            {hasScrollingSection && direction === 'left' && <div className={ uuiDataTableRowCssMarkers.uuiScrollShadowRight } />}
+            {direction === 'right' && renderConfigButton && renderConfigButton()}
+        </div>
+    );
+}
+
+function ScrollingSection<TItem, TId, TFilter>({
+    columns,
+    renderCells,
+}: {
+    columns: DataColumnProps<TItem, TId, TFilter>[]
+    renderCells: (columns: DataColumnProps<TItem, TId, TFilter>[]) => React.ReactNode[];
+}) {
+    return (
+        <div className={ cx(css.section, css.scrollingSection, uuiDataTableRowCssMarkers.uuiTableScrollingSection) } style={ getSectionStyle(columns, 1) }>
+            {renderCells(columns)}
+        </div>
+    );
+}
+
 export const DataTableRowContainer = React.forwardRef(
     <TItem, TId, TFilter>(props: DataTableRowContainerProps<TItem, TId, TFilter>, ref: React.ForwardedRef<HTMLDivElement>) => {
-        function renderCells(columns: DataColumnProps<TItem, TId, TFilter>[]) {
-            return columns.reduce<React.ReactNode[]>((cells, column) => {
-                const idx = props.columns?.indexOf(column) || 0;
-                cells.push(props.renderCell(column, idx));
-                return cells;
-            }, []);
-        }
-
-        function wrapFixedSection(columns: DataColumnProps<TItem, TId, TFilter>[], direction: 'left' | 'right', hasScrollingSection: boolean) {
-            return (
-                <div
-                    style={ getSectionStyle(columns) }
-                    className={ cx({
-                        [css.section]: true,
-                        [uuiDataTableRowCssMarkers.uuiTableFixedSection]: true,
-                        [css.fixedColumnsSectionLeft]: direction === 'left',
-                        [uuiDataTableRowCssMarkers.uuiTableFixedSectionLeft]: direction === 'left',
-                        [css.fixedColumnsSectionRight]: direction === 'right',
-                        [uuiDataTableRowCssMarkers.uuiTableFixedSectionRight]: direction === 'right',
-                    }) }
-                >
-                    {renderCells(columns)}
-                    {hasScrollingSection && direction === 'right' && <div className={ uuiDataTableRowCssMarkers.uuiScrollShadowLeft } />}
-                    {hasScrollingSection && direction === 'left' && <div className={ uuiDataTableRowCssMarkers.uuiScrollShadowRight } />}
-                    {direction === 'right' && props.renderConfigButton && props.renderConfigButton()}
-                </div>
-            );
-        }
-
-        function wrapScrollingSection(columns: DataColumnProps<TItem, TId, TFilter>[]) {
-            return (
-                <div className={ cx(css.section, css.scrollingSection, uuiDataTableRowCssMarkers.uuiTableScrollingSection) } style={ getSectionStyle(columns, 1) }>
-                    {renderCells(columns)}
-                </div>
-            );
-        }
-
-        function getRowContent() {
+        const orderedColumns = useMemo(() => {
             const fixedLeftColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
             const fixedRightColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
             const scrollingColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
 
             for (const column of props.columns) {
-                if (column.fix === 'left') fixedLeftColumns.push(column);
-                else if (column.fix === 'right') fixedRightColumns.push(column);
-                else scrollingColumns.push(column);
+                if (column.fix === 'left') {
+                    fixedLeftColumns.push(column);
+                } else if (column.fix === 'right') {
+                    fixedRightColumns.push(column);
+                } else {
+                    scrollingColumns.push(column);
+                }
             }
+
+            return {
+                fixedLeftColumns,
+                fixedRightColumns,
+                scrollingColumns,
+            };
+        }, [props.columns]);
+
+        const firstColumn = orderedColumns.fixedLeftColumns.at(0)
+             || orderedColumns.scrollingColumns.at(0)
+             || orderedColumns.fixedRightColumns.at(0);
+        const lastColumn = orderedColumns.fixedRightColumns.at(-1)
+            || orderedColumns.scrollingColumns.at(-1)
+            || orderedColumns.fixedLeftColumns.at(-1);
+
+        const renderCells = useCallback((columns: DataColumnProps<TItem, TId, TFilter>[]) => {
+            return columns.map<React.ReactNode>((column, index) => {
+                const isFirstColumn = firstColumn === column;
+                const isLastColumn = lastColumn === column;
+                return props.renderCell(column, index, isFirstColumn, isLastColumn);
+            });
+        }, [props.renderCell, firstColumn, lastColumn]);
+
+        function getRowContent() {
+            const { fixedLeftColumns, scrollingColumns, fixedRightColumns } = orderedColumns;
 
             const hasScrollingSection = scrollingColumns.length > 0;
 
             return (
-                <>
-                    {fixedLeftColumns.length > 0 && wrapFixedSection(fixedLeftColumns, 'left', hasScrollingSection)}
-                    {wrapScrollingSection(scrollingColumns)}
-                    {fixedRightColumns.length > 0 && wrapFixedSection(fixedRightColumns, 'right', hasScrollingSection)}
+                <Fragment>
+                    {fixedLeftColumns.length > 0 && (
+                        <FixedSection
+                            columns={ fixedLeftColumns }
+                            direction="left"
+                            hasScrollingSection={ hasScrollingSection }
+                            renderConfigButton={ props.renderConfigButton }
+                            renderCells={ renderCells }
+                        />
+                    )}
+                    <ScrollingSection
+                        columns={ scrollingColumns }
+                        renderCells={ renderCells }
+                    />
+                    {fixedRightColumns.length > 0 && (
+                        <FixedSection
+                            columns={ fixedRightColumns }
+                            direction="right"
+                            hasScrollingSection={ hasScrollingSection }
+                            renderConfigButton={ props.renderConfigButton }
+                            renderCells={ renderCells }
+                        />
+                    )}
                     {props.overlays}
-                </>
+                </Fragment>
             );
         }
 
