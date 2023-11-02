@@ -797,6 +797,11 @@
         --uui-text-font: var(--uui-font);
         --uui-text-font-weight: 300;
     }
+
+    /* Tag */
+    .uui-tag.uui-color-gray {
+        --uui-tag-bg: var(--uui-neutral-40);
+    }
 }
 
 .uui-theme-loveship_dark {
