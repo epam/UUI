@@ -715,17 +715,13 @@
 
     /* CountIndicator */
 
-    .uui-count_indicator.uui-color-neutral,
-    .uui-count_indicator.uui-color-info,
-    .uui-count_indicator.uui-color-blue,
-    .uui-count_indicator.uui-color-grass,
-    .uui-count_indicator.uui-color-success,
-    .uui-count_indicator.uui-color-critical,
-    .uui-count_indicator.uui-color-red,
-    .uui-count_indicator.uui-color-warning,
-    .uui-count_indicator.uui-color-amber {
+    .uui-count_indicator:is(.uui-color-neutral, .uui-color-info, .uui-color-blue, .uui-color-grass, .uui-color-success, .uui-color-critical, .uui-color-red, .uui-color-warning, .uui-color-amber) {
         --uui-count_indicator-bg: var(--uui-color-60);
         --uui-count_indicator-border: var(--uui-color-60);
+    }
+
+    .uui-count_indicator.uui-color-neutral {
+        --uui-count_indicator-caption: var(--uui-neutral-10);
     }
 
     /* Status Indicator */
