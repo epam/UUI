@@ -40,6 +40,7 @@ export const uuiMod = {
     selected: 'uui-selected',
     opened: 'uui-opened',
     loading: 'uui-loading',
+    error: 'uui-error',
 } as const;
 
 export const labelMod = {
