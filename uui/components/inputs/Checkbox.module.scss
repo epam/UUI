@@ -30,10 +30,11 @@
     --uui-checkbox-bg-disabled: var(--uui-control-bg-disabled);
     --uui-checkbox-bg-checked-hover: var(--uui-color-60);
     --uui-checkbox-bg-checked-disabled: var(--uui-color-20);
-    --uui-checkbox-error: var(--uui-error-50);
+    --uui-checkbox-error: var(--uui-error-60);
     --uui-checkbox-fill: var(--uui-control-checkbox-icon);
     --uui-checkbox-label: var(--uui-control-label);
     --uui-checkbox-label-disabled: var(--uui-control-label-disabled);
+    --uui-checkbox-label-readonly: var(--uui-control-label);
     --uui-checkbox-border-radius: var(--uui-border-radius);
 
     --uui-checkbox-font: var(--uui-font);
@@ -105,6 +106,12 @@
         :global(.uui-checked) {
             background-color: var(--uui-checkbox-bg-checked-disabled);
             border-color: var(--uui-checkbox-border-checked-disabled);
+        }
+    }
+
+    &:global(.uui-readonly) {
+        :global(.uui-input-label) {
+            color: var(--uui-checkbox-label-readonly);
         }
     }
 

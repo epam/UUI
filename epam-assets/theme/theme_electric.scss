@@ -282,8 +282,6 @@
 
     /* override variables */
 
-    --uui-accordion-border-radius: 6px;
-
     /* begin color classes */
 
     .uui-color-accent,
@@ -433,6 +431,18 @@
         --uui-color-60: var(--mint-60);
         --uui-color-70: var(--mint-70);
         --uui-color-contrast: var(--uui-neutral-80);
+    }
+
+    /* Accordion */
+
+    .uui-accordion-container {
+        --uui-accordion-border-radius: 6px;
+    }
+
+    /* FileCard */
+
+    .uui-file_card {
+        --uui-file_card-border-radius: 6px;
     }
 
     /* Badge */

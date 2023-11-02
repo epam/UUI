@@ -178,8 +178,8 @@ export default function FiltersPanelExample() {
     const view = dataSource.useView(tableState, setTableState);
 
     return (
-        <Panel background="surface" style={ { height: '400px' } }>
-            <FlexRow vPadding="12" rawProps={ { style: { flexWrap: 'wrap', gap: '3px' } } }>
+        <Panel background="surface" shadow style={ { height: '400px' } }>
+            <FlexRow padding="12" vPadding="24" rawProps={ { style: { flexWrap: 'wrap', gap: '3px' } } }>
                 <FiltersPanel filters={ filtersConfig } tableState={ tableState } setTableState={ setTableState } />
             </FlexRow>
             <DataTable getRows={ view.getVisibleRows } columns={ personColumns } value={ tableState } onValueChange={ setTableState } { ...view.getListProps() } />
