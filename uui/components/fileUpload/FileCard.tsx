@@ -112,7 +112,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
     return (
         <FlexCell
             ref={ ref }
-            cx={ cx(css.root, 'uui-file-card-wrapper', (isLoading || error?.isError) && uuiMod.loading, componentCx, error?.isError && css.errorCardWrapper) }
+            cx={ cx(css.root, 'uui-file_card-wrapper', (isLoading || error?.isError) && uuiMod.loading, componentCx, error?.isError && css.errorCardWrapper) }
             minWidth={ width }
             width={ !width ? '100%' : undefined }
         >
