@@ -1,9 +1,11 @@
 @use '~@epam/promo/assets/styles/index' as *;
+@use '~@epam/assets/theme/theme_promo' as *;
 
 .wrapper {
     position: relative;
 
     .container {
+        @include theme-promo();
         margin: 0 -24px;
         width: 986px;
     }
