@@ -1,23 +1,23 @@
 .root {
-    --uui-filecard-border: var(--uui-control-border);
-    --uui-filecard-border-radius: var(--uui-filecard-border-radius);
-    --uui-filecard-border-error: var(--uui-error-50);
-    --uui-filecard-text-error: var(--uui-error-70);
-    --uui-filecard-icon-default: var(--uui-icon);
-    --uui-filecard-icon-error: var(--uui-error-50);
-    --uui-filecard-icon-doc: #2B579A;
-    --uui-filecard-icon-xls: #217346;
-    --uui-filecard-icon-pdf: #FA0F01;
-    --uui-filecard-icon-mov: #5214CC;
-    --uui-filecard-icon-img: #E67E17;
+    --uui-file_card-border: var(--uui-control-border);
+    --uui-file_card-border-radius: var(--uui-file_card-border-radius);
+    --uui-file_card-border-error: var(--uui-error-50);
+    --uui-file_card-text-error: var(--uui-error-70);
+    --uui-file_card-icon-default: var(--uui-icon);
+    --uui-file_card-icon-error: var(--uui-error-50);
+    --uui-file_card-icon-doc: #2B579A;
+    --uui-file_card-icon-xls: #217346;
+    --uui-file_card-icon-pdf: #FA0F01;
+    --uui-file_card-icon-mov: #5214CC;
+    --uui-file_card-icon-img: #E67E17;
 }
 
-:global(.uui-file-card-wrapper) {
+:global(.uui-file_card-wrapper) {
     box-sizing: border-box;
     min-height: 48px;
     padding: 5px;
-    border: 1px solid var(--uui-filecard-border);
-    border-radius: var(--uui-filecard-border-radius);
+    border: 1px solid var(--uui-file_card-border);
+    border-radius: var(--uui-file_card-border-radius);
 
     .file-name {
         white-space: nowrap;
@@ -25,31 +25,31 @@
 }
 
 .error-card-wrapper {
-    border: 1px solid var(--uui-filecard-border-error);
+    border: 1px solid var(--uui-file_card-border-error);
 }
 
 .default-color {
-    fill: var(--uui-filecard-icon-default);
+    fill: var(--uui-file_card-icon-default);
 }
 
 .doc-color {
-    fill: var(--uui-filecard-icon-doc);
+    fill: var(--uui-file_card-icon-doc);
 }
 
 .xls-color {
-    fill: var(--uui-filecard-icon-xls);
+    fill: var(--uui-file_card-icon-xls);
 }
 
 .pdf-color {
-    fill: var(--uui-filecard-icon-pdf);
+    fill: var(--uui-file_card-icon-pdf);
 }
 
 .mov-color {
-    fill: var(--uui-filecard-icon-mov);
+    fill: var(--uui-file_card-icon-mov);
 }
 
 .img-color {
-    fill: var(--uui-filecard-icon-img);
+    fill: var(--uui-file_card-icon-img);
 }
 
 :global(.uui-loading) {
@@ -67,7 +67,7 @@
     font-family: var(--uui-font);
     font-weight: 400;
     font-size: 12px;
-    color: var(--uui-filecard-text-error);
+    color: var(--uui-file_card-text-error);
     display: inline-flex;
     align-items: center;
     padding: 0;
@@ -75,7 +75,7 @@
 
     svg {
         margin-right: 4px;
-        fill: var(--uui-filecard-icon-error);
+        fill: var(--uui-file_card-icon-error);
     }
 }
 
