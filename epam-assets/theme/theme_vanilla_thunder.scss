@@ -1,14 +1,9 @@
 /*  Name convention  */
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 .uui-theme-vanilla_thunder {
-    --font-regular: 'Sans Regular', 'Arial', sans-serif;
-    --font-semibold: 'Sans Semibold', 'Arial', sans-serif;
-    --font-italic: 'Sans Italic', 'Arial', sans-serif;
-    --font-primary: 'Museo Sans', 'Sans Semibold', 'Arial', sans-serif;
-    --font-promo: 'Museo Slab', 'Roboto Slab', 'Arial', sans-serif;
-    --font-mono: 'Roboto Mono', 'Arial', sans-serif;
-    --font-redacted: 'Redacted';
-    --font-light: 'Sans Light', 'Arial', sans-serif;
+    --uui-font: var(--font-inter);
+    --font-primary: var(--font-museo-sans);
+    --font-promo: var(--font-museo-sans);
 
     --blue-0: #F0F7FC;
     --blue-50: #E1F4FA;
@@ -90,12 +85,12 @@
     --uui-secondary-70: var(--night700);
     --uui-secondary-contrast: var(--white);
 
-    --uui-critical-5: var(--sun-50);
-    --uui-critical-10: var(--sun-50);
-    --uui-critical-20: var(--sun-100);
-    --uui-critical-50: var(--sun-200);
-    --uui-critical-60: var(--sun-250);
-    --uui-critical-70: var(--sun-300);
+    --uui-critical-5: var(--fire-5);
+    --uui-critical-10: var(--fire-10);
+    --uui-critical-20: var(--fire-20);
+    --uui-critical-50: var(--fire-50);
+    --uui-critical-60: var(--fire-60);
+    --uui-critical-70: var(--fire-70);
     --uui-critical-contrast: var(--white);
 
 
@@ -287,5 +282,65 @@
         --uui-color-60: var(--uui-warning-60);
         --uui-color-70: var(--uui-warning-70);
         --uui-color-contrast: var(--uui-warning-contrast);
+    }
+
+    .uui-color-secondary {
+        --uui-color-5: var(--uui-secondary-5);
+        --uui-color-10: var(--uui-secondary-10);
+        --uui-color-20: var(--uui-secondary-20);
+        --uui-color-50: var(--uui-secondary-50);
+        --uui-color-60: var(--uui-secondary-60);
+        --uui-color-70: var(--uui-secondary-70);
+        --uui-color-contrast: var(--uui-secondary-contrast);
+    }
+
+
+
+    .uui-button {
+        --uui-border-radius: 8px;
+        --uui-btn-font: var(--font-museo-sans);
+        --uui-btn-font-weight: 700;
+
+        &.uui-color-gray {
+            --uui-color-5: var(--white);
+            --uui-color-10: var(--blue-50);
+            --uui-color-20: var(--uui-primary-5);
+            --uui-color-50: var(--chromatic-100);
+            --uui-color-60: var(--blue-50);
+            --uui-color-70: var(--blue-100);
+            --uui-color-contrast: var(--uui-text-primary);
+        }
+
+        &.uui-color-white {
+            --uui-color-5: var(--chromatic-0);
+            --uui-color-10: var(--blue-50);
+            --uui-color-20: var(--uui-primary-10);
+            --uui-color-50: var(--white);
+            --uui-color-60: var(--blue-50);
+            --uui-color-70: var(--blue-100);
+            --uui-color-contrast: var(--uui-text-primary);
+        }
+    }
+
+    .uui-filter-item_toggler.uui-input-box {
+        --uui-filters-toggler-border: var(--uui-surface-main);
+        --uui-filters-toggler-border-hover: var(--blue-0);
+        --uui-filters-toggler-border-radius: 8px;
+        --uui-filters-toggler-bg: var(--uui-surface-main);
+        --uui-filters-toggler-bg-hover: var(--blue-0);
+        --uui-filters-toggler-text: var(--uui-text-secondary);
+        --uui-filters-toggler-label: var(--uui-text-brand);
+        --uui-filters-toggler-icon: var(--uui-icon);
+        --uui-filters-toggler-shadow: var(--uui-shadow-level-1);
+
+        --uui-filters-toggler-font: var(--uui-font);
+        --uui-filters-toggler-font-weight: 400;
+    }
+
+    .uui-main_menu-dropdown {
+        --uui-main_menu-dropdown-bg: var(--chromatic-0);
+        --uui-main_menu-dropdown-hover: var(--uui-primary-50);
+        --uui-main_menu-dropdown-shadow: var(--uui-shadow-level-2);
+        --uui-main_menu-dropdown-border-radius: 8px;
     }
 }

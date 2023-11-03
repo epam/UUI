@@ -57,7 +57,15 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
                 tabIndex: props.isDisabled ? -1 : 0,
                 onKeyDown: onKeyDownHandler,
             } }
-            cx={ cx(css.root, uuiElement.inputBox, uuiMarkers.clickable, props.isOpen && uuiMod.opened, ['size-' + (props.size || defaultSize)], props.cx) }
+            cx={ cx(
+                'uui-filter-item_toggler',
+                css.root,
+                uuiElement.inputBox,
+                uuiMarkers.clickable,
+                props.isOpen && uuiMod.opened,
+                `size-${props.size || defaultSize}`,
+                props.cx,
+            ) }
             onClick={ togglerPickerOpened }
             ref={ ref }
         >

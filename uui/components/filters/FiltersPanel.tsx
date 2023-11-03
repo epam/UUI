@@ -143,6 +143,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                 iconPosition="left"
                 fill="ghost"
                 color="primary"
+                cx="uui-filter-add_toggler"
             />
         );
     }, []);
@@ -206,6 +207,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                     getRowOptions={ getRowOptions }
                     fixedBodyPosition={ true }
                     size={ props.size }
+                    bodyCx="uui-filter-add_body"
                 />
             )}
         </>
