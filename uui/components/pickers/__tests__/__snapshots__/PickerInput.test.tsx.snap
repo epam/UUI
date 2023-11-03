@@ -406,7 +406,7 @@ exports[`PickerInput should render with maximum props 1`] = `
     className="body multiline"
   >
     <button
-      className="container uui-button-box uui-enabled size-42 root uui-color-gray uui-tag"
+      className="container uui-button-box uui-enabled size-42 root uui-color-neutral uui-tag"
       onClick={[Function]}
       tabIndex={-1}
       type="button"
@@ -427,7 +427,7 @@ exports[`PickerInput should render with maximum props 1`] = `
       </div>
     </button>
     <button
-      className="container uui-button-box uui-enabled size-42 root uui-color-gray uui-tag"
+      className="container uui-button-box uui-enabled size-42 root uui-color-neutral uui-tag"
       onClick={[Function]}
       tabIndex={-1}
       type="button"
