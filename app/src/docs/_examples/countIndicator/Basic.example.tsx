@@ -28,7 +28,7 @@ export default function BasicCountIndicatorExample() {
     const getCountIndicator = (item: CountIndicatorProps) => {
         if (item.color === 'white') {
             return (
-                <div style={ { backgroundColor: '#303240', display: 'flex', justifyItems: 'center' } }>
+                <div style={ { backgroundColor: 'var(--uui-neutral-70)', display: 'flex', justifyItems: 'center' } }>
                     <CountIndicator caption={ item.caption } color={ item.color } size={ item.size } />
                 </div>
             );

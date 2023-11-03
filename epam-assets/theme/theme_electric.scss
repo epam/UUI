@@ -332,7 +332,6 @@
     }
 
     .uui-color-neutral,
-    .uui-color-gray,
     .uui-color-secondary {
         --uui-color-5: var(--uui-secondary-5);
         --uui-color-10: var(--uui-secondary-10);
@@ -528,6 +527,12 @@
             background-color: color-mix(in srgb, var(--white) 20%, transparent);
             border: 1px solid var(--uui-neutral-40);
         }
+    }
+
+    /* Tag */
+
+    .uui-tag.uui-color-gray {
+        --uui-tag-bg: var(--uui-neutral-30);
     }
 
 }
