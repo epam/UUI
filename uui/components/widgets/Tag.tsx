@@ -35,7 +35,7 @@ export function applyTagMods(mods: TagMods) {
     return [
         css['size-' + (mods.size || defaultSize)],
         css.root,
-        'uui-color-gray',
+        'uui-color-neutral',
         'uui-tag',
     ];
 }
