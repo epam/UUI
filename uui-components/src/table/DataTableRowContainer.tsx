@@ -99,36 +99,41 @@ function ScrollingSection<TItem, TId, TFilter>({
     );
 }
 
+export const groupColumns = <TItem, TId, TFilter>(columns: DataColumnProps<TItem, TId, TFilter>[]) => {
+    const fixedLeftColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
+    const fixedRightColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
+    const scrollingColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
+
+    for (const column of columns) {
+        if (column.fix === 'left') {
+            fixedLeftColumns.push(column);
+        } else if (column.fix === 'right') {
+            fixedRightColumns.push(column);
+        } else {
+            scrollingColumns.push(column);
+        }
+    }
+
+    return {
+        fixedLeftColumns,
+        fixedRightColumns,
+        scrollingColumns,
+    };
+};
+
 export const DataTableRowContainer = React.forwardRef(
     <TItem, TId, TFilter>(props: DataTableRowContainerProps<TItem, TId, TFilter>, ref: React.ForwardedRef<HTMLDivElement>) => {
-        const orderedColumns = useMemo(() => {
-            const fixedLeftColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
-            const fixedRightColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
-            const scrollingColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
+        const { fixedLeftColumns, scrollingColumns, fixedRightColumns } = useMemo(
+            () => groupColumns(props.columns),
+            [props.columns],
+        );
 
-            for (const column of props.columns) {
-                if (column.fix === 'left') {
-                    fixedLeftColumns.push(column);
-                } else if (column.fix === 'right') {
-                    fixedRightColumns.push(column);
-                } else {
-                    scrollingColumns.push(column);
-                }
-            }
-
-            return {
-                fixedLeftColumns,
-                fixedRightColumns,
-                scrollingColumns,
-            };
-        }, [props.columns]);
-
-        const firstColumn = orderedColumns.fixedLeftColumns.at(0)
-             || orderedColumns.scrollingColumns.at(0)
-             || orderedColumns.fixedRightColumns.at(0);
-        const lastColumn = orderedColumns.fixedRightColumns.at(-1)
-            || orderedColumns.scrollingColumns.at(-1)
-            || orderedColumns.fixedLeftColumns.at(-1);
+        const firstColumn = fixedLeftColumns.at(0)
+             || scrollingColumns.at(0)
+             || fixedRightColumns.at(0);
+        const lastColumn = fixedRightColumns.at(-1)
+            || scrollingColumns.at(-1)
+            || fixedLeftColumns.at(-1);
 
         const renderCells = useCallback((columns: DataColumnProps<TItem, TId, TFilter>[]) => {
             return columns.map<React.ReactNode>((column, index) => {
@@ -139,8 +144,6 @@ export const DataTableRowContainer = React.forwardRef(
         }, [props.renderCell, firstColumn, lastColumn]);
 
         function getRowContent() {
-            const { fixedLeftColumns, scrollingColumns, fixedRightColumns } = orderedColumns;
-
             const hasScrollingSection = scrollingColumns.length > 0;
 
             return (
