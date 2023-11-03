@@ -123,7 +123,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     const renderBody = (dropdownProps: DropdownBodyProps) => {
         const hideHeaderTitle = isPickersType && isMobileScreen;
         return isPickersType ? (
-            <MobileDropdownWrapper { ...dropdownProps } cx={ css.root } title={ props.title } width={ 360 } onClose={ () => isOpenChange(false) }>
+            <MobileDropdownWrapper { ...dropdownProps } cx="uui-filter-item_body" title={ props.title } width={ 360 } onClose={ () => isOpenChange(false) }>
                 { renderHeader(hideHeaderTitle) }
                 <FilterItemBody
                     { ...props }
@@ -134,7 +134,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 />
             </MobileDropdownWrapper>
         ) : (
-            <DropdownContainer { ...dropdownProps }>
+            <DropdownContainer cx="uui-filter-item_body" { ...dropdownProps }>
                 { renderHeader(hideHeaderTitle) }
                 <FilterItemBody
                     { ...props }
