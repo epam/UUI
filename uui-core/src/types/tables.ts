@@ -1,21 +1,25 @@
 import React, { Attributes, ForwardedRef, ReactNode } from 'react';
 import {
-    IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus } from './props';
-import { IDropdownToggler, IDropdownBodyProps } from './pickers';
+    IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus,
+} from './props';
+import { IDropdownToggler, IDropdownBodyProps, PickerBaseOptions } from './pickers';
 import { DataRowProps } from './dataRows';
 import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
-import { DataSourceState, IDataSource } from './dataSources';
+import { DataSourceState } from './dataSources';
 import { ILens } from '../data/lenses/types';
 import * as CSS from 'csstype';
-import { RangeDatePickerPresets, TooltipCoreProps } from './components';
-import { Dayjs } from 'dayjs';
+import { BaseDatePickerProps, TooltipCoreProps } from './components';
 import { IFilterItemBodyProps } from './components/filterItemBody';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
+    /** Configuration of columns at the DataTable. Used to define column visibility, width and order */
     columnsConfig?: ColumnsConfig;
+    /** Configuration of filter at the FilterPanel. Used to define filter visibility and order */
     filtersConfig?: FiltersConfig;
+    /** ID of currently selected preset */
     presetId?: number | null;
+    /** State which will not trigger data reloading, but will be stored in presets or URL */
     viewState?: TViewState;
 }
 
@@ -77,7 +81,10 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
      */
     isFilterActive?: (filter: TFilter, column: DataColumnProps<TItem, TId, TFilter>) => boolean;
 
+    /** A pure function that defines that column value can be copied to the other column. */
     canCopy?: (cell: DataTableSelectedCellData<TItem, TId, TFilter>) => boolean;
+
+    /** A pure function that defines that column accepts copying other column value into it */
     canAcceptCopy?: (from: DataTableSelectedCellData<TItem, TId, TFilter>, to: DataTableSelectedCellData<TItem, TId, TFilter>) => boolean;
 
     /** Render the cell content. The item props is the value of the whole row (TItem). */
@@ -114,6 +121,10 @@ export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEdita
     renderFilter?: (dropdownProps: IDropdownBodyProps) => React.ReactNode;
 }
 
+export type DataTableConfigModalParams = IEditable<DataSourceState> & {
+    columns: DataColumnProps[];
+};
+
 export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditable<DataTableState>, IHasCX, DataTableColumnsConfigOptions {
     columns: DataColumnProps<TItem, TId>[];
     selectAll?: ICheckable;
@@ -123,19 +134,36 @@ export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditab
 }
 
 export interface DataTableColumnsConfigOptions {
+    /** If true, allows user to change columns order
+     * @default false
+     * */
     allowColumnsReordering?: boolean;
+    /** If true, allows user to change columns width
+     * @default false
+     * */
     allowColumnsResizing?: boolean;
 }
 
 export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<TItem, TId> {
+    /** Array of visible columns */
     columns?: DataColumnProps<TItem, TId>[];
+    /**
+     * Render callback for each cell at row.
+     * If omitted, default cell renderer will be used.
+     * */
     renderCell?: (props: DataTableCellProps<TItem, TId, any>) => ReactNode;
+    /**
+     * Render callback for the drop marker. Rendered only if 'dnd' option was provided via getRowProps.
+     * If omitted, default renderer will be used.
+     * */
     renderDropMarkers?: (props: DndActorRenderParams) => ReactNode;
 }
 
 export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCellValue>, ICanFocus<any> {
+    /** DataRowProps object of rendered row */
     rowProps: DataRowProps<TItem, TId>;
-    mode: 'cell'; // This can signal the editor component to adapt it's visuals to cell editor
+    /** Cell mode signal the editor component to adapt it's visuals to cell editor */
+    mode: 'cell';
     ref?: ForwardedRef<any>;
 }
 
@@ -177,7 +205,7 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
      * - props implements IEditable and can be passed directly to suitable component (like TextInput)
      * - ICanFocus props are passed as well. Component should implement it so cell focus highlight works properly
      * - mode='cell' prop is passed to render UUI components in 'cell' mode
-     * - rowProps is passed so you depend on additional info about the row itself
+     * - rowProps is passed, so you depend on additional info about the row itself
      */
     renderEditor?(props: RenderEditorProps<TItem, TId, TCellValue>): React.ReactNode;
 
@@ -194,12 +222,19 @@ export interface RenderCellProps<TItem = any, TId = any> extends DataTableCellOp
 }
 
 export type ColumnsConfig = {
+    /** Config for each column */
     [key: string]: IColumnConfig;
 };
 
 export type IColumnConfig = {
+    /** If true, the column will be shown in the FiltersPanel */
     isVisible?: boolean;
+    /**
+     * Determines the order in which this column should appear in the table.
+     * The columns are sorted in ascending alphabetical order.
+     */
     order?: string;
+    /** The width of the column */
     width?: number;
 } & ICanBeFixed;
 
@@ -208,36 +243,52 @@ export type FiltersConfig<TFilter = any> = {
 };
 
 export type IFilterConfig = {
+    /** If true, the filter will be shown in the FiltersPanel */
     isVisible: boolean;
+    /**
+     * Determines the order in which this filter should appear in the filters list.
+     * The filters are sorted in ascending alphabetical order.
+     */
     order?: string;
 };
 
-export type DataTableConfigModalParams = IEditable<DataSourceState> & {
-    columns: DataColumnProps<any, any>[];
-};
-
 export type IFilterPredicate = {
+    /** Name of the predicate, used to display */
     name: string;
+    /** Predicate key, which wraps filter value.
+     *  E.g. your have 'in' predicate for locationIds filter, the resulted filter object will be:
+     *  filter: {
+     *      locationIds: {
+     *          in: [/selected location ids/]
+     *      }
+     *  }
+     *  */
     predicate: FilterPredicateName;
+    /** Pass true to make this predicate selected by default */
     isDefault?: boolean;
 };
 
 type FilterConfigBase<TFilter> = {
+    /** Title of the filter, displayed in filter toggler and filter body */
     title: string;
+    /** Field of filters object, where store the filter value */
     field: keyof TFilter;
-    columnKey: string;
+    /**
+     * Key of the column to which the filter is attached.
+     * If omitted, filter won't be attached to the column.
+     * */
+    columnKey?: string;
+    /** Pass true to make filter always visible in FilterPanel. User can't hide it via 'Add filter' dropdown */
     isAlwaysVisible?: boolean;
+    /** Array of available predicates for the filter. This predicated can be chosen by user and applied to the filter value. */
     predicates?: IFilterPredicate[];
     /** Count of words to show in the Filter toggler. By default, 2 item will be shown. */
     maxCount?: number;
 };
 
-export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<PickerBaseOptions<any, any>, 'dataSource' | 'getName' | 'renderRow'> & {
+    /** Type of the filter */
     type: 'singlePicker' | 'multiPicker';
-    dataSource: IDataSource<any, any, any>;
-    getName?: (item: any) => string;
-    renderRow?: (props: DataRowProps<any, any>) => ReactNode;
-    valueType?: 'id';
     /**
      * Pass false to hide search in picker body.
      * If omitted, true value will be used.
@@ -245,26 +296,27 @@ export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     showSearch?: boolean;
 };
 
-type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<BaseDatePickerProps, 'filter' | 'format'> & {
+    /** Type of the filter */
     type: 'datePicker';
-    filter?(day: Dayjs): boolean;
-    format?: string;
 };
 
-type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<BaseDatePickerProps, 'filter' | 'format'> & {
+    /** Type of the filter */
     type: 'rangeDatePicker';
-    format?: string;
-    filter?(day: Dayjs): boolean;
-    presets?: RangeDatePickerPresets;
 };
 
 type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+    /** Type of the filter */
     type: 'numeric';
 };
 
 type CustomFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+    /** Type of the filter */
     type: 'custom';
+    /** Render callback for filter body */
     render: (props: IFilterItemBodyProps<any>) => React.ReactElement;
+    /** A pure function that gets value to display in filter toggler */
     getTogglerValue: (props: IFilterItemBodyProps<any>) => ReactNode;
 };
 
@@ -272,14 +324,26 @@ export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter> | DatePick
 NumericFilterConfig<TFilter> | RangeDatePickerFilterConfig<TFilter> | CustomFilterConfig<TFilter>;
 
 export interface ITablePreset<TFilter = any, TViewState = any> {
+    /** Name of the filter */
     name: string;
+    /** Unique Id of the filter */
     id: number | null;
-    filter?: TFilter;
+    /** If true, this preset can't be deleted or modified */
     isReadonly?: boolean;
-    columnsConfig?: ColumnsConfig;
-    filtersConfig?: FiltersConfig;
-    sorting?: SortingOption[];
+    /**
+     * Determines the order in which this preset should appear in the presets list.
+     * The columns are sorted in ascending alphabetical order.
+     */
     order?: string;
+    /** Filter value stored in the preset */
+    filter?: TFilter;
+    /** Columns config value stored in the preset */
+    columnsConfig?: ColumnsConfig;
+    /** Filters config value stored in the preset */
+    filtersConfig?: FiltersConfig;
+    /** Sorting value stored in the preset */
+    sorting?: SortingOption[];
+    /** View state value stored in the preset */
     viewState?: TViewState;
 }
 
@@ -318,6 +382,8 @@ export interface ITableState<TFilter = Record<string, any>, TViewState = any> ex
 }
 
 export interface DataTableSelectedCellData<TItem = any, TId = any, TFilter = any> {
+    /** Column props of the selected cell */
     column: DataColumnProps<TItem, TId, TFilter>;
+    /** Row props of the selected cell */
     row: DataRowProps<TItem, TId>;
 }

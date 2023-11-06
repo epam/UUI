@@ -10,7 +10,7 @@ export interface ICanBeInvalid {
     isInvalid?: boolean;
 
     /** Message describing why the value is invalid */
-    validationMessage?: string;
+    validationMessage?: ReactNode;
     /** If T is a complex value (object or array), this property contains validation states of inner items */
     validationProps?: { [key: string]: ICanBeInvalid };
 }
@@ -207,8 +207,7 @@ IAnalyticableClick & {
     style?: CSSProperties;
 };
 
-export type ICheckable = IEditable<boolean> &
-IDisableable & {
+export type ICheckable = IEditable<boolean> & IDisableable & {
     /** Sets checkbox in indeterminate state (neither checked or unchecked), which usually means that children elements has both values */
     indeterminate?: boolean;
 };

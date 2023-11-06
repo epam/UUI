@@ -1,5 +1,5 @@
 @use './mixins.module' as *;
-@use  '~@epam/uui/assets/styles/dnd' as *;
+@use '~@epam/uui/assets/styles/dnd' as *;
 
 .drag-element {
     @include dnd-cursor-style();
@@ -24,6 +24,10 @@
 
     .materials-section {
         margin-bottom: 18px;
+    }
+
+    .item-title {
+        margin-left: 9px;
     }
 
     .grab-area {

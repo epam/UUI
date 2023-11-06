@@ -17,6 +17,7 @@ import { createInitialTable, selectFirstCell, updateTableStructure } from './uti
 import { TableRowElement } from './TableRowElement';
 import { TableCellElement } from './TableCellElement';
 import { TableElement } from './TableElement';
+import { IHasToolbarButton } from "../../implementation/Toolbars";
 
 const noop = () => {};
 
@@ -65,6 +66,31 @@ function TableRenderer(props: any) {
     );
 }
 
+
+export const tablePlugin = () => createTablePlugin<IHasToolbarButton>({
+    overrideByKey: {
+        [ELEMENT_TABLE]: {
+            type: 'table',
+            component: TableRenderer,
+        },
+        [ELEMENT_TR]: {
+            type: 'table_row',
+            component: TableRowElement,
+        },
+        [ELEMENT_TD]: {
+            type: 'table_cell',
+            component: TableCellElement,
+        },
+        [ELEMENT_TH]: {
+            type: 'table_header_cell',
+            component: TableCellElement,
+        },
+    },
+    options: {
+        bottomBarButton: TableButton,
+    },
+});
+
 export function TableButton({ editor }: { editor: PlateEditor; }) {
     if (!isPluginActive(ELEMENT_TABLE)) return null;
 
@@ -91,26 +117,3 @@ export function TableButton({ editor }: { editor: PlateEditor; }) {
         />
     );
 }
-
-type CreateTablePlugin = () => PlatePlugin<TablePlugin<Value>, Value, PlateEditor<Value>>;
-
-export const tablePlugin: CreateTablePlugin = () => createTablePlugin({
-    overrideByKey: {
-        [ELEMENT_TABLE]: {
-            type: 'table',
-            component: TableRenderer,
-        },
-        [ELEMENT_TR]: {
-            type: 'table_row',
-            component: TableRowElement,
-        },
-        [ELEMENT_TD]: {
-            type: 'table_cell',
-            component: TableCellElement,
-        },
-        [ELEMENT_TH]: {
-            type: 'table_header_cell',
-            component: TableCellElement,
-        },
-    },
-});

@@ -10,6 +10,7 @@ import { ReactComponent as NoteIcon } from '../../icons/info-block-quote.svg';
 
 import { PlateEditor, createPluginFactory, getBlockAbove } from '@udecode/plate-common';
 import { NotePluginBlock } from './NotePluginBlock';
+import { IHasToolbarButton } from "../../implementation/Toolbars";
 
 export const noteTypes = ['note-error', 'note-warning', 'note-link', 'note-quote'];
 
@@ -23,7 +24,7 @@ function Note(props: any) {
 }
 
 export const notePlugin = () => {
-    const createNotePlugin = createPluginFactory({
+    const createNotePlugin = createPluginFactory<IHasToolbarButton>({
         key: 'note',
         isElement: true,
         isVoid: false,
@@ -58,6 +59,9 @@ export const notePlugin = () => {
                 component: Note,
             },
         ],
+        options: {
+            bottomBarButton: NoteButton,
+        },
     });
     return createNotePlugin();
 };
