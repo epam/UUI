@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-10-20",
+ "timestamp": "2023-11-02",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -589,6 +589,9 @@
      {
       "uid": 1,
       "name": "items",
+      "comment": [
+       "Data, which should be represented by a DataSource."
+      ],
       "typeValue": {
        "raw": "TItem[] | ITree<TItem, TId>"
       },
@@ -598,6 +601,10 @@
      {
       "uid": 2,
       "name": "getSearchFields",
+      "comment": [
+       "A pure function that gets search value for each item.",
+       "     Default: (item) => item.name."
+      ],
       "typeValue": {
        "raw": "(item: TItem) => string[]"
       },
@@ -607,6 +614,9 @@
      {
       "uid": 3,
       "name": "sortBy",
+      "comment": [
+       "A pure function that gets sorting value for current sorting value"
+      ],
       "typeValue": {
        "raw": "(item: TItem, sorting: SortingOption<any>) => any"
       },
@@ -616,6 +626,10 @@
      {
       "uid": 4,
       "name": "getFilter",
+      "comment": [
+       "A pure function that returns filter callback to be applied for each item.",
+       " The callback should return true, if item passed the filter."
+      ],
       "typeValue": {
        "raw": "(filter: TFilter) => (item: TItem) => boolean"
       },
@@ -827,6 +841,7 @@
      "raw": "ArrayListViewProps<TItem, TId, TFilter>",
      "print": [
       "interface ArrayListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {",
+      "    /** Data, which should be represented by a DataSource. */",
       "    items?: TItem[] | ITree<TItem, TId>;",
       "}"
      ]
@@ -835,6 +850,9 @@
      {
       "uid": 1,
       "name": "items",
+      "comment": [
+       "Data, which should be represented by a DataSource."
+      ],
       "typeValue": {
        "raw": "TItem[] | ITree<TItem, TId>"
       },
@@ -843,6 +861,10 @@
      {
       "uid": 2,
       "name": "getSearchFields",
+      "comment": [
+       "A pure function that gets search value for each item.",
+       "     Default: (item) => item.name."
+      ],
       "typeValue": {
        "raw": "(item: TItem) => string[]"
       },
@@ -852,6 +874,9 @@
      {
       "uid": 3,
       "name": "sortBy",
+      "comment": [
+       "A pure function that gets sorting value for current sorting value"
+      ],
       "typeValue": {
        "raw": "(item: TItem, sorting: SortingOption<any>) => any"
       },
@@ -861,6 +886,10 @@
      {
       "uid": 4,
       "name": "getFilter",
+      "comment": [
+       "A pure function that returns filter callback to be applied for each item.",
+       " The callback should return true, if item passed the filter."
+      ],
       "typeValue": {
        "raw": "(filter: TFilter) => (item: TItem) => boolean"
       },
@@ -1132,7 +1161,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -1253,6 +1282,10 @@
      {
       "uid": 2,
       "name": "getSearchFields",
+      "comment": [
+       "A pure function that gets search value for each item.",
+       "     Default: (item) => item.name."
+      ],
       "typeValue": {
        "raw": "(item: TItem) => string[]"
       },
@@ -1262,6 +1295,9 @@
      {
       "uid": 3,
       "name": "sortBy",
+      "comment": [
+       "A pure function that gets sorting value for current sorting value"
+      ],
       "typeValue": {
        "raw": "(item: TItem, sorting: SortingOption<any>) => any"
       },
@@ -1271,6 +1307,10 @@
      {
       "uid": 4,
       "name": "getFilter",
+      "comment": [
+       "A pure function that returns filter callback to be applied for each item.",
+       " The callback should return true, if item passed the filter."
+      ],
       "typeValue": {
        "raw": "(filter: TFilter) => (item: TItem) => boolean"
       },
@@ -1478,6 +1518,10 @@
      {
       "uid": 2,
       "name": "getSearchFields",
+      "comment": [
+       "A pure function that gets search value for each item.",
+       "     Default: (item) => item.name."
+      ],
       "typeValue": {
        "raw": "(item: TItem) => string[]"
       },
@@ -1487,6 +1531,9 @@
      {
       "uid": 3,
       "name": "sortBy",
+      "comment": [
+       "A pure function that gets sorting value for current sorting value"
+      ],
       "typeValue": {
        "raw": "(item: TItem, sorting: SortingOption<any>) => any"
       },
@@ -1496,6 +1543,10 @@
      {
       "uid": 4,
       "name": "getFilter",
+      "comment": [
+       "A pure function that returns filter callback to be applied for each item.",
+       " The callback should return true, if item passed the filter."
+      ],
       "typeValue": {
        "raw": "(filter: TFilter) => (item: TItem) => boolean"
       },
@@ -1687,8 +1738,15 @@
      "raw": "BaseArrayListViewProps<TItem, TId, TFilter>",
      "print": [
       "interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {",
+      "    /** A pure function that gets search value for each item.",
+      "     Default: (item) => item.name.",
+      "     */",
       "    getSearchFields?(item: TItem): string[];",
+      "    /** A pure function that gets sorting value for current sorting value */",
       "    sortBy?(item: TItem, sorting: SortingOption): any;",
+      "    /** A pure function that returns filter callback to be applied for each item.",
+      "     * The callback should return true, if item passed the filter.",
+      "     *  */",
       "    getFilter?(filter: TFilter): (item: TItem) => boolean;",
       "    /**",
       "     * Enables sorting of search results by relevance.",
@@ -1714,6 +1772,10 @@
      {
       "uid": 1,
       "name": "getSearchFields",
+      "comment": [
+       "A pure function that gets search value for each item.",
+       "     Default: (item) => item.name."
+      ],
       "typeValue": {
        "raw": "(item: TItem) => string[]"
       },
@@ -1722,6 +1784,9 @@
      {
       "uid": 2,
       "name": "sortBy",
+      "comment": [
+       "A pure function that gets sorting value for current sorting value"
+      ],
       "typeValue": {
        "raw": "(item: TItem, sorting: SortingOption<any>) => any"
       },
@@ -1730,6 +1795,10 @@
      {
       "uid": 3,
       "name": "getFilter",
+      "comment": [
+       "A pure function that returns filter callback to be applied for each item.",
+       " The callback should return true, if item passed the filter."
+      ],
       "typeValue": {
        "raw": "(filter: TFilter) => (item: TItem) => boolean"
       },
@@ -2113,7 +2182,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -2692,7 +2761,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -3434,7 +3503,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -3988,7 +4057,7 @@
       "    /** Info tooltip displayed in the table header */",
       "    info?: React.ReactNode;",
       "    /**",
-      "     *  Should return true, if current filter affects the column.",
+      "     * Should return true, if current filter affects the column.",
       "     * Usually, this prop is filled automatically by the useTableState hook.",
       "     * If you use the useTableState hook, you don't need to specify it manually.",
       "     */",
@@ -4464,6 +4533,10 @@
       "    onClick?(rowProps: DataRowProps<TItem, TId>): void;",
       "    /** Can be specified to make row act as a link (plain or SPA) */",
       "    link?: Link;",
+      "    /**",
+      "     * A pure function that gets pinned state for each row.",
+      "     * If row pinned, it means that it will be sticky inside their parent section.",
+      "     * */",
       "    pin?(rowProps: DataRowProps<TItem, TId>): boolean;",
       "}"
      ]
@@ -4527,6 +4600,10 @@
      {
       "uid": 6,
       "name": "pin",
+      "comment": [
+       "A pure function that gets pinned state for each row.",
+       " If row pinned, it means that it will be sticky inside their parent section."
+      ],
       "typeValue": {
        "raw": "(rowProps: DataRowProps<TItem, TId>) => boolean"
       },
@@ -4587,7 +4664,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -4936,6 +5013,10 @@
      {
       "uid": 13,
       "name": "pin",
+      "comment": [
+       "A pure function that gets pinned state for each row.",
+       " If row pinned, it means that it will be sticky inside their parent section."
+      ],
       "typeValue": {
        "raw": "(rowProps: DataRowProps<TItem, TId>) => boolean"
       },
@@ -4997,7 +5078,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -5537,7 +5618,7 @@
       "    focusedIndex?: number;",
       "    /** Current page number */",
       "    page?: number;",
-      "    /** The amount of items on one page */",
+      "    /** The amount of items per page */",
       "    pageSize?: number;",
       "}"
      ]
@@ -5642,7 +5723,7 @@
       "uid": 9,
       "name": "pageSize",
       "comment": [
-       "The amount of items on one page"
+       "The amount of items per page"
       ],
       "typeValue": {
        "raw": "number"
@@ -6043,7 +6124,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -6220,7 +6301,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -6438,7 +6519,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -6725,7 +6806,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -7028,6 +7109,10 @@
      {
       "uid": 16,
       "name": "pin",
+      "comment": [
+       "A pure function that gets pinned state for each row.",
+       " If row pinned, it means that it will be sticky inside their parent section."
+      ],
       "typeValue": {
        "raw": "(rowProps: DataRowProps<TItem, TId>) => boolean"
       },
@@ -7089,7 +7174,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -7639,7 +7724,7 @@
       "uid": 13,
       "name": "pageSize",
       "comment": [
-       "The amount of items on one page"
+       "The amount of items per page"
       ],
       "typeValue": {
        "raw": "number"
@@ -7905,7 +7990,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -8672,7 +8757,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -10421,7 +10506,7 @@
       "    /** True if component contains invalid input */",
       "    isInvalid?: boolean;",
       "    /** Message describing why the value is invalid */",
-      "    validationMessage?: string;",
+      "    validationMessage?: ReactNode;",
       "    /** If T is a complex value (object or array), this property contains validation states of inner items */",
       "    validationProps?: {",
       "        [key: string]: ICanBeInvalid;",
@@ -10448,7 +10533,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "required": false
      },
@@ -10744,7 +10829,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -11719,7 +11804,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -11916,7 +12001,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -12359,7 +12444,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -12933,7 +13018,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -14317,7 +14402,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -15273,6 +15358,7 @@
       "        parentId?: TId;",
       "        includeParent?: boolean;",
       "    }): void;",
+      "    forEachItem(action: (item: TItem, id: TId, parentId: TId) => void): void;",
       "    computeSubtotals<TSubtotals>(get: (item: TItem, hasChildren: boolean) => TSubtotals, add: (a: TSubtotals, b: TSubtotals) => TSubtotals): CompositeKeysMap<TId | undefined, TSubtotals> | Map<TId | undefined, TSubtotals>;",
       "    filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId>;",
       "    search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): ITree<TItem, TId>;",
@@ -15451,6 +15537,14 @@
      },
      {
       "uid": 22,
+      "name": "forEachItem",
+      "typeValue": {
+       "raw": "(action: (item: TItem, id: TId, parentId: TId) => void) => void"
+      },
+      "required": true
+     },
+     {
+      "uid": 23,
       "name": "computeSubtotals",
       "typeValue": {
        "raw": "<TSubtotals>(get: (item: TItem, hasChildren: boolean) => TSubtotals, add: (a: TSubtotals, b: TSubtotals) => TSubtotals) => CompositeKeysMap<TId | undefined, TSubtotals> | Map<TId | undefined, TSubtotals>"
@@ -15458,7 +15552,7 @@
       "required": true
      },
      {
-      "uid": 23,
+      "uid": 24,
       "name": "filter",
       "typeValue": {
        "raw": "<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>) => ITree<TItem, TId>"
@@ -15466,7 +15560,7 @@
       "required": true
      },
      {
-      "uid": 24,
+      "uid": 25,
       "name": "search",
       "typeValue": {
        "raw": "<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>) => ITree<TItem, TId>"
@@ -15474,7 +15568,7 @@
       "required": true
      },
      {
-      "uid": 25,
+      "uid": 26,
       "name": "sort",
       "typeValue": {
        "raw": "<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) => ITree<TItem, TId>"
@@ -15621,7 +15715,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -15781,7 +15875,11 @@
      "raw": "LazyDataSourceApi<TItem, TId, TFilter>",
      "print": [
       "/** Defines API to retrieve data for DataSources */",
-      "type LazyDataSourceApi<TItem, TId, TFilter> = (request: LazyDataSourceApiRequest<TItem, TId, TFilter>, context?: LazyDataSourceApiRequestContext<TItem, TId>) => Promise<LazyDataSourceApiResponse<TItem>>;"
+      "type LazyDataSourceApi<TItem, TId, TFilter> = (",
+      "/** Defines input arguments for Lazy Data Source APIs */",
+      "request: LazyDataSourceApiRequest<TItem, TId, TFilter>, ",
+      "/** Defines the context of API request. */",
+      "context?: LazyDataSourceApiRequestContext<TItem, TId>) => Promise<LazyDataSourceApiResponse<TItem>>;"
      ]
     }
    }
@@ -15804,12 +15902,26 @@
       "/** Defines input arguments for Lazy Data Source APIs */",
       "// eslint-disable-next-line @typescript-eslint/no-unused-vars",
       "interface LazyDataSourceApiRequest<TItem, TId = any, TFilter = {}> {",
+      "    /**",
+      "     * The filter object, by which data should be filtered.",
+      "     * It is a merged result of filters from DataSourceState and LazyDataSourceProps.",
+      "     */",
       "    filter?: TFilter;",
+      "    /** Sorting options, by which data should be sorted. */",
       "    sorting?: SortingOption[];",
+      "    /** The search string, by which data should be searched. */",
       "    search?: string;",
+      "    /** Specifies a range of the rows to be retrieved. */",
       "    range?: LazyDataSourceApiRequestRange;",
+      "    /** Page number for which data should be retrieved. */",
       "    page?: number;",
+      "    /** Number of items at the page. */",
       "    pageSize?: number;",
+      "    /**",
+      "     * An array of item IDs to be retrieved from the API.",
+      "     * Other request options like filter, search and others should be ignored when IDs are provided.",
+      "     * Used for requesting specific items separately from the list.",
+      "     */",
       "    ids?: TId[];",
       "}"
      ]
@@ -15818,6 +15930,10 @@
      {
       "uid": 1,
       "name": "filter",
+      "comment": [
+       "The filter object, by which data should be filtered.",
+       " It is a merged result of filters from DataSourceState and LazyDataSourceProps."
+      ],
       "typeValue": {
        "raw": "TFilter"
       },
@@ -15826,6 +15942,9 @@
      {
       "uid": 2,
       "name": "sorting",
+      "comment": [
+       "Sorting options, by which data should be sorted."
+      ],
       "typeValue": {
        "raw": "SortingOption<any>[]"
       },
@@ -15834,6 +15953,9 @@
      {
       "uid": 3,
       "name": "search",
+      "comment": [
+       "The search string, by which data should be searched."
+      ],
       "typeValue": {
        "raw": "string"
       },
@@ -15842,6 +15964,9 @@
      {
       "uid": 4,
       "name": "range",
+      "comment": [
+       "Specifies a range of the rows to be retrieved."
+      ],
       "typeValue": {
        "raw": "LazyDataSourceApiRequestRange"
       },
@@ -15850,6 +15975,9 @@
      {
       "uid": 5,
       "name": "page",
+      "comment": [
+       "Page number for which data should be retrieved."
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -15858,6 +15986,9 @@
      {
       "uid": 6,
       "name": "pageSize",
+      "comment": [
+       "Number of items at the page."
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -15866,6 +15997,11 @@
      {
       "uid": 7,
       "name": "ids",
+      "comment": [
+       "An array of item IDs to be retrieved from the API.",
+       " Other request options like filter, search and others should be ignored when IDs are provided.",
+       " Used for requesting specific items separately from the list."
+      ],
       "typeValue": {
        "raw": "TId[]"
       },
@@ -15895,7 +16031,12 @@
      "print": [
       "/** Defines the context of API request. E.g. parent if we require to retrieve sub-list of the tree */",
       "interface LazyDataSourceApiRequestContext<TItem, TId> {",
+      "    /**",
+      "     * The ID of the parent item whose children are being requested.",
+      "     * Used for lazy-loading data in tree lists.",
+      "     */",
       "    parentId?: TId | null;",
+      "    /** The parent entity whose children are being requested */",
       "    parent?: TItem | null;",
       "}"
      ]
@@ -15904,6 +16045,10 @@
      {
       "uid": 1,
       "name": "parentId",
+      "comment": [
+       "The ID of the parent item whose children are being requested.",
+       " Used for lazy-loading data in tree lists."
+      ],
       "typeValue": {
        "raw": "null | TId"
       },
@@ -15912,6 +16057,9 @@
      {
       "uid": 2,
       "name": "parent",
+      "comment": [
+       "The parent entity whose children are being requested"
+      ],
       "typeValue": {
        "raw": "null | TItem"
       },
@@ -15942,7 +16090,9 @@
       "// Lazy Data Source API",
       "/** The range (from/count) of required rows for LazyDataSourceApiRequest */",
       "interface LazyDataSourceApiRequestRange {",
+      "    /** Element index to fetch from. */",
       "    from: number;",
+      "    /** Count of elements to be retrieved. */",
       "    count?: number;",
       "}"
      ]
@@ -15951,6 +16101,9 @@
      {
       "uid": 1,
       "name": "from",
+      "comment": [
+       "Element index to fetch from."
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -15959,6 +16112,9 @@
      {
       "uid": 2,
       "name": "count",
+      "comment": [
+       "Count of elements to be retrieved."
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -15995,7 +16151,10 @@
       "     * This can be used to return all items at once (with from:0, count: totalCount), or align response to pages.",
       "     */",
       "    from?: number;",
-      "    /** Total count of items which match current filter. If not specified, total count will be detected only when user scrolls to the end of the list. */",
+      "    /**",
+      "     * Total count of items which match current filter.",
+      "     * If not specified, total count will be detected only when user scrolls to the end of the list.",
+      "     */",
       "    count?: number;",
       "}"
      ]
@@ -16028,7 +16187,8 @@
       "uid": 3,
       "name": "count",
       "comment": [
-       "Total count of items which match current filter. If not specified, total count will be detected only when user scrolls to the end of the list."
+       "Total count of items which match current filter.",
+       " If not specified, total count will be detected only when user scrolls to the end of the list."
       ],
       "typeValue": {
        "raw": "number"
@@ -16083,11 +16243,11 @@
       "comment": [
        "Should return number of children of the item.",
        " If it returns > 0, the item is assumed to have children and to be foldable.",
-       " Usually, this value should be returned from API.",
+       " Usually, this value should be returned from API, as a field of a parent, e.g. { id: 1, name: 'London', childCount: 12 }.",
+       " In this case, you can implement getChildCount as (i) => i.childCount.",
        "",
        " If you can't get number of children via API, you can return a guess value (avg number of children for this type of entity).",
-       " Note, that this can lead to more API calls, and increased load times in the 'parallel' fetch mode.",
-       " @param item"
+       " Note, that this can lead to more API calls, and increased load times in the 'parallel' fetch mode."
       ],
       "typeValue": {
        "raw": "(item: TItem) => number"
@@ -16148,7 +16308,7 @@
       "uid": 6,
       "name": "legacyLoadDataBehavior",
       "comment": [
-       "This options is added for the purpose of supporting legacy behavior of fetching data",
+       "This option is added for the purpose of supporting legacy behavior of fetching data",
        " on `getVisibleRows` and `getListProps`, not to break users' own implementation of dataSources.",
        " @default true"
       ],
@@ -16331,11 +16491,11 @@
       "    /**",
       "     * Should return number of children of the item.",
       "     * If it returns > 0, the item is assumed to have children and to be foldable.",
-      "     * Usually, this value should be returned from API.",
+      "     * Usually, this value should be returned from API, as a field of a parent, e.g. { id: 1, name: 'London', childCount: 12 }.",
+      "     * In this case, you can implement getChildCount as (i) => i.childCount.",
       "     *",
       "     * If you can't get number of children via API, you can return a guess value (avg number of children for this type of entity).",
       "     * Note, that this can lead to more API calls, and increased load times in the 'parallel' fetch mode.",
-      "     * @param item",
       "     */",
       "    getChildCount?(item: TItem): number;",
       "    /**",
@@ -16364,7 +16524,7 @@
       "     */",
       "    flattenSearchResults?: boolean;",
       "    /**",
-      "     * This options is added for the purpose of supporting legacy behavior of fetching data",
+      "     * This option is added for the purpose of supporting legacy behavior of fetching data",
       "     * on `getVisibleRows` and `getListProps`, not to break users' own implementation of dataSources.",
       "     * @default true",
       "     */",
@@ -16396,11 +16556,11 @@
       "comment": [
        "Should return number of children of the item.",
        " If it returns > 0, the item is assumed to have children and to be foldable.",
-       " Usually, this value should be returned from API.",
+       " Usually, this value should be returned from API, as a field of a parent, e.g. { id: 1, name: 'London', childCount: 12 }.",
+       " In this case, you can implement getChildCount as (i) => i.childCount.",
        "",
        " If you can't get number of children via API, you can return a guess value (avg number of children for this type of entity).",
-       " Note, that this can lead to more API calls, and increased load times in the 'parallel' fetch mode.",
-       " @param item"
+       " Note, that this can lead to more API calls, and increased load times in the 'parallel' fetch mode."
       ],
       "typeValue": {
        "raw": "(item: TItem) => number"
@@ -16457,7 +16617,7 @@
       "uid": 6,
       "name": "legacyLoadDataBehavior",
       "comment": [
-       "This options is added for the purpose of supporting legacy behavior of fetching data",
+       "This option is added for the purpose of supporting legacy behavior of fetching data",
        " on `getVisibleRows` and `getListProps`, not to break users' own implementation of dataSources.",
        " @default true"
       ],
@@ -16927,11 +17087,11 @@
       "comment": [
        "Should return number of children of the item.",
        " If it returns > 0, the item is assumed to have children and to be foldable.",
-       " Usually, this value should be returned from API.",
+       " Usually, this value should be returned from API, as a field of a parent, e.g. { id: 1, name: 'London', childCount: 12 }.",
+       " In this case, you can implement getChildCount as (i) => i.childCount.",
        "",
        " If you can't get number of children via API, you can return a guess value (avg number of children for this type of entity).",
-       " Note, that this can lead to more API calls, and increased load times in the 'parallel' fetch mode.",
-       " @param item"
+       " Note, that this can lead to more API calls, and increased load times in the 'parallel' fetch mode."
       ],
       "typeValue": {
        "raw": "(item: TItem) => number"
@@ -18191,7 +18351,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -18452,7 +18612,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -19130,7 +19290,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -19563,7 +19723,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -19872,7 +20032,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -20650,7 +20810,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -21135,7 +21295,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -21640,7 +21800,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -22683,7 +22843,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -23128,7 +23288,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -23561,7 +23721,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -23767,7 +23927,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -25026,7 +25186,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -25259,7 +25419,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -26131,7 +26291,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -26644,7 +26804,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -30771,7 +30931,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -31616,7 +31776,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -31996,7 +32156,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -32282,7 +32442,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -32486,7 +32646,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -32882,7 +33042,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -33315,7 +33475,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -34044,7 +34204,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -34902,7 +35062,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -35357,7 +35517,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -35570,7 +35730,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -35925,7 +36085,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -40341,7 +40501,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -40583,7 +40743,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -40940,7 +41100,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -41212,7 +41372,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -41613,7 +41773,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -42043,7 +42203,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -42314,7 +42474,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -42668,7 +42828,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -42988,7 +43148,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -43735,7 +43895,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -44468,7 +44628,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -44832,7 +44992,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -45995,7 +46155,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -46874,7 +47034,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -47476,7 +47636,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -48301,7 +48461,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -48576,6 +48736,10 @@
      {
       "uid": 18,
       "name": "pin",
+      "comment": [
+       "A pure function that gets pinned state for each row.",
+       " If row pinned, it means that it will be sticky inside their parent section."
+      ],
       "typeValue": {
        "raw": "(rowProps: DataRowProps<TItem, TId>) => boolean"
       },
@@ -48637,7 +48801,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -49384,7 +49548,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -49954,7 +50118,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -52577,7 +52741,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -54277,7 +54441,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -55094,7 +55258,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -55627,7 +55791,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -56177,6 +56341,10 @@
      {
       "uid": 19,
       "name": "pin",
+      "comment": [
+       "A pure function that gets pinned state for each row.",
+       " If row pinned, it means that it will be sticky inside their parent section."
+      ],
       "typeValue": {
        "raw": "(rowProps: DataRowProps<TItem, TId>) => boolean"
       },
@@ -56238,7 +56406,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -56738,6 +56906,10 @@
      {
       "uid": 14,
       "name": "pin",
+      "comment": [
+       "A pure function that gets pinned state for each row.",
+       " If row pinned, it means that it will be sticky inside their parent section."
+      ],
       "typeValue": {
        "raw": "(rowProps: DataRowProps<TItem, TId>) => boolean"
       },
@@ -56799,7 +56971,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -57459,7 +57631,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -58542,7 +58714,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -58807,7 +58979,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -59114,7 +59286,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -59779,7 +59951,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -60293,7 +60465,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -61438,7 +61610,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -61906,7 +62078,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -62631,7 +62803,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -62908,7 +63080,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -63569,7 +63741,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -66018,7 +66190,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -66976,7 +67148,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -69646,7 +69818,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -70104,7 +70276,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -70435,7 +70607,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -70914,7 +71086,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -71919,7 +72091,7 @@
        "Message describing why the value is invalid"
       ],
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -72468,6 +72640,105 @@
        "raw": "{ imageSize: SlateImageSize; align: SlateImgAlign; } & Partial<File> | { imageSize: SlateImageSize; align: SlateImgAlign; } & Partial<FileUploadResponse>"
       },
       "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-editor:ToolbarButtonProps": {
+   "summary": {
+    "module": "@epam/uui-editor",
+    "typeName": {
+     "name": "ToolbarButtonProps",
+     "nameFull": "ToolbarButtonProps"
+    },
+    "src": "uui-editor/src/implementation/ToolbarButton.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "ToolbarButtonProps",
+     "print": [
+      "interface ToolbarButtonProps extends IHasCX {",
+      "    isActive?: boolean;",
+      "    onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;",
+      "    icon?: Icon;",
+      "    iconColor?: 'red' | 'green' | 'amber' | 'blue' | 'gray60';",
+      "    editor?: Editor;",
+      "    isDisabled?: boolean;",
+      "    caption?: string;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "isActive",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "onClick",
+      "typeValue": {
+       "raw": "(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void"
+      },
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "icon",
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "iconColor",
+      "typeValue": {
+       "raw": "'red' | 'green' | 'amber' | 'blue' | 'gray60'"
+      },
+      "required": false
+     },
+     {
+      "uid": 5,
+      "name": "editor",
+      "typeValue": {
+       "raw": "BaseEditor"
+      },
+      "required": false
+     },
+     {
+      "uid": 6,
+      "name": "isDisabled",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "required": false
+     },
+     {
+      "uid": 7,
+      "name": "caption",
+      "typeValue": {
+       "raw": "string"
+      },
+      "required": false
+     },
+     {
+      "uid": 8,
+      "name": "cx",
+      "comment": [
+       "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+      ],
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
      }
     ],
     "propsFromUnion": false
