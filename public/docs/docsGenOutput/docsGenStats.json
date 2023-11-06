@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 864,
-   "amountTypes": 277
+   "amountProps": 856,
+   "amountTypes": 272
   },
   "value": [
    {
@@ -78,12 +78,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:ArrayListViewProps",
-    "value": [
-     "items"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:ArrayPickerProps",
     "value": [
      "emptyValue",
@@ -96,14 +90,6 @@
     "typeRef": "@epam/uui-core:AsyncListViewProps",
     "value": [
      "api"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:BaseArrayListViewProps",
-    "value": [
-     "getFilter",
-     "getSearchFields",
-     "sortBy"
     ]
    },
    {
@@ -170,12 +156,6 @@
     "value": [
      "count",
      "from"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataRowOptions",
-    "value": [
-     "pin"
     ]
    },
    {
@@ -625,6 +605,7 @@
      "computeSubtotals",
      "filter",
      "forEach",
+     "forEachItem",
      "getById",
      "getChildren",
      "getChildrenByParentId",
@@ -660,32 +641,6 @@
      "depth",
      "id",
      "zIndex"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:LazyDataSourceApiRequest",
-    "value": [
-     "filter",
-     "ids",
-     "page",
-     "pageSize",
-     "range",
-     "search",
-     "sorting"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:LazyDataSourceApiRequestContext",
-    "value": [
-     "parent",
-     "parentId"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:LazyDataSourceApiRequestRange",
-    "value": [
-     "count",
-     "from"
     ]
    },
    {
@@ -2253,12 +2208,24 @@
     "value": [
      "data"
     ]
+   },
+   {
+    "typeRef": "@epam/uui-editor:ToolbarButtonProps",
+    "value": [
+     "caption",
+     "editor",
+     "icon",
+     "iconColor",
+     "isActive",
+     "isDisabled",
+     "onClick"
+    ]
    }
   ]
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 465
+   "amountTypes": 466
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -2725,19 +2692,20 @@
    "@epam/uui-editor:PlaceholderPluginParams",
    "@epam/uui-editor:PlateImgAlign",
    "@epam/uui-editor:SlateImageSize",
-   "@epam/uui-editor:SlateImgAlign"
+   "@epam/uui-editor:SlateImgAlign",
+   "@epam/uui-editor:ToolbarButtonProps"
   ]
  },
  "ignoredExports": {
   "totals": {
-   "allExports": 713,
+   "allExports": 714,
    "byModule": {
     "@epam/uui-core": 132,
     "@epam/uui-components": 105,
     "@epam/uui": 148,
     "@epam/promo": 127,
     "@epam/loveship": 139,
-    "@epam/uui-editor": 62
+    "@epam/uui-editor": 63
    }
   },
   "value": {
@@ -3475,6 +3443,7 @@
      "tablePlugin",
      "TODO_ELEMENT_KEY",
      "toDoListPlugin",
+     "ToolbarButton",
      "uploadFilePlugin",
      "VIDEO_PLUGIN_KEY",
      "videoPlugin"
@@ -3510,14 +3479,14 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 538,
+   "allExports": 539,
    "byModule": {
     "@epam/uui-core": 205,
     "@epam/uui-components": 92,
     "@epam/uui": 127,
     "@epam/promo": 48,
     "@epam/loveship": 57,
-    "@epam/uui-editor": 9
+    "@epam/uui-editor": 10
    }
   },
   "value": {
@@ -4092,7 +4061,8 @@
      "LinkElement",
      "PlaceholderPluginParams",
      "PlateProps",
-     "SlateProps"
+     "SlateProps",
+     "ToolbarButtonProps"
     ]
    }
   }

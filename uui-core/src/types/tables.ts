@@ -75,7 +75,7 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
     info?: React.ReactNode;
 
     /**
-     *  Should return true, if current filter affects the column.
+     * Should return true, if current filter affects the column.
      * Usually, this prop is filled automatically by the useTableState hook.
      * If you use the useTableState hook, you don't need to specify it manually.
      */
