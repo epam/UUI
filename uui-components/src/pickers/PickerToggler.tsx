@@ -30,26 +30,14 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const toggleContainer = React.useRef<HTMLDivElement>();
     const inputContainer = React.useRef<HTMLInputElement>();
+    const alreadyClickedOnFocus = React.useRef<boolean>(false);
 
     React.useImperativeHandle(ref, () => toggleContainer.current, [toggleContainer.current]);
 
-    const handleClick = useCallback(
-        (event: Event) => {
-            if (props.isInteractedOutside(event) && inFocus) {
-                blur();
-            }
-        },
-        [inFocus],
-    );
-
     React.useEffect(() => {
-        props.isOpen && window.document.addEventListener('click', handleClick);
-
         if (props.autoFocus && !props.disableSearch) {
             inputContainer.current?.focus();
         }
-
-        return () => !props.isOpen && window.document.removeEventListener('click', handleClick);
     }, [props.isOpen]);
 
     const isActivePlaceholder = (): Boolean => {
@@ -68,19 +56,26 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     };
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-        props.onFocus?.(e);
-        setInFocus(true);
-        inputContainer.current?.focus();
+        if (!inFocus) {
+            props.onFocus?.(e);
+            setInFocus(true);
+            inputContainer.current?.focus();
+            togglerPickerOpened();
+            alreadyClickedOnFocus.current = true;
+        }
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLElement>) => {
-        if (props.isOpen) {
+        if (props.isOpen && props.searchPosition === 'input') {
             // If picker opened and search inside input, we lock focus on toggler.
             // In case, when search inside body, we need to highlight toggler like in focus state, even when focus was moved to the body. So we do nothing in this case.
-            return props.searchPosition === 'input' && inputContainer.current?.focus();
-        } else {
+            return inputContainer.current?.focus();
+        }
+
+        if (props.isInteractedOutside(e.nativeEvent)) {
             // If picker closed, we perform blur event as usual.
             blur(e);
+            alreadyClickedOnFocus.current = false;
         }
     };
 
@@ -144,12 +139,20 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         );
     };
 
-    const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
+    const togglerPickerOpened = useCallback(() => {
         if (props.isDisabled || props.isReadonly) return;
-        e.preventDefault();
         if (inFocus && props.value && props.minCharsToSearch) return;
         props.onClick?.();
-    };
+    }, [props.onClick, props.isDisabled, props.isReadonly, props.value, props.minCharsToSearch, inFocus]);
+
+    const onTogglerClick = useCallback((e: React.SyntheticEvent<HTMLDivElement>) => {
+        if (alreadyClickedOnFocus.current) {
+            alreadyClickedOnFocus.current = false;
+        } else {
+            togglerPickerOpened();
+        }
+        e.stopPropagation();
+    }, [togglerPickerOpened]);
 
     const closeOpenedPickerBody = useCallback(
         (e: React.MouseEvent<HTMLDivElement>) => {
@@ -170,7 +173,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     return (
         <div
-            onClick={ togglerPickerOpened }
+            onClick={ onTogglerClick }
             ref={ toggleContainer }
             className={ cx(
                 css.container,
