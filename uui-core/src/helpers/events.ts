@@ -169,7 +169,13 @@ function _getScrollParent(node: HTMLElement, dimension: 'x' | 'y'): HTMLElement 
  */
 function _getEventTarget(event: Event | React.SyntheticEvent) {
     if (event instanceof Event) {
-        const target = event.target;
+        let target;
+        if (['focus', 'blur', 'focusin', 'focusout'].includes(event.type)) {
+            target = (event as FocusEvent).relatedTarget;
+        } else {
+            target = event.target;
+        }
+
         if (target instanceof Element && target.shadowRoot) {
             /**
              * If event occurs inside shadow DOM and caught outside the shadow dom,
