@@ -1,9 +1,9 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
-    --uui-calendar-selected-hover: var(--uui-control-bg);
+    --uui-calendar-selected-hover: var(--uui-neutral-0);
     --uui-calendar-start-end-selected-hover: var(--uui-primary-60);
-    --uui-calendar-start-end-selected: var(--uui-control-border-checked);
+    --uui-calendar-start-end-selected: var(--uui-primary-50);
     --uui-calendar-weekends-weekdates: var(--uui-control-placeholder);
     --uui-calendar-text: var(--uui-control-text);
     --uui-calendar-text-filtered: var(--uui-control-text-disabled);
