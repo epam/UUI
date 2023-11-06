@@ -124,6 +124,7 @@ export default function CitiesTable() {
                 // getRows function will be called every time when table will need more rows.
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }
+                showColumnsConfig={ false }
                 headerTextCase="upper"
                 columns={ citiesColumns }
             />

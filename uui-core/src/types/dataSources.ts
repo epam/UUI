@@ -68,14 +68,38 @@ export interface IDataSource<TItem, TId, TFilter> {
 
 /** Holds state of a components displaying lists - like tables. Holds virtual list position, filter, search, selection, etc. */
 export interface DataSourceState<TFilter = Record<string, any>, TId = any> extends VirtualListState {
+    /**
+     * Search value, used to filter data based on it.
+     * Included in the API request object when using a LazyDataSource.
+     * For Array and Async data sources, searching is performed internally by the datasource.
+     * */
     search?: string;
+    /** Array of checked items IDs */
     checked?: TId[];
+    /**
+     * A map of item IDs to their folding state.
+     * If an item ID is present with a `true` value, it's folded; otherwise, it's not folded.
+     * */
     folded?: Record<string, boolean>;
+    /**
+     * Filter value used to filter data based on it.
+     * Included in the API request object when using a LazyDataSource.
+     * For Array and Async data sources, filtering is performed internally by the datasource.
+     * */
     filter?: TFilter;
+    /**
+     * Sorting value, used to sort data based on it.
+     * Included in the API request object when using a LazyDataSource.
+     * For Array and Async data sources, sorting is performed internally by the datasource.
+     * */
     sorting?: SortingOption[];
+    /** ID of selected item. It can be only one selected item at the moment. */
     selectedId?: TId;
+    /** Index of currently focused item */
     focusedIndex?: number;
+    /** Current page number */
     page?: number;
+    /** The amount of items on one page */
     pageSize?: number;
 }
 
@@ -201,23 +225,17 @@ export type DataSourceListCounts = {
 };
 
 export interface DataSourceListProps extends DataSourceListCounts {
+    /**
+     * ICheckable object for Select All behavior.
+     * If omitted, Select All action will be absent.
+     * */
     selectAll?: ICheckable;
 
-    /**
-     * Signals that data is reloading on search/sort/filter/reload.
-     */
+    /** Signals that data is reloading on search/sort/filter/reload. */
     isReloading?: boolean;
 }
 
 // Lazy Data Source API
-
-/** The common part of LazyDataSourceApiRequest, which defines how list should be filtered and sorted */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export interface LazyDataSourceApiRequestOptions<TItem, TFilter> {
-    filter?: TFilter;
-    sorting?: SortingOption[];
-    search?: string;
-}
 
 /** The range (from/count) of required rows for LazyDataSourceApiRequest */
 export interface LazyDataSourceApiRequestRange {
@@ -226,7 +244,11 @@ export interface LazyDataSourceApiRequestRange {
 }
 
 /** Defines input arguments for Lazy Data Source APIs */
-export interface LazyDataSourceApiRequest<TItem, TId = any, TFilter = {}> extends LazyDataSourceApiRequestOptions<TItem, TFilter> {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export interface LazyDataSourceApiRequest<TItem, TId = any, TFilter = {}> {
+    filter?: TFilter;
+    sorting?: SortingOption[];
+    search?: string;
     range?: LazyDataSourceApiRequestRange;
     page?: number;
     pageSize?: number;

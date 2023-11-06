@@ -1,69 +1,25 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "To enable the search feature, it is required to pass the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "search",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " property as part of the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " state. You may also need to pass some other properties, depending on the specific ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ".",
-            "marks": []
-          }
-        ]
+        "text": "To enable the search feature, it is required to pass the "
+      },
+      {
+        "text": "search",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " property as part of the "
+      },
+      {
+        "text": "DataSourceState",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". You may also need to pass some other properties, depending on the specific DataSource."
       }
     ]
   }
-}
+]

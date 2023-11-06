@@ -85,6 +85,7 @@ export interface ITree<TItem, TId> {
             includeParent?: boolean;
         }
     ): void;
+    forEachItem(action: (item: TItem, id: TId, parentId: TId) => void): void;
     computeSubtotals<TSubtotals>(
         get: (item: TItem, hasChildren: boolean) => TSubtotals,
         add: (a: TSubtotals, b: TSubtotals) => TSubtotals

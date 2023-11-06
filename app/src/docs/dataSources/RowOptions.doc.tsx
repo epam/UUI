@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../../../common';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 
 export class DataSourcesRowOptionsDoc extends BaseDocsBlock {
     title = 'Row Options';
@@ -9,8 +9,7 @@ export class DataSourcesRowOptionsDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName="dataSources-row-options" />
                 
-                <DocExample title="DataRowOptions" path="./_examples/dataSources/DataRowOptions.code.example.ts" onlyCode={ true } />
-                <EditableDocContent fileName="dataSources-row-options-overview" />
+                <EditableDocContent title="DataRowOptions" fileName="dataSources-row-options-overview" />
 
                 <DocExample title="Checkbox" path="./_examples/dataSources/RowOptionsCheckbox.example.tsx" />
                 <DocExample title="Disabled rows" path="./_examples/dataSources/RowOptionsIsDisabled.example.tsx" />

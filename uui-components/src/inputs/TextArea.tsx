@@ -96,7 +96,17 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
     }
     
     handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        this.props.onValueChange(e.target.value);
+        // Android does not support maxLength
+        // https://studysection.com/blog/the-html-maxlength-attribute-is-not-working-as-expected-on-android-phones/
+        const targetValue = e.target.value;
+        let newValue;
+        if (this.props.maxLength && targetValue.length > this.props.maxLength) {
+            newValue = targetValue.slice(0, this.props.maxLength);
+        } else {
+            newValue = targetValue;
+        }
+
+        this.props.onValueChange(newValue);
     };
     
     handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
