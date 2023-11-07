@@ -55,7 +55,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
             <FlexSpacer />
 
             <FlexCell width="auto" alignSelf="center">
-                {view.selectAll && !isEmptyRowsAndHasNoSelection && (
+                {view.selectAll && (
                     <LinkButton
                         size={ size }
                         caption={ hasSelection ? clearAllText : selectAllText }
@@ -63,6 +63,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
                         rawProps={ {
                             'aria-label': hasSelection ? clearAllText : selectAllText,
                         } }
+                        isDisabled={ isEmptyRowsAndHasNoSelection }
                     />
                 )}
                 {!view.selectAll && (
