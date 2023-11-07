@@ -36,7 +36,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
         isSingleSelect,
         handleDataSourceValueChange,
     } = usePickerModal<TItem, TId>(props);
-    
+
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => {
         return props.renderRow ? (
             props.renderRow(rowProps, dataSourceState)
@@ -54,9 +54,12 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
 
     const renderFooter = () => {
         const hasSelection = view.getSelectedRowsCount() > 0;
+        const rowsCount = view.getListProps().rowsCount;
+        const isEmptyRowsAndHasNoSelection = (rowsCount === 0 && !hasSelection);
+
         return (
             <>
-                {view.selectAll && (
+                {view.selectAll && !isEmptyRowsAndHasNoSelection && (
                     <LinkButton
                         caption={ hasSelection ? i18n.pickerModal.clearAllButton : i18n.pickerModal.selectAllButton }
                         onClick={ hasSelection ? () => clearSelection() : () => view.selectAll.onValueChange(true) }
@@ -68,7 +71,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
             </>
         );
     };
-    
+
     const renderNotFound = () => {
         return props.renderNotFound ? (
             props.renderNotFound({ search: dataSourceState.search, onClose: () => props.success(null) })
