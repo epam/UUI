@@ -235,7 +235,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
             ...formState.current,
             historyIndex: 0,
             formHistory: [newFormValue],
-            isChanged: false,
+            isChanged: response && response.validation.isInvalid ? formState.current.isChanged : false,
             form: newFormValue,
             isInProgress: false,
             serverValidationState: (response && response.validation) || formState.current.serverValidationState,
