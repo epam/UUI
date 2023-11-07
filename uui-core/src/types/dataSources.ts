@@ -1,6 +1,14 @@
-import { SortingOption } from './dataQuery';
 import { ICheckable } from './props';
 import { DataRowOptions, DataRowProps } from './dataRows';
+
+export type SortDirection = 'asc' | 'desc';
+
+export interface SortingOption<T = any> {
+    /** Field of sorted entity under which sorting is performed */
+    field: keyof T;
+    /** Direction of a sorting */
+    direction?: SortDirection;
+}
 
 export interface VirtualListRange {
     /**

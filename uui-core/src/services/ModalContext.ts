@@ -5,19 +5,9 @@ import * as React from 'react';
 import { IModalContext } from '../types/contexts';
 import { IModal } from '../types/props';
 
-export interface ModalComponentProps<TParameters, TResult> {
-    parameters?: TParameters;
-    isActive: boolean;
-    depth: number;
-    zIndex: number;
-    key: string;
-    success(result: TResult): void;
-    abort(result?: any): void;
-}
-
 export interface ModalOperation {
     component?: React.ComponentType<any>;
-    props: ModalComponentProps<any, any>;
+    props: IModal<any>;
 }
 
 let idCounter = 0;
@@ -35,8 +25,8 @@ export class ModalContext extends BaseContext implements IModalContext {
         this.closeAll();
     }
 
-    public show<TResult, TParameters = {}>(render: (props: IModal<TResult>) => React.ReactElement<any>, parameters?: TParameters): Promise<TResult> {
-        const ModalAdapter = class extends React.Component<ModalComponentProps<{}, TResult>> {
+    public show<TResult, TParameters = {}>(render: (props: IModal<TResult, TParameters>) => React.ReactElement<any>, parameters?: TParameters): Promise<TResult> {
+        const ModalAdapter = class extends React.Component<IModal<TResult, TParameters>> {
             render() {
                 return render(this.props);
             }
@@ -50,10 +40,10 @@ export class ModalContext extends BaseContext implements IModalContext {
         this.update({});
     }
 
-    private showModal<TParameters, TResult>(component: React.ComponentType<ModalComponentProps<TParameters, TResult>>, parameters?: TParameters): Promise<TResult> {
+    private showModal<TParameters, TResult>(component: React.ComponentType<IModal<TResult, TParameters>>, parameters?: TParameters): Promise<TResult> {
         const layer = this.layoutCtx.getLayer();
         return new Promise((resolve, reject) => {
-            const modalProps: ModalComponentProps<TParameters, TResult> = {
+            const modalProps: IModal<TResult, TParameters> = {
                 success: (r) => {
                     this.operations.pop();
                     this.layoutCtx.releaseLayer(layer);

@@ -114,7 +114,7 @@ export function ErrorHandler(props: ErrorPageProps) {
 
     const renderRecoveryBlocker = (errorInformation: UuiRecoveryErrorInfo) => {
         return (
-            <ModalBlocker cx={ css.modalBlocker } key="auth-lost" isActive={ true } zIndex={ 100500 } success={ () => {} } abort={ () => {} }>
+            <ModalBlocker cx={ css.modalBlocker } key="auth-lost" zIndex={ 100500 } success={ () => {} } abort={ () => {} }>
                 <ModalWindow>
                     <ModalHeader borderBottom title={ errorInformation.title } />
                     <Spinner cx={ css.recoverySpinner } />
