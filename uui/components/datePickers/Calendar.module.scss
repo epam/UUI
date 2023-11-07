@@ -1,7 +1,7 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
-    --uui-calendar-selected-hover: var(--uui-neutral-0);
+    --uui-calendar-selected-hover: var(--uui-control-bg);
     --uui-calendar-start-end-selected-hover: var(--uui-primary-60);
     --uui-calendar-start-end-selected: var(--uui-primary-50);
     --uui-calendar-weekends-weekdates: var(--uui-control-placeholder);
@@ -12,6 +12,7 @@
     --uui-calendar-content-font-weight: 400;
     --uui-calendar-weekday-font: var(--uui-font);
     --uui-calendar-weekday-font-weight: 400;
+    --uui-calendar-selected_day: var(--uui-neutral-0);
     --uui-calendar-selected_day-font: var(--uui-font);
     --uui-calendar-selected_day-font-weight: 600;
 
@@ -109,10 +110,10 @@
         &:global(.uui-calendar-day-wrapper) {
             :global(.uui-calendar-day) {
                 background-color: var(--uui-calendar-start-end-selected);
-                color: var(--uui-calendar-selected-hover);
+                color: var(--uui-calendar-selected_day);
 
                 &::after {
-                    background-color: var(--uui-calendar-selected-hover);
+                    background-color: var(--uui-calendar-selected_day);
                 }
             }
         }
