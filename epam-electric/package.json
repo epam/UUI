@@ -1,6 +1,6 @@
 {
   "name": "@epam/electric",
-  "version": "5.2.0-rc.3",
+  "version": "5.3.0-rc.0",
   "description": "EPAM UUI components set branded with 'electric' style",
   "author": "EPAM",
   "license": "MIT",
@@ -12,8 +12,8 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "5.2.0-rc.3",
-    "@epam/uui": "5.2.0-rc.3"
+    "@epam/assets": "5.3.0-rc.0",
+    "@epam/uui": "5.3.0-rc.0"
   },
   "devDependencies": {
     "mockdate": "^3.0.5"
