@@ -1,6 +1,7 @@
 # 5.x.x - xx.xx.2023
 
 **What's New**
+* TBD: describe new font usage approach
 * [Badge]: deprecated mode fill="transparent", and deprecated mode fill="semitransparent", they will be removed in future release.
 * [Badge]: removed mode fill="white", and "none", use fill="outline" + color instead them.
 * [Presets]: added the ability to add a modal confirmation window when deleting a preset
