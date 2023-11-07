@@ -2,23 +2,23 @@
 
 .root {
     --uui-calendar-selected-hover: var(--uui-control-bg);
-    --uui-calendar-start-end-selected-hover: var(--uui-primary-60);
-    --uui-calendar-start-end-selected: var(--uui-primary-50);
+    --uui-calendar-selected_range-hover: var(--uui-primary-60);
+    --uui-calendar-selected_range: var(--uui-primary-50);
     --uui-calendar-weekends-weekdates: var(--uui-control-placeholder);
-    --uui-calendar-text: var(--uui-control-text);
-    --uui-calendar-text-filtered: var(--uui-control-text-disabled);
+    --uui-calendar-day-caption: var(--uui-control-text);
+    --uui-calendar-day-caption-disabled: var(--uui-control-text-disabled);
 
-    --uui-calendar-content-font: var(--uui-font);
-    --uui-calendar-content-font-weight: 400;
+    --uui-calendar-font: var(--uui-font);
+    --uui-calendar-font-weight: 400;
     --uui-calendar-weekday-font: var(--uui-font);
     --uui-calendar-weekday-font-weight: 400;
-    --uui-calendar-selected_day: var(--uui-neutral-0);
+    --uui-calendar-selected_day-caption: var(--uui-neutral-0);
     --uui-calendar-selected_day-font: var(--uui-font);
     --uui-calendar-selected_day-font-weight: 600;
 
     :global(.uui-calendar-content) {
-        font-family: var(--uui-calendar-content-font);
-        font-weight: var(--uui-calendar-content-font-weight, normal);
+        font-family: var(--uui-calendar-font);
+        font-weight: var(--uui-calendar-font-weight, normal);
     }
 
     :global(.uui-calendar-weekday) {
@@ -32,7 +32,7 @@
     }
 
     :global(.uui-calendar-day-cell) {
-        color: var(--uui-calendar-text);
+        color: var(--uui-calendar-day-caption);
         text-align: center;
         padding: 0;
         height: 36px;
@@ -72,15 +72,15 @@
                 cursor: pointer;
 
                 :global(.uui-calendar-day) {
-                    border: 1px solid var(--uui-calendar-start-end-selected);
+                    border: 1px solid var(--uui-calendar-selected_range);
                     background-color: var(--uui-calendar-selected-hover);
                     z-index: 1;
                 }
 
                 &:global(.uui-calendar-selected-day) {
                     :global(.uui-calendar-day) {
-                        border: 1px solid var(--uui-calendar-start-end-selected-hover);
-                        background-color: var(--uui-calendar-start-end-selected-hover);
+                        border: 1px solid var(--uui-calendar-selected_range-hover);
+                        background-color: var(--uui-calendar-selected_range-hover);
                     }
                 }
             }
@@ -89,7 +89,7 @@
 
     :global(.uui-calendar-current-day) {
         &:global(.uui-calendar-day-wrapper) {
-            color: var(--uui-calendar-start-end-selected);
+            color: var(--uui-calendar-selected_range);
             font-family: var(--uui-calendar-selected_day-font);
             font-weight: var(--uui-calendar-selected_day-font-weight, normal);
 
@@ -99,7 +99,7 @@
                 height: 4px;
                 width: 4px;
                 border-radius: 50%;
-                background-color: var(--uui-calendar-start-end-selected);
+                background-color: var(--uui-calendar-selected_range);
                 bottom: 3px;
                 left: calc(50% - 2px);
             }
@@ -109,8 +109,8 @@
     :global(.uui-calendar-selected-day) {
         &:global(.uui-calendar-day-wrapper) {
             :global(.uui-calendar-day) {
-                background-color: var(--uui-calendar-start-end-selected);
-                color: var(--uui-calendar-selected_day);
+                background-color: var(--uui-calendar-selected_range);
+                color: var(--uui-calendar-selected_day-caption);
 
                 &::after {
                     background-color: var(--uui-calendar-selected_day);
@@ -131,7 +131,7 @@
 
     :global(.uui-calendar-filtered-day) {
         &:global(.uui-calendar-day-wrapper) {
-            color: var(--uui-calendar-text-filtered);
+            color: var(--uui-calendar-day-caption-disabled);
 
             &:hover {
                 cursor: default;

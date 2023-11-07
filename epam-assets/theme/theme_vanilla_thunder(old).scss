@@ -273,14 +273,14 @@
 
     /*  Calendar vars   */
     --uui-calendar-selected-hover: var(--uui-control-bg);
-    --uui-calendar-start-end-selected-hover: var(--uui-primary-60);
-    --uui-calendar-start-end-selected: var(--uui-control-border-checked);
+    --uui-calendar-selected_range-hover: var(--uui-primary-60);
+    --uui-calendar-selected_range: var(--uui-control-border-checked);
     --uui-calendar-weekends-weekdates: var(--uui-control-placeholder);
-    --uui-calendar-text: var(--uui-control-text);
-    --uui-calendar-text-filtered: var(--uui-control-text-disabled);
+    --uui-calendar-day-caption: var(--uui-control-text);
+    --uui-calendar-day-caption-disabled: var(--uui-control-text-disabled);
 
-    --uui-calendar-content-font: var(--font-inter);
-    --uui-calendar-content-font-weight: 400;
+    --uui-calendar-font: var(--font-inter);
+    --uui-calendar-font-weight: 400;
     --uui-calendar-weekday-font: var(--font-inter);
     --uui-calendar-weekday-font-weight: 400;
     --uui-calendar-selected_day-font: var(--font-inter);
