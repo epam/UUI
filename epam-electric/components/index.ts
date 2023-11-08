@@ -1,3 +1,4 @@
+export * from './buttons';
 export {
     Button, IconButton, LinkButton, TabButton, VerticalTabButton, Calendar, DatePicker, DataPickerBody, RangeDatePicker, RangeDatePickerBody, TextInput, Text,
     LabeledInput, Panel, FlexRow, ScrollBars, ModalWindow, Badge, InputAddon, MultiSwitch, VirtualList, Alert, DropdownContainer, NotificationCard, Tooltip,
