@@ -53,32 +53,21 @@ export function moveColumnRelativeToAnotherColumn(props: {
 
 export function toggleSingleColumnPin(props: { prevConfig: ColumnsConfig; columnsSorted: DataColumnProps[]; columnKey: string }) {
     const { prevConfig, columnKey, columnsSorted } = props;
-    const column = prevConfig[columnKey];
-    const prevFix = column.fix;
+    const prevColumn = prevConfig[columnKey];
+    const prevFix = prevColumn.fix;
     let order = prevConfig[columnKey].order;
-    if (prevFix) {
-        // move to "displayedUnpinned" and put it before first item
-        const { column: firstColumn, prev, next } = findFirstByGroupKey(columnsSorted, 'displayedUnpinned');
-        if (firstColumn) {
-            const targetOrder = prevConfig[firstColumn.key]?.order;
-            const targetPrevOrder = prevConfig[prev?.key]?.order;
-            const targetNextOrder = prevConfig[next?.key]?.order;
-            order = getNewColumnOrder({
-                targetOrder, targetPrevOrder, targetNextOrder, position: 'top',
-            });
-        }
-    } else {
-        // move to "displayedPinned" and put it after last item
-        const { column: lastColumn, prev, next } = findLastByGroupKey(columnsSorted, 'displayedPinned');
-        if (lastColumn) {
-            const targetOrder = prevConfig[lastColumn.key]?.order;
-            const targetPrevOrder = prevConfig[prev?.key]?.order;
-            const targetNextOrder = prevConfig[next?.key]?.order;
-            order = getNewColumnOrder({
-                targetOrder, targetPrevOrder, targetNextOrder, position: 'bottom',
-            });
-        }
+
+    const { column, prev, next } = findFirstByGroupKey(columnsSorted, 'displayedUnpinned');
+    if (column) {
+        const targetOrder = prevConfig[column.key]?.order;
+        const targetPrevOrder = prevConfig[prev?.key]?.order;
+        const targetNextOrder = prevConfig[next?.key]?.order;
+        console.log('11', prevConfig, column.key, prev?.key, next?.key);
+        order = getNewColumnOrder({
+            targetOrder, targetPrevOrder, targetNextOrder, position: 'top',
+        });
     }
+
     const { fix, ...restProps } = prevConfig[columnKey];
     const fixLeft: ICanBeFixed = { fix: 'left' };
     return {
