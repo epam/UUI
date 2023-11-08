@@ -11,6 +11,7 @@ import {
 import { PickerTogglerProps, FlexCell } from '@epam/uui-components';
 import { FiltersPanelItem } from './FiltersPanelItem';
 import { ReactComponent as addIcon } from '@epam/assets/icons/common/action-add-18.svg';
+import { UUI_FILTERS_PANEL_ADD_BUTTON, UUI_FILTERS_PANEL_ADD_BUTTON_BODY } from './constants';
 
 export interface FiltersPanelProps<TFilter> {
     filters: TableFiltersConfig<TFilter>[];
@@ -143,6 +144,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                 iconPosition="left"
                 fill="ghost"
                 color="primary"
+                cx={ UUI_FILTERS_PANEL_ADD_BUTTON }
             />
         );
     }, []);
@@ -206,6 +208,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                     getRowOptions={ getRowOptions }
                     fixedBodyPosition={ true }
                     size={ props.size }
+                    bodyCx={ UUI_FILTERS_PANEL_ADD_BUTTON_BODY }
                 />
             )}
         </>

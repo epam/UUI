@@ -98,6 +98,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                 (dropdownProps?.ref as React.RefCallback<HTMLElement>)?.(ref);
             } }
             cx={ cx(
+                'uui-dt-vars',
                 uuiDataTableHeaderCell.uuiTableHeaderCell,
                 (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
                 css.cell,
@@ -138,6 +139,6 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     );
 
     render() {
-        return <UuiDataTableHeaderCell { ...this.props } cx="uui-dt-vars" renderCellContent={ this.props.column.renderFilter ? this.renderCellWithFilter : this.renderCellContent } />;
+        return <UuiDataTableHeaderCell { ...this.props } renderCellContent={ this.props.column.renderFilter ? this.renderCellWithFilter : this.renderCellContent } />;
     }
 }
