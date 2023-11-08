@@ -1428,6 +1428,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         }
       >
         <button
+          aria-disabled={false}
           className="container uui-button-box uui-enabled -clickable root size-36 uui-no-left-icon uui-no-right-icon link-button-primary"
           onClick={[Function]}
           tabIndex={0}
