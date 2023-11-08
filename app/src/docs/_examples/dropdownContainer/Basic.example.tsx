@@ -21,7 +21,7 @@ export default function BasicExample() {
                 <FlexCell alignSelf="flex-start">
                     <FlexRow spacing="12">
                         <Button color="accent" size="30" caption="Some Action" onClick={ () => null } />
-                        <Button fill="ghost" size="30" color="secondary" caption="Cancel" onClick={ () => null } />
+                        <Button color="secondary" fill="outline" size="30" caption="Cancel" onClick={ () => null } />
                     </FlexRow>
                 </FlexCell>
             </DropdownContainer>

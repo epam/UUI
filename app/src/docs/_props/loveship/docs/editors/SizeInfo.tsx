@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { cx } from '@epam/uui-core';
 import css from './SizeInfo.module.scss';
-import { FlexRow, FlexCell, Text } from '@epam/loveship';
+import { FlexRow, FlexCell, Text } from '@epam/promo';
 
 interface SizeInfoProps {
     size: '48' | '42' | '36' | '30' | '24' | '18';
@@ -24,7 +24,7 @@ export class SizeInfo extends React.Component<SizeInfoProps, any> {
 
         return (
             <div>
-                <Text size="18" fontSize="14" font="sans-semibold" cx={ css.recommendedText }>
+                <Text size="18" fontSize="14" font="sans-semibold" cx={ css.recommendedText } color="white">
                     Use the recommended icon sizes
                 </Text>
                 <div className={ css.infoTable }>
