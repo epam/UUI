@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import {
-    FlexRow, Panel, Text, VirtualList, NumericInput, Button,
-} from '@epam/promo';
+import { FlexRow, Panel, Text, VirtualList, NumericInput, Button } from '@epam/uui';
 import { VirtualListState } from '@epam/uui-core';
 import css from './BasicExample.module.scss';
 
 function MyListItem(props: { index: number }) {
     return (
         <div className={ css.itemContainer } role="row">
-            <Panel cx={ css.item } shadow background="white">
+            <Panel cx={ css.item } shadow background="surface">
                 <FlexRow cx={ css.header }>
                     <Text>
                         Row #

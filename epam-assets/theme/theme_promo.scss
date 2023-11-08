@@ -245,8 +245,7 @@
     --uui-control-label: var(--uui-text-primary);
     --uui-control-label-disabled: var(--uui-text-disabled);
 
-    --uui-control-placeholder: var(--uui-neutral-60);
-    --uui-control-placeholder-disabled: var(--uui-neutral-50);
+    --uui-control-placeholder: var(--uui-neutral-50);
 
     --uui-control-text: var(--uui-text-primary);
     --uui-control-text-disabled: var(--uui-text-disabled);
@@ -615,13 +614,16 @@
         --uui-tooltip-text: var(--white);
     }
 
-    /* Informer */
+    /* CountIndicator */
 
     .uui-count_indicator.uui-color-gray,
     .uui-count_indicator.uui-color-neutral {
         --uui-count_indicator-bg: var(--uui-neutral-30);
         --uui-count_indicator-border: var(--uui-neutral-30);
-        --uui-count_indicator-caption: var(--uui-neutral-80);
+    }
+
+    .uui-count_indicator:is(.uui-color-gray, .uui-color-neutral, .uui-color-white, .uui-color-amber, .uui-color-warning) {
+        --uui-count_indicator-caption: var(--uui-neutral-70);
     }
 
     /* Status Indicator */

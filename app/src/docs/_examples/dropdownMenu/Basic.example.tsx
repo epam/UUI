@@ -46,7 +46,7 @@ export default function BasicDropdownMenuExample() {
 
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownMenuBody { ...props } rawProps={ { style: { maxWidth: '250px' } } }>
+            <DropdownMenuBody { ...props } rawProps={ { style: { maxWidth: '250px', padding: '6px 0' } } }>
                 <DropdownMenuHeader caption="Alex Smith" />
                 <DropdownMenuSplitter />
                 <DropdownMenuButton caption="Profile" />
