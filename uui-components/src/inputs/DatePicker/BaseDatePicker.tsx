@@ -108,7 +108,9 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
         this.setState({ selectedDate: value, inputValue: toCustomDateFormat(value, this.getFormat()) });
     };
 
-    setDisplayedDateAndView = (displayedDate: Dayjs, view: ViewType) => this.setState({ ...this.state, displayedDate: displayedDate, view: view });
+    setDisplayedDateAndView = (displayedDate: Dayjs, view: ViewType) =>
+        this.setState((state) => ({ ...state, displayedDate: displayedDate, view: view }));
+
     handleCancel = () => {
         this.handleValueChange(null);
         this.setState({ inputValue: null, selectedDate: null });
@@ -123,11 +125,11 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
     }
 
     onToggle = (value: boolean) => {
-        this.setState({
+        this.setState((state) => ({
             isOpen: value,
             view: 'DAY_SELECTION',
-            displayedDate: this.state.selectedDate ? dayjs(this.state.selectedDate) : dayjs(),
-        });
+            displayedDate: state.selectedDate ? dayjs(state.selectedDate) : dayjs(),
+        }));
         if (!value) this.props.onBlur?.();
     };
 
@@ -153,6 +155,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
                 value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
                 placement={ this.props.placement }
+                forwardedRef={ this.props.forwardedRef }
             />
         );
     }
