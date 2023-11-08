@@ -1,6 +1,6 @@
 {
   "name": "@epam/assets",
-  "version": "5.2.0-rc.3",
+  "version": "5.3.0-rc.1",
   "description": "EPAM Assets Library",
   "author": "EPAM",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "f0d58123e11e321e4417e3bba7dc6c5c9026998c",
+  "gitHead": "8248a65ee62b2a6b3fb065327869cc6f7d756698",
   "publishConfig": {
     "directory": "build"
   }

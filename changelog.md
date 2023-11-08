@@ -15,6 +15,7 @@
 **What's Fixed**
 * [DataTableRow]: table row now consider rawProps property data
 * [DatePickerHeader]: fixed 'navIconLeft', 'navIconRight' props
+* [useForm]: don't reset inChanged flag in case when server validation fails
 
 # 5.2.0 - 16.10.2023
 

@@ -683,40 +683,34 @@ describe('useForm', () => {
                 },
             };
 
-            const { result: firstResult, unmount } = await renderHookWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
                 useForm({
-                    value: testDataLocal,
-                    onSave: (data) => Promise.resolve({ form: data }),
+                    value: { dummy: '', deep: { inner: '' } },
+                    onSave: () => Promise.resolve(serverResponse),
                     onSuccess: () => '',
                     getMetadata: () => testMetadataLocal,
                     beforeLeave: () => Promise.resolve(false),
                 }));
 
-            await act(() => handleSave(firstResult.current.save));
-            expect(firstResult.current.isInvalid).toBe(false);
+            await act(() => handleSave(result.current.save));
+            expect(result.current.isInvalid).toBe(true);
 
-            unmount();
+            act(() => result.current.lens.prop('dummy').set('name'));
 
-            const { result: secondResult } = await renderHookWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
-                useForm({
-                    value: testDataLocal,
-                    onSave: () => Promise.resolve(serverResponse),
-                    onSuccess: () => '',
-                    getMetadata: () => testMetadataLocal,
-                }));
+            await act(() => handleSave(result.current.save));
 
-            await act(() => handleSave(secondResult.current.save));
-            expect(secondResult.current.lens.toProps()).toHaveProperty('isInvalid', true);
-            expect(secondResult.current.lens.prop('dummy').toProps()).toHaveProperty('isInvalid', true);
-            expect(secondResult.current.lens.prop('dummy').toProps()).toHaveProperty(
+            expect(result.current.lens.toProps()).toHaveProperty('isInvalid', true);
+            expect(result.current.lens.prop('dummy').toProps()).toHaveProperty('isInvalid', true);
+            expect(result.current.lens.prop('dummy').toProps()).toHaveProperty(
                 'validationMessage',
                 serverResponse.validation.validationProps.dummy.validationMessage,
             );
-            expect(secondResult.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty('isInvalid', true);
-            expect(secondResult.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty(
+            expect(result.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty('isInvalid', true);
+            expect(result.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty(
                 'validationMessage',
                 serverResponse.validation.validationProps.deep.validationProps.inner.validationMessage,
             );
+            expect(result.current.isChanged).toEqual(true);
         });
 
         it('Should keep server error notification until field is changed', async () => {
