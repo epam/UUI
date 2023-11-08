@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { ColumnsConfig, DataColumnProps, DropParams, applyColumnsConfig } from '@epam/uui-core';
+import { ColumnsConfig, DataColumnProps, DropParams } from '@epam/uui-core';
 import {
     moveColumnRelativeToAnotherColumn, toggleSingleColumnPin, toggleAllColumnsVisibility, toggleSingleColumnVisibility,
 } from '../columnsConfigurationActions';
@@ -19,11 +19,7 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any,
     const [searchValue, setSearchValue] = useState<string>();
     const isDndAllowed = !searchValue;
     const [columnsConfig, setColumnsConfig] = useState<ColumnsConfig>(() => initialColumnsConfig || defaultConfig);
-    const _updatedColumns = useMemo(() => applyColumnsConfig(columns, columnsConfig), [columnsConfig]);
-    const columnsSorted: GroupedDataColumnProps[] = useMemo(
-        () => sortColumnsAndAddGroupKey({ columns: _updatedColumns, prevConfig: columnsConfig }),
-        [_updatedColumns, columnsConfig],
-    );
+    const columnsSorted: GroupedDataColumnProps[] = useMemo(() => sortColumnsAndAddGroupKey({ columns, prevConfig: columnsConfig }), [columns, columnsConfig]);
 
     const toggleVisibility = useCallback(
         (columnKey: string) => setColumnsConfig((prevConfig) => toggleSingleColumnVisibility({ prevConfig, columnsSorted, columnKey })),
