@@ -57,12 +57,13 @@ export function toggleSingleColumnPin(props: { prevConfig: ColumnsConfig; column
     const prevFix = prevColumn.fix;
     let order = prevConfig[columnKey].order;
 
+    // on pin: move before first item of unpinned list
+    // on unpin: do the same
     const { column, prev, next } = findFirstByGroupKey(columnsSorted, 'displayedUnpinned');
     if (column) {
         const targetOrder = prevConfig[column.key]?.order;
         const targetPrevOrder = prevConfig[prev?.key]?.order;
         const targetNextOrder = prevConfig[next?.key]?.order;
-        console.log('11', prevConfig, column.key, prev?.key, next?.key);
         order = getNewColumnOrder({
             targetOrder, targetPrevOrder, targetNextOrder, position: 'top',
         });
