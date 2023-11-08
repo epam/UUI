@@ -70,7 +70,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
         props.onFocus?.(e);
         setInFocus(true);
-        inputContainer.current?.focus();
+        props.searchPosition === 'input' && inputContainer.current?.focus();
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLElement>) => {
