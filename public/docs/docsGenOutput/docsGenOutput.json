@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-11-02",
+ "timestamp": "2023-11-07",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -95,7 +95,9 @@
      "raw": "null | { [key: string]: any; name: string; }",
      "print": [
       "type AnalyticsEvent = {",
+      "    /** Name of event */",
       "    name: string;",
+      "    /** Any data, which will be sent with event */",
       "    [key: string]: any;",
       "} | null;"
      ]
@@ -1081,13 +1083,23 @@
      "raw": "{ selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> | { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]>",
      "print": [
       "type ArrayPickerProps<TId, TItem> = ({",
+      "    /** If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected */",
       "    selectionMode: 'multi';",
+      "    /** Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem) */",
       "    valueType?: 'id';",
+      "    /** Defines what to use as an empty value. If other value provided, it will be assumed as selection.",
+      "     * @default undefined.",
+      "     */",
       "    emptyValue?: [",
       "    ] | null;",
       "} & IEditable<TId[]>) | ({",
+      "    /** If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected */",
       "    selectionMode: 'multi';",
+      "    /** Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem) */",
       "    valueType: 'entity';",
+      "    /** Defines what to use as an empty value. If other value provided, it will be assumed as selection.",
+      "     * @default undefined.",
+      "     */",
       "    emptyValue?: [",
       "    ] | null;",
       "} & IEditable<TItem[]>);"
@@ -1097,6 +1109,9 @@
      {
       "uid": 12,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'multi'"
       },
@@ -1105,6 +1120,9 @@
      {
       "uid": 2,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'id'"
       },
@@ -1113,6 +1131,10 @@
      {
       "uid": 14,
       "name": "emptyValue",
+      "comment": [
+       "Defines what to use as an empty value. If other value provided, it will be assumed as selection.",
+       " @default undefined."
+      ],
       "typeValue": {
        "raw": "null | []"
       },
@@ -1206,7 +1228,7 @@
       "uid": 22,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -1217,6 +1239,9 @@
      {
       "uid": 13,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -2227,7 +2252,7 @@
       "uid": 20,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -2806,7 +2831,7 @@
       "uid": 23,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -2996,7 +3021,7 @@
       "uid": 8,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -3221,7 +3246,7 @@
       "uid": 12,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -3305,6 +3330,9 @@
      {
       "uid": 19,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -3548,7 +3576,7 @@
       "uid": 8,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -4369,11 +4397,8 @@
     "typeValue": {
      "raw": "DataQuery<T>",
      "print": [
-      "interface DataQuery<T> {",
+      "interface DataQuery<T> extends Pick<LazyDataSourceApiRequest<T>, 'sorting' | 'range' | 'search'> {",
       "    filter?: DataQueryFilter<T>;",
-      "    sorting?: SortingOption<T>[];",
-      "    range?: DataQueryRange;",
-      "    search?: string;",
       "}"
      ]
     },
@@ -4388,26 +4413,38 @@
      },
      {
       "uid": 2,
-      "name": "sorting",
+      "name": "search",
+      "comment": [
+       "The search string, by which data should be searched."
+      ],
       "typeValue": {
-       "raw": "SortingOption<T>[]"
+       "raw": "string"
       },
+      "from": "@epam/uui-core:LazyDataSourceApiRequest",
       "required": false
      },
      {
       "uid": 3,
-      "name": "range",
+      "name": "sorting",
+      "comment": [
+       "Sorting options, by which data should be sorted."
+      ],
       "typeValue": {
-       "raw": "DataQueryRange"
+       "raw": "SortingOption<any>[]"
       },
+      "from": "@epam/uui-core:LazyDataSourceApiRequest",
       "required": false
      },
      {
       "uid": 4,
-      "name": "search",
+      "name": "range",
+      "comment": [
+       "Specifies a range of the rows to be retrieved."
+      ],
       "typeValue": {
-       "raw": "string"
+       "raw": "LazyDataSourceApiRequestRange"
       },
+      "from": "@epam/uui-core:LazyDataSourceApiRequest",
       "required": false
      }
     ],
@@ -4454,48 +4491,6 @@
       "type DataQueryFilterCondition<TField> = TField | FilterPredicate<TField>;"
      ]
     }
-   }
-  },
-  "@epam/uui-core:DataQueryRange": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "DataQueryRange",
-     "nameFull": "DataQueryRange"
-    },
-    "src": "uui-core/src/types/dataQuery.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "DataQueryRange",
-     "print": [
-      "interface DataQueryRange {",
-      "    from: number;",
-      "    count?: number;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "from",
-      "typeValue": {
-       "raw": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": 2,
-      "name": "count",
-      "typeValue": {
-       "raw": "number"
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
    }
   },
   "@epam/uui-core:DataRowOptions": {
@@ -4697,7 +4692,7 @@
       "uid": 14,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -5111,7 +5106,7 @@
       "uid": 21,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -6169,7 +6164,7 @@
       "uid": 21,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -6346,7 +6341,7 @@
       "uid": 8,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -6564,7 +6559,7 @@
       "uid": 18,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -6851,7 +6846,7 @@
       "uid": 13,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -7207,7 +7202,7 @@
       "uid": 24,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -8035,7 +8030,7 @@
       "uid": 21,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -8116,6 +8111,10 @@
      {
       "uid": 2,
       "name": "srcData",
+      "comment": [
+       "Data used when this component acts as a drag source.",
+       " If provided, it means this component can be dragged. Can be used in combination with dstData."
+      ],
       "typeValue": {
        "raw": "TSrcData"
       },
@@ -8125,6 +8124,10 @@
      {
       "uid": 3,
       "name": "dstData",
+      "comment": [
+       "Data used when this component acts as a drop destination.",
+       " If provided, it means something can be dragged onto this component. Can be used in combination with srcData."
+      ],
       "typeValue": {
        "raw": "TDstData"
       },
@@ -8134,6 +8137,9 @@
      {
       "uid": 4,
       "name": "canAcceptDrop",
+      "comment": [
+       "A pure function that gets permitted positions for a drop action"
+      ],
       "typeValue": {
        "raw": "(params: AcceptDropParams<TSrcData, TDstData>) => Partial<Record<DropPosition, boolean>> | null"
       },
@@ -8143,6 +8149,9 @@
      {
       "uid": 5,
       "name": "onDrop",
+      "comment": [
+       "Called when accepted drop action performed on this actor. Usually used to reorder and update items"
+      ],
       "typeValue": {
        "raw": "(data: DropParams<TSrcData, TDstData>) => void"
       },
@@ -8202,9 +8211,7 @@
       "     * Some of these markers are used by the DndActor internally, so they must be added even if no used by component itself to apply styles.",
       "     */",
       "    classNames: string[];",
-      "    /**",
-      "     * Ref to the DOM element to perform DnD actions",
-      "     */",
+      "    /** Ref to the DOM element to perform DnD actions */",
       "    ref?: React.Ref<any>;",
       "}"
      ]
@@ -8450,6 +8457,9 @@
      {
       "uid": 1,
       "name": "onClose",
+      "comment": [
+       "Call to close the Dropdown body"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -8459,6 +8469,9 @@
      {
       "uid": 2,
       "name": "togglerWidth",
+      "comment": [
+       "The width of the toggler, which can be used to adjust the body width to it"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -8468,6 +8481,9 @@
      {
       "uid": 3,
       "name": "togglerHeight",
+      "comment": [
+       "The height of the toggler"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -8477,6 +8493,9 @@
      {
       "uid": 4,
       "name": "scheduleUpdate",
+      "comment": [
+       "Call to force recompute dropdown position"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -8486,6 +8505,9 @@
      {
       "uid": 5,
       "name": "isOpen",
+      "comment": [
+       "Indicates that dropdown is open"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
@@ -8495,6 +8517,9 @@
      {
       "uid": 6,
       "name": "arrowProps",
+      "comment": [
+       "Props that should be provided to the arrow component"
+      ],
       "typeValue": {
        "raw": "PopperArrowProps"
       },
@@ -8802,60 +8827,13 @@
       "uid": 25,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
       },
       "from": "@epam/uui-core:ICanBeRequired",
       "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-core:DropdownState": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "DropdownState",
-     "nameFull": "DropdownState"
-    },
-    "src": "uui-core/src/types/components/Dropdown.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "DropdownState",
-     "print": [
-      "interface DropdownState {",
-      "    opened: boolean;",
-      "    bodyBoundingRect: {",
-      "        y: number | null;",
-      "        x: number | null;",
-      "        width: number | null;",
-      "        height: number | null;",
-      "    };",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "opened",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "required": true
-     },
-     {
-      "uid": 2,
-      "name": "bodyBoundingRect",
-      "typeValue": {
-       "raw": "{ y: number | null; x: number | null; width: number | null; height: number | null; }"
-      },
-      "required": true
      }
     ],
     "propsFromUnion": false
@@ -9940,6 +9918,7 @@
     "typeValue": {
      "raw": "IAdaptiveItem",
      "print": [
+      "// TBD: remove when MainMenu old api of items providing will be removed",
       "interface IAdaptiveItem {",
       "    estimatedWidth?: number;",
       "    priority?: number;",
@@ -10333,6 +10312,7 @@
       " * Picker togglers with search or advanced selection display should implement IPickerToggler interface",
       " */",
       "interface IBasicPickerToggler extends IDropdownToggler {",
+      "    /** Call to clear toggler value */",
       "    onClear?(e?: any): void;",
       "}"
      ]
@@ -10341,6 +10321,9 @@
      {
       "uid": 1,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -10609,7 +10592,7 @@
      "raw": "ICanBeRequired",
      "print": [
       "interface ICanBeRequired {",
-      "    /** Marks that component's value is required */",
+      "    /** Marks that component's value is required and shouldn't be empty */",
       "    isRequired?: boolean;",
       "}"
      ]
@@ -10619,7 +10602,7 @@
       "uid": 1,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -10874,7 +10857,7 @@
       "uid": 8,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -11374,9 +11357,17 @@
      "raw": "IDndActor<TSrcData, TDstData>",
      "print": [
       "interface IDndActor<TSrcData, TDstData> {",
+      "    /** Data used when this component acts as a drag source.",
+      "     * If provided, it means this component can be dragged. Can be used in combination with dstData.",
+      "     */",
       "    srcData?: TSrcData;",
+      "    /** Data used when this component acts as a drop destination.",
+      "     * If provided, it means something can be dragged onto this component. Can be used in combination with srcData.",
+      "     */",
       "    dstData?: TDstData;",
+      "    /** A pure function that gets permitted positions for a drop action */",
       "    canAcceptDrop?(params: AcceptDropParams<TSrcData, TDstData>): DropPositionOptions | null;",
+      "    /** Called when accepted drop action performed on this actor. Usually used to reorder and update items */",
       "    onDrop?(data: DropParams<TSrcData, TDstData>): void;",
       "}"
      ]
@@ -11385,6 +11376,10 @@
      {
       "uid": 1,
       "name": "srcData",
+      "comment": [
+       "Data used when this component acts as a drag source.",
+       " If provided, it means this component can be dragged. Can be used in combination with dstData."
+      ],
       "typeValue": {
        "raw": "TSrcData"
       },
@@ -11393,6 +11388,10 @@
      {
       "uid": 2,
       "name": "dstData",
+      "comment": [
+       "Data used when this component acts as a drop destination.",
+       " If provided, it means something can be dragged onto this component. Can be used in combination with srcData."
+      ],
       "typeValue": {
        "raw": "TDstData"
       },
@@ -11401,6 +11400,9 @@
      {
       "uid": 3,
       "name": "canAcceptDrop",
+      "comment": [
+       "A pure function that gets permitted positions for a drop action"
+      ],
       "typeValue": {
        "raw": "(params: AcceptDropParams<TSrcData, TDstData>) => Partial<Record<DropPosition, boolean>> | null"
       },
@@ -11409,6 +11411,9 @@
      {
       "uid": 4,
       "name": "onDrop",
+      "comment": [
+       "Called when accepted drop action performed on this actor. Usually used to reorder and update items"
+      ],
       "typeValue": {
        "raw": "(data: DropParams<TSrcData, TDstData>) => void"
       },
@@ -11521,7 +11526,7 @@
      "name": "IDropdownBodyProps",
      "nameFull": "IDropdownBodyProps"
     },
-    "src": "uui-core/src/types/pickers.ts",
+    "src": "uui-core/src/types/props.ts",
     "exported": true
    },
    "details": {
@@ -11530,11 +11535,17 @@
      "raw": "IDropdownBodyProps",
      "print": [
       "interface IDropdownBodyProps {",
+      "    /** Call to close the Dropdown body */",
       "    onClose?: () => void;",
+      "    /** The width of the toggler, which can be used to adjust the body width to it */",
       "    togglerWidth?: number;",
+      "    /** The height of the toggler */",
       "    togglerHeight?: number;",
+      "    /** Call to force recompute dropdown position */",
       "    scheduleUpdate?: () => void;",
+      "    /** Indicates that dropdown is open */",
       "    isOpen?: boolean;",
+      "    /** Props that should be provided to the arrow component */",
       "    arrowProps?: PopperArrowProps;",
       "    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */",
       "    placement?: Placement;",
@@ -11545,6 +11556,9 @@
      {
       "uid": 1,
       "name": "onClose",
+      "comment": [
+       "Call to close the Dropdown body"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -11553,6 +11567,9 @@
      {
       "uid": 2,
       "name": "togglerWidth",
+      "comment": [
+       "The width of the toggler, which can be used to adjust the body width to it"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -11561,6 +11578,9 @@
      {
       "uid": 3,
       "name": "togglerHeight",
+      "comment": [
+       "The height of the toggler"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -11569,6 +11589,9 @@
      {
       "uid": 4,
       "name": "scheduleUpdate",
+      "comment": [
+       "Call to force recompute dropdown position"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -11577,6 +11600,9 @@
      {
       "uid": 5,
       "name": "isOpen",
+      "comment": [
+       "Indicates that dropdown is open"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
@@ -11585,6 +11611,9 @@
      {
       "uid": 6,
       "name": "arrowProps",
+      "comment": [
+       "Props that should be provided to the arrow component"
+      ],
       "typeValue": {
        "raw": "PopperArrowProps"
       },
@@ -11612,7 +11641,7 @@
      "name": "IDropdownToggler",
      "nameFull": "IDropdownToggler"
     },
-    "src": "uui-core/src/types/pickers.ts",
+    "src": "uui-core/src/types/props.ts",
     "comment": [
      "Component can be used as Toggler control for dropdown menus"
     ],
@@ -11849,7 +11878,7 @@
       "uid": 8,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -12046,7 +12075,7 @@
       "uid": 9,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -12489,7 +12518,7 @@
       "uid": 117,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -12500,6 +12529,9 @@
      {
       "uid": 118,
       "name": "onClose",
+      "comment": [
+       "Call to close the Dropdown body"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -12509,6 +12541,9 @@
      {
       "uid": 119,
       "name": "togglerWidth",
+      "comment": [
+       "The width of the toggler, which can be used to adjust the body width to it"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -12518,6 +12553,9 @@
      {
       "uid": 120,
       "name": "togglerHeight",
+      "comment": [
+       "The height of the toggler"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -12527,6 +12565,9 @@
      {
       "uid": 121,
       "name": "scheduleUpdate",
+      "comment": [
+       "Call to force recompute dropdown position"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -12536,6 +12577,9 @@
      {
       "uid": 122,
       "name": "isOpen",
+      "comment": [
+       "Indicates that dropdown is open"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
@@ -12545,6 +12589,9 @@
      {
       "uid": 123,
       "name": "arrowProps",
+      "comment": [
+       "Props that should be provided to the arrow component"
+      ],
       "typeValue": {
        "raw": "PopperArrowProps"
       },
@@ -13063,7 +13110,7 @@
       "uid": 22,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -13164,7 +13211,7 @@
     "comment": [
      "Component can accept cx property, allowing to pass classes to put on component.",
      " CX is a shortcut for 'classnames'.",
-     " The props accepts string, arrays, object, recursively. All falsy values are thrown away. Examples:",
+     " The props accept string, arrays, object, recursively. All falsy values are thrown away. Examples:",
      " - 'red' => 'red'",
      " - ['red', 0, false, 'blue' ] => 'red blue'",
      " - { 'red': true, 'blue': false, ['green', 'white']} => 'red green white'"
@@ -13179,7 +13226,7 @@
       "/**",
       " * Component can accept cx property, allowing to pass classes to put on component.",
       " * CX is a shortcut for 'classnames'.",
-      " * The props accepts string, arrays, object, recursively. All falsy values are thrown away. Examples:",
+      " * The props accept string, arrays, object, recursively. All falsy values are thrown away. Examples:",
       " * - 'red' => 'red'",
       " * - ['red', 0, false, 'blue' ] => 'red blue'",
       " * - { 'red': true, 'blue': false, ['green', 'white']} => 'red green white'",
@@ -13300,7 +13347,7 @@
      "print": [
       "/** An icon can be added to component */",
       "interface IHasIcon {",
-      "    /** Icon can be an React element (usually an SVG element) */",
+      "    /** Icon can be a React element (usually an SVG element) */",
       "    icon?: Icon;",
       "    /** Position of the icon (left of right) */",
       "    iconPosition?: 'left' | 'right';",
@@ -13314,7 +13361,7 @@
       "uid": 1,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -13595,9 +13642,20 @@
      "raw": "ILayoutContext",
      "print": [
       "interface ILayoutContext {",
+      "    /** Returns the new layer. This layer will be higher than previous. */",
       "    getLayer(): LayoutLayer;",
+      "    /** Removes provided layer from layers list */",
       "    releaseLayer(layer: LayoutLayer): void;",
+      "    /**",
+      "     * Returns portal root node.",
+      "     * In simple cases it will be node with 'main' or 'root' id or document.body.",
+      "     * Or it will return node with portalRootId.",
+      "     */",
       "    getPortalRoot(): HTMLElement;",
+      "    /**",
+      "     * Returns unique id, which can be used as id for portal root.",
+      "     * Usually used for cases with shadow DOM, to be able to find this portal root element if it's located under shadow DOM",
+      "     */",
       "    getPortalRootId(): string;",
       "}"
      ]
@@ -13606,6 +13664,9 @@
      {
       "uid": 1,
       "name": "getLayer",
+      "comment": [
+       "Returns the new layer. This layer will be higher than previous."
+      ],
       "typeValue": {
        "raw": "() => LayoutLayer"
       },
@@ -13614,6 +13675,9 @@
      {
       "uid": 2,
       "name": "releaseLayer",
+      "comment": [
+       "Removes provided layer from layers list"
+      ],
       "typeValue": {
        "raw": "(layer: LayoutLayer) => void"
       },
@@ -13622,6 +13686,11 @@
      {
       "uid": 3,
       "name": "getPortalRoot",
+      "comment": [
+       "Returns portal root node.",
+       " In simple cases it will be node with 'main' or 'root' id or document.body.",
+       " Or it will return node with portalRootId."
+      ],
       "typeValue": {
        "raw": "() => HTMLElement"
       },
@@ -13630,6 +13699,10 @@
      {
       "uid": 4,
       "name": "getPortalRootId",
+      "comment": [
+       "Returns unique id, which can be used as id for portal root.",
+       " Usually used for cases with shadow DOM, to be able to find this portal root element if it's located under shadow DOM"
+      ],
       "typeValue": {
        "raw": "() => string"
       },
@@ -13751,9 +13824,16 @@
      "raw": "ILockContext",
      "print": [
       "interface ILockContext {",
+      "    /**",
+      "     * Tries to take a lock, and sets tryRelease callback, which will be invoked when something tries to take control over.",
+      "     * If a lock already exists, it tries to release the current lock and then set a new one",
+      "     */",
       "    acquire(tryRelease: () => Promise<any>): Promise<object>;",
+      "    /** Releases lock without calling tryRelease callback */",
       "    release(lock: object): void;",
+      "    /** Tries to acquire a lock for the time while the action is being executed. */",
       "    withLock(action: () => Promise<any>): Promise<object>;",
+      "    /** Returns currently active lock */",
       "    getCurrentLock: () => Lock | null;",
       "}"
      ]
@@ -13762,6 +13842,10 @@
      {
       "uid": 1,
       "name": "acquire",
+      "comment": [
+       "Tries to take a lock, and sets tryRelease callback, which will be invoked when something tries to take control over.",
+       " If a lock already exists, it tries to release the current lock and then set a new one"
+      ],
       "typeValue": {
        "raw": "(tryRelease: () => Promise<any>) => Promise<object>"
       },
@@ -13770,6 +13854,9 @@
      {
       "uid": 2,
       "name": "release",
+      "comment": [
+       "Releases lock without calling tryRelease callback"
+      ],
       "typeValue": {
        "raw": "(lock: object) => void"
       },
@@ -13778,6 +13865,9 @@
      {
       "uid": 3,
       "name": "withLock",
+      "comment": [
+       "Tries to acquire a lock for the time while the action is being executed."
+      ],
       "typeValue": {
        "raw": "(action: () => Promise<any>) => Promise<object>"
       },
@@ -13786,6 +13876,9 @@
      {
       "uid": 4,
       "name": "getCurrentLock",
+      "comment": [
+       "Returns currently active lock"
+      ],
       "typeValue": {
        "raw": "() => Lock | null"
       },
@@ -13890,7 +13983,7 @@
     "module": "@epam/uui-core",
     "typeName": {
      "name": "IModal",
-     "nameFull": "IModal<TResult>"
+     "nameFull": "IModal<TResult, TParameters>"
     },
     "src": "uui-core/src/types/props.ts",
     "exported": true
@@ -13898,14 +13991,23 @@
    "details": {
     "kind": 263,
     "typeValue": {
-     "raw": "IModal<TResult>",
+     "raw": "IModal<TResult, TParameters>",
      "print": [
-      "interface IModal<TResult> {",
-      "    isActive: boolean;",
+      "interface IModal<TResult, TParameters = any> {",
+      "    /** Indicates whether the modal is currently displayed */",
+      "    isActive?: boolean;",
+      "    /** Unique key of the modal */",
       "    key: string;",
+      "    /** Modal zIndex value. Calculated via LayoutContext. */",
       "    zIndex: number;",
+      "    /** Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value. */",
       "    success(result: TResult): void;",
+      "    /** Call to close the modal with abort action. It's rejects `modalContext.show()` promise with provided value. */",
       "    abort(result?: any): void;",
+      "    /** Parameters that provided via second param of `modalContext.show` method */",
+      "    parameters?: TParameters;",
+      "    /** Depth of current modal layer */",
+      "    depth?: number;",
       "}"
      ]
     },
@@ -13913,14 +14015,20 @@
      {
       "uid": 1,
       "name": "isActive",
+      "comment": [
+       "Indicates whether the modal is currently displayed"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
-      "required": true
+      "required": false
      },
      {
       "uid": 2,
       "name": "key",
+      "comment": [
+       "Unique key of the modal"
+      ],
       "typeValue": {
        "raw": "string"
       },
@@ -13929,6 +14037,9 @@
      {
       "uid": 3,
       "name": "zIndex",
+      "comment": [
+       "Modal zIndex value. Calculated via LayoutContext."
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -13937,6 +14048,9 @@
      {
       "uid": 4,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: TResult) => void"
       },
@@ -13945,10 +14059,35 @@
      {
       "uid": 5,
       "name": "abort",
+      "comment": [
+       "Call to close the modal with abort action. It's rejects `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result?: any) => void"
       },
       "required": true
+     },
+     {
+      "uid": 6,
+      "name": "parameters",
+      "comment": [
+       "Parameters that provided via second param of `modalContext.show` method"
+      ],
+      "typeValue": {
+       "raw": "TParameters"
+      },
+      "required": false
+     },
+     {
+      "uid": 7,
+      "name": "depth",
+      "comment": [
+       "Depth of current modal layer"
+      ],
+      "typeValue": {
+       "raw": "number"
+      },
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -13982,7 +14121,7 @@
       "uid": 1,
       "name": "show",
       "typeValue": {
-       "raw": "<TResult, TParameters = {}>(render: (props: IModal<TResult>) => React.ReactNode, parameters?: TParameters | undefined) => Promise<TResult>"
+       "raw": "<TResult, TParameters = {}>(render: (props: IModal<TResult, any>) => React.ReactNode, parameters?: TParameters | undefined) => Promise<TResult>"
       },
       "required": true
      },
@@ -14057,11 +14196,17 @@
      "raw": "INotification",
      "print": [
       "interface INotification {",
+      "    /** Call to close the notification with abort action. It's rejects `notificationContext.show()` promise. */",
       "    onClose?(): void;",
+      "    /** Call to close the notification with success action. It's resolved `notificationContext.show()` promise. */",
       "    onSuccess?(): void;",
+      "    /** Cancel notification closing timer */",
       "    clearTimer?(): void;",
+      "    /** Reinitialize notification closing timer. It will be set to the provided notification duration.  */",
       "    refreshTimer?(): void;",
+      "    /** Unique id of the notification */",
       "    id: number;",
+      "    /** Unique key of the notification */",
       "    key: string;",
       "}"
      ]
@@ -14070,6 +14215,9 @@
      {
       "uid": 1,
       "name": "onClose",
+      "comment": [
+       "Call to close the notification with abort action. It's rejects `notificationContext.show()` promise."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -14078,6 +14226,9 @@
      {
       "uid": 2,
       "name": "onSuccess",
+      "comment": [
+       "Call to close the notification with success action. It's resolved `notificationContext.show()` promise."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -14086,6 +14237,9 @@
      {
       "uid": 3,
       "name": "clearTimer",
+      "comment": [
+       "Cancel notification closing timer"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -14094,6 +14248,9 @@
      {
       "uid": 4,
       "name": "refreshTimer",
+      "comment": [
+       "Reinitialize notification closing timer. It will be set to the provided notification duration."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -14102,6 +14259,9 @@
      {
       "uid": 5,
       "name": "id",
+      "comment": [
+       "Unique id of the notification"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -14110,6 +14270,9 @@
      {
       "uid": 6,
       "name": "key",
+      "comment": [
+       "Unique key of the notification"
+      ],
       "typeValue": {
        "raw": "string"
       },
@@ -14135,9 +14298,13 @@
      "raw": "INotificationContext",
      "print": [
       "interface INotificationContext extends IBaseContext {",
+      "    /** Shows provided notification component with defined params  */",
       "    show(render: (props: INotification) => React.ReactNode, notificationParams?: NotificationParams): Promise<void>;",
+      "    /** Returns all active notifications */",
       "    getNotifications(): NotificationOperation[];",
+      "    /** Removes notification by their id */",
       "    remove(id: number): void;",
+      "    /** Removes all notification */",
       "    clearAll(): void;",
       "}"
      ]
@@ -14146,6 +14313,9 @@
      {
       "uid": 1,
       "name": "show",
+      "comment": [
+       "Shows provided notification component with defined params"
+      ],
       "typeValue": {
        "raw": "(render: (props: INotification) => React.ReactNode, notificationParams?: NotificationParams | undefined) => Promise<void>"
       },
@@ -14154,6 +14324,9 @@
      {
       "uid": 2,
       "name": "getNotifications",
+      "comment": [
+       "Returns all active notifications"
+      ],
       "typeValue": {
        "raw": "() => NotificationOperation[]"
       },
@@ -14162,6 +14335,9 @@
      {
       "uid": 3,
       "name": "remove",
+      "comment": [
+       "Removes notification by their id"
+      ],
       "typeValue": {
        "raw": "(id: number) => void"
       },
@@ -14170,6 +14346,9 @@
      {
       "uid": 4,
       "name": "clearAll",
+      "comment": [
+       "Removes all notification"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -14232,7 +14411,9 @@
       " * Other props can be implemented for full-featured picker togglers.",
       " */",
       "interface IPickerToggler<TItem = any, TId = any> extends IBasicPickerToggler, Partial<IEditable<string>>, Partial<IHasPlaceholder>, Partial<IDisableable>, Partial<ICanBeInvalid> {",
+      "    /** Array of selected rows */",
       "    selection?: DataRowProps<TItem, TId>[];",
+      "    /** Amount of selected items */",
       "    selectedRowsCount?: number;",
       "}"
      ]
@@ -14241,6 +14422,9 @@
      {
       "uid": 1,
       "name": "selection",
+      "comment": [
+       "Array of selected rows"
+      ],
       "typeValue": {
        "raw": "DataRowProps<TItem, TId>[]"
       },
@@ -14249,6 +14433,9 @@
      {
       "uid": 2,
       "name": "selectedRowsCount",
+      "comment": [
+       "Amount of selected items"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -14257,6 +14444,9 @@
      {
       "uid": 3,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -14435,7 +14625,7 @@
       "uid": 18,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -15769,7 +15959,7 @@
       "uid": 11,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -17153,13 +17343,25 @@
      "raw": "Metadata<T>",
      "print": [
       "interface Metadata<T> extends IDisableable, ICanBeReadonly, ICanBeRequired {",
+      "    /** Metadata for the nested fields */",
       "    props?: {",
       "        [P in keyof T]?: Metadata<T[P]>;",
       "    };",
+      "    /**",
+      "     * Metadata for all fields of current level of object.",
+      "     * Usually used for consistent validation of arrays.",
+      "     */",
       "    all?: Metadata<ElementType<T>>;",
+      "    /** Defines minimal value to pass the validation */",
       "    minValue?: number;",
+      "    /** Defines maximal value to pass the validation */",
       "    maxValue?: number;",
+      "    /** Defines maximal length of the string to pass the validation */",
       "    maxLength?: number;",
+      "    /** Array of your custom validators.",
+      "     * Validator is a pure function that accept value and should return error message if this field is invalid.",
+      "     * If validators provided, all other metadata options(e.g. isRequired, maxLength) will be ignored.",
+      "     * */",
       "    validators?: CustomValidator<T>[];",
       "}"
      ]
@@ -17168,6 +17370,9 @@
      {
       "uid": 1,
       "name": "props",
+      "comment": [
+       "Metadata for the nested fields"
+      ],
       "typeValue": {
        "raw": "{ [P in keyof T]?: Metadata<T[P]> | undefined; }"
       },
@@ -17176,6 +17381,10 @@
      {
       "uid": 2,
       "name": "all",
+      "comment": [
+       "Metadata for all fields of current level of object.",
+       " Usually used for consistent validation of arrays."
+      ],
       "typeValue": {
        "raw": "Metadata<ElementType<T>>"
       },
@@ -17184,6 +17393,9 @@
      {
       "uid": 3,
       "name": "minValue",
+      "comment": [
+       "Defines minimal value to pass the validation"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -17192,6 +17404,9 @@
      {
       "uid": 4,
       "name": "maxValue",
+      "comment": [
+       "Defines maximal value to pass the validation"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -17200,6 +17415,9 @@
      {
       "uid": 5,
       "name": "maxLength",
+      "comment": [
+       "Defines maximal length of the string to pass the validation"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -17208,6 +17426,11 @@
      {
       "uid": 6,
       "name": "validators",
+      "comment": [
+       "Array of your custom validators.",
+       " Validator is a pure function that accept value and should return error message if this field is invalid.",
+       " If validators provided, all other metadata options(e.g. isRequired, maxLength) will be ignored."
+      ],
       "typeValue": {
        "raw": "CustomValidator<T>[]"
       },
@@ -17241,7 +17464,7 @@
       "uid": 9,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -17303,15 +17526,21 @@
      {
       "uid": 4,
       "name": "isActive",
+      "comment": [
+       "Indicates whether the modal is currently displayed"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
       "from": "@epam/uui-core:IModal",
-      "required": true
+      "required": false
      },
      {
       "uid": 5,
       "name": "key",
+      "comment": [
+       "Unique key of the modal"
+      ],
       "typeValue": {
        "raw": "string"
       },
@@ -17321,6 +17550,9 @@
      {
       "uid": 6,
       "name": "zIndex",
+      "comment": [
+       "Modal zIndex value. Calculated via LayoutContext."
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -17330,6 +17562,9 @@
      {
       "uid": 7,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: any) => void"
       },
@@ -17339,6 +17574,9 @@
      {
       "uid": 8,
       "name": "abort",
+      "comment": [
+       "Call to close the modal with abort action. It's rejects `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result?: any) => void"
       },
@@ -17347,6 +17585,30 @@
      },
      {
       "uid": 9,
+      "name": "parameters",
+      "comment": [
+       "Parameters that provided via second param of `modalContext.show` method"
+      ],
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
+     },
+     {
+      "uid": 10,
+      "name": "depth",
+      "comment": [
+       "Depth of current modal layer"
+      ],
+      "typeValue": {
+       "raw": "number"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
+     },
+     {
+      "uid": 11,
       "name": "cx",
       "comment": [
        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
@@ -17358,7 +17620,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 12,
       "name": "children",
       "typeValue": {
        "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
@@ -17367,7 +17629,7 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 13,
       "name": "rawProps",
       "comment": [
        "Any HTML attributes (native or 'data-') to put on the underlying component"
@@ -17379,7 +17641,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 14,
       "name": "forwardedRef",
       "comment": [
        "this ref is passed to the underlying component"
@@ -17389,93 +17651,6 @@
       },
       "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-core:ModalComponentProps": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "ModalComponentProps",
-     "nameFull": "ModalComponentProps<TParameters, TResult>"
-    },
-    "src": "uui-core/src/services/ModalContext.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "ModalComponentProps<TParameters, TResult>",
-     "print": [
-      "interface ModalComponentProps<TParameters, TResult> {",
-      "    parameters?: TParameters;",
-      "    isActive: boolean;",
-      "    depth: number;",
-      "    zIndex: number;",
-      "    key: string;",
-      "    success(result: TResult): void;",
-      "    abort(result?: any): void;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "parameters",
-      "typeValue": {
-       "raw": "TParameters"
-      },
-      "required": false
-     },
-     {
-      "uid": 2,
-      "name": "isActive",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "required": true
-     },
-     {
-      "uid": 3,
-      "name": "depth",
-      "typeValue": {
-       "raw": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": 4,
-      "name": "zIndex",
-      "typeValue": {
-       "raw": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": 5,
-      "name": "key",
-      "typeValue": {
-       "raw": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": 6,
-      "name": "success",
-      "typeValue": {
-       "raw": "(result: TResult) => void"
-      },
-      "required": true
-     },
-     {
-      "uid": 7,
-      "name": "abort",
-      "typeValue": {
-       "raw": "(result?: any) => void"
-      },
-      "required": true
      }
     ],
     "propsFromUnion": false
@@ -17639,7 +17814,7 @@
      "print": [
       "interface ModalOperation {",
       "    component?: React.ComponentType<any>;",
-      "    props: ModalComponentProps<any, any>;",
+      "    props: IModal<any>;",
       "}"
      ]
     },
@@ -17656,7 +17831,7 @@
       "uid": 2,
       "name": "props",
       "typeValue": {
-       "raw": "ModalComponentProps<any, any>"
+       "raw": "IModal<any, any>"
       },
       "required": true
      }
@@ -17834,7 +18009,11 @@
      "raw": "NotificationParams",
      "print": [
       "interface NotificationParams {",
+      "    /** Notification visibility duration in ms",
+      "     * If 'forever' value provided, notification required manual action for closing.",
+      "     */",
       "    duration?: number | 'forever';",
+      "    /** Position of notification depends on screen corners */",
       "    position?: 'bot-left' | 'bot-right' | 'top-left' | 'top-right' | 'top-center' | 'bot-center';",
       "}"
      ]
@@ -17843,6 +18022,10 @@
      {
       "uid": 1,
       "name": "duration",
+      "comment": [
+       "Notification visibility duration in ms",
+       " If 'forever' value provided, notification required manual action for closing."
+      ],
       "typeValue": {
        "raw": "number | 'forever'"
       },
@@ -17851,6 +18034,9 @@
      {
       "uid": 2,
       "name": "position",
+      "comment": [
+       "Position of notification depends on screen corners"
+      ],
       "typeValue": {
        "raw": "'bot-left' | 'bot-right' | 'top-left' | 'top-right' | 'top-center' | 'bot-center'"
       },
@@ -18290,6 +18476,9 @@
      {
       "uid": 40,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'single'"
       },
@@ -18396,7 +18585,7 @@
       "uid": 99,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -18420,6 +18609,9 @@
      {
       "uid": 41,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -18453,6 +18645,9 @@
      {
       "uid": 90,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'multi'"
       },
@@ -18462,6 +18657,9 @@
      {
       "uid": 66,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'id'"
       },
@@ -18495,6 +18693,9 @@
      {
       "uid": 91,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -18551,6 +18752,9 @@
      {
       "uid": 11,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'single'"
       },
@@ -18657,7 +18861,7 @@
       "uid": 42,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -18668,6 +18872,9 @@
      {
       "uid": 12,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -18701,6 +18908,9 @@
      {
       "uid": 32,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'multi'"
       },
@@ -18710,6 +18920,9 @@
      {
       "uid": 22,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'id'"
       },
@@ -18719,6 +18932,10 @@
      {
       "uid": 34,
       "name": "emptyValue",
+      "comment": [
+       "Defines what to use as an empty value. If other value provided, it will be assumed as selection.",
+       " @default undefined."
+      ],
       "typeValue": {
        "raw": "null | []"
       },
@@ -18752,6 +18969,9 @@
      {
       "uid": 33,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -18986,10 +19206,15 @@
      "raw": "PickerFooterProps<TItem, TId>",
      "print": [
       "type PickerFooterProps<TItem, TId> = {",
+      "    /** Instance of picker DataSource view */",
       "    view: IDataSourceView<TItem, TId, any>;",
+      "    /** IEditable interface for the 'Show only selected' toggler */",
       "    showSelected: IEditable<boolean>;",
+      "    /** Call to clear picker selection */",
       "    clearSelection: () => void;",
+      "    /** If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected */",
       "    selectionMode: 'single' | 'multi';",
+      "    /** If true, 'Clear' button will be disabled */",
       "    disableClear?: boolean;",
       "};"
      ]
@@ -18998,6 +19223,9 @@
      {
       "uid": 1,
       "name": "view",
+      "comment": [
+       "Instance of picker DataSource view"
+      ],
       "typeValue": {
        "raw": "IDataSourceView<TItem, TId, any>"
       },
@@ -19006,6 +19234,9 @@
      {
       "uid": 2,
       "name": "showSelected",
+      "comment": [
+       "IEditable interface for the 'Show only selected' toggler"
+      ],
       "typeValue": {
        "raw": "IEditable<boolean>"
       },
@@ -19014,6 +19245,9 @@
      {
       "uid": 3,
       "name": "clearSelection",
+      "comment": [
+       "Call to clear picker selection"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -19022,6 +19256,9 @@
      {
       "uid": 4,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'multi' | 'single'"
       },
@@ -19030,6 +19267,9 @@
      {
       "uid": 5,
       "name": "disableClear",
+      "comment": [
+       "If true, 'Clear' button will be disabled"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
@@ -19335,7 +19575,7 @@
       "uid": 24,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -19768,7 +20008,7 @@
       "uid": 10,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -19959,12 +20199,14 @@
      "raw": "{ selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> | { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem>",
      "print": [
       "type SinglePickerProps<TId, TItem> = ({",
-      "    /** 'single' - only one item is selected. 'multi' - multiple items are selected */",
+      "    /** If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected */",
       "    selectionMode: 'single';",
       "    /** Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem) */",
       "    valueType?: 'id';",
       "} & IEditable<TId>) | ({",
+      "    /** If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected */",
       "    selectionMode: 'single';",
+      "    /** Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem) */",
       "    valueType: 'entity';",
       "} & IEditable<TItem>);"
      ]
@@ -19973,6 +20215,9 @@
      {
       "uid": 11,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'single'"
       },
@@ -20077,7 +20322,7 @@
       "uid": 20,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -20088,6 +20333,9 @@
      {
       "uid": 12,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -20161,7 +20409,7 @@
      "name": "SortDirection",
      "nameFull": "SortDirection"
     },
-    "src": "uui-core/src/types/dataQuery.ts",
+    "src": "uui-core/src/types/dataSources.ts",
     "exported": true
    },
    "details": {
@@ -20181,7 +20429,7 @@
      "name": "SortingOption",
      "nameFull": "SortingOption<T>"
     },
-    "src": "uui-core/src/types/dataQuery.ts",
+    "src": "uui-core/src/types/dataSources.ts",
     "exported": true
    },
    "details": {
@@ -20190,7 +20438,9 @@
      "raw": "SortingOption<T>",
      "print": [
       "interface SortingOption<T = any> {",
+      "    /** Field of sorted entity under which sorting is performed */",
       "    field: keyof T;",
+      "    /** Direction of a sorting */",
       "    direction?: SortDirection;",
       "}"
      ]
@@ -20199,6 +20449,9 @@
      {
       "uid": 1,
       "name": "field",
+      "comment": [
+       "Field of sorted entity under which sorting is performed"
+      ],
       "typeValue": {
        "raw": "keyof T"
       },
@@ -20207,6 +20460,9 @@
      {
       "uid": 2,
       "name": "direction",
+      "comment": [
+       "Direction of a sorting"
+      ],
       "typeValue": {
        "raw": "'asc' | 'desc'"
       },
@@ -20843,7 +21099,7 @@
       "uid": 20,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -20867,7 +21123,7 @@
       "uid": 22,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -21340,7 +21596,7 @@
       "uid": 15,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -21845,7 +22101,7 @@
       "uid": 14,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -22876,7 +23132,7 @@
       "uid": 25,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -23333,7 +23589,7 @@
       "uid": 22,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -23754,7 +24010,7 @@
       "uid": 13,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -23972,7 +24228,7 @@
       "uid": 15,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -24343,7 +24599,7 @@
       "uid": 8,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -24604,7 +24860,7 @@
       "uid": 14,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -24688,6 +24944,9 @@
      {
       "uid": 21,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -25267,7 +25526,7 @@
       "uid": 11,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -25464,7 +25723,7 @@
       "uid": 12,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -26336,7 +26595,7 @@
       "uid": 12,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -26849,7 +27108,7 @@
       "uid": 13,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -27191,6 +27450,9 @@
      {
       "uid": 18,
       "name": "onClose",
+      "comment": [
+       "Call to close the Dropdown body"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -27200,6 +27462,9 @@
      {
       "uid": 19,
       "name": "togglerWidth",
+      "comment": [
+       "The width of the toggler, which can be used to adjust the body width to it"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -27209,6 +27474,9 @@
      {
       "uid": 20,
       "name": "togglerHeight",
+      "comment": [
+       "The height of the toggler"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -27218,6 +27486,9 @@
      {
       "uid": 21,
       "name": "scheduleUpdate",
+      "comment": [
+       "Call to force recompute dropdown position"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -27227,6 +27498,9 @@
      {
       "uid": 22,
       "name": "isOpen",
+      "comment": [
+       "Indicates that dropdown is open"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
@@ -27236,6 +27510,9 @@
      {
       "uid": 23,
       "name": "arrowProps",
+      "comment": [
+       "Props that should be provided to the arrow component"
+      ],
       "typeValue": {
        "raw": "PopperArrowProps"
       },
@@ -27680,7 +27957,7 @@
       "uid": 8,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -30985,7 +31262,7 @@
       "uid": 13,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -31821,7 +32098,7 @@
       "uid": 9,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -32189,7 +32466,7 @@
       "uid": 24,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -32487,7 +32764,7 @@
       "uid": 11,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -32691,7 +32968,7 @@
       "uid": 42,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -33087,7 +33364,7 @@
       "uid": 21,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -33414,6 +33691,9 @@
      {
       "uid": 64,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'single'"
       },
@@ -33520,7 +33800,7 @@
       "uid": 171,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -33581,7 +33861,7 @@
       "uid": 176,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -33819,6 +34099,9 @@
      {
       "uid": 65,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -33852,6 +34135,9 @@
      {
       "uid": 162,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'multi'"
       },
@@ -33861,6 +34147,9 @@
      {
       "uid": 114,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'id'"
       },
@@ -33894,6 +34183,9 @@
      {
       "uid": 163,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -34143,6 +34435,9 @@
      {
       "uid": 44,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'single'"
       },
@@ -34249,7 +34544,7 @@
       "uid": 111,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -34319,6 +34614,9 @@
      {
       "uid": 45,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -34352,6 +34650,9 @@
      {
       "uid": 102,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'multi'"
       },
@@ -34361,6 +34662,9 @@
      {
       "uid": 74,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'id'"
       },
@@ -34394,6 +34698,9 @@
      {
       "uid": 103,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -34441,7 +34748,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "{ selectionMode: 'multi'; valueType: 'id'; initialValue: TId[]; } & IModal<TId[]> | { selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[]; } & IModal<TItem[]>",
+     "raw": "{ selectionMode: 'multi'; valueType: 'id'; initialValue: TId[]; } & IModal<TId[], any> | { selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[]; } & IModal<TItem[], any>",
      "print": [
       "type PickerModalArrayProps<TId, TItem> = ({",
       "    selectionMode: 'multi';",
@@ -34456,7 +34763,7 @@
     },
     "props": [
      {
-      "uid": 9,
+      "uid": 11,
       "name": "selectionMode",
       "typeValue": {
        "raw": "'multi'"
@@ -34480,17 +34787,23 @@
       "required": true
      },
      {
-      "uid": 12,
+      "uid": 14,
       "name": "isActive",
+      "comment": [
+       "Indicates whether the modal is currently displayed"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
       "from": "@epam/uui-core:IModal",
-      "required": true
+      "required": false
      },
      {
-      "uid": 13,
+      "uid": 15,
       "name": "key",
+      "comment": [
+       "Unique key of the modal"
+      ],
       "typeValue": {
        "raw": "string"
       },
@@ -34498,8 +34811,11 @@
       "required": true
      },
      {
-      "uid": 14,
+      "uid": 16,
       "name": "zIndex",
+      "comment": [
+       "Modal zIndex value. Calculated via LayoutContext."
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -34509,6 +34825,9 @@
      {
       "uid": 7,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: TId[]) => void"
       },
@@ -34516,8 +34835,11 @@
       "required": true
      },
      {
-      "uid": 16,
+      "uid": 18,
       "name": "abort",
+      "comment": [
+       "Call to close the modal with abort action. It's rejects `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result?: any) => void"
       },
@@ -34525,7 +34847,31 @@
       "required": true
      },
      {
-      "uid": 10,
+      "uid": 19,
+      "name": "parameters",
+      "comment": [
+       "Parameters that provided via second param of `modalContext.show` method"
+      ],
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
+     },
+     {
+      "uid": 20,
+      "name": "depth",
+      "comment": [
+       "Depth of current modal layer"
+      ],
+      "typeValue": {
+       "raw": "number"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
+     },
+     {
+      "uid": 12,
       "name": "valueType",
       "typeValue": {
        "raw": "'entity'"
@@ -34533,7 +34879,7 @@
       "required": true
      },
      {
-      "uid": 11,
+      "uid": 13,
       "name": "initialValue",
       "typeValue": {
        "raw": "TItem[]"
@@ -34541,8 +34887,11 @@
       "required": true
      },
      {
-      "uid": 15,
+      "uid": 17,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: TItem[]) => void"
       },
@@ -34588,7 +34937,7 @@
       "uid": 2,
       "name": "renderFooter",
       "typeValue": {
-       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any>>) => React.ReactNode"
+       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any, any>>) => React.ReactNode"
       },
       "required": false
      },
@@ -34629,7 +34978,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "{ selectionMode: 'single'; valueType: 'id'; initialValue: TId; } & IModal<TId> | { selectionMode: 'single'; valueType: 'entity'; initialValue: TItem; } & IModal<TItem>",
+     "raw": "{ selectionMode: 'single'; valueType: 'id'; initialValue: TId; } & IModal<TId, any> | { selectionMode: 'single'; valueType: 'entity'; initialValue: TItem; } & IModal<TItem, any>",
      "print": [
       "type PickerModalScalarProps<TId, TItem> = ({",
       "    selectionMode: 'single';",
@@ -34644,7 +34993,7 @@
     },
     "props": [
      {
-      "uid": 9,
+      "uid": 11,
       "name": "selectionMode",
       "typeValue": {
        "raw": "'single'"
@@ -34668,17 +35017,23 @@
       "required": true
      },
      {
-      "uid": 12,
+      "uid": 14,
       "name": "isActive",
+      "comment": [
+       "Indicates whether the modal is currently displayed"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
       "from": "@epam/uui-core:IModal",
-      "required": true
+      "required": false
      },
      {
-      "uid": 13,
+      "uid": 15,
       "name": "key",
+      "comment": [
+       "Unique key of the modal"
+      ],
       "typeValue": {
        "raw": "string"
       },
@@ -34686,8 +35041,11 @@
       "required": true
      },
      {
-      "uid": 14,
+      "uid": 16,
       "name": "zIndex",
+      "comment": [
+       "Modal zIndex value. Calculated via LayoutContext."
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -34697,6 +35055,9 @@
      {
       "uid": 7,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: TId) => void"
       },
@@ -34704,8 +35065,11 @@
       "required": true
      },
      {
-      "uid": 16,
+      "uid": 18,
       "name": "abort",
+      "comment": [
+       "Call to close the modal with abort action. It's rejects `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result?: any) => void"
       },
@@ -34713,7 +35077,31 @@
       "required": true
      },
      {
-      "uid": 10,
+      "uid": 19,
+      "name": "parameters",
+      "comment": [
+       "Parameters that provided via second param of `modalContext.show` method"
+      ],
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
+     },
+     {
+      "uid": 20,
+      "name": "depth",
+      "comment": [
+       "Depth of current modal layer"
+      ],
+      "typeValue": {
+       "raw": "number"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
+     },
+     {
+      "uid": 12,
       "name": "valueType",
       "typeValue": {
        "raw": "'entity'"
@@ -34721,7 +35109,7 @@
       "required": true
      },
      {
-      "uid": 11,
+      "uid": 13,
       "name": "initialValue",
       "typeValue": {
        "raw": "TItem"
@@ -34729,8 +35117,11 @@
       "required": true
      },
      {
-      "uid": 15,
+      "uid": 17,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: TItem) => void"
       },
@@ -34899,6 +35290,9 @@
      {
       "uid": 16,
       "name": "selection",
+      "comment": [
+       "Array of selected rows"
+      ],
       "typeValue": {
        "raw": "DataRowProps<TItem, TId>[]"
       },
@@ -34908,6 +35302,9 @@
      {
       "uid": 17,
       "name": "selectedRowsCount",
+      "comment": [
+       "Amount of selected items"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -34917,6 +35314,9 @@
      {
       "uid": 18,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -35095,7 +35495,7 @@
       "uid": 33,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -35143,7 +35543,7 @@
       "uid": 37,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -35562,7 +35962,7 @@
       "uid": 12,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -35763,7 +36163,7 @@
       "uid": 13,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -36118,7 +36518,7 @@
       "uid": 18,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -40546,7 +40946,7 @@
       "uid": 20,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -40788,7 +41188,7 @@
       "uid": 15,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -41133,7 +41533,7 @@
       "uid": 10,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -41417,7 +41817,7 @@
       "uid": 16,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -41806,7 +42206,7 @@
       "uid": 25,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -41830,7 +42230,7 @@
       "uid": 27,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -42248,7 +42648,7 @@
       "uid": 13,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -42519,7 +42919,7 @@
       "uid": 15,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -42873,7 +43273,7 @@
       "uid": 14,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -43087,6 +43487,9 @@
      {
       "uid": 66,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'single'"
       },
@@ -43193,7 +43596,7 @@
       "uid": 177,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -43254,7 +43657,7 @@
       "uid": 182,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -43526,6 +43929,9 @@
      {
       "uid": 67,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -43559,6 +43965,9 @@
      {
       "uid": 168,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'multi'"
       },
@@ -43568,6 +43977,9 @@
      {
       "uid": 118,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'id'"
       },
@@ -43601,6 +44013,9 @@
      {
       "uid": 169,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -43834,6 +44249,9 @@
      {
       "uid": 44,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'single'"
       },
@@ -43940,7 +44358,7 @@
       "uid": 111,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -44014,6 +44432,9 @@
      {
       "uid": 45,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -44047,6 +44468,9 @@
      {
       "uid": 102,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'multi'"
       },
@@ -44056,6 +44480,9 @@
      {
       "uid": 74,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'id'"
       },
@@ -44089,6 +44516,9 @@
      {
       "uid": 103,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -44136,14 +44566,14 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'id'; initialValue: TId; } & IModal<TId> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'entity'; initialValue: TItem; } & IModal<TItem> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'id'; initialValue: TId[]; } & IModal<TId[]> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[]; } & IModal<TItem[]> & PickerModalOptions<TItem, TId>",
+     "raw": "PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'id'; initialValue: TId; } & IModal<TId, any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'entity'; initialValue: TItem; } & IModal<TItem, any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'id'; initialValue: TId[]; } & IModal<TId[], any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[]; } & IModal<TItem[], any> & PickerModalOptions<TItem, TId>",
      "print": [
       "type UsePickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> & IHasCaption & (PickerModalScalarProps<TId, TItem> | PickerModalArrayProps<TId, TItem>) & PickerModalOptions<TItem, TId>;"
      ]
     },
     "props": [
      {
-      "uid": 82,
+      "uid": 88,
       "name": "entityName",
       "comment": [
        "Name of the entity being selected. Affects wording like \"Please select [entity]\""
@@ -44155,7 +44585,7 @@
       "required": false
      },
      {
-      "uid": 83,
+      "uid": 89,
       "name": "entityPluralName",
       "comment": [
        "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
@@ -44167,7 +44597,7 @@
       "required": false
      },
      {
-      "uid": 84,
+      "uid": 90,
       "name": "dataSource",
       "comment": [
        "Datasource to get data for the picker"
@@ -44179,7 +44609,7 @@
       "required": true
      },
      {
-      "uid": 85,
+      "uid": 91,
       "name": "getName",
       "comment": [
        "A pure function that gets entity name from entity object.",
@@ -44192,7 +44622,7 @@
       "required": false
      },
      {
-      "uid": 86,
+      "uid": 92,
       "name": "renderRow",
       "comment": [
        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
@@ -44204,7 +44634,7 @@
       "required": false
      },
      {
-      "uid": 87,
+      "uid": 93,
       "name": "getRowOptions",
       "comment": [
        "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
@@ -44216,7 +44646,7 @@
       "required": false
      },
      {
-      "uid": 88,
+      "uid": 94,
       "name": "renderNotFound",
       "comment": [
        "Overrides the default 'no records found' banner.",
@@ -44229,7 +44659,7 @@
       "required": false
      },
      {
-      "uid": 89,
+      "uid": 95,
       "name": "emptyValue",
       "comment": [
        "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
@@ -44241,7 +44671,7 @@
       "required": false
      },
      {
-      "uid": 90,
+      "uid": 96,
       "name": "sortBy",
       "comment": [
        "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
@@ -44253,7 +44683,7 @@
       "required": false
      },
      {
-      "uid": 91,
+      "uid": 97,
       "name": "filter",
       "comment": [
        "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
@@ -44265,7 +44695,7 @@
       "required": false
      },
      {
-      "uid": 92,
+      "uid": 98,
       "name": "sorting",
       "comment": [
        "Defines sorting to pass to the DataSource"
@@ -44277,7 +44707,7 @@
       "required": false
      },
      {
-      "uid": 93,
+      "uid": 99,
       "name": "cascadeSelection",
       "comment": [
        "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
@@ -44296,7 +44726,7 @@
       "required": false
      },
      {
-      "uid": 94,
+      "uid": 100,
       "name": "isFoldedByDefault",
       "comment": [
        "You can return true for all, or some items to fold them."
@@ -44308,7 +44738,7 @@
       "required": false
      },
      {
-      "uid": 95,
+      "uid": 101,
       "name": "getSearchFields",
       "comment": [
        "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
@@ -44320,7 +44750,7 @@
       "required": false
      },
      {
-      "uid": 96,
+      "uid": 102,
       "name": "caption",
       "comment": [
        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
@@ -44332,7 +44762,7 @@
       "required": false
      },
      {
-      "uid": 43,
+      "uid": 45,
       "name": "selectionMode",
       "typeValue": {
        "raw": "'single'"
@@ -44359,17 +44789,23 @@
       "required": true
      },
      {
-      "uid": 100,
+      "uid": 106,
       "name": "isActive",
+      "comment": [
+       "Indicates whether the modal is currently displayed"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
       "from": "@epam/uui-core:IModal",
-      "required": true
+      "required": false
      },
      {
-      "uid": 101,
+      "uid": 107,
       "name": "key",
+      "comment": [
+       "Unique key of the modal"
+      ],
       "typeValue": {
        "raw": "string"
       },
@@ -44377,8 +44813,11 @@
       "required": true
      },
      {
-      "uid": 102,
+      "uid": 108,
       "name": "zIndex",
+      "comment": [
+       "Modal zIndex value. Calculated via LayoutContext."
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -44388,6 +44827,9 @@
      {
       "uid": 22,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: TId) => void"
       },
@@ -44395,8 +44837,11 @@
       "required": true
      },
      {
-      "uid": 104,
+      "uid": 110,
       "name": "abort",
+      "comment": [
+       "Call to close the modal with abort action. It's rejects `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result?: any) => void"
       },
@@ -44404,7 +44849,31 @@
       "required": true
      },
      {
-      "uid": 105,
+      "uid": 111,
+      "name": "parameters",
+      "comment": [
+       "Parameters that provided via second param of `modalContext.show` method"
+      ],
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
+     },
+     {
+      "uid": 112,
+      "name": "depth",
+      "comment": [
+       "Depth of current modal layer"
+      ],
+      "typeValue": {
+       "raw": "number"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
+     },
+     {
+      "uid": 113,
       "name": "renderFilter",
       "typeValue": {
        "raw": "(editableFilter: IEditable<any>) => React.ReactNode"
@@ -44413,16 +44882,16 @@
       "required": false
      },
      {
-      "uid": 106,
+      "uid": 114,
       "name": "renderFooter",
       "typeValue": {
-       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any>>) => React.ReactNode"
+       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any, any>>) => React.ReactNode"
       },
       "from": "@epam/uui-components:PickerModalOptions",
       "required": false
      },
      {
-      "uid": 107,
+      "uid": 115,
       "name": "disallowClickOutside",
       "typeValue": {
        "raw": "boolean"
@@ -44431,7 +44900,7 @@
       "required": false
      },
      {
-      "uid": 108,
+      "uid": 116,
       "name": "rawProps",
       "comment": [
        "Any HTML attributes (native or 'data-') to put on the underlying component"
@@ -44443,7 +44912,7 @@
       "required": false
      },
      {
-      "uid": 44,
+      "uid": 46,
       "name": "valueType",
       "typeValue": {
        "raw": "'entity'"
@@ -44452,7 +44921,7 @@
       "required": true
      },
      {
-      "uid": 45,
+      "uid": 47,
       "name": "initialValue",
       "typeValue": {
        "raw": "TItem"
@@ -44461,8 +44930,11 @@
       "required": true
      },
      {
-      "uid": 49,
+      "uid": 51,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: TItem) => void"
       },
@@ -44470,7 +44942,7 @@
       "required": true
      },
      {
-      "uid": 97,
+      "uid": 103,
       "name": "selectionMode",
       "typeValue": {
        "raw": "'multi'"
@@ -44479,7 +44951,7 @@
       "required": true
      },
      {
-      "uid": 71,
+      "uid": 75,
       "name": "valueType",
       "typeValue": {
        "raw": "'id'"
@@ -44488,7 +44960,7 @@
       "required": true
      },
      {
-      "uid": 72,
+      "uid": 76,
       "name": "initialValue",
       "typeValue": {
        "raw": "TId[]"
@@ -44497,8 +44969,11 @@
       "required": true
      },
      {
-      "uid": 76,
+      "uid": 80,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: TId[]) => void"
       },
@@ -44506,7 +44981,7 @@
       "required": true
      },
      {
-      "uid": 98,
+      "uid": 104,
       "name": "valueType",
       "typeValue": {
        "raw": "'entity'"
@@ -44515,7 +44990,7 @@
       "required": true
      },
      {
-      "uid": 99,
+      "uid": 105,
       "name": "initialValue",
       "typeValue": {
        "raw": "TItem[]"
@@ -44524,8 +44999,11 @@
       "required": true
      },
      {
-      "uid": 103,
+      "uid": 109,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: TItem[]) => void"
       },
@@ -44673,7 +45151,7 @@
       "uid": 9,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -45025,7 +45503,7 @@
       "uid": 29,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -45423,7 +45901,7 @@
       "uid": 14,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -45507,6 +45985,9 @@
      {
       "uid": 21,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -45690,7 +46171,7 @@
       "uid": 3,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -46188,7 +46669,7 @@
       "uid": 25,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -46212,7 +46693,7 @@
       "uid": 27,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -46672,7 +47153,7 @@
       "uid": 17,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -46756,6 +47237,9 @@
      {
       "uid": 24,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -47079,7 +47563,7 @@
       "uid": 14,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -47306,15 +47790,21 @@
      {
       "uid": 6,
       "name": "isActive",
+      "comment": [
+       "Indicates whether the modal is currently displayed"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
       "from": "@epam/uui-core:IModal",
-      "required": true
+      "required": false
      },
      {
       "uid": 7,
       "name": "key",
+      "comment": [
+       "Unique key of the modal"
+      ],
       "typeValue": {
        "raw": "string"
       },
@@ -47324,6 +47814,9 @@
      {
       "uid": 8,
       "name": "zIndex",
+      "comment": [
+       "Modal zIndex value. Calculated via LayoutContext."
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -47333,6 +47826,9 @@
      {
       "uid": 9,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: ColumnsConfig) => void"
       },
@@ -47342,11 +47838,38 @@
      {
       "uid": 10,
       "name": "abort",
+      "comment": [
+       "Call to close the modal with abort action. It's rejects `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result?: any) => void"
       },
       "from": "@epam/uui-core:IModal",
       "required": true
+     },
+     {
+      "uid": 11,
+      "name": "parameters",
+      "comment": [
+       "Parameters that provided via second param of `modalContext.show` method"
+      ],
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
+     },
+     {
+      "uid": 12,
+      "name": "depth",
+      "comment": [
+       "Depth of current modal layer"
+      ],
+      "typeValue": {
+       "raw": "number"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -47575,6 +48098,9 @@
      {
       "uid": 68,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'single'"
       },
@@ -47681,7 +48207,7 @@
       "uid": 179,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -47742,7 +48268,7 @@
       "uid": 184,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -47998,6 +48524,9 @@
      {
       "uid": 69,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -48031,6 +48560,9 @@
      {
       "uid": 170,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'multi'"
       },
@@ -48040,6 +48572,9 @@
      {
       "uid": 120,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'id'"
       },
@@ -48073,6 +48608,9 @@
      {
       "uid": 171,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -48157,15 +48695,21 @@
      {
       "uid": 4,
       "name": "isActive",
+      "comment": [
+       "Indicates whether the modal is currently displayed"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
       "from": "@epam/uui-core:IModal",
-      "required": true
+      "required": false
      },
      {
       "uid": 5,
       "name": "key",
+      "comment": [
+       "Unique key of the modal"
+      ],
       "typeValue": {
        "raw": "string"
       },
@@ -48175,6 +48719,9 @@
      {
       "uid": 6,
       "name": "zIndex",
+      "comment": [
+       "Modal zIndex value. Calculated via LayoutContext."
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -48184,6 +48731,9 @@
      {
       "uid": 7,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: any) => void"
       },
@@ -48193,11 +48743,38 @@
      {
       "uid": 8,
       "name": "abort",
+      "comment": [
+       "Call to close the modal with abort action. It's rejects `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result?: any) => void"
       },
       "from": "@epam/uui-core:IModal",
       "required": true
+     },
+     {
+      "uid": 9,
+      "name": "parameters",
+      "comment": [
+       "Parameters that provided via second param of `modalContext.show` method"
+      ],
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
+     },
+     {
+      "uid": 10,
+      "name": "depth",
+      "comment": [
+       "Depth of current modal layer"
+      ],
+      "typeValue": {
+       "raw": "number"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -48506,7 +49083,7 @@
       "uid": 25,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -48834,7 +49411,7 @@
       "uid": 26,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -49593,7 +50170,7 @@
       "uid": 17,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -50163,7 +50740,7 @@
       "uid": 21,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -50268,6 +50845,9 @@
      {
       "uid": 2,
       "name": "onClose",
+      "comment": [
+       "Call to close the notification with abort action. It's rejects `notificationContext.show()` promise."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -50277,6 +50857,9 @@
      {
       "uid": 3,
       "name": "onSuccess",
+      "comment": [
+       "Call to close the notification with success action. It's resolved `notificationContext.show()` promise."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -50286,6 +50869,9 @@
      {
       "uid": 4,
       "name": "clearTimer",
+      "comment": [
+       "Cancel notification closing timer"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -50295,6 +50881,9 @@
      {
       "uid": 5,
       "name": "refreshTimer",
+      "comment": [
+       "Reinitialize notification closing timer. It will be set to the provided notification duration."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -50304,6 +50893,9 @@
      {
       "uid": 6,
       "name": "id",
+      "comment": [
+       "Unique id of the notification"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -50313,6 +50905,9 @@
      {
       "uid": 7,
       "name": "key",
+      "comment": [
+       "Unique key of the notification"
+      ],
       "typeValue": {
        "raw": "string"
       },
@@ -50614,6 +51209,9 @@
      {
       "uid": 18,
       "name": "onClose",
+      "comment": [
+       "Call to close the Dropdown body"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -50623,6 +51221,9 @@
      {
       "uid": 19,
       "name": "togglerWidth",
+      "comment": [
+       "The width of the toggler, which can be used to adjust the body width to it"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -50632,6 +51233,9 @@
      {
       "uid": 20,
       "name": "togglerHeight",
+      "comment": [
+       "The height of the toggler"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -50641,6 +51245,9 @@
      {
       "uid": 21,
       "name": "scheduleUpdate",
+      "comment": [
+       "Call to force recompute dropdown position"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -50650,6 +51257,9 @@
      {
       "uid": 22,
       "name": "isOpen",
+      "comment": [
+       "Indicates that dropdown is open"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
@@ -50659,6 +51269,9 @@
      {
       "uid": 23,
       "name": "arrowProps",
+      "comment": [
+       "Props that should be provided to the arrow component"
+      ],
       "typeValue": {
        "raw": "PopperArrowProps"
       },
@@ -51869,7 +52482,7 @@
       "uid": 8,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -52094,6 +52707,9 @@
      {
       "uid": 9,
       "name": "onClose",
+      "comment": [
+       "Call to close the Dropdown body"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -52103,6 +52719,9 @@
      {
       "uid": 10,
       "name": "togglerWidth",
+      "comment": [
+       "The width of the toggler, which can be used to adjust the body width to it"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -52112,6 +52731,9 @@
      {
       "uid": 11,
       "name": "togglerHeight",
+      "comment": [
+       "The height of the toggler"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -52121,6 +52743,9 @@
      {
       "uid": 12,
       "name": "scheduleUpdate",
+      "comment": [
+       "Call to force recompute dropdown position"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -52130,6 +52755,9 @@
      {
       "uid": 13,
       "name": "isOpen",
+      "comment": [
+       "Indicates that dropdown is open"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
@@ -52139,6 +52767,9 @@
      {
       "uid": 14,
       "name": "arrowProps",
+      "comment": [
+       "Props that should be provided to the arrow component"
+      ],
       "typeValue": {
        "raw": "PopperArrowProps"
       },
@@ -52212,7 +52843,7 @@
       "uid": 4,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -52795,7 +53426,7 @@
       "uid": 13,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -53093,7 +53724,7 @@
       "uid": 16,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -53177,6 +53808,9 @@
      {
       "uid": 23,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -53754,6 +54388,9 @@
      {
       "uid": 21,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -54474,7 +55111,7 @@
       "uid": 25,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -54498,7 +55135,7 @@
       "uid": 27,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -55303,7 +55940,7 @@
       "uid": 10,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -55386,6 +56023,9 @@
      {
       "uid": 4,
       "name": "onClose",
+      "comment": [
+       "Call to close the notification with abort action. It's rejects `notificationContext.show()` promise."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -55395,6 +56035,9 @@
      {
       "uid": 5,
       "name": "onSuccess",
+      "comment": [
+       "Call to close the notification with success action. It's resolved `notificationContext.show()` promise."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -55404,6 +56047,9 @@
      {
       "uid": 6,
       "name": "clearTimer",
+      "comment": [
+       "Cancel notification closing timer"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -55413,6 +56059,9 @@
      {
       "uid": 7,
       "name": "refreshTimer",
+      "comment": [
+       "Reinitialize notification closing timer. It will be set to the provided notification duration."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -55422,6 +56071,9 @@
      {
       "uid": 8,
       "name": "id",
+      "comment": [
+       "Unique id of the notification"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -55431,6 +56083,9 @@
      {
       "uid": 9,
       "name": "key",
+      "comment": [
+       "Unique key of the notification"
+      ],
       "typeValue": {
        "raw": "string"
       },
@@ -55824,7 +56479,7 @@
       "uid": 24,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -56439,7 +57094,7 @@
       "uid": 27,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -57004,7 +57659,7 @@
       "uid": 22,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -57348,7 +58003,7 @@
       "uid": 118,
       "name": "renderFooter",
       "typeValue": {
-       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any>>) => React.ReactNode"
+       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any, any>>) => React.ReactNode"
       },
       "from": "@epam/uui-components:PickerModalOptions",
       "required": false
@@ -57570,6 +58225,9 @@
      {
       "uid": 61,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'single'"
       },
@@ -57676,7 +58334,7 @@
       "uid": 146,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -57765,6 +58423,9 @@
      {
       "uid": 62,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -57798,6 +58459,9 @@
      {
       "uid": 137,
       "name": "selectionMode",
+      "comment": [
+       "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+      ],
       "typeValue": {
        "raw": "'multi'"
       },
@@ -57807,6 +58471,9 @@
      {
       "uid": 100,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'id'"
       },
@@ -57840,6 +58507,9 @@
      {
       "uid": 138,
       "name": "valueType",
+      "comment": [
+       "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+      ],
       "typeValue": {
        "raw": "'entity'"
       },
@@ -57887,14 +58557,14 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'id'; initialValue: TId; } & IModal<TId> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'entity'; initialValue: TItem; } & IModal<TItem> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'id'; initialValue: TId[]; } & IModal<TId[]> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[]; } & IModal<TItem[]> & PickerModalOptions<TItem, TId>",
+     "raw": "PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'id'; initialValue: TId; } & IModal<TId, any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'entity'; initialValue: TItem; } & IModal<TItem, any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'id'; initialValue: TId[]; } & IModal<TId[], any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[]; } & IModal<TItem[], any> & PickerModalOptions<TItem, TId>",
      "print": [
       "type PickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> & IHasCaption & (PickerModalScalarProps<TId, TItem> | PickerModalArrayProps<TId, TItem>) & PickerModalOptions<TItem, TId>;"
      ]
     },
     "props": [
      {
-      "uid": 82,
+      "uid": 88,
       "name": "entityName",
       "comment": [
        "Name of the entity being selected. Affects wording like \"Please select [entity]\""
@@ -57906,7 +58576,7 @@
       "required": false
      },
      {
-      "uid": 83,
+      "uid": 89,
       "name": "entityPluralName",
       "comment": [
        "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
@@ -57918,7 +58588,7 @@
       "required": false
      },
      {
-      "uid": 84,
+      "uid": 90,
       "name": "dataSource",
       "comment": [
        "Datasource to get data for the picker"
@@ -57930,7 +58600,7 @@
       "required": true
      },
      {
-      "uid": 85,
+      "uid": 91,
       "name": "getName",
       "comment": [
        "A pure function that gets entity name from entity object.",
@@ -57943,7 +58613,7 @@
       "required": false
      },
      {
-      "uid": 86,
+      "uid": 92,
       "name": "renderRow",
       "comment": [
        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
@@ -57955,7 +58625,7 @@
       "required": false
      },
      {
-      "uid": 87,
+      "uid": 93,
       "name": "getRowOptions",
       "comment": [
        "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
@@ -57967,7 +58637,7 @@
       "required": false
      },
      {
-      "uid": 88,
+      "uid": 94,
       "name": "renderNotFound",
       "comment": [
        "Overrides the default 'no records found' banner.",
@@ -57980,7 +58650,7 @@
       "required": false
      },
      {
-      "uid": 89,
+      "uid": 95,
       "name": "emptyValue",
       "comment": [
        "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
@@ -57992,7 +58662,7 @@
       "required": false
      },
      {
-      "uid": 90,
+      "uid": 96,
       "name": "sortBy",
       "comment": [
        "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
@@ -58004,7 +58674,7 @@
       "required": false
      },
      {
-      "uid": 91,
+      "uid": 97,
       "name": "filter",
       "comment": [
        "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
@@ -58016,7 +58686,7 @@
       "required": false
      },
      {
-      "uid": 92,
+      "uid": 98,
       "name": "sorting",
       "comment": [
        "Defines sorting to pass to the DataSource"
@@ -58028,7 +58698,7 @@
       "required": false
      },
      {
-      "uid": 93,
+      "uid": 99,
       "name": "cascadeSelection",
       "comment": [
        "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
@@ -58047,7 +58717,7 @@
       "required": false
      },
      {
-      "uid": 94,
+      "uid": 100,
       "name": "isFoldedByDefault",
       "comment": [
        "You can return true for all, or some items to fold them."
@@ -58059,7 +58729,7 @@
       "required": false
      },
      {
-      "uid": 95,
+      "uid": 101,
       "name": "getSearchFields",
       "comment": [
        "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
@@ -58071,7 +58741,7 @@
       "required": false
      },
      {
-      "uid": 96,
+      "uid": 102,
       "name": "caption",
       "comment": [
        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
@@ -58083,7 +58753,7 @@
       "required": false
      },
      {
-      "uid": 43,
+      "uid": 45,
       "name": "selectionMode",
       "typeValue": {
        "raw": "'single'"
@@ -58110,17 +58780,23 @@
       "required": true
      },
      {
-      "uid": 100,
+      "uid": 106,
       "name": "isActive",
+      "comment": [
+       "Indicates whether the modal is currently displayed"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
       "from": "@epam/uui-core:IModal",
-      "required": true
+      "required": false
      },
      {
-      "uid": 101,
+      "uid": 107,
       "name": "key",
+      "comment": [
+       "Unique key of the modal"
+      ],
       "typeValue": {
        "raw": "string"
       },
@@ -58128,8 +58804,11 @@
       "required": true
      },
      {
-      "uid": 102,
+      "uid": 108,
       "name": "zIndex",
+      "comment": [
+       "Modal zIndex value. Calculated via LayoutContext."
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -58139,6 +58818,9 @@
      {
       "uid": 22,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: TId) => void"
       },
@@ -58146,8 +58828,11 @@
       "required": true
      },
      {
-      "uid": 104,
+      "uid": 110,
       "name": "abort",
+      "comment": [
+       "Call to close the modal with abort action. It's rejects `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result?: any) => void"
       },
@@ -58155,7 +58840,31 @@
       "required": true
      },
      {
-      "uid": 105,
+      "uid": 111,
+      "name": "parameters",
+      "comment": [
+       "Parameters that provided via second param of `modalContext.show` method"
+      ],
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
+     },
+     {
+      "uid": 112,
+      "name": "depth",
+      "comment": [
+       "Depth of current modal layer"
+      ],
+      "typeValue": {
+       "raw": "number"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
+     },
+     {
+      "uid": 113,
       "name": "renderFilter",
       "typeValue": {
        "raw": "(editableFilter: IEditable<any>) => React.ReactNode"
@@ -58164,16 +58873,16 @@
       "required": false
      },
      {
-      "uid": 106,
+      "uid": 114,
       "name": "renderFooter",
       "typeValue": {
-       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any>>) => React.ReactNode"
+       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any, any>>) => React.ReactNode"
       },
       "from": "@epam/uui-components:PickerModalOptions",
       "required": false
      },
      {
-      "uid": 107,
+      "uid": 115,
       "name": "disallowClickOutside",
       "typeValue": {
        "raw": "boolean"
@@ -58182,7 +58891,7 @@
       "required": false
      },
      {
-      "uid": 108,
+      "uid": 116,
       "name": "rawProps",
       "comment": [
        "Any HTML attributes (native or 'data-') to put on the underlying component"
@@ -58194,7 +58903,7 @@
       "required": false
      },
      {
-      "uid": 44,
+      "uid": 46,
       "name": "valueType",
       "typeValue": {
        "raw": "'entity'"
@@ -58203,7 +58912,7 @@
       "required": true
      },
      {
-      "uid": 45,
+      "uid": 47,
       "name": "initialValue",
       "typeValue": {
        "raw": "TItem"
@@ -58212,8 +58921,11 @@
       "required": true
      },
      {
-      "uid": 49,
+      "uid": 51,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: TItem) => void"
       },
@@ -58221,7 +58933,7 @@
       "required": true
      },
      {
-      "uid": 97,
+      "uid": 103,
       "name": "selectionMode",
       "typeValue": {
        "raw": "'multi'"
@@ -58230,7 +58942,7 @@
       "required": true
      },
      {
-      "uid": 71,
+      "uid": 75,
       "name": "valueType",
       "typeValue": {
        "raw": "'id'"
@@ -58239,7 +58951,7 @@
       "required": true
      },
      {
-      "uid": 72,
+      "uid": 76,
       "name": "initialValue",
       "typeValue": {
        "raw": "TId[]"
@@ -58248,8 +58960,11 @@
       "required": true
      },
      {
-      "uid": 76,
+      "uid": 80,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: TId[]) => void"
       },
@@ -58257,7 +58972,7 @@
       "required": true
      },
      {
-      "uid": 98,
+      "uid": 104,
       "name": "valueType",
       "typeValue": {
        "raw": "'entity'"
@@ -58266,7 +58981,7 @@
       "required": true
      },
      {
-      "uid": 99,
+      "uid": 105,
       "name": "initialValue",
       "typeValue": {
        "raw": "TItem[]"
@@ -58275,8 +58990,11 @@
       "required": true
      },
      {
-      "uid": 103,
+      "uid": 109,
       "name": "success",
+      "comment": [
+       "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+      ],
       "typeValue": {
        "raw": "(result: TItem[]) => void"
       },
@@ -58747,7 +59465,7 @@
       "uid": 14,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -59024,7 +59742,7 @@
       "uid": 19,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -59331,7 +60049,7 @@
       "uid": 24,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -59984,7 +60702,7 @@
       "uid": 25,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -60008,7 +60726,7 @@
       "uid": 27,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -60498,7 +61216,7 @@
       "uid": 10,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -60813,7 +61531,7 @@
       "uid": 16,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -60897,6 +61615,9 @@
      {
       "uid": 23,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -61197,7 +61918,7 @@
       "uid": 14,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -61281,6 +62002,9 @@
      {
       "uid": 21,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -61655,7 +62379,7 @@
       "uid": 16,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -62111,7 +62835,7 @@
       "uid": 25,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -62135,7 +62859,7 @@
       "uid": 27,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -62848,7 +63572,7 @@
       "uid": 15,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -63125,7 +63849,7 @@
       "uid": 15,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -63426,7 +64150,7 @@
       "uid": 14,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -63510,6 +64234,9 @@
      {
       "uid": 21,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -63786,7 +64513,7 @@
       "uid": 31,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -64140,7 +64867,7 @@
       "uid": 1,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -64383,6 +65110,9 @@
      {
       "uid": 22,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -64580,7 +65310,7 @@
       "uid": 1,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -64823,6 +65553,9 @@
      {
       "uid": 22,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -65331,7 +66064,7 @@
       "uid": 1,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -65645,7 +66378,7 @@
       "uid": 1,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -65888,6 +66621,9 @@
      {
       "uid": 22,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -66223,7 +66959,7 @@
       "uid": 11,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -66308,6 +67044,9 @@
      {
       "uid": 2,
       "name": "onClose",
+      "comment": [
+       "Call to close the notification with abort action. It's rejects `notificationContext.show()` promise."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -66359,6 +67098,9 @@
      {
       "uid": 7,
       "name": "onSuccess",
+      "comment": [
+       "Call to close the notification with success action. It's resolved `notificationContext.show()` promise."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -66368,6 +67110,9 @@
      {
       "uid": 8,
       "name": "clearTimer",
+      "comment": [
+       "Cancel notification closing timer"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -66377,6 +67122,9 @@
      {
       "uid": 9,
       "name": "refreshTimer",
+      "comment": [
+       "Reinitialize notification closing timer. It will be set to the provided notification duration."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -66386,6 +67134,9 @@
      {
       "uid": 10,
       "name": "id",
+      "comment": [
+       "Unique id of the notification"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -66395,6 +67146,9 @@
      {
       "uid": 11,
       "name": "key",
+      "comment": [
+       "Unique key of the notification"
+      ],
       "typeValue": {
        "raw": "string"
       },
@@ -67181,7 +67935,7 @@
       "uid": 12,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -67581,7 +68335,7 @@
       "uid": 1,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -67815,6 +68569,9 @@
      {
       "uid": 21,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -68048,7 +68805,7 @@
       "uid": 1,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -68291,6 +69048,9 @@
      {
       "uid": 22,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -68897,7 +69657,7 @@
       "uid": 1,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -69171,7 +69931,7 @@
       "uid": 1,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -69414,6 +70174,9 @@
      {
       "uid": 22,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -69851,7 +70614,7 @@
       "uid": 11,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -69936,6 +70699,9 @@
      {
       "uid": 2,
       "name": "onClose",
+      "comment": [
+       "Call to close the notification with abort action. It's rejects `notificationContext.show()` promise."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -69987,6 +70753,9 @@
      {
       "uid": 7,
       "name": "onSuccess",
+      "comment": [
+       "Call to close the notification with success action. It's resolved `notificationContext.show()` promise."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -69996,6 +70765,9 @@
      {
       "uid": 8,
       "name": "clearTimer",
+      "comment": [
+       "Cancel notification closing timer"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -70005,6 +70777,9 @@
      {
       "uid": 9,
       "name": "refreshTimer",
+      "comment": [
+       "Reinitialize notification closing timer. It will be set to the provided notification duration."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -70014,6 +70789,9 @@
      {
       "uid": 10,
       "name": "id",
+      "comment": [
+       "Unique id of the notification"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -70023,6 +70801,9 @@
      {
       "uid": 11,
       "name": "key",
+      "comment": [
+       "Unique key of the notification"
+      ],
       "typeValue": {
        "raw": "string"
       },
@@ -70309,7 +71090,7 @@
       "uid": 15,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -70640,7 +71421,7 @@
       "uid": 18,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -71131,7 +71912,7 @@
       "uid": 15,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"
@@ -71187,6 +71968,9 @@
      {
       "uid": 2,
       "name": "onClose",
+      "comment": [
+       "Call to close the notification with abort action. It's rejects `notificationContext.show()` promise."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -71196,6 +71980,9 @@
      {
       "uid": 3,
       "name": "onSuccess",
+      "comment": [
+       "Call to close the notification with success action. It's resolved `notificationContext.show()` promise."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -71205,6 +71992,9 @@
      {
       "uid": 4,
       "name": "clearTimer",
+      "comment": [
+       "Cancel notification closing timer"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -71214,6 +72004,9 @@
      {
       "uid": 5,
       "name": "refreshTimer",
+      "comment": [
+       "Reinitialize notification closing timer. It will be set to the provided notification duration."
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -71223,6 +72016,9 @@
      {
       "uid": 6,
       "name": "id",
+      "comment": [
+       "Unique id of the notification"
+      ],
       "typeValue": {
        "raw": "number"
       },
@@ -71232,6 +72028,9 @@
      {
       "uid": 7,
       "name": "key",
+      "comment": [
+       "Unique key of the notification"
+      ],
       "typeValue": {
        "raw": "string"
       },
@@ -71464,7 +72263,7 @@
       "uid": 17,
       "name": "icon",
       "comment": [
-       "Icon can be an React element (usually an SVG element)"
+       "Icon can be a React element (usually an SVG element)"
       ],
       "typeValue": {
        "raw": "Icon"
@@ -71548,6 +72347,9 @@
      {
       "uid": 24,
       "name": "onClear",
+      "comment": [
+       "Call to clear toggler value"
+      ],
       "typeValue": {
        "raw": "(e?: any) => void"
       },
@@ -72124,7 +72926,7 @@
       "uid": 12,
       "name": "isRequired",
       "comment": [
-       "Marks that component's value is required"
+       "Marks that component's value is required and shouldn't be empty"
       ],
       "typeValue": {
        "raw": "boolean"

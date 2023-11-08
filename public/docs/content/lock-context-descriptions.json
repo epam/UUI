@@ -22,7 +22,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Also, Lock Context subscribes to any router change and tries to release the current lock before this change.\n"
+        "text": "Also, Lock Context subscribes to any router change and tries to release the current lock before this change."
       }
     ]
   },
@@ -36,150 +36,17 @@
     ]
   },
   {
-    "data": {},
-    "type": "unordered-list",
+    "type": "type-ref-table",
     "children": [
       {
-        "data": {},
-        "type": "list-item",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item-child",
-            "children": [
-              {
-                "text": "acquire(tryRelease?: () => Promise<any>): Promise<Lock>",
-                "uui-richTextEditor-code": true
-              },
-              {
-                "text": " — try to take a lock, and set "
-              },
-              {
-                "text": "tryRelease",
-                "uui-richTextEditor-code": true
-              },
-              {
-                "text": " callback, which will be invoked when something tries to take control over. If a lock already exists, it tries to release the current lock and then set a new one;\n"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "data": {},
-        "type": "list-item",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item-child",
-            "children": [
-              {
-                "data": {},
-                "type": "list-item-child",
-                "children": [
-                  {
-                    "text": "getCurrentLock(): Lock",
-                    "uui-richTextEditor-code": true
-                  },
-                  {
-                    "text": " — return current lock;\n"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "data": {},
-        "type": "list-item",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item-child",
-            "children": [
-              {
-                "data": {},
-                "type": "list-item-child",
-                "children": [
-                  {
-                    "text": "tryRelease()",
-                    "uui-richTextEditor-code": true
-                  },
-                  {
-                    "text": " — try to release the current lock, by calling the "
-                  },
-                  {
-                    "text": "tryRelease",
-                    "uui-richTextEditor-code": true
-                  },
-                  {
-                    "text": " callback which was passed to the "
-                  },
-                  {
-                    "text": "acquire",
-                    "uui-richTextEditor-code": true
-                  },
-                  {
-                    "text": " function;\n"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "data": {},
-        "type": "list-item",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item-child",
-            "children": [
-              {
-                "text": "release(lock: Lock)",
-                "uui-richTextEditor-code": true
-              },
-              {
-                "text": " — release lock without calling "
-              },
-              {
-                "text": "tryRelease",
-                "uui-richTextEditor-code": true
-              },
-              {
-                "text": " callback;\n"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "data": {},
-        "type": "list-item",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item-child",
-            "children": [
-              {
-                "text": "withLock<T>(action: () => Promise<T>): Promise<T>",
-                "uui-richTextEditor-code": true
-              },
-              {
-                "text": " — try to acquire a lock for the time "
-              },
-              {
-                "text": "while the action is being executed.",
-                "outline": "0px",
-                "": null,
-                "uui-richTextEditor-span-mark": true
-              }
-            ]
-          }
-        ]
+        "text": "",
+        "outline": "0px",
+        "": null,
+        "uui-richTextEditor-span-mark": true
       }
-    ]
+    ],
+    "data": {
+      "typePath": "@epam/uui-core:ILockContext"
+    }
   }
 ]

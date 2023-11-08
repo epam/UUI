@@ -1,5 +1,5 @@
 import { BaseContext } from './BaseContext';
-import { IRouterContext, IAnalyticsListener } from '../types/contexts';
+import { IRouterContext, IAnalyticsListener, IAnalyticsContext } from '../types/contexts';
 import { AnalyticsEvent, Link } from '../types/objects';
 import { isClientSide } from '../helpers/ssr';
 
@@ -7,7 +7,7 @@ interface AnalyticsContextOptions {
     router: IRouterContext;
 }
 
-export class AnalyticsContext extends BaseContext {
+export class AnalyticsContext extends BaseContext implements IAnalyticsContext {
     private removeRouteListener: () => void;
     private currentLocation: string;
     private readonly router: IRouterContext;
