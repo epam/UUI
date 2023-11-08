@@ -29,7 +29,7 @@ export default function BasicDropdownExample() {
 
                             <FlexRow padding="12">
                                 <FlexCell width="auto">
-                                    <Text cx={ css.textTitle } lineHeight="24" fontSize="16" color="primary" font="semibold">
+                                    <Text cx={ css.text } lineHeight="24" fontSize="16" color="primary" font="semibold">
                                         John Doe
                                     </Text>
                                     <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
@@ -38,7 +38,7 @@ export default function BasicDropdownExample() {
                                 </FlexCell>
                             </FlexRow>
                             <FlexSpacer />
-                            <FlexRow spacing="6">
+                            <FlexRow spacing="6" alignItems="top">
                                 <IconButton icon={ pinIcon } onClick={ () => null } />
                                 <IconButton icon={ aimIcon } onClick={ () => null } />
                             </FlexRow>
@@ -139,7 +139,7 @@ export default function BasicDropdownExample() {
                             <Avatar size="42" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
 
                             <div>
-                                <Text cx={ css.textTitle } lineHeight="24" fontSize="14" color="primary" font="semibold">
+                                <Text cx={ css.text } lineHeight="24" fontSize="14" color="primary" font="semibold">
                                     John Wick
                                 </Text>
                                 <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
