@@ -30,15 +30,26 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const toggleContainer = React.useRef<HTMLDivElement>();
     const inputContainer = React.useRef<HTMLInputElement>();
-    const alreadyClicked = React.useRef(false);
-    const justFocused = React.useRef(false);
 
     React.useImperativeHandle(ref, () => toggleContainer.current, [toggleContainer.current]);
 
+    const handleClick = useCallback(
+        (event: Event) => {
+            if (props.isInteractedOutside(event) && inFocus) {
+                blur();
+            }
+        },
+        [inFocus],
+    );
+
     React.useEffect(() => {
+        props.isOpen && window.document.addEventListener('click', handleClick);
+
         if (props.autoFocus && !props.disableSearch) {
             inputContainer.current?.focus();
         }
+
+        return () => !props.isOpen && window.document.removeEventListener('click', handleClick);
     }, [props.isOpen]);
 
     const isActivePlaceholder = (): Boolean => {
@@ -57,40 +68,20 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     };
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (!inFocus) {
-            justFocused.current = true;
-            props.onFocus?.(e);
-            if (!alreadyClicked.current) {
-                togglerPickerOpened();
-                if (props.searchPosition === 'input') {
-                    inputContainer.current?.focus();
-                }
-                alreadyClicked.current = true;
-            } else {
-                alreadyClicked.current = false;
-            }
-            
-            setInFocus(true);
-        }
+        props.onFocus?.(e);
+        setInFocus(true);
+        inputContainer.current?.focus();
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLElement>) => {
-        const isInteractedOutside = props.isInteractedOutside(e.nativeEvent);
-        if (isInteractedOutside && inFocus) {
-            justFocused.current = false;
-            alreadyClicked.current = false;
-        }
-
-        if (props.isOpen && !isInteractedOutside) {
+        if (props.isOpen) {
             // If picker opened and search inside input, we lock focus on toggler.
             // In case, when search inside body, we need to highlight toggler like in focus state, even when focus was moved to the body. So we do nothing in this case.
             return props.searchPosition === 'input' && inputContainer.current?.focus();
-        }
-
-        if (isInteractedOutside && inFocus) {
+        } else {
             // If picker closed, we perform blur event as usual.
             blur(e);
-        }    
+        }
     };
 
     const handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
@@ -153,22 +144,12 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         );
     };
 
-    const togglerPickerOpened = useCallback(() => {
+    const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
         if (props.isDisabled || props.isReadonly) return;
+        e.preventDefault();
         if (inFocus && props.value && props.minCharsToSearch) return;
         props.onClick?.();
-    }, [props.onClick, props.isDisabled, props.isReadonly, props.value, props.minCharsToSearch, inFocus]);
-
-    const onTogglerClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-        if (alreadyClicked.current && justFocused.current) {
-            justFocused.current = false;
-        } else {
-            alreadyClicked.current = true;
-            justFocused.current = false;
-            togglerPickerOpened();
-        }
-        e.stopPropagation();
-    }, [togglerPickerOpened]);
+    };
 
     const closeOpenedPickerBody = useCallback(
         (e: React.MouseEvent<HTMLDivElement>) => {
@@ -189,7 +170,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     return (
         <div
-            onClick={ onTogglerClick }
+            onClick={ togglerPickerOpened }
             ref={ toggleContainer }
             className={ cx(
                 css.container,
