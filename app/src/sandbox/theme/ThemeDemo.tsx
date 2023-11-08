@@ -213,14 +213,10 @@ export function ThemeDemo() {
                         </Text>
                     </FlexRow>
                     <FlexRow vPadding="12">
-                        <FlexCell grow={ 1 }>
-                            <Checkbox label="I agree to the processing of personal data" { ...lens.prop('processingPersonalDataAgreed').toProps() } />
-                        </FlexCell>
+                        <Checkbox label="I agree to the processing of personal data" { ...lens.prop('processingPersonalDataAgreed').toProps() } />
                     </FlexRow>
                     <FlexRow vPadding="12" borderBottom>
-                        <FlexCell grow={ 1 }>
-                            <Switch label="I agree to display ads" { ...lens.prop('displayAdsAgreed').toProps() } />
-                        </FlexCell>
+                        <Switch label="I agree to display ads" { ...lens.prop('displayAdsAgreed').toProps() } />
                     </FlexRow>
                     <FlexRow vPadding="24" spacing="12">
                         <FlexSpacer />

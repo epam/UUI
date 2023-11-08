@@ -1,27 +1,9 @@
 import React from 'react';
 import { useAsyncDataSource, useForm, useUuiContext } from '@epam/uui-core';
 import {
-    Button,
-    Checkbox,
-    Switch,
-    TextInput,
-    SuccessNotification,
-    ErrorNotification,
-    Text,
-    LabeledInput,
-    Panel,
-    PickerInput,
-    FlexRow,
-    FlexCell,
-    FlexSpacer,
-    RadioGroup,
-    ScrollBars,
-    IconButton,
-    ModalBlocker,
-    ModalWindow,
-    ModalHeader,
-    Badge,
-    DatePicker,
+    Button, Checkbox, Switch, TextInput, SuccessNotification, ErrorNotification, Text, LabeledInput, Panel, PickerInput,
+    FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton, ModalBlocker, ModalWindow, ModalHeader, Badge, DatePicker,
+    PromoButton,
 } from '@epam/electric';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
@@ -235,14 +217,10 @@ export function ThemeDemo() {
                         </Text>
                     </FlexRow>
                     <FlexRow vPadding="12">
-                        <FlexCell grow={ 1 }>
-                            <Checkbox label="I agree to the processing of personal data" { ...lens.prop('processingPersonalDataAgreed').toProps() } />
-                        </FlexCell>
+                        <Checkbox label="I agree to the processing of personal data" { ...lens.prop('processingPersonalDataAgreed').toProps() } />
                     </FlexRow>
                     <FlexRow vPadding="12" borderBottom>
-                        <FlexCell grow={ 1 }>
-                            <Switch label="I agree to display ads" { ...lens.prop('displayAdsAgreed').toProps() } />
-                        </FlexCell>
+                        <Switch label="I agree to display ads" { ...lens.prop('displayAdsAgreed').toProps() } />
                     </FlexRow>
                     <FlexRow vPadding="24" spacing="12">
                         <FlexSpacer />
@@ -255,7 +233,15 @@ export function ThemeDemo() {
     };
 
     return (
-        <div style={ { height: 'calc(100vh - 60px)', margin: '0 auto', display: 'flex' } }>
+        <div className="uui-theme-electric" style={ { height: 'calc(100vh - 60px)', margin: '0 auto', display: 'flex', flexDirection: 'column' } }>
+            <div style={ { background: 'var(--uui-neutral-80)', marginTop: '12px' } }>
+                <FlexRow spacing="12" vPadding="24" padding="12">
+                    <PromoButton caption="BUTTON" size="36" onClick={ () => {} } />
+                    <PromoButton caption="BUTTON" size="36" isDisabled onClick={ () => {} } />
+                    <PromoButton caption="BUTTON" size="42" onClick={ () => {} } />
+                    <PromoButton caption="BUTTON" size="42" isDisabled onClick={ () => {} } />
+                </FlexRow>
+            </div>
             <Panel background="surface" shadow rawProps={ { style: { margin: '24px auto' } } }>
                 <ScrollBars>{renderDemoForm()}</ScrollBars>
             </Panel>
