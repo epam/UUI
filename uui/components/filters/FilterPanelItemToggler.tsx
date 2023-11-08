@@ -4,6 +4,7 @@ import { IDropdownToggler, IHasCX, uuiElement, uuiMarkers, uuiMod } from '@epam/
 import { systemIcons } from '../../icons/icons';
 import { IconContainer, FlexRow } from '@epam/uui-components';
 import { Text } from '../typography';
+import { UUI_FILTERS_PANEL_ITEM_TOGGLER } from './constants';
 import css from './FilterPanelItemToggler.module.scss';
 
 const defaultSize = '36';
@@ -58,7 +59,7 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
                 onKeyDown: onKeyDownHandler,
             } }
             cx={ cx(
-                'uui-filter-item_toggler',
+                UUI_FILTERS_PANEL_ITEM_TOGGLER,
                 css.root,
                 uuiElement.inputBox,
                 uuiMarkers.clickable,
