@@ -2,7 +2,7 @@ import { ReactElement, ReactNode } from 'react';
 import { Dayjs } from 'dayjs';
 import { Placement } from '@popperjs/core';
 import {
-    IAnalyticableOnChange, ICanBeReadonly, IDisableable, IEditable, IHasRawProps,
+    IAnalyticableOnChange, ICanBeReadonly, IDisableable, IEditable, IHasForwardedRef, IHasRawProps,
 } from '../../props';
 import { IDropdownToggler } from '../../pickers';
 import * as React from 'react';
@@ -26,7 +26,11 @@ export type RangeDatePickerPresetValue = {
     order?: number;
 };
 
-export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>, IDisableable, ICanBeReadonly, IAnalyticableOnChange<RangeDatePickerValue> {
+export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>,
+    IDisableable,
+    ICanBeReadonly,
+    IAnalyticableOnChange<RangeDatePickerValue>,
+    IHasForwardedRef<HTMLElement> {
     /** Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format) */
     format?: string;
 

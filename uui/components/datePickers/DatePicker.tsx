@@ -1,5 +1,5 @@
 import React from 'react';
-import { cx, DatePickerCoreProps, IDropdownToggler, uuiMod, DropdownBodyProps, devLogger } from '@epam/uui-core';
+import { cx, DatePickerCoreProps, IDropdownToggler, uuiMod, DropdownBodyProps, devLogger, withMods } from '@epam/uui-core';
 import { BaseDatePicker } from '@epam/uui-components';
 import { EditMode, SizeMod, IHasEditMode } from '../types';
 import { TextInput } from '../inputs';
@@ -11,7 +11,7 @@ const defaultMode = EditMode.FORM;
 
 export interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {}
 
-export class DatePicker extends BaseDatePicker<DatePickerProps> {
+class DatePickerComponent extends BaseDatePicker<DatePickerProps> {
     renderInput = (props: IDropdownToggler & { cx: any }) => {
         if (__DEV__) {
             if (this.props.size === '48') {
@@ -68,3 +68,5 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
         );
     }
 }
+
+export const DatePicker = withMods(DatePickerComponent);
