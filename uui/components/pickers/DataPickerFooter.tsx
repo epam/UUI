@@ -28,6 +28,8 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const size = isMobile() ? '48' : props.size || '36';
     const switchSize = switchSizes[size as unknown as (keyof typeof switchSizes)];
     const hasSelection = view.getSelectedRowsCount() > 0;
+    const rowsCount = view.getListProps().rowsCount;
+    const isEmptyRowsAndHasNoSelection = (rowsCount === 0 && !hasSelection);
 
     const isSinglePicker = selectionMode === 'single';
 
@@ -61,6 +63,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
                         rawProps={ {
                             'aria-label': hasSelection ? clearAllText : selectAllText,
                         } }
+                        isDisabled={ isEmptyRowsAndHasNoSelection }
                     />
                 )}
                 {!view.selectAll && (
