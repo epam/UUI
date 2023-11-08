@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { DefaultContext, iconWithInfoDoc } from '../../docs';
-import { Text } from '@epam/promo';
-import { NotificationCard, NotificationCardProps } from '@epam/uui';
+import { NotificationCard, NotificationCardProps, Text } from '@epam/uui';
 import { allSemanticColors } from '@epam/uui';
 
 const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'NotificationCard', component: NotificationCard })
@@ -12,14 +11,14 @@ const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'Notificat
         examples: [
             {
                 value: (
-                    <Text size="36" font="sans" fontSize="14">
+                    <Text size="36" font="regular" fontSize="14">
                         Warning notification
                     </Text>
                 ),
                 name: 'Short',
             }, {
                 value: (
-                    <Text size="36" font="sans" fontSize="14">
+                    <Text size="36" font="regular" fontSize="14">
                         Warning notification with some buttons and long long text with blaaaaaa blaaaaaaaaaa
                     </Text>
                 ),

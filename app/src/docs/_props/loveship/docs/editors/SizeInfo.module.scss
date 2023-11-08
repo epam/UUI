@@ -6,10 +6,10 @@
 
 .infoTable {
     margin-top: 12px;
-    border: 1px solid $night400;
+    border: 1px solid var(--uui-control-border);
     border-radius: 3px;
     text-align: center;
-    background: white;
+    background: var(--uui-surface-main);
 
     .height18 {
         min-height: 18px;
@@ -21,11 +21,11 @@
 }
 
 .leftCell {
-    border-right: 1px solid $night400;
+    border-right: 1px solid var(--uui-control-border);
 }
 
 .borderBottom {
-    border-bottom: 1px solid $night400;
+    border-bottom: 1px solid var(--uui-control-border);
 }
 
 .activeV,

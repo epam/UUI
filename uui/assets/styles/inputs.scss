@@ -64,7 +64,7 @@
         color: $fg;
 
         &::placeholder {
-            color: var(--uui-control-placeholder-disabled);
+            color: var(--uui-control-placeholder);
         }
     }
 }
