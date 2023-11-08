@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import dayjs from 'dayjs';
 import cx from 'classnames';
+import { Modifier } from 'react-popper';
 import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName, getSeparatedValue, DataRowProps, PickerFilterConfig } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { i18n } from '../../i18n';
@@ -10,10 +11,10 @@ import { MultiSwitch } from '../inputs';
 import { Text, TextPlaceholder } from '../typography';
 import { FilterItemBody } from './FilterItemBody';
 import { DropdownContainer } from '../overlays';
+import { MobileDropdownWrapper } from '../pickers';
+import { UUI_FILTERS_PANEL_ITEM_BODY } from './constants';
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/action-deleteforever-12.svg';
 import css from './FiltersPanelItem.module.scss';
-import { MobileDropdownWrapper } from '../pickers';
-import { Modifier } from 'react-popper';
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> &
 IEditable<any> & {
@@ -123,7 +124,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     const renderBody = (dropdownProps: DropdownBodyProps) => {
         const hideHeaderTitle = isPickersType && isMobileScreen;
         return isPickersType ? (
-            <MobileDropdownWrapper { ...dropdownProps } cx={ css.root } title={ props.title } width={ 360 } onClose={ () => isOpenChange(false) }>
+            <MobileDropdownWrapper { ...dropdownProps } cx={ UUI_FILTERS_PANEL_ITEM_BODY } title={ props.title } width={ 360 } onClose={ () => isOpenChange(false) }>
                 { renderHeader(hideHeaderTitle) }
                 <FilterItemBody
                     { ...props }
@@ -134,7 +135,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 />
             </MobileDropdownWrapper>
         ) : (
-            <DropdownContainer { ...dropdownProps }>
+            <DropdownContainer cx={ UUI_FILTERS_PANEL_ITEM_BODY } { ...dropdownProps }>
                 { renderHeader(hideHeaderTitle) }
                 <FilterItemBody
                     { ...props }
