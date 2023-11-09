@@ -3,6 +3,7 @@
 exports[`Anchor should rendered correctly 1`] = `
 <a
   className="container uui-anchor uui-enabled -clickable root"
+  href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
   role="link"
