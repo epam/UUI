@@ -5,7 +5,7 @@ import { withMods } from '@epam/uui-core';
 export interface SliderMods {}
 
 export function applySliderMods() {
-    return [css.root];
+    return [css.root, 'uui-color-neutral'];
 }
 
 export const Slider = withMods<SliderBaseProps<number>, SliderMods>(UuiSlider, applySliderMods);

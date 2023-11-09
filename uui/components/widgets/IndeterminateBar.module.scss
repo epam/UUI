@@ -1,9 +1,12 @@
 .root {
     --uui-indeterminate_bar-wrapper: var(--uui-secondary-20);
     --uui-indeterminate_bar-background: var(--uui-primary-50);
+    --uui-indeterminate_bar-border-radius: var(--uui-border-radius);
     //
     position: relative;
     background-color: var(--uui-indeterminate_bar-wrapper);
+    border-radius: var(--uui-indeterminate_bar-border-radius);
+    overflow: hidden;
 
     .bar {
         background-color: var(--uui-indeterminate_bar-background);
