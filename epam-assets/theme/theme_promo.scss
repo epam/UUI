@@ -124,9 +124,9 @@
     --uui-primary-70: var(--blue-70);
     --uui-primary-contrast: var(--white);
 
-    --uui-secondary-5: var(--gray20);
-    --uui-secondary-10: var(--gray30);
-    --uui-secondary-20: var(--gray40);
+    --uui-secondary-5: var(--gray10);
+    --uui-secondary-10: var(--gray20);
+    --uui-secondary-20: var(--gray30);
     --uui-secondary-50: var(--gray60);
     --uui-secondary-60: var(--gray70);
     --uui-secondary-70: var(--gray80);
@@ -207,7 +207,7 @@
     --uui-text-disabled: var(--uui-neutral-50);
     --uui-text-contrast: var(--uui-neutral-5);
 
-    --uui-text-info: var(--uui-info-70); // TODO: update colors
+    --uui-text-info: var(--uui-info-70);
     --uui-text-warning: var(--uui-warning-70);
     --uui-text-critical: var(--uui-critical-70);
     --uui-text-success: var(--uui-success-70);
