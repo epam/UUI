@@ -182,40 +182,26 @@
     --uui-icon-active: var(--chromatic-500);
     --uui-icon-disabled: var(--chromatic-200);
 
-    --uui-scroll_bars-bg: var(--chromatic-200);
-    --uui-scroll_bars-bg-active: var(--chromatic-300);
-
     --uui-control-bg: var(--chromatic-0);
     --uui-control-bg-hover: var(--chromatic-300);
     --uui-control-bg-disabled: var(--chromatic-100);
-    --uui-control-bg-readonly: var(--chromatic-100);
 
     --uui-control-border: var(--chromatic-200);
     --uui-control-border-hover: var(--chromatic-300);
+    --uui-control-border-focus: var(--uui-primary-50);
     --uui-control-border-disabled: var(--chromatic-150);
-    --uui-control-border-readonly: var(--chromatic-150);
-    --uui-control-border-checked: var(--uui-primary-50);
-
-    --uui-control-label: var(--uui-text-primary);
-    --uui-control-label-disabled: var(--uui-text-disabled);
 
     --uui-control-placeholder: var(--night600);
-    --uui-control-placeholder-disabled: var(--night500);
 
     --uui-control-text: var(--chromatic-500);
-    --uui-control-text-disabled: var(--chromatic-200);
+    --uui-control-text-disabled: var(--chromatic-300);
 
     --uui-control-icon: var(--chromatic-200);
     --uui-control-icon-disabled: var(--chromatic-200);
 
-    --uui-control-checkbox-icon: var(--chromatic-0);
-
     --uui-outline-focus: #008ACE80;
 
-    --uui-search_result-bg-highlight: #FFEDC9;
-
     --uui-skeleton: var(--chromatic-200);
-    --uui-skeleton-gradient: linear-gradient(90deg, var(--chromatic-200) 0%, var(--chromatic-100) 50%, var(--chromatic-200) 100%);
 
     --uui-border-radius: 3px;
     --uui-shadow-level-1: 0 0 3px rgb(29 30 38 / 15%), 0 3px 6px rgb(29 30 38 / 10%);
@@ -342,5 +328,14 @@
         --uui-main_menu-dropdown-hover: var(--uui-primary-50);
         --uui-main_menu-dropdown-shadow: var(--uui-shadow-level-2);
         --uui-main_menu-dropdown-border-radius: 8px;
+    }
+
+    .uui-scroll-bars {
+        --uui-scroll_bars-bg: var(--chromatic-200);
+        --uui-scroll_bars-bg-active: var(--chromatic-300);
+    }
+
+    .uui-text-placeholder {
+        --uui-text-placeholder-gradient: linear-gradient(90deg, var(--chromatic-200) 0%, var(--chromatic-100) 50%, var(--chromatic-200) 100%);
     }
 }

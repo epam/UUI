@@ -4,8 +4,8 @@
 }
 
 .root {
-    --uui-text-placeholder-gradient: var(--uui-skeleton-gradient);
     --uui-text-placeholder: var(--uui-skeleton);
+    --uui-text-placeholder-gradient: linear-gradient(90deg, var(--uui-neutral-40) 0%, var(--uui-neutral-10) 50%, var(--uui-neutral-40) 100%);
     //
     display: flex;
     flex-wrap: wrap;

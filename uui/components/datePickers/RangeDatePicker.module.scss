@@ -9,7 +9,7 @@
     padding: 0 5px;
 
     &:global(.uui-focus) {
-        border: 1px solid var(--uui-control-border-checked);
+        border: 1px solid var(--uui-control-border-focus);
     }
 
     &.size-24 {
@@ -67,7 +67,7 @@
         border-color: var(--uui-control-border);
 
         .separator {
-            background: var(--uui-control-border-checked);
+            background: var(--uui-control-border-focus);
         }
 
         .date-input {
@@ -76,7 +76,7 @@
             }
 
             &:global(.uui-focus) {
-                outline: 1px solid var(--uui-control-border-checked);
+                outline: 1px solid var(--uui-control-border-focus);
             }
         }
     }
