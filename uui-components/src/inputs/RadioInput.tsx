@@ -64,7 +64,6 @@ export class RadioInput extends React.Component<RadioInputProps> {
             >
                 <div
                     className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }
-                    tabIndex={ -1 }
                     onFocus={ this.props.onFocus }
                     onBlur={ this.props.onBlur }
                 >
