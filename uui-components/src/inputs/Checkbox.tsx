@@ -18,6 +18,7 @@ export interface CheckboxProps extends CheckboxCoreProps, IHasTabIndex {
 export class Checkbox extends React.Component<CheckboxProps> {
     static contextType = UuiContext;
     context: UuiContexts;
+
     handleChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
         !isEventTargetInsideClickable(e) && this.props.onValueChange(!this.props.value);
 
@@ -53,7 +54,6 @@ export class Checkbox extends React.Component<CheckboxProps> {
                     this.props.isInvalid && uuiMod.invalid,
                     !this.props.isReadonly && !this.props.isDisabled && uuiMarkers.clickable,
                 ) }
-                tabIndex={ -1 }
                 ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
@@ -61,6 +61,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
                     className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }
                     onFocus={ this.props.onFocus }
                     onBlur={ this.props.onBlur }
+                    tabIndex={ -1 }
                 >
                     <input
                         type="checkbox"
