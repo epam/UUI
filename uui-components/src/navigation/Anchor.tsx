@@ -37,7 +37,7 @@ export class AnchorImpl extends ButtonBase<AnchorProps> {
     };
 
     render() {
-        const { isLinkActive, href } = this.getRenderParams();
+        const { isLinkActive, href } = this.getAnchorParams();
 
         const { target } = this.props;
         const relProp = target === '_blank' ? { rel: 'noopener noreferrer' } : {};
