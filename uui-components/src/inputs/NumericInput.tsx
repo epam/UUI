@@ -196,10 +196,6 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
     const handleWrapperFocus = () => {
         inputRef.current?.focus();
     };
-    
-    const handleWrapperBlur = () => {
-        inputRef.current?.blur();
-    };
 
     return (
         <div
@@ -216,7 +212,6 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
             ) }
             onClick={ props.onClick }
             onFocus={ handleWrapperFocus }
-            onBlur={ handleWrapperBlur }
             onKeyDown={ handleArrowKeyDown }
             tabIndex={ -1 }
             ref={ ref }

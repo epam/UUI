@@ -15,6 +15,7 @@ import {
     uuiMarkers,
     UuiContext,
     IHasForwardedRef,
+    ICanFocus,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout/IconContainer';
 import css from './RadioInput.module.scss';
@@ -27,7 +28,8 @@ export interface RadioInputProps
     ICanBeReadonly,
     IAnalyticableOnChange<boolean>,
     IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>,
-    IHasForwardedRef<HTMLLabelElement> {
+    IHasForwardedRef<HTMLLabelElement>,
+    ICanFocus<HTMLInputElement> {
     icon?: Icon;
     renderLabel?(): React.ReactNode;
     tabIndex?: number;
@@ -60,7 +62,12 @@ export class RadioInput extends React.Component<RadioInputProps> {
                 ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
-                <div className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }>
+                <div
+                    className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }
+                    tabIndex={ -1 }
+                    onFocus={ this.props.onFocus }
+                    onBlur={ this.props.onBlur }
+                >
                     <input
                         type="radio"
                         onChange={ !this.props.isReadonly ? this.handleChange : undefined }
