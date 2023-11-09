@@ -2,7 +2,7 @@
 
 exports[`Slider should render with maximum props 1`] = `
 <div
-  className="uui-slider-container root root"
+  className="uui-slider-container root root uui-color-neutral"
   onClick={[Function]}
   onMouseDown={[Function]}
 >
@@ -61,7 +61,7 @@ exports[`Slider should render with maximum props 1`] = `
     aria-valuemax={50}
     aria-valuemin={0}
     aria-valuenow={null}
-    className="uui-slider-handle root"
+    className="uui-slider-handle root uui-color-neutral"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
@@ -80,7 +80,7 @@ exports[`Slider should render with maximum props 1`] = `
 
 exports[`Slider should render with minimum props 1`] = `
 <div
-  className="uui-slider-container root root"
+  className="uui-slider-container root root uui-color-neutral"
   onClick={[Function]}
   onMouseDown={[Function]}
 >
@@ -139,7 +139,7 @@ exports[`Slider should render with minimum props 1`] = `
     aria-valuemax={50}
     aria-valuemin={0}
     aria-valuenow={null}
-    className="uui-slider-handle root"
+    className="uui-slider-handle root uui-color-neutral"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
