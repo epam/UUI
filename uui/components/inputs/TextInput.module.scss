@@ -3,15 +3,15 @@
 .root {
     --uui-text-input-bg: var(--uui-control-bg);
     --uui-text-input-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-text-input-bg-readonly: var(--uui-control-bg-readonly);
+    --uui-text-input-bg-readonly: var(--uui-control-bg-disabled);
     --uui-text-input-border: var(--uui-control-border);
     --uui-text-input-border-hover: var(--uui-control-border-hover);
-    --uui-text-input-border-active: var(--uui-control-border-checked);
+    --uui-text-input-border-active: var(--uui-control-border-focus);
     --uui-text-input-border-error: var(--uui-error-50);
     --uui-text-input-border-disabled: var(--uui-control-border-disabled);
-    --uui-text-input-border-readonly: var(--uui-control-border-readonly);
+    --uui-text-input-border-readonly: var(--uui-control-border-disabled);
     --uui-text-input-placeholder: var(--uui-control-placeholder);
-    --uui-text-input-placeholder-disabled: var(--uui-control-placeholder-disabled);
+    --uui-text-input-placeholder-disabled: var(--uui-control-placeholder);
     --uui-text-input-text: var(--uui-control-text);
     --uui-text-input-text-disabled: var(--uui-control-text-disabled);
     --uui-text-input-icon: var(--uui-control-icon);
