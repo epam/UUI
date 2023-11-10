@@ -6,14 +6,11 @@
     --uui-tag-caption: var(--uui-text-primary);
     --uui-tag-fill: var(--uui-icon);
     --uui-tag-fill-hover: var(--uui-icon-hover);
-    --uui-tag-count-bg: var(--uui-surface-main);
-    --uui-tag-count: var(--uui-text-secondary);
+
     --uui-tag-border-radius: 30px;
 
     --uui-tag-font: var(--uui-font);
     --uui-tag-font-weight: 400;
-    --uui-tag-count-font: var(--uui-font);
-    --uui-tag-count-font-weight: 600;
     //
     &:global(.uui-button-box) {
         border-radius: var(--uui-tag-border-radius);

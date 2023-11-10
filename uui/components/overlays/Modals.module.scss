@@ -1,9 +1,10 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
-    --uui-modals-border-radius: var(--uui-border-radius);
     --uui-modals-shadow: var(--uui-shadow-level-3);
     --uui-modals-bg: var(--uui-surface-main);
+
+    --uui-modals-border-radius: var(--uui-border-radius);
 }
 
 .modal-blocker {

@@ -11,8 +11,6 @@ import { DataPickerRow } from './DataPickerRow';
 import { DataPickerFooter } from './DataPickerFooter';
 import { PickerItem } from './PickerItem';
 
-import css from './PickerInput.module.scss';
-
 const pickerHeight = 300;
 const pickerWidth = 360;
 
@@ -135,7 +133,7 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
             <MobileDropdownWrapper
                 title={ props.entityName }
                 onClose={ () => toggleBodyOpening(false) }
-                cx={ [css.panel, css.root, props.bodyCx] }
+                cx={ [props.bodyCx] }
                 onKeyDown={ bodyProps.onKeyDown }
                 width={ bodyProps.togglerWidth > minBodyWidth ? bodyProps.togglerWidth : minBodyWidth }
                 focusLock={ getSearchPosition() === 'body' }

@@ -1,6 +1,8 @@
 .root {
     --uui-slider-tooltip-bg: var(--uui-color-70);
+
     --uui-slider-font: var(--uui-font);
+    --uui-slider-font-weight: 400;
 
     :global(.uui-tooltip-body) {
         background-color: var(--uui-slider-tooltip-bg);
@@ -9,7 +11,7 @@
         line-height: 24px;
         font-size: 14px;
         font-family: var(--uui-slider-font);
-        font-weight: 400;
+        font-weight: var(--uui-slider-font-weight);
         box-shadow: var(--uui-shadow-level-1);
     }
 
@@ -20,7 +22,7 @@
     :global(.uui-slider-scale-number) {
         font-size: 11px;
         font-family: var(--uui-slider-font);
-        font-weight: 400;
+        font-weight: var(--uui-slider-font-weight);
         color: var(--uui-text-primary);
         margin-top: 10px;
     }

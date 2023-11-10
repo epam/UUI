@@ -8,14 +8,14 @@
 .root {
     --uui-accordion-bg: var(--uui-surface-main);
     --uui-accordion-border: var(--uui-divider);
-    --uui-accordion-border-radius: var(--uui-border-radius);
     --uui-accordion-text: var(--uui-text-primary);
     --uui-accordion-text-disabled: var(--uui-text-disabled);
     --uui-accordion-icon: var(--uui-icon);
     --uui-accordion-icon-disabled: var(--uui-control-icon-disabled);
-    --uui-accordion-focus: var(--uui-primary-50);
     --uui-accordion-shadow: var(--uui-shadow-level-1);
     --uui-accordion-shadow-hovered: var(--uui-shadow-level-2);
+
+    --uui-accordion-border-radius: var(--uui-border-radius);
 
     --uui-accordion-toggler-font: var(--uui-font);
     --uui-accordion-toggler-font-weight: 600;
