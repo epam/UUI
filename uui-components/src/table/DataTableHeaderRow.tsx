@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    DataSourceState, DataColumnProps, DataTableHeaderRowProps, DropdownBodyProps, Lens, getColumnsConfig, DropParams, getOrderBetween,
+    DataSourceState, DataColumnProps, DataTableHeaderRowProps, DropdownBodyProps, Lens, DropParams, getOrderBetween,
 } from '@epam/uui-core';
 import { DataTableRowContainer } from './DataTableRowContainer';
 import css from './DataTableHeaderRow.module.scss';
@@ -14,8 +14,7 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
     sortLens = this.lens.prop('sorting');
     filterLens = this.lens.prop('filter');
     onCellDrop = (params: DropParams<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>, index: number) => {
-        const columnsConfig = getColumnsConfig(this.props.columns, this.props.value.columnsConfig);
-
+        const columnsConfig = this.props.value.columnsConfig;
         const dstColumnConfig = columnsConfig[params.dstData.key];
         const srcColumnConfig = columnsConfig[params.srcData.key];
 
@@ -30,13 +29,7 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
             columnsConfig[params.srcData.key] = { ...srcColumnConfig, order: newOrder };
         }
 
-        this.props.onValueChange({
-            ...this.props.value,
-            columnsConfig: {
-                ...this.props.value.columnsConfig,
-                ...columnsConfig,
-            },
-        });
+        this.props.onValueChange({ ...this.props.value, columnsConfig });
     };
 
     renderCell = (column: DataColumnProps<TItem, TId>, idx: number) => {
