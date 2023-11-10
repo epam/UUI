@@ -92,6 +92,10 @@
     }
 
     &:global(.uui-invalid) {
-        border-color: var(--uui-text-input-border-error);
+        border-color: var(--uui-error-50);
+
+        .separator {
+            background: var(--uui-error-50);
+        }
     }
 }
