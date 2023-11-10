@@ -6,9 +6,12 @@
 
 **What's Fixed**
 [DataTableRow]: table row now consider rawProps property data
+[DropdownMenuButton]: make `isActive` usable
 [PickerInput]: set `overflow: hidden;` on open for mobile
 [TextArea and TextInput]: fix maxLength for Android
 [DataTable]: fix checkboxes, now they always pinned to the left column
+[PickerInput]: Disable select all button if options are empty and it has no selection
+[DataTable]: fixed missing `role=table`
 
 # 5.2.0 - 16.10.2023
 

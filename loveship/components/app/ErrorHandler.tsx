@@ -1,5 +1,5 @@
 import React from 'react';
-import { ApiCallInfo, IHasCX, useUuiContext, useUuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren, ApiRecoveryReason, ApiCallErrorType } from '@epam/uui-core';
+import { ApiCallInfo, ErrorPageInfo, IHasCX, useUuiContext, useUuiError, UuiRecoveryErrorInfo, IHasChildren, ApiRecoveryReason, ApiCallErrorType } from '@epam/uui-core';
 import { ModalBlocker, ModalHeader } from '@epam/uui';
 import { ModalWindow } from '../../components/overlays';
 import { FlexRow } from '../layout';
@@ -45,7 +45,7 @@ export const recoveryWordings: Record<ApiRecoveryReason, { title: string; subtit
     },
 };
 
-export const getDefaultErrorPageProps = (theme: Theme = 'light'): Record<ApiCallErrorType, UuiErrorInfo> => {
+export const getDefaultErrorPageProps = (theme: Theme = 'light'): Record<ApiCallErrorType, ErrorPageInfo> => {
     return {
         notFound: {
             imageUrl: imageUrl[theme][404],
@@ -76,7 +76,7 @@ export const getDefaultErrorPageProps = (theme: Theme = 'light'): Record<ApiCall
 };
 
 export interface ErrorConfig {
-    getInfo?: (error: any, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;
+    getInfo?: (error: any, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo;
 }
 
 export interface ErrorPageProps extends IHasCX, IHasChildren {
@@ -128,13 +128,13 @@ export function ErrorHandler(props: ErrorPageProps) {
         );
     };
 
-    const renderErrorPage = (errorInformation: UuiErrorInfo) => {
+    const renderErrorPage = (errorInformation: ErrorPageInfo) => {
         return <ErrorPage cx={ props.cx } theme={ props.theme } { ...errorInformation } />;
     };
 
     if (errorType === 'error') {
         uuiModals.closeAll();
-        return renderErrorPage(errorInfo as UuiErrorInfo);
+        return renderErrorPage(errorInfo as ErrorPageInfo);
     }
 
     if (errorType === 'notification') {

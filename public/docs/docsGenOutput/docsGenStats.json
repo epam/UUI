@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 856,
-   "amountTypes": 272
+   "amountProps": 755,
+   "amountTypes": 247
   },
   "value": [
    {
@@ -32,13 +32,6 @@
      "startedAt",
      "status",
      "url"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ApiCallOptions",
-    "value": [
-     "errorHandling",
-     "fetchOptions"
     ]
    },
    {
@@ -75,15 +68,6 @@
     "value": [
      "sortBy",
      "sorting"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ArrayPickerProps",
-    "value": [
-     "emptyValue",
-     "selectionMode",
-     "valueType",
-     "valueType"
     ]
    },
    {
@@ -145,17 +129,7 @@
    {
     "typeRef": "@epam/uui-core:DataQuery",
     "value": [
-     "filter",
-     "range",
-     "search",
-     "sorting"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataQueryRange",
-    "value": [
-     "count",
-     "from"
+     "filter"
     ]
    },
    {
@@ -248,16 +222,18 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:DropdownState",
-    "value": [
-     "bodyBoundingRect",
-     "opened"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:DropParams",
     "value": [
      "position"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui-core:ErrorPageInfo",
+    "value": [
+     "imageUrl",
+     "mobileImageUrl",
+     "subtitle",
+     "title"
     ]
    },
    {
@@ -328,27 +304,9 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:IAnalyticsContext",
-    "value": [
-     "addListener",
-     "sendEvent"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IAnalyticsListener",
-    "value": [
-     "sendEvent"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:IApiContext",
     "value": [
-     "getActiveCalls",
-     "processRequest",
-     "recoveryReason",
-     "reset",
-     "status",
-     "uploadFile"
+     "recoveryReason"
     ]
    },
    {
@@ -357,12 +315,6 @@
      "destroyContext",
      "subscribe",
      "unsubscribe"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IBasicPickerToggler",
-    "value": [
-     "onClear"
     ]
    },
    {
@@ -398,43 +350,12 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:IDndActor",
-    "value": [
-     "canAcceptDrop",
-     "dstData",
-     "onDrop",
-     "srcData"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:IDndContext",
     "value": [
      "dragData",
      "endDrag",
      "getMouseCoords",
-     "isDragging",
      "startDrag"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IDropdownBodyProps",
-    "value": [
-     "arrowProps",
-     "isOpen",
-     "onClose",
-     "scheduleUpdate",
-     "togglerHeight",
-     "togglerWidth"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IErrorContext",
-    "value": [
-     "currentError",
-     "discardError",
-     "onError",
-     "recover",
-     "reportError"
     ]
    },
    {
@@ -467,15 +388,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:ILayoutContext",
-    "value": [
-     "getLayer",
-     "getPortalRoot",
-     "getPortalRootId",
-     "releaseLayer"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:ILens",
     "value": [
      "default",
@@ -486,15 +398,6 @@
      "set",
      "toProps",
      "update"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ILockContext",
-    "value": [
-     "acquire",
-     "getCurrentLock",
-     "release",
-     "withLock"
     ]
    },
    {
@@ -510,52 +413,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:IModal",
-    "value": [
-     "abort",
-     "isActive",
-     "key",
-     "success",
-     "zIndex"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IModalContext",
-    "value": [
-     "closeAll",
-     "getOperations",
-     "isModalOperationActive",
-     "show"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:INotification",
-    "value": [
-     "clearTimer",
-     "id",
-     "key",
-     "onClose",
-     "onSuccess",
-     "refreshTimer"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:INotificationContext",
-    "value": [
-     "clearAll",
-     "getNotifications",
-     "remove",
-     "show"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IPickerToggler",
-    "value": [
-     "selectedRowsCount",
-     "selection"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:IRouter6",
     "value": [
      "createHref",
@@ -564,18 +421,6 @@
      "navigate",
      "state",
      "subscribe"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IRouterContext",
-    "value": [
-     "block",
-     "createHref",
-     "getCurrentLink",
-     "isActive",
-     "listen",
-     "redirect",
-     "transfer"
     ]
    },
    {
@@ -629,13 +474,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:IUserSettingsContext",
-    "value": [
-     "get",
-     "set"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:LayoutLayer",
     "value": [
      "depth",
@@ -663,34 +501,11 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:Metadata",
-    "value": [
-     "all",
-     "maxLength",
-     "maxValue",
-     "minValue",
-     "props",
-     "validators"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:ModalBlockerProps",
     "value": [
      "disableCloseByEsc",
      "disableFocusLock",
      "disallowClickOutside"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ModalComponentProps",
-    "value": [
-     "abort",
-     "depth",
-     "isActive",
-     "key",
-     "parameters",
-     "success",
-     "zIndex"
     ]
    },
    {
@@ -719,23 +534,6 @@
      "component",
      "config",
      "props"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:NotificationParams",
-    "value": [
-     "duration",
-     "position"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:PickerFooterProps",
-    "value": [
-     "clearSelection",
-     "disableClear",
-     "selectionMode",
-     "showSelected",
-     "view"
     ]
    },
    {
@@ -773,23 +571,9 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:SinglePickerProps",
-    "value": [
-     "selectionMode",
-     "valueType"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:SkinContextComponentProps",
     "value": [
      "usageContext"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:SortingOption",
-    "value": [
-     "direction",
-     "field"
     ]
    },
    {
@@ -863,16 +647,6 @@
      "uuiRouter",
      "uuiSkin",
      "uuiUserSettings"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:UuiErrorInfo",
-    "value": [
-     "imageUrl",
-     "mobileImageUrl",
-     "status",
-     "subtitle",
-     "title"
     ]
    },
    {
@@ -2225,7 +1999,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 466
+   "amountTypes": 461
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -2262,7 +2036,6 @@
    "@epam/uui-core:DataQuery",
    "@epam/uui-core:DataQueryFilter",
    "@epam/uui-core:DataQueryFilterCondition",
-   "@epam/uui-core:DataQueryRange",
    "@epam/uui-core:DataSourceListCounts",
    "@epam/uui-core:DataSourceListProps",
    "@epam/uui-core:DataTableCellOptions",
@@ -2281,9 +2054,9 @@
    "@epam/uui-core:DragGhostProps",
    "@epam/uui-core:DropdownBodyProps",
    "@epam/uui-core:DropdownProps",
-   "@epam/uui-core:DropdownState",
    "@epam/uui-core:DropParams",
    "@epam/uui-core:DropPosition",
+   "@epam/uui-core:ErrorPageInfo",
    "@epam/uui-core:FileUploadOptions",
    "@epam/uui-core:FileUploadResponse",
    "@epam/uui-core:FilterPredicate",
@@ -2324,10 +2097,8 @@
    "@epam/uui-core:ITableState",
    "@epam/uui-core:ItemsComparator",
    "@epam/uui-core:ITree",
-   "@epam/uui-core:IUserSettingsContext",
    "@epam/uui-core:LabeledInputCoreProps",
    "@epam/uui-core:LayoutLayer",
-   "@epam/uui-core:LazyDataSourceApiRequest",
    "@epam/uui-core:LazyDataSourceProps",
    "@epam/uui-core:ListApiResponse",
    "@epam/uui-core:ListApiSettings",
@@ -2335,7 +2106,6 @@
    "@epam/uui-core:LoadTreeOptions",
    "@epam/uui-core:Metadata",
    "@epam/uui-core:ModalBlockerProps",
-   "@epam/uui-core:ModalComponentProps",
    "@epam/uui-core:ModalFooterCoreProps",
    "@epam/uui-core:ModalHeaderCoreProps",
    "@epam/uui-core:ModalOperation",
@@ -2370,7 +2140,6 @@
    "@epam/uui-core:UseTableStateHookParams",
    "@epam/uui-core:UseUuiErrorOptions",
    "@epam/uui-core:UseUuiErrorProps",
-   "@epam/uui-core:UuiErrorInfo",
    "@epam/uui-core:UuiRecoveryErrorInfo",
    "@epam/uui-core:ValidationMode",
    "@epam/uui-components:AccordionProps",
@@ -3479,9 +3248,9 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 539,
+   "allExports": 536,
    "byModule": {
-    "@epam/uui-core": 205,
+    "@epam/uui-core": 202,
     "@epam/uui-components": 92,
     "@epam/uui": 127,
     "@epam/promo": 48,
@@ -3517,7 +3286,6 @@
      "ContextProviderProps",
      "DataColumnProps",
      "DataQuery",
-     "DataQueryRange",
      "DataRowOptions",
      "DataRowPathItem",
      "DataSourceListProps",
@@ -3537,8 +3305,8 @@
      "DragGhostProps",
      "DropdownBodyProps",
      "DropdownProps",
-     "DropdownState",
      "DropParams",
+     "ErrorPageInfo",
      "FileUploadOptions",
      "FileUploadResponse",
      "FormProps",
@@ -3610,7 +3378,6 @@
      "LoadTreeOptions",
      "Metadata",
      "ModalBlockerProps",
-     "ModalComponentProps",
      "ModalFooterCoreProps",
      "ModalHeaderCoreProps",
      "ModalOperation",
@@ -3634,7 +3401,6 @@
      "UseUuiErrorProps",
      "UseUuiServicesProps",
      "UuiContexts",
-     "UuiErrorInfo",
      "UuiServicesProps",
      "VirtualListRange",
      "VirtualListState"
