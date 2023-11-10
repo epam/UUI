@@ -26,7 +26,7 @@ async function setupNumericInput(params: Partial<NumericInputProps>) {
     );
     
     const dom = {
-        input: screen.getAllByRole('spinbutton')[1] as HTMLInputElement,
+        input: screen.getByRole('spinbutton'),
     };
 
     return { result, dom, mocks };

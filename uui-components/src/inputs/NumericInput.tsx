@@ -215,7 +215,6 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
             onKeyDown={ handleArrowKeyDown }
             tabIndex={ -1 }
             ref={ ref }
-            role="spinbutton"
             { ...props.rawProps }
         >
             <input
