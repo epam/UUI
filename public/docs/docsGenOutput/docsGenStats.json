@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 785,
-   "amountTypes": 254
+   "amountProps": 755,
+   "amountTypes": 247
   },
   "value": [
    {
@@ -32,13 +32,6 @@
      "startedAt",
      "status",
      "url"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ApiCallOptions",
-    "value": [
-     "errorHandling",
-     "fetchOptions"
     ]
    },
    {
@@ -235,6 +228,15 @@
     ]
    },
    {
+    "typeRef": "@epam/uui-core:ErrorPageInfo",
+    "value": [
+     "imageUrl",
+     "mobileImageUrl",
+     "subtitle",
+     "title"
+    ]
+   },
+   {
     "typeRef": "@epam/uui-core:FileUploadOptions",
     "value": [
      "getXHR",
@@ -302,27 +304,9 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:IAnalyticsContext",
-    "value": [
-     "addListener",
-     "sendEvent"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IAnalyticsListener",
-    "value": [
-     "sendEvent"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:IApiContext",
     "value": [
-     "getActiveCalls",
-     "processRequest",
-     "recoveryReason",
-     "reset",
-     "status",
-     "uploadFile"
+     "recoveryReason"
     ]
    },
    {
@@ -371,18 +355,7 @@
      "dragData",
      "endDrag",
      "getMouseCoords",
-     "isDragging",
      "startDrag"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IErrorContext",
-    "value": [
-     "currentError",
-     "discardError",
-     "onError",
-     "recover",
-     "reportError"
     ]
    },
    {
@@ -440,15 +413,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:IModalContext",
-    "value": [
-     "closeAll",
-     "getOperations",
-     "isModalOperationActive",
-     "show"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:IRouter6",
     "value": [
      "createHref",
@@ -457,18 +421,6 @@
      "navigate",
      "state",
      "subscribe"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IRouterContext",
-    "value": [
-     "block",
-     "createHref",
-     "getCurrentLink",
-     "isActive",
-     "listen",
-     "redirect",
-     "transfer"
     ]
    },
    {
@@ -519,13 +471,6 @@
      "patch",
      "search",
      "sort"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IUserSettingsContext",
-    "value": [
-     "get",
-     "set"
     ]
    },
    {
@@ -702,16 +647,6 @@
      "uuiRouter",
      "uuiSkin",
      "uuiUserSettings"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:UuiErrorInfo",
-    "value": [
-     "imageUrl",
-     "mobileImageUrl",
-     "status",
-     "subtitle",
-     "title"
     ]
    },
    {
@@ -2064,7 +1999,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 462
+   "amountTypes": 461
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -2121,6 +2056,7 @@
    "@epam/uui-core:DropdownProps",
    "@epam/uui-core:DropParams",
    "@epam/uui-core:DropPosition",
+   "@epam/uui-core:ErrorPageInfo",
    "@epam/uui-core:FileUploadOptions",
    "@epam/uui-core:FileUploadResponse",
    "@epam/uui-core:FilterPredicate",
@@ -2161,7 +2097,6 @@
    "@epam/uui-core:ITableState",
    "@epam/uui-core:ItemsComparator",
    "@epam/uui-core:ITree",
-   "@epam/uui-core:IUserSettingsContext",
    "@epam/uui-core:LabeledInputCoreProps",
    "@epam/uui-core:LayoutLayer",
    "@epam/uui-core:LazyDataSourceProps",
@@ -2205,7 +2140,6 @@
    "@epam/uui-core:UseTableStateHookParams",
    "@epam/uui-core:UseUuiErrorOptions",
    "@epam/uui-core:UseUuiErrorProps",
-   "@epam/uui-core:UuiErrorInfo",
    "@epam/uui-core:UuiRecoveryErrorInfo",
    "@epam/uui-core:ValidationMode",
    "@epam/uui-components:AccordionProps",
@@ -3372,6 +3306,7 @@
      "DropdownBodyProps",
      "DropdownProps",
      "DropParams",
+     "ErrorPageInfo",
      "FileUploadOptions",
      "FileUploadResponse",
      "FormProps",
@@ -3466,7 +3401,6 @@
      "UseUuiErrorProps",
      "UseUuiServicesProps",
      "UuiContexts",
-     "UuiErrorInfo",
      "UuiServicesProps",
      "VirtualListRange",
      "VirtualListState"
