@@ -61,7 +61,6 @@ export class Checkbox extends React.Component<CheckboxProps> {
                     className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }
                     onFocus={ this.props.onFocus }
                     onBlur={ this.props.onBlur }
-                    tabIndex={ -1 }
                 >
                     <input
                         type="checkbox"
