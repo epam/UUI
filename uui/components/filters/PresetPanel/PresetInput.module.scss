@@ -22,15 +22,15 @@
             &:global(.-clickable) {
                 background-color: var(--uui-accent-50);
                 border-radius: var(--uui-border-radius);
-                fill: var(--white);
+                fill: var(--uui-accent-contrast);
 
                 &:hover {
-                    fill: var(--white);
+                    fill: var(--uui-accent-contrast);
                     background-color: var(--uui-accent-60);
                 }
 
                 &:active {
-                    fill: var(--white);
+                    fill: var(--uui-accent-contrast);
                     background-color: var(--uui-accent-70);
                 }
             }

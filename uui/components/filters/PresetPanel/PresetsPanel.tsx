@@ -13,6 +13,7 @@ import { Preset } from './Preset';
 import { PresetInput } from './PresetInput';
 import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-deleteforever-18.svg';
 import { ReactComponent as addIcon } from '@epam/assets/icons/common/content-plus_bold-18.svg';
+import { UUI_PRESETS_PANEL_ADD_BUTTON, UUI_PRESETS_PANEL_MORE_BUTTON } from './constants';
 
 export interface PresetsPanelProps extends IPresetsApi, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     tableState: DataTableState;
@@ -41,7 +42,7 @@ export function PresetsPanel(props: PresetsPanelProps) {
         return (
             <div key="addingPresetBlock" className={ css.addPresetContainer }>
                 {!isAddingPreset ? (
-                    <Button size="36" onClick={ setAddingPreset } caption={ i18n.presetPanel.addCaption } icon={ addIcon } iconPosition="left" fill="ghost" color="primary" />
+                    <Button cx={ UUI_PRESETS_PANEL_ADD_BUTTON } size="36" onClick={ setAddingPreset } caption={ i18n.presetPanel.addCaption } icon={ addIcon } iconPosition="left" fill="ghost" color="primary" />
                 ) : (
                     <PresetInput onCancel={ cancelAddingPreset } onSuccess={ props.createNewPreset } />
                 )}
@@ -60,7 +61,7 @@ export function PresetsPanel(props: PresetsPanelProps) {
                 renderTarget={ (props) => (
                     <FlexRow>
                         <div className={ css.divider } />
-                        <Button fill="ghost" color="secondary" caption={ `${hiddenItems?.length || ''} more` } { ...props } />
+                        <Button cx={ UUI_PRESETS_PANEL_MORE_BUTTON } fill="ghost" color="secondary" caption={ `${hiddenItems?.length || ''} more` } { ...props } />
                     </FlexRow>
                 ) }
                 renderBody={ (propsBody) => (

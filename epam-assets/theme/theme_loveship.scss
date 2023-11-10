@@ -603,20 +603,20 @@
 
     .uui-icon_button.uui-color-neutral,
     .uui-icon_button.uui-color-night600 {
-        --uui-icon-btn: var(--uui-neutral-60);
-        --uui-icon-btn-hover: var(--uui-neutral-70);
-        --uui-icon-btn-active: var(--uui-neutral-80);
+        --uui-icon_btn: var(--uui-neutral-60);
+        --uui-icon_btn-hover: var(--uui-neutral-70);
+        --uui-icon_btn-active: var(--uui-neutral-80);
     }
 
     .uui-icon_button.uui-color-secondary {
-        --uui-icon-btn: var(--uui-neutral-50);
-        --uui-icon-btn-hover: var(--uui-neutral-60);
-        --uui-icon-btn-active: var(--uui-neutral-70);
+        --uui-icon_btn: var(--uui-neutral-50);
+        --uui-icon_btn-hover: var(--uui-neutral-60);
+        --uui-icon_btn-active: var(--uui-neutral-70);
     }
 
     .uui-icon_button.uui-color-white {
-        --uui-icon-btn-hover: var(--uui-neutral-20);
-        --uui-icon-btn-active: var(--uui-neutral-30);
+        --uui-icon_btn-hover: var(--uui-neutral-20);
+        --uui-icon_btn-active: var(--uui-neutral-30);
     }
 
     /* TooltipContainer */
