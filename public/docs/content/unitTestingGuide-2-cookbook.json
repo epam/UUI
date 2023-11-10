@@ -663,7 +663,7 @@
         "uui-richTextEditor-span-mark": true
       },
       {
-        "text": "),\n    "
+        "text": ");\n    "
       },
       {
         "text": "return ",
