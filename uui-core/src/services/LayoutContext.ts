@@ -40,10 +40,6 @@ export class LayoutContext extends BaseContext {
         }
     }
 
-    /**
-     * This method is needed for another UUI component: <PortalRoot />
-     * Please don't use it for anything else.
-     */
     public getPortalRootId() {
         return this.portalRootId;
     }
