@@ -22,8 +22,6 @@ export type InputType = 'from' | 'to';
 const defaultValue: RangeDatePickerValue = { from: null, to: null };
 
 class RangeDatePickerComponent extends BaseRangeDatePicker<RangeDatePickerProps> {
-    fromInputRef: React.RefObject<HTMLInputElement> = React.createRef();
-
     renderBody(props: DropdownBodyProps) {
         return (
             <DropdownContainer { ...props } cx={ cx(css.dropdownContainer) } focusLock={ false }>
@@ -71,7 +69,6 @@ class RangeDatePickerComponent extends BaseRangeDatePicker<RangeDatePickerProps>
                 onClick={ !this.props.isDisabled && props.onClick }
                 onBlur={ this.handleWrapperBlur }
                 ref={ props.ref }
-                tabIndex={ -1 }
             >
                 <TextInput
                     icon={ systemIcons[this.props.size || '36'].calendar }
@@ -87,8 +84,6 @@ class RangeDatePickerComponent extends BaseRangeDatePicker<RangeDatePickerProps>
                     onBlur={ (event) => this.handleBlur(event, 'from') }
                     isDropdown={ false }
                     rawProps={ this.props.rawProps?.from }
-                    ref={ this.fromInputRef }
-                    tabIndex={ this.state.inFocus === 'from' || props.isDisabled ? -1 : 0 }
                 />
                 <div className={ css.separator } />
                 <TextInput
@@ -105,7 +100,6 @@ class RangeDatePickerComponent extends BaseRangeDatePicker<RangeDatePickerProps>
                     onBlur={ (e) => this.handleBlur(e, 'to') }
                     isDropdown={ false }
                     rawProps={ this.props.rawProps?.to }
-                    tabIndex={ this.state.inFocus === 'to' || props.isDisabled ? -1 : 0 }
                 />
             </div>
         );
