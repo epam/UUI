@@ -34,174 +34,171 @@ exports[`PickerInput should open body 1`] = `
     </div>
   </div>
   <div
-    data-no-focus-lock="true"
+    aria-hidden="false"
+    class="uui-popper"
+    data-placement="bottom-start"
+    role="dialog"
+    style="z-index: 2000;"
   >
     <div
-      aria-hidden="false"
-      class="uui-popper"
-      data-placement="bottom-start"
-      role="dialog"
-      style="z-index: 2000;"
+      class="uui-dropdown-body -lock-focus root container panel container"
+      style="min-width: 360px;"
+      tabindex="-1"
     >
       <div
-        class="uui-dropdown-body -lock-focus root container panel container"
-        style="min-width: 360px;"
-        tabindex="-1"
+        class="root size-36 body dropdown single container align-items-center"
+        style="max-height: 300px;"
       >
         <div
-          class="root size-36 body dropdown single container align-items-center"
-          style="max-height: 300px;"
+          class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+          style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
         >
           <div
-            class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
-            style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+            aria-orientation="vertical"
+            style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
           >
             <div
-              style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+              class="listContainer"
+              style="min-height: 2px;"
             >
               <div
-                class="listContainer"
-                style="min-height: 2px;"
+                style="margin-top: 0px;"
               >
                 <div
-                  style="margin-top: 0px;"
+                  aria-posinset="1"
+                  aria-selected="false"
+                  class="uui-focus pickerRow container -clickable align-items-center"
+                  role="option"
                 >
                   <div
-                    aria-posinset="1"
-                    aria-selected="false"
-                    class="uui-focus pickerRow container -clickable align-items-center"
-                    role="option"
+                    class="uui-table-cell cell data-table-cell cell size-36 padding-12 padding-left-12 align-widgets-top"
+                    role="cell"
+                    style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-12 padding-left-12 align-widgets-top"
-                      role="cell"
-                      style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                      class="contentWrapper"
                     >
                       <div
-                        class="contentWrapper"
+                        class="renderItem"
                       >
                         <div
-                          class="renderItem"
+                          class="flexCell root"
+                          style="min-width: 0; flex-basis: auto;"
                         >
                           <div
-                            class="flexCell root"
-                            style="min-width: 0; flex-basis: auto;"
+                            class="root size-36 spacing-12 container align-items-center"
                           >
                             <div
-                              class="root size-36 spacing-12 container align-items-center"
+                              class="flexCell"
+                              style="min-width: 0; flex-basis: auto;"
                             >
                               <div
-                                class="flexCell"
-                                style="min-width: 0; flex-basis: auto;"
+                                class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 text container"
                               >
-                                <div
-                                  class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 text container"
-                                >
-                                  Elementary
-                                </div>
+                                Elementary
                               </div>
                             </div>
                           </div>
-                          <div
-                            class="flexSpacer"
-                          />
                         </div>
+                        <div
+                          class="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
+                </div>
+                <div
+                  aria-posinset="2"
+                  aria-selected="false"
+                  class="pickerRow container -clickable align-items-center"
+                  role="option"
+                >
                   <div
-                    aria-posinset="2"
-                    aria-selected="false"
-                    class="pickerRow container -clickable align-items-center"
-                    role="option"
+                    class="uui-table-cell cell data-table-cell cell size-36 padding-12 padding-left-12 align-widgets-top"
+                    role="cell"
+                    style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-12 padding-left-12 align-widgets-top"
-                      role="cell"
-                      style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                      class="contentWrapper"
                     >
                       <div
-                        class="contentWrapper"
+                        class="renderItem"
                       >
                         <div
-                          class="renderItem"
+                          class="flexCell root"
+                          style="min-width: 0; flex-basis: auto;"
                         >
                           <div
-                            class="flexCell root"
-                            style="min-width: 0; flex-basis: auto;"
+                            class="root size-36 spacing-12 container align-items-center"
                           >
                             <div
-                              class="root size-36 spacing-12 container align-items-center"
+                              class="flexCell"
+                              style="min-width: 0; flex-basis: auto;"
                             >
                               <div
-                                class="flexCell"
-                                style="min-width: 0; flex-basis: auto;"
+                                class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 text container"
                               >
-                                <div
-                                  class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 text container"
-                                >
-                                  Elementary+
-                                </div>
+                                Elementary+
                               </div>
                             </div>
                           </div>
-                          <div
-                            class="flexSpacer"
-                          />
                         </div>
+                        <div
+                          class="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div
+            class="container uui-blocker-container root"
+          >
+            <div />
+          </div>
+          <div
+            class="uui-track-horizontal"
+            style="position: absolute; height: 6px; display: none;"
+          >
             <div
-              class="container uui-blocker-container root"
-            >
-              <div />
-            </div>
+              class="uui-thumb-horizontal"
+            />
+          </div>
+          <div
+            class="uui-track-vertical"
+            style="position: absolute; width: 6px; display: none;"
+          >
             <div
-              class="uui-track-horizontal"
-              style="position: absolute; height: 6px; display: none;"
-            >
-              <div
-                class="uui-thumb-horizontal"
-              />
-            </div>
-            <div
-              class="uui-track-vertical"
-              style="position: absolute; width: 6px; display: none;"
-            >
-              <div
-                class="uui-thumb-vertical"
-              />
-            </div>
+              class="uui-thumb-vertical"
+            />
           </div>
         </div>
+      </div>
+      <div
+        class="root size-36 padding-12 container align-items-center"
+      >
         <div
-          class="root size-36 padding-12 container align-items-center"
+          class="flexSpacer"
+        />
+        <div
+          class="flexCell"
+          style="min-width: 0; flex-basis: auto; align-self: center;"
         >
-          <div
-            class="flexSpacer"
-          />
-          <div
-            class="flexCell"
-            style="min-width: 0; flex-basis: auto; align-self: center;"
+          <button
+            aria-disabled="true"
+            aria-label="CLEAR"
+            class="container uui-button-box uui-disabled -clickable root size-36 uui-no-left-icon uui-no-right-icon link-button-primary"
+            tabindex="-1"
+            type="button"
           >
-            <button
-              aria-disabled="true"
-              aria-label="CLEAR"
-              class="container uui-button-box uui-disabled -clickable root size-36 uui-no-left-icon uui-no-right-icon link-button-primary"
-              tabindex="-1"
-              type="button"
+            <div
+              class="uui-caption"
             >
-              <div
-                class="uui-caption"
-              >
-                CLEAR
-              </div>
-            </button>
-          </div>
+              CLEAR
+            </div>
+          </button>
         </div>
       </div>
     </div>

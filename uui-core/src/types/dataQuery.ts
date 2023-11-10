@@ -1,9 +1,4 @@
-export type SortDirection = 'asc' | 'desc';
-
-export interface SortingOption<T = any> {
-    field: keyof T;
-    direction?: SortDirection;
-}
+import { LazyDataSourceApiRequest } from './dataSources';
 
 export type DataQueryFilter<T> = {
     [TPropName in keyof T]?: DataQueryFilterCondition<T[TPropName]>;
@@ -30,14 +25,6 @@ export type FilterPredicate<TField> = {
 
 export type FilterPredicateName = keyof FilterPredicate<any>;
 
-export interface DataQueryRange {
-    from: number;
-    count?: number;
-}
-
-export interface DataQuery<T> {
+export interface DataQuery<T> extends Pick<LazyDataSourceApiRequest<T>, 'sorting' | 'range' | 'search'> {
     filter?: DataQueryFilter<T>;
-    sorting?: SortingOption<T>[];
-    range?: DataQueryRange;
-    search?: string;
 }

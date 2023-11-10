@@ -14,6 +14,8 @@ exports[`DataTable should be rendered correctly 1`] = `
   }
 >
   <div
+    aria-colcount={0}
+    role="table"
     style={
       Object {
         "WebkitOverflowScrolling": "touch",
