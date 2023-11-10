@@ -1,12 +1,12 @@
 import React, { Attributes, ForwardedRef, ReactNode } from 'react';
 import {
-    IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus,
+    IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps, IDropdownToggler,
 } from './props';
-import { IDropdownToggler, IDropdownBodyProps, PickerBaseOptions } from './pickers';
+import { PickerBaseOptions } from './pickers';
 import { DataRowProps } from './dataRows';
-import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
+import { FilterPredicateName } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
-import { DataSourceState } from './dataSources';
+import { DataSourceState, SortDirection, SortingOption } from './dataSources';
 import { ILens } from '../data/lenses/types';
 import * as CSS from 'csstype';
 import { BaseDatePickerProps, TooltipCoreProps } from './components';
@@ -75,7 +75,7 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
     info?: React.ReactNode;
 
     /**
-     *  Should return true, if current filter affects the column.
+     * Should return true, if current filter affects the column.
      * Usually, this prop is filled automatically by the useTableState hook.
      * If you use the useTableState hook, you don't need to specify it manually.
      */

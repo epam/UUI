@@ -32,11 +32,11 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
     /**
      * Should return number of children of the item.
      * If it returns > 0, the item is assumed to have children and to be foldable.
-     * Usually, this value should be returned from API.
+     * Usually, this value should be returned from API, as a field of a parent, e.g. { id: 1, name: 'London', childCount: 12 }.
+     * In this case, you can implement getChildCount as (i) => i.childCount.
      *
      * If you can't get number of children via API, you can return a guess value (avg number of children for this type of entity).
      * Note, that this can lead to more API calls, and increased load times in the 'parallel' fetch mode.
-     * @param item
      */
     getChildCount?(item: TItem): number;
 
@@ -69,7 +69,7 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
     flattenSearchResults?: boolean;
 
     /**
-     * This options is added for the purpose of supporting legacy behavior of fetching data
+     * This option is added for the purpose of supporting legacy behavior of fetching data
      * on `getVisibleRows` and `getListProps`, not to break users' own implementation of dataSources.
      * @default true
      */

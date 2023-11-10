@@ -115,21 +115,27 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
 
         return (
             <>
-                {isIconBefore && iconElement}
-                <Text cx={ props.indent && css.indent }>{caption}</Text>
-                {isIconAfter && (
+                { isIconBefore && iconElement }
+                <Text cx={ props.indent && css.indent }>{ caption }</Text>
+                { isIconAfter && (
                     <>
                         <FlexSpacer />
-                        {iconElement}
+                        { iconElement }
                     </>
-                )}
+                ) }
             </>
         );
     };
 
     const isAnchor = Boolean(link || href);
 
-    const itemClassNames = cx(props.cx, css.itemRoot, isDisabled && uuiMod.disabled, isActive && uuiMod.active, isOpen && uuiMod.opened);
+    const itemClassNames = cx(
+        props.cx,
+        css.itemRoot,
+        isDisabled && uuiMod.disabled,
+        isActive && uuiMod.active,
+        isOpen && uuiMod.opened,
+    );
 
     return isAnchor ? (
         <Anchor
@@ -138,11 +144,12 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             href={ href }
             rawProps={ { role: 'menuitem', tabIndex: isDisabled ? -1 : 0 } }
             onClick={ handleClick }
+            isLinkActive={ isActive }
             isDisabled={ isDisabled }
             forwardedRef={ ref }
             target={ target }
         >
-            {getMenuButtonContent()}
+            { getMenuButtonContent() }
         </Anchor>
     ) : (
         <FlexRow
@@ -155,8 +162,8 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             onClick={ handleClick }
             ref={ ref }
         >
-            {getMenuButtonContent()}
-            {isSelected && <IconContainer icon={ icons.accept } cx={ css.selectedCheckmark } />}
+            { getMenuButtonContent() }
+            { isSelected && <IconContainer icon={ icons.accept } cx={ css.selectedCheckmark } /> }
         </FlexRow>
     );
 });
@@ -176,7 +183,7 @@ interface IDropdownMenuHeader extends IHasCX, IHasCaption {}
 export function DropdownMenuHeader(props: IDropdownMenuHeader) {
     return (
         <div className={ cx(props.cx, css.headerRoot) }>
-            <span className={ css.header }>{props.caption}</span>
+            <span className={ css.header }>{ props.caption }</span>
         </div>
     );
 }
@@ -190,7 +197,7 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
         {
             name: 'offset',
             options: {
-                offset: ({ placement } : { placement:string }) => {
+                offset: ({ placement }: { placement: string }) => {
                     if (placement === 'right-start') {
                         return [-6, 0];
                     } else {
@@ -255,8 +262,8 @@ export function DropdownMenuSwitchButton(props: IDropdownMenuSwitchButton) {
             onClick={ () => onHandleValueChange(!isSelected) }
             rawProps={ { role: 'menuitem', onKeyDown: handleKeySelect, tabIndex: isDisabled ? -1 : 0 } }
         >
-            {icon && <IconContainer icon={ icon } cx={ css.iconBefore } />}
-            <Text>{caption}</Text>
+            { icon && <IconContainer icon={ icon } cx={ css.iconBefore } /> }
+            <Text>{ caption }</Text>
             <FlexSpacer />
             <Switch value={ isSelected } tabIndex={ -1 } onValueChange={ onHandleValueChange } />
         </FlexRow>

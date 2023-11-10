@@ -1,10 +1,8 @@
 import React from 'react';
-import {
-    UuiErrorInfo, IHasCX, isMobile, cx,
-} from '@epam/uui-core';
+import { IHasCX, isMobile, cx, ErrorPageInfo } from '@epam/uui-core';
 import css from './ErrorPage.module.scss';
 
-interface ErrorPageProps extends UuiErrorInfo, IHasCX {}
+interface ErrorPageProps extends ErrorPageInfo, IHasCX {}
 
 export const ErrorPage: React.FC<ErrorPageProps> = (props) => {
     const isMobileScreen = isMobile();

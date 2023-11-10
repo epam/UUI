@@ -1,37 +1,10 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
-    "data": {},
-    "nodes": [
+[
+  {
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "It is worth paying attention to the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "LazyDataSourceProps",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " in detail to understand the way it can be used/configured.",
-            "marks": []
-          }
-        ]
+        "text": ""
       }
     ]
   }
-}
+]

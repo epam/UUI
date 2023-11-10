@@ -3,7 +3,7 @@ import {
     IDndActor, DropPosition, AcceptDropParams, DndActorRenderParams, DropPositionOptions,
 } from '../../types/dnd';
 
-import { UuiContexts, DndContextState } from '../../types/contexts';
+import { UuiContexts } from '../../types/contexts';
 
 import {
     isEventTargetInsideDraggable,
@@ -13,6 +13,7 @@ import {
 import { getSector } from './helpers';
 import { uuiDndState, uuiMarkers } from '../../constants';
 import { UuiContext } from '../ContextProvider';
+import { DndContextState } from './DndContext';
 
 export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
     render(props: DndActorRenderParams): React.ReactNode;
