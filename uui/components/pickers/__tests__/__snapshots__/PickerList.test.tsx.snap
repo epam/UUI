@@ -639,7 +639,6 @@ exports[`PickerList should render with maximum props 1`] = `
         >
           <div
             class="uui-checkbox uui-checked"
-            tabindex="-1"
           >
             <input
               aria-checked="true"
@@ -673,7 +672,6 @@ exports[`PickerList should render with maximum props 1`] = `
         >
           <div
             class="uui-checkbox uui-checked"
-            tabindex="-1"
           >
             <input
               aria-checked="true"

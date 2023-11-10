@@ -236,7 +236,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="uui-checkbox uui-checked"
-                    tabIndex={-1}
                   >
                     <input
                       aria-checked={true}
@@ -317,7 +316,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="uui-checkbox uui-checked"
-                    tabIndex={-1}
                   >
                     <input
                       aria-checked={true}
@@ -721,7 +719,6 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                 >
                   <div
                     className="uui-checkbox"
-                    tabIndex={-1}
                   >
                     <input
                       aria-checked={false}
@@ -793,7 +790,6 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                 >
                   <div
                     className="uui-checkbox"
-                    tabIndex={-1}
                   >
                     <input
                       aria-checked={false}

@@ -24,7 +24,7 @@ async function setupNumericInput(params: Partial<NumericInputProps>) {
         },
         (props) => <NumericInput { ...props } />,
     );
-    
+
     const dom = {
         input: screen.getByRole('spinbutton'),
     };
