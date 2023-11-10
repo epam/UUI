@@ -8,6 +8,7 @@
 [DataTableRow]: table row now consider rawProps property data
 [PickerInput]: set `overflow: hidden;` on open for mobile
 [TextArea and TextInput]: fix maxLength for Android
+[DataTable]: fix checkboxes, now they always pinned to the left column
 
 # 5.2.0 - 16.10.2023
 
