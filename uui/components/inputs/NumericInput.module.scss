@@ -1,8 +1,8 @@
 @use  '../../assets/styles/index.scss' as *;
 
 .root {
-    --uui-numeric-input-icon-clickable: var(--uui-icon);
-    --uui-numeric-input-icon-clickable-hover: var(--uui-icon-hover);
+    --uui-numeric_input-icon-clickable: var(--uui-icon);
+    --uui-numeric_input-icon-clickable-hover: var(--uui-icon-hover);
 
     //
     &:global(.uui-input-box) {
@@ -18,7 +18,7 @@
 
             &:hover {
                 svg {
-                    fill: var(--uui-numeric-input-icon-clickable-hover);
+                    fill: var(--uui-numeric_input-icon-clickable-hover);
                 }
             }
         }
@@ -26,7 +26,7 @@
         :global(.uui-numeric-input-down-button) {
             &:hover {
                 svg {
-                    fill: var(--uui-numeric-input-icon-clickable-hover);
+                    fill: var(--uui-numeric_input-icon-clickable-hover);
                 }
             }
         }

@@ -4,47 +4,47 @@
     background-color: transparent;
     border-color: transparent;
     border-style: solid;
-    border-radius: var(--uui-text-area-border-radius);
+    border-radius: var(--uui-text_area-border-radius);
 
     &:hover {
-        border-color: var(--uui-text-area-border-hover);
+        border-color: var(--uui-text_area-border-hover);
     }
 
     &:global(.uui-focus) {
-        border-color: var(--uui-text-area-border-active);
+        border-color: var(--uui-text_area-border-active);
     }
 }
 
 .root {
-    --uui-text-area-bg: var(--uui-control-bg);
-    --uui-text-area-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-text-area-border: var(--uui-control-border);
-    --uui-text-area-border-hover: var(--uui-control-border-hover);
-    --uui-text-area-border-active: var(--uui-control-border-focus);
-    --uui-text-area-border-error: var(--uui-error-50);
-    --uui-text-area-border-disabled: var(--uui-control-border-disabled);
-    --uui-text-area-placeholder: var(--uui-control-placeholder);
-    --uui-text-area-text: var(--uui-control-text);
-    --uui-text-area-text-disabled: var(--uui-control-text-disabled);
+    --uui-text_area-bg: var(--uui-control-bg);
+    --uui-text_area-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-text_area-border: var(--uui-control-border);
+    --uui-text_area-border-hover: var(--uui-control-border-hover);
+    --uui-text_area-border-active: var(--uui-control-border-focus);
+    --uui-text_area-border-error: var(--uui-error-50);
+    --uui-text_area-border-disabled: var(--uui-control-border-disabled);
+    --uui-text_area-placeholder: var(--uui-control-placeholder);
+    --uui-text_area-text: var(--uui-control-text);
+    --uui-text_area-text-disabled: var(--uui-control-text-disabled);
 
-    --uui-text-area-border-radius: var(--uui-border-radius);
+    --uui-text_area-border-radius: var(--uui-border-radius);
 
-    --uui-text-area-font: var(--uui-font);
-    --uui-text-area-font-weight: 400;
+    --uui-text_area-font: var(--uui-font);
+    --uui-text_area-font-weight: 400;
     //
     :global(.uui-input) {
-        color: var(--uui-text-area-text);
+        color: var(--uui-text_area-text);
         border-style: solid;
-        border-radius: var(--uui-text-area-border-radius);
-        font-family: var(--uui-text-area-font);
-        font-weight: var(--uui-text-area-font-weight);
+        border-radius: var(--uui-text_area-border-radius);
+        font-family: var(--uui-text_area-font);
+        font-weight: var(--uui-text_area-font-weight);
         box-sizing: border-box;
         padding-right: 18px;
         padding-left: 12px;
         overflow-x: hidden;  // Firefox add an extra row in textarea when overflow-x is not hidden
 
         &::placeholder {
-            color: var(--uui-text-area-placeholder);
+            color: var(--uui-text_area-placeholder);
         }
 
         &:placeholder-shown {
@@ -56,45 +56,45 @@
         }
 
         &:global(.uui-readonly) {
-            color: var(--uui-text-area-text);
+            color: var(--uui-text_area-text);
             pointer-events: none;
         }
 
         &:global(.uui-disabled) {
-            color: var(--uui-text-area-text-disabled);
+            color: var(--uui-text_area-text-disabled);
             pointer-events: none;
 
             &::placeholder {
-                color: var(--uui-text-area-text-disabled);
+                color: var(--uui-text_area-text-disabled);
             }
         }
     }
 
     &.mode-form {
         :global(.uui-input) {
-            background-color: var(--uui-text-area-bg);
-            border-color: var(--uui-text-area-border);
+            background-color: var(--uui-text_area-bg);
+            border-color: var(--uui-text_area-border);
 
             &:hover {
-                border-color: var(--uui-text-area-border-hover);
+                border-color: var(--uui-text_area-border-hover);
             }
 
             &:global(.uui-focus) {
-                border-color: var(--uui-text-area-border-active);
+                border-color: var(--uui-text_area-border-active);
             }
 
             &:global(.uui-invalid) {
-                border-color: var(--uui-text-area-border-error);
+                border-color: var(--uui-text_area-border-error);
             }
 
             &:global(.uui-readonly) {
-                background-color: var(--uui-text-area-bg-disabled);
-                border-color: var(--uui-text-area-border-disabled);
+                background-color: var(--uui-text_area-bg-disabled);
+                border-color: var(--uui-text_area-border-disabled);
             }
 
             &:global(.uui-disabled) {
-                background-color: var(--uui-text-area-bg-disabled);
-                border-color: var(--uui-text-area-border-disabled);
+                background-color: var(--uui-text_area-bg-disabled);
+                border-color: var(--uui-text_area-border-disabled);
             }
         }
     }
@@ -135,18 +135,18 @@
 
             &:global(.uui-disabled) {
                 background-color: transparent;
-                color: var(--uui-text-area-text-disabled);
+                color: var(--uui-text_area-text-disabled);
                 border-color: transparent;
 
                 &:hover, &:active, &:focus {
                     background-color: transparent;
-                    color: var(--uui-text-area-text-disabled);
+                    color: var(--uui-text_area-text-disabled);
                     border-color: transparent;
                     box-shadow: none;
                 }
 
                 &::placeholder {
-                    color: var(--uui-text-area-placeholder);
+                    color: var(--uui-text_area-placeholder);
                 }
             }
         }

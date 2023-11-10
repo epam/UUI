@@ -1,19 +1,19 @@
 @use '../../assets/styles/index' as *;
 
 .root {
-    --uui-filters-toggler-bg: var(--uui-surface-main);
-    --uui-filters-toggler-bg-hover: var(--uui-surface-sunken);
-    --uui-filters-toggler-border: var(--uui-control-border);
-    --uui-filters-toggler-border-hover: var(--uui-control-border-hover);
-    --uui-filters-toggler-icon: var(--uui-icon);
-    --uui-filters-toggler-label: var(--uui-text-tertiary);
-    --uui-filters-toggler-shadow: none;
-    --uui-filters-toggler-text: var(--uui-text-brand);
+    --uui-filters_toggler-bg: var(--uui-surface-main);
+    --uui-filters_toggler-bg-hover: var(--uui-surface-sunken);
+    --uui-filters_toggler-border: var(--uui-control-border);
+    --uui-filters_toggler-border-hover: var(--uui-control-border-hover);
+    --uui-filters_toggler-icon: var(--uui-icon);
+    --uui-filters_toggler-label: var(--uui-text-tertiary);
+    --uui-filters_toggler-shadow: none;
+    --uui-filters_toggler-text: var(--uui-text-brand);
 
-    --uui-filters-toggler-border-radius: var(--uui-border-radius);
+    --uui-filters_toggler-border-radius: var(--uui-border-radius);
 
-    --uui-filters-toggler-font: var(--uui-font);
-    --uui-filters-toggler-font-weight: 400;
+    --uui-filters_toggler-font: var(--uui-font);
+    --uui-filters_toggler-font-weight: 400;
 
     &:global(.uui-input-box) {
         box-sizing: border-box;
@@ -21,10 +21,10 @@
         position: relative;
         display: flex;
         outline: none;
-        border: 1px solid var(--uui-filters-toggler-border);
-        border-radius: var(--uui-filters-toggler-border-radius);
-        background-color: var(--uui-filters-toggler-bg);
-        box-shadow: var(--uui-filters-toggler-shadow);
+        border: 1px solid var(--uui-filters_toggler-border);
+        border-radius: var(--uui-filters_toggler-border-radius);
+        background-color: var(--uui-filters_toggler-bg);
+        box-shadow: var(--uui-filters_toggler-shadow);
         padding-left: 6px;
         padding-right: 6px;
 
@@ -33,22 +33,22 @@
         }
 
         &:hover, &:focus {
-            border-color: var(--uui-filters-toggler-border-hover);
-            background-color: var(--uui-filters-toggler-bg-hover);
+            border-color: var(--uui-filters_toggler-border-hover);
+            background-color: var(--uui-filters_toggler-bg-hover);
         }
 
         &:global(.uui-opened) {
-            border-color: var(--uui-filters-toggler-border-hover);
-            background-color: var(--uui-filters-toggler-bg-hover);
+            border-color: var(--uui-filters_toggler-border-hover);
+            background-color: var(--uui-filters_toggler-bg-hover);
         }
 
         :global(.uui-icon-dropdown) {
-            fill: var(--uui-filters-toggler-icon);
+            fill: var(--uui-filters_toggler-icon);
         }
 
         .title-wrapper {
-            font-family: var(--uui-filters-toggler-font);
-            font-weight: var(--uui-filters-toggler-font-weight, normal);
+            font-family: var(--uui-filters_toggler-font);
+            font-weight: var(--uui-filters_toggler-font-weight, normal);
             flex: 1 1 auto;
             min-width: 0;
             outline: none;
@@ -64,7 +64,7 @@
                 overflow: visible;
                 padding-top: 0;
                 padding-bottom: 0;
-                color: var(--uui-filters-toggler-label);
+                color: var(--uui-filters_toggler-label);
             }
 
             .text-wrapper {
@@ -78,7 +78,7 @@
             .selection {
                 padding-top: 0;
                 padding-bottom: 0;
-                color: var(--uui-filters-toggler-text);
+                color: var(--uui-filters_toggler-text);
 
                 div {
                     display: inline-block;
@@ -90,7 +90,7 @@
                 }
 
                 & + span {
-                    color: var(--uui-filters-toggler-text);
+                    color: var(--uui-filters_toggler-text);
                 }
             }
 
@@ -99,11 +99,11 @@
                 padding-bottom: 0;
                 padding-left: 6px;
                 overflow: visible;
-                color: var(--uui-filters-toggler-text);
+                color: var(--uui-filters_toggler-text);
             }
 
             .selected {
-                color: var(--uui-filters-toggler-text);
+                color: var(--uui-filters_toggler-text);
             }
         }
 

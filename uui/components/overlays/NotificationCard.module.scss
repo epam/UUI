@@ -1,26 +1,26 @@
 @use '../../assets/styles/index' as *;
 
 .root {
-    --uui-notification-card-bg: var(--uui-surface-main);
-    --uui-notification-card-border: var(--uui-color-50);
-    --uui-notification-card-fill: var(--uui-color-50);
+    --uui-notification_card-bg: var(--uui-surface-main);
+    --uui-notification_card-border: var(--uui-color-50);
+    --uui-notification_card-fill: var(--uui-color-50);
 
-    --uui-notification-card-border-radius: var(--uui-border-radius);
-    --uui-notification-card-border-width: 0;
-    --uui-notification-card-border-top-width: 6px;
-    --uui-notification-card-shadow: var(--uui-shadow-level-2); //TODO: may change in the future
+    --uui-notification_card-border-radius: var(--uui-border-radius);
+    --uui-notification_card-border-width: 0;
+    --uui-notification_card-border-top-width: 6px;
+    --uui-notification_card-shadow: var(--uui-shadow-level-2); //TODO: may change in the future
     //
     border-style: solid;
-    border-color: var(--uui-notification-card-border, transparent);
-    border-width: var(--uui-notification-card-border-width);
-    border-top-width: var(--uui-notification-card-border-top-width);
+    border-color: var(--uui-notification_card-border, transparent);
+    border-width: var(--uui-notification_card-border-width);
+    border-top-width: var(--uui-notification_card-border-top-width);
     padding: 6px 18px;
     width: 360px;
-    background: var(--uui-notification-card-bg, var(--uui-surface-main));
+    background: var(--uui-notification_card-bg, var(--uui-surface-main));
     display: flex;
     overflow: hidden;
-    border-radius: var(--uui-notification-card-border-radius);
-    box-shadow: var(--uui-notification-card-shadow);
+    border-radius: var(--uui-notification_card-border-radius);
+    box-shadow: var(--uui-notification_card-shadow);
 
     @media (max-width: 720px) {
         width: 100%;
@@ -70,7 +70,7 @@
 
     .icon-wrapper {
         :global(.uui-icon) {
-            fill: var(--uui-notification-card-fill);
+            fill: var(--uui-notification_card-fill);
         }
     }
 }
