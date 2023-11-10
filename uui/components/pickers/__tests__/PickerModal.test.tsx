@@ -19,15 +19,14 @@ jest.mock('react-popper', () => ({
         });
     },
 }));
-jest.mock('react-focus-lock', () => {
-    const actual = jest.requireActual('react-focus-lock');
-    return {
-        actual,
-        __esModule: true,
-        // eslint-disable-next-line react/jsx-no-useless-fragment
-        default: ({ children }) => (<>{ children }</>),
-    };
-});
+jest.mock('react-focus-lock', () => ({
+    ...jest.requireActual('react-focus-lock'),
+    __esModule: true,
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    default: ({ children }) => (<>{ children }</>),
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    FreeFocusInside: ({ children }) => (<>{ children }</>),
+}));
 const onValueChangeMock = jest.fn();
 
 async function setupPickerModalForTest<TItem = TestItemType, TId = number>(params: Partial<PickerModalProps<TItem, TId>>) {
