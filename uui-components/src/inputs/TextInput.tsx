@@ -78,11 +78,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     const handleWrapperFocus = () => {
         inputElement.current?.focus();
     };
-    
-    const handleWrapperBlur = () => {
-        inputElement.current?.blur();
-    };
-    
+
     const getInputProps = () => ({
         type: props.type || 'text',
         className: cx(uuiElement.input, props.inputCx),
@@ -128,8 +124,6 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
             ) }
             tabIndex={ -1 }
             onFocus={ handleWrapperFocus }
-            onBlur={ handleWrapperBlur }
-            role="textbox"
             { ...props.rawProps }
         >
             {props.iconPosition !== 'right' && icon}

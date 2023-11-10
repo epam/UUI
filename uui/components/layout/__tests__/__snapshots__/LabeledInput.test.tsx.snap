@@ -10,13 +10,14 @@ exports[`LabeledInput should be rendered correctly 1`] = `
     <div>
       <div
         className="container uui-input-box -clickable root size-36 mode-form"
-        onBlur={[Function]}
         onFocus={[Function]}
         tabIndex={-1}
       >
         <input
           className="uui-input"
+          onBlur={[Function]}
           onChange={[Function]}
+          onFocus={[Function]}
           onKeyDown={[Function]}
           tabIndex={0}
           type="text"
@@ -48,13 +49,14 @@ exports[`LabeledInput should be rendered correctly with props 1`] = `
     >
       <div
         className="container uui-input-box -clickable root size-36 mode-form"
-        onBlur={[Function]}
         onFocus={[Function]}
         tabIndex={-1}
       >
         <input
           className="uui-input"
+          onBlur={[Function]}
           onChange={[Function]}
+          onFocus={[Function]}
           onKeyDown={[Function]}
           tabIndex={0}
           type="text"

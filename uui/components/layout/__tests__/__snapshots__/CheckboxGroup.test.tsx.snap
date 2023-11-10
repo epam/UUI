@@ -6,10 +6,10 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
 >
   <label
     className="container uui-checkbox-container root size-18 mode-form -clickable"
-    tabIndex={-1}
   >
     <div
       className="uui-checkbox"
+      tabIndex={-1}
     >
       <input
         aria-checked={false}
@@ -27,10 +27,10 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
   </label>
   <label
     className="container uui-checkbox-container root size-18 mode-form -clickable"
-    tabIndex={-1}
   >
     <div
       className="uui-checkbox"
+      tabIndex={-1}
     >
       <input
         aria-checked={false}
@@ -55,10 +55,10 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
 >
   <label
     className="container uui-checkbox-container root size-18 mode-form uui-disabled"
-    tabIndex={-1}
   >
     <div
       className="uui-checkbox"
+      tabIndex={-1}
     >
       <input
         aria-checked={false}
@@ -78,10 +78,10 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
   </label>
   <label
     className="container uui-checkbox-container root size-18 mode-form uui-disabled"
-    tabIndex={-1}
   >
     <div
       className="uui-checkbox"
+      tabIndex={-1}
     >
       <input
         aria-checked={false}

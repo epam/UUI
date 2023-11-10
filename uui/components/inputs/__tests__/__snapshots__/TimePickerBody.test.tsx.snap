@@ -18,9 +18,9 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
     </div>
     <div
       className="container uui-input-box -clickable uui-timepicker-input"
-      onBlur={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
+      role="spinbutton"
       tabIndex={-1}
     >
       <input
@@ -28,7 +28,9 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
         inputMode="numeric"
         max={12}
         min={1}
+        onBlur={[Function]}
         onChange={[Function]}
+        onFocus={[Function]}
         placeholder="12"
         tabIndex={0}
         type="number"
@@ -75,9 +77,9 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
     </div>
     <div
       className="container uui-input-box -clickable uui-timepicker-input"
-      onBlur={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
+      role="spinbutton"
       tabIndex={-1}
     >
       <input
@@ -85,7 +87,9 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
         inputMode="numeric"
         max={59}
         min={0}
+        onBlur={[Function]}
         onChange={[Function]}
+        onFocus={[Function]}
         placeholder="30"
         tabIndex={0}
         type="number"
@@ -132,14 +136,15 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
     </div>
     <div
       className="container uui-input-box uui-readonly uui-timepicker-input"
-      onBlur={[Function]}
       onFocus={[Function]}
       tabIndex={-1}
     >
       <input
         aria-readonly={true}
         className="uui-input"
+        onBlur={[Function]}
         onChange={[Function]}
+        onFocus={[Function]}
         onKeyDown={[Function]}
         readOnly={true}
         tabIndex={-1}
@@ -178,9 +183,9 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
     </div>
     <div
       className="container uui-input-box -clickable uui-timepicker-input"
-      onBlur={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
+      role="spinbutton"
       tabIndex={-1}
     >
       <input
@@ -188,7 +193,9 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
         inputMode="numeric"
         max={12}
         min={0}
+        onBlur={[Function]}
         onChange={[Function]}
+        onFocus={[Function]}
         placeholder="12"
         tabIndex={0}
         type="number"
@@ -235,9 +242,9 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
     </div>
     <div
       className="container uui-input-box -clickable uui-timepicker-input"
-      onBlur={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
+      role="spinbutton"
       tabIndex={-1}
     >
       <input
@@ -245,7 +252,9 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
         inputMode="numeric"
         max={59}
         min={0}
+        onBlur={[Function]}
         onChange={[Function]}
+        onFocus={[Function]}
         placeholder="30"
         tabIndex={0}
         type="number"
@@ -292,14 +301,15 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
     </div>
     <div
       className="container uui-input-box uui-readonly uui-timepicker-input"
-      onBlur={[Function]}
       onFocus={[Function]}
       tabIndex={-1}
     >
       <input
         aria-readonly={true}
         className="uui-input"
+        onBlur={[Function]}
         onChange={[Function]}
+        onFocus={[Function]}
         onKeyDown={[Function]}
         readOnly={true}
         tabIndex={-1}
