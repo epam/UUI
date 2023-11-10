@@ -22,6 +22,17 @@ jest.mock('react-popper', () => ({
         });
     },
 }));
+jest.mock('react-focus-lock', () => {
+    const actual = jest.requireActual('react-focus-lock');
+    return {
+        actual,
+        __esModule: true,
+        // eslint-disable-next-line react/jsx-no-useless-fragment
+        default: ({ children }) => (<>{ children }</>),
+        // eslint-disable-next-line react/jsx-no-useless-fragment
+        FreeFocusInside: ({ children }) => (<>{ children }</>),
+    };
+});
 
 type PickerInputComponentProps<TItem, TId> = PickerInputBaseProps<TItem, TId> & PickerInputProps;
 

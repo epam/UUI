@@ -616,7 +616,14 @@
         "uui-richTextEditor-code": true
       },
       {
-        "text": ", etc.). This mock needs to be added to the specific test file (feel free to copy/paste it from here). "
+        "text": ", "
+      },
+      {
+        "text": "PickerInput",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " etc.). This mock needs to be added to the specific test file (feel free to copy/paste it from here). "
       }
     ]
   },
@@ -625,55 +632,62 @@
     "type": "note-quote",
     "children": [
       {
-        "text": "jest."
-      },
-      {
-        "text": "mock",
-        "font-style": null,
-        "": null,
-        "uui-richTextEditor-span-mark": true
-      },
-      {
-        "text": "("
+        "text": "jest.mock(",
+        "color": "rgb(0, 0, 0)"
       },
       {
         "text": "'react-focus-lock'",
-        "color": "#008000",
-        "font-weight": "bold",
-        "": null,
-        "uui-richTextEditor-span-mark": true
+        "color": "rgb(0, 128, 0)",
+        "uui-richTextEditor-bold": true
       },
       {
-        "text": ", () => {\n    const actual = jest."
+        "text": ", () => {\n    ",
+        "color": "rgb(0, 0, 0)"
       },
       {
-        "text": "requireActual",
-        "font-style": null,
-        "": null,
-        "uui-richTextEditor-span-mark": true
+        "text": "const ",
+        "color": "rgb(0, 0, 128)",
+        "uui-richTextEditor-bold": true
       },
       {
-        "text": "("
+        "text": "actual = jest.requireActual(",
+        "color": "rgb(0, 0, 0)"
       },
       {
         "text": "'react-focus-lock'",
-        "color": "#008000",
-        "font-weight": "bold",
-        "": null,
-        "uui-richTextEditor-span-mark": true
+        "color": "rgb(0, 128, 0)",
+        "uui-richTextEditor-bold": true
       },
       {
-        "text": ");\n    "
+        "text": ");\n    ",
+        "color": "rgb(0, 0, 0)"
       },
       {
         "text": "return ",
-        "color": "#000080",
-        "font-weight": "bold",
-        "": null,
-        "uui-richTextEditor-span-mark": true
+        "color": "rgb(0, 0, 128)",
+        "uui-richTextEditor-bold": true
       },
       {
-        "text": "{\n        actual,\n        __esModule: true,\n        default: ({ children }) => (<>{ children }</>),\n    };\n});"
+        "text": "{\n        actual,\n        __esModule: ",
+        "color": "rgb(0, 0, 0)"
+      },
+      {
+        "text": "true",
+        "color": "rgb(0, 0, 128)",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": ",\n",
+        "color": "rgb(0, 0, 0)"
+      },
+      {
+        "text": "       default",
+        "color": "rgb(0, 0, 128)",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": ": ({ children }) => (<>{ children }</>),\n       FreeFocusInside: ({ children }) => (<>{ children }</>),\n    };\n});",
+        "color": "rgb(0, 0, 0)"
       }
     ]
   },

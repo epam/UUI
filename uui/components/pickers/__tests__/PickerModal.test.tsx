@@ -26,6 +26,8 @@ jest.mock('react-focus-lock', () => {
         __esModule: true,
         // eslint-disable-next-line react/jsx-no-useless-fragment
         default: ({ children }) => (<>{ children }</>),
+        // eslint-disable-next-line react/jsx-no-useless-fragment
+        FreeFocusInside: ({ children }) => (<>{ children }</>),
     };
 });
 const onValueChangeMock = jest.fn();
