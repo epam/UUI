@@ -1,6 +1,5 @@
 import React from 'react';
-import { Anchor, FlexRow, IconContainer, LabeledInput, LinkButton, Panel, RichTextView, TextInput } from '@epam/uui';
-import { ReactComponent as Calendar } from '@epam/assets/icons/common/action-calendar-18.svg';
+import { Anchor, FlexRow, LabeledInput, LinkButton, Panel, RichTextView, TextInput } from '@epam/uui';
 
 export default function BasicExample() {
     return (
@@ -49,7 +48,6 @@ export default function BasicExample() {
                 <Anchor href="/">
                     Click me
                     {' '}
-                    <IconContainer style={ { fill: 'var(--uui-icon)' } } icon={ Calendar }></IconContainer>
                 </Anchor>
                 {' '}
                 It is those feelings that drive our love of astronomy and our desire to learn more and more about it.
@@ -141,12 +139,7 @@ export default function BasicExample() {
                     size="36"
                     label={
                         <>
-                            Demo Component
-                            <Anchor href="/">
-                                <IconContainer style={ { fill: 'var(--uui-icon)' } } icon={ Calendar }></IconContainer>
-                            </Anchor>
-                            {' '}
-                            :
+                            Demo Component:
                             {' '}
                         </>
                     }
@@ -179,8 +172,6 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 {' '}
                 <Anchor href="/">
                     click me
-                    {' '}
-                    <IconContainer style={ { fill: 'var(--uui-icon)' } } icon={ Calendar }></IconContainer>
                 </Anchor>
                 {' '}
                 consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -195,8 +186,6 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 {' '}
                 <Anchor href="/">
                     click me
-                    {' '}
-                    <IconContainer style={ { fill: 'var(--uui-icon)' } } icon={ Calendar }></IconContainer>
                 </Anchor>
                 {' '}
                 consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -212,8 +201,6 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 {' '}
                 <Anchor href="/">
                     click me
-                    {' '}
-                    <IconContainer style={ { fill: 'var(--uui-icon)' } } icon={ Calendar }></IconContainer>
                 </Anchor>
                 {' '}
                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure reprehenderit in voluptate velit esse cillum dolor
@@ -227,8 +214,6 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 {' '}
                 <Anchor href="/">
                     click me
-                    {' '}
-                    <IconContainer style={ { fill: 'var(--uui-icon)' } } icon={ Calendar }></IconContainer>
                 </Anchor>
                 {' '}
                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure reprehenderit in voluptate velit esse cillum dolor
