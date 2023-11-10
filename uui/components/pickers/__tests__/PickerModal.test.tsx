@@ -19,7 +19,15 @@ jest.mock('react-popper', () => ({
         });
     },
 }));
-const TIMEOUT = 10000;
+jest.mock('react-focus-lock', () => {
+    const actual = jest.requireActual('react-focus-lock');
+    return {
+        actual,
+        __esModule: true,
+        // eslint-disable-next-line react/jsx-no-useless-fragment
+        default: ({ children }) => (<>{ children }</>),
+    };
+});
 const onValueChangeMock = jest.fn();
 
 async function setupPickerModalForTest<TItem = TestItemType, TId = number>(params: Partial<PickerModalProps<TItem, TId>>) {
@@ -88,9 +96,9 @@ async function setupPickerModalForTest<TItem = TestItemType, TId = number>(param
 
 describe('PickerModal', () => {
     beforeEach(() => {
-        jest.clearAllMocks();    
+        jest.clearAllMocks();
     });
-    
+
     it('should be rendered correctly', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <PickerModal
@@ -142,7 +150,7 @@ describe('PickerModal', () => {
 
         expect(result.baseElement).toMatchSnapshot();
     });
-    
+
     describe('[selectionMode single]', () => {
         it('[valueType id] should select', async () => {
             const { dom } = await setupPickerModalForTest({
@@ -154,21 +162,21 @@ describe('PickerModal', () => {
             expect(PickerModalTestObject.getDialog()).toBeInTheDocument();
             const optionC2_1 = await screen.findByText('C2');
             fireEvent.click(optionC2_1);
-            
+
             await PickerModalTestObject.closeModal();
             expect(PickerModalTestObject.queryDialog()).not.toBeInTheDocument();
 
             fireEvent.click(dom.toggler);
             expect(PickerModalTestObject.getDialog()).toBeInTheDocument();
-    
+
             await PickerModalTestObject.waitForOptionsToBeReady();
 
             expect(await PickerModalTestObject.findSelectedOption()).toBeUndefined();
-            
+
             // should be selected and found after next opening the modal
             const optionC2 = await screen.findByText('C2');
             fireEvent.click(optionC2);
-            
+
             await act(async () => {
                 await PickerModalTestObject.clickSelectItems();
             });
@@ -182,13 +190,13 @@ describe('PickerModal', () => {
 
             const checkedOption = await PickerModalTestObject.findSelectedOption();
             expect(checkedOption).toEqual('C2');
-        }, TIMEOUT);
-        
+        });
+
         it('[valueType entity] should select', async () => {
             const { dom } = await setupPickerModalForTest({
                 selectionMode: 'single',
                 valueType: 'entity',
-                getName: ({ level }) => level, 
+                getName: ({ level }) => level,
             });
 
             // should not be selected if modal was closed and items were not selected
@@ -199,17 +207,17 @@ describe('PickerModal', () => {
 
             const optionC2_1 = await screen.findByText('C2');
             fireEvent.click(optionC2_1);
-            
+
             await PickerModalTestObject.closeModal();
             expect(PickerModalTestObject.queryDialog()).not.toBeInTheDocument();
 
             fireEvent.click(dom.toggler);
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
-    
+
             await PickerModalTestObject.waitForOptionsToBeReady();
-    
+
             expect(await PickerModalTestObject.findSelectedOption()).toBeUndefined();
-            
+
             // should be selected and found after next opening the modal
             const optionC2 = await screen.findByText('A1');
             fireEvent.click(optionC2);
@@ -224,13 +232,13 @@ describe('PickerModal', () => {
 
             fireEvent.click(dom.toggler);
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
-    
+
             await PickerModalTestObject.waitForOptionsToBeReady();
 
             const checkedOption1 = await PickerModalTestObject.findSelectedOption();
             expect(checkedOption1).toEqual('A1');
-        }, TIMEOUT);
-        
+        });
+
         it.each<[CascadeSelection]>(
             [[false], [true], ['implicit'], ['explicit']],
         )
@@ -253,7 +261,7 @@ describe('PickerModal', () => {
             });
 
             expect(onValueChangeMock).toHaveBeenLastCalledWith(2);
-        }, TIMEOUT);
+        });
     });
 
     describe('[selectionMode multi]', () => {
@@ -289,11 +297,11 @@ describe('PickerModal', () => {
             await PickerModalTestObject.waitForOptionsToBeReady();
 
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
-            
+
             await PickerModalTestObject.clickOptionCheckbox('A1+');
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1']);
-        }, TIMEOUT);
-        
+        });
+
         it('[valueType entity] should select & clear several options', async () => {
             const { dom } = await setupPickerModalForTest({
                 selectionMode: 'multi',
@@ -316,13 +324,13 @@ describe('PickerModal', () => {
                 { id: 2, level: 'A1', name: 'Elementary' },
                 { id: 3, level: 'A1+', name: 'Elementary+' },
             ]);
-            
+
             fireEvent.click(dom.toggler);
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
             await PickerModalTestObject.waitForOptionsToBeReady();
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
-            
+
             await PickerModalTestObject.clickOptionCheckbox('A1');
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1+']);
 
@@ -333,8 +341,8 @@ describe('PickerModal', () => {
             expect(onValueChangeMock).toHaveBeenLastCalledWith([
                 { id: 3, level: 'A1+', name: 'Elementary+' },
             ]);
-        }, TIMEOUT);
-    
+        });
+
         it('should pick single element with cascadeSelection = false', async () => {
             const { dom } = await setupPickerModalForTest({
                 selectionMode: 'multi',
@@ -356,12 +364,12 @@ describe('PickerModal', () => {
 
             expect(onValueChangeMock).toHaveBeenLastCalledWith([2]);
             fireEvent.click(dom.toggler);
-              
+
             await PickerModalTestObject.waitForOptionsToBeReady();
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['Parent 2']);
             expect(await PickerModalTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 3']);
-        }, TIMEOUT);
-        
+        });
+
         it.each<[CascadeSelection]>(
             [[true], ['explicit']],
         )
@@ -382,7 +390,7 @@ describe('PickerModal', () => {
             await PickerModalTestObject.clickOptionCheckbox('Parent 2');
             // Unfold parent
             await PickerModalTestObject.clickOptionUnfold('Parent 2');
-            
+
             await act(async () => {
                 await PickerModalTestObject.clickSelectItems();
             });
@@ -400,7 +408,7 @@ describe('PickerModal', () => {
             expect(await PickerModalTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 3']);
 
             // // Check child
-            await PickerModalTestObject.clickOptionCheckbox('Child 2.2');            
+            await PickerModalTestObject.clickOptionCheckbox('Child 2.2');
             await act(async () => {
                 await PickerModalTestObject.clickSelectItems();
             });
@@ -414,8 +422,8 @@ describe('PickerModal', () => {
             await PickerModalTestObject.clickOptionUnfold('Parent 2');
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['Child 2.1', 'Child 2.3']);
             expect(await PickerModalTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 2', 'Child 2.2', 'Parent 3']);
-        }, TIMEOUT);
-        
+        });
+
         it('should pick single element with cascadeSelection = implicit', async () => {
             const { dom } = await setupPickerModalForTest({
                 getName: ({ name }) => name,
@@ -427,7 +435,7 @@ describe('PickerModal', () => {
             fireEvent.click(dom.toggler);
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
-            await PickerModalTestObject.waitForOptionsToBeReady();   
+            await PickerModalTestObject.waitForOptionsToBeReady();
 
             // Check parent
             await PickerModalTestObject.clickOptionCheckbox('Parent 2');
@@ -441,7 +449,7 @@ describe('PickerModal', () => {
             fireEvent.click(dom.toggler);
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
-            await PickerModalTestObject.waitForOptionsToBeReady();   
+            await PickerModalTestObject.waitForOptionsToBeReady();
             await PickerModalTestObject.clickOptionUnfold('Parent 2');
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['Parent 2', 'Child 2.1', 'Child 2.2', 'Child 2.3']);
             expect(await PickerModalTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 3']);
@@ -461,8 +469,8 @@ describe('PickerModal', () => {
             await PickerModalTestObject.clickOptionUnfold('Parent 2');
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['Child 2.1', 'Child 2.3']);
             expect(await PickerModalTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 2', 'Child 2.2', 'Parent 3']);
-        }, TIMEOUT);
-        
+        });
+
         it('should select all', async () => {
             const { dom } = await setupPickerModalForTest({
                 initialValue: [],
@@ -497,8 +505,8 @@ describe('PickerModal', () => {
 
             await PickerModalTestObject.waitForOptionsToBeReady();
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual([]);
-        }, TIMEOUT);
-        
+        });
+
         it('should show only selected', async () => {
             const { dom } = await setupPickerModalForTest<TestItemType, number>({
                 initialValue: [4, 2, 6, 8],
@@ -509,10 +517,10 @@ describe('PickerModal', () => {
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
             await PickerModalTestObject.waitForOptionsToBeReady();
-            
+
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1', 'A2', 'B1', 'B2']);
             expect(await PickerModalTestObject.findUncheckedOptions()).toEqual(['A1+', 'A2+', 'B1+', 'B2+', 'C1', 'C1+', 'C2']);
-            
+
             await PickerModalTestObject.clickShowOnlySelected();
 
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
@@ -530,6 +538,6 @@ describe('PickerModal', () => {
 
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
             expect(await PickerModalTestObject.findUncheckedOptions()).toEqual([]);
-        }, TIMEOUT);
+        });
     });
 });
