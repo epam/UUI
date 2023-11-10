@@ -632,7 +632,16 @@
     "type": "note-quote",
     "children": [
       {
-        "text": "jest.mock(",
+        "text": "jest.",
+        "color": "rgb(0, 0, 0)"
+      },
+      {
+        "text": "mock",
+        "uui-richTextEditor-italic": true,
+        "color": "rgb(0, 0, 0)"
+      },
+      {
+        "text": "(",
         "color": "rgb(0, 0, 0)"
       },
       {
@@ -641,16 +650,16 @@
         "uui-richTextEditor-bold": true
       },
       {
-        "text": ", () => {\n    ",
+        "text": ", () => ({\n    ...jest.",
         "color": "rgb(0, 0, 0)"
       },
       {
-        "text": "const ",
-        "color": "rgb(0, 0, 128)",
-        "uui-richTextEditor-bold": true
+        "text": "requireActual",
+        "uui-richTextEditor-italic": true,
+        "color": "rgb(0, 0, 0)"
       },
       {
-        "text": "actual = jest.requireActual(",
+        "text": "(",
         "color": "rgb(0, 0, 0)"
       },
       {
@@ -659,16 +668,16 @@
         "uui-richTextEditor-bold": true
       },
       {
-        "text": ");\n    ",
+        "text": "),\n    ",
         "color": "rgb(0, 0, 0)"
       },
       {
-        "text": "return ",
-        "color": "rgb(0, 0, 128)",
+        "text": "__esModule",
+        "color": "rgb(102, 14, 122)",
         "uui-richTextEditor-bold": true
       },
       {
-        "text": "{\n        actual,\n        __esModule: ",
+        "text": ": ",
         "color": "rgb(0, 0, 0)"
       },
       {
@@ -677,16 +686,24 @@
         "uui-richTextEditor-bold": true
       },
       {
-        "text": ",\n",
+        "text": ",\n   ",
         "color": "rgb(0, 0, 0)"
       },
       {
-        "text": "       default",
-        "color": "rgb(0, 0, 128)",
+        "text": "default",
+        "color": "rgb(122, 122, 67)",
         "uui-richTextEditor-bold": true
       },
       {
-        "text": ": ({ children }) => (<>{ children }</>),\n       FreeFocusInside: ({ children }) => (<>{ children }</>),\n    };\n});",
+        "text": ": ({ children }) => (<>{ children }</>),\n   ",
+        "color": "rgb(0, 0, 0)"
+      },
+      {
+        "text": "FreeFocusInside",
+        "color": "rgb(122, 122, 67)"
+      },
+      {
+        "text": ": ({ children }) => (<>{ children }</>),\n}));",
         "color": "rgb(0, 0, 0)"
       }
     ]
