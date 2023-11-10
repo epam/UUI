@@ -649,12 +649,12 @@
         --uui-main_menu-text-active: var(--uui-text-brand);
         --uui-main_menu-bg: var(--uui-neutral-70);
 
-        //--uui-main_menu-search-bg: var(--uui-neutral-5);
-        //--uui-main_menu-search-border: var(--uui-neutral-40);
-        //--uui-main_menu-search-placeholder: var(--uui-text-tertiary);
-        //--uui-main_menu-search-text: var(--uui-text-primary);
-        //--uui-main_menu-search-icon: var(--uui-neutral-70);
-        //
+        --uui-main_menu-search-bg: var(--uui-neutral-5);
+        --uui-main_menu-search-border: var(--uui-neutral-40);
+        --uui-main_menu-search-placeholder: var(--uui-text-tertiary);
+        --uui-main_menu-search-text: var(--uui-text-primary);
+        --uui-main_menu-search-icon: var(--uui-neutral-70);
+
         --uui-main_menu-icon: var(--uui-neutral-5);
         --uui-main_menu-icon-hover: var(--uui-neutral-5);
         --uui-main_menu-icon-active: var(--uui-neutral-5);
@@ -683,14 +683,14 @@
         --uui-burger_btn_caption-active: var(--uui-primary-50);
         --uui-burger_btn-border: var(--uui-neutral-40);
     }
-    //
-    ///* BurgerSearch */
-    //.uui-main_menu-burger-search {
-    //    --uui-burger_search: var(--uui-text-brand);
-    //    --uui-burger_search-fill: var(--uui-neutral-70);
-    //    --uui-burger_search-bg: var(--uui-neutral-40);
-    //    --uui-burger_search-placeholder: var(--uui-text-tertiary);
-    //}
+
+    /* BurgerSearch */
+    .uui-main_menu-burger-search {
+        --uui-burger_search: var(--uui-text-brand);
+        --uui-burger_search-fill: var(--uui-neutral-70);
+        --uui-burger_search-bg: var(--uui-neutral-40);
+        --uui-burger_search-placeholder: var(--uui-text-tertiary);
+    }
 
     .uui-tooltip-container.uui-color-neutral {
         --uui-tooltip-bg: var(--uui-surface-main);

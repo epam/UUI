@@ -5,8 +5,8 @@
     --uui-calendar-selected_range: var(--uui-primary-50);
     --uui-calendar-weekday-caption: var(--uui-text-tertiary);
     --uui-calendar-holiday-caption: var(--uui-text-tertiary);
-    --uui-calendar-day-caption: var(--uui-control-text);
-    --uui-calendar-day-caption-disabled: var(--uui-control-text-disabled);
+    --uui-calendar-day-text: var(--uui-control-text);
+    --uui-calendar-day-text-disabled: var(--uui-control-text-disabled);
     --uui-calendar-selected_day-caption: var(--uui-neutral-0);
     --uui-calendar-selected_day-hover: var(--uui-control-bg);
 
@@ -33,7 +33,7 @@
     }
 
     :global(.uui-calendar-day-cell) {
-        color: var(--uui-calendar-day-caption);
+        color: var(--uui-calendar-day-text);
         text-align: center;
         padding: 0;
         height: 36px;
@@ -132,7 +132,7 @@
 
     :global(.uui-calendar-filtered-day) {
         &:global(.uui-calendar-day-wrapper) {
-            color: var(--uui-calendar-day-caption-disabled);
+            color: var(--uui-calendar-day-text-disabled);
 
             &:hover {
                 cursor: default;

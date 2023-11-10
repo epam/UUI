@@ -19,24 +19,21 @@
     --uui-text-area-bg: var(--uui-control-bg);
     --uui-text-area-bg-disabled: var(--uui-control-bg-disabled);
     --uui-text-area-border: var(--uui-control-border);
-    --uui-text-area-border-disabled: var(--uui-control-border-disabled);
     --uui-text-area-border-hover: var(--uui-control-border-hover);
     --uui-text-area-border-active: var(--uui-control-border-focus);
     --uui-text-area-border-error: var(--uui-error-50);
+    --uui-text-area-border-disabled: var(--uui-control-border-disabled);
     --uui-text-area-placeholder: var(--uui-control-placeholder);
     --uui-text-area-text: var(--uui-control-text);
     --uui-text-area-text-disabled: var(--uui-control-text-disabled);
-    --uui-text-area-icon: var(--uui-icon);
+
     --uui-text-area-border-radius: var(--uui-border-radius);
 
     --uui-text-area-font: var(--uui-font);
     --uui-text-area-font-weight: 400;
-    --uui-text-area-counter-font: var(--uui-font);
-    --uui-text-area-counter-font-weight: 400;
     //
     :global(.uui-input) {
         color: var(--uui-text-area-text);
-        fill: var(--uui-text-area-icon);
         border-style: solid;
         border-radius: var(--uui-text-area-border-radius);
         font-family: var(--uui-text-area-font);
@@ -60,13 +57,11 @@
 
         &:global(.uui-readonly) {
             color: var(--uui-text-area-text);
-            fill: var(--uui-text-area-icon);
             pointer-events: none;
         }
 
         &:global(.uui-disabled) {
             color: var(--uui-text-area-text-disabled);
-            fill: var(--uui-text-area-text-disabled);
             pointer-events: none;
 
             &::placeholder {
@@ -141,13 +136,11 @@
             &:global(.uui-disabled) {
                 background-color: transparent;
                 color: var(--uui-text-area-text-disabled);
-                fill: var(--uui-text-area-icon);
                 border-color: transparent;
 
                 &:hover, &:active, &:focus {
                     background-color: transparent;
                     color: var(--uui-text-area-text-disabled);
-                    fill: var(--uui-text-area-icon);
                     border-color: transparent;
                     box-shadow: none;
                 }
@@ -157,14 +150,6 @@
                 }
             }
         }
-    }
-
-    :global(.uui-textarea-counter) {
-        line-height: 18px;
-        font-size: 12px;
-        color: var(--uui-text-area-icon);
-        font-family: var(--uui-text-area-counter-font);
-        font-weight: var(--uui-text-area-counter-font-weight);
     }
 
     //Sizes

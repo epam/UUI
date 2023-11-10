@@ -5,8 +5,8 @@
 }
 
 .root {
-    --uui-progress_bar-wrapper: var(--uui-secondary-20);
-    --uui-progress_bar-background: var(--uui-primary-50);
+    --uui-progress_bar-bg: var(--uui-secondary-20);
+    --uui-progress_bar-progress-bg: var(--uui-primary-50);
     --uui-progress_bar-label: var(--uui-neutral-0);
     --uui-progress_bar-top-label: var(--uui-neutral-80);
     --uui-progress_bar-border-radius: var(--uui-border-radius);
@@ -14,14 +14,14 @@
     --uui-progress_bar-font: var(--uui-font);
     --uui-progress_bar-font-weight: 400;
     //
-    background-color: var(--uui-progress_bar-wrapper);
+    background-color: var(--uui-progress_bar-bg);
     font-family: var(--uui-progress_bar-font);
     font-weight: var(--uui-progress_bar-font-weight);
     color: var(--uui-progress_bar-label);
     border-radius: var(--uui-progress_bar-border-radius);
 
     :global(.bar) {
-        background-color: var(--uui-progress_bar-background);
+        background-color: var(--uui-progress_bar-progress-bg);
     }
 
     :global(.topLabel) {

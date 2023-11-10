@@ -652,6 +652,16 @@
         --uui-tag-border-radius: 0;
     }
 
+    .uui-dropdown-body {
+        --uui-dropdown-container-border-radius: 0;
+    }
+
+    .typography-uui {
+        :global(.promo-header), h1, h2, h3 {
+            font-family: var(--font-primary);
+        }
+    }
+
     /* fonts */
 
     .uui-font-sans {
@@ -678,13 +688,6 @@
     .uui-font-museo-slab {
         --uui-text-font: var(--font-promo);
         --uui-text-font-weight: normal;
-
-    }
-
-    .typography-uui {
-        :global(.promo-header), h1, h2, h3 {
-            font-family: var(--font-primary);
-        }
     }
 }
 

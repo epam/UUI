@@ -1,15 +1,15 @@
 .root {
-    --uui-indeterminate_bar-wrapper: var(--uui-secondary-20);
-    --uui-indeterminate_bar-background: var(--uui-primary-50);
+    --uui-indeterminate_bar-bg: var(--uui-secondary-20);
+    --uui-indeterminate_bar-progress-bg: var(--uui-primary-50);
     --uui-indeterminate_bar-border-radius: var(--uui-border-radius);
     //
     position: relative;
-    background-color: var(--uui-indeterminate_bar-wrapper);
+    background-color: var(--uui-indeterminate_bar-bg);
     border-radius: var(--uui-indeterminate_bar-border-radius);
     overflow: hidden;
 
-    .bar {
-        background-color: var(--uui-indeterminate_bar-background);
+    .progress-bar {
+        background-color: var(--uui-indeterminate_bar-progress-bg);
         width: 33%;
         top: 0;
         bottom: 0;
