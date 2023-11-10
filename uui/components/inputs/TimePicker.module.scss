@@ -1,7 +1,7 @@
 .root {
-    --uui-time-picker-text: var(--uui-control-text);
-    --uui-time-picker-icon-clickable: var(--uui-icon);
-    --uui-time-picker-icon-clickable-hover: var(--uui-icon-hover);
+    --uui-time_picker-text: var(--uui-control-text);
+    --uui-time_picker-icon-clickable: var(--uui-icon);
+    --uui-time_picker-icon-clickable-hover: var(--uui-icon-hover);
 
     &:global(.uui-timepicker-container) {
         display: flex;
@@ -19,13 +19,13 @@
                 text-align: center;
                 font-size: 24px;
                 line-height: 24px;
-                color: var(--uui-time-picker-text);
+                color: var(--uui-time_picker-text);
                 font-family: var(--uui-font);
                 font-weight: 400;
 
                 &::placeholder,
                 &::-webkit-input-placeholder {
-                    color: var(--uui-time-picker-text);
+                    color: var(--uui-time_picker-text);
                     opacity: 1; /* for Firefox */
                 }
             }
@@ -42,7 +42,7 @@
                 position: absolute;
                 top: 35px;
                 left: 81px;
-                color: var(--uui-time-picker-text);
+                color: var(--uui-time_picker-text);
                 font-size: 24px;
                 line-height: 30px;
             }
@@ -50,10 +50,10 @@
 
         :global(.uui-timepicker-icon-up), :global(.uui-timepicker-icon-down) {
             align-items: center;
-            fill: var(--uui-time-picker-icon-clickable);
+            fill: var(--uui-time_picker-icon-clickable);
 
             &:hover {
-                fill: var(--uui-time-picker-icon-clickable-hover);
+                fill: var(--uui-time_picker-icon-clickable-hover);
             }
         }
 

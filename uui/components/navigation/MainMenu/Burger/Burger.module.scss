@@ -4,8 +4,8 @@
     --uui-burger_menu-bg: var(--uui-neutral-90);
     --uui-burger_menu-bg-hover: var(--uui-neutral-90);
     --uui-burger_menu-overlay: var(--uui-overlay);
-    --uui-burger_icon: var(--uui-text-contrast);
-    --uui-burger_item: var(--uui-text-brand);
+    --uui-burger_menu-icon: var(--uui-text-contrast);
+    --uui-burger_menu-item: var(--uui-text-brand);
     //
     position: relative;
     display: flex;
@@ -17,7 +17,7 @@
     :global(.uui-burger-button) {
         width: 60px;
         cursor: pointer;
-        fill: var(--uui-burger_icon);
+        fill: var(--uui-burger_menu-icon);
         background: transparent;
         padding: 0;
         border: 0 none;
@@ -71,7 +71,7 @@
         flex-direction: column;
         top: 0;
         width: 300px;
-        background: var(--uui-burger_item);
+        background: var(--uui-burger_menu-item);
         transform: translateX(-100px);
 
         &:global(.uui-burger-items-visible) {

@@ -672,8 +672,8 @@
         --uui-burger_menu-bg: var(--uui-app-bg);
         --uui-burger_menu-bg-hover: var(--uui-app-bg);
         --uui-burger_menu-caption: var(--uui-neutral-90);
-        --uui-burger_icon: var(--uui-neutral-5);
-        --uui-burger_item: var(--uui-app-bg);
+        --uui-burger_menu-icon: var(--uui-neutral-5);
+        --uui-burger_menu-item: var(--uui-app-bg);
     }
 
     /* BurgerButton */
@@ -780,7 +780,7 @@
     }
 
     .uui-text-placeholder {
-        --uui-text-placeholder-gradient: linear-gradient(90deg, var(--uui-neutral-30) 0%, var(--uui-neutral-50) 50%, var(--uui-neutral-30) 100%);
+        --uui-text_placeholder-gradient: linear-gradient(90deg, var(--uui-neutral-30) 0%, var(--uui-neutral-50) 50%, var(--uui-neutral-30) 100%);
     }
 
     .uui-typography {

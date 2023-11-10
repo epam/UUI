@@ -309,18 +309,18 @@
     }
 
     .uui-filters-panel-item-toggler.uui-input-box {
-        --uui-filters-toggler-border: var(--uui-surface-main);
-        --uui-filters-toggler-border-hover: var(--blue-0);
-        --uui-filters-toggler-border-radius: 8px;
-        --uui-filters-toggler-bg: var(--uui-surface-main);
-        --uui-filters-toggler-bg-hover: var(--blue-0);
-        --uui-filters-toggler-text: var(--uui-text-secondary);
-        --uui-filters-toggler-label: var(--uui-text-brand);
-        --uui-filters-toggler-icon: var(--uui-icon);
-        --uui-filters-toggler-shadow: var(--uui-shadow-level-1);
+        --uui-filters_toggler-border: var(--uui-surface-main);
+        --uui-filters_toggler-border-hover: var(--blue-0);
+        --uui-filters_toggler-border-radius: 8px;
+        --uui-filters_toggler-bg: var(--uui-surface-main);
+        --uui-filters_toggler-bg-hover: var(--blue-0);
+        --uui-filters_toggler-text: var(--uui-text-secondary);
+        --uui-filters_toggler-label: var(--uui-text-brand);
+        --uui-filters_toggler-icon: var(--uui-icon);
+        --uui-filters_toggler-shadow: var(--uui-shadow-level-1);
 
-        --uui-filters-toggler-font: var(--uui-font);
-        --uui-filters-toggler-font-weight: 400;
+        --uui-filters_toggler-font: var(--uui-font);
+        --uui-filters_toggler-font-weight: 400;
     }
 
     .uui-main_menu-dropdown {
@@ -335,6 +335,6 @@
     }
 
     .uui-text-placeholder {
-        --uui-text-placeholder-gradient: linear-gradient(90deg, var(--chromatic-200) 0%, var(--chromatic-100) 50%, var(--chromatic-200) 100%);
+        --uui-text_placeholder-gradient: linear-gradient(90deg, var(--chromatic-200) 0%, var(--chromatic-100) 50%, var(--chromatic-200) 100%);
     }
 }

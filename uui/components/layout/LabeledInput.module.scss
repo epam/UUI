@@ -1,57 +1,57 @@
 @use '../../assets/styles/index' as *;
 
 .root {
-    --uui-labeled-input: var(--uui-text-primary);
-    --uui-labeled-input-disabled: var(--uui-text-disabled);
-    --uui-labeled-input-error: var(--uui-error-50);
-    --uui-labeled-input-fill: var(--uui-icon);
-    --uui-labeled-input-info-fill: var(--uui-icon);
-    --uui-labeled-input-optional-text: var(--uui-text-tertiary);
-    --uui-labeled-input-asterisk: var(--uui-error-50);
-    --uui-labeled-input-char-counter: var(--uui-text-tertiary);
-    --uui-labeled-input-footnote: var(--uui-text-tertiary);
-    --uui-labeled-input-sidenote: var(--uui-text-tertiary);
+    --uui-labeled_input: var(--uui-text-primary);
+    --uui-labeled_input-disabled: var(--uui-text-disabled);
+    --uui-labeled_input-error: var(--uui-error-50);
+    --uui-labeled_input-fill: var(--uui-icon);
+    --uui-labeled_input-info-fill: var(--uui-icon);
+    --uui-labeled_input-optional-text: var(--uui-text-tertiary);
+    --uui-labeled_input-asterisk: var(--uui-error-50);
+    --uui-labeled_input-char-counter: var(--uui-text-tertiary);
+    --uui-labeled_input-footnote: var(--uui-text-tertiary);
+    --uui-labeled_input-sidenote: var(--uui-text-tertiary);
 
-    --uui-labeled-input-font: var(--uui-font);
-    --uui-labeled-input-font-weight: 600;
-    --uui-labeled-input-optional-font: var(--uui-font);
-    --uui-labeled-input-optional-font-weight: 400;
-    --uui-labeled-input-optional-font-style: italic;
-    --uui-labeled-input-invalid-msg-font: var(--uui-font);
-    --uui-labeled-input-invalid-msg-font-weight: 400;
-    --uui-labeled-input-char-counter-font: var(--uui-font);
-    --uui-labeled-input-char-counter-font-weight: 400;
-    --uui-labeled-input-footnote-font: var(--uui-font);
-    --uui-labeled-input-footnote-font-weight: 400;
-    --uui-labeled-input-sidenote-font: var(--uui-font);
-    --uui-labeled-input-sidenote-font-weight: 400;
+    --uui-labeled_input-font: var(--uui-font);
+    --uui-labeled_input-font-weight: 600;
+    --uui-labeled_input-optional-font: var(--uui-font);
+    --uui-labeled_input-optional-font-weight: 400;
+    --uui-labeled_input-optional-font-style: italic;
+    --uui-labeled_input-invalid-msg-font: var(--uui-font);
+    --uui-labeled_input-invalid-msg-font-weight: 400;
+    --uui-labeled_input-char-counter-font: var(--uui-font);
+    --uui-labeled_input-char-counter-font-weight: 400;
+    --uui-labeled_input-footnote-font: var(--uui-font);
+    --uui-labeled_input-footnote-font-weight: 400;
+    --uui-labeled_input-sidenote-font: var(--uui-font);
+    --uui-labeled_input-sidenote-font-weight: 400;
     //
     width: 100%;
 
     :global(.uui-label) {
         @include overflow-ellipsis();
-        font-family: var(--uui-labeled-input-font);
-        font-weight: var(--uui-labeled-input-font-weight);
-        color: var(--uui-labeled-input);
+        font-family: var(--uui-labeled_input-font);
+        font-weight: var(--uui-labeled_input-font-weight);
+        color: var(--uui-labeled_input);
         padding: 6px 0;
 
         :global(.uui-labeled-input-info-icon) {
             flex-shrink: 0;
             margin-left: 6px;
-            fill: var(--uui-labeled-input-info-fill);
+            fill: var(--uui-labeled_input-info-fill);
         }
 
         :global(.uui-labeled-input-asterisk) {
-            color: var(--uui-labeled-input-asterisk);
+            color: var(--uui-labeled_input-asterisk);
         }
 
         :global(.uui-labeled-input-optional) {
-            font-family: var(--uui-labeled-input-optional-font);
-            font-weight: var(--uui-labeled-input-optional-font-weight);
-            font-style: var(--uui-labeled-input-optional-font-style);
+            font-family: var(--uui-labeled_input-optional-font);
+            font-weight: var(--uui-labeled_input-optional-font-weight);
+            font-style: var(--uui-labeled_input-optional-font-style);
             font-size: 12px;
             line-height: 18px;
-            color: var(--uui-labeled-input-optional-text);
+            color: var(--uui-labeled_input-optional-text);
             margin-left: 6px;
         }
     }
@@ -65,9 +65,9 @@
     :global(.uui-invalid-message) {
         line-height: 18px;
         font-size: 12px;
-        color: var(--uui-labeled-input-error);
-        font-family: var(--uui-labeled-input-invalid-msg-font);
-        font-weight: var(--uui-labeled-input-invalid-msg-font-weight);
+        color: var(--uui-labeled_input-error);
+        font-family: var(--uui-labeled_input-invalid-msg-font);
+        font-weight: var(--uui-labeled_input-invalid-msg-font-weight);
         margin-top: 3px;
     }
 
@@ -76,18 +76,18 @@
         text-align: right;
         line-height: 18px;
         font-size: 12px;
-        color: var(--uui-labeled-input-char-counter);
-        font-family: var(--uui-labeled-input-char-counter-font);
-        font-weight: var(--uui-labeled-input-char-counter-font-weight);
+        color: var(--uui-labeled_input-char-counter);
+        font-family: var(--uui-labeled_input-char-counter-font);
+        font-weight: var(--uui-labeled_input-char-counter-font-weight);
         margin-top: 3px;
     }
 
     :global(.uui-labeled-input-footnote) {
         line-height: 18px;
         font-size: 12px;
-        color: var(--uui-labeled-input-footnote);
-        font-family: var(--uui-labeled-input-footnote-font);
-        font-weight: var(--uui-labeled-input-footnote-font-weight);
+        color: var(--uui-labeled_input-footnote);
+        font-family: var(--uui-labeled_input-footnote-font);
+        font-weight: var(--uui-labeled_input-footnote-font-weight);
         margin-top: 3px;
     }
 
@@ -96,9 +96,9 @@
         text-align: right;
         line-height: 18px;
         font-size: 12px;
-        color: var(--uui-labeled-input-sidenote);
-        font-family: var(--uui-labeled-input-sidenote-font);
-        font-weight: var(--uui-labeled-input-sidenote-font-weight);
+        color: var(--uui-labeled_input-sidenote);
+        font-family: var(--uui-labeled_input-sidenote-font);
+        font-weight: var(--uui-labeled_input-sidenote-font-weight);
     }
 
     // Sizes
