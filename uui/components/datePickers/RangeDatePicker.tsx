@@ -70,13 +70,6 @@ class RangeDatePickerComponent extends BaseRangeDatePicker<RangeDatePickerProps>
                 ) }
                 onClick={ !this.props.isDisabled && props.onClick }
                 onBlur={ this.handleWrapperBlur }
-                onFocus={ () => {
-                    setTimeout(() => {
-                        if (!this.state.inFocus) {
-                            this.fromInputRef.current?.focus();
-                        }
-                    }, 0);
-                } }
                 ref={ props.ref }
                 tabIndex={ -1 }
             >
