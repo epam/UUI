@@ -3,16 +3,14 @@ import {
     Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps,
 } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
-import {
-    isEventTargetInsideClickable,
-    LayoutLayer,
-    UuiContexts,
-    UuiContext,
-    DropdownProps,
-    DropdownState,
-} from '@epam/uui-core';
+import { isEventTargetInsideClickable, LayoutLayer, UuiContexts, UuiContext, DropdownProps } from '@epam/uui-core';
 import { Portal } from './Portal';
 import { isInteractedOutsideDropdown } from './DropdownHelpers';
+
+interface DropdownState {
+    opened: boolean;
+    bodyBoundingRect: { y: number | null; x: number | null; width: number | null; height: number | null };
+}
 
 export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     private targetNode: HTMLElement | null = null;

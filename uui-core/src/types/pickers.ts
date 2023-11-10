@@ -1,32 +1,41 @@
 import { ReactNode } from 'react';
-import { IAnalyticableOnChange, ICanBeInvalid, IClickable, IDisableable, IEditable, IHasCaption, IHasPlaceholder } from './props';
-import { IDataSource, IDataSourceView, DataSourceState, CascadeSelection } from './dataSources';
+import { IAnalyticableOnChange, ICanBeInvalid, IDisableable, IEditable, IDropdownToggler, IHasPlaceholder } from './props';
+import { IDataSource, IDataSourceView, DataSourceState, CascadeSelection, SortingOption } from './dataSources';
 import { DataRowProps, DataRowOptions } from './dataRows';
-import { SortingOption } from './dataQuery';
-import { Placement } from '@popperjs/core';
-import { PopperArrowProps } from 'react-popper';
 
 export type SinglePickerProps<TId, TItem> =
     | ({
-        /** 'single' - only one item is selected. 'multi' - multiple items are selected */
+        /** If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected */
         selectionMode: 'single';
         /** Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem) */
         valueType?: 'id';
     } & IEditable<TId>)
     | ({
+        /** If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected */
         selectionMode: 'single';
+        /** Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem) */
         valueType: 'entity';
     } & IEditable<TItem>);
 
 export type ArrayPickerProps<TId, TItem> =
     | ({
+        /** If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected */
         selectionMode: 'multi';
+        /** Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem) */
         valueType?: 'id';
+        /** Defines what to use as an empty value. If other value provided, it will be assumed as selection.
+         * @default undefined.
+         */
         emptyValue?: [] | null;
     } & IEditable<TId[]>)
     | ({
+        /** If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected */
         selectionMode: 'multi';
+        /** Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem) */
         valueType: 'entity';
+        /** Defines what to use as an empty value. If other value provided, it will be assumed as selection.
+         * @default undefined.
+         */
         emptyValue?: [] | null;
     } & IEditable<TItem[]>);
 
@@ -93,10 +102,15 @@ export type PickerBaseOptions<TItem, TId> = {
 };
 
 export type PickerFooterProps<TItem, TId> = {
+    /** Instance of picker DataSource view */
     view: IDataSourceView<TItem, TId, any>;
+    /** IEditable interface for the 'Show only selected' toggler */
     showSelected: IEditable<boolean>;
+    /** Call to clear picker selection */
     clearSelection: () => void;
+    /** If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected */
     selectionMode: 'single' | 'multi';
+    /** If true, 'Clear' button will be disabled */
     disableClear?: boolean;
 };
 
@@ -113,7 +127,9 @@ export interface IPickerToggler<TItem = any, TId = any>
     Partial<IHasPlaceholder>,
     Partial<IDisableable>,
     Partial<ICanBeInvalid> {
+    /** Array of selected rows */
     selection?: DataRowProps<TItem, TId>[];
+    /** Amount of selected items */
     selectedRowsCount?: number;
 }
 
@@ -123,33 +139,6 @@ export interface IPickerToggler<TItem = any, TId = any>
  * Picker togglers with search or advanced selection display should implement IPickerToggler interface
  */
 export interface IBasicPickerToggler extends IDropdownToggler {
+    /** Call to clear toggler value */
     onClear?(e?: any): void;
-}
-
-/** Component can be used as Toggler control for dropdown menus */
-export interface IDropdownToggler extends IHasCaption, IClickable {
-    /** When isDropdown=true, indicate that dropdown is open with chevron icon */
-    isOpen?: boolean;
-    /** Shows chevron icon, enabling component to act as dropdown toggler */
-    isDropdown?: boolean;
-    /** Called when associated dropdown should open or close  */
-    toggleDropdownOpening?: (value: boolean) => void;
-    /** Called when component is interacted outside, to close the dropdown */
-    isInteractedOutside?: (event: Event) => boolean;
-    /** Component's ref */
-    ref?: React.Ref<any>;
-    /** Disables component */
-    isDisabled?: boolean;
-}
-
-export interface IDropdownBodyProps {
-    onClose?: () => void;
-    togglerWidth?: number;
-    togglerHeight?: number;
-    scheduleUpdate?: () => void;
-    isOpen?: boolean;
-    arrowProps?: PopperArrowProps;
-
-    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
-    placement?: Placement;
 }

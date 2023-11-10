@@ -49,7 +49,7 @@ describe('columnsConfigurationUtils', () => {
             ];
             const result = sortColumnsAndAddGroupKey({ columns, prevConfig });
             const expected: GroupedDataColumnProps[] = [
-                { ...A, groupKey: 'displayedPinned' }, { ...B, groupKey: 'displayedUnpinned' }, { ...C, groupKey: 'displayedPinned' }, { ...D, groupKey: 'hidden' }, { ...E, groupKey: 'hidden' }, { ...F, groupKey: 'displayedUnpinned' },
+                { ...A, groupKey: 'displayedPinned' }, { ...B, groupKey: 'displayedUnpinned' }, { ...C, groupKey: 'displayedUnpinned' }, { ...D, groupKey: 'hidden' }, { ...E, groupKey: 'hidden' }, { ...F, groupKey: 'displayedUnpinned' },
             ];
             expect(result).toEqual(expected);
         });
@@ -67,7 +67,7 @@ describe('columnsConfigurationUtils', () => {
             const A: DataColumnProps = {
                 key: '1', fix: 'left', caption: 'name', isAlwaysVisible: false, width: 10,
             };
-            const result = isColumnFilteredOut(A, 'NAME');
+            const result = isColumnFilteredOut(A, ['NAME']);
             expect(result).toBe(false);
         });
         // it('should not filter out columns with React node as caption', () => {

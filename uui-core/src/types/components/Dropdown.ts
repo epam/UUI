@@ -1,13 +1,8 @@
 import React from 'react';
 import { Modifier } from 'react-popper';
 import { Placement, Boundary } from '@popperjs/core';
-import { IDropdownBodyProps, IDropdownToggler } from '../pickers';
+import { IDropdownBodyProps, IDropdownToggler } from '../props';
 import { IEditable, IHasForwardedRef } from '../../../src/types/props';
-
-export interface DropdownState {
-    opened: boolean;
-    bodyBoundingRect: { y: number | null; x: number | null; width: number | null; height: number | null };
-}
 
 export interface DropdownBodyProps extends IDropdownBodyProps {}
 

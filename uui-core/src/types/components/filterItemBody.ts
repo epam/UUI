@@ -1,5 +1,5 @@
 import { IEditable } from '../props';
-import { IDropdownBodyProps } from '../pickers';
+import { IDropdownBodyProps } from '../props';
 import { TableFiltersConfig } from '../tables';
 
 export type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> &
