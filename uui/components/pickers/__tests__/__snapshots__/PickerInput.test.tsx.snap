@@ -44,7 +44,7 @@ exports[`PickerInput should open body 1`] = `
       style="z-index: 2000;"
     >
       <div
-        class="uui-dropdown-body -lock-focus root container panel root container"
+        class="uui-dropdown-body -lock-focus root container container"
         style="min-width: 360px;"
         tabindex="-1"
       >
@@ -84,7 +84,7 @@ exports[`PickerInput should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="flexCell root"
+                            class="flexCell root uui-typography"
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
@@ -127,7 +127,7 @@ exports[`PickerInput should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="flexCell root"
+                            class="flexCell root uui-typography"
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div

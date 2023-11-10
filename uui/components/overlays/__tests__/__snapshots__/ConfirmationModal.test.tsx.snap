@@ -94,7 +94,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+        className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
         style={
           Object {
             "display": "flex",
@@ -301,7 +301,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         </div>
       </div>
       <div
-        className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+        className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
         style={
           Object {
             "display": "flex",
