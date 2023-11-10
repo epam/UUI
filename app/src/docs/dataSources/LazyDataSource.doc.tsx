@@ -10,11 +10,9 @@ export class DataSourcesLazyDataSourceDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="dataSources-lazy-dataSource" />
 
                 <DocExample title="useLazyDataSource" path="./_examples/dataSources/UseLazyDataSource.code.example.ts" onlyCode={ true } />
-                <DocExample title="LazyDataSourceProps" path="./_examples/dataSources/LazyDataSourceProps.code.example.ts" onlyCode={ true } />
-                <EditableDocContent fileName="dataSources-lazy-dataSource-props-overview" />
+                <EditableDocContent title="LazyDataSourceProps" fileName="dataSources-lazy-dataSource-props-overview" />
 
-                <DocExample title="LazyDataSourceApi" path="./_examples/dataSources/LazyDataSourceApi.code.example.ts" onlyCode={ true } />
-                <EditableDocContent fileName="dataSources-lazy-api-overview" />
+                <EditableDocContent title="LazyDataSourceApi" fileName="dataSources-lazy-api-overview" />
 
                 <DocExample title="Data" path="./_examples/dataSources/LazyDataSourceData.example.tsx" />
                 <DocExample title="How to request flatten data lazily?" path="./_examples/dataSources/LazyDataSourceRequestingFlattenData.example.tsx" />

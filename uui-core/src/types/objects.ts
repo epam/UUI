@@ -26,6 +26,8 @@ export interface IMap<TKey, TValue> {
 }
 
 export type AnalyticsEvent = {
+    /** Name of event */
     name: string;
+    /** Any data, which will be sent with event */
     [key: string]: any;
 } | null;
