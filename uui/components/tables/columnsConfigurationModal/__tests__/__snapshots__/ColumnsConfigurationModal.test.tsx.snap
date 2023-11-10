@@ -149,7 +149,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         className="uui-panel root uui-color-surface mainPanel container"
       >
         <div
-          className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+          className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
           style={
             Object {
               "display": "flex",
@@ -633,7 +633,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         className="uui-panel root uui-color-surface mainPanel container"
       >
         <div
-          className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+          className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
           style={
             Object {
               "display": "flex",
