@@ -164,7 +164,7 @@ export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCe
     rowProps: DataRowProps<TItem, TId>;
     /** Cell mode signal the editor component to adapt it's visuals to cell editor */
     mode: 'cell';
-    ref?: ForwardedRef<any>;
+    ref?: ForwardedRef<HTMLElement>;
 }
 
 export interface DataTableCellOptions<TItem = any, TId = any> {

@@ -9,7 +9,6 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
   >
     <div
       className="uui-checkbox"
-      tabIndex={-1}
     >
       <input
         aria-checked={false}
@@ -30,7 +29,6 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
   >
     <div
       className="uui-checkbox"
-      tabIndex={-1}
     >
       <input
         aria-checked={false}
@@ -58,7 +56,6 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
   >
     <div
       className="uui-checkbox"
-      tabIndex={-1}
     >
       <input
         aria-checked={false}
@@ -81,7 +78,6 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
   >
     <div
       className="uui-checkbox"
-      tabIndex={-1}
     >
       <input
         aria-checked={false}

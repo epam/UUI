@@ -6,7 +6,6 @@ exports[`Checkbox should be rendered correctly 1`] = `
 >
   <div
     className="uui-checkbox"
-    tabIndex={-1}
   >
     <input
       aria-checked={false}
@@ -25,7 +24,6 @@ exports[`Checkbox should be rendered correctly 2`] = `
 >
   <div
     className="uui-checkbox"
-    tabIndex={-1}
   >
     <input
       aria-checked={false}

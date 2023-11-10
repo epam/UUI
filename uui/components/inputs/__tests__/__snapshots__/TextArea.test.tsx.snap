@@ -3,7 +3,6 @@
 exports[`TextArea should be rendered correctly 1`] = `
 <div
   className="container uui-input-box root size-36 mode-form"
-  onBlur={[Function]}
   onFocus={[Function]}
   tabIndex={-1}
 >
@@ -20,7 +19,6 @@ exports[`TextArea should be rendered correctly 1`] = `
 exports[`TextArea should be rendered correctly 2`] = `
 <div
   className="container uui-input-box root size-36 mode-inline"
-  onBlur={[Function]}
   onFocus={[Function]}
   tabIndex={-1}
 >

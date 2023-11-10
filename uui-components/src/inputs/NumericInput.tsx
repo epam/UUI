@@ -75,8 +75,6 @@ export interface NumericInputProps
      * Formatting is applied only when input is not focused.
      */
     formatValue?(value: number): string;
-    
-    ref?: React.Ref<HTMLDivElement>;
 }
 
 export const uuiNumericInput = {
