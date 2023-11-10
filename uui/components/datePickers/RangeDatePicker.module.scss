@@ -63,7 +63,7 @@
         }
     }
 
-    &:global(.uui-focus):not(:global(.uui-invalid)) {
+    &:global(.uui-focus) {
         border-color: var(--uui-control-border);
 
         .separator {
