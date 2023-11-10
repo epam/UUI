@@ -20,7 +20,6 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
       className="container uui-input-box -clickable uui-timepicker-input"
       onFocus={[Function]}
       onKeyDown={[Function]}
-      role="spinbutton"
       tabIndex={-1}
     >
       <input
@@ -79,7 +78,6 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
       className="container uui-input-box -clickable uui-timepicker-input"
       onFocus={[Function]}
       onKeyDown={[Function]}
-      role="spinbutton"
       tabIndex={-1}
     >
       <input
@@ -185,7 +183,6 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
       className="container uui-input-box -clickable uui-timepicker-input"
       onFocus={[Function]}
       onKeyDown={[Function]}
-      role="spinbutton"
       tabIndex={-1}
     >
       <input
@@ -244,7 +241,6 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
       className="container uui-input-box -clickable uui-timepicker-input"
       onFocus={[Function]}
       onKeyDown={[Function]}
-      role="spinbutton"
       tabIndex={-1}
     >
       <input
