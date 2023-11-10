@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-11-07",
+ "timestamp": "2023-11-10",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -283,7 +283,13 @@
      "raw": "ApiCallOptions",
      "print": [
       "interface ApiCallOptions {",
+      "    /** Native fetch method options  */",
       "    fetchOptions?: RequestInit;",
+      "    /** Defines how to handle request errors:",
+      "     * 'page' - displays an error splash screen.",
+      "     * 'notification' - shows the error using a notification card without blocking the application.",
+      "     * 'manual' - means the API context won't handle the error; you should manage it yourself.",
+      "     */",
       "    errorHandling?: 'manual' | 'page' | 'notification';",
       "}"
      ]
@@ -292,6 +298,9 @@
      {
       "uid": 1,
       "name": "fetchOptions",
+      "comment": [
+       "Native fetch method options"
+      ],
       "typeValue": {
        "raw": "RequestInit"
       },
@@ -300,6 +309,12 @@
      {
       "uid": 2,
       "name": "errorHandling",
+      "comment": [
+       "Defines how to handle request errors:",
+       " 'page' - displays an error splash screen.",
+       " 'notification' - shows the error using a notification card without blocking the application.",
+       " 'manual' - means the API context won't handle the error; you should manage it yourself."
+      ],
       "typeValue": {
        "raw": "'manual' | 'page' | 'notification'"
       },
@@ -8351,7 +8366,7 @@
      "name": "DndContextState",
      "nameFull": "DndContextState"
     },
-    "src": "uui-core/src/types/contexts.ts",
+    "src": "uui-core/src/services/dnd/DndContext.tsx",
     "exported": true
    },
    "details": {
@@ -8964,6 +8979,79 @@
       "type DropPositionOptions = Partial<Record<DropPosition, boolean>>;"
      ]
     }
+   }
+  },
+  "@epam/uui-core:ErrorPageInfo": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "ErrorPageInfo",
+     "nameFull": "ErrorPageInfo"
+    },
+    "src": "uui-core/src/services/ErrorContext.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "ErrorPageInfo",
+     "print": [
+      "interface ErrorPageInfo {",
+      "    /** Error status code */",
+      "    status?: number;",
+      "    title?: React.ReactNode;",
+      "    subtitle?: React.ReactNode;",
+      "    imageUrl?: string;",
+      "    mobileImageUrl?: string;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "status",
+      "comment": [
+       "Error status code"
+      ],
+      "typeValue": {
+       "raw": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "title",
+      "typeValue": {
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+      },
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "subtitle",
+      "typeValue": {
+       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+      },
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "imageUrl",
+      "typeValue": {
+       "raw": "string"
+      },
+      "required": false
+     },
+     {
+      "uid": 5,
+      "name": "mobileImageUrl",
+      "typeValue": {
+       "raw": "string"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
    }
   },
   "@epam/uui-core:FileUploadOptions": {
@@ -10071,7 +10159,9 @@
      "raw": "IAnalyticsContext",
      "print": [
       "interface IAnalyticsContext {",
+      "    /** Sends event to the all listeners */",
       "    sendEvent(event?: AnalyticsEvent): void;",
+      "    /** Adds analytic event listener */",
       "    addListener(listener: IAnalyticsListener): void;",
       "}"
      ]
@@ -10080,6 +10170,9 @@
      {
       "uid": 1,
       "name": "sendEvent",
+      "comment": [
+       "Sends event to the all listeners"
+      ],
       "typeValue": {
        "raw": "(event?: AnalyticsEvent | undefined) => void"
       },
@@ -10088,6 +10181,9 @@
      {
       "uid": 2,
       "name": "addListener",
+      "comment": [
+       "Adds analytic event listener"
+      ],
       "typeValue": {
        "raw": "(listener: IAnalyticsListener) => void"
       },
@@ -10113,6 +10209,7 @@
      "raw": "IAnalyticsListener",
      "print": [
       "interface IAnalyticsListener {",
+      "    /** Defines how to send event to the analytics system */",
       "    sendEvent(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, 'name'>, eventType?: 'event' | 'pageView' | 'apiTiming'): void;",
       "}"
      ]
@@ -10121,6 +10218,9 @@
      {
       "uid": 1,
       "name": "sendEvent",
+      "comment": [
+       "Defines how to send event to the analytics system"
+      ],
       "typeValue": {
        "raw": "(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, 'name'>, eventType?: 'event' | 'pageView' | 'apiTiming' | undefined) => void"
       },
@@ -10146,11 +10246,21 @@
      "raw": "IApiContext",
      "print": [
       "interface IApiContext extends IBaseContext {",
+      "    /** Current status of api service.",
+      "     * idle - service do nothing and ready to process new requests",
+      "     * running - service is currently processing requests",
+      "     * error - service received an error and stop processing requests, due to this error will be discarded",
+      "     * recovery - service trying to restore connection and recover latest requests",
+      "     * */",
       "    readonly status: ApiStatus;",
       "    readonly recoveryReason: ApiRecoveryReason | null;",
+      "    /** Returns currently processing or failed requests */",
       "    getActiveCalls(status?: ApiCallStatus): ApiCallInfo[];",
+      "    /** Resets all errors */",
       "    reset(): void;",
+      "    /** Starts fetch call with providing params */",
       "    processRequest(url: string, method: string, data?: any, options?: ApiCallOptions): Promise<any>;",
+      "    /** Starts file uploading using FormData */",
       "    uploadFile(url: string, file: File, options: FileUploadOptions): Promise<FileUploadResponse>;",
       "}"
      ]
@@ -10159,6 +10269,13 @@
      {
       "uid": 1,
       "name": "status",
+      "comment": [
+       "Current status of api service.",
+       " idle - service do nothing and ready to process new requests",
+       " running - service is currently processing requests",
+       " error - service received an error and stop processing requests, due to this error will be discarded",
+       " recovery - service trying to restore connection and recover latest requests"
+      ],
       "typeValue": {
        "raw": "'running' | 'error' | 'idle' | 'recovery'"
       },
@@ -10175,6 +10292,9 @@
      {
       "uid": 3,
       "name": "getActiveCalls",
+      "comment": [
+       "Returns currently processing or failed requests"
+      ],
       "typeValue": {
        "raw": "(status?: ApiCallStatus | undefined) => ApiCallInfo[]"
       },
@@ -10183,6 +10303,9 @@
      {
       "uid": 4,
       "name": "reset",
+      "comment": [
+       "Resets all errors"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -10191,6 +10314,9 @@
      {
       "uid": 5,
       "name": "processRequest",
+      "comment": [
+       "Starts fetch call with providing params"
+      ],
       "typeValue": {
        "raw": "(url: string, method: string, data?: any, options?: ApiCallOptions | undefined) => Promise<any>"
       },
@@ -10199,6 +10325,9 @@
      {
       "uid": 6,
       "name": "uploadFile",
+      "comment": [
+       "Starts file uploading using FormData"
+      ],
       "typeValue": {
        "raw": "(url: string, file: File, options: FileUploadOptions) => Promise<FileUploadResponse>"
       },
@@ -11441,6 +11570,7 @@
       "interface IDndContext extends IBaseContext<DndContextState> {",
       "    startDrag(node: Node, data: any, renderGhost: () => React.ReactNode): void;",
       "    endDrag(): void;",
+      "    /** Indicates that drag in progress */",
       "    isDragging: boolean;",
       "    dragData?: any;",
       "    getMouseCoords: () => TMouseCoords;",
@@ -11467,6 +11597,9 @@
      {
       "uid": 3,
       "name": "isDragging",
+      "comment": [
+       "Indicates that drag in progress"
+      ],
       "typeValue": {
        "raw": "boolean"
       },
@@ -12140,10 +12273,15 @@
      "raw": "IErrorContext",
      "print": [
       "interface IErrorContext extends IBaseContext {",
+      "    /** Current error */",
       "    currentError?: Error;",
+      "    /** Reports error to context */",
       "    reportError(error: Error): void;",
+      "    /** Sets an error handler callback */",
       "    onError(callback: Function): void;",
+      "    /** Discard current error */",
       "    discardError(): void;",
+      "    /** Discard errors and refresh app */",
       "    recover(): void;",
       "}"
      ]
@@ -12152,6 +12290,9 @@
      {
       "uid": 1,
       "name": "currentError",
+      "comment": [
+       "Current error"
+      ],
       "typeValue": {
        "raw": "Error"
       },
@@ -12160,6 +12301,9 @@
      {
       "uid": 2,
       "name": "reportError",
+      "comment": [
+       "Reports error to context"
+      ],
       "typeValue": {
        "raw": "(error: Error) => void"
       },
@@ -12168,6 +12312,9 @@
      {
       "uid": 3,
       "name": "onError",
+      "comment": [
+       "Sets an error handler callback"
+      ],
       "typeValue": {
        "raw": "(callback: Function) => void"
       },
@@ -12176,6 +12323,9 @@
      {
       "uid": 4,
       "name": "discardError",
+      "comment": [
+       "Discard current error"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -12184,6 +12334,9 @@
      {
       "uid": 5,
       "name": "recover",
+      "comment": [
+       "Discard errors and refresh app"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -14109,9 +14262,13 @@
      "raw": "IModalContext",
      "print": [
       "interface IModalContext extends IBaseContext {",
+      "    /** Shows provided modal component with defined params  */",
       "    show<TResult, TParameters = {}>(render: (props: IModal<TResult>) => React.ReactNode, parameters?: TParameters): Promise<TResult>;",
+      "    /** Removes all active modals */",
       "    closeAll(): void;",
+      "    /** Returns true, if some modal displayed */",
       "    isModalOperationActive(): boolean;",
+      "    /** Returns all active modals */",
       "    getOperations(): ModalOperation[];",
       "}"
      ]
@@ -14120,6 +14277,9 @@
      {
       "uid": 1,
       "name": "show",
+      "comment": [
+       "Shows provided modal component with defined params"
+      ],
       "typeValue": {
        "raw": "<TResult, TParameters = {}>(render: (props: IModal<TResult, any>) => React.ReactNode, parameters?: TParameters | undefined) => Promise<TResult>"
       },
@@ -14128,6 +14288,9 @@
      {
       "uid": 2,
       "name": "closeAll",
+      "comment": [
+       "Removes all active modals"
+      ],
       "typeValue": {
        "raw": "() => void"
       },
@@ -14136,6 +14299,9 @@
      {
       "uid": 3,
       "name": "isModalOperationActive",
+      "comment": [
+       "Returns true, if some modal displayed"
+      ],
       "typeValue": {
        "raw": "() => boolean"
       },
@@ -14144,6 +14310,9 @@
      {
       "uid": 4,
       "name": "getOperations",
+      "comment": [
+       "Returns all active modals"
+      ],
       "typeValue": {
        "raw": "() => ModalOperation[]"
       },
@@ -14304,7 +14473,7 @@
       "    getNotifications(): NotificationOperation[];",
       "    /** Removes notification by their id */",
       "    remove(id: number): void;",
-      "    /** Removes all notification */",
+      "    /** Removes all active notification */",
       "    clearAll(): void;",
       "}"
      ]
@@ -14347,7 +14516,7 @@
       "uid": 4,
       "name": "clearAll",
       "comment": [
-       "Removes all notification"
+       "Removes all active notification"
       ],
       "typeValue": {
        "raw": "() => void"
@@ -14921,12 +15090,22 @@
      "raw": "IRouterContext",
      "print": [
       "interface IRouterContext {",
+      "    /** Returns current location link */",
       "    getCurrentLink(): Link;",
+      "    /** Makes a SPA redirect to the provided link */",
       "    redirect(link?: Link | string): void;",
+      "    /** Makes a SPA redirect to the provided link. Replaces the current entry in the history stack with a new one */",
       "    transfer(link: Link): void;",
+      "    /** Returns true, if provided link match current location */",
       "    isActive(link: Link): boolean;",
+      "    /** Creates href string based on provided link */",
       "    createHref(link: Link): string;",
+      "    /** Subscribes to the router updates */",
       "    listen(listener: (link: Link) => void): () => void;",
+      "    /**",
+      "     * Blocks router changes. Can be used to show confirmation dialogs before the redirect.",
+      "     * If block callback provide, all router changes will be blocked, you need to unblock and to retry them by yourself.",
+      "     * */",
       "    block(callback: (link: Link) => void): () => void;",
       "}"
      ]
@@ -14935,6 +15114,9 @@
      {
       "uid": 1,
       "name": "getCurrentLink",
+      "comment": [
+       "Returns current location link"
+      ],
       "typeValue": {
        "raw": "() => Link"
       },
@@ -14943,6 +15125,9 @@
      {
       "uid": 2,
       "name": "redirect",
+      "comment": [
+       "Makes a SPA redirect to the provided link"
+      ],
       "typeValue": {
        "raw": "(link?: string | Link | undefined) => void"
       },
@@ -14951,6 +15136,9 @@
      {
       "uid": 3,
       "name": "transfer",
+      "comment": [
+       "Makes a SPA redirect to the provided link. Replaces the current entry in the history stack with a new one"
+      ],
       "typeValue": {
        "raw": "(link: Link) => void"
       },
@@ -14959,6 +15147,9 @@
      {
       "uid": 4,
       "name": "isActive",
+      "comment": [
+       "Returns true, if provided link match current location"
+      ],
       "typeValue": {
        "raw": "(link: Link) => boolean"
       },
@@ -14967,6 +15158,9 @@
      {
       "uid": 5,
       "name": "createHref",
+      "comment": [
+       "Creates href string based on provided link"
+      ],
       "typeValue": {
        "raw": "(link: Link) => string"
       },
@@ -14975,6 +15169,9 @@
      {
       "uid": 6,
       "name": "listen",
+      "comment": [
+       "Subscribes to the router updates"
+      ],
       "typeValue": {
        "raw": "(listener: (link: Link) => void) => () => void"
       },
@@ -14983,6 +15180,10 @@
      {
       "uid": 7,
       "name": "block",
+      "comment": [
+       "Blocks router changes. Can be used to show confirmation dialogs before the redirect.",
+       " If block callback provide, all router changes will be blocked, you need to unblock and to retry them by yourself."
+      ],
       "typeValue": {
        "raw": "(callback: (link: Link) => void) => () => void"
       },
@@ -15777,6 +15978,9 @@
      "nameFull": "IUserSettingsContext"
     },
     "src": "uui-core/src/types/contexts.ts",
+    "comment": [
+     "Save data to the localStorage"
+    ],
     "exported": true
    },
    "details": {
@@ -15784,8 +15988,11 @@
     "typeValue": {
      "raw": "IUserSettingsContext",
      "print": [
+      "/** Save data to the localStorage */",
       "interface IUserSettingsContext {",
+      "    /** Gets value by key from localStorage */",
       "    get<TValue>(key: any, initial?: TValue): TValue;",
+      "    /** Sets value by key from localStorage */",
       "    set<TValue>(key: any, value: TValue): void;",
       "}"
      ]
@@ -15794,6 +16001,9 @@
      {
       "uid": 1,
       "name": "get",
+      "comment": [
+       "Gets value by key from localStorage"
+      ],
       "typeValue": {
        "raw": "<TValue>(key: any, initial?: TValue | undefined) => TValue"
       },
@@ -15802,6 +16012,9 @@
      {
       "uid": 2,
       "name": "set",
+      "comment": [
+       "Sets value by key from localStorage"
+      ],
       "typeValue": {
        "raw": "<TValue>(key: any, value: TValue) => void"
       },
@@ -22129,7 +22342,7 @@
      "raw": "UseUuiErrorOptions",
      "print": [
       "interface UseUuiErrorOptions {",
-      "    errorConfig?: Record<ApiCallErrorType, UuiErrorInfo>;",
+      "    errorConfig?: Record<ApiCallErrorType, ErrorPageInfo>;",
       "    recoveryConfig?: Record<ApiRecoveryReason, UuiRecoveryErrorInfo>;",
       "}"
      ]
@@ -22139,7 +22352,7 @@
       "uid": 1,
       "name": "errorConfig",
       "typeValue": {
-       "raw": "Record<ApiCallErrorType, UuiErrorInfo>"
+       "raw": "Record<ApiCallErrorType, ErrorPageInfo>"
       },
       "required": false
      },
@@ -22171,7 +22384,7 @@
      "raw": "UseUuiErrorProps",
      "print": [
       "interface UseUuiErrorProps {",
-      "    getErrorInfo: (error: any, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;",
+      "    getErrorInfo: (error: any, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo;",
       "    options?: UseUuiErrorOptions;",
       "}"
      ]
@@ -22181,7 +22394,7 @@
       "uid": 1,
       "name": "getErrorInfo",
       "typeValue": {
-       "raw": "(error: any, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo"
+       "raw": "(error: any, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo"
       },
       "required": true
      },
@@ -22402,75 +22615,6 @@
        "raw": "SkinContext"
       },
       "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-core:UuiErrorInfo": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "UuiErrorInfo",
-     "nameFull": "UuiErrorInfo"
-    },
-    "src": "uui-core/src/types/contexts.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "UuiErrorInfo",
-     "print": [
-      "interface UuiErrorInfo {",
-      "    status?: number;",
-      "    title?: React.ReactNode;",
-      "    subtitle?: React.ReactNode;",
-      "    imageUrl?: string;",
-      "    mobileImageUrl?: string;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "status",
-      "typeValue": {
-       "raw": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": 2,
-      "name": "title",
-      "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
-      },
-      "required": false
-     },
-     {
-      "uid": 3,
-      "name": "subtitle",
-      "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
-      },
-      "required": false
-     },
-     {
-      "uid": 4,
-      "name": "imageUrl",
-      "typeValue": {
-       "raw": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": 5,
-      "name": "mobileImageUrl",
-      "typeValue": {
-       "raw": "string"
-      },
-      "required": false
      }
     ],
     "propsFromUnion": false
@@ -65884,7 +66028,7 @@
      "raw": "ErrorHandlerProps",
      "print": [
       "interface ErrorHandlerProps extends IHasCX, IHasChildren {",
-      "    getErrorInfo?: (uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;",
+      "    getErrorInfo?: (uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo;",
       "    onNotificationError?: (errors: ApiCallInfo) => void;",
       "}"
      ]
@@ -65894,7 +66038,7 @@
       "uid": 1,
       "name": "getErrorInfo",
       "typeValue": {
-       "raw": "(uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo"
+       "raw": "(uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo"
       },
       "required": false
      },
@@ -69439,7 +69583,7 @@
      "raw": "ErrorConfig",
      "print": [
       "interface ErrorConfig {",
-      "    getInfo?: (error: any, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;",
+      "    getInfo?: (error: any, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo;",
       "}"
      ]
     },
@@ -69448,7 +69592,7 @@
       "uid": 1,
       "name": "getInfo",
       "typeValue": {
-       "raw": "(error: any, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo"
+       "raw": "(error: any, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo"
       },
       "required": false
      }
