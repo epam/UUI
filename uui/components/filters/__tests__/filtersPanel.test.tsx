@@ -262,13 +262,13 @@ describe('FiltersPanel', () => {
             const ageOption = withinDialog().queryByRoleAndText({ role: 'option', text: 'Age' });
             expect(ageOption).toBeInTheDocument();
             await user.click(ageOption);
-            await user.type(withinDialog().getByRole('spinbutton'), '20');
+            await user.type(withinDialog().getAllByRole('spinbutton')[1], '20');
             await user.click(window.document.body);
             notExpectDialog();
             expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { age: 20 } }));
             await user.click(screen.getByRoleAndText({ role: 'button', text: 'Age:20' }));
             expectDialog();
-            const input = withinDialog().getByRole('spinbutton') as HTMLInputElement;
+            const input = withinDialog().getAllByRole('spinbutton')[1] as HTMLInputElement;
             expect(input.placeholder).toEqual('20');
             await user.click(withinDialog().getByRoleAndText({ role: 'button', text: 'CLEAR' }));
             expect(input.placeholder).toEqual('Enter a number');
@@ -294,14 +294,14 @@ describe('FiltersPanel', () => {
             ).toEqual([
                 '=', '≠', '≤', '≥', 'In Range',
             ]);
-            await user.type(withinDialog().getByRole('spinbutton'), '20');
+            await user.type(withinDialog().getAllByRole('spinbutton')[1], '20');
             await user.click(withinDialog().getByRoleAndText({ role: 'tab', text: '≠' }));
             await user.click(window.document.body);
             notExpectDialog();
             expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { age: { neq: 20 } } }));
             await user.click(screen.getByRoleAndText({ role: 'button', text: 'Age ≠20' }));
             expectDialog();
-            const input = withinDialog().getByRole('spinbutton') as HTMLInputElement;
+            const input = withinDialog().getAllByRole('spinbutton')[1] as HTMLInputElement;
             expect(input.placeholder).toEqual('20');
             await user.click(withinDialog().getByRoleAndText({ role: 'button', text: 'CLEAR' }));
             expect(input.placeholder).toEqual('Enter a number');

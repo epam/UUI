@@ -3,10 +3,10 @@
 exports[`Checkbox should be rendered correctly 1`] = `
 <label
   className="container uui-checkbox-container root size-18 mode-form -clickable"
-  tabIndex={-1}
 >
   <div
     className="uui-checkbox"
+    tabIndex={-1}
   >
     <input
       aria-checked={false}
@@ -22,10 +22,10 @@ exports[`Checkbox should be rendered correctly 1`] = `
 exports[`Checkbox should be rendered correctly 2`] = `
 <label
   className="container uui-checkbox-container root size-18 mode-cell -clickable"
-  tabIndex={-1}
 >
   <div
     className="uui-checkbox"
+    tabIndex={-1}
   >
     <input
       aria-checked={false}
