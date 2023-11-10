@@ -1,13 +1,16 @@
 .root {
+    --uui-slider-tooltip-bg: var(--uui-color-70);
+    --uui-slider-font: var(--uui-font);
+
     :global(.uui-tooltip-body) {
-        background-color: var(--uui-neutral-70);
+        background-color: var(--uui-slider-tooltip-bg);
         padding: 0 10px;
         color: white;
         line-height: 24px;
         font-size: 14px;
-        font-family: var(--uui-font);
+        font-family: var(--uui-slider-font);
         font-weight: 400;
-        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: var(--uui-shadow-level-1);
     }
 
     :global(.uui-tooltip-arrow) {
@@ -16,9 +19,9 @@
 
     :global(.uui-slider-scale-number) {
         font-size: 11px;
-        font-family: var(--uui-font);
+        font-family: var(--uui-slider-font);
         font-weight: 400;
-        color: var(--uui-neutral-70);
+        color: var(--uui-text-primary);
         margin-top: 10px;
     }
 
@@ -67,12 +70,12 @@
 
         &:hover {
             :global(.uui-slider) {
-                background-color: var(--uui-primary-50);
+                background-color: var(--uui-primary-20);
             }
 
             :global(.uui-slider-scale-dot):not(:global(.uui-slider-scale-filled-dot)) {
-                border-color: var(--uui-primary-50);
-                background-color: var(--uui-primary-50);
+                border-color: var(--uui-primary-20);
+                background-color: var(--uui-primary-20);
             }
         }
 
