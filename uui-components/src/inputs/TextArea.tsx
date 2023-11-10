@@ -50,7 +50,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
     state = {
         inFocus: false,
     };
-    
+
     getParentOverflows(el: Element) {
         const arr = [];
     
@@ -66,7 +66,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
     
         return arr;
     }
-    
+
     updateHeight() {
         /* https://stackoverflow.com/questions/454202/creating-a-textarea-with-auto-resize */
         if (this.props.autoSize) {
@@ -82,19 +82,19 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
             }
         }
     }
-    
+
     componentDidMount() {
         // Delay auto-size hack to the next tick.
         // Helps with performance if there are many TextAreas on the page
         setTimeout(() => this.updateHeight(), 0);
     }
-    
+
     componentDidUpdate(prevProps: TextAreaProps) {
         if (prevProps.value !== this.props.value) {
             this.updateHeight();
         }
     }
-    
+
     handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         // Android does not support maxLength
         // https://studysection.com/blog/the-html-maxlength-attribute-is-not-working-as-expected-on-android-phones/
@@ -108,12 +108,12 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
 
         this.props.onValueChange(newValue);
     };
-    
+
     handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
         this.props.onFocus && this.props.onFocus(e);
         this.setState({ inFocus: true });
     };
-    
+
     handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
         this.props.onBlur && this.props.onBlur(e);
         this.setState({ inFocus: false });
@@ -123,10 +123,6 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
         this.textAreaRef.current?.focus();
     };
 
-    handleWrapperBlur = () => {
-        this.textAreaRef.current?.blur();
-    };
-    
     render() {
         return (
             <div
@@ -134,7 +130,6 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                 { ...this.props.rawProps }
                 tabIndex={ -1 }
                 onFocus={ this.handleWrapperFocus }
-                onBlur={ this.handleWrapperBlur }
                 ref={ this.props.forwardedRef }
             >
                 <textarea
