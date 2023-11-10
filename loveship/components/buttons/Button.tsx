@@ -1,6 +1,6 @@
 import { FillStyle, ControlShape, EpamPrimaryColor } from '../types';
 import { Button as uuiButton, ButtonMode, ControlSize, ButtonCoreProps } from '@epam/uui';
-import { devLogger, withMods } from '@epam/uui-core';
+import { createSkinComponent, devLogger } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';
 import css from './Button.module.scss';
 
@@ -31,7 +31,7 @@ export function applyButtonMods(mods: ButtonProps) {
     ];
 }
 
-export const Button = withMods<ButtonCoreProps, ButtonProps>(uuiButton, applyButtonMods, (props) => {
+export const Button = createSkinComponent<ButtonCoreProps, ButtonProps>(uuiButton, (props) => {
     if (__DEV__) {
         devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
             component: 'Button',
@@ -46,4 +46,4 @@ export const Button = withMods<ButtonCoreProps, ButtonProps>(uuiButton, applyBut
         clearIcon: systemIcons[props.size || defaultSize].clear,
         mode: mapFillToMod[props.fill] || mapFillToMod.solid,
     };
-});
+}, applyButtonMods);

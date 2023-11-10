@@ -6,7 +6,11 @@ export function createSkinComponent<TProps, TResult = {}>(
     getProps?: (props: Readonly<TResult>) => TResult,
     getCx?: (props: Readonly<TResult>) => CX,
 ) : (props: TResult & React.RefAttributes<TResult>) => React.ReactElement | null {
-    function SkinComponent(props: TResult): React.ReactElement<any> | null {
+    if (!getProps && !getCx) {
+        return Component as any;
+    }
+
+    const SkinComponent = React.forwardRef<any, any>((props: TResult, ref): React.ReactElement<any> | null => {
         const allProps: any = { ...props };
 
         if (getProps) {
@@ -18,8 +22,14 @@ export function createSkinComponent<TProps, TResult = {}>(
             allProps.cx = [getCxResult, (props as any).cx];
         }
 
+        if (Component.prototype instanceof React.Component) {
+            allProps.forwardedRef = ref;
+        } else {
+            allProps.ref = ref;
+        }
+
         return React.createElement(Component, allProps);
-    }
+    });
 
     SkinComponent.displayName = `${Component.displayName || Component.name || 'unknown'} (createSkinComponent)`;
 
