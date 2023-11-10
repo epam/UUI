@@ -50,7 +50,7 @@ exports[`PresetsPanel should render with minimum props 1`] = `
           <button
             aria-expanded={false}
             aria-haspopup={true}
-            className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-ghost uui-color-secondary size-36"
+            className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-ghost uui-color-secondary size-36 uui-presets-panel-more-button"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -74,7 +74,7 @@ exports[`PresetsPanel should render with minimum props 1`] = `
           className="addPresetContainer"
         >
           <button
-            className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-ghost uui-color-primary size-36"
+            className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-ghost uui-color-primary size-36 uui-presets-panel-add-button"
             onClick={[Function]}
             tabIndex={0}
             type="button"
