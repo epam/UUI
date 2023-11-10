@@ -1,14 +1,13 @@
 import * as React from 'react';
-import {
-    Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars,
-} from '@epam/promo';
+import { Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars } from '@epam/uui';
 import { ComponentEditor } from './ComponentEditor';
 import { svc } from '../../services';
 import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
-import css from './BaseDocsBlock.module.scss';
 import { TDocsGenExportedType } from '../apiReference/types';
 import { TypeRefSection } from '../apiReference/TypeRefSection';
+import cx from 'classnames';
+import css from './BaseDocsBlock.module.scss';
 
 export enum TSkin {
     UUI3_loveship = 'UUI3_loveship',
@@ -70,7 +69,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderMultiSwitch() {
         return (
-            <MultiSwitch<TSkin>
+            <MultiSwitch
                 size="36"
                 items={ items }
                 value={ this.getSkin() }
@@ -81,7 +80,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderTabsNav() {
         return (
-            <FlexRow background="white" rawProps={ { role: 'tablist' } } padding="12" cx={ [css.uuiThemePromo, css.secondaryNavigation] } borderBottom>
+            <FlexRow rawProps={ { role: 'tablist' } } padding="12" cx={ [css.uuiThemePromo, css.secondaryNavigation] } borderBottom>
                 <TabButton size="60" caption="Documentation" isLinkActive={ getQuery('mode') === 'doc' } onClick={ () => this.handleChangeMode('doc') } />
                 <TabButton size="60" caption="Property Explorer" isLinkActive={ getQuery('mode') === 'propsEditor' } onClick={ () => this.handleChangeMode('propsEditor') } />
                 <FlexSpacer />
@@ -143,7 +142,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderNotSupportPropExplorer() {
         return (
-            <div className={ css.notSupport }>
+            <div className={ cx(css.notSupport, css.themePromo) }>
                 <Text fontSize="16" lineHeight="24">
                     This component does not support property explorer
                 </Text>
