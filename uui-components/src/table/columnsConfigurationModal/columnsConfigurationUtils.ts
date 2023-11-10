@@ -94,7 +94,7 @@ export function sortColumnsAndAddGroupKey(props: { columns: DataColumnProps[]; p
 function getGroupKey(columnConfig: IColumnConfig): keyof GroupedColumnsType {
     const { isVisible, fix } = columnConfig;
     if (isVisible) {
-        if (fix) {
+        if (fix === 'left') {
             return 'displayedPinned';
         }
         return 'displayedUnpinned';
