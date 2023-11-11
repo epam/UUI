@@ -13,6 +13,7 @@
 [DataTable]: fix checkboxes, now they always pinned to the left column
 [PickerInput]: Disable select all button if options are empty and it has no selection
 [DataTable]: fixed missing `role=table`
+[PlateEditor]: allow writing caption after image insertion
 
 # 5.2.0 - 16.10.2023
 
