@@ -4,8 +4,8 @@
 }
 
 .root {
-    --uui-text-placeholder-gradient: var(--uui-skeleton-gradient);
-    --uui-text-placeholder: var(--uui-skeleton);
+    --uui-text_placeholder: var(--uui-skeleton);
+    --uui-text_placeholder-gradient: linear-gradient(90deg, var(--uui-neutral-40) 0%, var(--uui-neutral-10) 50%, var(--uui-neutral-40) 100%);
     //
     display: flex;
     flex-wrap: wrap;
@@ -16,7 +16,7 @@
     font-family: 'Redacted', cursive; // https://fonts.google.com/specimen/Redacted
     letter-spacing: -1px;
     margin: 0 3px 3px 0;
-    color: var(--uui-text-placeholder);
+    color: var(--uui-text_placeholder);
     vertical-align: 1px; // to fix vertical over-sizing of line
     &:last-child {
         margin-right: 0;
@@ -24,7 +24,7 @@
 
     &.animated-loading {
         color: transparent;
-        background: var(--uui-text-placeholder-gradient);
+        background: var(--uui-text_placeholder-gradient);
         background-size: 200% 100%;
         background-clip: border-box;
         -webkit-background-clip: text;

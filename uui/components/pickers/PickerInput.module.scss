@@ -1,14 +1,5 @@
 @use  '../../assets/styles/index' as *;
 
-.root {
-    --uui-picker_input_body-bg: var(--uui-surface-main);
-    --uui-picker_input_body-shadow: var(--uui-shadow-level-2);
-}
-
-.panel {
-    background: var(--uui-picker_input-bg);
-}
-
 .footer-wrapper {
     border-top: 1px solid var(--uui-divider);
     padding: 0 12px;

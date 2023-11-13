@@ -33,24 +33,23 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
 }
 
 .root {
-    --uui-picker-toggler-bg: var(--uui-control-bg);
-    --uui-picker-toggler-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-picker-toggler-border: var(--uui-control-border);
-    --uui-picker-toggler-border-disabled: var(--uui-control-border-disabled);
-    --uui-picker-toggler-border-hover: var(--uui-control-border-hover);
-    --uui-picker-toggler-border-active: var(--uui-control-border-checked);
-    --uui-picker-toggler-border-error: var(--uui-error-50);
-    --uui-picker-toggler-placeholder: var(--uui-control-placeholder);
-    --uui-picker-toggler-text: var(--uui-control-text);
-    --uui-picker-toggler-text-disabled: var(--uui-control-text-disabled);
-    --uui-picker-toggler-icon: var(--uui-control-icon);
-    --uui-picker-toggler-icon-disabled: var(--uui-control-icon-disabled);
-    --uui-picker-toggler-icon-clickable: var(--uui-icon);
-    --uui-picker-toggler-icon-clickable-hover: var(--uui-icon-hover);
-    --uui-picker-toggler-border-radius: var(--uui-border-radius);
+    --uui-picker_toggler-bg: var(--uui-control-bg);
+    --uui-picker_toggler-border: var(--uui-control-border);
+    --uui-picker_toggler-border-hover: var(--uui-control-border-hover);
+    --uui-picker_toggler-border-active: var(--uui-control-border-focus);
+    --uui-picker_toggler-border-error: var(--uui-error-50);
+    --uui-picker_toggler-placeholder: var(--uui-control-placeholder);
+    --uui-picker_toggler-text: var(--uui-control-text);
+    --uui-picker_toggler-text-disabled: var(--uui-control-text-disabled);
+    --uui-picker_toggler-icon: var(--uui-control-icon);
+    --uui-picker_toggler-icon-disabled: var(--uui-control-icon-disabled);
+    --uui-picker_toggler-icon-clickable: var(--uui-icon);
+    --uui-picker_toggler-icon-clickable-hover: var(--uui-icon-hover);
 
-    --uui-picker-toggler-font: var(--uui-font);
-    --uui-picker-toggler-font-weight: 400;
+    --uui-picker_toggler-border-radius: var(--uui-border-radius);
+
+    --uui-picker_toggler-font: var(--uui-font);
+    --uui-picker_toggler-font-weight: 400;
     //
     padding-top: 2px;
     padding-left: 5px;
@@ -60,31 +59,31 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     border-style: solid;
 
     &.mode-form {
-        background-color: var(--uui-picker-toggler-bg);
-        border-color: var(--uui-picker-toggler-border);
-        fill: var(--uui-picker-toggler-icon);
-        border-radius: var(--uui-picker-toggler-border-radius);
+        background-color: var(--uui-picker_toggler-bg);
+        border-color: var(--uui-picker_toggler-border);
+        fill: var(--uui-picker_toggler-icon);
+        border-radius: var(--uui-picker_toggler-border-radius);
 
         :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
             &:global(.uui-enabled) {
-                fill: var(--uui-picker-toggler-icon-clickable);
+                fill: var(--uui-picker_toggler-icon-clickable);
 
                 &:hover {
-                    fill: var(--uui-picker-toggler-icon-clickable-hover);
+                    fill: var(--uui-picker_toggler-icon-clickable-hover);
                 }
             }
 
             &:global(.uui-disabled) {
-                fill: var(--uui-picker-toggler-icon-disabled);
+                fill: var(--uui-picker_toggler-icon-disabled);
             }
         }
 
         &:hover {
-            border-color: var(--uui-picker-toggler-border-hover);
+            border-color: var(--uui-picker_toggler-border-hover);
         }
 
         &:global(.uui-focus) {
-            border-color: var(--uui-picker-toggler-border-active);
+            border-color: var(--uui-picker_toggler-border-active);
             outline: none;
         }
     }
@@ -92,7 +91,7 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     &.mode-cell {
         background-color: transparent;
         border-color: transparent;
-        fill: var(--uui-picker-toggler-icon);
+        fill: var(--uui-picker_toggler-icon);
 
         :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
             cursor: pointer;
@@ -109,10 +108,10 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         &:hover {
             :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
                 &:global(.uui-enabled) {
-                    fill: var(--uui-picker-toggler-icon-clickable);
+                    fill: var(--uui-picker_toggler-icon-clickable);
 
                     &:hover {
-                        fill: var(--uui-picker-toggler-icon-clickable-hover);
+                        fill: var(--uui-picker_toggler-icon-clickable-hover);
                     }
                 }
 
@@ -130,22 +129,22 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     &.mode-inline {
         background-color: initial;
         border-color: transparent;
-        border-radius: var(--uui-picker-toggler-border-radius);
-        fill: var(--uui-picker-toggler-icon-clickable);
+        border-radius: var(--uui-picker_toggler-border-radius);
+        fill: var(--uui-picker_toggler-icon-clickable);
 
         &:hover {
-            border-color: var(--uui-picker-toggler-border-hover);
+            border-color: var(--uui-picker_toggler-border-hover);
         }
 
         &:global(.uui-focus) {
-            border-color: var(--uui-picker-toggler-border-active);
+            border-color: var(--uui-picker_toggler-border-active);
             outline: none;
         }
     }
 
     &:global(.uui-invalid) {
         &.mode-form {
-            border-color: var(--uui-picker-toggler-border-error);
+            border-color: var(--uui-picker_toggler-border-error);
         }
     }
 
@@ -159,13 +158,13 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
 
     &:global(.uui-disabled) {
         @include disabled-input();
-        fill: var(--uui-picker-toggler-icon-disabled);
+        fill: var(--uui-picker_toggler-icon-disabled);
 
         :global(.uui-input) {
             cursor: default;
 
             &::placeholder {
-                color: var(--uui-picker-toggler-text-disabled);
+                color: var(--uui-picker_toggler-text-disabled);
             }
         }
 
@@ -178,12 +177,12 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         padding-left: 6px;
         padding-right: 6px;
         margin-bottom: 2px;
-        font-family: var(--uui-picker-toggler-font);
-        font-weight: var(--uui-picker-toggler-font-weight, normal);
-        color: var(--uui-picker-toggler-text);
+        font-family: var(--uui-picker_toggler-font);
+        font-weight: var(--uui-picker_toggler-font-weight, normal);
+        color: var(--uui-picker_toggler-text);
 
         &::placeholder {
-            color: var(--uui-picker-toggler-placeholder);
+            color: var(--uui-picker_toggler-placeholder);
         }
 
         &::-moz-placeholder {
@@ -193,8 +192,8 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
 
     :global(.uui-caption) {
         @include overflow-ellipsis();
-        font-family: var(--uui-picker-toggler-font);
-        font-weight: var(--uui-picker-toggler-font-weight, normal);
+        font-family: var(--uui-picker_toggler-font);
+        font-weight: var(--uui-picker_toggler-font-weight, normal);
         align-self: center;
         white-space: nowrap;
     }
@@ -209,11 +208,11 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     }
 
     :global(.uui-placeholder) {
-        color: var(--uui-picker-toggler-text);
+        color: var(--uui-picker_toggler-text);
     }
 
     :global(.uui-placeholder)::placeholder {
-        color: var(--uui-picker-toggler-text);
+        color: var(--uui-picker_toggler-text);
     }
 
     :global(.uui-placeholder)::-moz-placeholder {

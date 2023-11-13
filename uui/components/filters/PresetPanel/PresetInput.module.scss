@@ -20,21 +20,34 @@
 
         :global(.uui-icon-accept) {
             &:global(.-clickable) {
-                fill: var(--white);
                 background-color: var(--uui-accent-50);
+                border-radius: var(--uui-border-radius);
+                fill: var(--uui-accent-contrast);
 
                 &:hover {
-                    fill: var(--white);
+                    fill: var(--uui-accent-contrast);
                     background-color: var(--uui-accent-60);
+                }
+
+                &:active {
+                    fill: var(--uui-accent-contrast);
+                    background-color: var(--uui-accent-70);
                 }
             }
         }
 
         :global(.uui-icon-cancel) {
-            background-color: var(--uui-secondary-10);
+            background-color: var(--uui-surface-main);
+            border: 1px solid var(--uui-secondary-50);
+            border-radius: var(--uui-border-radius);
             margin-left: 1px;
+            box-sizing: border-box;
 
             &:hover {
+                background-color: var(--uui-secondary-10);
+            }
+
+            &:active {
                 background-color: var(--uui-secondary-20);
             }
         }

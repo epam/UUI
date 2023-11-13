@@ -38,7 +38,7 @@ export class TimePicker extends BaseTimePicker<TimePickerProps> {
                 isDisabled={ this.props.isDisabled }
                 isReadonly={ this.props.isReadonly }
                 isInvalid={ this.props.isInvalid }
-                cx={ [css.root, css.dateInput, this.props.inputCx] }
+                cx={ [css.root, css.timepickerInput, this.props.inputCx] }
                 value={ this.state.value }
                 onValueChange={ this.handleInputChange }
                 onCancel={ this.onClear }

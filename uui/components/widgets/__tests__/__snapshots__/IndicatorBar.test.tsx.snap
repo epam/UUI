@@ -5,7 +5,7 @@ exports[`IndicatorBar should be rendered correctly 1`] = `
   className="uui-indeterminate_bar root root size-12"
 >
   <div
-    className="bar"
+    className="progressBar"
   />
 </div>
 `;

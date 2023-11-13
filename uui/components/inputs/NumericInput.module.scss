@@ -1,20 +1,9 @@
 @use  '../../assets/styles/index.scss' as *;
 
 .root {
-    --uui-numeric-input-bg: var(--uui-control-bg);
-    --uui-numeric-input-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-numeric-input-border: var(--uui-control-border);
-    --uui-numeric-input-border-disabled: var(--uui-control-border-disabled);
-    --uui-numeric-input-border-hover: var(--uui-control-border-hover);
-    --uui-numeric-input-border-active: var(--uui-control-border-checked);
-    --uui-numeric-input-border-error: var(--uui-error-50);
-    --uui-numeric-input-placeholder: var(--uui-control-placeholder);
-    --uui-numeric-input-text: var(--uui-control-text);
-    --uui-numeric-input-text-disabled: var(--uui-control-text-disabled);
-    --uui-numeric-input-icon-clickable: var(--uui-icon);
-    --uui-numeric-input-icon-clickable-hover: var(--uui-icon-hover);
+    --uui-numeric_input-icon-clickable: var(--uui-icon);
+    --uui-numeric_input-icon-clickable-hover: var(--uui-icon-hover);
 
-    --uui-numeric-input-border-radius: var(--uui-border-radius);
     //
     &:global(.uui-input-box) {
         padding-right: 0;
@@ -29,7 +18,7 @@
 
             &:hover {
                 svg {
-                    fill: var(--uui-numeric-input-icon-clickable-hover);
+                    fill: var(--uui-numeric_input-icon-clickable-hover);
                 }
             }
         }
@@ -37,7 +26,7 @@
         :global(.uui-numeric-input-down-button) {
             &:hover {
                 svg {
-                    fill: var(--uui-numeric-input-icon-clickable-hover);
+                    fill: var(--uui-numeric_input-icon-clickable-hover);
                 }
             }
         }

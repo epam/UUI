@@ -57,7 +57,7 @@ Array [
     }
   >
     <div
-      className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+      className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
       style={
         Object {
           "display": "flex",
