@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
     useUuiContext, UseFormProps, useForm as uuiUseForm, INotification,
 } from '@epam/uui-core';
@@ -10,9 +10,9 @@ import { i18n } from '../../i18n';
 export function useForm<T>(props: UseFormProps<T>) {
     const context = useUuiContext();
 
-    const beforeLeave = (): Promise<boolean> => {
+    const beforeLeave = useCallback((): Promise<boolean> => {
         return context.uuiModals.show<boolean>((modalProps) => <ConfirmationModal caption={ i18n.form.modals.beforeLeaveMessage } { ...modalProps } />);
-    };
+    }, [context.uuiModals]);
 
     const loadUnsavedChanges = (): Promise<void> => {
         return context.uuiNotifications.show(
