@@ -1,8 +1,8 @@
+import { useRef, useEffect, useMemo, useCallback } from 'react';
 import {
-    useRef, useEffect, useMemo, useCallback,
-} from 'react';
-import {
-    mergeValidation, validate as uuiValidate, validateServerErrorState,
+    mergeValidation,
+    validate as uuiValidate,
+    validateServerErrorState,
 } from '../../data/validation';
 import { useForceUpdate } from '../../hooks';
 import { UuiContexts } from '../../types/contexts';
@@ -45,7 +45,8 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
     const propsRef = useRef(props);
     propsRef.current = props;
 
-    const getMetadata = (value: T) => (propsRef.current.getMetadata ? propsRef.current.getMetadata(value) : {});
+    const getMetadata = (value: T) =>
+        propsRef.current.getMetadata ? propsRef.current.getMetadata(value) : {};
 
     const prevFormValue = useRef<T>(props.value);
 
@@ -53,21 +54,58 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
 
     const forceUpdate = useForceUpdate();
 
-    const updateFormState = (update: (current: FormState<T>) => FormState<T>) => {
+    const updateFormState = (
+        update: (current: FormState<T>) => FormState<T>,
+    ) => {
         const newState = update(formState.current);
         formState.current = newState;
         forceUpdate();
     };
 
-    const handleLeave = props.beforeLeave
-        ? () =>
-            props.beforeLeave().then((res) => {
+    const handleSave = useCallback((isSavedBeforeLeave?: boolean) => {
+        let savePromise: any;
+        updateFormState((currentState) => {
+            let newState = { ...currentState, isInSaveMode: true };
+            newState.isInSaveMode = true;
+            newState = updateValidationStates(newState);
+            if (!newState.validationState.isInvalid) {
+                newState.isInProgress = true;
+                savePromise = propsRef.current
+                    .onSave(formState.current.form)
+                    .then((response) =>
+                        handleSaveResponse(response, isSavedBeforeLeave))
+                    .catch((err) => handleError(err));
+            } else {
+                savePromise = Promise.reject();
+            }
+            return newState;
+        });
+        return savePromise;
+    }, []);
+
+    const removeUnsavedChanges = useCallback(() => {
+        context.uuiUserSettings.set(props.settingsKey, null);
+    }, [context.uuiUserSettings, props.settingsKey]);
+
+    const handleLeave = useCallback(() => {
+        if (props.beforeLeave) {
+            return props.beforeLeave().then((res) => {
                 if (res) return handleSave(true);
                 removeUnsavedChanges();
-            })
-        : null;
+            });
+        }
+        return null;
+    }, [
+        props.beforeLeave,
+        handleSave,
+        removeUnsavedChanges,
+    ]);
 
-    const lock = useLock({ isEnabled: formState.current.isChanged, handleLeave });
+    const isLockEnabled = formState.current.isChanged;
+    useLock({
+        isEnabled: isLockEnabled,
+        handleLeave,
+    });
 
     const lens = useMemo(
         () =>
@@ -108,10 +146,6 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
             prevFormValue.current = props.value;
         }
     }, [props.value]);
-
-    const removeUnsavedChanges = () => {
-        context.uuiUserSettings.set(props.settingsKey, null);
-    };
 
     const getUnsavedChanges = (): T => {
         return context.uuiUserSettings.get<T>(props.settingsKey);
@@ -199,26 +233,6 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
         }
         return newState;
     };
-
-    const handleSave = useCallback((isSavedBeforeLeave?: boolean) => {
-        let savePromise: any;
-        updateFormState((currentState) => {
-            let newState = { ...currentState, isInSaveMode: true };
-            newState.isInSaveMode = true;
-            newState = updateValidationStates(newState);
-            if (!newState.validationState.isInvalid) {
-                newState.isInProgress = true;
-                savePromise = propsRef.current
-                    .onSave(formState.current.form)
-                    .then((response) => handleSaveResponse(response, isSavedBeforeLeave))
-                    .catch((err) => handleError(err));
-            } else {
-                savePromise = Promise.reject();
-            }
-            return newState;
-        });
-        return savePromise;
-    }, []);
 
     const handleError = (err?: any) => {
         updateFormState((currentValue) => ({
@@ -339,8 +353,8 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
     }, [handleSave]);
 
     const handleClose = useCallback(() => {
-        return lock ? lock.tryRelease() : Promise.resolve();
-    }, [lock]);
+        return isLockEnabled ? handleLeave() : Promise.resolve();
+    }, [isLockEnabled]);
 
     return {
         setValue: handleSetValue,
