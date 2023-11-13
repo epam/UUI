@@ -43,7 +43,7 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
         const subtitle = highlightSearchMatches ? getHighlightedSearchMatches(this.props.subtitle, search) : this.props.subtitle;
 
         return (
-            <FlexCell width="auto" cx={ [css.root, cx] }>
+            <FlexCell width="auto" cx={ [css.root, 'uui-typography', cx] }>
                 <FlexRow size={ itemSize } cx={ isMultiline && [css.multiline, css[`vertical-padding-${itemSize}`]] } spacing="12">
                     {avatarUrl && <Avatar isLoading={ isLoading } img={ avatarUrl } size={ this.getAvatarSize(itemSize, isMultiline).toString() as AvatarProps['size'] } />}
                     {icon && <IconContainer icon={ icon } />}

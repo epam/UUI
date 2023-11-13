@@ -228,39 +228,26 @@
     --uui-icon-active: var(--uui-neutral-80);
     --uui-icon-disabled: var(--uui-neutral-50);
 
-    --uui-scroll_bars-bg: var(--uui-neutral-40);
-    --uui-scroll_bars-bg-active: var(--uui-neutral-60);
-
     --uui-control-bg: var(--uui-neutral-0);
     --uui-control-bg-hover: var(--uui-neutral-60);
     --uui-control-bg-disabled: var(--uui-neutral-5);
-    --uui-control-bg-readonly: var(--uui-neutral-5);
 
     --uui-control-border: var(--uui-neutral-40);
     --uui-control-border-hover: var(--uui-neutral-60);
+    --uui-control-border-focus: var(--uui-primary-50);
     --uui-control-border-disabled: var(--uui-neutral-30);
-    --uui-control-border-readonly: var(--uui-neutral-30);
-    --uui-control-border-checked: var(--uui-primary-50);
-
-    --uui-control-label: var(--uui-text-primary);
-    --uui-control-label-disabled: var(--uui-text-disabled);
 
     --uui-control-placeholder: var(--uui-neutral-50);
 
     --uui-control-text: var(--uui-text-primary);
-    --uui-control-text-disabled: var(--uui-text-disabled);
+    --uui-control-text-disabled: var(--uui-text-tertiary);
 
     --uui-control-icon: var(--uui-neutral-50);
     --uui-control-icon-disabled: var(--uui-neutral-50);
 
-    --uui-control-checkbox-icon: var(--uui-neutral-0);
-
     --uui-outline-focus: #008ACE80;
 
-    --uui-search_result-bg-highlight: var(--uui-warning-10);
-
     --uui-skeleton: var(--uui-neutral-40);
-    --uui-skeleton-gradient: linear-gradient(90deg, var(--uui-neutral-40) 0%, var(--uui-neutral-10) 50%, var(--uui-neutral-40) 100%);
 
     --uui-border-radius: 0;
     --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
@@ -584,15 +571,15 @@
 
     .uui-icon_button.uui-color-neutral,
     .uui-icon_button.uui-color-gray60 {
-        --uui-icon-btn: var(--uui-neutral-60);
-        --uui-icon-btn-hover: var(--uui-neutral-70);
-        --uui-icon-btn-active: var(--uui-neutral-80);
+        --uui-icon_btn: var(--uui-neutral-60);
+        --uui-icon_btn-hover: var(--uui-neutral-70);
+        --uui-icon_btn-active: var(--uui-neutral-80);
     }
 
     .uui-icon_button.uui-color-secondary {
-        --uui-icon-btn: var(--uui-neutral-50);
-        --uui-icon-btn-hover: var(--uui-neutral-60);
-        --uui-icon-btn-active: var(--uui-neutral-70);
+        --uui-icon_btn: var(--uui-neutral-50);
+        --uui-icon_btn-hover: var(--uui-neutral-60);
+        --uui-icon_btn-active: var(--uui-neutral-70);
     }
 
     /* TooltipContainer */
@@ -665,6 +652,16 @@
         --uui-tag-border-radius: 0;
     }
 
+    .uui-dropdown-body {
+        --uui-dropdown_container-border-radius: 0;
+    }
+
+    .typography-uui {
+        :global(.promo-header), h1, h2, h3 {
+            font-family: var(--font-primary);
+        }
+    }
+
     /* fonts */
 
     .uui-font-sans {
@@ -691,13 +688,6 @@
     .uui-font-museo-slab {
         --uui-text-font: var(--font-promo);
         --uui-text-font-weight: normal;
-
-    }
-
-    .typography-uui {
-        :global(.promo-header), h1, h2, h3 {
-            font-family: var(--font-primary);
-        }
     }
 }
 
