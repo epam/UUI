@@ -23,9 +23,11 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     let content: React.ReactNode;
     const isEditable = !!props.onValueChange;
 
-    const handleEditableCellClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback(() => {
+    const handleEditableCellClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback((e) => {
         props.rowProps.onSelect?.(props.rowProps);
-        editorRef.current?.focus();
+        if (editorRef.current === e.target || editorRef.current.parentNode === e.target) {
+            editorRef.current?.focus();
+        }
     }, []);
 
     if (props.rowProps.isLoading) {
