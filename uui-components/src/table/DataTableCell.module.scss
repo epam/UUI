@@ -28,8 +28,9 @@
 
 .content-wrapper {
     display: flex;
-    flex-grow: 1;
+    align-self: stretch;
     min-width: 0;
+    flex: 1;
 }
 
 .editor-wrapper {
