@@ -52,9 +52,7 @@ export function ImageElement({
     const imageRef = useRef(null);
     const [currentWidth, setWidth] = useResizableStore().use.width();
 
-    console.log('currentWidth', currentWidth);
     const isCaptionEnabled = useMemo(() => {
-        console.log('currentWidth', currentWidth);
         return typeof currentWidth === 'number' && currentWidth >= MIN_CAPTION_WIDTH;
     }, [currentWidth]);
 
