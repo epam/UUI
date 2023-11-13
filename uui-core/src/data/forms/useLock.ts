@@ -13,7 +13,7 @@ export function useLock({ handleLeave, isEnabled }: UseLockProps) {
     useEffect(() => {
         if (!handleLeave || !isEnabled) return;
 
-        let unblock: any;
+        let unblock: () => void;
         let locked = true;
 
         const routerWillLeave = (nextLocation: Link) => {
