@@ -14,25 +14,20 @@ export function useLock({ handleLeave, isEnabled }: UseLockProps) {
         if (!handleLeave || !isEnabled) return;
 
         let unblock: () => void;
-        let locked = true;
 
-        const routerWillLeave = (nextLocation: Link) => {
-            if (locked) {
-                handleLeave()
-                    .then(() => {
-                        unblock();
-                        context.uuiRouter.redirect(nextLocation);
-                    })
-                    .catch(() => {});
-            }
-        };
+        const routerWillLeave = (nextLocation: Link) =>
+            handleLeave()
+                .then(() => {
+                    unblock();
+                    context.uuiRouter.redirect(nextLocation);
+                })
+                .catch(() => {});
 
         unblock = context.uuiRouter.block((location) => {
             routerWillLeave(location);
         });
 
         return () => {
-            locked = true;
             unblock();
         };
     }, [isEnabled, handleLeave, context.uuiRouter]);
