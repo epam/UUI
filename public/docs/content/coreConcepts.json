@@ -1,7 +1,7 @@
 [
   {
     "data": {},
-    "type": "uui-richTextEditor-header-3",
+    "type": "uui-richTextEditor-header-2",
     "children": [
       {
         "text": "Packages"
@@ -57,7 +57,24 @@
                 "uui-richTextEditor-code": true
               },
               {
-                "text": "— core of UUI components. They represent a set of essential non-styled components with business logic and global CSS classes. Generally, you don't need to use components from this package if the same component exists in a skin-specific package"
+                "text": "— core of UUI components. They represent a set of essential non-styled components with business logic and global CSS classes. Generally, you don't need to use components from this package if the same component exists in a skin-specific package or package of themable components"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "@epam/uui",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": "— a set of themable  components that can be used with both the default set of themes and custom themes"
               }
             ]
           }
@@ -195,7 +212,7 @@
     "data": {
       "checked": false
     },
-    "type": "paragraph",
+    "type": "note-warning",
     "children": [
       {
         "text": "Note:",
@@ -224,7 +241,7 @@
   },
   {
     "data": {},
-    "type": "uui-richTextEditor-header-3",
+    "type": "uui-richTextEditor-header-2",
     "children": [
       {
         "text": "Interfaces"
@@ -626,7 +643,7 @@
   },
   {
     "data": {},
-    "type": "uui-richTextEditor-header-3",
+    "type": "uui-richTextEditor-header-2",
     "children": [
       {
         "text": "Services"
@@ -956,7 +973,7 @@
   },
   {
     "data": {},
-    "type": "uui-richTextEditor-header-3",
+    "type": "uui-richTextEditor-header-2",
     "children": [
       {
         "text": "State management"
@@ -1010,10 +1027,94 @@
   },
   {
     "data": {},
+    "type": "uui-richTextEditor-header-2",
+    "children": [
+      {
+        "text": "Skins & Themes (updates in version 5.0)"
+      }
+    ]
+  },
+  {
+    "data": {},
     "type": "uui-richTextEditor-header-3",
     "children": [
       {
-        "text": "Skins"
+        "text": "Starting from version 5.0 we introduce \"Themes\" support to our users.",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "@epam/uui",
+        "uui-richTextEditor-code": true,
+        "color": "rgb(48, 50, 64)"
+      },
+      {
+        "text": " package now contains components, which can be styled differently according to an applied Theme - a set of global CSS variables. ",
+        "color": "rgb(48, 50, 64)"
+      },
+      {
+        "text": "@epam/electric",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " , "
+      },
+      {
+        "text": "@epam/loveship",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "@epam/promo",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "packages ",
+        "color": "rgb(48, 50, 64)"
+      },
+      {
+        "text": "are "
+      },
+      {
+        "text": "built on top of ",
+        "color": "rgb(48, 50, 64)"
+      },
+      {
+        "text": "@epam/uui",
+        "uui-richTextEditor-code": true,
+        "color": "rgb(48, 50, 64)"
+      },
+      {
+        "text": " package and named skins.",
+        "color": "rgb(48, 50, 64)"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "What is the difference between a skin and a theme?"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": ""
       }
     ]
   },
@@ -1087,6 +1188,436 @@
           }
         ]
       }
+    ]
+  },
+  {
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Comparison"
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "children": [
+      {
+        "type": "table_row",
+        "children": [
+          {
+            "type": "table_header_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Aspect"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 0,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_header_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Skin"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 0,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_header_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Theme"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 0,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "type": "table_row",
+        "children": [
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Development Speed",
+                    "color": "var(--tw-prose-bold)",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 1,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "May take ~ 2 - 4 months"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 1,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Faster ~ 1 - 2 weeks"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 1,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "type": "table_row",
+        "children": [
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Visual styling",
+                    "color": "var(--tw-prose-bold)",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 2,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "According to Brand"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 2,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "May lack some details"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 2,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ],
+        "size": 52
+      },
+      {
+        "type": "table_row",
+        "children": [
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Collaboration",
+                    "color": "var(--tw-prose-bold)",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 3,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Simple collaboration among team on the same project"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 3,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Collaboration may require established design guidelines"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 3,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "type": "table_row",
+        "children": [
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Maintenance",
+                    "color": "var(--tw-prose-bold)",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 4,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Requires more effort"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 4,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Easier"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 4,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "type": "table_row",
+        "children": [
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Flexibility",
+                    "color": "var(--tw-prose-bold)",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 5,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Less flexible for adapting to themes"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 5,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "More flexibility for diverse design themes"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 5,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "type": "table_row",
+        "children": [
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Brand adaptability",
+                    "uui-richTextEditor-bold": true
+                  }
+                ]
+              }
+            ],
+            "colIndex": 0,
+            "rowIndex": 6,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "High, custom, brand-specific components, brand names"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 1,
+            "rowIndex": 6,
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Low, pre-defined set of components, semantic names"
+                  }
+                ]
+              }
+            ],
+            "colIndex": 2,
+            "rowIndex": 6,
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      }
+    ],
+    "data": {
+      "cellSizes": [
+        200,
+        200
+      ]
+    },
+    "colSizes": [
+      225,
+      348,
+      355
     ]
   },
   {

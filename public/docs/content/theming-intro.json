@@ -1,0 +1,17 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "A theme in "
+      },
+      {
+        "text": "UUI",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": " defines the color of components, surfaces, shadow levels, typography, etc.\nThemes are used to customize component styles to fit the specific aesthetic of a brand or product."
+      }
+    ]
+  }
+]
