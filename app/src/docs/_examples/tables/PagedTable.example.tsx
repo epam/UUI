@@ -57,14 +57,21 @@ export default function PagedTable() {
             result.from = 0;
             return result;
         },
-        [state.page, state.pageSize],
+        [state.page, state.pageSize, svc.api.demo],
     );
 
     const dataSource = useLazyDataSource<Person, number, unknown>({
         api,
+        rowOptions: {
+            checkbox: {
+                isVisible: true,
+            },
+        },
         backgroundReload: true,
     }, [state.page]);
     const view = dataSource.useView(state, setState, {});
+
+    const listProps = view.getListProps();
 
     return (
         <Panel shadow cx={ css.container }>
