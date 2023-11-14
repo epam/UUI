@@ -75,7 +75,11 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     }
 
     const { textAlign, alignSelf } = props.column;
-    const styles = { textAlign, alignSelf, justifyContent };
+    const styles = {
+        textAlign,
+        alignSelf: alignSelf ?? (isEditable ? 'stretch' : undefined),
+        justifyContent,
+    };
 
     const getWrappedContent = () => (
         <div style={ styles } className={ css.contentWrapper }>
