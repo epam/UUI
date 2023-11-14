@@ -52,8 +52,7 @@ export default function PagedTable() {
                 page: state.page - 1, // server counts from 0, UI - from 1
                 pageSize: state.pageSize,
             });
-            setState((s) => ({ ...s, totalCount: result.totalCount }));
-            result.count = result.items.length;
+            // setState((s) => ({ ...s, totalCount: result.totalCount }));
             result.from = 0;
             return result;
         },
@@ -72,16 +71,16 @@ export default function PagedTable() {
     const view = dataSource.useView(state, setState, {});
 
     const listProps = view.getListProps();
-
+    console.log('listProps', listProps);
     return (
         <Panel shadow cx={ css.container }>
-            <DataTable { ...view.getListProps() } getRows={ view.getVisibleRows } value={ state } onValueChange={ setState } columns={ columns } headerTextCase="upper" />
+            <DataTable { ...listProps } getRows={ view.getVisibleRows } value={ state } onValueChange={ setState } columns={ columns } headerTextCase="upper" />
             <FlexRow size="36" padding="12" background="gray5">
                 <FlexSpacer />
                 <Paginator
                     value={ state.page }
                     onValueChange={ (newPage) => setState({ ...state, page: newPage, scrollTo: { index: 0 } }) }
-                    totalPages={ Math.ceil(state.totalCount / state.pageSize) }
+                    totalPages={ Math.ceil(listProps.totalCount / state.pageSize) }
                     size="30"
                 />
                 <FlexSpacer />
