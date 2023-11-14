@@ -54,12 +54,16 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
 
     const renderFooter = () => {
         const hasSelection = view.getSelectedRowsCount() > 0;
+        const rowsCount = view.getListProps().rowsCount;
+        const isEmptyRowsAndHasNoSelection = (rowsCount === 0 && !hasSelection);
+
         return (
             <>
                 {view.selectAll && (
                     <LinkButton
                         caption={ hasSelection ? i18n.pickerModal.clearAllButton : i18n.pickerModal.selectAllButton }
                         onClick={ hasSelection ? () => clearSelection() : () => view.selectAll.onValueChange(true) }
+                        isDisabled={ isEmptyRowsAndHasNoSelection }
                     />
                 )}
                 <FlexSpacer />

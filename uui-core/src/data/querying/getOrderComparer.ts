@@ -1,4 +1,4 @@
-import { SortingOption } from '../../types/dataQuery';
+import { SortingOption } from '../../types/dataSources';
 
 const eqPredicate = () => 0;
 

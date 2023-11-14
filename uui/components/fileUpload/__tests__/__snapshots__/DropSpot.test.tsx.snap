@@ -47,6 +47,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
         >
           <a
             className="container uui-anchor uui-enabled -clickable root link"
+            href={null}
             onClick={[Function]}
             onKeyDown={[Function]}
             role="link"
@@ -108,6 +109,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
         >
           <a
             className="container uui-anchor uui-enabled -clickable root link"
+            href={null}
             onClick={[Function]}
             onKeyDown={[Function]}
             role="link"

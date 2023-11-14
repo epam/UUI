@@ -1,117 +1,53 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Data can be fetched by passing an ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "api",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " function to the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "LazyDataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " props. This function is used to retrieve the data asynchronously. \nAPI is used to retrieve lists of items.\nIt is expected to be able to:\n- retrieve visible chunk of data (via ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "from/count",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " params);\n- retrieve specific items by the list of their ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "ids",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ";\n- retrieve children by parents (when ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "getChildCount",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " is specified and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "ctx.parentId",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " is passed)﻿.",
-            "marks": []
-          }
-        ]
+        "text": "Data can be fetched by passing an "
+      },
+      {
+        "text": "api",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " function to the "
+      },
+      {
+        "text": "LazyDataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " props. This function is used to retrieve the data asynchronously. \nAPI is used to retrieve lists of items.\nIt is expected to be able to:\n- retrieve visible chunk of data (via "
+      },
+      {
+        "text": "from/count",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " params);\n- retrieve specific items by the list of their "
+      },
+      {
+        "text": "ids",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ";\n- retrieve children by parents (when "
+      },
+      {
+        "text": "getChildCount",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " is specified and "
+      },
+      {
+        "text": "ctx.parentId",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " is passed)﻿."
       }
     ]
   }
-}
+]
