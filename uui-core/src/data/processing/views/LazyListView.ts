@@ -452,11 +452,12 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const lastVisibleIndex = this.getLastRecordIndex();
         const rootInfo = this.visibleTree.getNodeInfo(undefined);
         const rootCount = rootInfo.count;
+        const rootTotalCount = rootInfo.totalCount ?? rootCount;
 
         if (!this.props.getChildCount && rootCount) {
             // We have a flat list, and know exact count of items on top level. So, we can have an exact number of rows w/o iterating the whole tree.
             rowsCount = rootCount;
-            totalCount = rootCount;
+            totalCount = rootTotalCount;
         } else if (!this.hasMoreRows) {
             // We are at the bottom of the list. Some children might still be loading, but that's ok - we'll re-count everything after we load them.
             rowsCount = this.rows.length;

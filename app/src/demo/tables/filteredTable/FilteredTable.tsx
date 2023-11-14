@@ -54,9 +54,9 @@ export function FilteredTable() {
             page: rq.page - 1,
             pageSize: rq.pageSize,
         });
-        setTotalCount(() => result.totalCount);
-        result.count = result.items.length;
-        result.from = 0;
+        // setTotalCount(() => result.totalCount);
+        // result.count = result.items.length;
+        // result.from = 0;
         return result;
     }, [svc.api.demo]);
 

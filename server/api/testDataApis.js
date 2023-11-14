@@ -142,6 +142,7 @@ router.post('/persons-paged', async (req, res) => {
     const result = {
         items,
         totalCount: filteredAndSorted.items.length,
+        count: items.length,
         pageCount: Math.ceil(filteredAndSorted.items.length / pageSize),
     };
     res.json(result);
