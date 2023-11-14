@@ -14,9 +14,17 @@
 * typography files removed from skins and imported by default via import into the `@epam/uui` package, if you used mixins before, add the `uui-typography` class where you need it now
 
 **What's Fixed**
-* [DataTableRow]: table row now consider rawProps property data
 * [DatePickerHeader]: fixed 'navIconLeft', 'navIconRight' props
 * [useForm]: don't reset inChanged flag in case when server validation fails
+* [DataTableRow]: table row now consider rawProps property data
+* [DropdownMenuButton]: make `isActive` usable
+* [PickerInput]: set `overflow: hidden;` on open for mobile
+* [DataTable]: fix columns reorder when there are hidden columns
+* [TextArea and TextInput]: fix maxLength for Android
+* [DataTable]: fix checkboxes, now they always pinned to the left column
+* [PickerInput]: Disable select all button if options are empty and it has no selection
+* [DataTable]: fixed missing `role=table`
+* [SlateEditor]: allow writing caption after image insertion
 
 # 5.2.0 - 16.10.2023
 

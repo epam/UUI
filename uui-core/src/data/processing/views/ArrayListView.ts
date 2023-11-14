@@ -5,8 +5,15 @@ import { BaseListView } from './BaseListView';
 import { ITree, NOT_FOUND_RECORD, Tree } from './tree';
 
 export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
+    /** A pure function that gets search value for each item.
+     Default: (item) => item.name.
+     */
     getSearchFields?(item: TItem): string[];
+    /** A pure function that gets sorting value for current sorting value */
     sortBy?(item: TItem, sorting: SortingOption): any;
+    /** A pure function that returns filter callback to be applied for each item.
+     * The callback should return true, if item passed the filter.
+     *  */
     getFilter?(filter: TFilter): (item: TItem) => boolean;
     /**
      * Enables sorting of search results by relevance.
@@ -28,6 +35,7 @@ export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListVie
 }
 
 export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
+    /** Data, which should be represented by a DataSource. */
     items?: TItem[] | ITree<TItem, TId>;
 }
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
-import { useUuiContext } from '../services';
+import { useUuiContext, UuiError, ErrorPageInfo } from '../services';
 import {
-    ApiCallInfo, ApiRecoveryReason, UuiError, UuiErrorInfo,
+    ApiCallInfo, ApiRecoveryReason,
 } from '../types';
 import { useForceUpdate } from './useForceUpdate';
 import { isClientSide } from '../helpers/ssr';
@@ -14,12 +14,12 @@ export type UuiRecoveryErrorInfo = {
 export type ApiCallErrorType = 'permissionDenied' | 'notFound' | 'serverError' | 'serviceUnavailable' | 'default';
 
 export interface UseUuiErrorOptions {
-    errorConfig?: Record<ApiCallErrorType, UuiErrorInfo>;
+    errorConfig?: Record<ApiCallErrorType, ErrorPageInfo>;
     recoveryConfig?: Record<ApiRecoveryReason, UuiRecoveryErrorInfo>;
 }
 
 export interface UseUuiErrorProps {
-    getErrorInfo: (error: any, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;
+    getErrorInfo: (error: any, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo;
     options?: UseUuiErrorOptions;
 }
 
@@ -63,7 +63,7 @@ export const useUuiError = (props: UseUuiErrorProps) => {
         };
     }, []);
 
-    const getDefaultErrorInfo = (errorCode: number): UuiErrorInfo => {
+    const getDefaultErrorInfo = (errorCode: number): ErrorPageInfo => {
         switch (errorCode) {
             case 403:
                 return errorConfig?.permissionDenied;
@@ -78,7 +78,7 @@ export const useUuiError = (props: UseUuiErrorProps) => {
         }
     };
 
-    const getError = (error: any, errorInfo: UuiErrorInfo) => {
+    const getError = (error: any, errorInfo: ErrorPageInfo) => {
         const resultError = getErrorInfo ? getErrorInfo(error, errorInfo) : errorInfo;
         return { errorType: 'error', errorInfo: resultError };
     };

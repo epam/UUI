@@ -29,10 +29,20 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     const inputElement = React.useRef<HTMLInputElement>();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        props.onValueChange(e.target.value);
+        // Android does not support maxLength
+        // https://studysection.com/blog/the-html-maxlength-attribute-is-not-working-as-expected-on-android-phones/
+        const targetValue = e.target.value;
+        let newValue;
+        if (props.maxLength && targetValue.length > props.maxLength) {
+            newValue = targetValue.slice(0, props.maxLength);
+        } else {
+            newValue = targetValue;
+        }
+
+        props.onValueChange(newValue);
 
         if (props.getValueChangeAnalyticsEvent) {
-            const event = props.getValueChangeAnalyticsEvent(e.target.value, props.value);
+            const event = props.getValueChangeAnalyticsEvent(newValue, props.value);
             context.uuiAnalytics.sendEvent(event);
         }
     };

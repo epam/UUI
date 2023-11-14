@@ -33,7 +33,7 @@ export function TagPicker(props: TagPickerProps) {
 
             allTags.sort();
 
-            let found = runDataQuery(allTags as any, request, (tag) => [tag]);
+            let found = runDataQuery<any>(allTags as any, request, (tag) => [tag]);
 
             if (request.search) {
                 const newTag = request.search.trim();

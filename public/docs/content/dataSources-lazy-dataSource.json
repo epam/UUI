@@ -40,15 +40,6 @@
     "type": "paragraph",
     "children": [
       {
-        "text": ""
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
-      {
         "text": "LazyDataSourceProps",
         "uui-richTextEditor-code": true
       },
