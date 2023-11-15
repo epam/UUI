@@ -479,11 +479,11 @@
         --uui-color-contrast: var(--white);
     }
 
-    /* TooltipContainer */
+    /* Tooltip */
 
     .uui-tooltip-container.uui-color-neutral {
         --uui-tooltip-bg: var(--white);
-        --uui-color-contrast: var(--uui-neutral-80);
+        --uui-tooltip-text: var(--uui-text-primary);
     }
 
     .uui-tooltip-container.uui-color-critical {
@@ -492,7 +492,7 @@
 
     .uui-tooltip-container.uui-color-contrast {
         --uui-tooltip-bg: var(--night800);
-        --uui-color-contrast: var(--white);
+        --uui-tooltip-text: var(--uui-text-contrast);
     }
 
     /* CuntIndicator */
