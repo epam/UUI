@@ -1,0 +1,20 @@
+import * as React from 'react';
+import { RadioInput } from '@epam/uui';
+import { ISharedPropEditor } from '../../../types';
+
+export function SingleUnknownExample(props: ISharedPropEditor) {
+    const { examples, exampleId, onExampleIdChange, name } = props;
+    const singleExample = examples[0];
+    const isChecked = exampleId !== undefined;
+    const handleChange = (newIsChecked: boolean) => {
+        onExampleIdChange(newIsChecked ? singleExample.id : undefined);
+    };
+    return (
+        <RadioInput
+            value={ isChecked }
+            onValueChange={ handleChange }
+            size="18"
+            label={ name }
+        />
+    );
+}
