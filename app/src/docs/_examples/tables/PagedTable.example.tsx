@@ -4,16 +4,10 @@ import { DataTable, Panel, Text, Paginator, FlexRow, FlexSpacer } from '@epam/uu
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
 
-export interface PagedTableState extends DataSourceState<{}> {
-    page?: number;
-    pageSize?: number;
-    totalCount?: number;
-}
-
 export default function PagedTable() {
     const svc = useUuiContext();
-    const [state, setState] = useState<PagedTableState>({
-        page: 1, visibleCount: 15, totalCount: 0, pageSize: 100,
+    const [state, setState] = useState<DataSourceState>({
+        page: 0, pageSize: 5,
     });
 
     const columns: DataColumnProps<Person>[] = useMemo(
@@ -44,14 +38,10 @@ export default function PagedTable() {
             const result = await svc.api.demo.personsPaged({
                 ...rq,
                 filter: { departmentId: 13 }, // to get less results and non round-numbered number of people
-                page: state.page - 1, // server counts from 0, UI - from 1
-                pageSize: state.pageSize,
             });
-            // setState((s) => ({ ...s, totalCount: result.totalCount }));
-            result.from = 0;
             return result;
         },
-        [state.page, state.pageSize, svc.api.demo],
+        [svc.api.demo],
     );
 
     const dataSource = useLazyDataSource<Person, number, unknown>({
@@ -62,11 +52,11 @@ export default function PagedTable() {
             },
         },
         backgroundReload: true,
-    }, [state.page]);
+    }, []);
+
     const view = dataSource.useView(state, setState, {});
 
     const listProps = view.getListProps();
-    console.log('listProps', listProps);
     return (
         <Panel background="surface" shadow cx={ css.container }>
             <DataTable { ...listProps } getRows={ view.getVisibleRows } value={ state } onValueChange={ setState } columns={ columns } headerTextCase="upper" />
@@ -75,7 +65,7 @@ export default function PagedTable() {
                 <Paginator
                     value={ state.page }
                     onValueChange={ (newPage) => setState({ ...state, page: newPage, scrollTo: { index: 0 } }) }
-                    totalPages={ Math.ceil(listProps.totalCount / state.pageSize) }
+                    totalPages={ Math.ceil((listProps.totalCount ?? 0) / state.pageSize) }
                     size="30"
                 />
                 <FlexSpacer />

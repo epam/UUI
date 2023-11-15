@@ -90,6 +90,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     private loadedValue: DataSourceState<TFilter, TId> = null;
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
     private fullTree: ITree<TItem, TId> = null;
+    private listProps?: DataSourceListProps;
 
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
@@ -446,11 +447,17 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (this.props.legacyLoadDataBehavior) {
             this.loadData();
         }
+        // if data is reloading, to prevent twitching the UI (of pagination, for example)
+        // it is required to return previous listProps.
+        if (this.isReloading && this.listProps) {
+            return this.listProps;
+        }
 
         let rowsCount: number;
         let totalCount: number;
         const lastVisibleIndex = this.getLastRecordIndex();
         const rootInfo = this.visibleTree.getNodeInfo(undefined);
+
         const rootCount = rootInfo.count;
         const rootTotalCount = rootInfo.totalCount ?? rootCount;
 
@@ -475,7 +482,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             rowsCount = Math.max(this.rows.length, lastVisibleIndex + rowsToAddBelowLastKnown);
         }
 
-        return {
+        this.listProps = {
             rowsCount,
             knownRowsCount: this.rows.length,
             exactRowsCount: this.rows.length,
@@ -483,6 +490,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             selectAll: this.selectAll,
             isReloading: this.isReloading,
         };
+
+        return this.listProps;
     };
 
     protected getChildCount = (item: TItem): number | undefined => {
