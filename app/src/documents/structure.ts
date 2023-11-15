@@ -143,6 +143,8 @@ export const items: DocItem[] = [
     { id: 'notificationContextDoc', name: 'Notification Context', component: NotificationContextDoc, parentId: 'contexts', tags: ['contexts'] },
     { id: 'lockContextDoc', name: 'Lock Context', component: LockContextDoc, parentId: 'contexts', tags: ['contexts'] },
 
+    { id: 'theming', name: 'Theming', component: ThemingDoc },
+
     { id: 'testing', name: 'Testing' },
     { id: 'testing-basics', name: 'Basics', component: UtGuideBasicsDoc, parentId: 'testing' },
     { id: 'testing-cookbook', name: 'Cookbook', component: UtGuideCookbookDoc, parentId: 'testing' },
@@ -151,7 +153,6 @@ export const items: DocItem[] = [
     { id: 'advanced', name: 'Advanced' },
     { id: 'localization', name: 'Internationalization', component: InternationalizationDoc, parentId: 'advanced' },
     { id: 'dragAndDrop', name: 'Drag And Drop', component: DragAndDropDoc, parentId: 'advanced' },
-    { id: 'theming', name: 'Theming', component: ThemingDoc, parentId: 'advanced' },
 
     { id: 'projects', name: 'Projects', component: ProjectsDoc },
 
