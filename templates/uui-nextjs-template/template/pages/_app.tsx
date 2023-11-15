@@ -1,4 +1,3 @@
-import { skinContext } from '@epam/promo';
 import { UuiContext, useUuiServicesSsr } from '@epam/uui-core';
 import type { AppProps } from 'next/app';
 import { apiDefinition, TApi } from "../helpers/apiDefinition";
@@ -14,7 +13,6 @@ function MyApp(props: MyAppProps<AppContextType>) {
     const { Component, pageProps, appContext, router } = props;
     const { services } = useUuiServicesSsr<TApi, AppContextType>({
         appContext,
-        skinContext,
         apiDefinition,
         router,
     });

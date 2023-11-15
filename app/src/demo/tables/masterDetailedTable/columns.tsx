@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton,
-} from '@epam/promo';
+import { Text, Badge, FlexRow, IconButton, LinkButton, BadgeColor } from '@epam/uui';
 import { DataColumnProps, DataQueryFilter } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './DemoTable.module.scss';
@@ -24,7 +22,7 @@ export const personColumns: DataColumnProps<Person, PersonTableRecordId[], DataQ
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as EpamAdditionalColor } caption={ p.profileStatus } />
+                    <Badge size="24" indicator fill="outline" color={ p.profileStatus.toLowerCase() as BadgeColor } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         width: 140,

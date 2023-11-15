@@ -1,8 +1,8 @@
 const path = require('path');
-const { uuiRoot } = require('../constants.js');
-const { APP_TARGET_DIR, COLLECT_SIZE_GLOB, TEMPLATE_APP_TARGET_DIR } = require('./bundleStatsConstants.js');
-const { getAllMonorepoPackages } = require('../monorepoUtils.js');
-const { isRollupModule } = require('../moduleBuildUtils.js');
+const { uuiRoot } = require('../constants');
+const { APP_TARGET_DIR, COLLECT_SIZE_GLOB, TEMPLATE_APP_TARGET_DIR } = require('./bundleStatsConstants');
+const { getAllMonorepoPackages } = require('../monorepoUtils');
+const { isRollupModule } = require('../moduleBuildUtils');
 const SourceMapExplorer = require('source-map-explorer');
 const { UNTRACKED_MODULES } = require('./bundleStatsConstants');
 

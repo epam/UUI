@@ -16,11 +16,11 @@
 }
 
 .text {
-    color: #6C6F80;
-    border-bottom: 1px dashed #6C6F80;
+    color: var(--uui-text-tertiary);
+    border-bottom: 1px dashed var(--uui-text-tertiary);
     padding: 0;
 }
 
 .icon-blue {
-    fill: var(--uui-primary);
+    fill: var(--uui-primary-50);
 }

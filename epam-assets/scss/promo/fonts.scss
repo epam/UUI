@@ -1,7 +1,17 @@
-$font-sans: 'Sans Regular', Arial, sans-serif;
-$font-sans-semibold: 'Sans Semibold', Arial, sans-serif;
-$font-sans-italic: 'Sans Italic', Arial, sans-serif;
-$font-redacted: 'Redacted';
+$font-source-sans: 'Source Sans Pro', sans-serif;
 $font-museo-sans: 'Museo Sans', 'Sans Semibold', Arial, sans-serif;
 $font-museo-slab: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
-$font-roboto-mono: 'Roboto Mono', Arial, sans-serif;
+$font-redacted: 'Redacted';
+$font-roboto-mono: 'Roboto Mono', monospace;
+/**
+ * @deprecated Please use "$font-source-sans" us "font-weight: 400" instead "$font-sans"!
+ */
+$font-sans: 'Sans Regular', Arial, sans-serif;
+/**
+ * @deprecated Please use "$font-source-sans" us "font-weight: 600" instead "$font-sans-semibold"!
+ */
+$font-sans-semibold: 'Sans Semibold', Arial, sans-serif;
+/**
+ * @deprecated Please use "$font-source-sans" us "font-weight: 400" & "font-style: italic" instead "$font-sans-italic"!
+ */
+$font-sans-italic: 'Sans Italic', Arial, sans-serif;

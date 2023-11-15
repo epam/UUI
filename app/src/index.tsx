@@ -2,20 +2,20 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
+import { init as initApm } from '@elastic/apm-rum';
 import {
     Router6AdaptedRouter, useUuiServices, DragGhost,
     UuiContext, GAListener, IProcessRequest,
 } from '@epam/uui-core';
 import { Snackbar, Modals, PortalRoot } from '@epam/uui-components';
-import { skinContext } from '@epam/promo';
 import { AmplitudeListener } from './analyticsEvents';
 import { svc } from './services';
 import App from './App';
 import { getApi, TApi, TAppContext } from './data';
 import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
+import '@epam/assets/theme/theme_loveship_dark.scss';
 import './index.module.scss';
-import { init as initApm } from '@elastic/apm-rum';
 
 const router6 = createBrowserRouter([
     { path: '*', element: <App /> },
@@ -45,7 +45,7 @@ apm.addLabels({ project: 'epm-uui', service_type: 'ui' });
 
 function UuiEnhancedApp() {
     const [isLoaded, setIsLoaded] = React.useState(false);
-    const { services } = useUuiServices<TApi, TAppContext>({ apiDefinition, router, skinContext });
+    const { services } = useUuiServices<TApi, TAppContext>({ apiDefinition, router });
 
     React.useEffect(() => {
         Object.assign(svc, services);

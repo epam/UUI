@@ -1,6 +1,21 @@
 @use  '../../../assets/styles/effects' as *;
 
 .dropdown-body {
+    --uui-main_menu-text: var(--uui-text-contrast);
+    --uui-main_menu-text-active: var(--uui-text-contrast);
+    --uui-main_menu-active: var(--uui-neutral-90);
+    --uui-main_menu-border-active: var(--uui-primary-50);
+
+    --uui-main_menu-dropdown-bg: var(--uui-neutral-90);
+    --uui-main_menu-dropdown-bg-hover: var(--uui-neutral-80);
+    --uui-main_menu-dropdown-shadow: none;
+    --uui-main_menu-dropdown-border-radius: none;
+
+    --uui-main_menu-icon: var(--uui-text-contrast);
+    --uui-main_menu-icon-hover: var(--uui-text-contrast);
+    --uui-main_menu-icon-active: var(--uui-text-contrast);
+
+    //
     display: flex;
     flex-direction: column;
     min-width: 200px;
@@ -21,7 +36,7 @@
 
     :global(.uui-button-box) {
         &:global(.uui-active) {
-            border: none;
+            border: 0 none;
             border-left: 3px solid var(--uui-main_menu-border-active);
             background-color: var(--uui-main_menu-hover);
         }

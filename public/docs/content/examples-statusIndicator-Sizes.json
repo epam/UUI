@@ -1,0 +1,10 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "StatusIndicator has a prop caption to set text caption. UUI supports three size variants. You can change size by passing size prop. Size '24px' is used by default."
+      }
+    ]
+  }
+]

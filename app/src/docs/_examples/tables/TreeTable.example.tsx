@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Location } from '@epam/uui-docs';
-import {
-    DataSourceState, DataColumnProps, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse,
-} from '@epam/uui-core';
-import {
-    Text, LinkButton, DataTable, Panel,
-} from '@epam/promo';
+import { DataSourceState, DataColumnProps, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui-core';
+import { Text, LinkButton, DataTable, Panel } from '@epam/uui';
 import css from './TablesExamples.module.scss';
 
 export default function TreeTableExample() {
@@ -96,7 +92,7 @@ export default function TreeTableExample() {
     });
 
     return (
-        <Panel shadow cx={ css.container } rawProps={ { role: 'tree_grid' } }>
+        <Panel background="surface" shadow cx={ css.container } rawProps={ { role: 'tree_grid' } }>
             <DataTable
                 getRows={ view.getVisibleRows }
                 { ...view.getListProps() }

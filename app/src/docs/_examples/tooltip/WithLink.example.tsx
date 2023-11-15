@@ -1,14 +1,12 @@
 import React from 'react';
-import {
-    FlexCell, FlexRow, IconContainer, Text, Tooltip,
-} from '@epam/promo';
+import { FlexCell, FlexRow, IconContainer, Text, Tooltip } from '@epam/uui';
 import { ReactComponent as myIcon } from '@epam/assets/icons/common/notification-warning-outline-18.svg';
 import css from './WithLinkExample.module.scss';
 
 export default function LinkTooltipExample() {
     const renderTypesMarkup = () => (
         <FlexCell width="auto">
-            <Text cx={ css.header } fontSize="14" lineHeight="18" font="sans-semibold">
+            <Text cx={ css.header } fontSize="14" lineHeight="18" font="semibold">
                 Deprecation “Working from home”
             </Text>
             <Text cx={ css.content } fontSize="12" lineHeight="18">
@@ -22,7 +20,7 @@ export default function LinkTooltipExample() {
     return (
         <FlexRow alignItems="center">
             <Text fontSize="14">Working from home allowed for employees only</Text>
-            <Tooltip content={ renderTypesMarkup() } placement="top" color="white" closeOnMouseLeave="boundary">
+            <Tooltip content={ renderTypesMarkup() } placement="top" color="neutral" closeOnMouseLeave="boundary">
                 <IconContainer icon={ myIcon } style={ { justifyContent: 'center', marginLeft: '3px' } } cx={ css.iconAmber } />
             </Tooltip>
         </FlexRow>

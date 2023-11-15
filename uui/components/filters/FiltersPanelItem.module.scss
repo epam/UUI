@@ -1,8 +1,6 @@
 @use  '../../assets/styles/index' as *;
 
 .header {
-    font-family: var(--uui-filters-panel-header-font);
-    font-weight: var(--uui-filters-panel-header-font-weight, normal);
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -1,5 +1,63 @@
 .root {
+    --uui-text: var(--uui-color-50);
+    --uui-text-font: var(--uui-font);
+    --uui-text-font-weight: 400;
+    --uui-text-font-style: normal;
+    //
     font-family: var(--uui-text-font);
-    font-weight: var(--uui-text-font-weight, normal);
+    font-weight: var(--uui-text-font-weight);
+    font-style: var(--uui-text-font-style);
     color: var(--uui-text);
+
+    &:global(.uui-text.uui-color-brand) {
+        --uui-text: var(--uui-text-brand);
+    }
+
+    &:global(.uui-text.uui-color-primary) {
+        --uui-text: var(--uui-text-primary);
+    }
+
+    &:global(.uui-text.uui-color-secondary) {
+        --uui-text: var(--uui-text-secondary);
+    }
+
+    &:global(.uui-text.uui-color-disabled) {
+        --uui-text: var(--uui-text-disabled);
+    }
+
+    &:global(.uui-text.uui-color-contrast) {
+        --uui-text: var(--uui-text-contrast);
+    }
+
+    &:global(.uui-text.uui-color-white) {
+        --uui-text: var(--uui-neutral-0);
+    }
+
+    &:global(.uui-font-regular) {
+        --uui-text-font: var(--uui-font);
+        --uui-text-font-weight: 400;
+    }
+
+    &:global(.uui-font-semibold) {
+        --uui-text-font: var(--uui-font);
+        --uui-text-font-weight: 600;
+
+    }
+
+    &:global(.uui-font-italic) {
+        --uui-text-font: var(--uui-font);
+        --uui-text-font-weight: 400;
+        --uui-text-font-style: italic;
+
+    }
+
+    &:global(.uui-font-primary) {
+        --uui-text-font: var(--font-primary);
+        --uui-text-font-weight: 400;
+    }
+
+    &:global(.uui-font-promo) {
+        --uui-text-font: var(--font-promo);
+        --uui-text-font-weight: 400;
+    }
 }

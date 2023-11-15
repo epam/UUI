@@ -1,0 +1,10 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Use CountIndicator as a compound component to display additional data."
+      }
+    ]
+  }
+]

@@ -13,7 +13,7 @@ exports[`PickerList should open body 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 -clickable"
+          class="container root size-18 uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -37,7 +37,7 @@ exports[`PickerList should open body 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 -clickable"
+          class="container root size-18 uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -61,7 +61,7 @@ exports[`PickerList should open body 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 -clickable"
+          class="container root size-18 uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -85,7 +85,7 @@ exports[`PickerList should open body 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 -clickable"
+          class="container root size-18 uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -109,7 +109,7 @@ exports[`PickerList should open body 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 -clickable"
+          class="container root size-18 uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -127,7 +127,7 @@ exports[`PickerList should open body 1`] = `
         </label>
       </div>
       <button
-        class="container uui-button-box uui-enabled -clickable root size-36 uui-no-left-icon uui-no-right-icon link-button-primary"
+        class="container uui-button-box uui-enabled -clickable uui-link_button root size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
         tabindex="0"
         type="button"
       >
@@ -148,15 +148,15 @@ exports[`PickerList should open body 1`] = `
       />
       <div
         aria-modal="true"
-        class="uui-modal-window modal container"
+        class="uui-modal-window root modal container"
         role="dialog"
         style="width: 600px; height: 700px;"
       >
         <div
-          class="root size-36 padding-24 vPadding-12 spacing-12 modalHeader container align-items-center"
+          class="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
         >
           <div
-            class="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
+            class="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
           >
             Please select 
           </div>
@@ -169,7 +169,7 @@ exports[`PickerList should open body 1`] = `
           >
             <button
               aria-label="Close modal"
-              class="container uui-button-box uui-enabled -clickable icon-button-default root"
+              class="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
               tabindex="0"
               type="button"
             >
@@ -188,7 +188,7 @@ exports[`PickerList should open body 1`] = `
           style="min-width: 0; flex-basis: 0px;"
         >
           <div
-            class="root size-36 vPadding-24 container align-items-center"
+            class="uui-flex-row root size-36 vPadding-24 container align-items-center"
           >
             <div
               class="container uui-input-box -clickable uui-focus root size-36 mode-form"
@@ -214,7 +214,7 @@ exports[`PickerList should open body 1`] = `
           </div>
         </div>
         <div
-          class="root size-36 body modal undefined container align-items-center"
+          class="uui-flex-row root size-36 body modal undefined container align-items-center"
         >
           <div
             class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
@@ -233,11 +233,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="1"
                     aria-selected="false"
-                    class="pickerRow container -clickable align-items-center"
+                    class="uui-flex-row pickerRow container -clickable align-items-center"
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -248,7 +248,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
                             Elementary
                           </div>
@@ -262,11 +262,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="2"
                     aria-selected="false"
-                    class="pickerRow container -clickable align-items-center"
+                    class="uui-flex-row pickerRow container -clickable align-items-center"
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -277,7 +277,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
                             Elementary+
                           </div>
@@ -291,11 +291,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="3"
                     aria-selected="false"
-                    class="pickerRow container -clickable align-items-center"
+                    class="uui-flex-row pickerRow container -clickable align-items-center"
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -306,7 +306,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
                             Pre-Intermediate
                           </div>
@@ -320,11 +320,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="4"
                     aria-selected="false"
-                    class="pickerRow container -clickable align-items-center"
+                    class="uui-flex-row pickerRow container -clickable align-items-center"
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -335,7 +335,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
                             Pre-Intermediate+
                           </div>
@@ -349,11 +349,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="5"
                     aria-selected="false"
-                    class="pickerRow container -clickable align-items-center"
+                    class="uui-flex-row pickerRow container -clickable align-items-center"
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -364,7 +364,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
                             Intermediate
                           </div>
@@ -378,11 +378,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="6"
                     aria-selected="false"
-                    class="pickerRow container -clickable align-items-center"
+                    class="uui-flex-row pickerRow container -clickable align-items-center"
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -393,7 +393,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
                             Intermediate+
                           </div>
@@ -407,11 +407,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="7"
                     aria-selected="false"
-                    class="pickerRow container -clickable align-items-center"
+                    class="uui-flex-row pickerRow container -clickable align-items-center"
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -422,7 +422,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
                             Upper-Intermediate
                           </div>
@@ -436,11 +436,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="8"
                     aria-selected="false"
-                    class="pickerRow container -clickable align-items-center"
+                    class="uui-flex-row pickerRow container -clickable align-items-center"
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -451,7 +451,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
                             Upper-Intermediate+
                           </div>
@@ -465,11 +465,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="9"
                     aria-selected="false"
-                    class="pickerRow container -clickable align-items-center"
+                    class="uui-flex-row pickerRow container -clickable align-items-center"
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -480,7 +480,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
                             Advanced
                           </div>
@@ -494,11 +494,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="10"
                     aria-selected="false"
-                    class="pickerRow container -clickable align-items-center"
+                    class="uui-flex-row pickerRow container -clickable align-items-center"
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -509,7 +509,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
                             Advanced+
                           </div>
@@ -523,11 +523,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="11"
                     aria-selected="false"
-                    class="pickerRow container -clickable align-items-center"
+                    class="uui-flex-row pickerRow container -clickable align-items-center"
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -538,7 +538,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
                             Proficiency
                           </div>
@@ -576,13 +576,13 @@ exports[`PickerList should open body 1`] = `
           </div>
         </div>
         <div
-          class="root size-36 padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+          class="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
         >
           <div
             class="flexSpacer"
           />
           <button
-            class="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-outline"
+            class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
             tabindex="0"
             type="button"
           >
@@ -593,7 +593,7 @@ exports[`PickerList should open body 1`] = `
             </div>
           </button>
           <button
-            class="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-solid"
+            class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
             tabindex="0"
             type="button"
           >
@@ -621,7 +621,7 @@ exports[`PickerList should render with maximum props 1`] = `
         role="option"
       >
         <label
-          class="container uui-checkbox-container root size-18 mode-form -clickable"
+          class="container uui-checkbox-container root size-18 mode-form uui-color-primary -clickable"
           tabindex="-1"
         >
           <div
@@ -655,7 +655,7 @@ exports[`PickerList should render with maximum props 1`] = `
         role="option"
       >
         <label
-          class="container uui-checkbox-container root size-18 mode-form -clickable"
+          class="container uui-checkbox-container root size-18 mode-form uui-color-primary -clickable"
           tabindex="-1"
         >
           <div
@@ -698,7 +698,7 @@ exports[`PickerList should render with minimum props 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 -clickable"
+          class="container root size-18 uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -722,7 +722,7 @@ exports[`PickerList should render with minimum props 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 -clickable"
+          class="container root size-18 uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -746,7 +746,7 @@ exports[`PickerList should render with minimum props 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 -clickable"
+          class="container root size-18 uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -770,7 +770,7 @@ exports[`PickerList should render with minimum props 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 -clickable"
+          class="container root size-18 uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -794,7 +794,7 @@ exports[`PickerList should render with minimum props 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 -clickable"
+          class="container root size-18 uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -812,7 +812,7 @@ exports[`PickerList should render with minimum props 1`] = `
         </label>
       </div>
       <button
-        class="container uui-button-box uui-enabled -clickable root size-36 uui-no-left-icon uui-no-right-icon link-button-primary"
+        class="container uui-button-box uui-enabled -clickable uui-link_button root size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
         tabindex="0"
         type="button"
       >

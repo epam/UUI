@@ -1,18 +1,18 @@
 .root {
     &.icon-container-sky {
-        fill: var(--sky);
+        fill: var(--sky-50);
     }
 
     &.icon-container-grass {
-        fill: var(--grass);
+        fill: var(--grass-50);
     }
 
     &.icon-container-sun {
-        fill: var(--sun);
+        fill: var(--sun-50);
     }
 
     &.icon-container-fire {
-        fill: var(--fire);
+        fill: var(--fire-50);
     }
 
     &.icon-container-carbon {
@@ -20,11 +20,11 @@
     }
 
     &.icon-container-cobalt {
-        fill: var(--cobalt-40);
+        fill: var(--cobalt-60);
     }
 
-    &.icon-container-lavanda {
-        fill: var(--lavanda-50);
+    &.icon-container-violet {
+        fill: var(--violet-70);
     }
 
     &.icon-container-fuchsia {

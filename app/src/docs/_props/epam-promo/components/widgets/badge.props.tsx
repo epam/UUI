@@ -2,17 +2,15 @@ import * as React from 'react';
 import {
     basicPickerTogglerDoc, ColorPicker, DocBuilder, dropdownTogglerDoc, onClickDoc,
 } from '@epam/uui-docs';
-import { Badge, BadgeMods } from '@epam/promo';
+import { Badge, BadgeMods, BadgeProps } from '@epam/promo';
 import { FormContext, ResizableContext, DefaultContext } from '../../docs';
 import { iconDoc, iconOptionsDoc } from '../../docs';
 import { colors } from '../../docs/helpers/colorMap';
-import { allEpamAdditionalColors } from '@epam/promo';
-import { BadgeProps } from '@epam/promo';
 
 const badgeDoc = new DocBuilder<BadgeProps & BadgeMods>({ name: 'Badge', component: Badge })
     .prop('color', {
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
-        examples: [...allEpamAdditionalColors, 'gray30'],
+        examples: ['blue', 'green', 'amber', 'red', 'yellow', 'orange', 'fuchsia', 'purple', 'violet', 'cobalt', 'cyan', 'mint', 'white', 'gray10', 'gray30', 'gray60'],
     })
     .implements([
         iconDoc, iconOptionsDoc, dropdownTogglerDoc, onClickDoc, basicPickerTogglerDoc,
@@ -31,7 +29,7 @@ const badgeDoc = new DocBuilder<BadgeProps & BadgeMods>({ name: 'Badge', compone
     })
     .prop('fill', {
         examples: [
-            'solid', 'semitransparent', 'transparent',
+            'solid', 'outline',
         ],
         defaultValue: 'solid',
     })
@@ -40,6 +38,9 @@ const badgeDoc = new DocBuilder<BadgeProps & BadgeMods>({ name: 'Badge', compone
             '18', '24', '30', '36', '42', '48',
         ],
         defaultValue: '36',
+    })
+    .prop('indicator', {
+        examples: [true, false], defaultValue: false,
     })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 

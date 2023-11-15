@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Text, PickerInput, FlexCell } from '@epam/promo';
+import { Text, PickerInput, FlexCell } from '@epam/uui';
 import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 

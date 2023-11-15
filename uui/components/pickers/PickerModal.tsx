@@ -67,7 +67,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                     />
                 )}
                 <FlexSpacer />
-                <Button mode="outline" color="secondary" caption={ i18n.pickerModal.cancelButton } onClick={ () => props.abort() } />
+                <Button fill="outline" color="secondary" caption={ i18n.pickerModal.cancelButton } onClick={ () => props.abort() } />
                 <Button color="accent" caption={ i18n.pickerModal.selectButton } onClick={ () => props.success(selection as any) } />
             </>
         );
@@ -107,7 +107,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                                         onValueChange: handleDataSourceValueChange,
                                         listView: view,
                                         rows: dataRows,
-                                        editMode: 'modal',
+                                        searchPosition: 'body',
                                     },
                                     e,
                                 ) }

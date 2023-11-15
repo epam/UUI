@@ -26,9 +26,9 @@ export const allEpamPrimaryColors: EpamPrimaryColor[] = [
     'sky', 'grass', 'sun', 'fire',
 ];
 
-export type EpamAdditionalColor = 'cobalt' | 'lavanda' | 'fuchsia';
+export type EpamAdditionalColor = 'cobalt' | 'violet' | 'fuchsia';
 export const allEpamAdditionalColors: EpamAdditionalColor[] = [
-    'cobalt', 'lavanda', 'fuchsia',
+    'cobalt', 'violet', 'fuchsia',
 ];
 
 export type EpamGrayscaleColor = 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';

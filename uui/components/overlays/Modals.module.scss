@@ -1,11 +1,18 @@
 @use  '../../assets/styles/index' as *;
 
+.root {
+    --uui-modals-shadow: var(--uui-shadow-level-3);
+    --uui-modals-bg: var(--uui-surface-main);
+
+    --uui-modals-border-radius: var(--uui-border-radius);
+}
+
 .modal-blocker {
     animation-duration: 0.3s;
     animation-name: animateModalBlocker;
     opacity: 1;
     transition: all 0.3s ease-out;
-    background-color: var(--uui-modals-overlay);
+    background-color: var(--uui-overlay);
 
     @keyframes animateModalBlocker {
         from { opacity: 0; }

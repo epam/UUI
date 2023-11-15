@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import { DatePicker, FlexRow } from '@epam/promo';
+import { DatePicker, FlexRow } from '@epam/uui';
 
 export default function DatePickerFilterExample() {
     const [value, onValueChange] = useState('');

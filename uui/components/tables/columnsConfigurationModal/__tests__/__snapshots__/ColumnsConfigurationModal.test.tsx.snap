@@ -36,7 +36,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
   >
     <div
       aria-modal={true}
-      className="uui-modal-window modal container"
+      className="uui-modal-window root modal container"
       role="dialog"
       style={
         Object {
@@ -46,7 +46,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       }
     >
       <div
-        className="root size-36 padding-24 vPadding-12 spacing-12 modalHeader container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -55,7 +55,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
+          className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
         >
           Configure columns
         </div>
@@ -77,7 +77,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         >
           <button
             aria-label="Close modal"
-            className="container uui-button-box uui-enabled -clickable icon-button-default root"
+            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -94,7 +94,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 padding-24 borderBottom spacing-12 searchArea container align-items-center"
+        className="uui-flex-row root size-36 padding-24 borderBottom spacing-12 searchArea container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -130,7 +130,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         <button
           aria-expanded={false}
           aria-haspopup={false}
-          className="container uui-button-box uui-enabled -clickable button-secondary root size-30 mode-none"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-none uui-color-secondary size-30"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -146,10 +146,10 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </button>
       </div>
       <div
-        className="uui-panel root mainPanel container"
+        className="uui-panel root uui-color-surface mainPanel container"
       >
         <div
-          className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+          className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
           style={
             Object {
               "display": "flex",
@@ -177,7 +177,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             }
           >
             <div
-              className="root size-24 padding-24 spacing-6 groupTitle container align-items-center"
+              className="uui-flex-row root size-24 padding-24 spacing-6 groupTitle container align-items-center"
               style={
                 Object {
                   "columnGap": undefined,
@@ -186,12 +186,12 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               }
             >
               <div
-                className="uui-font-semibold uui-text-primary root line-height-24 font-size-14 v-padding-6 groupTitleText container"
+                className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-14 v-padding-6 groupTitleText container"
               >
                 Displayed in table
               </div>
               <button
-                className="container uui-button-box uui-enabled root root size-18 fill-solid badge-default groupTitleBadge"
+                className="container uui-button-box uui-enabled uui-badge root size-18 uui-fill-solid uui-color-neutral groupTitleBadge"
                 onClick={[Function]}
                 tabIndex={-1}
                 type="button"
@@ -204,7 +204,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               </button>
             </div>
             <div
-              className="root size-30 groupItems container align-items-center"
+              className="uui-flex-row root size-30 groupItems container align-items-center"
               style={
                 Object {
                   "columnGap": undefined,
@@ -213,7 +213,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               }
             >
               <div
-                className="root size-30 rowWrapper notPinned -draggable container align-items-center"
+                className="uui-flex-row root size-30 rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -231,7 +231,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   onTouchStart={[Function]}
                 />
                 <label
-                  className="container uui-checkbox-container root size-18 mode-form checkbox uui-disabled"
+                  className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox uui-disabled"
                   tabIndex={-1}
                 >
                   <div
@@ -262,7 +262,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   </div>
                 </label>
                 <div
-                  className="root size-30 pinIconButton container align-items-center"
+                  className="uui-flex-row root size-30 pinIconButton container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -276,7 +276,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable icon-button-default root"
+                      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -294,7 +294,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 </div>
               </div>
               <div
-                className="root size-30 rowWrapper notPinned -draggable container align-items-center"
+                className="uui-flex-row root size-30 rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -312,7 +312,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   onTouchStart={[Function]}
                 />
                 <label
-                  className="container uui-checkbox-container root size-18 mode-form checkbox uui-disabled"
+                  className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox uui-disabled"
                   tabIndex={-1}
                 >
                   <div
@@ -343,7 +343,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   </div>
                 </label>
                 <div
-                  className="root size-30 pinIconButton container align-items-center"
+                  className="uui-flex-row root size-30 pinIconButton container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -357,7 +357,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable icon-button-default root"
+                      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -407,7 +407,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter borderTop container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -416,7 +416,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         }
       >
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 uui-has-left-icon uui-no-right-icon link-button-primary"
+          className="container uui-button-box uui-enabled -clickable uui-link_button root size-36 uui-has-left-icon uui-no-right-icon uui-color-primary"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -439,7 +439,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-none"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-none uui-color-secondary size-36"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -452,7 +452,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </button>
         <button
           aria-disabled={false}
-          className="container uui-button-box uui-enabled -clickable button-primary root size-36 mode-solid"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-primary size-36"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -520,7 +520,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
   >
     <div
       aria-modal={true}
-      className="uui-modal-window modal container"
+      className="uui-modal-window root modal container"
       role="dialog"
       style={
         Object {
@@ -530,7 +530,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
       }
     >
       <div
-        className="root size-36 padding-24 vPadding-12 spacing-12 modalHeader container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -539,7 +539,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         }
       >
         <div
-          className="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
+          className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
         >
           Configure columns
         </div>
@@ -561,7 +561,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         >
           <button
             aria-label="Close modal"
-            className="container uui-button-box uui-enabled -clickable icon-button-default root"
+            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -578,7 +578,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         </div>
       </div>
       <div
-        className="root size-36 padding-24 borderBottom spacing-12 searchArea container align-items-center"
+        className="uui-flex-row root size-36 padding-24 borderBottom spacing-12 searchArea container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -614,7 +614,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         <button
           aria-expanded={false}
           aria-haspopup={false}
-          className="container uui-button-box uui-enabled -clickable button-secondary root size-30 mode-none"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-none uui-color-secondary size-30"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -630,10 +630,10 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         </button>
       </div>
       <div
-        className="uui-panel root mainPanel container"
+        className="uui-panel root uui-color-surface mainPanel container"
       >
         <div
-          className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+          className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
           style={
             Object {
               "display": "flex",
@@ -661,7 +661,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
             }
           >
             <div
-              className="root size-24 padding-24 spacing-6 groupTitle container align-items-center"
+              className="uui-flex-row root size-24 padding-24 spacing-6 groupTitle container align-items-center"
               style={
                 Object {
                   "columnGap": undefined,
@@ -670,12 +670,12 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
               }
             >
               <div
-                className="uui-font-semibold uui-text-primary root line-height-24 font-size-14 v-padding-6 groupTitleText container"
+                className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-14 v-padding-6 groupTitleText container"
               >
                 Hidden in table
               </div>
               <button
-                className="container uui-button-box uui-enabled root root size-18 fill-solid badge-default groupTitleBadge"
+                className="container uui-button-box uui-enabled uui-badge root size-18 uui-fill-solid uui-color-neutral groupTitleBadge"
                 onClick={[Function]}
                 tabIndex={-1}
                 type="button"
@@ -688,7 +688,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
               </button>
             </div>
             <div
-              className="root size-30 groupItems container align-items-center"
+              className="uui-flex-row root size-30 groupItems container align-items-center"
               style={
                 Object {
                   "columnGap": undefined,
@@ -697,7 +697,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
               }
             >
               <div
-                className="root size-30 rowWrapper notPinned -draggable container align-items-center"
+                className="uui-flex-row root size-30 rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -715,7 +715,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   onTouchStart={[Function]}
                 />
                 <label
-                  className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                  className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                   tabIndex={-1}
                 >
                   <div
@@ -737,7 +737,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   </div>
                 </label>
                 <div
-                  className="root size-30 pinIconButton container align-items-center"
+                  className="uui-flex-row root size-30 pinIconButton container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -751,7 +751,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable icon-button-default root"
+                      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -769,7 +769,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                 </div>
               </div>
               <div
-                className="root size-30 rowWrapper notPinned -draggable container align-items-center"
+                className="uui-flex-row root size-30 rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -787,7 +787,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   onTouchStart={[Function]}
                 />
                 <label
-                  className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                  className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                   tabIndex={-1}
                 >
                   <div
@@ -809,7 +809,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   </div>
                 </label>
                 <div
-                  className="root size-30 pinIconButton container align-items-center"
+                  className="uui-flex-row root size-30 pinIconButton container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -823,7 +823,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable icon-button-default root"
+                      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -873,7 +873,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         </div>
       </div>
       <div
-        className="root size-36 padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter borderTop container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -882,7 +882,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         }
       >
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 uui-has-left-icon uui-no-right-icon link-button-primary"
+          className="container uui-button-box uui-enabled -clickable uui-link_button root size-36 uui-has-left-icon uui-no-right-icon uui-color-primary"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -905,7 +905,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-none"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-none uui-color-secondary size-36"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -918,7 +918,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         </button>
         <button
           aria-disabled={true}
-          className="container uui-button-box uui-disabled -clickable button-primary root size-36 mode-solid"
+          className="container uui-button-box uui-disabled -clickable root uui-button uui-fill-solid uui-color-primary size-36"
           onClick={[Function]}
           tabIndex={-1}
           type="button"

@@ -2,7 +2,7 @@
 
 exports[`DataTable should be rendered correctly 1`] = `
 <div
-  className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer table"
+  className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer table uui-dt-vars"
   style={
     Object {
       "display": "flex",
@@ -37,7 +37,7 @@ exports[`DataTable should be rendered correctly 1`] = `
       className="stickyHeader"
     >
       <div
-        className="container uui-table-row-container root root uui-table-header-row container align-items-center"
+        className="uui-flex-row container uui-table-row-container root root uui-dt-vars uui-table-header-row container align-items-center"
         role="row"
         style={
           Object {

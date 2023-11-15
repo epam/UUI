@@ -37,17 +37,7 @@ body {
     display: flex;
     height: calc(100vh - 102px);
     width: 360px;
-    border-left: 1px solid $gray40;
-
-    .status {
-        &:global(.uui-button-box) {
-            padding-left: 0;
-
-            :global(.uui-caption) {
-                font-family: $font-sans;
-            }
-        }
-    }
+    border-left: 1px solid var(--uui-divider);
 
     .no-wrap {
         white-space: nowrap;

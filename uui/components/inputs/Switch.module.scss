@@ -29,6 +29,31 @@
 }
 
 .root {
+    --uui-switch-bg: var(--uui-neutral-40);
+    --uui-switch-bg-checked: var(--uui-color-50);
+    --uui-switch-bg-hover: var(--uui-control-bg-hover);
+    --uui-switch-bg-checked-hover: var(--uui-color-60);
+    --uui-switch-bg-checked-disabled: var(--uui-color-20);
+    --uui-switch-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-switch-border: var(--uui-control-border);
+    --uui-switch-border-hover: var(--uui-control-bg-hover);
+    --uui-switch-border-checked: var(--uui-color-50);
+    --uui-switch-border-checked-hover: var(--uui-color-60);
+    --uui-switch-border-checked-disabled: var(--uui-color-20);
+    --uui-switch-border-disabled: var(--uui-control-border-disabled);
+    --uui-switch-toggler-bg: var(--uui-neutral-0);
+    --uui-switch-toggler-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-switch-toggler-border-checked: var(--uui-color-50);
+    --uui-switch-toggler-border-hover: var(--uui-control-bg-hover);
+    --uui-switch-toggler-border-disabled: var(--uui-control-border-disabled);
+    --uui-switch-toggler-border-checked-hover: var(--uui-color-60);
+    --uui-switch-toggler-border-checked-disabled: var(--uui-color-20);
+    --uui-switch-label: var(--uui-text-primary);
+    --uui-switch-label-disabled: var(--uui-text-disabled);
+
+    --uui-switch-font: var(--uui-font);
+    --uui-switch-font-weight: 400;
+    //
     //Sizes
     &.size-12 {
         @include control-switch-size(12px);
@@ -63,7 +88,7 @@
         border-radius: 50%;
         box-sizing: border-box;
         background-color: var(--uui-switch-toggler-bg);
-        border: 1px solid var(--uui-switch-bg);
+        border: 1px solid var(--uui-switch-border);
         transition: 0.1s transform cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -101,10 +126,10 @@
         &:global(.uui-switch-body) {
             background-color: var(--uui-switch-bg-checked);
             border: 1px solid var(--uui-switch-border-checked);
+        }
 
-            :global(.uui-switch-toggler) {
-                border: 1px solid var(--uui-switch-toggler-border-checked);
-            }
+        :global(.uui-switch-toggler) {
+            border: 1px solid var(--uui-switch-toggler-border-checked);
         }
     }
 

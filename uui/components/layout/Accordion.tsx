@@ -12,7 +12,9 @@ export type AccordionProps = AccordionMods & uuiComponents.AccordionProps;
 
 function applyAccordionMods(mods: AccordionProps) {
     return [
-        css.root, css['mode-' + (mods.mode || 'block')], mods.padding && css['padding-' + mods.padding],
+        css.root,
+        css['mode-' + (mods.mode || 'block')],
+        mods.padding && css['padding-' + mods.padding],
     ];
 }
 

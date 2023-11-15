@@ -1,4 +1,5 @@
 import * as React from 'react';
+import cx from 'classnames';
 import { DataSourceState, LazyDataSourceApi, DataQueryFilter, Lens, useList } from '@epam/uui-core';
 import { DbContext } from '@epam/uui-db';
 import { Person } from '@epam/uui-docs';
@@ -7,7 +8,6 @@ import { DemoDbRef, useDemoDbRef, PersonTableRecord } from './state';
 import { svc } from '../../services';
 import { PersonsTable } from './PersonsTable';
 import css from './DbDemo.module.scss';
-import { useTheme } from '../../helpers/useTheme';
 
 export function DbDemoImpl() {
     const dbRef = useDemoDbRef();
@@ -90,7 +90,7 @@ export function DbDemoImpl() {
     );
 
     return (
-        <div className={ css.container }>
+        <div className={ cx(css.container, css.uuiThemePromo) }>
             <FlexRow spacing="12" padding="24" vPadding="12" borderBottom={ true }>
                 <FlexCell width={ 200 }>
                     <SearchInput { ...lens.prop('search').toProps() } size="30" />
@@ -113,7 +113,6 @@ export function DbDemoImpl() {
 
 export function DbDemo() {
     const demoDbRef = React.useMemo(() => new DemoDbRef(), []);
-    useTheme('uui-theme-loveship');
 
     return (
         <DbContext.Provider value={ demoDbRef }>

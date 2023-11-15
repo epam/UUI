@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import {
-    Badge, Dropdown, DropdownContainer, DropdownMenuButton, FlexRow,
-} from '@epam/promo';
+import { Dropdown, DropdownContainer, DropdownMenuButton, FlexRow, Badge } from '@epam/uui';
 import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import { DropdownBodyProps } from '@epam/uui-core';
 import css from './DropdownExample.module.scss';
@@ -45,9 +43,9 @@ export default function TypesExample() {
                         { ...props }
                         dropdownIcon={ navigationDownIcon }
                         dropdownIconPosition="right"
-                        color="gray30"
+                        color="neutral"
                         icon={ () => statusDot(selectedItem.color) }
-                        fill="semitransparent"
+                        fill="outline"
                         caption={ selectedItem.caption }
                     />
                 ) }

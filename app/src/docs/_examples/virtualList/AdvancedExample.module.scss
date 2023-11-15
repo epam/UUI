@@ -1,13 +1,11 @@
-@import '~@epam/promo/assets/styles/colors';
-
 .mainContainer {
     width: 100%;
     align-self: center;
     max-height: 400px;
     overflow-y: scroll;
     margin: 1em;
-    border: 1px solid $gray20;
-    scrollbar-color: lightgray transparent;
+    border: 1px solid var(--uui-control-border);
+    scrollbar-color: var(--uui-control-border) transparent;
 }
 
 .mainContainerWrapper {
@@ -32,13 +30,13 @@
     justify-content: center;
     margin: 0.25em 0;
     padding: 0.125em;
-    border: 1px solid lightgrey;
+    border: 1px solid var(--uui-control-border);
 }
 
 .menuContainer {
     .link-caption {
         padding-left: 6px;
-        color: $white;
+        color: var(--uui-neutral-0);
         white-space: nowrap;
     }
 

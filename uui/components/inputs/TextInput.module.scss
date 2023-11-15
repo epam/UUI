@@ -1,22 +1,45 @@
 @use  '../../assets/styles/index.scss' as *;
 
 .root {
-    fill: var(--uui-text-input-icon);
+    --uui-text_input-bg: var(--uui-control-bg);
+    --uui-text_input-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-text_input-bg-readonly: var(--uui-control-bg-disabled);
+    --uui-text_input-border: var(--uui-control-border);
+    --uui-text_input-border-hover: var(--uui-control-border-hover);
+    --uui-text_input-border-active: var(--uui-control-border-focus);
+    --uui-text_input-border-error: var(--uui-error-50);
+    --uui-text_input-border-disabled: var(--uui-control-border-disabled);
+    --uui-text_input-border-readonly: var(--uui-control-border-disabled);
+    --uui-text_input-placeholder: var(--uui-control-placeholder);
+    --uui-text_input-placeholder-disabled: var(--uui-control-placeholder);
+    --uui-text_input-text: var(--uui-control-text);
+    --uui-text_input-text-disabled: var(--uui-control-text-disabled);
+    --uui-text_input-icon: var(--uui-control-icon);
+    --uui-text_input-icon-disabled: var(--uui-control-icon-disabled);
+    --uui-text_input-icon-clickable: var(--uui-icon);
+    --uui-text_input-icon-clickable-hover: var(--uui-icon-hover);
+
+    --uui-text_input-border-radius: var(--uui-border-radius);
+
+    --uui-text_input-font: var(--uui-font);
+    --uui-text_input-font-weight: 400;
+    //
+    fill: var(--uui-text_input-icon);
     border-style: solid;
     box-sizing: border-box;
     padding-left: 5px;
     padding-right: 5px;
-    border-radius: var(--uui-text-input-border-radius);
+    border-radius: var(--uui-text_input-border-radius);
 
     :global(.uui-input) {
-        color: var(--uui-text-input-text);
-        font-family: var(--uui-text-input-font);
-        font-weight: var(--uui-text-input-font, normal);
+        color: var(--uui-text_input-text);
+        font-family: var(--uui-text_input-font);
+        font-weight: var(--uui-text_input-font-weight);
         padding-left: 6px;
         padding-right: 6px;
 
         &::placeholder {
-            color: var(--uui-text-input-placeholder);
+            color: var(--uui-text_input-placeholder);
         }
 
         &:placeholder-shown {
@@ -29,23 +52,23 @@
     }
 
     &.mode-form {
-        background-color: var(--uui-text-input-bg);
-        border-color: var(--uui-text-input-border);
+        background-color: var(--uui-text_input-bg);
+        border-color: var(--uui-text_input-border);
 
         :global(.-clickable) {
-            fill: var(--uui-text-input-icon-clickable);
+            fill: var(--uui-text_input-icon-clickable);
 
             &:hover {
-                fill: var(--uui-text-input-icon-clickable-hover);
+                fill: var(--uui-text_input-icon-clickable-hover);
             }
         }
 
         &:hover {
-            border-color: var(--uui-text-input-border-hover);
+            border-color: var(--uui-text_input-border-hover);
         }
 
         &:global(.uui-focus) {
-            border-color: var(--uui-text-input-border-active);
+            border-color: var(--uui-text_input-border-active);
         }
     }
 
@@ -54,19 +77,19 @@
         border-color: transparent;
 
         :global(.-clickable) {
-            fill: var(--uui-text-input-icon-clickable);
+            fill: var(--uui-text_input-icon-clickable);
 
             &:hover {
-                fill: var(--uui-text-input-icon-clickable-hover);
+                fill: var(--uui-text_input-icon-clickable-hover);
             }
         }
 
         &:hover {
-            border-color: var(--uui-text-input-border-hover);
+            border-color: var(--uui-text_input-border-hover);
         }
 
         &:global(.uui-focus) {
-            border-color: var(--uui-text-input-border-active);
+            border-color: var(--uui-text_input-border-active);
         }
     }
 
@@ -80,10 +103,10 @@
 
         &:hover {
             :global(.-clickable) {
-                fill: var(--uui-text-input-icon-clickable);
+                fill: var(--uui-text_input-icon-clickable);
 
                 &:hover {
-                    fill: var(--uui-text-input-icon-clickable-hover);
+                    fill: var(--uui-text_input-icon-clickable-hover);
                 }
             }
         }
@@ -91,40 +114,40 @@
 
     &:global(.uui-invalid) {
         &.mode-form {
-            background-color: var(--uui-text-input-bg);
-            border-color: var(--uui-text-input-border-error);
+            background-color: var(--uui-text_input-bg);
+            border-color: var(--uui-text_input-border-error);
         }
     }
 
     &:global(.uui-readonly) {
-        color: var(--uui-text-input-text);
-        fill: var(--uui-text-input-icon);
+        color: var(--uui-text_input-text);
+        fill: var(--uui-text_input-icon);
         pointer-events: none;
 
         &.mode-form {
-            background-color: var(--uui-text-input-bg-readonly);
-            border-color: var(--uui-text-input-border-readonly);
+            background-color: var(--uui-text_input-bg-readonly);
+            border-color: var(--uui-text_input-border-readonly);
         }
     }
 
     &:global(.uui-disabled) {
-        color: var(--uui-text-input-text-disabled);
-        fill: var(--uui-text-input-icon-disabled);
+        color: var(--uui-text_input-text-disabled);
+        fill: var(--uui-text_input-icon-disabled);
         pointer-events: none;
 
         :global(.uui-input) {
-            -webkit-text-fill-color: var(--uui-text-input-text-disabled); // safari bugfix, more: https://stackoverflow.com/questions/43483363/safari-color-with-background-transparency-on-disabled-input
-            color: var(--uui-text-input-text-disabled);
+            -webkit-text-fill-color: var(--uui-text_input-text-disabled); // safari bugfix, more: https://stackoverflow.com/questions/43483363/safari-color-with-background-transparency-on-disabled-input
+            color: var(--uui-text_input-text-disabled);
 
             &::placeholder {
-                -webkit-text-fill-color: var(--uui-text-input-placeholder-disabled); // to avoid color inheritance from input component
-                color: var(--uui-text-input-placeholder-disabled);
+                -webkit-text-fill-color: var(--uui-text_input-placeholder-disabled); // to avoid color inheritance from input component
+                color: var(--uui-text_input-placeholder-disabled);
             }
         }
 
         &.mode-form {
-            background-color: var(--uui-text-input-bg-disabled);
-            border-color: var(--uui-text-input-border-disabled);
+            background-color: var(--uui-text_input-bg-disabled);
+            border-color: var(--uui-text_input-border-disabled);
         }
     }
 

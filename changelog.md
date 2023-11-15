@@ -1,19 +1,30 @@
-# ***
+# 5.x.x - xx.xx.2023
 
 **What's New**
-[Presets]: added the ability to add a modal confirmation window when deleting a preset
-[LabeledInput]: added possibility to customize validationMessage with react node
+* TBD: describe new font usage approach
+* [Badge]: deprecated mode fill="transparent", and deprecated mode fill="semitransparent", they will be removed in future release.
+* [Badge]: removed mode fill="white", and "none", use fill="outline" + color instead them.
+* [Presets]: added the ability to add a modal confirmation window when deleting a preset
+* [LabeledInput]: added possibility to customize validationMessage with react node
+* [RichTextEditor]: added css variables for theming instead `SkinContext`
+* [skinContext]: removed from `UuiContexts`
+* [Button]: added `neutral` value to `color` prop
+* [ScrollBars]: removed 'theme' prop for "Promo" & "Loveship" skins
+* [Checkbox]: removed 'theme' prop for "Loveship" skin
+* typography files removed from skins and imported by default via import into the `@epam/uui` package, if you used mixins before, add the `uui-typography` class where you need it now
 
 **What's Fixed**
-[DataTableRow]: table row now consider rawProps property data
-[DropdownMenuButton]: make `isActive` usable
-[PickerInput]: set `overflow: hidden;` on open for mobile
-[DataTable]: fix columns reorder when there are hidden columns
-[TextArea and TextInput]: fix maxLength for Android
-[DataTable]: fix checkboxes, now they always pinned to the left column
-[PickerInput]: Disable select all button if options are empty and it has no selection
-[DataTable]: fixed missing `role=table`
-[SlateEditor]: allow writing caption after image insertion
+* [DatePickerHeader]: fixed 'navIconLeft', 'navIconRight' props
+* [useForm]: don't reset inChanged flag in case when server validation fails
+* [DataTableRow]: table row now consider rawProps property data
+* [DropdownMenuButton]: make `isActive` usable
+* [PickerInput]: set `overflow: hidden;` on open for mobile
+* [DataTable]: fix columns reorder when there are hidden columns
+* [TextArea and TextInput]: fix maxLength for Android
+* [DataTable]: fix checkboxes, now they always pinned to the left column
+* [PickerInput]: Disable select all button if options are empty and it has no selection
+* [DataTable]: fixed missing `role=table`
+* [SlateEditor]: allow writing caption after image insertion
 
 # 5.2.0 - 16.10.2023
 

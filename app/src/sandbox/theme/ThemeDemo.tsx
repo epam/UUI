@@ -1,28 +1,6 @@
 import React from 'react';
 import { useAsyncDataSource, useForm, useUuiContext } from '@epam/uui-core';
-import {
-    Button,
-    Checkbox,
-    Switch,
-    TextInput,
-    SuccessNotification,
-    ErrorNotification,
-    Text,
-    LabeledInput,
-    Panel,
-    PickerInput,
-    FlexRow,
-    FlexCell,
-    FlexSpacer,
-    RadioGroup,
-    ScrollBars,
-    IconButton,
-    ModalBlocker,
-    ModalWindow,
-    ModalHeader,
-    Badge,
-    DatePicker,
-} from '@epam/uui';
+import { Button, Checkbox, Switch, TextInput, SuccessNotification, ErrorNotification, Text, LabeledInput, Panel, PickerInput, FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton, ModalBlocker, ModalWindow, ModalHeader, Badge, DatePicker } from '@epam/uui';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 import { ReactComponent as LocationIcon } from '@epam/assets/icons/common/action-map_pin-18.svg';
@@ -53,7 +31,7 @@ export function ThemeDemo() {
                 <ModalWindow width={ 360 }>
                     <ModalHeader borderBottom title="Simple modal example " onClose={ () => props.abort() } />
                     <ScrollBars>
-                        <Panel margin="24">
+                        <Panel background="surface" margin="24">
                             <Text color="primary" fontSize="16">
                                 Changes will be undone!
                             </Text>
@@ -151,8 +129,8 @@ export function ThemeDemo() {
                     <FlexRow vPadding="12">
                         <LabeledInput label="Status">
                             <FlexRow spacing="12">
-                                <Badge color="success" fill="semitransparent" caption="Approved" size="24" />
-                                <Badge color="info" fill="semitransparent" caption="Active" size="24" />
+                                <Badge color="success" fill="outline" caption="Approved" size="24" />
+                                <Badge color="info" fill="outline" caption="Active" size="24" />
                             </FlexRow>
                         </LabeledInput>
                     </FlexRow>
@@ -219,7 +197,7 @@ export function ThemeDemo() {
                             caption="Add one more"
                             icon={ AddIcon }
                             color="primary"
-                            mode="outline"
+                            fill="outline"
                             onClick={ () =>
                                 lens.prop('visaRecords').set(
                                     lens
@@ -235,18 +213,14 @@ export function ThemeDemo() {
                         </Text>
                     </FlexRow>
                     <FlexRow vPadding="12">
-                        <FlexCell grow={ 1 }>
-                            <Checkbox label="I agree to the processing of personal data" { ...lens.prop('processingPersonalDataAgreed').toProps() } />
-                        </FlexCell>
+                        <Checkbox label="I agree to the processing of personal data" { ...lens.prop('processingPersonalDataAgreed').toProps() } />
                     </FlexRow>
                     <FlexRow vPadding="12" borderBottom>
-                        <FlexCell grow={ 1 }>
-                            <Switch label="I agree to display ads" { ...lens.prop('displayAdsAgreed').toProps() } />
-                        </FlexCell>
+                        <Switch label="I agree to display ads" { ...lens.prop('displayAdsAgreed').toProps() } />
                     </FlexRow>
                     <FlexRow vPadding="24" spacing="12">
                         <FlexSpacer />
-                        <Button caption="Cancel" onClick={ showModal } color="secondary" mode="outline" />
+                        <Button caption="Cancel" onClick={ showModal } color="secondary" fill="outline" />
                         <Button caption="SAVE" onClick={ save } color="primary" />
                     </FlexRow>
                 </FlexCell>
@@ -256,7 +230,7 @@ export function ThemeDemo() {
 
     return (
         <div style={ { height: 'calc(100vh - 60px)', margin: '0 auto', display: 'flex' } }>
-            <Panel shadow rawProps={ { style: { margin: '24px auto' } } }>
+            <Panel background="surface" shadow rawProps={ { style: { margin: '24px auto' } } }>
                 <ScrollBars>{renderDemoForm()}</ScrollBars>
             </Panel>
         </div>

@@ -9,6 +9,7 @@ import { Checkbox } from '../inputs';
 import { Tooltip } from '../overlays';
 import { Text } from '../typography';
 import css from './DataTableHeaderCell.module.scss';
+import './variables.scss';
 import { ReactComponent as DefaultSortIcon } from '@epam/assets/icons/common/table-swap-18.svg';
 import { ReactComponent as SortIcon } from '@epam/assets/icons/common/table-sort_asc-18.svg';
 import { ReactComponent as SortIconDesc } from '@epam/assets/icons/common/table-sort_desc-18.svg';
@@ -56,7 +57,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                         <IconButton
                             key="sort"
                             cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
-                            color={ this.props.sortDirection ? 'default' : 'secondary' }
+                            color={ this.props.sortDirection ? 'neutral' : 'secondary' }
                             icon={ this.props.sortDirection === 'desc' ? SortIconDesc : this.props.sortDirection === 'asc' ? SortIcon : DefaultSortIcon }
                         />
                     )}
@@ -64,7 +65,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                         <IconButton
                             key="filter"
                             cx={ cx(css.icon, !this.props.sortDirection && css.filterIcon, uuiDataTableHeaderCell.uuiTableHeaderFilterIcon) }
-                            color="default"
+                            color="neutral"
                             icon={ FilterIcon }
                         />
                     )}
@@ -97,6 +98,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                 (dropdownProps?.ref as React.RefCallback<HTMLElement>)?.(ref);
             } }
             cx={ cx(
+                'uui-dt-vars',
                 uuiDataTableHeaderCell.uuiTableHeaderCell,
                 (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
                 css.cell,

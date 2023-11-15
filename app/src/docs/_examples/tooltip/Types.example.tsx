@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    Button, FlexRow, IconContainer, RichTextView, Text, Tooltip,
-} from '@epam/promo';
+import { Button, FlexRow, IconContainer, RichTextView, Text, Tooltip } from '@epam/uui';
 import { ReactComponent as copyIcon } from '@epam/assets/icons/common/content-link-18.svg';
 import { ReactComponent as plusIcon } from '@epam/assets/icons/common/content-add-fill-18.svg';
 import { ReactComponent as infoIcon } from '@epam/assets/icons/common/notification-info-outline-18.svg';
@@ -18,7 +16,7 @@ export default function TypesTooltipExample() {
     return (
         <div className={ css.container }>
             <Tooltip content="Compact" placement="bottom">
-                <Button icon={ copyIcon } caption="Copy" fill="white" color="blue" cx={ css.firstColumn } onClick={ () => null } />
+                <Button icon={ copyIcon } caption="Copy" fill="outline" color="primary" cx={ css.firstColumn } onClick={ () => null } />
             </Tooltip>
 
             <FlexRow alignItems="center" cx={ css.firstColumn }>
@@ -30,7 +28,7 @@ export default function TypesTooltipExample() {
                 </Tooltip>
             </FlexRow>
 
-            <Tooltip content={ renderTypesMarkup() } placement="bottom" color="white">
+            <Tooltip content={ renderTypesMarkup() } placement="bottom" color="neutral">
                 <Button icon={ plusIcon } onClick={ () => null } cx={ css.firstColumn } />
             </Tooltip>
 

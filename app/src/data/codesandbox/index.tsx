@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { render } from 'react-dom';
 import { createBrowserHistory } from 'history';
-import { ErrorHandler, FlexRow, skinContext } from '@epam/promo';
+import { ErrorHandler, FlexRow } from '@epam/promo';
 import {
     HistoryAdaptedRouter,
     IProcessRequest,
@@ -31,7 +31,7 @@ function apiDefinition(processRequest: IProcessRequest) {
 
 function UuiEnhancedApp() {
     const [isLoaded, setIsLoaded] = useState(false);
-    const { services } = useUuiServices<TApi, never>({ apiDefinition, router, skinContext });
+    const { services } = useUuiServices<TApi, never>({ apiDefinition, router });
 
     useEffect(() => {
         Object.assign(svc, services);

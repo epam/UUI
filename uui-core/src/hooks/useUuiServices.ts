@@ -2,7 +2,6 @@ import { AnalyticsContext } from '../services/AnalyticsContext';
 import { ApiContext, IProcessRequest, ApiContextProps } from '../services/ApiContext';
 import { ErrorContext } from '../services/ErrorContext';
 import { DndContext } from '../services/dnd/DndContext';
-import { ISkin, uuiSkin } from '../services/SkinContext';
 import { LayoutContext } from '../services/LayoutContext';
 import { LockContext } from '../services/LockContext';
 import { ModalContext } from '../services/ModalContext';
@@ -13,7 +12,6 @@ import { useEffect, useState } from 'react';
 
 export interface UuiServicesProps<TApi> extends ApiContextProps {
     apiDefinition?: (processRequest: IProcessRequest) => TApi;
-    skinContext?: ISkin;
 }
 export interface UseUuiServicesProps<TApi, TAppContext> extends UuiServicesProps<TApi> {
     appContext?: TAppContext;
@@ -52,7 +50,6 @@ function createServices<TApi, TAppContext>(props: UseUuiServicesProps<TApi, TApp
         uuiRouter: router,
         uuiLocks,
         uuiApp: appContext || ({} as TAppContext),
-        uuiSkin,
     };
     return {
         services,
@@ -87,7 +84,6 @@ export const useUuiServices = <TApi, TAppContext>(props: UseUuiServicesProps<TAp
 
     useEffect(() => {
         result.init();
-        uuiSkin.setSkin(props.skinContext);
 
         (window as any).UUI_VERSION = __PACKAGE_VERSION__; // it replaced with current uui version during build time
 

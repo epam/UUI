@@ -10,6 +10,20 @@ import { MARK_COLOR, createFontColorPlugin } from '@udecode/plate-font';
 import { ReactComponent as ColorIcon } from '../../icons/text-color-normal.svg';
 
 export const colorPlugin = () => createFontColorPlugin({
+    inject: {
+        props: {
+            nodeKey: MARK_COLOR,
+            defaultNodeValue: 'black',
+            transformClassName: (options) => {
+                if (options.nodeValue.at(0) === '#') {
+                    return null;
+                } else {
+                    return `uui-${options.nodeValue}`;
+                }
+            },
+
+        },
+    },
     options: {
         floatingBarButton: ColorButton,
     },

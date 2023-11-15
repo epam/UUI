@@ -1,4 +1,9 @@
 .root {
+    --uui-dropspot-border: var(--uui-control-border);
+    --uui-dropspot-border-dropstart: var(--uui-primary-50);
+    --uui-dropspot-background-dropstart: var(--uui-primary-10);
+    --uui-dropspot-icon: var(--uui-primary-50);
+    //
     position: relative;
     min-height: 104px;
     border: 2px dashed var(--uui-dropspot-border);
@@ -16,10 +21,10 @@
     }
 
     .link {
-        color: var(--uui-dropspot-link-color);
+        color: var(--uui-link);
 
         &:hover {
-            color: var(--uui-dropspot-link-hover);
+            color: var(--uui-link-hover);
         }
     }
 

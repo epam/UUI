@@ -36,7 +36,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
   >
     <div
       aria-modal={true}
-      className="uui-modal-window modal container"
+      className="uui-modal-window root modal container"
       role="dialog"
       style={
         Object {
@@ -46,7 +46,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       }
     >
       <div
-        className="root size-36 padding-24 vPadding-12 borderBottom spacing-12 modalHeader container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-12 borderBottom spacing-12 root modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -55,7 +55,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
+          className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
         >
           Test
         </div>
@@ -77,7 +77,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         >
           <button
             aria-label="Close modal"
-            className="container uui-button-box uui-enabled -clickable icon-button-default root"
+            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -94,7 +94,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+        className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
         style={
           Object {
             "display": "flex",
@@ -151,7 +151,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -163,7 +163,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-outline"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -175,7 +175,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-solid"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -243,7 +243,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
   >
     <div
       aria-modal={true}
-      className="uui-modal-window modal container"
+      className="uui-modal-window root modal container"
       role="dialog"
       style={
         Object {
@@ -253,7 +253,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
       }
     >
       <div
-        className="root size-36 padding-24 vPadding-12 borderBottom spacing-12 modalHeader container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-12 borderBottom spacing-12 root modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -262,7 +262,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         }
       >
         <div
-          className="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
+          className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
         >
           Test
         </div>
@@ -284,7 +284,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         >
           <button
             aria-label="Close modal"
-            className="container uui-button-box uui-enabled -clickable icon-button-default root"
+            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -301,7 +301,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         </div>
       </div>
       <div
-        className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+        className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
         style={
           Object {
             "display": "flex",
@@ -329,7 +329,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           }
         >
           <div
-            className="uui-panel root margin-24 container"
+            className="uui-panel root margin-24 uui-color-surface container"
           >
             <div>
               Test content
@@ -366,7 +366,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         </div>
       </div>
       <div
-        className="root size-36 padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+        className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -378,7 +378,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-outline"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -390,7 +390,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-solid"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
           onClick={[Function]}
           tabIndex={0}
           type="button"

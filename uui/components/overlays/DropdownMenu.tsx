@@ -61,6 +61,7 @@ function DropdownMenuContainer(props: IDropdownMenuContainer) {
             rawProps={ { ...props.rawProps, role: 'menu' } }
             ref={ menuRef }
             lockProps={ { onKeyDown: handleArrowKeys } }
+            cx={ css.root }
         />
     );
 }
@@ -106,10 +107,10 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
         const iconElement = (
             <IconButton
                 icon={ icon }
-                color={ isActive ? 'info' : 'default' }
+                color={ isActive ? 'info' : 'neutral' }
                 onClick={ onIconClick }
                 isDisabled={ isDisabled }
-                cx={ cx(css.icon, iconPosition === 'right' ? css.iconAfter : css.iconBefore) }
+                cx={ cx(css.root, css.icon, iconPosition === 'right' ? css.iconAfter : css.iconBefore) }
             />
         );
 
@@ -129,13 +130,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
 
     const isAnchor = Boolean(link || href);
 
-    const itemClassNames = cx(
-        props.cx,
-        css.itemRoot,
-        isDisabled && uuiMod.disabled,
-        isActive && uuiMod.active,
-        isOpen && uuiMod.opened,
-    );
+    const itemClassNames = cx(css.root, props.cx, css.itemRoot, isDisabled && uuiMod.disabled, isActive && uuiMod.active, isOpen && uuiMod.opened);
 
     return isAnchor ? (
         <Anchor
@@ -163,7 +158,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             ref={ ref }
         >
             { getMenuButtonContent() }
-            { isSelected && <IconContainer icon={ icons.accept } cx={ css.selectedCheckmark } /> }
+            { isSelected && <IconContainer icon={ icons.accept } cx={ cx(css.root, css.selectedCheckmark) } /> }
         </FlexRow>
     );
 });
@@ -172,7 +167,7 @@ DropdownMenuButton.displayName = 'DropdownMenuButton';
 
 export function DropdownMenuSplitter(props: IHasCX) {
     return (
-        <div className={ cx(props.cx, css.splitterRoot) }>
+        <div className={ cx(css.root, props.cx, css.splitterRoot) }>
             <hr className={ css.splitter } />
         </div>
     );
@@ -182,7 +177,7 @@ interface IDropdownMenuHeader extends IHasCX, IHasCaption {}
 
 export function DropdownMenuHeader(props: IDropdownMenuHeader) {
     return (
-        <div className={ cx(props.cx, css.headerRoot) }>
+        <div className={ cx('uui-dropdown-menu-header', css.root, props.cx, css.headerRoot) }>
             <span className={ css.header }>{ props.caption }</span>
         </div>
     );
@@ -219,7 +214,7 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
             renderBody={ (dropdownProps) => <DropdownMenuBody closeOnKey={ IDropdownControlKeys.LEFT_ARROW } { ...props } { ...dropdownProps } /> }
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
                 <DropdownMenuButton
-                    cx={ cx(css.submenuRootItem) }
+                    cx={ cx(css.root, css.submenuRootItem) }
                     icon={ icons.foldingArrow }
                     iconPosition="right"
                     isDropdown={ true }

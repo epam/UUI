@@ -3,6 +3,7 @@ import css from './PresetInput.module.scss';
 import { TextInput } from '../../inputs';
 import { FlexCell } from '../../layout';
 import { ITablePreset } from '@epam/uui-core';
+import { UUI_PRESETS_PANEL_INPUT } from './constants';
 
 interface IPresetInputProps {
     onCancel: () => void;
@@ -33,7 +34,7 @@ export function PresetInput(props: IPresetInputProps) {
     }, [presetCaption.length, props.onCancel]);
 
     return (
-        <FlexCell cx={ css.presetInputCell } minWidth={ 180 }>
+        <FlexCell cx={ [css.presetInputCell, UUI_PRESETS_PANEL_INPUT] } minWidth={ 180 }>
             <TextInput
                 cx={ css.presetInput }
                 onValueChange={ setPresetCaption }

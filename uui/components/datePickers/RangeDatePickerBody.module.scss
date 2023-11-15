@@ -1,6 +1,8 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
+    --uui-rdtp_date-bg-selected: var(--uui-info-10);
+
     :global(.uui-calendar-days) > div:last-child {
         :global(.uui-calendar-day-cell):last-child > :global(.uui-range-datepicker-in-range) {
             &:not(:global(.uui-range-datepicker-first-day-in-range-wrapper)) {
@@ -12,7 +14,7 @@
                     }
 
                     &::after {
-                        background: linear-gradient(320deg, #FFFFFF 3px, transparent 0), linear-gradient(-135deg, #FFFFFF 3px, transparent 0);
+                        background: linear-gradient(320deg, var(--uui-surface-main) 3px, transparent 0), linear-gradient(-135deg, var(--uui-surface-main) 3px, transparent 0);
                         background-position: left-bottom;
                         background-repeat: repeat-y;
                         background-size: 6px 6px;
@@ -41,7 +43,7 @@
                     }
 
                     &::after {
-                        background: linear-gradient(45deg, #FFFFFF 3px, transparent 0), linear-gradient(135deg, #FFFFFF 3px, transparent 0);
+                        background: linear-gradient(45deg, var(--uui-surface-main) 3px, transparent 0), linear-gradient(135deg, var(--uui-surface-main) 3px, transparent 0);
                         background-position: left-bottom;
                         background-repeat: repeat-y;
                         background-size: 6px 6px;
@@ -60,7 +62,7 @@
 
     :global(.uui-range-datepicker-in-range) {
         &:global(.uui-calendar-day-wrapper) {
-            background-color: var(--uui-rdtp-bg-selected-date);
+            background-color: var(--uui-rdtp_date-bg-selected);
             border-radius: 0;
             width: 40px;
         }

@@ -1,12 +1,11 @@
-import { uuiSkin } from '@epam/uui-core';
 import * as React from 'react';
+import { FlexRow } from '@epam/uui';
+import { ToolbarButton } from './ToolbarButton';
 
 import { ReactComponent as ClearIcon } from '../icons/text-color-default.svg';
 import { ReactComponent as ColorIcon } from '../icons/text-color-select.svg';
 
-import { ToolbarButton } from './ToolbarButton';
-
-const { FlexRow } = uuiSkin;
+import css from './ColorBar.module.scss';
 
 type IColorBar = {
     updateColor: (color: string) => void;
@@ -16,28 +15,28 @@ type IColorBar = {
 
 export function ColorBar({ updateColor, clearColor, value }: IColorBar) {
     return (
-        <FlexRow rawProps={ { style: { background: '#303240' } } }>
+        <FlexRow cx={ css.wrapper }>
             <ToolbarButton
                 onClick={ clearColor }
                 isActive={ false }
                 icon={ ClearIcon }
             />
             <ToolbarButton
-                onClick={ () => updateColor('#A72014') }
+                onClick={ () => updateColor('critical') }
                 iconColor="red"
-                isActive={ value === '#A72014' }
+                isActive={ value === 'critical' }
                 icon={ ColorIcon }
             />
             <ToolbarButton
-                onClick={ () => updateColor('#995A00') }
+                onClick={ () => updateColor('warning') }
                 iconColor="amber"
-                isActive={ value === '#995A00' }
+                isActive={ value === 'warning' }
                 icon={ ColorIcon }
             />
             <ToolbarButton
-                onClick={ () => updateColor('#669900') }
+                onClick={ () => updateColor('success') }
                 iconColor="green"
-                isActive={ value === '#669900' }
+                isActive={ value === 'success' }
                 icon={ ColorIcon }
             />
         </FlexRow>
