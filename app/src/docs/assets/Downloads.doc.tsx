@@ -3,7 +3,7 @@ import { cx } from '@epam/uui-core';
 import {
     FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, RichTextView, Text, Tooltip,
 } from '@epam/promo';
-import { BaseDocsBlock, UUI4 } from '../../common/docs';
+import { BaseDocsBlock, TSkin } from '../../common/docs';
 import { getQuery } from '../../helpers';
 import css from './DownloadsDoc.module.scss';
 import { ReactComponent as Artbord } from '../../icons/artboard.svg';
@@ -113,7 +113,7 @@ export class DownloadsDoc extends BaseDocsBlock {
             <FlexRow>
                 <div className={ css.title }>{this.title}</div>
                 <FlexSpacer />
-                {this.renderMultiSwitch()}
+                {this.renderSkinSwitcher()}
             </FlexRow>
         );
     }
@@ -151,7 +151,7 @@ export class DownloadsDoc extends BaseDocsBlock {
     }
 
     renderContent() {
-        const isUUI4Skin = getQuery('skin') === UUI4;
+        const isUUI4Skin = getQuery('skin') === TSkin.UUI4_promo;
         return (
             <>
                 <FlexRow alignItems="top" cx={ css.headerRow }>

@@ -1,20 +1,34 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
+    EditableDocContent, DocExample, BaseDocsBlock, TSkin,
 } from '../common';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder } from '@epam/uui-docs';
+import * as loveshipDocs from './_props/loveship/docs';
+import * as promoDocs from './_props/epam-promo/docs';
+import { TDocConfig } from '../common/docs/docBuilderGen/types';
 
 export class SpinnerDoc extends BaseDocsBlock {
     title = 'Spinner';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:SpinnerProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/widgets/spinner.props.ts',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/widgets/spinner.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/widgets/spinner.props.tsx',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'Spinner',
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:SpinnerProps', component: uui.Spinner },
+            [TSkin.UUI3_loveship]: {
+                type: '@epam/uui:SpinnerProps',
+                component: loveship.Spinner,
+                doc: (doc: DocBuilder<loveship.ButtonProps>) => doc.withContexts(loveshipDocs.FormContext, loveshipDocs.ResizableContext),
+            },
+            [TSkin.UUI4_promo]: {
+                type: '@epam/uui:SpinnerProps',
+                component: promo.Spinner,
+                doc: (doc: DocBuilder<promo.ButtonProps>) => doc.withContexts(promoDocs.FormContext, promoDocs.ResizableContext),
+            },
+        },
+    };
 
     renderContent() {
         return (

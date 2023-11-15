@@ -18,7 +18,7 @@ import {
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
-import { AnchorDoc } from '../docs/Anchor.doc';
+import { AnchorDoc } from '../docs/anchor/Anchor.doc';
 
 export interface DocItem {
     id: string;

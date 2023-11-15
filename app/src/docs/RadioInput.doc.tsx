@@ -1,20 +1,37 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI, TDocsGenType,
+    BaseDocsBlock, DocExample, EditableDocContent, TSkin,
 } from '../common';
+import { TDocConfig } from '../common/docs/docBuilderGen/types';
+import { DocBuilder } from '@epam/uui-docs';
+import * as loveshipDocs from './_props/loveship/docs';
+import * as promoDocs from './_props/epam-promo/docs';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
 
 export class RadioInputDoc extends BaseDocsBlock {
     title = 'RadioInput';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:RadioInputProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/inputs/radioInput.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/radioInput.props.ts',
-            [UUI]: './app/src/docs/_props/uui/components/inputs/radioInput.props.ts',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'RadioInput',
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:RadioInputProps', component: uui.RadioInput },
+            [TSkin.UUI3_loveship]: {
+                type: '@epam/loveship:RadioInputProps',
+                component: loveship.RadioInput,
+                doc: (doc: DocBuilder<loveship.RadioInputProps>) => doc.withContexts(loveshipDocs.FormContext, loveshipDocs.ResizableContext),
+            },
+            [TSkin.UUI4_promo]: {
+                type: '@epam/uui:RadioInputProps',
+                component: promo.RadioInput,
+                doc: (doc: DocBuilder<uui.RadioInputProps>) => doc.withContexts(promoDocs.FormContext, promoDocs.ResizableContext),
+            },
+        },
+        doc: (doc: DocBuilder<loveship.RadioInputProps| uui.RadioInputProps>) => {
+            doc.merge('value', { examples: [true, { value: false, isDefault: true }] });
+        },
+    };
 
     renderContent() {
         return (

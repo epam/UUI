@@ -1,20 +1,34 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
+    EditableDocContent, DocExample, BaseDocsBlock, TSkin,
 } from '../common';
+import { TDocConfig } from '../common/docs/docBuilderGen/types';
+import { DocBuilder } from '@epam/uui-docs';
+import * as loveshipDocs from './_props/loveship/docs';
+import * as promoDocs from './_props/epam-promo/docs';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
 
 export class TextPlaceholderDoc extends BaseDocsBlock {
     title = 'TextPlaceholder';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:TextPlaceholderProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/typography/textPlaceholder.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/typography/textPlaceholder.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/typography/textPlaceholder.props.tsx',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'TextPlaceholder',
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:TextPlaceholderProps', component: uui.TextPlaceholder },
+            [TSkin.UUI3_loveship]: {
+                type: '@epam/uui:TextPlaceholderProps',
+                component: loveship.TextPlaceholder,
+                doc: (doc: DocBuilder<uui.TextPlaceholderProps>) => doc.withContexts(loveshipDocs.FormContext, loveshipDocs.ResizableContext),
+            },
+            [TSkin.UUI4_promo]: {
+                type: '@epam/uui:TextPlaceholderProps',
+                component: promo.TextPlaceholder,
+                doc: (doc: DocBuilder<uui.TextPlaceholderProps>) => doc.withContexts(promoDocs.FormContext, promoDocs.ResizableContext),
+            },
+        },
+    };
 
     renderContent() {
         return (

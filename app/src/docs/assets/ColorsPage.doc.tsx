@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FlexRow, FlexSpacer } from '@epam/promo';
-import { BaseDocsBlock, UUI3 } from '../../common';
+import { BaseDocsBlock, TSkin } from '../../common';
 import { getQuery } from '../../helpers';
 import css from './DownloadsDoc.module.scss';
 
@@ -14,12 +14,12 @@ export class ColorsPageDoc extends BaseDocsBlock {
             <FlexRow>
                 <div className={ css.title }>{this.title}</div>
                 <FlexSpacer />
-                {this.renderMultiSwitch()}
+                {this.renderSkinSwitcher()}
             </FlexRow>
         );
     }
 
     renderContent(): React.ReactNode {
-        return getQuery('skin') === UUI3 ? React.createElement(LoveshipColorsDoc) : React.createElement(PromoColorsDoc);
+        return getQuery('skin') === TSkin.UUI3_loveship ? React.createElement(LoveshipColorsDoc) : React.createElement(PromoColorsDoc);
     }
 }

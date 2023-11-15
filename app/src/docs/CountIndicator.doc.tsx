@@ -1,15 +1,27 @@
 import * as React from 'react';
-import { BaseDocsBlock, EditableDocContent, DocExample, UUI3, UUI4, UUI } from '../common';
+import { BaseDocsBlock, EditableDocContent, DocExample, TSkin } from '../common';
+import { TDocConfig } from '../common/docs/docBuilderGen/types';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
 
 export class CountIndicatorDoc extends BaseDocsBlock {
     title = 'CountIndicator';
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/widgets/countIndicator.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/widgets/countIndicator.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/widgets/countIndicator.props.tsx',
-        };
-    }
+
+    override config: TDocConfig = {
+        name: 'CountIndicator',
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:CountIndicatorProps', component: uui.CountIndicator },
+            [TSkin.UUI3_loveship]: {
+                type: '@epam/loveship:CountIndicatorProps',
+                component: loveship.CountIndicator,
+            },
+            [TSkin.UUI4_promo]: {
+                type: '@epam/promo:CountIndicatorProps',
+                component: promo.CountIndicator,
+            },
+        },
+    };
 
     renderContent() {
         return (

@@ -4,7 +4,7 @@ import { DemoComponentProps } from '@epam/uui-docs';
 import { FlexRow, FlexCell, TextInput } from '@epam/loveship';
 
 export class FlexRowContext extends React.Component<DemoComponentProps> {
-    public static displayName = 'Default';
+    public static displayName = 'FlexRowContext';
     render() {
         const { DemoComponent, props } = this.props;
 

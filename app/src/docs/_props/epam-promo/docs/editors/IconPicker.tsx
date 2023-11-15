@@ -74,7 +74,7 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
     });
 
     handleClear = () => {
-        this.props.onValueChange(null);
+        this.props.onValueChange(undefined);
         this.setState({ iconId: null });
     };
 
