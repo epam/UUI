@@ -1,3 +1,15 @@
+@use '~@epam/assets/theme/theme_promo' as *;
+
+.wrapper {
+    padding: 3rem 1rem 0;
+
+    &.uui-theme-promo {
+        :global {
+            @include theme-promo();
+        }
+    }
+}
+
 .target-body-container {
     padding: 0 12px;
     border: 1px solid #CED0DB;
@@ -14,6 +26,12 @@
 
 .drop-container {
     width: 334px;
+
+    &.uui-theme-promo {
+        :global {
+            @include theme-promo();
+        }
+    }
 
     &:global(.uui-dropdown-body) {
         min-width: 300px;

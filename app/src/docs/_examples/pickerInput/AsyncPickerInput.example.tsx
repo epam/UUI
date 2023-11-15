@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Location } from '@epam/uui-docs';
 import { useAsyncDataSource, useUuiContext } from '@epam/uui-core';
-import { FlexCell, PickerInput } from '@epam/promo';
+import { FlexCell, PickerInput } from '@epam/uui';
 import { TApi } from '../../../data';
 
 export default function AsyncPickerInputExample() {

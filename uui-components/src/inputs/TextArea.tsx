@@ -161,9 +161,6 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                     ref={ this.textAreaRef }
                     onKeyDown={ this.props.onKeyDown }
                 />
-                {!this.props.isInvalid && this.props.maxLength && (
-                    <div className={ cx(uuiElement.textareaCounter) }>{`${(this.props.value && this.props.value.length) || 0}/${this.props.maxLength}`}</div>
-                )}
             </div>
         );
     }

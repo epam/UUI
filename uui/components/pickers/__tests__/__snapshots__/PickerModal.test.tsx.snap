@@ -16,7 +16,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
   />
   <div
     aria-modal={true}
-    className="uui-modal-window modal container"
+    className="uui-modal-window root modal container"
     role="dialog"
     style={
       Object {
@@ -26,7 +26,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
     }
   >
     <div
-      className="root size-36 padding-24 vPadding-12 spacing-12 modalHeader container align-items-center"
+      className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -35,7 +35,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       }
     >
       <div
-        className="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
+        className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
       >
         Please select
       </div>
@@ -57,7 +57,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       >
         <button
           aria-label="Close modal"
-          className="container uui-button-box uui-enabled -clickable icon-button-default root"
+          className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -87,7 +87,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       }
     >
       <div
-        className="root size-36 vPadding-24 container align-items-center"
+        className="uui-flex-row root size-36 vPadding-24 container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -126,7 +126,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="root size-36 body modal undefined container align-items-center"
+      className="uui-flex-row root size-36 body modal undefined container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -136,7 +136,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       }
     >
       <div
-        className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+        className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
         style={
           Object {
             "display": "flex",
@@ -183,7 +183,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
               <div
                 aria-posinset={1}
                 aria-selected={false}
-                className="pickerRow container -clickable align-items-center"
+                className="uui-flex-row pickerRow container -clickable align-items-center"
                 onClick={[Function]}
                 role="option"
                 style={
@@ -194,7 +194,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -221,7 +221,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         Elementary
                       </div>
@@ -235,7 +235,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
               <div
                 aria-posinset={2}
                 aria-selected={false}
-                className="pickerRow container -clickable align-items-center"
+                className="uui-flex-row pickerRow container -clickable align-items-center"
                 onClick={[Function]}
                 role="option"
                 style={
@@ -246,7 +246,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -273,7 +273,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         Elementary+
                       </div>
@@ -328,7 +328,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="root size-36 padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+      className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -340,7 +340,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         className="flexSpacer"
       />
       <button
-        className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-outline"
+        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -352,7 +352,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         </div>
       </button>
       <button
-        className="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-solid"
+        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -384,7 +384,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
   />
   <div
     aria-modal={true}
-    className="uui-modal-window modal container"
+    className="uui-modal-window root modal container"
     role="dialog"
     style={
       Object {
@@ -394,7 +394,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
     }
   >
     <div
-      className="root size-36 padding-24 vPadding-12 spacing-12 modalHeader container align-items-center"
+      className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -403,7 +403,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       }
     >
       <div
-        className="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
+        className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
       >
         Please select
       </div>
@@ -425,7 +425,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       >
         <button
           aria-label="Close modal"
-          className="container uui-button-box uui-enabled -clickable icon-button-default root"
+          className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -455,7 +455,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       }
     >
       <div
-        className="root size-36 vPadding-24 container align-items-center"
+        className="uui-flex-row root size-36 vPadding-24 container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -493,7 +493,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         </div>
       </div>
       <label
-        className="container switch-vars root size-18 switch uui-disabled"
+        className="uui-switch container root size-18 uui-color-primary switch uui-disabled"
       >
         <div
           className="uui-switch-body"
@@ -519,7 +519,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       </label>
     </div>
     <div
-      className="root size-36 body modal undefined container align-items-center"
+      className="uui-flex-row root size-36 body modal undefined container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -529,7 +529,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       }
     >
       <div
-        className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+        className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
         style={
           Object {
             "display": "flex",
@@ -576,7 +576,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
               <div
                 aria-checked={false}
                 aria-posinset={1}
-                className="pickerRow container -clickable align-items-center"
+                className="uui-flex-row pickerRow container -clickable align-items-center"
                 onClick={[Function]}
                 role="option"
                 style={
@@ -587,7 +587,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -601,7 +601,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   }
                 >
                   <label
-                    className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                   >
                     <div
                       className="uui-checkbox"
@@ -629,7 +629,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         C2
                       </div>
@@ -643,7 +643,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
               <div
                 aria-checked={false}
                 aria-posinset={2}
-                className="pickerRow container -clickable align-items-center"
+                className="uui-flex-row pickerRow container -clickable align-items-center"
                 onClick={[Function]}
                 role="option"
                 style={
@@ -654,7 +654,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -668,7 +668,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   }
                 >
                   <label
-                    className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                   >
                     <div
                       className="uui-checkbox"
@@ -696,7 +696,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         C1+
                       </div>
@@ -710,7 +710,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
               <div
                 aria-checked={false}
                 aria-posinset={3}
-                className="pickerRow container -clickable align-items-center"
+                className="uui-flex-row pickerRow container -clickable align-items-center"
                 onClick={[Function]}
                 role="option"
                 style={
@@ -721,7 +721,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -735,7 +735,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   }
                 >
                   <label
-                    className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                   >
                     <div
                       className="uui-checkbox"
@@ -763,7 +763,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         C1
                       </div>
@@ -777,7 +777,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
               <div
                 aria-checked={false}
                 aria-posinset={4}
-                className="pickerRow container -clickable align-items-center"
+                className="uui-flex-row pickerRow container -clickable align-items-center"
                 onClick={[Function]}
                 role="option"
                 style={
@@ -788,7 +788,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -802,7 +802,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   }
                 >
                   <label
-                    className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                   >
                     <div
                       className="uui-checkbox"
@@ -830,7 +830,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         B2+
                       </div>
@@ -844,7 +844,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
               <div
                 aria-checked={false}
                 aria-posinset={5}
-                className="pickerRow container -clickable align-items-center"
+                className="uui-flex-row pickerRow container -clickable align-items-center"
                 onClick={[Function]}
                 role="option"
                 style={
@@ -855,7 +855,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -869,7 +869,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   }
                 >
                   <label
-                    className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                   >
                     <div
                       className="uui-checkbox"
@@ -897,7 +897,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         B2
                       </div>
@@ -911,7 +911,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
               <div
                 aria-checked={false}
                 aria-posinset={6}
-                className="pickerRow container -clickable align-items-center"
+                className="uui-flex-row pickerRow container -clickable align-items-center"
                 onClick={[Function]}
                 role="option"
                 style={
@@ -922,7 +922,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -936,7 +936,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   }
                 >
                   <label
-                    className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                   >
                     <div
                       className="uui-checkbox"
@@ -964,7 +964,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         B1+
                       </div>
@@ -978,7 +978,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
               <div
                 aria-checked={false}
                 aria-posinset={7}
-                className="pickerRow container -clickable align-items-center"
+                className="uui-flex-row pickerRow container -clickable align-items-center"
                 onClick={[Function]}
                 role="option"
                 style={
@@ -989,7 +989,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1003,7 +1003,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   }
                 >
                   <label
-                    className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                   >
                     <div
                       className="uui-checkbox"
@@ -1031,7 +1031,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         B1
                       </div>
@@ -1045,7 +1045,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
               <div
                 aria-checked={false}
                 aria-posinset={8}
-                className="pickerRow container -clickable align-items-center"
+                className="uui-flex-row pickerRow container -clickable align-items-center"
                 onClick={[Function]}
                 role="option"
                 style={
@@ -1056,7 +1056,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1070,7 +1070,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   }
                 >
                   <label
-                    className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                   >
                     <div
                       className="uui-checkbox"
@@ -1098,7 +1098,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         A2+
                       </div>
@@ -1112,7 +1112,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
               <div
                 aria-checked={false}
                 aria-posinset={9}
-                className="pickerRow container -clickable align-items-center"
+                className="uui-flex-row pickerRow container -clickable align-items-center"
                 onClick={[Function]}
                 role="option"
                 style={
@@ -1123,7 +1123,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1137,7 +1137,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   }
                 >
                   <label
-                    className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                   >
                     <div
                       className="uui-checkbox"
@@ -1165,7 +1165,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         A2
                       </div>
@@ -1179,7 +1179,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
               <div
                 aria-checked={false}
                 aria-posinset={10}
-                className="pickerRow container -clickable align-items-center"
+                className="uui-flex-row pickerRow container -clickable align-items-center"
                 onClick={[Function]}
                 role="option"
                 style={
@@ -1190,7 +1190,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1204,7 +1204,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   }
                 >
                   <label
-                    className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                   >
                     <div
                       className="uui-checkbox"
@@ -1232,7 +1232,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         A1+
                       </div>
@@ -1246,7 +1246,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
               <div
                 aria-checked={false}
                 aria-posinset={11}
-                className="pickerRow container -clickable align-items-center"
+                className="uui-flex-row pickerRow container -clickable align-items-center"
                 onClick={[Function]}
                 role="option"
                 style={
@@ -1257,7 +1257,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1271,7 +1271,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   }
                 >
                   <label
-                    className="container uui-checkbox-container root size-18 mode-form checkbox -clickable"
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
                   >
                     <div
                       className="uui-checkbox"
@@ -1299,7 +1299,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         A1
                       </div>
@@ -1354,7 +1354,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       </div>
     </div>
     <div
-      className="root size-36 padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+      className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -1364,7 +1364,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
     >
       <button
         aria-disabled={false}
-        className="container uui-button-box uui-enabled -clickable root size-36 uui-no-left-icon uui-no-right-icon link-button-primary"
+        className="container uui-button-box uui-enabled -clickable uui-link_button root size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -1379,7 +1379,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         className="flexSpacer"
       />
       <button
-        className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-outline"
+        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -1391,7 +1391,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         </div>
       </button>
       <button
-        className="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-solid"
+        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -1427,15 +1427,15 @@ exports[`PickerModal should open body 1`] = `
       />
       <div
         aria-modal="true"
-        class="uui-modal-window modal container"
+        class="uui-modal-window root modal container"
         role="dialog"
         style="width: 600px; height: 700px;"
       >
         <div
-          class="root size-36 padding-24 vPadding-12 spacing-12 modalHeader container align-items-center"
+          class="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
         >
           <div
-            class="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
+            class="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
           >
             Please select
           </div>
@@ -1448,7 +1448,7 @@ exports[`PickerModal should open body 1`] = `
           >
             <button
               aria-label="Close modal"
-              class="container uui-button-box uui-enabled -clickable icon-button-default root"
+              class="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
               tabindex="0"
               type="button"
             >
@@ -1467,7 +1467,7 @@ exports[`PickerModal should open body 1`] = `
           style="min-width: 0; flex-basis: 0px;"
         >
           <div
-            class="root size-36 vPadding-24 container align-items-center"
+            class="uui-flex-row root size-36 vPadding-24 container align-items-center"
           >
             <div
               class="container uui-input-box -clickable uui-focus root size-36 mode-form"
@@ -1493,7 +1493,7 @@ exports[`PickerModal should open body 1`] = `
           </div>
         </div>
         <div
-          class="root size-36 body modal undefined container align-items-center"
+          class="uui-flex-row root size-36 body modal undefined container align-items-center"
         >
           <div
             class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
@@ -1512,11 +1512,11 @@ exports[`PickerModal should open body 1`] = `
                   <div
                     aria-posinset="1"
                     aria-selected="false"
-                    class="pickerRow container -clickable align-items-center"
+                    class="uui-flex-row pickerRow container -clickable align-items-center"
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -1527,7 +1527,7 @@ exports[`PickerModal should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
                             Elementary
                           </div>
@@ -1541,11 +1541,11 @@ exports[`PickerModal should open body 1`] = `
                   <div
                     aria-posinset="2"
                     aria-selected="false"
-                    class="pickerRow container -clickable align-items-center"
+                    class="uui-flex-row pickerRow container -clickable align-items-center"
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -1556,7 +1556,7 @@ exports[`PickerModal should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
                             Elementary+
                           </div>
@@ -1594,13 +1594,13 @@ exports[`PickerModal should open body 1`] = `
           </div>
         </div>
         <div
-          class="root size-36 padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+          class="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
         >
           <div
             class="flexSpacer"
           />
           <button
-            class="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-outline"
+            class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
             tabindex="0"
             type="button"
           >
@@ -1611,7 +1611,7 @@ exports[`PickerModal should open body 1`] = `
             </div>
           </button>
           <button
-            class="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-solid"
+            class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
             tabindex="0"
             type="button"
           >

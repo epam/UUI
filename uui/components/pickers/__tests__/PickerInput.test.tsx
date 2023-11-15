@@ -964,5 +964,78 @@ describe('PickerInput', () => {
             await user.keyboard('a');
             expect(await screen.findByRole('dialog')).toBeInTheDocument();
         });
+
+        it('should focus on first item on open and then move focus by arrows', async () => {
+            const { dom } = await setupPickerInputForTest<TestItemType, number>({
+                value: undefined,
+                selectionMode: 'multi',
+            });
+
+            fireEvent.click(dom.input);
+
+            const dialog = await screen.findByRole('dialog');
+            await PickerInputTestObject.waitForOptionsToBeReady();
+
+            let focusedItem = dialog.querySelector('.uui-focus');
+            expect(focusedItem.getAttribute('aria-posinset')).toBe('1');
+
+            fireEvent.keyDown(dom.input, { key: 'ArrowDown', code: 'ArrowDown', charCode: 40 });
+            focusedItem = dialog.querySelector('.uui-focus');
+            expect(focusedItem.getAttribute('aria-posinset')).toBe('2');
+
+            fireEvent.keyDown(dom.input, { key: 'ArrowUp', code: 'ArrowUp', charCode: 38 });
+            focusedItem = dialog.querySelector('.uui-focus');
+            expect(focusedItem.getAttribute('aria-posinset')).toBe('1');
+        });
+
+        it('should focus first founded item after search', async () => {
+            const { dom } = await setupPickerInputForTest<TestItemType, number>({
+                value: undefined,
+                selectionMode: 'single',
+            });
+
+            fireEvent.click(dom.input);
+
+            const dialog = await screen.findByRole('dialog');
+
+            fireEvent.change(dom.input, { target: { value: 'A' } });
+
+            await PickerInputTestObject.waitForOptionsToBeReady();
+
+            const focusedItem = dialog.querySelector('.uui-focus');
+            expect(focusedItem.getAttribute('aria-posinset')).toBe('1');
+        });
+
+        it('should select focused item by enter', async () => {
+            const { dom, mocks } = await setupPickerInputForTest<TestItemType, number>({
+                value: undefined,
+                selectionMode: 'single',
+            });
+
+            fireEvent.click(dom.input);
+
+            await PickerInputTestObject.waitForOptionsToBeReady();
+
+            fireEvent.keyDown(dom.input, { key: 'Enter', code: 'Enter', charCode: 13 });
+            expect(mocks.onValueChange).toHaveBeenCalledWith(2);
+        });
+
+        it('should remove last item from selection by backspace in case of searchPosition="input"', async () => {
+            const { dom, mocks } = await setupPickerInputForTest<TestItemType, number>({
+                value: [2, 3, 4],
+                selectionMode: 'multi',
+                searchPosition: 'input',
+            });
+
+            fireEvent.click(dom.input);
+
+            await PickerInputTestObject.waitForOptionsToBeReady();
+
+            fireEvent.keyDown(dom.input, { key: 'Backspace', code: 'Backspace', charCode: 8 });
+            expect(mocks.onValueChange).toHaveBeenCalledWith([2, 3]);
+
+            fireEvent.keyDown(dom.input, { key: 'Backspace', code: 'Backspace', charCode: 8 });
+            expect(mocks.onValueChange).toHaveBeenCalledWith([2]);
+        });
     });
 });

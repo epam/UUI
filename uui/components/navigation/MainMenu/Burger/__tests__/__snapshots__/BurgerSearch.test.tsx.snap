@@ -2,7 +2,7 @@
 
 exports[`BurgerSearch should be rendered correctly 1`] = `
 <div
-  className="container uui-input-box -clickable searchInput"
+  className="container uui-input-box -clickable searchInput uui-main_menu-burger-search"
   onFocus={[Function]}
   tabIndex={-1}
 >
@@ -29,7 +29,7 @@ exports[`BurgerSearch should be rendered correctly 1`] = `
 
 exports[`BurgerSearch should be rendered correctly 2`] = `
 <div
-  className="container uui-input-box -clickable searchInput"
+  className="container uui-input-box -clickable searchInput uui-main_menu-burger-search"
   onFocus={[Function]}
   tabIndex={-1}
 >

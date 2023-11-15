@@ -1,32 +1,31 @@
-@use '~@epam/assets/scss/promo/colors' as *;
-
 .wrapper {
     border: 1px solid;
     border-left: 6px solid;
+    border-radius: var(--uui-border-radius);
     position: relative;
     margin: 24px 0;
     padding: 18px 24px;
-    background: fade-out($amber, 0.8);
+    background: var(--uui-warning-5);
 }
 
 .error {
-    background: fade-out($red, 0.8);
-    border-color: $red;
+    background: var(--uui-error-5);
+    border-color: var(--uui-error-50);
 }
 
 .warning {
-    background: fade-out($amber, 0.8);
-    border-color: $amber;
+    background: var(--uui-warning-5);
+    border-color: var(--uui-warning-50);
 }
 
 .link {
-    background: fade-out($blue, 0.8);
-    border-color: $blue;
+    background: var(--uui-info-5);
+    border-color: var(--uui-info-50);
 }
 
 .quote {
-    background: fade-out($gray60, 0.8);
-    border-color: $gray60;
+    background: var(--uui-secondary-5);
+    border-color: var(--uui-secondary-50);
 }
 
 .icon {
@@ -49,5 +48,5 @@
 }
 
 .info-color {
-    fill: $amber;
+    fill: var(--uui-warning-50);
 }

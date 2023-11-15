@@ -1,5 +1,4 @@
 import React from 'react';
-import css from './highlight.module.scss';
 
 export interface HighlightRange {
     from: number;
@@ -73,7 +72,7 @@ const getDecoratedText = (str: string, ranges: HighlightRange[]) =>
         return (
             <span
                 key={ `${rangeStr}-${index}` }
-                { ...(range.isHighlighted ? { className: css.highlightedText } : {}) }
+                { ...(range.isHighlighted ? { className: 'uui-highlight' } : {}) }
             >
                 {rangeStr}
             </span>

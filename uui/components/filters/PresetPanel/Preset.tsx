@@ -5,6 +5,7 @@ import { PresetActionsDropdown } from './PresetActionsDropdown';
 import { PresetInput } from './PresetInput';
 import { FlexCell } from '../../layout';
 import css from './Preset.module.scss';
+import { UUI_PRESETS_PANEL_PRESET } from './constants';
 
 interface IPresetProps extends Omit<IPresetsApi, 'presets'> {
     preset: ITablePreset;
@@ -47,7 +48,7 @@ export function Preset(props: IPresetProps) {
                 <TabButton
                     caption={ props.preset.name }
                     onClick={ !isPresetActive && choosePresetHandler }
-                    cx={ [css.preset, isPresetActive && css.activePreset] }
+                    cx={ [css.preset, isPresetActive && css.activePreset, UUI_PRESETS_PANEL_PRESET] }
                     size="60"
                     withNotify={ isPresetActive && props.hasPresetChanged(props.preset) }
                     icon={ () => <PresetActionsDropdown renamePreset={ setPresetForRename } { ...props } /> }

@@ -52,7 +52,7 @@
 
     .caption {
         font-family: var(--uui-dt-header-cell-font);
-        font-weight: var(--uui-dt-header-cell-font-weight, normal);
+        font-weight: var(--uui-dt-header-cell-font-weight);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -132,18 +132,18 @@
     }
 
     &.dnd-marker-left {
-        box-shadow: inset 2px 0 0 0 var(--uui-dt_header-drop_marker);
+        box-shadow: inset 2px 0 0 0 var(--uui-dt-header-drop_marker);
 
         &:global(.-clickable), &:local(.resizable) {
-            box-shadow: inset 2px 0 0 0 var(--uui-dt_header-drop_marker);
+            box-shadow: inset 2px 0 0 0 var(--uui-dt-header-drop_marker);
         }
     }
 
     &.dnd-marker-right {
-        box-shadow: inset -2px 0 0 0 var(--uui-dt_header-drop_marker);
+        box-shadow: inset -2px 0 0 0 var(--uui-dt-header-drop_marker);
 
         &:global(.-clickable), &:local(.resizable) {
-            box-shadow: inset -2px 0 0 0 var(--uui-dt_header-drop_marker);
+            box-shadow: inset -2px 0 0 0 var(--uui-dt-header-drop_marker);
         }
     }
 }

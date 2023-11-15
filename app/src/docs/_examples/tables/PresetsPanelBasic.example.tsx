@@ -1,12 +1,11 @@
 import React, { useCallback, useMemo } from 'react';
-import {
-    DataTable, Panel, FlexRow, Text, Badge, EpamAdditionalColor, PresetsPanel, ModalBlocker, ModalWindow, ModalHeader, Button, FlexSpacer, ModalFooter, ScrollBars,
-} from '@epam/promo';
-import {
-    DataColumnProps, IModal, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext,
-} from '@epam/uui-core';
-import { Person } from '@epam/uui-docs';
 import dayjs from 'dayjs';
+import { DataColumnProps, IModal, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
+import {
+    DataTable, Panel, FlexRow, Text, PresetsPanel, BadgeColor, Badge, ModalBlocker, ModalWindow, ModalFooter, Button, ScrollBars,
+    ModalHeader, FlexSpacer,
+} from '@epam/uui';
+import { Person } from '@epam/uui-docs';
 
 const personColumns: DataColumnProps<Person, number>[] = [
     {
@@ -22,7 +21,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as EpamAdditionalColor } caption={ p.profileStatus } />
+                    <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as BadgeColor } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         width: 160,
@@ -134,7 +133,7 @@ export default function PresetsPanelExample() {
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState);
 
     return (
-        <Panel style={ { height: '400px' } }>
+        <Panel background="surface" shadow style={ { height: '400px' } }>
             <FlexRow>
                 <PresetsPanel { ...tableStateApi } />
             </FlexRow>
@@ -166,8 +165,8 @@ function RemovePresetConfirmationModal({ presetName, ...modalProps }: IModal<str
                     </ScrollBars>
                     <ModalFooter>
                         <FlexSpacer />
-                        <Button color="gray" fill="white" caption="Cancel" onClick={ () => modalProps.abort() } />
-                        <Button color="blue" caption="Ok" onClick={ () => modalProps.success('Success action') } />
+                        <Button color="neutral" fill="outline" caption="Cancel" onClick={ () => modalProps.abort() } />
+                        <Button color="primary" caption="Ok" onClick={ () => modalProps.success('Success action') } />
                     </ModalFooter>
                 </Panel>
             </ModalWindow>

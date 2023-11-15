@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider should render with maximum props 1`] = `
+<div
+  className="uui-slider-container root root uui-color-neutral"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+>
+  <div
+    className="uui-slider"
+  />
+  <div
+    className="uui-slider-filled"
+    style={
+      Object {
+        "width": 0,
+      }
+    }
+  />
+  <div
+    className="uui-slider-scale"
+  >
+    <div
+      className="uui-slider-scale-dot"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    />
+    <div
+      className="uui-slider-scale-number"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    >
+      0
+    </div>
+    <div
+      className="uui-slider-scale-dot"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    />
+    <div
+      className="uui-slider-scale-number"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    >
+      50
+    </div>
+  </div>
+  <div
+    aria-valuemax={50}
+    aria-valuemin={0}
+    aria-valuenow={null}
+    className="uui-slider-handle root uui-color-neutral"
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+    role="slider"
+    style={
+      Object {
+        "transform": "translateX(0px)",
+      }
+    }
+    tabIndex={0}
+  />
+</div>
+`;
+
+exports[`Slider should render with minimum props 1`] = `
+<div
+  className="uui-slider-container root root uui-color-neutral"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+>
+  <div
+    className="uui-slider"
+  />
+  <div
+    className="uui-slider-filled"
+    style={
+      Object {
+        "width": 0,
+      }
+    }
+  />
+  <div
+    className="uui-slider-scale"
+  >
+    <div
+      className="uui-slider-scale-dot"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    />
+    <div
+      className="uui-slider-scale-number"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    >
+      0
+    </div>
+    <div
+      className="uui-slider-scale-dot"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    />
+    <div
+      className="uui-slider-scale-number"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    >
+      50
+    </div>
+  </div>
+  <div
+    aria-valuemax={50}
+    aria-valuemin={0}
+    aria-valuenow={null}
+    className="uui-slider-handle root uui-color-neutral"
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+    role="slider"
+    style={
+      Object {
+        "transform": "translateX(0px)",
+      }
+    }
+    tabIndex={0}
+  />
+</div>
+`;

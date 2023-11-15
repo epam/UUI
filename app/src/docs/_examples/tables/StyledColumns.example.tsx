@@ -1,13 +1,9 @@
 import React, { useMemo, useState } from 'react';
-import {
-    Badge, DataTable, EpamAdditionalColor, FlexRow, Panel, Text,
-} from '@epam/promo';
-import {
-    DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts,
-} from '@epam/uui-core';
+import { DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
+import { BadgeColor, Badge, DataTable, FlexRow, Panel, Text } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
-import css from './TablesExamples.module.scss';
 import { TApi } from '../../../data';
+import css from './TablesExamples.module.scss';
 
 export default function StyledColumnsExample() {
     const svc = useUuiContext<TApi, UuiContexts>();
@@ -42,7 +38,7 @@ export default function StyledColumnsExample() {
                 render: (p) =>
                     p.profileStatus && (
                         <FlexRow>
-                            <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as EpamAdditionalColor } caption={ p.profileStatus } />
+                            <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as BadgeColor } caption={ p.profileStatus } />
                         </FlexRow>
                     ),
                 width: 140,
@@ -79,7 +75,7 @@ export default function StyledColumnsExample() {
     );
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel background="surface" shadow cx={ css.container }>
             <DataTable
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }

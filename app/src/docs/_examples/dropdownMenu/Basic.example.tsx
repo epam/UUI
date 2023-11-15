@@ -46,7 +46,7 @@ export default function BasicDropdownMenuExample() {
 
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownMenuBody { ...props } rawProps={ { style: { maxWidth: '250px' } } }>
+            <DropdownMenuBody { ...props } rawProps={ { style: { maxWidth: '250px', padding: '6px 0' } } }>
                 <DropdownMenuHeader caption="Alex Smith" />
                 <DropdownMenuSplitter />
                 <DropdownMenuButton caption="Profile" />
@@ -116,7 +116,7 @@ export default function BasicDropdownMenuExample() {
             <ControlGroup>
                 <Dropdown
                     renderBody={ renderThirdDropdownBody }
-                    renderTarget={ (props) => <Button { ...props } mode="outline" icon={ MenuIcon } size="36" isDropdown={ false } /> }
+                    renderTarget={ (props) => <Button { ...props } fill="outline" icon={ MenuIcon } size="36" isDropdown={ false } /> }
                     placement="bottom-end"
                 />
             </ControlGroup>

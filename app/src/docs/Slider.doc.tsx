@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI3,
-} from '../common';
+import { BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI3, UUI4, UUI } from '../common';
 
 export class SliderDoc extends BaseDocsBlock {
     title = 'Slider';
@@ -11,6 +9,8 @@ export class SliderDoc extends BaseDocsBlock {
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/Slider/slider.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/slider.props.ts',
+            [UUI]: './app/src/docs/_props/uui/components/inputs/slider.props.ts',
         };
     }
 

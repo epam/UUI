@@ -47,6 +47,7 @@ export class Switch extends React.Component<SwitchProps> {
         return (
             <label
                 className={ cx(
+                    'uui-switch',
                     css.container,
                     this.props.cx,
                     this.props.isDisabled && uuiMod.disabled,

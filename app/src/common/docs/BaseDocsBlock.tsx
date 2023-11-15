@@ -1,14 +1,13 @@
 import * as React from 'react';
-import {
-    Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars,
-} from '@epam/promo';
+import { Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars } from '@epam/uui';
 import { ComponentEditor } from './ComponentEditor';
 import { svc } from '../../services';
 import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
-import css from './BaseDocsBlock.module.scss';
 import { TDocsGenExportedType } from '../apiReference/types';
 import { TypeRefSection } from '../apiReference/TypeRefSection';
+import cx from 'classnames';
+import css from './BaseDocsBlock.module.scss';
 
 export enum TSkin {
     UUI3_loveship = 'UUI3_loveship',
@@ -59,7 +58,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         if (docsGenType) {
             return (
                 <>
-                    <RichTextView>
+                    <RichTextView cx={ css.themePromo }>
                         <h2>Api</h2>
                     </RichTextView>
                     <TypeRefSection showCode={ true } typeRef={ docsGenType } />
@@ -70,9 +69,9 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderMultiSwitch() {
         return (
-            <MultiSwitch<TSkin>
+            <MultiSwitch
                 size="36"
-                items={ items.filter((i) => (!window.location.host.includes('localhost') ? i.id !== TSkin.UUI : true)) }
+                items={ items }
                 value={ this.getSkin() }
                 onValueChange={ (newValue: TSkin) => this.handleChangeSkin(newValue) }
             />
@@ -81,7 +80,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderTabsNav() {
         return (
-            <FlexRow rawProps={ { role: 'tablist' } } background="white" padding="12" cx={ css.secondaryNavigation } borderBottom>
+            <FlexRow rawProps={ { role: 'tablist' } } padding="12" cx={ [css.uuiThemePromo, css.secondaryNavigation] } borderBottom>
                 <TabButton size="60" caption="Documentation" isLinkActive={ getQuery('mode') === 'doc' } onClick={ () => this.handleChangeMode('doc') } />
                 <TabButton size="60" caption="Property Explorer" isLinkActive={ getQuery('mode') === 'propsEditor' } onClick={ () => this.handleChangeMode('propsEditor') } />
                 <FlexSpacer />
@@ -91,7 +90,6 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     }
 
     renderPropEditor() {
-        this.handleChangeBodyTheme(getQuery('skin'));
         if (!this.getPropsDocPath()) {
             svc.uuiRouter.redirect({
                 pathname: '/documents',
@@ -116,7 +114,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderSectionTitle(title: string) {
         return (
-            <RichTextView>
+            <RichTextView cx={ css.themePromo }>
                 <h2>{title}</h2>
             </RichTextView>
         );
@@ -124,7 +122,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderDocTitle() {
         return (
-            <RichTextView>
+            <RichTextView cx={ css.themePromo }>
                 <h1>{this.title}</h1>
             </RichTextView>
         );
@@ -144,7 +142,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderNotSupportPropExplorer() {
         return (
-            <div className={ css.notSupport }>
+            <div className={ cx(css.notSupport, css.themePromo) }>
                 <Text fontSize="16" lineHeight="24">
                     This component does not support property explorer
                 </Text>
@@ -177,22 +175,12 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                 skin: skin,
             },
         });
-        this.handleChangeBodyTheme(skin);
-    }
-
-    handleChangeBodyTheme(skin: TSkin) {
-        const theme = document.body.classList.value.match(/uui-theme-(\S+)\s*/)[1];
-        if (theme === skin.split('_')[1]) return;
-        document.body.classList.remove(`uui-theme-${theme}`);
-        document.body.classList.add(`uui-theme-${skin === UUI3 ? 'loveship' : 'promo'}`);
-    }
-
-    componentWillUnmount() {
-        this.handleChangeBodyTheme(TSkin.UUI4_promo);
     }
 
     handleChangeMode(mode: 'doc' | 'propsEditor') {
-        this.handleChangeBodyTheme(TSkin.UUI4_promo);
+        const skin = getQuery('skin');
+        if (mode === 'propsEditor' && skin !== UUI) {
+        }
 
         svc.uuiRouter.redirect({
             pathname: '/documents',

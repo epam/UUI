@@ -3,7 +3,7 @@
 import { render } from 'react-dom';
 import { UuiContext, useUuiServices, DragGhost, Router6AdaptedRouter } from '@epam/uui-core';
 import { Modals, Snackbar } from '@epam/uui-components';
-import { skinContext, ErrorHandler } from '@epam/promo';
+import { ErrorHandler } from '@epam/promo';
 import { svc } from '../../../services';
 import { createBrowserRouter } from 'react-router-dom';
 import { RouterProvider } from 'react-router';
@@ -14,10 +14,7 @@ const router6 = createBrowserRouter([
 const router = new Router6AdaptedRouter(router6);
 
 function UuiEnhancedApp() {
-    const { services } = useUuiServices({
-        router,
-        skinContext,
-    });
+    const { services } = useUuiServices({ router });
     Object.assign(svc, services);
 
     return (

@@ -7,7 +7,7 @@ import {
 } from '@epam/uui-components';
 import { DatePickerHeader } from './DatePickerHeader';
 import { Calendar } from './Calendar';
-import './DatePickerBody.module.scss';
+import css from './DatePickerBody.module.scss';
 
 dayjs.extend(updateLocale);
 
@@ -60,9 +60,9 @@ export class DatePickerBody extends DatePickerBodyBase<string, DatePickerBodyPro
         }
     };
 
-    renderDatePicker = () => {
+    renderBody = () => {
         return (
-            <div className={ cx(uuiDatePickerBody.wrapper, this.props.cx) }>
+            <div className={ cx(css.root, uuiDatePickerBody.wrapper, this.props.cx) }>
                 <DatePickerHeader
                     value={ this.props.value }
                     onValueChange={ (newValue) => this.props.setDisplayedDateAndView(newValue.displayedDate, newValue.view) }

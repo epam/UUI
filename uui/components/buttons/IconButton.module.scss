@@ -1,15 +1,26 @@
 @use '../../assets/styles/effects' as *;
 
 .root {
-    fill: var(--uui-icon-btn);
+    --uui-icon_btn: var(--uui-color-50);
+    --uui-icon_btn-hover: var(--uui-color-60);
+    --uui-icon_btn-active: var(--uui-color-70);
+    --uui-icon_btn-disabled: var(--uui-icon-disabled); // from core or color class? Current - from core
+    //
+    fill: var(--uui-icon_btn);
+
+    &:global(.uui-icon_button.uui-color-neutral) {
+        --uui-icon_btn: var(--uui-icon);
+        --uui-icon_btn-hover: var(--uui-icon-hover);
+        --uui-icon_btn-active: var(--uui-icon-active);
+    }
 
     &:global(.-clickable) {
         &:hover {
-            fill: var(--uui-icon-btn-hover);
+            fill: var(--uui-icon_btn-hover);
         }
 
         &:active {
-            fill: var(--uui-icon-btn-active);
+            fill: var(--uui-icon_btn-active);
         }
 
         &:focus-visible {
@@ -18,15 +29,15 @@
     }
 
     &:global(.uui-disabled) {
-        fill: var(--uui-icon-btn-disabled);
+        fill: var(--uui-icon_btn-disabled);
 
         &:global(.-clickable) {
             &:hover, &:focus {
-                fill: var(--uui-icon-btn-disabled);
+                fill: var(--uui-icon_btn-disabled);
             }
 
             &:active {
-                fill: var(--uui-icon-btn-disabled);
+                fill: var(--uui-icon_btn-disabled);
             }
         }
     }

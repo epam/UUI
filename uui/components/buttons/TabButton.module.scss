@@ -22,8 +22,15 @@ $text-size-caption: 36px;
 $text-size-count: 24px;
 
 .root {
+    --uui-tab_btn-text: var(--uui-text-primary);
+    --uui-tab_btn-text-hover: var(--uui-primary-50);
+    --uui-tab_btn-text-active: var(--uui-primary-50);
+    --uui-tab_btn-text-disabled: var(--uui-text-disabled);
+    --uui-tab_btn-font: var(--uui-font);
+    --uui-tab_btn-font-weight: 600;
+
     @include link-button-horizontal-layout(36px);
-    @include tab-button-color(var(--uui-tab_button-text), var(--uui-tab_button-text-active), transparent);
+    @include tab-button-color(var(--uui-tab_btn-text), var(--uui-tab_btn-text-active), transparent);
     cursor: pointer;
     padding-left: 12px;
     padding-right: 12px;
@@ -31,8 +38,8 @@ $text-size-count: 24px;
     bottom: -1px;
     display: flex;
     align-items: center;
-    font-family: var(--uui-tab_button-font);
-    font-weight: var(--uui-tab_button-font-weight, normal);
+    font-family: var(--uui-tab_btn-font);
+    font-weight: var(--uui-tab_btn-font-weight);
     border-bottom: 3px solid transparent;
 
     &:global(.-clickable):focus-visible {
@@ -40,7 +47,7 @@ $text-size-count: 24px;
     }
 
     &:global(.uui-disabled) {
-        @include tab-button-color(var(--uui-tab_button-text-disabled), var(--uui-tab_button-text-disabled), transparent);
+        @include tab-button-color(var(--uui-tab_btn-text-disabled), var(--uui-tab_btn-text-disabled), transparent);
     }
 
     &.withNotify {
@@ -51,8 +58,8 @@ $text-size-count: 24px;
                 margin-bottom: math.div($text-size-caption, 2);
                 height: 6px;
                 width: 6px;
-                background: var(--uui-negative);
-                box-shadow: 0 1px 8px 0 var(--uui-negative);
+                background: var(--uui-critical-50);
+                box-shadow: 0 1px 8px 0 var(--uui-critical-50);
                 border-radius: 50%;
             }
         }
@@ -62,16 +69,10 @@ $text-size-count: 24px;
         min-width: min-content;
     }
 
-    :global(.uui-count) {
-        @include text-size($text-size-count, 0);
-        letter-spacing: 0;
-        color: var(--uui-informer-caption);
-        background-color: var(--uui-informer-bg);
+    :global(.uui-count_indicator) {
         padding: 0 6px;
-        margin-left: 6px;
+        margin-left: 3px;
         margin-right: 3px;
-        border-radius: 9px;
-        flex-shrink: 0;
     }
 
     :global(.uui-caption) {

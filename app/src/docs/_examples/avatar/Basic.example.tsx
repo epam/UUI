@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, FlexRow } from '@epam/promo';
+import { Avatar, FlexRow } from '@epam/uui';
 
 export default function BasicExample() {
     const avatarUrl = 'https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4';

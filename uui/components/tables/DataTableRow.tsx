@@ -7,6 +7,7 @@ import { DataTableCell } from './DataTableCell';
 import { DataTableRowMods } from './types';
 import { DropMarker } from '../dnd';
 import css from './DataTableRow.module.scss';
+import './variables.scss';
 
 // Here we define a single instance of the renderCell function to make DataTableRow#shouldComponentUpdate work.
 // As we need our mods to style the cell properly, we extract them from DataTableCellProps.rowProps, which is a hack, but it's reliable enough.
@@ -23,7 +24,7 @@ export const DataTableRow = withMods<DataTableRowProps, DataTableRowMods>(
     uuiDataTableRow,
     ({ borderBottom = true, size }) => {
         return [
-            css.root, borderBottom && 'uui-dt-row-border', css['size-' + (size || '36')],
+            css.root, 'uui-dt-vars', borderBottom && 'uui-dt-row-border', css['size-' + (size || '36')],
         ];
     },
     () => propsMods,

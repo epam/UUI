@@ -85,7 +85,7 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
     const renderBody = () => {
         const isReadonlyPreset = props.preset.isReadonly;
         return (
-            <Panel shadow={ true } cx={ css.presetDropdownPanel }>
+            <Panel background="surface" shadow={ true } cx={ css.presetDropdownPanel }>
                 {props.activePresetId === props.preset.id && props.hasPresetChanged(props.preset) && (
                     <>
                         {!isReadonlyPreset && (
@@ -125,7 +125,7 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
         return (
             <IconButton
                 cx={ dropdownProps.isOpen && css.targetOpen }
-                color={ props.preset.id === props.activePresetId ? 'info' : 'default' }
+                color={ props.preset.id === props.activePresetId ? 'info' : 'neutral' }
                 { ...dropdownProps }
                 icon={ menuIcon }
             />

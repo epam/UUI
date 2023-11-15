@@ -13,6 +13,7 @@ export function DropMarker(props: DropMarkerProps) {
             <>
                 { props.enableBlocker && <div className={ css.blocker } /> }
                 <div className={ cx([
+                    css.root,
                     css.marker,
                     css[props.position],
                     props?.cx,

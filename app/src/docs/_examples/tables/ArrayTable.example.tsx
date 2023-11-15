@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { DataColumnProps, useArrayDataSource } from '@epam/uui-core';
-import { DataTable, Panel, Text } from '@epam/promo';
+import { DataTable, Panel, Text } from '@epam/uui';
 import { demoData, FeatureClass } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
 
@@ -21,20 +21,20 @@ export default function ArrayDataTableExample() {
             {
                 key: 'id',
                 caption: 'Id',
-                render: (item) => <Text color="gray80">{item.id}</Text>,
+                render: (item) => <Text color="primary">{item.id}</Text>,
                 isSortable: true,
                 isAlwaysVisible: true,
                 width: 100,
             }, {
                 key: 'name',
                 caption: 'Name',
-                render: (item) => <Text color="gray80">{item.name}</Text>,
+                render: (item) => <Text color="primary">{item.name}</Text>,
                 isSortable: true,
                 width: 300,
             }, {
                 key: 'description',
                 caption: 'Description',
-                render: (item) => <Text color="gray80">{item.description}</Text>,
+                render: (item) => <Text color="primary">{item.description}</Text>,
                 grow: 1,
                 width: 300,
             },
@@ -43,7 +43,7 @@ export default function ArrayDataTableExample() {
     );
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel background="surface" shadow cx={ css.container }>
             <DataTable
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }

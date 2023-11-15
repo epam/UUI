@@ -1,10 +1,6 @@
-import {
-    DataTable, useForm, Panel, DataTableCell, NumericInput, TextInput,
-} from '@epam/promo';
 import React, { useMemo } from 'react';
-import {
-    DataQueryFilter, DataTableState, DataTableSelectedCellData, useArrayDataSource, DataColumnProps,
-} from '@epam/uui-core';
+import { DataQueryFilter, DataTableState, DataTableSelectedCellData, useArrayDataSource, DataColumnProps } from '@epam/uui-core';
+import { DataTable, useForm, Panel, DataTableCell, NumericInput, TextInput } from '@epam/uui';
 
 import css from './TablesExamples.module.scss';
 
@@ -138,7 +134,7 @@ export default function ProjectTimeReportDemo() {
     };
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel background="surface" shadow cx={ css.container }>
             <DataTable
                 headerTextCase="upper"
                 onCopy={ onCopy }

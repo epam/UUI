@@ -3,13 +3,14 @@
 
 .paginator-wrapper {
     justify-content: flex-end;
-    box-shadow: inset 0 1px 0 $gray40;
+    box-shadow: inset 0 1px 0 var(--uui-divider);
+    background-color: var(--uui-surface-sunken);
 
     .items-per-page {
         margin-right: 36px;
 
         :global(.uui-label) {
-            font-family: $font-sans;
+            font-family: var(--uui-font);
         }
 
         :global(.uui-input) {
@@ -19,7 +20,7 @@
 
     .go-to-page {
         :global(.uui-label) {
-            font-family: $font-sans;
+            font-family: var(--uui-font);
         }
 
         :global(.uui-input) {

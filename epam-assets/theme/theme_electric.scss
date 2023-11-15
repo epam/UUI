@@ -1,0 +1,522 @@
+/*  Name convention  */
+/* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
+
+@import '../scss/electric/font-faces';
+
+@mixin theme-electric {
+    --uui-font: 'Source Sans Pro', sans-serif;
+    --font-primary: 'Museo Sans', 'Source Sans Pro', Arial, sans-serif;
+    --font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
+    --font-mono: monospace;
+
+    --night50: #FAFAFC;
+    --night100: #F5F6FA;
+    --night200: #EBEDF5;
+    --night300: #E1E3EB;
+    --night400: #CED0DB;
+    --night500: #ACAFBF;
+    --night600: #6C6F80;
+    --night700: #474A59;
+    --night800: #303240;
+    --night900: #1D1E26;
+    --night950: #111111;
+
+    --electric-5: #F3F8FE;
+    --electric-10: #CEE1FC;
+    --electric-20: #85B4F8;
+    --electric-50: #0A68F1;
+    --electric-60: #095ED9;
+    --electric-70: #0853C1;
+
+    --emerald-5: #F3FBF7;
+    --emerald-10: #CDEEDD;
+    --emerald-20: #97D9B7;
+    --emerald-50: #07A956;
+    --emerald-60: #06984D;
+    --emerald-70: #068745;
+
+    --sun-5: #FFFCF5;
+    --sun-10: #FFEDC9;
+    --sun-20: #FFD785;
+    --sun-50: #FCAA00;
+    --sun-60: #FF9000;
+    --sun-70: #BD5800;
+
+    --fire-5: #FEF6F6;
+    --fire-10: #FDE1E1;
+    --fire-20: #FBB6B6;
+    --fire-50: #FF4242;
+    --fire-60: #E22A2A;
+    --fire-70: #AD0000;
+
+    --white: #FFFFFF;
+
+    --yellow-5: #FFFFF0;
+    --yellow-10: #FFFECC;
+    --yellow-20: #FFFCA4;
+    --yellow-50: #FDD63B;
+    --yellow-60: #F9B71D;
+    --yellow-70: #D3910C;
+
+    --orange-5: #FEF8F4;
+    --orange-10: #FFE8D7;
+    --orange-20: #FFCCA7;
+    --orange-50: #FF8B3E;
+    --orange-60: #F76B0D;
+    --orange-70: #BD4B00;
+
+    --fuchsia-5: #FFF7FB;
+    --fuchsia-10: #F9D8E7;
+    --fuchsia-20: #EDADC8;
+    --fuchsia-50: #EA4386;
+    --fuchsia-60: #D61E68;
+    --fuchsia-70: #AE1955;
+
+    --purple-5: #FDF6FE;
+    --purple-10: #F2CCFA;
+    --purple-20: #E79DF5;
+    --purple-50: #B114D1;
+    --purple-60: #860F9E;
+    --purple-70: #5E0B6F;
+
+    --violet-5: #F8F6FE;
+    --violet-10: #DBCCFA;
+    --violet-20: #BB9DF5;
+    --violet-50: #773CEC;
+    --violet-60: #5514D6;
+    --violet-70: #40109E;
+
+    --cobalt-5: #F8FAFF;
+    --cobalt-10: #D9E2FC;
+    --cobalt-20: #AEC0F5;
+    --cobalt-50: #0F98FF;
+    --cobalt-60: #006FE5;
+    --cobalt-70: #0954A5;
+
+    --cyan-5: #F5FBFF;
+    --cyan-10: #D1FAFA;
+    --cyan-20: #AAEEEE;
+    --cyan-50: #14CCCC;
+    --cyan-60: #0F9E9E;
+    --cyan-70: #0B6F6F;
+
+    --mint-5: #F2FCF5;
+    --mint-10: #DDF3E4;
+    --mint-20: #B4DFC4;
+    --mint-50: #4FC48C;
+    --mint-60: #2E9E68;
+    --mint-70: #236E4A;
+
+    --gradient-1: linear-gradient(90deg, #00FFD3 0%, #00F6FF 44.22%, #B896FF 90%);
+    --gradient-2: linear-gradient(152deg, #0078C2 8.13%, #0047FF 59.98%, #8453D2 91.87%);
+    --gradient-3: linear-gradient(135deg, #1294E2 14.78%, #0A68F1 57.36%, #8453D2 95%);
+    --gradient-4: linear-gradient(315deg, #1294E2 0%, #92B4FF 46.64%, #C3A6FF 100%);
+    --gradient-5: linear-gradient(90deg, #1294E2 0%, #92B4FF 46.64%, #C3A6FF 100%);
+
+    /* core variables start */
+
+    /* brand colors */
+
+    --uui-accent-5: var(--emerald-5);
+    --uui-accent-10: var(--emerald-10);
+    --uui-accent-20: var(--emerald-20);
+    --uui-accent-50: var(--emerald-50);
+    --uui-accent-60: var(--emerald-60);
+    --uui-accent-70: var(--emerald-70);
+    --uui-accent-contrast: var(--white);
+
+    --uui-primary-5: var(--electric-5);
+    --uui-primary-10: var(--electric-10);
+    --uui-primary-20: var(--electric-20);
+    --uui-primary-50: var(--electric-50);
+    --uui-primary-60: var(--electric-60);
+    --uui-primary-70: var(--electric-70);
+    --uui-primary-contrast: var(--white);
+
+    --uui-secondary-5: var(--night200);
+    --uui-secondary-10: var(--night300);
+    --uui-secondary-20: var(--night400);
+    --uui-secondary-50: var(--night600);
+    --uui-secondary-60: var(--night700);
+    --uui-secondary-70: var(--night800);
+    --uui-secondary-contrast: var(--white);
+
+    --uui-critical-5: var(--fire-5);
+    --uui-critical-10: var(--fire-10);
+    --uui-critical-20: var(--fire-20);
+    --uui-critical-50: var(--fire-50);
+    --uui-critical-60: var(--fire-60);
+    --uui-critical-70: var(--fire-70);
+    --uui-critical-contrast: var(--white);
+
+    /* semantic colors */
+
+    --uui-info-5: var(--electric-5);
+    --uui-info-10: var(--electric-10);
+    --uui-info-20: var(--electric-20);
+    --uui-info-50: var(--electric-50);
+    --uui-info-60: var(--electric-60);
+    --uui-info-70: var(--electric-70);
+    --uui-info-contrast: var(--white);
+
+    --uui-success-5: var(--emerald-5);
+    --uui-success-10: var(--emerald-10);
+    --uui-success-20: var(--emerald-20);
+    --uui-success-50: var(--emerald-50);
+    --uui-success-60: var(--emerald-60);
+    --uui-success-70: var(--emerald-70);
+    --uui-success-contrast: var(--white);
+
+    --uui-warning-5: var(--sun-5);
+    --uui-warning-10: var(--sun-10);
+    --uui-warning-20: var(--sun-20);
+    --uui-warning-50: var(--sun-50);
+    --uui-warning-60: var(--sun-60);
+    --uui-warning-contrast: var(--uui-neutral-80);
+
+    --uui-error-5: var(--fire-5);
+    --uui-error-10: var(--fire-10);
+    --uui-error-20: var(--fire-20);
+    --uui-error-50: var(--fire-50);
+    --uui-error-60: var(--fire-60);
+    --uui-error-70: var(--fire-70);
+    --uui-error-contrast: var(--white);
+
+    --uui-neutral-0: #FFFFFF;
+    --uui-neutral-5: var(--night50);
+    --uui-neutral-10: var(--night100);
+    --uui-neutral-20: var(--night200);
+    --uui-neutral-30: var(--night300);
+    --uui-neutral-40: var(--night400);
+    --uui-neutral-50: var(--night500);
+    --uui-neutral-60: var(--night600);
+    --uui-neutral-70: var(--night700);
+    --uui-neutral-80: var(--night800);
+    --uui-neutral-90: var(--night900);
+    --uui-neutral-95: var(--night950);
+    --uui-neutral-100: #000000;
+
+    /* Surfaces Figma - https://www.figma.com/file/M5Njgc6SQJ3TPUccp5XHQx/Loveship-aka-UUI3-(Components)?type=design&node-id=20044%3A300925&mode=design&t=R433dqGrpXDGoFli-1 */
+
+    --uui-app-bg: var(--uui-neutral-10);
+    --uui-overlay: rgba(29, 30, 38, 0.8);
+
+    --uui-surface-sunken: var(--uui-neutral-5);
+    --uui-surface-main: var(--uui-neutral-0);
+    --uui-surface-higher: var(--uui-neutral-10);
+    --uui-surface-highest: var(--uui-neutral-20);
+
+    --uui-divider: var(--uui-neutral-40);
+    --uui-divider-light: var(--uui-neutral-30);
+
+    --uui-text-brand: var(--uui-neutral-90);
+    --uui-text-primary: var(--night950);
+    --uui-text-secondary: var(--uui-neutral-70);
+    --uui-text-tertiary: var(--uui-neutral-60);
+    --uui-text-disabled: var(--uui-neutral-50);
+    --uui-text-contrast: var(--uui-neutral-5);
+
+    --uui-text-info: var(--uui-info-70);
+    --uui-text-warning: var(--uui-warning-70);
+    --uui-text-critical: var(--uui-critical-70);
+    --uui-text-success: var(--uui-success-70);
+
+    /* not accepted part */
+
+    /* control specific */
+
+    --uui-link: var(--electric-50);
+    --uui-link-hover: var(--electric-60);
+    --uui-link-visited: #8018A0;
+    --uui-link-visited-hover: #601278;
+    --uui-link-disabled: var(--uui-neutral-50);
+
+    --uui-icon: var(--uui-neutral-95);
+    --uui-icon-hover: var(--uui-neutral-100);
+    --uui-icon-active: var(--uui-neutral-100);
+    --uui-icon-disabled: var(--uui-neutral-40);
+
+    --uui-control-bg: var(--uui-surface-main);
+    --uui-control-bg-hover: var(--uui-neutral-60);
+    --uui-control-bg-disabled: var(--uui-neutral-5);
+
+    --uui-control-border: var(--uui-neutral-40);
+    --uui-control-border-hover: var(--uui-neutral-60);
+    --uui-control-border-focus: var(--uui-primary-50);
+    --uui-control-border-disabled: var(--uui-neutral-30);
+
+    --uui-control-placeholder: var(--uui-neutral-50);
+
+    --uui-control-text: var(--uui-text-primary);
+    --uui-control-text-disabled: var(--uui-text-tertiary);
+
+    --uui-control-icon: var(--uui-neutral-50);
+    --uui-control-icon-disabled: var(--uui-neutral-50);
+
+    --uui-outline-focus: #008ACE80;
+
+    --uui-skeleton: var(--uui-neutral-40);
+
+    --uui-border-radius: 3px;
+    --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
+    --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0 6px rgba(29, 30, 38, 0.05);
+    --uui-shadow-level-3: 0 0 10px rgba(29, 30, 38, 0.05), 0 6px 24px rgba(29, 30, 38, 0.12), 0 9px 15px rgba(29, 30, 38, 0.1);
+
+    /* core variables end */
+
+    /* ------------------------------------ */
+
+    /* override variables */
+
+    /* begin color classes */
+
+    .uui-color-accent,
+    .uui-color-emerald,
+    .uui-color-success {
+        --uui-color-5: var(--uui-accent-5);
+        --uui-color-10: var(--uui-accent-10);
+        --uui-color-20: var(--uui-accent-20);
+        --uui-color-50: var(--uui-accent-50);
+        --uui-color-60: var(--uui-accent-60);
+        --uui-color-70: var(--uui-accent-70);
+        --uui-color-contrast: var(--white);
+    }
+
+    .uui-button.uui-color-accent,
+    .uui-color-primary,
+    .uui-color-electric,
+    .uui-color-info {
+        --uui-color-5: var(--uui-primary-5);
+        --uui-color-10: var(--uui-primary-10);
+        --uui-color-20: var(--uui-primary-20);
+        --uui-color-50: var(--uui-primary-50);
+        --uui-color-60: var(--uui-primary-60);
+        --uui-color-70: var(--uui-primary-70);
+        --uui-color-contrast: var(--white);
+    }
+
+    .uui-color-fire,
+    .uui-color-critical,
+    .uui-color-error {
+        --uui-color-5: var(--uui-critical-5);
+        --uui-color-10: var(--uui-critical-10);
+        --uui-color-20: var(--uui-critical-20);
+        --uui-color-50: var(--uui-critical-50);
+        --uui-color-60: var(--uui-critical-60);
+        --uui-color-70: var(--uui-critical-70);
+        --uui-color-contrast: var(--white);
+    }
+
+    .uui-color-white {
+        --uui-color-5: var(--white);
+        --uui-color-10: var(--white);
+        --uui-color-20: var(--white);
+        --uui-color-50: var(--white);
+        --uui-color-60: var(--night100);
+        --uui-color-70: var(--night200);
+        --uui-color-contrast: var(--night800);
+    }
+
+    .uui-color-neutral,
+    .uui-color-secondary {
+        --uui-color-5: var(--uui-secondary-5);
+        --uui-color-10: var(--uui-secondary-10);
+        --uui-color-20: var(--uui-secondary-20);
+        --uui-color-50: var(--uui-secondary-50);
+        --uui-color-60: var(--uui-secondary-60);
+        --uui-color-70: var(--uui-secondary-70);
+        --uui-color-contrast: var(--white);
+    }
+
+    .uui-color-sun,
+    .uui-color-warning {
+        --uui-color-5: var(--sun-5);
+        --uui-color-10: var(--sun-10);
+        --uui-color-20: var(--sun-20);
+        --uui-color-50: var(--sun-50);
+        --uui-color-60: var(--sun-60);
+        --uui-color-70: var(--sun-70);
+        --uui-color-contrast: var(--uui-neutral-80);
+    }
+
+    .uui-color-yellow {
+        --uui-color-5: var(--yellow-5);
+        --uui-color-10: var(--yellow-10);
+        --uui-color-20: var(--yellow-20);
+        --uui-color-50: var(--yellow-50);
+        --uui-color-60: var(--yellow-60);
+        --uui-color-70: var(--yellow-70);
+        --uui-color-contrast: var(--uui-neutral-80);
+    }
+
+    .uui-color-orange {
+        --uui-color-5: var(--orange-5);
+        --uui-color-10: var(--orange-10);
+        --uui-color-20: var(--orange-20);
+        --uui-color-50: var(--orange-50);
+        --uui-color-60: var(--orange-60);
+        --uui-color-70: var(--orange-70);
+        --uui-color-contrast: var(--uui-neutral-80);
+    }
+
+    .uui-color-fuchsia {
+        --uui-color-5: var(--fuchsia-5);
+        --uui-color-10: var(--fuchsia-10);
+        --uui-color-20: var(--fuchsia-20);
+        --uui-color-50: var(--fuchsia-50);
+        --uui-color-60: var(--fuchsia-60);
+        --uui-color-70: var(--fuchsia-70);
+        --uui-color-contrast: var(--white);
+    }
+
+    .uui-color-purple {
+        --uui-color-5: var(--purple-5);
+        --uui-color-10: var(--purple-10);
+        --uui-color-20: var(--purple-20);
+        --uui-color-50: var(--purple-50);
+        --uui-color-60: var(--purple-60);
+        --uui-color-70: var(--purple-70);
+        --uui-color-contrast: var(--white);
+    }
+
+    .uui-color-violet {
+        --uui-color-5: var(--violet-5);
+        --uui-color-10: var(--violet-10);
+        --uui-color-20: var(--violet-20);
+        --uui-color-50: var(--violet-50);
+        --uui-color-60: var(--violet-60);
+        --uui-color-70: var(--violet-70);
+        --uui-color-contrast: var(--white);
+    }
+
+    .uui-color-cobalt {
+        --uui-color-5: var(--cobalt-5);
+        --uui-color-10: var(--cobalt-10);
+        --uui-color-20: var(--cobalt-20);
+        --uui-color-50: var(--cobalt-50);
+        --uui-color-60: var(--cobalt-60);
+        --uui-color-70: var(--cobalt-70);
+        --uui-color-contrast: var(--white);
+    }
+
+    .uui-color-cyan {
+        --uui-color-5: var(--cyan-5);
+        --uui-color-10: var(--cyan-10);
+        --uui-color-20: var(--cyan-20);
+        --uui-color-50: var(--cyan-50);
+        --uui-color-60: var(--cyan-60);
+        --uui-color-70: var(--cyan-70);
+        --uui-color-contrast: var(--uui-neutral-80);
+    }
+
+    .uui-color-mint {
+        --uui-color-5: var(--mint-5);
+        --uui-color-10: var(--mint-10);
+        --uui-color-20: var(--mint-20);
+        --uui-color-50: var(--mint-50);
+        --uui-color-60: var(--mint-60);
+        --uui-color-70: var(--mint-70);
+        --uui-color-contrast: var(--uui-neutral-80);
+    }
+
+    /* Accordion */
+
+    .uui-accordion-container {
+        --uui-accordion-border-radius: 6px;
+    }
+
+    /* FileCard */
+
+    .uui-file_card {
+        --uui-file_card-border-radius: 6px;
+    }
+
+    /* Badge */
+
+    .uui-badge.uui-color-white.uui-fill-outline {
+        --uui-badge-bg-hover: var(--uui-neutral-10);
+        --uui-badge-border: var(--uui-neutral-30);
+        --uui-badge-border-hover: var(--uui-neutral-30);
+        --uui-badge-caption: var(--uui-neutral-80);
+        --uui-badge-caption-hover: var(--uui-neutral-80);
+    }
+
+    .uui-badge.uui-color-neutral {
+        --uui-badge-bg: var(--uui-neutral-30);
+        --uui-badge-border: var(--uui-neutral-30);
+        --uui-badge-bg-hover: var(--uui-neutral-40);
+        --uui-badge-border-hover: var(--uui-neutral-40);
+        --uui-color-contrast: var(--uui-neutral-80);
+
+        &.uui-fill-outline {
+            --uui-badge-bg: var(--uui-neutral-20);
+            --uui-badge-border: var(--uui-neutral-40);
+            --uui-badge-bg-hover: var(--uui-neutral-30);
+            --uui-badge-caption: var(--uui-neutral-80);
+            --uui-badge-caption-hover: var(--uui-neutral-80);
+        }
+    }
+
+    .uui-badge.uui-color-yellow.uui-fill-outline {
+        --uui-badge-border: var(--yellow-20);
+    }
+
+    /* Button */
+
+    .uui-button:is(.uui-color-secondary, .uui-color-neutral):is(.uui-fill-outline, .uui-fill-none, .uui-fill-ghost) {
+        --uui-btn-caption: var(--uui-neutral-70);
+    }
+
+    /* IconButton */
+
+    .uui-icon_button.uui-color-neutral {
+        --uui-color-5: var(--uui-secondary-5);
+        --uui-color-10: var(--uui-secondary-10);
+        --uui-color-20: var(--uui-secondary-20);
+        --uui-color-50: var(--uui-secondary-50);
+        --uui-color-60: var(--uui-secondary-60);
+        --uui-color-70: var(--uui-secondary-70);
+        --uui-color-contrast: var(--white);
+    }
+
+    /* TooltipContainer */
+
+    .uui-tooltip-container.uui-color-neutral {
+        --uui-tooltip-bg: var(--white);
+        --uui-color-contrast: var(--uui-neutral-80);
+    }
+
+    .uui-tooltip-container.uui-color-critical {
+        --uui-tooltip-bg: var(--uui-critical-60);
+    }
+
+    .uui-tooltip-container.uui-color-contrast {
+        --uui-tooltip-bg: var(--night800);
+        --uui-color-contrast: var(--white);
+    }
+
+    /* CuntIndicator */
+
+    .uui-count_indicator.uui-color-neutral {
+        --uui-count_indicator-bg: var(--uui-neutral-30);
+        --uui-count_indicator-border: var(--uui-neutral-30);
+    }
+
+    .uui-count_indicator:is(.uui-color-neutral, .uui-color-white, .uui-color-sun, .uui-color-warning) {
+        --uui-count_indicator-caption: var(--uui-neutral-70);
+    }
+
+    /* Status Indicator */
+
+    .uui-status_indicator.uui-color-white.uui-fill-outline {
+        .uui-status_indicator_dot {
+            background-color: color-mix(in srgb, var(--white) 20%, transparent);
+            border: 1px solid var(--uui-neutral-40);
+        }
+    }
+
+}
+
+.uui-theme-electric {
+    @include theme-electric();
+}

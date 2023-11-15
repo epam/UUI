@@ -4,7 +4,7 @@ import { devLogger, DropdownBodyProps, IDropdownToggler, withMods } from '@epam/
 import { BaseTimePickerProps, BaseTimePicker } from '@epam/uui-components';
 import { IHasEditMode, SizeMod, EditMode } from '../types';
 import { DropdownContainer } from '../overlays/DropdownContainer';
-import { TextInput } from '../inputs/TextInput';
+import { TextInput } from './TextInput';
 import { TimePickerBody } from './TimePickerBody';
 import css from './TimePicker.module.scss';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
@@ -38,7 +38,7 @@ class TimePickerComponent extends BaseTimePicker<TimePickerProps> {
                 isDisabled={ this.props.isDisabled }
                 isReadonly={ this.props.isReadonly }
                 isInvalid={ this.props.isInvalid }
-                cx={ [css.dateInput, this.props.inputCx] }
+                cx={ [css.root, css.timepickerInput, this.props.inputCx] }
                 value={ this.state.value }
                 onValueChange={ this.handleInputChange }
                 onCancel={ this.onClear }

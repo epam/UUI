@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
 import { Filter } from './Filter';
-import { Accordion } from '@epam/promo';
+import { Accordion } from '@epam/uui';
 import { TableFiltersConfig, DataTableState } from '@epam/uui-core';
 import isEqual from 'lodash.isequal';
 
 interface IFiltersProps<TFilter extends Record<string, any>> {
     filters: TableFiltersConfig<TFilter>[];
     tableState: DataTableState<TFilter>;
-    setTableState(newState: DataTableState<TFilter>): void;    
+    setTableState(newState: DataTableState<TFilter>): void;
 }
 
 function FiltersBlockImpl(props: IFiltersProps<any>) {
@@ -20,7 +20,7 @@ function FiltersBlockImpl(props: IFiltersProps<any>) {
                     ...tableState,
                     filter: newFilter,
                     checked: [],
-                });                    
+                });
             }
         },
         [tableState, setTableState],
