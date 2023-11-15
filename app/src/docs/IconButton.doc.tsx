@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, TDocsGenType,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI, TDocsGenType,
 } from '../common';
 
 export class IconButtonDoc extends BaseDocsBlock {
@@ -12,6 +12,7 @@ export class IconButtonDoc extends BaseDocsBlock {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/buttons/iconButton.props.tsx',
             [UUI4]: './app/src/docs/_props/epam-promo/components/buttons/iconButton.props.tsx',
+            [UUI]: './app/src/docs/_props/uui/components/buttons/iconButton.props.tsx',
         };
     }
 

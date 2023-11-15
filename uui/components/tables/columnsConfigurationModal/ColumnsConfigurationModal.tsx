@@ -7,12 +7,12 @@ import { useColumnsConfiguration } from '@epam/uui-components';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-update-18.svg';
 
-import { FlexRow, FlexSpacer, Panel, ScrollBars } from '../../../components/layout';
-import { Button, LinkButton } from '../../../components/buttons';
-import { Dropdown, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Tooltip } from '../../../components/overlays';
-import { Text } from '../../../components/typography';
-import { Badge } from '../../../components/widgets';
-import { SearchInput } from '../../../components/inputs';
+import { FlexRow, FlexSpacer, Panel, ScrollBars } from '../../layout';
+import { Button, LinkButton } from '../../buttons';
+import { Dropdown, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Tooltip } from '../../overlays';
+import { Text } from '../../typography';
+import { Badge } from '../../widgets';
+import { SearchInput } from '../../inputs';
 
 import { i18n as uuiI18n } from '../../../i18n';
 import { ColumnRow } from './ColumnRow';
@@ -30,7 +30,7 @@ const renderGroupTitle = (title: string, amount: number) => (
         <Text cx={ styles.groupTitleText } font="semibold" lineHeight="24" fontSize="14">
             {title}
         </Text>
-        <Badge cx={ styles.groupTitleBadge } caption={ amount } color="default" size="18" />
+        <Badge cx={ styles.groupTitleBadge } caption={ amount } color="neutral" size="18" />
     </FlexRow>
 );
 
@@ -111,15 +111,15 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                     <Dropdown
                         closeOnTargetClick={ true }
                         renderBody={ () => (
-                            <Panel shadow={ true }>
+                            <Panel background="surface" shadow={ true }>
                                 <DropdownMenuButton caption={ i18n.clearAllButton } onClick={ uncheckAll } />
                                 <DropdownMenuButton caption={ i18n.selectAllButton } onClick={ checkAll } />
                             </Panel>
                         ) }
-                        renderTarget={ (props) => <Button { ...props } mode="none" icon={ MenuIcon } size="30" color="secondary" isDropdown={ false } /> }
+                        renderTarget={ (props) => <Button { ...props } fill="none" icon={ MenuIcon } size="30" color="secondary" isDropdown={ false } /> }
                     />
                 </FlexRow>
-                <Panel cx={ styles.mainPanel }>
+                <Panel background="surface" cx={ styles.mainPanel }>
                     <ScrollBars>
                         {renderVisible()}
                         {renderHidden()}
@@ -138,7 +138,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                 <ModalFooter borderTop>
                     <LinkButton icon={ ResetIcon } caption={ i18n.resetToDefaultButton } onClick={ reset } />
                     <FlexSpacer />
-                    <Button mode="none" color="secondary" caption={ i18n.cancelButton } onClick={ close } />
+                    <Button fill="none" color="secondary" caption={ i18n.cancelButton } onClick={ close } />
                     {noVisibleColumns ? (
                         <Tooltip content={ i18n.enableAtLeastOneColumnMessage } placement="top-end" color="critical">
                             {applyButton}

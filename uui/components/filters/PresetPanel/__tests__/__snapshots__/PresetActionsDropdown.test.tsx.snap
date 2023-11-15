@@ -2,7 +2,7 @@
 
 exports[`PresetActionsDropdown should render correctly 1`] = `
 <button
-  className="container uui-button-box uui-enabled -clickable icon-button-info root"
+  className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-info root"
   onClick={[Function]}
   tabIndex={0}
   type="button"

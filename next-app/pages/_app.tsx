@@ -1,5 +1,4 @@
 import { GAListener, useUuiServicesSsr, UuiContext } from "@epam/uui-core";
-import { skinContext } from '@epam/promo';
 import type { AppProps } from 'next/app';
 import { apiDefinition, TApi } from "../helpers/apiDefinition";
 import { MyAppView } from "./_appView";
@@ -19,7 +18,6 @@ function MyApp(props: MyAppProps<AppContextType>) {
     const { Component, pageProps, appContext, router } = props;
 
     const { services } = useUuiServicesSsr<TApi, AppContextType>({
-        appContext, skinContext,
         apiDefinition, router,
     });
 

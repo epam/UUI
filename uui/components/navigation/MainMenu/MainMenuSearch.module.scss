@@ -11,12 +11,12 @@
     transition: background-color 0.3s ease-out, flex-basis 0.3s ease-in-out;
 
     :global(.uui-input) {
-        color: var(--uui-main_menu-text);
+        color: var(--uui-main_menu-search-text);
         font-family: var(--uui-main_menu-search-font);
         font-weight: var(--uui-main_menu-search-font-weight, normal);
 
         &::placeholder {
-            color: var(--uui-main_menu-search-border);
+            color: var(--uui-main_menu-search-placeholder);
         }
     }
 

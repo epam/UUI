@@ -97,13 +97,8 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
             { cellEntries
                 && cellEntries.length === 1
                 && ((cellEntries[0][0]?.data as any)?.colSpan > 1
-                    || (cellEntries[0][0]?.data as any)?.rowSpan > 1) && (
-                <ToolbarButton
-                        key="unmerge-cells"
-                        onClick={ unmergeCells }
-                        icon={ UnmergeCellsIcon }
-                />
-            ) }
+                    || (cellEntries[0][0]?.data as any)?.rowSpan > 1)
+                && (<ToolbarButton key="unmerge-cells" onClick={ unmergeCells } icon={ UnmergeCellsIcon } />) }
         </Fragment>
     );
 }

@@ -1,6 +1,5 @@
 import React, { useCallback, useContext, useState } from 'react';
-import { DataPickerRow, PickerItem, PickerModal } from '@epam/uui';
-import { FlexRow, FlexCell, Button } from '@epam/promo';
+import { DataPickerRow, PickerItem, PickerModal, FlexRow, FlexCell, Button } from '@epam/uui';
 import { DataQueryFilter, DataRowProps, UuiContext, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
@@ -60,7 +59,7 @@ export default function LazyTreePickerModal() {
     return (
         <FlexCell width={ 612 }>
             <FlexRow spacing="12">
-                <Button color="blue" caption="Show locations" onClick={ handleModalOpening } />
+                <Button color="primary" caption="Show locations" onClick={ handleModalOpening } />
             </FlexRow>
         </FlexCell>
     );

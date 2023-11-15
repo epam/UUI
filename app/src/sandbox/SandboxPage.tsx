@@ -4,6 +4,7 @@ import { AppHeader, Page, Sidebar } from '../common';
 import { svc } from '../services';
 import { getQuery } from '../helpers';
 import { ComplexForm } from './forms/ComplexForm';
+import { TagInputDemo } from './forms/TagInput';
 import { DbDemo } from './db/DbDemo';
 import { PersonsTableDemo } from './tables/PersonsTableDemo';
 import { DemoTablePaged } from './tablePaged';
@@ -11,6 +12,7 @@ import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
 import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 import { Responsive } from './responsive/Responsive';
 import { ThemeDemo } from './theme/ThemeDemo';
+import { ThemeDemo as ThemeElectricDemo } from './theme-electric-test/ThemeDemo';
 import { ProductsTableDemo } from './productsTable/ProductsTableDemo';
 import { AdaptivePanelDemo } from './adaptivePanel/AdaptivePanelDemo';
 import { TreeListItem } from '@epam/uui-components';
@@ -33,12 +35,14 @@ export function SandboxPage() {
             { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
             { id: 'responsive', name: 'Responsive', component: Responsive },
             { id: 'uui_theming', name: 'UUI Theming', component: ThemeDemo },
+            { id: 'theme_electric', name: 'Theme Electric', component: ThemeElectricDemo },
             { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged },
             { id: 'SkillsBatteryPopover', name: 'Skills', component: Skills },
             { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },
             { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
             { id: 'RTEDemo', name: 'RTE Demo', component: RichTextEditorDemo },
             { id: 'TableColumnsConfigurationModal', name: 'Table ColumnsConfigModal', component: TableColumnConfigModalTest },
+            { id: 'tagInput', name: 'Tag Input', component: TagInputDemo },
         ],
         [],
     );

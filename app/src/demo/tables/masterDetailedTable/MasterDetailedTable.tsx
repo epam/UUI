@@ -3,7 +3,7 @@ import {
     cx, useUuiContext, UuiContexts, ITablePreset, useTableState, DataRowProps, DataColumnProps,
 } from '@epam/uui-core';
 import { FlexRow } from '@epam/uui';
-import { DataTable } from '@epam/promo';
+import { DataTable } from '@epam/uui';
 import css from './DemoTable.module.scss';
 import type { TApi } from '../../../data';
 import { getFilters } from './filters';

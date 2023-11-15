@@ -1,24 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import {
-    DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource,
-} from '@epam/uui-core';
-import {
-    Button,
-    Checkbox,
-    DataTable,
-    DataTableCell,
-    DataTableRow,
-    DatePicker,
-    FlexCell,
-    FlexRow,
-    Panel,
-    PickerInput,
-    TextArea,
-    TextInput,
-    useForm,
-    IconButton,
-} from '@epam/promo';
-import { FlexSpacer } from '@epam/uui-components';
+import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui-core';
+import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput,
+    TextArea, TextInput, useForm, IconButton } from '@epam/uui';
 import { ReactComponent as deleteIcon } from '@epam/assets/icons/common/content-clear-18.svg';
 import css from './TablesExamples.module.scss';
 
@@ -163,7 +146,7 @@ export default function EditableTableExample() {
                     grow: 1,
                 }, {
                     key: 'actions',
-                    render: () => <IconButton icon={ deleteIcon } onClick={ () => null } color="gray50" />,
+                    render: () => <IconButton icon={ deleteIcon } onClick={ () => null } color="secondary" />,
                     width: 55,
                     alignSelf: 'center',
                 },
@@ -198,18 +181,18 @@ export default function EditableTableExample() {
 
     // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
     return (
-        <Panel shadow={ true }>
+        <Panel background="surface" shadow>
             {/* Render a panel with Save/Revert buttons to control the form */}
-            <FlexRow background="gray5" spacing="12" padding="12" vPadding="12" borderBottom>
+            <FlexRow spacing="12" padding="12" vPadding="12" borderBottom>
                 <FlexCell width="auto">
                     <Button caption="Add task" onClick={ handleNewItem } />
                 </FlexCell>
                 <FlexSpacer />
                 <FlexCell width="auto">
-                    <Button caption="Revert" onClick={ revert } isDisabled={ !isChanged } color="gray" />
+                    <Button caption="Revert" onClick={ revert } isDisabled={ !isChanged } color="secondary" />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Button caption="Save" onClick={ save } color="green" isDisabled={ !isChanged } />
+                    <Button caption="Save" onClick={ save } color="accent" isDisabled={ !isChanged } />
                 </FlexCell>
             </FlexRow>
             <FlexRow>

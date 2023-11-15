@@ -1,7 +1,8 @@
-import { Button } from '@epam/uui-components';
-import { IHasCX, Icon, cx } from '@epam/uui-core';
 import * as React from 'react';
 import { Editor } from 'slate';
+import { IHasCX, Icon, cx } from '@epam/uui-core';
+import { Button } from '@epam/uui-components';
+
 import css from './ToolbarButton.module.scss';
 
 export interface ToolbarButtonProps extends IHasCX {

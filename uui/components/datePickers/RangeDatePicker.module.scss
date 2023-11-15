@@ -4,27 +4,12 @@
     align-items: normal;
 }
 
-.container {
-    display: flex;
-    padding: 9px 30px;
-    justify-content: space-between;
-    border-top: 1px solid var(--uui-control-border);
-    align-items: center;
-    background-color: var(--uui-rdtp-bg);
-    position: relative;
-}
-
-.button-group {
-    display: flex;
-    justify-content: flex-end;
-}
-
 .date-input {
     min-width: 0;
     padding: 0 5px;
 
     &:global(.uui-focus) {
-        border: 1px solid var(--uui-control-border-checked);
+        border: 1px solid var(--uui-control-border-focus);
     }
 
     &.size-24 {
@@ -51,7 +36,7 @@
 .date-input-group {
     display: flex;
     min-width: 0;
-    background-color: var(--uui-rdtp-bg);
+    background-color: var(--uui-control-bg);
     border: 1px solid var(--uui-control-border);
     border-radius: var(--uui-border-radius);
 
@@ -63,10 +48,10 @@
     }
 
     &:hover {
-        border-color: var(--uui-control_textinput-border-hover);
+        border-color: var(--uui-control-border-hover);
 
         .separator {
-            background: var(--uui-control_textinput-border-hover);
+            background: var(--uui-control-border-hover);
         }
 
         &:global(.uui-disabled), &:global(.uui-readonly) {
@@ -82,16 +67,16 @@
         border-color: var(--uui-control-border);
 
         .separator {
-            background: var(--uui-control-border-checked);
+            background: var(--uui-control-border-focus);
         }
 
         .date-input {
             &:hover {
-                outline: 1px solid var(--uui-control_textinput-border-hover);
+                outline: 1px solid var(--uui-control-border-hover);
             }
 
             &:global(.uui-focus) {
-                outline: 1px solid var(--uui-control-border-checked);
+                outline: 1px solid var(--uui-control-border-focus);
             }
         }
     }
@@ -107,6 +92,10 @@
     }
 
     &:global(.uui-invalid) {
-        border-color: var(--uui-text-input-border-error);
+        border-color: var(--uui-error-50);
+
+        .separator {
+            background: var(--uui-error-50);
+        }
     }
 }

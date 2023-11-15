@@ -7,7 +7,6 @@ import { svc } from '../../services';
 import { getColumns } from './columns';
 import { getFilters } from './filters';
 import cx from 'classnames';
-import { useTheme } from '../../helpers/useTheme';
 import css from './PersonsTableDemo.module.scss';
 
 const formatCurrency = (value: number) => {
@@ -20,7 +19,6 @@ const formatCurrency = (value: number) => {
 
 export function PersonsTableDemo() {
     const { personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
-    useTheme('uui-theme-loveship');
 
     const [summary, setSummary] = React.useState<PersonsSummary & Pick<PersonsApiResponse, 'totalCount'>>({
         totalCount: undefined,
@@ -164,7 +162,7 @@ export function PersonsTableDemo() {
     );
 
     return (
-        <div className={ cx(css.container) }>
+        <div className={ cx(css.container, css.uuiThemeLoveship) }>
             <FlexRow spacing="12" padding="24" vPadding="12" borderBottom={ true }>
                 <FlexCell width={ 200 }>
                     <SearchInput { ...lens.prop('search').toProps() } size="30" />

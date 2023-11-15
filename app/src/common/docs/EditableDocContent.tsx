@@ -1,6 +1,6 @@
 import React, { createRef, RefObject } from 'react';
 import { IEditableDebouncer } from '@epam/uui-core';
-import { Blocker } from '@epam/loveship';
+import { Blocker } from '@epam/uui';
 import { SlateEditor, basePlugins, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin, linkPlugin, iframePlugin,
     notePlugin, separatorPlugin, headerPlugin, colorPlugin, superscriptPlugin, listPlugin, quotePlugin, tablePlugin,
     codeBlockPlugin, EditorValue,

@@ -12,12 +12,21 @@ export interface RowMods extends RowSizeMod {
     spacing?: '6' | '12' | '18';
     topShadow?: boolean;
     vPadding?: '12' | '18' | '24' | '36' | '48';
+    background?: 'surface';
 }
 
 export interface FlexRowProps extends Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'> {}
 
 export const FlexRow = withMods<FlexRowProps, RowMods>(uuiFlexRow, (props) => {
     return [
-        css.root, props.size !== null && css['size-' + (props.size || '36')], props.padding && css['padding-' + props.padding], props.vPadding && css['vPadding-' + props.vPadding], props.margin && css['margin-' + props.margin], props.topShadow && css.topShadow, props.borderBottom && css.borderBottom, props.spacing && css['spacing-' + props.spacing],
+        css.root,
+        props.size !== null && css['size-' + (props.size || '36')],
+        props.padding && css['padding-' + props.padding],
+        props.vPadding && css['vPadding-' + props.vPadding],
+        props.margin && css['margin-' + props.margin],
+        props.topShadow && css.topShadow,
+        props.borderBottom && css.borderBottom,
+        props.spacing && css['spacing-' + props.spacing],
+        props.background && `uui-color-${props.background}`,
     ];
 });

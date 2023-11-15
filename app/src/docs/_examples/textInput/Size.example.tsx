@@ -1,6 +1,5 @@
-import React from 'react';
-import { TextInput } from '@epam/promo';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { TextInput } from '@epam/uui';
 
 export default function SizeExample() {
     const [value, onValueChange] = useState(null);

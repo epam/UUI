@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI3, UUI4,
+    BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI3, UUI4, UUI,
 } from '../common';
 
 export class NumericInputDoc extends BaseDocsBlock {
@@ -12,6 +12,7 @@ export class NumericInputDoc extends BaseDocsBlock {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/numericInput.props.ts',
             [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/numericInput.props.ts',
+            [UUI]: './app/src/docs/_props/uui/components/inputs/numericInput.props.ts',
         };
     }
 

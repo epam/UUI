@@ -1,7 +1,6 @@
 import {
-    DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton,
+    DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm,
 } from '@epam/uui';
-import { useForm } from '@epam/promo';
 import React, { useMemo } from 'react';
 import {
     DataQueryFilter, DropPosition, Metadata, useArrayDataSource, useTableState,
@@ -85,7 +84,7 @@ export function ProjectTasksDemo() {
     };
 
     return (
-        <Panel style={ { width: '100%' } }>
+        <Panel background="surface" style={ { width: '100%' } }>
             <FlexRow spacing="12" margin="12">
                 <FlexCell width="auto">
                     <IconButton icon={ insertAfter } onClick={ () => insertTask('top', null, null) } />

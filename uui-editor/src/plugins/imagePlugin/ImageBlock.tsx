@@ -1,11 +1,10 @@
-import { PlateEditor, PlatePluginComponent, PlateRenderElementProps, Value, findNodePath, getBlockAbove, setElements } from '@udecode/plate-common';
-import cx from 'classnames';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import cx from 'classnames';
+import { PlateEditor, PlatePluginComponent, PlateRenderElementProps, Value, findNodePath, getBlockAbove, setElements } from '@udecode/plate-common';
 import { useFocused, useSelected } from 'slate-react';
-
-import { Dropdown } from '@epam/uui-components';
-import { uuiSkin } from '@epam/uui-core';
+import { Dropdown, FlexRow, Spinner } from '@epam/uui';
 import { ImageElement } from './ImageElement';
+
 
 import debounce from 'lodash.debounce';
 import invert from 'lodash.invert';
@@ -15,8 +14,6 @@ import { ImgToolbar } from './Toolbar';
 import { IImageElement, PlateImgAlign, SlateImgAlign } from '../../types';
 
 interface UpdatingProps { width?: number | string, align?: SlateImgAlign }
-
-const { FlexRow, Spinner } = uuiSkin;
 
 const IMAGE_STYLES = { paddingTop: 0, paddingBottom: 0 };
 const PLATE_TO_SLATE_IMG_ALIGN = {

@@ -13,7 +13,7 @@
 
 .picker-row {
     &:global(.uui-focus) {
-        background-color: var(--uui-surface-lowest);
+        background-color: var(--uui-surface-higher);
     }
 
     &:global(.-clickable) {
@@ -26,5 +26,5 @@
 }
 
 .icon-primary {
-    fill: var(--uui-primary);
+    fill: var(--uui-primary-50);
 }

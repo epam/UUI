@@ -3,10 +3,6 @@ import { IDropdownToggler, uuiElement, cx, TooltipCoreProps, DropdownBodyProps }
 import { Dropdown } from './Dropdown';
 import { DropdownContainer } from './DropdownContainer';
 
-export interface TooltipState {
-    isOpen: boolean;
-}
-
 export interface TooltipProps extends TooltipCoreProps {}
 
 export function Tooltip(props: TooltipProps) {
@@ -16,17 +12,19 @@ export function Tooltip(props: TooltipProps) {
 
     const isTooltipExist = () => !!props.content || !!props.renderContent;
 
-    const renderTooltip = () => (
-        <div role="tooltip" aria-hidden={ isTooltipExist() } className={ uuiElement.tooltipBody } { ...rawProps }>
-            {props.content || props.renderContent?.()}
-        </div>
-    );
-
-    const renderDropdownBody = (props: DropdownBodyProps) => {
+    const renderTooltip = (bodyProps: DropdownBodyProps) => {
         if (isTooltipExist()) {
             return (
-                <DropdownContainer focusLock={ false } showArrow={ true } maxWidth={ maxWidth ?? 300 } cx={ cx(tooltipCX, uuiElement.tooltipContainer) } { ...props }>
-                    {renderTooltip()}
+                <DropdownContainer
+                    focusLock={ false }
+                    showArrow={ true }
+                    maxWidth={ maxWidth ?? 300 }
+                    cx={ cx(tooltipCX, uuiElement.tooltipContainer) }
+                    { ...bodyProps }
+                >
+                    <div role="tooltip" aria-hidden={ isTooltipExist() } className={ uuiElement.tooltipBody } { ...rawProps }>
+                        {props.content || props.renderContent?.()}
+                    </div>
                 </DropdownContainer>
             );
         } else {
@@ -43,7 +41,7 @@ export function Tooltip(props: TooltipProps) {
     return (
         <Dropdown
             { ...props }
-            renderBody={ (props) => renderDropdownBody(props) }
+            renderBody={ (props) => renderTooltip(props) }
             openOnHover={ true }
             closeOnMouseLeave={ closeOnMouseLeave ?? 'toggler' }
             placement={ props.placement || 'top' }

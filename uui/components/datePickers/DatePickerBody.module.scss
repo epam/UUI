@@ -1,12 +1,23 @@
 @use  '../../assets/styles/index.scss' as *;
 
+.root {
+    --uui-dtp_body-title-bg: var(--uui-control-bg);
+    --uui-dtp_body-item-bg-selected: var(--uui-primary-50);
+    --uui-dtp_body-item-border-hover: var(--uui-primary-50);
+    --uui-dtp_body-text: var(--uui-control-text);
+    --uui-dtp_body-text-selected: var(--uui-neutral-0);
+
+    --uui-dtp_body-content-font: var(--uui-font);
+    --uui-dtp_body-content-font-weight: 400;
+}
+
 :global(.uui-datepickerBody-wrapper) {
     min-height: 300px;
     padding: 0 18px 12px;
 
     // DatePickerBase style
     :global(.uui-datepicker-container) {
-        background-color: var(--uui-dtp-title-bg);
+        background-color: var(--uui-dtp_body-title-bg);
     }
 
     // Header styles
@@ -52,12 +63,12 @@
         height: 36px;
         border-radius: 20px;
         margin: 6px;
-        color: var(--uui-dtp-text);
+        color: var(--uui-dtp_body-text);
 
         &:hover {
             width: 70px;
             height: 34px;
-            border: 1px solid var(--uui-dtp-text-selected);
+            border: 1px solid var(--uui-dtp_body-item-border-hover);
             cursor: pointer;
         }
     }
@@ -70,27 +81,27 @@
         align-items: center;
         border-radius: 20px;
         margin: 6px 0;
-        color: var(--uui-dtp-text);
+        color: var(--uui-dtp_body-text);
 
         &:hover {
             width: 61px;
             height: 34px;
-            border: 1px solid var(--uui-dtp-text-selected);
+            border: 1px solid var(--uui-dtp_body-item-border-hover);
             cursor: pointer;
         }
     }
 
     :global(.uui-monthselection-current-month) {
         &:global(.uui-monthselection-month) {
-            background-color: var(--uui-dtp-text-selected);
-            color: var(--uui-dtp-title-bg);
+            background-color: var(--uui-dtp_body-item-bg-selected);
+            color: var(--uui-dtp_body-text-selected);
         }
     }
 
     :global(.uui-yearselection-current-year) {
         &:global(.uui-yearselection-year) {
-            background-color: var(--uui-dtp-text-selected);
-            color: var(--uui-dtp-title-bg);
+            background-color: var(--uui-dtp_body-item-bg-selected);
+            color: var(--uui-dtp_body-text-selected);
         }
     }
 }

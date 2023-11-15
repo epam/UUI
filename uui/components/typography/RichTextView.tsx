@@ -1,4 +1,3 @@
-import style from './RichTextView.module.scss';
 import * as uuiComponents from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 
@@ -10,5 +9,5 @@ export type RichTextViewProps = uuiComponents.RichTextViewProps & RichTextViewMo
 
 export const RichTextView = withMods<uuiComponents.RichTextViewProps, RichTextViewMods>(
     uuiComponents.RichTextView,
-    (mods: RichTextViewMods) => [style.typographyUui, style['typography-' + (mods.size || '14')]],
+    (mods: RichTextViewMods) => ['uui-typography', `uui-typography-${mods.size || '14'}`],
 );

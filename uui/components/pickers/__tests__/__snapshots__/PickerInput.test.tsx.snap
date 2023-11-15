@@ -41,12 +41,12 @@ exports[`PickerInput should open body 1`] = `
     style="z-index: 2000;"
   >
     <div
-      class="uui-dropdown-body -lock-focus root container panel container"
+      class="uui-dropdown-body -lock-focus root container container"
       style="min-width: 360px;"
       tabindex="-1"
     >
       <div
-        class="root size-36 body dropdown single container align-items-center"
+        class="uui-flex-row root size-36 body dropdown single container align-items-center"
         style="max-height: 300px;"
       >
         <div
@@ -67,11 +67,11 @@ exports[`PickerInput should open body 1`] = `
                 <div
                   aria-posinset="1"
                   aria-selected="false"
-                  class="uui-focus pickerRow container -clickable align-items-center"
+                  class="uui-flex-row uui-focus pickerRow container -clickable align-items-center"
                   role="option"
                 >
                   <div
-                    class="uui-table-cell cell data-table-cell cell size-36 padding-12 padding-left-12 align-widgets-top"
+                    class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-12 padding-left-12 align-widgets-top"
                     role="cell"
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
@@ -82,18 +82,18 @@ exports[`PickerInput should open body 1`] = `
                         class="renderItem"
                       >
                         <div
-                          class="flexCell root"
+                          class="flexCell root uui-typography"
                           style="min-width: 0; flex-basis: auto;"
                         >
                           <div
-                            class="root size-36 spacing-12 container align-items-center"
+                            class="uui-flex-row root size-36 spacing-12 container align-items-center"
                           >
                             <div
                               class="flexCell"
                               style="min-width: 0; flex-basis: auto;"
                             >
                               <div
-                                class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 text container"
+                                class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 text container"
                               >
                                 Elementary
                               </div>
@@ -110,11 +110,11 @@ exports[`PickerInput should open body 1`] = `
                 <div
                   aria-posinset="2"
                   aria-selected="false"
-                  class="pickerRow container -clickable align-items-center"
+                  class="uui-flex-row pickerRow container -clickable align-items-center"
                   role="option"
                 >
                   <div
-                    class="uui-table-cell cell data-table-cell cell size-36 padding-12 padding-left-12 align-widgets-top"
+                    class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-12 padding-left-12 align-widgets-top"
                     role="cell"
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
@@ -125,18 +125,18 @@ exports[`PickerInput should open body 1`] = `
                         class="renderItem"
                       >
                         <div
-                          class="flexCell root"
+                          class="flexCell root uui-typography"
                           style="min-width: 0; flex-basis: auto;"
                         >
                           <div
-                            class="root size-36 spacing-12 container align-items-center"
+                            class="uui-flex-row root size-36 spacing-12 container align-items-center"
                           >
                             <div
                               class="flexCell"
                               style="min-width: 0; flex-basis: auto;"
                             >
                               <div
-                                class="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 text container"
+                                class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 text container"
                               >
                                 Elementary+
                               </div>
@@ -177,7 +177,7 @@ exports[`PickerInput should open body 1`] = `
         </div>
       </div>
       <div
-        class="root size-36 padding-12 container align-items-center"
+        class="uui-flex-row root size-36 padding-12 container align-items-center"
       >
         <div
           class="flexSpacer"
@@ -189,7 +189,7 @@ exports[`PickerInput should open body 1`] = `
           <button
             aria-disabled="true"
             aria-label="CLEAR"
-            class="container uui-button-box uui-disabled -clickable root size-36 uui-no-left-icon uui-no-right-icon link-button-primary"
+            class="container uui-button-box uui-disabled -clickable uui-link_button root size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
             tabindex="-1"
             type="button"
           >
@@ -403,7 +403,7 @@ exports[`PickerInput should render with maximum props 1`] = `
     className="body multiline"
   >
     <button
-      className="container uui-button-box uui-enabled size-42 root"
+      className="container uui-button-box uui-enabled size-42 root uui-color-neutral uui-tag"
       onClick={[Function]}
       tabIndex={-1}
       type="button"
@@ -424,7 +424,7 @@ exports[`PickerInput should render with maximum props 1`] = `
       </div>
     </button>
     <button
-      className="container uui-button-box uui-enabled size-42 root"
+      className="container uui-button-box uui-enabled size-42 root uui-color-neutral uui-tag"
       onClick={[Function]}
       tabIndex={-1}
       type="button"

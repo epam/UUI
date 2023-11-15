@@ -2,7 +2,7 @@
 
 exports[`PresetInput should render correctly 1`] = `
 <div
-  className="flexCell presetInputCell"
+  className="flexCell presetInputCell uui-presets-panel-input"
   style={
     Object {
       "alignSelf": undefined,

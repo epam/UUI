@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {
-    basicPickerTogglerDoc, ColorPicker, DocBuilder, dropdownTogglerDoc, onClickDoc,
-} from '@epam/uui-docs';
-import {
-    Badge, BadgeProps, BadgeMods, allEpamBadgeSemanticColors,
-} from '@epam/uui';
+import { basicPickerTogglerDoc, ColorPicker, DocBuilder, dropdownTogglerDoc, onClickDoc } from '@epam/uui-docs';
+import { Badge, BadgeProps, BadgeMods, allEpamBadgeSemanticColors } from '@epam/uui';
 import { DefaultContext } from '../../docs';
 import { iconOptionsDoc } from '../../docs';
 
@@ -30,7 +26,7 @@ const badgeDoc = new DocBuilder<BadgeProps & BadgeMods>({ name: 'Badge', compone
     })
     .prop('fill', {
         examples: [
-            'solid', 'semitransparent', 'transparent',
+            'solid', 'outline',
         ],
         defaultValue: 'solid',
     })
@@ -39,6 +35,9 @@ const badgeDoc = new DocBuilder<BadgeProps & BadgeMods>({ name: 'Badge', compone
             '18', '24', '30', '36', '42', '48',
         ],
         defaultValue: '36',
+    })
+    .prop('indicator', {
+        examples: [true, false], defaultValue: false,
     })
     .withContexts(DefaultContext);
 

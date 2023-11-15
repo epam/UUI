@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlexCell } from '@epam/promo';
+import { FlexCell } from '@epam/uui';
 import { SliderRating } from '@epam/loveship';
 import css from './BasicExample.module.scss';
 

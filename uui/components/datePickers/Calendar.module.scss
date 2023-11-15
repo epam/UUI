@@ -1,15 +1,31 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
+    --uui-calendar-selected_range-hover: var(--uui-primary-60);
+    --uui-calendar-selected_range: var(--uui-primary-50);
+    --uui-calendar-weekday-caption: var(--uui-text-tertiary);
+    --uui-calendar-holiday-caption: var(--uui-text-tertiary);
+    --uui-calendar-day-text: var(--uui-control-text);
+    --uui-calendar-day-text-disabled: var(--uui-control-text-disabled);
+    --uui-calendar-selected_day-text: var(--uui-neutral-0);
+    --uui-calendar-selected_day-hover: var(--uui-control-bg);
+
+    --uui-calendar-font: var(--uui-font);
+    --uui-calendar-font-weight: 400;
+    --uui-calendar-weekday-font: var(--uui-font);
+    --uui-calendar-weekday-font-weight: 400;
+    --uui-calendar-selected_day-font: var(--uui-font);
+    --uui-calendar-selected_day-font-weight: 600;
+
     :global(.uui-calendar-content) {
-        font-family: var(--uui-calendar-content-font);
-        font-weight: var(--uui-calendar-content-font-weight, normal);
+        font-family: var(--uui-calendar-font);
+        font-weight: var(--uui-calendar-font-weight, normal);
     }
 
     :global(.uui-calendar-weekday) {
         font-family: var(--uui-calendar-weekday-font);
         font-weight: var(--uui-calendar-weekday-font-weight, normal);
-        color: var(--uui-calendar-weekends-weekdates);
+        color: var(--uui-calendar-weekday-caption);
         width: 34px;
         font-size: 12px;
         line-height: 24px;
@@ -17,7 +33,7 @@
     }
 
     :global(.uui-calendar-day-cell) {
-        color: var(--uui-calendar-text);
+        color: var(--uui-calendar-day-text);
         text-align: center;
         padding: 0;
         height: 36px;
@@ -57,15 +73,15 @@
                 cursor: pointer;
 
                 :global(.uui-calendar-day) {
-                    border: 1px solid var(--uui-calendar-start-end-selected);
-                    background-color: var(--uui-calendar-selected-hover);
+                    border: 1px solid var(--uui-calendar-selected_range);
+                    background-color: var(--uui-calendar-selected_day-hover);
                     z-index: 1;
                 }
 
                 &:global(.uui-calendar-selected-day) {
                     :global(.uui-calendar-day) {
-                        border: 1px solid var(--uui-calendar-start-end-selected-hover);
-                        background-color: var(--uui-calendar-start-end-selected-hover);
+                        border: 1px solid var(--uui-calendar-selected_range-hover);
+                        background-color: var(--uui-calendar-selected_range-hover);
                     }
                 }
             }
@@ -74,7 +90,7 @@
 
     :global(.uui-calendar-current-day) {
         &:global(.uui-calendar-day-wrapper) {
-            color: var(--uui-calendar-start-end-selected);
+            color: var(--uui-calendar-selected_range);
             font-family: var(--uui-calendar-selected_day-font);
             font-weight: var(--uui-calendar-selected_day-font-weight, normal);
 
@@ -84,7 +100,7 @@
                 height: 4px;
                 width: 4px;
                 border-radius: 50%;
-                background-color: var(--uui-calendar-start-end-selected);
+                background-color: var(--uui-calendar-selected_range);
                 bottom: 3px;
                 left: calc(50% - 2px);
             }
@@ -94,11 +110,11 @@
     :global(.uui-calendar-selected-day) {
         &:global(.uui-calendar-day-wrapper) {
             :global(.uui-calendar-day) {
-                background-color: var(--uui-calendar-start-end-selected);
-                color: var(--uui-calendar-selected-hover);
+                background-color: var(--uui-calendar-selected_range);
+                color: var(--uui-calendar-selected_day-text);
 
                 &::after {
-                    background-color: var(--uui-calendar-selected-hover);
+                    background-color: var(--uui-calendar-selected_day);
                 }
             }
         }
@@ -111,12 +127,12 @@
     }
 
     :global(.uui-calendar-day-holiday) {
-        color: var(--uui-calendar-weekends-weekdates);
+        color: var(--uui-calendar-holiday-caption);
     }
 
     :global(.uui-calendar-filtered-day) {
         &:global(.uui-calendar-day-wrapper) {
-            color: var(--uui-calendar-text-filtered);
+            color: var(--uui-calendar-day-text-disabled);
 
             &:hover {
                 cursor: default;

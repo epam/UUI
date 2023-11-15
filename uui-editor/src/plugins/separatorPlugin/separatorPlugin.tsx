@@ -1,5 +1,5 @@
-import { PlateEditor, createPluginFactory, focusEditor, insertEmptyElement, isMarkActive, toggleNodeType } from '@udecode/plate-common';
 import React from 'react';
+import { PlateEditor, createPluginFactory, focusEditor, insertEmptyElement, isMarkActive, toggleNodeType } from '@udecode/plate-common';
 
 import { isPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as SeparateIcon } from '../../icons/breakline.svg';

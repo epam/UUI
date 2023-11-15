@@ -2,6 +2,6 @@
 
 exports[`DropMarker should be rendered correctly 1`] = `
 <div
-  className="marker top"
+  className="root marker top"
 />
 `;

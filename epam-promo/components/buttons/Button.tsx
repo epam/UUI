@@ -10,16 +10,16 @@ export interface ButtonMods {
     color?: ButtonColor;
 }
 
-const mapFillToMod: Record<FillStyle, uui.ButtonMode> = {
+const mapFill: Record<FillStyle, uui.ButtonFill> = {
     solid: 'solid',
     white: 'outline',
     light: 'ghost',
     none: 'none',
 };
 
-export type ButtonProps = Omit<uui.ButtonProps, 'color'> & ButtonMods;
+export type ButtonProps = Omit<uui.ButtonProps, 'color' | 'fill'> & ButtonMods;
 
-export const Button = withMods<Omit<uui.ButtonProps, 'color'>, ButtonMods>(
+export const Button = withMods<Omit<uui.ButtonProps, 'color' | 'fill'>, ButtonMods>(
     uui.Button,
     (props) => [
         ['42', '48'].includes(props.size) && css.uppercase,
@@ -35,7 +35,7 @@ export const Button = withMods<Omit<uui.ButtonProps, 'color'>, ButtonMods>(
             });
         }
         return {
-            mode: mapFillToMod[props.fill] || mapFillToMod.solid,
-        };
+            fill: mapFill[props.fill] || mapFill.solid,
+        } as any; // TODO: need new helper to rewrite types
     },
 );

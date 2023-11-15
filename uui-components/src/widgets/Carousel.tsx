@@ -27,7 +27,7 @@ const uuiCarousel = {
     barItem: 'uui-carousel-bar-item',
     leftArrow: 'uui-carousel-left-arrow',
     rightArrow: 'uui-carousel-right-arrow',
-};
+} as const;
 
 export class Carousel extends React.Component<CarouselProps, CarouselState> {
     state = {

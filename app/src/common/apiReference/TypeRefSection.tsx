@@ -42,7 +42,7 @@ export function TypeRefSection(props: TypeRefSectionProps) {
             return (
                 <>
                     <Text>Union</Text>
-                    <Tooltip renderContent={ renderContent } color="default">
+                    <Tooltip renderContent={ renderContent } color="neutral">
                         <IconContainer
                             icon={ InfoIcon }
                             style={ { fill: '#008ACE', marginLeft: '5px' } }

@@ -21,7 +21,7 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
 
                     return (
                         <FocusLock returnFocus persistentFocus lockProps={ { onKeyDown: handleEscape } }>
-                            <div className={ cx(css.dropdownBody) }>
+                            <div className={ cx(css.dropdownBody, 'uui-main_menu-dropdown') }>
                                 {this.props.renderBody
                                     ? this.props.renderBody({ ...props })
                                     : React.Children.map<React.ReactElement, React.ReactElement>(this.props.children as React.ReactElement[], (item) => {

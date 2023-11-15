@@ -1,5 +1,5 @@
 import React from 'react';
-import { AvatarStack, FlexCell } from '@epam/promo';
+import { AvatarStack, FlexCell } from '@epam/uui';
 import css from './BasicExample.module.scss';
 
 const avatarsArray = Array(10)

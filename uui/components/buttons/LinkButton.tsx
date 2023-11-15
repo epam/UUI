@@ -18,10 +18,11 @@ export type LinkButtonProps = LinkButtonMods & ButtonProps;
 
 function applyLinkButtonMods(mods: LinkButtonProps) {
     return [
+        'uui-link_button',
         css.root,
         css['size-' + (mods.size || defaultSize)],
         ...getIconClass(mods),
-        `link-button-${mods.color || 'primary'}`,
+        `uui-color-${mods.color || 'primary'}`,
     ];
 }
 

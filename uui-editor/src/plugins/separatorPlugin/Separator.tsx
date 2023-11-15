@@ -1,8 +1,8 @@
-import { uuiMod } from '@epam/uui-core';
-import cx from 'classnames';
 import React from 'react';
+import cx from 'classnames';
 import { useSelected } from 'slate-react';
 import { PlateElement, PlateElementProps } from '@udecode/plate-common';
+import { uuiMod } from '@epam/uui-core';
 
 import css from './Separator.module.scss';
 

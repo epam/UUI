@@ -2,7 +2,7 @@
 
 exports[`Alert should render with maximum props 1`] = `
 <div
-  className="alertWrapper alert-success root size48"
+  className="uui-alert root alertWrapper uui-color-success size48"
   role="alert"
 >
   <div
@@ -27,7 +27,7 @@ exports[`Alert should render with maximum props 1`] = `
         className="actionWrapper"
       >
         <button
-          className="container uui-button-box uui-enabled -clickable root size-30 uui-no-left-icon uui-no-right-icon link-button-primary actionLink"
+          className="container uui-button-box uui-enabled -clickable uui-link_button root size-30 uui-no-left-icon uui-no-right-icon uui-color-primary actionLink"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -41,7 +41,7 @@ exports[`Alert should render with maximum props 1`] = `
       </div>
     </div>
     <button
-      className="container uui-button-box uui-enabled -clickable icon-button-default root closeIcon"
+      className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root closeIcon"
       onClick={[Function]}
       tabIndex={0}
       type="button"
@@ -61,7 +61,7 @@ exports[`Alert should render with maximum props 1`] = `
 
 exports[`Alert should render with minimum props 1`] = `
 <div
-  className="alertWrapper alert-default root size48"
+  className="uui-alert root alertWrapper uui-color-info size48"
   role="alert"
 >
   <div
@@ -76,7 +76,7 @@ exports[`Alert should render with minimum props 1`] = `
 
 exports[`ErrorAlert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper alert-error root size48"
+  className="uui-alert root alertWrapper uui-color-error size48"
   role="alert"
 >
   <div
@@ -103,7 +103,7 @@ exports[`ErrorAlert should be rendered correctly 1`] = `
 
 exports[`HintAlert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper alert-info root size48"
+  className="uui-alert root alertWrapper uui-color-info size48"
   role="alert"
 >
   <div
@@ -130,7 +130,7 @@ exports[`HintAlert should be rendered correctly 1`] = `
 
 exports[`SuccessAlert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper alert-success root size48"
+  className="uui-alert root alertWrapper uui-color-success size48"
   role="alert"
 >
   <div
@@ -157,7 +157,7 @@ exports[`SuccessAlert should be rendered correctly 1`] = `
 
 exports[`WarningAlert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper alert-warning root size48"
+  className="uui-alert root alertWrapper uui-color-warning size48"
   role="alert"
 >
   <div

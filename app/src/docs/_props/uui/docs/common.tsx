@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IHasIcon } from '@epam/uui-core';
+import { Icon, IHasIcon } from '@epam/uui-core';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import {
     allSizes, IHasEditMode, allSemanticColors, SizeMod, ColorMod,
@@ -33,11 +33,10 @@ export const colorDoc = new DocBuilder<ColorMod>({ name: 'Color' }).prop('color'
     examples: allSemanticColors,
 });
 
-// export const iconDoc = new DocBuilder<IHasIcon>({ name: 'Icon' })
-//     .prop('icon', {
-//         renderEditor: (editable: any, examples) => <IconPicker icons={ examples } { ...editable }/>,
-//         examples: getIconList<Icon>(true).map(i => ({ value: i as any })),
-//     });
+export const iconDoc = new DocBuilder<IHasIcon>({ name: 'Icon' }).prop('icon', {
+    renderEditor: (editable: any, examples) => <IconPicker icons={ examples } { ...editable } />,
+    examples: getIconList<Icon>(true).map((i) => ({ value: i as any })),
+});
 
 export const iconWithInfoDoc = new DocBuilder<IHasIcon>({ name: 'Icon' }).prop('icon', {
     renderEditor: (editable: any, examples, props) => <IconPicker icons={ examples } { ...editable } { ...props } enableInfo={ true } />,

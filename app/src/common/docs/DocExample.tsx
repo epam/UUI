@@ -6,12 +6,14 @@ import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
 import css from './DocExample.module.scss';
 import { CodesandboxLink } from './CodesandboxLink';
 import { Code } from './Code';
+import cx from 'classnames';
 
 interface DocExampleProps {
     path: string;
     title?: string;
     onlyCode?: boolean;
     width?: number | 'auto';
+    cx?: string;
 }
 
 interface DocExampleState {
@@ -76,7 +78,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                 <FlexRow size={ null } vPadding="48" padding="24" borderBottom alignItems="top" spacing="12">
                     {this.state.component && React.createElement(this.state.component)}
                 </FlexRow>
-                <FlexRow padding="12" vPadding="12" cx={ css.containerFooter }>
+                <FlexRow padding="12" vPadding="12" cx={ [css.containerFooter, css.uuiThemePromo] }>
                     <Switch value={ this.state.showCode } onValueChange={ this.onSwitchValueChange } label="View code" />
                     <CodesandboxLink raw={ raw } dirPath={ dirPath } />
                 </FlexRow>
@@ -87,7 +89,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
 
     render() {
         return (
-            <div className={ css.container }>
+            <div className={ cx(css.container, this.props.cx) }>
                 <EditableDocContent title={ this.props.title } fileName={ this.getDescriptionFileName() } />
                 <div className={ css.previewContainer } style={ { width: this.props.width } }>
                     {this.props.onlyCode ? this.renderCode() : this.renderPreview()}
