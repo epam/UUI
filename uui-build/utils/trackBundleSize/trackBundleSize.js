@@ -29,7 +29,7 @@ const { createBaseLineJson } = require('./trackBundleSizeFileUtils');
 const epamPrefix = '@epam/';
 const appTargetParentDirResolved = path.resolve(uuiRoot, TEMPLATE_APP_TARGET_DIR, '..');
 const appTargetDirResolved = path.resolve(uuiRoot, TEMPLATE_APP_TARGET_DIR);
-const webpackConfigResolved = path.resolve(appTargetDirResolved, 'node_modules/react-scripts/config/webpack.config');
+const webpackConfigResolved = path.resolve(appTargetDirResolved, 'node_modules/react-scripts/config/webpack.config.js');
 const webpackPatch = { replaceWhat: 'resolve: {', replaceTo: 'resolve: {symlinks: false,' };
 const CLI = {
     buildApp: { cmd: 'npm', args: ['run', 'build'] },
