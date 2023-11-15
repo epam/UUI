@@ -3,8 +3,9 @@ import { resolveModuleName, isExternalFile, makeRelativeToUuiRoot } from '../../
 // eslint-disable-next-line import/no-cycle
 import { SymbolUtils } from './symbolUtils';
 import { TypeUtils } from './typeUtils';
-import { TTypeSummary, TTypeValue } from '../../types/sharedTypes';
+import { TComment, TTypeSummary, TTypeValue } from '../../types/sharedTypes';
 import { IConverterContext } from '../../types/types';
+import { TsDocUtils } from '../../tsdoc/tsDocUtils';
 
 export class NodeUtils {
     static getRelativeSource(typeNode: Node) {
@@ -33,15 +34,19 @@ export class NodeUtils {
             .map(removeLeadingExportKw);
     }
 
-    static getCommentFromNode(prop: Node): string[] | undefined {
+    static getCommentFromNode(prop: Node): TComment | undefined {
         const ranges = prop.getLeadingCommentRanges();
         if (ranges.length > 0) {
             const closestDoc = ranges[ranges.length - 1].getText().trim();
             const isTsDoc = closestDoc.indexOf('/**') === 0;
             if (isTsDoc) {
                 const LF = '\n';
-                return closestDoc.split(LF).map(cleanAsteriks).join(LF).trim()
+                const raw = closestDoc.split(LF).map(cleanAsteriks).join(LF).trim()
                     .split(LF);
+                return {
+                    raw,
+                    tags: TsDocUtils.parseComment(closestDoc),
+                };
             }
         }
         function cleanAsteriks(line: string): string {
@@ -111,7 +116,11 @@ export class NodeUtils {
         });
     }
 
-    static getTypeValueFromNode(typeNode: Node, print?: boolean): TTypeValue {
+    static getTypeValueFromNode(params: { typeNode: Node, print: boolean }): TTypeValue {
+        const {
+            typeNode,
+            print,
+        } = params;
         const type = typeNode.getType();
         const result: TTypeValue = {
             raw: TypeUtils.getCompilerTypeText(type),
@@ -122,22 +131,28 @@ export class NodeUtils {
         return result;
     }
 
-    static getPropertySymbolRawType(propertySymbol: Symbol, context: IConverterContext): string {
+    static getPropertySymbolTypeValue(propertySymbol: Symbol, context: IConverterContext): TTypeValue {
         const node = SymbolUtils.getNodeFromSymbol(propertySymbol);
         const name = NodeUtils.getPropertyNodeName(node);
         if (Node.isGetAccessorDeclaration(node)) {
             const returnType = node.getStructure().returnType;
-            return `${name}(): ${returnType}`;
+            return {
+                raw: `${name}(): ${returnType}`,
+            };
         } else if (Node.isSetAccessorDeclaration(node)) {
             const structureParams = node.getStructure().parameters?.[0];
             if (structureParams) {
-                return `${name}(${structureParams.name}: ${structureParams.type})`;
+                return {
+                    raw: `${name}(${structureParams.name}: ${structureParams.type})`,
+                };
             }
         } else if (Node.isIndexSignatureDeclaration(node)) {
-            return TypeUtils.getCompilerTypeText(node.getReturnType());
+            return {
+                raw: TypeUtils.getCompilerTypeText(node.getReturnType()),
+            };
         }
         const conv = context.convertToTypeValue({ convertable: propertySymbol, isProperty: true });
-        return conv.raw;
+        return conv;
     }
 
     static getPropertyNodeName(propertyNode: Node): string {

@@ -4,7 +4,7 @@ import { TType, TTypeRef } from './sharedTypes';
 import { TDocsGenTypeSummary } from './types';
 
 const cache: Map<TTypeRef, Promise<{ content: TType }>> = new Map();
-function load(ref: TTypeRef) {
+export function loadDocsGenType(ref: TTypeRef) {
     if (!svc.api) {
         throw new Error('svc.api not available');
     }
@@ -17,7 +17,7 @@ export function useDocsGenForType(ref: TTypeRef): TType | undefined {
     const [response, setResponse] = useState<TType>();
     useEffect(() => {
         setResponse(undefined);
-        load(ref).then((res) => {
+        loadDocsGenType(ref).then((res) => {
             setResponse(() => res.content);
         });
     }, [ref]);

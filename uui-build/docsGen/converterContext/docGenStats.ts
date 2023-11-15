@@ -14,14 +14,14 @@ export class DocGenStats implements IDocGenStats {
 
     checkConvertedExport(converted: TTypeConverted) {
         const { summary, details } = converted;
-        if (summary.exported && !summary.comment?.length) {
+        if (summary.exported && !summary.comment?.raw?.length) {
             this.missingTypeComment.push(converted.typeRef);
         }
 
         if (details?.props?.length) {
             details.props.forEach((prop) => {
                 // check only props which aren't inherited to avoid duplicates.
-                if (!prop.comment?.length && !prop.from) {
+                if (!prop.comment?.raw?.length && !prop.from) {
                     let bucket = this.missingPropComment.get(converted.typeRef);
                     if (!bucket) {
                         bucket = [];

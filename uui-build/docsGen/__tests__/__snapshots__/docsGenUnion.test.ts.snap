@@ -61,6 +61,9 @@ exports[`docsGen:union should convert union of two anonymous object types 1`] = 
       "typeValue": {
        "raw": "string"
       },
+      "editor": {
+       "type": "string"
+      },
       "required": true
      },
      {
@@ -69,6 +72,9 @@ exports[`docsGen:union should convert union of two anonymous object types 1`] = 
       "typeValue": {
        "raw": "string"
       },
+      "editor": {
+       "type": "string"
+      },
       "required": true
      },
      {
@@ -76,6 +82,9 @@ exports[`docsGen:union should convert union of two anonymous object types 1`] = 
       "name": "n2Prop",
       "typeValue": {
        "raw": "string"
+      },
+      "editor": {
+       "type": "string"
       },
       "required": true
      }
@@ -115,6 +124,9 @@ exports[`docsGen:union should convert union of two object types 1`] = `
       "typeValue": {
        "raw": "string"
       },
+      "editor": {
+       "type": "string"
+      },
       "from": "test/test.tsx:N1",
       "required": true
      },
@@ -123,6 +135,9 @@ exports[`docsGen:union should convert union of two object types 1`] = `
       "name": "n1Prop",
       "typeValue": {
        "raw": "string"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "test/test.tsx:N1",
       "required": true
@@ -133,6 +148,9 @@ exports[`docsGen:union should convert union of two object types 1`] = `
       "typeValue": {
        "raw": "string"
       },
+      "editor": {
+       "type": "string"
+      },
       "from": "test/test.tsx:N2",
       "required": true
      },
@@ -141,6 +159,9 @@ exports[`docsGen:union should convert union of two object types 1`] = `
       "name": "n2Prop",
       "typeValue": {
        "raw": "string"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "test/test.tsx:N2",
       "required": true
