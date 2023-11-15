@@ -4,7 +4,9 @@ import { EpamPrimaryColor } from '../types';
 import css from './Badge.module.scss';
 
 export interface BadgeMods extends Omit<UuiBadgeProps, 'color' | 'fill'> {
+    /** @default 'blue' */
     color?: EpamPrimaryColor | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint' | 'white' | 'gray10'| 'gray30'| 'gray60';
+    /** @default 'solid' */
     fill?: UuiBadgeMods['fill'] | 'semitransparent' | 'transparent';
 }
 

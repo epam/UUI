@@ -6,11 +6,20 @@ import css from './StatusIndicator.module.scss';
 export type StatusIndicatorColors = 'neutral' | 'info' | 'success' | 'warning' | 'critical';
 
 export interface StatusIndicatorProps extends IHasCX {
-    /** Component size. If omitted, 24 size will be used. */
+    /**
+     * Component size. If omitted, 24 size will be used.
+     * @default '24'
+     */
     size?: '24' | '18' | '12';
-    /** Component color. */
+    /**
+     * Component color.
+     * @default 'neutral'
+     */
     color?: StatusIndicatorColors;
-    /** Fill mode, solid is used by default */
+    /**
+     * Fill mode, solid is used by default
+     * @default 'solid'
+     */
     fill?: 'solid' | 'outline';
     /** Component caption. */
     caption: string;

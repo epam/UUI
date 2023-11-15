@@ -28,6 +28,9 @@ const mapCountIndicatorSizes: Record<TagSize, CountIndicatorProps['size']> = {
 };
 
 export interface TagMods {
+    /**
+     * @default '36'
+     */
     size?: TagSize;
 }
 
