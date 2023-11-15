@@ -3,7 +3,7 @@ import {
     BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger, DropdownMenuSplitter, MainMenuDropdown,
 } from '@epam/promo';
 import { Anchor, MainMenuLogo } from '@epam/uui-components';
-import { UUI4 } from './docs';
+import { UUI } from './docs';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
 import css from './AppHeader.module.scss';
@@ -51,7 +51,7 @@ export function AppHeader() {
                     link={ {
                         pathname: '/documents',
                         query: {
-                            id: 'accordion', mode: 'doc', skin: UUI4, category: 'components',
+                            id: 'accordion', mode: 'doc', skin: UUI, category: 'components',
                         },
                     } }
                     isLinkActive={ pathName === '/documents' && category === 'components' }
@@ -132,7 +132,7 @@ export function AppHeader() {
                         link={ {
                             pathname: '/documents',
                             query: {
-                                id: 'accordion', mode: 'doc', skin: UUI4, category: 'components',
+                                id: 'accordion', mode: 'doc', skin: UUI, category: 'components',
                             },
                         } }
                         isLinkActive={ pathName === '/documents' && category === 'components' }
