@@ -18,7 +18,7 @@ export type ModalWindowProps = UuiModalWindowProps & ModalWindowMods;
 
 export const ModalWindow = withMods<UuiModalWindowProps, ModalWindowMods>(
     uuiModalWindow,
-    () => [css.modal],
+    () => [css.root, css.modal],
     (props) => ({
         style: {
             ...props.style,
@@ -37,7 +37,7 @@ export class ModalHeader extends React.Component<ModalHeaderProps> {
                 padding={ this.props.padding || '24' }
                 vPadding="12"
                 borderBottom={ this.props.borderBottom }
-                cx={ [css.modalHeader, this.props.cx] }
+                cx={ [css.root, css.modalHeader, this.props.cx] }
                 spacing="12"
                 rawProps={ this.props.rawProps }
             >
@@ -66,7 +66,10 @@ export class ModalFooter extends React.Component<ModalFooterProps> {
             <FlexRow
                 spacing={ this.props.spacing || '12' }
                 cx={ [
-                    css.modalFooter, this.props.borderTop && css.borderTop, this.props.cx,
+                    css.root,
+                    css.modalFooter,
+                    this.props.borderTop && css.borderTop,
+                    this.props.cx,
                 ] }
                 padding={ this.props.padding || '24' }
                 vPadding={ this.props.vPadding || '24' }

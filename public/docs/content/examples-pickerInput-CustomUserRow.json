@@ -1,65 +1,34 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "By default, we render the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "item.name",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " field in a picker row. But you can define your own ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "renderRow",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " method, which is suitable for your case. ",
-            "marks": []
-          }
-        ]
+        "text": "By default, we render the "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "In this example, we show how to render a custom user row for each person.",
-            "marks": []
-          }
-        ]
+        "text": "item.name",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " field in a picker row. But you can define your own "
+      },
+      {
+        "text": "renderRow",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " method, which is suitable for your case. "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "In this example, we show how to render a custom user row for each person."
       }
     ]
   }
-}
+]

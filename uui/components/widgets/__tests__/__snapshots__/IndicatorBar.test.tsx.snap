@@ -2,17 +2,17 @@
 
 exports[`IndicatorBar should be rendered correctly 1`] = `
 <div
-  className="root root size-12"
+  className="uui-indeterminate_bar root root size-12"
 >
   <div
-    className="bar"
+    className="progressBar"
   />
 </div>
 `;
 
 exports[`IndicatorBar should be rendered correctly with props 1`] = `
 <div
-  className="root size-12 root container"
+  className="uui-progress_bar root size-12 root container"
 >
   <div
     aria-valuemax={100}

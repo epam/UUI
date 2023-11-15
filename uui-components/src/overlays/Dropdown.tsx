@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps,
-} from 'react-popper';
+import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
 import { isEventTargetInsideClickable, LayoutLayer, UuiContexts, UuiContext, DropdownProps } from '@epam/uui-core';
 import { Portal } from './Portal';

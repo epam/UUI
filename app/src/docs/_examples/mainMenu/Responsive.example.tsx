@@ -1,7 +1,8 @@
 import React, { ReactNode, useState } from 'react';
-import { BurgerButton, GlobalMenu, MainMenu, MainMenuAvatar, MainMenuButton, MainMenuIcon, FlexSpacer, FlexCell,
-    MainMenuDropdown, BurgerSearch, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, Slider, Burger,
-} from '@epam/promo';
+import {
+    Slider, BurgerButton, GlobalMenu, MainMenu, MainMenuAvatar, MainMenuButton, MainMenuIcon, FlexSpacer, FlexCell, MainMenuDropdown,
+    BurgerSearch, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, Burger, BurgerGroupHeader,
+} from '@epam/uui';
 import { Dropdown, MainMenuLogo, AdaptiveItemProps } from '@epam/uui-components';
 import { ReactComponent as HelpIcon } from '@epam/assets/icons/common/notification-help-outline-24.svg';
 import { ReactComponent as PinIcon } from '@epam/assets/icons/common/action-pin_on-24.svg';
@@ -13,6 +14,7 @@ export default function MainMenuResponsiveExample() {
     const renderBurger = (hiddenItems: AdaptiveItemProps<{ caption?: string }>[], onClose?: () => void): ReactNode => (
         <>
             <BurgerSearch value={ burgerSearchQuery } onValueChange={ setBurgerSearchQuery } placeholder="Type to search" onCancel={ () => setBurgerSearchQuery('') } />
+            <BurgerGroupHeader caption="Burger" />
             {hiddenItems
                 .filter((i) => i.caption)
                 .map((i) => {

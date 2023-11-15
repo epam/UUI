@@ -13,7 +13,9 @@ export function applyProgressBarMods(mods: ProgressBarMods) {
     const size = mods.size || defaultSize;
 
     return [
-        css.root, css[`size-${size}`], mods.striped && css.striped,
+        css.root,
+        css[`size-${size}`],
+        mods.striped && css.striped,
     ];
 }
 

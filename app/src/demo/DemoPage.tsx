@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ScrollBars } from '@epam/promo';
+import { ScrollBars } from '@epam/uui';
 import { AppHeader, Page } from '../common';
 import { svc } from '../services';
 import { demoItems } from './structure';

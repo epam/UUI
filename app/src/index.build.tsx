@@ -12,6 +12,7 @@ import '@epam/uui-components/build/styles.css';
 import '@epam/uui/build/styles.css';
 import '@epam/loveship/build/styles.css';
 import '@epam/promo/build/styles.css';
+import '@epam/electric/build/styles.css';
 // skins end
 import '@epam/uui-docs/build/styles.css';
 import '@epam/uui-editor/build/styles.css';

@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI3, UUI4,
-} from '../common';
+import { BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI3, UUI4, UUI } from '../common';
 
 export class ControlGroupDoc extends BaseDocsBlock {
     title = 'Control Group';
@@ -12,6 +10,7 @@ export class ControlGroupDoc extends BaseDocsBlock {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/layout/controlGroup.props.tsx',
             [UUI4]: './app/src/docs/_props/epam-promo/components/layout/controlGroup.props.tsx',
+            [UUI]: './app/src/docs/_props/uui/components/layout/controlGroup.props.tsx',
         };
     }
 

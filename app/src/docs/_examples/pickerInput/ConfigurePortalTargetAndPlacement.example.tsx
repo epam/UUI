@@ -1,12 +1,6 @@
-import React, {
-    useState, useCallback, useRef,
-} from 'react';
-import {
-    PickerInput, DropdownContainer, FlexCell, FlexRow, Button, Dropdown, Text, Panel,
-} from '@epam/promo';
-import {
-    IDropdownToggler, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext,
-} from '@epam/uui-core';
+import React, { useState, useCallback, useRef } from 'react';
+import { PickerInput, DropdownContainer, FlexCell, FlexRow, Button, Dropdown, Text, Panel } from '@epam/uui';
+import { IDropdownToggler, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import { DropdownBodyProps } from '@epam/uui-core';
 import css from './PickerInputInDropdown.module.scss';
@@ -30,10 +24,10 @@ export default function ConfigurePortalTargetAndPlacement() {
             closeOnEsc={ false }
             shards={ [portalTargetRef] }
         >
-            <Panel>
+            <Panel background="surface">
                 <FlexRow alignItems="top" padding="18" vPadding="24">
                     <FlexCell grow={ 1 } ref={ portalTargetRef }>
-                        <Text fontSize="18" lineHeight="24" color="gray90" font="museo-slab">
+                        <Text fontSize="18" lineHeight="24" color="brand" font="primary">
                             Reporting to
                         </Text>
                         <PickerInput
@@ -50,8 +44,8 @@ export default function ConfigurePortalTargetAndPlacement() {
                 </FlexRow>
                 <div className={ css.divider }></div>
                 <FlexRow spacing="12" padding="18" vPadding="24">
-                    <Button color="green" size="30" caption="Save" onClick={ () => null } />
-                    <Button fill="white" size="30" color="gray" caption="Cancel" onClick={ () => props.onClose() } />
+                    <Button color="accent" size="30" caption="Save" onClick={ () => null } />
+                    <Button fill="outline" size="30" color="secondary" caption="Cancel" onClick={ () => props.onClose() } />
                 </FlexRow>
             </Panel>
         </DropdownContainer>

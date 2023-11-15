@@ -1,6 +1,7 @@
 @use '~@epam/promo/assets/styles/index' as *;
 
 .root {
+    background-color: var(--uui-app-bg);
     display: flex;
     flex-direction: column;
     height: calc(100vh - 102px);
@@ -11,7 +12,8 @@
         max-width: 1200px;
 
         .nav-title {
-            font-family: $font-museo-sans;
+            font-family: var(--font-primary);
+            color: var(--uui-text-primary);
             margin: 30px 0 5px;
             font-size: 36px;
             line-height: 48px;

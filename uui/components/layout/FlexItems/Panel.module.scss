@@ -1,4 +1,9 @@
 .root {
+    --uui-panel-bg: var(--uui-surface-main);
+    --uui-panel-shadow: var(--uui-shadow-level-1);
+
+    --uui-panel-border-radius: var(--uui-border-radius);
+    //
     overflow: hidden;
     border-radius: var(--uui-panel-border-radius);
     background-color: var(--uui-panel-bg);
@@ -21,5 +26,9 @@
 
     &:global(.-clickable):hover {
         cursor: pointer;
+    }
+
+    &:global(.uui-panel.uui-color-surface) {
+        --uui-panel-bg: var(--uui-surface-main);
     }
 }

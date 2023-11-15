@@ -1,13 +1,19 @@
 import React, { useMemo } from 'react';
-import {
-    FiltersPanel, DataTable, Panel, FlexRow, Text, Badge, EpamAdditionalColor, Switch,
-} from '@epam/promo';
-import { defaultPredicates, rangeDatePickerPresets } from '@epam/uui';
-import {
-    DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext,
-} from '@epam/uui-core';
-import { Person } from '@epam/uui-docs';
 import dayjs from 'dayjs';
+import {
+    defaultPredicates,
+    rangeDatePickerPresets,
+    FiltersPanel,
+    DataTable,
+    Panel,
+    FlexRow,
+    Text,
+    Switch,
+    BadgeColor,
+    Badge,
+} from '@epam/uui';
+import { DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
+import { Person } from '@epam/uui-docs';
 
 const personColumns: DataColumnProps<Person, number>[] = [
     {
@@ -24,7 +30,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as EpamAdditionalColor } caption={ p.profileStatus } />
+                    <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as BadgeColor } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         width: 140,
@@ -172,8 +178,8 @@ export default function FiltersPanelExample() {
     const view = dataSource.useView(tableState, setTableState);
 
     return (
-        <Panel style={ { height: '400px' } }>
-            <FlexRow spacing="6" vPadding="12" rawProps={ { style: { flexWrap: 'wrap' } } }>
+        <Panel background="surface" shadow style={ { height: '400px' } }>
+            <FlexRow padding="12" vPadding="24" rawProps={ { style: { flexWrap: 'wrap', gap: '3px' } } }>
                 <FiltersPanel filters={ filtersConfig } tableState={ tableState } setTableState={ setTableState } />
             </FlexRow>
             <DataTable getRows={ view.getVisibleRows } columns={ personColumns } value={ tableState } onValueChange={ setTableState } { ...view.getListProps() } />

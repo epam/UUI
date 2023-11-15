@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TDocsGenType } from '../common';
+import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType } from '../common';
 
 export class AlertDoc extends BaseDocsBlock {
     title = 'Alert';
@@ -10,6 +10,7 @@ export class AlertDoc extends BaseDocsBlock {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/overlays/alert.props.tsx',
             [UUI4]: './app/src/docs/_props/epam-promo/components/overlays/alert.props.tsx',
+            [UUI]: './app/src/docs/_props/uui/components/overlays/alert.props.tsx',
         };
     }
 

@@ -3,7 +3,7 @@
 exports[`DataTableHeaderCell should be rendered correctly 1`] = `
 <div
   aria-sort="none"
-  className="flexCell uui-table-header-cell cell size-36 padding-left-24"
+  className="flexCell uui-dt-vars uui-table-header-cell cell size-36 padding-left-24"
   onClick={[Function]}
   role="columnheader"
   style={
@@ -24,7 +24,7 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
       className="iconCell align-undefined uui-table-header-caption-wrapper"
     >
       <div
-        className="uui-font-regular uui-text-primary root line-height-30 font-size-14 v-padding-0 caption font-size-14 uui-table-header-caption container"
+        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-30 font-size-14 v-padding-0 caption font-size-14 uui-table-header-caption container"
       >
         Test
       </div>

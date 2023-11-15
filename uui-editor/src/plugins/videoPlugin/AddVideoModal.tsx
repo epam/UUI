@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
-import { FlexSpacer } from '@epam/uui-components';
+import { IModal, prependHttp } from '@epam/uui-core';
+import { FlexSpacer, FlexRow, ModalBlocker, ModalHeader, ModalWindow, ModalFooter, LabeledInput, Button, TextInput } from '@epam/uui';
 import css from './AddVideoModal.module.scss';
 
 import getVideoId from 'get-video-id';
 import { useState } from 'react';
 import { PlateEditor, setElements } from '@udecode/plate-common';
-
-const { LabeledInput, ModalBlocker, ModalWindow, ModalHeader, FlexRow, TextInput, ModalFooter, Button } = uuiSkin;
 
 interface AddVideoModalProps extends IModal<any> {
     editor: PlateEditor;
@@ -72,9 +70,9 @@ export function AddVideoModal({ editor, success, abort, ...props }: AddVideoModa
                 </FlexRow>
                 <ModalFooter borderTop>
                     <FlexSpacer />
-                    <Button type="cancel" caption="Cancel" onClick={ () => abort() } />
+                    <Button color="secondary" caption="Cancel" onClick={ () => abort() } />
                     <Button
-                        type="success"
+                        color="accent"
                         caption="Ok"
                         isDisabled={ !src }
                         onClick={ createVideoBlock }

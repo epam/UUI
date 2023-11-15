@@ -3,7 +3,7 @@ import { Accordion, PickerList } from '@epam/uui';
 import { DataTableState } from '@epam/uui-core';
 import { groupingsDataSource } from '../../groupings';
 
-interface GroupingBlockProps<TFilter> { 
+interface GroupingBlockProps<TFilter> {
     tableState: DataTableState<TFilter>;
     setTableState(newState: DataTableState<TFilter>): void;
 }
@@ -12,7 +12,7 @@ function GroupingBlock<TFilter extends { groupBy?: string[] }>({ tableState, set
     const groupBy = tableState.filter?.groupBy;
     const onGroupingChange = (newGroupBy: string[]) => {
         if (newGroupBy !== groupBy) {
-            setTableState({ 
+            setTableState({
                 ...tableState,
                 filter: { ...tableState.filter, groupBy: newGroupBy },
                 checked: [],

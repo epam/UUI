@@ -25,7 +25,7 @@
 
         .import-button {
             background: none;
-            border: none;
+            border: 0 none;
             line-height: inherit;
             text-align: left;
         }
@@ -363,5 +363,5 @@
 }
 
 .icon-red {
-    fill: var(--uui-error);
+    fill: var(--uui-error-50);
 }

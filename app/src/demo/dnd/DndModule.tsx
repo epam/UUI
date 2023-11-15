@@ -5,7 +5,7 @@ import {
 } from '@epam/uui-core';
 import {
     FlexRow, IconContainer, DropMarker, FlexCell, Text,
-} from '@epam/promo';
+} from '@epam/uui';
 import { DragHandle } from '@epam/uui-components';
 
 import { ReactComponent as CompleteIcon } from '@epam/assets/icons/common/notification-check-fill-24.svg';
@@ -55,7 +55,7 @@ export class DndModule extends React.Component<DndModuleProps> {
                     return (
                         <div ref={ props.ref } { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
                             <div className={ css.dndItem }>
-                                <FlexRow background="white" size="48" padding="12" spacing="12">
+                                <FlexRow cx={ css.item } size="48" padding="12" spacing="12">
                                     <DragHandle cx={ [css.dragHandle] } />
                                     <IconContainer
                                         icon={ item.isCompleted ? CompleteIcon : ScheduleIcon }
@@ -69,7 +69,7 @@ export class DndModule extends React.Component<DndModuleProps> {
                                             size="18"
                                             fontSize="12"
                                             lineHeight="18"
-                                            color="gray60"
+                                            color="secondary"
                                         >
                                             {`${item.tasks.complete}/${item.tasks.schedule} tasks completed`}
                                         </Text>

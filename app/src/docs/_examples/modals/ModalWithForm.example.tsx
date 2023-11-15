@@ -2,7 +2,7 @@ import React from 'react';
 import { IModal, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui-core';
 import { Country } from '@epam/uui-docs';
 import { ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, FlexRow, LabeledInput, TextInput, Button, ScrollBars, ModalFooter, SuccessNotification, useForm, Text,
-    Panel, FlexCell, ControlWrapper, RadioGroup, PickerInput } from '@epam/promo';
+    Panel, FlexCell, RadioGroup, PickerInput } from '@epam/uui';
 
 interface Person {
     firstName?: string;
@@ -40,7 +40,7 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
             <ModalWindow>
                 <ModalHeader borderBottom title="New committee" onClose={ () => close().then(modalProps.abort) } />
                 <ScrollBars>
-                    <Panel>
+                    <Panel background="surface">
                         <FlexRow padding="24" vPadding="12">
                             <FlexCell grow={ 1 }>
                                 <LabeledInput label="First Name" { ...lens.prop('firstName').toProps() }>
@@ -65,21 +65,21 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
                         <FlexRow padding="24" vPadding="12">
                             <FlexCell grow={ 1 }>
                                 <LabeledInput label="Sex" { ...lens.prop('sex').toProps() }>
-                                    <ControlWrapper size="36">
+                                    <FlexRow>
                                         <RadioGroup
                                             items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] }
                                             { ...lens.prop('sex').toProps() }
                                             direction="horizontal"
                                         />
-                                    </ControlWrapper>
+                                    </FlexRow>
                                 </LabeledInput>
                             </FlexCell>
                         </FlexRow>
                     </Panel>
                     <ModalFooter borderTop>
                         <FlexSpacer />
-                        <Button color="gray" fill="white" onClick={ () => close().then(modalProps.abort) } caption="Cancel" />
-                        <Button color="green" caption="Confirm" onClick={ save } />
+                        <Button color="secondary" fill="outline" onClick={ () => close().then(modalProps.abort) } caption="Cancel" />
+                        <Button color="accent" caption="Confirm" onClick={ save } />
                     </ModalFooter>
                     <FlexSpacer />
                 </ScrollBars>

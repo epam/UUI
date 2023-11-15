@@ -9,7 +9,10 @@ export interface MainMenuMods {}
 export type MainMenuProps = uuiComponents.MainMenuProps & MainMenuMods;
 
 function applyMainMenuMods() {
-    return [css.root];
+    return [
+        css.root,
+        'uui-main_menu',
+    ];
 }
 
 export const MainMenu = withMods<uuiComponents.MainMenuProps, MainMenuMods>(uuiComponents.MainMenu, applyMainMenuMods, () => ({

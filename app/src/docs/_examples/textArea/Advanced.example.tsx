@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexCell, TextArea } from '@epam/promo';
+import { FlexCell, TextArea } from '@epam/uui';
 import { useState } from 'react';
 import css from './BasicExample.module.scss';
 

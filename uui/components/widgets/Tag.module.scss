@@ -1,28 +1,25 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
+    --uui-tag-bg: var(--uui-color-10);
+    --uui-tag-bg-hover: var(--uui-color-20);
+    --uui-tag-caption: var(--uui-text-primary);
+    --uui-tag-fill: var(--uui-icon);
+    --uui-tag-fill-hover: var(--uui-icon-hover);
+
+    --uui-tag-border-radius: 30px;
+
+    --uui-tag-font: var(--uui-font);
+    --uui-tag-font-weight: 400;
+    //
     &:global(.uui-button-box) {
         border-radius: var(--uui-tag-border-radius);
         background-color: var(--uui-tag-bg);
         fill: var(--uui-tag-fill);
         border: 0;
 
-        :global(.uui-count) {
-            background-color: var(--uui-tag-count-bg);
-            color: var(--uui-tag-count);
-            font-family: var(--uui-tag-count-font);
-            font-weight: var(--uui-tag-count-font-weight, normal);
-            margin: auto;
-            height: 18px;
-            line-height: 18px;
-            font-size: 12px;
-            border-radius: 9px;
-            padding-left: 6px;
-            padding-right: 6px;
-        }
-
-        :global(.uui-count):not(:first-child) {
-            margin-left: 6px;
+        :global(.uui-count_indicator):not(:last-child) {
+            margin-right: 6px;
         }
 
         &:global(.-clickable) {
@@ -40,7 +37,7 @@
         :global(.uui-caption) {
             text-transform: none;
             font-family: var(--uui-tag-font);
-            font-weight: var(--uui-tag-font-weight, normal);
+            font-weight: var(--uui-tag-font-weight);
             color: var(--uui-tag-caption);
         }
     }
@@ -51,19 +48,8 @@
         padding-left: 3px;
         padding-right: 3px;
 
-        :global(.uui-count) {
-            height: 12px;
-            line-height: 12px;
-            font-size: 8px;
-            border-radius: 6px;
-            padding-left: 3px;
-            padding-right: 3px;
-            min-width: 6px;
-            flex-shrink: 0;
-        }
-
-        :global(.uui-count):not(:first-child) {
-            margin-left: 3px;
+        :global(.uui-count_indicator):not(:last-child) {
+            margin-right: 3px;
         }
 
         :global(.uui-caption), :global(.uui-input) {
@@ -119,15 +105,6 @@
             line-height: 24px;
             font-size: 16px;
         }
-
-        :global(.uui-count) {
-            height: 24px;
-            line-height: 24px;
-            font-size: 14px;
-            border-radius: 12px;
-            min-width: 12px;
-            flex-shrink: 0;
-        }
     }
 
     &.size-48 {
@@ -139,15 +116,6 @@
             padding-bottom: 12px;
             line-height: 24px;
             font-size: 16px;
-        }
-
-        :global(.uui-count) {
-            height: 24px;
-            line-height: 24px;
-            font-size: 14px;
-            border-radius: 12px;
-            min-width: 12px;
-            flex-shrink: 0;
         }
     }
 }

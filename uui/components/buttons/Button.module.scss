@@ -1,0 +1,163 @@
+@use '../../assets/styles/index' as *;
+
+@mixin button-disables-styles($bg-color, $border-color) {
+    background-color: $bg-color;
+    color: var(--uui-btn-caption-disabled);
+    fill: var(--uui-btn-caption-disabled);
+    border-color: $border-color;
+}
+
+.root {
+    --uui-btn-bg: var(--uui-color-50);
+    --uui-btn-bg-hover: var(--uui-color-60);
+    --uui-btn-bg-active: var(--uui-color-70);
+    --uui-btn-bg-disabled: var(--uui-neutral-30);
+    --uui-btn-border: var(--uui-color-50);
+    --uui-btn-border-hover: var(--uui-color-60);
+    --uui-btn-border-active: var(--uui-color-70);
+    --uui-btn-border-disabled: var(--uui-neutral-30);
+    --uui-btn-caption: var(--uui-color-contrast);
+    --uui-btn-caption-disabled: var(--uui-text-disabled);
+
+    --uui-btn-border-radius: var(--uui-border-radius);
+
+    --uui-btn-font: var(--uui-font);
+    --uui-btn-font-weight: var(--uui-font-weight, 600);
+    //
+    background-color: var(--uui-btn-bg);
+    color: var(--uui-btn-caption);
+    fill: var(--uui-btn-caption);
+    border-color: var(--uui-btn-border);
+
+    &:global(.-clickable) {
+        &:hover {
+            background-color: var(--uui-btn-bg-hover);
+            border-color: var(--uui-btn-border-hover);
+        }
+
+        &:active {
+            background-color: var(--uui-btn-bg-active);
+            border-color: var(--uui-btn-border-active);
+        }
+    }
+
+    &:global(.uui-button-box) {
+        border-style: solid;
+        justify-content: center;
+        border-radius: var(--uui-btn-border-radius);
+    }
+
+    &:focus-visible {
+        @include focus-visible-effect();
+    }
+
+    :global(.uui-caption) {
+        @include overflow-ellipsis();
+        min-width: 0;
+        text-align: center;
+        flex: 1 1 auto;
+        font-family: var(--uui-btn-font);
+        font-weight: var(--uui-btn-font-weight, normal);
+        user-select: none;
+    }
+
+    &:is(:global(.-clickable), :hover, :active, :focus):global(.uui-disabled),
+    &:global(.uui-disabled) {
+        &:global(.uui-fill-solid) {
+            @include button-disables-styles(var(--uui-btn-bg-disabled), var(--uui-btn-border-disabled));
+        }
+
+        &:global(.uui-fill-outline) {
+            @include button-disables-styles(var(--uui-surface-main), var(--uui-btn-border-disabled));
+        }
+
+        &:global(.uui-fill-none) {
+            @include button-disables-styles(transparent, var(--uui-btn-border-disabled));
+        }
+
+        &:global(.uui-fill-ghost) {
+            @include button-disables-styles(transparent, transparent);
+        }
+    }
+
+    &:global(.uui-fill-solid) {
+        --uui-btn-bg: var(--uui-color-50);
+        --uui-btn-bg-hover: var(--uui-color-60);
+        --uui-btn-bg-active: var(--uui-color-70);
+        --uui-btn-border: var(--uui-color-50);
+        --uui-btn-border-hover: var(--uui-color-60);
+        --uui-btn-border-active: var(--uui-color-70);
+        --uui-btn-caption: var(--uui-color-contrast);
+        --uui-btn-caption-disabled: var(--uui-text-disabled);
+    }
+
+    &:global(.uui-fill-outline) {
+        --uui-btn-bg: var(--uui-surface-main);
+        --uui-btn-bg-hover: var(--uui-color-10);
+        --uui-btn-bg-active: var(--uui-color-20);
+        --uui-btn-bg-disabled: transparent;
+        --uui-btn-border: var(--uui-color-50);
+        --uui-btn-border-hover: var(--uui-color-50);
+        --uui-btn-border-active: var(--uui-color-50);
+        --uui-btn-caption: var(--uui-color-50);
+        --uui-btn-caption-disabled: var(--uui-text-disabled);
+    }
+
+    &:global(.uui-fill-none) {
+        --uui-btn-bg: transparent;
+        --uui-btn-bg-hover: var(--uui-color-10);
+        --uui-btn-bg-active: var(--uui-color-20);
+        --uui-btn-bg-disabled: transparent;
+        --uui-btn-border: var(--uui-color-50);
+        --uui-btn-border-hover: var(--uui-color-50);
+        --uui-btn-border-active: var(--uui-color-50);
+        --uui-btn-caption: var(--uui-color-50);
+        --uui-btn-caption-disabled: var(--uui-text-disabled);
+    }
+
+    &:global(.uui-fill-ghost) {
+        --uui-btn-bg: transparent;
+        --uui-btn-bg-hover: var(--uui-color-10);
+        --uui-btn-bg-active: var(--uui-color-20);
+        --uui-btn-bg-disabled: transparent;
+        --uui-btn-border: transparent;
+        --uui-btn-border-hover: var(--uui-color-10);
+        --uui-btn-border-active: var(--uui-color-20);
+        --uui-btn-border-disabled: transparent;
+        --uui-btn-caption: var(--uui-color-50);
+        --uui-btn-caption-disabled: var(--uui-text-disabled);
+    }
+}
+
+//Sizes
+.size-18 {
+    @include button-layout(18px, 1px);
+}
+
+.size-24 {
+    @include button-layout(24px, 1px);
+}
+
+.size-30 {
+    @include button-layout(30px, 1px);
+}
+
+.size-36 {
+    @include button-layout(36px, 1px);
+}
+
+.size-42 {
+    @include button-layout(42px, 1px);
+
+    :global(.uui-caption) {
+        font-family: var(--font-primary);
+    }
+}
+
+.size-48 {
+    @include button-layout(48px, 1px);
+
+    :global(.uui-caption) {
+        font-family: var(--font-primary);
+    }
+}

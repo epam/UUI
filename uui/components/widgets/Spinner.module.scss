@@ -5,6 +5,8 @@
 }
 
 .root {
+    --uui-spinner: var(--uui-primary-50);
+    //
     &:global(.uui-spinner-container) {
         transition: all 0.3s;
 

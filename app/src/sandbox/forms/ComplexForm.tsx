@@ -29,35 +29,8 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
         bodyClass: '',
     };
 
-    componentWillUnmount() {
-        this.removeRootThemeClass();
-    }
-
-    removeRootThemeClass() {
-        const rootEl = document.querySelector('body');
-        if (this.state.bodyClass) {
-            rootEl.classList.replace('uui-theme-loveship', this.state.bodyClass);
-        } else {
-            rootEl.classList.remove('uui-theme-loveship');
-        }
-    }
-
     componentDidMount() {
         this.loadForm();
-        this.setRootThemeClass();
-    }
-
-    setRootThemeClass() {
-        setTimeout(() => {
-            const rootEl = document.querySelector('body');
-            const tempClass = [...rootEl.classList].find((val) => val.includes('uui-theme'));
-            tempClass && this.setState({ bodyClass: tempClass });
-            if (tempClass) {
-                rootEl.classList.replace(tempClass, 'uui-theme-loveship');
-            } else {
-                rootEl.classList.add('uui-theme-loveship');
-            }
-        }, 0);
     }
 
     loadForm() {
@@ -186,7 +159,7 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
         const background = this.state.hasBackground ? 'white' : 'night50';
 
         return (
-            <Panel margin="24" background={ background } cx={ css.formPanel }>
+            <Panel margin="24" background={ background } cx={ [css.formPanel, css.uuiThemeLoveship] }>
                 <FlexRow size="48" padding="24">
                     <Text size="48" font="sans-semibold">
                         Complex Form

@@ -28,7 +28,7 @@ export class BadgeDoc extends BaseDocsBlock {
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Attributes" path="./_examples/badge/Attributes.example.tsx" />
                 <DocExample title="Dropdown" path="./_examples/badge/Dropdown.example.tsx" />
-                <DocExample title="Indicator mode" path="./_examples/badge/Indicator.example.tsx" />
+                <DocExample title="Badge width status indicator" path="./_examples/badge/StatusIndicator.example.tsx" />
             </>
         );
     }

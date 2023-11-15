@@ -23,6 +23,7 @@ export interface BaseDatePickerProps
     /** Overrides rendering of picker Target - component which triggers dropdown. Can be used to attach DatePicker to other components, e.g. Buttons */
     renderTarget?(props: IDropdownToggler): ReactNode;
 
+    /** Defines where to place calendar icon */
     iconPosition?: 'left' | 'right';
 
     /** Disable clearing date value (e.g. via cross icon) */
@@ -33,18 +34,23 @@ export interface BaseDatePickerProps
 
     /** If this function returns true, the day will be highlighted as holiday */
     isHoliday?: (day: Dayjs) => boolean;
+
+    /** Called when component lose focus */
     onBlur?: (e?: React.FocusEvent<HTMLInputElement>) => void;
 
     /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
     placement?: Placement;
 
-    /** Attributes for HTML Element */
+    /** Any HTML attributes (native or 'data-') to put on date picker parts */
     rawProps?: {
+        /** Any HTML attributes (native or 'data-') to put on date picker input */
         input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        /** Any HTML attributes (native or 'data-') to put on date picker body */
         body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
 
-    /** Styles for input and body components in DatePicker */
+    /** CSS class(es) to put on datepicker input */
     inputCx?: CX;
+    /** CSS class(es) to put on datepicker body */
     bodyCx?: CX;
 }

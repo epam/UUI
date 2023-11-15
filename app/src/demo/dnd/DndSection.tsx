@@ -1,12 +1,12 @@
 import * as React from 'react';
 import sortBy from 'lodash.sortby';
-import { DragHandle, FlexCell } from '@epam/uui-components';
+import { DragHandle } from '@epam/uui-components';
 import {
     DndActor, IEditable, cx, uuiDndState, DropParams, getOrderBetween,
 } from '@epam/uui-core';
 import {
-    FlexRow, IconContainer, DropMarker, Text, RichTextView, FlexSpacer, Panel, Badge,
-} from '@epam/promo';
+    FlexRow, IconContainer, DropMarker, Text, RichTextView, FlexSpacer, Panel, Badge, FlexCell,
+} from '@epam/uui';
 import { CriterionItem, DndCriterion } from './DndCriterion';
 import { DndMaterial, MaterialItem } from './DndMaterial';
 import css from './DndSection.module.scss';
@@ -77,7 +77,7 @@ export class DndSection extends React.Component<DndSectionProps> {
                         onPointerUp={ props.eventHandlers.onPointerUp }
                         className={ cx(css.dragElement, props.classNames) }
                     >
-                        <Panel background="white" cx={ cx(css.dndItem, props.isDragGhost && uuiDndState.dragGhost) } shadow>
+                        <Panel background="surface" cx={ cx(css.dndItem, props.isDragGhost && uuiDndState.dragGhost) } shadow>
                             <FlexRow
                                 padding="24"
                                 vPadding="12"
@@ -97,10 +97,10 @@ export class DndSection extends React.Component<DndSectionProps> {
                                         </RichTextView>
                                         <FlexSpacer />
                                         <FlexRow>
-                                            <Text font="sans-semibold">Deadline:</Text>
-                                            <Text color="gray60">{ item.deadline }</Text>
+                                            <Text font="semibold">Deadline:</Text>
+                                            <Text color="secondary">{ item.deadline }</Text>
                                         </FlexRow>
-                                        <Badge fill="semitransparent" size="24" color={ item.status === 'Green' ? 'green' : 'amber' } caption={ `${item.status} Status` } />
+                                        <Badge fill="outline" size="24" color={ item.status === 'Green' ? 'success' : 'warning' } caption={ `${item.status} Status` } />
                                         <IconContainer icon={ DownIcon } rotate={ item.isFolded ? '180' : '0' } cx={ css.iconGray60 } />
                                     </FlexRow>
                                 </FlexCell>
@@ -108,7 +108,7 @@ export class DndSection extends React.Component<DndSectionProps> {
                             { item.isFolded && (
                                 <>
                                     <div className={ css.descriptionSection }>
-                                        <Text size="24" lineHeight="24" fontSize="18" font="sans-semibold">
+                                        <Text size="24" lineHeight="24" fontSize="18" font="semibold">
                                             Description
                                         </Text>
                                         <RichTextView>
@@ -116,7 +116,7 @@ export class DndSection extends React.Component<DndSectionProps> {
                                         </RichTextView>
                                     </div>
                                     <div className={ css.criteriaSection }>
-                                        <Text size="24" lineHeight="24" fontSize="18" font="sans-semibold" cx={ css.title }>
+                                        <Text size="24" lineHeight="24" fontSize="18" font="semibold" cx={ css.title }>
                                             Success Criteria
                                         </Text>
                                         { sortedCriteria.map((criterion, index) => (
@@ -131,7 +131,7 @@ export class DndSection extends React.Component<DndSectionProps> {
                                         )) }
                                     </div>
                                     <div className={ css.materialsSection }>
-                                        <Text size="24" lineHeight="24" fontSize="18" font="sans-semibold" cx={ css.title }>
+                                        <Text size="24" lineHeight="24" fontSize="18" font="semibold" cx={ css.title }>
                                             Materials
                                         </Text>
                                         { sortedMaterials.map((material, index) => (

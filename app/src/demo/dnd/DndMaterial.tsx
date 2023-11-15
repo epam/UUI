@@ -5,7 +5,7 @@ import {
 } from '@epam/uui-core';
 import {
     FlexRow, DropMarker, FlexCell, Text, IconContainer, Panel,
-} from '@epam/promo';
+} from '@epam/uui';
 import { DragHandle } from '@epam/uui-components';
 import { ReactComponent as FileIcon } from '@epam/assets/icons/common/file-file-24.svg';
 
@@ -56,17 +56,17 @@ export class DndMaterial extends React.Component<DndMaterialProps> {
                 onDrop={ this.handleOnDrop }
                 render={ (props) => (
                     <div { ...props.eventHandlers } ref={ props.ref } className={ cx(css.dragElement, props.classNames) }>
-                        <Panel background="white" cx={ cx(css.dndItem, props.isDragGhost && uuiDndState.dragGhost) }>
+                        <Panel background="surface" cx={ cx(css.dndItem, props.isDragGhost && uuiDndState.dragGhost) }>
                             <FlexRow cx={ css.materialRow }>
                                 <FlexCell width="auto" shrink={ 0 } cx={ css.iconWrapper }>
                                     <DragHandle cx={ [css.dragHandle] } />
-                                    <IconContainer size={ 48 } icon={ FileIcon } />
+                                    <IconContainer size={ 48 } icon={ FileIcon } cx={ css.icon } />
                                 </FlexCell>
                                 <FlexCell width="100%" cx={ css.textWrapper }>
-                                    <Text cx={ css.text } size="24" lineHeight="24" fontSize="16" font="sans-semibold">
+                                    <Text size="24" lineHeight="24" fontSize="16" font="semibold">
                                         {item.name}
                                     </Text>
-                                    <Text cx={ css.text } size="24" lineHeight="24" fontSize="14" color="gray60">
+                                    <Text size="24" lineHeight="24" fontSize="14" color="secondary">
                                         {item.description}
                                     </Text>
                                 </FlexCell>

@@ -1,47 +1,7 @@
-@use 'sass:math';
-@use '../../assets/styles/scss/index'  as *;
-
-@mixin button-colors($bg, $fg, $brd) {
-    background-color: $bg;
-    color: $fg;
-    fill: $fg;
-    border-color: $brd;
-}
-
-@mixin control-size($size, $borderWidth) {
-    $padding: math.div($size, 6) - $borderWidth;
-    min-width: $size;
-    padding-left: $padding;
-    padding-right: $padding;
-}
-
-@mixin control-horizontal-layout($size, $borderWidth) {
-    $paddingStep: math.div($size, 6);
-    @include control-size($size, $borderWidth);
-
-    :global(.uui-caption), :global(.uui-input) {
-        padding-left: $paddingStep;
-        padding-right: $paddingStep;
-    }
-}
-
 .root {
     &.size-12 {
-        @include control-horizontal-layout(12px, 1px);
+        min-width: 12px;
         padding: 0 2px;
-
-        :global(.uui-count) {
-            height: 10px;
-            line-height: 10px;
-            font-size: 8px;
-            border-radius: 5px;
-            padding-left: 3px;
-            padding-right: 3px;
-
-            &:not(:first-child) {
-                margin-left: 3px;
-            }
-        }
 
         :global(.uui-caption), :global(.uui-input) {
             line-height: 10px;
@@ -61,7 +21,7 @@
             }
         }
 
-        &.fill-transparent {
+        &:global(.fill-transparent) {
             padding-left: 0;
             padding-right: 0;
 
@@ -80,26 +40,6 @@
         }
     }
 
-    &.fill-white {
-        @include button-colors(var(--white), var(--uui-badge-bg), var(--uui-badge-bg));
-
-        &:global(.-clickable) {
-            &:hover {
-                @include button-colors(var(--night50), var(--uui-badge-bg-hover), var(--uui-badge-bg));
-            }
-        }
-    }
-
-    &.fill-none {
-        @include button-colors(transparent, var(--uui-badge-bg), var(--uui-badge-bg));
-
-        &:global(.-clickable) {
-            &:hover {
-                @include button-colors(transparent, var(--uui-badge-bg-hover), var(--uui-badge-bg-hover));
-            }
-        }
-    }
-
     &.style-round {
         &.size-12 { border-radius: 7px; }
         &.size-18 { border-radius: 9px; }
@@ -113,4 +53,35 @@
     &.style-square {
         border-radius: var(--uui-border-radius);
     }
+
+    &:global(.fill-transparent) {
+        --uui-badge-bg: transparent;
+        --uui-badge-bg-hover: transparent;
+        --uui-badge-border: transparent;
+        --uui-badge-border-hover: transparent;
+        --uui-badge-caption: var(--uui-text-primary);
+        --uui-badge-caption-hover: var(--uui-text-primary);
+
+        &:global(.-clickable) {
+            &:hover {
+                fill: var(--uui-color-60);
+                cursor: pointer;
+            }
+        }
+
+        &::before {
+            position: absolute;
+            content: '';
+            border-radius: 50%;
+            background-color: var(--uui-color-50);
+        }
+
+        &:global(.uui-count_indicator) {
+            --uui-count_indicator-bg: transparent;
+            --uui-count_indicator-border: transparent;
+            --uui-count_indicator-caption: var(--uui-text-primary);
+        }
+    }
 }
+
+

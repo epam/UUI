@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TDocsGenType,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
 } from '../common';
 
 export class LabeledInputDoc extends BaseDocsBlock {
@@ -12,6 +12,7 @@ export class LabeledInputDoc extends BaseDocsBlock {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/layout/labeledInput.props.tsx',
             [UUI4]: './app/src/docs/_props/epam-promo/components/layout/labeledInput.props.tsx',
+            [UUI]: './app/src/docs/_props/uui/components/layout/labeledInput.props.tsx',
         };
     }
 
