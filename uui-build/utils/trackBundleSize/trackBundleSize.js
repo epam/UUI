@@ -1,34 +1,35 @@
+/* eslint-disable no-console */
 /**
  * This script is used for bundle size tracking to prevent accidental bundle size regression.
  * The generated reports can be compared with each other in order to detect any regression in bundle size.
  */
-const { logger } = require('../loggerUtils.js');
+const { logger } = require('../loggerUtils');
 const {
     getAllMonorepoPackages, getAllLocalDependenciesInfo,
-} = require('../monorepoUtils.js');
+} = require('../monorepoUtils');
 const path = require('path');
 const fs = require('fs');
-const { readPackageJsonContentSync } = require('../packageJsonUtils.js');
+const { readPackageJsonContentSync } = require('../packageJsonUtils');
 const {
     runYarnScriptFromRootSync,
     runCmdFromRootSync,
     runCmdSync,
-} = require('../cmdUtils.js');
-const { uuiRoot } = require('../constants.js');
+} = require('../cmdUtils');
+const { uuiRoot } = require('../constants');
 const {
     APP_TEMPLATE_DIR,
     TEMPLATE_APP_TARGET_DIR,
-} = require('./bundleStatsConstants.js');
-const { comparisonResultToMd } = require('./trackBundleSizeMdFormatter.js');
-const { compareBundleSizes } = require('./trackBundleSizeComparator.js');
-const { overrideBaseLineFileSync, getCurrentBaseLineSync, saveComparisonResultsMd } = require('./trackBundleSizeFileUtils.js');
-const { measureAllBundleSizes } = require('./trackBundleSizeMeasureUtils.js');
-const { createBaseLineJson } = require('./trackBundleSizeFileUtils.js');
+} = require('./bundleStatsConstants');
+const { comparisonResultToMd } = require('./trackBundleSizeMdFormatter');
+const { compareBundleSizes } = require('./trackBundleSizeComparator');
+const { overrideBaseLineFileSync, getCurrentBaseLineSync, saveComparisonResultsMd } = require('./trackBundleSizeFileUtils');
+const { measureAllBundleSizes } = require('./trackBundleSizeMeasureUtils');
+const { createBaseLineJson } = require('./trackBundleSizeFileUtils');
 
 const epamPrefix = '@epam/';
 const appTargetParentDirResolved = path.resolve(uuiRoot, TEMPLATE_APP_TARGET_DIR, '..');
 const appTargetDirResolved = path.resolve(uuiRoot, TEMPLATE_APP_TARGET_DIR);
-const webpackConfigResolved = path.resolve(appTargetDirResolved, 'node_modules/react-scripts/config/webpack.config.js');
+const webpackConfigResolved = path.resolve(appTargetDirResolved, 'node_modules/react-scripts/config/webpack.config');
 const webpackPatch = { replaceWhat: 'resolve: {', replaceTo: 'resolve: {symlinks: false,' };
 const CLI = {
     buildApp: { cmd: 'npm', args: ['run', 'build'] },
