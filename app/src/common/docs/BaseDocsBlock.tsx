@@ -14,14 +14,14 @@ export enum TSkin {
     UUI4_promo = 'UUI4_promo',
     UUI = 'UUI'
 }
-const DEFAULT_SKIN = TSkin.UUI4_promo;
+const DEFAULT_SKIN = TSkin.UUI;
 
 export const UUI3 = TSkin.UUI3_loveship;
 export const UUI4 = TSkin.UUI4_promo;
 export const UUI = TSkin.UUI;
 
 const items: { id: TSkin; caption: string }[] = [
-    { caption: 'UUI3 [Loveship]', id: TSkin.UUI3_loveship }, { caption: 'UUI4 [Promo]', id: TSkin.UUI4_promo }, { caption: 'UUI [Themebale]', id: TSkin.UUI },
+    { caption: 'UUI [Themebale]', id: TSkin.UUI }, { caption: 'UUI3 [Loveship]', id: TSkin.UUI3_loveship }, { caption: 'UUI4 [Promo]', id: TSkin.UUI4_promo },
 ];
 
 export type TDocsGenType = TDocsGenExportedType;
@@ -178,17 +178,13 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     }
 
     handleChangeMode(mode: 'doc' | 'propsEditor') {
-        const skin = getQuery('skin');
-        if (mode === 'propsEditor' && skin !== UUI) {
-        }
-
         svc.uuiRouter.redirect({
             pathname: '/documents',
             query: {
                 category: 'components',
                 id: getQuery('id'),
                 mode: mode,
-                skin: getQuery('skin'),
+                skin: DEFAULT_SKIN,
             },
         });
     }

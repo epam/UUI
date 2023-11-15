@@ -1,5 +1,6 @@
 .root {
     --uui-tooltip-bg: var(--uui-color-50);
+    --uui-tooltip-border: var(--uui-tooltip-bg);
     --uui-tooltip-text: var(--uui-color-contrast);
     --uui-tooltip-shadow: var(--uui-shadow-level-2, 0 2px 18px 0 rgba(44, 47, 60, 0.3), 0 1px 4px 0 rgba(44, 47, 60, 0.5)); /* WebStorm Bag Report https://youtrack.jetbrains.com/issue/WEB-54442 */
     --uui-tooltip-arrow-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
@@ -17,6 +18,7 @@
         box-shadow: var(--uui-tooltip-shadow);
         word-wrap: break-word;
         border-radius: var(--uui-tooltip-border-radius);
+        border: 1px solid var(--uui-tooltip-border);
     }
 
     :global(.uui-popover-arrow) {
@@ -32,6 +34,7 @@
         width: 8px;
         height: 8px;
         box-shadow: var(--uui-tooltip-arrow-shadow);
+        box-sizing: border-box;
     }
 
     //Colors
@@ -46,6 +49,26 @@
         :global(.uui-popover-arrow[data-placement^='top'])::after,
         :global(.uui-popover-arrow[data-placement^='bottom'])::after {
             background: var(--uui-tooltip-bg);
+        }
+
+        :global(.uui-popover-arrow[data-placement^='right'])::after {
+            border-bottom: 1px solid var(--uui-tooltip-border);
+            border-left: 1px solid var(--uui-tooltip-border);
+        }
+
+        :global(.uui-popover-arrow[data-placement^='left'])::after {
+            border-top: 1px solid var(--uui-tooltip-border);
+            border-right: 1px solid var(--uui-tooltip-border);
+        }
+
+        :global(.uui-popover-arrow[data-placement^='bottom'])::after {
+            border-top: 1px solid var(--uui-tooltip-border);
+            border-left: 1px solid var(--uui-tooltip-border);
+        }
+
+        :global(.uui-popover-arrow[data-placement^='top'])::after {
+            border-bottom: 1px solid var(--uui-tooltip-border);
+            border-right: 1px solid var(--uui-tooltip-border);
         }
     }
 }
