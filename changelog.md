@@ -1,17 +1,28 @@
-# 5.x.x - xx.xx.2023
+# 5.3.0 - xx.xx.2023
 
 **What's New**
-* TBD: describe new font usage approach
+* This release introduced stable themization approach and theme css variables:
+  * Theme css variable now assumed as a stable API, you can use them into your application styles.
+  * `@epam/uui` package contains components with semantic modificators and can be painted in any theme.
+  * You can read more about themization here - TBD_LINK
+
+* New EPAM brand 'Electric' Theme and `@epam/electic` package. To start using Electric theme you need: 
+    * Add `@epam/electic` package to your project
+    * Add `import '@epam/uui/styles.css'` to the root of your application
+    * Add `uui-theme-electric` class to the html bode node
+    * Use all necessary components from `@epam/electic` package.
+* Added Dark theme for Loveship. To start using Dark Loveship theme you need
+  * You need to add `import '@epam/assets/css/theme/theme_loveship_dark.css';` to the root of your application 
+  * Add `uui-theme-loveship_dark` class to the html bode node.
+* [Fonts]: Added `Source Sans Pro` font, which properly works with css `font-weight` and `font-style` rules. 
+    You can replace usages `Sans Semibold` font with `Source Sans Pro` and `font-weight: 600`, `Sans Italic`  with `Source Sans Pro` and `font-style: italic` and etc.
+* [skinContext]: removed from `UuiContexts`, it's not needed to provide it to the uui services, just remove its usage.
+* [Typography]: removed typography mixins. Now typography applies via css classes. If you use mixins, replace it by adding `.uui-typography` class on the same node.
 * [Badge]: deprecated mode fill="transparent", and deprecated mode fill="semitransparent", they will be removed in future release.
-* [Badge]: removed mode fill="white", and "none", use fill="outline" + color instead them.
-* [Presets]: added the ability to add a modal confirmation window when deleting a preset
-* [LabeledInput]: added possibility to customize validationMessage with react node
-* [RichTextEditor]: added css variables for theming instead `SkinContext`
-* [skinContext]: removed from `UuiContexts`
-* [Button]: added `neutral` value to `color` prop
-* [ScrollBars]: removed 'theme' prop for "Promo" & "Loveship" skins
-* [Checkbox]: removed 'theme' prop for "Loveship" skin
-* typography files removed from skins and imported by default via import into the `@epam/uui` package, if you used mixins before, add the `uui-typography` class where you need it now
+* [Badge]: removed fill="white" and "none" modes, use fill="outline" + color instead them.
+* [LabeledInput]: added possibility to provide validationMessage as react node
+* [CheckBox, PickerList, RichTextView, Switch, TabButton, VerticalTabButton, ScrollBars]: removed 'theme' prop. Use themization approach instead.
+* [PresetsPanel]: added the ability to add a modal confirmation window when deleting a preset
 
 **What's Fixed**
 * [DatePickerHeader]: fixed 'navIconLeft', 'navIconRight' props
