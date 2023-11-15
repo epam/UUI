@@ -17,11 +17,11 @@ enum TMode {
     propsEditor = 'propsEditor'
 }
 
-const DEFAULT_SKIN = TSkin.UUI4_promo;
+const DEFAULT_SKIN = TSkin.UUI;
 const DEFAULT_MODE = TMode.doc;
 
 const items: { id: TSkin; caption: string }[] = [
-    { caption: 'UUI3 [Loveship]', id: TSkin.UUI3_loveship }, { caption: 'UUI4 [Promo]', id: TSkin.UUI4_promo }, { caption: 'UUI [Themebale]', id: TSkin.UUI },
+    { caption: 'UUI [Themebale]', id: TSkin.UUI }, { caption: 'UUI3 [Loveship]', id: TSkin.UUI3_loveship }, { caption: 'UUI4 [Promo]', id: TSkin.UUI4_promo },
 ];
 
 interface BaseDocsBlockState {}
@@ -167,7 +167,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     }
 
     private handleChangeMode(mode: TMode) {
-        this.handleNav({ mode });
+        this.handleNav({ mode, skin: DEFAULT_SKIN });
     }
 
     private handleNav = (params: { mode?: TMode, skin?: TSkin }) => {
