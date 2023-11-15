@@ -22,6 +22,7 @@ export const INCLUDED_PACKAGES: Record<string, string> = {
     '@epam/uui-components': 'uui-components',
     '@epam/uui': 'uui',
     '@epam/promo': 'epam-promo',
+    '@epam/electric': 'epam-electric',
     '@epam/loveship': 'loveship',
     '@epam/uui-editor': 'uui-editor',
 };
