@@ -1,4 +1,4 @@
-const { compareBundleSizes } = require('../trackBundleSizeComparator.js');
+const { compareBundleSizes } = require('../trackBundleSizeComparator');
 
 const TestData = {
     baseLineSizes: { testApp1: 100, testApp2: 200 },
