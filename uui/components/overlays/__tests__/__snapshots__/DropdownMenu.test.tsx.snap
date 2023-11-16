@@ -24,7 +24,7 @@ Array [
     onKeyDown={[Function]}
   >
     <div
-      className="uui-dropdown-body -lock-focus root root container"
+      className="uui-dropdown-body -lock-focus root bodyRoot root container"
       role="menu"
       style={
         Object {
