@@ -65,7 +65,7 @@ export default function PagedTable() {
                 <FlexSpacer />
                 <Paginator
                     value={ state.page }
-                    onValueChange={ (newPage) => setState({ ...state, page: newPage, scrollTo: { index: 0 } }) }
+                    onValueChange={ (newPage) => setState({ ...state, page: newPage, scrollTo: { index: 0 }, checked: [] }) }
                     totalPages={ Math.ceil((listProps.totalCount ?? 0) / state.pageSize) }
                     size="30"
                 />

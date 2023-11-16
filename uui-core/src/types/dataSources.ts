@@ -299,7 +299,7 @@ export interface LazyDataSourceApiResponse<TItem> {
     /**
      * Total count of items which match current filter.
      * If pagination is not specified, it is equal to count or empty.
-     * If not specified when pagination is defined, total count will be detected only when user scrolls to the end of the list.
+     * If not specified when pagination is defined, total count will be detected by count field.
      */
     totalCount?: number;
 }
