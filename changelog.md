@@ -1,24 +1,23 @@
 # 5.3.0 - xx.xx.2023
 
 **What's New**
-* This release introduced stable themization approach and theme css variables:
+* This release introduced stable Theming approach and theme css variables:
   * Theme css variable now assumed as a stable API, you can use them into your application styles.
-  * Set of theme css variables aligned with figma library, so you can
-  //* `@epam/uui` package contains components with semantic modificators and can be painted in any theme.(?)
-  * You can read more about themization here - TBD_LINK
+  * Set of theme variables align with figma library, so you can use variables from figma in you styles.
+  * You can read more about Theming here - TBD_LINK
 
 * New EPAM brand 'Electric' Theme and `@epam/electric` package. To start using Electric theme you need: 
     * Add `@epam/electric` package to your project
     * Add `import '@epam/electric/styles.css'` to the root of your application
     * Add `import '@epam/assets/css/theme/theme_electric.css'` to the root of your application
     * Add `uui-theme-electric` class to the html body node
-    * Use all necessary components from `@epam/electic` package.
+    * Import all necessary components from `@epam/electic` package.
 * Added Dark theme for Loveship. To start using Dark Loveship theme you need to:
   * Add `import '@epam/assets/css/theme/theme_loveship_dark.css';` to the root of your application 
   * Add `uui-theme-loveship_dark` class to the html body node.
 * [Fonts]: Added `Source Sans Pro` font, which properly works with css `font-weight` and `font-style` rules. 
-    You can replace usages `Sans Semibold` font with `Source Sans Pro` and `font-weight: 600`, `Sans Italic`  with `Source Sans Pro` and `font-style: italic` and etc.
-  * leave support of old fonts TBD???
+    You can replace usages `Sans Semibold` font with `Source Sans Pro` and `font-weight: 600`, `Sans Italic`  with `Source Sans Pro` and `font-style: italic` etc.
+    We also keep old font-faces and variables for backward compatibility. It's recommended to move to the new approach, since old one will be deprecated in feature.
 * [skinContext]: removed skinContext from `UuiContexts`, it's not needed to provide it to the uui services, just remove its usage.
 * [Typography]: removed typography mixins. Now typography applies via css classes. If you use mixins, replace it by adding `.uui-typography` class on the same node.
 * [Badge]: deprecated mode fill="transparent", and deprecated mode fill="semitransparent", they will be removed in future release. TBD: add replacement
