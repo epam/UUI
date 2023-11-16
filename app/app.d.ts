@@ -1,5 +1,4 @@
 /// <reference path="../uui_globals.d.ts" />
-/// <reference path="../public/docs/docsGenOutput/docsGenOutput.d.ts" />
 
 declare let __COMMIT_HASH__: string;
 

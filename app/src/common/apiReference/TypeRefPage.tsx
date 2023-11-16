@@ -4,7 +4,7 @@ import { Code } from '../docs/Code';
 import { TsComment } from './components/TsComment';
 import { Layout } from './components/Layout';
 import { useSearchParams } from 'react-router-dom';
-import { TDocsGenExportedType } from './types';
+import { TDocsGenExportedType } from '@epam/uui-docs';
 import { TTypeRef } from './sharedTypes';
 import { TypeRefSection } from './TypeRefSection';
 

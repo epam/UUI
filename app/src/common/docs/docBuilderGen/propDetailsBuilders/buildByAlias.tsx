@@ -1,7 +1,6 @@
 import React from 'react';
-import { DocBuilder } from '@epam/uui-docs';
+import { DocBuilder, TDocsGenExportedType } from '@epam/uui-docs';
 import { TTypeRef } from '../../../apiReference/sharedTypes';
-import { TDocsGenExportedType } from '../../../apiReference/types';
 
 import { TPropDocBuilder } from '../docBuilderGenTypes';
 

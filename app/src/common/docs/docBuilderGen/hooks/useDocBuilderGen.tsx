@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { IComponentDocs, TDocConfig, TSkin } from '@epam/uui-docs';
-import { TDocsGenExportedType } from '../../../apiReference/types';
+import { IComponentDocs, TDocConfig, TSkin, TDocsGenExportedType } from '@epam/uui-docs';
 import { docBuilderGen } from '../docBuilderGen';
 
 interface IUseDocBuilderGenParams {

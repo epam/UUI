@@ -7,8 +7,7 @@ import {
     FlexRow, LinkButton, MultiSwitch, ScrollBars, Text, Tooltip,
 } from '@epam/uui';
 import { cx } from '@epam/uui-core';
-import { PropDoc, IPropSamplesCreationContext, DemoContext } from '@epam/uui-docs';
-import { TDocsGenExportedType } from '../../../apiReference/types';
+import { PropDoc, IPropSamplesCreationContext, DemoContext, TDocsGenExportedType } from '@epam/uui-docs';
 import { PropEditorRow } from './PropEditorRow';
 //
 import { ReactComponent as ResetIcon } from '../../../../icons/reset-icon.svg';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { DocBuilder, iCanRedirectDoc, iEditable, iHasLabelDoc, TSkin } from '@epam/uui-docs';
+import { DocBuilder, iCanRedirectDoc, iEditable, iHasLabelDoc, TSkin, TDocsGenExportedType } from '@epam/uui-docs';
 import {
     IAnalyticableClick,
     ICanBeInvalid,
@@ -10,7 +10,6 @@ import {
     IHasPlaceholder,
     IHasRawProps,
 } from '@epam/uui-core';
-import { TDocsGenExportedType } from '../../../apiReference/types';
 import { TTypeRef } from '../../../apiReference/sharedTypes';
 import { getCommonDoc } from './shared/reusableDocs';
 import { TPropDocBuilder } from '../docBuilderGenTypes';
