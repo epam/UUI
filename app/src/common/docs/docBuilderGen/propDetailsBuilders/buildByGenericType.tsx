@@ -59,7 +59,7 @@ const numberDetailsBuilder: TPropDocBuilder = (params) => {
     const editor = prop.editor;
     if (editor.type === TPropEditorType.number) {
         return {
-            renderEditor: 'NumEditor',
+            editorType: 'NumEditor',
             examples: [],
         };
     }
@@ -89,13 +89,13 @@ const stringDetailsBuilder: TPropDocBuilder = (params) => {
     if (editor.type === TPropEditorType.string) {
         if (COLOR_PROP_NAMES.indexOf(prop.name) !== -1) {
             return {
-                renderEditor: 'StringEditor',
+                editorType: 'StringEditor',
                 examples: [],
             };
         }
         if (STRING_EDITOR_PROP_NAMES.indexOf(prop.name) !== -1) {
             return {
-                renderEditor: 'StringEditor',
+                editorType: 'StringEditor',
                 examples: [],
             };
         }
@@ -106,7 +106,7 @@ const stringDetailsBuilder: TPropDocBuilder = (params) => {
                 { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
                 { name: 'Long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
             ],
-            type: 'string',
+            editorType: 'StringWithExamplesEditor',
         };
     }
     throw new Error('Unsupported type');

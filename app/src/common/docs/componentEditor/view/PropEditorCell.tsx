@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     PropDoc,
     SharedPropEditorsMap,
-    ISharedPropEditor, TRenderEditor, PropExampleObject,
+    ISharedPropEditor, TEditorType, PropExampleObject,
 } from '@epam/uui-docs';
 import { IconButton, Tooltip } from '@epam/uui';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
@@ -17,13 +17,13 @@ interface IPropEditorCell<TProp> {
 }
 export function PropEditorCell<TProp = any>(props: IPropEditorCell<TProp>): React.ReactElement {
     const { propValue, propExampleId, propExamplesList, onPropValueChange, onPropExampleIdChange } = props;
-    const { type, renderEditor, name, description } = props.prop;
+    const { editorType, name, description } = props.prop;
 
-    let re: TRenderEditor<any, any> = renderEditor;
+    let re: TEditorType<any, any> = editorType;
     if (!re) {
         const numExamples = propExamplesList.length;
         if (numExamples > 1) {
-            re = type === 'string' ? 'StringWithExamplesEditor' : 'MultiUnknownEditor';
+            re = 'MultiUnknownEditor';
         } else if (numExamples === 1) {
             re = 'SingleUnknownEditor';
         }

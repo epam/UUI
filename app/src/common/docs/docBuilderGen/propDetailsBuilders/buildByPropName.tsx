@@ -4,13 +4,13 @@ export const buildByPropName: TPropDocBuilder = (params) => {
     const { prop } = params;
     switch (prop.name) {
         case 'captionCX': {
-            return { renderEditor: 'CssClassEditor', examples: [] };
+            return { editorType: 'CssClassEditor', examples: [] };
         }
         case 'rawProps': {
-            return { renderEditor: 'JsonEditor', examples: [] };
+            return { editorType: 'JsonEditor', examples: [] };
         }
         case 'key': {
-            return { renderEditor: 'StringEditor', examples: [] };
+            return { editorType: 'StringEditor', examples: [] };
         }
         case 'portalTarget':
         case 'boundaryElement': {
@@ -18,7 +18,7 @@ export const buildByPropName: TPropDocBuilder = (params) => {
         }
         case 'logoLink':
         case 'customerLogoLink': {
-            return { renderEditor: 'LinkEditor', examples: [] };
+            return { editorType: 'LinkEditor', examples: [] };
         }
     }
 };

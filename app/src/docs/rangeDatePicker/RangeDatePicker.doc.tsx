@@ -30,7 +30,7 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
             doc.merge('format', {
                 examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'],
                 defaultValue: 'MMM D, YYYY',
-                renderEditor: 'StringWithExamplesEditor',
+                editorType: 'StringWithExamplesEditor',
             });
             doc.merge('renderDay', { examples: renderDayExamples });
             doc.merge('renderFooter', { examples: renderFooterExamples });

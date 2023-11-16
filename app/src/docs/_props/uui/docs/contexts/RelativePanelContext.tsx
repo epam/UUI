@@ -36,8 +36,8 @@ export class RelativePanelContext extends React.Component<DemoComponentProps, De
                 </FlexRow>
                 <FlexRow spacing="12" padding="24" vPadding="24">
                     <FlexSpacer />
-                    <Button color="primary" caption="Submit" />
-                    <Button color="secondary" fill="none" caption="Cancel" />
+                    <Button color="accent" caption="Submit" />
+                    <Button color="primary" fill="none" caption="Cancel" />
                 </FlexRow>
             </React.Fragment>
         );

@@ -62,7 +62,7 @@ export type TSharedPropEditorType =
 export type TRenderEditorFn<TProps, TProp extends keyof TProps> =
     (editable: IEditable<TProps[TProp]>, examples?: TProps[TProp][]) => React.ReactNode;
 
-export type TRenderEditor<TProps, TProp extends keyof TProps> = TRenderEditorFn<TProps, TProp> | TSharedPropEditorType;
+export type TEditorType<TProps, TProp extends keyof TProps> = TRenderEditorFn<TProps, TProp> | TSharedPropEditorType;
 
 export interface PropDoc<TProps, TProp extends keyof TProps> {
     name: Extract<keyof TProps, string>;
@@ -70,8 +70,7 @@ export interface PropDoc<TProps, TProp extends keyof TProps> {
     isRequired: boolean;
     defaultValue?: TProps[TProp];
     examples?: PropExample<TProps[TProp]>[] | ((ctx: IPropSamplesCreationContext<TProps>) => PropExample<TProps[TProp]>[]);
-    type?: 'string' | 'number';
-    renderEditor?: TRenderEditor<TProps, TProp>;
+    editorType?: TEditorType<TProps, TProp>;
     color?: string;
     remountOnChange?: boolean;
 }

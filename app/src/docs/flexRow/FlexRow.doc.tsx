@@ -18,8 +18,8 @@ export class FlexRowDoc extends BaseDocsBlock {
                 type: '@epam/loveship:FlexRowProps',
                 component: loveship.FlexRow,
                 doc: (doc: DocBuilder<loveship.FlexRowProps>) => {
-                    doc.merge('columnGap', { renderEditor: 'NumEditor', examples: [] });
-                    doc.merge('rowGap', { renderEditor: 'NumEditor', examples: [] });
+                    doc.merge('columnGap', { editorType: 'NumEditor', examples: [] });
+                    doc.merge('rowGap', { editorType: 'NumEditor', examples: [] });
                     doc.merge('size', { defaultValue: '36' });
                 },
             },
@@ -27,8 +27,8 @@ export class FlexRowDoc extends BaseDocsBlock {
                 type: '@epam/promo:FlexRowProps',
                 component: promo.FlexRow,
                 doc: (doc: DocBuilder<promo.FlexRowProps>) => {
-                    doc.merge('columnGap', { renderEditor: 'NumEditor', examples: [] });
-                    doc.merge('rowGap', { renderEditor: 'NumEditor', examples: [] });
+                    doc.merge('columnGap', { editorType: 'NumEditor', examples: [] });
+                    doc.merge('rowGap', { editorType: 'NumEditor', examples: [] });
                     doc.merge('size', { defaultValue: '36' });
                 },
             },

@@ -24,7 +24,7 @@ export class TextDoc extends BaseDocsBlock {
                         name: 'long text',
                     },
                 ],
-                type: 'string',
+                editorType: 'StringWithExamplesEditor',
             });
         },
     };

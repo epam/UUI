@@ -20,7 +20,7 @@ export class DatePickerDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<uui.DatePickerProps>) => {
             doc.merge('size', { defaultValue: '36' });
-            doc.merge('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY', renderEditor: 'StringWithExamplesEditor' });
+            doc.merge('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY', editorType: 'StringWithExamplesEditor' });
             doc.merge('value', { examples: ['', '2020-09-03'] });
             doc.merge('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] });
             doc.merge('renderDay', { examples: renderCustomDayExample });

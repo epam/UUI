@@ -40,7 +40,7 @@ const COMMON_DOCS: Record<TTypeRef | TDocsGenExportedType, (skin?: TSkin) => Doc
     }),
     '@epam/uui-core:IHasLabel': () => iHasLabelDoc,
     '@epam/uui-core:IHasCX': () => new DocBuilder<IHasCX>({ name: '' }).prop('cx', {
-        renderEditor: 'CssClassEditor',
+        editorType: 'CssClassEditor',
         examples: [],
     }),
     '@epam/uui-core:IHasCaption': () => new DocBuilder<IHasCaption>({ name: '' })
@@ -51,7 +51,7 @@ const COMMON_DOCS: Record<TTypeRef | TDocsGenExportedType, (skin?: TSkin) => Doc
                 { name: 'Long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
                 { name: 'Long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
             ],
-            type: 'string',
+            editorType: 'StringWithExamplesEditor',
         }),
     '@epam/uui-core:IHasPlaceholder': () => new DocBuilder<IHasPlaceholder>({ name: '' })
         .prop('placeholder', {
@@ -60,19 +60,19 @@ const COMMON_DOCS: Record<TTypeRef | TDocsGenExportedType, (skin?: TSkin) => Doc
                 { name: 'Long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
                 { name: 'Long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
             ],
-            type: 'string',
+            editorType: 'StringWithExamplesEditor',
         }),
     '@epam/uui-core:IHasRawProps': () => {
         return new DocBuilder<IHasRawProps<any>>({ name: '' })
             .prop('rawProps', {
-                renderEditor: 'JsonEditor',
+                editorType: 'JsonEditor',
                 examples: [],
             });
     },
     '@epam/uui-core:ICanBeInvalid': () => new DocBuilder<ICanBeInvalid>({ name: 'isInvalid' })
         .prop('isInvalid', { examples: [true] })
         .prop('validationProps', {
-            renderEditor: 'JsonEditor',
+            editorType: 'JsonEditor',
             examples: [],
         })
         .prop('validationMessage', {

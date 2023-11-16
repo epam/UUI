@@ -17,7 +17,7 @@ export class TextInputDoc extends BaseDocsBlock {
             [TSkin.UUI4_promo]: { type: '@epam/uui:TextInputProps', component: promo.TextInput },
         },
         doc: (doc: DocBuilder<uui.TextInputProps | loveship.TextInputProps>) => {
-            doc.merge('type', { examples: ['text', 'password'], type: 'string', defaultValue: 'text' });
+            doc.merge('type', { examples: ['text', 'password'], editorType: 'StringWithExamplesEditor', defaultValue: 'text' });
             doc.merge('mode', { defaultValue: 'form' });
             doc.merge('iconPosition', { defaultValue: 'left' });
         },

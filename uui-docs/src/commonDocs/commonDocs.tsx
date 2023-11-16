@@ -48,7 +48,7 @@ export const iHasLabelDoc = new DocBuilder<IHasLabel>({ name: 'Label' }).prop('l
     examples: [
         { value: 'Some label', isDefault: true }, { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' }, { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
     ],
-    type: 'string',
+    editorType: 'string',
 });
 
 export const iEditable = new DocBuilder<IEditable<any>>({ name: 'onValueChange' }).prop('onValueChange', {
@@ -58,5 +58,5 @@ export const iEditable = new DocBuilder<IEditable<any>>({ name: 'onValueChange' 
 
 export const iHasPlaceholder = new DocBuilder<IHasPlaceholder>({ name: 'placeholder' }).prop('placeholder', {
     examples: ['Select country', 'Type text'],
-    type: 'string',
+    editorType: 'string',
 });

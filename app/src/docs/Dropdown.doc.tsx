@@ -24,7 +24,7 @@ export class DropdownDoc extends BaseDocsBlock {
             doc.merge('closeOnMouseLeave', { remountOnChange: true });
             doc.merge('modifiers', { examples: [{ name: "[{ name: 'offset', options: { offset: [0, 6] } }]", value: [{ name: 'offset', options: { offset: [0, 6] } }] }] });
             doc.merge('renderBody', {
-                renderEditor: 'MultiUnknownEditor',
+                editorType: 'MultiUnknownEditor',
                 examples: [
                     {
                         value: (props) => (
@@ -56,7 +56,7 @@ export class DropdownDoc extends BaseDocsBlock {
                 ],
             });
             doc.merge('renderTarget', {
-                renderEditor: 'SingleUnknownEditor',
+                editorType: 'SingleUnknownEditor',
                 examples: [
                     {
                         value: (props) => <uui.Button caption="Target" { ...props } />,

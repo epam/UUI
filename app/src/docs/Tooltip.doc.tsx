@@ -21,11 +21,11 @@ export class TooltipDoc extends BaseDocsBlock {
             doc.merge('children', {
                 examples: [{ value: <uui.Button fill="solid" size="36" caption="Button" />, name: 'Solid button', isDefault: true }],
             });
-            doc.merge('color', { renderEditor: 'MultiUnknownEditor' });
+            doc.merge('color', { editorType: 'MultiUnknownEditor' });
             doc.merge('value', { isRequired: false });
             doc.merge('content', {
                 examples: [{ value: 'Some text', isDefault: true }, { value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa', name: 'long text' }],
-                type: 'string',
+                editorType: 'StringWithExamplesEditor',
             });
             doc.merge('offset', {
                 examples: [

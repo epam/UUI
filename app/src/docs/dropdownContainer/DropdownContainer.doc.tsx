@@ -35,13 +35,13 @@ export class DropdownContainerDoc extends BaseDocsBlock {
             },
         },
         doc: (doc: DocBuilder<loveship.DropdownContainerProps | promo.DropdownContainerProps | uui.DropdownContainerProps>) => {
-            doc.merge('as', { renderEditor: 'MultiUnknownEditor', examples: ['span', 'b', 'i', 'p'] });
-            doc.merge('shards', { renderEditor: 'SingleUnknownEditor', examples: [{ name: '[]', value: [] }] });
+            doc.merge('as', { editorType: 'MultiUnknownEditor', examples: ['span', 'b', 'i', 'p'] });
+            doc.merge('shards', { editorType: 'SingleUnknownEditor', examples: [{ name: '[]', value: [] }] });
             doc.merge('focusLock', { examples: [{ value: false, isDefault: true }, true] });
             doc.merge('width', { examples: ['auto', 100, 200, 500] });
             doc.merge('lockProps', { examples: [{ name: '{}', value: {} }] });
             doc.merge('arrowProps', {
-                renderEditor: 'MultiUnknownEditor',
+                editorType: 'MultiUnknownEditor',
                 examples: [{ name: '{ ref: { current: null }, style: {} }', value: { ref: { current: null }, style: {} } }],
             });
         },

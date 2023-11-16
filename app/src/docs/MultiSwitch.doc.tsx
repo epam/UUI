@@ -18,7 +18,7 @@ export class MultiSwitchDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<uui.MultiSwitchProps<any>>) => {
             doc.merge('size', { defaultValue: '36' });
-            doc.merge('value', { renderEditor: 'JsonView', examples: [] });
+            doc.merge('value', { editorType: 'JsonView', examples: [] });
 
             const contextSwitch = [{ id: 1, caption: 'Form' }, { id: 2, caption: 'Default' }, { id: 3, caption: 'Resizable' }];
             const toggleSwitch = [{ id: 1, caption: 'On' }, { id: 2, caption: 'Off' }];

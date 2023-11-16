@@ -7,10 +7,10 @@ import { IconPicker } from './editors';
 import { colors } from './helpers/colorMap';
 
 export const colorDoc = new DocBuilder<ColorMod>({ name: 'Color' }).prop('color', {
-    renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
+    editorType: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
 });
 
 export const iconWithInfoDoc = new DocBuilder<IHasIcon>({ name: 'Icon' }).prop('icon', {
-    renderEditor: (editable: any, examples) => <IconPicker icons={ examples } { ...editable } enableInfo={ true } />,
+    editorType: (editable: any, examples) => <IconPicker icons={ examples } { ...editable } enableInfo={ true } />,
     examples: getIconList<Icon>(true).map((i) => ({ value: i as any })),
 });

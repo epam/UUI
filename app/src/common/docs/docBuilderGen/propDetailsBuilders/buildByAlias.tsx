@@ -6,7 +6,7 @@ import { TPropDocBuilder } from '../docBuilderGenTypes';
 
 const TEMPLATE_DOC = new DocBuilder<Record<TTypeRef | TDocsGenExportedType, any>>({ name: '' })
     .prop('@epam/uui-core:ClassValue', {
-        renderEditor: 'CssClassEditor',
+        editorType: 'CssClassEditor',
         examples: [],
     })
     .prop('@types/react:ReactNode', {

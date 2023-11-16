@@ -49,9 +49,9 @@ export async function docBuilderGen(params: { config: TDocConfig, skin: TSkin })
 
         unresolvedProps.forEach((prop) => {
             const found = docs.props.find((p) => p.name === prop.name);
-            const isPropNotComplete = Array.isArray(found.examples) && found.examples.length === 0 && !found.renderEditor;
+            const isPropNotComplete = Array.isArray(found.examples) && found.examples.length === 0 && !found.editorType;
             if (isPropNotComplete) {
-                docs.merge(prop.name, { renderEditor: 'CantResolve' });
+                docs.merge(prop.name, { editorType: 'CantResolve' });
             }
         });
 

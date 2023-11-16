@@ -16,7 +16,7 @@ export class RatingDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<promo.RatingProps | loveship.RatingProps>) => {
             doc.merge('value', {
-                renderEditor: 'MultiUnknownEditor',
+                editorType: 'MultiUnknownEditor',
                 examples: [
                     0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5,
                 ],
