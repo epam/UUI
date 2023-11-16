@@ -1,4 +1,4 @@
-const { COMPARISON_THRESHOLD_PERCENTAGE } = require('./bundleStatsConstants.js');
+const { COMPARISON_THRESHOLD_PERCENTAGE } = require('./bundleStatsConstants');
 
 module.exports = { compareBundleSizes };
 
@@ -21,8 +21,11 @@ function getThreshold(baseLineSize) {
  */
 function compareBundleSizes({ baseLineSizes, newSizes }) {
     return Object.keys(newSizes).reduce((acc, name) => {
-        const baseLineSize = baseLineSizes[name];
         const size = newSizes[name];
+        /**
+         * We use 0 as a baseline for any new packages without previous baseline
+         */
+        const baseLineSize = baseLineSizes[name] || 0;
         const threshold = getThreshold(baseLineSize);
         const diff = size - baseLineSize;
         const sign = diff > 0 ? '+' : '';

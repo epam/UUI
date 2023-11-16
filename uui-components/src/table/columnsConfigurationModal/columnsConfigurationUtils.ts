@@ -97,6 +97,9 @@ function getGroupKey(columnConfig: IColumnConfig): keyof GroupedColumnsType {
         if (fix === 'left') {
             return 'displayedPinned';
         }
+        if (fix === 'right') {
+            return 'displayedPinnedRight';
+        }
         return 'displayedUnpinned';
     }
     return 'hidden';
