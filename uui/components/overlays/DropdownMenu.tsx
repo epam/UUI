@@ -1,9 +1,9 @@
-import React, { useRef, useContext, useState, HTMLAttributes } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import {
     cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
-    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IHasRawProps, IHasForwardedRef,
+    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps,
 } from '@epam/uui-core';
-import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer } from '@epam/uui-components';
+import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps } from '@epam/uui-components';
 import { DropdownContainer } from './DropdownContainer';
 import { Switch } from '../inputs';
 import { IconButton } from '../buttons';
@@ -17,8 +17,9 @@ export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, 
     indent?: boolean;
 }
 
-export interface IDropdownMenuContainer extends VPanelProps, DropdownBodyProps {
+export interface DropdownMenuContainerProps extends VPanelProps, IHasChildren, DropdownBodyProps, Pick<DropdownContainerProps, 'focusLock'> {
     closeOnKey?: React.KeyboardEvent<HTMLElement>['key'];
+    minWidth?: number;
 }
 
 export enum IDropdownControlKeys {
@@ -30,7 +31,7 @@ export enum IDropdownControlKeys {
     DOWN_ARROW = 'ArrowDown'
 }
 
-function DropdownMenuContainer(props: IDropdownMenuContainer) {
+function DropdownMenuContainer(props: DropdownMenuContainerProps) {
     const menuRef = useRef<HTMLMenuElement>(null);
     const [currentlyFocused, setFocused] = useState<number>(0);
     const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`)) : [];
@@ -60,23 +61,18 @@ function DropdownMenuContainer(props: IDropdownMenuContainer) {
             { ...props }
             rawProps={ { ...props.rawProps, role: 'menu' } }
             ref={ menuRef }
+            width={ props.minWidth }
             lockProps={ { onKeyDown: handleArrowKeys } }
-            cx={ css.root }
+            cx={ [props.cx, css.root] }
         />
     );
 }
 
-interface IDropdownMenuBody extends DropdownBodyProps, IHasCX, IHasChildren, IHasRawProps<HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
-    minWidth?: number;
-    closeOnKey?: React.KeyboardEvent<HTMLElement>['key'];
-}
-
-export const DropdownMenuBody = withMods<IDropdownMenuBody>(
+export const DropdownMenuBody = withMods<DropdownMenuContainerProps>(
     DropdownMenuContainer,
     () => [css.bodyRoot],
     (props) => {
-        const dropdownRawProps = props.minWidth ? { ...props.rawProps, style: { minWidth: `${props.minWidth}px` } } : null;
-        return ({ closeOnKey: IDropdownControlKeys.ESCAPE, ...props, rawProps: dropdownRawProps || props.rawProps }) as IDropdownMenuBody;
+        return ({ closeOnKey: IDropdownControlKeys.ESCAPE, ...props });
     },
 );
 
