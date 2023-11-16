@@ -46,29 +46,7 @@
     "type": "note-error",
     "children": [
       {
-        "text": "This component doesn't have dependencies on skin packages and uses a skinManager approach to get components from your app skin. So it's required to pass the "
-      },
-      {
-        "text": "skinContext",
-        "uui-richTextEditor-code": true
-      },
-      {
-        "text": " prop into "
-      },
-      {
-        "data": {
-          "url": "/documents?category=contexts&id=contextProvider&"
-        },
-        "type": "link",
-        "url": "/documents?category=contexts&id=contextProvider&",
-        "children": [
-          {
-            "text": "ContextProvider"
-          }
-        ]
-      },
-      {
-        "text": ". You can import skinContext object from your skin package.\n\nAlso, it's required to import CCS from the editor package. Please add the following code to your app entry file: \n"
+        "text": "It's required to import CCS from the editor package. Please add the following code to your app entry file: \n"
       },
       {
         "text": "import '@epam/uui-editor/styles.css';",
