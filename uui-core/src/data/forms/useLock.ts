@@ -30,5 +30,5 @@ export function useLock({ handleLeave, isEnabled }: UseLockProps) {
         return () => {
             unblock();
         };
-    }, [isEnabled, handleLeave, context.uuiRouter]);
+    }, [isEnabled]);
 }
