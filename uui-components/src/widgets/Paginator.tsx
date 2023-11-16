@@ -37,30 +37,35 @@ const SIMPLE_PAGINATION_ITEMS = 7;
 export class Paginator extends React.Component<PaginatorProps> {
     static contextType = UuiContext;
     context: UuiContexts;
+
+    private getCurrentPage = () => this.props.value ?? 1;
+
     // size = this.props.size || '36';
     isFirst = () => {
-        return this.props.value === FIRST_PAGE;
+        return this.getCurrentPage() === FIRST_PAGE;
     };
 
     isLast = () => {
-        return this.props.value === this.props.totalPages;
+        return this.getCurrentPage() === this.props.totalPages;
     };
 
     getPagesView(): PaginatorItem[] {
         const paginatorItems: PaginatorItem[] = [];
         const pages = this.props.totalPages;
-        const currentPage = this.props.value;
+        const currentPage = this.getCurrentPage();
+        const currentValue = this.props.value;
+
         const onClick = (value: number) => {
             this.props.onValueChange(value);
 
             if (this.props.getValueChangeAnalyticsEvent) {
-                const event = this.props.getValueChangeAnalyticsEvent(value, this.props.value);
+                const event = this.props.getValueChangeAnalyticsEvent(value, currentValue);
                 this.context.uuiAnalytics.sendEvent(event);
             }
         };
 
         function addPage(page: number) {
-            if (page !== currentPage) {
+            if (page !== currentValue) {
                 return paginatorItems.push({ type: 'page', pageNumber: page, onClick: () => onClick(page) });
             }
             return paginatorItems.push({
@@ -75,7 +80,7 @@ export class Paginator extends React.Component<PaginatorProps> {
         // If the number of pages is not more than the maximum number of displayed pages, then we add all pages to the array
 
         if (pages <= SIMPLE_PAGINATION_ITEMS) {
-            range(1, pages + 1).map((pageNumber: number) => {
+            range(1, pages + 1).forEach((pageNumber: number) => {
                 addPage(pageNumber);
             });
         }
@@ -86,9 +91,7 @@ export class Paginator extends React.Component<PaginatorProps> {
             // If the current page is less than the maximum number of pages displayed at the beginning before the spacer,
             // we show the couple pages, spacer and the last page
             if (currentPage < 5) {
-                range(1, 6).map((pageNumber: number) => {
-                    addPage(pageNumber);
-                });
+                range(1, 6).forEach((pageNumber: number) => addPage(pageNumber));
                 addSpacer();
                 addPage(pages);
             }
@@ -99,9 +102,7 @@ export class Paginator extends React.Component<PaginatorProps> {
             if (currentPage > pages - 4) {
                 addPage(1);
                 addSpacer();
-                range(pages - 4, pages + 1).map((pageNumber: number) => {
-                    addPage(pageNumber);
-                });
+                range(pages - 4, pages + 1).forEach((pageNumber: number) => addPage(pageNumber));
             }
 
             // If the current page is greater than the maximum number of pages displayed at the end after the spacer,
@@ -109,9 +110,7 @@ export class Paginator extends React.Component<PaginatorProps> {
             if (currentPage > 4 && currentPage < pages - 3) {
                 addPage(1);
                 addSpacer();
-                range(currentPage - 1, currentPage + 2).map((pageNumber: number) => {
-                    addPage(pageNumber);
-                });
+                range(currentPage - 1, currentPage + 2).forEach((pageNumber: number) => addPage(pageNumber));
                 addSpacer();
                 addPage(pages);
             }
@@ -121,11 +120,13 @@ export class Paginator extends React.Component<PaginatorProps> {
     }
 
     goToNext = () => {
-        this.props.onValueChange(this.props.value + 1);
+        this.props.onValueChange((this.props.value ?? 0) + 1);
     };
 
     goToPrev = () => {
-        this.props.onValueChange(this.props.value - 1);
+        const currentPage = this.props.value ?? 0;
+        const prevPage = Math.max(currentPage - 1, 0);
+        this.props.onValueChange(prevPage);
     };
 
     render() {
