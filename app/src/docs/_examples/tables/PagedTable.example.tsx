@@ -11,15 +11,24 @@ export default function PagedTable() {
         page: 1, pageSize: 5,
     });
     
+    const [selectAllState, setSelectAll] = useState<DataSourceState>({});
+
     const setTableState = useCallback((newState: DataSourceState) => {
         if (!isEqual(state.sorting, newState.sorting) 
             || state.page !== newState.page 
             || state.pageSize > newState.pageSize
         ) {
-            newState.checked = [];
+            // newState.checked = [];
         }
         setState(newState);
     }, [state]);
+
+    const setSelectAllState = useCallback((newState: DataSourceState) => {
+        if (state.checked !== newState.checked) {
+            setTableState({ ...state, checked: newState.checked });
+        }
+        setSelectAll(newState);
+    }, [state, setTableState]);
 
     const columns: DataColumnProps<Person>[] = useMemo(
         () => [
@@ -67,10 +76,29 @@ export default function PagedTable() {
     }, []);
 
     const view = dataSource.useView(state, setState, {});
+    const viewForSelectAll = dataSource.useView(selectAllState, setSelectAllState, {});
+
     const listProps = view.getListProps();
+    viewForSelectAll.getListProps();
+
     return (
         <Panel background="surface" shadow cx={ css.container }>
-            <DataTable { ...listProps } getRows={ view.getVisibleRows } value={ state } onValueChange={ setTableState } columns={ columns } headerTextCase="upper" />
+            {/* <FlexRow spacing="12" padding="12" vPadding="12" borderBottom>
+                <FlexCell width="auto">
+                    <Button caption="Select All" onClick={ () => viewForSelectAll.selectAll?.onValueChange(!view.selectAll.value) } />
+                </FlexCell>
+            </FlexRow> */}
+            <FlexRow>
+                <DataTable
+                    { ...listProps }
+                    getRows={ view.getVisibleRows }
+                    value={ state }
+                    onValueChange={ setTableState }
+                    columns={ columns }
+                    headerTextCase="upper"
+                    selectAll={ viewForSelectAll.selectAll }
+                />
+            </FlexRow>
             <FlexRow size="36" padding="12">
                 <FlexSpacer />
                 <Paginator

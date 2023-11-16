@@ -135,16 +135,27 @@ router.post('/persons', async (req, res) => {
 router.post('/persons-paged', async (req, res) => {
     const data = await helpers.getPersons();
     const filteredAndSorted = filterAndSort({ ...req.body, range: null }, data.persons, 'Person');
-    const pageSize = req.body.pageSize || 10;
-    const pageNo = req.body.page || 0;
-    const items = filteredAndSorted.items.slice(pageNo * pageSize, (pageNo + 1) * pageSize);
+    let result;
+    if (req.body.pageNo != null || req.body.pageSize != null) {
+        const pageSize = req.body.pageSize ?? 10;
+        const pageNo = req.body.page ?? 0;
+        const items = filteredAndSorted.items.slice(pageNo * pageSize, (pageNo + 1) * pageSize);
+        result = {
+            items,
+            totalCount: filteredAndSorted.items.length,
+            count: req.body.page != null && items.length,
+            pageCount: Math.ceil(filteredAndSorted.items.length / pageSize),
+        };
+    } else if (req.body.range) {
+        const from = req.range.from || 0;
+        const count = req.range.count == null ? filteredAndSorted.items.length : req.range.count;
+        const items = filteredAndSorted.items.slice(from, from + count);
+        result = { items, totalCount: filteredAndSorted.items.length };
+    } else {
+        const items = filteredAndSorted.items;
+        result = { items, totalCount: filteredAndSorted.items.length };
+    }
 
-    const result = {
-        items,
-        totalCount: filteredAndSorted.items.length,
-        count: items.length,
-        pageCount: Math.ceil(filteredAndSorted.items.length / pageSize),
-    };
     res.json(result);
 });
 
