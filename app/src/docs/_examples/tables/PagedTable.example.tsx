@@ -7,7 +7,7 @@ import css from './TablesExamples.module.scss';
 export default function PagedTable() {
     const svc = useUuiContext();
     const [state, setState] = useState<DataSourceState>({
-        page: 0, pageSize: 5,
+        page: 1, pageSize: 5,
     });
 
     const columns: DataColumnProps<Person>[] = useMemo(
@@ -38,6 +38,7 @@ export default function PagedTable() {
             const result = await svc.api.demo.personsPaged({
                 ...rq,
                 filter: { departmentId: 13 }, // to get less results and non round-numbered number of people
+                page: rq.page - 1,
             });
             return result;
         },
@@ -55,8 +56,8 @@ export default function PagedTable() {
     }, []);
 
     const view = dataSource.useView(state, setState, {});
-
     const listProps = view.getListProps();
+
     return (
         <Panel background="surface" shadow cx={ css.container }>
             <DataTable { ...listProps } getRows={ view.getVisibleRows } value={ state } onValueChange={ setState } columns={ columns } headerTextCase="upper" />
