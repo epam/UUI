@@ -4,6 +4,7 @@
 * This release introduced stable Theming approach and theme css variables:
   * Theme css variable now assumed as a stable API, you can use them into your application styles.
   * Set of theme variables align with figma library, so you can use variables from figma in you styles.
+  * A lot of components styles tweaks according to the design changes.
   * You can read more about Theming here - TBD_LINK
 
 * New EPAM brand 'Electric' Theme and `@epam/electric` package. To start using Electric theme you need: 
@@ -20,25 +21,28 @@
     We also keep old font-faces and variables for backward compatibility. It's recommended to move to the new approach, since old one will be deprecated in feature.
 * [skinContext]: removed skinContext from `UuiContexts`, it's not needed to provide it to the uui services, just remove its usage.
 * [Typography]: removed typography mixins. Now typography applies via css classes. If you use mixins, replace it by adding `.uui-typography` class on the same node.
-* [Badge]: deprecated mode fill="transparent", and deprecated mode fill="semitransparent", they will be removed in future release. TBD: add replacement
-* [Badge]: removed fill="white" and "none" modes, use fill="outline" + color instead them.
-* [LabeledInput]: added possibility to provide validationMessage as react node
-* [CheckBox, PickerList, RichTextView, Switch, TabButton, VerticalTabButton, ScrollBars]: removed 'theme' prop. Use themization approach instead.
+* [StatusIndicator]: added new `StatusIndicator` component.
+* [CountIndicator]: added new `CountIndicator` component.
+* [Badge] : 
+  * [Breaking change]: removed fill "white" and "none" modes, use `fill="outline"` + color instead them.
+  * [Breaking change]:removed fill "transparent", use `StatusIndicator` component instead.
+  * [Badge]: deprecated fill "semitransparent", it will be removed in future releases. Use `fill="outline'` instead.
+* [LabeledInput]: added possibility to provide `validationMessage` as react node
+* [CheckBox, PickerList, RichTextView, Switch, TabButton, VerticalTabButton, ScrollBars]: removed `theme` prop. Use Theming approach instead.
 * [PresetsPanel]: added the ability to add a modal confirmation window when deleting a preset
 
 **What's Fixed**
-* [DatePickerHeader]: fixed 'navIconLeft', 'navIconRight' props
-* [useForm]: don't reset inChanged flag in case when server validation fails
-* [DataTableRow]: table row now consider rawProps property data
-* [DropdownMenuButton]: make `isActive` usable
+* [useForm]: don't reset `inChanged` flag in case when server validation fails
+* [DataTableRow]: fixed `rawProps` prop
+* [DropdownMenuButton]: use `isActive` prop in priority under router.isActive
 * [PickerInput]: set `overflow: hidden;` on open for mobile
 * [DataTable]: fix columns reorder when there are hidden columns
-* [TextArea and TextInput]: fix maxLength for Android
-* [DataTable]: fix checkboxes, now they always pinned to the left column
-* [PickerInput]: Disable select all button if options are empty and it has no selection
-* [DataTable]: fixed missing `role=table`
+* [TextArea and TextInput]: fix `maxLength` for Android
+* [DataTable]: fixed column order after pin action 
+* [PickerInput]: Disable select all button if list are empty, and it has no selection
+* [DataTable]: added `role=table`
 * [SlateEditor]: fixed image caption appearance after upload
-* [DropdownMenu]: added focusLock prop
+* [DropdownMenu]: added `focusLock` prop
 
 # 5.2.0 - 16.10.2023
 
