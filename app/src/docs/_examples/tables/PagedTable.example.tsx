@@ -3,12 +3,23 @@ import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiR
 import { DataTable, Panel, Text, Paginator, FlexRow, FlexSpacer } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
+import isEqual from 'lodash.isequal';
 
 export default function PagedTable() {
     const svc = useUuiContext();
     const [state, setState] = useState<DataSourceState>({
         page: 1, pageSize: 5,
     });
+    
+    const setTableState = useCallback((newState: DataSourceState) => {
+        if (!isEqual(state.sorting, newState.sorting) 
+            || state.page !== newState.page 
+            || state.pageSize > newState.pageSize
+        ) {
+            newState.checked = [];
+        }
+        setState(newState);
+    }, [state]);
 
     const columns: DataColumnProps<Person>[] = useMemo(
         () => [
@@ -57,15 +68,14 @@ export default function PagedTable() {
 
     const view = dataSource.useView(state, setState, {});
     const listProps = view.getListProps();
-
     return (
         <Panel background="surface" shadow cx={ css.container }>
-            <DataTable { ...listProps } getRows={ view.getVisibleRows } value={ state } onValueChange={ setState } columns={ columns } headerTextCase="upper" />
+            <DataTable { ...listProps } getRows={ view.getVisibleRows } value={ state } onValueChange={ setTableState } columns={ columns } headerTextCase="upper" />
             <FlexRow size="36" padding="12">
                 <FlexSpacer />
                 <Paginator
                     value={ state.page }
-                    onValueChange={ (newPage) => setState({ ...state, page: newPage, scrollTo: { index: 0 }, checked: [] }) }
+                    onValueChange={ (newPage) => setTableState({ ...state, page: newPage, scrollTo: { index: 0 } }) }
                     totalPages={ Math.ceil((listProps.totalCount ?? 0) / state.pageSize) }
                     size="30"
                 />
