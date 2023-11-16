@@ -65,7 +65,7 @@
             pointer-events: none;
 
             &::placeholder {
-                color: var(--uui-text_area-text-disabled);
+                color: var(--uui-text_area-placeholder);
             }
         }
     }

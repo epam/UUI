@@ -1,10 +1,10 @@
-const { logger } = require('../loggerUtils.js');
-const { createFileSync, readJsonFileSync } = require('../fileUtils.js');
+const { logger } = require('../loggerUtils');
+const { createFileSync, readJsonFileSync } = require('../fileUtils');
 const path = require('path');
-const { uuiRoot } = require('../constants.js');
-const { BASE_LINE_PATH, TRACK_BUNDLE_SIZE_REPORT_MD } = require('./bundleStatsConstants.js');
+const { uuiRoot } = require('../constants');
+const { BASE_LINE_PATH, TRACK_BUNDLE_SIZE_REPORT_MD } = require('./bundleStatsConstants');
 const fs = require('fs');
-const { getUuiVersion } = require('../monorepoUtils.js');
+const { getUuiVersion } = require('../monorepoUtils');
 
 const pathToBaselineResolved = path.resolve(uuiRoot, BASE_LINE_PATH);
 const uuiVersion = getUuiVersion();
