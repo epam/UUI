@@ -38,7 +38,7 @@ export default function PagedTable() {
             const result = await svc.api.demo.personsPaged({
                 ...rq,
                 filter: { departmentId: 13 }, // to get less results and non round-numbered number of people
-                page: rq.page - 1,
+                page: rq.page - 1, // TODO: replace this page number modification with out of the box solution
             });
             return result;
         },
