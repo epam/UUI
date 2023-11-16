@@ -1,13 +1,10 @@
 import * as React from 'react';
-import { AnchorProps } from '@epam/uui-components';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as uui from '@epam/uui';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, TSkin,
-} from '../../common';
-import { TDocConfig } from '../../common/docs/docBuilderGen/types';
-import { DocBuilder } from '@epam/uui-docs';
+import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
+import { AnchorProps } from '@epam/uui-components';
+import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
 import { CardExample } from './cardExample';
 
 export class AnchorDoc extends BaseDocsBlock {
@@ -22,10 +19,7 @@ export class AnchorDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<AnchorProps>) => {
             doc.merge('children', {
-                examples: [
-                    { name: 'card', value: <CardExample />, isDefault: true },
-                    { name: 'text', value: 'Hello, World!' },
-                ],
+                examples: [{ name: 'card', value: <CardExample />, isDefault: true }, { name: 'text', value: 'Hello, World!' }],
             });
         },
     };

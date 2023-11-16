@@ -1,8 +1,8 @@
 import React from 'react';
 import { PropDoc } from '@epam/uui-docs';
-import { TPropDocBuilder } from '../types';
 import { TPropEditorType } from '../../../apiReference/sharedTypes';
 import { getDocBySkin } from './shared/reusableDocs';
+import { TPropDocBuilder } from '../docBuilderGenTypes';
 
 const COLOR_PROP_NAMES = ['color', 'appLogoBgColor', 'customerLogoBgColor'];
 const STRING_EDITOR_PROP_NAMES = ['customerLogoUrl', 'customerLogoHref', 'logoHref', 'appLogoUrl', 'key', 'id', 'settingsKey'];

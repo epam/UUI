@@ -1,9 +1,9 @@
+import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { Day, IconContainer } from '@epam/uui-components';
-import * as React from 'react';
-import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
 import { IPropSamplesCreationContext } from '@epam/uui-docs';
 import { Text, RangeDatePickerProps, RangeDatePickerValue, rangeDatePickerPresets } from '@epam/uui';
+import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
 import css from './rangeDatePickerExamples.module.scss';
 import isBetween from 'dayjs/plugin/isBetween.js';
 

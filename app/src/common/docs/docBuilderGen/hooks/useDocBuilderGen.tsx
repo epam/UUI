@@ -1,7 +1,6 @@
-import { normalizeDocConfig, TDocConfig, TSkin } from '../types';
-import { TDocsGenExportedType } from '../../../apiReference/types';
-import { IComponentDocs } from '@epam/uui-docs';
 import React, { useEffect } from 'react';
+import { IComponentDocs, TDocConfig, TSkin } from '@epam/uui-docs';
+import { TDocsGenExportedType } from '../../../apiReference/types';
 import { docBuilderGen } from '../docBuilderGen';
 
 interface IUseDocBuilderGenParams {
@@ -30,9 +29,8 @@ export function useDocBuilderGen(params: IUseDocBuilderGenParams): IUseDocBuilde
     useEffect(() => {
         setRes({ isLoaded: false });
         if (config) {
-            const _config = normalizeDocConfig(config);
-            const generatedFromType = _config.bySkin[skin]?.type;
-            docBuilderGen({ config: _config, skin }).then((docs) => {
+            const generatedFromType = config.bySkin[skin]?.type;
+            docBuilderGen({ config, skin }).then((docs) => {
                 setRes({
                     isLoaded: true,
                     isGenerated: true,

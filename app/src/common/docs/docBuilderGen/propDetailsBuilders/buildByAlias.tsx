@@ -2,7 +2,8 @@ import React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { TTypeRef } from '../../../apiReference/sharedTypes';
 import { TDocsGenExportedType } from '../../../apiReference/types';
-import { TPropDocBuilder } from '../types';
+
+import { TPropDocBuilder } from '../docBuilderGenTypes';
 
 const TEMPLATE_DOC = new DocBuilder<Record<TTypeRef | TDocsGenExportedType, any>>({ name: '' })
     .prop('@epam/uui-core:ClassValue', {

@@ -1,16 +1,11 @@
 import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, TSkin,
-} from '../../common';
-import { TDocConfig } from '../../common/docs/docBuilderGen/types';
-import { DocBuilder } from '@epam/uui-docs';
-import * as loveshipDocs from '../_props/loveship/docs';
-import * as promoDocs from '../_props/epam-promo/docs';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import { childrenExamples, itemsExamples, renderBurgerExamples } from './mainMenuExamples';
-
+//
 import css from './../styles.module.scss';
 
 export class MainMenuDoc extends BaseDocsBlock {
@@ -18,18 +13,11 @@ export class MainMenuDoc extends BaseDocsBlock {
 
     override config: TDocConfig = {
         name: 'MainMenu',
+        contexts: [TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:MainMenuProps', component: uui.MainMenu },
-            [TSkin.UUI3_loveship]: {
-                type: '@epam/uui:MainMenuProps',
-                component: loveship.MainMenu,
-                doc: (doc: DocBuilder<uui.MainMenuProps>) => doc.withContextsReplace(loveshipDocs.ResizableContext),
-            },
-            [TSkin.UUI4_promo]: {
-                type: '@epam/uui:MainMenuProps',
-                component: promo.MainMenu,
-                doc: (doc: DocBuilder<uui.MainMenuProps>) => doc.withContextsReplace(promoDocs.ResizableContext),
-            },
+            [TSkin.UUI3_loveship]: { type: '@epam/uui:MainMenuProps', component: loveship.MainMenu },
+            [TSkin.UUI4_promo]: { type: '@epam/uui:MainMenuProps', component: promo.MainMenu },
         },
         doc: (doc: DocBuilder<uui.MainMenuProps>) => {
             doc.merge('children', { examples: childrenExamples });

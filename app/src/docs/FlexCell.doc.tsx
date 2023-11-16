@@ -1,15 +1,9 @@
 import * as React from 'react';
-import {
-    BaseDocsBlock, DocExample, EditableDocContent, TSkin,
-} from '../common/docs';
-import { TDocConfig } from '../common/docs/docBuilderGen/types';
-import { DocBuilder } from '@epam/uui-docs';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
-import * as uuiDocs from './_props/uui/docs';
-import * as promoDocs from './_props/epam-promo/docs';
-import * as loveshipDocs from './_props/loveship/docs';
+import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common/docs';
 
 export class FlexCellDoc extends BaseDocsBlock {
     title = 'FlexCell';
@@ -17,9 +11,9 @@ export class FlexCellDoc extends BaseDocsBlock {
     override config: TDocConfig = {
         name: 'FlexCell',
         bySkin: {
-            [TSkin.UUI]: { type: '@epam/uui:FlexCellProps', component: uui.FlexCell, doc: (doc) => doc.withContextsReplace(uuiDocs.FlexRowContext) },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:FlexCellProps', component: loveship.FlexCell, doc: (doc) => doc.withContextsReplace(loveshipDocs.FlexRowContext) },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:FlexCellProps', component: promo.FlexCell, doc: (doc) => doc.withContextsReplace(promoDocs.FlexRowContext) },
+            [TSkin.UUI]: { type: '@epam/uui:FlexCellProps', component: uui.FlexCell },
+            [TSkin.UUI3_loveship]: { type: '@epam/uui:FlexCellProps', component: loveship.FlexCell },
+            [TSkin.UUI4_promo]: { type: '@epam/uui:FlexCellProps', component: promo.FlexCell },
         },
         doc: (doc: DocBuilder<uui.FlexCellProps>) => {
             doc.merge('alignSelf', { renderEditor: 'MultiUnknownEditor', examples: ['flex-start', 'center', 'flex-end'] });

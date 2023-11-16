@@ -1,5 +1,4 @@
-import { IPropSamplesCreationContext, PropDoc, PropExampleObject } from '@epam/uui-docs';
-import { TSkin } from '../docBuilderGen/types';
+import { IPropSamplesCreationContext, PropDoc, PropExampleObject, TSkin } from '@epam/uui-docs';
 
 export function isPropValueEmpty(propValue: any): boolean {
     return propValue === undefined;

@@ -1,32 +1,20 @@
 import * as React from 'react';
-import {
-    BaseDocsBlock, DocExample, EditableDocContent, TSkin,
-} from '../common';
-import { TDocConfig } from '../common/docs/docBuilderGen/types';
-import { DocBuilder } from '@epam/uui-docs';
-import * as loveshipDocs from './_props/loveship/docs';
-import * as promoDocs from './_props/epam-promo/docs';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class PickerListDoc extends BaseDocsBlock {
     title = 'PickerList';
 
     override config: TDocConfig = {
         name: 'PickerList',
+        contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:PickerListProps', component: uui.PickerList },
-            [TSkin.UUI3_loveship]: {
-                type: '@epam/uui:PickerListProps',
-                component: loveship.PickerList,
-                doc: (doc: DocBuilder<uui.PickerListProps<any, any>>) => doc.withContexts(loveshipDocs.FormContext, loveshipDocs.ResizableContext),
-            },
-            [TSkin.UUI4_promo]: {
-                type: '@epam/uui:PickerListProps',
-                component: promo.PickerList,
-                doc: (doc: DocBuilder<uui.PickerListProps<any, any>>) => doc.withContexts(promoDocs.FormContext, promoDocs.ResizableContext),
-            },
+            [TSkin.UUI3_loveship]: { type: '@epam/uui:PickerListProps', component: loveship.PickerList },
+            [TSkin.UUI4_promo]: { type: '@epam/uui:PickerListProps', component: promo.PickerList },
         },
         doc: (doc: DocBuilder<uui.PickerListProps<any, any>>) => {
             doc.merge('value', {
@@ -50,9 +38,7 @@ export class PickerListDoc extends BaseDocsBlock {
                 examples: [{ name: 'Custom Button', value: (props) => <uui.LinkButton { ...props } caption="Custom Button" /> }],
             });
             doc.merge('filter', {
-                examples: [
-                    { name: "{ country: 'UK' }", value: { country: 'UK' } },
-                ],
+                examples: [{ name: "{ country: 'UK' }", value: { country: 'UK' } }],
                 remountOnChange: true,
             });
             doc.merge('noOptionsMessage', {

@@ -1,31 +1,21 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, TSkin } from '../common';
-import { TDocConfig } from '../common/docs/docBuilderGen/types';
-import { DocBuilder } from '@epam/uui-docs';
-import * as loveshipDocs from './_props/loveship/docs';
-import * as promoDocs from './_props/epam-promo/docs';
 import * as uui from '@epam/uui';
 import * as uuiComponents from '@epam/uui-components';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class RadioGroupDoc extends BaseDocsBlock {
     title = 'RadioGroup';
 
     override config: TDocConfig = {
         name: 'RadioGroup',
+        contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui-components:RadioGroupProps', component: uui.RadioGroup },
-            [TSkin.UUI3_loveship]: {
-                type: '@epam/uui-components:RadioGroupProps',
-                component: loveship.RadioGroup,
-                doc: (doc: DocBuilder<uuiComponents.RadioGroupProps<any>>) => doc.withContexts(loveshipDocs.FormContext, loveshipDocs.ResizableContext),
-            },
-            [TSkin.UUI4_promo]: {
-                type: '@epam/uui-components:RadioGroupProps',
-                component: promo.RadioGroup,
-                doc: (doc: DocBuilder<uuiComponents.RadioGroupProps<any>>) => doc.withContexts(promoDocs.FormContext, promoDocs.ResizableContext),
-            },
+            [TSkin.UUI3_loveship]: { type: '@epam/uui-components:RadioGroupProps', component: loveship.RadioGroup },
+            [TSkin.UUI4_promo]: { type: '@epam/uui-components:RadioGroupProps', component: promo.RadioGroup },
         },
         doc: (doc: DocBuilder<uuiComponents.RadioGroupProps<any>>) => {
             doc.merge('items', {

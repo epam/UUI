@@ -1,13 +1,9 @@
 import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, TSkin,
-} from '../common';
-import { TDocConfig } from '../common/docs/docBuilderGen/types';
-import { DocBuilder } from '@epam/uui-docs';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
-import { Text } from '@epam/loveship';
+import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
+import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
 export class NotificationCardDoc extends BaseDocsBlock {
     title = 'Notification Card';
@@ -16,17 +12,11 @@ export class NotificationCardDoc extends BaseDocsBlock {
         name: 'NotificationCard',
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:NotificationCardProps', component: uui.NotificationCard },
-            [TSkin.UUI3_loveship]: {
-                type: '@epam/loveship:NotificationCardProps',
-                component: loveship.NotificationCard,
-            },
-            [TSkin.UUI4_promo]: {
-                type: '@epam/promo:NotificationCardProps',
-                component: promo.NotificationCard,
-            },
+            [TSkin.UUI3_loveship]: { type: '@epam/loveship:NotificationCardProps', component: loveship.NotificationCard },
+            [TSkin.UUI4_promo]: { type: '@epam/promo:NotificationCardProps', component: promo.NotificationCard },
         },
-        doc: (doc: DocBuilder<promo.NotificationCardProps | loveship.NotificationCardProps>) => {
-            const getChild = (text: string) => (<Text size="36" font="sans">{text}</Text>);
+        doc: (doc: DocBuilder<uui.NotificationCardProps | loveship.NotificationCardProps| promo.NotificationCardProps>) => {
+            const getChild = (text: string) => (<uui.Text size="36" font="primary">{text}</uui.Text>);
             doc.merge('children', {
                 examples: [
                     { value: getChild('Warning notification'), name: 'Short', isDefault: true },

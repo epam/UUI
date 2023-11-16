@@ -1,32 +1,20 @@
 import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, TSkin,
-} from '../common';
-import { TDocConfig } from '../common/docs/docBuilderGen/types';
-import { DocBuilder } from '@epam/uui-docs';
-import * as loveshipDocs from './_props/loveship/docs';
-import * as promoDocs from './_props/epam-promo/docs';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
 export class LinkButtonDoc extends BaseDocsBlock {
     title = 'Link Button';
 
     override config: TDocConfig = {
         name: 'LinkButton',
+        contexts: [TDocContext.Default, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:LinkButtonProps', component: uui.LinkButton },
-            [TSkin.UUI3_loveship]: {
-                type: '@epam/loveship:LinkButtonProps',
-                component: loveship.LinkButton,
-                doc: (doc: DocBuilder<loveship.LinkButtonProps>) => doc.withContexts(loveshipDocs.FormContext),
-            },
-            [TSkin.UUI4_promo]: {
-                type: '@epam/promo:LinkButtonProps',
-                component: promo.LinkButton,
-                doc: (doc: DocBuilder<promo.LinkButtonProps>) => doc.withContexts(promoDocs.FormContext),
-            },
+            [TSkin.UUI3_loveship]: { type: '@epam/loveship:LinkButtonProps', component: loveship.LinkButton },
+            [TSkin.UUI4_promo]: { type: '@epam/promo:LinkButtonProps', component: promo.LinkButton },
         },
         doc: (doc: DocBuilder<promo.LinkButtonProps | loveship.LinkButtonProps | uui.LinkButtonProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });

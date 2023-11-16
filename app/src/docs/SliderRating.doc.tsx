@@ -1,11 +1,7 @@
 import * as React from 'react';
-import {
-    BaseDocsBlock, DocExample, EditableDocContent, TSkin,
-} from '../common';
-import { TDocConfig } from '../common/docs/docBuilderGen/types';
-import { DocBuilder } from '@epam/uui-docs';
-import * as loveshipDocs from './_props/loveship/docs';
 import * as loveship from '@epam/loveship';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import cx from 'classnames';
 import css from './styles.module.scss';
 
@@ -14,12 +10,12 @@ export class SliderRatingDoc extends BaseDocsBlock {
 
     override config: TDocConfig = {
         name: 'SliderRating',
+        contexts: [TDocContext.Default, TDocContext.Form],
         bySkin: {
             [TSkin.UUI3_loveship]: {
                 type: '@epam/loveship:SliderRatingProps',
                 component: loveship.SliderRating,
                 doc: (doc: DocBuilder<loveship.SliderRatingProps<any>>) => {
-                    doc.withContexts(loveshipDocs.FormContext);
                     const renderFn = (v: any) => (
                         <loveship.RichTextView size="14">
                             <p>

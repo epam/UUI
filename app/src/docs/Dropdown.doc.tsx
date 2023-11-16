@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { DropdownProps } from '@epam/uui-core';
-import { DocBuilder } from '@epam/uui-docs';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
-import { EditableDocContent, DocExample, BaseDocsBlock, TSkin } from '../common';
-import { TDocConfig } from '../common/docs/docBuilderGen/types';
+import { DropdownProps } from '@epam/uui-core';
+import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
+import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
 export class DropdownDoc extends BaseDocsBlock {
     title = 'Dropdown';

@@ -1,43 +1,20 @@
 import * as React from 'react';
-import {
-    BaseDocsBlock, DocExample, EditableDocContent, TSkin,
-} from '../common';
-import { TDocConfig } from '../common/docs/docBuilderGen/types';
-import { DocBuilder } from '@epam/uui-docs';
-import * as loveshipDocs from './_props/loveship/docs';
-import * as promoDocs from './_props/epam-promo/docs';
-import * as uuiDocs from './_props/uui/docs';
 import * as promo from '@epam/promo';
 import * as loveship from '@epam/loveship';
 import * as uui from '@epam/uui';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class SliderDoc extends BaseDocsBlock {
     title = 'Slider';
 
     override config: TDocConfig = {
         name: 'Slider',
+        contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {
-            [TSkin.UUI4_promo]: {
-                type: '@epam/uui:SliderProps',
-                component: uui.Slider,
-                doc: (doc: DocBuilder<uui.SliderProps>) => {
-                    doc.withContexts(uuiDocs.ResizableContext);
-                },
-            },
-            [TSkin.UUI4_promo]: {
-                type: '@epam/uui:SliderProps',
-                component: promo.Slider,
-                doc: (doc: DocBuilder<uui.SliderProps>) => {
-                    doc.withContexts(promoDocs.ResizableContext, promoDocs.FormContext);
-                },
-            },
-            [TSkin.UUI3_loveship]: {
-                type: '@epam/uui:SliderProps',
-                component: loveship.Slider,
-                doc: (doc: DocBuilder<uui.SliderProps>) => {
-                    doc.withContexts(loveshipDocs.ResizableContext, loveshipDocs.FormContext);
-                },
-            },
+            [TSkin.UUI4_promo]: { type: '@epam/uui:SliderProps', component: uui.Slider },
+            [TSkin.UUI4_promo]: { type: '@epam/uui:SliderProps', component: promo.Slider },
+            [TSkin.UUI3_loveship]: { type: '@epam/uui:SliderProps', component: loveship.Slider },
         },
         doc: (doc: DocBuilder<uui.SliderProps>) => {
             doc.merge('min', { examples: [{ value: 0, isDefault: true }] });

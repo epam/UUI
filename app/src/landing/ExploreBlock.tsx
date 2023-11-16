@@ -4,9 +4,9 @@ import {
     Anchor, FlexRow, IconContainer, Text,
 } from '@epam/promo';
 import { ReactComponent as DownloadIcon } from '../icons/download.svg';
-import { TSkin } from '../common/docs';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
+import { TSkin } from '@epam/uui-docs';
 
 export class ExploreBlock extends React.Component {
     private sendEvent = (link: string) => {

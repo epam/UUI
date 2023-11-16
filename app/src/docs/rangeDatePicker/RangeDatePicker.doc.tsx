@@ -1,14 +1,9 @@
 import * as React from 'react';
-import {
-    BaseDocsBlock, DocExample, EditableDocContent, TSkin,
-} from '../../common';
-import { DocBuilder } from '@epam/uui-docs';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
-import * as promoDocs from './../_props/epam-promo/docs';
-import * as loveshipDocs from './../_props/loveship/docs';
-import { TDocConfig } from '../../common/docs/docBuilderGen/types';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import {
     filterExamples,
     getPlaceholderExamples,
@@ -22,18 +17,11 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
 
     override config: TDocConfig = {
         name: 'RangeDatePicker',
+        contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:RangeDatePickerProps', component: uui.RangeDatePicker },
-            [TSkin.UUI3_loveship]: {
-                type: '@epam/uui:RangeDatePickerProps',
-                component: loveship.RangeDatePicker,
-                doc: (doc: DocBuilder<uui.RangeDatePickerProps>) => doc.withContexts(loveshipDocs.FormContext, loveshipDocs.ResizableContext),
-            },
-            [TSkin.UUI4_promo]: {
-                type: '@epam/uui:RangeDatePickerProps',
-                component: promo.RangeDatePicker,
-                doc: (doc: DocBuilder<uui.RangeDatePickerProps>) => doc.withContexts(promoDocs.FormContext, promoDocs.ResizableContext),
-            },
+            [TSkin.UUI3_loveship]: { type: '@epam/uui:RangeDatePickerProps', component: loveship.RangeDatePicker },
+            [TSkin.UUI4_promo]: { type: '@epam/uui:RangeDatePickerProps', component: promo.RangeDatePicker },
         },
         doc: (doc: DocBuilder<uui.RangeDatePickerProps>) => {
             doc.merge('value', {
@@ -42,7 +30,7 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
             doc.merge('format', {
                 examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'],
                 defaultValue: 'MMM D, YYYY',
-                type: 'string',
+                renderEditor: 'StringWithExamplesEditor',
             });
             doc.merge('renderDay', { examples: renderDayExamples });
             doc.merge('renderFooter', { examples: renderFooterExamples });

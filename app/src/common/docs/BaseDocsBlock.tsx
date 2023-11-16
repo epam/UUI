@@ -4,13 +4,11 @@ import { svc } from '../../services';
 import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
 import { TypeRefSection } from '../apiReference/TypeRefSection';
-import { normalizeDocConfig, TDocConfig, TSkin } from './docBuilderGen/types';
 import { ComponentEditorWrapper } from './componentEditor/ComponentEditor';
 import cx from 'classnames';
 import css from './BaseDocsBlock.module.scss';
 import { TEMP_THEME_PROMO_SELECTOR } from './constants';
-
-export { TSkin };
+import { TDocConfig, TSkin } from '@epam/uui-docs';
 
 enum TMode {
     doc = 'doc',
@@ -21,7 +19,7 @@ const DEFAULT_SKIN = TSkin.UUI;
 const DEFAULT_MODE = TMode.doc;
 
 const items: { id: TSkin; caption: string }[] = [
-    { caption: 'UUI [Themebale]', id: TSkin.UUI }, { caption: 'UUI3 [Loveship]', id: TSkin.UUI3_loveship }, { caption: 'UUI4 [Promo]', id: TSkin.UUI4_promo },
+    { caption: 'UUI [Themeable]', id: TSkin.UUI }, { caption: 'UUI3 [Loveship]', id: TSkin.UUI3_loveship }, { caption: 'UUI4 [Promo]', id: TSkin.UUI4_promo },
 ];
 
 interface BaseDocsBlockState {}
@@ -63,7 +61,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     private renderApiBlock = () => {
         if (this.config) {
-            const configGeneric = normalizeDocConfig(this.config).bySkin;
+            const configGeneric = this.config.bySkin;
             /**
              * API block is always based on the "UUI" TS type.
              * But if it's not defined for some reason, then the first available skin is used instead.

@@ -1,4 +1,4 @@
-import { TPropDocBuilder } from '../types';
+import { TPropDocBuilder } from '../docBuilderGenTypes';
 
 export const buildByPropName: TPropDocBuilder = (params) => {
     const { prop } = params;

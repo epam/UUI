@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { FlexRow } from '@epam/promo';
-import { AppHeader, Page, Sidebar, TSkin } from '../common';
+import { AppHeader, Page, Sidebar } from '../common';
 import { svc } from '../services';
 import { DocItem, items as itemsStructure } from './structure';
 import { useQuery } from '../helpers';
@@ -8,6 +8,7 @@ import { codesandboxService } from '../data/service';
 import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
 import { TypeRefPage } from '../common/apiReference/TypeRefPage';
+import { TSkin } from '@epam/uui-docs';
 
 type DocsQuery = {
     id: string;

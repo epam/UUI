@@ -1,19 +1,19 @@
-import { TPropDocBuilder } from '../types';
 import { buildCommonDetails } from './buildCommonDetails';
 import { buildByFromRef } from './buildByFromRef';
 import { buildByAlias } from './buildByAlias';
 import { buildByGenericType } from './buildByGenericType';
 import { buildByPropName } from './buildByPropName';
 import { buildByRawType } from './buildByRawType';
+import { TPropDocBuilder } from '../docBuilderGenTypes';
 
 export const buildPropDetails: TPropDocBuilder = (params) => {
     const { prop, docs, skin } = params;
     const common = buildCommonDetails({ docs, prop, skin });
-    const specific = buildSpecificDetails({ docs, prop, skin });
-    if (specific) {
+    const singlePropDetails = buildSinglePropDetails({ docs, prop, skin });
+    if (singlePropDetails) {
         return {
             ...common,
-            ...specific,
+            ...singlePropDetails,
         };
     }
 };
@@ -27,7 +27,7 @@ export const buildPropFallbackDetails: TPropDocBuilder = (params) => {
     };
 };
 
-const buildSpecificDetails: TPropDocBuilder = (params) => {
+const buildSinglePropDetails: TPropDocBuilder = (params) => {
     const byFromRef = buildByFromRef(params);
     if (byFromRef) {
         return byFromRef;

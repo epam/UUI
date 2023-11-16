@@ -1,8 +1,9 @@
-import { TDocConfigGeneric, TSkin } from './types';
-import { DocBuilder, IPropSamplesCreationContext, PropDoc, PropExample } from '@epam/uui-docs';
+import {
+    DocBuilder, IPropSamplesCreationContext, PropDoc,
+    PropExample, TSkin, TDocConfig,
+} from '@epam/uui-docs';
 import { loadDocsGenType } from '../../apiReference/dataHooks';
-
-import { applyGlobalOverride } from './docOverrides/globalOverride';
+import { docCommonOverride } from './docOverrides/globalOverride';
 import { buildPropDetails, buildPropFallbackDetails } from './propDetailsBuilders/build';
 import { TTypeProp } from '../../apiReference/sharedTypes';
 
@@ -10,16 +11,17 @@ import { TTypeProp } from '../../apiReference/sharedTypes';
  * Generates DocBuilder using given type metadata & any optional overrides
  * @param params
  */
-export async function docBuilderGen(params: { config: TDocConfigGeneric, skin: TSkin }): Promise<DocBuilder<any> | undefined> {
+export async function docBuilderGen(params: { config: TDocConfig, skin: TSkin }): Promise<DocBuilder<any> | undefined> {
     const { config } = params;
     const {
         name,
-        doc: applyAllSkinsOverride,
+        contexts,
+        doc: skinCommonOverride,
         bySkin,
     } = config;
     const forSkin = bySkin[params.skin];
     if (forSkin) {
-        const { doc: applySpecificSkinOverride, type: docGenType, component } = forSkin;
+        const { doc: skinSpecificOverride, type: docGenType, component } = forSkin;
         const { content: type } = await loadDocsGenType(docGenType);
 
         const docs = new DocBuilder<any>({ name, component });
@@ -41,9 +43,9 @@ export async function docBuilderGen(params: { config: TDocConfigGeneric, skin: T
                 docs.prop(prop.name, nextProp);
             }
         });
-        applyGlobalOverride(docs, params.skin);
-        applyAllSkinsOverride?.(docs);
-        applySpecificSkinOverride?.(docs);
+        docCommonOverride({ docs, contexts });
+        skinCommonOverride?.(docs);
+        skinSpecificOverride?.(docs);
 
         unresolvedProps.forEach((prop) => {
             const found = docs.props.find((p) => p.name === prop.name);

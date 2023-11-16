@@ -1,31 +1,20 @@
 import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, TSkin,
-} from '../common';
-import { TDocConfig } from '../common/docs/docBuilderGen/types';
-import { DocBuilder } from '@epam/uui-docs';
-import * as loveshipDocs from './_props/loveship/docs';
-import * as promoDocs from './_props/epam-promo/docs';
 import * as uui from '@epam/uui';
 import * as promo from '@epam/promo';
+import * as loveship from '@epam/loveship';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class LabeledInputDoc extends BaseDocsBlock {
     title = 'Labeled Input';
 
     override config: TDocConfig = {
         name: 'LabeledInput',
+        contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:LabeledInputProps', component: uui.LabeledInput },
-            [TSkin.UUI3_loveship]: {
-                type: '@epam/uui:LabeledInputProps',
-                component: uui.LabeledInput,
-                doc: (doc: DocBuilder<uui.LabeledInputProps>) => doc.withContexts(loveshipDocs.FormContext, loveshipDocs.ResizableContext),
-            },
-            [TSkin.UUI4_promo]: {
-                type: '@epam/uui:LabeledInputProps',
-                component: uui.LabeledInput,
-                doc: (doc: DocBuilder<uui.LabeledInputProps>) => doc.withContexts(promoDocs.FormContext, promoDocs.ResizableContext),
-            },
+            [TSkin.UUI3_loveship]: { type: '@epam/uui:LabeledInputProps', component: loveship.LabeledInput },
+            [TSkin.UUI4_promo]: { type: '@epam/uui:LabeledInputProps', component: promo.LabeledInput },
         },
         doc: (doc: DocBuilder<uui.LabeledInputProps>) => {
             doc.merge('Tooltip', { examples: [{ value: uui.Tooltip, name: 'Tooltip', isDefault: true }], isRequired: true });
@@ -38,7 +27,7 @@ export class LabeledInputDoc extends BaseDocsBlock {
                     { name: 'TextInput 30', value: <uui.TextInput value="text" size="30" onValueChange={ () => {} } /> },
                     { name: 'TextInput 24', value: <uui.TextInput value="text" size="24" onValueChange={ () => {} } /> },
                     { name: 'Checkbox', value: <uui.Checkbox value={ true } onValueChange={ () => {} } /> },
-                    { name: 'Slider', value: <promo.Slider min={ 0 } max={ 100 } value={ 50 } onValueChange={ () => {} } step={ 5 } /> },
+                    { name: 'Slider', value: <uui.Slider min={ 0 } max={ 100 } value={ 50 } onValueChange={ () => {} } step={ 5 } /> },
                 ],
             });
         },

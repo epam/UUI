@@ -39,6 +39,10 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
         return this.props.find((p) => (p.name as unknown as TProp) === name);
     }
 
+    public hasProp<TProp extends keyof TProps>(name: TProp): boolean {
+        return Boolean(this.getProp(name));
+    }
+
     private _prop<TProp extends keyof TProps>(
         name: TProp,
         details: Partial<PropDoc<TProps, TProp>>,

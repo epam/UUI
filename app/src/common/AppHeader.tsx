@@ -3,12 +3,12 @@ import {
     BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger, DropdownMenuSplitter, MainMenuDropdown,
 } from '@epam/promo';
 import { Anchor, MainMenuLogo } from '@epam/uui-components';
-import { TSkin } from './docs';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
 import css from './AppHeader.module.scss';
 import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
 import { useTheme } from '../helpers/useTheme';
+import { TSkin } from '@epam/uui-docs';
 
 export type Theme = 'uui-theme-promo' | 'uui-theme-loveship' | 'uui-theme-loveship_dark' | 'uui-theme-electric' | 'uui-theme-vanilla_thunder';
 const themeName: Record<Theme, 'Promo' | 'Loveship' | 'Loveship Dark' | 'Electric' | 'Vanilla Thunder'> = {

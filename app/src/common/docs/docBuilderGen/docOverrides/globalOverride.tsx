@@ -1,29 +1,17 @@
-import { TSkin } from '../types';
 import * as uuiDocs from '../../../../docs/_props/uui/docs';
-import * as promoDocs from '../../../../docs/_props/epam-promo/docs';
-import * as loveshipDocs from '../../../../docs/_props/loveship/docs';
-import { DocBuilder } from '@epam/uui-docs';
-
-type TDocOverrideBySkin<K = any> = (doc: DocBuilder<K>, skin: TSkin) => void;
+import { DocBuilder, TDocContext } from '@epam/uui-docs';
 
 /**
  * This override is applied to each skin individually
- * @param doc
- * @param skin
  */
-export const applyGlobalOverride: TDocOverrideBySkin = (doc, skin) => {
-    switch (skin) {
-        case TSkin.UUI4_promo: {
-            doc.withContexts(promoDocs.DefaultContext);
-            break;
+export const docCommonOverride = (params: { docs: DocBuilder<any>, contexts?: TDocContext[] }) => {
+    const contexts = params.contexts?.length > 0 ? params.contexts : [TDocContext.Default];
+    contexts.forEach((c) => {
+        const ctx = uuiDocs.uuiDocContextsMap[c];
+        if (ctx) {
+            params.docs.withContexts(ctx);
+        } else {
+            console.error(`Context is not implemented in UUI: ${c}`);
         }
-        case TSkin.UUI3_loveship: {
-            doc.withContexts(loveshipDocs.DefaultContext);
-            break;
-        }
-        case TSkin.UUI: {
-            doc.withContexts(uuiDocs.DefaultContext);
-            break;
-        }
-    }
+    });
 };

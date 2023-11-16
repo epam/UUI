@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { DocBuilder } from '@epam/uui-docs';
-import { AvatarProps } from '@epam/uui-components';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as uui from '@epam/uui';
-import { BaseDocsBlock, DocExample, EditableDocContent, TSkin } from '../common';
-import { TDocConfig } from '../common/docs/docBuilderGen/types';
+import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
+import { AvatarProps } from '@epam/uui-components';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class AvatarDoc extends BaseDocsBlock {
     title = 'Avatar';

@@ -1,34 +1,22 @@
 import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, TSkin,
-} from '../common';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
-import * as loveshipDocs from './_props/loveship/docs';
-import * as promoDocs from './_props/epam-promo/docs';
-import { TDocConfig } from '../common/docs/docBuilderGen/types';
-import { DocBuilder } from '@epam/uui-docs';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class BadgeDoc extends BaseDocsBlock {
     title = 'Badge';
 
     override config: TDocConfig = {
         name: 'Badge',
+        contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:BadgeProps', component: uui.Badge },
-            [TSkin.UUI3_loveship]: {
-                type: '@epam/loveship:BadgeProps',
-                component: loveship.Badge,
-                doc: (doc: DocBuilder<uui.BadgeProps>) => doc.withContexts(loveshipDocs.FormContext, loveshipDocs.ResizableContext),
-            },
-            [TSkin.UUI4_promo]: {
-                type: '@epam/promo:BadgeProps',
-                component: promo.Badge,
-                doc: (doc: DocBuilder<promo.BadgeProps>) => doc.withContexts(promoDocs.FormContext, promoDocs.ResizableContext),
-            },
+            [TSkin.UUI3_loveship]: { type: '@epam/loveship:BadgeProps', component: loveship.Badge },
+            [TSkin.UUI4_promo]: { type: '@epam/promo:BadgeProps', component: promo.Badge },
         },
-        doc: (doc: DocBuilder<uui.BadgeProps | promo.BadgeProps>) => {
+        doc: (doc: DocBuilder<uui.BadgeProps | promo.BadgeProps | loveship.BadgeProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });
         },
     };

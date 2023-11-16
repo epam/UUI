@@ -1,5 +1,6 @@
 import { PropDoc } from '@epam/uui-docs';
-import { TPropDocBuilder } from '../types';
+
+import { TPropDocBuilder } from '../docBuilderGenTypes';
 
 const byRawType = new Map<string, Partial<PropDoc<any, any>>>();
 byRawType.set('React.CSSProperties', {

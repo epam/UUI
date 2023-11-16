@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { IHasCX } from '@epam/uui-core';
-import { IComponentDocs, PropDoc, PropExample } from '@epam/uui-docs';
+import { IComponentDocs, PropDoc, PropExample, TDocConfig, TSkin } from '@epam/uui-docs';
 import { ComponentEditorView } from './view/ComponentEditorView';
-import { TDocConfig, TSkin } from '../docBuilderGen/types';
 import { TDocsGenExportedType } from '../../apiReference/types';
 import { useDocBuilderGen } from '../docBuilderGen/hooks/useDocBuilderGen';
 import { getExamplesList, getInputValuesFromInputData, getTheme, isPropValueEmpty } from './utils';

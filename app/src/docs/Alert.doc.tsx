@@ -2,32 +2,19 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
-import { DocBuilder } from '@epam/uui-docs';
-import { EditableDocContent, DocExample, BaseDocsBlock, TSkin } from '../common';
-import { TDocConfig } from '../common/docs/docBuilderGen/types';
-import * as loveshipDocs from './_props/loveship/docs';
-import * as promoDocs from './_props/epam-promo/docs';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class AlertDoc extends BaseDocsBlock {
     title = 'Alert';
 
     override config: TDocConfig = {
         name: 'Alert',
+        contexts: [TDocContext.Resizable],
         bySkin: {
-            [TSkin.UUI3_loveship]: {
-                type: '@epam/loveship:AlertProps',
-                component: loveship.Alert,
-                doc: (doc: DocBuilder<loveship.AlertProps>) => doc.withContextsReplace(loveshipDocs.ResizableContext),
-            },
-            [TSkin.UUI4_promo]: {
-                type: '@epam/promo:AlertProps',
-                component: promo.Alert,
-                doc: (doc: DocBuilder<promo.AlertProps>) => doc.withContextsReplace(promoDocs.ResizableContext),
-            },
-            [TSkin.UUI]: {
-                type: '@epam/uui:AlertProps',
-                component: uui.Alert,
-            },
+            [TSkin.UUI3_loveship]: { type: '@epam/loveship:AlertProps', component: loveship.Alert },
+            [TSkin.UUI4_promo]: { type: '@epam/promo:AlertProps', component: promo.Alert },
+            [TSkin.UUI]: { type: '@epam/uui:AlertProps', component: uui.Alert },
         },
         doc: (doc: DocBuilder<loveship.AlertProps | promo.AlertProps>) => {
             doc.merge('children', {

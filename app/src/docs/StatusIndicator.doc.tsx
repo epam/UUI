@@ -1,33 +1,21 @@
 import * as React from 'react';
-import { BaseDocsBlock, EditableDocContent, DocExample, TSkin } from '../common';
-import { TDocConfig } from '../common/docs/docBuilderGen/types';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
-import { DocBuilder } from '@epam/uui-docs';
 import * as promo from '@epam/promo';
-import * as loveshipDocs from './_props/loveship/docs';
-import * as promoDocs from './_props/epam-promo/docs';
+import { TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class StatusIndicatorDoc extends BaseDocsBlock {
     title = 'StatusIndicator';
 
     override config: TDocConfig = {
         name: 'StatusIndicator',
+        contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
-            [TSkin.UUI]: {
-                type: '@epam/uui:StatusIndicatorProps',
-                component: uui.StatusIndicator,
-            },
-            [TSkin.UUI3_loveship]: {
-                type: '@epam/loveship:StatusIndicatorProps',
-                component: loveship.StatusIndicator,
-                doc: (doc: DocBuilder<loveship.StatusIndicatorProps>) => doc.withContexts(loveshipDocs.FormContext, loveshipDocs.ResizableContext),
-            },
-            [TSkin.UUI4_promo]: {
-                type: '@epam/promo:StatusIndicatorProps',
-                component: promo.StatusIndicator,
-                doc: (doc: DocBuilder<promo.StatusIndicatorProps>) => doc.withContexts(promoDocs.FormContext, promoDocs.ResizableContext),
-            },
+            [TSkin.UUI]: { type: '@epam/uui:StatusIndicatorProps', component: uui.StatusIndicator },
+            [TSkin.UUI3_loveship]: { type: '@epam/loveship:StatusIndicatorProps', component: loveship.StatusIndicator },
+            [TSkin.UUI4_promo]: { type: '@epam/promo:StatusIndicatorProps', component: promo.StatusIndicator },
         },
     };
 

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { FlexRow, FlexSpacer } from '@epam/promo';
-import { BaseDocsBlock, TSkin } from '../../common';
+import { BaseDocsBlock } from '../../common';
 import { getQuery } from '../../helpers';
 import css from './DownloadsDoc.module.scss';
 
 import { PromoColorsDoc } from './promo/PromoColors.doc';
 import { LoveshipColorsDoc } from './loveship/LoveshipColors.doc';
+import { TSkin } from '@epam/uui-docs';
 
 export class ColorsPageDoc extends BaseDocsBlock {
     title = 'Colors';

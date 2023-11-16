@@ -1,7 +1,7 @@
-import { TSkin } from '../../types';
 import * as uuiDocs from '../../../../../docs/_props/uui/docs';
 import * as loveshipDocs from '../../../../../docs/_props/loveship/docs';
 import * as promoDocs from '../../../../../docs/_props/epam-promo/docs';
+import { TSkin } from '@epam/uui-docs';
 
 const DOCS_SKIN_SPECIFIC = {
     colorDoc: {

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
     Burger,
     BurgerButton,
@@ -8,7 +9,6 @@ import {
     MainMenuButton,
     MainMenuIcon,
 } from '@epam/uui';
-import * as React from 'react';
 import { AdaptiveItemProps, Dropdown, MainMenuCustomElement, MainMenuLogo } from '@epam/uui-components';
 import { ReactComponent as HelpIcon } from '@epam/assets/icons/common/notification-help-outline-24.svg';
 
