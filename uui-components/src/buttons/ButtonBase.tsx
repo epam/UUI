@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     cx,
-    ButtonBaseCoreProps,
     IHasForwardedRef,
     UuiContexts,
     isEventTargetInsideClickable,
@@ -10,9 +9,11 @@ import {
     uuiMarkers,
     UuiContext,
     isAnyParentHasClass,
+    ICanRedirect,
+    ButtonComponentProps,
 } from '@epam/uui-core';
 
-export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {}
+export type ButtonBaseProps = ButtonComponentProps & ICanRedirect & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> &{};
 
 export const uuiInputElements = [
     uuiElement.checkbox, uuiElement.inputLabel, uuiElement.radioInput, uuiElement.switchBody,

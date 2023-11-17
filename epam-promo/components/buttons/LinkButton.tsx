@@ -1,15 +1,14 @@
-import { devLogger, withMods } from '@epam/uui-core';
-import { LinkButton as UuiLinkButton, LinkButtonProps as UuiLinkButtonProps } from '@epam/uui';
+import { createSkinComponent, devLogger } from '@epam/uui-core';
+import { LinkButtonCoreProps, LinkButton as UuiLinkButton, LinkButtonProps as UuiLinkButtonProps } from '@epam/uui';
 
 export interface LinkButtonMods {
     color?: 'blue' | 'green' | 'amber' | 'red' | 'gray60' | 'gray10';
 }
 
-export type LinkButtonProps = Omit<UuiLinkButtonProps, 'color'> & LinkButtonMods;
+export type LinkButtonProps = LinkButtonCoreProps & LinkButtonMods;
 
-export const LinkButton = withMods<Omit<UuiLinkButtonProps, 'color'>, LinkButtonMods>(
+export const LinkButton = createSkinComponent<UuiLinkButtonProps, LinkButtonProps>(
     UuiLinkButton,
-    () => [],
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<LinkButtonProps, 'color'>({
@@ -23,4 +22,5 @@ export const LinkButton = withMods<Omit<UuiLinkButtonProps, 'color'>, LinkButton
             color: props.color ?? 'blue',
         } as LinkButtonProps;
     },
+    () => [],
 );
