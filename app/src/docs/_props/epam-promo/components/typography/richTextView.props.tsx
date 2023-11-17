@@ -1,14 +1,9 @@
 import * as React from 'react';
-import { RichTextViewMods } from '@epam/uui';
-import { DefaultContext } from '../../docs';
-import { FlexRow, LabeledInput, ControlWrapper, RichTextView, Panel } from '@epam/promo';
-import { LinkButton } from '@epam/promo';
-import { DocBuilder } from '@epam/uui-docs';
 import { RichTextViewProps } from '@epam/uui-components';
-import { Anchor } from '@epam/promo';
-import { Svg } from '@epam/uui-components';
-import { ReactComponent as Calendar } from '@epam/assets/icons/common/action-calendar-18.svg';
-import { TextInput } from '@epam/promo';
+import { DocBuilder } from '@epam/uui-docs';
+import { RichTextViewMods } from '@epam/uui';
+import { FlexRow, LinkButton, LabeledInput, ControlWrapper, TextInput, RichTextView, Panel, Anchor } from '@epam/promo';
+import { DefaultContext } from '../../docs';
 import style from './richTextViewDoc.module.scss';
 
 const richTextViewDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'RichTextView', component: RichTextView })
@@ -106,7 +101,6 @@ const richTextViewDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ n
                             <Anchor href="/">
                                 Click me
                                 {' '}
-                                <Svg svg={ Calendar }></Svg>
                             </Anchor>
                             {' '}
                             It is those feelings that drive our love of astronomy and our desire to learn more and more about it.
@@ -182,7 +176,6 @@ const richTextViewDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ n
                                     <>
                                         Demo Component
                                         <Anchor href="/">
-                                            <Svg svg={ Calendar }></Svg>
                                         </Anchor>
                                         {' '}
                                         :
@@ -221,7 +214,6 @@ export const MyComponent = <div className={ css.myHeader }>`}
                             <Anchor href="/">
                                 click me
                                 {' '}
-                                <Svg svg={ Calendar }></Svg>
                             </Anchor>
                             {' '}
                             consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -239,7 +231,6 @@ export const MyComponent = <div className={ css.myHeader }>`}
                             <Anchor href="/">
                                 click me
                                 {' '}
-                                <Svg svg={ Calendar }></Svg>
                             </Anchor>
                             {' '}
                             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure reprehenderit in voluptate velit esse
