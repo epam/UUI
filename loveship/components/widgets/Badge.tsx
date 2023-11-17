@@ -41,7 +41,6 @@ export const Badge = withMods<Omit<UuiBadgeProps, 'color' | 'fill' | 'size'>, Ba
             color: props.color || 'sky',
             size: props.size || defaultSize,
             fill: props.fill === 'semitransparent' ? 'outline' : (props.fill || 'solid'),
-            indicator: props.indicator,
         } as BadgeProps;
     },
 );

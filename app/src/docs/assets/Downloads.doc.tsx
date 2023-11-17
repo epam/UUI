@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { cx } from '@epam/uui-core';
 import { FlexCell, FlexRow, IconContainer, LinkButton, RichTextView, Text, Tooltip } from '@epam/promo';
-import { BaseDocsBlock, UUI4 } from '../../common/docs';
-import { getQuery } from '../../helpers';
+import { BaseDocsBlock } from '../../common/docs';
 import css from './DownloadsDoc.module.scss';
 import { ReactComponent as Artbord } from '../../icons/artboard.svg';
 import { ReactComponent as FontIcon } from '../../icons/fonts_icon.svg';
@@ -12,49 +11,45 @@ import { ReactComponent as DownloadIcon } from '../../icons/download_icon_set.sv
 import { ReactComponent as LockIcon } from '@epam/assets/icons/common/action-lock-fill-18.svg';
 import { ReactComponent as ContentLinkIcon } from '@epam/assets/icons/common/content-link-18.svg';
 
-const libraries = {
-    UUI: [
-        {
-            title: 'UUI Components Library',
-            additionalInfo: '4 theme included: Loveship Light, Loveship Dark, Promo and Electric',
-            link: 'https://www.figma.com/file/M5Njgc6SQJ3TPUccp5XHQx/UUI-Components?type=design&node-id=29222%3A39517&mode=design&t=NuhhdX8NzuSvGdaX-1',
-            image: Artbord,
-            libraryType: 'figma',
-        }, {
-            title: 'UUI Assets Library',
-            additionalInfo: 'Icons, logotypes, cursors',
-            link: 'https://www.figma.com/file/3mpAy3BEZ75n5GJEZ5UV8z/UUI-Assets?type=design&node-id=137%3A2&mode=design&t=bqol9mr8suaBMnCm-1',
-            image: Artbord,
-            libraryType: 'figma',
-        }, {
-            title: 'UUI Component Guidelines',
-            additionalInfo: 'Guidelines of UUI components',
-            link: 'https://www.figma.com/file/dYwal6PrxrPQWg1lL6ijpn/UUI-Guidelines?type=design&node-id=1886%3A625715&mode=design&t=3ve5cI7s6roXxHxw-1',
-            image: Artbord,
-            libraryType: 'figma',
-        }, {
-            title: 'UUI Patterns',
-            additionalInfo: 'Templates guidelines',
-            link: 'https://www.figma.com/file/qb7WHgBkyBpovFlOZRe30p/UUI-Patterns?type=design&node-id=0%3A1&mode=design&t=LByFqSyb9pwJ6FMX-1',
-            image: Artbord,
-            libraryType: 'figma',
-        }, {
-            title: 'UUI Illustrations',
-            additionalInfo: 'Illustrations pack in addition (promo images, empty states, etc.)',
-            link: 'https://www.figma.com/file/fNIMFXueuk3pfJzL4lWCex/UUI-Illustrations?type=design&t=f7W2ssNZnh1LeBJK-6',
-            image: Artbord,
-            libraryType: 'figma',
-        },
-    ],
-};
+const library = [
+    {
+        title: 'UUI Components Library',
+        additionalInfo: '4 theme included: Loveship Light, Loveship Dark, Promo and Electric',
+        link: 'https://www.figma.com/file/M5Njgc6SQJ3TPUccp5XHQx/UUI-Components?type=design&node-id=29222%3A39517&mode=design&t=NuhhdX8NzuSvGdaX-1',
+        image: Artbord,
+        libraryType: 'figma',
+    }, {
+        title: 'UUI Assets Library',
+        additionalInfo: 'Icons, logotypes, cursors',
+        link: 'https://www.figma.com/file/3mpAy3BEZ75n5GJEZ5UV8z/UUI-Assets?type=design&node-id=137%3A2&mode=design&t=bqol9mr8suaBMnCm-1',
+        image: Artbord,
+        libraryType: 'figma',
+    }, {
+        title: 'UUI Component Guidelines',
+        additionalInfo: 'Guidelines of UUI components',
+        link: 'https://www.figma.com/file/dYwal6PrxrPQWg1lL6ijpn/UUI-Guidelines?type=design&node-id=1886%3A625715&mode=design&t=3ve5cI7s6roXxHxw-1',
+        image: Artbord,
+        libraryType: 'figma',
+    }, {
+        title: 'UUI Patterns',
+        additionalInfo: 'Templates guidelines',
+        link: 'https://www.figma.com/file/qb7WHgBkyBpovFlOZRe30p/UUI-Patterns?type=design&node-id=0%3A1&mode=design&t=LByFqSyb9pwJ6FMX-1',
+        image: Artbord,
+        libraryType: 'figma',
+    }, {
+        title: 'UUI Illustrations',
+        additionalInfo: 'Illustrations pack in addition (promo images, empty states, etc.)',
+        link: 'https://www.figma.com/file/fNIMFXueuk3pfJzL4lWCex/UUI-Illustrations?type=design&t=f7W2ssNZnh1LeBJK-6',
+        image: Artbord,
+        libraryType: 'figma',
+    },
+];
 
 const assets = {
-    UUI: {
-        fonts: 'https://epam.sharepoint.com/:u:/r/sites/EPAMUII3/Shared%20Documents/General/UUI%20fonts/Fonts_UUI4.7z?csf=1&web=1&e=3VU4QA',
-        logos: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI4/Logotypes_UUI4.7z',
-        icons: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI4/Icons_UUI4.7z',
-        illustrations: 'https://epam.sharepoint.com/:u:/s/EPAMUII3/EahAf6j0ZERKqnbgZwTPFjYBX1HJJC9n845j6xC3FL-gKg?e=K0LQU1',
-    },
+    fonts: 'https://epam.sharepoint.com/:u:/r/sites/EPAMUII3/Shared%20Documents/General/UUI%20fonts/Fonts_UUI4.7z?csf=1&web=1&e=3VU4QA',
+    logos: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI4/Logotypes_UUI4.7z',
+    icons: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI4/Icons_UUI4.7z',
+    illustrations: 'https://epam.sharepoint.com/:u:/s/EPAMUII3/EahAf6j0ZERKqnbgZwTPFjYBX1HJJC9n845j6xC3FL-gKg?e=K0LQU1',
 };
 
 export class DownloadsDoc extends BaseDocsBlock {
@@ -100,7 +95,6 @@ export class DownloadsDoc extends BaseDocsBlock {
     }
 
     renderContent() {
-        const isUUI4Skin = getQuery('skin') === UUI4;
         return (
             <span className={ css.themePromo }>
                 <FlexRow alignItems="top" cx={ css.headerRow }>
@@ -112,7 +106,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                 library, additional files, and answers to frequent questions here.
                             </p>
                         </RichTextView>
-                        <FlexRow cx={ css.libraryBlock }>{ libraries['UUI'].map((item) => this.renderLibraryCard(item)) }</FlexRow>
+                        <FlexRow cx={ css.libraryBlock }>{ library.map((item) => this.renderLibraryCard(item)) }</FlexRow>
                     </FlexCell>
                 </FlexRow>
                 <FlexCell>
@@ -129,20 +123,16 @@ export class DownloadsDoc extends BaseDocsBlock {
                                     <Text size="24" fontSize="16" font="museo-sans">
                                         Font Pack
                                     </Text>
-                                    { isUUI4Skin ? (
-                                        <Tooltip content="For internal use only" offset={ [0, 10] }>
-                                            <LinkButton
-                                                iconPosition="right"
-                                                icon={ LockIcon }
-                                                caption="Download"
-                                                size="24"
-                                                href={ assets.UUI.fonts }
-                                                captionCX={ css.assetsLinkCaption }
-                                            />
-                                        </Tooltip>
-                                    ) : (
-                                        <LinkButton caption="Download" size="24" href={ assets.UUI.fonts } captionCX={ css.assetsLinkCaption } />
-                                    ) }
+                                    <Tooltip content="For internal use only" offset={ [0, 10] }>
+                                        <LinkButton
+                                            iconPosition="right"
+                                            icon={ LockIcon }
+                                            caption="Download"
+                                            size="24"
+                                            href={ assets.fonts }
+                                            captionCX={ css.assetsLinkCaption }
+                                        />
+                                    </Tooltip>
                                 </FlexCell>
                             </FlexRow>
                         </FlexCell>
@@ -158,7 +148,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                     <LinkButton
                                         caption="Download"
                                         size="24"
-                                        href={ assets.UUI.logos }
+                                        href={ assets.logos }
                                         captionCX={ css.assetsLinkCaption }
                                     />
                                 </FlexCell>
@@ -176,7 +166,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                     <LinkButton
                                         caption="Download"
                                         size="24"
-                                        href={ assets.UUI.icons }
+                                        href={ assets.icons }
                                         captionCX={ css.assetsLinkCaption }
                                     />
                                 </FlexCell>
@@ -200,7 +190,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                                 icon={ LockIcon }
                                                 caption="Download"
                                                 size="24"
-                                                href={ assets.UUI.illustrations }
+                                                href={ assets.illustrations }
                                                 captionCX={ css.assetsLinkCaption }
                                             />
                                         </Tooltip>
