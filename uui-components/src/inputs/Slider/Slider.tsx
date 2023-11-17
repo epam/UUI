@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { uuiMod, cx } from '@epam/uui-core';
 import { SliderBase, uuiSlider } from './SliderBase';
-import css from './SliderBase.module.scss';
 import { SliderHandle } from './SliderHandle';
 import { SliderScale } from './SliderScale';
+import css from './SliderBase.module.scss';
 
 export class Slider extends SliderBase<number, any> {
     state = {
