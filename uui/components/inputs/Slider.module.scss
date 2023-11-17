@@ -1,5 +1,14 @@
 .root {
     --uui-slider-tooltip-bg: var(--uui-color-70);
+    --uui-slider-tooltip-bg-hover: var(--uui-primary-20);
+    --uui-slider-line-bg: var(--uui-neutral-30);
+    --uui-slider-line-filled-bg: var(--uui-primary-50);
+    --uui-slider-line-active-bg: var(--uui-primary-50);
+    --uui-slider-dot-bg: var(--uui-surface-main);
+    --uui-slider-dot-bg-hover: var(--uui-primary-20);
+    --uui-slider-handle-bg: var(--uui-primary-50);
+    --uui-slider-shadow: var(--uui-shadow-level-1);
+    --uui-slider-scale-text: var(--uui-text-primary);
 
     --uui-slider-font: var(--uui-font);
     --uui-slider-font-weight: 400;
@@ -12,7 +21,7 @@
         font-size: 14px;
         font-family: var(--uui-slider-font);
         font-weight: var(--uui-slider-font-weight);
-        box-shadow: var(--uui-shadow-level-1);
+        box-shadow: var(--uui-slider-shadow);
     }
 
     :global(.uui-tooltip-arrow) {
@@ -23,7 +32,7 @@
         font-size: 11px;
         font-family: var(--uui-slider-font);
         font-weight: var(--uui-slider-font-weight);
-        color: var(--uui-text-primary);
+        color: var(--uui-slider-scale-text);
         margin-top: 10px;
     }
 
@@ -42,7 +51,7 @@
             width: 100%;
             height: 3px;
             border-radius: 10px;
-            background: var(--uui-neutral-30);
+            background: var(--uui-slider-line-bg);
             min-width: 100px;
         }
 
@@ -54,7 +63,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background-color: var(--uui-primary-50);
+            background-color: var(--uui-slider-handle-bg);
             cursor: pointer;
         }
 
@@ -62,38 +71,38 @@
             margin: 0 6px;
             height: 3px;
             border-radius: 10px;
-            background-color: var(--uui-primary-50);
+            background-color: var(--uui-slider-line-filled-bg);
         }
 
         :global(.uui-slider-scale-dot) {
-            background-color: var(--uui-neutral-50);
+            background-color: var(--uui-slider-dot-bg);
             border: 1px var(--uui-neutral-30) solid;
         }
 
         &:hover {
             :global(.uui-slider) {
-                background-color: var(--uui-primary-20);
+                background-color: var(--uui-slider-tooltip-bg-hover);
             }
 
             :global(.uui-slider-scale-dot):not(:global(.uui-slider-scale-filled-dot)) {
-                border-color: var(--uui-primary-20);
-                background-color: var(--uui-primary-20);
+                border-color: var(--uui-slider-dot-bg-hover);
+                background-color: var(--uui-slider-dot-bg-hover);
             }
         }
 
         :global(.uui-slider-scale-filled-dot) {
             background-color: var(--uui-primary-50);
-            border-color: var(--uui-primary-50);
+            border-color: var(--uui-slider-line-active-bg);
         }
 
         &:global(.uui-active) {
             :global(.uui-slider) {
-                background-color: var(--uui-primary-50);
+                background-color: var(--uui-slider-line-active-bg);
             }
 
             :global(.uui-slider-scale-dot):not(:global(.uui-slider-scale-filled-dot)) {
-                border-color: var(--uui-primary-50);
-                background-color: var(--uui-primary-50);
+                border-color: var(--uui-slider-line-active-bg);
+                background-color: var(--uui-slider-line-active-bg);
             }
         }
 
