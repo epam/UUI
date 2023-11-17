@@ -27,7 +27,11 @@
   * [Breaking change]: removed fill "white" and "none" modes, use `fill="outline"` + color instead them.
   * [Breaking change]:removed fill "transparent", use `StatusIndicator` component instead.
   * [Badge]: deprecated fill "semitransparent", it will be removed in future releases. Use `fill="outline'` instead.
-* [LabeledInput]: added possibility to provide `validationMessage` as react node
+* [LabeledInput]:
+  * added `sidenote` and `footnote` props
+  * added `maxLength` and `charCounter` props. You can use them for cases when you need to show a counter which indicates the limit of symbols in input.  
+  * added possibility to provide `validationMessage` as react node
+* [TextArea][Breaking Change]: removed `maxLength` prop, use LabeledInput with `maxLength` and `charCounter={ true }` props instead.
 * [CheckBox, PickerList, RichTextView, Switch, TabButton, VerticalTabButton, ScrollBars]: removed `theme` prop. Use Theming approach instead.
 * [PresetsPanel]: added the ability to add a modal confirmation window when deleting a preset
 
