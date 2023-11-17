@@ -17,6 +17,7 @@ export class LabeledInputDoc extends BaseDocsBlock {
             [TSkin.UUI4_promo]: { type: '@epam/uui:LabeledInputProps', component: promo.LabeledInput },
         },
         doc: (doc: DocBuilder<uui.LabeledInputProps>) => {
+            doc.merge('value', { examples: ['Some simple text'] });
             doc.merge('Tooltip', { examples: [{ value: uui.Tooltip, name: 'Tooltip', isDefault: true }], isRequired: true });
             doc.merge('size', { defaultValue: '36' });
             doc.merge('labelPosition', { defaultValue: 'top' });

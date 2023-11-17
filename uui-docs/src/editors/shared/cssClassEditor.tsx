@@ -30,6 +30,7 @@ export function CssClassEditor(props: IPropDocEditor<CX>) {
             value={ inputProps.input }
             size="24"
             isInvalid={ !inputProps.isValid }
+            rawProps={ { style: { width: '80%' } } }
         />
     );
 }

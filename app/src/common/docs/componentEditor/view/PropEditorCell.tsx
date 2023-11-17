@@ -39,9 +39,8 @@ export function PropEditorCell<TProp = any>(props: IPropEditorCell<TProp>): Reac
             onExampleIdChange: onPropExampleIdChange,
         };
         const Component = typeof PE === 'string' ? SharedPropEditorsMap[PE] : PE;
-        const style = { marginTop: '6px', marginBottom: '6px' };
         return (
-            <FlexRow size="24" spacing="6" rawProps={ { style } }>
+            <FlexRow size="24" spacing="6" rawProps={ { style: { marginTop: '6px', marginBottom: '6px', flexWrap: 'wrap' } } }>
                 <Component { ...peProps } />
                 { descriptionNode }
             </FlexRow>

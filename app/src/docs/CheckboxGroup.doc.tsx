@@ -18,6 +18,10 @@ export class CheckboxGroupDoc extends BaseDocsBlock {
             [TSkin.UUI4_promo]: { type: '@epam/uui-components:CheckboxGroupProps', component: promo.CheckboxGroup },
         },
         doc: (doc: DocBuilder<uuiComponents.CheckboxGroupProps<any>>) => {
+            doc.merge('CheckboxInput', {
+                examples: [{ name: '<Checkbox />', value: null }],
+                editorType: 'SingleUnknownEditor',
+            });
             doc.merge('value', { editorType: 'JsonView', examples: [] });
             const itemsExample = [{ name: 'Mentee', id: 1 }, { name: 'Direct Subordinates', id: 2 }, { name: 'Project Members', id: 3 }];
             doc.merge('items', { examples: [{ name: JSON.stringify(itemsExample, undefined, 1), value: itemsExample, isDefault: true }] });

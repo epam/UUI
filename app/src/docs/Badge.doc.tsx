@@ -21,6 +21,13 @@ export class BadgeDoc extends BaseDocsBlock {
                 examples: [{ name: '<CountIndicator />', value: null }],
                 editorType: 'SingleUnknownEditor',
             });
+            doc.merge('count', {
+                examples: [0,
+                    1,
+                    123,
+                    { name: '"This is a string"', value: 'This is a string' },
+                    { name: '<i>This is React.ReactElement</i>', value: <i>This is React.ReactElement</i> }],
+            });
             doc.merge('iconPosition', { defaultValue: 'left' });
         },
     };

@@ -26,7 +26,7 @@ export class ControlGroupDoc extends BaseDocsBlock {
                             <React.Fragment>
                                 <uui.Button color="accent" fill="solid" caption="Submit" onClick={ () => {} } />
                                 <uui.Button caption="Help" onClick={ () => {} } />
-                                <uui.Button color="primary" fill="ghost" caption="Cancel" onClick={ () => {} } />
+                                <uui.Button fill="none" color="secondary" caption="Cancel" onClick={ () => {} } />
                             </React.Fragment>
                         ),
                         isDefault: true,
