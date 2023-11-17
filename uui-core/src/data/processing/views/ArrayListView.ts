@@ -51,6 +51,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         super(editable, newProps);
         this.props = newProps;
         this.visibleTree = Tree.blank(newProps);
+        this.treeWithoutPaging = Tree.blank(newProps);
         this.update(editable, props);
     }
 
@@ -151,6 +152,11 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
         this.checkItems(!rowProps.isChecked, rowProps.id);
+    };
+
+    // TODO: add possibility to check one page/multiple pages for ArrayListView/AsyncListView
+    protected handleSelectAllRows = (checked: boolean) => {
+        this.checkItems(checked);
     };
 
     protected handleSelectAll = (checked: boolean) => {

@@ -101,6 +101,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         super(editable, newProps);
         this.props = this.applyDefaultsToProps(newProps);
         this.visibleTree = Tree.blank<TItem, TId>(newProps);
+        this.treeWithoutPaging = Tree.blank<TItem, TId>(newProps);
         this.fullTree = Tree.blank<TItem, TId>(newProps);
         this.cache = cache;
         if (!this.cache) {
@@ -314,7 +315,11 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         byFullTree: boolean = false,
     ): Promise<LoadResult<TItem, TId>> {
         const localValue = { ...this.value, ...value };
-        const tree = byFullTree ? this.fullTree : this.visibleTree;
+        let tree = byFullTree ? this.fullTree : this.visibleTree;
+        if (options?.skipPaging) {
+            tree = this.treeWithoutPaging;
+        }
+
         const loadingTree = tree;
 
         try {
@@ -332,14 +337,20 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
             const newTree = await newTreePromise;
 
-            const linkToTree = byFullTree ? this.fullTree : this.visibleTree;
+            let linkToTree = byFullTree ? this.fullTree : this.visibleTree;
+            if (options?.skipPaging) {
+                linkToTree = this.treeWithoutPaging;
+            }
+
             // If tree is changed during this load, than there was reset occurred (new value arrived)
             // We need to tell caller to reject this result
             const isOutdated = linkToTree !== loadingTree;
             const isUpdated = linkToTree !== newTree;
 
             if (!isOutdated) {
-                if (!this.value.search) {
+                if (options?.skipPaging) {
+                    this.treeWithoutPaging = newTree;
+                } else if (!this.value.search) {
                     this.visibleTree = newTree;
                     this.fullTree = newTree;
                 } else {
@@ -362,14 +373,18 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.checkItems(isChecked, false, id);
     };
 
-    protected handleSelectAll = (value: boolean) => {
+    protected handleSelectAllRows = (value: boolean) => {
         this.checkItems(value, true);
     };
 
-    private async checkItems(isChecked: boolean, isRoot: boolean, checkedId?: TId) {
+    protected handleSelectAll = (value: boolean) => {
+        this.checkItems(value, true, undefined, true);
+    };
+
+    private async checkItems(isChecked: boolean, isRoot: boolean, checkedId?: TId, withoutPaging?: boolean) {
         let checked = (this.value && this.value.checked) || [];
 
-        let tree = this.visibleTree;
+        let tree = withoutPaging ? this.treeWithoutPaging : this.visibleTree;
 
         const isImplicitMode = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
         if (this.props.cascadeSelection || isRoot) {
@@ -391,6 +406,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                         return isRoot || isEqual(id, checkedId) || (this.value.search && parents.some((parent) => isEqual(parent, id)));
                     },
                     isLoadStrict: true,
+                    skipPaging: withoutPaging,
                 },
                 loadNestedLayersChildren,
                 { search: null },
