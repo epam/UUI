@@ -79,10 +79,10 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
         ) : (
             <div className={ css.noFoundModalContainer }>
                 <IconContainer cx={ css.noFoundModalContainerIcon } icon={ SearchIcon } />
-                <Text cx={ css.noFoundModalContainerText } font="semibold" fontSize="16" lineHeight="24" color="primary" size="36">
+                <Text cx={ css.noFoundModalContainerText } fontWeight="600" fontSize="16" lineHeight="24" color="primary" size="36">
                     {i18n.dataPickerBody.noRecordsMessage}
                 </Text>
-                <Text cx={ css.noFoundModalContainerText } fontSize="12" lineHeight="18" font="regular" color="primary" size="36">
+                <Text cx={ css.noFoundModalContainerText } fontSize="12" lineHeight="18" color="primary" size="36">
                     {i18n.dataPickerBody.noRecordsSubTitle}
                 </Text>
             </div>

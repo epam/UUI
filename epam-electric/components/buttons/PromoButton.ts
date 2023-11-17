@@ -18,7 +18,7 @@ export function applyButtonMods(mods: PromoButtonProps) {
     return [
         'uui-promo-button',
         css.root,
-        css[`size-${mods.size || defaultSize}`],
+        `uui-size-${mods.size || defaultSize}`,
     ];
 }
 
