@@ -11,7 +11,7 @@ describe('Text', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(
-                <Text color="primary" size="48" font="regular" fontSize="24" lineHeight="30" onClick={ jest.fn }>
+                <Text color="primary" size="48" fontSize="24" lineHeight="30" onClick={ jest.fn }>
                     Test
                 </Text>,
             )

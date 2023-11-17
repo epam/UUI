@@ -27,7 +27,7 @@ export function applyButtonMods(mods: ButtonProps) {
         'uui-button',
         `uui-fill-${mods.fill || 'solid'}`,
         `uui-color-${mods.color || 'primary'}`,
-        css[`size-${mods.size || defaultSize}`],
+        `uui-size-${mods.size || defaultSize}`,
     ];
 }
 

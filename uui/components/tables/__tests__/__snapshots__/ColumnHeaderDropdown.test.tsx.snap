@@ -5,7 +5,7 @@ Array [
   <button
     aria-expanded={true}
     aria-haspopup={true}
-    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-primary size-36"
+    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-primary uui-size-36"
     onClick={[Function]}
     tabIndex={0}
     type="button"
