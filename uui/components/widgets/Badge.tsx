@@ -27,9 +27,13 @@ export interface BadgeMods {
     indicator?: boolean;
 }
 
-export type BadgeProps = ButtonProps & BadgeMods;
+export type BadgeCoreProps = ButtonProps & {
+    size?: BadgeSize;
+};
 
-export function applyBadgeMods(mods: BadgeMods) {
+export type BadgeProps = BadgeCoreProps & BadgeMods;
+
+export function applyBadgeMods(mods: BadgeProps) {
     return [
         'uui-badge',
         css.root,
@@ -49,7 +53,7 @@ const mapCountIndicatorSizes: Record<BadgeSize, CountIndicatorProps['size']> = {
     48: '24',
 };
 
-export const Badge = withMods<ButtonProps, BadgeMods>(Button, applyBadgeMods, (props) => {
+export const Badge = withMods<BadgeProps, BadgeMods>(Button, applyBadgeMods, (props) => {
     if (__DEV__) {
         devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'size'>({
             component: 'Badge',

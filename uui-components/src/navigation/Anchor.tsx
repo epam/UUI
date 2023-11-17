@@ -4,30 +4,26 @@ import {
     uuiMod,
     uuiElement,
     uuiMarkers,
-    IHasRawProps,
     UuiContext,
     IHasForwardedRef,
     IHasCX,
-    ICanRedirect,
     IHasChildren,
     UuiContexts,
     IDisableable,
     IClickable,
     cx,
     IAnalyticableClick,
+    ButtonComponentProps,
 } from '@epam/uui-core';
 import { ButtonBase } from '../buttons';
 import css from './Anchor.module.scss';
 
-export interface AnchorProps
-    extends IHasCX,
-    ICanRedirect,
-    IHasChildren,
-    IDisableable,
-    IClickable,
-    IAnalyticableClick,
-    IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>>,
-    IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> {}
+export type AnchorProps = ButtonComponentProps & IHasCX&
+IHasChildren&
+IDisableable&
+IClickable&
+IAnalyticableClick&
+IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> & {};
 
 export class AnchorImpl extends ButtonBase<AnchorProps> {
     static contextType = UuiContext;

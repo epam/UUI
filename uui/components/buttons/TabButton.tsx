@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, ButtonProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui-core';
+import { MergedRawProps, withMods } from '@epam/uui-core';
 import { getIconClass } from './helper';
 import { CountIndicator } from '../widgets';
 import { systemIcons } from '../../icons/icons';
@@ -27,7 +27,7 @@ export const TabButton = withMods<ButtonProps, TabButtonMods>(Button, applyTabBu
     dropdownIcon: systemIcons['36'].foldingArrow,
     clearIcon: systemIcons['36'].clear,
     ...props,
-    rawProps: { role: 'tab', ...props.rawProps },
+    rawProps: { role: 'tab', ...props.rawProps } as MergedRawProps,
     countIndicator: (countIndicatorProps) => (
         <CountIndicator
             { ...countIndicatorProps }
