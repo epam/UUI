@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { UuiContext, UuiContexts } from '@epam/uui-core';
 import { Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars } from '@epam/uui';
 import { ComponentEditor } from './ComponentEditor';
 import { svc } from '../../services';
@@ -14,14 +15,21 @@ export enum TSkin {
     UUI4_promo = 'UUI4_promo',
     UUI = 'UUI'
 }
-const DEFAULT_SKIN = TSkin.UUI4_promo;
+
+const themeName: Record<TSkin, string> = {
+    UUI4_promo: 'uui-theme-promo_important',
+    UUI3_loveship: 'uui-theme-loveship_important',
+    UUI: '',
+};
+
+const DEFAULT_SKIN = TSkin.UUI;
 
 export const UUI3 = TSkin.UUI3_loveship;
 export const UUI4 = TSkin.UUI4_promo;
 export const UUI = TSkin.UUI;
 
 const items: { id: TSkin; caption: string }[] = [
-    { caption: 'UUI3 [Loveship]', id: TSkin.UUI3_loveship }, { caption: 'UUI4 [Promo]', id: TSkin.UUI4_promo }, { caption: 'UUI [Themebale]', id: TSkin.UUI },
+    { caption: 'UUI [Themebale]', id: TSkin.UUI }, { caption: 'UUI3 [Loveship]', id: TSkin.UUI3_loveship }, { caption: 'UUI4 [Promo]', id: TSkin.UUI4_promo },
 ];
 
 export type TDocsGenType = TDocsGenExportedType;
@@ -32,6 +40,9 @@ type DocPath = {
 interface BaseDocsBlockState {}
 
 export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockState> {
+    public static contextType = UuiContext;
+    public context: UuiContexts;
+
     constructor(props: any) {
         super(props);
 
@@ -165,7 +176,21 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         );
     }
 
+    handlePortalTheme(prop: 'clear' | TSkin) {
+        // TODO: remove this when all our site will use one 'theme-color-picker' with PropertyExplorer
+        const portalId = this.context.uuiLayout.getPortalRootId();
+        const rootPortal = document.getElementById(portalId);
+
+        if (prop === 'clear') {
+            rootPortal.className = '';
+        } else {
+            rootPortal.className = themeName[prop];
+        }
+    }
+
     handleChangeSkin(skin: TSkin) {
+        this.handlePortalTheme(skin);
+
         svc.uuiRouter.redirect({
             pathname: '/documents',
             query: {
@@ -178,9 +203,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     }
 
     handleChangeMode(mode: 'doc' | 'propsEditor') {
-        const skin = getQuery('skin');
-        if (mode === 'propsEditor' && skin !== UUI) {
-        }
+        this.handlePortalTheme('clear');
 
         svc.uuiRouter.redirect({
             pathname: '/documents',
@@ -188,7 +211,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                 category: 'components',
                 id: getQuery('id'),
                 mode: mode,
-                skin: getQuery('skin'),
+                skin: DEFAULT_SKIN,
             },
         });
     }

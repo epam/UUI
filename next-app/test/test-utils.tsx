@@ -4,7 +4,6 @@ import uuiAppData from '../demoData/uuiAppData.json';
 import { useUuiServicesSsr, UuiContext } from "@epam/uui-core";
 import { apiDefinition, TApi } from "../helpers/apiDefinition";
 import { useRouter } from "next/router";
-import { skinContext } from "@epam/promo";
 
 type ProviderProps = {
     children: ReactElement<any, any> | null;
@@ -55,7 +54,6 @@ const Providers = ({ children }: ProviderProps) => {
     const { services } = useUuiServicesSsr<TApi, AppContextType>({
         appContext: uuiAppData, router: router,
         apiDefinition,
-        skinContext,
     });
     return <UuiContext.Provider value={ services }>{ children }</UuiContext.Provider>;
 };

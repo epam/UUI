@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { ICanRedirect, IClickable, IDisableable, IHasCaption, IHasCX, IHasIcon, IAnalyticableClick, IHasTabIndex, IHasRawProps } from '../props';
-import { IBasicPickerToggler, IDropdownToggler } from '../pickers';
+import { ICanRedirect, IClickable, IDisableable, IHasCaption, IHasCX, IHasIcon, IAnalyticableClick,
+    IHasTabIndex, IHasRawProps, IDropdownToggler,
+} from '../props';
+import { IBasicPickerToggler } from '../pickers';
 import { Icon } from '../objects';
 
 export interface ButtonBaseCoreProps extends IHasCX, IClickable, ICanRedirect, IDisableable, IHasIcon, IAnalyticableClick, IHasTabIndex,
