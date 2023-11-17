@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     PropDoc,
     SharedPropEditorsMap,
-    ISharedPropEditor, TEditorType, PropExampleObject,
+    IPropDocEditor, TEditorType, PropExampleObject,
 } from '@epam/uui-docs';
 import { IconButton, Tooltip } from '@epam/uui';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
@@ -19,29 +19,30 @@ export function PropEditorCell<TProp = any>(props: IPropEditorCell<TProp>): Reac
     const { propValue, propExampleId, propExamplesList, onPropValueChange, onPropExampleIdChange } = props;
     const { editorType, name, description } = props.prop;
 
-    let re: TEditorType<any, any> = editorType;
-    if (!re) {
+    let PE: TEditorType = editorType;
+    if (!PE) {
         const numExamples = propExamplesList.length;
         if (numExamples > 1) {
-            re = 'MultiUnknownEditor';
+            PE = 'MultiUnknownEditor';
         } else if (numExamples === 1) {
-            re = 'SingleUnknownEditor';
+            PE = 'SingleUnknownEditor';
         }
     }
 
-    if (re) {
+    if (PE) {
         const descriptionNode = <PropDescription description={ description } />;
-        if (typeof re === 'string') {
+        const peProps: IPropDocEditor = {
+            name,
+            value: propValue,
+            exampleId: propExampleId,
+            examples: propExamplesList,
+            onValueChange: onPropValueChange,
+            onExampleIdChange: onPropExampleIdChange,
+        };
+        if (typeof PE === 'string') {
             /*  Preferable approach */
-            const SharedPeComponent = SharedPropEditorsMap[re];
-            const peProps: ISharedPropEditor = {
-                name,
-                value: propValue,
-                exampleId: propExampleId,
-                examples: propExamplesList,
-                onValueChange: onPropValueChange,
-                onExampleIdChange: onPropExampleIdChange,
-            };
+            const SharedPeComponent = SharedPropEditorsMap[PE];
+
             return (
                 <>
                     <SharedPeComponent { ...peProps } />
@@ -49,13 +50,8 @@ export function PropEditorCell<TProp = any>(props: IPropEditorCell<TProp>): Reac
                 </>
             );
         } else {
-            /* Old approach */
-            const node = re({ value: propValue, onValueChange: onPropValueChange }, propExamplesList?.map((ex) => ex.value));
             return (
-                <>
-                    { node }
-                    { descriptionNode }
-                </>
+                <PE { ...peProps } />
             );
         }
     }

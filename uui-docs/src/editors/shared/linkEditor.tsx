@@ -2,7 +2,7 @@ import React from 'react';
 import { IconContainer, Tooltip } from '@epam/uui';
 import { JsonEditor } from './jsonEditor';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
-import { ISharedPropEditor } from '../../types';
+import { IPropDocEditor } from '../../types';
 
 const example = { pathname: '/myPath', query: { myQueryParam1: 'test1', myQueryParam2: 'test2' } };
 const tooltipContent = (
@@ -11,7 +11,7 @@ const tooltipContent = (
     </pre>
 );
 
-export function LinkEditor(props: ISharedPropEditor<object>) {
+export function LinkEditor(props: IPropDocEditor<object>) {
     return (
         <>
             <JsonEditor { ...props } />

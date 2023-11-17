@@ -1,15 +1,29 @@
 import * as React from 'react';
 import { IHasIcon } from '@epam/uui-core';
-import { ColorPicker, DocBuilder } from '@epam/uui-docs';
+import { ColorPicker, DocBuilder, IPropDocEditor } from '@epam/uui-docs';
 import { ColorMod } from '@epam/uui';
 import { getIconList } from '../../../../documents/iconListHelpers';
-import { IconPicker } from '../../epam-promo/docs';
+import { IconPicker } from '../components/iconPicker/IconPicker';
 
 export const colorDoc = new DocBuilder<ColorMod>({ name: 'Color' }).prop('color', {
-    editorType: (editable: any, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i })) } { ...editable } />,
+    editorType: function UuiColorPicker(props: IPropDocEditor) {
+        const { value, onValueChange } = props;
+        const examples = props.examples?.map((ex) => ({ value: ex.value }));
+        const editable = { value, onValueChange };
+        return (
+            <ColorPicker colors={ examples } { ...editable } />
+        );
+    },
 });
 
 export const iconWithInfoDoc = new DocBuilder<IHasIcon>({ name: 'Icon' }).prop('icon', {
-    editorType: (editable: any, examples) => <IconPicker icons={ examples } { ...editable } enableInfo={ true } />,
+    editorType: function UuiIconPicker(props: IPropDocEditor) {
+        const { value, onValueChange } = props;
+        const examples = props.examples?.map((ex) => ex.value);
+        const editable = { value, onValueChange };
+        return (
+            <IconPicker icons={ examples } { ...editable } enableInfo={ true } />
+        );
+    },
     examples: getIconList(true).map((i) => ({ value: i as any })),
 });

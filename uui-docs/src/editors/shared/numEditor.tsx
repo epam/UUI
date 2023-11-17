@@ -1,8 +1,8 @@
 import React from 'react';
 import { NumericInput } from '@epam/uui';
-import { ISharedPropEditor } from '../../types';
+import { IPropDocEditor } from '../../types';
 
-export function NumEditor(props: ISharedPropEditor<number>) {
+export function NumEditor(props: IPropDocEditor<number>) {
     return (
         <NumericInput
             { ...props }

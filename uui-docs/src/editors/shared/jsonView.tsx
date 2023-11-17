@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text } from '@epam/uui';
-import { ISharedPropEditor } from '../../types';
+import { IPropDocEditor } from '../../types';
 
-export function JsonView(props: ISharedPropEditor) {
+export function JsonView(props: IPropDocEditor) {
     const { value } = props;
     if (value != null) {
         return (<Text>{ JSON.stringify(value) }</Text>);

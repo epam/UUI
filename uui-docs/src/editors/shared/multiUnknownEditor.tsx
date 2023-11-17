@@ -1,8 +1,8 @@
 import React from 'react';
 import { MultiUnknownExamples } from './examples/multiUnknownExamples';
-import { ISharedPropEditor } from '../../types';
+import { IPropDocEditor } from '../../types';
 
-export function MultiUnknownEditor(props: ISharedPropEditor) {
+export function MultiUnknownEditor(props: IPropDocEditor) {
     return (
         <MultiUnknownExamples { ...props } />
     );

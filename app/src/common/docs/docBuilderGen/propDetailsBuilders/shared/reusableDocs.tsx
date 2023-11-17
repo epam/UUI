@@ -9,14 +9,10 @@ const DOCS_SKIN_SPECIFIC = {
         [TSkin.UUI3_loveship]: loveshipDocs.colorDoc,
         [TSkin.UUI4_promo]: promoDocs.colorDoc,
     },
-    iconDoc: {
-        [TSkin.UUI]: uuiDocs.iconWithInfoDoc,
-        [TSkin.UUI3_loveship]: loveshipDocs.iconWithInfoDoc,
-        [TSkin.UUI4_promo]: promoDocs.iconWithInfoDoc,
-    },
 };
 const DOCS_SKIN_AGNOSTIC = {
     pickerBaseOptionsDoc: uuiDocs.pickerBaseOptionsDoc,
+    iconWithInfoDoc: uuiDocs.iconWithInfoDoc,
 };
 
 export function getDocBySkin<S extends TSkin, K extends (keyof typeof DOCS_SKIN_SPECIFIC)>(skin: S, name: K): (typeof DOCS_SKIN_SPECIFIC)[K][S] {

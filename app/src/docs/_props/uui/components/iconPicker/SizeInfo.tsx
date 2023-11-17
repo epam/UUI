@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { cx } from '@epam/uui-core';
 import css from './SizeInfo.module.scss';
-import { FlexRow, FlexCell, Text } from '@epam/promo';
+import { FlexRow, FlexCell, Text } from '@epam/uui';
 
 interface SizeInfoProps {
     size: '48' | '42' | '36' | '30' | '24' | '18';
@@ -24,14 +24,14 @@ export class SizeInfo extends React.Component<SizeInfoProps, any> {
 
         return (
             <div className={ css.root }>
-                <Text color="gray5" size="18" fontSize="14" font="sans-semibold" cx={ css.recommendedText }>
+                <Text color="contrast" size="18" fontSize="14" font="semibold" cx={ css.recommendedText }>
                     Use the recommended icon sizes
                 </Text>
                 <div className={ css.infoTable }>
                     <FlexRow cx={ css.height18 }>
                         <FlexCell minWidth={ 80 } shrink={ 0 } cx={ cx(css.leftCell, css.height18) } />
                         <FlexCell width="auto" shrink={ 0 } grow={ 1 }>
-                            <Text size="18" fontSize="12" cx={ css.borderBottom } font="sans-semibold">
+                            <Text size="18" fontSize="12" cx={ css.borderBottom } font="semibold">
                                 Control Size
                             </Text>
                         </FlexCell>
@@ -40,7 +40,7 @@ export class SizeInfo extends React.Component<SizeInfoProps, any> {
                         <FlexCell minWidth={ 80 } shrink={ 0 } cx={ cx(css.leftCell, css.height24) } />
                         {iconSizes[0].map((size) => (
                             <FlexCell key={ size } minWidth={ 38 } shrink={ 0 } cx={ this.props.size === size && css.activeV }>
-                                <Text size="24" font="sans-semibold">
+                                <Text size="24" font="semibold" color="primary">
                                     {size}
                                 </Text>
                             </FlexCell>
@@ -48,7 +48,7 @@ export class SizeInfo extends React.Component<SizeInfoProps, any> {
                     </FlexRow>
                     <FlexRow>
                         <FlexCell minWidth={ 80 } shrink={ 0 } cx={ css.leftCell }>
-                            <Text fontSize="12" font="sans-semibold">
+                            <Text fontSize="12" font="semibold">
                                 Icon size
                             </Text>
                         </FlexCell>

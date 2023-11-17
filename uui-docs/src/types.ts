@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { IEditable } from '@epam/uui-core';
 import { IDemoApi } from './demoApi';
 import { DocBuilder } from './DocBuilder';
 
@@ -38,7 +37,7 @@ export type PropExampleObject<TProp> = {
 
 export type PropExample<TProp> = PropExampleObject<TProp> | TProp;
 
-export interface ISharedPropEditor<TProp = any> {
+export interface IPropDocEditor<TProp = any> {
     name: string;
     value: TProp;
     exampleId: string;
@@ -59,10 +58,7 @@ export type TSharedPropEditorType =
     'CantResolve'
     ;
 
-export type TRenderEditorFn<TProps, TProp extends keyof TProps> =
-    (editable: IEditable<TProps[TProp]>, examples?: TProps[TProp][]) => React.ReactNode;
-
-export type TEditorType<TProps, TProp extends keyof TProps> = TRenderEditorFn<TProps, TProp> | TSharedPropEditorType;
+export type TEditorType = React.FC<IPropDocEditor> | TSharedPropEditorType;
 
 export interface PropDoc<TProps, TProp extends keyof TProps> {
     name: Extract<keyof TProps, string>;
@@ -70,7 +66,7 @@ export interface PropDoc<TProps, TProp extends keyof TProps> {
     isRequired: boolean;
     defaultValue?: TProps[TProp];
     examples?: PropExample<TProps[TProp]>[] | ((ctx: IPropSamplesCreationContext<TProps>) => PropExample<TProps[TProp]>[]);
-    editorType?: TEditorType<TProps, TProp>;
+    editorType?: TEditorType;
     color?: string;
     remountOnChange?: boolean;
 }

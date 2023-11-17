@@ -1,5 +1,5 @@
 import React from 'react';
-import { ISharedPropEditor, TSharedPropEditorType } from '../../types';
+import { IPropDocEditor, TSharedPropEditorType } from '../../types';
 import { CssClassEditor } from './cssClassEditor';
 import { JsonEditor } from './jsonEditor';
 import { JsonView } from './jsonView';
@@ -10,7 +10,7 @@ import { MultiUnknownEditor } from './multiUnknownEditor';
 import { SingleUnknownEditor } from './singleUnknownEditor';
 import { CantResolve } from './cantResolve';
 
-export const SharedPropEditorsMap: Record<TSharedPropEditorType, React.FC<ISharedPropEditor>> = {
+export const SharedPropEditorsMap: Record<TSharedPropEditorType, React.FC<IPropDocEditor>> = {
     CssClassEditor,
     JsonEditor,
     JsonView,

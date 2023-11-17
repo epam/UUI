@@ -1,5 +1,3 @@
-@use '~@epam/promo/assets/styles/colors' as *;
-
 .container {
     .selectContainer {
         display: flex;
@@ -29,11 +27,11 @@
         width: 36px;
         height: 36px;
         align-items: center;
-        border: 1px solid $gray40;
+        border: 1px solid var(--uui-secondary);
         border-radius: 3px;
 
         svg {
-            fill: $gray60;
+            fill: var(--uui-secondary);
         }
     }
 

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { RadioInput } from '@epam/uui';
-import { ISharedPropEditor } from '../../../types';
+import { IPropDocEditor } from '../../../types';
 
-export function SingleUnknownExample(props: ISharedPropEditor) {
+export function SingleUnknownExample(props: IPropDocEditor) {
     const { examples, exampleId, onExampleIdChange, name } = props;
     const singleExample = examples[0];
     const isChecked = exampleId !== undefined;

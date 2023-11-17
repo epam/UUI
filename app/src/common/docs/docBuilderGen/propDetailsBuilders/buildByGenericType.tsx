@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropDoc } from '@epam/uui-docs';
 import { TPropEditorType } from '../../../apiReference/sharedTypes';
-import { getDocBySkin } from './shared/reusableDocs';
+import { getCommonDoc, getDocBySkin } from './shared/reusableDocs';
 import { TPropDocBuilder } from '../docBuilderGenTypes';
 
 const COLOR_PROP_NAMES = ['color', 'appLogoBgColor', 'customerLogoBgColor'];
@@ -29,12 +29,12 @@ const boolDetailsBuilder: TPropDocBuilder = (params) => {
 };
 
 const componentDetailsBuilder: TPropDocBuilder = (params) => {
-    const { prop, skin } = params;
+    const { prop } = params;
     const editor = prop.editor;
 
     if (editor.type === TPropEditorType.component) {
         if (ICON_PROP_NAMES.indexOf(prop.name) !== -1) {
-            const { name, ...rest } = getDocBySkin(skin, 'iconDoc').getProp('icon');
+            const { name, ...rest } = getCommonDoc('iconWithInfoDoc').getProp('icon');
             return rest;
         }
         const SampleReactComponents = {

@@ -1,5 +1,3 @@
-@use '~@epam/promo/assets/styles/colors' as *;
-
 .root {
     .recommendedText {
         text-align: center;
@@ -7,9 +5,9 @@
 
     .infoTable {
         margin-top: 12px;
-        border: 1px solid $gray40;
+        border: 1px solid var(--uui-color-contrast);
         text-align: center;
-        background: white;
+        background: var(--uui-surface-main);
     }
 
     .height18 {
@@ -21,15 +19,15 @@
     }
 
     .leftCell {
-        border-right: 1px solid $gray40;
+        border-right: 1px solid var(--uui-neutral-50);
     }
 
     .borderBottom {
-        border-bottom: 1px solid $gray40;
+        border-bottom: 1px solid var(--uui-neutral-50);
     }
 
     .activeV,
     .activeH {
-        background: #577CE633;
+        background: var(--uui-neutral-30);
     }
 }

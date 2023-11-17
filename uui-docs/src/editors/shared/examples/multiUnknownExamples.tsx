@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Button, MultiSwitch, Tooltip } from '@epam/uui';
 import { isPropValueEmpty, stringifyUnknown } from '../utils/propEditorUtils';
-import { ISharedPropEditor } from '../../../types';
+import { IPropDocEditor } from '../../../types';
 
-export function MultiUnknownExamples(props: ISharedPropEditor) {
+export function MultiUnknownExamples(props: IPropDocEditor) {
     const { value, examples, exampleId, onExampleIdChange } = props;
     const items = examples.map((example) => ({
         caption: example.name,

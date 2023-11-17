@@ -1,9 +1,9 @@
 import React from 'react';
 import { TextArea } from '@epam/uui';
 import { useInputValue } from './utils/hooks';
-import { ISharedPropEditor } from '../../types';
+import { IPropDocEditor } from '../../types';
 
-export function JsonEditor(props: ISharedPropEditor) {
+export function JsonEditor(props: IPropDocEditor) {
     const inputProps = useInputValue<object, string>({
         value: props.value,
         onValueChange: props.onValueChange,

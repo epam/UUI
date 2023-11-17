@@ -1,13 +1,13 @@
 import React from 'react';
 import { FlexCell, TextInput } from '@epam/uui';
 import { MultiStringExamples } from './examples/multiStringExamples';
-import { ISharedPropEditor } from '../../types';
+import { IPropDocEditor } from '../../types';
 
-export function StringEditor(props: ISharedPropEditor<string>) {
+export function StringEditor(props: IPropDocEditor<string>) {
     return <TextInput { ...props } size="24" placeholder="Text value" onCancel={ () => props.onValueChange('') } />;
 }
 
-export function StringWithExamplesEditor(props: ISharedPropEditor<string>) {
+export function StringWithExamplesEditor(props: IPropDocEditor<string>) {
     return (
         <>
             <FlexCell minWidth={ 150 }>

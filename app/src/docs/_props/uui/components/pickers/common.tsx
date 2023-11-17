@@ -1,6 +1,5 @@
 import { ArrayDataSource, LazyDataSource, AsyncDataSource, PickerBaseOptions } from '@epam/uui-core';
-import { DocBuilder, IPropSamplesCreationContext } from '@epam/uui-docs';
-import { demoData } from '@epam/uui-docs';
+import { DocBuilder, IPropSamplesCreationContext, demoData } from '@epam/uui-docs';
 
 const dataSourcesMap: any = {
     languages: null,

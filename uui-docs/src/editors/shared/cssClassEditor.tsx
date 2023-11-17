@@ -2,9 +2,9 @@ import * as React from 'react';
 import { TextInput } from '@epam/uui';
 import { CX } from '@epam/uui-core';
 import { useInputValue } from './utils/hooks';
-import { ISharedPropEditor } from '../../types';
+import { IPropDocEditor } from '../../types';
 
-export function CssClassEditor(props: ISharedPropEditor<CX>) {
+export function CssClassEditor(props: IPropDocEditor<CX>) {
     const inputProps = useInputValue<CX, string>({
         value: props.value,
         onValueChange: (newVal) => {
