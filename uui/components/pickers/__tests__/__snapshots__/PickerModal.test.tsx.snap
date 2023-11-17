@@ -15,391 +15,355 @@ exports[`PickerModal should be rendered correctly 1`] = `
     onClick={[Function]}
   />
   <div
-    data-focus-guard={true}
+    aria-modal={true}
+    className="uui-modal-window root modal container"
+    role="dialog"
     style={
       Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
+        "height": "700px",
+        "width": "600px",
       }
     }
-    tabIndex={0}
-  />
-  <div
-    data-focus-lock-disabled={false}
-    onBlur={[Function]}
-    onFocus={[Function]}
   >
     <div
-      aria-modal={true}
-      className="uui-modal-window root modal container"
-      role="dialog"
+      className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
       style={
         Object {
-          "height": "700px",
-          "width": "600px",
+          "columnGap": undefined,
+          "rowGap": undefined,
         }
       }
     >
       <div
-        className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
-        style={
-          Object {
-            "columnGap": undefined,
-            "rowGap": undefined,
-          }
-        }
+        className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
       >
-        <div
-          className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
-        >
-          Please select
-        </div>
-        <div
-          className="flexSpacer"
-        />
-        <div
-          className="flexCell"
-          style={
-            Object {
-              "alignSelf": undefined,
-              "flexBasis": "auto",
-              "flexGrow": undefined,
-              "flexShrink": 0,
-              "minWidth": 0,
-              "textAlign": undefined,
-            }
-          }
-        >
-          <button
-            aria-label="Close modal"
-            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
-            onClick={[Function]}
-            tabIndex={0}
-            type="button"
-          >
-            <div
-              className="container uui-icon uui-enabled"
-              style={Object {}}
-            >
-              <svg
-                className=""
-              />
-            </div>
-          </button>
-        </div>
+        Please select
       </div>
       <div
-        className="flexCell subHeaderWrapper"
+        className="flexSpacer"
+      />
+      <div
+        className="flexCell"
         style={
           Object {
             "alignSelf": undefined,
-            "flexBasis": "0",
+            "flexBasis": "auto",
             "flexGrow": undefined,
-            "flexShrink": undefined,
+            "flexShrink": 0,
             "minWidth": 0,
             "textAlign": undefined,
           }
         }
       >
-        <div
-          className="uui-flex-row root size-36 vPadding-24 container align-items-center"
-          style={
-            Object {
-              "columnGap": undefined,
-              "rowGap": undefined,
-            }
-          }
+        <button
+          aria-label="Close modal"
+          className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+          onClick={[Function]}
+          tabIndex={0}
+          type="button"
         >
           <div
-            className="container uui-input-box -clickable root size-36 mode-form"
-            onBlur={[Function]}
-            onFocus={[Function]}
-            tabIndex={-1}
+            className="container uui-icon uui-enabled"
+            style={Object {}}
           >
-            <div
-              className="container uui-icon uui-enabled"
-              style={Object {}}
-            >
-              <svg
-                className=""
-              />
-            </div>
-            <input
-              aria-invalid={false}
-              autoFocus={true}
-              className="uui-input"
-              inputMode="search"
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              placeholder="Type text for quick search"
-              tabIndex={0}
-              type="search"
-              value=""
+            <svg
+              className=""
             />
           </div>
-        </div>
+        </button>
       </div>
+    </div>
+    <div
+      className="flexCell subHeaderWrapper"
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "0",
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": undefined,
+        }
+      }
+    >
       <div
-        className="uui-flex-row root size-36 body modal undefined container align-items-center"
+        className="uui-flex-row root size-36 vPadding-24 container align-items-center"
         style={
           Object {
             "columnGap": undefined,
-            "maxHeight": undefined,
             "rowGap": undefined,
           }
         }
       >
         <div
-          className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+          className="container uui-input-box -clickable root size-36 mode-form"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          tabIndex={-1}
+        >
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
+          <input
+            aria-invalid={false}
+            autoFocus={true}
+            className="uui-input"
+            inputMode="search"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="Type text for quick search"
+            tabIndex={0}
+            type="search"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="uui-flex-row root size-36 body modal undefined container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "maxHeight": undefined,
+          "rowGap": undefined,
+        }
+      }
+    >
+      <div
+        className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+        style={
+          Object {
+            "display": "flex",
+            "height": "100%",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": "100%",
+          }
+        }
+      >
+        <div
           style={
             Object {
+              "WebkitOverflowScrolling": "touch",
+              "bottom": 0,
               "display": "flex",
-              "height": "100%",
-              "overflow": "hidden",
+              "flex": "1 1 auto",
+              "flexDirection": "column",
+              "left": 0,
+              "marginBottom": 0,
+              "marginRight": 0,
+              "overflow": "scroll",
               "position": "relative",
-              "width": "100%",
+              "right": 0,
+              "top": 0,
             }
           }
         >
           <div
+            className="listContainer"
             style={
               Object {
-                "WebkitOverflowScrolling": "touch",
-                "bottom": 0,
-                "display": "flex",
-                "flex": "1 1 auto",
-                "flexDirection": "column",
-                "left": 0,
-                "marginBottom": 0,
-                "marginRight": 0,
-                "overflow": "scroll",
-                "position": "relative",
-                "right": 0,
-                "top": 0,
+                "minHeight": "0px",
               }
             }
           >
             <div
-              className="listContainer"
               style={
                 Object {
-                  "minHeight": "0px",
+                  "marginTop": 0,
                 }
               }
             >
               <div
+                aria-posinset={1}
+                aria-selected={false}
+                className="uui-flex-row pickerRow container -clickable align-items-center"
+                onClick={[Function]}
+                role="option"
                 style={
                   Object {
-                    "marginTop": 0,
+                    "columnGap": undefined,
+                    "rowGap": undefined,
                   }
                 }
               >
                 <div
-                  aria-posinset={1}
-                  aria-selected={false}
-                  className="uui-flex-row pickerRow container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="option"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  role="cell"
                   style={
                     Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
                     }
                   }
                 >
                   <div
-                    className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    role="cell"
+                    className="contentWrapper"
                     style={
                       Object {
                         "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
+                        "justifyContent": undefined,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="contentWrapper"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "justifyContent": undefined,
-                          "textAlign": undefined,
-                        }
-                      }
+                      className="renderItem"
                     >
                       <div
-                        className="renderItem"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
-                        <div
-                          className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          Elementary
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
+                        Elementary
                       </div>
+                      <div
+                        className="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
+              </div>
+              <div
+                aria-posinset={2}
+                aria-selected={false}
+                className="uui-flex-row pickerRow container -clickable align-items-center"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "columnGap": undefined,
+                    "rowGap": undefined,
+                  }
+                }
+              >
                 <div
-                  aria-posinset={2}
-                  aria-selected={false}
-                  className="uui-flex-row pickerRow container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="option"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  role="cell"
                   style={
                     Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
                     }
                   }
                 >
                   <div
-                    className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    role="cell"
+                    className="contentWrapper"
                     style={
                       Object {
                         "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
+                        "justifyContent": undefined,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="contentWrapper"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "justifyContent": undefined,
-                          "textAlign": undefined,
-                        }
-                      }
+                      className="renderItem"
                     >
                       <div
-                        className="renderItem"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
-                        <div
-                          className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          Elementary+
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
+                        Elementary+
                       </div>
+                      <div
+                        className="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div
-            className="container uui-blocker-container root"
-            style={
-              Object {
-                "minHeight": undefined,
-              }
+        </div>
+        <div
+          className="container uui-blocker-container root"
+          style={
+            Object {
+              "minHeight": undefined,
             }
-          >
-            <div />
-          </div>
-          <div
-            className="uui-track-horizontal"
-            style={
-              Object {
-                "display": "none",
-                "height": 6,
-                "position": "absolute",
-              }
+          }
+        >
+          <div />
+        </div>
+        <div
+          className="uui-track-horizontal"
+          style={
+            Object {
+              "display": "none",
+              "height": 6,
+              "position": "absolute",
             }
-          >
-            <div
-              className="uui-thumb-horizontal"
-            />
-          </div>
+          }
+        >
           <div
-            className="uui-track-vertical"
-            style={
-              Object {
-                "display": "none",
-                "position": "absolute",
-                "width": 6,
-              }
+            className="uui-thumb-horizontal"
+          />
+        </div>
+        <div
+          className="uui-track-vertical"
+          style={
+            Object {
+              "display": "none",
+              "position": "absolute",
+              "width": 6,
             }
-          >
-            <div
-              className="uui-thumb-vertical"
-            />
-          </div>
+          }
+        >
+          <div
+            className="uui-thumb-vertical"
+          />
         </div>
       </div>
-      <div
-        className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
-        style={
-          Object {
-            "columnGap": undefined,
-            "rowGap": undefined,
-          }
+    </div>
+    <div
+      className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
         }
+      }
+    >
+      <div
+        className="flexSpacer"
+      />
+      <button
+        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
       >
         <div
-          className="flexSpacer"
-        />
-        <button
-          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
-          onClick={[Function]}
-          tabIndex={0}
-          type="button"
+          className="uui-caption"
         >
-          <div
-            className="uui-caption"
-          >
-            Cancel
-          </div>
-        </button>
-        <button
-          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
-          onClick={[Function]}
-          tabIndex={0}
-          type="button"
+          Cancel
+        </div>
+      </button>
+      <button
+        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <div
+          className="uui-caption"
         >
-          <div
-            className="uui-caption"
-          >
-            Select
-          </div>
-        </button>
-      </div>
+          Select
+        </div>
+      </button>
     </div>
   </div>
-  <div
-    data-focus-guard={true}
-    style={
-      Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
-      }
-    }
-    tabIndex={0}
-  />
 </div>
 `;
 
@@ -418,1072 +382,1037 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
     onClick={[Function]}
   />
   <div
-    data-focus-guard={true}
+    aria-modal={true}
+    className="uui-modal-window root modal container"
+    role="dialog"
     style={
       Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
+        "height": "700px",
+        "width": "600px",
       }
     }
-    tabIndex={0}
-  />
-  <div
-    data-focus-lock-disabled={false}
-    onBlur={[Function]}
-    onFocus={[Function]}
   >
     <div
-      aria-modal={true}
-      className="uui-modal-window root modal container"
-      role="dialog"
+      className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
       style={
         Object {
-          "height": "700px",
-          "width": "600px",
+          "columnGap": undefined,
+          "rowGap": undefined,
         }
       }
     >
       <div
-        className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
-        style={
-          Object {
-            "columnGap": undefined,
-            "rowGap": undefined,
-          }
-        }
+        className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
       >
-        <div
-          className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
-        >
-          Please select
-        </div>
-        <div
-          className="flexSpacer"
-        />
-        <div
-          className="flexCell"
-          style={
-            Object {
-              "alignSelf": undefined,
-              "flexBasis": "auto",
-              "flexGrow": undefined,
-              "flexShrink": 0,
-              "minWidth": 0,
-              "textAlign": undefined,
-            }
-          }
-        >
-          <button
-            aria-label="Close modal"
-            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
-            onClick={[Function]}
-            tabIndex={0}
-            type="button"
-          >
-            <div
-              className="container uui-icon uui-enabled"
-              style={Object {}}
-            >
-              <svg
-                className=""
-              />
-            </div>
-          </button>
-        </div>
+        Please select
       </div>
       <div
-        className="flexCell subHeaderWrapper"
+        className="flexSpacer"
+      />
+      <div
+        className="flexCell"
         style={
           Object {
             "alignSelf": undefined,
-            "flexBasis": "0",
+            "flexBasis": "auto",
             "flexGrow": undefined,
-            "flexShrink": undefined,
+            "flexShrink": 0,
             "minWidth": 0,
             "textAlign": undefined,
           }
         }
       >
-        <div
-          className="uui-flex-row root size-36 vPadding-24 container align-items-center"
-          style={
-            Object {
-              "columnGap": undefined,
-              "rowGap": undefined,
-            }
-          }
+        <button
+          aria-label="Close modal"
+          className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+          onClick={[Function]}
+          tabIndex={0}
+          type="button"
         >
           <div
-            className="container uui-input-box -clickable root size-36 mode-form"
-            onBlur={[Function]}
-            onFocus={[Function]}
-            tabIndex={-1}
+            className="container uui-icon uui-enabled"
+            style={Object {}}
           >
-            <div
-              className="container uui-icon uui-enabled"
-              style={Object {}}
-            >
-              <svg
-                className=""
-              />
-            </div>
-            <input
-              aria-invalid={false}
-              autoFocus={true}
-              className="uui-input"
-              inputMode="search"
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              placeholder="Type text for quick search"
-              tabIndex={0}
-              type="search"
-              value=""
+            <svg
+              className=""
             />
           </div>
-        </div>
-        <label
-          className="uui-switch container root size-18 uui-color-primary switch uui-disabled"
-        >
-          <div
-            className="uui-switch-body"
-          >
-            <input
-              aria-checked={false}
-              aria-disabled={true}
-              checked={false}
-              disabled={true}
-              onChange={[Function]}
-              role="switch"
-              type="checkbox"
-            />
-            <div
-              className="uui-switch-toggler"
-            />
-          </div>
-          <div
-            className="uui-input-label"
-          >
-            Show only selected
-          </div>
-        </label>
+        </button>
       </div>
+    </div>
+    <div
+      className="flexCell subHeaderWrapper"
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "0",
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": undefined,
+        }
+      }
+    >
       <div
-        className="uui-flex-row root size-36 body modal undefined container align-items-center"
+        className="uui-flex-row root size-36 vPadding-24 container align-items-center"
         style={
           Object {
             "columnGap": undefined,
-            "maxHeight": undefined,
             "rowGap": undefined,
           }
         }
       >
         <div
-          className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+          className="container uui-input-box -clickable root size-36 mode-form"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          tabIndex={-1}
+        >
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
+          <input
+            aria-invalid={false}
+            autoFocus={true}
+            className="uui-input"
+            inputMode="search"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="Type text for quick search"
+            tabIndex={0}
+            type="search"
+            value=""
+          />
+        </div>
+      </div>
+      <label
+        className="uui-switch container root size-18 uui-color-primary switch uui-disabled"
+      >
+        <div
+          className="uui-switch-body"
+        >
+          <input
+            aria-checked={false}
+            aria-disabled={true}
+            checked={false}
+            disabled={true}
+            onChange={[Function]}
+            role="switch"
+            type="checkbox"
+          />
+          <div
+            className="uui-switch-toggler"
+          />
+        </div>
+        <div
+          className="uui-input-label"
+        >
+          Show only selected
+        </div>
+      </label>
+    </div>
+    <div
+      className="uui-flex-row root size-36 body modal undefined container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "maxHeight": undefined,
+          "rowGap": undefined,
+        }
+      }
+    >
+      <div
+        className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+        style={
+          Object {
+            "display": "flex",
+            "height": "100%",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": "100%",
+          }
+        }
+      >
+        <div
           style={
             Object {
+              "WebkitOverflowScrolling": "touch",
+              "bottom": 0,
               "display": "flex",
-              "height": "100%",
-              "overflow": "hidden",
+              "flex": "1 1 auto",
+              "flexDirection": "column",
+              "left": 0,
+              "marginBottom": 0,
+              "marginRight": 0,
+              "overflow": "scroll",
               "position": "relative",
-              "width": "100%",
+              "right": 0,
+              "top": 0,
             }
           }
         >
           <div
+            className="listContainer"
             style={
               Object {
-                "WebkitOverflowScrolling": "touch",
-                "bottom": 0,
-                "display": "flex",
-                "flex": "1 1 auto",
-                "flexDirection": "column",
-                "left": 0,
-                "marginBottom": 0,
-                "marginRight": 0,
-                "overflow": "scroll",
-                "position": "relative",
-                "right": 0,
-                "top": 0,
+                "minHeight": "0px",
               }
             }
           >
             <div
-              className="listContainer"
               style={
                 Object {
-                  "minHeight": "0px",
+                  "marginTop": 0,
                 }
               }
             >
               <div
+                aria-checked={false}
+                aria-posinset={1}
+                className="uui-flex-row pickerRow container -clickable align-items-center"
+                onClick={[Function]}
+                role="option"
                 style={
                   Object {
-                    "marginTop": 0,
+                    "columnGap": undefined,
+                    "rowGap": undefined,
                   }
                 }
               >
                 <div
-                  aria-checked={false}
-                  aria-posinset={1}
-                  className="uui-flex-row pickerRow container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="option"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  role="cell"
                   style={
                     Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
                     }
                   }
                 >
+                  <label
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
+                    tabIndex={-1}
+                  >
+                    <div
+                      className="uui-checkbox"
+                    >
+                      <input
+                        aria-checked={false}
+                        checked={false}
+                        onChange={[Function]}
+                        tabIndex={-1}
+                        type="checkbox"
+                      />
+                    </div>
+                  </label>
                   <div
-                    className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    role="cell"
+                    className="contentWrapper"
                     style={
                       Object {
                         "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
+                        "justifyContent": undefined,
                         "textAlign": undefined,
                       }
                     }
                   >
-                    <label
-                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="uui-checkbox"
-                      >
-                        <input
-                          aria-checked={false}
-                          checked={false}
-                          onChange={[Function]}
-                          tabIndex={-1}
-                          type="checkbox"
-                        />
-                      </div>
-                    </label>
                     <div
-                      className="contentWrapper"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "justifyContent": undefined,
-                          "textAlign": undefined,
-                        }
-                      }
+                      className="renderItem"
                     >
                       <div
-                        className="renderItem"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
-                        <div
-                          className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          C2
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
+                        C2
                       </div>
+                      <div
+                        className="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
+              </div>
+              <div
+                aria-checked={false}
+                aria-posinset={2}
+                className="uui-flex-row pickerRow container -clickable align-items-center"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "columnGap": undefined,
+                    "rowGap": undefined,
+                  }
+                }
+              >
                 <div
-                  aria-checked={false}
-                  aria-posinset={2}
-                  className="uui-flex-row pickerRow container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="option"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  role="cell"
                   style={
                     Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
                     }
                   }
                 >
+                  <label
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
+                    tabIndex={-1}
+                  >
+                    <div
+                      className="uui-checkbox"
+                    >
+                      <input
+                        aria-checked={false}
+                        checked={false}
+                        onChange={[Function]}
+                        tabIndex={-1}
+                        type="checkbox"
+                      />
+                    </div>
+                  </label>
                   <div
-                    className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    role="cell"
+                    className="contentWrapper"
                     style={
                       Object {
                         "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
+                        "justifyContent": undefined,
                         "textAlign": undefined,
                       }
                     }
                   >
-                    <label
-                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="uui-checkbox"
-                      >
-                        <input
-                          aria-checked={false}
-                          checked={false}
-                          onChange={[Function]}
-                          tabIndex={-1}
-                          type="checkbox"
-                        />
-                      </div>
-                    </label>
                     <div
-                      className="contentWrapper"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "justifyContent": undefined,
-                          "textAlign": undefined,
-                        }
-                      }
+                      className="renderItem"
                     >
                       <div
-                        className="renderItem"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
-                        <div
-                          className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          C1+
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
+                        C1+
                       </div>
+                      <div
+                        className="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
+              </div>
+              <div
+                aria-checked={false}
+                aria-posinset={3}
+                className="uui-flex-row pickerRow container -clickable align-items-center"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "columnGap": undefined,
+                    "rowGap": undefined,
+                  }
+                }
+              >
                 <div
-                  aria-checked={false}
-                  aria-posinset={3}
-                  className="uui-flex-row pickerRow container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="option"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  role="cell"
                   style={
                     Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
                     }
                   }
                 >
+                  <label
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
+                    tabIndex={-1}
+                  >
+                    <div
+                      className="uui-checkbox"
+                    >
+                      <input
+                        aria-checked={false}
+                        checked={false}
+                        onChange={[Function]}
+                        tabIndex={-1}
+                        type="checkbox"
+                      />
+                    </div>
+                  </label>
                   <div
-                    className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    role="cell"
+                    className="contentWrapper"
                     style={
                       Object {
                         "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
+                        "justifyContent": undefined,
                         "textAlign": undefined,
                       }
                     }
                   >
-                    <label
-                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="uui-checkbox"
-                      >
-                        <input
-                          aria-checked={false}
-                          checked={false}
-                          onChange={[Function]}
-                          tabIndex={-1}
-                          type="checkbox"
-                        />
-                      </div>
-                    </label>
                     <div
-                      className="contentWrapper"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "justifyContent": undefined,
-                          "textAlign": undefined,
-                        }
-                      }
+                      className="renderItem"
                     >
                       <div
-                        className="renderItem"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
-                        <div
-                          className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          C1
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
+                        C1
                       </div>
+                      <div
+                        className="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
+              </div>
+              <div
+                aria-checked={false}
+                aria-posinset={4}
+                className="uui-flex-row pickerRow container -clickable align-items-center"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "columnGap": undefined,
+                    "rowGap": undefined,
+                  }
+                }
+              >
                 <div
-                  aria-checked={false}
-                  aria-posinset={4}
-                  className="uui-flex-row pickerRow container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="option"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  role="cell"
                   style={
                     Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
                     }
                   }
                 >
+                  <label
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
+                    tabIndex={-1}
+                  >
+                    <div
+                      className="uui-checkbox"
+                    >
+                      <input
+                        aria-checked={false}
+                        checked={false}
+                        onChange={[Function]}
+                        tabIndex={-1}
+                        type="checkbox"
+                      />
+                    </div>
+                  </label>
                   <div
-                    className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    role="cell"
+                    className="contentWrapper"
                     style={
                       Object {
                         "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
+                        "justifyContent": undefined,
                         "textAlign": undefined,
                       }
                     }
                   >
-                    <label
-                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="uui-checkbox"
-                      >
-                        <input
-                          aria-checked={false}
-                          checked={false}
-                          onChange={[Function]}
-                          tabIndex={-1}
-                          type="checkbox"
-                        />
-                      </div>
-                    </label>
                     <div
-                      className="contentWrapper"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "justifyContent": undefined,
-                          "textAlign": undefined,
-                        }
-                      }
+                      className="renderItem"
                     >
                       <div
-                        className="renderItem"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
-                        <div
-                          className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          B2+
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
+                        B2+
                       </div>
+                      <div
+                        className="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
+              </div>
+              <div
+                aria-checked={false}
+                aria-posinset={5}
+                className="uui-flex-row pickerRow container -clickable align-items-center"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "columnGap": undefined,
+                    "rowGap": undefined,
+                  }
+                }
+              >
                 <div
-                  aria-checked={false}
-                  aria-posinset={5}
-                  className="uui-flex-row pickerRow container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="option"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  role="cell"
                   style={
                     Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
                     }
                   }
                 >
+                  <label
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
+                    tabIndex={-1}
+                  >
+                    <div
+                      className="uui-checkbox"
+                    >
+                      <input
+                        aria-checked={false}
+                        checked={false}
+                        onChange={[Function]}
+                        tabIndex={-1}
+                        type="checkbox"
+                      />
+                    </div>
+                  </label>
                   <div
-                    className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    role="cell"
+                    className="contentWrapper"
                     style={
                       Object {
                         "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
+                        "justifyContent": undefined,
                         "textAlign": undefined,
                       }
                     }
                   >
-                    <label
-                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="uui-checkbox"
-                      >
-                        <input
-                          aria-checked={false}
-                          checked={false}
-                          onChange={[Function]}
-                          tabIndex={-1}
-                          type="checkbox"
-                        />
-                      </div>
-                    </label>
                     <div
-                      className="contentWrapper"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "justifyContent": undefined,
-                          "textAlign": undefined,
-                        }
-                      }
+                      className="renderItem"
                     >
                       <div
-                        className="renderItem"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
-                        <div
-                          className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          B2
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
+                        B2
                       </div>
+                      <div
+                        className="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
+              </div>
+              <div
+                aria-checked={false}
+                aria-posinset={6}
+                className="uui-flex-row pickerRow container -clickable align-items-center"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "columnGap": undefined,
+                    "rowGap": undefined,
+                  }
+                }
+              >
                 <div
-                  aria-checked={false}
-                  aria-posinset={6}
-                  className="uui-flex-row pickerRow container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="option"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  role="cell"
                   style={
                     Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
                     }
                   }
                 >
+                  <label
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
+                    tabIndex={-1}
+                  >
+                    <div
+                      className="uui-checkbox"
+                    >
+                      <input
+                        aria-checked={false}
+                        checked={false}
+                        onChange={[Function]}
+                        tabIndex={-1}
+                        type="checkbox"
+                      />
+                    </div>
+                  </label>
                   <div
-                    className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    role="cell"
+                    className="contentWrapper"
                     style={
                       Object {
                         "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
+                        "justifyContent": undefined,
                         "textAlign": undefined,
                       }
                     }
                   >
-                    <label
-                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="uui-checkbox"
-                      >
-                        <input
-                          aria-checked={false}
-                          checked={false}
-                          onChange={[Function]}
-                          tabIndex={-1}
-                          type="checkbox"
-                        />
-                      </div>
-                    </label>
                     <div
-                      className="contentWrapper"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "justifyContent": undefined,
-                          "textAlign": undefined,
-                        }
-                      }
+                      className="renderItem"
                     >
                       <div
-                        className="renderItem"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
-                        <div
-                          className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          B1+
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
+                        B1+
                       </div>
+                      <div
+                        className="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
+              </div>
+              <div
+                aria-checked={false}
+                aria-posinset={7}
+                className="uui-flex-row pickerRow container -clickable align-items-center"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "columnGap": undefined,
+                    "rowGap": undefined,
+                  }
+                }
+              >
                 <div
-                  aria-checked={false}
-                  aria-posinset={7}
-                  className="uui-flex-row pickerRow container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="option"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  role="cell"
                   style={
                     Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
                     }
                   }
                 >
+                  <label
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
+                    tabIndex={-1}
+                  >
+                    <div
+                      className="uui-checkbox"
+                    >
+                      <input
+                        aria-checked={false}
+                        checked={false}
+                        onChange={[Function]}
+                        tabIndex={-1}
+                        type="checkbox"
+                      />
+                    </div>
+                  </label>
                   <div
-                    className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    role="cell"
+                    className="contentWrapper"
                     style={
                       Object {
                         "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
+                        "justifyContent": undefined,
                         "textAlign": undefined,
                       }
                     }
                   >
-                    <label
-                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="uui-checkbox"
-                      >
-                        <input
-                          aria-checked={false}
-                          checked={false}
-                          onChange={[Function]}
-                          tabIndex={-1}
-                          type="checkbox"
-                        />
-                      </div>
-                    </label>
                     <div
-                      className="contentWrapper"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "justifyContent": undefined,
-                          "textAlign": undefined,
-                        }
-                      }
+                      className="renderItem"
                     >
                       <div
-                        className="renderItem"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
-                        <div
-                          className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          B1
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
+                        B1
                       </div>
+                      <div
+                        className="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
+              </div>
+              <div
+                aria-checked={false}
+                aria-posinset={8}
+                className="uui-flex-row pickerRow container -clickable align-items-center"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "columnGap": undefined,
+                    "rowGap": undefined,
+                  }
+                }
+              >
                 <div
-                  aria-checked={false}
-                  aria-posinset={8}
-                  className="uui-flex-row pickerRow container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="option"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  role="cell"
                   style={
                     Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
                     }
                   }
                 >
+                  <label
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
+                    tabIndex={-1}
+                  >
+                    <div
+                      className="uui-checkbox"
+                    >
+                      <input
+                        aria-checked={false}
+                        checked={false}
+                        onChange={[Function]}
+                        tabIndex={-1}
+                        type="checkbox"
+                      />
+                    </div>
+                  </label>
                   <div
-                    className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    role="cell"
+                    className="contentWrapper"
                     style={
                       Object {
                         "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
+                        "justifyContent": undefined,
                         "textAlign": undefined,
                       }
                     }
                   >
-                    <label
-                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="uui-checkbox"
-                      >
-                        <input
-                          aria-checked={false}
-                          checked={false}
-                          onChange={[Function]}
-                          tabIndex={-1}
-                          type="checkbox"
-                        />
-                      </div>
-                    </label>
                     <div
-                      className="contentWrapper"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "justifyContent": undefined,
-                          "textAlign": undefined,
-                        }
-                      }
+                      className="renderItem"
                     >
                       <div
-                        className="renderItem"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
-                        <div
-                          className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          A2+
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
+                        A2+
                       </div>
+                      <div
+                        className="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
+              </div>
+              <div
+                aria-checked={false}
+                aria-posinset={9}
+                className="uui-flex-row pickerRow container -clickable align-items-center"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "columnGap": undefined,
+                    "rowGap": undefined,
+                  }
+                }
+              >
                 <div
-                  aria-checked={false}
-                  aria-posinset={9}
-                  className="uui-flex-row pickerRow container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="option"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  role="cell"
                   style={
                     Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
                     }
                   }
                 >
+                  <label
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
+                    tabIndex={-1}
+                  >
+                    <div
+                      className="uui-checkbox"
+                    >
+                      <input
+                        aria-checked={false}
+                        checked={false}
+                        onChange={[Function]}
+                        tabIndex={-1}
+                        type="checkbox"
+                      />
+                    </div>
+                  </label>
                   <div
-                    className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    role="cell"
+                    className="contentWrapper"
                     style={
                       Object {
                         "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
+                        "justifyContent": undefined,
                         "textAlign": undefined,
                       }
                     }
                   >
-                    <label
-                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="uui-checkbox"
-                      >
-                        <input
-                          aria-checked={false}
-                          checked={false}
-                          onChange={[Function]}
-                          tabIndex={-1}
-                          type="checkbox"
-                        />
-                      </div>
-                    </label>
                     <div
-                      className="contentWrapper"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "justifyContent": undefined,
-                          "textAlign": undefined,
-                        }
-                      }
+                      className="renderItem"
                     >
                       <div
-                        className="renderItem"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
-                        <div
-                          className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          A2
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
+                        A2
                       </div>
+                      <div
+                        className="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
+              </div>
+              <div
+                aria-checked={false}
+                aria-posinset={10}
+                className="uui-flex-row pickerRow container -clickable align-items-center"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "columnGap": undefined,
+                    "rowGap": undefined,
+                  }
+                }
+              >
                 <div
-                  aria-checked={false}
-                  aria-posinset={10}
-                  className="uui-flex-row pickerRow container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="option"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  role="cell"
                   style={
                     Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
                     }
                   }
                 >
+                  <label
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
+                    tabIndex={-1}
+                  >
+                    <div
+                      className="uui-checkbox"
+                    >
+                      <input
+                        aria-checked={false}
+                        checked={false}
+                        onChange={[Function]}
+                        tabIndex={-1}
+                        type="checkbox"
+                      />
+                    </div>
+                  </label>
                   <div
-                    className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    role="cell"
+                    className="contentWrapper"
                     style={
                       Object {
                         "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
+                        "justifyContent": undefined,
                         "textAlign": undefined,
                       }
                     }
                   >
-                    <label
-                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="uui-checkbox"
-                      >
-                        <input
-                          aria-checked={false}
-                          checked={false}
-                          onChange={[Function]}
-                          tabIndex={-1}
-                          type="checkbox"
-                        />
-                      </div>
-                    </label>
                     <div
-                      className="contentWrapper"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "justifyContent": undefined,
-                          "textAlign": undefined,
-                        }
-                      }
+                      className="renderItem"
                     >
                       <div
-                        className="renderItem"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
-                        <div
-                          className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          A1+
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
+                        A1+
                       </div>
+                      <div
+                        className="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
+              </div>
+              <div
+                aria-checked={false}
+                aria-posinset={11}
+                className="uui-flex-row pickerRow container -clickable align-items-center"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "columnGap": undefined,
+                    "rowGap": undefined,
+                  }
+                }
+              >
                 <div
-                  aria-checked={false}
-                  aria-posinset={11}
-                  className="uui-flex-row pickerRow container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="option"
+                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  role="cell"
                   style={
                     Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
                     }
                   }
                 >
+                  <label
+                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
+                    tabIndex={-1}
+                  >
+                    <div
+                      className="uui-checkbox"
+                    >
+                      <input
+                        aria-checked={false}
+                        checked={false}
+                        onChange={[Function]}
+                        tabIndex={-1}
+                        type="checkbox"
+                      />
+                    </div>
+                  </label>
                   <div
-                    className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    role="cell"
+                    className="contentWrapper"
                     style={
                       Object {
                         "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
+                        "justifyContent": undefined,
                         "textAlign": undefined,
                       }
                     }
                   >
-                    <label
-                      className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="uui-checkbox"
-                      >
-                        <input
-                          aria-checked={false}
-                          checked={false}
-                          onChange={[Function]}
-                          tabIndex={-1}
-                          type="checkbox"
-                        />
-                      </div>
-                    </label>
                     <div
-                      className="contentWrapper"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "justifyContent": undefined,
-                          "textAlign": undefined,
-                        }
-                      }
+                      className="renderItem"
                     >
                       <div
-                        className="renderItem"
+                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
-                        <div
-                          className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          A1
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
+                        A1
                       </div>
+                      <div
+                        className="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div
-            className="container uui-blocker-container root"
-            style={
-              Object {
-                "minHeight": undefined,
-              }
+        </div>
+        <div
+          className="container uui-blocker-container root"
+          style={
+            Object {
+              "minHeight": undefined,
             }
-          >
-            <div />
-          </div>
-          <div
-            className="uui-track-horizontal"
-            style={
-              Object {
-                "display": "none",
-                "height": 6,
-                "position": "absolute",
-              }
+          }
+        >
+          <div />
+        </div>
+        <div
+          className="uui-track-horizontal"
+          style={
+            Object {
+              "display": "none",
+              "height": 6,
+              "position": "absolute",
             }
-          >
-            <div
-              className="uui-thumb-horizontal"
-            />
-          </div>
+          }
+        >
           <div
-            className="uui-track-vertical"
-            style={
-              Object {
-                "display": "none",
-                "position": "absolute",
-                "width": 6,
-              }
+            className="uui-thumb-horizontal"
+          />
+        </div>
+        <div
+          className="uui-track-vertical"
+          style={
+            Object {
+              "display": "none",
+              "position": "absolute",
+              "width": 6,
             }
-          >
-            <div
-              className="uui-thumb-vertical"
-            />
-          </div>
+          }
+        >
+          <div
+            className="uui-thumb-vertical"
+          />
         </div>
       </div>
-      <div
-        className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
-        style={
-          Object {
-            "columnGap": undefined,
-            "rowGap": undefined,
-          }
+    </div>
+    <div
+      className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
         }
+      }
+    >
+      <button
+        aria-disabled={false}
+        className="container uui-button-box uui-enabled -clickable uui-link_button root size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
       >
-        <button
-          className="container uui-button-box uui-enabled -clickable uui-link_button root size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
-          onClick={[Function]}
-          tabIndex={0}
-          type="button"
-        >
-          <div
-            className="uui-caption"
-          >
-            SELECT ALL
-          </div>
-        </button>
         <div
-          className="flexSpacer"
-        />
-        <button
-          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
-          onClick={[Function]}
-          tabIndex={0}
-          type="button"
+          className="uui-caption"
         >
-          <div
-            className="uui-caption"
-          >
-            Cancel
-          </div>
-        </button>
-        <button
-          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
-          onClick={[Function]}
-          tabIndex={0}
-          type="button"
+          SELECT ALL
+        </div>
+      </button>
+      <div
+        className="flexSpacer"
+      />
+      <button
+        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <div
+          className="uui-caption"
         >
-          <div
-            className="uui-caption"
-          >
-            Select
-          </div>
-        </button>
-      </div>
+          Cancel
+        </div>
+      </button>
+      <button
+        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <div
+          className="uui-caption"
+        >
+          Select
+        </div>
+      </button>
     </div>
   </div>
-  <div
-    data-focus-guard={true}
-    style={
-      Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
-      }
-    }
-    tabIndex={0}
-  />
 </div>
 `;
 
@@ -1506,217 +1435,203 @@ exports[`PickerModal should open body 1`] = `
         class="uui-modal-blocker"
       />
       <div
-        data-focus-guard="true"
-        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-        tabindex="0"
-      />
-      <div
-        data-focus-lock-disabled="false"
+        aria-modal="true"
+        class="uui-modal-window root modal container"
+        role="dialog"
+        style="width: 600px; height: 700px;"
       >
         <div
-          aria-modal="true"
-          class="uui-modal-window root modal container"
-          role="dialog"
-          style="width: 600px; height: 700px;"
+          class="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
         >
           <div
-            class="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
+            class="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
           >
-            <div
-              class="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
-            >
-              Please select
-            </div>
-            <div
-              class="flexSpacer"
-            />
-            <div
-              class="flexCell"
-              style="min-width: 0; flex-shrink: 0; flex-basis: auto;"
-            >
-              <button
-                aria-label="Close modal"
-                class="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
-                tabindex="0"
-                type="button"
-              >
-                <div
-                  class="container uui-icon uui-enabled"
-                >
-                  <svg
-                    class=""
-                  />
-                </div>
-              </button>
-            </div>
+            Please select
           </div>
           <div
-            class="flexCell subHeaderWrapper"
-            style="min-width: 0; flex-basis: 0px;"
+            class="flexSpacer"
+          />
+          <div
+            class="flexCell"
+            style="min-width: 0; flex-shrink: 0; flex-basis: auto;"
           >
-            <div
-              class="uui-flex-row root size-36 vPadding-24 container align-items-center"
+            <button
+              aria-label="Close modal"
+              class="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+              tabindex="0"
+              type="button"
             >
               <div
-                class="container uui-input-box -clickable uui-focus root size-36 mode-form"
-                tabindex="-1"
+                class="container uui-icon uui-enabled"
               >
-                <div
-                  class="container uui-icon uui-enabled"
-                >
-                  <svg
-                    class=""
-                  />
-                </div>
-                <input
-                  aria-invalid="false"
-                  class="uui-input"
-                  inputmode="search"
-                  placeholder="Type text for quick search"
-                  tabindex="-1"
-                  type="search"
-                  value=""
+                <svg
+                  class=""
                 />
               </div>
-            </div>
+            </button>
           </div>
+        </div>
+        <div
+          class="flexCell subHeaderWrapper"
+          style="min-width: 0; flex-basis: 0px;"
+        >
           <div
-            class="uui-flex-row root size-36 body modal undefined container align-items-center"
+            class="uui-flex-row root size-36 vPadding-24 container align-items-center"
           >
             <div
-              class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
-              style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+              class="container uui-input-box -clickable uui-focus root size-36 mode-form"
+              tabindex="-1"
             >
               <div
-                style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+                class="container uui-icon uui-enabled"
+              >
+                <svg
+                  class=""
+                />
+              </div>
+              <input
+                aria-invalid="false"
+                class="uui-input"
+                inputmode="search"
+                placeholder="Type text for quick search"
+                tabindex="-1"
+                type="search"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="uui-flex-row root size-36 body modal undefined container align-items-center"
+        >
+          <div
+            class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+            style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+          >
+            <div
+              style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+            >
+              <div
+                class="listContainer"
+                style="min-height: 2px;"
               >
                 <div
-                  class="listContainer"
-                  style="min-height: 2px;"
+                  style="margin-top: 0px;"
                 >
                   <div
-                    style="margin-top: 0px;"
+                    aria-posinset="1"
+                    aria-selected="false"
+                    class="uui-flex-row pickerRow container -clickable align-items-center"
+                    role="option"
                   >
                     <div
-                      aria-posinset="1"
-                      aria-selected="false"
-                      class="uui-flex-row pickerRow container -clickable align-items-center"
-                      role="option"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      role="cell"
+                      style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
                       <div
-                        class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                        role="cell"
-                        style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                        class="contentWrapper"
                       >
                         <div
-                          class="contentWrapper"
+                          class="renderItem"
                         >
                           <div
-                            class="renderItem"
+                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
-                            <div
-                              class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
-                            >
-                              Elementary
-                            </div>
-                            <div
-                              class="flexSpacer"
-                            />
+                            Elementary
                           </div>
+                          <div
+                            class="flexSpacer"
+                          />
                         </div>
                       </div>
                     </div>
+                  </div>
+                  <div
+                    aria-posinset="2"
+                    aria-selected="false"
+                    class="uui-flex-row pickerRow container -clickable align-items-center"
+                    role="option"
+                  >
                     <div
-                      aria-posinset="2"
-                      aria-selected="false"
-                      class="uui-flex-row pickerRow container -clickable align-items-center"
-                      role="option"
+                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      role="cell"
+                      style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
                       <div
-                        class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                        role="cell"
-                        style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                        class="contentWrapper"
                       >
                         <div
-                          class="contentWrapper"
+                          class="renderItem"
                         >
                           <div
-                            class="renderItem"
+                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
-                            <div
-                              class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
-                            >
-                              Elementary+
-                            </div>
-                            <div
-                              class="flexSpacer"
-                            />
+                            Elementary+
                           </div>
+                          <div
+                            class="flexSpacer"
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+            <div
+              class="container uui-blocker-container root"
+            >
+              <div />
+            </div>
+            <div
+              class="uui-track-horizontal"
+              style="position: absolute; height: 6px; display: none;"
+            >
               <div
-                class="container uui-blocker-container root"
-              >
-                <div />
-              </div>
+                class="uui-thumb-horizontal"
+              />
+            </div>
+            <div
+              class="uui-track-vertical"
+              style="position: absolute; width: 6px; display: none;"
+            >
               <div
-                class="uui-track-horizontal"
-                style="position: absolute; height: 6px; display: none;"
-              >
-                <div
-                  class="uui-thumb-horizontal"
-                />
-              </div>
-              <div
-                class="uui-track-vertical"
-                style="position: absolute; width: 6px; display: none;"
-              >
-                <div
-                  class="uui-thumb-vertical"
-                />
-              </div>
+                class="uui-thumb-vertical"
+              />
             </div>
           </div>
+        </div>
+        <div
+          class="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
+        >
           <div
-            class="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
+            class="flexSpacer"
+          />
+          <button
+            class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
+            tabindex="0"
+            type="button"
           >
             <div
-              class="flexSpacer"
-            />
-            <button
-              class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
-              tabindex="0"
-              type="button"
+              class="uui-caption"
             >
-              <div
-                class="uui-caption"
-              >
-                Cancel
-              </div>
-            </button>
-            <button
-              class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
-              tabindex="0"
-              type="button"
+              Cancel
+            </div>
+          </button>
+          <button
+            class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
+            tabindex="0"
+            type="button"
+          >
+            <div
+              class="uui-caption"
             >
-              <div
-                class="uui-caption"
-              >
-                Select
-              </div>
-            </button>
-          </div>
+              Select
+            </div>
+          </button>
         </div>
       </div>
-      <div
-        data-focus-guard="true"
-        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-        tabindex="0"
-      />
     </div>
   </div>
 </body>

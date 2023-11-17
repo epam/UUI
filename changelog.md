@@ -1,22 +1,52 @@
-# 5.x.x - xx.xx.2023
+# 5.3.0 - xx.xx.2023
 
 **What's New**
-* TBD: describe new font usage approach
-* [Badge]: deprecated mode fill="transparent", and deprecated mode fill="semitransparent", they will be removed in future release.
-* [Badge]: removed mode fill="white", and "none", use fill="outline" + color instead them.
-* [Presets]: added the ability to add a modal confirmation window when deleting a preset
-* [LabeledInput]: added possibility to customize validationMessage with react node
-* [RichTextEditor]: added css variables for theming instead `SkinContext`
-* [skinContext]: removed from `UuiContexts`
-* [Button]: added `neutral` value to `color` prop
-* [ScrollBars]: removed 'theme' prop for "Promo" & "Loveship" skins
-* [Checkbox]: removed 'theme' prop for "Loveship" skin
-* typography files removed from skins and imported by default via import into the `@epam/uui` package, if you used mixins before, add the `uui-typography` class where you need it now
+* This release introduced stable Theming approach and theme css variables:
+  * Theme css variable now assumed as a stable API, you can use them into your application styles.
+  * Set of theme variables align with figma library, so you can use variables from figma in you styles.
+  * A lot of components styles tweaks according to the design changes.
+  * You can read more about Theming here - TBD_LINK
+
+* New EPAM brand 'Electric' Theme and `@epam/electric` package. To start using Electric theme you need: 
+    * Add `@epam/electric` package to your project
+    * Add `import '@epam/electric/styles.css'` to the root of your application
+    * Add `import '@epam/assets/css/theme/theme_electric.css'` to the root of your application
+    * Add `uui-theme-electric` class to the html body node
+    * Import all necessary components from `@epam/electic` package.
+* Added Dark theme for Loveship. To start using Dark Loveship theme you need to:
+  * Add `import '@epam/assets/css/theme/theme_loveship_dark.css';` to the root of your application 
+  * Add `uui-theme-loveship_dark` class to the html body node.
+* [Fonts]: Added `Source Sans Pro` font, which properly works with css `font-weight` and `font-style` rules. 
+    You can replace usages `Sans Semibold` font with `Source Sans Pro` and `font-weight: 600`, `Sans Italic`  with `Source Sans Pro` and `font-style: italic` etc.
+    We also keep old font-faces and variables for backward compatibility. It's recommended to move to the new approach, since old one will be deprecated in feature.
+* [skinContext]: removed skinContext from `UuiContexts`, it's not needed to provide it to the uui services, just remove its usage.
+* [Typography]: removed typography mixins. Now typography applies via css classes. If you use mixins, replace it by adding `.uui-typography` class on the same node.
+* [StatusIndicator]: added new `StatusIndicator` component.
+* [CountIndicator]: added new `CountIndicator` component.
+* [Badge] : 
+  * [Breaking change]: removed fill "white" and "none" modes, use `fill="outline"` + color instead them.
+  * [Breaking change]:removed fill "transparent", use `StatusIndicator` component instead.
+  * [Badge]: deprecated fill "semitransparent", it will be removed in future releases. Use `fill="outline'` instead.
+* [LabeledInput]:
+  * added `sidenote` and `footnote` props
+  * added `maxLength` and `charCounter` props. You can use them for cases when you need to show a counter which indicates the limit of symbols in input.  
+  * added possibility to provide `validationMessage` as react node
+* [TextArea][Breaking Change]: removed `maxLength` prop, use LabeledInput with `maxLength` and `charCounter={ true }` props instead.
+* [CheckBox, PickerList, RichTextView, Switch, TabButton, VerticalTabButton, ScrollBars]: removed `theme` prop. Use Theming approach instead.
+* [PresetsPanel]: added the ability to add a modal confirmation window when deleting a preset
 
 **What's Fixed**
-* [DataTableRow]: table row now consider rawProps property data
-* [DatePickerHeader]: fixed 'navIconLeft', 'navIconRight' props
-* [useForm]: don't reset inChanged flag in case when server validation fails
+* [useForm]: don't reset `inChanged` flag in case when server validation fails
+* [DataTableRow]: fixed `rawProps` prop
+* [DropdownMenuButton]: use `isActive` prop in priority under router.isActive
+* [PickerInput]: set `overflow: hidden;` on open for mobile
+* [DataTable]: fix columns reorder when there are hidden columns
+* [TextArea and TextInput]: fix `maxLength` for Android
+* [DataTable]: fixed column order after pin action 
+* [PickerInput]: Disable select all button if list are empty, and it has no selection
+* [DataTable]: added `role=table`
+* [SlateEditor]: fixed image caption appearance after upload
+* [DropdownMenu]: added `focusLock` prop
 
 # 5.2.0 - 16.10.2023
 

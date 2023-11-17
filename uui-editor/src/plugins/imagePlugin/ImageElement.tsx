@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
     Box,
     PlateElement,
@@ -49,15 +49,16 @@ export function ImageElement({
 
     useMediaState();
 
-    const [currentWidth] = useResizableStore().use.width();
-    const isCaptionEnabled = useMemo(() => {
-        let captionEnabled = false;
-        if (currentWidth && typeof currentWidth === 'number') {
-            captionEnabled = currentWidth >= MIN_CAPTION_WIDTH;
-        }
+    const imageRef = useRef(null);
+    const [currentWidth, setWidth] = useResizableStore().use.width();
 
-        return captionEnabled;
+    const isCaptionEnabled = useMemo(() => {
+        return typeof currentWidth === 'number' && currentWidth >= MIN_CAPTION_WIDTH;
     }, [currentWidth]);
+
+    const imageUpdated = () => {
+        setWidth(imageRef.current.width);
+    };
 
     return (
         <PlateElement className={ cx(className) } { ...props }>
@@ -68,13 +69,19 @@ export function ImageElement({
                         renderHandleLeft: (htmlProps) => (
                             <Box
                                 { ...htmlProps }
-                                className={ cx(css.leftHandle, ...resizeHandleClasses) }
+                                className={ cx(
+                                    css.leftHandle,
+                                    ...resizeHandleClasses,
+                                ) }
                             />
                         ),
                         renderHandleRight: (htmlProps) => (
                             <Box
                                 { ...htmlProps }
-                                className={ cx(css.rightHandle, ...resizeHandleClasses) }
+                                className={ cx(
+                                    css.rightHandle,
+                                    ...resizeHandleClasses,
+                                ) }
                             />
                         ),
                         align,
@@ -82,32 +89,31 @@ export function ImageElement({
                         minWidth: MAX_IMG_WIDTH,
                     } }
                 >
-                    { }
+                    {}
                     <Image
                         { ...nodeProps }
-                        className={
-                            cx(
-                                css.image,
-                                focused && selected && css.selectedImage, // for mobile
-                                nodeProps?.className,
-                            )
-                        }
+                        className={ cx(
+                            css.image,
+                            focused && selected && css.selectedImage, // for mobile
+                            nodeProps?.className,
+                        ) }
+                        ref={ imageRef }
+                        onLoad={ imageUpdated }
                     />
                 </Resizable>
 
-                { isCaptionEnabled
-                    && (
-                        <Caption className={ cx(css.imageCaption, ...aligns) }>
-                            <CaptionTextarea
-                                className={ cx(css.caption) }
-                                placeholder="Write a caption..."
-                                readOnly={ readOnly }
-                            />
-                        </Caption>
-                    )}
+                {isCaptionEnabled && (
+                    <Caption style={ { width: currentWidth } } className={ cx(css.imageCaption, ...aligns) }>
+                        <CaptionTextarea
+                            className={ cx(css.caption) }
+                            placeholder="Write a caption..."
+                            readOnly={ readOnly }
+                        />
+                    </Caption>
+                )}
             </figure>
 
-            { children }
+            {children}
         </PlateElement>
     );
 }

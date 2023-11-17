@@ -2,10 +2,19 @@ import { isClientSide } from '../../helpers/ssr';
 import { getOffset } from '../../helpers/getOffset';
 import { getScrollParentOfEventTarget } from '../../helpers/events';
 import * as React from 'react';
-import { IDndContext, DndContextState } from '../../types/contexts';
+import { IDndContext } from '../../types/contexts';
 import { BaseContext } from '../BaseContext';
 
 const maxScrollSpeed = 2000; // px/second
+
+export interface DndContextState {
+    isDragging: boolean;
+    ghostOffsetX?: number;
+    ghostOffsetY?: number;
+    ghostWidth?: number;
+
+    renderGhost?(): React.ReactNode;
+}
 
 export class DndContext extends BaseContext<DndContextState> implements IDndContext {
     public isDragging = false;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ApiCallInfo, IHasCX, INotification, useUuiContext, useUuiError, UuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren } from '@epam/uui-core';
+import { ApiCallInfo, IHasCX, INotification, useUuiContext, useUuiError, UuiRecoveryErrorInfo, IHasChildren, ErrorPageInfo, UuiError } from '@epam/uui-core';
 import { FlexCell, ModalBlocker, ModalHeader, Spinner, ErrorNotification, RichTextView } from '@epam/uui';
 import { ModalWindow } from '../overlays';
 import { FlexRow } from '../layout';
@@ -11,7 +11,7 @@ import { ErrorPage } from './ErrorPage';
 import css from './ErrorHandler.module.scss';
 
 export interface ErrorHandlerProps extends IHasCX, IHasChildren {
-    getErrorInfo?: (uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;
+    getErrorInfo?: (uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo;
     onNotificationError?: (errors: ApiCallInfo) => void;
 }
 
@@ -57,13 +57,13 @@ export function ErrorHandler(props: ErrorHandlerProps) {
         );
     };
 
-    const renderErrorPage = (errorInform: UuiErrorInfo) => {
+    const renderErrorPage = (errorInform: ErrorPageInfo) => {
         return <ErrorPage cx={ props.cx } { ...errorInform } />;
     };
 
     if (errorType === 'error') {
         uuiModals.closeAll();
-        return renderErrorPage(errorInfo as UuiErrorInfo);
+        return renderErrorPage(errorInfo as ErrorPageInfo);
     }
 
     if (errorType === 'notification') {

@@ -7,7 +7,8 @@ import {
 } from '@epam/uui';
 import { getFilters } from './filters';
 import {
-    useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset, DataQueryFilter,
+    useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset,
+    DataQueryFilter,
 } from '@epam/uui-core';
 import { FilteredTableFooter } from './FilteredTableFooter';
 import { Person } from '@epam/uui-docs';
@@ -71,6 +72,9 @@ export function FilteredTable() {
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         rowOptions: {
             isSelectable: true,
+            onClick: (rowProps) => {
+                rowProps.onSelect(rowProps);
+            },
         },
     });
 
