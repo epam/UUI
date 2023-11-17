@@ -6,7 +6,7 @@ import css from './WithLinkExample.module.scss';
 export default function LinkTooltipExample() {
     const renderTypesMarkup = () => (
         <FlexCell width="auto">
-            <Text cx={ css.header } fontSize="14" lineHeight="18" font="semibold">
+            <Text cx={ css.header } fontSize="14" lineHeight="18" fontWeight="600">
                 Deprecation “Working from home”
             </Text>
             <Text cx={ css.content } fontSize="12" lineHeight="18">

@@ -84,12 +84,12 @@ export function ThemeDemo() {
         return (
             <FlexRow vPadding="24" padding="24">
                 <FlexCell width={ 600 } minWidth={ 600 }>
-                    <Text color="primary" lineHeight="30" fontSize="24" font="semibold">
+                    <Text color="primary" lineHeight="30" fontSize="24" fontWeight="600">
                         Personal Info
                     </Text>
                     <FlexRow vPadding="36">
                         <SuccessNotification id={ 1 } key="1" onSuccess={ () => {} } onClose={ () => {} }>
-                            <Text size="36" font="regular" fontSize="14">
+                            <Text size="36" fontSize="14">
                                 Data has been saved!
                             </Text>
                         </SuccessNotification>
@@ -102,7 +102,7 @@ export function ThemeDemo() {
                             onClose={ () => {} }
                             actions={ [{ name: 'Restore', action: () => {} }, { name: 'Cancel', action: () => {} }] }
                         >
-                            <Text size="36" font="regular" fontSize="14">
+                            <Text size="36" fontSize="14">
                                 Data hasn't been saved! Please choose something!
                             </Text>
                         </ErrorNotification>
@@ -139,7 +139,7 @@ export function ThemeDemo() {
                         </LabeledInput>
                     </FlexRow>
                     <FlexRow vPadding="24">
-                        <Text color="primary" lineHeight="30" fontSize="24" font="semibold">
+                        <Text color="primary" lineHeight="30" fontSize="24" fontWeight="600">
                             Visa records
                         </Text>
                     </FlexRow>
@@ -212,7 +212,7 @@ export function ThemeDemo() {
                         />
                     </FlexRow>
                     <FlexRow vPadding="24">
-                        <Text color="primary" lineHeight="30" fontSize="24" font="semibold">
+                        <Text color="primary" lineHeight="30" fontSize="24" fontWeight="600">
                             Agreement
                         </Text>
                     </FlexRow>

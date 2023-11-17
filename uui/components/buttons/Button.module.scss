@@ -127,37 +127,31 @@
         --uui-btn-caption: var(--uui-color-50);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
     }
-}
 
-//Sizes
-.size-18 {
-    @include button-layout(18px, 1px);
-}
+    &:global {
+        &.uui-size-18 {
+            @include button-layout(18px, 1px);
+        }
 
-.size-24 {
-    @include button-layout(24px, 1px);
-}
+        &.uui-size-24 {
+            @include button-layout(24px, 1px);
+        }
 
-.size-30 {
-    @include button-layout(30px, 1px);
-}
+        &.uui-size-30 {
+            @include button-layout(30px, 1px);
+        }
 
-.size-36 {
-    @include button-layout(36px, 1px);
-}
+        &.uui-size-36 {
+            @include button-layout(36px, 1px);
+        }
 
-.size-42 {
-    @include button-layout(42px, 1px);
+        &.uui-size-42 {
+            @include button-layout(42px, 1px);
+        }
 
-    :global(.uui-caption) {
-        font-family: var(--font-primary);
+        &.uui-size-48 {
+            @include button-layout(48px, 1px);
+        }
     }
 }
 
-.size-48 {
-    @include button-layout(48px, 1px);
-
-    :global(.uui-caption) {
-        font-family: var(--font-primary);
-    }
-}
