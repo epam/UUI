@@ -18,6 +18,7 @@ export class AvatarStackDoc extends BaseDocsBlock {
             [TSkin.UUI]: { type: '@epam/uui-components:AvatarStackProps', component: uui.AvatarStack },
         },
         doc: (doc: DocBuilder<AvatarStackProps>) => {
+            doc.setDefaultPropExample('avatarSize', ({ value }) => value === '48');
             doc.merge('urlArray', {
                 examples: [
                     {

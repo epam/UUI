@@ -28,6 +28,10 @@
 
     .activeV,
     .activeH {
-        background: var(--uui-neutral-30);
+        background: var(--uui-info-50);
+    }
+
+    .activeText {
+        color: var(--uui-info-contrast);
     }
 }

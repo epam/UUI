@@ -17,7 +17,9 @@ export class AvatarDoc extends BaseDocsBlock {
             [TSkin.UUI]: { type: '@epam/uui-components:AvatarProps', component: uui.Avatar },
         },
         doc: (doc: DocBuilder<AvatarProps>) => {
+            doc.setDefaultPropExample('size', ({ value }) => value === '48');
             doc.merge('img', {
+                editorType: 'SingleUnknownEditor',
                 examples: [
                     {
                         name: 'Olivia',

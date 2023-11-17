@@ -17,6 +17,7 @@ export class AlertDoc extends BaseDocsBlock {
             [TSkin.UUI]: { type: '@epam/uui:AlertProps', component: uui.Alert },
         },
         doc: (doc: DocBuilder<loveship.AlertProps | promo.AlertProps>) => {
+            doc.setDefaultPropExample('color', (_, index) => index === 0);
             doc.merge('children', {
                 examples: [
                     { name: 'Short', value: <uui.Text size="30">Notification Text</uui.Text>, isDefault: true },

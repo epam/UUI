@@ -34,7 +34,7 @@ export async function docBuilderGen(params: { config: TDocConfig, skin: TSkin })
                 nextProp = buildPropFallbackDetails({ prop, docs, skin: params.skin });
                 unresolvedProps.push(prop);
             }
-            const prevProp = docs.getProp(prop.name);
+            const prevProp = docs.getPropDetails(prop.name);
             if (prevProp) {
                 docs.merge(prop.name, {
                     examples: mergeUnionTypeDuplicatePropsExamples({ prevProp, nextProp }),
@@ -64,7 +64,7 @@ export async function docBuilderGen(params: { config: TDocConfig, skin: TSkin })
  * Try to combine examples of duplicate props together, if possible
  * @param params
  */
-function mergeUnionTypeDuplicatePropsExamples(params: { prevProp: PropDoc<any, any>, nextProp: Partial<PropDoc<any, any>> }) {
+function mergeUnionTypeDuplicatePropsExamples(params: { prevProp: Omit<PropDoc<any, any>, 'name'>, nextProp: Omit<Partial<PropDoc<any, any>>, 'name'> }) {
     const { prevProp, nextProp } = params;
 
     return (ctx: IPropSamplesCreationContext<any>) => {

@@ -3,7 +3,7 @@ import { RadioInput } from '@epam/uui';
 import { IPropDocEditor } from '../../../types';
 
 export function SingleUnknownExample(props: IPropDocEditor) {
-    const { examples, exampleId, onExampleIdChange, name } = props;
+    const { examples, exampleId, onExampleIdChange } = props;
     const singleExample = examples[0];
     const isChecked = exampleId !== undefined;
     const handleChange = (newIsChecked: boolean) => {
@@ -14,7 +14,7 @@ export function SingleUnknownExample(props: IPropDocEditor) {
             value={ isChecked }
             onValueChange={ handleChange }
             size="18"
-            label={ name }
+            label={ singleExample.name }
         />
     );
 }

@@ -32,7 +32,6 @@ export type PropExampleObject<TProp> = {
     name?: string;
     value: TProp;
     isDefault?: boolean;
-    color?: string;
 };
 
 export type PropExample<TProp> = PropExampleObject<TProp> | TProp;
@@ -67,7 +66,6 @@ export interface PropDoc<TProps, TProp extends keyof TProps> {
     defaultValue?: TProps[TProp];
     examples?: PropExample<TProps[TProp]>[] | ((ctx: IPropSamplesCreationContext<TProps>) => PropExample<TProps[TProp]>[]);
     editorType?: TPropDocEditorType;
-    color?: string;
     remountOnChange?: boolean;
 }
 

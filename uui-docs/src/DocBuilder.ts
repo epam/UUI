@@ -2,6 +2,7 @@ import type { ComponentType } from 'react';
 import type {
     IComponentDocs, DemoComponentProps, DemoContext, PropExample, PropDoc,
 } from './types';
+import { PropExampleObject } from './types';
 
 export class DocBuilder<TProps> implements IComponentDocs<TProps> {
     name: string;
@@ -35,12 +36,29 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
         return this._prop<TProp>(name, details, 'merge');
     }
 
-    public getProp<TProp extends keyof TProps>(name: TProp): PropDoc<TProps, keyof TProps> | undefined {
-        return this.props.find((p) => (p.name as unknown as TProp) === name);
+    public getPropDetails<TProp extends keyof TProps>(propName: TProp): Omit<PropDoc<TProps, TProp>, 'name'> | undefined {
+        const prop = this.props.find((p) => (p.name as unknown as TProp) === propName) as PropDoc<TProps, TProp>;
+        if (prop) {
+            const { name, ...details } = prop;
+            return details;
+        }
     }
 
-    public hasProp<TProp extends keyof TProps>(name: TProp): boolean {
-        return Boolean(this.getProp(name));
+    public setDefaultPropExample<TProp extends keyof TProps>(
+        propName: TProp,
+        isDefaultExample: (example: PropExampleObject<TProps[TProp]>, index: number) => boolean,
+    ): void {
+        const prevColor = this.getPropDetails(propName);
+        if (Array.isArray(prevColor.examples)) {
+            const prevExamples = prevColor.examples as PropExampleObject<TProps[TProp]>[];
+            prevColor.examples = prevExamples.map(({ isDefault, ...ex }, index) => {
+                if (isDefaultExample(ex, index)) {
+                    return { ...ex, isDefault: true };
+                }
+                return ex;
+            });
+            this.merge(propName, prevColor);
+        }
     }
 
     private _prop<TProp extends keyof TProps>(

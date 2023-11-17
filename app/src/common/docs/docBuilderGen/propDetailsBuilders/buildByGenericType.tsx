@@ -34,8 +34,7 @@ const componentDetailsBuilder: TPropDocBuilder = (params) => {
 
     if (editor.type === TPropEditorType.component) {
         if (ICON_PROP_NAMES.indexOf(prop.name) !== -1) {
-            const { name, ...rest } = getCommonDoc('iconWithInfoDoc').getProp('icon');
-            return rest;
+            return getCommonDoc('iconWithInfoDoc').getPropDetails('icon');
         }
         const SampleReactComponents = {
             SimpleComponent: () => (<div>ReactComponent</div>),
@@ -71,7 +70,7 @@ const oneOfDetailsBuilder: TPropDocBuilder = (params) => {
     const editor = prop.editor;
     if (editor.type === TPropEditorType.oneOf) {
         if (COLOR_PROP_NAMES.indexOf(prop.name) !== -1) {
-            const { name, examples, ...rest } = getDocBySkin(skin, 'colorDoc').getProp('color');
+            const { examples, ...rest } = getDocBySkin(skin, 'colorDoc').getPropDetails('color');
             return {
                 ...rest,
                 examples: editor.options,

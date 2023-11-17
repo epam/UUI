@@ -21,6 +21,24 @@ export class SizeInfo extends React.Component<SizeInfoProps, any> {
         ];
 
         const index = iconSizes[0].findIndex((i) => i === this.props.size);
+        const renderSizeCell = (size: string) => {
+            const isActive = this.props.size === size;
+            return (
+                <FlexCell key={ size } minWidth={ 38 } shrink={ 0 } cx={ isActive && css.activeV }>
+                    <Text size="24" font="semibold" color="primary" cx={ isActive && css.activeText }>
+                        {size}
+                    </Text>
+                </FlexCell>
+            );
+        };
+        const renderIconSizeCell = (size: string, i: number) => {
+            const isActive = i === index;
+            return (
+                <FlexCell key={ i } minWidth={ 38 } shrink={ 0 } cx={ isActive && css.activeV }>
+                    <Text color="primary" cx={ isActive && css.activeText }>{size}</Text>
+                </FlexCell>
+            );
+        };
 
         return (
             <div className={ css.root }>
@@ -38,13 +56,7 @@ export class SizeInfo extends React.Component<SizeInfoProps, any> {
                     </FlexRow>
                     <FlexRow cx={ css.borderBottom } size="24">
                         <FlexCell minWidth={ 80 } shrink={ 0 } cx={ cx(css.leftCell, css.height24) } />
-                        {iconSizes[0].map((size) => (
-                            <FlexCell key={ size } minWidth={ 38 } shrink={ 0 } cx={ this.props.size === size && css.activeV }>
-                                <Text size="24" font="semibold" color="primary">
-                                    {size}
-                                </Text>
-                            </FlexCell>
-                        ))}
+                        {iconSizes[0].map(renderSizeCell)}
                     </FlexRow>
                     <FlexRow>
                         <FlexCell minWidth={ 80 } shrink={ 0 } cx={ css.leftCell }>
@@ -52,11 +64,7 @@ export class SizeInfo extends React.Component<SizeInfoProps, any> {
                                 Icon size
                             </Text>
                         </FlexCell>
-                        {iconSizes[1].map((size, i) => (
-                            <FlexCell key={ i } minWidth={ 38 } shrink={ 0 } cx={ i === index && css.activeV }>
-                                <Text>{size}</Text>
-                            </FlexCell>
-                        ))}
+                        {iconSizes[1].map(renderIconSizeCell)}
                     </FlexRow>
                 </div>
             </div>

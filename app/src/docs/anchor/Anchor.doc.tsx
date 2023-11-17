@@ -18,6 +18,7 @@ export class AnchorDoc extends BaseDocsBlock {
             [TSkin.UUI]: { type: '@epam/uui-components:AnchorProps', component: uui.Anchor },
         },
         doc: (doc: DocBuilder<AnchorProps>) => {
+            doc.setDefaultPropExample('href', (_, index) => index === 0);
             doc.merge('children', {
                 examples: [{ name: 'card', value: <CardExample />, isDefault: true }, { name: 'text', value: 'Hello, World!' }],
             });
