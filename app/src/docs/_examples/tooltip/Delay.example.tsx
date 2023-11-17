@@ -5,7 +5,7 @@ import css from './DelayExample.module.scss';
 export default function TriggerConfigurationWithDelayExample() {
     return (
         <Panel background="surface" shadow cx={ css.container }>
-            <Text fontSize="14" font="semibold" cx={ css.caption }>
+            <Text fontSize="14" fontWeight="600" cx={ css.caption }>
                 Project Team
             </Text>
             <Tooltip content="Experiance Designer" openDelay={ 250 }>
