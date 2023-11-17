@@ -37,7 +37,7 @@ export function TableColumnConfigModalTest() {
                 render: (p) =>
                     p.profileStatus && (
                         <FlexRow>
-                            <StatusIndicator size="24" color={ p.profileStatus.toLowerCase() as any } caption={ p.profileStatus } />
+                            <StatusIndicator size="18" color={ p.profileStatus.toLowerCase() as any } caption={ p.profileStatus } />
                         </FlexRow>
                     ),
                 width: 140,
