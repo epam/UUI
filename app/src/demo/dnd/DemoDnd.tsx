@@ -65,7 +65,7 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
                         <Panel background="surface" shadow>
                             <FlexCell minWidth={ 282 }>
                                 <FlexRow padding="18" borderBottom>
-                                    <Text size="48" font="semibold">
+                                    <Text size="48" fontWeight="600">
                                         Modules
                                     </Text>
                                     <FlexSpacer />
@@ -88,7 +88,7 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
                     </>
                 )}
                 <FlexCell cx={ css.moduleContent } minWidth={ isDesktop && 894 } width={ !isDesktop ? '100%' : undefined }>
-                    <Text font="primary" cx={ css.moduleHeader }>
+                    <Text cx={ css.moduleHeader }>
                         Module 3: Module Name
                     </Text>
                     {sortedSections.map((section, index) => (
