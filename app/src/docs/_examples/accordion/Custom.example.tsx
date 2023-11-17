@@ -6,7 +6,7 @@ const renderTitle = () => (
     <FlexCell grow={ 1 }>
         <FlexRow spacing="12" padding="6">
             <Avatar alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" size="30" />
-            <Text fontSize="16" font="semibold">
+            <Text fontSize="16" fontWeight="600">
                 John Doe
             </Text>
             <FlexSpacer />
@@ -19,7 +19,7 @@ export default function CustomAccordionExample() {
     return (
         <FlexCell grow={ 1 }>
             <Accordion renderTitle={ renderTitle } mode="block">
-                <Text fontSize="16" font="regular">
+                <Text fontSize="16">
                     {demoData.loremIpsum}
                 </Text>
             </Accordion>

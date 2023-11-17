@@ -3,9 +3,7 @@
 
 @mixin theme-loveship_dark {
     --uui-font: 'Source Sans Pro', sans-serif;
-    --font-primary: 'Sans Semibold', Arial, sans-serif;
-    --font-promo: 'Sans Semibold', Arial, sans-serif;
-    --font-mono: monospace;
+    --uui-font-mono: 'Roboto Mono', monospace;
 
     --night50: #FAFAFC;
     --night100: #E1E3EB;
@@ -807,17 +805,6 @@
         --uui-text-font: var(--uui-font);
         --uui-text-font-weight: 600;
 
-    }
-
-    .uui-font-sans-italic {
-        --uui-text-font: var(--uui-font);
-        --uui-text-font-weight: 400;
-        --uui-text-font-style: italic;
-    }
-
-    .uui-font-museo-sans {
-        --uui-text-font: var(--font-primary);
-        --uui-text-font-weight: normal;
     }
 
     .uui-font-sans-light {

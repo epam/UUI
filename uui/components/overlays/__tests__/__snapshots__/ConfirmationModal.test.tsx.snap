@@ -55,7 +55,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
+          className="root uui-text uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography line-height-24 font-size-18 v-padding-12 container"
         >
           Test
         </div>
@@ -163,7 +163,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary uui-size-36"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -175,7 +175,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent uui-size-36"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -262,7 +262,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         }
       >
         <div
-          className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
+          className="root uui-text uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography line-height-24 font-size-18 v-padding-12 container"
         >
           Test
         </div>
@@ -378,7 +378,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary uui-size-36"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -390,7 +390,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
+          className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent uui-size-36"
           onClick={[Function]}
           tabIndex={0}
           type="button"

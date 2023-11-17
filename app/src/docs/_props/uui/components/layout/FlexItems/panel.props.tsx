@@ -13,7 +13,7 @@ const panelDoc = new DocBuilder<VPanelProps & PanelMods>({ name: 'Panel', compon
                 value: (
                     <>
                         <FlexRow padding="12">
-                            <Text font="regular">GRID</Text>
+                            <Text>GRID</Text>
                         </FlexRow>
                         <FlexRow padding="12" background="surface" spacing="6">
                             <FlexCell minWidth={ 100 } grow={ 4 }>
@@ -79,7 +79,7 @@ const panelDoc = new DocBuilder<VPanelProps & PanelMods>({ name: 'Panel', compon
                 value: (
                     <>
                         <FlexRow padding="12">
-                            <Text font="regular" color="secondary">
+                            <Text color="secondary">
                                 GRID DARK
                             </Text>
                         </FlexRow>

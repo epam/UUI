@@ -10,7 +10,7 @@ export default function FlexSpacerExample() {
     return (
         <Panel background="surface" shadow cx={ css.root }>
             <FlexRow padding="12" vPadding="18">
-                <Text font="semibold" size="48">
+                <Text fontWeight="600" size="48">
                     User settings
                 </Text>
                 <FlexSpacer />
