@@ -58,7 +58,7 @@ export type TSharedPropEditorType =
     'CantResolve'
     ;
 
-export type TEditorType = React.FC<IPropDocEditor> | TSharedPropEditorType;
+export type TPropDocEditorType = React.FC<IPropDocEditor> | TSharedPropEditorType;
 
 export interface PropDoc<TProps, TProp extends keyof TProps> {
     name: Extract<keyof TProps, string>;
@@ -66,7 +66,7 @@ export interface PropDoc<TProps, TProp extends keyof TProps> {
     isRequired: boolean;
     defaultValue?: TProps[TProp];
     examples?: PropExample<TProps[TProp]>[] | ((ctx: IPropSamplesCreationContext<TProps>) => PropExample<TProps[TProp]>[]);
-    editorType?: TEditorType;
+    editorType?: TPropDocEditorType;
     color?: string;
     remountOnChange?: boolean;
 }

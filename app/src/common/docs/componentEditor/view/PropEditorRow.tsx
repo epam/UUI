@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IPropSamplesCreationContext, PropDoc } from '@epam/uui-docs';
-import { getExamplesList, isPropValueEmpty } from '../utils';
 import { FlexCell, FlexRow, RadioInput, Text } from '@epam/uui';
+import { getExamplesList, isPropValueEmpty } from '../utils';
 import { PropEditorCell } from './PropEditorCell';
 
 interface IPropEditorRow {
@@ -28,7 +28,7 @@ export const PropEditorRow = React.memo(function PropEditorRowComponent(props: I
             <FlexCell key="default" width={ 110 }>
                 {!prop.isRequired && (
                     <RadioInput
-                        label={ isNone ? 'none' : prop.defaultValue + '' }
+                        label={ isNone ? 'none' : String(prop.defaultValue) }
                         size="18"
                         value={ isNothingSelected }
                         onValueChange={ () => onResetProp(prop.name) }
@@ -36,16 +36,14 @@ export const PropEditorRow = React.memo(function PropEditorRowComponent(props: I
                 )}
             </FlexCell>
             <FlexCell key="examples" grow={ 1 }>
-                <FlexRow size="36" spacing="6">
-                    <PropEditorCell
-                        prop={ prop }
-                        propValue={ propValue }
-                        propExampleId={ propExampleId }
-                        propExamplesList={ propExamplesList }
-                        onPropValueChange={ (newPropValue) => onPropValueChange({ prop, newPropValue }) }
-                        onPropExampleIdChange={ (newPropExampleId) => onPropExampleIdChange({ prop, newPropExampleId }) }
-                    />
-                </FlexRow>
+                <PropEditorCell
+                    prop={ prop }
+                    propValue={ propValue }
+                    propExampleId={ propExampleId }
+                    propExamplesList={ propExamplesList }
+                    onPropValueChange={ (newPropValue) => onPropValueChange({ prop, newPropValue }) }
+                    onPropExampleIdChange={ (newPropExampleId) => onPropExampleIdChange({ prop, newPropExampleId }) }
+                />
             </FlexCell>
         </FlexRow>
     );

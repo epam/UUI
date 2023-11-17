@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { IPropDocEditor } from '@epam/uui-docs';
 import { IEditable, IHasIcon, Icon, cx, ArrayDataSource } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { Button, DataPickerRow, IconButton, PickerInput, Text, Tooltip } from '@epam/uui';
@@ -8,18 +9,27 @@ import { IconList } from '../../../../../documents/iconListHelpers';
 import css from './IconPicker.module.scss';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 
-interface IconPickerProps extends IEditable<IHasIcon> {
+export function IconPickerWithInfo(props: IPropDocEditor) {
+    const { value, onValueChange } = props;
+    const examples = props.examples?.map((ex) => ex.value);
+    const editable = { value, onValueChange };
+    return (
+        <IconPickerInner icons={ examples } { ...editable } enableInfo={ true } />
+    );
+}
+
+interface IconPickerInnerProps extends IEditable<IHasIcon> {
     icons: IconList<Icon>[];
     enableInfo?: boolean;
 }
 
-interface IconPickerState {
+interface IconPickerInnerState {
     iconId?: string;
     iconName?: string;
 }
 
-export class IconPicker extends React.Component<IconPickerProps, IconPickerState> {
-    state: IconPickerState = {};
+class IconPickerInner extends React.Component<IconPickerInnerProps, IconPickerInnerState> {
+    state: IconPickerInnerState = {};
     renderItem(item: IconList<Icon>) {
         let itemText;
 
@@ -59,7 +69,7 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
     renderInfo() {
         return (
             <div className={ css.infoContainer }>
-                <Tooltip maxWidth={ 600 } placement="top" content={ this.renderTooltip() } closeOnMouseLeave={ false }>
+                <Tooltip maxWidth={ 600 } placement="top" content={ this.renderTooltip() }>
                     <IconButton icon={ InfoIcon } color="neutral" />
                 </Tooltip>
             </div>

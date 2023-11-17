@@ -1,10 +1,9 @@
 import * as React from 'react';
 import {
-    PropDoc,
-    SharedPropEditorsMap,
-    IPropDocEditor, TEditorType, PropExampleObject,
+    PropDoc, SharedPropEditorsMap,
+    IPropDocEditor, TPropDocEditorType, PropExampleObject,
 } from '@epam/uui-docs';
-import { IconButton, Tooltip } from '@epam/uui';
+import { IconButton, Tooltip, FlexRow } from '@epam/uui';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 
 interface IPropEditorCell<TProp> {
@@ -19,7 +18,7 @@ export function PropEditorCell<TProp = any>(props: IPropEditorCell<TProp>): Reac
     const { propValue, propExampleId, propExamplesList, onPropValueChange, onPropExampleIdChange } = props;
     const { editorType, name, description } = props.prop;
 
-    let PE: TEditorType = editorType;
+    let PE: TPropDocEditorType = editorType;
     if (!PE) {
         const numExamples = propExamplesList.length;
         if (numExamples > 1) {
@@ -39,21 +38,14 @@ export function PropEditorCell<TProp = any>(props: IPropEditorCell<TProp>): Reac
             onValueChange: onPropValueChange,
             onExampleIdChange: onPropExampleIdChange,
         };
-        if (typeof PE === 'string') {
-            /*  Preferable approach */
-            const SharedPeComponent = SharedPropEditorsMap[PE];
-
-            return (
-                <>
-                    <SharedPeComponent { ...peProps } />
-                    { descriptionNode }
-                </>
-            );
-        } else {
-            return (
-                <PE { ...peProps } />
-            );
-        }
+        const Component = typeof PE === 'string' ? SharedPropEditorsMap[PE] : PE;
+        const style = { marginTop: '6px', marginBottom: '6px' };
+        return (
+            <FlexRow size="24" spacing="6" rawProps={ { style } }>
+                <Component { ...peProps } />
+                { descriptionNode }
+            </FlexRow>
+        );
     }
 
     return null;
