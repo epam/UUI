@@ -1,5 +1,17 @@
 @use '~@epam/assets/theme/theme_promo' as *;
+@use '~@epam/assets/theme/theme_loveship' as *;
 @use '~@epam/promo/assets/styles/index.scss' as *;
+
+:global {
+    .uui-theme-loveship_important.uui-theme-loveship_important.uui-theme-loveship_important.uui-theme-loveship_important {
+        @include theme-loveship();
+    }
+
+    .uui-theme-promo_important.uui-theme-promo_important.uui-theme-promo_important.uui-theme-promo_important {
+        @include theme-promo();
+    }
+}
+
 
 .secondary-navigation {
     box-sizing: border-box;
@@ -66,5 +78,7 @@
 }
 
 .theme-promo {
-    @include theme-promo();
+    :global {
+        @include theme-promo();
+    }
 }
