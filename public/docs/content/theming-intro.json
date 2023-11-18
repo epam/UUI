@@ -47,15 +47,11 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "UUI provides a set of ready-made themes: Electric, Loveship, Loveship Dark and Promo. "
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
+        "text": "UUI provides a set of ready-made themes: Electric, Loveship, Loveship Dark and Promo. \n"
+      },
       {
-        "text": "To add them into you project you need:"
+        "text": "List of exists theme classes:",
+        "uui-richTextEditor-bold": true
       }
     ]
   },
@@ -67,10 +63,52 @@
         "children": [
           {
             "type": "list-item-child",
+            "data": {},
             "children": [
               {
-                "text": "TBD steps",
-                "color": "warning"
+                "text": "Electric - \"uui-theme-electric\","
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "data": {},
+            "children": [
+              {
+                "text": "Loveship - \"uui-theme-loveship\","
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "data": {},
+            "children": [
+              {
+                "text": "Loveship Dark - \"uui-theme-loveship_dark\","
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "data": {},
+            "children": [
+              {
+                "text": "Promo - \"uui-theme-promo\"."
               }
             ]
           }
@@ -82,7 +120,112 @@
     "type": "paragraph",
     "children": [
       {
-        "text": ""
+        "text": "link to start - note"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To add theme into you project you need:"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "1. Import styles from ",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": "@epam/assets",
+        "uui-richTextEditor-code": true,
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": " package to the root of your app(e.g., index.tsx).",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "type": "note-quote",
+    "data": {},
+    "children": [
+      {
+        "text": "index.tsx",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "uui-richTextEditor-bold": true,
+        "text": "\n"
+      },
+      {
+        "text": "// Import theme styles:\nimport '@epam/assets/css/theme/theme-{ \"theme_name\" }.css';\n\n",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "uui-richTextEditor-span-mark": true,
+        "text": "E.g.",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "uui-richTextEditor-span-mark": true,
+        "text": "\n\nimport '@epam/assets/css/theme/theme-electric.css';"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "2. Add one of the theme classes to the body .",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "index.html",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": "\n\n<body class=\"uui-theme-"
+      },
+      {
+        "text": "{ \"theme_name\" }",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "\">"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "uui-richTextEditor-span-mark": true,
+        "text": "3. Import and use components from the ",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": "@epam/uui",
+        "uui-richTextEditor-code": true,
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": " package.",
+        "uui-richTextEditor-bold": true
       }
     ]
   },
@@ -122,7 +265,7 @@
         "text": " and "
       },
       {
-        "text": "@epam/loveship",
+        "text": "@epam/promo",
         "uui-richTextEditor-code": true
       },
       {
@@ -154,7 +297,7 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "Skin can define its own set of colors. Instead of just pre-defined semantic colors, such as primary/secondary/success/critical and ect., we can use extended and brand-named set of colors and modifictors."
+                "text": "Skin can define its own set of colors. Instead of just pre-defined semantic colors, such as primary/secondary/success/critical and etc., we can use extended and brand-named set of colors and modifiers."
               }
             ]
           }
@@ -189,7 +332,7 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "You  won't be able to to switch theme to the another one(except dark variation of the same them), because skin brand-named set of colors and modifictors brokes a semantic approach: Button with blue color can't became a purple with new theme. Instead of Button from "
+                "text": "You  won't be able to to switch theme to the another one(except dark variation of the same them), because skin brand-named set of colors and modifiers broke a semantic approach. Button with blue color can't became a purple with new theme. Instead of Button from "
               },
               {
                 "text": "@epam/uui",
@@ -670,7 +813,7 @@
     "data": {},
     "children": [
       {
-        "text": "Theme variables not assumed as a internal api they can be used, not only to style UUI components, but also anywhere in your application. For example, it will be useful if you have a dark/light theme switcher or if you made a theme agnostic interface. "
+        "text": "Theme variables not assumed as a internal API they can be used, not only to style UUI components, but also anywhere in your application. For example, it will be useful if you have a dark/light theme switcher or if you made a theme agnostic interface. "
       }
     ]
   },
@@ -687,6 +830,193 @@
     "type": "paragraph",
     "data": {},
     "children": [
+      {
+        "text": "To make the variables easier to use, we have divided them into logical groups."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Pallet variables",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Palette variables are primitive color values in our library."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "#0A68F1  =>  --electric-50",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Core variables",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Core variables relate to a specific context or abstraction. Core variable helps communicate the intended purpose of a variable, and are effective when a value with a single intent will appear in multiple places."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "--electric-50  =>  --uui-primary-50",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Color classes",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Color classes are sets of semantic and additional colors grouped in classes to use in colored components."
+      }
+    ]
+  },
+  {
+    "type": "note-quote",
+    "data": {},
+    "children": [
+      {
+        "text": ".uui-color-primary",
+        "color": "critical"
+      },
+      {
+        "text": " {\n    --uui-color-5: "
+      },
+      {
+        "text": "var(--uui-primary-5)",
+        "color": "critical"
+      },
+      {
+        "text": ";\n    --uui-color-10: "
+      },
+      {
+        "text": "var(--uui-primary-10)",
+        "color": "critical"
+      },
+      {
+        "text": ";\n    --uui-color-20: "
+      },
+      {
+        "text": "var(--uui-primary-20)",
+        "color": "critical"
+      },
+      {
+        "text": ";\n    --uui-color-50: "
+      },
+      {
+        "text": "var(--uui-primary-50)",
+        "color": "critical"
+      },
+      {
+        "text": ";\n    --uui-color-60: "
+      },
+      {
+        "text": "var(--uui-primary-60)",
+        "color": "critical"
+      },
+      {
+        "text": ";\n    --uui-color-70: "
+      },
+      {
+        "text": "var(--uui-primary-70)",
+        "color": "critical"
+      },
+      {
+        "text": ";\n    --uui-color-contrast: "
+      },
+      {
+        "text": "var(--white)",
+        "color": "critical"
+      },
+      {
+        "text": ";\n}"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "uui-richTextEditor-bold": true,
+        "text": "Component specific variables"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Component-specific variables are an exhaustive representation of every value associated with a component. In general they inherit from core variables, but are named in a way that allows engineering teams to be as specific as possible in applying variables in component development."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "--uui-primary-50  =>  --uui-spinner",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Also if component has set of colors they can inherit values from color classes.\n"
+      },
+      {
+        "text": "--uui-color-50  =>  --uui-btn-bg",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "\n"
+      },
       {
         "text": "TBD: may be need something else? ",
         "color": "warning"
