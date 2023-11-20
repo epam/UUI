@@ -3,6 +3,7 @@ import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiR
 import { DataTable, Panel, Text, Paginator, FlexRow, FlexSpacer } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
+import isEqual from 'lodash.isequal';
 
 export default function PagedTable() {
     const svc = useUuiContext();
@@ -11,12 +12,17 @@ export default function PagedTable() {
     });
 
     const setTableState = useCallback((newState: DataSourceState) => {
-        if (state.page !== newState.page || state.pageSize !== newState.pageSize) {
+        const isFilterChanged = !isEqual(state.filter, newState.filter);
+        const isSearchChanged = state.search !== newState.search;
+        const isSortingChanged = !isEqual(state.sorting, newState.sorting);
+        const isPagingChanged = state.page !== newState.page || state.pageSize !== newState.pageSize;
+
+        if (isFilterChanged || isSearchChanged || isSortingChanged || isPagingChanged) {
             setState({ ...newState, checked: [] });
             return;
         }
         setState(newState);
-    }, [state.page, state.pageSize]);
+    }, [state]);
 
     const columns: DataColumnProps<Person>[] = useMemo(
         () => [
