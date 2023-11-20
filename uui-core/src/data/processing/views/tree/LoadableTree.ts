@@ -77,12 +77,9 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
 
     public async loadMissing<TFilter>(
         options: LoadTreeOptions<TItem, TId, TFilter>,
-        inputValue: Readonly<DataSourceState>,
+        value: Readonly<DataSourceState>,
         withNestedChildren: boolean = true,
     ): Promise<ITree<TItem, TId>> {
-        const { page, pageSize, ...valueWithoutPaging } = inputValue;
-        const value = options?.skipPaging ? valueWithoutPaging : inputValue;
-
         const requiredRowsCount = value.topIndex + value.visibleCount;
 
         let byId: IMap<TId, TItem> = this.byId;
@@ -253,7 +250,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
                 nodeInfo = { ...nodeInfo, count: newNodesCount };
             }
 
-            if (parent == null && response.totalCount !== undefined && nodeInfo.totalCount !== response.totalCount) {
+            if (parent == null && response.totalCount != null && nodeInfo.totalCount !== response.totalCount) {
                 nodeInfo = { ...nodeInfo, totalCount: response.totalCount };
             }
         }

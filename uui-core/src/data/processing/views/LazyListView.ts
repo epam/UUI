@@ -101,7 +101,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         super(editable, newProps);
         this.props = this.applyDefaultsToProps(newProps);
         this.visibleTree = Tree.blank<TItem, TId>(newProps);
-        this.treeWithoutPaging = Tree.blank<TItem, TId>(newProps);
         this.fullTree = Tree.blank<TItem, TId>(newProps);
         this.cache = cache;
         if (!this.cache) {
@@ -315,11 +314,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         byFullTree: boolean = false,
     ): Promise<LoadResult<TItem, TId>> {
         const localValue = { ...this.value, ...value };
-        let tree = byFullTree ? this.fullTree : this.visibleTree;
-        if (options?.skipPaging) {
-            tree = this.treeWithoutPaging;
-        }
-
+        const tree = byFullTree ? this.fullTree : this.visibleTree;
         const loadingTree = tree;
 
         try {
@@ -337,10 +332,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
             const newTree = await newTreePromise;
 
-            let linkToTree = byFullTree ? this.fullTree : this.visibleTree;
-            if (options?.skipPaging) {
-                linkToTree = this.treeWithoutPaging;
-            }
+            const linkToTree = byFullTree ? this.fullTree : this.visibleTree;
 
             // If tree is changed during this load, than there was reset occurred (new value arrived)
             // We need to tell caller to reject this result
@@ -348,9 +340,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             const isUpdated = linkToTree !== newTree;
 
             if (!isOutdated) {
-                if (options?.skipPaging) {
-                    this.treeWithoutPaging = newTree;
-                } else if (!this.value.search) {
+                if (!this.value.search) {
                     this.visibleTree = newTree;
                     this.fullTree = newTree;
                 } else {
@@ -373,18 +363,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.checkItems(isChecked, false, id);
     };
 
-    protected handleSelectAllRows = (value: boolean) => {
+    protected handleSelectAll = (value: boolean) => {
         this.checkItems(value, true);
     };
 
-    protected handleSelectAll = (value: boolean) => {
-        this.checkItems(value, true, undefined, true);
-    };
-
-    private async checkItems(isChecked: boolean, isRoot: boolean, checkedId?: TId, withoutPaging?: boolean) {
+    private async checkItems(isChecked: boolean, isRoot: boolean, checkedId?: TId) {
         let checked = (this.value && this.value.checked) || [];
 
-        let tree = withoutPaging ? this.treeWithoutPaging : this.visibleTree;
+        let tree = this.visibleTree;
 
         const isImplicitMode = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
         if (this.props.cascadeSelection || isRoot) {
@@ -406,7 +392,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                         return isRoot || isEqual(id, checkedId) || (this.value.search && parents.some((parent) => isEqual(parent, id)));
                     },
                     isLoadStrict: true,
-                    skipPaging: withoutPaging,
                 },
                 loadNestedLayersChildren,
                 { search: null },
@@ -477,10 +462,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const rootCount = rootInfo.count;
         const rootTotalCount = rootInfo.totalCount ?? rootCount;
 
-        if (!this.props.getChildCount && rootCount) {
-            // We have a flat list, and know exact count of items on top level. So, we can have an exact number of rows w/o iterating the whole tree.
-            rowsCount = rootCount;
-            totalCount = rootTotalCount;
+        if (!this.props.getChildCount) {
+            if (rootCount != null) {
+                // We have a flat list, and know exact count of items on top level. So, we can have an exact number of rows w/o iterating the whole tree.
+                rowsCount = rootCount;
+            }
+
+            if (rootTotalCount != null) {
+                totalCount = rootTotalCount;
+            }
         } else if (!this.hasMoreRows) {
             // We are at the bottom of the list. Some children might still be loading, but that's ok - we'll re-count everything after we load them.
             rowsCount = this.rows.length;
