@@ -9,5 +9,5 @@ export type RichTextViewProps = uuiComponents.RichTextViewProps & RichTextViewMo
 
 export const RichTextView = withMods<uuiComponents.RichTextViewProps, RichTextViewMods>(
     uuiComponents.RichTextView,
-    (mods: RichTextViewMods) => ['uui-typography', `uui-typography-${mods.size || '14'}`],
+    (mods: RichTextViewMods) => ['uui-typography', `uui-typography-size-${mods.size || '14'}`],
 );

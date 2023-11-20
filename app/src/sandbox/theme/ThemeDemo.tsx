@@ -1,6 +1,9 @@
 import React from 'react';
 import { useAsyncDataSource, useForm, useUuiContext } from '@epam/uui-core';
-import { Button, Checkbox, Switch, TextInput, SuccessNotification, ErrorNotification, Text, LabeledInput, Panel, PickerInput, FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton, ModalBlocker, ModalWindow, ModalHeader, Badge, DatePicker } from '@epam/uui';
+import {
+    Button, Checkbox, Switch, TextInput, SuccessNotification, ErrorNotification, Text, LabeledInput, Panel, PickerInput,
+    FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton, ModalBlocker, ModalWindow, ModalHeader, Badge, DatePicker,
+} from '@epam/uui';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 import { ReactComponent as LocationIcon } from '@epam/assets/icons/common/action-map_pin-18.svg';
@@ -80,12 +83,12 @@ export function ThemeDemo() {
         return (
             <FlexRow vPadding="24" padding="24">
                 <FlexCell width={ 600 } minWidth={ 600 }>
-                    <Text color="primary" lineHeight="30" fontSize="24" font="semibold">
+                    <Text color="primary" lineHeight="30" fontSize="24" fontWeight="600">
                         Personal Info
                     </Text>
                     <FlexRow vPadding="36">
                         <SuccessNotification id={ 1 } key="1" onSuccess={ () => {} } onClose={ () => {} }>
-                            <Text size="36" font="regular" fontSize="14">
+                            <Text size="36" fontSize="14">
                                 Data has been saved!
                             </Text>
                         </SuccessNotification>
@@ -98,7 +101,7 @@ export function ThemeDemo() {
                             onClose={ () => {} }
                             actions={ [{ name: 'Restore', action: () => {} }, { name: 'Cancel', action: () => {} }] }
                         >
-                            <Text size="36" font="regular" fontSize="14">
+                            <Text size="36" fontSize="14">
                                 Data hasn't been saved! Please choose something!
                             </Text>
                         </ErrorNotification>
@@ -135,7 +138,7 @@ export function ThemeDemo() {
                         </LabeledInput>
                     </FlexRow>
                     <FlexRow vPadding="24">
-                        <Text color="primary" lineHeight="30" fontSize="24" font="semibold">
+                        <Text color="primary" lineHeight="30" fontSize="24" fontWeight="600">
                             Visa records
                         </Text>
                     </FlexRow>
@@ -208,7 +211,7 @@ export function ThemeDemo() {
                         />
                     </FlexRow>
                     <FlexRow vPadding="24">
-                        <Text color="primary" lineHeight="30" fontSize="24" font="semibold">
+                        <Text color="primary" lineHeight="30" fontSize="24" fontWeight="600">
                             Agreement
                         </Text>
                     </FlexRow>

@@ -20,7 +20,7 @@ function FilterPanel<TFilter = any>(props: IFilterPanelProps<TFilter>) {
     return (
         <>
             <FlexRow borderBottom size="48" padding="18">
-                <Text fontSize="18" font="semibold">
+                <Text fontSize="18" fontWeight="600">
                     Views
                 </Text>
                 <FlexSpacer />

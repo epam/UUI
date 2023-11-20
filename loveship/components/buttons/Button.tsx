@@ -26,7 +26,7 @@ export type ButtonProps = Omit<UuiButtonProps, 'color' | 'fill'> & ButtonMods;
 
 export function applyButtonMods(mods: ButtonProps) {
     return [
-        css['size-' + (mods.size || defaultSize)],
+        `uui-size-${mods.size || defaultSize}`,
         css['style-' + (mods.shape || 'square')],
     ];
 }

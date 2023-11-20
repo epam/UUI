@@ -11,7 +11,7 @@ export default function BasicExample() {
         return (
             <DropdownContainer maxWidth={ 360 } vPadding="12" padding="18" { ...props }>
                 <FlexCell alignSelf="flex-start">
-                    <Text fontSize="18" lineHeight="24" color="brand" font="semibold">
+                    <Text fontSize="18" lineHeight="24" color="brand" fontWeight="600">
                         Some Title
                     </Text>
                     <Text fontSize="14">

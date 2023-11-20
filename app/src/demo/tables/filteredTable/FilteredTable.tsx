@@ -54,9 +54,9 @@ export function FilteredTable() {
             page: rq.page - 1,
             pageSize: rq.pageSize,
         });
-        // setTotalCount(() => result.totalCount);
-        // result.count = result.items.length;
-        // result.from = 0;
+        setTotalCount(() => result.totalCount);
+        result.count = result.items.length;
+        result.from = 0;
         return result;
     }, [svc.api.demo]);
 
@@ -90,7 +90,7 @@ export function FilteredTable() {
     return (
         <div className={ css.container }>
             <div className={ css.presetsPanel }>
-                <Text fontSize="24" lineHeight="30" font="primary" cx={ css.presetsTitle }>
+                <Text fontSize="24" lineHeight="30" cx={ css.presetsTitle }>
                     Users Dashboard
                 </Text>
                 <PresetsPanel { ...presetsApi } />

@@ -1,5 +1,23 @@
+@mixin text-color($color) {
+    &.uui-text.uui-color-#{$color} {
+        --uui-text: var(--uui-text-#{$color});
+    }
+}
+
+@mixin font-weight($weight) {
+    &.uui-font-weight-#{$weight} {
+        --uui-text-font-weight: #{$weight};
+    }
+}
+
+@mixin font-style($style) {
+    &.uui-font-style-#{$style} {
+        --uui-text-font-style: #{$style};
+    }
+}
+
 .root {
-    --uui-text: var(--uui-color-50);
+    --uui-text: var(--uui-color-70);
     --uui-text-font: var(--uui-font);
     --uui-text-font-weight: 400;
     --uui-text-font-style: normal;
@@ -9,55 +27,25 @@
     font-style: var(--uui-text-font-style);
     color: var(--uui-text);
 
-    &:global(.uui-text.uui-color-brand) {
-        --uui-text: var(--uui-text-brand);
-    }
+    &:global {
+        &.uui-text.uui-color-white {
+            --uui-text: var(--uui-neutral-0);
+        }
 
-    &:global(.uui-text.uui-color-primary) {
-        --uui-text: var(--uui-text-primary);
-    }
+        @include text-color('brand');
+        @include text-color('primary');
+        @include text-color('secondary');
+        @include text-color('disabled');
+        @include text-color('contrast');
 
-    &:global(.uui-text.uui-color-secondary) {
-        --uui-text: var(--uui-text-secondary);
-    }
+        @include font-weight(200);
+        @include font-weight(300);
+        @include font-weight(400);
+        @include font-weight(600);
+        @include font-weight(700);
+        @include font-weight(900);
 
-    &:global(.uui-text.uui-color-disabled) {
-        --uui-text: var(--uui-text-disabled);
-    }
-
-    &:global(.uui-text.uui-color-contrast) {
-        --uui-text: var(--uui-text-contrast);
-    }
-
-    &:global(.uui-text.uui-color-white) {
-        --uui-text: var(--uui-neutral-0);
-    }
-
-    &:global(.uui-font-regular) {
-        --uui-text-font: var(--uui-font);
-        --uui-text-font-weight: 400;
-    }
-
-    &:global(.uui-font-semibold) {
-        --uui-text-font: var(--uui-font);
-        --uui-text-font-weight: 600;
-
-    }
-
-    &:global(.uui-font-italic) {
-        --uui-text-font: var(--uui-font);
-        --uui-text-font-weight: 400;
-        --uui-text-font-style: italic;
-
-    }
-
-    &:global(.uui-font-primary) {
-        --uui-text-font: var(--font-primary);
-        --uui-text-font-weight: 400;
-    }
-
-    &:global(.uui-font-promo) {
-        --uui-text-font: var(--font-promo);
-        --uui-text-font-weight: 400;
+        @include font-style('normal');
+        @include font-style('italic');
     }
 }

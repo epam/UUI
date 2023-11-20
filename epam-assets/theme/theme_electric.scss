@@ -5,9 +5,10 @@
 
 @mixin theme-electric {
     --uui-font: 'Source Sans Pro', sans-serif;
-    --font-primary: 'Museo Sans', 'Source Sans Pro', Arial, sans-serif;
-    --font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
-    --font-mono: monospace;
+    --uui-font-mono: 'Roboto Mono', monospace;
+
+    // theme specific fonts
+    --font-museo-sans: 'Museo Sans', 'Source Sans Pro', Arial, sans-serif;
 
     --night50: #FAFAFC;
     --night100: #F5F6FA;
@@ -257,10 +258,11 @@
 
     --uui-skeleton: var(--uui-neutral-40);
 
-    --uui-border-radius: 3px;
     --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
     --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0 6px rgba(29, 30, 38, 0.05);
     --uui-shadow-level-3: 0 0 10px rgba(29, 30, 38, 0.05), 0 6px 24px rgba(29, 30, 38, 0.12), 0 9px 15px rgba(29, 30, 38, 0.1);
+
+    --uui-border-radius: 3px;
 
     /* core variables end */
 
@@ -479,11 +481,11 @@
         --uui-color-contrast: var(--white);
     }
 
-    /* TooltipContainer */
+    /* Tooltip */
 
     .uui-tooltip-container.uui-color-neutral {
         --uui-tooltip-bg: var(--white);
-        --uui-color-contrast: var(--uui-neutral-80);
+        --uui-tooltip-text: var(--uui-text-primary);
     }
 
     .uui-tooltip-container.uui-color-critical {
@@ -492,7 +494,7 @@
 
     .uui-tooltip-container.uui-color-contrast {
         --uui-tooltip-bg: var(--night800);
-        --uui-color-contrast: var(--white);
+        --uui-tooltip-text: var(--uui-text-contrast);
     }
 
     /* CuntIndicator */
@@ -514,7 +516,6 @@
             border: 1px solid var(--uui-neutral-40);
         }
     }
-
 }
 
 .uui-theme-electric {

@@ -9,7 +9,7 @@ const defaultSize = '18';
 export interface BadgeMods extends Omit<UuiBadgeProps, 'color' | 'fill' | 'size'> {
     color?: EpamPrimaryColor | EpamAdditionalColor | 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night300' | 'night600';
     shape?: types.ControlShape;
-    fill?: UuiBadgeMods['fill'] | 'semitransparent' | 'transparent';
+    fill?: UuiBadgeMods['fill'] | 'semitransparent';
     size?: UuiBadgeMods['size'] | '12';
 }
 
@@ -33,14 +33,14 @@ export const Badge = withMods<Omit<UuiBadgeProps, 'color' | 'fill' | 'size'>, Ba
                 component: 'Badge',
                 propName: 'fill',
                 propValue: props.fill,
-                condition: () => ['semitransparent', 'transparent'].indexOf(props.fill) !== -1,
+                propValueUseInstead: 'outline',
+                condition: () => ['semitransparent'].indexOf(props.fill) !== -1,
             });
         }
         return {
             color: props.color || 'sky',
             size: props.size || defaultSize,
             fill: props.fill === 'semitransparent' ? 'outline' : (props.fill || 'solid'),
-            indicator: props.fill === 'transparent' ? false : props.indicator,
         } as BadgeProps;
     },
 );
