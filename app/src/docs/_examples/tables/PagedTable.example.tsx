@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest, useUuiContext } from '@epam/uui-core';
+import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest, useUuiContext, LazyDataSourceApi, ICheckable } from '@epam/uui-core';
 import { DataTable, Panel, Text, Paginator, FlexRow, FlexSpacer } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
@@ -33,7 +33,7 @@ export default function PagedTable() {
         [],
     );
 
-    const api = useCallback(
+    const api: LazyDataSourceApi<Person, number, unknown> = useCallback(
         async (rq: LazyDataSourceApiRequest<{}>) => {
             const result = await svc.api.demo.personsPaged({
                 ...rq,
@@ -43,6 +43,17 @@ export default function PagedTable() {
         },
         [svc.api.demo],
     );
+
+    const selectAll = useCallback(async (shouldSelectAll: boolean) => {
+        if (!shouldSelectAll) {
+            setState((current) => ({ ...current, checked: [] }));
+            return;
+        }
+        const { page, pageSize, ...stateWithoutPaging } = state;
+        const allRecords = await api(stateWithoutPaging);
+        
+        setState((current) => ({ ...current, checked: allRecords.items.map((item) => item.id) }));
+    }, [api, state]);
 
     const dataSource = useLazyDataSource<Person, number, unknown>({
         api,
@@ -57,6 +68,12 @@ export default function PagedTable() {
     const view = dataSource.useView(state, setState, {});
     const listProps = view.getListProps();
 
+    const selectAllCheckable: ICheckable = useMemo(() => ({
+        indeterminate: state.checked?.length > 0 && state.checked?.length !== listProps.totalCount,
+        value: state.checked?.length > 0 && state.checked?.length === listProps.totalCount,
+        onValueChange: selectAll,
+    }), [selectAll, state.checked?.length, listProps.totalCount]);
+
     return (
         <Panel background="surface" shadow cx={ css.container }>
             <DataTable
@@ -66,7 +83,7 @@ export default function PagedTable() {
                 onValueChange={ setState }
                 columns={ columns }
                 headerTextCase="upper"
-                selectAll={ view.selectAll }
+                selectAll={ selectAllCheckable }
             />
             <FlexRow size="36" padding="12">
                 <FlexSpacer />
