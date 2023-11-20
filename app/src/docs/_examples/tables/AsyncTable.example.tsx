@@ -51,7 +51,7 @@ export default function ProductTable() {
                 key: 'name',
                 caption: 'Name',
                 render: (product) => (
-                    <Text color="secondary" font="semibold">
+                    <Text color="secondary" fontWeight="600">
                         {product.Name}
                     </Text>
                 ),

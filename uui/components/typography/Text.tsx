@@ -8,9 +8,10 @@ export type TextColor = 'info' | 'warning' | 'error' | 'success' | 'brand' | 'pr
 export const allTextColors: TextColor[] = ['info', 'warning', 'error', 'success', 'brand', 'primary', 'secondary', 'disabled', 'white'];
 
 export interface TextMods extends TextSettings {
-    size?: types.TextSize | '42';
-    font?: types.FontStyle;
     color?: TextColor;
+    fontWeight?: types.FontWeight;
+    fontStyle?: types.FontStyle;
+    size?: types.TextSize | '42';
 }
 
 export type TextProps = UuiTextProps & TextMods;
@@ -28,8 +29,9 @@ function applyTextMods(mods: TextMods) {
     return [
         css.root,
         'uui-text',
-        `uui-font-${mods.font || 'regular'}`,
         `uui-color-${mods.color || 'primary'}`,
+        `uui-font-weight-${mods.fontWeight || '400'}`,
+        `uui-font-style-${mods.fontStyle || 'normal'}`,
         'uui-typography',
     ].concat(textClasses);
 }

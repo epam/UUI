@@ -50,10 +50,10 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 ) : (
                     <>
                         <IconContainer cx={ css.noResultsIcon } icon={ EmptyTableIcon } />
-                        <Text cx={ css.noResultsTitle } fontSize="24" lineHeight="30" color="primary" font="semibold">
+                        <Text cx={ css.noResultsTitle } fontSize="24" lineHeight="30" color="primary" fontWeight="600">
                             {i18n.tables.noResultsBlock.title}
                         </Text>
-                        <Text fontSize="16" lineHeight="24" font="regular" color="primary">
+                        <Text fontSize="16" lineHeight="24" color="primary">
                             {i18n.tables.noResultsBlock.message}
                         </Text>
                     </>

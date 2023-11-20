@@ -5,7 +5,7 @@ import { demoData } from '@epam/uui-docs';
 
 const componentAsDemoContent = (
     <>
-        <Text fontSize="16" font="regular">
+        <Text fontSize="16">
             {demoData.loremIpsum}
             {' '}
             {demoData.loremIpsum}
@@ -22,17 +22,17 @@ export default function BasicAccordionExample() {
     return (
         <FlexCell width="100%" cx={ css.container }>
             <Accordion title="Accordion block mode" mode="block">
-                <Text fontSize="16" font="regular">
+                <Text fontSize="16">
                     {demoData.loremIpsum}
                 </Text>
             </Accordion>
             <Accordion title="Accordion inline mode" mode="inline">
-                <Text fontSize="16" font="regular">
+                <Text fontSize="16">
                     {demoData.loremIpsum}
                 </Text>
             </Accordion>
             <Accordion title="Disabled Accordion" mode="block" isDisabled>
-                <Text fontSize="16" font="regular">
+                <Text fontSize="16">
                     {demoData.loremIpsum}
                 </Text>
             </Accordion>

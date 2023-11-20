@@ -3,9 +3,11 @@
 
 @mixin theme-promo {
     --uui-font: 'Source Sans Pro', sans-serif;
-    --font-primary: 'Museo Sans', 'Source Sans Pro', Arial, sans-serif;
-    --font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
-    --font-mono: 'Roboto Mono', monospace;
+    --uui-font-mono: 'Roboto Mono', monospace;
+
+    // theme specific fonts
+    --font-museo-sans: 'Museo Sans', 'Source Sans Pro', Arial, sans-serif;
+    --font-museo-slab: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
 
     --gray5: #FAFAFC;
     --gray10: #F5F6FA;
@@ -248,10 +250,11 @@
 
     --uui-skeleton: var(--uui-neutral-40);
 
-    --uui-border-radius: 0;
     --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
     --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0 6px rgba(29, 30, 38, 0.05);
     --uui-shadow-level-3: 0 0 10px rgba(29, 30, 38, 0.05), 0 6px 24px rgba(29, 30, 38, 0.12), 0 9px 15px rgba(29, 30, 38, 0.1);
+
+    --uui-border-radius: 0;
 
     /* core variables end */
 
@@ -566,6 +569,14 @@
         --uui-btn-caption: var(--uui-neutral-70);
     }
 
+    .uui-button {
+        &.uui-size-42, &.uui-size-48 {
+            :global(.uui-caption) {
+                font-family: var(--font-museo-sans);
+            }
+        }
+    }
+
     /* IconButton */
 
     .uui-icon_button.uui-color-neutral,
@@ -655,9 +666,18 @@
         --uui-dropdown_container-border-radius: 0;
     }
 
+    .uui-link_button {
+        &.uui-size-42, &.uui-size-48 {
+            :global(.uui-caption) {
+                font-family: var(--font-museo-sans);
+                text-transform: uppercase;
+            }
+        }
+    }
+
     .typography-uui {
         :global(.promo-header), h1, h2, h3 {
-            font-family: var(--font-primary);
+            font-family: var(--font-museo-sans);
         }
     }
 
@@ -680,12 +700,12 @@
     }
 
     .uui-font-museo-sans {
-        --uui-text-font: var(--font-primary);
+        --uui-text-font: var(--font-museo-sans);
         --uui-text-font-weight: normal;
     }
 
     .uui-font-museo-slab {
-        --uui-text-font: var(--font-promo);
+        --uui-text-font: var(--font-museo-slab);
         --uui-text-font-weight: normal;
     }
 }

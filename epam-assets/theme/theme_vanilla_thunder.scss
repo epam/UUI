@@ -2,8 +2,6 @@
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 .uui-theme-vanilla_thunder {
     --uui-font: var(--font-inter);
-    --font-primary: var(--font-museo-sans);
-    --font-promo: var(--font-museo-sans);
 
     --blue-0: #F0F7FC;
     --blue-50: #E1F4FA;
@@ -199,10 +197,11 @@
 
     --uui-skeleton: var(--chromatic-200);
 
-    --uui-border-radius: 3px;
     --uui-shadow-level-1: 0 0 3px rgb(29 30 38 / 15%), 0 3px 6px rgb(29 30 38 / 10%);
     --uui-shadow-level-2: 0 6px 12px rgb(29 30 38 / 10%), 0 3px 12px rgb(29 30 38 / 10%), 0 0 6px rgb(29 30 38 / 5%);
     --uui-shadow-level-3: 0 0 10px rgb(29 30 38 / 5%), 0 6px 24px rgb(29 30 38 / 12%), 0 9px 15px rgb(29 30 38 / 10%);
+
+    --uui-border-radius: 3px;
 
     /* core variables end */
 
@@ -332,5 +331,13 @@
 
     .uui-text-placeholder {
         --uui-text_placeholder-gradient: linear-gradient(90deg, var(--chromatic-200) 0%, var(--chromatic-100) 50%, var(--chromatic-200) 100%);
+    }
+
+    .uui-button {
+        &.uui-size-42, &.uui-size-48 {
+            :global(.uui-caption) {
+                font-family: var(--font-museo-sans);
+            }
+        }
     }
 }

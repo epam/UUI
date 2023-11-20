@@ -33,7 +33,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
 
     getTooltipContent = () => (
         <div className={ css.cellTooltipWrapper }>
-            <Text fontSize="14" font="semibold" cx={ css.cellTooltipText }>{ this.props.column.caption }</Text>
+            <Text fontSize="14" fontWeight="600" cx={ css.cellTooltipText }>{ this.props.column.caption }</Text>
             { this.props.column.info && <Text fontSize="12" cx={ css.cellTooltipText }>{ this.props.column.info }</Text> }
         </div>
     );
