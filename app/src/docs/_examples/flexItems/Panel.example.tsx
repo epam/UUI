@@ -7,7 +7,7 @@ export default function BasicExample() {
         <Panel background="surface" margin="24" style={ { width: '400px' } } shadow>
             <FlexRow padding="12" vPadding="12" borderBottom>
                 <FlexCell width="100%">
-                    <Text size="36" font="regular" color="secondary">
+                    <Text size="36" color="secondary">
                         {demoData.loremIpsum}
                     </Text>
                 </FlexCell>
