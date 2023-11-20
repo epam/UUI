@@ -207,7 +207,6 @@
     --uui-text-secondary: var(--uui-neutral-70);
     --uui-text-tertiary: var(--uui-neutral-60);
     --uui-text-disabled: var(--uui-neutral-50);
-    --uui-text-contrast: var(--uui-neutral-5);
 
     --uui-text-info: var(--uui-info-70);
     --uui-text-warning: var(--uui-warning-70);
@@ -607,7 +606,7 @@
     }
 
     .uui-tooltip-container.uui-color-gray,
-    .uui-tooltip-container.uui-color-contrast {
+    .uui-tooltip-container.uui-color-inverted {
         --uui-tooltip-bg: var(--uui-neutral-80);
         --uui-tooltip-text: var(--white);
     }
