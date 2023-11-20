@@ -138,8 +138,9 @@ router.post('/persons-paged', async (req, res) => {
     let result;
     if (req.body.pageNo != null || req.body.pageSize != null) {
         const pageSize = req.body.pageSize ?? 10;
-        const pageNo = req.body.page ?? 0;
-        const items = filteredAndSorted.items.slice(pageNo * pageSize, (pageNo + 1) * pageSize);
+        const pageNo = req.body.page ?? 1;
+        const from = pageNo - 1;
+        const items = filteredAndSorted.items.slice(from * pageSize, (from + 1) * pageSize);
         result = {
             items,
             totalCount: filteredAndSorted.items.length,

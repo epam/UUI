@@ -32,7 +32,6 @@ export interface LoadTreeOptions<TItem, TId, TFilter>
     extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'getChildCount' | 'filter' | 'fetchStrategy' | 'flattenSearchResults'> {
     loadAllChildren?(id: TId): boolean;
     isLoadStrict?: boolean;
-    skipPaging?: boolean;
     isFolded?: (item: TItem) => boolean;
 }
 
