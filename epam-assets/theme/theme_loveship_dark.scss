@@ -694,16 +694,13 @@
 
     .uui-tooltip-container.uui-color-neutral {
         --uui-tooltip-bg: var(--uui-surface-main);
+        --uui-tooltip-border: var(--uui-neutral-50);
         --uui-color-contrast: var(--uui-text-primary);
     }
 
     .uui-tooltip-container.uui-color-inverted {
         --uui-tooltip-bg: var(--uui-neutral-10);
         --uui-tooltip-text: var(--uui-neutral-70);
-    }
-
-    .uui-tooltip-container.uui-color-neutral {
-        --uui-tooltip-border: var(--uui-neutral-50);
     }
 
     /* CountIndicator */
@@ -787,12 +784,6 @@
         --uui-text_placeholder-gradient: linear-gradient(90deg, var(--uui-neutral-30) 0%, var(--uui-neutral-50) 50%, var(--uui-neutral-30) 100%);
     }
 
-    .uui-typography {
-        .uui-highlight {
-            background-color: var(--uui-warning-20);
-        }
-    }
-
     /* fonts */
 
     .uui-font-sans {
@@ -809,6 +800,26 @@
     .uui-font-sans-light {
         --uui-text-font: var(--uui-font);
         --uui-text-font-weight: 300;
+    }
+
+    /* Typography */
+
+    .uui-typography {
+        .uui-highlight {
+            background-color: var(--uui-warning-20);
+        }
+
+        h1 {
+            font-weight: 400;
+        }
+
+        h3 {
+            font-weight: 600;
+        }
+
+        h1.promo-header {
+            font-size: 72px;
+        }
     }
 }
 
