@@ -12,7 +12,7 @@
     }
 
     .hero-header {
-        font-family: var(--font-promo);
+        font-family: var(--uui-font);
         font-weight: 500;
         margin: 30px 0;
         font-size: 66px;
@@ -20,7 +20,7 @@
     }
 
     .promo-header, h1, h2, h3 {
-        font-family: var(--font-primary);
+        font-family: var(--uui-font);
         font-weight: 700;
     }
 
@@ -99,7 +99,7 @@
         padding: 0.125em 0.25em;
         color: var(--uui-text-primary);
         background-color: var(--uui-neutral-30);
-        font-family: var(--font-mono, 'monospace');
+        font-family: var(--uui-font-mono, 'monospace');
         font-weight: 400;
         white-space: pre-wrap;
         word-wrap: normal;
@@ -141,15 +141,19 @@
     }
 
     .uui-critical {
-        color: var(--uui-critical-70);
+        color: var(--uui-text-critical);
+    }
+
+    .uui-info {
+        color: var(--uui-text-info);
     }
 
     .uui-success {
-        color: var(--uui-success-70);
+        color: var(--uui-text-success);
     }
 
     .uui-warning {
-        color: var(--uui-warning-70);
+        color: var(--uui-text-warning);
     }
 
     .uui-highlight {

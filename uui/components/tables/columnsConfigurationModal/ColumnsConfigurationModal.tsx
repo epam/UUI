@@ -27,7 +27,7 @@ export interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IMo
 
 const renderGroupTitle = (title: string, amount: number) => (
     <FlexRow size="24" padding="24" spacing="6" cx={ styles.groupTitle }>
-        <Text cx={ styles.groupTitleText } font="semibold" lineHeight="24" fontSize="14">
+        <Text cx={ styles.groupTitleText } fontWeight="600" lineHeight="24" fontSize="14">
             {title}
         </Text>
         <Badge cx={ styles.groupTitleBadge } caption={ amount } color="neutral" size="18" />
@@ -125,10 +125,10 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                         {renderHidden()}
                         {isNoData && (
                             <FlexRow cx={ styles.noData }>
-                                <Text fontSize="24" lineHeight="30" color="primary" font="semibold">
+                                <Text fontSize="24" lineHeight="30" color="primary" fontWeight="600">
                                     {i18n.noResultsFound.text}
                                 </Text>
-                                <Text fontSize="16" lineHeight="24" font="regular" color="primary">
+                                <Text fontSize="16" lineHeight="24" color="primary">
                                     {i18n.noResultsFound.subText}
                                 </Text>
                             </FlexRow>

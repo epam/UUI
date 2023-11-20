@@ -35,7 +35,7 @@ export default function ComplexFormValidationExample() {
         const userLens = lens.index(index);
         return (
             <div key={ index }>
-                <Text size="42" font="semibold">{`User ${index + 1}`}</Text>
+                <Text size="42" fontWeight="600">{`User ${index + 1}`}</Text>
                 <FlexRow vPadding="12">
                     <FlexCell grow={ 1 }>
                         <LabeledInput label="First Name" { ...userLens.prop('fullName').toProps() }>

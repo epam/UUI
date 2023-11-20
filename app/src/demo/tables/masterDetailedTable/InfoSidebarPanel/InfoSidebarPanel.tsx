@@ -23,7 +23,7 @@ export function InfoSidebarPanel({ data, isVisible, onClose }: SidebarPanelProps
         <div className={ cx(css.infoSidebarPanelWrapper, isVisible ? 'show' : 'hide') }>
             <Panel cx={ css.wrapper }>
                 <FlexRow borderBottom padding="24">
-                    <Text size="48" font="semibold">
+                    <Text size="48" fontWeight="600">
                         Detailed Information
                     </Text>
                     <FlexSpacer />

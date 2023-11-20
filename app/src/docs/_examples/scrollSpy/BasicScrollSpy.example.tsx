@@ -27,7 +27,7 @@ export default function BasicScrollSpy() {
             </FlexCell>
             <FlexCell grow={ 4 }>
                 <section ref={ setRef }>
-                    <Text font="regular" size="48" cx={ css.content } lineHeight="30">
+                    <Text size="48" cx={ css.content } lineHeight="30">
                         <Text rawProps={ { 'data-spy': 'a' } } cx={ css.header } color="brand">
                             Section 1
                         </Text>
