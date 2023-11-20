@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { TextInput } from '@epam/uui';
+import { TextInput, FlexCell } from '@epam/uui';
 import { CX } from '@epam/uui-core';
 import { useInputValue } from './utils/hooks';
 import { IPropDocEditor } from '../../types';
 
 export function CssClassEditor(props: IPropDocEditor<CX>) {
     const inputProps = useInputValue<CX, string>({
+        clearWhenInvalid: true,
         value: props.value,
         onValueChange: (newVal) => {
             props.onValueChange(newVal === '' ? undefined : newVal);
@@ -24,13 +25,14 @@ export function CssClassEditor(props: IPropDocEditor<CX>) {
     });
 
     return (
-        <TextInput
-            placeholder="CSS class"
-            onValueChange={ inputProps.onInputChange }
-            value={ inputProps.input }
-            size="24"
-            isInvalid={ !inputProps.isValid }
-            rawProps={ { style: { width: '80%' } } }
-        />
+        <FlexCell minWidth={ 150 }>
+            <TextInput
+                placeholder="CSS class"
+                onValueChange={ inputProps.onInputChange }
+                value={ inputProps.input }
+                size="24"
+                isInvalid={ !inputProps.isValid }
+            />
+        </FlexCell>
     );
 }

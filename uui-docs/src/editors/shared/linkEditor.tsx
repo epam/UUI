@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconContainer, Tooltip } from '@epam/uui';
+import { IconButton, Tooltip } from '@epam/uui';
 import { JsonEditor } from './jsonEditor';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 import { IPropDocEditor } from '../../types';
@@ -16,7 +16,7 @@ export function LinkEditor(props: IPropDocEditor<object>) {
         <>
             <JsonEditor { ...props } />
             <Tooltip content={ tooltipContent }>
-                <IconContainer icon={ InfoIcon } />
+                <IconButton icon={ InfoIcon } color="neutral" />
             </Tooltip>
         </>
 

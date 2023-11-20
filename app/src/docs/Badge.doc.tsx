@@ -17,17 +17,6 @@ export class BadgeDoc extends BaseDocsBlock {
             [TSkin.UUI4_promo]: { type: '@epam/promo:BadgeProps', component: promo.Badge },
         },
         doc: (doc: DocBuilder<uui.BadgeProps | promo.BadgeProps | loveship.BadgeProps>) => {
-            doc.merge('countIndicator', {
-                examples: [{ name: '<CountIndicator />', value: null }],
-                editorType: 'SingleUnknownEditor',
-            });
-            doc.merge('count', {
-                examples: [0,
-                    1,
-                    123,
-                    { name: '"This is a string"', value: 'This is a string' },
-                    { name: '<i>This is React.ReactElement</i>', value: <i>This is React.ReactElement</i> }],
-            });
             doc.merge('iconPosition', { defaultValue: 'left' });
         },
     };

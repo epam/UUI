@@ -4,7 +4,11 @@ import { MultiStringExamples } from './examples/multiStringExamples';
 import { IPropDocEditor } from '../../types';
 
 export function StringEditor(props: IPropDocEditor<string>) {
-    return <TextInput { ...props } size="24" placeholder="Text value" onCancel={ () => props.onValueChange('') } />;
+    return (
+        <FlexCell minWidth={ 150 }>
+            <TextInput { ...props } size="24" placeholder="Text value" onCancel={ () => props.onValueChange('') } />
+        </FlexCell>
+    );
 }
 
 export function StringWithExamplesEditor(props: IPropDocEditor<string>) {
@@ -14,7 +18,7 @@ export function StringWithExamplesEditor(props: IPropDocEditor<string>) {
                 <MultiStringExamples { ...props } />
             </FlexCell>
             <FlexCell minWidth={ 150 }>
-                <StringEditor { ...props } />
+                <TextInput { ...props } size="24" placeholder="Text value" onCancel={ () => props.onValueChange('') } />
             </FlexCell>
         </>
     );

@@ -1,5 +1,12 @@
 import React from 'react';
-import { DocBuilder, iCanRedirectDoc, iEditable, iHasLabelDoc, TSkin, TDocsGenExportedType } from '@epam/uui-docs';
+import {
+    DocBuilder,
+    iCanRedirectDoc,
+    iEditable,
+    iHasLabelDoc,
+    TSkin,
+    TDocsGenExportedType,
+} from '@epam/uui-docs';
 import {
     IAnalyticableClick,
     ICanBeInvalid,
@@ -10,28 +17,30 @@ import {
     IHasPlaceholder,
     IHasRawProps,
 } from '@epam/uui-core';
-import { TTypeRef } from '../../../apiReference/sharedTypes';
 import { getCommonDoc } from './shared/reusableDocs';
 import { TPropDocBuilder } from '../docBuilderGenTypes';
+import { getRawPropsExamples, getReactRefExamples, getTextExamplesNoUndefined } from './shared/reusableExamples';
 
-function getReactRefExamples(name: string) {
-    return (ctx: any) => {
-        return [
-            {
-                name: 'React.createRef<any>()',
-                value: {
-                    set current(p: any) {
-                        const cb = ctx.getCallback(`${name}.current = `);
-                        cb(p);
-                    },
-                },
-            },
-            ctx.getCallback(name),
-        ];
-    };
-}
-
-const COMMON_DOCS: Record<TTypeRef | TDocsGenExportedType, (skin?: TSkin) => DocBuilder<any>> = {
+const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (skin?: TSkin) => DocBuilder<any> } = {
+    '@epam/uui-core:ButtonCoreProps': () => {
+        return new DocBuilder<any>({ name: '' }).prop('count', {
+            examples: [0,
+                1,
+                123,
+                { name: '"This is a string"', value: 'This is a string' },
+                { name: '<i>This is React.ReactElement</i>', value: <i>This is React.ReactElement</i> }],
+            editorType: 'MultiUnknownEditor',
+        });
+    },
+    '@epam/uui-components:ButtonProps': () => {
+        return new DocBuilder<any>({ name: '' }).prop('countIndicator', {
+            examples: [
+                { name: 'null', value: null },
+                { name: '(props: IHasCaption) => <i>{props.caption}</i>', value: (props: IHasCaption) => <i>{props.caption}</i> },
+            ],
+            editorType: 'MultiUnknownEditor',
+        });
+    },
     '@epam/uui-core:IDropdownToggler': () => new DocBuilder<IDropdownToggler>({ name: '' }).prop('ref', {
         examples: getReactRefExamples('ref'),
     }),
@@ -47,26 +56,20 @@ const COMMON_DOCS: Record<TTypeRef | TDocsGenExportedType, (skin?: TSkin) => Doc
         .prop('caption', {
             examples: [
                 { value: undefined, name: '' },
-                { value: 'Short text', isDefault: true },
-                { name: 'Long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
-                { name: 'Long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
+                ...getTextExamplesNoUndefined(true),
             ],
             editorType: 'StringWithExamplesEditor',
         }),
     '@epam/uui-core:IHasPlaceholder': () => new DocBuilder<IHasPlaceholder>({ name: '' })
         .prop('placeholder', {
-            examples: [
-                { value: 'Short text' },
-                { name: 'Long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
-                { name: 'Long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
-            ],
+            examples: getTextExamplesNoUndefined(),
             editorType: 'StringWithExamplesEditor',
         }),
     '@epam/uui-core:IHasRawProps': () => {
         return new DocBuilder<IHasRawProps<any>>({ name: '' })
             .prop('rawProps', {
                 editorType: 'JsonEditor',
-                examples: [],
+                examples: getRawPropsExamples(),
             });
     },
     '@epam/uui-core:ICanBeInvalid': () => new DocBuilder<ICanBeInvalid>({ name: 'isInvalid' })
@@ -94,9 +97,13 @@ const COMMON_DOCS: Record<TTypeRef | TDocsGenExportedType, (skin?: TSkin) => Doc
     },
 };
 
-export const buildByFromRef: TPropDocBuilder = (params) => {
+/**
+ * Resolve the prop editor based on the type it's inherited from.
+ * See "public/docs/docsGenOutput/docsGenOutput.json" for details.
+ */
+export const buildByPropFromRef: TPropDocBuilder = (params) => {
     const { prop, skin } = params;
-    const db: DocBuilder<any> = COMMON_DOCS[prop.from]?.(skin);
+    const db: DocBuilder<any> = BY_PROP_FROM_REF[prop.from as TDocsGenExportedType]?.(skin);
     if (db) {
         const found = db.props.find((p) => p.name === prop.name);
         if (found) {

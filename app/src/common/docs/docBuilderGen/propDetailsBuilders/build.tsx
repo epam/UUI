@@ -1,7 +1,7 @@
 import { buildCommonDetails } from './buildCommonDetails';
-import { buildByFromRef } from './buildByFromRef';
-import { buildByAlias } from './buildByAlias';
-import { buildByGenericType } from './buildByGenericType';
+import { buildByPropFromRef } from './buildByPropFromRef';
+import { buildByTypeRef } from './buildByTypeRef';
+import { buildByEditorType } from './buildByEditorType';
 import { buildByPropName } from './buildByPropName';
 import { buildByRawType } from './buildByRawType';
 import { TPropDocBuilder } from '../docBuilderGenTypes';
@@ -28,15 +28,15 @@ export const buildPropFallbackDetails: TPropDocBuilder = (params) => {
 };
 
 const buildSinglePropDetails: TPropDocBuilder = (params) => {
-    const byFromRef = buildByFromRef(params);
+    const byFromRef = buildByPropFromRef(params);
     if (byFromRef) {
         return byFromRef;
     }
-    const byAliasType = buildByAlias(params);
+    const byAliasType = buildByTypeRef(params);
     if (byAliasType) {
         return byAliasType;
     }
-    const byGenericType = buildByGenericType(params);
+    const byGenericType = buildByEditorType(params);
     if (byGenericType) {
         return byGenericType;
     }

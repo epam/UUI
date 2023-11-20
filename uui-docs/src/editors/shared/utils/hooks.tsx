@@ -11,6 +11,7 @@ type TUseInputValueParams<Value, Input> = {
     validateInput: (input: Input) => boolean,
     valueToInput: (value: Value) => Input,
     inputToValue: (input: Input) => Value,
+    clearWhenInvalid: boolean,
 };
 export function useInputValue<Value, Input>(params: TUseInputValueParams<Value, Input>): TUseInputValueReturn<Input> {
     const { value, valueToInput, inputToValue, validateInput, onValueChange } = params;
@@ -27,7 +28,7 @@ export function useInputValue<Value, Input>(params: TUseInputValueParams<Value, 
         });
         if (isValid) {
             onValueChange(inputToValue(input));
-        } else {
+        } else if (params.clearWhenInvalid) {
             onValueChange(undefined);
         }
     };

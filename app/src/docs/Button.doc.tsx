@@ -17,10 +17,6 @@ export class ButtonDoc extends BaseDocsBlock {
             [TSkin.UUI4_promo]: { type: '@epam/promo:ButtonProps', component: promo.Button },
         },
         doc: (doc: DocBuilder<uui.ButtonProps | promo.ButtonProps | loveship.ButtonProps>) => {
-            doc.merge('countIndicator', {
-                examples: [{ name: '<CountIndicator />', value: null }],
-                editorType: 'SingleUnknownEditor',
-            });
             doc.merge('iconPosition', { defaultValue: 'left' });
         },
     };

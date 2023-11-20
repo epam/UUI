@@ -21,10 +21,24 @@ export class MainMenuDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<uui.MainMenuProps>) => {
             doc.merge('children', { examples: childrenExamples });
+            doc.merge('appLogoBgColor', { editorType: 'StringEditor', examples: [] });
+            doc.merge('customerLogoBgColor', { editorType: 'StringEditor', examples: [] });
+            doc.merge('customerLogoUrl', { editorType: 'StringEditor', examples: [] });
+            doc.merge('customerLogoHref', { editorType: 'StringEditor', examples: [] });
+            doc.merge('logoHref', { editorType: 'StringEditor', examples: [] });
+            doc.merge('appLogoUrl', { editorType: 'StringEditor', examples: [] });
             doc.merge('renderBurger', { examples: renderBurgerExamples });
             doc.merge('items', { examples: itemsExamples });
             doc.merge('MainMenuDropdown', { examples: [{ value: uui.MainMenuDropdown, name: 'MainMenuDropdown', isDefault: true }] });
             doc.merge('Burger', { examples: [{ value: uui.Burger, name: 'Burger', isDefault: true }] });
+            doc.merge('logoLink', {
+                editorType: 'LinkEditor',
+                examples: [{ name: '{pathname: "/"}', value: { pathname: '/' } }],
+            });
+            doc.merge('customerLogoLink', {
+                editorType: 'LinkEditor',
+                examples: [{ name: '{pathname: "/"}', value: { pathname: '/' } }],
+            });
         },
     };
 
