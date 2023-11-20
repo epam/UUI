@@ -47,10 +47,7 @@ export function JsonEditor(props: IPropDocEditor<object>) {
         return (
             <>
                 <FlexCell minWidth={ 100 }>
-                    <JSonEditorExamples
-                        { ...props }
-                        onExampleIdChange={ props.onExampleIdChange }
-                    />
+                    <JSonEditorExamples { ...props } />
                 </FlexCell>
                 <FlexCell minWidth={ 200 }>
                     {input}
