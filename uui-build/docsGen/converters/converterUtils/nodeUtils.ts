@@ -38,22 +38,7 @@ export class NodeUtils {
         const ranges = prop.getLeadingCommentRanges();
         if (ranges.length > 0) {
             const closestDoc = ranges[ranges.length - 1].getText().trim();
-            const isTsDoc = closestDoc.indexOf('/**') === 0;
-            if (isTsDoc) {
-                const LF = '\n';
-                const raw = closestDoc.split(LF).map(cleanAsteriks).join(LF).trim()
-                    .split(LF);
-                return {
-                    raw,
-                    tags: TsDocUtils.parseComment(closestDoc),
-                };
-            }
-        }
-        function cleanAsteriks(line: string): string {
-            const regex1 = /^([\s]*\/[*]{1,2})(.*)$/; // leading /* or /**
-            const regex2 = /^(.*)([\s]*[*]{1,2}\/)$/; // trailing */ or **/
-            const regex3 = /^([\s]*[*]{1,1})(.*)$/; // leading *
-            return line.replace(regex1, '$2').replace(regex2, '$1').replace(regex3, '$2');
+            return TsDocUtils.parseComment(closestDoc);
         }
     }
 

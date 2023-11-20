@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-11-15",
+ "timestamp": "2023-11-20",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -2544,7 +2544,10 @@
       "    renderTarget?(props: IDropdownToggler): ReactNode;",
       "    /** Defines where to place calendar icon */",
       "    iconPosition?: 'left' | 'right';",
-      "    /** Disable clearing date value (e.g. via cross icon) */",
+      "    /**",
+      "     * Disable clearing date value (e.g. via cross icon)",
+      "     * @default false",
+      "     */",
       "    disableClear?: boolean;",
       "    /** Overrides rendering of the single day. For example, to highlight certain days */",
       "    renderDay?: (day: Dayjs, onDayClick: (day: Dayjs) => void) => ReactElement<Element>;",
@@ -2642,8 +2645,12 @@
       "name": "disableClear",
       "comment": {
        "raw": [
-        "Disable clearing date value (e.g. via cross icon)"
-       ]
+        "Disable clearing date value (e.g. via cross icon)",
+        " @default false"
+       ],
+       "tags": {
+        "@default": false
+       }
       },
       "typeValue": {
        "raw": "boolean"
@@ -9977,8 +9984,12 @@
       "name": "disableClear",
       "comment": {
        "raw": [
-        "Disable clearing date value (e.g. via cross icon)"
-       ]
+        "Disable clearing date value (e.g. via cross icon)",
+        " @default false"
+       ],
+       "tags": {
+        "@default": false
+       }
       },
       "typeValue": {
        "raw": "boolean"
@@ -32892,14 +32903,15 @@
       "uid": 9,
       "name": "groupKey",
       "typeValue": {
-       "raw": "'hidden' | 'displayedUnpinned' | 'displayedPinned'"
+       "raw": "'hidden' | 'displayedUnpinned' | 'displayedPinned' | 'displayedPinnedRight'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "hidden",
         "displayedUnpinned",
-        "displayedPinned"
+        "displayedPinned",
+        "displayedPinnedRight"
        ]
       },
       "from": "@epam/uui-components:GroupedDataColumnProps",
@@ -66077,8 +66089,12 @@
       "name": "disableClear",
       "comment": {
        "raw": [
-        "Disable clearing date value (e.g. via cross icon)"
-       ]
+        "Disable clearing date value (e.g. via cross icon)",
+        " @default false"
+       ],
+       "tags": {
+        "@default": false
+       }
       },
       "typeValue": {
        "raw": "boolean"
