@@ -360,7 +360,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
         svc.uuiNotifications.show(
             (props: INotification) => (
                 <NotificationCard { ...props } icon={ NotificationIcon } color="info" onClose={ null }>
-                    <Text size="36" font="regular">
+                    <Text size="36">
                         Code was copied to the clipboard
                     </Text>
                 </NotificationCard>
@@ -398,7 +398,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                     <div className={ cx(css.root, this.props.cx) }>
                         <div className={ cx(css.container, css.uuiThemePromo) }>
                             <FlexRow key="head" size="36" padding="12" borderBottom spacing="6" cx={ css.boxSizing }>
-                                <Text fontSize="16" lineHeight="24" cx={ css.vPadding } font="semibold">
+                                <Text fontSize="16" lineHeight="24" cx={ css.vPadding } fontWeight="600">
                                     {title}
                                 </Text>
                                 <FlexSpacer />
@@ -418,17 +418,17 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                             </FlexRow>
                             <FlexRow key="table-head" size="36" background="surface" padding="12" spacing="6" borderBottom cx={ css.boxSizing }>
                                 <FlexCell key="name" width={ 130 }>
-                                    <Text size="24" font="semibold">
+                                    <Text size="24" fontWeight="600">
                                         NAME
                                     </Text>
                                 </FlexCell>
                                 <FlexCell key="default" width={ 100 }>
-                                    <Text size="24" font="semibold">
+                                    <Text size="24" fontWeight="600">
                                         DEFAULT
                                     </Text>
                                 </FlexCell>
                                 <FlexCell key="examples" grow={ 1 }>
-                                    <Text size="24" font="semibold">
+                                    <Text size="24" fontWeight="600">
                                         PRESET
                                     </Text>
                                 </FlexCell>

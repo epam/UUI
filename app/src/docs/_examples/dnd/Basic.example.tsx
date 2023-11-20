@@ -80,7 +80,7 @@ export default function DndMaterial() {
                                 <IconContainer size={ 48 } icon={ FileIcon } />
                             </FlexCell>
                             <FlexCell width="100%" cx={ css.textWrapper }>
-                                <Text cx={ css.text } size="24" lineHeight="24" fontSize="16" font="semibold">
+                                <Text cx={ css.text } size="24" lineHeight="24" fontSize="16" fontWeight="600">
                                     {item.name}
                                 </Text>
                                 <Text cx={ css.text } size="24" lineHeight="24" fontSize="14" color="secondary">

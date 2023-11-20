@@ -3,9 +3,7 @@
 
 @mixin theme-loveship {
     --uui-font: 'Source Sans Pro', sans-serif;
-    --font-primary: 'Sans Semibold', Arial, sans-serif;
-    --font-promo: 'Sans Semibold', Arial, sans-serif;
-    --font-mono: monospace;
+    --uui-font-mono: 'Roboto Mono', monospace;
 
     --night50: #FAFAFC;
     --night100: #F5F6FA;
@@ -289,10 +287,11 @@
 
     --uui-skeleton: var(--uui-neutral-40);
 
-    --uui-border-radius: 3px;
     --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
     --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0 6px rgba(29, 30, 38, 0.05);
     --uui-shadow-level-3: 0 0 10px rgba(29, 30, 38, 0.05), 0 6px 24px rgba(29, 30, 38, 0.12), 0 9px 15px rgba(29, 30, 38, 0.1);
+
+    --uui-border-radius: 3px;
 
     /* core variables end */
 

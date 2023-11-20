@@ -90,7 +90,7 @@ export function FilteredTable() {
     return (
         <div className={ css.container }>
             <div className={ css.presetsPanel }>
-                <Text fontSize="24" lineHeight="30" font="primary" cx={ css.presetsTitle }>
+                <Text fontSize="24" lineHeight="30" cx={ css.presetsTitle }>
                     Users Dashboard
                 </Text>
                 <PresetsPanel { ...presetsApi } />
