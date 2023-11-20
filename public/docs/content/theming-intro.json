@@ -120,14 +120,6 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "link to start - note"
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
-      {
         "text": "To add theme into you project you need:"
       }
     ]
@@ -248,7 +240,7 @@
         "uui-richTextEditor-code": true
       },
       {
-        "text": " package, we also offering skin packages: "
+        "text": " package, we also offering Skin packages: "
       },
       {
         "text": "@epam/electric",
@@ -279,7 +271,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "What is the difference between a skin and a theme?",
+        "text": "What is the difference between a Skin and a Theme?",
         "uui-richTextEditor-bold": true
       }
     ]
@@ -332,7 +324,7 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "You  won't be able to to switch theme to the another one(except dark variation of the same them), because skin brand-named set of colors and modifiers broke a semantic approach. Button with blue color can't became a purple with new theme. Instead of Button from "
+                "text": "You  won't be able to to switch theme to the another one(except dark variation of the same Theme), because Skin brand-named set of colors and modifiers broke a semantic approach. Button with blue color can't became a purple with new theme. Instead of Button from "
               },
               {
                 "text": "@epam/uui",
@@ -349,10 +341,10 @@
   },
   {
     "data": {},
-    "type": "paragraph",
+    "type": "note-link",
     "children": [
       {
-        "text": ""
+        "text": "In general, you would prefer to use Skin package, if exists.\nYou might opt to use @epam/uui components directly, if there are no Skin package for your Theme, or you are building theme-agnostic UI."
       }
     ]
   },
@@ -360,450 +352,7 @@
     "type": "uui-richTextEditor-header-3",
     "children": [
       {
-        "text": "Comparison(Do we need it?)"
-      }
-    ]
-  },
-  {
-    "type": "table",
-    "children": [
-      {
-        "type": "table_row",
-        "children": [
-          {
-            "type": "table_header_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Aspect"
-                  }
-                ]
-              }
-            ],
-            "colIndex": 0,
-            "rowIndex": 0,
-            "colSpan": 1,
-            "rowSpan": 1
-          },
-          {
-            "type": "table_header_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Skin"
-                  }
-                ]
-              }
-            ],
-            "colIndex": 1,
-            "rowIndex": 0,
-            "colSpan": 1,
-            "rowSpan": 1
-          },
-          {
-            "type": "table_header_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Theme"
-                  }
-                ]
-              }
-            ],
-            "colIndex": 2,
-            "rowIndex": 0,
-            "colSpan": 1,
-            "rowSpan": 1
-          }
-        ]
-      },
-      {
-        "type": "table_row",
-        "children": [
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Development Speed",
-                    "color": "var(--tw-prose-bold)",
-                    "uui-richTextEditor-bold": true
-                  }
-                ]
-              }
-            ],
-            "colIndex": 0,
-            "rowIndex": 1,
-            "colSpan": 1,
-            "rowSpan": 1
-          },
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "May take ~ 2 - 4 months"
-                  }
-                ]
-              }
-            ],
-            "colIndex": 1,
-            "rowIndex": 1,
-            "colSpan": 1,
-            "rowSpan": 1
-          },
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Faster ~ 1 - 2 weeks"
-                  }
-                ]
-              }
-            ],
-            "colIndex": 2,
-            "rowIndex": 1,
-            "colSpan": 1,
-            "rowSpan": 1
-          }
-        ],
-        "size": 52
-      },
-      {
-        "type": "table_row",
-        "children": [
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Visual styling",
-                    "color": "var(--tw-prose-bold)",
-                    "uui-richTextEditor-bold": true
-                  }
-                ]
-              }
-            ],
-            "colIndex": 0,
-            "rowIndex": 2,
-            "colSpan": 1,
-            "rowSpan": 1
-          },
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "According to Brand"
-                  }
-                ]
-              }
-            ],
-            "colIndex": 1,
-            "rowIndex": 2,
-            "colSpan": 1,
-            "rowSpan": 1
-          },
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "May lack some details"
-                  }
-                ]
-              }
-            ],
-            "colIndex": 2,
-            "rowIndex": 2,
-            "colSpan": 1,
-            "rowSpan": 1
-          }
-        ],
-        "size": 52
-      },
-      {
-        "type": "table_row",
-        "children": [
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Collaboration",
-                    "color": "var(--tw-prose-bold)",
-                    "uui-richTextEditor-bold": true
-                  }
-                ]
-              }
-            ],
-            "colIndex": 0,
-            "rowIndex": 3,
-            "colSpan": 1,
-            "rowSpan": 1
-          },
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Simple collaboration among team on the same project"
-                  }
-                ]
-              }
-            ],
-            "colIndex": 1,
-            "rowIndex": 3,
-            "colSpan": 1,
-            "rowSpan": 1
-          },
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Collaboration may require established design guidelines"
-                  }
-                ]
-              }
-            ],
-            "colIndex": 2,
-            "rowIndex": 3,
-            "colSpan": 1,
-            "rowSpan": 1
-          }
-        ]
-      },
-      {
-        "type": "table_row",
-        "children": [
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Maintenance",
-                    "color": "var(--tw-prose-bold)",
-                    "uui-richTextEditor-bold": true
-                  }
-                ]
-              }
-            ],
-            "colIndex": 0,
-            "rowIndex": 4,
-            "colSpan": 1,
-            "rowSpan": 1
-          },
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Requires more effort"
-                  }
-                ]
-              }
-            ],
-            "colIndex": 1,
-            "rowIndex": 4,
-            "colSpan": 1,
-            "rowSpan": 1
-          },
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Easier"
-                  }
-                ]
-              }
-            ],
-            "colIndex": 2,
-            "rowIndex": 4,
-            "colSpan": 1,
-            "rowSpan": 1
-          }
-        ],
-        "size": 52
-      },
-      {
-        "type": "table_row",
-        "children": [
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Flexibility",
-                    "color": "var(--tw-prose-bold)",
-                    "uui-richTextEditor-bold": true
-                  }
-                ]
-              }
-            ],
-            "colIndex": 0,
-            "rowIndex": 5,
-            "colSpan": 1,
-            "rowSpan": 1
-          },
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Less flexible for adapting to themes"
-                  }
-                ]
-              }
-            ],
-            "colIndex": 1,
-            "rowIndex": 5,
-            "colSpan": 1,
-            "rowSpan": 1
-          },
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "More flexibility for diverse design themes"
-                  }
-                ]
-              }
-            ],
-            "colIndex": 2,
-            "rowIndex": 5,
-            "colSpan": 1,
-            "rowSpan": 1
-          }
-        ],
-        "size": 64
-      },
-      {
-        "type": "table_row",
-        "children": [
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Brand adaptability",
-                    "uui-richTextEditor-bold": true
-                  }
-                ]
-              }
-            ],
-            "colIndex": 0,
-            "rowIndex": 6,
-            "colSpan": 1,
-            "rowSpan": 1
-          },
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "data": {},
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "High, custom, brand-specific components, brand names"
-                  }
-                ]
-              }
-            ],
-            "colIndex": 1,
-            "rowIndex": 6,
-            "colSpan": 1,
-            "rowSpan": 1
-          },
-          {
-            "type": "table_cell",
-            "children": [
-              {
-                "data": {},
-                "type": "paragraph",
-                "children": [
-                  {
-                    "text": "Low, pre-defined set of components, semantic names"
-                  }
-                ]
-              }
-            ],
-            "colIndex": 2,
-            "rowIndex": 6,
-            "colSpan": 1,
-            "rowSpan": 1
-          }
-        ],
-        "size": 76
-      }
-    ],
-    "data": {
-      "cellSizes": [
-        200,
-        200
-      ]
-    },
-    "colSizes": [
-      225,
-      348,
-      355
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "This approach may serve everyone. One can build a first-class UI library on top of almost any UI Guidelines, not limiting design teams with some technical restrictions. And you can still reuse years of work."
-      }
-    ]
-  },
-  {
-    "type": "uui-richTextEditor-header-3",
-    "children": [
-      {
-        "text": "Usage of theme variables into your project"
+        "text": "Usage of theme variables in your project"
       }
     ],
     "data": {}
@@ -818,11 +367,11 @@
     ]
   },
   {
-    "type": "paragraph",
+    "type": "note-link",
     "data": {},
     "children": [
       {
-        "text": "Additionally, we aligned a set of variables on development with our UUI Figma library. This is paved the way for building application design using this variables for any UX element. "
+        "text": "CSS Variables and Figma Tokes are aligned. You can copy CSS code variables from Figma Dev Mode directly into your code."
       }
     ]
   },
@@ -840,7 +389,10 @@
     "data": {},
     "children": [
       {
-        "text": "Pallet variables",
+        "text": "T"
+      },
+      {
+        "text": "heme-specific variables",
         "uui-richTextEditor-bold": true
       }
     ]
@@ -850,7 +402,7 @@
     "data": {},
     "children": [
       {
-        "text": "Palette variables are primitive color values in our library."
+        "text": "Palette variables are primitive color values in our library. Palette defines colors, specific to particular theme. Color set and names can be different between Themes."
       }
     ]
   },
@@ -859,7 +411,44 @@
     "data": {},
     "children": [
       {
-        "text": "#0A68F1  =>  --electric-50",
+        "text": "--electric-50: #0A68F1;",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": " Use this variables if you target only one Theme. Note that this would make your UI bound to particular Theme, and you it would complicate switching to another Theme later. Exception: light and dark versions of the same Theme, as they would usually has the same set and names for colors."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "uui-richTextEditor-bold": true,
+        "text": "UUI semantic variables"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Semantic variables relate to a specific context or abstraction.  Semantic variable helps communicate the intended purpose of a variable, and are effective when a value with a single intent will appear in multiple places. E.g. Defines semantic colors (like Primary and Neutral). Semantic colors has same names across different Themes."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "--uui-primary-50: var(--electric-50);",
         "uui-richTextEditor-code": true
       }
     ]
@@ -869,8 +458,8 @@
     "data": {},
     "children": [
       {
-        "text": "Core variables",
-        "uui-richTextEditor-bold": true
+        "uui-richTextEditor-code": true,
+        "text": "--uui-control-bg: var(--uui-neutral-0);"
       }
     ]
   },
@@ -879,7 +468,7 @@
     "data": {},
     "children": [
       {
-        "text": "Core variables relate to a specific context or abstraction. Core variable helps communicate the intended purpose of a variable, and are effective when a value with a single intent will appear in multiple places."
+        "text": "It's safe to use semantic variables if you need to build Theme-agnostic UI, which can work in different Themes."
       }
     ]
   },
@@ -888,8 +477,17 @@
     "data": {},
     "children": [
       {
-        "text": "--electric-50  =>  --uui-primary-50",
-        "uui-richTextEditor-code": true
+        "uui-richTextEditor-bold": true,
+        "text": "Color classes"
+      }
+    ]
+  },
+  {
+    "type": "note-error",
+    "data": {},
+    "children": [
+      {
+        "text": "This API isn't stable yet and can be changed. We strongly discourage using this in your projects until a stable version is released."
       }
     ]
   },
@@ -898,17 +496,7 @@
     "data": {},
     "children": [
       {
-        "text": "Color classes",
-        "uui-richTextEditor-bold": true
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "data": {},
-    "children": [
-      {
-        "text": "Color classes are sets of semantic and additional colors grouped in classes to use in colored components."
+        "text": "Color classes are sets of semantic and additional colors grouped in classes to use in colored components. "
       }
     ]
   },
@@ -980,7 +568,16 @@
     "children": [
       {
         "uui-richTextEditor-bold": true,
-        "text": "Component specific variables"
+        "text": "Component-specific variables"
+      }
+    ]
+  },
+  {
+    "type": "note-error",
+    "data": {},
+    "children": [
+      {
+        "text": "This API isn't stable yet and can be changed. We strongly discourage using this in your projects until a stable version is released."
       }
     ]
   },
@@ -1016,18 +613,6 @@
       },
       {
         "text": "\n"
-      },
-      {
-        "text": "TBD: may be need something else? ",
-        "color": "warning"
-      }
-    ]
-  },
-  {
-    "type": "uui-richTextEditor-header-3",
-    "children": [
-      {
-        "text": ""
       }
     ]
   }

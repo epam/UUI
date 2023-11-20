@@ -572,7 +572,7 @@
 
     .uui-button {
         &.uui-size-42, &.uui-size-48 {
-            :global(.uui-caption) {
+            .uui-caption {
                 font-family: var(--font-museo-sans);
             }
         }
