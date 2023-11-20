@@ -704,6 +704,22 @@
         --uui-text-font: var(--uui-font);
         --uui-text-font-weight: 300;
     }
+
+    /* Typography */
+
+    .uui-typography {
+        h1 {
+            font-weight: 400;
+        }
+
+        h3 {
+            font-weight: 600;
+        }
+
+        h1.promo-header {
+            font-size: 72px;
+        }
+    }
 }
 
 .uui-theme-loveship {
