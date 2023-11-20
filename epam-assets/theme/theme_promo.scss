@@ -706,16 +706,8 @@
     /* Typography */
 
     .uui-typography {
-        h1, h2, h3 {
-            font-weight: 600;
-        }
-
         .promo-header:is(h1, h2, h3) {
             font-family: var(--font-museo-slab);
-        }
-
-        h1.promo-header {
-            font-size: 66px;
         }
     }
 }
