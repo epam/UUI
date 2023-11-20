@@ -203,7 +203,6 @@
     --uui-text-secondary: var(--uui-neutral-10);
     --uui-text-tertiary: var(--uui-neutral-20);
     --uui-text-disabled: var(--uui-neutral-30);
-    --uui-text-contrast: var(--uui-neutral-70);
 
     --uui-text-info: var(--uui-info-70);
     --uui-text-warning: var(--uui-warning-70);
@@ -698,9 +697,9 @@
         --uui-color-contrast: var(--uui-text-primary);
     }
 
-    .uui-tooltip-container.uui-color-contrast {
+    .uui-tooltip-container.uui-color-inverted {
         --uui-tooltip-bg: var(--uui-neutral-10);
-        --uui-color-contrast: var(--uui-text-contrast);
+        --uui-tooltip-text: var(--uui-neutral-70);
     }
 
     .uui-tooltip-container.uui-color-neutral {
