@@ -29,10 +29,6 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         this.setProps({ ...this.props, items: [] });
     }
 
-    public destroy(): void {
-        super.destroy();
-    }
-
     private loadViewData(view: AsyncListView<TItem, TId, TFilter>) {
         if (!view.isLoaded) {
             view.loadData().then((loadedItems) => {
