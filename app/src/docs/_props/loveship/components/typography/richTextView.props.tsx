@@ -192,7 +192,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                             </pre>
                         </Panel>
                         <h4>Text with size 16</h4>
-                        <p className="uui-typography-16">
+                        <p className="uui-typography-size-16">
                             Lorem ipsum dolor sit amet,
                             {' '}
                             <Anchor href="/">
@@ -208,7 +208,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
                         <h4>Text with size 12</h4>
-                        <p className="uui-typography-12">
+                        <p className="uui-typography-size-12">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
                             veniam,
                             {' '}
