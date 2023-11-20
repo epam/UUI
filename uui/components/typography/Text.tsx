@@ -4,8 +4,8 @@ import { getTextClasses, TextSettings } from '../../helpers';
 import { Text as uuiText, TextProps as UuiTextProps } from '@epam/uui-components';
 import css from './Text.module.scss';
 
-export type TextColor = 'info' | 'warning' | 'error' | 'success' | 'brand' | 'primary' | 'secondary' | 'disabled' | 'contrast' | 'white';
-export const allTextColors: TextColor[] = ['info', 'warning', 'error', 'success', 'brand', 'primary', 'secondary', 'disabled', 'contrast', 'white'];
+export type TextColor = 'info' | 'warning' | 'error' | 'success' | 'brand' | 'primary' | 'secondary' | 'disabled' | 'white';
+export const allTextColors: TextColor[] = ['info', 'warning', 'error', 'success', 'brand', 'primary', 'secondary', 'disabled', 'white'];
 
 export interface TextMods extends TextSettings {
     size?: types.TextSize | '42';
