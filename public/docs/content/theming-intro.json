@@ -7,7 +7,7 @@
       },
       {
         "type": "link",
-        "url": "https://chat.lab.epam.com/url",
+        "url": "https://github.com/epam/UUI/blob/develop/epam-assets/theme/theme_electric.scss",
         "target": "_blank",
         "children": [
           {
@@ -129,7 +129,7 @@
     "data": {},
     "children": [
       {
-        "text": "1. Import styles from ",
+        "text": "1. Import Theme from ",
         "uui-richTextEditor-bold": true
       },
       {
@@ -138,7 +138,7 @@
         "uui-richTextEditor-bold": true
       },
       {
-        "text": " package to the root of your app(e.g., index.tsx).",
+        "text": " package to the root of your app(e.g., index.tsx):",
         "uui-richTextEditor-bold": true
       }
     ]
@@ -159,17 +159,17 @@
         "text": "\n"
       },
       {
-        "text": "// Import theme styles:\nimport '@epam/assets/css/theme/theme-{ \"theme_name\" }.css';\n\n",
+        "text": "// Import theme styles:\nimport '@epam/assets/css/theme/theme-{theme_name}.css';\n\n",
         "uui-richTextEditor-span-mark": true
       },
       {
         "uui-richTextEditor-span-mark": true,
-        "text": "E.g.",
+        "text": "E.g.\n",
         "uui-richTextEditor-bold": true
       },
       {
         "uui-richTextEditor-span-mark": true,
-        "text": "\n\nimport '@epam/assets/css/theme/theme-electric.css';"
+        "text": "\nimport '@epam/assets/css/theme/theme-electric.css';"
       }
     ]
   },
@@ -177,7 +177,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "2. Add one of the theme classes to the body .",
+        "text": "2. Add theme class to the body:",
         "uui-richTextEditor-bold": true
       }
     ]
@@ -190,10 +190,10 @@
         "uui-richTextEditor-bold": true
       },
       {
-        "text": "\n\n<body class=\"uui-theme-"
+        "text": "\n\n<body class=\"uui-theme-{"
       },
       {
-        "text": "{ \"theme_name\" }",
+        "text": "theme_name}",
         "uui-richTextEditor-span-mark": true
       },
       {
@@ -240,7 +240,7 @@
         "uui-richTextEditor-code": true
       },
       {
-        "text": " package, we also offering Skin packages: "
+        "text": " package, UUI also offering Skin packages: "
       },
       {
         "text": "@epam/electric",
@@ -389,10 +389,7 @@
     "data": {},
     "children": [
       {
-        "text": "T"
-      },
-      {
-        "text": "heme-specific variables",
+        "text": "Theme-specific variables",
         "uui-richTextEditor-bold": true
       }
     ]
