@@ -25,10 +25,6 @@
         --uui-text: var(--uui-text-disabled);
     }
 
-    &:global(.uui-text.uui-color-contrast) {
-        --uui-text: var(--uui-text-contrast);
-    }
-
     &:global(.uui-text.uui-color-white) {
         --uui-text: var(--uui-neutral-0);
     }

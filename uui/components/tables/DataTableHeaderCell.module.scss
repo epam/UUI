@@ -155,6 +155,7 @@
     row-gap: 3px;
 
     .cell-tooltip-text {
+        color: var(--uui-tooltip-text);
         padding: 0;
     }
 }
