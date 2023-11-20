@@ -35,7 +35,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       }
     >
       <div
-        className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
+        className="root uui-text uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography line-height-24 font-size-18 v-padding-12 container"
       >
         Please select
       </div>
@@ -220,7 +220,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         Elementary
                       </div>
@@ -272,7 +272,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         Elementary+
                       </div>
@@ -339,7 +339,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         className="flexSpacer"
       />
       <button
-        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
+        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -351,7 +351,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         </div>
       </button>
       <button
-        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
+        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -402,7 +402,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       }
     >
       <div
-        className="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
+        className="root uui-text uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography line-height-24 font-size-18 v-padding-12 container"
       >
         Please select
       </div>
@@ -628,7 +628,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         C2
                       </div>
@@ -696,7 +696,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         C1+
                       </div>
@@ -764,7 +764,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         C1
                       </div>
@@ -832,7 +832,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         B2+
                       </div>
@@ -900,7 +900,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         B2
                       </div>
@@ -968,7 +968,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         B1+
                       </div>
@@ -1036,7 +1036,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         B1
                       </div>
@@ -1104,7 +1104,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         A2+
                       </div>
@@ -1172,7 +1172,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         A2
                       </div>
@@ -1240,7 +1240,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         A1+
                       </div>
@@ -1308,7 +1308,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
                       >
                         A1
                       </div>
@@ -1373,7 +1373,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
     >
       <button
         aria-disabled={false}
-        className="container uui-button-box uui-enabled -clickable uui-link_button root size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
+        className="container uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -1388,7 +1388,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         className="flexSpacer"
       />
       <button
-        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
+        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -1400,7 +1400,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         </div>
       </button>
       <button
-        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
+        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -1444,7 +1444,7 @@ exports[`PickerModal should open body 1`] = `
           class="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
         >
           <div
-            class="root uui-text uui-font-semibold uui-color-primary uui-typography line-height-24 font-size-18 v-padding-12 container"
+            class="root uui-text uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography line-height-24 font-size-18 v-padding-12 container"
           >
             Please select
           </div>
@@ -1536,7 +1536,7 @@ exports[`PickerModal should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
+                            class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
                             Elementary
                           </div>
@@ -1565,7 +1565,7 @@ exports[`PickerModal should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="root uui-text uui-font-regular uui-color-primary uui-typography line-height-18 font-size-14 v-padding-9 container"
+                            class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
                           >
                             Elementary+
                           </div>
@@ -1609,7 +1609,7 @@ exports[`PickerModal should open body 1`] = `
             class="flexSpacer"
           />
           <button
-            class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary size-36"
+            class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary uui-size-36"
             tabindex="0"
             type="button"
           >
@@ -1620,7 +1620,7 @@ exports[`PickerModal should open body 1`] = `
             </div>
           </button>
           <button
-            class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent size-36"
+            class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent uui-size-36"
             tabindex="0"
             type="button"
           >

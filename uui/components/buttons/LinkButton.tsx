@@ -20,7 +20,7 @@ function applyLinkButtonMods(mods: LinkButtonProps) {
     return [
         'uui-link_button',
         css.root,
-        css['size-' + (mods.size || defaultSize)],
+        `uui-size-${mods.size || defaultSize}`,
         ...getIconClass(mods),
         `uui-color-${mods.color || 'primary'}`,
     ];

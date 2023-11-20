@@ -8,7 +8,7 @@
     --uui-btn-caption: var(--white);
     --uui-btn-caption-disabled: var(--uui-neutral-60);
 
-    --uui-btn-font: var(--font-primary);
+    --uui-btn-font: var(--font-museo-sans);
     --uui-btn-font-weight: var(--uui-font-weight, 700);
     //
     background: linear-gradient(var(--uui-btn-bg), var(--uui-btn-bg)) padding-box,
@@ -63,35 +63,38 @@
         border-color: var(--uui-btn-border-disabled);
         box-shadow: none;
     }
+
+    &:global {
+        &.uui-size-36 {
+            min-width: 36px;
+
+            &.uui-button-box {
+                min-height: 36px;
+                border-radius: 18px;
+            }
+
+            .uui-caption {
+                line-height: 18px;
+                font-size: 12px;
+                padding: 7px 6px;
+            }
+        }
+
+        &.uui-size-42 {
+            min-width: 42px;
+
+            &.uui-button-box {
+                min-height: 42px;
+                border-radius: 21px;
+            }
+
+            .uui-caption {
+                line-height: 24px;
+                font-size: 14px;
+                padding: 7px 6px;
+            }
+        }
+    }
 }
 
-.size-36 {
-    min-width: 36px;
-
-    &:global(.uui-button-box) {
-        min-height: 36px;
-        border-radius: 18px;
-    }
-
-    :global(.uui-caption) {
-        line-height: 18px;
-        font-size: 12px;
-        padding: 7px 6px;
-    }
-}
-
-.size-42 {
-    min-width: 42px;
-
-    &:global(.uui-button-box) {
-        min-height: 42px;
-        border-radius: 21px;
-    }
-
-    :global(.uui-caption) {
-        line-height: 24px;
-        font-size: 14px;
-        padding: 7px 6px;
-    }
-}
 

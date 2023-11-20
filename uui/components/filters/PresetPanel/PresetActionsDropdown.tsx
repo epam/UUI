@@ -54,7 +54,7 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
             .show(
                 (props) => (
                     <SuccessNotification { ...props }>
-                        <Text size="36" font="regular" fontSize="14">
+                        <Text size="36" fontSize="14">
                             {text}
                         </Text>
                     </SuccessNotification>

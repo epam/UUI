@@ -8,7 +8,7 @@ export default function IconTooltipExample() {
         <FlexRow spacing="6" alignItems="top" cx={ css.container }>
             <IconContainer icon={ myIcon } style={ { marginTop: '3px', justifyContent: 'start' } } cx={ css.iconBlue } />
             <FlexCell width="auto">
-                <Text cx={ css.header } fontSize="14" lineHeight="18" font="semibold">
+                <Text cx={ css.header } fontSize="14" lineHeight="18" fontWeight="600">
                     Auto-update
                 </Text>
                 <Text cx={ css.content } fontSize="12" lineHeight="18">

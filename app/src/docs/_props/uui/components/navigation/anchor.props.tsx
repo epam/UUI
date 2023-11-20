@@ -14,7 +14,7 @@ const AnchorDoc = new DocBuilder<AnchorProps>({ name: 'Anchor', component: Ancho
         examples: [
             {
                 value: [
-                    <Text color="info" cx={ css.text } font="semibold">Let's see Epam.com</Text>,
+                    <Text color="info" cx={ css.text } fontWeight="600">Let's see Epam.com</Text>,
                 ],
                 isDefault: true,
             },
