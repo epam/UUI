@@ -7,7 +7,7 @@ import { useQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
 import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
-import { TypeRefPage } from '../common/apiReference/TypeRefPage';
+import { TypeRefPage } from '../common';
 
 type DocsQuery = {
     id: string;
