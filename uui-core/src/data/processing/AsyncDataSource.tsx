@@ -25,8 +25,12 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
     }
 
     reload() {
-        this.views.forEach((view) => view.reload());
+        super.reload();
         this.setProps({ ...this.props, items: [] });
+    }
+
+    public destroy(): void {
+        super.destroy();
     }
 
     private loadViewData(view: AsyncListView<TItem, TId, TFilter>) {
@@ -88,7 +92,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const view = useMemo(
             () => new AsyncListView({ value, onValueChange }, viewProps),
-            deps,
+            [...deps, this], // every time, datasource is updated, view should be recreated
         );
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
