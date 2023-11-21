@@ -6,7 +6,7 @@ import { Tooltip } from '@epam/uui-components';
 
 interface Color {
     value: string;
-    hex: string;
+    hex?: string;
 }
 
 interface ColorPickerProps extends IEditable<string> {
