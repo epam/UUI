@@ -34,7 +34,7 @@
 
         :global(.uui-input) {
             &::placeholder {
-                color: var(--uui-control-placeholder-readonly);
+                color: var(--uui-control-placeholder-disabled);
             }
         }
     }
@@ -51,7 +51,7 @@
 
         :global(.uui-input) {
             &::placeholder {
-                color: var(--uui-control-placeholder-readonly);
+                color: var(--uui-control-placeholder-disabled);
             }
         }
     }
