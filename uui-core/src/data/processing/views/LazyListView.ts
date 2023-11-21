@@ -462,19 +462,18 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const rootCount = rootInfo.count;
         const rootTotalCount = rootInfo.totalCount ?? rootCount;
 
-        if (!this.props.getChildCount && (rootCount != null || rootTotalCount != null)) {
-            if (rootCount != null) {
-                // We have a flat list, and know exact count of items on top level. So, we can have an exact number of rows w/o iterating the whole tree.
-                rowsCount = rootCount;
-            }
+        if (rootInfo.totalCount != null) {
+            totalCount = rootInfo.totalCount;
+        }
 
-            if (rootTotalCount != null) {
-                totalCount = rootTotalCount;
-            }
+        if (!this.props.getChildCount && rootCount != null) {
+            // We have a flat list, and know exact count of items on top level. So, we can have an exact number of rows w/o iterating the whole tree.
+            rowsCount = rootCount;
+            totalCount = rootTotalCount;
         } else if (!this.hasMoreRows) {
             // We are at the bottom of the list. Some children might still be loading, but that's ok - we'll re-count everything after we load them.
             rowsCount = this.rows.length;
-            totalCount = rootInfo.totalCount ?? this.visibleTree.getTotalRecursiveCount();
+            totalCount = totalCount ?? this.visibleTree.getTotalRecursiveCount();
         } else {
             // We definitely have more rows to show below the last visible row.
             // We need to add at least 1 row below, so VirtualList or other component would not detect the end of the list, and query loading more rows later.
