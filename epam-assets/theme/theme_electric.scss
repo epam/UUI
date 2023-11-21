@@ -246,6 +246,7 @@
     --uui-control-border-disabled: var(--uui-neutral-30);
 
     --uui-control-placeholder: var(--uui-neutral-50);
+    --uui-control-placeholder-disabled: var(--uui-neutral-50);
 
     --uui-control-text: var(--uui-text-primary);
     --uui-control-text-disabled: var(--uui-text-tertiary);
@@ -519,8 +520,37 @@
     /* Typography */
 
     .uui-typography {
+        h1, h3, h4, h5 {
+            font-weight: 600;
+        }
+
         .promo-header:is(h1, h2, h3, h4, h5, h6) {
             font-family: var(--font-museo-sans);
+        }
+
+        h1.promo-header {
+            font-size: 72px;
+            font-weight: 500;
+        }
+
+        h2.promo-header {
+            font-size: 44px;
+        }
+
+        h3.promo-header {
+            font-size: 36px;
+        }
+
+        h4.promo-header {
+            font-size: 30px;
+        }
+
+        h5.promo-header {
+            font-size: 24px;
+        }
+
+        h6.promo-header {
+            font-size: 18px;
         }
     }
 }

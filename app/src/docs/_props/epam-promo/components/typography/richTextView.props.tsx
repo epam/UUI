@@ -34,6 +34,13 @@ const richTextViewDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ n
                             {' '}
                             for super-promo screens
                         </div>
+                        <h1 className="promo-header">
+                            Promo heading — H1
+                            {' '}
+                            <br />
+                            {' '}
+                            for page hero-headers
+                        </h1>
                         <h2 className="promo-header">
                             Promo heading — H2
                             {' '}

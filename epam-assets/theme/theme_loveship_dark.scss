@@ -233,7 +233,8 @@
     --uui-control-border-focus: var(--uui-primary-60);
     --uui-control-border-disabled: var(--uui-neutral-40);
 
-    --uui-control-placeholder: var(--uui-neutral-30);
+    --uui-control-placeholder: var(--uui-neutral-20);
+    --uui-control-placeholder-disabled: var(--uui-neutral-30);
 
     --uui-control-text: var(--uui-text-primary);
     --uui-control-text-disabled: var(--uui-text-tertiary);
@@ -807,6 +808,24 @@
     .uui-typography {
         .uui-highlight {
             background-color: var(--uui-warning-20);
+        }
+
+        h1 {
+            font-weight: 600;
+        }
+
+        h2 {
+            font-weight: 700;
+        }
+
+        h3 {
+            font-weight: 600;
+        }
+
+        .hero-header {
+            font-size: 72px;
+            line-height: 72px;
+            font-weight: 700;
         }
     }
 }

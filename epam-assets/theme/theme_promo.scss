@@ -239,6 +239,7 @@
     --uui-control-border-disabled: var(--uui-neutral-30);
 
     --uui-control-placeholder: var(--uui-neutral-50);
+    --uui-control-placeholder-disabled: var(--uui-neutral-50);
 
     --uui-control-text: var(--uui-text-primary);
     --uui-control-text-disabled: var(--uui-text-tertiary);
@@ -706,8 +707,20 @@
     /* Typography */
 
     .uui-typography {
-        .promo-header:is(h1, h2, h3) {
+        h1, h2, h3 {
+            font-family: var(--font-museo-sans);
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        .hero-header {
             font-family: var(--font-museo-slab);
+        }
+
+        .promo-header:is(h1, h2, h3) {
+            font-family: var(--font-museo-sans);
         }
     }
 }
