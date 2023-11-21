@@ -17,7 +17,6 @@ export class SearchInputDoc extends BaseDocsBlock {
             [TSkin.UUI4_promo]: { type: '@epam/uui:SearchInputProps', component: promo.SearchInput },
         },
         doc: (doc: DocBuilder<uui.SearchInputProps | loveship.SearchInputProps>) => {
-            doc.merge('type', { editorType: 'StringEditor', examples: [] });
             doc.merge('iconPosition', { defaultValue: 'left' });
         },
     };
