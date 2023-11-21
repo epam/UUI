@@ -31,6 +31,12 @@
         &:hover {
             border-color: var(--uui-control-border-disabled);
         }
+
+        :global(.uui-input) {
+            &::placeholder {
+                color: var(--uui-control-placeholder-readonly);
+            }
+        }
     }
 
     &.mode-cell {
@@ -41,6 +47,12 @@
         &:hover {
             background-color: transparent;
             border-color: transparent;
+        }
+
+        :global(.uui-input) {
+            &::placeholder {
+                color: var(--uui-control-placeholder-readonly);
+            }
         }
     }
 }
