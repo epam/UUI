@@ -3,9 +3,8 @@
 **What's New**
 * This release introduced stable Theming approach and theme css variables:
   * Theme css variable now assumed as a stable API, you can use them into your application styles.
-  * Set of theme variables align with figma library. You can copy CSS code variables from Figma Dev Mode directly into your code.
   * A lot of components styles tweaks according to the design changes.
-  * You can read more about Theming here - https://uui.epam.com/documents?id=themes
+  * You can read more about Themes here - https://uui.epam.com/documents?id=themes
 
 * New EPAM brand 'Electric' Theme and `@epam/electric` package. To start using Electric theme you need: 
     * Add `@epam/electric` package to your project
