@@ -1,20 +1,38 @@
 import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
-} from '../common';
+import * as uui from '@epam/uui';
+import * as promo from '@epam/promo';
+import * as loveship from '@epam/loveship';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class LabeledInputDoc extends BaseDocsBlock {
     title = 'Labeled Input';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:LabeledInputProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/layout/labeledInput.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/layout/labeledInput.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/layout/labeledInput.props.tsx',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'LabeledInput',
+        contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:LabeledInputProps', component: uui.LabeledInput },
+            [TSkin.UUI3_loveship]: { type: '@epam/uui:LabeledInputProps', component: loveship.LabeledInput },
+            [TSkin.UUI4_promo]: { type: '@epam/uui:LabeledInputProps', component: promo.LabeledInput },
+        },
+        doc: (doc: DocBuilder<uui.LabeledInputProps>) => {
+            doc.merge('value', { examples: ['Some simple text'] });
+            doc.merge('Tooltip', { examples: [{ value: uui.Tooltip, name: 'Tooltip', isDefault: true }], isRequired: true });
+            doc.merge('size', { defaultValue: '36' });
+            doc.merge('labelPosition', { defaultValue: 'top' });
+            doc.merge('children', {
+                examples: [
+                    { name: 'TextInput 48', value: <uui.TextInput value="text" size="48" onValueChange={ () => {} } /> },
+                    { name: 'TextInput 36', value: <uui.TextInput value="text" onValueChange={ () => {} } />, isDefault: true },
+                    { name: 'TextInput 30', value: <uui.TextInput value="text" size="30" onValueChange={ () => {} } /> },
+                    { name: 'TextInput 24', value: <uui.TextInput value="text" size="24" onValueChange={ () => {} } /> },
+                    { name: 'Checkbox', value: <uui.Checkbox value={ true } onValueChange={ () => {} } /> },
+                    { name: 'Slider', value: <uui.Slider min={ 0 } max={ 100 } value={ 50 } onValueChange={ () => {} } step={ 5 } /> },
+                ],
+            });
+        },
+    };
 
     renderContent() {
         return (
