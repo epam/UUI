@@ -25,7 +25,10 @@ export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.HTM
     onClose?(): void;
     /** An optional icon to show on the left of the alert */
     icon?: Icon;
-    /** Component size. If omitted, 48 size will be used. */
+    /**
+     * Component size. If omitted, 48 size will be used.
+     * @default '48'
+     */
     size?: '36' | '48';
 }
 

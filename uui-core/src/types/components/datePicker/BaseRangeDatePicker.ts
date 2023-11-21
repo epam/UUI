@@ -53,10 +53,16 @@ export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue
      */
     presets?: RangeDatePickerPresets;
 
-    /** Disables clearing component (with the cross icon) */
+    /**
+     * Disables clearing component (with the cross icon)
+     * @default false
+     */
     disableClear?: boolean;
 
-    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
+    /**
+     * Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)
+     * @default 'bottom-start'
+     */
     placement?: Placement;
 
     /** If this function returns true, the day will be highlighted as holiday */
