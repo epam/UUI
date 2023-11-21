@@ -1,4 +1,4 @@
-# 5.3.0 - 21.11.2023
+# 5.4.0 - 21.11.2023
 
 **What's New**
 * This release introduced stable Theming approach and theme css variables:
