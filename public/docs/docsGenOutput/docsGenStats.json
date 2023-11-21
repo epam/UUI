@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 742,
-   "amountTypes": 244
+   "amountProps": 736,
+   "amountTypes": 240
   },
   "value": [
    {
@@ -74,18 +74,6 @@
     "typeRef": "@epam/uui-core:AsyncListViewProps",
     "value": [
      "api"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:BaseRangeDatePickerProps",
-    "value": [
-     "bodyCx"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ButtonCoreProps",
-    "value": [
-     "count"
     ]
    },
    {
@@ -510,13 +498,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:RangeDatePickerCoreProps",
-    "value": [
-     "getPlaceholder",
-     "rawProps"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:RangeDatePickerPresets",
     "value": [
      "[key: string]"
@@ -527,13 +508,6 @@
     "value": [
      "from",
      "order",
-     "to"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:RangeDatePickerValue",
-    "value": [
-     "from",
      "to"
     ]
    },
@@ -1971,7 +1945,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 473
+   "amountTypes": 472
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -2085,7 +2059,6 @@
    "@epam/uui-core:PickerBindingProps",
    "@epam/uui-core:PickerBindingValueType",
    "@epam/uui-core:PickerFooterProps",
-   "@epam/uui-core:RangeDatePickerCoreProps",
    "@epam/uui-core:RangeDatePickerInputType",
    "@epam/uui-core:RangeDatePickerPresets",
    "@epam/uui-core:RangeDatePickerPresetValue",
@@ -3348,9 +3321,9 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 555,
+   "allExports": 554,
    "byModule": {
-    "@epam/uui-core": 200,
+    "@epam/uui-core": 199,
     "@epam/uui-components": 91,
     "@epam/uui": 133,
     "@epam/promo": 53,
@@ -3484,7 +3457,6 @@
      "ModalWindowProps",
      "NotificationOperation",
      "NotificationParams",
-     "RangeDatePickerCoreProps",
      "RangeDatePickerValue",
      "RenderCellProps",
      "RenderEditorProps",

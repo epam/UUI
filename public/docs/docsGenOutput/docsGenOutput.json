@@ -3288,12 +3288,16 @@
       "    onOpenChange?: (isOpen: boolean) => void;",
       "    /** rawProps as HTML attributes */",
       "    rawProps?: {",
+      "        /** Any HTML attributes (native or 'data-') to put on 'from' input */",
       "        from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "        /** Any HTML attributes (native or 'data-') to put on 'to' input */",
       "        to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "        /** Any HTML attributes (native or 'data-') to put on date picker body */",
       "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
       "    };",
-      "    /** Styles for input and body components in RangeDatePicker */",
+      "    /** CSS class(es) to put on rangeDatePicker input */",
       "    inputCx?: CX;",
+      "    /** CSS class(es) to put on datepicker body */",
       "    bodyCx?: CX;",
       "}"
      ]
@@ -3532,7 +3536,7 @@
       "name": "inputCx",
       "comment": {
        "raw": [
-        "Styles for input and body components in RangeDatePicker"
+        "CSS class(es) to put on rangeDatePicker input"
        ]
       },
       "typeValue": {
@@ -3544,6 +3548,11 @@
      {
       "uid": 15,
       "name": "bodyCx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on datepicker body"
+       ]
+      },
       "typeValue": {
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
@@ -4024,6 +4033,7 @@
       "    dropdownIcon?: Icon;",
       "    /** Position of the dropdown icon ('left' of 'right') */",
       "    dropdownIconPosition?: 'left' | 'right';",
+      "    /** Count value to be placed in component */",
       "    count?: React.ReactNode;",
       "}"
      ]
@@ -4068,6 +4078,11 @@
      {
       "uid": 3,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -24580,453 +24595,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-core:RangeDatePickerCoreProps": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "RangeDatePickerCoreProps",
-     "nameFull": "RangeDatePickerCoreProps"
-    },
-    "src": "uui-core/src/types/components/datePicker/RangeDatePicker.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "RangeDatePickerCoreProps",
-     "print": [
-      "interface RangeDatePickerCoreProps extends BaseRangeDatePickerProps {",
-      "    getPlaceholder?(type: RangeDatePickerInputType): string;",
-      "    rawProps?: {",
-      "        from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
-      "        to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
-      "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
-      "    };",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "getPlaceholder",
-      "typeValue": {
-       "raw": "(type: RangeDatePickerInputType) => string"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": 2,
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "{ from?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; to?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
-      },
-      "required": false
-     },
-     {
-      "uid": 3,
-      "name": "format",
-      "comment": {
-       "raw": [
-        "Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-core:BaseRangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": 4,
-      "name": "filter",
-      "comment": {
-       "raw": [
-        "Filter selectable days. Days, for which this callback returns false - will be disabled"
-       ]
-      },
-      "typeValue": {
-       "raw": "(day: Dayjs) => boolean"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:BaseRangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": 5,
-      "name": "renderTarget",
-      "comment": {
-       "raw": [
-        "Overrides rendering of picker Target - component which triggers dropdown. Can be used to attach RangeDatePicker to other components, e.g. Buttons"
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: IDropdownToggler) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:BaseRangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": 6,
-      "name": "renderFooter",
-      "comment": {
-       "raw": [
-        "Allows to add a custom footer to the Picker's dropdown body"
-       ]
-      },
-      "typeValue": {
-       "raw": "(value: RangeDatePickerValue) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:BaseRangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": 7,
-      "name": "renderDay",
-      "comment": {
-       "raw": [
-        "Overrides rendering of the single day. For example, to highlight certain days"
-       ]
-      },
-      "typeValue": {
-       "raw": "(day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:BaseRangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": 8,
-      "name": "presets",
-      "comment": {
-       "raw": [
-        "Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.",
-        " UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)"
-       ]
-      },
-      "typeValue": {
-       "raw": "RangeDatePickerPresets"
-      },
-      "from": "@epam/uui-core:BaseRangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": 9,
-      "name": "disableClear",
-      "comment": {
-       "raw": [
-        "Disables clearing component (with the cross icon)",
-        " @default false"
-       ],
-       "tags": {
-        "@default": false
-       }
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:BaseRangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": 10,
-      "name": "placement",
-      "comment": {
-       "raw": [
-        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)",
-        " @default 'bottom-start'"
-       ],
-       "tags": {
-        "@default": "bottom-start"
-       }
-      },
-      "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "left",
-        "right",
-        "auto",
-        "auto-start",
-        "auto-end",
-        "top",
-        "bottom",
-        "top-start",
-        "top-end",
-        "bottom-start",
-        "bottom-end",
-        "right-start",
-        "right-end",
-        "left-start",
-        "left-end"
-       ]
-      },
-      "from": "@epam/uui-core:BaseRangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": 11,
-      "name": "isHoliday",
-      "comment": {
-       "raw": [
-        "If this function returns true, the day will be highlighted as holiday"
-       ]
-      },
-      "typeValue": {
-       "raw": "(day: Dayjs) => boolean"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:BaseRangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": 12,
-      "name": "onFocus",
-      "comment": {
-       "raw": [
-        "Called when component gets input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: 'from' | 'to') => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:BaseRangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": 13,
-      "name": "onBlur",
-      "comment": {
-       "raw": [
-        "Called when component looses input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: 'from' | 'to') => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:BaseRangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": 14,
-      "name": "onOpenChange",
-      "comment": {
-       "raw": [
-        "Called when component is opened/closed"
-       ]
-      },
-      "typeValue": {
-       "raw": "(isOpen: boolean) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:BaseRangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": 15,
-      "name": "inputCx",
-      "comment": {
-       "raw": [
-        "Styles for input and body components in RangeDatePicker"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:BaseRangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": 16,
-      "name": "bodyCx",
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:BaseRangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": 17,
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "RangeDatePickerValue"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 18,
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: RangeDatePickerValue) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 19,
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 20,
-      "name": "validationMessage",
-      "comment": {
-       "raw": [
-        "Message describing why the value is invalid"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 21,
-      "name": "validationProps",
-      "comment": {
-       "raw": [
-        "If T is a complex value (object or array), this property contains validation states of inner items"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ [key: string]: ICanBeInvalid; }"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 22,
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": 23,
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": 24,
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
-      "uid": 25,
-      "name": "getValueChangeAnalyticsEvent",
-      "comment": {
-       "raw": [
-        "Given a value, returns an analytics event to send when component is edited.",
-        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: RangeDatePickerValue | null, oldValue: RangeDatePickerValue | null) => AnalyticsEvent"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IAnalyticableOnChange",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui-core:RangeDatePickerInputType": {
    "summary": {
     "module": "@epam/uui-core",
@@ -25034,7 +24602,7 @@
      "name": "RangeDatePickerInputType",
      "nameFull": "RangeDatePickerInputType"
     },
-    "src": "uui-core/src/types/components/datePicker/RangeDatePicker.ts",
+    "src": "uui-core/src/types/components/datePicker/BaseRangeDatePicker.ts",
     "exported": true
    },
    "details": {
@@ -25064,7 +24632,9 @@
      "print": [
       "type RangeDatePickerPresets = {",
       "    [key: string]: {",
+      "        /** Name of the preset to display in rangeDatePicker body */",
       "        name: ReactNode;",
+      "        /** A pure function that gets range value which will be applied by preset selection */",
       "        getRange: () => RangeDatePickerPresetValue;",
       "    };",
       "};"
@@ -25159,7 +24729,9 @@
      "raw": "RangeDatePickerValue",
      "print": [
       "interface RangeDatePickerValue {",
+      "    /** RangeDatePicker 'from' value */",
       "    from: string | null;",
+      "    /** RangeDatePicker 'to' value */",
       "    to: string | null;",
       "}"
      ]
@@ -25168,6 +24740,11 @@
      {
       "uid": 1,
       "name": "from",
+      "comment": {
+       "raw": [
+        "RangeDatePicker 'from' value"
+       ]
+      },
       "typeValue": {
        "raw": "null | string"
       },
@@ -25179,6 +24756,11 @@
      {
       "uid": 2,
       "name": "to",
+      "comment": {
+       "raw": [
+        "RangeDatePicker 'to' value"
+       ]
+      },
       "typeValue": {
        "raw": "null | string"
       },
@@ -31436,6 +31018,11 @@
      {
       "uid": 6,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -59539,6 +59126,11 @@
      {
       "uid": 6,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -70299,6 +69891,11 @@
      {
       "uid": 8,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -71068,6 +70665,11 @@
      {
       "uid": 7,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -78799,7 +78401,7 @@
       "name": "inputCx",
       "comment": {
        "raw": [
-        "Styles for input and body components in RangeDatePicker"
+        "CSS class(es) to put on rangeDatePicker input"
        ]
       },
       "typeValue": {
@@ -78812,6 +78414,11 @@
      {
       "uid": 16,
       "name": "bodyCx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on datepicker body"
+       ]
+      },
       "typeValue": {
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
@@ -81366,6 +80973,11 @@
      {
       "uid": 8,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -81883,6 +81495,11 @@
      {
       "uid": 6,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -85110,6 +84727,11 @@
      {
       "uid": 6,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -86331,6 +85953,11 @@
      {
       "uid": 12,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -86830,6 +86457,11 @@
      {
       "uid": 10,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -89991,6 +89623,11 @@
      {
       "uid": 10,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -93790,6 +93427,11 @@
      {
       "uid": 13,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -94261,6 +93903,11 @@
      {
       "uid": 9,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -97590,6 +97237,11 @@
      {
       "uid": 10,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -98878,6 +98530,9 @@
      "raw": "RadioInputMods",
      "print": [
       "interface RadioInputMods extends UuiRadioInputMods {",
+      "    /**",
+      "     * @default 'light'",
+      "     */",
       "    theme?: 'light' | 'dark';",
       "}"
      ]
@@ -98886,6 +98541,14 @@
      {
       "uid": 1,
       "name": "theme",
+      "comment": {
+       "raw": [
+        "@default 'light'"
+       ],
+       "tags": {
+        "@default": "light"
+       }
+      },
       "typeValue": {
        "raw": "'light' | 'dark'"
       },
@@ -98949,6 +98612,14 @@
      {
       "uid": 1,
       "name": "theme",
+      "comment": {
+       "raw": [
+        "@default 'light'"
+       ],
+       "tags": {
+        "@default": "light"
+       }
+      },
       "typeValue": {
        "raw": "'light' | 'dark'"
       },
@@ -101693,6 +101364,11 @@
      {
       "uid": 9,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -102193,6 +101869,11 @@
      {
       "uid": 8,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -102825,6 +102506,11 @@
      {
       "uid": 10,
       "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
