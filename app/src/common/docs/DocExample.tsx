@@ -7,6 +7,7 @@ import css from './DocExample.module.scss';
 import { CodesandboxLink } from './CodesandboxLink';
 import { Code } from './Code';
 import cx from 'classnames';
+import { TEMP_THEME_PROMO_SELECTOR } from './constants';
 
 interface DocExampleProps {
     path: string;
@@ -78,7 +79,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                 <FlexRow size={ null } vPadding="48" padding="24" borderBottom alignItems="top" spacing="12">
                     {this.state.component && React.createElement(this.state.component)}
                 </FlexRow>
-                <FlexRow padding="12" vPadding="12" cx={ [css.containerFooter, css.uuiThemePromo] }>
+                <FlexRow padding="12" vPadding="12" cx={ [css.containerFooter, TEMP_THEME_PROMO_SELECTOR] }>
                     <Switch value={ this.state.showCode } onValueChange={ this.onSwitchValueChange } label="View code" />
                     <CodesandboxLink raw={ raw } dirPath={ dirPath } />
                 </FlexRow>

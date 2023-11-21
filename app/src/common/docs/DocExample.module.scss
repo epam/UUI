@@ -10,12 +10,6 @@
 .container-footer {
     justify-content: space-between;
     background-color: $white;
-
-    &.uui-theme-promo {
-        :global {
-            @include theme-promo();
-        }
-    }
 }
 
 .preview-container {
