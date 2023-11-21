@@ -21,11 +21,11 @@
             "uui-richTextEditor-span-mark": true
           },
           {
-            "text": "yarn add @epam/uui @epam/uui-components",
+            "text": "yarn add @epam/uui-core @epam/uui-components",
             "uui-richTextEditor-code": true
           },
           {
-            "text": "  "
+            "text": " "
           }
         ]
       },
@@ -34,7 +34,27 @@
         "type": "paragraph",
         "children": [
           {
-            "text": "If you need a specific EPAM brand skin, add the appropriate package: "
+            "text": "And themable package "
+          },
+          {
+            "text": "yarn add @epam/uui",
+            "uui-richTextEditor-code": true
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "paragraph",
+        "children": [
+          {
+            "text": "If you need a specific EPAM brand skin, also add the appropriate package: "
+          },
+          {
+            "text": "yarn add @epam/electric",
+            "uui-richTextEditor-code": true
+          },
+          {
+            "text": " or "
           },
           {
             "text": "yarn add @epam/loveship",
@@ -63,7 +83,7 @@
         "type": "note-quote",
         "children": [
           {
-            "text": "import '@epam/uui-components/styles.css';\nimport '@epam/uui/styles.css';\n\n// Import your skin styles:\nimport '@epam/loveship/styles.css';\n// or \nimport '@epam/promo/styles.css';",
+            "text": "import '@epam/uui-components/styles.css';\nimport '@epam/uui/styles.css';\n\n// Import your skin styles (if needed):\nimport '@epam/electric/styles.css';\n// or\nimport '@epam/loveship/styles.css';\n// or \nimport '@epam/promo/styles.css';",
             "uui-richTextEditor-span-mark": true
           }
         ]
@@ -73,10 +93,14 @@
         "type": "paragraph",
         "children": [
           {
-            "text": "3. Add theme class"
+            "text": "3. Add theme class "
           },
           {
-            "text": " ",
+            "text": "uui-theme-electric",
+            "uui-richTextEditor-code": true
+          },
+          {
+            "text": " , ",
             "uui-richTextEditor-span-mark": true
           },
           {
@@ -84,14 +108,7 @@
             "uui-richTextEditor-code": true
           },
           {
-            "text": " ",
-            "uui-richTextEditor-span-mark": true
-          },
-          {
-            "text": "or"
-          },
-          {
-            "text": " ",
+            "text": " , ",
             "uui-richTextEditor-span-mark": true
           },
           {
@@ -99,8 +116,17 @@
             "uui-richTextEditor-code": true
           },
           {
-            "text": " ",
+            "text": " or ",
             "uui-richTextEditor-span-mark": true
+          },
+          {
+            "uui-richTextEditor-span-mark": true,
+            "text": "uui-theme-loveship_dark",
+            "uui-richTextEditor-code": true
+          },
+          {
+            "uui-richTextEditor-span-mark": true,
+            "text": " "
           },
           {
             "text": "to"

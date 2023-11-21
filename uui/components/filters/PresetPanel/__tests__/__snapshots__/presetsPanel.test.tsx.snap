@@ -15,7 +15,7 @@ exports[`PresetsPanel should render with minimum props 1`] = `
   }
 >
   <div
-    className="root spacing-12 presetsWrapper container align-items-center"
+    className="uui-flex-row root spacing-12 presetsWrapper container align-items-center"
     style={
       Object {
         "columnGap": undefined,
@@ -27,7 +27,7 @@ exports[`PresetsPanel should render with minimum props 1`] = `
       className="mainWrapper"
     >
       <div
-        className="container align-items-center"
+        className="uui-flex-row container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -36,7 +36,7 @@ exports[`PresetsPanel should render with minimum props 1`] = `
         }
       >
         <div
-          className="root size-36 container align-items-center"
+          className="uui-flex-row root size-36 container align-items-center"
           style={
             Object {
               "columnGap": undefined,
@@ -50,7 +50,7 @@ exports[`PresetsPanel should render with minimum props 1`] = `
           <button
             aria-expanded={false}
             aria-haspopup={true}
-            className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-ghost"
+            className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-presets-panel-more-button"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -74,7 +74,7 @@ exports[`PresetsPanel should render with minimum props 1`] = `
           className="addPresetContainer"
         >
           <button
-            className="container uui-button-box uui-enabled -clickable button-primary root size-36 mode-ghost"
+            className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-presets-panel-add-button"
             onClick={[Function]}
             tabIndex={0}
             type="button"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { IModal, useUuiContext } from '@epam/uui-core';
 import { demoData } from '@epam/uui-docs';
-import { ModalBlocker, ModalFooter, ModalHeader, ModalWindow, FlexRow, FlexSpacer, Panel, ScrollBars, Text, Button, SuccessNotification, WarningNotification } from '@epam/promo';
+import { ModalBlocker, ModalFooter, ModalHeader, ModalWindow, FlexRow, FlexSpacer, Panel, ScrollBars, Text, Button, SuccessNotification, WarningNotification } from '@epam/uui';
 
 export default function BasicModalExampleToggler() {
     const { uuiModals, uuiNotifications } = useUuiContext();
@@ -41,7 +41,7 @@ export function BasicModalExample(modalProps: IModal<string>) {
     return (
         <ModalBlocker { ...modalProps }>
             <ModalWindow>
-                <Panel background="white">
+                <Panel background="surface">
                     <ModalHeader title="Simple modal example " onClose={ () => modalProps.abort() } />
                     <ScrollBars hasTopShadow hasBottomShadow>
                         <FlexRow padding="24">
@@ -54,8 +54,8 @@ export function BasicModalExample(modalProps: IModal<string>) {
                     </ScrollBars>
                     <ModalFooter>
                         <FlexSpacer />
-                        <Button color="gray" fill="white" caption="Cancel" onClick={ () => modalProps.abort() } />
-                        <Button color="green" caption="Ok" onClick={ () => modalProps.success('Success action') } />
+                        <Button color="secondary" fill="outline" caption="Cancel" onClick={ () => modalProps.abort() } />
+                        <Button color="accent" caption="Ok" onClick={ () => modalProps.success('Success action') } />
                     </ModalFooter>
                 </Panel>
             </ModalWindow>

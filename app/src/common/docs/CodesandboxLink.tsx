@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { codesandboxService } from '../../data/service';
-import { Button } from '@epam/promo';
+import { Button } from '@epam/uui';
 import css from './CodesandboxLink.module.scss';
 import { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
 import { svc } from '../../services';
@@ -38,7 +38,7 @@ export function CodesandboxLink(props: { raw?: string, dirPath: string[] }) {
             <Button
                 cx={ css.externalLink }
                 rawProps={ { type: 'submit' } }
-                fill="light"
+                fill="ghost"
                 icon={ CodesandboxIcon }
                 iconPosition="right"
                 caption="Open in Codesandbox"

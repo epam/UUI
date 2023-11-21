@@ -1,4 +1,11 @@
 @use '~@epam/promo/assets/styles/index' as *;
+@use '~@epam/assets/theme/theme_promo' as *;
+
+.theme-promo {
+    :global {
+        @include theme-promo();
+    }
+}
 
 .title {
     font-family: $font-museo-sans;

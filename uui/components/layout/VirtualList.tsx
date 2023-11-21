@@ -66,6 +66,14 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
             </div>
         );
 
+    const renderView = ({ style }: any) => (
+        <VirtualListView
+            isLoading={ props.isLoading }
+            style={ style }
+            rawProps={ props.rawProps }
+        />
+    );
+
     const scrollBarsRef = React.useCallback((scrollbars: ScrollbarsApi) => {
         if (!scrollbars?.container?.firstChild) return;
         scrollContainerRef.current = scrollbars.container.firstChild as HTMLDivElement;
@@ -79,7 +87,7 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
                 [uuiMarkers.scrolledBottom]: scrollShadows.verticalBottom,
             }) }
             onScroll={ handleScroll }
-            renderView={ ({ style }: any) => <VirtualListView isLoading={ props.isLoading } style={ style } /> }
+            renderView={ renderView }
             ref={ scrollBarsRef }
         >
             {renderRows()}

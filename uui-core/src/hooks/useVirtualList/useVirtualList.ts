@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { ScrollToConfig } from '../../types';
-import { useLayoutEffectSafeForSsr } from '../../ssr';
+import { useLayoutEffectSafeForSsr } from '../../ssr/useLayoutEffectSafeForSsr';
 import {
     getRowsToFetchForScroll, getUpdatedRowsInfo, assumeHeightForScrollToIndex,
     getOffsetYForIndex, getScrollToCoordinate, getRealTopIndex, getTopIndexWithOffset,

@@ -1,13 +1,14 @@
 import { withMods } from '@epam/uui-core';
-import css from './Burger.module.scss';
+import cx from 'classnames';
 import { Burger as uuiBurger, BurgerProps } from '@epam/uui-components';
+import css from './Burger.module.scss';
 import { ReactComponent as BurgerIcon } from '../../../../icons/burger.svg';
 import { ReactComponent as CrossIcon } from '../../../../icons/burger-close.svg';
 
 export interface BurgerMods {}
 
 function applyBurgerMods() {
-    return [css.root];
+    return [cx(css.root, 'uui-burger')];
 }
 
 export const Burger = withMods<BurgerProps, BurgerMods>(uuiBurger, applyBurgerMods, () => ({

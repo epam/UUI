@@ -4,15 +4,15 @@ import css from './Tooltip.module.scss';
 
 export interface TooltipMods {
     /** Tooltip color */
-    color?: 'default' | 'contrast' | 'critical';
+    color?: 'neutral' | 'inverted' | 'critical';
 }
 
 export type TooltipProps = UuiTooltipProps & TooltipMods;
 
 function applyTooltipMods(mods: TooltipMods) {
     return [
-        `tooltip-${mods.color || 'contrast'}`,
         css.root,
+        `uui-color-${mods.color || 'inverted'}`,
     ];
 }
 

@@ -1,15 +1,11 @@
 import * as React from 'react';
-import {
-    IEditable, IHasIcon, ArrayDataSource, Icon, cx,
-} from '@epam/uui-core';
-import css from './IconPicker.module.scss';
-import {
-    Button, Text, PickerInput, DataPickerRow, IconButton, Tooltip,
-} from '@epam/loveship';
+import { IEditable, IHasIcon, ArrayDataSource, Icon, cx } from '@epam/uui-core';
+import { Button, Text, PickerInput, DataPickerRow, IconButton, Tooltip } from '@epam/promo';
 import { IconContainer } from '@epam/uui-components';
+import css from './IconPicker.module.scss';
 import { SizeInfo } from './SizeInfo';
 import { IconList } from '../../../../../documents/iconListHelpers';
-import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-12.svg';
+import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 
 interface IconPickerProps extends IEditable<IHasIcon> {
     icons: IconList<Icon>[];
@@ -34,7 +30,7 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
                     <Text size="18" fontSize="14" cx={ css.itemName }>
                         {item.size}
                     </Text>
-                    <Text size="18" color="night400">
+                    <Text size="18" color="gray50">
                         {item.name}
                     </Text>
                 </>
@@ -64,11 +60,8 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
     renderInfo() {
         return (
             <div className={ css.infoContainer }>
-                <Text fontSize="12" font="sans-semibold" cx={ css.infoText }>
-                    I don't know what icon size use.
-                </Text>
-                <Tooltip maxWidth={ 600 } placement="top" content={ this.renderTooltip() } color="white">
-                    <IconButton icon={ InfoIcon } color="sky" />
+                <Tooltip maxWidth={ 600 } placement="top" content={ this.renderTooltip() }>
+                    <IconButton icon={ InfoIcon } />
                 </Tooltip>
             </div>
         );
@@ -109,9 +102,8 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
                         renderToggler={ (props) => (
                             <Button
                                 { ...props }
-                                placeholder={ this.props.value ? '' : 'Select icon' }
+                                caption={ this.props.value ? '' : 'Select icon' }
                                 icon={ this.props.value as Icon }
-                                shape="square"
                                 fill="none"
                                 size="24"
                                 onClear={ this.props.value && this.handleClear }

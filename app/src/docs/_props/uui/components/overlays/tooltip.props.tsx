@@ -3,9 +3,6 @@ import { DocBuilder, iEditable } from '@epam/uui-docs';
 import { TooltipProps } from '@epam/uui-components';
 import { Button, Tooltip, TooltipMods } from '@epam/uui';
 import { DefaultContext } from '../../docs';
-import { ForwardedRef, forwardRef } from 'react';
-
-const Sfc = forwardRef((props: any, ref: ForwardedRef<HTMLDivElement>) => <div ref={ ref }>123</div>);
 
 const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip', component: Tooltip })
     .prop('content', {
@@ -13,7 +10,7 @@ const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip',
         type: 'string',
     })
     .prop('children', {
-        examples: [{ value: <Button color="primary" size="36" caption="Button" />, name: 'Blue button', isDefault: true }, { value: <Sfc>123</Sfc>, name: 'sfc' }],
+        examples: [{ value: <Button color="primary" size="36" caption="Button" />, name: 'Blue button', isDefault: true }],
     })
     .prop('placement', {
         examples: [
@@ -24,7 +21,7 @@ const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip',
     .prop('closeOnMouseLeave', { examples: [{ name: 'toggler', value: 'toggler', isDefault: true }, 'boundary'] })
     .prop('color', {
         examples: [
-            'contrast', { name: 'default', value: 'default', isDefault: true }, 'critical',
+            'inverted', { name: 'default', value: 'neutral', isDefault: true }, 'critical',
         ],
     })
     .prop('closeDelay', {

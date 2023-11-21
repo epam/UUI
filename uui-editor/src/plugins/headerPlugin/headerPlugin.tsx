@@ -7,14 +7,13 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { HeaderBar } from '../../implementation/HeaderBar';
 
 import { ReactComponent as HeadlinePickerIcon } from '../../icons/heading.svg';
-import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_H4, ELEMENT_H5, ELEMENT_H6, HeadingsPlugin, createHeadingPlugin } from '@udecode/plate-heading';
-import { PlateEditor, PlatePlugin, Value } from '@udecode/plate-common';
+import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_H4, ELEMENT_H5, ELEMENT_H6, createHeadingPlugin } from '@udecode/plate-heading';
+import { PlateEditor } from '@udecode/plate-common';
+import { IHasToolbarButton } from "../../implementation/Toolbars";
 
 const KEY = 'heading';
 
-type CreateHeaderPlugin = () => PlatePlugin<HeadingsPlugin, Value, PlateEditor<Value>>;
-
-export const headerPlugin: CreateHeaderPlugin = () => createHeadingPlugin({
+export const headerPlugin = () => createHeadingPlugin<IHasToolbarButton>({
     overrideByKey: {
         [ELEMENT_H1]: {
             type: 'uui-richTextEditor-header-1',
@@ -34,6 +33,9 @@ export const headerPlugin: CreateHeaderPlugin = () => createHeadingPlugin({
         [ELEMENT_H6]: {
             type: 'uui-richTextEditor-header-6',
         },
+    },
+    options: {
+        bottomBarButton: HeaderButton,
     },
 });
 

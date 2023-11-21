@@ -1,29 +1,15 @@
-@use '~@epam/assets/scss/promo/colors' as *;
-@use '~@epam/assets/scss/promo/fonts' as *;
-@use '~@epam/assets/scss/promo/typography' as *;
-
-:local(.typography-16) {
-    @include typography-16();
-}
-
-:local(.typography-14) {
-    @include typography-14();
-}
-
-:local(.typography-promo) {
-    @include typography-promo();
-
+:local(.uui-typography) {
     //We need to highlight visited links only in readonly mode
     &:not(:global(.uui-readonly)) {
         a:visited {
-            color: $blue;
+            color: var(--uui-link-visited);
+
+            &:hover {
+                color: var(--uui-link-visited-hover);
+            }
         }
     }
 }
-
-// .editor {
-//     outline: none;
-// }
 
 .container {
     position: relative;
@@ -60,20 +46,20 @@
 }
 
 .mode-form {
-    background-color: $white;
-    border-color: $gray40;
+    background-color: var(--uui-surface-main);
+    border-color: var(--uui-control-border);
     border-style: solid;
 
     &:hover {
-        border-color: $gray60;
+        border-color: var(--uui-control-border-hover);
     }
 
     &:global(.uui-focus) {
-        border-color: $blue;
+        border-color: var(--uui-primary-50);
     }
 
     &:global(.uui-readonly) {
-        border-color: $gray40;
+        border-color: var(--uui-control-border);
     }
 }
 
@@ -83,11 +69,11 @@
     border-style: solid;
 
     &:hover {
-        border-color: $gray60;
+        border-color: var(--uui-control-border-hover);
     }
 
     &:global(.uui-focus) {
-        border-color: $blue;
+        border-color: var(--uui-primary-50);
     }
 
     &:global(.uui-readonly) {
@@ -104,8 +90,8 @@
     display: block;
     user-select: none;
     text-decoration: none;
-    color: $gray60;
-    font-family: $font-sans;
+    color: var(--uui-text-tertiary);
+    font-family: var(--uui-font);
     line-height: 1.5;
     padding: 0 12px;
 }
@@ -122,53 +108,10 @@
     font-size: 16px;
 }
 
-.scrollbars {
-    :global(.uui-thumb-vertical),
-    :global(.uui-thumb-horizontal) {
-        background: $gray40;
-        border-radius: 1.5px;
-
-        &:hover {
-            border-radius: 3px;
-        }
-
-        &:active {
-            border-radius: 3px;
-            background: $gray60;
-        }
-    }
-
-    :global(.uui-thumb-vertical) {
-        width: 3px;
-        margin-left: 3px;
-
-        &:hover {
-            width: 6px;
-            margin-left: 0;
-        }
-
-        &:active {
-            width: 6px;
-            margin-left: 0;
-        }
-    }
-
-    :global(.uui-thumb-horizontal) {
-        height: 3px;
-        margin-top: 3px;
-
-        &:hover {
-            height: 6px;
-            margin-top: 0;
-        }
-
-        &:active {
-            height: 6px;
-            margin-top: 0;
-        }
-    }
-}
-
 .with-scrollbars {
     height: 100%;
+}
+
+.scrollbars {
+    width: 100%;
 }

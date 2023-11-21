@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     FlexCell, FlexRow, FlexSpacer, IconButton, Panel, Text,
-} from '@epam/promo';
+} from '@epam/uui';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 import { cx } from '@epam/uui-core';
 import { PersonTableRecord } from '../types';
@@ -21,9 +21,9 @@ export function InfoSidebarPanel({ data, isVisible, onClose }: SidebarPanelProps
 
     return (
         <div className={ cx(css.infoSidebarPanelWrapper, isVisible ? 'show' : 'hide') }>
-            <Panel cx={ css.wrapper } background="white">
+            <Panel cx={ css.wrapper }>
                 <FlexRow borderBottom padding="24">
-                    <Text size="48" font="sans-semibold">
+                    <Text size="48" fontWeight="600">
                         Detailed Information
                     </Text>
                     <FlexSpacer />

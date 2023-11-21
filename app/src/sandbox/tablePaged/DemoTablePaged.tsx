@@ -1,20 +1,15 @@
-import React, {
-    useCallback, useEffect, useMemo, useState,
-} from 'react';
-import css from './DemoTablePaged.module.scss';
-import {
-    DataTable, FlexRow, Paginator, FlexSpacer, Button,
-} from '@epam/promo';
-import {
-    DataRowOptions, LazyDataSourceApi, useTableState, useList,
-} from '@epam/uui-core';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import cx from 'classnames';
 import { Person } from '@epam/uui-docs';
+import { FlexCell } from '@epam/uui-components';
+import { DataRowOptions, LazyDataSourceApi, useTableState, useList } from '@epam/uui-core';
+import { DataTable, FlexRow, Paginator, FlexSpacer, Button } from '@epam/promo';
 import { svc } from '../../services';
 import { getFilters } from './filters';
 import { personColumns } from './columns';
-import { FlexCell } from '@epam/uui-components';
+import css from './DemoTablePaged.module.scss';
 
-export const DemoTablePaged: React.FC = () => {
+export function DemoTablePaged() {
     const filters = useMemo(getFilters, []);
 
     const { tableState, setTableState } = useTableState<Person>({
@@ -72,7 +67,7 @@ export const DemoTablePaged: React.FC = () => {
     );
 
     return (
-        <div className={ css.container }>
+        <div className={ cx(css.container, css.uuiThemePromo) }>
             <DataTable
                 headerTextCase="upper"
                 getRows={ () => rows }
@@ -100,4 +95,4 @@ export const DemoTablePaged: React.FC = () => {
             </FlexRow>
         </div>
     );
-};
+}

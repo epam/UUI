@@ -1,11 +1,8 @@
 import React, { useMemo } from 'react';
-import { DataTable, Panel, FlexRow, Text, Badge, EpamAdditionalColor, PresetsPanel } from '@epam/promo';
-import {
-    DataColumnProps, getSeparatedValue, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource,
-    useTableState, useUuiContext,
-} from '@epam/uui-core';
-import { Person } from '@epam/uui-docs';
 import dayjs from 'dayjs';
+import { DataColumnProps, getSeparatedValue, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
+import { DataTable, Panel, FlexRow, Text, PresetsPanel, Badge, BadgeColor } from '@epam/uui';
+import { Person } from '@epam/uui-docs';
 
 const personColumns: DataColumnProps<Person, number>[] = [
     {
@@ -21,7 +18,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as EpamAdditionalColor } caption={ p.profileStatus } />
+                    <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as BadgeColor } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         width: 140,
@@ -131,7 +128,7 @@ export default function FiltersPanelExample() {
     const view = dataSource.useView(tableState, setTableState);
 
     return (
-        <Panel style={ { height: '400px' } }>
+        <Panel background="surface" shadow style={ { height: '400px' } }>
             <FlexRow>
                 <PresetsPanel { ...tableStateApi } />
             </FlexRow>

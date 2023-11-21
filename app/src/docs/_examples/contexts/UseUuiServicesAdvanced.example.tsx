@@ -3,7 +3,7 @@
 import { render } from 'react-dom';
 import { UuiContext, HistoryAdaptedRouter, useUuiServices, DragGhost, GAListener, IProcessRequest } from '@epam/uui-core';
 import { Modals, Snackbar } from '@epam/uui-components';
-import { skinContext, ErrorHandler } from '@epam/promo';
+import { ErrorHandler } from '@epam/promo';
 import { createBrowserHistory } from 'history';
 import { svc } from '../../../services';
 import { Router } from 'react-router';
@@ -41,7 +41,6 @@ function UuiEnhancedApp() {
     const { services } = useUuiServices<TApi, TAppContext>({
         apiDefinition,
         router,
-        skinContext,
     });
 
     React.useEffect(() => {

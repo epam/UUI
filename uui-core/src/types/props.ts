@@ -3,6 +3,8 @@ import {
 } from 'react';
 import { Link, CX, Icon, AnalyticsEvent } from './objects';
 import * as CSS from 'csstype';
+import { PopperArrowProps } from 'react-popper';
+import { Placement } from '@popperjs/core';
 
 /** Component value can be invalid */
 export interface ICanBeInvalid {
@@ -10,7 +12,7 @@ export interface ICanBeInvalid {
     isInvalid?: boolean;
 
     /** Message describing why the value is invalid */
-    validationMessage?: string;
+    validationMessage?: ReactNode;
     /** If T is a complex value (object or array), this property contains validation states of inner items */
     validationProps?: { [key: string]: ICanBeInvalid };
 }
@@ -58,7 +60,7 @@ export interface ICanBeReadonly {
 }
 
 export interface ICanBeRequired {
-    /** Marks that component's value is required */
+    /** Marks that component's value is required and shouldn't be empty */
     isRequired?: boolean;
 }
 
@@ -90,7 +92,7 @@ export interface IHasDirection {
 /**
  * Component can accept cx property, allowing to pass classes to put on component.
  * CX is a shortcut for 'classnames'.
- * The props accepts string, arrays, object, recursively. All falsy values are thrown away. Examples:
+ * The props accept string, arrays, object, recursively. All falsy values are thrown away. Examples:
  * - 'red' => 'red'
  * - ['red', 0, false, 'blue' ] => 'red blue'
  * - { 'red': true, 'blue': false, ['green', 'white']} => 'red green white'
@@ -102,7 +104,7 @@ export interface IHasCX {
 
 /** An icon can be added to component */
 export interface IHasIcon {
-    /** Icon can be an React element (usually an SVG element) */
+    /** Icon can be a React element (usually an SVG element) */
     icon?: Icon;
 
     /** Position of the icon (left of right) */
@@ -128,6 +130,7 @@ export interface IHasTabIndex {
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
 }
 
+// TBD: remove when MainMenu old api of items providing will be removed
 export interface IAdaptiveItem {
     estimatedWidth?: number;
     priority?: number;
@@ -136,20 +139,35 @@ export interface IAdaptiveItem {
     collapsedContainer?: boolean;
 }
 
-export interface IModal<TResult> {
-    isActive: boolean;
+export interface IModal<TResult, TParameters = any> {
+    /** Indicates whether the modal is currently displayed */
+    isActive?: boolean;
+    /** Unique key of the modal */
     key: string;
+    /** Modal zIndex value. Calculated via LayoutContext. */
     zIndex: number;
+    /** Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value. */
     success(result: TResult): void;
+    /** Call to close the modal with abort action. It's rejects `modalContext.show()` promise with provided value. */
     abort(result?: any): void;
+    /** Parameters that provided via second param of `modalContext.show` method */
+    parameters?: TParameters;
+    /** Depth of current modal layer */
+    depth?: number;
 }
 
 export interface INotification {
+    /** Call to close the notification with abort action. It's rejects `notificationContext.show()` promise. */
     onClose?(): void;
+    /** Call to close the notification with success action. It's resolved `notificationContext.show()` promise. */
     onSuccess?(): void;
+    /** Cancel notification closing timer */
     clearTimer?(): void;
+    /** Reinitialize notification closing timer. It will be set to the provided notification duration.  */
     refreshTimer?(): void;
+    /** Unique id of the notification */
     id: number;
+    /** Unique key of the notification */
     key: string;
 }
 
@@ -207,8 +225,7 @@ IAnalyticableClick & {
     style?: CSSProperties;
 };
 
-export type ICheckable = IEditable<boolean> &
-IDisableable & {
+export type ICheckable = IEditable<boolean> & IDisableable & {
     /** Sets checkbox in indeterminate state (neither checked or unchecked), which usually means that children elements has both values */
     indeterminate?: boolean;
 };
@@ -227,4 +244,37 @@ export interface IAnalyticableOnChange<T> {
      * See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts).
      */
     getValueChangeAnalyticsEvent?: (newValue: T | null, oldValue: T | null) => AnalyticsEvent;
+}
+
+export interface IDropdownBodyProps {
+    /** Call to close the Dropdown body */
+    onClose?: () => void;
+    /** The width of the toggler, which can be used to adjust the body width to it */
+    togglerWidth?: number;
+    /** The height of the toggler */
+    togglerHeight?: number;
+    /** Call to force recompute dropdown position */
+    scheduleUpdate?: () => void;
+    /** Indicates that dropdown is open */
+    isOpen?: boolean;
+    /** Props that should be provided to the arrow component */
+    arrowProps?: PopperArrowProps;
+    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
+    placement?: Placement;
+}
+
+/** Component can be used as Toggler control for dropdown menus */
+export interface IDropdownToggler extends IHasCaption, IClickable {
+    /** When isDropdown=true, indicate that dropdown is open with chevron icon */
+    isOpen?: boolean;
+    /** Shows chevron icon, enabling component to act as dropdown toggler */
+    isDropdown?: boolean;
+    /** Called when associated dropdown should open or close  */
+    toggleDropdownOpening?: (value: boolean) => void;
+    /** Called when component is interacted outside, to close the dropdown */
+    isInteractedOutside?: (event: Event) => boolean;
+    /** Component's ref */
+    ref?: React.Ref<any>;
+    /** Disables component */
+    isDisabled?: boolean;
 }

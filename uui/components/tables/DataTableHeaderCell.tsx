@@ -9,6 +9,7 @@ import { Checkbox } from '../inputs';
 import { Tooltip } from '../overlays';
 import { Text } from '../typography';
 import css from './DataTableHeaderCell.module.scss';
+import './variables.scss';
 import { ReactComponent as DefaultSortIcon } from '@epam/assets/icons/common/table-swap-18.svg';
 import { ReactComponent as SortIcon } from '@epam/assets/icons/common/table-sort_asc-18.svg';
 import { ReactComponent as SortIconDesc } from '@epam/assets/icons/common/table-sort_desc-18.svg';
@@ -32,8 +33,8 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
 
     getTooltipContent = () => (
         <div className={ css.cellTooltipWrapper }>
-            <Text fontSize="14" color="contrast" font="semibold" cx={ css.cellTooltipText }>{ this.props.column.caption }</Text>
-            { this.props.column.info && <Text fontSize="12" color="contrast" cx={ css.cellTooltipText }>{ this.props.column.info }</Text> }
+            <Text fontSize="14" fontWeight="600" cx={ css.cellTooltipText }>{ this.props.column.caption }</Text>
+            { this.props.column.info && <Text fontSize="12" cx={ css.cellTooltipText }>{ this.props.column.info }</Text> }
         </div>
     );
 
@@ -43,7 +44,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                 <div className={ cx(css.iconCell, css['align-' + this.props.column.textAlign], uuiDataTableHeaderCell.uuiTableHeaderCaptionWrapper) }>
                     <Tooltip
                         placement="top"
-                        color="contrast"
+                        color="inverted"
                         renderContent={ this.getTooltipContent }
                         cx={ css.cellTooltip }
                         openDelay={ 600 }
@@ -56,7 +57,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                         <IconButton
                             key="sort"
                             cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
-                            color={ this.props.sortDirection ? 'default' : 'secondary' }
+                            color={ this.props.sortDirection ? 'neutral' : 'secondary' }
                             icon={ this.props.sortDirection === 'desc' ? SortIconDesc : this.props.sortDirection === 'asc' ? SortIcon : DefaultSortIcon }
                         />
                     )}
@@ -64,7 +65,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                         <IconButton
                             key="filter"
                             cx={ cx(css.icon, !this.props.sortDirection && css.filterIcon, uuiDataTableHeaderCell.uuiTableHeaderFilterIcon) }
-                            color="default"
+                            color="neutral"
                             icon={ FilterIcon }
                         />
                     )}
@@ -97,6 +98,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                 (dropdownProps?.ref as React.RefCallback<HTMLElement>)?.(ref);
             } }
             cx={ cx(
+                'uui-dt-vars',
                 uuiDataTableHeaderCell.uuiTableHeaderCell,
                 (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
                 css.cell,

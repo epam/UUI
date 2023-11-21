@@ -18,7 +18,7 @@
     }
 
     &:hover {
-        background-color: var(--uui-surface-lowest);
+        background-color: var(--uui-surface-highest);
     }
 
     .drag-handle {
@@ -39,6 +39,6 @@
 
     &:global(.uui-drag-ghost) {
         @include dnd-ghost-shadow();
-        background-color: var(--uui-surface);
+        background-color: var(--uui-surface-main);
     }
 }

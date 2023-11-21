@@ -60,6 +60,21 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         return this.newInstance(this.params, newById, newByParentId, newNodeInfoById);
     }
 
+    public mergeItems(tree: ITree<TItem, TId>): ITree<TItem, TId> {
+        if (this === tree) {
+            return this;
+        }
+
+        const newById = this.cloneMap(this.byId);
+        tree.forEachItem((item, id) => {
+            if (!newById.has(id) || newById.get(id) !== item) {
+                newById.set(id, item);
+            }
+        });
+
+        return this.newInstance(this.params, newById, this.byParentId, this.nodeInfoById);
+    }
+
     public cascadeSelection(
         currentSelection: TId[],
         selectedId: TId,

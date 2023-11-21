@@ -1,8 +1,12 @@
 import { BaseContext } from './BaseContext';
 import maxBy from 'lodash.maxby';
-import { LayoutLayer } from '../types/objects';
 import { isClientSide } from '../helpers/ssr';
 
+export interface LayoutLayer {
+    id: number;
+    depth: number;
+    zIndex: number;
+}
 function genUniqueId() {
     return [Math.random(), Math.random()].reduce((acc, n) => (acc + n.toString(36).substring(2)), '');
 }
@@ -36,10 +40,6 @@ export class LayoutContext extends BaseContext {
         }
     }
 
-    /**
-     * This method is needed for another UUI component: <PortalRoot />
-     * Please don't use it for anything else.
-     */
     public getPortalRootId() {
         return this.portalRootId;
     }

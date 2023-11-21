@@ -1,8 +1,6 @@
 import React from 'react';
 import { FormSaveResponse, useUuiContext, UuiContexts } from '@epam/uui-core';
-import {
-    FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, SuccessNotification, useForm,
-} from '@epam/promo';
+import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, SuccessNotification, useForm } from '@epam/uui';
 import type { TApi } from '../../../data';
 
 interface Login {
@@ -80,7 +78,7 @@ export default function ServerValidationExample() {
             <FlexRow vPadding="12" spacing="12">
                 <FlexSpacer />
                 <Button caption="Validate" onClick={ validate } />
-                <Button caption="Save" onClick={ save } color="green" />
+                <Button caption="Save" onClick={ save } color="accent" />
             </FlexRow>
         </FlexCell>
     );

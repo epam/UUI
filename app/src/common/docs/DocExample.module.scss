@@ -1,42 +1,27 @@
+@use '~@epam/assets/theme/theme_promo' as *;
 @use '~@epam/promo/assets/styles/index' as *;
+@import '../../themes/themeVariables.module';
 
 .container {
     margin: 24px 0;
     max-width: 100%;
 }
 
-.title-row {
-    width: fit-content;
-
-    .title {
-        font-family: $font-museo-sans;
-        color: $gray80;
-        font-size: 24px;
-        margin-bottom: 6px;
-    }
-
-    .anchor {
-        fill: transparent;
-
-        &:focus {
-            fill: var(--uui-icon-btn);
-        }
-    }
-
-    &:hover {
-        .anchor {
-            fill: $blue;
-        }
-    }
-}
-
 .container-footer {
     justify-content: space-between;
+    background-color: $white;
+
+    &.uui-theme-promo {
+        :global {
+            @include theme-promo();
+        }
+    }
 }
 
 .preview-container {
-    background: $white;
+    background: var(--uui-docs-bg, var(--uui-surface-main));
     border: 1px solid $gray40;
     width: 960px;
     max-width: 100%;
+
 }

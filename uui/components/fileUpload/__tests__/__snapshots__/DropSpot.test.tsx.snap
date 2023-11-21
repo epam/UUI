@@ -12,7 +12,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
     onDrop={[Function]}
   >
     <div
-      className="root size-24 container align-items-center"
+      className="uui-flex-row root size-24 container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -29,7 +29,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
         />
       </div>
       <div
-        className="uui-font-regular uui-text-primary root line-height-24 font-size-14 v-padding-0 container"
+        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 container"
       >
          
         Drop files to attach or
@@ -43,10 +43,11 @@ exports[`DropSpot should be rendered correctly 1`] = `
           type="file"
         />
         <div
-          className="typographyUui typography-14"
+          className="uui-typography uui-typography-size-14"
         >
           <a
             className="container uui-anchor uui-enabled -clickable root link"
+            href={null}
             onClick={[Function]}
             onKeyDown={[Function]}
             role="link"
@@ -73,7 +74,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
     onDrop={[Function]}
   >
     <div
-      className="root size-24 container align-items-center"
+      className="uui-flex-row root size-24 container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -90,7 +91,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
         />
       </div>
       <div
-        className="uui-font-regular uui-text-primary root line-height-24 font-size-14 v-padding-0 container"
+        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 container"
       >
          
         Drop files to attach or
@@ -104,10 +105,11 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
           type="file"
         />
         <div
-          className="typographyUui typography-14"
+          className="uui-typography uui-typography-size-14"
         >
           <a
             className="container uui-anchor uui-enabled -clickable root link"
+            href={null}
             onClick={[Function]}
             onKeyDown={[Function]}
             role="link"
@@ -119,7 +121,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
       </div>
     </div>
     <div
-      className="uui-font-regular uui-text-secondary root line-height-24 font-size-14 v-padding-0 container"
+      className="root uui-text uui-color-secondary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 container"
     >
       Test info
     </div>

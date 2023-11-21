@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { DndActor, IEditable, cx, DropParams, uuiDndState, getOrderBetween, DndActorRenderParams } from '@epam/uui-core';
-import { FlexRow, FlexCell, Text, IconContainer, Panel } from '@epam/promo';
-import { DropMarker } from '@epam/uui';
+import { FlexRow, FlexCell, Text, IconContainer, Panel, DropMarker } from '@epam/uui';
 import sortBy from 'lodash.sortby';
 import { DragHandle } from '@epam/uui-components';
 import { ReactComponent as FileIcon } from '@epam/assets/icons/common/file-file-24.svg';
@@ -70,7 +69,7 @@ export default function DndMaterial() {
             render={ (params: DndActorRenderParams) => (
                 <div ref={ params.ref } { ...params.eventHandlers } className={ cx(css.dragElement, params.classNames) }>
                     <Panel
-                        background="white"
+                        background="surface"
                         cx={ cx(css.dndItem, {
                             [uuiDndState.dragGhost]: params.isDragGhost,
                         }) }
@@ -81,10 +80,10 @@ export default function DndMaterial() {
                                 <IconContainer size={ 48 } icon={ FileIcon } />
                             </FlexCell>
                             <FlexCell width="100%" cx={ css.textWrapper }>
-                                <Text cx={ css.text } size="24" lineHeight="24" fontSize="16" font="sans-semibold">
+                                <Text cx={ css.text } size="24" lineHeight="24" fontSize="16" fontWeight="600">
                                     {item.name}
                                 </Text>
-                                <Text cx={ css.text } size="24" lineHeight="24" fontSize="14" color="gray60">
+                                <Text cx={ css.text } size="24" lineHeight="24" fontSize="14" color="secondary">
                                     {item.description}
                                 </Text>
                             </FlexCell>

@@ -1,15 +1,19 @@
-import * as React from 'react';
+import React, { createRef, RefObject } from 'react';
 import { IEditableDebouncer } from '@epam/uui-core';
-import { Blocker } from '@epam/loveship';
+import { Blocker } from '@epam/uui';
 import { SlateEditor, basePlugins, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin, linkPlugin, iframePlugin,
     notePlugin, separatorPlugin, headerPlugin, colorPlugin, superscriptPlugin, listPlugin, quotePlugin, tablePlugin,
     codeBlockPlugin, EditorValue,
 } from '@epam/uui-editor';
 import { svc } from '../../services';
 import css from './EditableDocContent.module.scss';
+import { typeRefRTEPlugin } from '../apiReference/typeRefRTEPlugin';
+import { FlexRow, IconButton } from '@epam/uui';
+import { ReactComponent as AnchorIcon } from '@epam/assets/icons/common/action-external_link-18.svg';
 
 export interface EditableDocContentProps {
     fileName: string;
+    title?: string;
 }
 
 interface EditableDocContentState {
@@ -18,6 +22,8 @@ interface EditableDocContentState {
 }
 
 export class EditableDocContent extends React.Component<EditableDocContentProps, EditableDocContentState> {
+    titleRef: RefObject<HTMLDivElement> = createRef();
+
     state: EditableDocContentState = {
         content: null,
         isLoading: true,
@@ -46,7 +52,14 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
         separatorPlugin(),
         tablePlugin(),
         codeBlockPlugin(),
+        typeRefRTEPlugin(),
     ];
+
+    private scrollToView() {
+        if (this.titleRef?.current && window.location?.hash?.includes(this.titleRef.current.id)) {
+            this.titleRef.current.scrollIntoView(true);
+        }
+    }
 
     componentDidMount() {
         svc.uuiApi.processRequest('/api/get-doc-content', 'POST', { name: this.props.fileName })
@@ -55,6 +68,7 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
                     content: res.content,
                     isLoading: !prevState.isLoading,
                 }));
+                this.scrollToView();
             });
     }
 
@@ -71,6 +85,14 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
 
         return (
             <div className={ css.wrapper }>
+                {this.props.title && (
+                    <FlexRow cx={ css.titleRow }>
+                        <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title } ref={ this.titleRef }>
+                            {this.props.title}
+                        </div>
+                        <IconButton cx={ css.anchor } icon={ AnchorIcon } color="info" href={ `#${this.props.title.split(' ').join('_').toLowerCase()}` } />
+                    </FlexRow>
+                )}
                 <IEditableDebouncer
                     value={ this.state.content }
                     onValueChange={ this.saveDocContent }

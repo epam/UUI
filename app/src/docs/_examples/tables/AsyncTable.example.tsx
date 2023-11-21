@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { DataColumnProps, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
-import { DataTable, Panel, Text } from '@epam/promo';
+import { DataTable, Panel, Text } from '@epam/uui';
 import { Product } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
 
@@ -43,7 +43,7 @@ export default function ProductTable() {
             {
                 key: 'id',
                 caption: 'Id',
-                render: (product) => <Text color="gray60">{product.ProductID}</Text>,
+                render: (product) => <Text color="secondary">{product.ProductID}</Text>,
                 isSortable: true,
                 isAlwaysVisible: true,
                 width: 120,
@@ -51,7 +51,7 @@ export default function ProductTable() {
                 key: 'name',
                 caption: 'Name',
                 render: (product) => (
-                    <Text color="gray80" font="sans-semibold">
+                    <Text color="secondary" fontWeight="600">
                         {product.Name}
                     </Text>
                 ),
@@ -74,7 +74,7 @@ export default function ProductTable() {
     );
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel background="surface" shadow cx={ css.container }>
             <DataTable
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }

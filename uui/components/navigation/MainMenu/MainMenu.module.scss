@@ -1,6 +1,28 @@
 @use  '../../../assets/styles/effects' as *;
 
 .root {
+    --uui-main_menu-text: var(--uui-neutral-5);
+    --uui-main_menu-text-active: var(--uui-neutral-5);
+    --uui-main_menu-bg: var(--uui-neutral-80);
+    --uui-main_menu-hover: var(--uui-neutral-90);
+    --uui-main_menu-active: var(--uui-neutral-90);
+    --uui-main_menu-border-active: var(--uui-primary-50);
+
+    --uui-main_menu-search-bg: var(--uui-neutral-70);
+    --uui-main_menu-search-border: var(--uui-neutral-70);
+    --uui-main_menu-search-placeholder: var(--uui-text-disabled);
+    --uui-main_menu-search-text: var(--uui-text-disabled);
+    --uui-main_menu-search-icon: var(--uui-icon-disabled);
+
+    --uui-main_menu-icon: var(--uui-neutral-5);
+    --uui-main_menu-icon-hover: var(--uui-neutral-5);
+    --uui-main_menu-icon-active: var(--uui-neutral-5);
+
+    --uui-main_menu-font: var(--uui-font);
+    --uui-main_menu-font-weight: 600;
+    --uui-main_menu-search-font: var(--uui-font);
+    --uui-main_menu-search-font-weight: 400;
+    //
     height: 60px;
     min-height: 60px;
     min-width: 360px;
@@ -16,11 +38,11 @@
 
     :global(.uui-mainmenu-server-badge-label) {
         padding: 0 5px;
-        border: 2px solid #FFFFFF; /* for CI/CD, not themeable  */
+        border: 2px solid var(--uui-neutral-0); /* for CI/CD, not themeable  */
         border-radius: 5px 5px 0 0;
         border-bottom: 0;
         font-family: var(--uui-main_menu-font);
-        font-weight: var(--uui-main_menu-font-weight, normal);
+        font-weight: var(--uui-main_menu-font-weight);
         font-size: 9px;
         text-transform: uppercase;
     }

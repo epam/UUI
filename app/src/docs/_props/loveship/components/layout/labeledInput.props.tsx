@@ -22,6 +22,11 @@ const labeledInputDoc = new DocBuilder<LabeledInputProps & LabeledInputMods>({ n
     .prop('isRequired', { examples: [true] })
     .prop('isOptional', { examples: [true] })
     .prop('validationMessage', { examples: [{ value: 'This field is mandatory', isDefault: true }] })
+    .prop('value', { examples: ['Some simple text'] })
+    .prop('maxLength', { examples: [5, 10, 20] })
+    .prop('charCounter', { examples: [true, false] })
+    .prop('sidenote', { examples: ['This is a text in sideNote.'] })
+    .prop('footnote', { examples: ['This is a text in footNote.'] })
     .withContexts(DefaultContext, ResizableContext, FormContext);
 
 export default labeledInputDoc;

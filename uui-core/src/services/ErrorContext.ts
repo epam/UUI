@@ -31,3 +31,23 @@ export class ErrorContext extends BaseContext implements IErrorContext {
         this.errorCallback = callback;
     }
 }
+
+export interface ErrorPageInfo {
+    /** Error status code */
+    status?: number;
+
+    title?: React.ReactNode;
+    subtitle?: React.ReactNode;
+    imageUrl?: string;
+    mobileImageUrl?: string;
+}
+
+export class UuiError extends Error {
+    constructor(public info: ErrorPageInfo) {
+        super('UUI Error');
+        this.name = 'UuiError';
+        // Set the prototype explicitly.
+        // https://github.com/Microsoft/TypeScript/wiki/Breaking-Changes#extending-built-ins-like-error-array-and-map-may-no-longer-work
+        Object.setPrototypeOf(this, UuiError.prototype);
+    }
+}

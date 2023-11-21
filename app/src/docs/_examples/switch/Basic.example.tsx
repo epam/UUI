@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlexCell, Switch } from '@epam/promo';
+import { FlexCell, Switch } from '@epam/uui';
 import css from './BasicExample.module.scss';
 
 export default function BasicExample() {

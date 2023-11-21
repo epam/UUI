@@ -29,6 +29,6 @@ const SearchInputDoc = new DocBuilder<TextInputProps & IEditableDebouncerOptions
     })
     .prop('onAccept', { examples: (ctx) => [ctx.getCallback('onAccept')] })
     .prop('onCancel', { examples: (ctx) => [ctx.getCallback('onCancel')] })
-    .prop('mode', { examples: ['cell'] })
+    .prop('mode', { examples: ['cell', 'inline', 'form'], defaultValue: 'form' })
     .withContexts(DefaultContext, FormContext, ResizableContext, TableContext);
 export default SearchInputDoc;

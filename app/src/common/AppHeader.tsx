@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
-import {
-    BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger, DropdownMenuSplitter, MainMenuDropdown,
-} from '@epam/promo';
+import React from 'react';
+import { BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger, MainMenuDropdown } from '@epam/promo';
 import { Anchor, MainMenuLogo } from '@epam/uui-components';
-import { UUI4 } from './docs';
+import { UUI } from './docs';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
-import css from './AppHeader.module.scss';
 import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
+import { useTheme } from '../helpers/useTheme';
+import css from './AppHeader.module.scss';
 
-type Theme = 'promo' | 'loveship' | 'vanilla_thunder';
+export type Theme = 'uui-theme-promo' | 'uui-theme-loveship' | 'uui-theme-loveship_dark' | 'uui-theme-electric' | 'uui-theme-vanilla_thunder';
+const themeName: Record<Theme, 'Promo' | 'Loveship' | 'Loveship Dark' | 'Electric' | 'Vanilla Thunder'> = {
+    'uui-theme-promo': 'Promo',
+    'uui-theme-loveship': 'Loveship',
+    'uui-theme-loveship_dark': 'Loveship Dark',
+    'uui-theme-electric': 'Electric',
+    'uui-theme-vanilla_thunder': 'Vanilla Thunder',
+} as const;
 
 const GIT_LINK = 'https://github.com/epam/UUI';
 
 export function AppHeader() {
-    const [theme, setTheme] = useState(document.body.classList.value.match(/uui-theme-(\S+)\s*/)[1]);
+    const { theme, toggleTheme } = useTheme();
 
     const sendEvent = (link: string) => {
         svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.trusted(link));
-    };
-
-    const updateTheme = (newTheme: Theme) => {
-        document.body.classList.remove(`uui-theme-${theme}`);
-        document.body.classList.add(`uui-theme-${newTheme}`);
-        setTheme(newTheme);
     };
 
     const renderBurger = () => {
@@ -49,7 +49,7 @@ export function AppHeader() {
                     link={ {
                         pathname: '/documents',
                         query: {
-                            id: 'accordion', mode: 'doc', skin: UUI4, category: 'components',
+                            id: 'accordion', mode: 'doc', skin: UUI, category: 'components',
                         },
                     } }
                     isLinkActive={ pathName === '/documents' && category === 'components' }
@@ -61,16 +61,23 @@ export function AppHeader() {
     };
 
     const renderThemeSwitcher = () => {
-        const renderBodyItems = () => (
-            <>
-                <MainMenuButton caption="Promo" isLinkActive={ theme === 'promo' } iconPosition="right" onClick={ () => updateTheme('promo') } />
-                <MainMenuButton caption="Loveship" isLinkActive={ theme === 'loveship' } iconPosition="right" onClick={ () => updateTheme('loveship') } />
-                <DropdownMenuSplitter />
-                <MainMenuButton caption="RD Portal" isLinkActive={ theme === 'vanilla_thunder' } iconPosition="right" onClick={ () => updateTheme('vanilla_thunder') } />
-            </>
-        );
+        const bodyItems = [
+            <MainMenuButton caption="Promo" isLinkActive={ theme === 'uui-theme-promo' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-promo') } />,
+            <MainMenuButton caption="Loveship" isLinkActive={ theme === 'uui-theme-loveship' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-loveship') } />,
+            <MainMenuButton caption="Loveship Dark" isLinkActive={ theme === 'uui-theme-loveship_dark' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-loveship_dark') } />,
+            <MainMenuButton caption="Electric" isLinkActive={ theme === 'uui-theme-electric' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-electric') } />,
+        ];
+        if (!window.location.host.includes('uui.epam.com')) {
+            bodyItems.push(
+                <MainMenuButton caption="Vanilla Thunder" isLinkActive={ theme === 'uui-theme-vanilla_thunder' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-vanilla_thunder') } />,
+            );
+        }
 
-        return <MainMenuDropdown key="theme-switcher" caption="Select Theme" renderBody={ renderBodyItems } />;
+        return (
+            <MainMenuDropdown key="theme-switcher" caption={ `Theme: ${themeName[theme as Theme]}` }>
+                { bodyItems }
+            </MainMenuDropdown>
+        );
     };
 
     const getMainMenuItems = () => {
@@ -126,7 +133,7 @@ export function AppHeader() {
                         link={ {
                             pathname: '/documents',
                             query: {
-                                id: 'accordion', mode: 'doc', skin: UUI4, category: 'components',
+                                id: 'accordion', mode: 'doc', skin: UUI, category: 'components',
                             },
                         } }
                         isLinkActive={ pathName === '/documents' && category === 'components' }
@@ -156,7 +163,7 @@ export function AppHeader() {
                 render: () => <MainMenuButton caption="Sandbox" link={ { pathname: '/sandbox' } } isLinkActive={ pathName === '/sandbox' } key="sandbox" />,
             },
             { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> },
-            window.location.host.includes('localhost') && { id: 'theme', priority: 3, render: renderThemeSwitcher },
+            { id: 'theme', priority: 3, render: renderThemeSwitcher },
             {
                 id: 'git',
                 priority: 0,

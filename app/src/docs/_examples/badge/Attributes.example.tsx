@@ -1,22 +1,20 @@
 import React from 'react';
-import {
-    Avatar, Badge, FlexCell, FlexRow, Panel, Text,
-} from '@epam/promo';
+import { Avatar, FlexCell, FlexRow, Panel, Text, Badge } from '@epam/uui';
 
 import { ReactComponent as notificationIcon } from '@epam/assets/icons/common/notification-done-12.svg';
 import css from './AttributesExample.module.scss';
 
 export default function AttributesExample() {
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel background="surface" shadow cx={ css.container }>
             <FlexRow cx={ css.containerItem }>
                 <Avatar size="60" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
                 <FlexRow padding="12">
                     <FlexCell width="auto">
-                        <Text cx={ css.text } lineHeight="24" fontSize="18" color="gray80" font="sans-semibold">
+                        <Text cx={ css.text } lineHeight="24" fontSize="18" color="primary" fontWeight="600">
                             John Doe
                         </Text>
-                        <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">
+                        <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
                             Corporate Function Management | L3
                         </Text>
                     </FlexCell>
@@ -25,9 +23,9 @@ export default function AttributesExample() {
             <FlexRow>
                 <Panel>
                     <FlexRow alignItems="center" spacing="6">
-                        <Badge color="green" size="24" fill="semitransparent" icon={ notificationIcon } caption="Available" />
-                        <Badge color="blue" size="24" fill="semitransparent" caption="Bench" />
-                        <Badge color="cyan" size="24" fill="semitransparent" caption="Remote" />
+                        <Badge color="success" size="24" fill="outline" icon={ notificationIcon } caption="Available" />
+                        <Badge color="info" size="24" fill="outline" caption="Bench" />
+                        <Badge color="warning" size="24" fill="outline" caption="Remote" />
                     </FlexRow>
                 </Panel>
             </FlexRow>

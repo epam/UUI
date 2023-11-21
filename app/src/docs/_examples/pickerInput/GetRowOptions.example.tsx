@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Location, Product } from '@epam/uui-docs';
 import { useAsyncDataSource, useUuiContext } from '@epam/uui-core';
-import { FlexCell, FlexRow, PickerInput } from '@epam/promo';
+import { FlexCell, FlexRow, PickerInput } from '@epam/uui';
 import { TApi } from '../../../data';
 
 export default function GetRowOptionsExample() {

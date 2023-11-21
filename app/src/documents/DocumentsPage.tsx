@@ -7,7 +7,7 @@ import { useQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
 import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
-import { ApiRefType } from '../common/apiReference/ApiRefType';
+import { TypeRefPage } from '../common';
 
 type DocsQuery = {
     id: string;
@@ -25,7 +25,7 @@ async function loadApiReferenceStructure(): Promise<DocItem[]> {
     return Object.keys(navigation).reduce<DocItem[]>((acc, moduleName) => {
         acc.push({ id: moduleName, name: moduleName, parentId: root.id });
         navigation[moduleName].forEach((exportName) => {
-            acc.push({ id: `${moduleName}:${exportName}`, name: exportName, parentId: moduleName, component: ApiRefType });
+            acc.push({ id: `${moduleName}:${exportName}`, name: exportName, parentId: moduleName, component: TypeRefPage });
         });
         return acc;
     }, [root]);

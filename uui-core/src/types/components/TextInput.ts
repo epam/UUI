@@ -1,17 +1,6 @@
-import {
-    ICanBeReadonly,
-    IClickable,
-    IDisableable,
-    IEditable,
-    IHasCX,
-    IHasIcon,
-    IHasPlaceholder,
-    IAnalyticableOnChange,
-    IHasRawProps,
-    ICanFocus,
-    IHasTabIndex,
+import { ICanBeReadonly, IClickable, IDisableable, IEditable, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableOnChange,
+    IHasRawProps, ICanFocus, IHasTabIndex, IDropdownToggler,
 } from '../props';
-import { IDropdownToggler } from '../pickers';
 
 export interface TextInputCoreProps
     extends IHasCX,

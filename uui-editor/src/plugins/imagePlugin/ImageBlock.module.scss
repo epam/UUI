@@ -1,5 +1,3 @@
-@use '~@epam/assets/scss/promo/colors' as *;
-
 .container {
     outline: none;
     width: 100%;
@@ -8,7 +6,7 @@
     position: relative;
 
     &:global(.uui-focus) {
-        border-color: $blue;
+        border-color: var(--uui-primary-50);
     }
 }
 
@@ -18,11 +16,12 @@
 }
 
 .container-hover:hover {
-    border: 1px solid $blue;
+    border: 1px solid var(--uui-primary-50);
 }
 
 .image-toolbar {
-    background-color: $gray80;
+    background-color: var(--uui-neutral-80);
+    border: 1px solid var(--uui-divider-light);
     display: flex;
 }
 
@@ -48,7 +47,7 @@
 .dot {
     width: 12px;
     height: 12px;
-    background: $blue;
+    background: var(--uui-primary-50);
     visibility: hidden;
 }
 

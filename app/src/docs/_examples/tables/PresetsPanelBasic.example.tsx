@@ -1,18 +1,17 @@
-import React, { useMemo } from 'react';
-import {
-    DataTable, Panel, FlexRow, Text, Badge, EpamAdditionalColor, PresetsPanel,
-} from '@epam/promo';
-import {
-    DataColumnProps, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext,
-} from '@epam/uui-core';
-import { Person } from '@epam/uui-docs';
+import React, { useCallback, useMemo } from 'react';
 import dayjs from 'dayjs';
+import { DataColumnProps, IModal, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
+import {
+    DataTable, Panel, FlexRow, Text, PresetsPanel, BadgeColor, Badge, ModalBlocker, ModalWindow, ModalFooter, Button, ScrollBars,
+    ModalHeader, FlexSpacer,
+} from '@epam/uui';
+import { Person } from '@epam/uui-docs';
 
 const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'name',
         caption: 'Name',
-        render: (p) => <Text>{p.name}</Text>,
+        render: (p) => <Text>{ p.name }</Text>,
         width: 180,
         isSortable: true,
         isAlwaysVisible: true,
@@ -22,7 +21,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as EpamAdditionalColor } caption={ p.profileStatus } />
+                    <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as BadgeColor } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         width: 160,
@@ -31,21 +30,21 @@ const personColumns: DataColumnProps<Person, number>[] = [
     }, {
         key: 'departmentName',
         caption: 'Department',
-        render: (p) => <Text>{p.departmentName}</Text>,
+        render: (p) => <Text>{ p.departmentName }</Text>,
         width: 200,
         isSortable: true,
         isFilterActive: (f) => !!f.departmentId,
     }, {
         key: 'jobTitle',
         caption: 'Title',
-        render: (r) => <Text>{r.jobTitle}</Text>,
+        render: (r) => <Text>{ r.jobTitle }</Text>,
         width: 220,
         isSortable: true,
         isFilterActive: (f) => !!f.jobTitleId,
     }, {
         key: 'birthDate',
         caption: 'Birth date',
-        render: (p) => p?.birthDate && <Text>{dayjs(p.birthDate).format('MMM D, YYYY')}</Text>,
+        render: (p) => p?.birthDate && <Text>{ dayjs(p.birthDate).format('MMM D, YYYY') }</Text>,
         width: 140,
         isSortable: true,
     },
@@ -76,6 +75,7 @@ const initialPresets: ITablePreset[] = [
 
 export default function PresetsPanelExample() {
     const svc = useUuiContext();
+    const { uuiModals } = useUuiContext();
 
     const filtersConfig: TableFiltersConfig<Person>[] = useMemo(
         () => [
@@ -107,15 +107,6 @@ export default function PresetsPanelExample() {
         [],
     );
 
-    const tableStateApi = useTableState({
-        columns: personColumns,
-        filters: filtersConfig,
-        initialPresets: initialPresets,
-        onPresetCreate: svc.api.presets.createPreset,
-        onPresetUpdate: svc.api.presets.updatePreset,
-        onPresetDelete: svc.api.presets.deletePreset,
-    });
-
     const dataSource = useLazyDataSource<Person, number, Person>(
         {
             api: svc.api.demo.persons,
@@ -124,10 +115,25 @@ export default function PresetsPanelExample() {
         [],
     );
 
+    const handlePresetDelete = useCallback(async (preset: ITablePreset<any, any>): Promise<void> => {
+        await uuiModals
+            .show((props) => <RemovePresetConfirmationModal presetName={ preset.name } { ...props } />);
+        await svc.api.presets.deletePreset(preset);
+    }, [svc.api.presets, uuiModals]);
+
+    const tableStateApi = useTableState({
+        columns: personColumns,
+        filters: filtersConfig,
+        initialPresets: initialPresets,
+        onPresetCreate: svc.api.presets.createPreset,
+        onPresetUpdate: svc.api.presets.updatePreset,
+        onPresetDelete: handlePresetDelete,
+    });
+
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState);
 
     return (
-        <Panel style={ { height: '400px' } }>
+        <Panel background="surface" shadow style={ { height: '400px' } }>
             <FlexRow>
                 <PresetsPanel { ...tableStateApi } />
             </FlexRow>
@@ -140,5 +146,30 @@ export default function PresetsPanelExample() {
                 { ...view.getListProps() }
             />
         </Panel>
+    );
+}
+
+function RemovePresetConfirmationModal({ presetName, ...modalProps }: IModal<string> & { presetName: string }) {
+    const content = `${presetName} will be deleted and can't be restored.`;
+    return (
+        <ModalBlocker { ...modalProps }>
+            <ModalWindow>
+                <Panel>
+                    <ModalHeader title="Delete preset" onClose={ () => modalProps.abort() } />
+                    <ScrollBars hasTopShadow hasBottomShadow>
+                        <FlexRow padding="24">
+                            <Text size="36">
+                                { content }
+                            </Text>
+                        </FlexRow>
+                    </ScrollBars>
+                    <ModalFooter>
+                        <FlexSpacer />
+                        <Button color="neutral" fill="outline" caption="Cancel" onClick={ () => modalProps.abort() } />
+                        <Button color="primary" caption="Ok" onClick={ () => modalProps.success('Success action') } />
+                    </ModalFooter>
+                </Panel>
+            </ModalWindow>
+        </ModalBlocker>
     );
 }

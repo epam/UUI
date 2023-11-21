@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+
+@font-face {
+    font-family: 'Redacted';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/redacted/redacted-regular.eot');
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/redacted/redacted-regular.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/redacted/redacted-regular.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/redacted/redacted-regular.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/redacted/redacted-regular.svg#filename') format('svg');
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff2/ttf/SourceSansPro-ExtraLight.ttf.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff/otf/SourceSansPro-ExtraLight.otf.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/otf/SourceSansPro-ExtraLight.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/ttf/SourceSansPro-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff2/ttf/SourceSansPro-ExtraLightIt.ttf.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff/otf/SourceSansPro-ExtraLightIt.otf.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/otf/SourceSansPro-ExtraLightIt.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/ttf/SourceSansPro-ExtraLightIt.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff2/ttf/SourceSansPro-Light.ttf.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff/otf/SourceSansPro-Light.otf.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/otf/SourceSansPro-Light.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/ttf/SourceSansPro-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff2/ttf/SourceSansPro-LightIt.ttf.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff/otf/SourceSansPro-LightIt.otf.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/otf/SourceSansPro-LightIt.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/ttf/SourceSansPro-LightIt.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff2/ttf/SourceSansPro-Regular.ttf.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff/otf/SourceSansPro-Regular.otf.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/otf/SourceSansPro-Regular.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/ttf/SourceSansPro-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff2/ttf/SourceSansPro-It.ttf.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff/otf/SourceSansPro-It.otf.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/otf/SourceSansPro-It.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/ttf/SourceSansPro-It.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff2/ttf/SourceSansPro-Semibold.ttf.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff/otf/SourceSansPro-Semibold.otf.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/otf/SourceSansPro-Semibold.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/ttf/SourceSansPro-Semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff2/ttf/SourceSansPro-SemiboldIt.ttf.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff/otf/SourceSansPro-SemiboldIt.otf.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/otf/SourceSansPro-SemiboldIt.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/ttf/SourceSansPro-SemiboldIt.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff2/ttf/SourceSansPro-Bold.ttf.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff/otf/SourceSansPro-Bold.otf.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/otf/SourceSansPro-Bold.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/ttf/SourceSansPro-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff2/ttf/SourceSansPro-BoldIt.ttf.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff/otf/SourceSansPro-BoldIt.otf.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/otf/SourceSansPro-BoldIt.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/ttf/SourceSansPro-BoldIt.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff2/ttf/SourceSansPro-Black.ttf.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff/otf/SourceSansPro-Black.otf.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/otf/SourceSansPro-Black.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/ttf/SourceSansPro-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff2/ttf/SourceSansPro-BlackIt.ttf.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff/otf/SourceSansPro-BlackIt.otf.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/otf/SourceSansPro-BlackIt.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/ttf/SourceSansPro-BlackIt.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: normal;
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/RobotoMono-Regular.ttf') format('truetype');
+}

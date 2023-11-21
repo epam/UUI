@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from 'react';
-import { Badge, ColumnsConfigurationModal, DataTable, EpamAdditionalColor, FlexRow, Panel, RichTextView, Text } from '@epam/promo';
+import { ColumnsConfigurationModal, DataTable, FlexRow, Panel, RichTextView, StatusIndicator, Text } from '@epam/promo';
 import { DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
-import css from './TableColumnConfigModalStyles.module.scss';
-import { TApi } from '../../data/apiDefinition';
 import { ColumnsConfigurationModalProps } from '@epam/uui';
+import { TApi } from '../../data';
+import css from './TableColumnConfigModalStyles.module.scss';
 
 export function TableColumnConfigModalTest() {
     const svc = useUuiContext<TApi, UuiContexts>();
@@ -37,7 +37,7 @@ export function TableColumnConfigModalTest() {
                 render: (p) =>
                     p.profileStatus && (
                         <FlexRow>
-                            <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as EpamAdditionalColor } caption={ p.profileStatus } />
+                            <StatusIndicator size="18" color={ p.profileStatus.toLowerCase() as any } caption={ p.profileStatus } />
                         </FlexRow>
                     ),
                 width: 140,
@@ -93,7 +93,7 @@ export function TableColumnConfigModalTest() {
     };
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel shadow cx={ [css.container, css.uuiThemePromo] }>
             <RichTextView>
                 <h3>Table example with ColumnConfigModal</h3>
             </RichTextView>

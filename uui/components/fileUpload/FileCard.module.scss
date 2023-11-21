@@ -1,69 +1,88 @@
-.file-card-wrapper {
-    box-sizing: border-box;
-    min-height: 48px;
-    padding: 5px;
-    border: 1px solid var(--uui-filecard-background);
+.root {
+    --uui-file_card-border: var(--uui-control-border);
+    --uui-file_card-border-error: var(--uui-error-50);
+    --uui-file_card-text-error: var(--uui-error-70);
+    --uui-file_card-icon-default: var(--uui-icon);
+    --uui-file_card-icon-error: var(--uui-error-50);
+    --uui-file_card-icon-doc: #2B579A;
+    --uui-file_card-icon-xls: #217346;
+    --uui-file_card-icon-pdf: #FA0F01;
+    --uui-file_card-icon-mov: #5214CC;
+    --uui-file_card-icon-img: #E67E17;
 
-    .file-name {
-        white-space: nowrap;
+    --uui-file_card-border-radius: var(--uui-border-radius);
+
+    --uui-file_card-font-error: var(--uui-font);
+
+    &:global(.uui-file_card) {
+        box-sizing: border-box;
+        min-height: 48px;
+        padding: 5px;
+        border: 1px solid var(--uui-file_card-border);
+        border-radius: var(--uui-file_card-border-radius);
+
+        .file-name {
+            white-space: nowrap;
+        }
     }
-}
 
-.error-card-wrapper {
-    border: 1px solid var(--uui-filecard-border-error);
-}
+    &:global(.uui-loading) {
+        .default-color,
+        .doc-color,
+        .xls-color,
+        .pdf-color,
+        .movie-color,
+        .img-color {
+            fill: var(--uui-icon-disabled);
+        }
+    }
 
-.default-color {
-    fill: var(--uui-filecard-default);
-}
+    &:global(.uui-error) {
+        border: 1px solid var(--uui-file_card-border-error);
+    }
 
-.doc-color {
-    fill: #2B579A;
-}
+    .default-color {
+        fill: var(--uui-file_card-icon-default);
+    }
 
-.xls-color {
-    fill: #217346;
-}
+    .doc-color {
+        fill: var(--uui-file_card-icon-doc);
+    }
 
-.pdf-color {
-    fill: #FA0F01;
-}
+    .xls-color {
+        fill: var(--uui-file_card-icon-xls);
+    }
 
-.movie-color {
-    fill: #5214CC;
-}
+    .pdf-color {
+        fill: var(--uui-file_card-icon-pdf);
+    }
 
-.img-color {
-    fill: #E67E17;
-}
+    .mov-color {
+        fill: var(--uui-file_card-icon-mov);
+    }
 
-:global(.uui-loading) {
-    .default-color,
-    .doc-color,
-    .xls-color,
-    .pdf-color,
-    .movie-color,
     .img-color {
-        fill: var(--uui-icon-disabled);
+        fill: var(--uui-file_card-icon-img);
     }
-}
 
-.error-block {
-    font-family: var(--font-regular);
-    font-size: 12px;
-    color: var(--uui-filecard-text-error);
-    display: inline-flex;
-    align-items: center;
-    padding: 0;
-    cursor: pointer;
+    .error-block {
+        font-family: var(--uui-file_card-font-error);
+        font-weight: 400;
+        font-size: 12px;
+        color: var(--uui-file_card-text-error);
+        display: inline-flex;
+        align-items: center;
+        padding: 0;
+        cursor: pointer;
 
-    svg {
-        margin-right: 4px;
-        fill: var(--uui-filecard-icon-error);
+        svg {
+            margin-right: 4px;
+            fill: var(--uui-file_card-icon-error);
+        }
     }
-}
 
-.icons-block {
-    min-width: 18px;
-    flex-basis: 0;
+    .icons-block {
+        min-width: 18px;
+        flex-basis: 0;
+    }
 }

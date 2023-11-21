@@ -26,7 +26,7 @@ const uuiBlocker = {
     enterActive: 'uui-blocker-enter-active',
     exit: 'uui-blocker-exit',
     exitActive: 'uui-blocker-exit-active',
-};
+} as const;
 
 export class Blocker extends React.Component<BlockerProps> {
     private transitionRef = React.createRef<HTMLDivElement>();

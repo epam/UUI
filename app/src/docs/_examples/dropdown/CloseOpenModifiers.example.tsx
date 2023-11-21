@@ -1,9 +1,7 @@
 import React from 'react';
 import { Dropdown, DropdownContainerProps } from '@epam/uui-components';
 import { IDropdownToggler } from '@epam/uui-core';
-import {
-    Button, Text, FlexRow, DropdownContainer, FlexCell, Avatar,
-} from '@epam/promo';
+import { Button, Text, FlexRow, DropdownContainer, FlexCell, Avatar } from '@epam/uui';
 import css from './HandleStateExample.module.scss';
 
 export default function CloseOpenModifiersExample() {
@@ -14,10 +12,10 @@ export default function CloseOpenModifiersExample() {
                     <Avatar size="48" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
 
                     <FlexCell width="100%">
-                        <Text cx={ css.text } lineHeight="24" fontSize="16" color="gray80" font="sans-semibold">
+                        <Text cx={ css.text } lineHeight="24" fontSize="16" color="primary" fontWeight="600">
                             John Doe
                         </Text>
-                        <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">
+                        <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
                             Corporate Function Management | L3
                         </Text>
                     </FlexCell>

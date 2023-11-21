@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NumericInput } from '@epam/promo';
+import { NumericInput } from '@epam/uui';
 
 export default function SizeExample() {
     const [value, onValueChange] = useState(null);

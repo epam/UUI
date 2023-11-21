@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ProgressBar, Panel } from '@epam/promo';
+import { ProgressBar, Panel } from '@epam/uui';
 import css from './BasicExample.module.scss';
 
 export default function BasicProgressBarExample() {
@@ -24,7 +24,7 @@ export default function BasicProgressBarExample() {
     }, []);
 
     return (
-        <Panel style={ { flexBasis: '100%' } } cx={ css.root }>
+        <Panel background="surface" style={ { flexBasis: '100%' } } cx={ css.root }>
             <ProgressBar cx={ css.bar } progress={ progress } hideLabel />
             <ProgressBar cx={ css.bar } progress={ progress } size="18" />
             <ProgressBar cx={ css.bar } progress={ progress } size="24" striped />

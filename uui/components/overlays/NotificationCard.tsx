@@ -41,7 +41,7 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
     }, []);
 
     return (
-        <div role="alert" className={ cx(props.color && `notification-card-${props.color}`, css.root, props.cx) } ref={ notificationCardNode } { ...props.rawProps }>
+        <div role="alert" className={ cx('uui-notification_card', props.color && `uui-color-${props.color}`, css.root, props.cx) } ref={ notificationCardNode } { ...props.rawProps }>
             <div className={ css.mainPath }>
                 {props.icon && (
                     <div className={ css.iconWrapper }>
@@ -60,7 +60,7 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
                 </div>
                 {props.onClose && (
                     <div className={ css.closeWrapper }>
-                        <IconButton icon={ CrossIcon } color="default" onClick={ props.onClose } cx={ css.closeIcon } />
+                        <IconButton icon={ CrossIcon } color="neutral" onClick={ props.onClose } cx={ css.closeIcon } />
                     </div>
                 )}
             </div>
