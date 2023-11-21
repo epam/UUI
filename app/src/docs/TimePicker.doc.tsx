@@ -27,6 +27,18 @@ export class TimePickerDoc extends BaseDocsBlock {
                     { name: 'undefined', value: undefined },
                 ],
             });
+            doc.merge('rawProps', {
+                editorType: 'JsonEditor',
+                examples: [
+                    {
+                        name: 'input & body',
+                        value: {
+                            input: { style: { border: '3px solid green' } },
+                            body: { style: { border: '3px solid blue' } },
+                        },
+                    },
+                ],
+            });
         },
     };
 
