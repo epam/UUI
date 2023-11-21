@@ -3,6 +3,7 @@ import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
+import * as uui from '@epam/uui';
 
 export class RatingDoc extends BaseDocsBlock {
     title = 'Rating';
@@ -15,6 +16,7 @@ export class RatingDoc extends BaseDocsBlock {
             [TSkin.UUI4_promo]: { type: '@epam/promo:RatingProps', component: promo.Rating },
         },
         doc: (doc: DocBuilder<promo.RatingProps | loveship.RatingProps>) => {
+            doc.merge('Tooltip', { examples: [{ value: uui.Tooltip, name: 'Tooltip' }] });
             doc.merge('value', {
                 editorType: 'MultiUnknownEditor',
                 examples: [

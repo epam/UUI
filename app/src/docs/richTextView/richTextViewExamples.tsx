@@ -18,7 +18,7 @@ export const children = [
     {
         value: (
             <div style={ { maxWidth: '1100px' } } className={ style.container }>
-                <h2>Promo Headlines</h2>
+                <h2>Headlines</h2>
                 <div className="hero-header">
                     Hero HEADING — Hero
                     {' '}
