@@ -14,7 +14,8 @@ import {
     TablesOverviewDoc, AdvancedTablesDoc, PresetsPanelDoc, GettingStartedDoc, UtGuideBasicsDoc, UtGuideToolsDoc,
     UtGuideCookbookDoc, DataSourcesGettingStartedDoc, DataSourcesRowOptionsDoc, DataSourcesBaseDataSourcePropsDoc,
     DataSourcesDataSourceStateDoc, DataSourcesArrayDataSourceDoc, DataSourcesAsyncDataSourceDoc,
-    DataSourcesLazyDataSourceDoc, DataSourcesUsageDoc, useTableStateDoc, OverviewDoc,
+    DataSourcesLazyDataSourceDoc, DataSourcesUsageDoc, useTableStateDoc, CountIndicatorDoc, OverviewDoc, StatusIndicatorDoc,
+    ThemesDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
@@ -53,6 +54,8 @@ const componentsStructure = sortBy(
         { id: 'flexSpacer', name: 'Flex Spacer', component: FlexSpacerDoc, parentId: 'flexItems', order: 4 },
         { id: 'iconButton', name: 'Icon Button', component: IconButtonDoc, parentId: 'components' },
         { id: 'iconContainer', name: 'Icon Container', component: IconContainerDoc, parentId: 'components' },
+        { id: 'countIndicator', name: 'Count Indicator', component: CountIndicatorDoc, parentId: 'components' },
+        { id: 'statusIndicator', name: 'Status Indicator', component: StatusIndicatorDoc, parentId: 'components' },
         { id: 'labeledInput', name: 'Labeled Input', component: LabeledInputDoc, parentId: 'components' },
         { id: 'linkButton', name: 'Link Button', component: LinkButtonDoc, parentId: 'components' },
         { id: 'mainMenu', name: 'Main Menu', component: MainMenuDoc, parentId: 'components' },
@@ -139,6 +142,8 @@ export const items: DocItem[] = [
     { id: 'modalContext', name: 'Modal Context', component: ModalContextDoc, parentId: 'contexts', tags: ['contexts'] },
     { id: 'notificationContextDoc', name: 'Notification Context', component: NotificationContextDoc, parentId: 'contexts', tags: ['contexts'] },
     { id: 'lockContextDoc', name: 'Lock Context', component: LockContextDoc, parentId: 'contexts', tags: ['contexts'] },
+
+    { id: 'themes', name: 'Themes', component: ThemesDoc },
 
     { id: 'testing', name: 'Testing' },
     { id: 'testing-basics', name: 'Basics', component: UtGuideBasicsDoc, parentId: 'testing' },

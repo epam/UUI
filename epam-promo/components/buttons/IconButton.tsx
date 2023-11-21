@@ -16,8 +16,8 @@ export type IconButtonProps = Omit<UuiIconButtonProps, 'color'> & IconButtonMods
 export const IconButton = withMods<Omit<UuiIconButtonProps, 'color'>, IconButtonMods>(
     uuiIconButton,
     () => [],
-    (props) =>
+    (props): IconButtonProps =>
         ({
             color: props.color ?? 'gray60',
-        } as IconButtonProps),
+        }),
 );

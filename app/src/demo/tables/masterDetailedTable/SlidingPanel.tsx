@@ -29,7 +29,7 @@ const SlidingPanelImpl: React.FC<ISlidingPanelProps> = ({
 
     const style: CustomCssProperties = useMemo(
         () => ({
-            width: width + 'px',
+            width: width + 1 + 'px',
             '--sliding-panel-margin': -width + 'px',
         }),
         [
@@ -46,7 +46,7 @@ const SlidingPanelImpl: React.FC<ISlidingPanelProps> = ({
     );
 
     return (
-        <Panel cx={ className } style={ style }>
+        <Panel background="surface" cx={ className } style={ style }>
             {children}
         </Panel>
     );

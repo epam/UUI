@@ -1,5 +1,5 @@
 import React from 'react';
-import { AvatarStack, FlexCell, Tooltip } from '@epam/promo';
+import { AvatarStack, FlexCell, Tooltip } from '@epam/uui';
 import css from './BasicExample.module.scss';
 import { uuiMarkers } from '@epam/uui-core';
 

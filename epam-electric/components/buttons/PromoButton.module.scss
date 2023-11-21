@@ -1,0 +1,100 @@
+.root {
+    --uui-btn-bg: var(--uui-neutral-80);
+    --uui-btn-bg-hover: var(--uui-neutral-70);
+    --uui-btn-bg-active: var(--uui-neutral-80);
+    --uui-btn-bg-disabled: var(--uui-neutral-80);
+    --uui-btn-border: transparent;
+    --uui-btn-border-disabled: var(--uui-neutral-60);
+    --uui-btn-caption: var(--white);
+    --uui-btn-caption-disabled: var(--uui-neutral-60);
+
+    --uui-btn-font: var(--font-museo-sans);
+    --uui-btn-font-weight: var(--uui-font-weight, 700);
+    //
+    background: linear-gradient(var(--uui-btn-bg), var(--uui-btn-bg)) padding-box,
+        var(--gradient-1) border-box;
+    color: var(--uui-btn-caption);
+    fill: var(--uui-btn-caption);
+    border-color: var(--uui-btn-border);
+
+    &:global(.-clickable) {
+        &:hover {
+            background: linear-gradient(var(--uui-btn-bg-hover), var(--uui-btn-bg-hover)) padding-box,
+                var(--gradient-1) border-box;
+        }
+
+        &:active {
+            background: linear-gradient(var(--uui-btn-bg-active), var(--uui-btn-bg-active)) padding-box,
+                var(--gradient-1) border-box;
+            box-shadow: 0 0 12px 0 #00F6FF;
+        }
+    }
+
+    &:global(.uui-button-box) {
+        border-style: solid;
+        justify-content: center;
+        padding-left: 11px;
+        padding-right: 11px;
+        border-width: 2px;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--uui-outline-focus);
+        outline-offset: 2px;
+        border-radius: 2px;
+    }
+
+    :global(.uui-caption) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-width: 0;
+        text-align: center;
+        flex: 1 1 auto;
+        font-family: var(--uui-btn-font);
+        font-weight: var(--uui-btn-font-weight, normal);
+        user-select: none;
+    }
+
+    &:is(:global(.-clickable), :hover, :active, :focus):global(.uui-disabled),
+    &:global(.uui-disabled) {
+        background: var(--uui-btn-bg-disabled);
+        color: var(--uui-btn-caption-disabled);
+        fill: var(--uui-btn-caption-disabled);
+        border-color: var(--uui-btn-border-disabled);
+        box-shadow: none;
+    }
+
+    &:global {
+        &.uui-size-36 {
+            min-width: 36px;
+
+            &.uui-button-box {
+                min-height: 36px;
+                border-radius: 18px;
+            }
+
+            .uui-caption {
+                line-height: 18px;
+                font-size: 12px;
+                padding: 7px 6px;
+            }
+        }
+
+        &.uui-size-42 {
+            min-width: 42px;
+
+            &.uui-button-box {
+                min-height: 42px;
+                border-radius: 21px;
+            }
+
+            .uui-caption {
+                line-height: 24px;
+                font-size: 14px;
+                padding: 7px 6px;
+            }
+        }
+    }
+}
+
+

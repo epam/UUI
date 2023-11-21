@@ -8,7 +8,7 @@ import * as React from 'react';
 const badgeDoc = new DocBuilder<BadgeProps & BadgeMods>({ name: 'Badge', component: Badge })
     .implements([iconDoc, iconOptionsDoc, dropdownTogglerDoc, onClickDoc, basicPickerTogglerDoc])
     .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
-        examples: ['sky', 'grass', 'sun', 'fire', 'cobalt', 'lavanda', 'fuchsia', 'white', 'night300', 'night600'],
+        examples: ['sky', 'grass', 'sun', 'fire', 'yellow', 'orange', 'fuchsia', 'purple', 'violet', 'cobalt', 'cyan', 'mint', 'white', 'night100', 'night300', 'night600'],
     })
     .prop('caption', {
         examples: [
@@ -23,7 +23,7 @@ const badgeDoc = new DocBuilder<BadgeProps & BadgeMods>({ name: 'Badge', compone
     })
     .prop('fill', {
         examples: [
-            'solid', 'white', 'semitransparent', 'transparent', 'none',
+            'solid', 'outline',
         ],
         defaultValue: 'solid',
     })
@@ -33,6 +33,9 @@ const badgeDoc = new DocBuilder<BadgeProps & BadgeMods>({ name: 'Badge', compone
             '12', '18', '24', '30', '36', '42', '48',
         ],
         defaultValue: '18',
+    })
+    .prop('indicator', {
+        examples: [true, false], defaultValue: false,
     })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 

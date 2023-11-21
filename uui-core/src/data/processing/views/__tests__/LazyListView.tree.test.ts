@@ -490,6 +490,8 @@ describe('LazyListView', () => {
             selectAll = view.getListProps().selectAll;
             expect(selectAll?.value).toBe(true);
             expect(selectAll?.indeterminate).toBe(false);
+            await delay();
+
             expectViewToLookLike(
                 view,
                 [

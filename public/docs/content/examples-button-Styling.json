@@ -1,65 +1,34 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "You can change the button color via the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "color",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop.",
-            "marks": []
-          }
-        ]
+        "text": "You can change the button color via the "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Also, you can configure button ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "fill",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " .",
-            "marks": []
-          }
-        ]
+        "text": "color",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Also, you can configure button "
+      },
+      {
+        "text": "fill",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " ."
       }
     ]
   }
-}
+]

@@ -147,7 +147,7 @@ module.exports = {
 };
 
 const profileStatuses = [
-    { id: 1, name: 'Red' }, { id: 2, name: 'Amber' }, { id: 3, name: 'Green' },
+    { id: 1, name: 'Critical' }, { id: 2, name: 'Warning' }, { id: 3, name: 'Success' },
 ];
 
 const departments = [

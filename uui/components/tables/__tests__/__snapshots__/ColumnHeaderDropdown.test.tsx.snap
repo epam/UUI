@@ -5,7 +5,7 @@ Array [
   <button
     aria-expanded={true}
     aria-haspopup={true}
-    className="container uui-button-box uui-enabled -clickable button-primary root size-36 mode-solid"
+    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-primary uui-size-36"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -68,7 +68,7 @@ Array [
             Object {
               "maxWidth": undefined,
               "minHeight": undefined,
-              "minWidth": 360,
+              "minWidth": 280,
             }
           }
           tabIndex={-1}
@@ -87,7 +87,7 @@ Array [
             }
           >
             <div
-              className="itemRoot uui-active container -clickable align-items-center"
+              className="uui-flex-row root itemRoot uui-active container -clickable align-items-center"
               onClick={[Function]}
               onKeyDown={[Function]}
               role="menuitem"
@@ -100,7 +100,7 @@ Array [
               tabIndex={0}
             >
               <button
-                className="container uui-button-box uui-enabled icon-button-info root icon iconBefore"
+                className="container uui-button-box uui-enabled uui-icon_button uui-color-info root root icon iconBefore"
                 onClick={[Function]}
                 tabIndex={-1}
                 type="button"
@@ -121,7 +121,7 @@ Array [
               </div>
             </div>
             <div
-              className="itemRoot container -clickable align-items-center"
+              className="uui-flex-row root itemRoot container -clickable align-items-center"
               onClick={[Function]}
               onKeyDown={[Function]}
               role="menuitem"
@@ -134,7 +134,7 @@ Array [
               tabIndex={0}
             >
               <button
-                className="container uui-button-box uui-enabled icon-button-default root icon iconBefore"
+                className="container uui-button-box uui-enabled uui-icon_button uui-color-neutral root root icon iconBefore"
                 onClick={[Function]}
                 tabIndex={-1}
                 type="button"

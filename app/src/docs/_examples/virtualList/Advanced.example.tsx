@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {
-    useUuiContext, DataSourceState, useLazyDataSource, useVirtualList,
-} from '@epam/uui-core';
-import {
-    Text, MainMenu, TextPlaceholder, MainMenuButton,
-} from '@epam/promo';
+import { useUuiContext, DataSourceState, useLazyDataSource, useVirtualList } from '@epam/uui-core';
+import { Text, MainMenu, TextPlaceholder, MainMenuButton } from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import css from './AdvancedExample.module.scss';
 
@@ -43,14 +39,14 @@ export default function AdvancedVirtualList() {
                         <li className={ css.mainContainerListItem } key={ row.key + String(row.index) } role="row">
                             {row.value ? (
                                 <>
-                                    <Text font="museo-sans" size="36">
+                                    <Text size="36">
                                         {row.value.countryName}
                                         ,
                                         <br />
                                         {' '}
                                         {row.value.name}
                                     </Text>
-                                    <Text size="24" font="sans-italic">
+                                    <Text size="24" fontStyle="italic">
                                         Population:
                                         {' '}
                                         {row.value.population}

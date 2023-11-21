@@ -1,5 +1,5 @@
 import { RangeSlider as uuiRangeSlider, SliderBaseProps, RangeSliderValue } from '@epam/uui-components';
-import css from './Slider.module.scss';
+import css from './RangeSlider.module.scss';
 import { withMods } from '@epam/uui-core';
 import * as types from '../../types';
 

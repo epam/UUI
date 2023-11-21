@@ -1,12 +1,11 @@
 import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource, DropdownBodyProps } from '@epam/uui-core';
-import { Text, DataTable, Panel, IconButton } from '@epam/promo';
-import { DropdownMenuButton, DropdownMenuSplitter, DropdownMenuBody } from '@epam/uui';
+import { Dropdown, DropdownMenuButton, DropdownMenuSplitter, DropdownMenuBody, Text, DataTable, Panel, IconButton } from '@epam/uui';
 import { City } from '@epam/uui-docs';
-import { Dropdown } from '@epam/uui-components';
-import css from './TablesExamples.module.scss';
 import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as PencilIcon } from '@epam/assets/icons/common/content-edit-18.svg';
+
+import css from './TablesExamples.module.scss';
 
 export default function CitiesTable() {
     const svc = useUuiContext();
@@ -28,7 +27,7 @@ export default function CitiesTable() {
                 key: 'id',
                 caption: 'Id',
                 render: (city) => (
-                    <Text color="gray80" fontSize="14">
+                    <Text color="primary" fontSize="14">
                         {city.id}
                     </Text>
                 ),
@@ -39,7 +38,7 @@ export default function CitiesTable() {
                 key: 'name',
                 caption: 'Name',
                 render: (city) => (
-                    <Text color="gray80" fontSize="14">
+                    <Text color="primary" fontSize="14">
                         {city.name}
                     </Text>
                 ),
@@ -50,7 +49,7 @@ export default function CitiesTable() {
                 key: 'countryName',
                 caption: 'Country',
                 render: (city) => (
-                    <Text color="gray80" fontSize="14">
+                    <Text color="primary" fontSize="14">
                         {city.countryName}
                     </Text>
                 ),
@@ -62,7 +61,7 @@ export default function CitiesTable() {
                 caption: 'Population',
                 info: 'Number of this population in the country at the time of the last census.',
                 render: (city) => (
-                    <Text color="gray80" fontSize="14">
+                    <Text color="primary" fontSize="14">
                         {city.population}
                     </Text>
                 ),
@@ -72,14 +71,14 @@ export default function CitiesTable() {
             }, {
                 key: 'altname',
                 caption: 'Alt. names',
-                render: (city) => <Text color="gray80">{city.alternativeNames.join(', ')}</Text>,
+                render: (city) => <Text color="primary">{city.alternativeNames.join(', ')}</Text>,
                 info: 'Alternative city names',
                 width: 1200,
             }, {
                 key: 'actions',
                 render: () => (
                     <Dropdown
-                        renderTarget={ (props) => <IconButton icon={ MoreIcon } color="gray60" cx={ [css.configItem, props.isOpen && css.showButton] } { ...props } /> }
+                        renderTarget={ (props) => <IconButton icon={ MoreIcon } color="secondary" cx={ [css.configItem, props.isOpen && css.showButton] } { ...props } /> }
                         renderBody={ (dropdownProps) => renderMenu(dropdownProps) }
                         placement="bottom-end"
                     />
@@ -116,7 +115,7 @@ export default function CitiesTable() {
     });
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel background="surface" shadow cx={ css.container }>
             <DataTable
                 value={ tableState }
                 onValueChange={ setTableState }
@@ -124,6 +123,7 @@ export default function CitiesTable() {
                 // getRows function will be called every time when table will need more rows.
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }
+                showColumnsConfig={ false }
                 headerTextCase="upper"
                 columns={ citiesColumns }
             />

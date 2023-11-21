@@ -1,21 +1,21 @@
 import React from 'react';
-import { Button, Text, Tooltip } from '@epam/promo';
+import { Button, Text, Tooltip } from '@epam/uui';
 import { cx } from '@epam/uui-core';
 import css from './TypesExample.module.scss';
 
 export default function VariantsTooltipExample() {
     return (
         <div className={ css.container }>
-            <Tooltip content="Tooltip message" placement="bottom">
-                <Button caption="Contrast" color="blue" onClick={ () => null } />
+            <Tooltip content="Tooltip message" placement="bottom" color="inverted">
+                <Button caption="Default" fill="outline" color="secondary" onClick={ () => null } />
             </Tooltip>
 
-            <Tooltip content="Tooltip message" placement="bottom" color="white">
-                <Button caption="Default" fill="white" color="gray" onClick={ () => null } />
+            <Tooltip content="Tooltip message" placement="bottom" color="neutral">
+                <Button caption="Contrast" color="primary" onClick={ () => null } />
             </Tooltip>
 
-            <Tooltip content="Tooltip message" placement="bottom" color="red">
-                <Button caption="Critical" fill="white" color="red" onClick={ () => null } />
+            <Tooltip content="Tooltip message" placement="bottom" color="critical">
+                <Button caption="Critical" fill="outline" color="critical" onClick={ () => null } />
             </Tooltip>
 
             <Text fontSize="14" cx={ cx(css.secondColumn, css.text) }>

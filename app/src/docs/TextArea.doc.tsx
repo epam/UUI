@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, TDocsGenType,
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
 } from '../common';
 
 export class TextAreaDoc extends BaseDocsBlock {
@@ -12,6 +12,7 @@ export class TextAreaDoc extends BaseDocsBlock {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/textArea.props.ts',
             [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/textArea.props.ts',
+            [UUI]: './app/src/docs/_props/uui/components/inputs/textArea.props.ts',
         };
     }
 
@@ -21,7 +22,8 @@ export class TextAreaDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="textArea-descriptions" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/textArea/Basic.example.tsx" />
-                <DocExample title="Advanced" path="./_examples/textArea/Advanced.example.tsx" />
+                <DocExample title="Height configuration" path="./_examples/textArea/HeightConfiguration.example.tsx" />
+                <DocExample title="With length limit" path="./_examples/textArea/MaxLengthCounter.example.tsx" />
             </>
         );
     }

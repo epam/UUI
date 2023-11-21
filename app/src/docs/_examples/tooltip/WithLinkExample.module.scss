@@ -13,16 +13,16 @@
 
     a {
         text-decoration: none;
-        color: #008ACE;
+        color: var(--uui-outline-focus);
     }
 }
 
 .text {
-    color: #6C6F80;
-    border-bottom: 1px dashed #6C6F80;
+    color: var(--uui-text-tertiary);
+    border-bottom: 1px dashed var(--uui-text-tertiary);
     padding: 0;
 }
 
 .icon-amber {
-    fill: var(--uui-warning);
+    fill: var(--uui-warning-50);
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tag } from '@epam/promo';
+import { Tag } from '@epam/uui';
 import { ReactComponent as MyIcon } from '@epam/assets/icons/common/action-account-18.svg';
 
 export default function BasicExample() {

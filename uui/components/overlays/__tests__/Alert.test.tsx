@@ -6,7 +6,7 @@ import { SvgMock, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('Alert', () => {
     it('should render with minimum props', async () => {
-        const tree = await renderSnapshotWithContextAsync(<Alert />);
+        const tree = await renderSnapshotWithContextAsync(<Alert color="info" />);
         expect(tree).toMatchSnapshot();
     });
 

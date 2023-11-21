@@ -36,7 +36,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
         isSingleSelect,
         handleDataSourceValueChange,
     } = usePickerModal<TItem, TId>(props);
-    
+
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => {
         return props.renderRow ? (
             props.renderRow(rowProps, dataSourceState)
@@ -54,31 +54,35 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
 
     const renderFooter = () => {
         const hasSelection = view.getSelectedRowsCount() > 0;
+        const rowsCount = view.getListProps().rowsCount;
+        const isEmptyRowsAndHasNoSelection = (rowsCount === 0 && !hasSelection);
+
         return (
             <>
                 {view.selectAll && (
                     <LinkButton
                         caption={ hasSelection ? i18n.pickerModal.clearAllButton : i18n.pickerModal.selectAllButton }
                         onClick={ hasSelection ? () => clearSelection() : () => view.selectAll.onValueChange(true) }
+                        isDisabled={ isEmptyRowsAndHasNoSelection }
                     />
                 )}
                 <FlexSpacer />
-                <Button mode="outline" color="secondary" caption={ i18n.pickerModal.cancelButton } onClick={ () => props.abort() } />
+                <Button fill="outline" color="secondary" caption={ i18n.pickerModal.cancelButton } onClick={ () => props.abort() } />
                 <Button color="accent" caption={ i18n.pickerModal.selectButton } onClick={ () => props.success(selection as any) } />
             </>
         );
     };
-    
+
     const renderNotFound = () => {
         return props.renderNotFound ? (
             props.renderNotFound({ search: dataSourceState.search, onClose: () => props.success(null) })
         ) : (
             <div className={ css.noFoundModalContainer }>
                 <IconContainer cx={ css.noFoundModalContainerIcon } icon={ SearchIcon } />
-                <Text cx={ css.noFoundModalContainerText } font="semibold" fontSize="16" lineHeight="24" color="primary" size="36">
+                <Text cx={ css.noFoundModalContainerText } fontWeight="600" fontSize="16" lineHeight="24" color="primary" size="36">
                     {i18n.dataPickerBody.noRecordsMessage}
                 </Text>
-                <Text cx={ css.noFoundModalContainerText } fontSize="12" lineHeight="18" font="regular" color="primary" size="36">
+                <Text cx={ css.noFoundModalContainerText } fontSize="12" lineHeight="18" color="primary" size="36">
                     {i18n.dataPickerBody.noRecordsSubTitle}
                 </Text>
             </div>
@@ -103,7 +107,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                                         onValueChange: handleDataSourceValueChange,
                                         listView: view,
                                         rows: dataRows,
-                                        editMode: 'modal',
+                                        searchPosition: 'body',
                                     },
                                     e,
                                 ) }

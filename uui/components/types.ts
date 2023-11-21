@@ -1,10 +1,10 @@
-export type ButtonMode = 'solid' | 'outline' | 'ghost' | 'none';
-export const allButtonModes: ButtonMode[] = [
+export type ButtonFill = 'solid' | 'outline' | 'ghost' | 'none';
+export const allButtonFills: ButtonFill[] = [
     'solid', 'outline', 'ghost', 'none',
 ];
 
-export type FillStyle = ButtonMode;
-export const allFillStyles: FillStyle[] = allButtonModes;
+export type FillStyle = ButtonFill;
+export const allFillStyles: FillStyle[] = allButtonFills;
 
 export type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';
 export const allSizes: ControlSize[] = [
@@ -21,14 +21,9 @@ export const allSemanticColors: SemanticColor[] = [
     'info', 'success', 'warning', 'error',
 ];
 
-export type ButtonSemanticColor = 'accent' | 'primary' | 'secondary' | 'negative';
-export const allButtonSemanticColors: ButtonSemanticColor[] = [
-    'accent', 'primary', 'secondary', 'negative',
-];
-
-export type EpamBadgeSemanticColor = 'info' | 'success' | 'warning' | 'error' | 'default';
+export type EpamBadgeSemanticColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
 export const allEpamBadgeSemanticColors: EpamBadgeSemanticColor[] = [
-    'info', 'success', 'warning', 'error', 'default',
+    'info', 'success', 'warning', 'critical', 'neutral',
 ];
 
 export type TextSize = 'none' | '18' | '24' | '30' | '36' | '48';
@@ -36,9 +31,14 @@ export const allTextSizes: TextSize[] = [
     '18', '24', '30', '36', '48',
 ];
 
-export type FontStyle = 'regular' | 'semibold' | 'italic' | 'primary' | 'promo';
+export type FontStyle = 'normal' | 'italic';
 export const allFontStyles: FontStyle[] = [
-    'regular', 'semibold', 'italic', 'primary', 'promo',
+    'normal', 'italic',
+];
+
+export type FontWeight = '200' | '300' | '400' | '600' | '700' | '900';
+export const allFontWeights: FontWeight[] = [
+    '200', '300', '400', '600', '700', '900',
 ];
 
 export interface ColorMod {

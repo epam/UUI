@@ -11,8 +11,6 @@ import { DataPickerRow } from './DataPickerRow';
 import { DataPickerFooter } from './DataPickerFooter';
 import { PickerItem } from './PickerItem';
 
-import css from './PickerInput.module.scss';
-
 const pickerHeight = 300;
 const pickerWidth = 360;
 
@@ -57,6 +55,7 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
         getListProps,
         shouldShowBody,
         getSearchPosition,
+        handlePickerInputKeyboard,
     } = usePickerInput<TItem, TId, CompletePickerInputProps<TItem, TId>>({ ...props, toggleModalOpening });
 
     const getTogglerMods = (): PickerTogglerMods => {
@@ -73,10 +72,12 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
             <IEditableDebouncer
                 value={ targetProps.value }
                 onValueChange={ handleTogglerSearchChange }
+                debounceDelay={ props.searchDebounceDelay }
                 render={ (editableProps) => renderTargetFn({
                     ...getTogglerMods(),
                     ...targetProps,
                     ...editableProps,
+                    onKeyDown: (e) => handlePickerInputKeyboard(rows, e, editableProps.value),
                 }) }
             />
         );
@@ -132,7 +133,7 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
             <MobileDropdownWrapper
                 title={ props.entityName }
                 onClose={ () => toggleBodyOpening(false) }
-                cx={ [css.panel, props.bodyCx] }
+                cx={ [props.bodyCx] }
                 onKeyDown={ bodyProps.onKeyDown }
                 width={ bodyProps.togglerWidth > minBodyWidth ? bodyProps.togglerWidth : minBodyWidth }
                 focusLock={ getSearchPosition() === 'body' }
@@ -164,7 +165,7 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
     return (
         <Dropdown
             renderTarget={ (dropdownProps) => {
-                const targetProps = getTogglerProps(rows);
+                const targetProps = getTogglerProps();
                 return renderTarget({ ...dropdownProps, ...targetProps });
             } }
             renderBody={ (bodyProps) => renderBody({ ...bodyProps, ...getPickerBodyProps(rows), ...getListProps() }, rows) }

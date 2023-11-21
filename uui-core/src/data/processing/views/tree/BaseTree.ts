@@ -206,6 +206,12 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         }
     }
 
+    public forEachItem(action: (item: TItem, id: TId, parentId: TId) => void) {
+        for (const [id, item] of this.byId) {
+            action(item, id, this.getParentId(item));
+        }
+    }
+
     public computeSubtotals<TSubtotals>(get: (item: TItem, hasChildren: boolean) => TSubtotals, add: (a: TSubtotals, b: TSubtotals) => TSubtotals) {
         const subtotalsMap = this.newMap<TId | undefined, TSubtotals>();
 
@@ -261,6 +267,8 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     }
 
     abstract patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: (newItem: TItem, existingItem: TItem) => number): ITree<TItem, TId>;
+    abstract mergeItems(tree: ITree<TItem, TId>): ITree<TItem, TId>;
+
     abstract cascadeSelection(
         currentSelection: TId[],
         selectedId: TId,

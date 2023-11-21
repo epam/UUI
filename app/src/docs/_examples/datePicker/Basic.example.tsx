@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DatePicker, FlexRow } from '@epam/promo';
+import { DatePicker, FlexRow } from '@epam/uui';
 
 export default function DatePickerBaseExample() {
     const [value, onValueChange] = useState('');

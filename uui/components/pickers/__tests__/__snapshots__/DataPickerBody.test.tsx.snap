@@ -47,7 +47,7 @@ Array [
     </div>
   </div>,
   <div
-    className="root size-36 body modal undefined container align-items-center"
+    className="uui-flex-row root size-36 body modal undefined container align-items-center"
     style={
       Object {
         "columnGap": undefined,
@@ -57,7 +57,7 @@ Array [
     }
   >
     <div
-      className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+      className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
       style={
         Object {
           "display": "flex",
@@ -148,7 +148,7 @@ Array [
 
 exports[`DataPickerBody should be rendered with minimum props 1`] = `
 <div
-  className="root size-36 body undefined undefined container align-items-center"
+  className="uui-flex-row root size-36 body undefined undefined container align-items-center"
   style={
     Object {
       "columnGap": undefined,
@@ -171,7 +171,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
     }
   >
     <div
-      className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+      className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
     >
       No records found
     </div>
@@ -181,7 +181,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
 
 exports[`DataPickerBody should be rendered without rows 1`] = `
 <div
-  className="root size-36 body undefined undefined container align-items-center"
+  className="uui-flex-row root size-36 body undefined undefined container align-items-center"
   style={
     Object {
       "columnGap": undefined,

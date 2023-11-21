@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI4, UUI3, TDocsGenType,
+    BaseDocsBlock, DocExample, EditableDocContent, UUI4, UUI3, UUI, TDocsGenType,
 } from '../common/docs';
 
 export class FlexCellDoc extends BaseDocsBlock {
@@ -12,6 +12,7 @@ export class FlexCellDoc extends BaseDocsBlock {
         return {
             [UUI4]: './app/src/docs/_props/epam-promo/components/layout/FlexItems/flexCell.props.tsx',
             [UUI3]: './app/src/docs/_props/loveship/components/layout/FlexItems/flexCell.props.tsx',
+            [UUI]: './app/src/docs/_props/uui/components/layout/FlexItems/flexCell.props.tsx',
         };
     }
 

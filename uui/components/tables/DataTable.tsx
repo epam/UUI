@@ -10,11 +10,12 @@ import { DataTableRow } from './DataTableRow';
 import { DataTableMods, DataTableRowMods } from './types';
 import { ColumnsConfigurationModal, ColumnsConfigurationModalProps } from './columnsConfigurationModal';
 import { VirtualList, VirtualListRenderRowsParams } from '../layout';
+import { DataRowsContainer } from './DataRowsContainer';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from '../typography';
 import css from './DataTable.module.scss';
+import './variables.scss';
 import { i18n } from '../../i18n';
-import { DataRowsContainer } from './DataRowsContainer';
 
 export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
@@ -49,10 +50,10 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 ) : (
                     <>
                         <IconContainer cx={ css.noResultsIcon } icon={ EmptyTableIcon } />
-                        <Text cx={ css.noResultsTitle } fontSize="24" lineHeight="30" color="primary" font="semibold">
+                        <Text cx={ css.noResultsTitle } fontSize="24" lineHeight="30" color="primary" fontWeight="600">
                             {i18n.tables.noResultsBlock.title}
                         </Text>
-                        <Text fontSize="16" lineHeight="24" font="regular" color="primary">
+                        <Text fontSize="16" lineHeight="24" color="primary">
                             {i18n.tables.noResultsBlock.message}
                         </Text>
                     </>
@@ -110,8 +111,8 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                     <DataRowsContainer
                         headerRef={ headerRef }
                         listContainerRef={ listContainerRef }
-                        estimatedHeight={ estimatedHeight } 
-                        offsetY={ offsetY } 
+                        estimatedHeight={ estimatedHeight }
+                        offsetY={ offsetY }
                         scrollShadows={ scrollShadows }
                         renderRow={ renderRow }
                         rows={ rows }
@@ -134,7 +135,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 onScroll={ props.onScroll }
                 rowsCount={ props.rowsCount }
                 renderRows={ renderRowsContainer }
-                cx={ cx(css.table) }
+                cx={ cx(css.table, 'uui-dt-vars') }
                 isLoading={ props.isReloading }
                 rowsSelector="[role=row]"
                 rawProps={ {

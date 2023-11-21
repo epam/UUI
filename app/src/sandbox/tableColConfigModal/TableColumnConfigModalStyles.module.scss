@@ -1,11 +1,19 @@
+@use '~@epam/assets/theme/theme_promo' as *;
 @import '~@epam/promo/assets/styles/colors';
 
 .container {
+    box-sizing: border-box;
     padding: 0 12px 44px;
-    height: 800px;
+    height: calc(100vh - 60px);
     display: flex;
     flex: 1 1 0;
     flex-direction: column;
+
+    &.uui-theme-promo {
+        :global {
+            @include theme-promo();
+        }
+    }
 }
 
 .table-container {

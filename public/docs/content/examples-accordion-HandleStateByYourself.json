@@ -1,69 +1,32 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "You can handle the open/close Accordion state on your own by providing an ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "IEditable",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " interface, which includes a ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "value",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "onValueChange",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " props. By default, Accordion encapsulates this state management.",
-            "marks": []
-          }
-        ]
+        "text": "You can handle the open/close Accordion state on your own by providing an "
+      },
+      {
+        "text": "IEditable",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " interface, which includes a "
+      },
+      {
+        "text": "value",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and the "
+      },
+      {
+        "text": "onValueChange",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " props. By default, Accordion encapsulates this state management."
       }
     ]
   }
-}
+]

@@ -4,10 +4,11 @@ import React, {
 import css from './FilteredTable.module.scss';
 import {
     DataTable, FiltersPanel, FlexCell, FlexRow, PresetsPanel, Text,
-} from '@epam/promo';
+} from '@epam/uui';
 import { getFilters } from './filters';
 import {
-    useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset, DataQueryFilter,
+    useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset,
+    DataQueryFilter,
 } from '@epam/uui-core';
 import { FilteredTableFooter } from './FilteredTableFooter';
 import { Person } from '@epam/uui-docs';
@@ -71,6 +72,9 @@ export function FilteredTable() {
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         rowOptions: {
             isSelectable: true,
+            onClick: (rowProps) => {
+                rowProps.onSelect(rowProps);
+            },
         },
     });
 
@@ -86,12 +90,12 @@ export function FilteredTable() {
     return (
         <div className={ css.container }>
             <div className={ css.presetsPanel }>
-                <Text fontSize="24" lineHeight="30" font="museo-sans" cx={ css.presetsTitle }>
+                <Text fontSize="24" lineHeight="30" cx={ css.presetsTitle }>
                     Users Dashboard
                 </Text>
                 <PresetsPanel { ...presetsApi } />
             </div>
-            <FlexRow cx={ css.filterPanelWrapper } background="white" borderBottom={ true }>
+            <FlexRow cx={ css.filterPanelWrapper } borderBottom={ true }>
                 <FlexRow cx={ css.filterPanel }>
                     <FiltersPanel filters={ filters } tableState={ tableStateApi.tableState } setTableState={ tableStateApi.setTableState } />
                 </FlexRow>

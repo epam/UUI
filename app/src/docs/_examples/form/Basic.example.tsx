@@ -1,9 +1,7 @@
 import React from 'react';
 import type { TApi } from '../../../data';
 import { useUuiContext, useAsyncDataSource, UuiContexts } from '@epam/uui-core';
-import {
-    FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, PickerInput, SuccessNotification, ErrorNotification, useForm,
-} from '@epam/promo';
+import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, PickerInput, SuccessNotification, ErrorNotification, useForm } from '@epam/uui';
 
 interface Person {
     firstName?: string;
@@ -71,7 +69,7 @@ export default function BasicFormExample() {
             </FlexRow>
             <FlexRow vPadding="12">
                 <FlexSpacer />
-                <Button caption="Save" onClick={ save } color="green" />
+                <Button caption="Save" onClick={ save } color="accent" />
             </FlexRow>
         </FlexCell>
     );

@@ -35,7 +35,7 @@ $shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.1), 0 1px 3px 0 rgba(29, 30, 38, 0.1);
         justify-content: flex-start;
         align-items: flex-start;
         width: 365px;
-        background-color: #FFFFFF;
+        background-color: var(--uui-surface-main);
 
         .title {
             margin: 18px 24px 0 24px;

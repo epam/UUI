@@ -5,7 +5,9 @@ import { DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, PickerInpu
 
 const pickerHeight = 300;
 
-type FilterPickerBodyProps<TItem, TId> = DropdownBodyProps & PickerInputBaseProps<TItem, TId>;
+type FilterPickerBodyProps<TItem, TId> = DropdownBodyProps & PickerInputBaseProps<TItem, TId> & {
+    showSearch?: boolean;
+};
 
 export function FilterPickerBody<TItem, TId>(props: FilterPickerBodyProps<TItem, TId>) {
     const shouldShowBody = () => props.isOpen;
@@ -59,8 +61,6 @@ export function FilterPickerBody<TItem, TId>(props: FilterPickerBodyProps<TItem,
                     maxHeight={ maxHeight }
                     searchSize="36"
                     editMode="dropdown"
-                    showSearch={ true }
-
                 />
                 {renderFooter()}
             </>
@@ -69,5 +69,5 @@ export function FilterPickerBody<TItem, TId>(props: FilterPickerBodyProps<TItem,
     
     const rows = getRows();
 
-    return renderBody({ ...getPickerBodyProps(rows), ...getListProps() }, rows);
+    return renderBody({ ...getPickerBodyProps(rows), ...getListProps(), showSearch: props.showSearch ?? true }, rows);
 }

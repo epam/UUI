@@ -14,7 +14,7 @@ exports[`Blocker should be rendered correctly 1`] = `
       className="uui-blocker"
     >
       <div
-        className="container uui-spinner-container root"
+        className="container uui-spinner-container root uui-spinner"
       >
         <div
           className="uui-spinner-animation"

@@ -18,7 +18,7 @@ body {
 .container {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 102px);
+    height: calc(100vh - 96px);
     transition: all 500ms;
     flex-basis: auto;
     min-width: 0;
@@ -46,7 +46,7 @@ body {
     height: 48px;
     display: flex;
     justify-content: center;
-    border-right: 1px solid $gray30;
+    border-right: 1px solid var(--uui-divider-light);
 }
 
 .icon {
@@ -62,7 +62,8 @@ body {
 .presets {
     padding-left: 50px;
     transition: 0.5s padding-left;
-    background-color: var(--surface-color, white);
+    background-color: var(--uui-surface-main);
+    height: 48px;
 
     &-with-filter {
         padding-left: 0;

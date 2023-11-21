@@ -1,0 +1,25 @@
+.uui-dt-vars {
+    --uui-dt-border: var(--uui-divider-light);
+
+    --uui-dt-cell-bg: transparent;
+    --uui-dt-cell-bg-resize: #EF55331F;
+    --uui-dt-cell-bg-invalid: var(--uui-error-10);
+    --uui-dt-cell-border-hover: var(--uui-control-border-hover);
+    --uui-dt-cell-border-focus: var(--uui-control-border-focus);
+
+    --uui-dt-row-bg: var(--uui-surface-main);
+    --uui-dt-row-bg-hover: var(--uui-surface-higher);
+    --uui-dt-row-bg-invalid: var(--uui-error-5);
+    --uui-dt-row-bg-selected: var(--uui-info-5);
+
+    --uui-dt-header-row-bg: var(--uui-surface-sunken);
+    --uui-dt-header-row-bg-hover: var(--uui-surface-highest);
+    --uui-dt-header-drop_marker: var(--uui-primary-50);
+
+    --uui-dt-top-shadow: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    --uui-dt-left-shadow: linear-gradient(to left, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    --uui-dt-right-shadow: linear-gradient(to right, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+
+    --uui-dt-header-cell-font: var(--uui-font);
+    --uui-dt-header-cell-font-weight: 600;
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlexRow, PickerInput, FlexCell } from '@epam/promo';
+import { FlexRow, PickerInput, FlexCell } from '@epam/uui';
 import { useArrayDataSource } from '@epam/uui-core';
 
 const languageLevels = [

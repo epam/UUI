@@ -2,7 +2,7 @@
 
 exports[`Tag should be rendered correctly 1`] = `
 <button
-  className="container uui-button-box uui-enabled size-36 root"
+  className="container uui-button-box uui-enabled size-36 root uui-color-neutral uui-tag"
   onClick={[Function]}
   tabIndex={-1}
   type="button"
@@ -11,7 +11,7 @@ exports[`Tag should be rendered correctly 1`] = `
 
 exports[`Tag should be rendered correctly with props 1`] = `
 <button
-  className="container uui-button-box uui-enabled -clickable size-36 root"
+  className="container uui-button-box uui-enabled -clickable size-36 root uui-color-neutral uui-tag"
   onClick={[Function]}
   tabIndex={0}
   type="button"
@@ -26,14 +26,14 @@ exports[`Tag should be rendered correctly with props 1`] = `
     />
   </div>
   <div
-    className="uui-count"
-  >
-    12
-  </div>
-  <div
     className="uui-caption"
   >
     Test badge
+  </div>
+  <div
+    className="root uui-count_indicator size-18 uui-color-white"
+  >
+    12
   </div>
   <div
     className="container uui-icon uui-enabled -clickable -clickable"

@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import {
-    FlexRow, FlexSpacer, Panel, Text, Button, LabeledInput, TextInput, FlexCell, CheckboxGroup,
-} from '@epam/promo';
-
+import { FlexRow, FlexSpacer, Panel, Text, Button, LabeledInput, TextInput, FlexCell, CheckboxGroup } from '@epam/uui';
 import css from './FlexCellExample.module.scss';
 
 export default function FlexCellExample() {
     const [value, onValueChange] = useState(null);
 
     return (
-        <Panel background="white" shadow cx={ css.root }>
+        <Panel background="surface" shadow cx={ css.root }>
             <FlexRow padding="12">
-                <Text font="sans-semibold" size="48">
+                <Text fontWeight="600" size="48">
                     Identity Document
                 </Text>
             </FlexRow>
@@ -44,8 +41,8 @@ export default function FlexCellExample() {
             <FlexRow padding="12" vPadding="12" spacing="12">
                 <FlexSpacer />
 
-                <Button caption="Submit" onClick={ () => null } color="green" />
-                <Button caption="Cancel" onClick={ () => null } color="gray" />
+                <Button caption="Submit" onClick={ () => null } color="accent" />
+                <Button caption="Cancel" onClick={ () => null } color="secondary" />
             </FlexRow>
         </Panel>
     );

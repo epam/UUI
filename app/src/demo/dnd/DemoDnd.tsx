@@ -3,7 +3,7 @@ import sortBy from 'lodash.sortby';
 import css from './DemoDnd.module.scss';
 import {
     FlexCell, FlexRow, FlexSpacer, IconButton, Panel, Text,
-} from '@epam/promo';
+} from '@epam/uui';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/content-add-outline-18.svg';
 import { DropParams, getOrderBetween } from '@epam/uui-core';
 import { DndModule, ModuleItem } from './DndModule';
@@ -62,10 +62,10 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
             <FlexRow cx={ css.root } alignItems="stretch">
                 {isDesktop && (
                     <>
-                        <Panel background="white" shadow>
+                        <Panel background="surface" shadow>
                             <FlexCell minWidth={ 282 }>
                                 <FlexRow padding="18" borderBottom>
-                                    <Text size="48" font="sans-semibold">
+                                    <Text size="48" fontWeight="600">
                                         Modules
                                     </Text>
                                     <FlexSpacer />
@@ -88,7 +88,7 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
                     </>
                 )}
                 <FlexCell cx={ css.moduleContent } minWidth={ isDesktop && 894 } width={ !isDesktop ? '100%' : undefined }>
-                    <Text font="museo-sans" cx={ css.moduleHeader }>
+                    <Text cx={ css.moduleHeader }>
                         Module 3: Module Name
                     </Text>
                     {sortedSections.map((section, index) => (

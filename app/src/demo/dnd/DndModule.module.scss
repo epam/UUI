@@ -19,6 +19,10 @@
         box-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05);
     }
 
+    .item {
+        background-color: var(--uui-surface-main);
+    }
+
     .module-icon {
         width: 36px;
         height: 36px;
@@ -40,9 +44,9 @@
 @include drag-handle(5px, 9px, 9px, 125%);
 
 .icon-green {
-    fill: var(--uui-success);
+    fill: var(--uui-success-50);
 }
 
 .icon-gray50 {
-    fill: var(--uui-secondary);
+    fill: var(--uui-secondary-50);
 }

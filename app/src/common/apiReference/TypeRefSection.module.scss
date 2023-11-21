@@ -1,0 +1,12 @@
+@use '~@epam/assets/theme/theme_promo' as *;
+
+.root {
+    @include theme-promo();
+    max-width: 100%;
+    width: 960px;
+
+    :global(.asterisk) {
+        color: var(--uui-labeled_input-asterisk);
+        font-family: var(--font-semibold);
+    }
+}

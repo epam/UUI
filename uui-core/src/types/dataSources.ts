@@ -1,6 +1,14 @@
-import { SortingOption } from './dataQuery';
 import { ICheckable } from './props';
 import { DataRowOptions, DataRowProps } from './dataRows';
+
+export type SortDirection = 'asc' | 'desc';
+
+export interface SortingOption<T = any> {
+    /** Field of sorted entity under which sorting is performed */
+    field: keyof T;
+    /** Direction of a sorting */
+    direction?: SortDirection;
+}
 
 export interface VirtualListRange {
     /**
@@ -68,14 +76,38 @@ export interface IDataSource<TItem, TId, TFilter> {
 
 /** Holds state of a components displaying lists - like tables. Holds virtual list position, filter, search, selection, etc. */
 export interface DataSourceState<TFilter = Record<string, any>, TId = any> extends VirtualListState {
+    /**
+     * Search value, used to filter data based on it.
+     * Included in the API request object when using a LazyDataSource.
+     * For Array and Async data sources, searching is performed internally by the datasource.
+     * */
     search?: string;
+    /** Array of checked items IDs */
     checked?: TId[];
+    /**
+     * A map of item IDs to their folding state.
+     * If an item ID is present with a `true` value, it's folded; otherwise, it's not folded.
+     * */
     folded?: Record<string, boolean>;
+    /**
+     * Filter value used to filter data based on it.
+     * Included in the API request object when using a LazyDataSource.
+     * For Array and Async data sources, filtering is performed internally by the datasource.
+     * */
     filter?: TFilter;
+    /**
+     * Sorting value, used to sort data based on it.
+     * Included in the API request object when using a LazyDataSource.
+     * For Array and Async data sources, sorting is performed internally by the datasource.
+     * */
     sorting?: SortingOption[];
+    /** ID of selected item. It can be only one selected item at the moment. */
     selectedId?: TId;
+    /** Index of currently focused item */
     focusedIndex?: number;
+    /** Current page number */
     page?: number;
+    /** The amount of items per page */
     pageSize?: number;
 }
 
@@ -201,35 +233,49 @@ export type DataSourceListCounts = {
 };
 
 export interface DataSourceListProps extends DataSourceListCounts {
+    /**
+     * ICheckable object for Select All behavior.
+     * If omitted, Select All action will be absent.
+     * */
     selectAll?: ICheckable;
 
-    /**
-     * Signals that data is reloading on search/sort/filter/reload.
-     */
+    /** Signals that data is reloading on search/sort/filter/reload. */
     isReloading?: boolean;
 }
 
 // Lazy Data Source API
 
-/** The common part of LazyDataSourceApiRequest, which defines how list should be filtered and sorted */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export interface LazyDataSourceApiRequestOptions<TItem, TFilter> {
-    filter?: TFilter;
-    sorting?: SortingOption[];
-    search?: string;
-}
-
 /** The range (from/count) of required rows for LazyDataSourceApiRequest */
 export interface LazyDataSourceApiRequestRange {
+    /** Element index to fetch from. */
     from: number;
+    /** Count of elements to be retrieved. */
     count?: number;
 }
 
 /** Defines input arguments for Lazy Data Source APIs */
-export interface LazyDataSourceApiRequest<TItem, TId = any, TFilter = {}> extends LazyDataSourceApiRequestOptions<TItem, TFilter> {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export interface LazyDataSourceApiRequest<TItem, TId = any, TFilter = {}> {
+    /**
+     * The filter object, by which data should be filtered.
+     * It is a merged result of filters from DataSourceState and LazyDataSourceProps.
+     */
+    filter?: TFilter;
+    /** Sorting options, by which data should be sorted. */
+    sorting?: SortingOption[];
+    /** The search string, by which data should be searched. */
+    search?: string;
+    /** Specifies a range of the rows to be retrieved. */
     range?: LazyDataSourceApiRequestRange;
+    /** Page number for which data should be retrieved. */
     page?: number;
+    /** Number of items at the page. */
     pageSize?: number;
+    /**
+     * An array of item IDs to be retrieved from the API.
+     * Other request options like filter, search and others should be ignored when IDs are provided.
+     * Used for requesting specific items separately from the list.
+     */
     ids?: TId[];
 }
 
@@ -244,18 +290,28 @@ export interface LazyDataSourceApiResponse<TItem> {
      */
     from?: number;
 
-    /** Total count of items which match current filter. If not specified, total count will be detected only when user scrolls to the end of the list. */
+    /**
+     * Total count of items which match current filter.
+     * If not specified, total count will be detected only when user scrolls to the end of the list.
+     */
     count?: number;
 }
 
 /** Defines the context of API request. E.g. parent if we require to retrieve sub-list of the tree */
 export interface LazyDataSourceApiRequestContext<TItem, TId> {
+    /**
+     * The ID of the parent item whose children are being requested.
+     * Used for lazy-loading data in tree lists.
+     */
     parentId?: TId | null;
+    /** The parent entity whose children are being requested */
     parent?: TItem | null;
 }
 
 /** Defines API to retrieve data for DataSources */
 export type LazyDataSourceApi<TItem, TId, TFilter> = (
+    /** Defines input arguments for Lazy Data Source APIs */
     request: LazyDataSourceApiRequest<TItem, TId, TFilter>,
+    /** Defines the context of API request. */
     context?: LazyDataSourceApiRequestContext<TItem, TId>
 ) => Promise<LazyDataSourceApiResponse<TItem>>;

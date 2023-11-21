@@ -1,5 +1,11 @@
+.root {
+    --uui-drop_marker: var(--uui-primary-50);
+
+    --uui-drop_marker-offset: -1px;
+    --uui-drop_marker-width: 2px;
+}
+
 .blocker {
-    //background-color: var(--uui-drop-marker-blocked);
     opacity: 0.1;
     position: absolute;
     left: 0;
@@ -9,43 +15,41 @@
 }
 
 .marker {
-    --uui-drop-marker-offset: -1px;
-    --uui-drop-marker-width: 2px;
     position: absolute;
     pointer-events: none;
     z-index: 10;
 }
 
 .top {
-    top: var(--uui-drop-marker-offset);
+    top: var(--uui-drop_marker-offset);
     left: 0;
     right: 0;
-    height: var(--uui-drop-marker-width);
-    background-color: var(--uui-drop-marker);
+    height: var(--uui-drop_marker-width);
+    background-color: var(--uui-drop_marker);
 }
 
 .bottom {
-    bottom: var(--uui-drop-marker-offset);
+    bottom: var(--uui-drop_marker-offset);
     left: 0;
     right: 0;
-    height: var(--uui-drop-marker-width);
-    background-color: var(--uui-drop-marker);
+    height: var(--uui-drop_marker-width);
+    background-color: var(--uui-drop_marker);
 }
 
 .left {
     top: 0;
     bottom: 0;
-    left: var(--uui-drop-marker-offset);
-    width: var(--uui-drop-marker-width);
-    background-color: var(--uui-drop-marker);
+    left: var(--uui-drop_marker-offset);
+    width: var(--uui-drop_marker-width);
+    background-color: var(--uui-drop_marker);
 }
 
 .right {
     top: 0;
     bottom: 0;
-    right: var(--uui-drop-marker-offset);
-    width: var(--uui-drop-marker-width);
-    background-color: var(--uui-drop-marker);
+    right: var(--uui-drop_marker-offset);
+    width: var(--uui-drop_marker-width);
+    background-color: var(--uui-drop_marker);
 }
 
 .inside {
@@ -53,6 +57,6 @@
     bottom: 0;
     left: 0;
     right: 0;
-    border: var(--uui-drop-marker-width) solid var(--uui-drop-marker);
-    background-color: rgba(255, 255, 255, 0.5);
+    border: var(--uui-drop_marker-width) solid var(--uui-drop_marker);
+    background-color: color-mix(in srgb, var(--uui-surface-highest) 50%, transparent);;
 }

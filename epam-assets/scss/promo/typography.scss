@@ -13,6 +13,7 @@
 
     :global(.hero-header) {
         font-family: $font-museo-slab;
+        font-weight: 700;
         margin: 30px 0;
         font-size: 66px;
         line-height: 72px;
@@ -25,6 +26,7 @@
 
     :global(.promo-header), h1, h2, h3 {
         font-family: $font-museo-sans;
+        font-weight: 500;
     }
 
     :global(.promo-header) {
@@ -32,7 +34,8 @@
     }
 
     h4, h5, h6 {
-        font-family: $font-sans-semibold;
+        font-family: $font-source-sans;
+        font-weight: 600;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -74,11 +77,14 @@
 
 @mixin typography-inline() {
     b, strong {
-        font-family: $font-sans-semibold;
+        font-family: $font-source-sans;
+        font-weight: 600;
     }
 
     i, em {
-        font-family: $font-sans-italic;
+        font-family: $font-source-sans;
+        font-weight: 400;
+        font-style: italic;
     }
 
     a {
@@ -105,6 +111,7 @@
         color: $gray80;
         background-color: $gray30;
         font-family: $font-roboto-mono;
+        font-weight: 400;
         white-space: pre-wrap;
         word-wrap: normal;
     }
@@ -122,8 +129,6 @@
 
     pre {
         padding: 1.25em;
-        color: $gray10;
-        background-color: $gray70;
         font-family: monospace;
         white-space: pre-wrap;
         word-wrap: normal;
@@ -166,5 +171,5 @@
     @include typography-block();
     @include typography-inline();
     color: $gray80;
-    font-family: $font-sans;
+    font-family: $font-source-sans;
 }

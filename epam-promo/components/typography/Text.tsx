@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui-core';
+import { devLogger, withMods } from '@epam/uui-core';
 import { Text as UuiText, TextProps as UuiTextProps } from '@epam/uui';
 import * as types from '../types';
 
@@ -11,10 +11,15 @@ export type TextProps = Omit<UuiTextProps, 'color' | 'font'> & TextMods;
 
 export const Text = withMods<Omit<UuiTextProps, 'color' | 'font'>, TextMods>(
     UuiText,
-    () => [],
-    (props) =>
-        ({
+    (props) => [`uui-font-${props.font || 'sans'}`],
+    (props) => {
+        if (__DEV__) {
+            if (props.font) {
+                devLogger.warn('(Text) Property font is deprecated and will be removed in the future release. Please use fontWeight and/or fontStyle props instead.');
+            }
+        }
+        return ({
             color: props.color ?? 'gray80',
-            font: props.font ?? 'sans',
-        } as TextProps),
+        } as TextProps);
+    },
 );

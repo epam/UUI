@@ -32,6 +32,10 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
             setShowSelected(false);
         }
 
+        if (newDataSourceState.search !== dataSourceState.search) {
+            newDataSourceState.focusedIndex = 0;
+        }
+
         setDataSourceState(newDataSourceState);
         const newValue = dataSourceStateToValue(props, newDataSourceState, dataSource);
         if (!isEqual(value, newValue)) {

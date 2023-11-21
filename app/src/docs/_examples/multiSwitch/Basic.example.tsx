@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlexCell, MultiSwitch, Text } from '@epam/promo';
+import { FlexCell, MultiSwitch, Text } from '@epam/uui';
 import css from './BasicExample.module.scss';
 
 export default function BasicExample() {
@@ -27,7 +27,7 @@ export default function BasicExample() {
                 items={ [
                     { id: 1, caption: 'Mentee' }, { id: 2, caption: 'Mentor' }, { id: 3, caption: 'Coordinator' },
                 ] }
-                color="gray"
+                color="secondary"
                 value={ value }
                 onValueChange={ onValueChange }
             />

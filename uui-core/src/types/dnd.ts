@@ -61,15 +61,21 @@ export interface DndActorRenderParams {
      */
     classNames: string[];
 
-    /**
-     * Ref to the DOM element to perform DnD actions
-     */
+    /** Ref to the DOM element to perform DnD actions */
     ref?: React.Ref<any>;
 }
 
 export interface IDndActor<TSrcData, TDstData> {
+    /** Data used when this component acts as a drag source.
+     * If provided, it means this component can be dragged. Can be used in combination with dstData.
+     */
     srcData?: TSrcData;
+    /** Data used when this component acts as a drop destination.
+     * If provided, it means something can be dragged onto this component. Can be used in combination with srcData.
+     */
     dstData?: TDstData;
+    /** A pure function that gets permitted positions for a drop action */
     canAcceptDrop?(params: AcceptDropParams<TSrcData, TDstData>): DropPositionOptions | null;
+    /** Called when accepted drop action performed on this actor. Usually used to reorder and update items */
     onDrop?(data: DropParams<TSrcData, TDstData>): void;
 }

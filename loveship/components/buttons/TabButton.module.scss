@@ -18,7 +18,7 @@ $text-size-count: 24px;
 }
 
 .theme-dark {
-    @include tab-button-color(var(--sky), var(--night300), var(--sky));
+    @include tab-button-color(var(--sky-50), var(--night300), var(--sky-50));
 
     &:global(.uui-disabled) {
         @include tab-button-color(var(--gray60), var(--gray60), var(--gray60));

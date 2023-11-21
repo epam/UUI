@@ -9,6 +9,7 @@ export const FlexRow = React.forwardRef<HTMLDivElement, FlexRowProps>((props, re
         ref={ ref }
         onClick={ props.onClick ? (e) => !isEventTargetInsideClickable(e) && props.onClick(e) : undefined }
         className={ cx(
+            'uui-flex-row',
             props.cx,
             css.container,
             props.onClick && uuiMarkers.clickable,
