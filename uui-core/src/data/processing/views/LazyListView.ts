@@ -474,7 +474,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         } else if (!this.hasMoreRows) {
             // We are at the bottom of the list. Some children might still be loading, but that's ok - we'll re-count everything after we load them.
             rowsCount = this.rows.length;
-            totalCount = this.visibleTree.getTotalRecursiveCount();
+            totalCount = rootInfo.totalCount ?? this.visibleTree.getTotalRecursiveCount();
         } else {
             // We definitely have more rows to show below the last visible row.
             // We need to add at least 1 row below, so VirtualList or other component would not detect the end of the list, and query loading more rows later.

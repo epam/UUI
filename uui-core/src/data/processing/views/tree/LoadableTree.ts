@@ -250,9 +250,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
                 nodeInfo = { ...nodeInfo, count: newNodesCount };
             }
 
-            if (parent == null && response.totalCount != null && nodeInfo.totalCount !== response.totalCount) {
-                nodeInfo = { ...nodeInfo, totalCount: response.totalCount };
-            }
+            nodeInfo = { ...nodeInfo, totalCount: response.totalCount };
         }
 
         return {
