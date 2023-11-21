@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { RichTextView } from '@epam/promo';
 import css from './TsComment.module.scss';
+import { TComment } from '../sharedTypes';
 
 function formatComment(commentInput: string) {
     // Playground to modify and debug https://regex101.com/r/dd4hyi/1
@@ -21,8 +22,9 @@ function escapeLine(htmlStr: string) {
         .replace(/'/g, '&#39;');
 }
 
-export function TsComment(props: { text?: string[], keepBreaks: boolean, isCompact?: boolean }) {
-    const { text, keepBreaks, isCompact } = props;
+export function TsComment(props: { comment?: TComment, keepBreaks: boolean, isCompact?: boolean }) {
+    const { comment, keepBreaks, isCompact } = props;
+    const text = comment?.raw;
 
     const textStr = useMemo(() => {
         if (text && text.length > 0) {
