@@ -22,7 +22,8 @@ export class TextAreaDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="textArea-descriptions" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/textArea/Basic.example.tsx" />
-                <DocExample title="Advanced" path="./_examples/textArea/Advanced.example.tsx" />
+                <DocExample title="Height configuration" path="./_examples/textArea/HeightConfiguration.example.tsx" />
+                <DocExample title="With length limit" path="./_examples/textArea/MaxLengthCounter.example.tsx" />
             </>
         );
     }
