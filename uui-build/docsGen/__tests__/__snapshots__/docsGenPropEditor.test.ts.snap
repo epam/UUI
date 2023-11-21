@@ -28,7 +28,10 @@ exports[`docsGen:propEditor should convert prop editor for optional icon prop 1`
       "uid": 1,
       "name": "icon",
       "typeValue": {
-       "raw": "any"
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
       },
       "required": false
      }

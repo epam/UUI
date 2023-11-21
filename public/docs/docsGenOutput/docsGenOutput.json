@@ -1454,7 +1454,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -2842,7 +2842,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -3607,7 +3607,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -4069,7 +4069,7 @@
       "uid": 3,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
@@ -4550,7 +4550,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -5076,7 +5076,7 @@
       "uid": 9,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -5212,7 +5212,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
@@ -5373,7 +5373,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
@@ -5895,7 +5895,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -6167,7 +6167,7 @@
       "uid": 4,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -6389,7 +6389,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -7482,7 +7482,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
@@ -7736,7 +7736,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -7960,7 +7960,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -8238,7 +8238,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -8614,7 +8614,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -8870,7 +8870,7 @@
       "uid": 7,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -9092,7 +9092,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -10189,7 +10189,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -11299,7 +11299,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -11569,7 +11569,7 @@
       "uid": 2,
       "name": "title",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
@@ -11578,7 +11578,7 @@
       "uid": 3,
       "name": "subtitle",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
@@ -12040,7 +12040,7 @@
       "uid": 5,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -12232,7 +12232,7 @@
       "uid": 4,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -13523,7 +13523,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
@@ -13885,7 +13885,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -15157,7 +15157,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -15405,7 +15405,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -16006,7 +16006,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -16830,7 +16830,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -16981,7 +16981,7 @@
       "uid": 1,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
@@ -18730,7 +18730,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -20205,7 +20205,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
@@ -20297,7 +20297,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
@@ -20311,7 +20311,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
@@ -20342,7 +20342,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -20395,7 +20395,7 @@
       "uid": 15,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -22459,7 +22459,7 @@
       "uid": 12,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -22533,7 +22533,7 @@
       "uid": 2,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -22609,7 +22609,7 @@
       "uid": 2,
       "name": "title",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
@@ -22618,7 +22618,7 @@
       "uid": 3,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -22738,7 +22738,7 @@
       "uid": 2,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -22844,7 +22844,7 @@
       "uid": 1,
       "name": "component",
       "typeValue": {
-       "raw": "React.ComponentClass<any, any> | React.FunctionComponent<any>"
+       "raw": "React.ComponentType<any>"
       },
       "typeValueRef": "@types/react:ComponentType",
       "required": true
@@ -23589,7 +23589,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -23971,7 +23971,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -24934,7 +24934,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -25461,7 +25461,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -25862,7 +25862,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -26872,7 +26872,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -27393,7 +27393,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
@@ -27503,7 +27503,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -28187,7 +28187,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -28917,7 +28917,7 @@
       "uid": 2,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -29203,7 +29203,7 @@
       "uid": 16,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -29297,7 +29297,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -29632,7 +29632,7 @@
       "uid": 6,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -29841,7 +29841,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -30428,7 +30428,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -30687,7 +30687,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -31437,7 +31437,7 @@
       "uid": 6,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ButtonCoreProps",
@@ -32262,7 +32262,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -32567,7 +32567,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -32944,7 +32944,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:DataColumnProps",
@@ -33115,7 +33115,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:DataColumnProps",
@@ -33356,7 +33356,7 @@
       "uid": 2,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -33706,7 +33706,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -33835,7 +33835,7 @@
       "uid": 4,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@types/react:PropsWithChildren",
@@ -34326,7 +34326,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -34764,7 +34764,7 @@
       "uid": 15,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -37739,7 +37739,7 @@
       "uid": 129,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@types/react:DOMAttributes",
@@ -39897,7 +39897,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:LabeledInputCoreProps",
@@ -39995,7 +39995,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:LabeledInputCoreProps",
@@ -40010,7 +40010,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:LabeledInputCoreProps",
@@ -40042,7 +40042,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -40095,7 +40095,7 @@
       "uid": 17,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -40234,7 +40234,7 @@
       "uid": 6,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -40280,7 +40280,7 @@
       "uid": 2,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -40866,7 +40866,7 @@
       "uid": 13,
       "name": "tooltipTechInfo",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
@@ -41080,7 +41080,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -41598,7 +41598,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -41965,7 +41965,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -42226,7 +42226,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -42758,7 +42758,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -43319,7 +43319,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -44387,7 +44387,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -45699,7 +45699,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -45933,7 +45933,7 @@
       "uid": 3,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -46258,7 +46258,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -46537,7 +46537,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -46992,7 +46992,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -47126,7 +47126,7 @@
       "uid": 3,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -50260,7 +50260,7 @@
       "uid": 223,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@types/react:DOMAttributes",
       "required": false
@@ -52969,7 +52969,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -53289,7 +53289,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -53719,7 +53719,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -54075,7 +54075,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -54623,7 +54623,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -54967,7 +54967,7 @@
       "uid": 2,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -55181,7 +55181,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -55407,7 +55407,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:TooltipCoreProps",
@@ -55519,7 +55519,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -55899,7 +55899,7 @@
       "uid": 6,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -55962,7 +55962,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -56397,7 +56397,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -57487,7 +57487,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -58562,7 +58562,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -58964,7 +58964,7 @@
       "uid": 20,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -59058,7 +59058,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -59245,7 +59245,7 @@
       "uid": 6,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -59540,7 +59540,7 @@
       "uid": 6,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ButtonCoreProps",
@@ -60684,7 +60684,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -61845,7 +61845,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -62706,7 +62706,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -64048,7 +64048,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -64283,7 +64283,7 @@
       "uid": 9,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -64505,7 +64505,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -65499,7 +65499,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -66294,7 +66294,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -66598,7 +66598,7 @@
       "uid": 8,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -66934,7 +66934,7 @@
       "uid": 15,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -67207,7 +67207,7 @@
       "uid": 4,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -67924,10 +67924,7 @@
       "uid": 8,
       "name": "arrayBuffer",
       "typeValue": {
-       "raw": "() => Promise<ArrayBuffer>"
-      },
-      "editor": {
-       "type": "func"
+       "raw": "(() => Promise<ArrayBuffer>) | undefined"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
       "required": true
@@ -67936,10 +67933,7 @@
       "uid": 9,
       "name": "slice",
       "typeValue": {
-       "raw": "(start?: number | undefined, end?: number | undefined, contentType?: string | undefined) => Blob"
-      },
-      "editor": {
-       "type": "func"
+       "raw": "((start?: number | undefined, end?: number | undefined, contentType?: string | undefined) => Blob) | undefined"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
       "required": true
@@ -67948,10 +67942,7 @@
       "uid": 10,
       "name": "stream",
       "typeValue": {
-       "raw": "() => ReadableStream<Uint8Array>"
-      },
-      "editor": {
-       "type": "func"
+       "raw": "(() => ReadableStream<Uint8Array>) | undefined"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
       "required": true
@@ -67960,10 +67951,7 @@
       "uid": 11,
       "name": "text",
       "typeValue": {
-       "raw": "() => Promise<string>"
-      },
-      "editor": {
-       "type": "func"
+       "raw": "(() => Promise<string>) | undefined"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
       "required": true
@@ -68285,7 +68273,7 @@
       "uid": 5,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -68491,7 +68479,7 @@
       "uid": 5,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:IHasChildren",
       "required": false
@@ -69776,7 +69764,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:LabeledInputCoreProps",
@@ -69874,7 +69862,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:LabeledInputCoreProps",
@@ -69889,7 +69877,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:LabeledInputCoreProps",
@@ -69921,7 +69909,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -69974,7 +69962,7 @@
       "uid": 17,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -70312,7 +70300,7 @@
       "uid": 8,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ButtonCoreProps",
@@ -71081,7 +71069,7 @@
       "uid": 7,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ButtonCoreProps",
@@ -71661,7 +71649,7 @@
       "uid": 13,
       "name": "tooltipTechInfo",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-components:MainMenuProps",
@@ -72190,7 +72178,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -72739,7 +72727,7 @@
       "uid": 12,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -72961,7 +72949,7 @@
       "uid": 12,
       "name": "title",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ModalHeaderCoreProps",
@@ -72971,7 +72959,7 @@
       "uid": 13,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -73096,7 +73084,7 @@
       "uid": 2,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -73312,7 +73300,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -73586,7 +73574,7 @@
       "uid": 10,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -74070,7 +74058,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -74337,7 +74325,7 @@
       "uid": 2,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -74673,7 +74661,7 @@
       "uid": 10,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -74895,7 +74883,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -75427,7 +75415,7 @@
       "uid": 5,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -75649,7 +75637,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -76213,7 +76201,7 @@
       "uid": 122,
       "name": "noOptionsMessage",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
@@ -76556,7 +76544,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -78122,7 +78110,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -78458,7 +78446,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -78888,7 +78876,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -79148,7 +79136,7 @@
       "uid": 3,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -79824,7 +79812,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -80499,7 +80487,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -81011,7 +80999,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -81379,7 +81367,7 @@
       "uid": 8,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ButtonCoreProps",
@@ -81896,7 +81884,7 @@
       "uid": 6,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ButtonCoreProps",
@@ -82588,7 +82576,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -83284,7 +83272,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -83861,7 +83849,7 @@
       "uid": 5,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@types/react:PropsWithChildren",
@@ -83909,7 +83897,7 @@
       "uid": 2,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -84369,7 +84357,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -84631,7 +84619,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:TooltipCoreProps",
@@ -84743,7 +84731,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -85123,7 +85111,7 @@
       "uid": 6,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ButtonCoreProps",
@@ -85663,7 +85651,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -86036,7 +86024,7 @@
       "uid": 5,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:IHasChildren",
       "required": false
@@ -86344,7 +86332,7 @@
       "uid": 12,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ButtonCoreProps",
       "required": false
@@ -86843,7 +86831,7 @@
       "uid": 10,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ButtonCoreProps",
       "required": false
@@ -88351,7 +88339,7 @@
       "uid": 15,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -88720,7 +88708,7 @@
       "uid": 4,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -88773,7 +88761,7 @@
       "uid": 1,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:IHasChildren",
       "required": false
@@ -90004,7 +89992,7 @@
       "uid": 10,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ButtonCoreProps",
       "required": false
@@ -90590,7 +90578,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -90776,7 +90764,7 @@
       "uid": 4,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:IHasChildren",
       "required": false
@@ -91023,7 +91011,7 @@
       "uid": 2,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -91426,7 +91414,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -92235,7 +92223,7 @@
       "uid": 2,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:IHasChildren",
       "required": false
@@ -92568,7 +92556,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:TooltipCoreProps",
       "required": false
@@ -92678,7 +92666,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -93504,7 +93492,7 @@
       "uid": 5,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:IHasChildren",
       "required": false
@@ -93803,7 +93791,7 @@
       "uid": 13,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ButtonCoreProps",
       "required": false
@@ -94274,7 +94262,7 @@
       "uid": 9,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ButtonCoreProps",
       "required": false
@@ -95887,7 +95875,7 @@
       "uid": 15,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -96305,7 +96293,7 @@
       "uid": 5,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -96399,7 +96387,7 @@
       "uid": 4,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -97603,7 +97591,7 @@
       "uid": 10,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ButtonCoreProps",
       "required": false
@@ -98319,7 +98307,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
@@ -98505,7 +98493,7 @@
       "uid": 4,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:IHasChildren",
       "required": false
@@ -98752,7 +98740,7 @@
       "uid": 2,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -99138,7 +99126,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -99598,7 +99586,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -100376,7 +100364,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -101021,7 +101009,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -101254,7 +101242,7 @@
       "uid": 8,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
@@ -101706,7 +101694,7 @@
       "uid": 9,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ButtonCoreProps",
@@ -102206,7 +102194,7 @@
       "uid": 8,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ButtonCoreProps",
@@ -102838,7 +102826,7 @@
       "uid": 10,
       "name": "count",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ButtonCoreProps",
       "required": false
@@ -103644,7 +103632,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
@@ -104138,7 +104126,7 @@
       "uid": 2,
       "name": "children",
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:IHasChildren",
       "required": false
@@ -104474,7 +104462,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:TooltipCoreProps",
       "required": false
@@ -104584,7 +104572,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false

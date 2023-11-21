@@ -196,6 +196,92 @@ exports[`docsGen:union should convert union of two object types 1`] = `
 }
 `;
 
+exports[`docsGen:union should not expand ReactNode type of property 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TTestOptional": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTestOptional",
+     "nameFull": "TTestOptional"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "TTestOptional",
+     "print": [
+      "interface TTestOptional {",
+      "    testProp?: React.ReactNode;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "testProp",
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "test/test.tsx:TTestRequired": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTestRequired",
+     "nameFull": "TTestRequired"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "TTestRequired",
+     "print": [
+      "interface TTestRequired {",
+      "    testProp: React.ReactNode;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "testProp",
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@types/react:ReactNode": {
+   "summary": {
+    "module": "@types/react",
+    "typeName": {
+     "name": "ReactNode",
+     "nameFull": "ReactNode"
+    },
+    "src": "node_modules/@types/react/index.d.ts",
+    "exported": false
+   }
+  }
+ }
+}
+`;
+
 exports[`docsGen:union should not try to expand props if union contains an external type 1`] = `
 {
  "docsGenTypes": {
