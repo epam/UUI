@@ -11,7 +11,7 @@
     * Add `import '@epam/electric/styles.css'` to the root of your application
     * Add `import '@epam/assets/css/theme/theme_electric.css'` to the root of your application
     * Add `uui-theme-electric` class to the html body node
-    * Import all necessary components from `@epam/electic` package.
+    * Import all necessary components from `@epam/electric` package.
 * Added Dark theme for Loveship. To start using Dark Loveship theme you need to:
   * Add `import '@epam/assets/css/theme/theme_loveship_dark.css';` to the root of your application 
   * Add `uui-theme-loveship_dark` class to the html body node.
