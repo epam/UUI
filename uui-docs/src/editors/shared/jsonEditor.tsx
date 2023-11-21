@@ -4,7 +4,7 @@ import { getUseInputValueHook } from './utils/hooks';
 import { IPropDocEditor } from '../../types';
 import { withMultiUnknownExamplesComponent } from './examples/multiUnknownExamples';
 
-const JSonEditorExamples = withMultiUnknownExamplesComponent({ isValueNodeVisible: false, isVerticalItems: true });
+const JSonEditorExamples = withMultiUnknownExamplesComponent({ isValueNodeVisible: false });
 const valueToInput = (v: object) => (v ? JSON.stringify(v, undefined, 1) : '');
 const inputToValue = (i: string) => jsonParse(i);
 const validateInput = (i: string) => {
@@ -32,7 +32,7 @@ const useInputValue = getUseInputValueHook<object, string>({
 export function JsonEditor(props: IPropDocEditor<object>) {
     const inputProps = useInputValue({ ...props });
 
-    const size = Math.max(inputProps.input?.split('\n').length, 3);
+    const size = Math.max(inputProps.input?.split('\n').length, 2);
     const input = (
         <TextArea
             placeholder="JSON value"

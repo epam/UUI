@@ -48,16 +48,16 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
         propName: TProp,
         isDefaultExample: (example: PropExampleObject<TProps[TProp]>, index: number) => boolean,
     ): void {
-        const prevColor = this.getPropDetails(propName);
-        if (Array.isArray(prevColor.examples)) {
-            const prevExamples = prevColor.examples as PropExampleObject<TProps[TProp]>[];
-            prevColor.examples = prevExamples.map(({ isDefault, ...ex }, index) => {
+        const prevPropDetails = this.getPropDetails(propName);
+        if (Array.isArray(prevPropDetails.examples)) {
+            const prevExamples = prevPropDetails.examples as PropExampleObject<TProps[TProp]>[];
+            prevPropDetails.examples = prevExamples.map(({ isDefault, ...ex }, index) => {
                 if (isDefaultExample(ex, index)) {
                     return { ...ex, isDefault: true };
                 }
                 return ex;
             });
-            this.merge(propName, prevColor);
+            this.merge(propName, prevPropDetails);
         }
     }
 

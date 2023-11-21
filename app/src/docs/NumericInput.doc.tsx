@@ -17,15 +17,19 @@ export class NumericInputDoc extends BaseDocsBlock {
             [TSkin.UUI4_promo]: { type: '@epam/uui:NumericInputProps', component: promo.NumericInput },
         },
         doc: (doc: DocBuilder<uui.NumericInputProps>) => {
-            doc.merge('value', { examples: [{ value: 0, isDefault: true }] });
+            doc.merge('value', { examples: [{ value: 0, isDefault: true }, 123, 123.99] });
             doc.merge('size', { defaultValue: '36' });
+            doc.merge('step', { examples: [5, 10, 100] });
+            doc.merge('min', { examples: [-10, 0, 10] });
+            doc.merge('max', { examples: [20, 50, 500] });
             doc.merge('mode', { defaultValue: 'form' });
             doc.merge('formatOptions', {
                 examples: [
-                    { name: '{ minimumFractionDigits: 2, maximumFractionDigits: 2 }', value: { minimumFractionDigits: 2, maximumFractionDigits: 2 } },
-                    { name: '{ maximumFractionDigits: 2 }', value: { maximumFractionDigits: 2 } },
-                    { name: '{ minimumFractionDigits: 2 }', value: { minimumFractionDigits: 2 } },
+                    { name: 'fraction = 2', value: { minimumFractionDigits: 2, maximumFractionDigits: 2 } },
+                    { name: 'fraction <= 2', value: { maximumFractionDigits: 2 } },
+                    { name: 'fraction >= 2', value: { minimumFractionDigits: 2 } },
                 ],
+                editorType: 'JsonEditor',
             });
         },
     };

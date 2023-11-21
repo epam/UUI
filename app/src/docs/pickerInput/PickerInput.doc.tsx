@@ -21,7 +21,12 @@ export class PickerInputDoc extends BaseDocsBlock {
             doc.merge('renderToggler', { examples: renderTogglerExamples });
             doc.merge('getRowOptions', { examples: [{ name: 'Disabled rows', value: () => ({ isDisabled: true, isSelectable: false }) }] });
             doc.merge('size', { defaultValue: '36' });
+            doc.setDefaultPropExample('valueType', (e) => {
+                return e.value === 'id';
+            });
             doc.merge('editMode', { defaultValue: 'dropdown' });
+            doc.merge('minCharsToSearch', { examples: [0, 1, 3, 5] });
+            doc.merge('maxItems', { examples: [0, 1, 5, 10, 50, 100, 1000] });
             doc.merge('isFoldedByDefault', { examples: [{ value: () => false, name: '(item) => false' }] });
             doc.merge('disableClear', { defaultValue: false });
             doc.merge('dropdownHeight', { defaultValue: 300 });

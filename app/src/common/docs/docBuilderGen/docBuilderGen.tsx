@@ -1,11 +1,9 @@
-import {
-    DocBuilder, IPropSamplesCreationContext, PropDoc,
-    PropExample, TSkin, TDocConfig,
-} from '@epam/uui-docs';
+import { DocBuilder, TSkin, TDocConfig } from '@epam/uui-docs';
 import { loadDocsGenType } from '../../apiReference/dataHooks';
 import { docCommonOverride } from './docOverrides/docCommonOverride';
 import { buildPropDetails, buildPropFallbackDetails } from './propDetailsBuilders/build';
 import { TTypeProp } from '../../apiReference/sharedTypes';
+import { mergeUnionTypeDuplicatePropsExamples } from './propDetailsBuilders/shared/unionPropsUtil';
 
 /**
  * Generates DocBuilder using given type metadata & any optional overrides
@@ -57,38 +55,4 @@ export async function docBuilderGen(params: { config: TDocConfig, skin: TSkin })
 
         return docs;
     }
-}
-
-/**
- * It's applicable to union types only
- * Try to combine examples of duplicate props together, if possible
- * @param params
- */
-function mergeUnionTypeDuplicatePropsExamples(params: { prevProp: Omit<PropDoc<any, any>, 'name'>, nextProp: Omit<Partial<PropDoc<any, any>>, 'name'> }) {
-    const { prevProp, nextProp } = params;
-
-    return (ctx: IPropSamplesCreationContext<any>) => {
-        const normalizeExamples = (p: Partial<PropDoc<any, any>>) => {
-            return (typeof p.examples === 'function' ? p.examples(ctx) : p.examples) as PropExample<any>[];
-        };
-        const getExampleValue = (e: PropExample<any>) => {
-            return e.hasOwnProperty('value') ? e.value : e;
-        };
-        const prevExamples = normalizeExamples(prevProp);
-        const newExamples = normalizeExamples(nextProp);
-        const all: PropExample<any>[] = prevExamples.concat(newExamples);
-        const isEqual = (e1: PropExample<any>, e2: PropExample<any>) => {
-            if (typeof e1.value === 'function' && typeof e2.value === 'function') {
-                return e1.name === e2.name;
-            }
-            return getExampleValue(e1) === getExampleValue(e2);
-        };
-        return all.reduce((acc, item) => {
-            const found = acc.find((inAcc: any) => isEqual(inAcc, item));
-            if (!found) {
-                acc.push(item);
-            }
-            return acc;
-        }, []);
-    };
 }

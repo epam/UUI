@@ -20,7 +20,7 @@ export class NotificationCardDoc extends BaseDocsBlock {
             doc.merge('children', {
                 examples: [
                     { value: getChild('Warning notification'), name: 'Short', isDefault: true },
-                    { value: getChild('Warning notification with some buttons and long long text with blaaaaaa blaaaaaaaaaa'), name: 'Long' },
+                    { value: getChild('Warning notification with some buttons and long long long long long text with blaaaaaa blaaaaaaaaaa'), name: 'Long' },
                 ],
             });
             const getAction = (name: string) => ({ name, action: () => {} });

@@ -21,7 +21,7 @@ export class AlertDoc extends BaseDocsBlock {
             doc.merge('children', {
                 examples: [
                     { name: 'Short', value: <uui.Text size="30">Notification Text</uui.Text>, isDefault: true },
-                    { name: 'Long', value: <uui.Text size="30">Notification with some buttons and long long text</uui.Text> },
+                    { name: 'Long', value: <uui.Text size="30">Notification with some buttons and long long long long long long long long long long long text</uui.Text> },
                 ],
             });
             doc.merge('actions', {

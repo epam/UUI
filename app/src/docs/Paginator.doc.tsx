@@ -18,8 +18,8 @@ export class PaginatorDoc extends BaseDocsBlock {
             [TSkin.UUI4_promo]: { type: '@epam/uui-components:PaginatorProps', component: promo.Paginator },
         },
         doc: (doc: DocBuilder<uuiComponents.PaginatorProps>) => {
-            doc.merge('totalPages', { examples: [{ value: 10, isDefault: true }] });
-            doc.merge('value', { examples: [{ value: 5, isDefault: true }] });
+            doc.merge('totalPages', { examples: [5, 8, { value: 10, isDefault: true }, 100, 1000] });
+            doc.merge('value', { examples: [1, { value: 5, isDefault: true }, 6, 8], editorType: 'NumEditor' });
         },
     };
 
