@@ -16,7 +16,7 @@ export class CountIndicatorDoc extends BaseDocsBlock {
             [TSkin.UUI4_promo]: { type: '@epam/promo:CountIndicatorProps', component: promo.CountIndicator },
         },
         doc: (doc: DocBuilder<uui.CountIndicatorProps | promo.CountIndicatorProps | loveship.CountIndicatorProps>) => {
-            doc.setDefaultPropExample('color', (example) => example.value === 'neutral');
+            doc.setDefaultPropExample('color', (_, index) => index === 0);
         },
     };
 
