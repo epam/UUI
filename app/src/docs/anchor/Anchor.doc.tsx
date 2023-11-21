@@ -1,0 +1,38 @@
+import * as React from 'react';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import * as uui from '@epam/uui';
+import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
+import { AnchorProps } from '@epam/uui-components';
+import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
+import { CardExample } from './cardExample';
+
+export class AnchorDoc extends BaseDocsBlock {
+    title = 'Anchor';
+
+    override config: TDocConfig = {
+        name: 'Anchor',
+        bySkin: {
+            [TSkin.UUI3_loveship]: { type: '@epam/uui-components:AnchorProps', component: loveship.Anchor },
+            [TSkin.UUI4_promo]: { type: '@epam/uui-components:AnchorProps', component: promo.Anchor },
+            [TSkin.UUI]: { type: '@epam/uui-components:AnchorProps', component: uui.Anchor },
+        },
+        doc: (doc: DocBuilder<AnchorProps>) => {
+            doc.setDefaultPropExample('href', (_, index) => index === 0);
+            doc.merge('children', {
+                examples: [{ name: 'card', value: <CardExample />, isDefault: true }, { name: 'text', value: 'Hello, World!' }],
+            });
+        },
+    };
+
+    renderContent() {
+        return (
+            <>
+                <EditableDocContent fileName="anchor-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="With block nodes" path="./_examples/anchor/Basic.example.tsx" />
+                <DocExample title="In text" path="./_examples/anchor/AnchorInText.example.tsx" />
+            </>
+        );
+    }
+}

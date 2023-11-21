@@ -1,20 +1,43 @@
 import * as React from 'react';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
 import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
+    EditableDocContent, DocExample, BaseDocsBlock,
 } from '../common';
 
 export class TooltipDoc extends BaseDocsBlock {
     title = 'Tooltip';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:TooltipProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/overlays/tooltip.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/overlays/tooltip.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/overlays/tooltip.props.tsx',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'Tooltip',
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:TooltipProps', component: uui.Tooltip },
+            [TSkin.UUI3_loveship]: { type: '@epam/loveship:TooltipProps', component: loveship.Tooltip },
+            [TSkin.UUI4_promo]: { type: '@epam/promo:TooltipProps', component: promo.Tooltip },
+        },
+        doc: (doc: DocBuilder<uui.TooltipProps | loveship.TooltipProps | promo.TooltipProps>) => {
+            doc.merge('children', {
+                examples: [{ value: <uui.Button fill="solid" size="36" caption="Button" />, name: 'Solid button', isDefault: true }],
+            });
+            doc.merge('color', { editorType: 'MultiUnknownEditor' });
+            doc.merge('value', { isRequired: false });
+            doc.merge('content', {
+                examples: [{ value: 'Some text', isDefault: true }, { value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa', name: 'long text' }],
+                editorType: 'StringWithExamplesEditor',
+            });
+            doc.merge('offset', {
+                examples: [
+                    { name: '[50, 50]', value: [50, 50] },
+                    { name: '[50, 0]', value: [50, 0] },
+                    { name: '[0, 50]', value: [0, 50] },
+                    { name: '() => ([100, 100])', value: () => ([100, 100]) },
+                ],
+            });
+            doc.merge('modifiers', { examples: [{ name: "[{ name: 'offset', options: { offset: [0, 6] } }]", value: [{ name: 'offset', options: { offset: [0, 6] } }] }] });
+        },
+    };
 
     renderContent() {
         return (

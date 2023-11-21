@@ -1,20 +1,35 @@
 import * as React from 'react';
-import {
-    BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI3, UUI4, UUI,
-} from '../common';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class MultiSwitchDoc extends BaseDocsBlock {
     title = 'MultiSwitch';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:MultiSwitchProps');
+    override config: TDocConfig = {
+        name: 'MultiSwitch',
+        contexts: [TDocContext.Default, TDocContext.Form],
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:MultiSwitchProps', component: uui.MultiSwitch },
+            [TSkin.UUI3_loveship]: { type: '@epam/loveship:MultiSwitchProps', component: loveship.MultiSwitch },
+            [TSkin.UUI4_promo]: { type: '@epam/promo:MultiSwitchProps', component: promo.MultiSwitch },
+        },
+        doc: (doc: DocBuilder<uui.MultiSwitchProps<any>>) => {
+            doc.merge('size', { defaultValue: '36' });
+            doc.merge('value', { editorType: 'JsonView', examples: [] });
 
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/inputs/multiSwitch.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/multiSwitch.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/inputs/multiSwitch.props.tsx',
-        };
-    }
+            const contextSwitch = [{ id: 1, caption: 'Form' }, { id: 2, caption: 'Default' }, { id: 3, caption: 'Resizable' }];
+            const toggleSwitch = [{ id: 1, caption: 'On' }, { id: 2, caption: 'Off' }];
+            doc.merge('items', {
+                examples: [
+                    { name: JSON.stringify(contextSwitch), value: contextSwitch, isDefault: true },
+                    { name: JSON.stringify(toggleSwitch), value: toggleSwitch },
+                ],
+            });
+        },
+    };
 
     renderContent() {
         return (

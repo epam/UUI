@@ -3,7 +3,7 @@ import { cx } from '@epam/uui-core';
 import {
     FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, RichTextView, Text, Tooltip,
 } from '@epam/promo';
-import { BaseDocsBlock, UUI4 } from '../../common/docs';
+import { BaseDocsBlock } from '../../common/docs';
 import { getQuery } from '../../helpers';
 import css from './DownloadsDoc.module.scss';
 import { ReactComponent as Artbord } from '../../icons/artboard.svg';
@@ -15,6 +15,7 @@ import { ReactComponent as DownloadIcon } from '../../icons/download_icon_set.sv
 import { ReactComponent as LockIcon } from '@epam/assets/icons/common/action-lock-fill-18.svg';
 import { ReactComponent as DownloadFileIcon } from '@epam/assets/icons/common/file-download-18.svg';
 import { ReactComponent as ContentLinkIcon } from '@epam/assets/icons/common/content-link-18.svg';
+import { TSkin } from '@epam/uui-docs';
 
 const libraries = {
     UUI3: [
@@ -113,7 +114,7 @@ export class DownloadsDoc extends BaseDocsBlock {
             <FlexRow>
                 <div className={ css.title }>{this.title}</div>
                 <FlexSpacer />
-                {this.renderMultiSwitch()}
+                {this.renderSkinSwitcher()}
             </FlexRow>
         );
     }
@@ -151,7 +152,7 @@ export class DownloadsDoc extends BaseDocsBlock {
     }
 
     renderContent() {
-        const isUUI4Skin = getQuery('skin') === UUI4;
+        const isUUI4Skin = getQuery('skin') === TSkin.UUI4_promo;
         return (
             <>
                 <FlexRow alignItems="top" cx={ css.headerRow }>
