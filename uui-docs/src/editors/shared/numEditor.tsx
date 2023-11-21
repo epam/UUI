@@ -1,9 +1,10 @@
 import React from 'react';
-import { NumericInput } from '@epam/uui';
+import { FlexCell, NumericInput } from '@epam/uui';
 import { IPropDocEditor } from '../../types';
+import { MultiUnknownExamples } from './examples/multiUnknownExamples';
 
 export function NumEditor(props: IPropDocEditor<number>) {
-    return (
+    const input = (
         <NumericInput
             { ...props }
             size="24"
@@ -14,4 +15,17 @@ export function NumEditor(props: IPropDocEditor<number>) {
             }
         />
     );
+    if (props.examples.length > 0) {
+        return (
+            <>
+                <FlexCell minWidth={ 150 }>
+                    <MultiUnknownExamples { ...props } />
+                </FlexCell>
+                <FlexCell minWidth={ 150 }>
+                    {input}
+                </FlexCell>
+            </>
+        );
+    }
+    return input;
 }

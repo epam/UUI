@@ -19,7 +19,12 @@ import {
 } from '@epam/uui-core';
 import { getCommonDoc } from './shared/reusableDocs';
 import { TPropDocBuilder } from '../docBuilderGenTypes';
-import { getRawPropsExamples, getReactRefExamples, getTextExamplesNoUndefined } from './shared/reusableExamples';
+import {
+    getRawPropsExamples,
+    getReactNodeExamples,
+    getReactRefExamples,
+    getTextExamplesNoUndefined,
+} from './shared/reusableExamples';
 
 const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (skin?: TSkin) => DocBuilder<any> } = {
     '@epam/uui-core:ButtonCoreProps': () => {
@@ -76,19 +81,34 @@ const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (skin?: TSkin) => 
         .prop('isInvalid', { examples: [true] })
         .prop('validationProps', {
             editorType: 'JsonEditor',
-            examples: [],
+            examples: [
+                {
+                    name: 'Inner props validation',
+                    value: {
+                        prop_1: { isInvalid: true, validationMessage: 'Msg' },
+                        prop_2: { isInvalid: false },
+                    },
+                },
+            ],
         })
         .prop('validationMessage', {
-            examples: [
-                { name: 'String', value: 'This field is mandatory' },
-                { name: 'ReactElement', value: (<b>This field is mandatory</b>) },
-            ],
+            examples: getReactNodeExamples('This field is mandatory'),
         }),
     '@epam/uui-core:IAnalyticableClick': () => new DocBuilder<IAnalyticableClick>({ name: '' })
         .prop('clickAnalyticsEvent', {
             examples: [
-                { value: { name: 'test' }, name: '{ name: "test" }' },
+                { name: 'simple', value: { name: 'Some name' } },
+                {
+                    name: 'complex',
+                    value: {
+                        name: 'Some name',
+                        otherProp1: 'test 1',
+                        otherProp2: 'test 2',
+
+                    },
+                },
             ],
+            editorType: 'JsonEditor',
         }),
     '@epam/uui-core:ICanRedirect': () => iCanRedirectDoc,
     '@epam/uui-core:PickerBaseOptions': () => getCommonDoc('pickerBaseOptionsDoc'),

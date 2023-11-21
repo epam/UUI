@@ -1,13 +1,14 @@
-import React from 'react';
 import { TPropEditorType } from '../../../apiReference/sharedTypes';
 import { getCommonDoc, getDocBySkin } from './shared/reusableDocs';
 import { TPropDocBuilder } from '../docBuilderGenTypes';
-import { getTextExamplesNoUndefined } from './shared/reusableExamples';
+import { getComponentExamples, getTextExamplesNoUndefined } from './shared/reusableExamples';
 
 const COLOR_PROP_NAMES = ['color'];
-const SIMPLE_STRING_EDITOR_PROP_NAMES = ['key', 'id', 'settingsKey'];
+const SIMPLE_STRING_EDITOR_PROP_NAMES = ['key', 'id', 'settingsKey', 'htmlFor'];
 const ICON_PROP_NAMES = [
     'icon',
+    'upIcon',
+    'downIcon',
     'infoIcon',
     'indeterminateIcon',
     'clearIcon',
@@ -24,10 +25,7 @@ const BY_EDITOR_TYPE: Record<TPropEditorType, TPropDocBuilder> = {
         if (ICON_PROP_NAMES.indexOf(prop.name) !== -1) {
             return getCommonDoc('iconWithInfoDoc').getPropDetails('icon');
         }
-        const SampleReactComponents = {
-            SimpleComponent: () => (<div>ReactComponent</div>),
-        };
-        return { examples: [SampleReactComponents.SimpleComponent] };
+        return { examples: getComponentExamples() };
     },
     [TPropEditorType.number]: () => {
         return { editorType: 'NumEditor', examples: [] };

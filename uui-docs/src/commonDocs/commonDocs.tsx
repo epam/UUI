@@ -6,9 +6,20 @@ import {
 import { DocBuilder } from '../DocBuilder';
 
 export const iCanRedirectDoc = new DocBuilder<ICanRedirect>({ name: 'Icon' })
-    .prop('link', { examples: [{ name: '/home', value: { pathname: '/home' } }] })
+    .prop('link', {
+        examples: [
+            { name: '/home', value: { pathname: '/home' } },
+            { name: '/demo', value: { pathname: '/demo', query: { id: 'form' } } },
+        ],
+        editorType: 'LinkEditor',
+    })
     .prop('isLinkActive', { examples: [true] })
-    .prop('href', { examples: ['https://uui.epam.com/', 'https://google.com'] })
+    .prop('href', {
+        examples: [
+            { name: 'EPAM', value: 'https://epam.com' }, { name: 'Google', value: 'https://google.com' },
+        ],
+        editorType: 'StringWithExamplesEditor',
+    })
     .prop('target', { examples: ['_blank'] });
 
 export const iHasLabelDoc = new DocBuilder<IHasLabel>({ name: 'Label' }).prop('label', {

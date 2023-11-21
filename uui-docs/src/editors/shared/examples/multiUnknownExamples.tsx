@@ -4,7 +4,7 @@ import { isPropValueEmpty, stringifyUnknown } from '../utils/propEditorUtils';
 import { IPropDocEditor } from '../../../types';
 
 export function MultiUnknownExamples(props: IPropDocEditor) {
-    return <MultiUnknownExamplesBase propDeProps={ props } isValueNodeVisible={ true } isVerticalItems={ false } />;
+    return <MultiUnknownExamplesBase propDeProps={ props } isValueNodeVisible={ true } />;
 }
 export function withMultiUnknownExamplesComponent(params: IMultiUnknownExamplesCustomization) {
     return function WithMultiUnknownExamplesComponent(props: IPropDocEditor) {
@@ -14,7 +14,6 @@ export function withMultiUnknownExamplesComponent(params: IMultiUnknownExamplesC
 
 interface IMultiUnknownExamplesCustomization {
     isValueNodeVisible: boolean,
-    isVerticalItems: boolean
 }
 
 function MultiUnknownExamplesBase(props: { propDeProps: IPropDocEditor } & IMultiUnknownExamplesCustomization) {
@@ -33,7 +32,12 @@ function MultiUnknownExamplesBase(props: { propDeProps: IPropDocEditor } & IMult
                     fill="solid"
                     size="24"
                     caption={ str }
-                    rawProps={ { style: { wordBreak: 'break-word', minWidth: '70px' } } }
+                    rawProps={ {
+                        style: {
+                            wordBreak: 'break-word',
+                            minWidth: '70px',
+                        },
+                    } }
                 />
             </Tooltip>
         );
@@ -47,7 +51,11 @@ function MultiUnknownExamplesBase(props: { propDeProps: IPropDocEditor } & IMult
                 onValueChange={ onExampleIdChange }
                 value={ exampleId }
                 size="24"
-                rawProps={ { style: { flexWrap: 'wrap', ...(props.isVerticalItems ? { flexDirection: 'column' } : {}) } } }
+                rawProps={ {
+                    style: {
+                        flexWrap: 'wrap',
+                    },
+                } }
             />
         </React.Fragment>
     );
