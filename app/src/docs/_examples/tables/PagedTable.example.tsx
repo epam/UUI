@@ -8,7 +8,7 @@ import isEqual from 'lodash.isequal';
 export default function PagedTable() {
     const svc = useUuiContext();
     const [state, setState] = useState<DataSourceState>({
-        page: 1, pageSize: 5,
+        page: 1, pageSize: 10,
     });
 
     const setTableState = useCallback((newState: DataSourceState) => {
