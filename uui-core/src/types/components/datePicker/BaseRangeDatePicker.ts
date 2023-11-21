@@ -8,13 +8,19 @@ import * as React from 'react';
 import { CX } from '../../objects';
 
 export interface RangeDatePickerValue {
+    /** RangeDatePicker 'from' value */
     from: string | null;
+    /** RangeDatePicker 'to' value */
     to: string | null;
 }
 
+export type RangeDatePickerInputType = 'from' | 'to';
+
 export type RangeDatePickerPresets = {
     [key: string]: {
+        /** Name of the preset to display in rangeDatePicker body */
         name: ReactNode;
+        /** A pure function that gets range value which will be applied by preset selection */
         getRange: () => RangeDatePickerPresetValue;
     };
 };
@@ -67,12 +73,16 @@ export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue
 
     /** rawProps as HTML attributes */
     rawProps?: {
+        /** Any HTML attributes (native or 'data-') to put on 'from' input */
         from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        /** Any HTML attributes (native or 'data-') to put on 'to' input */
         to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        /** Any HTML attributes (native or 'data-') to put on date picker body */
         body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
 
-    /** Styles for input and body components in RangeDatePicker */
+    /** CSS class(es) to put on rangeDatePicker input */
     inputCx?: CX;
+    /** CSS class(es) to put on datepicker body */
     bodyCx?: CX;
 }
