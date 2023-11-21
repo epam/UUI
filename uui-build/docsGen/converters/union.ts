@@ -3,18 +3,25 @@ import { TConvertable } from '../types/types';
 import { NodeUtils } from './converterUtils/nodeUtils';
 import { TypeUtils } from './converterUtils/typeUtils';
 import { ConvertableUtils } from './converterUtils/convertableUtils';
-import { TTypeValue } from '../types/sharedTypes';
+import { TPropEditor, TTypeValue } from '../types/sharedTypes';
 import { Type } from 'ts-morph';
+import { PropEditorUtils } from './converterUtils/propEditorUtils';
 
 export class Union extends Converter {
     override isSupported(nodeOrSymbol: TConvertable) {
-        return ConvertableUtils.getType(nodeOrSymbol).isUnion();
+        const type = ConvertableUtils.getType(nodeOrSymbol);
+        return type.isUnion();
+    }
+
+    override convertPropEditor(params: { convertable: TConvertable }): TPropEditor | undefined {
+        const { convertable } = params;
+        const type = ConvertableUtils.getType(convertable);
+        return PropEditorUtils.getPropEditorByUnionType(type);
     }
 
     public override convertToTypeValue(params: { convertable: TConvertable, isProperty: boolean }): TTypeValue {
         const { convertable, isProperty } = params;
         const type = ConvertableUtils.getType(convertable);
-        const node = ConvertableUtils.getNode(convertable);
         const types = type.getUnionTypes();
         const rawTypesArr = types.reduce<(Type | string)[]>((acc, t) => {
             const prev = acc[acc.length - 1];
@@ -31,6 +38,7 @@ export class Union extends Converter {
             return acc;
         }, []);
 
+        const node = ConvertableUtils.getNode(convertable);
         return {
             raw: rawTypesArr.map((t) => {
                 if (typeof t === 'string') {
