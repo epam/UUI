@@ -1,20 +1,28 @@
 import * as React from 'react';
-import {
-    BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI3, UUI4,
-} from '../common';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class RatingDoc extends BaseDocsBlock {
     title = 'Rating';
 
-    // TODO: no such component in "@epam/uui"
-    override getDocsGenType = (): TDocsGenType => ('@epam/loveship:RatingProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/inputs/rating.props.ts',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/rating.props.ts',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'Rating',
+        contexts: [TDocContext.Default, TDocContext.Form],
+        bySkin: {
+            [TSkin.UUI3_loveship]: { type: '@epam/loveship:RatingProps', component: loveship.Rating },
+            [TSkin.UUI4_promo]: { type: '@epam/promo:RatingProps', component: promo.Rating },
+        },
+        doc: (doc: DocBuilder<promo.RatingProps | loveship.RatingProps>) => {
+            doc.merge('value', {
+                editorType: 'MultiUnknownEditor',
+                examples: [
+                    0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5,
+                ],
+            });
+        },
+    };
 
     renderContent() {
         return (

@@ -1,18 +1,43 @@
 import * as React from 'react';
-import { BaseDocsBlock, EditableDocContent, DocExample, UUI4, UUI3, UUI, TDocsGenType } from '../common/docs';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common/docs';
+import { renderTogglerExamples } from './pickerInputExamples';
 
 export class PickerInputDoc extends BaseDocsBlock {
     title = 'Picker Input';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:CompletePickerInputProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/pickers/pickerInput.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/pickers/pickerInput.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/pickers/pickerInput.props.tsx',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'PickerInput',
+        contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Table, TDocContext.Form],
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:CompletePickerInputProps', component: uui.PickerInput },
+            [TSkin.UUI3_loveship]: { type: '@epam/uui:CompletePickerInputProps', component: loveship.PickerInput },
+            [TSkin.UUI4_promo]: { type: '@epam/uui:CompletePickerInputProps', component: promo.PickerInput },
+        },
+        doc: (doc: DocBuilder<uui.CompletePickerInputProps<any, any>>) => {
+            doc.merge('renderToggler', { examples: renderTogglerExamples });
+            doc.merge('getRowOptions', { examples: [{ name: 'Disabled rows', value: () => ({ isDisabled: true, isSelectable: false }) }] });
+            doc.merge('size', { defaultValue: '36' });
+            doc.merge('editMode', { defaultValue: 'dropdown' });
+            doc.merge('isFoldedByDefault', { examples: [{ value: () => false, name: '(item) => false' }] });
+            doc.merge('disableClear', { defaultValue: false });
+            doc.merge('dropdownHeight', { defaultValue: 300 });
+            doc.merge('minBodyWidth', { defaultValue: 360 });
+            doc.merge('iconPosition', { defaultValue: 'left' });
+            doc.merge('value', {
+                examples: [
+                    { name: 'undefined', value: undefined }, { name: '1', value: 1 }, { name: '[1, 2]', value: [1, 2] }, { name: '{ id: 1, name: "Test"}', value: { id: 1, name: 'Test' } }, { name: '[{ id: 1, name: "Test"}]', value: [{ id: 1, name: 'Test' }] },
+                ],
+            });
+            doc.merge('filter', {
+                examples: [{ name: "{ country: 'UK' }", value: { country: 'UK' } }],
+                remountOnChange: true,
+            });
+        },
+    };
 
     renderContent(): React.ReactNode {
         return (
