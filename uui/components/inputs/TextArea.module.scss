@@ -24,6 +24,7 @@
     --uui-text_area-border-error: var(--uui-error-50);
     --uui-text_area-border-disabled: var(--uui-control-border-disabled);
     --uui-text_area-placeholder: var(--uui-control-placeholder);
+    --uui-text_area-placeholder-disabled: var(--uui-control-placeholder-disabled);
     --uui-text_area-text: var(--uui-control-text);
     --uui-text_area-text-disabled: var(--uui-control-text-disabled);
 
@@ -65,7 +66,7 @@
             pointer-events: none;
 
             &::placeholder {
-                color: var(--uui-text_area-placeholder);
+                color: var(--uui-text_area-placeholder-disabled);
             }
         }
     }
@@ -146,7 +147,7 @@
                 }
 
                 &::placeholder {
-                    color: var(--uui-text_area-placeholder);
+                    color: var(--uui-text_area-placeholder-disabled);
                 }
             }
         }
