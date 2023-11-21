@@ -9,6 +9,9 @@ import { PropEditorUtils } from './converterUtils/propEditorUtils';
 
 export class Union extends Converter {
     override isSupported(nodeOrSymbol: TConvertable) {
+        if (ConvertableUtils.isExternal(nodeOrSymbol)) {
+            return false;
+        }
         const type = ConvertableUtils.getType(nodeOrSymbol);
         return type.isUnion();
     }
