@@ -4,13 +4,14 @@ import { getTextClasses, TextSettings } from '../../helpers';
 import { Text as uuiText, TextProps as UuiTextProps } from '@epam/uui-components';
 import css from './Text.module.scss';
 
-export type TextColor = 'info' | 'warning' | 'error' | 'success' | 'brand' | 'primary' | 'secondary' | 'disabled' | 'contrast' | 'white';
-export const allTextColors: TextColor[] = ['info', 'warning', 'error', 'success', 'brand', 'primary', 'secondary', 'disabled', 'contrast', 'white'];
+export type TextColor = 'info' | 'warning' | 'error' | 'success' | 'brand' | 'primary' | 'secondary' | 'disabled' | 'white';
+export const allTextColors: TextColor[] = ['info', 'warning', 'error', 'success', 'brand', 'primary', 'secondary', 'disabled', 'white'];
 
 export interface TextMods extends TextSettings {
-    size?: types.TextSize | '42';
-    font?: types.FontStyle;
     color?: TextColor;
+    fontWeight?: types.FontWeight;
+    fontStyle?: types.FontStyle;
+    size?: types.TextSize | '42';
 }
 
 export type TextProps = UuiTextProps & TextMods;
@@ -28,8 +29,9 @@ function applyTextMods(mods: TextMods) {
     return [
         css.root,
         'uui-text',
-        `uui-font-${mods.font || 'regular'}`,
         `uui-color-${mods.color || 'primary'}`,
+        `uui-font-weight-${mods.fontWeight || '400'}`,
+        `uui-font-style-${mods.fontStyle || 'normal'}`,
         'uui-typography',
     ].concat(textClasses);
 }

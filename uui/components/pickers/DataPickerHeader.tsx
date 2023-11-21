@@ -15,7 +15,7 @@ const DataPickerHeaderImpl: React.FC<DataPickerHeaderProps> = (props) => {
 
     return (
         <FlexRow alignItems="center" borderBottom cx={ css.header }>
-            <Text size="48" font="semibold">{title}</Text>
+            <Text size="48" fontWeight="600">{title}</Text>
             <IconButton icon={ CloseIcon } onClick={ () => props.close?.() } cx={ css.close } />
         </FlexRow>
     );

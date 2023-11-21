@@ -17,6 +17,7 @@ export type GroupedColumnsType = {
     hidden: ColumnsConfigurationRowProps[];
     displayedUnpinned: ColumnsConfigurationRowProps[];
     displayedPinned: ColumnsConfigurationRowProps[];
+    displayedPinnedRight: ColumnsConfigurationRowProps[];
 };
 
 export interface GroupedDataColumnProps extends DataColumnProps {

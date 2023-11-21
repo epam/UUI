@@ -8,7 +8,7 @@ export default function HandleStateByYourselfExample() {
     return (
         <FlexCell width="100%">
             <Accordion title="Accordion title" mode="block" value={ value } onValueChange={ onValueChange }>
-                <Text fontSize="16" font="regular">
+                <Text fontSize="16">
                     {demoData.loremIpsum}
                 </Text>
             </Accordion>

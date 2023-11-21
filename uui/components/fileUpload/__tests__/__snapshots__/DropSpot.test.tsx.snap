@@ -29,7 +29,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
         />
       </div>
       <div
-        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-24 font-size-14 v-padding-0 container"
+        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 container"
       >
          
         Drop files to attach or
@@ -43,7 +43,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
           type="file"
         />
         <div
-          className="uui-typography uui-typography-14"
+          className="uui-typography uui-typography-size-14"
         >
           <a
             className="container uui-anchor uui-enabled -clickable root link"
@@ -91,7 +91,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
         />
       </div>
       <div
-        className="root uui-text uui-font-regular uui-color-primary uui-typography line-height-24 font-size-14 v-padding-0 container"
+        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 container"
       >
          
         Drop files to attach or
@@ -105,7 +105,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
           type="file"
         />
         <div
-          className="uui-typography uui-typography-14"
+          className="uui-typography uui-typography-size-14"
         >
           <a
             className="container uui-anchor uui-enabled -clickable root link"
@@ -121,7 +121,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
       </div>
     </div>
     <div
-      className="root uui-text uui-font-regular uui-color-secondary uui-typography line-height-24 font-size-14 v-padding-0 container"
+      className="root uui-text uui-color-secondary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 container"
     >
       Test info
     </div>

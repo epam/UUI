@@ -11,14 +11,14 @@ const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'Notificat
         examples: [
             {
                 value: (
-                    <Text size="36" font="regular" fontSize="14">
+                    <Text size="36" fontSize="14">
                         Warning notification
                     </Text>
                 ),
                 name: 'Short',
             }, {
                 value: (
-                    <Text size="36" font="regular" fontSize="14">
+                    <Text size="36" fontSize="14">
                         Warning notification with some buttons and long long text with blaaaaaa blaaaaaaaaaa
                     </Text>
                 ),

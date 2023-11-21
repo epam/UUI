@@ -5,7 +5,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
   className="notificationWrapper clearButton"
 >
   <button
-    className="container uui-button-box uui-enabled -clickable uui-link_button root size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
+    className="container uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
     tabIndex={0}
     type="button"

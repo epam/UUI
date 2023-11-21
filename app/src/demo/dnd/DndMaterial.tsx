@@ -63,7 +63,7 @@ export class DndMaterial extends React.Component<DndMaterialProps> {
                                     <IconContainer size={ 48 } icon={ FileIcon } cx={ css.icon } />
                                 </FlexCell>
                                 <FlexCell width="100%" cx={ css.textWrapper }>
-                                    <Text size="24" lineHeight="24" fontSize="16" font="semibold">
+                                    <Text size="24" lineHeight="24" fontSize="16" fontWeight="600">
                                         {item.name}
                                     </Text>
                                     <Text size="24" lineHeight="24" fontSize="14" color="secondary">
