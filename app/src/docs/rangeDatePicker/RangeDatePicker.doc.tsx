@@ -38,6 +38,19 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
             doc.merge('getPlaceholder', { examples: getPlaceholderExamples });
             doc.merge('filter', { examples: filterExamples });
             doc.merge('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] });
+            doc.merge('rawProps', {
+                editorType: 'JsonEditor',
+                examples: [
+                    {
+                        name: 'from & to & body',
+                        value: {
+                            from: { style: { border: '3px solid green' } },
+                            to: { style: { border: '3px solid orange' } },
+                            body: { style: { border: '3px solid blue' } },
+                        },
+                    },
+                ],
+            });
         },
     };
 

@@ -34,6 +34,11 @@ export class PickerListDoc extends BaseDocsBlock {
                     { value: [1, 2, 3, 4], name: 'Language Levels' },
                 ],
             });
+            doc.setDefaultPropExample('valueType', (e) => {
+                return e.value === 'id';
+            });
+            doc.merge('maxDefaultItems', { examples: [2, 5, 10, 20] });
+            doc.merge('maxTotalItems', { examples: [10, 20, 50, 1000] });
             doc.merge('renderModalToggler', {
                 examples: [{ name: 'Custom Button', value: (props) => <uui.LinkButton { ...props } caption="Custom Button" /> }],
             });
