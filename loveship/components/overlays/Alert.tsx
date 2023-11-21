@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AlertProps as uuiAlertProps, Alert as uuiAlert } from '@epam/uui';
+import * as uui from '@epam/uui';
 import { withMods } from '@epam/uui-core';
 import { ReactComponent as SuccessIcon } from './../icons/notification-check-fill-24.svg';
 import { ReactComponent as WarningIcon } from './../icons/notification-warning-fill-24.svg';
@@ -8,13 +8,14 @@ import { ReactComponent as HintIcon } from './../icons/notification-help-fill-24
 import { EpamPrimaryColor } from '../types';
 
 export interface AlertMods {
+    /** @default 'sky' */
     color?: EpamPrimaryColor;
 }
 
-export interface AlertProps extends Omit<uuiAlertProps, 'color'>, AlertMods {}
+export interface AlertProps extends Omit<uui.AlertProps, 'color'>, AlertMods {}
 
-export const Alert = withMods<Omit<uuiAlertProps, 'color'>, AlertMods>(
-    uuiAlert as any, // TODO: need to fix original component
+export const Alert = withMods<Omit<uui.AlertProps, 'color'>, AlertMods>(
+    uui.Alert as any, // TODO: need to fix original component
     () => [],
     (props) => ({
         ...props,

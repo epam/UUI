@@ -13,6 +13,9 @@ export type UuiMultiSwitchColor = 'primary' | 'secondary';
 
 export interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     items: MultiSwitchItem<TValue>[];
+    /**
+     * @default 'primary'
+     */
     color?: UuiMultiSwitchColor;
 }
 
