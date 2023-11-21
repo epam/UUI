@@ -1,109 +1,55 @@
 import * as React from 'react';
 import { cx } from '@epam/uui-core';
-import {
-    FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, RichTextView, Text, Tooltip,
-} from '@epam/promo';
-import { BaseDocsBlock, UUI4 } from '../../common/docs';
-import { getQuery } from '../../helpers';
+import { FlexCell, FlexRow, IconContainer, LinkButton, RichTextView, Text, Tooltip } from '@epam/promo';
+import { BaseDocsBlock } from '../../common/docs';
 import css from './DownloadsDoc.module.scss';
 import { ReactComponent as Artbord } from '../../icons/artboard.svg';
-import { ReactComponent as Sketch } from '../../icons/sketch.svg';
 import { ReactComponent as FontIcon } from '../../icons/fonts_icon.svg';
 import { ReactComponent as IllustrationsIcon } from '../../icons/illustrations_icon.svg';
 import { ReactComponent as LogotypeIcon } from '../../icons/design_platform_icon.svg';
 import { ReactComponent as DownloadIcon } from '../../icons/download_icon_set.svg';
 import { ReactComponent as LockIcon } from '@epam/assets/icons/common/action-lock-fill-18.svg';
-import { ReactComponent as DownloadFileIcon } from '@epam/assets/icons/common/file-download-18.svg';
 import { ReactComponent as ContentLinkIcon } from '@epam/assets/icons/common/content-link-18.svg';
 
-const libraries = {
-    UUI3: [
-        {
-            title: 'UUI3 Library',
-            additionalInfo: 'Requires Sketch 70 or greater',
-            link: 'sketch://add-library?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyaroslav-zonov%2FUUIDesign%2Fmain%2FUUI%25203.0%2FLight%2FUUI3.xml',
-            image: Sketch,
-            libraryType: 'sketch',
-        }, {
-            title: 'UUI3 Library(Dark)',
-            additionalInfo: 'Requires Sketch 70 or greater',
-            link: 'sketch://add-library?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyaroslav-zonov%2FUUIDesign%2Fmain%2FUUI%25203.0%2FDark%2FUUI3%255BDark%255D.xml',
-            image: Sketch,
-            libraryType: 'sketch',
-        }, {
-            title: 'UUI3 Components Library',
-            additionalInfo: 'Requires Figma 97 or greater',
-            link: 'https://www.figma.com/file/M5Njgc6SQJ3TPUccp5XHQx/UUI3-(Components)?node-id=280%3A85528',
-            image: Artbord,
-            libraryType: 'figma',
-        }, {
-            title: 'UUI Assets Library',
-            additionalInfo: 'Requires Figma 97 or greater',
-            link: 'https://www.figma.com/file/3mpAy3BEZ75n5GJEZ5UV8z/UUI-(Assets)?node-id=0%3A2097',
-            image: Artbord,
-            libraryType: 'figma',
-        }, {
-            title: 'UUI Patterns',
-            additionalInfo: 'Requires Figma 97 or greater',
-            link: 'https://www.figma.com/file/qb7WHgBkyBpovFlOZRe30p/UUI-Patterns',
-            image: Artbord,
-            libraryType: 'figma',
-        }, {
-            title: 'UUI Illustrations',
-            additionalInfo: 'Requires Figma 97 or greater',
-            link: 'https://epam.sharepoint.com/:f:/r/sites/EPAMDesignPlatform/Shared%20Documents/General/Projects/CG%20ART%20STREAM?csf=1&web=1&e=V3vkJK',
-            image: Artbord,
-            libraryType: 'figma',
-        },
-    ],
-    UUI4: [
-        {
-            title: 'UUI4 Library',
-            additionalInfo: 'Requires Sketch 70 or greater',
-            link: 'sketch://add-library?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyaroslav-zonov%2FUUIDesign%2Fmain%2FUUI%25204.0%2FUUI4.xml',
-            image: Sketch,
-            libraryType: 'sketch',
-        }, {
-            title: 'UUI4 Components Library',
-            additionalInfo: 'Requires Figma 97 or greater',
-            link: 'https://www.figma.com/file/UyChXPLmyv5zMrOU37KdUL/UUI4-(Components)?node-id=280%3A85528',
-            image: Artbord,
-            libraryType: 'figma',
-        }, {
-            title: 'UUI Assets Library',
-            additionalInfo: 'Requires Figma 97 or greater',
-            link: 'https://www.figma.com/file/3mpAy3BEZ75n5GJEZ5UV8z/UUI-(Assets)?node-id=0%3A2097',
-            image: Artbord,
-            libraryType: 'figma',
-        }, {
-            title: 'UUI Patterns',
-            additionalInfo: 'Requires Figma 97 or greater',
-            link: 'https://www.figma.com/file/qb7WHgBkyBpovFlOZRe30p/UUI-Patterns',
-            image: Artbord,
-            libraryType: 'figma',
-        }, {
-            title: 'UUI Illustrations',
-            additionalInfo: 'Requires Figma 97 or greater',
-            link: 'https://epam.sharepoint.com/:f:/r/sites/EPAMDesignPlatform/Shared%20Documents/General/Projects/CG%20ART%20STREAM?csf=1&web=1&e=V3vkJK',
-            image: Artbord,
-            libraryType: 'figma',
-        },
-    ],
-};
+const library = [
+    {
+        title: 'UUI Components Library',
+        additionalInfo: '4 theme included: Loveship Light, Loveship Dark, Promo and Electric',
+        link: 'https://www.figma.com/file/M5Njgc6SQJ3TPUccp5XHQx/UUI-Components?type=design&node-id=29222%3A39517&mode=design&t=NuhhdX8NzuSvGdaX-1',
+        image: Artbord,
+        libraryType: 'figma',
+    }, {
+        title: 'UUI Assets Library',
+        additionalInfo: 'Icons, logotypes, cursors',
+        link: 'https://www.figma.com/file/3mpAy3BEZ75n5GJEZ5UV8z/UUI-Assets?type=design&node-id=137%3A2&mode=design&t=bqol9mr8suaBMnCm-1',
+        image: Artbord,
+        libraryType: 'figma',
+    }, {
+        title: 'UUI Component Guidelines',
+        additionalInfo: 'Guidelines of UUI components',
+        link: 'https://www.figma.com/file/dYwal6PrxrPQWg1lL6ijpn/UUI-Guidelines?type=design&node-id=1886%3A625715&mode=design&t=3ve5cI7s6roXxHxw-1',
+        image: Artbord,
+        libraryType: 'figma',
+    }, {
+        title: 'UUI Patterns',
+        additionalInfo: 'Templates guidelines',
+        link: 'https://www.figma.com/file/qb7WHgBkyBpovFlOZRe30p/UUI-Patterns?type=design&node-id=0%3A1&mode=design&t=LByFqSyb9pwJ6FMX-1',
+        image: Artbord,
+        libraryType: 'figma',
+    }, {
+        title: 'UUI Illustrations',
+        additionalInfo: 'Illustrations pack in addition (promo images, empty states, etc.)',
+        link: 'https://www.figma.com/file/fNIMFXueuk3pfJzL4lWCex/UUI-Illustrations?type=design&t=f7W2ssNZnh1LeBJK-6',
+        image: Artbord,
+        libraryType: 'figma',
+    },
+];
 
 const assets = {
-    UUI3: {
-        fonts: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI3/Fonts_UUI3.7z',
-        logos: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI3/Logotypes_UUI3.7z',
-        icons: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI3/Icons_UUI3.7z',
-        illustrations: 'https://epam.sharepoint.com/:u:/s/EPAMUII3/EahAf6j0ZERKqnbgZwTPFjYBX1HJJC9n845j6xC3FL-gKg?e=K0LQU1',
-    },
-    UUI4: {
-        fonts: 'https://epam.sharepoint.com/:u:/r/sites/EPAMUII3/Shared%20Documents/General/UUI%20fonts/Fonts_UUI4.7z?csf=1&web=1&e=3VU4QA',
-        logos: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI4/Logotypes_UUI4.7z',
-        icons: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI4/Icons_UUI4.7z',
-        illustrations: 'https://epam.sharepoint.com/:u:/s/EPAMUII3/EahAf6j0ZERKqnbgZwTPFjYBX1HJJC9n845j6xC3FL-gKg?e=K0LQU1',
-    },
+    fonts: 'https://epam.sharepoint.com/:u:/r/sites/EPAMUII3/Shared%20Documents/General/UUI%20fonts/Fonts_UUI4.7z?csf=1&web=1&e=3VU4QA',
+    logos: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI4/Logotypes_UUI4.7z',
+    icons: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI4/Icons_UUI4.7z',
+    illustrations: 'https://epam.sharepoint.com/:u:/s/EPAMUII3/EahAf6j0ZERKqnbgZwTPFjYBX1HJJC9n845j6xC3FL-gKg?e=K0LQU1',
 };
 
 export class DownloadsDoc extends BaseDocsBlock {
@@ -112,21 +58,19 @@ export class DownloadsDoc extends BaseDocsBlock {
         return (
             <FlexRow>
                 <div className={ css.title }>{this.title}</div>
-                <FlexSpacer />
-                {this.renderMultiSwitch()}
             </FlexRow>
         );
     }
 
     renderLibraryCard({
-        title, additionalInfo, link, image, libraryType,
+        title, additionalInfo, link, image,
     }: any) {
         return (
             <FlexCell minWidth={ 320 }>
                 <FlexRow spacing="12">
                     <IconContainer icon={ image } />
                     <FlexCell width="auto">
-                        {title === 'UUI Illustrations' ? (
+                        { title === 'UUI Illustrations' ? (
                             <Tooltip content="For internal use only" offset={ [0, 10] }>
                                 <LinkButton href={ link } size="24" target="_blank" captionCX={ css.libraryLinkTitle } caption={ title } iconPosition="right" icon={ LockIcon } />
                             </Tooltip>
@@ -138,7 +82,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                 captionCX={ css.libraryLinkTitle }
                                 caption={ title }
                                 iconPosition="right"
-                                icon={ libraryType === 'sketch' ? DownloadFileIcon : ContentLinkIcon }
+                                icon={ ContentLinkIcon }
                             />
                         )}
                         <Text size="18" fontSize="12" lineHeight="18" color="gray60">
@@ -151,9 +95,8 @@ export class DownloadsDoc extends BaseDocsBlock {
     }
 
     renderContent() {
-        const isUUI4Skin = getQuery('skin') === UUI4;
         return (
-            <>
+            <span className={ css.themePromo }>
                 <FlexRow alignItems="top" cx={ css.headerRow }>
                     <FlexCell width="100%" cx={ css.contentBlock }>
                         <RichTextView size="16">
@@ -163,7 +106,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                 library, additional files, and answers to frequent questions here.
                             </p>
                         </RichTextView>
-                        <FlexRow cx={ css.libraryBlock }>{libraries[isUUI4Skin ? 'UUI4' : 'UUI3'].map((item) => this.renderLibraryCard(item))}</FlexRow>
+                        <FlexRow cx={ css.libraryBlock }>{ library.map((item) => this.renderLibraryCard(item)) }</FlexRow>
                     </FlexCell>
                 </FlexRow>
                 <FlexCell>
@@ -180,20 +123,16 @@ export class DownloadsDoc extends BaseDocsBlock {
                                     <Text size="24" fontSize="16" font="museo-sans">
                                         Font Pack
                                     </Text>
-                                    {isUUI4Skin ? (
-                                        <Tooltip content="For internal use only" offset={ [0, 10] }>
-                                            <LinkButton
-                                                iconPosition="right"
-                                                icon={ LockIcon }
-                                                caption="Download"
-                                                size="24"
-                                                href={ assets.UUI4.fonts }
-                                                captionCX={ css.assetsLinkCaption }
-                                            />
-                                        </Tooltip>
-                                    ) : (
-                                        <LinkButton caption="Download" size="24" href={ assets.UUI3.fonts } captionCX={ css.assetsLinkCaption } />
-                                    )}
+                                    <Tooltip content="For internal use only" offset={ [0, 10] }>
+                                        <LinkButton
+                                            iconPosition="right"
+                                            icon={ LockIcon }
+                                            caption="Download"
+                                            size="24"
+                                            href={ assets.fonts }
+                                            captionCX={ css.assetsLinkCaption }
+                                        />
+                                    </Tooltip>
                                 </FlexCell>
                             </FlexRow>
                         </FlexCell>
@@ -209,7 +148,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                     <LinkButton
                                         caption="Download"
                                         size="24"
-                                        href={ isUUI4Skin ? assets.UUI4.logos : assets.UUI3.logos }
+                                        href={ assets.logos }
                                         captionCX={ css.assetsLinkCaption }
                                     />
                                 </FlexCell>
@@ -227,7 +166,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                     <LinkButton
                                         caption="Download"
                                         size="24"
-                                        href={ isUUI4Skin ? assets.UUI4.icons : assets.UUI3.icons }
+                                        href={ assets.icons }
                                         captionCX={ css.assetsLinkCaption }
                                     />
                                 </FlexCell>
@@ -251,7 +190,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                                 icon={ LockIcon }
                                                 caption="Download"
                                                 size="24"
-                                                href={ isUUI4Skin ? assets.UUI4.illustrations : assets.UUI3.illustrations }
+                                                href={ assets.illustrations }
                                                 captionCX={ css.assetsLinkCaption }
                                             />
                                         </Tooltip>
@@ -261,7 +200,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                         </FlexCell>
                     </FlexRow>
                 </FlexCell>
-            </>
+            </span>
         );
     }
 }

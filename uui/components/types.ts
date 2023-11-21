@@ -31,9 +31,14 @@ export const allTextSizes: TextSize[] = [
     '18', '24', '30', '36', '48',
 ];
 
-export type FontStyle = 'regular' | 'semibold' | 'italic' | 'primary' | 'promo';
+export type FontStyle = 'normal' | 'italic';
 export const allFontStyles: FontStyle[] = [
-    'regular', 'semibold', 'italic', 'primary', 'promo',
+    'normal', 'italic',
+];
+
+export type FontWeight = '200' | '300' | '400' | '600' | '700' | '900';
+export const allFontWeights: FontWeight[] = [
+    '200', '300', '400', '600', '700', '900',
 ];
 
 export interface ColorMod {

@@ -38,7 +38,7 @@ export default function BasicCountIndicatorExample() {
 
     return (
         <div style={ { display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gridTemplateRows: '1fr 2fr 2fr 2fr', gap: '6px 12px', textAlign: 'center' } }>
-            { exampleNames.map((name) => <Text font="semibold">{ name }</Text>)}
+            { exampleNames.map((name) => <Text fontWeight="600">{ name }</Text>)}
             { solidExamples.map((example) => (
                 <>
                     { getCountIndicator(example) }
