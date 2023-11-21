@@ -10,7 +10,13 @@ export type LinkButtonColorType = 'primary' | 'secondary' | 'contrast';
 export const allLinkButtonColors: LinkButtonColorType[] = ['primary', 'secondary', 'contrast'];
 
 export interface LinkButtonMods {
+    /**
+     * @default '36'
+     */
     size?: types.ControlSize | '42';
+    /**
+     * @default 'primary'
+     */
     color?: LinkButtonColorType;
 }
 
