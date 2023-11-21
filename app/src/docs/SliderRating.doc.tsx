@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as loveship from '@epam/loveship';
+import * as uui from '@epam/uui';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import cx from 'classnames';
@@ -17,7 +18,7 @@ export class SliderRatingDoc extends BaseDocsBlock {
                 component: loveship.SliderRating,
                 doc: (doc: DocBuilder<loveship.SliderRatingProps<any>>) => {
                     const renderFn = (v: any) => (
-                        <loveship.RichTextView size="14">
+                        <uui.RichTextView size="14">
                             <p>
                                 {`Selected value is ${v}.`}
                                 <br />
@@ -25,7 +26,7 @@ export class SliderRatingDoc extends BaseDocsBlock {
                                 <b>markup</b>
                                 { ' via RichTextView here.'}
                             </p>
-                        </loveship.RichTextView>
+                        </uui.RichTextView>
                     );
                     doc.merge('renderTooltip', { examples: [{ name: 'Custom Tooltip', value: renderFn }] });
                     doc.merge('value', { examples: [0, 1, 2, 3, 4, 5] });
