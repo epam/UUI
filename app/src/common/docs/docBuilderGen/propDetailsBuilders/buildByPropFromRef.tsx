@@ -16,6 +16,7 @@ import {
     IHasForwardedRef,
     IHasPlaceholder,
     IHasRawProps,
+    TextInputCoreProps,
 } from '@epam/uui-core';
 import { getCommonDoc } from './shared/reusableDocs';
 import { TPropDocBuilder } from '../docBuilderGenTypes';
@@ -75,6 +76,45 @@ const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (skin?: TSkin) => 
             .prop('rawProps', {
                 editorType: 'JsonEditor',
                 examples: getRawPropsExamples(),
+            });
+    },
+    '@epam/uui-core:TextInputCoreProps': () => {
+        return new DocBuilder<TextInputCoreProps>({ name: '' })
+            .prop('type', {
+                editorType: 'StringWithExamplesEditor',
+                examples: [
+                    // See also: https://www.w3schools.com/tags/att_input_type.asp
+                    'text',
+                    'radio',
+                    'password',
+                    'number',
+                    'hidden',
+                    'tel',
+                    'email',
+                    'date',
+                    'datetime-local',
+                    'month',
+                    'time',
+                    'week',
+                    'range',
+                    'checkbox',
+                    'button',
+                    'color',
+                    'file',
+                    'image',
+                    'reset',
+                    'search',
+                    'url',
+                    'submit',
+                ],
+            })
+            .prop('autoComplete', {
+                editorType: 'StringWithExamplesEditor',
+                examples: [
+                    // See also: https://www.w3schools.com/tags/att_input_autocomplete.asp
+                    'on',
+                    'off',
+                ],
             });
     },
     '@epam/uui-core:ICanBeInvalid': () => new DocBuilder<ICanBeInvalid>({ name: 'isInvalid' })
