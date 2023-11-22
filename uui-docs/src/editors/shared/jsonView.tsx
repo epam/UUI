@@ -1,11 +1,17 @@
 import React from 'react';
 import { Text } from '@epam/uui';
 import { IPropDocEditor } from '../../types';
+import { stringifyUnknown } from './utils/propEditorUtils';
 
 export function JsonView(props: IPropDocEditor) {
     const { value } = props;
     if (value != null) {
-        return (<Text>{ JSON.stringify(value) }</Text>);
+        return (<Text>{ stringifyUnknown(value) }</Text>);
     }
-    return null;
+    return (
+        // eslint-disable-next-line react/jsx-no-useless-fragment
+        <React.Fragment>
+            <Text>{value === undefined ? 'undefined' : 'null'}</Text>
+        </React.Fragment>
+    );
 }
