@@ -25,7 +25,7 @@ export function DemoTablePaged() {
     const api: LazyDataSourceApi<Person, number, Person> = useCallback(async (request) => {
         const result = await svc.api.demo.personsPaged({
             filter: request.filter,
-            page: request.page - 1,
+            page: request.page,
             pageSize: request.pageSize,
         });
         setTotalCount(result.totalCount);
