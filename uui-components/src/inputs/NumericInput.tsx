@@ -40,7 +40,10 @@ export interface NumericInputProps
     /** Maximum value (default is Number.MAX_SAFE_INTEGER) */
     max?: number;
 
-    /** Minimum value (default is 0) */
+    /**
+     * Minimum value (default is 0)
+     * @default 0
+     */
     min?: number;
 
     /** Overrides the up/increase icon */
@@ -64,7 +67,10 @@ export interface NumericInputProps
     /** Align text inside the component. Useful for tables (in cell-mode) - to align numbers in table column */
     align?: 'left' | 'right';
 
-    /** Turns off locale-based formatting, standard Number.toString() is used instead */
+    /**
+     * Turns off locale-based formatting, standard Number.toString() is used instead
+     * @default false
+     */
     disableLocaleFormatting?: boolean;
 
     /** Number formatting options. See #{link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat} */

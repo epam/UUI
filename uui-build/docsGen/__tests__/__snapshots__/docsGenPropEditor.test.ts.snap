@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`docsGen:propEditor should convert prop editor for optional icon prop 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TTest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTest",
+     "nameFull": "TTest"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "TTest",
+     "print": [
+      "interface TTest {",
+      "    icon?: Icon;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "icon",
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  }
+ }
+}
+`;

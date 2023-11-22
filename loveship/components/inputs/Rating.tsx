@@ -6,6 +6,9 @@ import { ReactComponent as EmptyStarIcon } from '../icons/star-empty.svg';
 import { Tooltip } from '../overlays';
 
 export interface RatingMods {
+    /**
+     * @default '18'
+     */
     size?: 18 | 24 | 30;
 }
 export interface RatingProps extends uuiComponents.RatingProps, RatingMods {}

@@ -3,7 +3,7 @@ import { IConverterContext, TConvertable, TTypePropsConverted } from '../types/t
 import { SymbolUtils } from './converterUtils/symbolUtils';
 import { NodeUtils } from './converterUtils/nodeUtils';
 import { TypeUtils } from './converterUtils/typeUtils';
-import { TTypeProp } from '../types/sharedTypes';
+import { TTypeProp, TTypeRef } from '../types/sharedTypes';
 import { getTypeRefFromTypeSummary } from './converterUtils/converterUtils';
 import { ConvertableUtils } from './converterUtils/convertableUtils';
 
@@ -94,8 +94,8 @@ function mapSingleMember(params: { parentNode?: Node, propertySymbol: Symbol, co
     ].indexOf(nKind) !== -1;
 
     if (isSupported) {
-        const raw = NodeUtils.getPropertySymbolRawType(propertySymbol, context);
-        if (!raw) {
+        const tv = NodeUtils.getPropertySymbolTypeValue(propertySymbol, context);
+        if (!tv) {
             return;
         }
         const comment = NodeUtils.getCommentFromNode(propertyNode);
@@ -112,7 +112,9 @@ function mapSingleMember(params: { parentNode?: Node, propertySymbol: Symbol, co
             uid,
             name,
             comment,
-            typeValue: { raw },
+            typeValue: tv,
+            typeValueRef: getPropertyTypeValueRef({ propertySymbol, context }),
+            editor: context.convertPropEditor({ convertable: propertySymbol }),
             from: fromRef,
             required,
         };
@@ -120,6 +122,19 @@ function mapSingleMember(params: { parentNode?: Node, propertySymbol: Symbol, co
         console.error(`New SyntaxKind was found: ${nKind}. Please add it to the list and check that it's processed correctly.`);
     }
     return prop;
+}
+
+function getPropertyTypeValueRef(params: { propertySymbol: Symbol, context: IConverterContext }): TTypeRef | undefined {
+    const { propertySymbol, context } = params;
+    const valueDeclNode = propertySymbol.getValueDeclaration();
+    if (valueDeclNode) {
+        const aliasSymbol = valueDeclNode.getType().getAliasSymbol();
+        if (aliasSymbol) {
+            // I.e. the property refers some type which is declared in another place (I.e. it's not inline type declaration).
+            const valueTypeSummary = context.convertTypeSummary({ convertable: aliasSymbol });
+            return `${valueTypeSummary.module}:${valueTypeSummary.typeName.name}`;
+        }
+    }
 }
 
 class PropsSet {

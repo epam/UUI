@@ -52,7 +52,8 @@ export class SymbolUtils {
         return symbol.getTypeAtLocation(node);
     }
 
-    static getTypeValueFromNode(symbol: Symbol, print?: boolean): TTypeValue {
+    static getTypeValueFromSymbol(params: { symbol: Symbol, print: boolean }): TTypeValue {
+        const { symbol, print } = params;
         const node = SymbolUtils.getNodeFromSymbol(symbol);
         const type = SymbolUtils.getTypeFromSymbol(symbol);
 
