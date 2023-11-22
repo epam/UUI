@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
     DataTableCellProps, RenderEditorProps, uuiMod,
 } from '@epam/uui-core';
 import css from './DataTableCell.module.scss';
 import { FlexCell } from '../layout';
 import { DataTableCellOverlay } from './DataTableCellOverlay';
+import { CellFocusAPI, DataTableFocusContext } from './tableCellsFocus';
 
 interface DataTableCellState {
     inFocus: boolean;
@@ -19,6 +20,32 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     const row = props.rowProps;
     const ref = React.useRef<HTMLDivElement>();
     const editorRef = React.useRef<HTMLElement>();
+    
+    const cellRef = React.useRef<CellFocusAPI>({
+        focus: () => editorRef.current?.focus(),
+    });
+
+    const tableFocusContext = useContext(DataTableFocusContext);
+
+    useEffect(() => {
+        tableFocusContext?.dataTableFocusManager
+            ?.registerCell(row.id, cellRef, {
+                index: props.index,
+                isDisabled: props.isDisabled,
+                isReadonly: props.isReadonly,
+                key: props.key,
+            });
+
+        return () => {
+            tableFocusContext?.dataTableFocusManager
+                ?.unregisterCell(row.id, props.index);
+        };
+    }, [
+        tableFocusContext?.dataTableFocusManager,
+        props.index,
+        props.isDisabled,
+        props.isReadonly,
+    ]);
 
     let content: React.ReactNode;
     const isEditable = !!props.onValueChange;
