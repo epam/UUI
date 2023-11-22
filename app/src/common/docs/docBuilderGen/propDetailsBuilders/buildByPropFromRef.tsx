@@ -123,7 +123,7 @@ const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (skin?: TSkin) => 
             editorType: 'JsonEditor',
             examples: [
                 {
-                    name: 'Inner props validation',
+                    name: 'Inner props',
                     value: {
                         prop_1: { isInvalid: true, validationMessage: 'Msg' },
                         prop_2: { isInvalid: false },

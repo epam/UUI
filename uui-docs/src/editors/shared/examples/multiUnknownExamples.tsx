@@ -6,7 +6,7 @@ import { IPropDocEditor } from '../../../types';
 export function MultiUnknownExamples(props: IPropDocEditor) {
     return <MultiUnknownExamplesBase propDeProps={ props } isValueNodeVisible={ true } />;
 }
-export function withMultiUnknownExamplesComponent(params: IMultiUnknownExamplesCustomization) {
+export function getMultiUnknownExamplesComponent(params: IMultiUnknownExamplesCustomization) {
     return function WithMultiUnknownExamplesComponent(props: IPropDocEditor) {
         return <MultiUnknownExamplesBase propDeProps={ props } { ...params } />;
     };

@@ -18,6 +18,8 @@ export class TextAreaDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<uui.TextAreaProps>) => {
             doc.merge('mode', { defaultValue: 'form' });
+            doc.merge('rows', { examples: [1, 10, 20, 30] });
+            doc.merge('maxLength', { examples: [5, 30, 50, 120] });
         },
     };
 

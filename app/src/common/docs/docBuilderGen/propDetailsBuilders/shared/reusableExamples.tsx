@@ -2,8 +2,8 @@ import { PropExample } from '@epam/uui-docs';
 import React from 'react';
 import { Button } from '@epam/uui';
 
-const STRING_EXAMPLE = {
-    SHORT: 'Short text',
+const TEXT_EXAMPLES = {
+    SHORT_TEXT: 'Hello, World!',
     LONG_TEXT: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa',
     LONG_WORD: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
 };
@@ -34,19 +34,19 @@ export function getRawPropsExamples(): PropExample<any>[] {
 export function getTextExamplesNoUndefined(isFirstDefault?: boolean): PropExample<any>[] {
     return [
         {
-            value: STRING_EXAMPLE.SHORT,
+            value: TEXT_EXAMPLES.SHORT_TEXT,
             ...(isFirstDefault ? { isDefault: true } : {}),
         },
-        { name: 'Long text', value: STRING_EXAMPLE.LONG_TEXT },
-        { name: 'Long word', value: STRING_EXAMPLE.LONG_WORD },
+        { name: 'Long text', value: TEXT_EXAMPLES.LONG_TEXT },
+        { name: 'Long word', value: TEXT_EXAMPLES.LONG_WORD },
     ];
 }
 
 export function getReactNodeExamples(text: string = 'This is some text'): PropExample<any>[] {
     return [
         { name: `<i>${text}</i>`, value: (<i>{text}</i>) },
-        { name: 'short text', value: STRING_EXAMPLE.SHORT },
-        { name: 'long text', value: STRING_EXAMPLE.LONG_TEXT },
+        { name: 'short text', value: TEXT_EXAMPLES.SHORT_TEXT },
+        { name: 'long text', value: TEXT_EXAMPLES.LONG_TEXT },
         { name: 'number', value: 123 },
         { name: 'true', value: true },
         { name: 'false', value: false },
@@ -57,16 +57,16 @@ export function getReactNodeExamples(text: string = 'This is some text'): PropEx
 export function getComponentExamples(): PropExample<any>[] {
     return [
         {
-            name: 'Simple component with short text',
-            value: () => (<i>{STRING_EXAMPLE.SHORT}</i>),
+            name: 'Component with short text',
+            value: () => (<i>{TEXT_EXAMPLES.SHORT_TEXT}</i>),
         },
         {
-            name: 'Simple component with long text',
-            value: () => (<i>{STRING_EXAMPLE.LONG_TEXT}</i>),
+            name: 'Component with long text',
+            value: () => (<i>{TEXT_EXAMPLES.LONG_TEXT}</i>),
         },
         {
             name: 'Button (with short text)',
-            value: () => (<Button caption={ STRING_EXAMPLE.SHORT } onClick={ () => {} } />),
+            value: () => (<Button caption={ TEXT_EXAMPLES.SHORT_TEXT } onClick={ () => {} } />),
         },
     ];
 }
