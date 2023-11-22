@@ -14,7 +14,7 @@ function formatComment(commentInput: string) {
 function escapeArr(htmlStr: string[]) {
     return htmlStr.map(escapeLineForHtml);
 }
-export function escapeLineForHtml(htmlStr: string) {
+function escapeLineForHtml(htmlStr: string) {
     return htmlStr.replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
