@@ -4,6 +4,9 @@ import { IHasCaption, IHasCX } from '@epam/uui-core';
 import css from './CountIndicator.module.scss';
 
 export interface CountIndicatorProps extends IHasCaption, IHasCX {
+    /**
+     * @default '24'
+     */
     size?: '24' | '18' | '12';
     color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical' | null;
 }

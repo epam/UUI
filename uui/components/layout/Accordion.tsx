@@ -4,6 +4,7 @@ import { systemIcons } from '../../icons/icons';
 import css from './Accordion.module.scss';
 
 export interface AccordionMods {
+    /** @default 'block' */
     mode?: 'block' | 'inline';
     padding?: '0' | '6' | '12' | '18';
 }

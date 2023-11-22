@@ -4,6 +4,9 @@ import { MultiSwitch as UuiMultiSwitch, UuiMultiSwitchColor, MultiSwitchProps as
 export type MultiSwitchColor = 'sky' | 'night600' | 'gray';
 
 export interface MultiSwitchMods {
+    /**
+     * @default 'sky'
+     */
     color?: MultiSwitchColor;
 }
 

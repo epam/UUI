@@ -11,7 +11,8 @@
     --uui-text_input-border-disabled: var(--uui-control-border-disabled);
     --uui-text_input-border-readonly: var(--uui-control-border-disabled);
     --uui-text_input-placeholder: var(--uui-control-placeholder);
-    --uui-text_input-placeholder-disabled: var(--uui-control-placeholder);
+    --uui-text_input-placeholder-disabled: var(--uui-control-placeholder-disabled);
+    --uui-text_input-placeholder-readonly: var(--uui-control-placeholder-disabled);
     --uui-text_input-text: var(--uui-control-text);
     --uui-text_input-text-disabled: var(--uui-control-text-disabled);
     --uui-text_input-icon: var(--uui-control-icon);
@@ -123,6 +124,13 @@
         color: var(--uui-text_input-text);
         fill: var(--uui-text_input-icon);
         pointer-events: none;
+
+        :global(.uui-input) {
+            &::placeholder {
+                -webkit-text-fill-color: var(--uui-text_input-placeholder-readonly); // to avoid color inheritance from input component
+                color: var(--uui-text_input-placeholder-readonly);
+            }
+        }
 
         &.mode-form {
             background-color: var(--uui-text_input-bg-readonly);

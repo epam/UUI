@@ -24,7 +24,6 @@ export type ArrayPickerProps<TId, TItem> =
         /** Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem) */
         valueType?: 'id';
         /** Defines what to use as an empty value. If other value provided, it will be assumed as selection.
-         * @default undefined.
          */
         emptyValue?: [] | null;
     } & IEditable<TId[]>)
@@ -34,7 +33,6 @@ export type ArrayPickerProps<TId, TItem> =
         /** Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem) */
         valueType: 'entity';
         /** Defines what to use as an empty value. If other value provided, it will be assumed as selection.
-         * @default undefined.
          */
         emptyValue?: [] | null;
     } & IEditable<TItem[]>);
