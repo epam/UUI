@@ -1,8 +1,7 @@
 import * as React from 'react';
-import cx from 'classnames';
 import { Svg } from '@epam/uui-components';
 import {
-    TextInput, LabeledInput, LinkButton, FlexRow, Anchor,
+    TextInput, LabeledInput, LinkButton, FlexRow, Anchor, Panel,
 } from '@epam/uui';
 
 import { ReactComponent as Calendar } from '@epam/assets/icons/common/action-calendar-18.svg';
@@ -18,7 +17,7 @@ export const children = [
     {
         value: (
             <div style={ { maxWidth: '1100px' } } className={ style.container }>
-                <h2>Headlines</h2>
+                <h2>Promo Headlines</h2>
                 <div className="hero-header">
                     Hero HEADING — Hero
                     {' '}
@@ -26,6 +25,13 @@ export const children = [
                     {' '}
                     for super-promo screens
                 </div>
+                <h1 className="promo-header">
+                    Promo heading — H1
+                    {' '}
+                    <br />
+                    {' '}
+                    for page hero-headers
+                </h1>
                 <h2 className="promo-header">
                     Promo heading — H2
                     {' '}
@@ -177,7 +183,7 @@ export const children = [
                             </>
                         }
                     >
-                        <TextInput value="" onValueChange={ () => {} }></TextInput>
+                        <TextInput value="" size="36" onValueChange={ () => {} }></TextInput>
                         If you have no goals to choose, add them on
                         {' '}
                         <Anchor href="/">Home</Anchor>
@@ -191,14 +197,16 @@ export const children = [
                     <LinkButton caption="ADD"></LinkButton>
                 </FlexRow>
                 <h4>{'<Pre>'}</h4>
-                <pre>
-                    {`import * as React from 'react';
+                <Panel style={ { background: 'var(--uui-neutral-40)' } }>
+                    <pre>
+                        {`import * as React from 'react';
 import css from './MyComponent.module.scss';
 
 export const MyComponent = <div className={ css.myHeader }>`}
-                </pre>
+                    </pre>
+                </Panel>
                 <h4>Text with size 16</h4>
-                <p className={ cx(style.typography16) }>
+                <p className="uui-typography-size-16">
                     Lorem ipsum dolor sit amet,
                     {' '}
                     <Anchor href="/">
@@ -215,7 +223,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </p>
                 <h4>Text with size 12</h4>
-                <p className={ cx(style.typography12) }>
+                <p className="uui-typography-size-12">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
                     veniam,
                     {' '}
