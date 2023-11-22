@@ -51,7 +51,7 @@ export function FilteredTable() {
         const result = await svc.api.demo.personsPaged({
             ...rq,
             filter: rq.filter || {},
-            page: rq.page - 1,
+            page: rq.page,
             pageSize: rq.pageSize,
         });
         setTotalCount(() => result.totalCount);
