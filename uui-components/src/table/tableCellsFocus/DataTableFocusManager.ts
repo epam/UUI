@@ -13,7 +13,7 @@ export class DataTableFocusManager<TId> {
     public focusRow(id: TId) {
         const rowKey = this.getKeyById(id);
         if (!this.rowsRegistry.has(rowKey)) {
-            this.pendingRowToBeFocused = id;
+            this.setPendingFocusRow(id);
             return;
         }
 
@@ -24,7 +24,7 @@ export class DataTableFocusManager<TId> {
 
         firstFocusableCell.ref.current.focus();
         this.setNewFocusCoordinates(id, firstFocusableCell.cellProps.index);
-        this.pendingRowToBeFocused = null;
+        this.unsetPendingFocusRow();
     }
 
     public setNewFocusCoordinates(focusedRow: TId, focusedCell: number) {
@@ -49,7 +49,7 @@ export class DataTableFocusManager<TId> {
         const row = this.rowsRegistry.get(rowKey);
         row[cellProps.index] = { ref, cellProps };
 
-        if (this.pendingRowToBeFocused === id) {
+        if (this.pendingRowToBeFocused === id && !cellProps.isDisabled && !cellProps.isReadonly) {
             this.focusRow(id);
         }
     }
@@ -68,4 +68,12 @@ export class DataTableFocusManager<TId> {
         }
         return id;
     };
+
+    private setPendingFocusRow(id: TId) {
+        this.pendingRowToBeFocused = id;
+    }
+
+    private unsetPendingFocusRow() {
+        this.pendingRowToBeFocused = null;
+    }
 }

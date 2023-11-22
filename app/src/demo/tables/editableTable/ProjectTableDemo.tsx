@@ -87,7 +87,7 @@ export function ProjectTableDemo() {
         });
         
         dataTableFocusManager?.focusRow(task.id);
-    }, [setValue, setTableState]);
+    }, [setValue, setTableState, dataTableFocusManager]);
 
     const deleteTask = useCallback((task: Task) => {
         setValue((currentValue) => ({
