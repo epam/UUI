@@ -6,7 +6,7 @@ import {
 import { DataTableHeaderRow, DataTableRow, Text } from '@epam/uui';
 import { isApiRefPropGroup, TDocsGenTypeSummary, TApiRefPropsItem, TTypeGroup } from './types';
 import { Code } from '../docs/Code';
-import { escapeLineForHtml, TsComment } from './components/TsComment';
+import { TsComment } from './components/TsComment';
 import { Ref } from './components/Ref';
 import { TType } from './sharedTypes';
 import css from './TypeRefTable.module.scss';
@@ -136,7 +136,7 @@ function getColumns(summaries: TDocsGenTypeSummary): DataColumnProps<TApiRefProp
                     return null;
                 }
                 return (
-                    <Code codeAsHtml={ escapeLineForHtml(item.typeValue.raw) } isCompact={ true } />
+                    <Code codeAsHtml={ item.typeValue.html } isCompact={ true } />
                 );
             },
             width: WIDTH.typeValue,
