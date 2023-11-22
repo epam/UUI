@@ -173,6 +173,7 @@
     --uui-warning-20: var(--sun-20);
     --uui-warning-50: var(--sun-50);
     --uui-warning-60: var(--sun-60);
+    --uui-warning-70: var(--sun-70);
     --uui-warning-contrast: var(--uui-neutral-80);
 
     --uui-error-5: var(--fire-5);
@@ -246,6 +247,7 @@
     --uui-control-border-disabled: var(--uui-neutral-30);
 
     --uui-control-placeholder: var(--uui-neutral-50);
+    --uui-control-placeholder-disabled: var(--uui-neutral-50);
 
     --uui-control-text: var(--uui-text-primary);
     --uui-control-text-disabled: var(--uui-text-tertiary);
@@ -529,11 +531,12 @@
 
         h1.promo-header {
             font-size: 72px;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         h2.promo-header {
             font-size: 44px;
+            font-weight: 600;
         }
 
         h3.promo-header {

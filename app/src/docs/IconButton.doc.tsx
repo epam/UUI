@@ -1,20 +1,25 @@
 import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI, TDocsGenType,
-} from '../common';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class IconButtonDoc extends BaseDocsBlock {
     title = 'Icon Button';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:IconButtonProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/buttons/iconButton.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/buttons/iconButton.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/buttons/iconButton.props.tsx',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'IconButton',
+        contexts: [TDocContext.Default, TDocContext.Form],
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:IconButtonProps', component: uui.IconButton },
+            [TSkin.UUI3_loveship]: { type: '@epam/loveship:IconButtonProps', component: loveship.IconButton },
+            [TSkin.UUI4_promo]: { type: '@epam/promo:IconButtonProps', component: promo.IconButton },
+        },
+        doc: (doc: DocBuilder<promo.IconButtonProps | loveship.IconButtonProps| uui.IconButtonProps>) => {
+            doc.merge('iconPosition', { defaultValue: 'left' });
+        },
+    };
 
     renderContent() {
         return (

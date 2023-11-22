@@ -1,0 +1,44 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You can define "
+      },
+      {
+        "text": "TextArea",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " height using "
+      },
+      {
+        "text": "rows",
+        "color": "rgb(0, 0, 0)",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "color": "rgb(0, 0, 0)",
+        "text": " prop. "
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "color": "rgb(0, 0, 0)",
+        "text": "In case if you need height adjusted to the content, use "
+      },
+      {
+        "color": "rgb(0, 0, 0)",
+        "text": "autoSize={ true }",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "color": "rgb(0, 0, 0)",
+        "text": " prop."
+      }
+    ]
+  }
+]

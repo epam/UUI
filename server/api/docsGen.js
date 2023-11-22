@@ -26,7 +26,7 @@ function prettyPrintTypeValue(typeValue) {
             pp.print = highlightTsCode(typeValue.print.join('\n')).split('\n');
         }
         if (typeValue.raw) {
-            pp.raw = highlightTsCode(typeValue.raw);
+            pp.html = highlightTsCode(typeValue.raw);
         }
         return {
             ...typeValue,

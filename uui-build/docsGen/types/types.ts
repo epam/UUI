@@ -1,6 +1,7 @@
 import { ExportedDeclarations, Node, Symbol, SyntaxKind } from 'ts-morph';
 import type {
-    TTypeDetails, TTypeProp, TTypeRefMap, TTypeSummary,
+    TPropEditor, TType,
+    TTypeDetails, TTypeProp, TTypeSummary,
     TTypeValue,
     TTypeRef,
 } from './sharedTypes';
@@ -9,12 +10,14 @@ type TExportName = string;
 type TModuleName = string;
 export type TExportedDeclarations = Record<TExportName, { entry: ExportedDeclarations[]; kind: SyntaxKind }>;
 export type TNotFormattedExportsByModule = Record<TModuleName, TExportedDeclarations>;
+export type TTypeRefMap = Record<TTypeRef, TType>;
 
 export type TConvertable = Node | Symbol;
 export interface IConverter {
     isSupported(convertable: TConvertable): boolean;
     convert(params: { convertable: TConvertable }): TTypeConverted
     convertToTypeValue(params: { convertable: TConvertable, isProperty: boolean }): TTypeValue
+    convertPropEditor(params: { convertable: TConvertable }): TPropEditor | undefined
 }
 export interface IConverterContext {
     stats: IDocGenStats
@@ -34,6 +37,12 @@ export interface IConverterContext {
      * Convert summary of type node
      */
     convertTypeSummary(params: { convertable: TConvertable }): TTypeSummary
+
+    /**
+     * Builds editor property (applicable for props only)
+     * @param params
+     */
+    convertPropEditor(params: { convertable: TConvertable }): TPropEditor | undefined;
 
     getResults(): TApiReferenceJson
 }

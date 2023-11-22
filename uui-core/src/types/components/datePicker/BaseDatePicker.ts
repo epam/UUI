@@ -27,7 +27,10 @@ export interface BaseDatePickerProps
     /** Defines where to place calendar icon */
     iconPosition?: 'left' | 'right';
 
-    /** Disable clearing date value (e.g. via cross icon) */
+    /**
+     * Disable clearing date value (e.g. via cross icon)
+     * @default false
+     */
     disableClear?: boolean;
 
     /** Overrides rendering of the single day. For example, to highlight certain days */

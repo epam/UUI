@@ -13,7 +13,13 @@ dayjs.extend(customParseFormat);
 
 const defaultMode = EditMode.FORM;
 export interface TimePickerProps extends BaseTimePickerProps, SizeMod, IHasEditMode {
+    /**
+     * @default 5
+     */
     minutesStep?: number;
+    /**
+     * @default 12
+     */
     format?: 12 | 24;
 }
 

@@ -1,0 +1,57 @@
+.container {
+    .selectContainer {
+        display: flex;
+        align-items: center;
+    }
+
+    .infoContainer {
+        margin-left: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+    .infoText {
+        margin-right: 4px;
+    }
+}
+
+.contentTooltip {
+    padding: 12px 6px;
+}
+
+.item {
+    display: flex;
+
+    .itemIcon {
+        margin: 5px 0;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        border: 1px solid var(--uui-secondary);
+        border-radius: 3px;
+
+        svg {
+            fill: var(--uui-secondary);
+        }
+    }
+
+    .customSize {
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    .itemName {
+        margin-top: 6px;
+    }
+
+    .itemText {
+        padding-left: 12px;
+        flex: 1 1 auto;
+        cursor: text;
+    }
+}
+
+
+

@@ -100,7 +100,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const view = useMemo(
             () => new ArrayListView({ value, onValueChange }, viewProps),
-            deps,
+            [...deps, this], // every time, datasource is updated, view should be recreated
         );
          
         // eslint-disable-next-line react-hooks/rules-of-hooks

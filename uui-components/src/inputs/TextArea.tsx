@@ -25,7 +25,9 @@ export interface TextAreaProps
     ICanFocus<HTMLTextAreaElement> {
     /** Adjust height to fit specified number or text rows. HTML TextArea attribute. */
     rows?: number;
-    /** Enables auto-resizing height to fit text. Rows prop is ignored in this mode */
+    /**
+     * Enables auto-resizing height to fit text. Rows prop is ignored in this mode
+     */
     autoSize?: boolean;
     /** onKeyDown event handler to put on HTML Input  */
     onKeyDown?(e?: any): void;
