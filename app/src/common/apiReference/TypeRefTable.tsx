@@ -6,7 +6,7 @@ import {
 import { DataTableHeaderRow, DataTableRow, Text } from '@epam/uui';
 import { isApiRefPropGroup, TDocsGenTypeSummary, TApiRefPropsItem, TTypeGroup } from './types';
 import { Code } from '../docs/Code';
-import { TsComment } from './components/TsComment';
+import { escapeLineForHtml, TsComment } from './components/TsComment';
 import { Ref } from './components/Ref';
 import { TType } from './sharedTypes';
 import css from './TypeRefTable.module.scss';
@@ -136,7 +136,7 @@ function getColumns(summaries: TDocsGenTypeSummary): DataColumnProps<TApiRefProp
                     return null;
                 }
                 return (
-                    <Code codeAsHtml={ item.typeValue.raw } isCompact={ true } />
+                    <Code codeAsHtml={ escapeLineForHtml(item.typeValue.raw) } isCompact={ true } />
                 );
             },
             width: WIDTH.typeValue,
@@ -146,7 +146,7 @@ function getColumns(summaries: TDocsGenTypeSummary): DataColumnProps<TApiRefProp
             key: 'comment',
             caption: 'Comment',
             render: (item) => {
-                return <TsComment text={ item.comment } keepBreaks={ true } isCompact={ true } />;
+                return <TsComment comment={ item.comment } keepBreaks={ true } isCompact={ true } />;
             },
             width: WIDTH.comment,
             grow: 1,
