@@ -9,9 +9,9 @@ import { i18n } from '../../i18n';
 export function Form<T>(props: FormProps<T>) {
     const context = useUuiContext();
 
-    const beforeLeave = (): Promise<boolean> => {
+    const beforeLeave = React.useCallback((): Promise<boolean> => {
         return context.uuiModals.show<boolean>((modalProps) => <ConfirmationModal caption={ i18n.form.modals.beforeLeaveMessage } { ...modalProps } />);
-    };
+    }, [context.uuiModals]);
 
     const loadUnsavedChanges = (): Promise<void> => {
         return context.uuiNotifications
