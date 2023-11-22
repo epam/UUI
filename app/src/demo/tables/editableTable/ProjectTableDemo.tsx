@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList } from '@epam/uui-core';
+import { useDataTableFocusManager } from '@epam/uui-components';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
@@ -136,6 +137,10 @@ export function ProjectTableDemo() {
         [],
     );
 
+    // const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
+
+    // console.log('dataTableFocusManager', dataTableFocusManager);
+
     const columns = useMemo(
         () => getColumns({ insertTask, deleteTask }),
         [insertTask, deleteTask],
@@ -250,6 +255,7 @@ export function ProjectTableDemo() {
                 columns={ columns }
                 value={ tableState }
                 onValueChange={ setTableState }
+                // dataTableFocusManager={ dataTableFocusManager }
                 showColumnsConfig
                 allowColumnsResizing
                 allowColumnsReordering
