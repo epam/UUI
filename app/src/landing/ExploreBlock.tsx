@@ -4,9 +4,9 @@ import {
     Anchor, FlexRow, IconContainer, Text,
 } from '@epam/promo';
 import { ReactComponent as DownloadIcon } from '../icons/download.svg';
-import { UUI4 } from '../common/docs';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
+import { TSkin } from '@epam/uui-docs';
 
 export class ExploreBlock extends React.Component {
     private sendEvent = (link: string) => {
@@ -27,7 +27,7 @@ export class ExploreBlock extends React.Component {
                                 link={ {
                                     pathname: '/documents',
                                     query: {
-                                        id: 'accordion', mode: 'doc', skin: UUI4, category: 'components',
+                                        id: 'accordion', mode: 'doc', skin: TSkin.UUI4_promo, category: 'components',
                                     },
                                 } }
                                 onClick={ () => this.sendEvent('Components') }
@@ -61,7 +61,7 @@ export class ExploreBlock extends React.Component {
                                 link={ {
                                     pathname: '/documents',
                                     query: {
-                                        id: 'richTextView', mode: 'doc', skin: UUI4, category: 'components',
+                                        id: 'richTextView', mode: 'doc', skin: TSkin.UUI4_promo, category: 'components',
                                     },
                                 } }
                                 onClick={ () => this.sendEvent('Typography') }
@@ -77,7 +77,7 @@ export class ExploreBlock extends React.Component {
                             </Anchor>
                             <Anchor
                                 rawProps={ { tabIndex: -1 } }
-                                link={ { pathname: '/documents', query: { id: 'downloads', category: 'assets', skin: UUI4 } } }
+                                link={ { pathname: '/documents', query: { id: 'downloads', category: 'assets', skin: TSkin.UUI4_promo } } }
                                 onClick={ () => this.sendEvent('Downloads') }
                             >
                                 <div tabIndex={ 0 } className={ css.download }>

@@ -275,6 +275,7 @@
     --uui-control-border-disabled: var(--uui-neutral-30);
 
     --uui-control-placeholder: var(--uui-neutral-50);
+    --uui-control-placeholder-disabled: var(--uui-neutral-50);
 
     --uui-control-text: var(--uui-text-primary);
     --uui-control-text-disabled: var(--uui-text-tertiary);
@@ -708,15 +709,21 @@
 
     .uui-typography {
         h1 {
-            font-weight: 400;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-weight: 700;
         }
 
         h3 {
             font-weight: 600;
         }
 
-        h1.promo-header {
+        .hero-header {
             font-size: 72px;
+            line-height: 72px;
+            font-weight: 700;
         }
     }
 }

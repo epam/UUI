@@ -1,20 +1,22 @@
 import * as React from 'react';
-import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI, TDocsGenType,
-} from '../common';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
+import { TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 
 export class SwitchDoc extends BaseDocsBlock {
     title = 'Switch';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:SwitchProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/inputs/switch.props.ts',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/switch.props.ts',
-            [UUI]: './app/src/docs/_props/uui/components/inputs/switch.props.ts',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'Switch',
+        contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:SwitchProps', component: uui.Switch },
+            [TSkin.UUI3_loveship]: { type: '@epam/uui:SwitchProps', component: loveship.Switch },
+            [TSkin.UUI4_promo]: { type: '@epam/uui:SwitchProps', component: promo.Switch },
+        },
+    };
 
     renderContent() {
         return (

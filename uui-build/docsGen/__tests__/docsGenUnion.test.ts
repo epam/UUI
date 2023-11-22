@@ -29,4 +29,16 @@ describe('docsGen:union', () => {
         `;
         expect(generateDocs(input)).toMatchSnapshot();
     });
+
+    test('should not expand ReactNode type of property', () => {
+        const input = `
+            export interface TTestOptional {
+                testProp?: React.ReactNode;
+            };
+            export interface TTestRequired {
+                testProp: React.ReactNode;
+            };
+        `;
+        expect(generateDocs(input)).toMatchSnapshot();
+    });
 });

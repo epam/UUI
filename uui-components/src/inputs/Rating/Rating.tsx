@@ -3,10 +3,11 @@ import css from './Rating.module.scss';
 import { IconContainer } from '../../layout';
 import { TooltipProps } from '../../overlays/Tooltip';
 import { BaseRating, BaseRatingProps } from './BaseRating';
+import { Icon } from '@epam/uui-core';
 
 export interface RatingProps extends BaseRatingProps<number> {
-    filledStarIcon?: any;
-    emptyStarIcon?: any;
+    filledStarIcon?: Icon;
+    emptyStarIcon?: Icon;
     hideTooltip?: boolean;
     hint?: (value: number) => string;
     Tooltip?: React.ComponentType<TooltipProps>;

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { FlexRow, FlexSpacer } from '@epam/promo';
-import { EditableDocContent, BaseDocsBlock, UUI3 } from '../../common';
+import { EditableDocContent, BaseDocsBlock } from '../../common';
 import { getQuery } from '../../helpers';
 import css from '../assets/DownloadsDoc.module.scss';
+import { TSkin } from '@epam/uui-docs';
 
 export class GettingStartedForDesignersDoc extends BaseDocsBlock {
     title = 'Getting Started';
@@ -11,7 +12,7 @@ export class GettingStartedForDesignersDoc extends BaseDocsBlock {
             <FlexRow>
                 <div className={ css.title }>{this.title}</div>
                 <FlexSpacer />
-                {this.renderMultiSwitch()}
+                {this.renderSkinSwitcher()}
             </FlexRow>
         );
     }
@@ -25,6 +26,6 @@ export class GettingStartedForDesignersDoc extends BaseDocsBlock {
     }
 
     renderContent() {
-        return getQuery('skin') === UUI3 ? this.renderLoveshipContent() : this.renderPromoContent();
+        return getQuery('skin') === TSkin.UUI3_loveship ? this.renderLoveshipContent() : this.renderPromoContent();
     }
 }

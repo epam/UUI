@@ -1,11 +1,10 @@
 import {
     TTypeDetails,
     TTypeRef,
-    TTypeRefMap,
     TTypeSummary,
 } from '../types/sharedTypes';
 import { INCLUDED_PACKAGES } from '../constants';
-import { TApiReferenceJson, TTypeConverted } from '../types/types';
+import { TApiReferenceJson, TTypeConverted, TTypeRefMap } from '../types/types';
 
 export class ResultObjectModel {
     private typeSummaryMap: Record<TTypeRef, TTypeSummary> = {};
