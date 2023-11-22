@@ -12,9 +12,9 @@ function formatComment(commentInput: string) {
 }
 
 function escapeArr(htmlStr: string[]) {
-    return htmlStr.map(escapeLine);
+    return htmlStr.map(escapeLineForHtml);
 }
-function escapeLine(htmlStr: string) {
+export function escapeLineForHtml(htmlStr: string) {
     return htmlStr.replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
@@ -31,7 +31,7 @@ export function TsComment(props: { comment?: TComment, keepBreaks: boolean, isCo
             if (keepBreaks) {
                 return `<p>${formatComment(escapeArr(text).join('<br />'))}</p>`;
             }
-            return `<p>${formatComment(escapeLine(text.join(' ')))}</p>`;
+            return `<p>${formatComment(escapeLineForHtml(text.join(' ')))}</p>`;
         }
     }, [text, keepBreaks]);
 
