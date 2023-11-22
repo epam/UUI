@@ -132,7 +132,7 @@ const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (skin?: TSkin) => 
             ],
         })
         .prop('validationMessage', {
-            examples: getReactNodeExamples('This field is mandatory'),
+            examples: getReactNodeExamples('Err msg'),
         }),
     '@epam/uui-core:IAnalyticableClick': () => new DocBuilder<IAnalyticableClick>({ name: '' })
         .prop('clickAnalyticsEvent', {

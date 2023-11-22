@@ -42,14 +42,12 @@ export function getTextExamplesNoUndefined(isFirstDefault?: boolean): PropExampl
     ];
 }
 
-export function getReactNodeExamples(text: string = 'This is some text'): PropExample<any>[] {
+export function getReactNodeExamples(text: string = 'Some text'): PropExample<any>[] {
     return [
         { name: `<i>${text}</i>`, value: (<i>{text}</i>) },
         { name: 'short text', value: TEXT_EXAMPLES.SHORT_TEXT },
         { name: 'long text', value: TEXT_EXAMPLES.LONG_TEXT },
-        { name: 'number', value: 123 },
-        { name: 'true', value: true },
-        { name: 'false', value: false },
+        { name: '123', value: 123 },
         { name: 'null', value: null },
     ];
 }
