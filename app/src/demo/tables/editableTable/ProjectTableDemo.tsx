@@ -49,6 +49,7 @@ export function ProjectTableDemo() {
     });
 
     const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }], visibleCount: 1000 });
+    const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
 
     // Insert new/exiting top/bottom or above/below relative to other task
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
@@ -84,6 +85,8 @@ export function ProjectTableDemo() {
                 selectedId: task.id,
             };
         });
+        
+        dataTableFocusManager?.focusRow(task.id);
     }, [setValue, setTableState]);
 
     const deleteTask = useCallback((task: Task) => {
@@ -136,10 +139,6 @@ export function ProjectTableDemo() {
         },
         [],
     );
-
-    // const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
-
-    // console.log('dataTableFocusManager', dataTableFocusManager);
 
     const columns = useMemo(
         () => getColumns({ insertTask, deleteTask }),
@@ -255,7 +254,7 @@ export function ProjectTableDemo() {
                 columns={ columns }
                 value={ tableState }
                 onValueChange={ setTableState }
-                // dataTableFocusManager={ dataTableFocusManager }
+                dataTableFocusManager={ dataTableFocusManager }
                 showColumnsConfig
                 allowColumnsResizing
                 allowColumnsReordering

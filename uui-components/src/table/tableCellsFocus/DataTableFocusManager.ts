@@ -2,6 +2,7 @@ import { CellInfo, DataTableFocusManagerProps, RowsRegistry } from './types';
 
 export class DataTableFocusManager<TId> {
     private rowsRegistry: RowsRegistry<TId> = null;
+    private pendingRowToBeFocused?: TId;
     private focusedRow?: TId;
     private focusedCell?: number;
 
@@ -11,7 +12,10 @@ export class DataTableFocusManager<TId> {
 
     public focusRow(id: TId) {
         const rowKey = this.getKeyById(id);
-        if (!this.rowsRegistry.has(rowKey)) return;
+        if (!this.rowsRegistry.has(rowKey)) {
+            this.pendingRowToBeFocused = id;
+            return;
+        }
 
         const row = this.rowsRegistry.get(rowKey);
 
@@ -20,6 +24,7 @@ export class DataTableFocusManager<TId> {
 
         firstFocusableCell.ref.current.focus();
         this.setNewFocusCoordinates(id, firstFocusableCell.cellProps.index);
+        this.pendingRowToBeFocused = null;
     }
 
     public setNewFocusCoordinates(focusedRow: TId, focusedCell: number) {
@@ -43,6 +48,10 @@ export class DataTableFocusManager<TId> {
 
         const row = this.rowsRegistry.get(rowKey);
         row[cellProps.index] = { ref, cellProps };
+
+        if (this.pendingRowToBeFocused === id) {
+            this.focusRow(id);
+        }
     }
 
     public unregisterCell(id: TId, index: number) {
