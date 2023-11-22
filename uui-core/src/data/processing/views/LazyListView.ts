@@ -90,6 +90,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     private loadedValue: DataSourceState<TFilter, TId> = null;
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
     private fullTree: ITree<TItem, TId> = null;
+    private listProps?: DataSourceListProps;
 
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
@@ -332,6 +333,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             const newTree = await newTreePromise;
 
             const linkToTree = byFullTree ? this.fullTree : this.visibleTree;
+
             // If tree is changed during this load, than there was reset occurred (new value arrived)
             // We need to tell caller to reject this result
             const isOutdated = linkToTree !== loadingTree;
@@ -446,21 +448,24 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (this.props.legacyLoadDataBehavior) {
             this.loadData();
         }
+        // if data is reloading, to prevent twitching the UI (of pagination, for example)
+        // it is required to return previous listProps.
+        if (this.isReloading && this.listProps) {
+            return this.listProps;
+        }
 
         let rowsCount: number;
-        let totalCount: number;
         const lastVisibleIndex = this.getLastRecordIndex();
         const rootInfo = this.visibleTree.getNodeInfo(undefined);
+
         const rootCount = rootInfo.count;
 
-        if (!this.props.getChildCount && rootCount) {
+        if (!this.props.getChildCount && rootCount != null) {
             // We have a flat list, and know exact count of items on top level. So, we can have an exact number of rows w/o iterating the whole tree.
             rowsCount = rootCount;
-            totalCount = rootCount;
         } else if (!this.hasMoreRows) {
             // We are at the bottom of the list. Some children might still be loading, but that's ok - we'll re-count everything after we load them.
             rowsCount = this.rows.length;
-            totalCount = this.visibleTree.getTotalRecursiveCount();
         } else {
             // We definitely have more rows to show below the last visible row.
             // We need to add at least 1 row below, so VirtualList or other component would not detect the end of the list, and query loading more rows later.
@@ -474,14 +479,16 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             rowsCount = Math.max(this.rows.length, lastVisibleIndex + rowsToAddBelowLastKnown);
         }
 
-        return {
+        this.listProps = {
             rowsCount,
             knownRowsCount: this.rows.length,
             exactRowsCount: this.rows.length,
-            totalCount,
+            totalCount: rootInfo.totalCount ?? this.visibleTree.getTotalRecursiveCount() ?? 0,
             selectAll: this.selectAll,
             isReloading: this.isReloading,
         };
+
+        return this.listProps;
     };
 
     protected getChildCount = (item: TItem): number | undefined => {
