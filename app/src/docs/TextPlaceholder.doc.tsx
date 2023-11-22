@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
-import { TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
 export class TextPlaceholderDoc extends BaseDocsBlock {
@@ -15,6 +15,9 @@ export class TextPlaceholderDoc extends BaseDocsBlock {
             [TSkin.UUI]: { type: '@epam/uui:TextPlaceholderProps', component: uui.TextPlaceholder },
             [TSkin.UUI3_loveship]: { type: '@epam/uui:TextPlaceholderProps', component: loveship.TextPlaceholder },
             [TSkin.UUI4_promo]: { type: '@epam/uui:TextPlaceholderProps', component: promo.TextPlaceholder },
+        },
+        doc: (doc: DocBuilder<uui.TextPlaceholderProps>) => {
+            doc.merge('wordsCount', { examples: [2, 3, 4, 5, 6, 12, 150] });
         },
     };
 

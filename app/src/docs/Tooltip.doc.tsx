@@ -18,11 +18,18 @@ export class TooltipDoc extends BaseDocsBlock {
             [TSkin.UUI4_promo]: { type: '@epam/promo:TooltipProps', component: promo.Tooltip },
         },
         doc: (doc: DocBuilder<uui.TooltipProps | loveship.TooltipProps | promo.TooltipProps>) => {
+            doc.merge('closeDelay', { examples: [0, 500, 1000] });
+            doc.merge('openDelay', { examples: [0, 500, 1000] });
             doc.merge('children', {
                 examples: [{ value: <uui.Button fill="solid" size="36" caption="Button" />, name: 'Solid button', isDefault: true }],
             });
             doc.merge('color', { editorType: 'MultiUnknownEditor' });
-            doc.merge('value', { isRequired: false });
+            doc.merge('renderContent', {
+                examples: [
+                    { name: '() => <i>ReactNode example</i>', value: () => <i>ReactNode example</i> },
+                    { name: "() => 'Text example'", value: () => 'Text example' },
+                ],
+            });
             doc.merge('content', {
                 examples: [{ value: 'Some text', isDefault: true }, { value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa', name: 'long text' }],
                 editorType: 'StringWithExamplesEditor',
@@ -35,7 +42,7 @@ export class TooltipDoc extends BaseDocsBlock {
                     { name: '() => ([100, 100])', value: () => ([100, 100]) },
                 ],
             });
-            doc.merge('modifiers', { examples: [{ name: "[{ name: 'offset', options: { offset: [0, 6] } }]", value: [{ name: 'offset', options: { offset: [0, 6] } }] }] });
+            doc.merge('modifiers', { editorType: 'JsonEditor' });
         },
     };
 

@@ -17,9 +17,10 @@ export class TextInputDoc extends BaseDocsBlock {
             [TSkin.UUI4_promo]: { type: '@epam/uui:TextInputProps', component: promo.TextInput },
         },
         doc: (doc: DocBuilder<uui.TextInputProps | loveship.TextInputProps>) => {
-            doc.merge('type', { examples: ['text', 'password'], editorType: 'StringWithExamplesEditor', defaultValue: 'text' });
+            doc.merge('type', { defaultValue: 'text' });
             doc.merge('mode', { defaultValue: 'form' });
             doc.merge('iconPosition', { defaultValue: 'left' });
+            doc.merge('maxLength', { examples: [10, 20, 30] });
         },
     };
 

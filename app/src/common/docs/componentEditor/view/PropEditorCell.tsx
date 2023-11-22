@@ -3,7 +3,7 @@ import {
     PropDoc, SharedPropEditorsMap,
     IPropDocEditor, TPropDocEditorType, PropExampleObject,
 } from '@epam/uui-docs';
-import { IconButton, Tooltip, FlexRow } from '@epam/uui';
+import { IconButton, Tooltip, FlexRow, FlexCell } from '@epam/uui';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 
 interface IPropEditorCell<TProp> {
@@ -53,9 +53,11 @@ export function PropEditorCell<TProp = any>(props: IPropEditorCell<TProp>): Reac
 function PropDescription(props: { description: string }) {
     if (props.description) {
         return (
-            <Tooltip placement="top" content={ props.description }>
-                <IconButton icon={ InfoIcon } color="neutral" rawProps={ { style: { minWidth: '18px' } } } />
-            </Tooltip>
+            <FlexCell shrink={ 1 } minWidth={ 24 }>
+                <Tooltip placement="top" content={ props.description }>
+                    <IconButton icon={ InfoIcon } color="neutral" rawProps={ { style: { minWidth: '18px' } } } />
+                </Tooltip>
+            </FlexCell>
         );
     }
     return null;

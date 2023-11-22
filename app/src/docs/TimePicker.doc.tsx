@@ -19,11 +19,13 @@ export class TimePickerDoc extends BaseDocsBlock {
             [TSkin.UUI4_promo]: { type: '@epam/uui:TimePickerProps', component: promo.TimePicker },
         },
         doc: (doc: DocBuilder<uui.TimePickerProps>) => {
+            doc.merge('minutesStep', { examples: [5, 10, 15] });
             doc.merge('size', { defaultValue: '36' });
             doc.merge('mode', { defaultValue: 'form' });
             doc.merge('value', {
+                editorType: 'JsonEditor',
                 examples: [
-                    { name: '{ hours: 6, minutes: 20 }', value: { hours: 6, minutes: 20 }, isDefault: true },
+                    { name: '6:20', value: { hours: 6, minutes: 20 }, isDefault: true },
                     { name: 'undefined', value: undefined },
                 ],
             });

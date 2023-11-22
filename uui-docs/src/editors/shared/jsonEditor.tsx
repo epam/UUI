@@ -2,9 +2,9 @@ import React from 'react';
 import { FlexCell, TextArea } from '@epam/uui';
 import { getUseInputValueHook } from './utils/hooks';
 import { IPropDocEditor } from '../../types';
-import { withMultiUnknownExamplesComponent } from './examples/multiUnknownExamples';
+import { getMultiUnknownExamplesComponent } from './examples/multiUnknownExamples';
 
-const JSonEditorExamples = withMultiUnknownExamplesComponent({ isValueNodeVisible: false });
+const JSonEditorExamples = getMultiUnknownExamplesComponent({ isValueNodeVisible: false });
 const valueToInput = (v: object) => (v ? JSON.stringify(v, undefined, 1) : '');
 const inputToValue = (i: string) => jsonParse(i);
 const validateInput = (i: string) => {
@@ -32,24 +32,23 @@ const useInputValue = getUseInputValueHook<object, string>({
 export function JsonEditor(props: IPropDocEditor<object>) {
     const inputProps = useInputValue({ ...props });
 
-    const size = Math.max(inputProps.input?.split('\n').length, 2);
     const input = (
         <TextArea
             placeholder="JSON value"
             onValueChange={ inputProps.onInputChange }
             value={ inputProps.input }
             size="24"
-            rows={ size }
+            autoSize={ true }
             isInvalid={ !inputProps.isInputValid }
         />
     );
     if (props.examples.length > 0) {
         return (
             <>
-                <FlexCell minWidth={ 100 }>
+                <FlexCell minWidth={ 130 }>
                     <JSonEditorExamples { ...props } />
                 </FlexCell>
-                <FlexCell minWidth={ 200 }>
+                <FlexCell minWidth={ 170 } grow={ 1 }>
                     {input}
                 </FlexCell>
             </>
