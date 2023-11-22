@@ -33,25 +33,25 @@
 
 .color-red {
     :global(.uui-icon) {
-        fill: var(--uui-critical-50);
+        fill: var(--uui-text-critical);
     }
 }
 
 .color-green {
     :global(.uui-icon) {
-        fill: var(--uui-success-50);
+        fill: var(--uui-text-success);
     }
 }
 
 .color-amber {
     :global(.uui-icon) {
-        fill: var(--uui-warning-50);
+        fill: var(--uui-text-warning);
     }
 }
 
 .color-blue {
     :global(.uui-icon) {
-        fill: var(--uui-info-50);
+        fill: var(--uui-text-info);
     }
 }
 

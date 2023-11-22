@@ -3,6 +3,9 @@ import * as uuiComponents from '@epam/uui-components';
 import css from './Switch.module.scss';
 
 export interface SwitchMods {
+    /**
+     * @default '18'
+     */
     size?: '12' | '18' | '24';
 }
 

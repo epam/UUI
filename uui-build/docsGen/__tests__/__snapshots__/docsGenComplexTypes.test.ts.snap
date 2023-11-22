@@ -29,6 +29,9 @@ exports[`docsGen:complexTypes should convert interface when it extends another i
       "typeValue": {
        "raw": "string"
       },
+      "editor": {
+       "type": "string"
+      },
       "from": "test/test.tsx:IBaseInterface",
       "required": true
      },
@@ -37,6 +40,9 @@ exports[`docsGen:complexTypes should convert interface when it extends another i
       "name": "onValueChange",
       "typeValue": {
        "raw": "(newValue: string) => void"
+      },
+      "editor": {
+       "type": "func"
       },
       "from": "test/test.tsx:IBaseInterface",
       "required": true
@@ -82,7 +88,6 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
       "    // This comment must be ignored, because it's not TSDoc",
       "    aProp: 'black' | 'white';",
       "    propExternalTypeTest: HTMLElement;",
-      "    unionPropTest: TUnionTest;",
       "    /** This is PropertySignature */",
       "    propSignatureTest: {",
       "        name: string;",
@@ -106,6 +111,13 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
       "typeValue": {
        "raw": "'black' | 'white'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "black",
+        "white"
+       ]
+      },
       "required": true
      },
      {
@@ -118,73 +130,90 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
      },
      {
       "uid": 3,
-      "name": "unionPropTest",
-      "typeValue": {
-       "raw": "TUnionTest"
-      },
-      "required": true
-     },
-     {
-      "uid": 4,
       "name": "propSignatureTest",
-      "comment": [
-       "This is PropertySignature"
-      ],
+      "comment": {
+       "raw": [
+        "This is PropertySignature"
+       ]
+      },
       "typeValue": {
        "raw": "{ name: string; value: any; }[]"
       },
       "required": true
      },
      {
-      "uid": 5,
+      "uid": 4,
       "name": "methodSignatureTest",
-      "comment": [
-       "This is MethodSignature"
-      ],
+      "comment": {
+       "raw": [
+        "This is MethodSignature"
+       ]
+      },
       "typeValue": {
        "raw": "(a?: number | undefined, b?: number | undefined) => number | undefined"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": 5,
+      "name": "methodDeclarationTest",
+      "comment": {
+       "raw": [
+        "This is MethodDeclaration"
+       ]
+      },
+      "typeValue": {
+       "raw": "(p: number) => number"
+      },
+      "editor": {
+       "type": "func"
       },
       "required": true
      },
      {
       "uid": 6,
-      "name": "methodDeclarationTest",
-      "comment": [
-       "This is MethodDeclaration"
-      ],
+      "name": "get someBool",
+      "comment": {
+       "raw": [
+        "This is GetAccessor"
+       ]
+      },
       "typeValue": {
-       "raw": "(p: number) => number"
+       "raw": "get someBool(): boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": true
      },
      {
       "uid": 7,
-      "name": "get someBool",
-      "comment": [
-       "This is GetAccessor"
-      ],
-      "typeValue": {
-       "raw": "get someBool(): boolean"
-      },
-      "required": true
-     },
-     {
-      "uid": 8,
       "name": "a",
       "typeValue": {
        "raw": "number"
+      },
+      "editor": {
+       "type": "number"
       },
       "from": "test/test.tsx:ITestB",
       "required": true
      },
      {
-      "uid": 9,
+      "uid": 8,
       "name": "b",
-      "comment": [
-       "This is inherited property TSDoc"
-      ],
+      "comment": {
+       "raw": [
+        "This is inherited property TSDoc"
+       ]
+      },
       "typeValue": {
        "raw": "number"
+      },
+      "editor": {
+       "type": "number"
       },
       "from": "test/test.tsx:ITestB",
       "required": true
@@ -222,16 +251,24 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
       "typeValue": {
        "raw": "number"
       },
+      "editor": {
+       "type": "number"
+      },
       "required": true
      },
      {
       "uid": 2,
       "name": "b",
-      "comment": [
-       "This is inherited property TSDoc"
-      ],
+      "comment": {
+       "raw": [
+        "This is inherited property TSDoc"
+       ]
+      },
       "typeValue": {
        "raw": "number"
+      },
+      "editor": {
+       "type": "number"
       },
       "required": true
      }
@@ -294,6 +331,9 @@ exports[`docsGen:complexTypes should convert interface with generics 1`] = `
       "typeValue": {
        "raw": "number"
       },
+      "editor": {
+       "type": "number"
+      },
       "required": true
      },
      {
@@ -301,6 +341,9 @@ exports[`docsGen:complexTypes should convert interface with generics 1`] = `
       "name": "offsetTop",
       "typeValue": {
        "raw": "number"
+      },
+      "editor": {
+       "type": "number"
       },
       "required": true
      },
@@ -310,6 +353,9 @@ exports[`docsGen:complexTypes should convert interface with generics 1`] = `
       "typeValue": {
        "raw": "number"
       },
+      "editor": {
+       "type": "number"
+      },
       "required": true
      },
      {
@@ -317,6 +363,9 @@ exports[`docsGen:complexTypes should convert interface with generics 1`] = `
       "name": "targetHeight",
       "typeValue": {
        "raw": "number"
+      },
+      "editor": {
+       "type": "number"
       },
       "required": true
      }
@@ -388,6 +437,9 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "typeValue": {
        "raw": "boolean"
       },
+      "editor": {
+       "type": "bool"
+      },
       "required": true
      },
      {
@@ -396,6 +448,9 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "typeValue": {
        "raw": "number"
       },
+      "editor": {
+       "type": "number"
+      },
       "required": true
      },
      {
@@ -403,6 +458,9 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "name": "pString",
       "typeValue": {
        "raw": "string"
+      },
+      "editor": {
+       "type": "string"
       },
       "required": true
      },
@@ -492,6 +550,12 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "typeValue": {
        "raw": "'test'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "test"
+       ]
+      },
       "required": true
      },
      {
@@ -546,6 +610,9 @@ exports[`docsGen:complexTypes should expand props if internal type is wrapped in
       "typeValue": {
        "raw": "string"
       },
+      "editor": {
+       "type": "string"
+      },
       "from": "test/test.tsx:TLocal",
       "required": true
      }
@@ -598,6 +665,7 @@ exports[`docsGen:complexTypes should include generic type argument names in full
       "typeValue": {
        "raw": "Record<string, T>"
       },
+      "typeValueRef": "node_modules/typescript/lib/lib.es5.d.ts:Record",
       "required": true
      }
     ],
@@ -631,10 +699,22 @@ exports[`docsGen:complexTypes should include generic type argument names in full
       "typeValue": {
        "raw": "Record<string, S>"
       },
+      "typeValueRef": "node_modules/typescript/lib/lib.es5.d.ts:Record",
       "required": true
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "node_modules/typescript/lib/lib.es5.d.ts:Record": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.es5.d.ts",
+    "typeName": {
+     "name": "Record",
+     "nameFull": "Record<K, T>"
+    },
+    "src": "node_modules/typescript/lib/lib.es5.d.ts",
+    "exported": false
    }
   }
  }

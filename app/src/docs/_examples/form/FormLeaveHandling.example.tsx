@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { FlexCell, FlexRow, FlexSpacer, Button, LabeledInput, TextInput, useForm, ConfirmationModal } from '@epam/uui';
 import { useUuiContext } from '@epam/uui-core';
 
@@ -9,9 +9,9 @@ interface Person {
 
 export default function FormLeaveHandlingExample() {
     const context = useUuiContext();
-    const beforeLeave = (): Promise<boolean> => {
+    const beforeLeave = useCallback((): Promise<boolean> => {
         return context.uuiModals.show<boolean>((modalProps) => <ConfirmationModal caption="Custom message about your data may be lost. Do you want to save data?" { ...modalProps } />);
-    };
+    }, [context.uuiModals]);
 
     const { lens, save } = useForm<Person>({
         value: {},

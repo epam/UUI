@@ -4,6 +4,9 @@ import css from './RadioInput.module.scss';
 import { ReactComponent as RadioPoint } from '../../icons/radio-point.svg';
 
 export interface RadioInputMods {
+    /**
+     * @default '18'
+     */
     size?: '12' | '18';
 }
 

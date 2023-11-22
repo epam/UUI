@@ -61,6 +61,9 @@ exports[`docsGen:union should convert union of two anonymous object types 1`] = 
       "typeValue": {
        "raw": "string"
       },
+      "editor": {
+       "type": "string"
+      },
       "required": true
      },
      {
@@ -69,6 +72,9 @@ exports[`docsGen:union should convert union of two anonymous object types 1`] = 
       "typeValue": {
        "raw": "string"
       },
+      "editor": {
+       "type": "string"
+      },
       "required": true
      },
      {
@@ -76,6 +82,9 @@ exports[`docsGen:union should convert union of two anonymous object types 1`] = 
       "name": "n2Prop",
       "typeValue": {
        "raw": "string"
+      },
+      "editor": {
+       "type": "string"
       },
       "required": true
      }
@@ -115,6 +124,9 @@ exports[`docsGen:union should convert union of two object types 1`] = `
       "typeValue": {
        "raw": "string"
       },
+      "editor": {
+       "type": "string"
+      },
       "from": "test/test.tsx:N1",
       "required": true
      },
@@ -123,6 +135,9 @@ exports[`docsGen:union should convert union of two object types 1`] = `
       "name": "n1Prop",
       "typeValue": {
        "raw": "string"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "test/test.tsx:N1",
       "required": true
@@ -133,6 +148,9 @@ exports[`docsGen:union should convert union of two object types 1`] = `
       "typeValue": {
        "raw": "string"
       },
+      "editor": {
+       "type": "string"
+      },
       "from": "test/test.tsx:N2",
       "required": true
      },
@@ -141,6 +159,9 @@ exports[`docsGen:union should convert union of two object types 1`] = `
       "name": "n2Prop",
       "typeValue": {
        "raw": "string"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "test/test.tsx:N2",
       "required": true
@@ -168,6 +189,92 @@ exports[`docsGen:union should convert union of two object types 1`] = `
      "nameFull": "N2"
     },
     "src": "test/test.tsx",
+    "exported": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:union should not expand ReactNode type of property 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TTestOptional": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTestOptional",
+     "nameFull": "TTestOptional"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "TTestOptional",
+     "print": [
+      "interface TTestOptional {",
+      "    testProp?: React.ReactNode;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "testProp",
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "test/test.tsx:TTestRequired": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTestRequired",
+     "nameFull": "TTestRequired"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "TTestRequired",
+     "print": [
+      "interface TTestRequired {",
+      "    testProp: React.ReactNode;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "testProp",
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@types/react:ReactNode": {
+   "summary": {
+    "module": "@types/react",
+    "typeName": {
+     "name": "ReactNode",
+     "nameFull": "ReactNode"
+    },
+    "src": "node_modules/@types/react/index.d.ts",
     "exported": false
    }
   }

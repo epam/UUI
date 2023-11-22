@@ -3,7 +3,10 @@ import { Tooltip as uuiTooltip, TooltipProps as UuiTooltipProps } from '@epam/uu
 import css from './Tooltip.module.scss';
 
 export interface TooltipMods {
-    /** Tooltip color */
+    /**
+     * Tooltip color
+     * @default 'inverted'
+     */
     color?: 'neutral' | 'inverted' | 'critical';
 }
 

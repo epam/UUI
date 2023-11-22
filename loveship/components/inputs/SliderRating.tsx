@@ -22,8 +22,17 @@ const defaultSize = '18';
 
 export interface SliderRatingProps<TValue> extends IEditable<TValue>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     renderTooltip?: (value: TValue) => React.ReactNode;
+    /**
+     * @default 1
+     */
     from?: 1 | 2;
+    /**
+     * @default false
+     */
     withoutNa?: boolean;
+    /**
+     * @default '18'
+     */
     size?: '18' | '24';
     getScaleIcon?: (value: number) => Icon;
     getHandlerIcon?: (value: number) => Icon;
