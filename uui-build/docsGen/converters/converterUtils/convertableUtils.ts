@@ -19,4 +19,9 @@ export class ConvertableUtils {
             return SymbolUtils.getNodeFromSymbol(nodeOrSymbol);
         }
     }
+
+    static isExternal(nodeOrSymbol: TConvertable): boolean {
+        const node = ConvertableUtils.getNode(nodeOrSymbol);
+        return NodeUtils.isExternalNode(node);
+    }
 }

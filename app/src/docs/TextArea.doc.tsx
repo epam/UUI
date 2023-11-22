@@ -1,20 +1,27 @@
 import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
-} from '../common';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
 export class TextAreaDoc extends BaseDocsBlock {
     title = 'TextArea';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:TextAreaProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/inputs/textArea.props.ts',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/textArea.props.ts',
-            [UUI]: './app/src/docs/_props/uui/components/inputs/textArea.props.ts',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'TextArea',
+        contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
+        bySkin: {
+            [TSkin.UUI3_loveship]: { type: '@epam/uui:TextAreaProps', component: loveship.TextArea },
+            [TSkin.UUI4_promo]: { type: '@epam/uui:TextAreaProps', component: promo.TextArea },
+            [TSkin.UUI]: { type: '@epam/uui:TextAreaProps', component: uui.TextArea },
+        },
+        doc: (doc: DocBuilder<uui.TextAreaProps>) => {
+            doc.merge('mode', { defaultValue: 'form' });
+            doc.merge('rows', { examples: [1, 10, 20, 30] });
+            doc.merge('maxLength', { examples: [5, 30, 50, 120] });
+        },
+    };
 
     renderContent() {
         return (
@@ -22,7 +29,8 @@ export class TextAreaDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="textArea-descriptions" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/textArea/Basic.example.tsx" />
-                <DocExample title="Advanced" path="./_examples/textArea/Advanced.example.tsx" />
+                <DocExample title="Height configuration" path="./_examples/textArea/HeightConfiguration.example.tsx" />
+                <DocExample title="With length limit" path="./_examples/textArea/MaxLengthCounter.example.tsx" />
             </>
         );
     }

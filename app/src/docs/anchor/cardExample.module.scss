@@ -1,0 +1,44 @@
+.panel {
+    border: 1px solid var(--uui-control-border-disabled);
+
+    .icon-row {
+        padding: 0 6px;
+        background-color: var(--uui-success-50);
+        opacity: 0.8;
+        background-image: repeating-radial-gradient(circle at 0 0, transparent 0, var(--uui-success-50) 10px), repeating-linear-gradient(var(--uui-success-50), var(--uui-info-50));
+    }
+
+    .icon {
+        fill: var(--uui-surface-main);
+    }
+
+    .text {
+        padding: 0;
+    }
+
+    .footer {
+        border-top: 1px solid var(--uui-control-border);
+
+        .icon {
+            fill: var(--uui-control-icon);
+        }
+    }
+
+    &:hover {
+        border: 1px solid var(--uui-control-border);
+    }
+}
+
+:global(.uui-disabled) {
+    .panel {
+        pointer-events: none;
+
+        .icon-row, .footer {
+            opacity: 0.5;
+        }
+
+        .text {
+            color: var(--uui-control-label-disabled);
+        }
+    }
+}

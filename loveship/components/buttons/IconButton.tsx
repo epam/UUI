@@ -3,6 +3,9 @@ import { devLogger, withMods } from '@epam/uui-core';
 import { EpamAdditionalColor, EpamPrimaryColor } from '../types';
 
 export interface IconButtonMods {
+    /**
+     * @default 'night600'
+     */
     color?: EpamPrimaryColor | EpamAdditionalColor | 'white' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600';
 }
 

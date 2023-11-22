@@ -6,5 +6,6 @@ export interface PanelMods {
     margin?: '24';
     background?: 'white' | 'gray90';
 }
+export interface PanelProps extends VPanelProps, PanelMods {}
 
 export const Panel = withMods<VPanelProps, PanelMods>(uuiPanel, (props) => [props.background && `uui-color-${props.background}`]);

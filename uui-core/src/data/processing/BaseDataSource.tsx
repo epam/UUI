@@ -59,4 +59,9 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
             view.destroy();
         };
     }
+    
+    protected reload() {
+        this.views.forEach((view) => view.reload());
+        this.subscriptions.forEach((_, view) => view.reload());
+    }
 }

@@ -6,12 +6,12 @@ import css from './TypesExample.module.scss';
 export default function VariantsTooltipExample() {
     return (
         <div className={ css.container }>
-            <Tooltip content="Tooltip message" placement="bottom" color="neutral">
-                <Button caption="Contrast" color="primary" onClick={ () => null } />
+            <Tooltip content="Tooltip message" placement="bottom" color="inverted">
+                <Button caption="Default" fill="outline" color="secondary" onClick={ () => null } />
             </Tooltip>
 
-            <Tooltip content="Tooltip message" placement="bottom" color="contrast">
-                <Button caption="Default" fill="outline" color="secondary" onClick={ () => null } />
+            <Tooltip content="Tooltip message" placement="bottom" color="neutral">
+                <Button caption="Contrast" color="primary" onClick={ () => null } />
             </Tooltip>
 
             <Tooltip content="Tooltip message" placement="bottom" color="critical">

@@ -1,0 +1,38 @@
+.root {
+    .recommendedText {
+        text-align: center;
+        color: var(--uui-tooltip-text);
+    }
+
+    .infoTable {
+        margin-top: 12px;
+        border: 1px solid var(--uui-color-contrast);
+        text-align: center;
+        background: var(--uui-surface-main);
+    }
+
+    .height18 {
+        min-height: 18px;
+    }
+
+    .height24 {
+        min-height: 24px;
+    }
+
+    .leftCell {
+        border-right: 1px solid var(--uui-neutral-50);
+    }
+
+    .borderBottom {
+        border-bottom: 1px solid var(--uui-neutral-50);
+    }
+
+    .activeV,
+    .activeH {
+        background: var(--uui-info-50);
+    }
+
+    .activeText {
+        color: var(--uui-info-contrast);
+    }
+}

@@ -22,6 +22,7 @@ export interface DropdownContainerProps
      * If omitted, true value will be used.
      *
      * After DropdownContainer appeared the focus will be set on the first focusable element inside.
+     * @default true
      */
     focusLock?: boolean;
     /**
