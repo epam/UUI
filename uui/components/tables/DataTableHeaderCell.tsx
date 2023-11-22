@@ -33,8 +33,8 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
 
     getTooltipContent = () => (
         <div className={ css.cellTooltipWrapper }>
-            <Text fontSize="14" color="contrast" fontWeight="600" cx={ css.cellTooltipText }>{ this.props.column.caption }</Text>
-            { this.props.column.info && <Text fontSize="12" color="contrast" cx={ css.cellTooltipText }>{ this.props.column.info }</Text> }
+            <Text fontSize="14" fontWeight="600" cx={ css.cellTooltipText }>{ this.props.column.caption }</Text>
+            { this.props.column.info && <Text fontSize="12" cx={ css.cellTooltipText }>{ this.props.column.info }</Text> }
         </div>
     );
 
@@ -44,7 +44,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                 <div className={ cx(css.iconCell, css['align-' + this.props.column.textAlign], uuiDataTableHeaderCell.uuiTableHeaderCaptionWrapper) }>
                     <Tooltip
                         placement="top"
-                        color="contrast"
+                        color="inverted"
                         renderContent={ this.getTooltipContent }
                         cx={ css.cellTooltip }
                         openDelay={ 600 }

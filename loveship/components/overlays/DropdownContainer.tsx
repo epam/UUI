@@ -1,5 +1,5 @@
 import { withMods } from '@epam/uui-core';
-import { DropdownContainer as uuiDropdownListContainer, DropdownContainerProps } from '@epam/uui';
+import * as uui from '@epam/uui';
 
 export interface DropdownContainerMods {
     color?: 'white' | 'night700';
@@ -9,4 +9,6 @@ function applyDropdownContainerMods(mods: DropdownContainerMods) {
     return [`uui-color-${mods.color || 'white'}`];
 }
 
-export const DropdownContainer = withMods<DropdownContainerProps, DropdownContainerMods>(uuiDropdownListContainer, applyDropdownContainerMods);
+export type DropdownContainerProps = uui.DropdownContainerProps & DropdownContainerMods;
+
+export const DropdownContainer = withMods<uui.DropdownContainerProps, DropdownContainerMods>(uui.DropdownContainer, applyDropdownContainerMods);

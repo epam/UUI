@@ -39,6 +39,8 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     --uui-picker_toggler-border-active: var(--uui-control-border-focus);
     --uui-picker_toggler-border-error: var(--uui-error-50);
     --uui-picker_toggler-placeholder: var(--uui-control-placeholder);
+    --uui-picker_toggler-placeholder-disabled: var(--uui-control-placeholder-disabled);
+    --uui-picker_toggler-placeholder-readonly: var(--uui-control-placeholder-disabled);
     --uui-picker_toggler-text: var(--uui-control-text);
     --uui-picker_toggler-text-disabled: var(--uui-control-text-disabled);
     --uui-picker_toggler-icon: var(--uui-control-icon);
@@ -162,10 +164,6 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
 
         :global(.uui-input) {
             cursor: default;
-
-            &::placeholder {
-                color: var(--uui-picker_toggler-text-disabled);
-            }
         }
 
         :global(.uui-icon-dropdown), :global(.uui-icon-cancel) {

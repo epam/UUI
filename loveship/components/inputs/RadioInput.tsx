@@ -3,6 +3,9 @@ import { RadioInput as uuiRadioInput, RadioInputProps as UuiRadioInputProps, Rad
 import css from './RadioInput.module.scss';
 
 export interface RadioInputMods extends UuiRadioInputMods {
+    /**
+     * @default 'light'
+     */
     theme?: 'light' | 'dark';
 }
 

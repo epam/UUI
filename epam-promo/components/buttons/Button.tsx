@@ -6,6 +6,7 @@ import css from './Button.module.scss';
 export type ButtonColor = 'blue' | 'green' | 'red' | 'gray50' | 'gray';
 
 export interface ButtonMods {
+    /** @default 'solid' */
     fill?: FillStyle;
     color?: ButtonColor;
 }

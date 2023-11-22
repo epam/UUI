@@ -15,6 +15,7 @@ export interface ButtonCoreProps extends ButtonBaseCoreProps, IHasCaption, IBasi
     /** Position of the dropdown icon ('left' of 'right') */
     dropdownIconPosition?: 'left' | 'right';
 
+    /** Count value to be placed in component */
     count?: React.ReactNode;
 }
 

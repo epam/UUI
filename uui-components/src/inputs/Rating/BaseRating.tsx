@@ -13,6 +13,9 @@ export interface BaseRatingProps<TValue>
     IHasForwardedRef<HTMLDivElement> {
     from?: number;
     to?: number;
+    /**
+     * @default 1
+     */
     step?: 0.5 | 1;
     renderRating?: (rating: number, markWidth: number, numberOfMarks: number) => React.ReactNode;
 }

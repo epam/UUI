@@ -5,8 +5,8 @@ import {
 import css from './StartedBlock.module.scss';
 import { ReactComponent as CrystalIcon } from '../icons/crystal.svg';
 import { ReactComponent as ReactIcon } from '../icons/react_small.svg';
-import { UUI4 } from '../common';
 import { analyticsEvents } from '../analyticsEvents';
+import { TSkin } from '@epam/uui-docs';
 
 export class StartedBlock extends React.Component {
     private forDevelopersEvent = analyticsEvents.welcome.gettingStarted('For developers');
@@ -62,7 +62,7 @@ export class StartedBlock extends React.Component {
                                                 id: 'gettingStartedForDesigners',
                                                 category: 'forDesigners',
                                                 mode: 'doc',
-                                                skin: UUI4,
+                                                skin: TSkin.UUI4_promo,
                                             },
                                         } }
                                         clickAnalyticsEvent={ this.forDesignersEvent }

@@ -47,7 +47,7 @@ export function PinIconButton(props: IPinIconButton) {
 
     return (
         <span onMouseOver={ () => setIsHovered(true) } onMouseOut={ () => setIsHovered(false) }>
-            <Tooltip content={ tooltipText } placement="bottom" color="contrast">
+            <Tooltip content={ tooltipText } placement="bottom" color="inverted">
                 <IconButton icon={ pinIcon } onClick={ pinClickHandler } isDisabled={ isPinnedAlways } color={ isPinned ? 'info' : undefined } />
             </Tooltip>
         </span>
