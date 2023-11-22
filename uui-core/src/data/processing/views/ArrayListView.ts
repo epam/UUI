@@ -84,11 +84,11 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         this.updateRowOptions();
     }
 
-    public reload = () => {
+    public reload() {
         this.update(this.editable, { ...this.props, items: [] });
         this.isForceReloading = true;
         this._forceUpdate();
-    };
+    }
 
     private isCacheIsOutdated(newValue: DataSourceState<TFilter, TId>, prevValue: DataSourceState<TFilter, TId>) {
         return this.shouldRebuildTree(newValue, prevValue) || this.shouldRebuildRows(newValue, prevValue);
