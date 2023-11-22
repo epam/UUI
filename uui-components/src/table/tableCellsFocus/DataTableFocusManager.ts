@@ -19,7 +19,7 @@ export class DataTableFocusManager<TId> {
 
         const row = this.rowsRegistry.get(rowKey);
 
-        const firstFocusableCell = row.find((cell) => cell && !cell.cellProps.isDisabled && !cell.cellProps.isReadonly);
+        const firstFocusableCell = row.find((cell) => this.isFocusableCell(cell));
         if (!firstFocusableCell) return;
 
         firstFocusableCell.ref.current.focus();
@@ -47,9 +47,10 @@ export class DataTableFocusManager<TId> {
         }
 
         const row = this.rowsRegistry.get(rowKey);
-        row[cellProps.index] = { ref, cellProps };
+        const cell = { ref, cellProps };
+        row[cellProps.index] = cell;
 
-        if (this.pendingRowToBeFocused === id && !cellProps.isDisabled && !cellProps.isReadonly) {
+        if (this.pendingRowToBeFocused === id && this.isFocusableCell(cell)) {
             this.focusRow(id);
         }
     }
@@ -76,4 +77,7 @@ export class DataTableFocusManager<TId> {
     private unsetPendingFocusRow() {
         this.pendingRowToBeFocused = null;
     }
+
+    private isFocusableCell = (cell?: CellInfo) =>
+        cell && !cell.cellProps.isDisabled && !cell.cellProps.isReadonly;
 }
