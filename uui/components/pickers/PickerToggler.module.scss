@@ -107,7 +107,7 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
             }
         }
 
-        &:hover {
+        &:hover, &:global(.uui-focus) {
             :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
                 &:global(.uui-enabled) {
                     fill: var(--uui-picker_toggler-icon-clickable);

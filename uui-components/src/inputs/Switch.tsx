@@ -14,6 +14,7 @@ import {
     UuiContext,
     IHasForwardedRef,
     IHasTabIndex,
+    ICanFocus,
 } from '@epam/uui-core';
 import css from './Switch.module.scss';
 
@@ -25,7 +26,8 @@ export interface SwitchProps
     IAnalyticableOnChange<boolean>,
     IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>,
     IHasForwardedRef<HTMLLabelElement>,
-    IHasTabIndex {
+    IHasTabIndex,
+    ICanFocus<HTMLInputElement> {
     id?: string;
 }
 
@@ -54,7 +56,11 @@ export class Switch extends React.Component<SwitchProps> {
                 ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
-                <div className={ cx(uuiElement.switchBody, this.props.value && uuiMod.checked) }>
+                <div
+                    className={ cx(uuiElement.switchBody, this.props.value && uuiMod.checked) }
+                    onFocus={ this.props.onFocus }
+                    onBlur={ this.props.onBlur }
+                >
                     <input
                         type="checkbox"
                         role="switch"

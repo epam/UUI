@@ -9,7 +9,7 @@ async function setupNumericInput(params: Partial<NumericInputProps>) {
     const { result, mocks } = await setupComponentForTest<NumericInputProps>(
         (context) => {
             return {
-                value: params.value,
+                value: params.value!,
                 min: params.min,
                 max: params.max,
                 step: params.step,
@@ -19,14 +19,14 @@ async function setupNumericInput(params: Partial<NumericInputProps>) {
                 disableLocaleFormatting: params.disableLocaleFormatting,
                 formatValue: params.formatValue,
                 formatOptions: params.formatOptions,
-                onValueChange: jest.fn().mockImplementation((newValue) => context.current.setProperty('value', newValue)),
+                onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('value', newValue)),
             };
         },
         (props) => <NumericInput { ...props } />,
     );
 
     const dom = {
-        input: screen.getByRole('spinbutton') as HTMLInputElement,
+        input: screen.getByRole('spinbutton'),
     };
 
     return { result, dom, mocks };

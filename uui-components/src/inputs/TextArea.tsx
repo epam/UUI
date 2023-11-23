@@ -9,7 +9,6 @@ import {
     uuiMarkers,
     ICanBeReadonly,
     IHasRawProps,
-    IHasForwardedRef,
     CX,
     cx,
     ICanFocus,
@@ -23,7 +22,6 @@ export interface TextAreaProps
     IDisableable,
     ICanBeReadonly,
     IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>,
-    IHasForwardedRef<HTMLDivElement>,
     ICanFocus<HTMLTextAreaElement> {
     /** Adjust height to fit specified number or text rows. HTML TextArea attribute. */
     rows?: number;
@@ -41,6 +39,8 @@ export interface TextAreaProps
     maxLength?: number;
     /** HTML id attribute to put on the HTML Input element */
     id?: string;
+
+    forwardedRef?: React.ForwardedRef<HTMLInputElement>;
 }
 
 interface TextAreaState {
@@ -55,7 +55,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
 
     getParentOverflows(el: Element) {
         const arr = [];
-
+    
         while (el && el.parentNode && el.parentNode instanceof Element) {
             if (el.parentNode.scrollTop) {
                 arr.push({
@@ -65,7 +65,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
             }
             el = el.parentNode;
         }
-
+    
         return arr;
     }
 
@@ -121,9 +121,19 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
         this.setState({ inFocus: false });
     };
 
+    handleWrapperFocus = () => {
+        this.textAreaRef.current?.focus();
+    };
+
     render() {
         return (
-            <div className={ cx(css.container, uuiElement.inputBox, this.props.cx) } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
+            <div
+                className={ cx(css.container, uuiElement.inputBox, this.props.cx) }
+                { ...this.props.rawProps }
+                tabIndex={ -1 }
+                onFocus={ this.handleWrapperFocus }
+                ref={ this.props.forwardedRef }
+            >
                 <textarea
                     autoFocus={ this.props.autoFocus }
                     placeholder={ this.props.placeholder }
