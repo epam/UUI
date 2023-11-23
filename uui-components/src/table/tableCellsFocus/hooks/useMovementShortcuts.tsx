@@ -20,10 +20,10 @@ export function useMovementShortcuts<TId>(props: UseMovementShortcutsProps<TId>)
     }, [props.dataTableFocusManager]);
 
     useEffect(() => {
-        const unsubscribe = shortcutsManager?.registerShortcuts([
+        const removeShortcuts = shortcutsManager?.registerShortcuts([
             [focusNextRowShortcut, focusNextRow],
         ]);
         
-        return () => unsubscribe();
+        return () => removeShortcuts();
     }, [shortcutsManager, focusNextRow]);
 }

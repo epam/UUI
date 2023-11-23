@@ -16,6 +16,6 @@ export class ShortcutsManager {
     public registerShortcuts(shortcuts: Array<[IsExactShortcut, ShortcutAction]>) {
         const unsubs = shortcuts.map((shortcutConfig) => this.registerShortcut(...shortcutConfig));
 
-        return () => unsubs.forEach((unsubscribe) => unsubscribe());
+        return () => unsubs.forEach((removeShortcut) => removeShortcut());
     }
 }
