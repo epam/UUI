@@ -8,6 +8,7 @@ export interface UseMovementShortcutsProps<TId> {
 }
 
 const focusNextRowShortcut = (event: KeyboardEvent) => event.altKey && event.key === 'ArrowDown';
+const focusPrevRowShortcut = (event: KeyboardEvent) => event.altKey && event.key === 'ArrowUp';
 
 export function useMovementShortcuts<TId>(props: UseMovementShortcutsProps<TId>) {
     const shortcutsManager = useShortcutsManager(
@@ -19,9 +20,14 @@ export function useMovementShortcuts<TId>(props: UseMovementShortcutsProps<TId>)
         props.dataTableFocusManager?.focusNextRow();
     }, [props.dataTableFocusManager]);
 
+    const focusPreviousRow = useCallback(() => {
+        props.dataTableFocusManager?.focusPrevRow();
+    }, [props.dataTableFocusManager]);
+
     useEffect(() => {
         const removeShortcuts = shortcutsManager?.registerShortcuts([
             [focusNextRowShortcut, focusNextRow],
+            [focusPrevRowShortcut, focusPreviousRow],
         ]);
         
         return () => removeShortcuts();
