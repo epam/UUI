@@ -4,9 +4,11 @@ import React from 'react';
 import { TextArea, PickerToggler, TextInput, DataTableCell, NumericInput, PickerInput,
     DatePicker, DataPickerRow, PickerItem, IconContainer } from '@epam/uui';
 import { ArrayDataSource, DataColumnProps, DataQueryFilter } from '@epam/uui-core';
+import { Svg } from '@epam/uui-components';
 import { ReactComponent as statusIcon } from '@epam/assets/icons/common/radio-point-10.svg';
 
 import { RowKebabButton } from './RowKebabButton';
+import css from './ProjectTableDemo.module.scss';
 
 const resourceDataSource = new ArrayDataSource({ items: resources });
 const statusDataSource = new ArrayDataSource({ items: statuses });
@@ -79,7 +81,7 @@ export function getColumns(columnsProps: ColumnsProps) {
                                     <PickerToggler
                                         { ...props }
                                         { ...togglerProps }
-                                        icon={ () => <IconContainer icon={ statusIcon } style={ { fill, paddingLeft: '6px' } } /> }
+                                        icon={ () => <Svg svg={ statusIcon } fillColor={ fill } cx={ css.statusIcon } /> }
                                         iconPosition="left"
                                     />
                                 );

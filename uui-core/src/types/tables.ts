@@ -1,4 +1,4 @@
-import React, { Attributes, ReactNode } from 'react';
+import React, { Attributes, ForwardedRef, ReactNode } from 'react';
 import {
     IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps, IDropdownToggler,
 } from './props';
@@ -164,6 +164,7 @@ export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCe
     rowProps: DataRowProps<TItem, TId>;
     /** Cell mode signal the editor component to adapt it's visuals to cell editor */
     mode: 'cell';
+    ref?: ForwardedRef<HTMLElement>;
 }
 
 export interface DataTableCellOptions<TItem = any, TId = any> {
