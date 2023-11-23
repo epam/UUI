@@ -97,7 +97,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
       >
         <div
           className="container uui-input-box -clickable root size-36 mode-form"
-          onBlur={[Function]}
           onFocus={[Function]}
           tabIndex={-1}
         >
@@ -114,7 +113,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
             autoFocus={true}
             className="uui-input"
             inputMode="search"
+            onBlur={[Function]}
             onChange={[Function]}
+            onFocus={[Function]}
             onKeyDown={[Function]}
             placeholder="Type text for quick search"
             tabIndex={0}
@@ -464,7 +465,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       >
         <div
           className="container uui-input-box -clickable root size-36 mode-form"
-          onBlur={[Function]}
           onFocus={[Function]}
           tabIndex={-1}
         >
@@ -481,7 +481,9 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
             autoFocus={true}
             className="uui-input"
             inputMode="search"
+            onBlur={[Function]}
             onChange={[Function]}
+            onFocus={[Function]}
             onKeyDown={[Function]}
             placeholder="Type text for quick search"
             tabIndex={0}
@@ -600,7 +602,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 >
                   <label
                     className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                    tabIndex={-1}
                   >
                     <div
                       className="uui-checkbox"
@@ -668,7 +669,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 >
                   <label
                     className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                    tabIndex={-1}
                   >
                     <div
                       className="uui-checkbox"
@@ -736,7 +736,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 >
                   <label
                     className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                    tabIndex={-1}
                   >
                     <div
                       className="uui-checkbox"
@@ -804,7 +803,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 >
                   <label
                     className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                    tabIndex={-1}
                   >
                     <div
                       className="uui-checkbox"
@@ -872,7 +870,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 >
                   <label
                     className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                    tabIndex={-1}
                   >
                     <div
                       className="uui-checkbox"
@@ -940,7 +937,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 >
                   <label
                     className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                    tabIndex={-1}
                   >
                     <div
                       className="uui-checkbox"
@@ -1008,7 +1004,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 >
                   <label
                     className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                    tabIndex={-1}
                   >
                     <div
                       className="uui-checkbox"
@@ -1076,7 +1071,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 >
                   <label
                     className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                    tabIndex={-1}
                   >
                     <div
                       className="uui-checkbox"
@@ -1144,7 +1138,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 >
                   <label
                     className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                    tabIndex={-1}
                   >
                     <div
                       className="uui-checkbox"
@@ -1212,7 +1205,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 >
                   <label
                     className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                    tabIndex={-1}
                   >
                     <div
                       className="uui-checkbox"
@@ -1280,7 +1272,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 >
                   <label
                     className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox -clickable"
-                    tabIndex={-1}
                   >
                     <div
                       className="uui-checkbox"

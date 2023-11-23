@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    IHasCX, IEditable, IDisableable, IHasForwardedRef, IHasDirection, directionMode, ICanBeReadonly, cx, IHasRawProps,
+    IHasCX, IEditable, IDisableable, IHasForwardedRef, IHasDirection, directionMode, ICanBeReadonly, cx, IHasRawProps, ICanFocus,
 } from '@epam/uui-core';
 import { RadioInputProps } from '../inputs/RadioInput';
 import css from './RadioGroup.module.scss';
@@ -18,7 +18,8 @@ export interface RadioGroupProps<TValue>
     IHasDirection,
     ICanBeReadonly,
     IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>,
-    IHasForwardedRef<HTMLFieldSetElement> {
+    IHasForwardedRef<HTMLFieldSetElement>,
+    ICanFocus<HTMLFieldSetElement> {
     RadioInput?: React.ComponentType<RadioInputProps>;
     items: RadioGroupItem<TValue>[];
     radioInputProps?: RadioInputProps & { key: React.Key };
@@ -36,7 +37,13 @@ export class RadioGroup<TValue> extends React.Component<RadioGroupProps<TValue>>
         const direction = this.props.direction || 'vertical';
 
         return (
-            <fieldset ref={ this.props.forwardedRef } className={ cx(directionMode[direction], this.props.cx, css.container) } { ...this.props.rawProps }>
+            <fieldset
+                ref={ this.props.forwardedRef }
+                className={ cx(directionMode[direction], this.props.cx, css.container) }
+                { ...this.props.rawProps }
+                onFocus={ this.props.onFocus }
+                onBlur={ this.props.onBlur }
+            >
                 {RadioInput
                     && this.props.items.map((i) => (
                         <RadioInput
