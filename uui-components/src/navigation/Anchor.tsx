@@ -1,29 +1,11 @@
 import React from 'react';
-import {
-    handleSpaceKey,
-    uuiMod,
-    uuiElement,
-    uuiMarkers,
-    UuiContext,
-    IHasForwardedRef,
-    IHasCX,
-    IHasChildren,
-    UuiContexts,
-    IDisableable,
-    IClickable,
-    cx,
-    IAnalyticableClick,
-    ButtonComponentProps,
+import { handleSpaceKey, uuiMod, uuiElement, uuiMarkers, UuiContext, IHasForwardedRef, IHasChildren, UuiContexts,
+    cx, ButtonComponentProps,
 } from '@epam/uui-core';
 import { ButtonBase } from '../buttons';
 import css from './Anchor.module.scss';
 
-export type AnchorProps = ButtonComponentProps & IHasCX&
-IHasChildren&
-IDisableable&
-IClickable&
-IAnalyticableClick&
-IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> & {};
+export type AnchorProps = ButtonComponentProps & IHasChildren & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> & {};
 
 export class AnchorImpl extends ButtonBase<AnchorProps> {
     static contextType = UuiContext;
