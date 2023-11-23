@@ -24,11 +24,19 @@ export class DataTableFocusManager<TId> {
 
         const row = this.rowsRegistry.get(rowKey);
 
-        const firstFocusableCell = row.find((cell) => this.isFocusableCell(cell));
-        if (!firstFocusableCell) return;
+        if (this.focusedCell !== undefined && row[this.focusedCell]) {
+            const cell = row[this.focusedCell];
+            if (cell && this.isFocusableCell(cell)) {
+                cell.ref.current.focus();
+                this.setNewFocusCoordinates(id, cell.cellProps.index);
+            }
+        } else {
+            const firstFocusableCell = row.find((cell) => this.isFocusableCell(cell));
+            if (!firstFocusableCell) return;
+            firstFocusableCell.ref.current.focus();
+            this.setNewFocusCoordinates(id, firstFocusableCell.cellProps.index);
+        }
 
-        firstFocusableCell.ref.current.focus();
-        this.setNewFocusCoordinates(id, firstFocusableCell.cellProps.index);
         this.unsetPendingFocusRow();
     }
 
@@ -43,7 +51,7 @@ export class DataTableFocusManager<TId> {
             : undefined;
         const nextRowIndex = currentRowFocusIndex + 1;
 
-        if (this.focusedRow === undefined || currentRowFocusIndex === -1 || !this.hasRowWithIndex(nextRowIndex)) {
+        if (currentRowFocusIndex === undefined || currentRowFocusIndex === -1 || !this.hasRowWithIndex(nextRowIndex)) {
             if (this.hasRowWithIndex(0)) {
                 this.focusRow(this.getRowIdByIndex(0));
             }
@@ -94,6 +102,8 @@ export class DataTableFocusManager<TId> {
     }
 
     public unregisterCell(id: TId, index: number) {
+        if (index === undefined || id === undefined) return;
+
         const rowKey = this.getKeyById(id);
         const rowIndex = this.findRowIndexById(id);
         if (rowIndex !== -1) {
