@@ -216,7 +216,12 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             }
 
             this.targetNode = node;
-            (targetProps.ref as React.RefCallback<HTMLElement>)(this.targetNode);
+            if (typeof targetProps.ref === 'function') {
+                targetProps.ref(this.targetNode);
+            } else if (targetProps.ref) {
+                (targetProps.ref as React.MutableRefObject<HTMLElement>).current = this.targetNode;
+            }
+
             this.setForwardedRef(this.targetNode);
         };
 

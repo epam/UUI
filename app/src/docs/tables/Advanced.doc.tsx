@@ -14,7 +14,8 @@ export class AdvancedTablesDoc extends BaseDocsBlock {
 
                 <DocExample cx={ css.appBg } title="Table with rows Drag&Drop" path="./_examples/tables/TableWithDnD.example.tsx" />
 
-                <DocExample cx={ css.appBg } title="Table with paging" path="./_examples/tables/PagedTable.example.tsx" />
+                <DocExample cx={ css.appBg } title="Table with paging and select page" path="./_examples/tables/PagedTable.example.tsx" />
+                <DocExample cx={ css.appBg } title="Table with paging and select all rows" path="./_examples/tables/PagedTableWithSelectAll.example.tsx" />
 
                 <DocExample cx={ css.appBg } title="Table with column filters" path="./_examples/tables/ColumnFiltersTable.example.tsx" />
                 

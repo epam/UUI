@@ -6,10 +6,10 @@ exports[`Paginator should be rendered correctly 1`] = `
   role="navigation"
 >
   <button
-    aria-disabled={false}
-    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary uui-size-24 navigation-size-24"
+    aria-disabled={true}
+    className="container uui-button-box uui-disabled -clickable root uui-button uui-fill-outline uui-color-secondary uui-size-24 navigation-size-24"
     onClick={[Function]}
-    tabIndex={0}
+    tabIndex={-1}
     type="button"
   >
     <div
