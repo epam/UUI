@@ -29,7 +29,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
 
     useEffect(() => {
         tableFocusContext?.dataTableFocusManager
-            ?.registerCell(row.id, cellRef, {
+            ?.registerCell({ id: row.id, index: row.index }, cellRef, {
                 index: props.index,
                 isDisabled: props.isDisabled,
                 isReadonly: props.isReadonly,
@@ -42,6 +42,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         };
     }, [
         tableFocusContext?.dataTableFocusManager,
+        row.index,
         props.index,
         props.isDisabled,
         props.isReadonly,
