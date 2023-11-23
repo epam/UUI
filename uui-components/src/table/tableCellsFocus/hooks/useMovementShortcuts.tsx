@@ -16,11 +16,13 @@ export function useMovementShortcuts<TId>(props: UseMovementShortcutsProps<TId>)
         [props.dataTableFocusManager],
     );
 
-    const focusNextRow = useCallback(() => {
+    const focusNextRow = useCallback((e: KeyboardEvent) => {
+        e.preventDefault();
         props.dataTableFocusManager?.focusNextRow();
     }, [props.dataTableFocusManager]);
 
-    const focusPreviousRow = useCallback(() => {
+    const focusPreviousRow = useCallback((e: KeyboardEvent) => {
+        e.preventDefault();
         props.dataTableFocusManager?.focusPrevRow();
     }, [props.dataTableFocusManager]);
 
