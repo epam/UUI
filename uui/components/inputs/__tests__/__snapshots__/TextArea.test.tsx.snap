@@ -3,6 +3,8 @@
 exports[`TextArea should be rendered correctly 1`] = `
 <div
   className="container uui-input-box root size-36 mode-form"
+  onFocus={[Function]}
+  tabIndex={-1}
 >
   <textarea
     className="-clickable noAutoSize uui-input"
@@ -17,6 +19,8 @@ exports[`TextArea should be rendered correctly 1`] = `
 exports[`TextArea should be rendered correctly 2`] = `
 <div
   className="container uui-input-box root size-36 mode-inline"
+  onFocus={[Function]}
+  tabIndex={-1}
 >
   <textarea
     className="-clickable noAutoSize uui-input"

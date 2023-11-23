@@ -3,7 +3,6 @@
 exports[`Checkbox should be rendered correctly 1`] = `
 <label
   className="container uui-checkbox-container root size-18 mode-form uui-color-primary -clickable"
-  tabIndex={-1}
 >
   <div
     className="uui-checkbox"
@@ -22,7 +21,6 @@ exports[`Checkbox should be rendered correctly 1`] = `
 exports[`Checkbox should be rendered correctly 2`] = `
 <label
   className="container uui-checkbox-container root size-18 mode-cell uui-color-primary -clickable"
-  tabIndex={-1}
 >
   <div
     className="uui-checkbox"

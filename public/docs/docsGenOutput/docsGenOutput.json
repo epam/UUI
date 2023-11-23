@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-11-21",
+ "timestamp": "2023-11-23",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -10958,34 +10958,71 @@
      "raw": "DropdownProps",
      "print": [
       "interface DropdownProps extends Partial<IEditable<boolean>> {",
-      "    renderTarget: (props: IDropdownToggler) => React.ReactNode;",
-      "    renderBody: (props: DropdownBodyProps) => React.ReactNode;",
-      "    onClose?: () => void;",
-      "    isNotUnfoldable?: boolean;",
-      "    zIndex?: number;",
-      "    placement?: DropdownPlacement;",
-      "    modifiers?: Modifier<any>[];",
-      "    /** Should we close dropdown on click on the Toggler, if it's already open? Default is true. */",
-      "    /** @default 0 */",
-      "    openDelay?: number;",
-      "    /** @default 0 */",
-      "    closeDelay?: number;",
-      "    /**",
-      "     * @default true",
+      "    /** Render callback fo the dropdown target.",
+      "     Note, that it's required to pass 'props' parameters to the target component.",
       "     */",
+      "    renderTarget: (props: IDropdownToggler) => React.ReactNode;",
+      "    /** Render callback for the dropdown body */",
+      "    renderBody: (props: DropdownBodyProps) => React.ReactNode;",
+      "    /** Called when dropdown was closed */",
+      "    onClose?: () => void;",
+      "    /** Disable dropdown opening */",
+      "    isNotUnfoldable?: boolean;",
+      "    /** zIndex for dropdown body",
+      "     * By default used value received by LayoutContext",
+      "     * */",
+      "    zIndex?: number;",
+      "    /** Defines dropdown body placement relative to target */",
+      "    placement?: DropdownPlacement;",
+      "    /** Original popper.js modifiers. See [Popper docs]{@link https://popper.js.org/docs/v2/modifiers/} */",
+      "    modifiers?: Modifier<any>[];",
+      "    /** Defines how much 'ms' user should hold mouse over target to open the dropdown",
+      "     * This prop work only with openOnHover={true}",
+      "     * @default 0",
+      "     * */",
+      "    openDelay?: number;",
+      "    /** Defines after which delay dropdown will be closed, if user leave mouse from target.",
+      "     * This prop work only with openOnHover={true}",
+      "     * @default 0",
+      "     * */",
+      "    closeDelay?: number;",
+      "    /** If true, dropdown will be opened by click on toggler.",
+      "     * @default true",
+      "     * */",
       "    openOnClick?: boolean;",
-      "    /** @default false */",
+      "    /** If true, dropdown will be opened by hover on toggler.",
+      "     * @default false",
+      "     * */",
       "    openOnHover?: boolean;",
-      "    /** @default true */",
+      "    /** If true, clicks on target will toggle dropdown open state.",
+      "     * If false, click on target will only open dropdown and won't close it.",
+      "     * @default true",
+      "     * */",
       "    closeOnTargetClick?: boolean;",
-      "    /** @default true */",
+      "    /** If true, dropdown will be closed on click outside body or toggler.",
+      "     * @default true",
+      "     * */",
       "    closeOnClickOutside?: boolean;",
-      "    /** @default false */",
+      "    /** Defined when to close dropdown in case of openOnHover={ true }",
+      "     * toggler — dropdown will be closed when a mouse leaves the target component",
+      "     * boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
+      "     * false — will not close dropdown by mouse move event",
+      "     * @default 'toggler'",
+      "     * */",
       "    closeOnMouseLeave?: 'toggler' | 'boundary' | false;",
+      "    /**",
+      "     * Node of portal target, where to render the dropdown body.",
+      "     * By default, will be used global portal node.",
+      "     * */",
       "    portalTarget?: HTMLElement;",
+      "    /**",
+      "     * Element relative to which dropdown will calculate position",
+      "     * */",
       "    boundaryElement?: Boundary;",
-      "    /** @default true */",
-      "    closeBodyOnTogglerHidden?: boolean; // default: true; Set false if you do not want to hide the dropdown body in case Toggler is out of the viewport",
+      "    /** Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+      "     * @default true",
+      "     * */",
+      "    closeBodyOnTogglerHidden?: boolean; // default: true;",
       "}"
      ]
     },
@@ -10993,6 +11030,12 @@
      {
       "uid": 1,
       "name": "renderTarget",
+      "comment": {
+       "raw": [
+        "Render callback fo the dropdown target.",
+        "     Note, that it's required to pass 'props' parameters to the target component."
+       ]
+      },
       "typeValue": {
        "raw": "(props: IDropdownToggler) => React.ReactNode"
       },
@@ -11004,6 +11047,11 @@
      {
       "uid": 2,
       "name": "renderBody",
+      "comment": {
+       "raw": [
+        "Render callback for the dropdown body"
+       ]
+      },
       "typeValue": {
        "raw": "(props: DropdownBodyProps) => React.ReactNode"
       },
@@ -11015,6 +11063,11 @@
      {
       "uid": 3,
       "name": "onClose",
+      "comment": {
+       "raw": [
+        "Called when dropdown was closed"
+       ]
+      },
       "typeValue": {
        "raw": "() => void"
       },
@@ -11026,6 +11079,11 @@
      {
       "uid": 4,
       "name": "isNotUnfoldable",
+      "comment": {
+       "raw": [
+        "Disable dropdown opening"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -11037,6 +11095,12 @@
      {
       "uid": 5,
       "name": "zIndex",
+      "comment": {
+       "raw": [
+        "zIndex for dropdown body",
+        " By default used value received by LayoutContext"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -11048,6 +11112,11 @@
      {
       "uid": 6,
       "name": "placement",
+      "comment": {
+       "raw": [
+        "Defines dropdown body placement relative to target"
+       ]
+      },
       "typeValue": {
        "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
@@ -11076,6 +11145,11 @@
      {
       "uid": 7,
       "name": "modifiers",
+      "comment": {
+       "raw": [
+        "Original popper.js modifiers. See [Popper docs]{@link https://popper.js.org/docs/v2/modifiers/}"
+       ]
+      },
       "typeValue": {
        "raw": "(StrictModifier<any> | Partial<Modifier<any, object>>)[]"
       },
@@ -11086,7 +11160,9 @@
       "name": "openDelay",
       "comment": {
        "raw": [
-        "@default 0"
+        "Defines how much 'ms' user should hold mouse over target to open the dropdown",
+        " This prop work only with openOnHover={true}",
+        " @default 0"
        ],
        "tags": {
         "@default": 0
@@ -11105,7 +11181,9 @@
       "name": "closeDelay",
       "comment": {
        "raw": [
-        "@default 0"
+        "Defines after which delay dropdown will be closed, if user leave mouse from target.",
+        " This prop work only with openOnHover={true}",
+        " @default 0"
        ],
        "tags": {
         "@default": 0
@@ -11124,7 +11202,8 @@
       "name": "openOnClick",
       "comment": {
        "raw": [
-        "@default true"
+        "If true, dropdown will be opened by click on toggler.",
+        " @default true"
        ],
        "tags": {
         "@default": true
@@ -11143,7 +11222,8 @@
       "name": "openOnHover",
       "comment": {
        "raw": [
-        "@default false"
+        "If true, dropdown will be opened by hover on toggler.",
+        " @default false"
        ],
        "tags": {
         "@default": false
@@ -11162,7 +11242,9 @@
       "name": "closeOnTargetClick",
       "comment": {
        "raw": [
-        "@default true"
+        "If true, clicks on target will toggle dropdown open state.",
+        " If false, click on target will only open dropdown and won't close it.",
+        " @default true"
        ],
        "tags": {
         "@default": true
@@ -11181,7 +11263,8 @@
       "name": "closeOnClickOutside",
       "comment": {
        "raw": [
-        "@default true"
+        "If true, dropdown will be closed on click outside body or toggler.",
+        " @default true"
        ],
        "tags": {
         "@default": true
@@ -11200,10 +11283,14 @@
       "name": "closeOnMouseLeave",
       "comment": {
        "raw": [
-        "@default false"
+        "Defined when to close dropdown in case of openOnHover={ true }",
+        " toggler — dropdown will be closed when a mouse leaves the target component",
+        " boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
+        " false — will not close dropdown by mouse move event",
+        " @default 'toggler'"
        ],
        "tags": {
-        "@default": false
+        "@default": "toggler"
        }
       },
       "typeValue": {
@@ -11222,6 +11309,12 @@
      {
       "uid": 15,
       "name": "portalTarget",
+      "comment": {
+       "raw": [
+        "Node of portal target, where to render the dropdown body.",
+        " By default, will be used global portal node."
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement"
       },
@@ -11230,6 +11323,11 @@
      {
       "uid": 16,
       "name": "boundaryElement",
+      "comment": {
+       "raw": [
+        "Element relative to which dropdown will calculate position"
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement | HTMLElement[] | 'clippingParents'"
       },
@@ -11240,7 +11338,8 @@
       "name": "closeBodyOnTogglerHidden",
       "comment": {
        "raw": [
-        "@default true"
+        "Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+        " @default true"
        ],
        "tags": {
         "@default": true
@@ -20866,10 +20965,14 @@
       "     */",
       "    from?: number;",
       "    /**",
-      "     * Total count of items which match current filter.",
+      "     * Total count of items which match current filter and pagination.",
       "     * If not specified, total count will be detected only when user scrolls to the end of the list.",
       "     */",
       "    count?: number;",
+      "    /**",
+      "     * Total count of items which match current filter.",
+      "     */",
+      "    totalCount?: number;",
       "}"
      ]
     },
@@ -20909,8 +21012,24 @@
       "name": "count",
       "comment": {
        "raw": [
-        "Total count of items which match current filter.",
+        "Total count of items which match current filter and pagination.",
         " If not specified, total count will be detected only when user scrolls to the end of the list."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "totalCount",
+      "comment": {
+       "raw": [
+        "Total count of items which match current filter."
        ]
       },
       "typeValue": {
@@ -27158,6 +27277,11 @@
      {
       "uid": 16,
       "name": "onClose",
+      "comment": {
+       "raw": [
+        "Called when dropdown was closed"
+       ]
+      },
       "typeValue": {
        "raw": "() => void"
       },
@@ -27170,6 +27294,11 @@
      {
       "uid": 17,
       "name": "placement",
+      "comment": {
+       "raw": [
+        "Defines dropdown body placement relative to target"
+       ]
+      },
       "typeValue": {
        "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
@@ -27199,6 +27328,11 @@
      {
       "uid": 18,
       "name": "modifiers",
+      "comment": {
+       "raw": [
+        "Original popper.js modifiers. See [Popper docs]{@link https://popper.js.org/docs/v2/modifiers/}"
+       ]
+      },
       "typeValue": {
        "raw": "(StrictModifier<any> | Partial<Modifier<any, object>>)[]"
       },
@@ -27210,7 +27344,9 @@
       "name": "openDelay",
       "comment": {
        "raw": [
-        "@default 0"
+        "Defines how much 'ms' user should hold mouse over target to open the dropdown",
+        " This prop work only with openOnHover={true}",
+        " @default 0"
        ],
        "tags": {
         "@default": 0
@@ -27230,7 +27366,9 @@
       "name": "closeDelay",
       "comment": {
        "raw": [
-        "@default 0"
+        "Defines after which delay dropdown will be closed, if user leave mouse from target.",
+        " This prop work only with openOnHover={true}",
+        " @default 0"
        ],
        "tags": {
         "@default": 0
@@ -27250,10 +27388,14 @@
       "name": "closeOnMouseLeave",
       "comment": {
        "raw": [
-        "@default false"
+        "Defined when to close dropdown in case of openOnHover={ true }",
+        " toggler — dropdown will be closed when a mouse leaves the target component",
+        " boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
+        " false — will not close dropdown by mouse move event",
+        " @default 'toggler'"
        ],
        "tags": {
-        "@default": false
+        "@default": "toggler"
        }
       },
       "typeValue": {
@@ -27273,6 +27415,12 @@
      {
       "uid": 22,
       "name": "portalTarget",
+      "comment": {
+       "raw": [
+        "Node of portal target, where to render the dropdown body.",
+        " By default, will be used global portal node."
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement"
       },
@@ -27282,6 +27430,11 @@
      {
       "uid": 23,
       "name": "boundaryElement",
+      "comment": {
+       "raw": [
+        "Element relative to which dropdown will calculate position"
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement | HTMLElement[] | 'clippingParents'"
       },
@@ -27293,7 +27446,8 @@
       "name": "closeBodyOnTogglerHidden",
       "comment": {
        "raw": [
-        "@default true"
+        "Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+        " @default true"
        ],
        "tags": {
         "@default": true
@@ -27329,6 +27483,7 @@
      "print": [
       "interface TreeNodeInfo {",
       "    count?: number;",
+      "    totalCount?: number;",
       "}"
      ]
     },
@@ -27336,6 +27491,17 @@
      {
       "uid": 1,
       "name": "count",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "totalCount",
       "typeValue": {
        "raw": "number"
       },
@@ -30373,9 +30539,7 @@
     "typeValue": {
      "raw": "BlockerProps",
      "print": [
-      "// TBD: move to loveship-specific mods",
-      "// import { EpamColor, SpinnerMods } from '@epam/oswald';",
-      "interface BlockerProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
+      "interface BlockerProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
       "    /** Turns the blocker on or off */",
       "    isEnabled: boolean;",
       "    /** Disables spinner animation display */",
@@ -30383,7 +30547,7 @@
       "    /** Sets the minimal height in px, for cases when blocked content is empty */",
       "    spacerHeight?: number;",
       "    /** Replaces default spinner */",
-      "    renderSpinner?(props: any): React.ReactNode; // React.ComponentClass<SpinnerMods>;",
+      "    renderSpinner?(props: any): React.ReactNode;",
       "}"
      ]
     },
@@ -30479,20 +30643,6 @@
        "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": 7,
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      }
     ],
@@ -55179,6 +55329,11 @@
      {
       "uid": 16,
       "name": "onClose",
+      "comment": {
+       "raw": [
+        "Called when dropdown was closed"
+       ]
+      },
       "typeValue": {
        "raw": "() => void"
       },
@@ -55191,6 +55346,11 @@
      {
       "uid": 17,
       "name": "placement",
+      "comment": {
+       "raw": [
+        "Defines dropdown body placement relative to target"
+       ]
+      },
       "typeValue": {
        "raw": "'right' | 'left' | 'top' | 'bottom' | 'auto' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
@@ -55220,6 +55380,11 @@
      {
       "uid": 18,
       "name": "modifiers",
+      "comment": {
+       "raw": [
+        "Original popper.js modifiers. See [Popper docs]{@link https://popper.js.org/docs/v2/modifiers/}"
+       ]
+      },
       "typeValue": {
        "raw": "(StrictModifier<any> | Partial<Modifier<any, object>>)[]"
       },
@@ -55231,7 +55396,9 @@
       "name": "openDelay",
       "comment": {
        "raw": [
-        "@default 0"
+        "Defines how much 'ms' user should hold mouse over target to open the dropdown",
+        " This prop work only with openOnHover={true}",
+        " @default 0"
        ],
        "tags": {
         "@default": 0
@@ -55251,7 +55418,9 @@
       "name": "closeDelay",
       "comment": {
        "raw": [
-        "@default 0"
+        "Defines after which delay dropdown will be closed, if user leave mouse from target.",
+        " This prop work only with openOnHover={true}",
+        " @default 0"
        ],
        "tags": {
         "@default": 0
@@ -55271,10 +55440,14 @@
       "name": "closeOnMouseLeave",
       "comment": {
        "raw": [
-        "@default false"
+        "Defined when to close dropdown in case of openOnHover={ true }",
+        " toggler — dropdown will be closed when a mouse leaves the target component",
+        " boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
+        " false — will not close dropdown by mouse move event",
+        " @default 'toggler'"
        ],
        "tags": {
-        "@default": false
+        "@default": "toggler"
        }
       },
       "typeValue": {
@@ -55294,6 +55467,12 @@
      {
       "uid": 22,
       "name": "portalTarget",
+      "comment": {
+       "raw": [
+        "Node of portal target, where to render the dropdown body.",
+        " By default, will be used global portal node."
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement"
       },
@@ -55303,6 +55482,11 @@
      {
       "uid": 23,
       "name": "boundaryElement",
+      "comment": {
+       "raw": [
+        "Element relative to which dropdown will calculate position"
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement | HTMLElement[] | 'clippingParents'"
       },
@@ -55314,7 +55498,8 @@
       "name": "closeBodyOnTogglerHidden",
       "comment": {
        "raw": [
-        "@default true"
+        "Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+        " @default true"
        ],
        "tags": {
         "@default": true
@@ -84421,6 +84606,11 @@
      {
       "uid": 16,
       "name": "onClose",
+      "comment": {
+       "raw": [
+        "Called when dropdown was closed"
+       ]
+      },
       "typeValue": {
        "raw": "() => void"
       },
@@ -84433,6 +84623,11 @@
      {
       "uid": 17,
       "name": "placement",
+      "comment": {
+       "raw": [
+        "Defines dropdown body placement relative to target"
+       ]
+      },
       "typeValue": {
        "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
@@ -84462,6 +84657,11 @@
      {
       "uid": 18,
       "name": "modifiers",
+      "comment": {
+       "raw": [
+        "Original popper.js modifiers. See [Popper docs]{@link https://popper.js.org/docs/v2/modifiers/}"
+       ]
+      },
       "typeValue": {
        "raw": "(StrictModifier<any> | Partial<Modifier<any, object>>)[]"
       },
@@ -84473,7 +84673,9 @@
       "name": "openDelay",
       "comment": {
        "raw": [
-        "@default 0"
+        "Defines how much 'ms' user should hold mouse over target to open the dropdown",
+        " This prop work only with openOnHover={true}",
+        " @default 0"
        ],
        "tags": {
         "@default": 0
@@ -84493,7 +84695,9 @@
       "name": "closeDelay",
       "comment": {
        "raw": [
-        "@default 0"
+        "Defines after which delay dropdown will be closed, if user leave mouse from target.",
+        " This prop work only with openOnHover={true}",
+        " @default 0"
        ],
        "tags": {
         "@default": 0
@@ -84513,10 +84717,14 @@
       "name": "closeOnMouseLeave",
       "comment": {
        "raw": [
-        "@default false"
+        "Defined when to close dropdown in case of openOnHover={ true }",
+        " toggler — dropdown will be closed when a mouse leaves the target component",
+        " boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
+        " false — will not close dropdown by mouse move event",
+        " @default 'toggler'"
        ],
        "tags": {
-        "@default": false
+        "@default": "toggler"
        }
       },
       "typeValue": {
@@ -84536,6 +84744,12 @@
      {
       "uid": 22,
       "name": "portalTarget",
+      "comment": {
+       "raw": [
+        "Node of portal target, where to render the dropdown body.",
+        " By default, will be used global portal node."
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement"
       },
@@ -84545,6 +84759,11 @@
      {
       "uid": 23,
       "name": "boundaryElement",
+      "comment": {
+       "raw": [
+        "Element relative to which dropdown will calculate position"
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement | HTMLElement[] | 'clippingParents'"
       },
@@ -84556,7 +84775,8 @@
       "name": "closeBodyOnTogglerHidden",
       "comment": {
        "raw": [
-        "@default true"
+        "Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+        " @default true"
        ],
        "tags": {
         "@default": true
@@ -92175,6 +92395,11 @@
      {
       "uid": 1,
       "name": "onClose",
+      "comment": {
+       "raw": [
+        "Called when dropdown was closed"
+       ]
+      },
       "typeValue": {
        "raw": "() => void"
       },
@@ -92359,6 +92584,11 @@
      {
       "uid": 13,
       "name": "placement",
+      "comment": {
+       "raw": [
+        "Defines dropdown body placement relative to target"
+       ]
+      },
       "typeValue": {
        "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
@@ -92388,6 +92618,11 @@
      {
       "uid": 14,
       "name": "modifiers",
+      "comment": {
+       "raw": [
+        "Original popper.js modifiers. See [Popper docs]{@link https://popper.js.org/docs/v2/modifiers/}"
+       ]
+      },
       "typeValue": {
        "raw": "(StrictModifier<any> | Partial<Modifier<any, object>>)[]"
       },
@@ -92399,7 +92634,9 @@
       "name": "openDelay",
       "comment": {
        "raw": [
-        "@default 0"
+        "Defines how much 'ms' user should hold mouse over target to open the dropdown",
+        " This prop work only with openOnHover={true}",
+        " @default 0"
        ],
        "tags": {
         "@default": 0
@@ -92419,7 +92656,9 @@
       "name": "closeDelay",
       "comment": {
        "raw": [
-        "@default 0"
+        "Defines after which delay dropdown will be closed, if user leave mouse from target.",
+        " This prop work only with openOnHover={true}",
+        " @default 0"
        ],
        "tags": {
         "@default": 0
@@ -92439,10 +92678,14 @@
       "name": "closeOnMouseLeave",
       "comment": {
        "raw": [
-        "@default false"
+        "Defined when to close dropdown in case of openOnHover={ true }",
+        " toggler — dropdown will be closed when a mouse leaves the target component",
+        " boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
+        " false — will not close dropdown by mouse move event",
+        " @default 'toggler'"
        ],
        "tags": {
-        "@default": false
+        "@default": "toggler"
        }
       },
       "typeValue": {
@@ -92462,6 +92705,12 @@
      {
       "uid": 18,
       "name": "portalTarget",
+      "comment": {
+       "raw": [
+        "Node of portal target, where to render the dropdown body.",
+        " By default, will be used global portal node."
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement"
       },
@@ -92471,6 +92720,11 @@
      {
       "uid": 19,
       "name": "boundaryElement",
+      "comment": {
+       "raw": [
+        "Element relative to which dropdown will calculate position"
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement | HTMLElement[] | 'clippingParents'"
       },
@@ -92482,7 +92736,8 @@
       "name": "closeBodyOnTogglerHidden",
       "comment": {
        "raw": [
-        "@default true"
+        "Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+        " @default true"
        ],
        "tags": {
         "@default": true
@@ -104130,6 +104385,11 @@
      {
       "uid": 1,
       "name": "onClose",
+      "comment": {
+       "raw": [
+        "Called when dropdown was closed"
+       ]
+      },
       "typeValue": {
        "raw": "() => void"
       },
@@ -104314,6 +104574,11 @@
      {
       "uid": 13,
       "name": "placement",
+      "comment": {
+       "raw": [
+        "Defines dropdown body placement relative to target"
+       ]
+      },
       "typeValue": {
        "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
@@ -104343,6 +104608,11 @@
      {
       "uid": 14,
       "name": "modifiers",
+      "comment": {
+       "raw": [
+        "Original popper.js modifiers. See [Popper docs]{@link https://popper.js.org/docs/v2/modifiers/}"
+       ]
+      },
       "typeValue": {
        "raw": "(StrictModifier<any> | Partial<Modifier<any, object>>)[]"
       },
@@ -104354,7 +104624,9 @@
       "name": "openDelay",
       "comment": {
        "raw": [
-        "@default 0"
+        "Defines how much 'ms' user should hold mouse over target to open the dropdown",
+        " This prop work only with openOnHover={true}",
+        " @default 0"
        ],
        "tags": {
         "@default": 0
@@ -104374,7 +104646,9 @@
       "name": "closeDelay",
       "comment": {
        "raw": [
-        "@default 0"
+        "Defines after which delay dropdown will be closed, if user leave mouse from target.",
+        " This prop work only with openOnHover={true}",
+        " @default 0"
        ],
        "tags": {
         "@default": 0
@@ -104394,10 +104668,14 @@
       "name": "closeOnMouseLeave",
       "comment": {
        "raw": [
-        "@default false"
+        "Defined when to close dropdown in case of openOnHover={ true }",
+        " toggler — dropdown will be closed when a mouse leaves the target component",
+        " boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
+        " false — will not close dropdown by mouse move event",
+        " @default 'toggler'"
        ],
        "tags": {
-        "@default": false
+        "@default": "toggler"
        }
       },
       "typeValue": {
@@ -104417,6 +104695,12 @@
      {
       "uid": 18,
       "name": "portalTarget",
+      "comment": {
+       "raw": [
+        "Node of portal target, where to render the dropdown body.",
+        " By default, will be used global portal node."
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement"
       },
@@ -104426,6 +104710,11 @@
      {
       "uid": 19,
       "name": "boundaryElement",
+      "comment": {
+       "raw": [
+        "Element relative to which dropdown will calculate position"
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement | HTMLElement[] | 'clippingParents'"
       },
@@ -104437,7 +104726,8 @@
       "name": "closeBodyOnTogglerHidden",
       "comment": {
        "raw": [
-        "@default true"
+        "Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.",
+        " @default true"
        ],
        "tags": {
         "@default": true
