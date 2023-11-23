@@ -1,5 +1,5 @@
 import { TPropDocBuilder } from '../docBuilderGenTypes';
-import { getRawPropsExamples } from './shared/reusableExamples';
+import { getRawPropsExamples, getReactRefExamples } from './shared/reusableExamples';
 
 const BY_PROP_NAME: Record<string, TPropDocBuilder> = {
     captionCX: () => {
@@ -10,6 +10,9 @@ const BY_PROP_NAME: Record<string, TPropDocBuilder> = {
     },
     key: () => {
         return { editorType: 'StringEditor', examples: [] };
+    },
+    ref: () => {
+        return { examples: getReactRefExamples('ref') };
     },
     portalTarget: () => {
         return { examples: [{ value: document.body, name: 'document.body' }] };

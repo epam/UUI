@@ -11,14 +11,18 @@ export interface AccordionMods {
 
 export type AccordionProps = AccordionMods & uuiComponents.AccordionProps;
 
+const getMode = (mode: AccordionMods['mode']) => {
+    return mode || 'block';
+};
+
 function applyAccordionMods(mods: AccordionProps) {
     return [
         css.root,
-        css['mode-' + (mods.mode || 'block')],
+        css['mode-' + getMode(mods.mode)],
         mods.padding && css['padding-' + mods.padding],
     ];
 }
 
 export const Accordion = withMods<uuiComponents.AccordionProps, AccordionMods>(uuiComponents.Accordion, applyAccordionMods, (mods) => ({
-    dropdownIcon: mods.dropdownIcon !== null && systemIcons[mods.mode === 'block' ? '60' : '30'].foldingArrow,
+    dropdownIcon: mods.dropdownIcon !== null && systemIcons[getMode(mods.mode) === 'block' ? '60' : '30'].foldingArrow,
 }));
