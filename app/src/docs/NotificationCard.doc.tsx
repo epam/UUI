@@ -16,6 +16,8 @@ export class NotificationCardDoc extends BaseDocsBlock {
             [TSkin.UUI4_promo]: { type: '@epam/promo:NotificationCardProps', component: promo.NotificationCard },
         },
         doc: (doc: DocBuilder<uui.NotificationCardProps | loveship.NotificationCardProps| promo.NotificationCardProps>) => {
+            doc.merge('clearTimer', { remountOnChange: true });
+            doc.merge('refreshTimer', { remountOnChange: true });
             const getChild = (text: string) => (<uui.Text size="36">{text}</uui.Text>);
             doc.merge('children', {
                 examples: [
