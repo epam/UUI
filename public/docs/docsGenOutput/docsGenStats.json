@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 736,
-   "amountTypes": 240
+   "amountProps": 720,
+   "amountTypes": 239
   },
   "value": [
    {
@@ -177,28 +177,6 @@
      "ghostWidth",
      "isDragging",
      "renderGhost"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DropdownProps",
-    "value": [
-     "boundaryElement",
-     "closeBodyOnTogglerHidden",
-     "closeDelay",
-     "closeOnClickOutside",
-     "closeOnMouseLeave",
-     "closeOnTargetClick",
-     "isNotUnfoldable",
-     "modifiers",
-     "onClose",
-     "openDelay",
-     "openOnClick",
-     "openOnHover",
-     "placement",
-     "portalTarget",
-     "renderBody",
-     "renderTarget",
-     "zIndex"
     ]
    },
    {
@@ -542,7 +520,8 @@
    {
     "typeRef": "@epam/uui-core:TreeNodeInfo",
     "value": [
-     "count"
+     "count",
+     "totalCount"
     ]
    },
    {
@@ -2583,7 +2562,6 @@
      "BaseRangeDatePicker",
      "BaseRating",
      "BaseTimePicker",
-     "Blocker",
      "Burger",
      "Button",
      "ButtonBase",
@@ -2654,6 +2632,7 @@
      "Anchor",
      "Avatar",
      "AvatarStack",
+     "Blocker",
      "DataTableRow",
      "DataTableSelectionContext",
      "defaultFormat",
